@@ -5,7 +5,7 @@
 	"refmap": "mixins.refmap.json",
 	"compatibilityLevel": "JAVA_8",
 	"server": [
-		"MixinMinecraftServer"
+		"MixinLOTRBiomes"
 	],
 	"injectors": {
 		"defaultRequire": 1
