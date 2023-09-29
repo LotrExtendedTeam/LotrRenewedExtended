@@ -73,10 +73,16 @@ minecraft {
         }
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
 
+	//lotr mod dep
+	implementation fg.deobf("lotr:lotr-1.16-renewed:5.5")
     //annonations processor
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
