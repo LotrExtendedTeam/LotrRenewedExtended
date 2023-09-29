@@ -1,0 +1,35 @@
+
+# Note: maintain this file using LF for newlines, not CRLF
+
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="lotrextended"
+version="Extended 5.5"
+displayName="Extension for The Lord of the Rings Mod"
+#logoFile="logo.png"
+authors="Maximuslotro"
+description='''
+Extending Lotr Renewed's functionality to include 1.7.10 features'''
+
+[[dependencies.lotrextended]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.16.5]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.lotrextended]]
+modId="forge"
+mandatory=true
+versionRange="[36.2.20,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.lotrextended]]
+modId="lotr"
+mandatory=true
+versionRange="[0,)"
+ordering="BEFORE"
+side="BOTH"
