@@ -1,0 +1,21 @@
+package lotr.common.command;
+
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
+
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
+import net.minecraft.util.text.StringTextComponent;
+
+public class FellowshipCommand extends LOTRBaseCommand {
+	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+		dispatcher.register(Commands.literal("fellowship").requires(context -> context.hasPermission(0))
+				.then(Commands.argument("fellowship", StringArgumentType.word())
+						.then(Commands.argument("message", StringArgumentType.greedyString())
+								.executes(context -> messageFellowship(context.getSource(), StringArgumentType.getString(context, "fellowship"), StringArgumentType.getString(context, "message"))))));
+	}
+	private static int messageFellowship(CommandSource source, String fellowship, String message) {
+		source.sendSuccess(new StringTextComponent(fellowship+" is recieving message: "+message) , true);
+		return 0;
+	}
+}
