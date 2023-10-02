@@ -5,9 +5,10 @@
 	"refmap": "mixins.refmap.json",
 	"compatibilityLevel": "JAVA_8",
 	"server": [
-		"init.MixinLOTRCommands",
+		"config.MixinServerConfig",
 		"data.MixinLOTRPlayerData",
-		"data.MixinLOTRLevelData"
+		"data.MixinLOTRLevelData",
+		"init.MixinLOTRCommands"
 	],
 	"injectors": {
 		"defaultRequire": 1

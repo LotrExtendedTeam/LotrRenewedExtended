@@ -135,8 +135,11 @@ public class FellowshipCommand extends LOTRBaseCommand {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
-        	fellowshipData.createFellowship(fellowshipname);
-        	source.sendSuccess(new StringTextComponent("Successfully created fellowship: "+fellowshipname), true);
+        	if(fellowshipData.createFellowship(fellowshipname)) {
+        		source.sendSuccess(new StringTextComponent("Successfully created fellowship: "+fellowshipname), true);
+            	return 0;
+        	}
+        	source.sendSuccess(new StringTextComponent("Fellowship creation is disabled"), true);
         	return 0;
         } 
 		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists") , true);

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotroExtended.LOTRHooks;
+
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
@@ -125,13 +127,16 @@ public class FellowshipDataModule extends PlayerDataModule {
 		if (fs.isFellowshipOwner(getPlayerUUID()))
 			fs.setOwnerUUID(player);
 	}
-	public void createFellowship(String name) {
-		// if (!LOTRConfig.enableFellowshipCreation)
-		// return;
+	public boolean createFellowship(String name) {
+		if (!LOTRHooks.getFellowshipConfigData())
+			return false;
+
 		if (!anyMatchingFellowshipNames(name)) {
 			ExtendedFellowship fellowship = new ExtendedFellowship(name, getPlayerUUID());
 			fellowship.createAndRegister();
+			return true;
 		}
+		return false;
 	}
 	public void leaveFellowship(ExtendedFellowship fs) {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
