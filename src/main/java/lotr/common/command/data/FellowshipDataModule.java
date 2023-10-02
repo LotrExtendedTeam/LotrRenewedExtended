@@ -119,6 +119,10 @@ public class FellowshipDataModule extends PlayerDataModule {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.addFellowshipMember(player);
 	}
+	public void setIcon(ExtendedFellowship fs, UUID player, ItemStack stack) {
+		if (fs.hasEditPowers(getPlayerUUID()))
+			fs.setIcon(stack);
+	}
 	public void removePlayer(ExtendedFellowship fs, UUID player) {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.removeFellowshipMember(player);
