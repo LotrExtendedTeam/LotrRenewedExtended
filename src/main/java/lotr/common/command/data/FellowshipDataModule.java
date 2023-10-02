@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
-
 import lotr.common.command.fellowship.ExtendedFellowship;
 import lotr.common.command.fellowship.FellowshipDataHolder;
 import lotr.common.data.LOTRPlayerData;
@@ -126,14 +124,8 @@ public class FellowshipDataModule extends PlayerDataModule {
 	}
 
 	public boolean anyMatchingFellowshipNames(String name) {
-		for (UUID fsID : this.fellowshipIDs) {
-			ExtendedFellowship fs = FellowshipDataHolder.getFellowship(fsID);
-			if (fs != null) {
-				String otherName = fs.getFellowshipName();
-				otherName = StringUtils.strip(otherName).toLowerCase();
-				if (name.equals(otherName))
-					return true;
-			}
+		if(getFellowshipByName(name)!=null) {
+			return true;
 		}
 		return false;
 	}
