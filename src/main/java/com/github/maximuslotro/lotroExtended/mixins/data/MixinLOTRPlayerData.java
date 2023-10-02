@@ -23,7 +23,7 @@ public class MixinLOTRPlayerData {
 	private <M extends PlayerDataModule> M addModule(String code, Function<LOTRPlayerData, M> moduleConstructor) {
 		return null;}
 	
-	@Inject(method = "<init>(Llotr/common/data/LOTRLevelData;Ljava/util/UUID;)V", at = @At("TAIL"), cancellable = true, remap=false)
+	@Inject(method = "<init>(Llotr/common/data/LOTRLevelData;Ljava/util/UUID;)V", at = @At("TAIL"), remap=false)
 	public <M extends PlayerDataModule> void constructor(LOTRLevelData level, UUID player, CallbackInfo info) {
 		fellowshipData = this.addModule("Fellowships", FellowshipDataModule::new);
 	}

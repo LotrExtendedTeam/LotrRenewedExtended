@@ -1,4 +1,4 @@
-package lotr.common.command.fellowship;
+package lotr.common.fellowship;
 
 import java.io.File;
 import java.util.HashMap;
@@ -8,21 +8,21 @@ import java.util.UUID;
 import lotr.common.LOTRLog;
 import lotr.common.data.SaveUtil;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraft.world.server.ServerWorld;
 
-public class FellowshipDataHolder {
+public class FellowshipHolderServer {
 	private static Map<UUID, ExtendedFellowship> fellowshipMap = new HashMap<UUID, ExtendedFellowship>();
 	public static boolean needsLoad = true;
 
-	private static File getSaveDir() {
-		File dir = new File(SaveUtil.getOrCreateLOTRDir(ServerLifecycleHooks.getCurrentServer().overworld()), "fellowships");
+	private static File getSaveDir(ServerWorld world) {
+		File dir = new File(SaveUtil.getOrCreateLOTRDir(world), "fellowships");
 		if (!dir.exists())
 			dir.mkdirs();
 		return dir;
 	}
 
-	private static File getFellowshipDatafile(UUID ID) {
-		return new File(getSaveDir(), ID.toString() + ".dat");
+	private static File getFellowshipDatafile(ServerWorld world, UUID ID) {
+		return new File(getSaveDir(world), ID.toString() + ".dat");
 	}
 
 	public static void addFellowship(ExtendedFellowship fs) {
@@ -30,25 +30,28 @@ public class FellowshipDataHolder {
 			fellowshipMap.put(fs.getFellowshipId(), fs);
 	}
 
-	public static ExtendedFellowship getFellowship(UUID fsID) {
-		ExtendedFellowship fs = fellowshipMap.get(fsID);
-		if (fs == null) {
-			fs = loadFellowship(fsID);
-			if (fs != null)
-				fellowshipMap.put(fsID, fs);
+	public static ExtendedFellowship getFellowship(ServerWorld world, UUID fsID) {
+		ExtendedFellowship fellowship = fellowshipMap.get(fsID);
+		if (fellowship == null) {
+			fellowship = loadFellowship(world, fsID);
+			if (fellowship != null)
+				fellowshipMap.put(fsID, fellowship);
 		}
-		return fs;
+		if(fellowship!=null && fellowship.isRemoved()) {
+			return null;
+		}
+		return fellowship;
 	}
 
-	private static ExtendedFellowship loadFellowship(UUID fsID) {
-		File fsDat = getFellowshipDatafile(fsID);
+	private static ExtendedFellowship loadFellowship(ServerWorld world, UUID fsID) {
+		File fsDat = getFellowshipDatafile(world, fsID);
 		try {
 			CompoundNBT nbt = SaveUtil.loadNBTFromFile(fsDat);
 			if (nbt.isEmpty())
 				return null;
-			ExtendedFellowship fs = new ExtendedFellowship(fsID);
-			fs.load(nbt);
-			return fs;
+			ExtendedFellowship fellowship = new ExtendedFellowship(fsID);
+			fellowship.load(nbt);
+			return fellowship;
 		} catch (Exception e) {
 			LOTRLog.error("Error loading LOTR fellowship data for %s", new Object[] { fsDat.getName() });
 			e.printStackTrace();
@@ -56,11 +59,11 @@ public class FellowshipDataHolder {
 		}
 	}
 
-	public static void saveAll() {
+	public static void saveAll(ServerWorld world) {
 		try {
 			for (ExtendedFellowship fs : fellowshipMap.values()) {
 				if (fs.needsSave())
-					saveFellowship(fs);
+					saveFellowship(world, fs);
 			}
 		} catch (Exception e) {
 			LOTRLog.error("Error saving fellowship data", new Object[0]);
@@ -68,30 +71,30 @@ public class FellowshipDataHolder {
 		}
 	}
 
-	public static void loadAll() {
+	public static void loadAll(ServerWorld world) {
 		try {
 			fellowshipMap.clear();
 			needsLoad = false;
-			saveAll();
+			saveAll(world);
 		} catch (Exception e) {
 			LOTRLog.error("Error loading fellowship data", new Object[0]);
 			e.printStackTrace();
 		}
 	}
 
-	public static void saveFellowship(ExtendedFellowship fs) {
+	public static void saveFellowship(ServerWorld world, ExtendedFellowship fs) {
 		try {
 			CompoundNBT nbt = new CompoundNBT();
 			fs.save(nbt);
-			SaveUtil.saveNBTToFile(getFellowshipDatafile(fs.getFellowshipId()), nbt);
+			SaveUtil.saveNBTToFile(getFellowshipDatafile(world, fs.getFellowshipId()), nbt);
 		} catch (Exception e) {
 			LOTRLog.error("Error saving fellowship data for %s", new Object[] { fs.getFellowshipId() });
 			e.printStackTrace();
 		}
 	}
-	private static void saveAndClearFellowship(ExtendedFellowship fs) {
+	private static void saveAndClearFellowship(ServerWorld world, ExtendedFellowship fs) {
 	    if (fellowshipMap.containsValue(fs)) {
-	      saveFellowship(fs);
+	      saveFellowship(world, fs);
 	      fellowshipMap.remove(fs.getFellowshipId());
 	    } else {
 	    	LOTRLog.error("Attempted to clear LOTR fellowship data for %s; no data found", new Object[] { fs.getFellowshipId() });

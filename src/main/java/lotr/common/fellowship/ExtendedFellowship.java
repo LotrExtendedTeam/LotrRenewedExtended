@@ -1,4 +1,4 @@
-package lotr.common.command.fellowship;
+package lotr.common.fellowship;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ public class ExtendedFellowship {
 	private boolean PreventPVP = true;
 	private boolean ShowMap = true;
 	private boolean needsSaving = false;
+	private boolean removed;
 	private ItemStack icon;
 	
 	public ExtendedFellowship(String publicName, UUID ownerUUID) {
@@ -39,11 +40,12 @@ public class ExtendedFellowship {
 		return needsSaving;
 	}
 	  public void createAndRegister() {
-		    FellowshipDataHolder.addFellowship(this);
+		    FellowshipHolderServer.addFellowship(this);
 		    LOTRHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
 		    markDirty();
 		  }
 	public void load(CompoundNBT arg0) {
+		removed = arg0.getBoolean("Disbanded");
 		if (arg0.contains("Owner"))
 			FellowshipOwner = UUID.fromString(arg0.getString("Owner")); 
 		FellowshipMembers.clear();
@@ -76,6 +78,7 @@ public class ExtendedFellowship {
 	}
 
 	public void save(CompoundNBT arg0) {
+		arg0.putBoolean("Disbanded", removed);
 		if(FellowshipOwner != null)
 			arg0.putString("Owner", FellowshipOwner.toString());
 		ListNBT memberTags = new ListNBT();
@@ -112,8 +115,17 @@ public class ExtendedFellowship {
 	public UUID getOwnerUUID() {
 		return FellowshipOwner;
 	}
-	public boolean isOwner(UUID player) {
+	public boolean isFellowshipOwner(UUID player) {
 		return FellowshipOwner.equals(player);
+	}
+	public boolean isFellowshipMember(UUID player) {
+		return FellowshipMembers.contains(player);
+	}
+	public boolean isFellowshipAdmin(UUID player) {
+		return (isFellowshipMember(player) && FellowshipAdmins.contains(player));
+	}
+	public boolean hasEditPowers(UUID player) {
+		return ((isFellowshipMember(player) && FellowshipAdmins.contains(player))||FellowshipOwner.equals(player));
 	}
 	public void setOwnerUUID(UUID ownerUUID) {
 		UUID prevOwner = FellowshipOwner;
@@ -128,11 +140,8 @@ public class ExtendedFellowship {
 		LOTRHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, ownerUUID)).addFellowship(this);
 		markDirty();
 	}
-	public boolean isFellowshipMember(UUID player) {
-		return FellowshipMembers.contains(player);
-	}
 	public void addFellowshipMember(UUID player) {
-		if (!isOwner(player) && !this.FellowshipMembers.contains(player)) {
+		if (!isFellowshipOwner(player) && !this.FellowshipMembers.contains(player)) {
 			FellowshipMembers.add(player);
 			LOTRHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).addFellowship(this);
 			markDirty();
@@ -159,9 +168,6 @@ public class ExtendedFellowship {
 	}
 	public List<UUID> getFellowshipAdmins() {
 		return FellowshipAdmins;
-	}
-	public boolean isFellowshipAdmin(UUID player) {
-		return (isFellowshipMember(player) && FellowshipAdmins.contains(player));
 	}
 	public void addFellowshipAdmin(UUID player) {
 		if (FellowshipMembers.contains(player)) {
@@ -206,5 +212,14 @@ public class ExtendedFellowship {
 	public void setIcon(ItemStack itemstack) {
 		icon = itemstack;
 		markDirty();
+	}
+	public void disband() {
+		removed = true;
+		markDirty();
+		for (UUID player : FellowshipMembers)
+	    	removeFellowshipMember(player);
+	}
+	public boolean isRemoved() {
+		return removed;
 	}
 }

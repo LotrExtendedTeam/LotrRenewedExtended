@@ -6,7 +6,8 @@
 	"compatibilityLevel": "JAVA_8",
 	"server": [
 		"init.MixinLOTRCommands",
-		"data.MixinLOTRPlayerData"
+		"data.MixinLOTRPlayerData",
+		"data.MixinLOTRLevelData"
 	],
 	"injectors": {
 		"defaultRequire": 1
