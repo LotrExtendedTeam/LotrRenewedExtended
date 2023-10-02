@@ -131,8 +131,8 @@ public class FellowshipDataModule extends PlayerDataModule {
 		if (fs.isFellowshipOwner(getPlayerUUID()))
 			fs.setOwnerUUID(player);
 	}
-	public boolean createFellowship(String name) {
-		if (!LOTRHooks.getFellowshipConfigData())
+	public boolean createFellowship(String name, boolean adminOverride) {
+		if (!LOTRHooks.getFellowshipConfigData() && !adminOverride)
 			return false;
 
 		if (!anyMatchingFellowshipNames(name)) {

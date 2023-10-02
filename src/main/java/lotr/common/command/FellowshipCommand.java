@@ -19,7 +19,7 @@ public class FellowshipCommand extends LOTRBaseCommand {
 		dispatcher.register(Commands.literal("fellowship").requires(context -> context.hasPermission(0))
 				.then(Commands.literal("create").requires(context -> context.hasPermission(0))
 						.then(Commands.argument("Name", StringArgumentType.string())
-								.executes(context -> createFellowship(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name")))
+								.executes(context -> createFellowship(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), false))
 								)
 						)
 				.then(Commands.literal("option")
@@ -84,7 +84,7 @@ public class FellowshipCommand extends LOTRBaseCommand {
 						.then(Commands.argument("player", EntityArgument.player())
 								.then(Commands.literal("create")
 										.then(Commands.argument("Name", StringArgumentType.string())
-												.executes(context -> createFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name")))
+												.executes(context -> createFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), true))
 												)
 										)
 								.then(Commands.literal("option")
@@ -149,11 +149,11 @@ public class FellowshipCommand extends LOTRBaseCommand {
 						)
 				);
 	}
-	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname) {
+	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
-        	if(fellowshipData.createFellowship(fellowshipname)) {
+        	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
         		source.sendSuccess(new StringTextComponent("Successfully created fellowship: "+fellowshipname), true);
             	return 0;
         	}
