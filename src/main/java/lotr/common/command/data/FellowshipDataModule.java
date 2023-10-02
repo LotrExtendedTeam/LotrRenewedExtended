@@ -19,7 +19,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 
 	private List<UUID> fellowshipIDs = new ArrayList<UUID>();
 
-	//private List<LOTRFellowshipInvite> fellowshipInvites;
+	// private List<LOTRFellowshipInvite> fellowshipInvites;
 
 	public FellowshipDataModule(LOTRPlayerData pd) {
 		super(pd);
@@ -56,7 +56,8 @@ public class FellowshipDataModule extends PlayerDataModule {
 	public List<ExtendedFellowship> getFellowships() {
 		List<ExtendedFellowship> ships = new ArrayList<ExtendedFellowship>();
 		for (UUID ids : fellowshipIDs) {
-			ExtendedFellowship fellowship = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), ids);
+			ExtendedFellowship fellowship = FellowshipHolderServer
+					.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), ids);
 			if (fellowship != null)
 				ships.add(fellowship);
 		}
@@ -64,7 +65,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 	}
 
 	public void addFellowship(ExtendedFellowship fellowship) {
-		if (fellowship.isFellowshipMember(getPlayerUUID())||fellowship.isFellowshipOwner(getPlayerUUID())) {
+		if (fellowship.isFellowshipMember(getPlayerUUID()) || fellowship.isFellowshipOwner(getPlayerUUID())) {
 			UUID fsID = fellowship.getFellowshipId();
 			if (!fellowshipIDs.contains(fsID)) {
 				fellowshipIDs.add(fsID);
@@ -74,9 +75,9 @@ public class FellowshipDataModule extends PlayerDataModule {
 	}
 
 	public void removeFellowship(ExtendedFellowship fellowship) {
-		if (!fellowship.isFellowshipMember(getPlayerUUID())||fellowship.isRemoved()) {
+		if (!fellowship.isFellowshipOwner(getPlayerUUID()) || fellowship.isRemoved()) {
 			UUID fsID = fellowship.getFellowshipId();
-			if (!fellowshipIDs.contains(fsID)) {
+			if (fellowshipIDs.contains(fsID)) {
 				fellowshipIDs.remove(fsID);
 				markDirty();
 			}
@@ -107,30 +108,37 @@ public class FellowshipDataModule extends PlayerDataModule {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setHideMapLocation(show);
 	}
+
 	public void removeFellowshipAdmin(ExtendedFellowship fs, UUID player) {
 		if (fs.isFellowshipOwner(getPlayerUUID()))
 			fs.removeFellowshipAdmin(player);
 	}
+
 	public void addFellowshipAdmin(ExtendedFellowship fs, UUID player) {
 		if (fs.isFellowshipOwner(getPlayerUUID()))
 			fs.addFellowshipAdmin(player);
 	}
+
 	public void addPlayer(ExtendedFellowship fs, UUID player) {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.addFellowshipMember(player);
 	}
+
 	public void setIcon(ExtendedFellowship fs, UUID player, ItemStack stack) {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setIcon(stack);
 	}
+
 	public void removePlayer(ExtendedFellowship fs, UUID player) {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.removeFellowshipMember(player);
 	}
+
 	public void setOwner(ExtendedFellowship fs, UUID player) {
 		if (fs.isFellowshipOwner(getPlayerUUID()))
 			fs.setOwnerUUID(player);
 	}
+
 	public boolean createFellowship(String name, boolean adminOverride) {
 		if (!LOTRHooks.getFellowshipConfigData() && !adminOverride)
 			return false;
@@ -142,23 +150,25 @@ public class FellowshipDataModule extends PlayerDataModule {
 		}
 		return false;
 	}
+
 	public void leaveFellowship(ExtendedFellowship fs) {
-		if (fs.isFellowshipOwner(getPlayerUUID())) {
-	      fs.removeFellowshipMember(getPlayerUUID());
-	      if (fellowshipIDs.contains(fs.getFellowshipId()))
-	    	  removeFellowship(fs);  
-	    } 
-	  }
+		if (!fs.isFellowshipOwner(getPlayerUUID())) {
+			fs.removeFellowshipMember(getPlayerUUID());
+			if (fellowshipIDs.contains(fs.getFellowshipId()))
+				removeFellowship(fs);
+		}
+	}
+
 	public void disbandFellowship(ExtendedFellowship fs) {
-	    if (fs.isFellowshipOwner(getPlayerUUID())) {
-	      List<UUID> memberUUIDs = new ArrayList<UUID>(fs.getFellowshipMembers());
-	      fs.disband();
-	      removeFellowship(fs);
-	    } 
-	  }
+		if (fs.isFellowshipOwner(getPlayerUUID())) {
+			List<UUID> memberUUIDs = new ArrayList<UUID>(fs.getFellowshipMembers());
+			fs.disband();
+			removeFellowship(fs);
+		}
+	}
 
 	public boolean anyMatchingFellowshipNames(String name) {
-		if(getFellowshipByName(name)!=null) {
+		if (getFellowshipByName(name) != null) {
 			return true;
 		}
 		return false;
