@@ -346,23 +346,19 @@ public class FellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
-		if(accept) {
-			FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
-			ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-			if (fellowship != null && fellowshipData.getInviteExistsForFellowship(fellowship)) {
-	        	fellowshipData.acceptInvitePlayer(fellowship);
-	        	source.sendSuccess(new StringTextComponent("Accepted the invite"), true);
-	        }
-			source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
-			return 0;
-		}
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
-		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        if (fellowship != null) {
-        	fellowshipData.removeInvitePlayer(fellowship);
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByInviteName(fellowshipname);
+		if (fellowship != null) {
+			if(accept) {
+				fellowshipData.acceptInvitePlayer(fellowship);
+	        	source.sendSuccess(new StringTextComponent("Accepted the invite"), true);
+	        	return 0;
+			}
+			fellowshipData.removeInvitePlayer(fellowship);
         	source.sendSuccess(new StringTextComponent("Rejected the invite"), true);
+        	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
+		source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
         return 0;
 	}
 }

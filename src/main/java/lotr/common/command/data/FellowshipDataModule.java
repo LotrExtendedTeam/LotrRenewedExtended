@@ -249,13 +249,13 @@ public class FellowshipDataModule extends PlayerDataModule {
 		}
 		return null;
 	}
-	public boolean getInviteExistsForFellowship(ExtendedFellowship fellowship) {
-		for (ExtendedFellowshipInvite invite : this.invites) {
-			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), invite.fellowshipID);
-			if (fs != null)
-				return true;
+	public ExtendedFellowship getFellowshipByInviteName(String fsName) {
+		for (ExtendedFellowshipInvite fsID : invites) {
+			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
+			if (fs != null && fs.getFellowshipName().equalsIgnoreCase(fsName))
+				return fs;
 		}
-		return false;
+		return null;
 	}
 
 	public List<String> listAllFellowshipNames() {
@@ -272,7 +272,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 		List<String> list = new ArrayList<String>();
 		for (ExtendedFellowshipInvite fsID : invites) {
 			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
-			if (fs != null && (fs.isFellowshipMember(getPlayerUUID()) || fs.isFellowshipOwner(getPlayerUUID())))
+			if (fs != null)
 				list.add(fs.getFellowshipName());
 		}
 		return list;
