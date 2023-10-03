@@ -43,8 +43,9 @@ public class FellowshipDataModule extends PlayerDataModule {
 				nbt.putString("InviterID", invite.Invitor.toString());
 //			if (invite.Fname != null)
 //				nbt.putString("FellowshipName", invite.Fname);
-			fellowshipInvites.add(fellowshipInvites);
+			fellowshipInvites.add(nbt);
 		}
+		playerNBT.put("FellowshipInvites", fellowshipInvites);
 
 	}
 
@@ -152,6 +153,11 @@ public class FellowshipDataModule extends PlayerDataModule {
 	public void addInvitePlayer(ExtendedFellowship fs, UUID playerSendingInvite) {
 		for(ExtendedFellowshipInvite invite : invites) {
 			if(invite.fellowshipID.equals(fs.getFellowshipId())) {
+				return;
+			}
+		}
+		for(UUID invite : fellowshipIDs) {
+			if(invite.equals(fs.getFellowshipId())) {
 				return;
 			}
 		}

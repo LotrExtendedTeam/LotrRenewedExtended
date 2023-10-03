@@ -331,7 +331,7 @@ public class FellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("You must hold an item in your hand"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are not a member!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
 		return 0;
 	}
 	private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
