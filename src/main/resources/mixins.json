@@ -8,6 +8,7 @@
 		"common.config.MixinServerConfig",
 		"common.data.MixinLOTRPlayerData",
 		"common.data.MixinLOTRLevelData",
+		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRCommands"
 	],
 	"injectors": {
