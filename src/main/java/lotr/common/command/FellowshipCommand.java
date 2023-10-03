@@ -193,11 +193,7 @@ public class FellowshipCommand extends LOTRBaseCommand {
 		FellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
-        	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
-        		source.sendSuccess(new StringTextComponent("Successfully created fellowship: "+fellowshipname), true);
-            	return 0;
-        	}
-        	source.sendSuccess(new StringTextComponent("Fellowship creation is disabled!"), true);
+        	fellowshipData.createFellowship(fellowshipname, adminOverride);
         	return 0;
         } 
 		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists!") , true);
@@ -351,11 +347,9 @@ public class FellowshipCommand extends LOTRBaseCommand {
 		if (fellowship != null) {
 			if(accept) {
 				fellowshipData.acceptInvitePlayer(fellowship);
-	        	source.sendSuccess(new StringTextComponent("Accepted the invite"), true);
 	        	return 0;
 			}
-			fellowshipData.removeInvitePlayer(fellowship);
-        	source.sendSuccess(new StringTextComponent("Rejected the invite"), true);
+			fellowshipData.removeInvitePlayer(fellowship, true);
         	return 0;
         }
 		source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
