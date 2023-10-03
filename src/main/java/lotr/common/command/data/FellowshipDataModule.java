@@ -269,15 +269,15 @@ public class FellowshipDataModule extends PlayerDataModule {
 
 	public void disbandFellowship(ExtendedFellowship fs) {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
-			List<UUID> members = new ArrayList<UUID>(fs.getFellowshipMembers());
-			fs.disband();
-			removeFellowship(fs);
 			for(UUID user : fs.getFellowshipMembers()) {
 				PlayerEntity player = getPlayerFromUUID(user);
 				if(player!=null) {
 					fs.createNotification("The fellowship "+fs.getFellowshipName()+"  has been disbanded", player);
 				}
 			}
+			List<UUID> members = new ArrayList<UUID>(fs.getFellowshipMembers());
+			fs.disband();
+			removeFellowship(fs);
 		}
 	}
 
