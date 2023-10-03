@@ -41,8 +41,8 @@ public class FellowshipDataModule extends PlayerDataModule {
 			nbt.putString("ID", invite.fellowshipID.toString());
 			if (invite.Invitor != null)
 				nbt.putString("InviterID", invite.Invitor.toString());
-			if (invite.Fname != null)
-				nbt.putString("FellowshipName", invite.Fname);
+//			if (invite.Fname != null)
+//				nbt.putString("FellowshipName", invite.Fname);
 			fellowshipInvites.add(fellowshipInvites);
 		}
 
@@ -67,10 +67,10 @@ public class FellowshipDataModule extends PlayerDataModule {
 				UUID inviterID = null;
 				if (nbt.contains("InviterID"))
 					inviterID = UUID.fromString(nbt.getString("InviterID"));
-				String fname = null;
-				if (nbt.contains("FellowshipName"))
-					inviterID = UUID.fromString(nbt.getString("FellowshipName"));
-				invites.add(new ExtendedFellowshipInvite(fsID, inviterID, fname));
+//				String fname = null;
+//				if (nbt.contains("FellowshipName"))
+//					fname = nbt.getString("FellowshipName");
+				invites.add(new ExtendedFellowshipInvite(fsID, inviterID));
 			}
 		}
 	}
@@ -149,13 +149,13 @@ public class FellowshipDataModule extends PlayerDataModule {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.addFellowshipMember(player);
 	}
-	public void addInvitePlayer(ExtendedFellowship fs, UUID player) {
+	public void addInvitePlayer(ExtendedFellowship fs, UUID playerSendingInvite) {
 		for(ExtendedFellowshipInvite invite : invites) {
 			if(invite.fellowshipID.equals(fs.getFellowshipId())) {
 				return;
 			}
 		}
-		invites.add(new ExtendedFellowshipInvite(fs.getFellowshipId(), player, fs.getFellowshipName()));
+		invites.add(new ExtendedFellowshipInvite(fs.getFellowshipId(), playerSendingInvite));
 		markDirty();
 	}
 	public void removeInvitePlayer(ExtendedFellowship fs) {

@@ -27,7 +27,7 @@ public class FellowshipCommand extends LOTRBaseCommand {
 				.then(Commands.literal("acceptInvite").requires(context -> context.hasPermission(0))
 						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
 								.suggests(SUGGEST_INVITES_USER)
-								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), true))
+								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), true))
 								)
 						)
 				.then(Commands.literal("declineInvite").requires(context -> context.hasPermission(0))
@@ -173,13 +173,13 @@ public class FellowshipCommand extends LOTRBaseCommand {
 	
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_USER = (ctx, builder) -> {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(
-				EntityArgument.getPlayer(ctx, "player").level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
+				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
     
 	public static final SuggestionProvider<CommandSource> SUGGEST_INVITES_USER = (ctx, builder) -> {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(
-				EntityArgument.getPlayer(ctx, "player").level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
+				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
 		return ISuggestionProvider.suggest(fellowshipData.listAllInviteNames(), builder);
 	};
     
@@ -273,7 +273,8 @@ public class FellowshipCommand extends LOTRBaseCommand {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	fellowshipData.addInvitePlayer(fellowship, newMember.getUUID());
+        	FellowshipDataModule fellowshipData2 = LOTRHooks.getFellowshipData(getLevelData().getData(newMember.level, newMember.getUUID()));
+        	fellowshipData2.addInvitePlayer(fellowship, player.getUUID());
         	source.sendSuccess(new StringTextComponent("Invited "+newMember.getDisplayName().getString()+" to the fellowship"), true);
         	return 0;
         }
