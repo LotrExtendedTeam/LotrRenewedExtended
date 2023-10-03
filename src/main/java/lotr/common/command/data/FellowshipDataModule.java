@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotroExtended.LOTRHooks;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
+import lotr.common.fellowship.ExtendedFellowshipInvite;
 import lotr.common.fellowship.FellowshipHolderServer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -19,7 +20,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 
 	private List<UUID> fellowshipIDs = new ArrayList<UUID>();
 
-	// private List<LOTRFellowshipInvite> fellowshipInvites;
+	private List<ExtendedFellowshipInvite> invites = new ArrayList<ExtendedFellowshipInvite>();
 
 	public FellowshipDataModule(LOTRPlayerData pd) {
 		super(pd);
@@ -27,25 +28,50 @@ public class FellowshipDataModule extends PlayerDataModule {
 
 	@Override
 	public void save(CompoundNBT playerNBT) {
-		ListNBT fellowshipTags = new ListNBT();
+		ListNBT fellowships = new ListNBT();
 		for (UUID fsID : fellowshipIDs) {
 			CompoundNBT nbt = new CompoundNBT();
 			nbt.putString("ID", fsID.toString());
-			fellowshipTags.add(nbt);
+			fellowships.add(nbt);
 		}
-		playerNBT.put("Fellowships", fellowshipTags);
+		playerNBT.put("Fellowships", fellowships);
+		ListNBT fellowshipInvites = new ListNBT();
+		for (ExtendedFellowshipInvite invite : invites) {
+			CompoundNBT nbt = new CompoundNBT();
+			nbt.putString("ID", invite.fellowshipID.toString());
+			if (invite.Invitor != null)
+				nbt.putString("InviterID", invite.Invitor.toString());
+			if (invite.Fname != null)
+				nbt.putString("FellowshipName", invite.Fname);
+			fellowshipInvites.add(fellowshipInvites);
+		}
 
 	}
 
 	@Override
 	public void load(CompoundNBT playerNBT) {
 		fellowshipIDs.clear();
-		ListNBT fellowshipTags = playerNBT.getList("Fellowships", 10);
-		for (int i = 0; i < fellowshipTags.size(); i++) {
-			CompoundNBT nbt = fellowshipTags.getCompound(i);
+		ListNBT fellowships = playerNBT.getList("Fellowships", 10);
+		for (int i = 0; i < fellowships.size(); i++) {
+			CompoundNBT nbt = fellowships.getCompound(i);
 			UUID fsID = UUID.fromString(nbt.getString("ID"));
 			if (fsID != null)
 				fellowshipIDs.add(fsID);
+		}
+		invites.clear();
+		ListNBT fellowshipInvite = playerNBT.getList("FellowshipInvites", 10);
+		for (int i = 0; i < fellowshipInvite.size(); i++) {
+			CompoundNBT nbt = fellowshipInvite.getCompound(i);
+			UUID fsID = UUID.fromString(nbt.getString("ID"));
+			if (fsID != null) {
+				UUID inviterID = null;
+				if (nbt.contains("InviterID"))
+					inviterID = UUID.fromString(nbt.getString("InviterID"));
+				String fname = null;
+				if (nbt.contains("FellowshipName"))
+					inviterID = UUID.fromString(nbt.getString("FellowshipName"));
+				invites.add(new ExtendedFellowshipInvite(fsID, inviterID, fname));
+			}
 		}
 	}
 
@@ -123,6 +149,47 @@ public class FellowshipDataModule extends PlayerDataModule {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.addFellowshipMember(player);
 	}
+	public void addInvitePlayer(ExtendedFellowship fs, UUID player) {
+		for(ExtendedFellowshipInvite invite : invites) {
+			if(invite.fellowshipID.equals(fs.getFellowshipId())) {
+				return;
+			}
+		}
+		invites.add(new ExtendedFellowshipInvite(fs.getFellowshipId(), player, fs.getFellowshipName()));
+		markDirty();
+	}
+	public void removeInvitePlayer(ExtendedFellowship fs) {
+		ExtendedFellowshipInvite foundInvite=null;
+		for(ExtendedFellowshipInvite invite : invites) {
+			if(invite.fellowshipID.equals(fs.getFellowshipId())) {
+				foundInvite=invite;
+				break;
+			}
+		}
+		if(foundInvite!=null) {
+			invites.remove(foundInvite);
+			markDirty();
+		}
+	}
+
+	public void acceptInvitePlayer(ExtendedFellowship fs) {
+		ExtendedFellowshipInvite existingInvite = null;
+		for (ExtendedFellowshipInvite invite : invites) {
+			if (invite.fellowshipID.equals(fs.getFellowshipId())) {
+				existingInvite = invite;
+				break;
+			}
+		}
+		if(existingInvite!=null) {
+			if (fs.isRemoved()) {
+				removeInvitePlayer(fs);
+				return;
+			}
+			fs.addFellowshipMember(getPlayerUUID());
+			invites.remove(existingInvite);
+			markDirty();
+		}
+	}
 
 	public void setIcon(ExtendedFellowship fs, UUID player, ItemStack stack) {
 		if (fs.hasEditPowers(getPlayerUUID()))
@@ -175,11 +242,39 @@ public class FellowshipDataModule extends PlayerDataModule {
 	}
 
 	public ExtendedFellowship getFellowshipByName(String fsName) {
-		for (UUID fsID : this.fellowshipIDs) {
+		for (UUID fsID : fellowshipIDs) {
 			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
 			if (fs != null && fs.getFellowshipName().equalsIgnoreCase(fsName))
 				return fs;
 		}
 		return null;
+	}
+	public boolean getInviteExistsForFellowship(ExtendedFellowship fellowship) {
+		for (ExtendedFellowshipInvite invite : this.invites) {
+			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), invite.fellowshipID);
+			if (fs != null)
+				return true;
+		}
+		return false;
+	}
+
+	public List<String> listAllFellowshipNames() {
+		List<String> list = new ArrayList<String>();
+		for (UUID fsID : fellowshipIDs) {
+			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
+			if (fs != null && (fs.isFellowshipMember(getPlayerUUID()) || fs.isFellowshipOwner(getPlayerUUID())))
+				list.add(fs.getFellowshipName());
+		}
+		return list;
+	}
+
+	public List<String> listAllInviteNames() {
+		List<String> list = new ArrayList<String>();
+		for (ExtendedFellowshipInvite fsID : invites) {
+			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
+			if (fs != null && (fs.isFellowshipMember(getPlayerUUID()) || fs.isFellowshipOwner(getPlayerUUID())))
+				list.add(fs.getFellowshipName());
+		}
+		return list;
 	}
 }

@@ -37,7 +37,7 @@ public class FellowshipHolderServer {
 			if (fellowship != null)
 				fellowshipMap.put(fsID, fellowship);
 		}
-		if(fellowship!=null && fellowship.isRemoved()) {
+		if (fellowship != null && fellowship.isRemoved()) {
 			return null;
 		}
 		return fellowship;
@@ -92,12 +92,14 @@ public class FellowshipHolderServer {
 			e.printStackTrace();
 		}
 	}
+
 	private static void saveAndClearFellowship(ServerWorld world, ExtendedFellowship fs) {
-	    if (fellowshipMap.containsValue(fs)) {
-	      saveFellowship(world, fs);
-	      fellowshipMap.remove(fs.getFellowshipId());
-	    } else {
-	    	LOTRLog.error("Attempted to clear LOTR fellowship data for %s; no data found", new Object[] { fs.getFellowshipId() });
-	    } 
-	  }
+		if (fellowshipMap.containsValue(fs)) {
+			saveFellowship(world, fs);
+			fellowshipMap.remove(fs.getFellowshipId());
+		} else {
+			LOTRLog.error("Attempted to clear LOTR fellowship data for %s; no data found",
+					new Object[] { fs.getFellowshipId() });
+		}
+	}
 }

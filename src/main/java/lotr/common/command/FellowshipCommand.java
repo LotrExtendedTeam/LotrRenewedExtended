@@ -4,11 +4,13 @@ import com.github.maximuslotro.lotroExtended.LOTRHooks;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.suggestion.SuggestionProvider;
 
 import lotr.common.command.data.FellowshipDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -22,8 +24,21 @@ public class FellowshipCommand extends LOTRBaseCommand {
 								.executes(context -> createFellowship(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), false))
 								)
 						)
+				.then(Commands.literal("acceptInvite").requires(context -> context.hasPermission(0))
+						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
+								.suggests(SUGGEST_INVITES_USER)
+								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), true))
+								)
+						)
+				.then(Commands.literal("declineInvite").requires(context -> context.hasPermission(0))
+						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
+								.suggests(SUGGEST_INVITES_USER)
+								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), false))
+								)
+						)
 				.then(Commands.literal("option")
 						.then(Commands.argument("Name", StringArgumentType.string())
+								.suggests(SUGGEST_FELLOWSHIP_USER)
 								.then(Commands.literal("rename")
 										.then(Commands.argument("NewName", StringArgumentType.string())
 												.executes(context -> renameFellowship(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), StringArgumentType.getString(context, "NewName")))
@@ -89,9 +104,15 @@ public class FellowshipCommand extends LOTRBaseCommand {
 										)
 								.then(Commands.literal("option")
 										.then(Commands.argument("Name", StringArgumentType.string())
+												.suggests(SUGGEST_FELLOWSHIP_PLAYER)
 												.then(Commands.literal("rename")
 														.then(Commands.argument("NewName", StringArgumentType.string())
 																.executes(context -> renameFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), StringArgumentType.getString(context, "NewName")))
+																)
+														)
+												.then(Commands.literal("add")
+														.then(Commands.argument("playerToAdd", EntityArgument.player())
+																.executes(context -> add(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "playerToAdd")))
 																)
 														)
 												.then(Commands.literal("invite")
@@ -149,6 +170,25 @@ public class FellowshipCommand extends LOTRBaseCommand {
 						)
 				);
 	}
+	
+	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_USER = (ctx, builder) -> {
+		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(
+				EntityArgument.getPlayer(ctx, "player").level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
+		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
+	};
+    
+	public static final SuggestionProvider<CommandSource> SUGGEST_INVITES_USER = (ctx, builder) -> {
+		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(
+				EntityArgument.getPlayer(ctx, "player").level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
+		return ISuggestionProvider.suggest(fellowshipData.listAllInviteNames(), builder);
+	};
+    
+	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_PLAYER = (ctx, builder) -> {
+		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(
+				EntityArgument.getPlayer(ctx, "player").level, EntityArgument.getPlayer(ctx, "player").getUUID()));
+		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
+	};
+
 	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
@@ -157,10 +197,10 @@ public class FellowshipCommand extends LOTRBaseCommand {
         		source.sendSuccess(new StringTextComponent("Successfully created fellowship: "+fellowshipname), true);
             	return 0;
         	}
-        	source.sendSuccess(new StringTextComponent("Fellowship creation is disabled"), true);
+        	source.sendSuccess(new StringTextComponent("Fellowship creation is disabled!"), true);
         	return 0;
         } 
-		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists") , true);
+		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists!") , true);
 		return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
@@ -232,6 +272,17 @@ public class FellowshipCommand extends LOTRBaseCommand {
 	private static int invite(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
 		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+        if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
+        	fellowshipData.addInvitePlayer(fellowship, newMember.getUUID());
+        	source.sendSuccess(new StringTextComponent("Invited "+newMember.getDisplayName().getString()+" to the fellowship"), true);
+        	return 0;
+        }
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+		return 0;
+	}
+	private static int add(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
+		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.addPlayer(fellowship, newMember.getUUID());
         	source.sendSuccess(new StringTextComponent("Added "+newMember.getDisplayName().getString()+" to the fellowship"), true);
@@ -292,5 +343,25 @@ public class FellowshipCommand extends LOTRBaseCommand {
         }
         source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
 		return 0;
+	}
+	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
+		if(accept) {
+			FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+			ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+			if (fellowship != null && fellowshipData.getInviteExistsForFellowship(fellowship)) {
+	        	fellowshipData.acceptInvitePlayer(fellowship);
+	        	source.sendSuccess(new StringTextComponent("Accepted the invite"), true);
+	        }
+			source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
+			return 0;
+		}
+		FellowshipDataModule fellowshipData = LOTRHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+        if (fellowship != null) {
+        	fellowshipData.removeInvitePlayer(fellowship);
+        	source.sendSuccess(new StringTextComponent("Rejected the invite"), true);
+        }
+        source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
+        return 0;
 	}
 }
