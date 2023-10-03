@@ -7,9 +7,13 @@ import java.util.UUID;
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
 import lotr.common.data.LOTRLevelData;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class ExtendedFellowship {
 	private UUID FellowshipId;
@@ -215,11 +219,17 @@ public class ExtendedFellowship {
 	}
 	public void disband() {
 		removed = true;
-		markDirty();
-		for (UUID player : FellowshipMembers)
+		for (UUID player : new ArrayList<UUID>(FellowshipMembers))
 	    	removeFellowshipMember(player);
+		markDirty();
 	}
 	public boolean isRemoved() {
 		return removed;
+	}
+
+	public void createNotification(String message, PlayerEntity reciever) {
+		TextComponent comp = new StringTextComponent(message);
+		comp.withStyle(TextFormatting.YELLOW);
+		reciever.sendMessage(comp, reciever.getUUID());
 	}
 }
