@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotroExtended.mixins.config;
+package com.github.maximuslotro.lotroExtended.mixins.common.config;
 
 import java.util.List;
 

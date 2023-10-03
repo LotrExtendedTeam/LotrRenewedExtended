@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotroExtended.LOTRHooks;
+import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
@@ -213,7 +213,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 	}
 
 	public boolean createFellowship(String name, boolean adminOverride) {
-		if (!LOTRHooks.getFellowshipConfigData() && !adminOverride)
+		if (!MixinHooks.getFellowshipConfigData() && !adminOverride)
 			return false;
 
 		if (!anyMatchingFellowshipNames(name)) {

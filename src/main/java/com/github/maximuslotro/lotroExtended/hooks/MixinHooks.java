@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotroExtended;
+package com.github.maximuslotro.lotroExtended.hooks;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -9,7 +9,7 @@ import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
 import lotr.common.data.LOTRPlayerData;
 
-public class LOTRHooks {
+public class MixinHooks {
 	public static FellowshipDataModule getFellowshipData(LOTRPlayerData data) {
 		FellowshipDataModule fellowData = null;
 		try {

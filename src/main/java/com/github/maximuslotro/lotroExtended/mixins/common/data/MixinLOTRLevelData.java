@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotroExtended.mixins.data;
+package com.github.maximuslotro.lotroExtended.mixins.common.data;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;

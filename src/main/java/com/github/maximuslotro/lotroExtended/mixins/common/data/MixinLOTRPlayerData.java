@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotroExtended.mixins.data;
+package com.github.maximuslotro.lotroExtended.mixins.common.data;
 
 import java.util.UUID;
 import java.util.function.Function;
