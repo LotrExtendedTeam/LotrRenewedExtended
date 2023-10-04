@@ -275,7 +275,6 @@ public class FellowshipDataModule extends PlayerDataModule {
 					fs.createNotification("The fellowship "+fs.getFellowshipName()+"  has been disbanded", player);
 				}
 			}
-			List<UUID> members = new ArrayList<UUID>(fs.getFellowshipMembers());
 			fs.disband();
 			removeFellowship(fs);
 		}

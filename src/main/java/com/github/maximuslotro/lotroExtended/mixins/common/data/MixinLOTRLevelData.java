@@ -54,7 +54,6 @@ public class MixinLOTRLevelData {
 		MinecraftServer server = world.getServer();
 		boolean isOp = server.getPlayerList().isOp(targetPlayer.getGameProfile());
 		boolean creative = targetPlayer.abilities.instabuild;
-		LOTRPlayerData playerData = getData(targetPlayer);
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<ExtendedFellowship>();
 		FellowshipDataModule data = MixinHooks.getFellowshipData(getData(targetPlayer));
 		for (UUID fsID : data.getFellowshipIDs()) {
