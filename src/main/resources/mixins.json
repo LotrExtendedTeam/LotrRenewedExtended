@@ -4,12 +4,16 @@
 	"plugin": "com.github.maximuslotro.lotroExtended.mixins.MIXINConfig",
 	"refmap": "mixins.refmap.json",
 	"compatibilityLevel": "JAVA_8",
-	"server": [
+	"mixin": [
 		"common.config.MixinServerConfig",
 		"common.data.MixinLOTRPlayerData",
 		"common.data.MixinLOTRLevelData",
 		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRCommands"
+	],
+	
+	"client": [
+		"client.gui.MixinMiddleEarthMasterMenuScreen"
 	],
 	"injectors": {
 		"defaultRequire": 1
