@@ -24,12 +24,12 @@ public class ExtendedGuiOptions extends MiddleEarthMenuScreen {
 		super.init();
 		int x=guiLeft;
 		int y=guiTop+40;
-		addButton(buttonFriendlyFire = new ExtendedGuiOptionsButton(0, x, y, 200, 20, new StringTextComponent("Friendly Fire")));
-		addButton(buttonHiredDeathMessages = new ExtendedGuiOptionsButton(1, x, y+24, 200, 20, new StringTextComponent("Hired Death Messages")));
-		addButton(buttonAlignment = new ExtendedGuiOptionsButton(2, x, y+48, 200, 20, new StringTextComponent("Show Alignment")));
-		addButton(buttonMapLocation = new ExtendedGuiOptionsButton(3, x, y+72, 200, 20, new StringTextComponent("Map Location")));
-		addButton(buttonConquest = new ExtendedGuiOptionsButton(5, x, y+96, 200, 20, new StringTextComponent("Conquest Kills")));
-		addButton(buttonFeminineRank = new ExtendedGuiOptionsButton(4, x, y+120, 200, 20, new StringTextComponent("Feminine Rank Override")));
+		addButton(buttonFriendlyFire = new ExtendedGuiOptionsButton(0, x, y, 200, 20, new StringTextComponent("Friendly Fire"), button -> toggleFF()));
+		addButton(buttonHiredDeathMessages = new ExtendedGuiOptionsButton(1, x, y+24, 200, 20, new StringTextComponent("Hired Death Messages"), button -> toggleHDM()));
+		addButton(buttonAlignment = new ExtendedGuiOptionsButton(2, x, y+48, 200, 20, new StringTextComponent("Show Alignment"), button -> toggleA()));
+		addButton(buttonMapLocation = new ExtendedGuiOptionsButton(3, x, y+72, 200, 20, new StringTextComponent("Map Location"), button -> toggleML()));
+		addButton(buttonConquest = new ExtendedGuiOptionsButton(5, x, y+96, 200, 20, new StringTextComponent("Conquest Kills"), button -> toggleCK()));
+		addButton(buttonFeminineRank = new ExtendedGuiOptionsButton(4, x, y+120, 200, 20, new StringTextComponent("Feminine Rank Override"), button -> toggleFRO()));
 	}
 
 	@Override
@@ -47,6 +47,25 @@ public class ExtendedGuiOptions extends MiddleEarthMenuScreen {
 				//	renderTooltip(matStack, menuButton.getMessage(), mouseX, mouseY);
 			}
 		}
+	}
+	
+	public void toggleFF() {
+		System.out.println("Howdy World!");
+	}
+	public void toggleHDM() {
+		System.out.println("Howdy World!");
+	}
+	public void toggleA() {
+		System.out.println("Howdy World!");
+	}
+	public void toggleML() {
+		System.out.println("Howdy World!");
+	}
+	public void toggleCK() {
+		System.out.println("Howdy World!");
+	}
+	public void toggleFRO() {
+		System.out.println("Howdy World!");
 	}
 
 }
