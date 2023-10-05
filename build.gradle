@@ -99,14 +99,14 @@ sourceSets {
 	]
 	main {
 		compileClasspath += files(deps)
-        ext.refMap = "mixins.refmap.json"
+        ext.refMap = "mixins.lotrextended.refmap.json"
 	}
 }
 
 mixin {
-    add sourceSets.main, "mixins.refmap.json"
+    add sourceSets.main, "mixins.lotrextended.refmap.json"
 
-    config 'mixins.json'
+    config 'mixins.lotrextended.json'
     disableTargetValidator = false
     overwriteErrorLevel = 'error'
 }
@@ -122,7 +122,7 @@ jar {
             "Implementation-Version": "lotrmod",
             "Implementation-Vendor" :"lotrmod",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs": "mixins.json",
+            "MixinConfigs": "mixins.lotrextended.json",
             "FMLAT": "accesstransformer.cfg"
         ])
     }

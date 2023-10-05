@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotroExtended.mixins;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 public class MIXINConfig implements IMixinConfigPlugin
 {
 
-    protected static List<String> injectedPatches = new ArrayList<>();
+    protected static TreeSet<String> injectedPatches = new TreeSet<String>();
 
     @Override
     public void onLoad(String mixinPackage)
@@ -55,7 +55,7 @@ public class MIXINConfig implements IMixinConfigPlugin
         injectedPatches.add(mixinInfo.getName());
     }
 
-    public static List<String> getInjectedPatches()
+    public static TreeSet<String> getInjectedPatches()
     {
         return injectedPatches;
     }

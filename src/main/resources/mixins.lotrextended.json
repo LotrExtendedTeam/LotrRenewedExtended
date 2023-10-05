@@ -2,9 +2,9 @@
 	"required": true,
 	"package": "com.github.maximuslotro.lotroExtended.mixins",
 	"plugin": "com.github.maximuslotro.lotroExtended.mixins.MIXINConfig",
-	"refmap": "mixins.refmap.json",
+	"refmap": "mixins.lotrextended.refmap.json",
 	"compatibilityLevel": "JAVA_8",
-	"mixin": [
+	"server": [
 		"common.config.MixinServerConfig",
 		"common.data.MixinLOTRPlayerData",
 		"common.data.MixinLOTRLevelData",
