@@ -4,17 +4,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import lotr.common.command.data.FellowshipDataModule;
+import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
 import lotr.common.data.LOTRPlayerData;
 
 public class MixinHooks {
-	public static FellowshipDataModule getFellowshipData(LOTRPlayerData data) {
-		FellowshipDataModule fellowData = null;
+	public static ExtendedFellowshipDataModule getFellowshipData(LOTRPlayerData data) {
+		ExtendedFellowshipDataModule fellowData = null;
 		try {
 			Method fooMethod = LOTRPlayerData.class.getMethod("getFellowshipData");
-			fellowData = (FellowshipDataModule) fooMethod.invoke(data);
+			fellowData = (ExtendedFellowshipDataModule) fooMethod.invoke(data);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

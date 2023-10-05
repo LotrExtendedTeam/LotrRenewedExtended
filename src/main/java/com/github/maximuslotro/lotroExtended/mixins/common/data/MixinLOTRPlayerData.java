@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.At;
 
-import lotr.common.command.data.FellowshipDataModule;
+import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
@@ -17,7 +17,7 @@ import lotr.common.data.PlayerDataModule;
 @Mixin(LOTRPlayerData.class)
 public class MixinLOTRPlayerData {
 	
-	private FellowshipDataModule fellowshipData;
+	private ExtendedFellowshipDataModule fellowshipData;
 	
 	@Shadow(remap=false)
 	private <M extends PlayerDataModule> M addModule(String code, Function<LOTRPlayerData, M> moduleConstructor) {
@@ -25,10 +25,10 @@ public class MixinLOTRPlayerData {
 	
 	@Inject(method = "<init>(Llotr/common/data/LOTRLevelData;Ljava/util/UUID;)V", at = @At("TAIL"), remap=false)
 	public <M extends PlayerDataModule> void constructor(LOTRLevelData level, UUID player, CallbackInfo info) {
-		fellowshipData = this.addModule("Fellowships", FellowshipDataModule::new);
+		fellowshipData = this.addModule("Fellowships", ExtendedFellowshipDataModule::new);
 	}
 
-	public FellowshipDataModule getFellowshipData() {
+	public ExtendedFellowshipDataModule getFellowshipData() {
 		return fellowshipData;
 	}
 }

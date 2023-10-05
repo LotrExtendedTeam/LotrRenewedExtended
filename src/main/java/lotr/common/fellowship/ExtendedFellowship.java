@@ -44,7 +44,7 @@ public class ExtendedFellowship {
 		return needsSaving;
 	}
 	  public void createAndRegister() {
-		    FellowshipHolderServer.addFellowship(this);
+		    ExtendedFellowshipHolderServer.addFellowship(this);
 		    MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
 		    markDirty();
 		  }

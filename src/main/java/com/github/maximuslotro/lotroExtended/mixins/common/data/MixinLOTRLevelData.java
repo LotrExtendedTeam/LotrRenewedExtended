@@ -14,12 +14,12 @@ import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
 import org.spongepowered.asm.mixin.injection.At;
 
-import lotr.common.command.data.FellowshipDataModule;
+import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fellowship.ExtendedFellowship;
-import lotr.common.fellowship.FellowshipHolderServer;
+import lotr.common.fellowship.ExtendedFellowshipHolderServer;
 import lotr.common.network.LOTRPacketHandler;
 import lotr.common.network.SPacketMapPlayerLocations;
 import lotr.common.world.map.MapPlayerLocation;
@@ -33,12 +33,12 @@ public class MixinLOTRLevelData {
 	
 	@Inject(method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
 	public void saveFactionData(ServerWorld world, CallbackInfo info) {
-		FellowshipHolderServer.saveAll(world);
+		ExtendedFellowshipHolderServer.saveAll(world);
 	}
 
 	@Inject(method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
 	public void loadFactionData(ServerWorld world, CallbackInfo info) {
-		FellowshipHolderServer.loadAll(world);
+		ExtendedFellowshipHolderServer.loadAll(world);
 	}
 
 	@Shadow(remap=false)
@@ -55,9 +55,9 @@ public class MixinLOTRLevelData {
 		boolean isOp = server.getPlayerList().isOp(targetPlayer.getGameProfile());
 		boolean creative = targetPlayer.abilities.instabuild;
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<ExtendedFellowship>();
-		FellowshipDataModule data = MixinHooks.getFellowshipData(getData(targetPlayer));
+		ExtendedFellowshipDataModule data = MixinHooks.getFellowshipData(getData(targetPlayer));
 		for (UUID fsID : data.getFellowshipIDs()) {
-			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(world, fsID);
+			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(world, fsID);
 			if (fs != null && fs.isHideMapLocation())
 				fellowshipsMapShow.add(fs);
 		}

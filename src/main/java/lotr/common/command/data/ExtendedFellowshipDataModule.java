@@ -11,7 +11,7 @@ import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.fellowship.ExtendedFellowshipInvite;
-import lotr.common.fellowship.FellowshipHolderServer;
+import lotr.common.fellowship.ExtendedFellowshipHolderServer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,13 +22,13 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class FellowshipDataModule extends PlayerDataModule {
+public class ExtendedFellowshipDataModule extends PlayerDataModule {
 
 	private List<UUID> fellowshipIDs = new ArrayList<UUID>();
 
 	private List<ExtendedFellowshipInvite> invites = new ArrayList<ExtendedFellowshipInvite>();
 
-	public FellowshipDataModule(LOTRPlayerData pd) {
+	public ExtendedFellowshipDataModule(LOTRPlayerData pd) {
 		super(pd);
 	}
 
@@ -89,7 +89,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 	public List<ExtendedFellowship> getFellowships() {
 		List<ExtendedFellowship> ships = new ArrayList<ExtendedFellowship>();
 		for (UUID ids : fellowshipIDs) {
-			ExtendedFellowship fellowship = FellowshipHolderServer
+			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer
 					.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), ids);
 			if (fellowship != null)
 				ships.add(fellowship);
@@ -289,7 +289,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 
 	public ExtendedFellowship getFellowshipByName(String fsName) {
 		for (UUID fsID : fellowshipIDs) {
-			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
+			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
 			if (fs != null && fs.getFellowshipName().equalsIgnoreCase(fsName))
 				return fs;
 		}
@@ -298,7 +298,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 
 	public ExtendedFellowship getFellowshipByInviteName(String fsName) {
 		for (ExtendedFellowshipInvite fsID : invites) {
-			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
+			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
 			if (fs != null && fs.getFellowshipName().equalsIgnoreCase(fsName))
 				return fs;
 		}
@@ -308,7 +308,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 	public List<String> listAllFellowshipNames() {
 		List<String> list = new ArrayList<String>();
 		for (UUID fsID : fellowshipIDs) {
-			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
+			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
 			if (fs != null && (fs.isFellowshipMember(getPlayerUUID()) || fs.isFellowshipOwner(getPlayerUUID())))
 				list.add(fs.getFellowshipName());
 		}
@@ -318,7 +318,7 @@ public class FellowshipDataModule extends PlayerDataModule {
 	public List<String> listAllInviteNames() {
 		List<String> list = new ArrayList<String>();
 		for (ExtendedFellowshipInvite fsID : invites) {
-			ExtendedFellowship fs = FellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
+			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
 			if (fs != null)
 				list.add(fs.getFellowshipName());
 		}

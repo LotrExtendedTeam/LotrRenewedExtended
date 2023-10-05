@@ -10,7 +10,7 @@ import lotr.common.data.SaveUtil;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 
-public class FellowshipHolderServer {
+public class ExtendedFellowshipHolderServer {
 	private static Map<UUID, ExtendedFellowship> fellowshipMap = new HashMap<UUID, ExtendedFellowship>();
 	public static boolean needsLoad = true;
 
