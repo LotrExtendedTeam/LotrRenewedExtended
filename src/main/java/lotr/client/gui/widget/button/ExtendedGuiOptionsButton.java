@@ -10,12 +10,4 @@ public class ExtendedGuiOptionsButton extends Button{
 		super(x, y, width, height, message, press);
 		this.id = id;
 	}
-	
-//	@Override
-//	public void renderToolTip(MatrixStack p_230443_1_, int p_230443_2_, int p_230443_3_) {
-//		if(this.visible && this.isHovered()) {
-//			
-//		}
-//	}
-
 }
