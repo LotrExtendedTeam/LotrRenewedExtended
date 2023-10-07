@@ -1,7 +1,8 @@
 package lotr.common.fellowship;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
@@ -19,8 +20,8 @@ public class ExtendedFellowship {
 	private UUID FellowshipId;
 	private String FellowshipName;
 	private UUID FellowshipOwner;
-	private List<UUID> FellowshipMembers = new ArrayList<UUID>();
-	private List<UUID> FellowshipAdmins = new ArrayList<UUID>();
+	private Set<UUID> FellowshipMembers = new HashSet<UUID>();
+	private Set<UUID> FellowshipAdmins = new HashSet<UUID>();
 	private boolean PreventHiredFF = true;
 	private boolean PreventPVP = true;
 	private boolean ShowMap = true;
@@ -135,7 +136,7 @@ public class ExtendedFellowship {
 		UUID prevOwner = FellowshipOwner;
 		if (prevOwner != null)
 			if (!FellowshipMembers.contains(prevOwner))
-				FellowshipMembers.add(0, prevOwner);
+				FellowshipMembers.add(prevOwner);
 		FellowshipOwner = ownerUUID;
 		if (FellowshipMembers.contains(ownerUUID))
 			FellowshipMembers.remove(ownerUUID);
@@ -160,17 +161,17 @@ public class ExtendedFellowship {
 		markDirty();
 		}
 	}
-	public List<UUID> getFellowshipMembers() {
+	public Set<UUID> getFellowshipMembers() {
 		return FellowshipMembers;
 	}
 
-	public List<UUID> getAllFellowshipMembers() {
-		List<UUID> list = new ArrayList<UUID>();
+	public Set<UUID> getAllFellowshipMembers() {
+		Set<UUID> list = new HashSet<UUID>();
 		list.add(FellowshipOwner);
 		list.addAll(FellowshipMembers);
 		return list;
 	}
-	public List<UUID> getFellowshipAdmins() {
+	public Set<UUID> getFellowshipAdmins() {
 		return FellowshipAdmins;
 	}
 	public void addFellowshipAdmin(UUID player) {

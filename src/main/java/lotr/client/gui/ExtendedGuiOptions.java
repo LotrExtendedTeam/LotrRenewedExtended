@@ -54,7 +54,7 @@ public class ExtendedGuiOptions extends MiddleEarthMenuScreen {
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);
 		buttonFriendlyFire.setMessage(new StringTextComponent("Friendly Fire: "+ (pd.getAlignmentData().isFriendlyFireEnabled()?"ON":"OFF")));
 		buttonMapLocation.setMessage(new StringTextComponent("Show Map Location: "+ (pd.getMiscData().getShowMapLocation()?"ON":"OFF")));
-		buttonFeminineRank.setMessage(new StringTextComponent("Femining Rank Override: "+ (pd.getMiscData().getPreferredRankGender()==RankGender.FEMININE?"ON":"OFF")));
+		buttonFeminineRank.setMessage(new StringTextComponent("Feminine Rank Override: "+ (pd.getMiscData().getPreferredRankGender()==RankGender.FEMININE?"ON":"OFF")));
 	}
 	
 	public void toggleFF() {
