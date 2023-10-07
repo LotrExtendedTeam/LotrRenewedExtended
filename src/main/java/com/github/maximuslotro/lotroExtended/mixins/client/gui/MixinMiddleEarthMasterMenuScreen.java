@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.client.gui.BasicIngameScreen;
+import lotr.client.gui.ExtendedGuiFellowship;
 import lotr.client.gui.ExtendedGuiOptions;
 import lotr.client.gui.MiddleEarthFactionsScreen;
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
@@ -45,9 +46,11 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		addButton(new MiddleEarthMenuButton(0, 0, MiddleEarthMapScreen.class, new TranslationTextComponent("gui.lotr.menu.map"), 3, 77));
 		addButton(new MiddleEarthMenuButton(0, 0, MiddleEarthFactionsScreen.class, new TranslationTextComponent("gui.lotr.menu.factions"), 4, 70));
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?"), 0, -1));
-		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Fellowships"), 6, 71));
-		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Titles"), 7, 84));
-		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Shields"), 5, 83));
+		addButton(new MiddleEarthMenuButton(0, 0, ExtendedGuiFellowship.class, new StringTextComponent("Fellowships"), 6, 71));
+		//addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Titles"), 7, 84));
+		//addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Shields"), 5, 83));
+		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?/Titles"), 0, 84));
+		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?/Shields"), 0, 83));
 		addButton(new MiddleEarthMenuButton(0, 0, ExtendedGuiOptions.class, new StringTextComponent("Options"), 1, 79));
 
 		List<MiddleEarthMenuButton> menuButtonsToArrange = new ArrayList<MiddleEarthMenuButton>();
