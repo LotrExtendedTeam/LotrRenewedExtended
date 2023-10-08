@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotroExtended.mixins.common.init;
 import java.util.function.Supplier;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRItems;
@@ -13,8 +14,8 @@ import net.minecraftforge.fml.RegistryObject;
 public class MixinLOTRItems {
 	
 
-	//@Shadow
+	@Shadow(remap=false)
 	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {return null;}
 	
-	public static final RegistryObject<Item> COMMANDHORN = regItem("command_horn", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.COMBAT)));
+	private static final RegistryObject<Item> COMMANDHORN = regItem("command_horn", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.COMBAT)));
 }
