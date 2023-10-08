@@ -4,12 +4,13 @@
 	"plugin": "com.github.maximuslotro.lotroExtended.mixins.MIXINConfig",
 	"refmap": "mixins.lotrextended.refmap.json",
 	"compatibilityLevel": "JAVA_8",
-	"server": [
+	"mixins": [
 		"common.config.MixinServerConfig",
 		"common.data.MixinLOTRPlayerData",
 		"common.data.MixinLOTRLevelData",
 		"common.fac.MixinEntityFactionHelper",
-		"common.init.MixinLOTRCommands"
+		"common.init.MixinLOTRCommands",
+		"common.init.MixinLOTRItems"
 	],
 	
 	"client": [
