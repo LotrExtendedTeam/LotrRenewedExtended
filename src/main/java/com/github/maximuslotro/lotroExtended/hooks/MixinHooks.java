@@ -39,8 +39,9 @@ public class MixinHooks {
 	public static RegistryObject<Item> getLotrRegistryItem(String fieldName) {
 		RegistryObject<Item> fellowData = null;
 		try {
-			Field fooMethod = LOTRItems.class.getField(fieldName);
-			fellowData = ((RegistryObject<Item>) fooMethod.get(Optional.empty()));
+			Field privateField = LOTRItems.class.getDeclaredField(fieldName); 
+			privateField.setAccessible(true); 
+			fellowData = ((RegistryObject<Item>) privateField.get(Optional.empty()));
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
 			e.printStackTrace();
 		}

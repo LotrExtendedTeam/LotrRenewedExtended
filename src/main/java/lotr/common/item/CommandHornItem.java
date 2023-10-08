@@ -1,8 +1,7 @@
 package lotr.common.item;
 
-import lotr.client.gui.ExtendedGuiHornSelect;
 import lotr.common.init.LOTRItemGroups;
-import net.minecraft.client.Minecraft;
+import lotr.common.item.clientside.CommandHornClientSide;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -39,7 +38,7 @@ public class CommandHornItem extends Item {
 	        nbtTagCompound = new CompoundNBT();
 	        itemstack.setTag(nbtTagCompound);
 	    }
-//		if (!world.field_72995_K) {
+		if (!world.isClientSide) {
 //			List<LOTREntityNPC> entities = world.field_72996_f;
 //			for (int l = 0; l < entities.size(); l++) {
 //				if (entities.get(l) instanceof LOTREntityNPC) {
@@ -59,7 +58,7 @@ public class CommandHornItem extends Item {
 //							}
 //				}
 //			}
-//		}
+		}
 		if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 1) {
 			nbtTagCompound.putInt(type, 2);
 		} else if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 2) {
@@ -71,18 +70,19 @@ public class CommandHornItem extends Item {
 	
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		CompoundNBT nbtTagCompound = itemstack.getTag();
-		if (nbtTagCompound == null) {
-	        nbtTagCompound = new CompoundNBT();
-	        itemstack.setTag(nbtTagCompound);
-	    }
-		if (!nbtTagCompound.contains(type)) {
-			Minecraft.getInstance().setScreen(new ExtendedGuiHornSelect());
-		} else {
-			//itemstack.func_71008_a(itemstack, func_77626_a(itemstack));
+		ItemStack heldItem = player.getItemInHand(hand);
+		CompoundNBT nbtTagCompound = heldItem.getTag();
+		if (nbtTagCompound == null || !nbtTagCompound.contains(type)) {
+			if (world.isClientSide()) {
+				new CommandHornClientSide().openMenu();
+			}
+			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 		}
-		return ActionResult.pass(itemstack);
+		if (nbtTagCompound != null && nbtTagCompound.contains(type)) {
+			player.startUsingItem(hand);
+			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+		}
+		return ActionResult.fail(heldItem);
 	}
 	@Override
 	public String getDescriptionId(ItemStack itemstack) {

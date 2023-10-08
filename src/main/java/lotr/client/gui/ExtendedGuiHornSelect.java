@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.common.item.CommandHornItem;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
@@ -32,8 +31,8 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 	  public void init() {
 	    this.guiLeft = (this.width - this.xSize) / 2;
 	    this.guiTop = (this.height - this.ySize) / 2;
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new StringTextComponent("halt/reddy"), null));
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new StringTextComponent("summon"), null));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new StringTextComponent("Halt/Reddy Units"), button -> setHorn(true)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new StringTextComponent("Summon Units"), button -> setHorn(false)));
 	  }
 	  
 	@Override
@@ -42,15 +41,18 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		minecraft.textureManager.bind(guiTexture);
 		blit(matStack, this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		TextComponent title = new StringTextComponent("lotr.gui.hornSelect.title");
-		this.font.draw(matStack, title, guiLeft + (xSize / 2) + (100 - (font.width(title) / 2)), guiTop + 11, 4210752);
+		TextComponent title = new StringTextComponent("Horn of Command Selection");
+		this.font.draw(matStack, title, guiLeft + (85 - (font.width(title) / 2)), guiTop + 11, 4210752);
 		super.render(matStack, mouseX, mouseY, tick);
 		for (int k = 0; k < this.buttons.size(); k++) {
 			Widget button = this.buttons.get(k);
-			itemRenderer.renderGuiItemDecorations(font, new ItemStack(MixinHooks.getLotrRegistryItem("COMMANDHORN").get(), 1), button.x - 22, button.y + 2);
+			itemRenderer.renderGuiItem(new ItemStack(MixinHooks.getLotrRegistryItem("COMMANDHORN").get(), 1), button.x - 22, button.y + 2);
 		}
 	}
 
+	public void setHorn(boolean type) {
+		System.out.println(type);
+	}
 	@Override
 	public void tick() {
 		super.tick();
