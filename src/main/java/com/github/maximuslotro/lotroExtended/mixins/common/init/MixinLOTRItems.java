@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 @Mixin(LOTRItems.class)
+@SuppressWarnings("unused")
 public class MixinLOTRItems {
 	
 	@Shadow(remap=false)

@@ -5,6 +5,9 @@ import org.lwjgl.opengl.GL11;
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import lotr.common.item.CommandHornItem;
+import lotr.common.network.ExtendedPacketHandler;
+import lotr.common.network.ExtendedSPacketSelectHorn;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
@@ -31,8 +34,8 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 	  public void init() {
 	    this.guiLeft = (this.width - this.xSize) / 2;
 	    this.guiTop = (this.height - this.ySize) / 2;
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new StringTextComponent("Halt/Reddy Units"), button -> setHorn(true)));
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new StringTextComponent("Summon Units"), button -> setHorn(false)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new StringTextComponent("Halt/Reddy Units"), button -> setHorn(1)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new StringTextComponent("Summon Units"), button -> setHorn(3)));
 	  }
 	  
 	@Override
@@ -50,19 +53,23 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 		}
 	}
 
-	public void setHorn(boolean type) {
-		System.out.println(type);
+	public void setHorn(int type) {
+		ExtendedPacketHandler.sendToServer(new ExtendedSPacketSelectHorn(type));
+		this.minecraft.player.closeContainer();
 	}
+
 	@Override
 	public void tick() {
 		super.tick();
-//		ItemStack itemstack = this.minecraft.player.getMainHandItem();
-//		if (itemstack == null || itemstack.getItem() != MixinHooks.getLotrRegistryItem("COMMANDHORN").get()
-//				|| itemstack.getTag() == null
-//				|| !itemstack.getTag().contains(CommandHornItem.type)
-//				|| itemstack.getTag().getInt(CommandHornItem.type) != 0) {
-//			this.minecraft.player.closeContainer();
-//			this.onClose();
-//		}
+		ItemStack itemstack = this.minecraft.player.getMainHandItem();
+		if (itemstack == null || itemstack.getItem() != MixinHooks.getLotrRegistryItem("COMMANDHORN").get()) {
+			this.minecraft.player.closeContainer();
+			this.onClose();
+		}
+		if(itemstack.getTag() != null && itemstack.getTag().contains(CommandHornItem.type) && itemstack.getTag().getInt(CommandHornItem.type) != 0){
+			this.minecraft.player.closeContainer();
+			this.onClose();
+			return;
+		}
 	}
 }

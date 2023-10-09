@@ -18,7 +18,7 @@ public class CommandHornItem extends Item {
 		super(properties);
 	}
 	public CommandHornItem() {
-		super((new Item.Properties()).stacksTo(1).tab(LOTRItemGroups.MISC));
+		super((new Item.Properties()).stacksTo(1).tab(LOTRItemGroups.COMBAT));
 	}
 
 	@Override

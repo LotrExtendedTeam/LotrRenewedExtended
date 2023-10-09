@@ -10,7 +10,8 @@
 		"common.data.MixinLOTRLevelData",
 		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRCommands",
-		"common.init.MixinLOTRItems"
+		"common.init.MixinLOTRItems",
+		"common.network.MixinLOTRPacketHandler"
 	],
 	
 	"client": [
