@@ -1,5 +1,7 @@
 package lotr.common.command;
 
+import java.util.UUID;
+
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -8,6 +10,7 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 
 import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
+import lotr.common.util.UsernameHelper;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
@@ -15,6 +18,8 @@ import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -36,7 +41,13 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), false))
 								)
 						)
-				.then(Commands.literal("option")
+				.then(Commands.literal("viewInfo").requires(context -> context.hasPermission(0))
+						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
+								.suggests(SUGGEST_FELLOWSHIP_USER)
+								.executes(context -> displayInfo(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship")))
+								)
+						)
+				.then(Commands.literal("modify").requires(context -> context.hasPermission(0))
 						.then(Commands.argument("Name", StringArgumentType.string())
 								.suggests(SUGGEST_FELLOWSHIP_USER)
 								.then(Commands.literal("rename")
@@ -196,7 +207,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	fellowshipData.createFellowship(fellowshipname, adminOverride);
         	return 0;
         } 
-		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists!") , true);
+		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
@@ -207,7 +218,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Successfully renamed fellowship: "+fellowshipname+ " to "+fellowshipNewName), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int pvp(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -218,7 +229,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent((toggle ? "Disabled":"Allowed")+" pvp"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int hiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -226,10 +237,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventHiredFF(fellowship, toggle);
-        	source.sendSuccess(new StringTextComponent((toggle ? "Disabled":"Allowed")+" hired unit friendly fire"), true);
+        	source.sendSuccess(new StringTextComponent((toggle ? "Disabled":"Allowed")+" hired unit friendly fire").withStyle(TextFormatting.RED), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int mapLoc(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -240,7 +251,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Fellowship map location is now "+(toggle ? "shown":"hidden")), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int removePlayer(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity playerToRemove) {
@@ -251,7 +262,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Removed "+playerToRemove.getDisplayName().getString()+" from the fellowship"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int setOwner(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newOwner) {
@@ -262,7 +273,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Made "+newOwner.getDisplayName().getString()+" the new owner of the fellowship"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int invite(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
@@ -274,7 +285,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Invited "+newMember.getDisplayName().getString()+" to the fellowship"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int add(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
@@ -285,7 +296,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Added "+newMember.getDisplayName().getString()+" to the fellowship"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int admin(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity changing, boolean toggle) {
@@ -301,7 +312,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Removed fellowship admin: "+changing.getName().getString()), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int leave(CommandSource source, PlayerEntity player, String fellowshipname) {
@@ -312,7 +323,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("You have left "+fellowshipname), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are not a member!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are not a member!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int icon(CommandSource source, PlayerEntity player, String fellowshipname) {
@@ -327,7 +338,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("You must hold an item in your hand"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
@@ -338,7 +349,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	source.sendSuccess(new StringTextComponent("Disbanded the fellowship"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!"), true);
+        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
@@ -352,7 +363,43 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 			fellowshipData.removeInvitePlayer(fellowship, true);
         	return 0;
         }
-		source.sendSuccess(new StringTextComponent("Invalid invite!"), true);
+		source.sendSuccess(new StringTextComponent("Invalid invite!").withStyle(TextFormatting.RED), true);
+        return 0;
+	}
+	private static int displayInfo(CommandSource source, PlayerEntity player, String fellowshipname) {
+		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+		if (fellowship != null) {
+			source.sendSuccess(new StringTextComponent("FellowshipName: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(TextFormatting.GOLD)), true);
+			source.sendSuccess(new StringTextComponent("PVP: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(String.valueOf(fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))
+					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
+					.append(new StringTextComponent("HUPVP: ").withStyle(TextFormatting.GREEN))
+					.append(new StringTextComponent(String.valueOf(fellowship.isPreventHiredFF())).withStyle(TextFormatting.GOLD)), true);
+			source.sendSuccess(new StringTextComponent("MapLoc: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(String.valueOf(fellowship.isHideMapLocation())).withStyle(TextFormatting.GOLD))
+					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
+					.append(new StringTextComponent("Icon: ").withStyle(TextFormatting.GREEN))
+					.append(new StringTextComponent(fellowship.getIcon().getItem().getRegistryName().getPath()).withStyle(TextFormatting.GOLD)), true);
+			source.sendSuccess(new StringTextComponent("Owner: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(fellowship.getOwnerUUID())).withStyle(TextFormatting.GOLD)), true);
+			TextComponent admins = new StringTextComponent("Admins: ");
+			admins.withStyle(TextFormatting.GREEN);
+			for(UUID admin :fellowship.getFellowshipAdmins()) {
+				admins.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(admin)+", ").withStyle(TextFormatting.GOLD));
+			}
+			source.sendSuccess(admins, true);
+			TextComponent members = new StringTextComponent("Members: ");
+			members.withStyle(TextFormatting.GREEN);
+			for(UUID member :fellowship.getFellowshipAdmins()) {
+				if(!fellowship.isFellowshipAdmin(member))
+					members.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(member)+", ").withStyle(TextFormatting.GOLD));
+			}
+			source.sendSuccess(members, true);
+        	return 0;
+        }
+		source.sendSuccess(new StringTextComponent("No fellowship by that name exists!").withStyle(TextFormatting.RED), true);
         return 0;
 	}
 }
