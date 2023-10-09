@@ -1,0 +1,8 @@
+{
+  "item.horn": {
+    "sounds": [
+      "lotr:item/horn"
+    ],
+    "subtitle": "subtitles.lotr.item.horn"
+  }
+}

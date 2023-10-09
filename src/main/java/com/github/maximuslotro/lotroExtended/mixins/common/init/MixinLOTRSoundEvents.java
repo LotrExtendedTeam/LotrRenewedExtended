@@ -1,23 +1,19 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
-import java.util.function.Supplier;
-
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.At;
 
-import lotr.common.init.LOTRItems;
+import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.init.LOTRSoundEvents;
-import lotr.common.item.CommandHornItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.fml.RegistryObject;
 
 @Mixin(LOTRSoundEvents.class)
-@SuppressWarnings("unused")
 public class MixinLOTRSoundEvents {
+
 	
-	@Shadow(remap=false)
-	private static SoundEvent preRegSound(String key) {return null;}
-	
-	private static final SoundEvent HORN_BLOW = preRegSound("item.horn");
+	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
+	private static void registerExtendedSounds(CallbackInfo cl) {
+		ExtendedSoundEvents.register();
+	}
 }

@@ -1,7 +1,6 @@
 package lotr.common.item;
 
-import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
-
+import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.item.clientside.CommandHornClientSide;
 import net.minecraft.entity.LivingEntity;
@@ -62,12 +61,14 @@ public class CommandHornItem extends Item {
 //				}
 //			}
 		}
+		System.out.println("Test1");
 		if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 1) {
 			nbtTagCompound.putInt(type, 2);
 		} else if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 2) {
 			nbtTagCompound.putInt(type, 1);
 		}
-		world.playSound(null, entityplayer.blockPosition(), MixinHooks.getLotrRegistrySoundEvent("HORN_BLOW"), SoundCategory.PLAYERS, 4.0F, 1.0F);
+		//MixinHooks.getLotrRegistrySoundEvent("HORN_BLOW")
+		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSoundEvents.HORN_BLOW, SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
 	}
 	
@@ -89,18 +90,30 @@ public class CommandHornItem extends Item {
 	}
 	@Override
 	public String getDescriptionId(ItemStack itemstack) {
-		String s = "";
+//		String s = "";
+//		CompoundNBT nbtTagCompound = itemstack.getTag();
+//		if (nbtTagCompound != null && nbtTagCompound.contains(type)
+//				&& nbtTagCompound.getInt(type) == 1) {
+//			s = ".halt";
+//		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
+//				&& nbtTagCompound.getInt(type) == 2) {
+//			s = ".ready";
+//		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
+//				&& nbtTagCompound.getInt(type) == 3) {
+//			s = ".summon";
+//		}
+//		return super.getDescriptionId(itemstack) + s;
 		CompoundNBT nbtTagCompound = itemstack.getTag();
 		if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 1) {
-			s = ".halt";
+			return "Horn of Command - Halt Units";
 		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 2) {
-			s = ".ready";
+			return "Horn of Command - Reddy Units";
 		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 3) {
-			s = ".summon";
+			return "Horn of Command - Summon Units";
 		}
-		return super.getDescriptionId(itemstack) + s;
+		return "Horn of Command";
 	}
 }
