@@ -92,14 +92,4 @@ public class ExtendedFellowshipHolderServer {
 			e.printStackTrace();
 		}
 	}
-
-	private static void saveAndClearFellowship(ServerWorld world, ExtendedFellowship fs) {
-		if (fellowshipMap.containsValue(fs)) {
-			saveFellowship(world, fs);
-			fellowshipMap.remove(fs.getFellowshipId());
-		} else {
-			LOTRLog.error("Attempted to clear LOTR fellowship data for %s; no data found",
-					new Object[] { fs.getFellowshipId() });
-		}
-	}
 }
