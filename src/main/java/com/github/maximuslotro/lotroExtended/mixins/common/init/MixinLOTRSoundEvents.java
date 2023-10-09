@@ -19,5 +19,5 @@ public class MixinLOTRSoundEvents {
 	@Shadow(remap=false)
 	private static SoundEvent preRegSound(String key) {return null;}
 	
-	public static final SoundEvent HORN_BLOW = preRegSound("item.horn");
+	private static final SoundEvent HORN_BLOW = preRegSound("item.horn");
 }
