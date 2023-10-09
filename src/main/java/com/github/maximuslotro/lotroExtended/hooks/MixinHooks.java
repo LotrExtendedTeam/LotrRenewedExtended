@@ -10,7 +10,9 @@ import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.init.LOTRItems;
+import lotr.common.init.LOTRSoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 public class MixinHooks {
@@ -42,6 +44,18 @@ public class MixinHooks {
 			Field privateField = LOTRItems.class.getDeclaredField(fieldName); 
 			privateField.setAccessible(true); 
 			fellowData = ((RegistryObject<Item>) privateField.get(Optional.empty()));
+		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+		return fellowData;
+	}
+
+	public static SoundEvent getLotrRegistrySoundEvent(String fieldName) {
+		SoundEvent fellowData = null;
+		try {
+			Field privateField = LOTRSoundEvents.class.getDeclaredField(fieldName); 
+			privateField.setAccessible(true); 
+			fellowData = ((SoundEvent) privateField.get(Optional.empty()));
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
 			e.printStackTrace();
 		}

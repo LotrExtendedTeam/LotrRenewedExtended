@@ -1,5 +1,7 @@
 package lotr.common.item;
 
+import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
+
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.item.clientside.CommandHornClientSide;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +12,7 @@ import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class CommandHornItem extends Item {
@@ -64,7 +67,7 @@ public class CommandHornItem extends Item {
 		} else if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 2) {
 			nbtTagCompound.putInt(type, 1);
 		}
-		//world.func_72956_a((Entity) entityplayer, "lotr:item.horn", 4.0F, 1.0F);
+		world.playSound(null, entityplayer.blockPosition(), MixinHooks.getLotrRegistrySoundEvent("HORN_BLOW"), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
 	}
 	

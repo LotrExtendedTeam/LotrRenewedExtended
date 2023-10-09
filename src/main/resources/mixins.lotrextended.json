@@ -11,6 +11,7 @@
 		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRCommands",
 		"common.init.MixinLOTRItems",
+		"common.init.MixinLOTRSoundEvents",
 		"common.network.MixinLOTRPacketHandler"
 	],
 	
