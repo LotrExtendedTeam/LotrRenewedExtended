@@ -3,15 +3,11 @@ package com.github.maximuslotro.lotroExtended.hooks;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Optional;
 
 import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
 import lotr.common.data.LOTRPlayerData;
-import lotr.common.init.LOTRItems;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
 
 public class MixinHooks {
 	public static ExtendedFellowshipDataModule getFellowshipData(LOTRPlayerData data) {
@@ -29,19 +25,6 @@ public class MixinHooks {
 		try {
 			Field fooMethod = ServerConfig.class.getField("enableFellowshipCreation");
 			fellowData = ((LOTRConfig.BoolHolder) fooMethod.get(LOTRConfig.SERVER)).get();
-		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-			e.printStackTrace();
-		}
-		return fellowData;
-	}
-
-	@SuppressWarnings("unchecked")
-	public static RegistryObject<Item> getLotrRegistryItem(String fieldName) {
-		RegistryObject<Item> fellowData = null;
-		try {
-			Field privateField = LOTRItems.class.getDeclaredField(fieldName); 
-			privateField.setAccessible(true); 
-			fellowData = ((RegistryObject<Item>) privateField.get(Optional.empty()));
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
 			e.printStackTrace();
 		}

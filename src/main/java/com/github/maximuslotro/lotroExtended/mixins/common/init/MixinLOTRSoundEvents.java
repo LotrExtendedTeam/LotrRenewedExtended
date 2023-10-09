@@ -13,7 +13,7 @@ public class MixinLOTRSoundEvents {
 
 	
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
-	private static void registerExtendedSounds(CallbackInfo cl) {
+	private static void bootstrapExtendedSounds(CallbackInfo ci) {
 		ExtendedSoundEvents.register();
 	}
 }

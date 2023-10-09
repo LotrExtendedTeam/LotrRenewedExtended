@@ -2,8 +2,7 @@ package lotr.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
-
+import lotr.common.init.ExtendedItems;
 import lotr.common.item.CommandHornItem;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -33,7 +32,7 @@ public class ExtendedSPacketSelectHorn {
 	public static void handle(ExtendedSPacketSelectHorn packet, Supplier<Context> context) {
 		ServerPlayerEntity player = ((Context) context.get()).getSender();
 		ItemStack itemstack = player.getMainHandItem();
-	    if (itemstack != null && itemstack.getItem() == MixinHooks.getLotrRegistryItem("COMMANDHORN").get()) {
+	    if (itemstack != null && itemstack.getItem() == ExtendedItems.COMMANDHORN.get()) {
 	    	if(itemstack.getTag()==null||!itemstack.getTag().contains(CommandHornItem.type)||itemstack.getTag().getInt(CommandHornItem.type)==0) {
 	    		CompoundNBT nbtTagCompound = itemstack.getTag();
 	    		if (nbtTagCompound == null) {

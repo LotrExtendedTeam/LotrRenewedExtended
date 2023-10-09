@@ -2,9 +2,9 @@ package lotr.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import lotr.common.init.ExtendedItems;
 import lotr.common.item.CommandHornItem;
 import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.network.ExtendedSPacketSelectHorn;
@@ -49,7 +49,7 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 		super.render(matStack, mouseX, mouseY, tick);
 		for (int k = 0; k < this.buttons.size(); k++) {
 			Widget button = this.buttons.get(k);
-			itemRenderer.renderGuiItem(new ItemStack(MixinHooks.getLotrRegistryItem("COMMANDHORN").get(), 1), button.x - 22, button.y + 2);
+			itemRenderer.renderGuiItem(new ItemStack(ExtendedItems.COMMANDHORN.get(), 1), button.x - 22, button.y + 2);
 		}
 	}
 
@@ -62,7 +62,7 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 	public void tick() {
 		super.tick();
 		ItemStack itemstack = this.minecraft.player.getMainHandItem();
-		if (itemstack == null || itemstack.getItem() != MixinHooks.getLotrRegistryItem("COMMANDHORN").get()) {
+		if (itemstack == null || itemstack.getItem() != ExtendedItems.COMMANDHORN.get()) {
 			this.minecraft.player.closeContainer();
 			this.onClose();
 		}
