@@ -33,5 +33,6 @@ public class MixinLOTRItems {
 		ExtendedItems.ITHILDIN = regItem("ithildin", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
 		ExtendedItems.GALVORN_INGOT = regItem("galvorn_ingot", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
 		ExtendedItems.GALVORN_BLOCK = regBlockItem(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.ITHILDIN = regItem("obsidian_shard", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
 	}
 }
