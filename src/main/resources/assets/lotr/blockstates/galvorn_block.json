@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "lotr:block/galvorn_block" }
+    }
+}

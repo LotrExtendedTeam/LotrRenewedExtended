@@ -1,0 +1,23 @@
+{
+  "type": "lotr:elven_forge_alloy",
+  "ingredient": [
+    {
+      "tag": "forge:ores/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    }
+  ],
+  "alloy": [
+    {
+      "item": "lotr:edhelvir"
+    }
+  ],
+  "swappable": "false",
+  "result": {
+    "item": "lotr:galvorn_ingot",
+    "count": 1
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}

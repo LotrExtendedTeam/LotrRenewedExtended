@@ -9,6 +9,7 @@
 		"common.data.MixinLOTRPlayerData",
 		"common.data.MixinLOTRLevelData",
 		"common.fac.MixinEntityFactionHelper",
+		"common.init.MixinLOTRBlocks",
 		"common.init.MixinLOTRCommands",
 		"common.init.MixinLOTRItems",
 		"common.init.MixinLOTRSoundEvents",

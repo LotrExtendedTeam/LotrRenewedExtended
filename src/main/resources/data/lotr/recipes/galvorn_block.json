@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:galvorn_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:galvorn_block"
+  }
+}

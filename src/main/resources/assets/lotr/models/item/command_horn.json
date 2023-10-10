@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
+	"parent": "item/generated",
+	"textures": {
         "layer0": "lotr:item/command_horn"
     }
 }
