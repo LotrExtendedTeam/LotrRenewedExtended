@@ -1,0 +1,23 @@
+{
+  "type": "lotr:orc_forge",
+  "ingredient": [
+    {
+      "tag": "forge:ores/morgul_iron"
+    },
+    {
+      "tag": "forge:ingots/orc_steel"
+    }
+  ],
+  "alloy": [
+    {
+      "item": "lotr:durnor"
+    }
+  ],
+  "swappable": "false",
+  "result": {
+    "item": "lotr:black_uruk_steel_ingot",
+    "count": 1
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}
