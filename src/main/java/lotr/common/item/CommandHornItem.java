@@ -40,34 +40,12 @@ public class CommandHornItem extends Item {
 	        nbtTagCompound = new CompoundNBT();
 	        itemstack.setTag(nbtTagCompound);
 	    }
-		if (!world.isClientSide) {
-//			List<LOTREntityNPC> entities = world.field_72996_f;
-//			for (int l = 0; l < entities.size(); l++) {
-//				if (entities.get(l) instanceof LOTREntityNPC) {
-//					LOTREntityNPC npc = entities.get(l);
-//					if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo
-//							.getHiringPlayer() == entityplayer)
-//						if (LOTRSquadrons.areSquadronsCompatible(npc, itemstack))
-//							if (itemstack.func_77960_j() == 1
-//									&& npc.hiredNPCInfo.getObeyHornHaltReady()) {
-//								npc.hiredNPCInfo.halt();
-//							} else if (itemstack.func_77960_j() == 2
-//									&& npc.hiredNPCInfo.getObeyHornHaltReady()) {
-//								npc.hiredNPCInfo.ready();
-//							} else if (itemstack.func_77960_j() == 3
-//									&& npc.hiredNPCInfo.getObeyHornSummon()) {
-//								npc.hiredNPCInfo.tryTeleportToHiringPlayer(true);
-//							}
-//				}
-//			}
-		}
-		System.out.println("Test1");
+
 		if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 1) {
 			nbtTagCompound.putInt(type, 2);
 		} else if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 2) {
 			nbtTagCompound.putInt(type, 1);
 		}
-		//MixinHooks.getLotrRegistrySoundEvent("HORN_BLOW")
 		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSoundEvents.HORN_BLOW, SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
 	}
@@ -90,19 +68,6 @@ public class CommandHornItem extends Item {
 	}
 	@Override
 	public String getDescriptionId(ItemStack itemstack) {
-//		String s = "";
-//		CompoundNBT nbtTagCompound = itemstack.getTag();
-//		if (nbtTagCompound != null && nbtTagCompound.contains(type)
-//				&& nbtTagCompound.getInt(type) == 1) {
-//			s = ".halt";
-//		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
-//				&& nbtTagCompound.getInt(type) == 2) {
-//			s = ".ready";
-//		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
-//				&& nbtTagCompound.getInt(type) == 3) {
-//			s = ".summon";
-//		}
-//		return super.getDescriptionId(itemstack) + s;
 		CompoundNBT nbtTagCompound = itemstack.getTag();
 		if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 1) {
