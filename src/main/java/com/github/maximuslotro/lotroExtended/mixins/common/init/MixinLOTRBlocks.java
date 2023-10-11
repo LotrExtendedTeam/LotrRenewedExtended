@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +20,7 @@ import net.minecraftforge.registries.DeferredRegister;
 @Mixin(LOTRBlocks.class)
 public class MixinLOTRBlocks {
 	
+	@Final
 	@Shadow(remap=false)
 	public static DeferredRegister<Block> BLOCKS;
 	
