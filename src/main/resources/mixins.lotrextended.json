@@ -13,7 +13,9 @@
 		"common.init.MixinLOTRCommands",
 		"common.init.MixinLOTRItems",
 		"common.init.MixinLOTRSoundEvents",
-		"common.network.MixinLOTRPacketHandler"
+		"common.network.MixinLOTRPacketHandler",
+		"common.world.biome.MixinShireBiome",
+		"common.world.gen.feature.MixinLOTRFeatures"
 	],
 	
 	"client": [

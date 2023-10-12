@@ -11,8 +11,7 @@ import lotr.common.init.LOTRSoundEvents;
 @Mixin(LOTRSoundEvents.class)
 public class MixinLOTRSoundEvents {
 
-	
-	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
+	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedSounds(CallbackInfo ci) {
 		ExtendedSoundEvents.register();
 	}
