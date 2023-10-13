@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature;
+package lotr.common.world.gen.feature.structure;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

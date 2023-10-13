@@ -1,7 +1,7 @@
 package lotr.common.world.biome;
 
 import lotr.common.world.gen.feature.ExtendedFeatures;
-import lotr.common.world.gen.feature.HobbitHoleFeatureConfig;
+import lotr.common.world.gen.feature.structure.HobbitHoleFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
