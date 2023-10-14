@@ -1,0 +1,23 @@
+{
+  "type": "lotr:orc_forge_alloy",
+  "ingredient": [
+    {
+      "tag": "forge:ores/morgul"
+    },
+    {
+      "tag": "forge:ingots/orc_steel"
+    }
+  ],
+  "alloy": [
+    {
+      "item": "lotr:gulduril"
+    }
+  ],
+  "swappable": "false",
+  "result": {
+    "item": "lotr:morgul_steel_ingot",
+    "count": 1
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}
