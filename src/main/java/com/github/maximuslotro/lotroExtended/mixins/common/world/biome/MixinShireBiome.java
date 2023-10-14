@@ -14,6 +14,6 @@ import net.minecraft.world.biome.BiomeGenerationSettings;
 public class MixinShireBiome {
 	@Inject(method = "addStructures(Lnet/minecraft/world/biome/BiomeGenerationSettings$Builder;)V", at = @At("HEAD"), remap=false)
 	private void bootstrapExtendedFeatures(BiomeGenerationSettings.Builder builder, CallbackInfo ci) {
-		ExtendedBiomeFeatures.addHobbitHoleStructure(builder, 5, LOTRBlocks.MITHRIL_ORE.get().defaultBlockState());
+		ExtendedBiomeFeatures.addHobbitHoleStructure(builder, 400, LOTRBlocks.MITHRIL_ORE.get().defaultBlockState());
 	}
 }

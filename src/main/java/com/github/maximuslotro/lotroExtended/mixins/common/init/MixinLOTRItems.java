@@ -36,6 +36,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BLACK_URUK_STEEL_INGOT = regItem("black_uruk_steel_ingot", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
 		ExtendedItems.GILDED_IRON_INGOT = regItem("gilded_iron_ingot", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
 		ExtendedItems.ITHILDIN = regItem("obsidian_shard", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
+		ExtendedItems.HITHLAIN = regItem("hithlain", () -> new Item((new Item.Properties()).tab(LOTRItemGroups.MATERIALS)));
 		
 		ExtendedItems.GALVORN_BLOCK = regBlockItem(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BLACK_URUK_STEEL_BLOCK = regBlockItem(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, LOTRItemGroups.BLOCKS);

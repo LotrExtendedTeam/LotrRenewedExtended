@@ -16,4 +16,6 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> GILDED_IRON_INGOT;
 	public static RegistryObject<Item> GILDED_IRON_BLOCK;
+
+	public static RegistryObject<Item> HITHLAIN;
 }
