@@ -12,6 +12,7 @@
 		"common.init.MixinLOTRBlocks",
 		"common.init.MixinLOTRCommands",
 		"common.init.MixinLOTRItems",
+		"common.init.MixinLOTRMaterial",
 		"common.init.MixinLOTRSoundEvents",
 		"common.network.MixinLOTRPacketHandler",
 		"common.world.biome.MixinShireBiome",
