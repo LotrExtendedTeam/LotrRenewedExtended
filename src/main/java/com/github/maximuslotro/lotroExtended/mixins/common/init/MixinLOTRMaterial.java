@@ -22,6 +22,9 @@ import net.minecraft.util.SoundEvents;
 @Unique
 public class MixinLOTRMaterial {
 
+	/**
+	 * The field exists, just not until runtime
+	 * */
 	@Shadow(remap = false)
 	@Final
 	@Mutable
