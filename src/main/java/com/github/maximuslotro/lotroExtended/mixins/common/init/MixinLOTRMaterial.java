@@ -11,8 +11,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRMaterial;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
@@ -25,8 +27,8 @@ public class MixinLOTRMaterial {
 	@Mutable
 	private static LOTRMaterial[] $VALUES;
 	
-	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 6.0F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
-		return Ingredient.of(net.minecraftforge.common.Tags.Items.INGOTS_IRON);}, new LOTRMaterial.Specials[0]);
+	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
+		return Ingredient.of(new IItemProvider[]{(IItemProvider) ExtendedItems.MORGUL_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 	
 	@Invoker("<init>")
 	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
