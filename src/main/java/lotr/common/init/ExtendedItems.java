@@ -21,4 +21,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_STEEL_BLOCK;
 
 	public static RegistryObject<Item> HITHLAIN;
+
+	public static RegistryObject<Item> MORGUL_HELMET;
+	public static RegistryObject<Item> MORGUL_CHESTPLATE;
+	public static RegistryObject<Item> MORGUL_LEGGINGS;
+	public static RegistryObject<Item> MORGUL_BOOTS;
 }
