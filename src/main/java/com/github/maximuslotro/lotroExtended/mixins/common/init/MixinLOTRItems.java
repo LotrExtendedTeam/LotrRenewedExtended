@@ -35,7 +35,7 @@ public class MixinLOTRItems {
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
-		ExtendedItems.COMMANDHORN = regItem("command_horn", () -> new CommandHornItem());
+		ExtendedItems.COMMANDHORN = regItem("horn_of_command", () -> new CommandHornItem());
 		
 		ExtendedItems.ITHILDIN = regMaterialItem("ithildin");
 		ExtendedItems.GALVORN_INGOT = regMaterialItem("galvorn_ingot");

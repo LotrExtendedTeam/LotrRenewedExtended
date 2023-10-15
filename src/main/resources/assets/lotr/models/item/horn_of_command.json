@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-        "layer0": "lotr:item/command_horn"
+        "layer0": "lotr:item/horn_of_command"
     }
 }
