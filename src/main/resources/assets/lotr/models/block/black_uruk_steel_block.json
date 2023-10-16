@@ -1,6 +1,7 @@
 {
-	"parent": "block/cube_all",
+	"parent": "block/cube_column",
 	"textures": {
-		"all": "lotr:block/black_uruk_steel_block"
+		"end": "lotr:block/black_uruk_steel_block_end",
+        "side": "lotr:block/black_uruk_steel_block_side"
 	}
 }
