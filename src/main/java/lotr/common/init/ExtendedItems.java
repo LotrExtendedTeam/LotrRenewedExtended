@@ -8,6 +8,8 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> ITHILDIN;
 
+	public static RegistryObject<Item> OBSIDIAN_SHARD;
+
 	public static RegistryObject<Item> GALVORN_INGOT;
 	public static RegistryObject<Item> GALVORN_BLOCK;
 
