@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-import lotr.common.LOTRMod;
 import lotr.common.init.LOTRItems;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,18 +35,23 @@ public class MixinLOTRMaterial {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) ExtendedItems.MORGUL_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 
 	private static final LOTRMaterial TAURETHRIM = lotrmaterialExpansion$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
-		return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.BRONZE_INGOT.get()});}, new LOTRMaterial.Specials[0]);
+		return Ingredient.of(new IItemProvider[]{(IItemProvider) ExtendedItems.OBSIDIAN_SHARD.get()});},() -> {
+			return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.BRONZE_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 	
 	@Invoker("<init>")
 	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
-			float tough, Supplier<Ingredient> repair, LOTRMaterial.Specials[] specs) {
+			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		throw new AssertionError();
 	}
 
 	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, LOTRMaterial.Specials[] specs) {
+		return lotrmaterialExpansion$addVariant(internalName, name, lvl, uses, eff, atk, ench, pr, sound, tough, repair, repair, specs);
+	}
+	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
+			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		ArrayList<LOTRMaterial> variants = new ArrayList<LOTRMaterial>(Arrays.asList(MixinLOTRMaterial.$VALUES));
-		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, lvl, uses, eff, atk, ench, pr, sound, tough, repair, specs);
+		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, lvl, uses, eff, atk, ench, pr, sound, tough, repair, armorRepair, specs);
 		variants.add(instrument);
 		MixinLOTRMaterial.$VALUES = variants.toArray(new LOTRMaterial[0]);
 		return instrument;
