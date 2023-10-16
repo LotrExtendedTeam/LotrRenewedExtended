@@ -74,7 +74,7 @@ public class CommandHornItem extends Item {
 			return "Horn of Command - Halt Units";
 		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 2) {
-			return "Horn of Command - Reddy Units";
+			return "Horn of Command - Ready Units";
 		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 3) {
 			return "Horn of Command - Summon Units";
