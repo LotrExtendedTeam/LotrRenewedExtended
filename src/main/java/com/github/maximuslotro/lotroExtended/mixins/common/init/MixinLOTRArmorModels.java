@@ -26,6 +26,8 @@ public class MixinLOTRArmorModels {
     static {
         if (!hasSetup) {
             addSpecialArmorModel(() -> ExtendedItems.MORGUL_HELMET.get(), LOTRModelMorgulHelmet::new);
+            addSpecialArmorModel(() -> ExtendedItems.TAURETHRIM_CHIEFTAN_HELMET.get(), LOTRModelTaurethrimChieftanHelmet::new);
+            addSpecialArmorModel(() -> ExtendedItems.GOLDEN_TAURETHRIM_HELMET.get(), LOTRModelGoldenTaurethrimHelmet::new);
             addSpecialArmorModel(LOTRItems.GONDOR_HELMET, GondorHelmetModel::new);
             addSpecialArmorModel(LOTRItems.LINDON_HELMET, HighElvenHelmetModel::new);
             addSpecialArmorModel(LOTRItems.RIVENDELL_HELMET, HighElvenHelmetModel::new);
