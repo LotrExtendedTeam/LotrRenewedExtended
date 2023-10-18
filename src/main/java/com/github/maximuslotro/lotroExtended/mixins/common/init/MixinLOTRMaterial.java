@@ -18,6 +18,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.common.Tags.Items;
 
 @Mixin(LOTRMaterial.class)
 @Unique
@@ -38,8 +39,8 @@ public class MixinLOTRMaterial {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) ExtendedItems.OBSIDIAN_SHARD.get()});},() -> {
 			return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.BRONZE_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 
-	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
-		return Ingredient.of(new IItemProvider[]{(IItemProvider) ExtendedItems.MORGUL_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
+	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, () -> {
+		return Ingredient.of(new IItemProvider[]{(IItemProvider) Items.INGOTS_GOLD});}, new LOTRMaterial.Specials[0]);
 	
 	@Invoker("<init>")
 	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,

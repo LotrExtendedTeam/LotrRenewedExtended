@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
 import lotr.common.block.LOTROreBlock;
-import net.minecraft.block.OreBlock;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,6 +37,7 @@ public class MixinLOTRBlocks {
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
 		ExtendedBlocks.MORGUL_STEEL_BLOCK = BLOCKS.register("morgul_steel_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
+		
 		ExtendedBlocks.TOPAZ_BLOCK = BLOCKS.register("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.AMETHYST_BLOCK = BLOCKS.register("amethyst_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.SAPPHIRE_BLOCK = BLOCKS.register("sapphire_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
