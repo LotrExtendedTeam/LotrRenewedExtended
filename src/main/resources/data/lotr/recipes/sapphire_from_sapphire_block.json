@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:sapphire",
+  "ingredients": [
+    {
+      "item": "lotr:sapphire_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:sapphire",
+    "count": 9
+  }
+}

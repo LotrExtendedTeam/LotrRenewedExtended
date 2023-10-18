@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:diamond",
+  "ingredients": [
+    {
+      "item": "lotr:diamond_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:diamond",
+    "count": 9
+  }
+}

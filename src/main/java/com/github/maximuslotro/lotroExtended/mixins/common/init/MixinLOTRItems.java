@@ -43,6 +43,32 @@ public class MixinLOTRItems {
 		ExtendedItems.MORGUL_STEEL_INGOT = regMaterialItem("morgul_steel_ingot");
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
 		ExtendedItems.HITHLAIN = regMaterialItem("hithlain");
+		ExtendedItems.TOPAZ = regMaterialItem("topaz");
+		ExtendedItems.AMETHYST = regMaterialItem("amethyst");
+		ExtendedItems.SAPPHIRE = regMaterialItem("sapphire");
+		ExtendedItems.RUBY = regMaterialItem("ruby");
+		ExtendedItems.AMBER = regMaterialItem("amber");
+		ExtendedItems.DIAMOND = regMaterialItem("diamond");
+		ExtendedItems.OPAL = regMaterialItem("opal");
+		ExtendedItems.EMERALD = regMaterialItem("emerald");
+
+		ExtendedItems.TOPAZ_ORE = regBlockItem(ExtendedBlocks.TOPAZ_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.AMETHYST_ORE = regBlockItem(ExtendedBlocks.AMETHYST_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SAPPHIRE_ORE = regBlockItem(ExtendedBlocks.SAPPHIRE_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RUBY_ORE = regBlockItem(ExtendedBlocks.RUBY_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.AMBER_ORE = regBlockItem(ExtendedBlocks.AMBER_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DIAMOND_ORE = regBlockItem(ExtendedBlocks.DIAMOND_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OPAL_ORE = regBlockItem(ExtendedBlocks.OPAL_ORE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EMERALD_ORE = regBlockItem(ExtendedBlocks.EMERALD_ORE, LOTRItemGroups.BLOCKS);
+
+		ExtendedItems.TOPAZ_BLOCK = regBlockItem(ExtendedBlocks.TOPAZ_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.AMETHYST_BLOCK = regBlockItem(ExtendedBlocks.AMETHYST_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SAPPHIRE_BLOCK = regBlockItem(ExtendedBlocks.SAPPHIRE_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RUBY_BLOCK = regBlockItem(ExtendedBlocks.RUBY_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.AMBER_BLOCK = regBlockItem(ExtendedBlocks.AMBER_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DIAMOND_BLOCK = regBlockItem(ExtendedBlocks.DIAMOND_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OPAL_BLOCK = regBlockItem(ExtendedBlocks.OPAL_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EMERALD_BLOCK = regBlockItem(ExtendedBlocks.EMERALD_BLOCK, LOTRItemGroups.BLOCKS);
 		
 		ExtendedItems.GALVORN_BLOCK = regBlockItem(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BLACK_URUK_STEEL_BLOCK = regBlockItem(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, LOTRItemGroups.BLOCKS);
@@ -69,5 +95,6 @@ public class MixinLOTRItems {
 		ExtendedItems.TAURETHRIM_AXE = regItem("taurethrim_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
 		ExtendedItems.TAURETHRIM_SHOVEL = regItem("taurethrim_shovel",() -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));
 		ExtendedItems.TAURETHRIM_PICKAXE = regItem("taurethrim_pickaxe",() -> new LOTRPickaxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
+		ExtendedItems.TAURETHRIM_SWORD = regItem("taurethrim_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("TAURETHRIM")));
 	}
 }

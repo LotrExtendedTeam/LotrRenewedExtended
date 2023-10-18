@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:amber",
+  "ingredients": [
+    {
+      "item": "lotr:amber_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:amber",
+    "count": 9
+  }
+}
