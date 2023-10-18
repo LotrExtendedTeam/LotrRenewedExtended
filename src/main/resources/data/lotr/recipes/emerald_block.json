@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:emerald"
+    }
+  },
+  "result": {
+    "item": "lotr:emerald_block"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:emerald",
+  "ingredients": [
+    {
+      "item": "lotr:emerald_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:emerald",
+    "count": 9
+  }
+}
