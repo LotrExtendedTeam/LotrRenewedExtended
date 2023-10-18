@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotroExtended.mixins.common.init;
+package com.github.maximuslotro.lotroExtended.mixins.client.render.entity.model.armor;
 
 import lotr.client.render.entity.model.armor.LOTRModelMorgulHelmet;
 import lotr.client.render.entity.model.armor.*;

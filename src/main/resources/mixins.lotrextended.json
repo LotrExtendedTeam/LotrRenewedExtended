@@ -10,7 +10,6 @@
 		"common.data.MixinLOTRLevelData",
 		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRBlocks",
-		"common.init.MixinLOTRArmorModels",
 		"common.init.MixinLOTRCommands",
 		"common.init.MixinLOTRItems",
 		"common.init.MixinLOTRMaterial",
@@ -21,7 +20,8 @@
 	],
 	
 	"client": [
-		"client.gui.MixinMiddleEarthMasterMenuScreen"
+		"client.gui.MixinMiddleEarthMasterMenuScreen",
+		"client.render.entity.model.armor.MixinLOTRArmorModels"
 	],
 	"injectors": {
 		"defaultRequire": 1
