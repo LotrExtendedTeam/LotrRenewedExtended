@@ -64,7 +64,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> OPAL;
 	public static RegistryObject<Item> EMERALD;
 
-	
+	public static RegistryObject<Item> TAURETHRIM_CHIEFTAN_HELMET;
 	public static RegistryObject<Item> TAURETHRIM_HELMET;
 	public static RegistryObject<Item> TAURETHRIM_CHESTPLATE;
 	public static RegistryObject<Item> TAURETHRIM_LEGGINGS;
@@ -74,5 +74,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_CHESTPLATE;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_LEGGINGS;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_BOOTS;
+
 
 }
