@@ -2,16 +2,17 @@ package lotr.client.render.entity.model.armor;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.LivingEntity;
 
-public class LOTRModelMorgulHelmet extends SpecialArmorModel {
+public class LOTRModelMorgulHelmet extends SpecialArmorModel<LivingEntity> {
     private ModelRenderer[] spikes = new ModelRenderer[8];
     private ModelRenderer crest;
 
-    public LOTRModelMorgulHelmet(BipedModel referenceBipedModel) {
+    public LOTRModelMorgulHelmet(BipedModel<LivingEntity> referenceBipedModel) {
         this(referenceBipedModel, 1.0F);
     }
 
-    public LOTRModelMorgulHelmet(BipedModel referenceBipedModel, float f) {
+    public LOTRModelMorgulHelmet(BipedModel<LivingEntity> referenceBipedModel, float f) {
         super(referenceBipedModel, f);
         clearNonHelmetParts();
         head = new ModelRenderer(this, 0, 0);

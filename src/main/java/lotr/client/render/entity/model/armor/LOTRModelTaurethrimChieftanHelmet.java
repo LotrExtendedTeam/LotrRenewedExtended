@@ -2,15 +2,16 @@ package lotr.client.render.entity.model.armor;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.LivingEntity;
 
-public class LOTRModelTaurethrimChieftanHelmet extends SpecialArmorModel {
+public class LOTRModelTaurethrimChieftanHelmet extends SpecialArmorModel<LivingEntity> {
     private ModelRenderer crest;
 
-    public LOTRModelTaurethrimChieftanHelmet(BipedModel referenceBipedModel) {
+    public LOTRModelTaurethrimChieftanHelmet(BipedModel<LivingEntity> referenceBipedModel) {
         this(referenceBipedModel, 1.0F);
     }
 
-    public LOTRModelTaurethrimChieftanHelmet(BipedModel referenceBipedModel, float f) {
+    public LOTRModelTaurethrimChieftanHelmet(BipedModel<LivingEntity> referenceBipedModel, float f) {
         super(referenceBipedModel, f);
         clearNonHelmetParts();
         head = new ModelRenderer(this, 0, 0);
