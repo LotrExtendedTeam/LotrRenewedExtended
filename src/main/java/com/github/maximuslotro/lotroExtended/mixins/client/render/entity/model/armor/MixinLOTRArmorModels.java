@@ -23,7 +23,7 @@ public class MixinLOTRArmorModels {
     @Inject(method = "setup()V", at = @At("RETURN"), remap = false)
     private static void setup(CallbackInfo ci) {
         addSpecialArmorModel(ExtendedItems.MORGUL_HELMET, LOTRModelMorgulHelmet::new);
-        addSpecialArmorModel(ExtendedItems.TAURETHRIM_CHIEFTAN_HELMET, LOTRModelTaurethrimChieftanHelmet::new);
+        addSpecialArmorModel(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET, LOTRModelTaurethrimChieftanHelmet::new);
         addSpecialArmorModel(ExtendedItems.GOLDEN_TAURETHRIM_HELMET, LOTRModelGoldenTaurethrimHelmet::new);
     }
 }
