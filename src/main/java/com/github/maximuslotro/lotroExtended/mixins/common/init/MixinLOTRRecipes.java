@@ -23,5 +23,6 @@ public class MixinLOTRRecipes {
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		ExtendedRecipes.TAURETHRIM_CRAFTING = registerFaction("taurethrim", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE);
+		ExtendedRecipes.DOL_GULDUR_CRAFTING = registerFaction("dol_guldur", ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE);
 	}
 }

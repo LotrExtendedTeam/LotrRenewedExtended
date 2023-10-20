@@ -60,6 +60,8 @@ public class MixinLOTRItems {
 		ExtendedItems.DIAMOND = regMaterialItem("diamond");
 		ExtendedItems.OPAL = regMaterialItem("opal");
 		ExtendedItems.EMERALD = regMaterialItem("emerald");
+		ExtendedItems.PEARL = regMaterialItem("pearl");
+		ExtendedItems.CORAL = regMaterialItem("coral");
 
 		ExtendedItems.TOPAZ_ORE = regBlockItem(ExtendedBlocks.TOPAZ_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.AMETHYST_ORE = regBlockItem(ExtendedBlocks.AMETHYST_ORE, LOTRItemGroups.BLOCKS);
@@ -78,6 +80,8 @@ public class MixinLOTRItems {
 		ExtendedItems.DIAMOND_BLOCK = regBlockItem(ExtendedBlocks.DIAMOND_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.OPAL_BLOCK = regBlockItem(ExtendedBlocks.OPAL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EMERALD_BLOCK = regBlockItem(ExtendedBlocks.EMERALD_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PEARL_BLOCK = regBlockItem(ExtendedBlocks.PEARL_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CORAL_BLOCK = regBlockItem(ExtendedBlocks.CORAL_BLOCK, LOTRItemGroups.BLOCKS);
 		
 		ExtendedItems.MORGUL_HELMET = regItem("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
 		ExtendedItems.MORGUL_CHESTPLATE = regItem("morgul_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.CHEST));
@@ -104,5 +108,27 @@ public class MixinLOTRItems {
 		ExtendedItems.TAURETHRIM_SWORD = regItem("taurethrim_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("TAURETHRIM")));
 		
 		ExtendedItems.TAURETHRIM_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+
+
+		ExtendedItems.ANGMAR_AXE = regItem("angmar_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_SHOVEL = regItem("angmar_shovel",() -> new LOTRShovelItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_PICKAXE = regItem("angmar_pickaxe",() -> new LOTRPickaxeItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_SWORD = regItem("angmar_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_HELMET = regItem("angmar_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.HEAD));
+		ExtendedItems.ANGMAR_CHESTPLATE = regItem("angmar_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.CHEST));
+		ExtendedItems.ANGMAR_LEGGINGS = regItem("angmar_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.LEGS));
+		ExtendedItems.ANGMAR_BOOTS = regItem("angmar_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.FEET));
+
+		ExtendedItems.DOL_GULDUR_AXE = regItem("dol_guldur_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_SHOVEL = regItem("dol_guldur_shovel",() -> new LOTRShovelItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_PICKAXE = regItem("dol_guldur_pickaxe",() -> new LOTRPickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_SWORD = regItem("dol_guldur_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_HELMET = regItem("dol_guldur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.HEAD));
+		ExtendedItems.DOL_GULDUR_CHESTPLATE = regItem("dol_guldur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.CHEST));
+		ExtendedItems.DOL_GULDUR_LEGGINGS = regItem("dol_guldur_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.LEGS));
+		ExtendedItems.DOL_GULDUR_BOOTS = regItem("dol_guldur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.FEET));
+
+		ExtendedItems.DOL_GULDUR_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+
 	}
 }

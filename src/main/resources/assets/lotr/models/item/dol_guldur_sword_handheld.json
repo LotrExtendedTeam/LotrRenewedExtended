@@ -1,0 +1,6 @@
+{
+	"parent": "lotr:item/handheld_large",
+	"textures": {
+        "layer0": "lotr:item/dol_guldur_sword_large"
+    }
+}

@@ -76,4 +76,40 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_BOOTS;
 
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
+
+	public static RegistryObject<Item> PEARL;
+	public static RegistryObject<Item> CORAL;
+
+	public static RegistryObject<Item> PEARL_BLOCK;
+	public static RegistryObject<Item> CORAL_BLOCK;
+	public static RegistryObject<Item> DOL_GULDUR_AXE;
+	public static RegistryObject<Item> DOL_GULDUR_SHOVEL;
+	public static RegistryObject<Item> DOL_GULDUR_PICKAXE;
+
+	public static RegistryObject<Item> DOL_GULDUR_SWORD;
+
+	public static RegistryObject<Item> DOL_GULDUR_HELMET;
+	public static RegistryObject<Item> DOL_GULDUR_CHESTPLATE;
+	public static RegistryObject<Item> DOL_GULDUR_LEGGINGS;
+	public static RegistryObject<Item> DOL_GULDUR_BOOTS;
+
+	public static RegistryObject<Item> DOL_GULDUR_CRAFTING_TABLE;
+
+	public static RegistryObject<Item> ANGMAR_AXE;
+	public static RegistryObject<Item> ANGMAR_SHOVEL;
+	public static RegistryObject<Item> ANGMAR_PICKAXE;
+
+	public static RegistryObject<Item> ANGMAR_SWORD;
+
+	public static RegistryObject<Item> ANGMAR_HELMET;
+	public static RegistryObject<Item> ANGMAR_CHESTPLATE;
+	public static RegistryObject<Item> ANGMAR_LEGGINGS;
+	public static RegistryObject<Item> ANGMAR_BOOTS;
+
+
+
+
+
+
 }
+

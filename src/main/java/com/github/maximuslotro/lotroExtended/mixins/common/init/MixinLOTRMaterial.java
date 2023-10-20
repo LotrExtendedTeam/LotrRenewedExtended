@@ -41,6 +41,14 @@ public class MixinLOTRMaterial {
 
 	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, () -> {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) Items.INGOTS_GOLD});}, new LOTRMaterial.Specials[0]);
+
+
+	private static final LOTRMaterial ANGMAR = lotrmaterialExpansion$addVariant("ANGMAR", "angmar", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
+		return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.ORC_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
+
+	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
+		return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.ORC_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
+
 	
 	@Invoker("<init>")
 	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,

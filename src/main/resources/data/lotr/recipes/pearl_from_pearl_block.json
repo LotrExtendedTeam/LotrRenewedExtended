@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:pearl",
+  "ingredients": [
+    {
+      "item": "lotr:pearl_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:pearl",
+    "count": 9
+  }
+}

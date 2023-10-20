@@ -47,6 +47,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DIAMOND_BLOCK = BLOCKS.register("diamond_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.OPAL_BLOCK = BLOCKS.register("opal_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.EMERALD_BLOCK = BLOCKS.register("emerald_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
+		ExtendedBlocks.CORAL_BLOCK = BLOCKS.register("coral_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
+		ExtendedBlocks.PEARL_BLOCK = BLOCKS.register("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
 
 		ExtendedBlocks.AMBER_ORE = BLOCKS.register("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
@@ -58,7 +60,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.OPAL_ORE = BLOCKS.register("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		ExtendedBlocks.EMERALD_ORE = BLOCKS.register("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		
-		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.AMBER_ORE));
+		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.AMBER_BLOCK));
+		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.AMBER_BLOCK));
+
+
 
 	}
 }
