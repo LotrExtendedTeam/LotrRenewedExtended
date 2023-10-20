@@ -26,4 +26,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DIAMOND_BLOCK;
 	public static RegistryObject<Block> OPAL_BLOCK;
 	public static RegistryObject<Block> EMERALD_BLOCK;
+	
+	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 }

@@ -75,5 +75,5 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_LEGGINGS;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_BOOTS;
 
-
+	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
 }
