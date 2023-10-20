@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bronze_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:taurethrim_boots"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "#Z#",
+    "#Z#",
+    " Y "
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:obsidian_shard"
+    },
+    "Y": {
+      "tag": "forge:rods/wooden"
+    },
+    "Z": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:taurethrim_sword"
+  }
+}
