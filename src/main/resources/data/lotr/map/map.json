@@ -1,0 +1,10 @@
+{
+  "image": "lotr:map/middle_earth.png",
+  "origin_x": 810,
+  "origin_z": 730,
+  "scale_power": 7,
+  "title": "gui.lotr.map.title.middle_earth",
+  "translate_title": true,
+  "lock_sides": [],
+  "procedural_rivers": true
+}
