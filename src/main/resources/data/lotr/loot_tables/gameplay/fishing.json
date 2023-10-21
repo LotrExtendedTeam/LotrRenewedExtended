@@ -5,7 +5,7 @@
       "entries": [
         {
           "type": "item",
-          "name": "minecraft:fish",
+          "name": "minecraft:cod",
           "functions": [
             {
               "function": "set_count",
