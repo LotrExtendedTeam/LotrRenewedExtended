@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "age=0,full=false": { "model": "lotr:block/cranberry_bush_empty" },
+    "age=1,full=false": { "model": "lotr:block/cranberry_bush_empty" },
+    "age=2,full=false": { "model": "lotr:block/cranberry_bush_empty" },
+    "age=3,full=false": { "model": "lotr:block/cranberry_bush_empty" },
+    "age=0,full=true": { "model": "lotr:block/cranberry_bush" },
+    "age=1,full=true": { "model": "lotr:block/cranberry_bush" },
+    "age=2,full=true": { "model": "lotr:block/cranberry_bush" },
+    "age=3,full=true": { "model": "lotr:block/cranberry_bush" }
+  }
+}

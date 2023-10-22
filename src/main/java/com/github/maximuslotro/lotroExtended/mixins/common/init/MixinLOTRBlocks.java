@@ -1,9 +1,8 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
-import lotr.common.block.ExtendedFactionCraftingTableBlock;
-import lotr.common.block.LOTROreBlock;
-import lotr.common.block.LOTRStoneBlock;
+import lotr.common.block.*;
 
+import lotr.common.init.ExtendedItems;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -11,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.AbstractBlock.Properties;
@@ -66,5 +64,12 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.AMBER_BLOCK));
 		
 		ExtendedBlocks.TAURETHRIM_BRICK = BLOCKS.register("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
+
+		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
+		ExtendedBlocks.BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
+		ExtendedBlocks.BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH));
+		ExtendedBlocks.CRANBERRY_BUSH = BLOCKS.register("cranberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_BUSH));
+		ExtendedBlocks.ELDERBERRY_BUSH = BLOCKS.register("elderberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_BUSH));
+		ExtendedBlocks.WILDBERRY_BUSH = BLOCKS.register("wildberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_BUSH));
 	}
 }

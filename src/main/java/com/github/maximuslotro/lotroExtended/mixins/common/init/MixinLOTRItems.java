@@ -79,6 +79,13 @@ public class MixinLOTRItems {
 		ExtendedItems.EMERALD_BLOCK = regBlockItem(ExtendedBlocks.EMERALD_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PEARL_BLOCK = regBlockItem(ExtendedBlocks.PEARL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CORAL_BLOCK = regBlockItem(ExtendedBlocks.CORAL_BLOCK, LOTRItemGroups.BLOCKS);
+
+		ExtendedItems.RASPBERRY_BUSH = regBlockItem(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLUEBERRY_BUSH = regBlockItem(ExtendedBlocks.BLUEBERRY_BUSH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACKBERRY_BUSH = regBlockItem(ExtendedBlocks.BLACKBERRY_BUSH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRANBERRY_BUSH = regBlockItem(ExtendedBlocks.CRANBERRY_BUSH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.ELDERBERRY_BUSH = regBlockItem(ExtendedBlocks.ELDERBERRY_BUSH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILDBERRY_BUSH = regBlockItem(ExtendedBlocks.WILDBERRY_BUSH, LOTRItemGroups.BLOCKS);
 		
 		ExtendedItems.MORGUL_HELMET = regItem("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
 		ExtendedItems.MORGUL_CHESTPLATE = regItem("morgul_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.CHEST));

@@ -1,5 +1,6 @@
 package lotr.common.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -108,6 +109,13 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> ANGMAR_HOE;
 	public static RegistryObject<Item> DOL_GULDUR_HOE;
+
+	public static RegistryObject<Item> RASPBERRY_BUSH;
+	public static RegistryObject<Item> BLUEBERRY_BUSH;
+	public static RegistryObject<Item> BLACKBERRY_BUSH;
+	public static RegistryObject<Item> CRANBERRY_BUSH;
+	public static RegistryObject<Item> ELDERBERRY_BUSH;
+	public static RegistryObject<Item> WILDBERRY_BUSH;
 
 	public static RegistryObject<Item> RASPBERRY;
 	public static RegistryObject<Item> BLUEBERRY;
