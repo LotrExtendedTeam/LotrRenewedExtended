@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
 import lotr.common.block.LOTROreBlock;
+import lotr.common.block.LOTRStoneBlock;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -62,6 +64,8 @@ public class MixinLOTRBlocks {
 		
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.AMBER_BLOCK));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.AMBER_BLOCK));
+		
+		ExtendedBlocks.TAURETHRIM_BRICK = BLOCKS.register("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
 
 
 
