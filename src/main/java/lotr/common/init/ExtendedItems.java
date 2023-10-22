@@ -106,6 +106,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_LEGGINGS;
 	public static RegistryObject<Item> ANGMAR_BOOTS;
 
+	public static RegistryObject<Item> ANGMAR_HOE;
+	public static RegistryObject<Item> DOL_GULDUR_HOE;
+
 	public static RegistryObject<Item> RASPBERRY;
 	public static RegistryObject<Item> BLUEBERRY;
 	public static RegistryObject<Item> BLACKBERRY;
