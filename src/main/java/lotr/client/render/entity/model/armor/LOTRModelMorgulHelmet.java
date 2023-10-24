@@ -17,7 +17,7 @@ public class LOTRModelMorgulHelmet extends SpecialArmorModel<LivingEntity> {
         clearNonHelmetParts();
         head = new ModelRenderer(this, 0, 0);
         head.setPos(0.0F, 0.0F, 0.0F);
-        head.addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, f);
+        head.addBox(-4.0F, -8.0F, -4.0F, 8.0F, 12.0F, 8.0F, f);
         head.texOffs(0,20).addBox(-3.5f, -18.0f, -3.5f, 7, 10, 1, f);
 
         for (int i = 0; i < spikes.length; ++i) {
