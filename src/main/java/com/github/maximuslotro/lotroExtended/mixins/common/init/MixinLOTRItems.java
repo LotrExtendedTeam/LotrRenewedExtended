@@ -144,5 +144,7 @@ public class MixinLOTRItems {
 		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 		
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
+
+		ExtendedItems.DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.GOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
 	}
 }

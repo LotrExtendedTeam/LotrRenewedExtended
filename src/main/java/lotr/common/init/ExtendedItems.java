@@ -125,5 +125,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WILDBERRY;
 
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
+
+	public static RegistryObject<Item> DOL_GULDUR_BRICK;
 }
 
