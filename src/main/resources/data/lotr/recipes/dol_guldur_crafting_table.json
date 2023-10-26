@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_guldur",
+  "pattern": [
+    "##",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "lotr:dol_guldur_brick"
+    },
+    "#": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:dol_guldur_crafting_table"
+  }
+}
