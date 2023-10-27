@@ -30,6 +30,7 @@ public class MixinLOTRBlocks {
 	
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
+		//ORE STORAGE
 		ExtendedBlocks.GALVORN_BLOCK = BLOCKS.register("galvorn_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL), 2);});
 		ExtendedBlocks.BLACK_URUK_STEEL_BLOCK = BLOCKS.register("black_uruk_steel_block", () ->{
@@ -38,7 +39,8 @@ public class MixinLOTRBlocks {
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
 		ExtendedBlocks.MORGUL_STEEL_BLOCK = BLOCKS.register("morgul_steel_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
-		
+
+		//GEM STORAGE
 		ExtendedBlocks.TOPAZ_BLOCK = BLOCKS.register("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.AMETHYST_BLOCK = BLOCKS.register("amethyst_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.SAPPHIRE_BLOCK = BLOCKS.register("sapphire_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
@@ -50,7 +52,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CORAL_BLOCK = BLOCKS.register("coral_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 		ExtendedBlocks.PEARL_BLOCK = BLOCKS.register("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
-
+		//GEM ORES
 		ExtendedBlocks.AMBER_ORE = BLOCKS.register("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		ExtendedBlocks.TOPAZ_ORE = BLOCKS.register("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		ExtendedBlocks.AMETHYST_ORE = BLOCKS.register("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
@@ -59,23 +61,26 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DIAMOND_ORE = BLOCKS.register("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		ExtendedBlocks.OPAL_ORE = BLOCKS.register("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		ExtendedBlocks.EMERALD_ORE = BLOCKS.register("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		
-		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
-		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
-		
+
+		//BRICKS
 		ExtendedBlocks.TAURETHRIM_BRICK = BLOCKS.register("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
-		
+
 		ExtendedBlocks.DOL_GULDUR_BRICK = BLOCKS.register("dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_SLAB = BLOCKS.register("dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_WALL = BLOCKS.register("dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.CARVED_DOL_GULDUR_BRICK = BLOCKS.register("carved_dol_guldur_brick", () -> new LOTRStoneBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
-		
+
+		//BUSHES
 		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
 		ExtendedBlocks.BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
 		ExtendedBlocks.BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH));
 		ExtendedBlocks.CRANBERRY_BUSH = BLOCKS.register("cranberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_BUSH));
 		ExtendedBlocks.ELDERBERRY_BUSH = BLOCKS.register("elderberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_BUSH));
 		ExtendedBlocks.WILDBERRY_BUSH = BLOCKS.register("wildberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_BUSH));
+
+		//CRAFTING TABLES
+		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 	}
 }
