@@ -77,6 +77,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_BRICK_STAIRS = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DOL_GULDUR_BRICK_WALL = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
+
 		//###################################################################MATERIALS########################################################
 		//Misc
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
@@ -103,23 +104,22 @@ public class MixinLOTRItems {
 
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
-		ExtendedItems.TAURETHRIM_HOE = regItem("taurethrim_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("TAURETHRIM")));
-		ExtendedItems.TAURETHRIM_AXE = regItem("taurethrim_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
 		ExtendedItems.TAURETHRIM_SHOVEL = regItem("taurethrim_shovel",() -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));
 		ExtendedItems.TAURETHRIM_PICKAXE = regItem("taurethrim_pickaxe",() -> new LOTRPickaxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
+		ExtendedItems.TAURETHRIM_AXE = regItem("taurethrim_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
+		ExtendedItems.TAURETHRIM_HOE = regItem("taurethrim_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("TAURETHRIM"))); 
 		
 		//Angmar Tools
-		ExtendedItems.ANGMAR_AXE = regItem("angmar_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("ANGMAR")));
-		ExtendedItems.ANGMAR_HOE = regItem("angmar_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_SHOVEL = regItem("angmar_shovel",() -> new LOTRShovelItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_PICKAXE = regItem("angmar_pickaxe",() -> new LOTRPickaxeItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_AXE = regItem("angmar_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_HOE = regItem("angmar_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("ANGMAR")));
 
 		//Dol Guldur Tools
-		ExtendedItems.DOL_GULDUR_AXE = regItem("dol_guldur_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-		ExtendedItems.DOL_GULDUR_HOE = regItem("dol_guldur_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_SHOVEL = regItem("dol_guldur_shovel",() -> new LOTRShovelItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_PICKAXE = regItem("dol_guldur_pickaxe",() -> new LOTRPickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-
+		ExtendedItems.DOL_GULDUR_AXE = regItem("dol_guldur_axe",() -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_HOE = regItem("dol_guldur_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		//######################################################################FOOD########################################################
 		//Berries
 		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
