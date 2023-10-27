@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "lotr:block/mossy_dol_guldur_brick",
+        "top": "lotr:block/mossy_dol_guldur_brick",
+        "side": "lotr:block/mossy_dol_guldur_brick"
+    }
+}

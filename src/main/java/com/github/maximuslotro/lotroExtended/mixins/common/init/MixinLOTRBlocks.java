@@ -69,6 +69,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DOL_GULDUR_BRICK_SLAB = BLOCKS.register("dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_WALL = BLOCKS.register("dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
+		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK = BLOCKS.register("mossy_dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB = BLOCKS.register("mossy_dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
+		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("mossy_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
+		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL = BLOCKS.register("mossy_dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
+		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK = BLOCKS.register("cracked_dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB = BLOCKS.register("cracked_dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
+		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("cracked_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
+		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL = BLOCKS.register("cracked_dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
 		ExtendedBlocks.CARVED_DOL_GULDUR_BRICK = BLOCKS.register("carved_dol_guldur_brick", () -> new LOTRStoneBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 
 		//BUSHES

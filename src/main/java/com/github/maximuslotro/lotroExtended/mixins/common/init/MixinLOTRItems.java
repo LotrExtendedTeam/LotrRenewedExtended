@@ -77,7 +77,14 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_BRICK_STAIRS = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DOL_GULDUR_BRICK_WALL = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
-
+		ExtendedItems.CRACKED_DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_DOL_GULDUR_BRICK_SLAB = regBlockItem(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_DOL_GULDUR_BRICK_STAIRS = regBlockItem(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_DOL_GULDUR_BRICK_WALL = regBlockItem(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_DOL_GULDUR_BRICK_SLAB = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_DOL_GULDUR_BRICK_STAIRS = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_DOL_GULDUR_BRICK_WALL = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		//###################################################################MATERIALS########################################################
 		//Misc
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");

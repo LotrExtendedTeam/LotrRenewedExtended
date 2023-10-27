@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "lotr:dol_guldur_brick_wall"
+    "lotr:dol_guldur_brick_wall",
+    "lotr:cracked_dol_guldur_brick_wall",
+    "lotr:mossy_dol_guldur_brick_wall"
   ]
 }

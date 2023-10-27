@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "lotr:block/mossy_dol_guldur_brick"
+	}
+}
