@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedRecipes;
 import net.minecraft.block.Block;
-import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedFactionCraftingTableBlock {
 	public static class Taurethrim extends FactionCraftingTableBlock {
