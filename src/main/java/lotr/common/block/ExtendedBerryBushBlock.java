@@ -42,7 +42,8 @@ public class ExtendedBerryBushBlock extends BushBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(FULL, false));
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         super.randomTick(state, worldIn, pos, random);
         int age = state.getValue(AGE);
@@ -74,7 +75,7 @@ public class ExtendedBerryBushBlock extends BushBlock {
                 }
                 return ActionResultType.SUCCESS;
             }
-        } else if (state.getValue(AGE) == 3 && !player.getMainHandItem().equals(Items.BONE_MEAL)) {
+        } else if (state.getValue(AGE) == 3 && !player.getMainHandItem().getItem().equals(Items.BONE_MEAL)) {
             if (!world.isClientSide) {
                 world.setBlockAndUpdate(pos, state.setValue(AGE, 1).setValue(FULL, false));
                 spawnBerriesAsEntity(world, pos, new ItemStack(berryItem.get(), world.random.nextInt(5) + 1));

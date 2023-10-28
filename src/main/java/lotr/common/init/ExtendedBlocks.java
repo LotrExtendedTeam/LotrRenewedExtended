@@ -31,8 +31,27 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;
-	
+
 	public static RegistryObject<Block> TAURETHRIM_BRICK;
+	public static RegistryObject<Block> TAURETHRIM_BRICK_SLAB;
+	public static RegistryObject<Block> TAURETHRIM_BRICK_STAIRS;
+	public static RegistryObject<Block> TAURETHRIM_BRICK_WALL;
+	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK;
+	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_SLAB;
+	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_STAIRS;
+	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_WALL;
+	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK;
+	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_SLAB;
+	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_STAIRS;
+	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_WALL;
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK;
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_SLAB;
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_STAIRS;
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_WALL;
+	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK;
+	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_SLAB;
+	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_STAIRS;
+	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_WALL;
 
 	public static RegistryObject<Block> DOL_GULDUR_BRICK;
 	public static RegistryObject<Block> DOL_GULDUR_BRICK_SLAB;

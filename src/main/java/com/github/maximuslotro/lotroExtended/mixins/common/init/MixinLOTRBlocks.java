@@ -62,21 +62,49 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.OPAL_ORE = BLOCKS.register("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 		ExtendedBlocks.EMERALD_ORE = BLOCKS.register("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
 
-		//BRICKS
+		///////////////////////////////BRICKS
+		//Taurethrim
 		ExtendedBlocks.TAURETHRIM_BRICK = BLOCKS.register("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
+		ExtendedBlocks.TAURETHRIM_BRICK_SLAB = BLOCKS.register("taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.TAURETHRIM_BRICK_STAIRS = BLOCKS.register("taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.TAURETHRIM_BRICK_WALL = BLOCKS.register("taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.TAURETHRIM_BRICK));
+		
+		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK = BLOCKS.register("mossy_taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
+		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_SLAB = BLOCKS.register("mossy_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));
+		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_STAIRS = BLOCKS.register("mossy_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));
+		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_WALL = BLOCKS.register("mossy_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));
+		
+		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK = BLOCKS.register("cracked_taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
+		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_SLAB = BLOCKS.register("cracked_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK));
+		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_STAIRS = BLOCKS.register("cracked_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK));
+		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_WALL = BLOCKS.register("cracked_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK));
+		
+		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK = BLOCKS.register("golden_taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_YELLOW));
+		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_SLAB = BLOCKS.register("golden_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
+		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_STAIRS = BLOCKS.register("golden_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
+		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_WALL = BLOCKS.register("golden_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
+		
+		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK = BLOCKS.register("obsidian_taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_SLAB = BLOCKS.register("obsidian_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK));
+		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_STAIRS = BLOCKS.register("obsidian_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK));
+		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_WALL = BLOCKS.register("obsidian_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK));
 
+		//Dol Guldur
 		ExtendedBlocks.DOL_GULDUR_BRICK = BLOCKS.register("dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_SLAB = BLOCKS.register("dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_WALL = BLOCKS.register("dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
+		
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK = BLOCKS.register("mossy_dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB = BLOCKS.register("mossy_dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("mossy_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL = BLOCKS.register("mossy_dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
+		
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK = BLOCKS.register("cracked_dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB = BLOCKS.register("cracked_dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_STAIRS = BLOCKS.register("cracked_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL = BLOCKS.register("cracked_dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
+		
 		ExtendedBlocks.CARVED_DOL_GULDUR_BRICK = BLOCKS.register("carved_dol_guldur_brick", () -> new LOTRStoneBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 
 		//BUSHES
