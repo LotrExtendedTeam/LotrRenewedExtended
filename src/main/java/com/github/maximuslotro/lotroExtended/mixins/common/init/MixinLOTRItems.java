@@ -70,7 +70,26 @@ public class MixinLOTRItems {
 		//########### BLOCK TYPES ##################
 		//Taurethrim Bricks
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
-
+		ExtendedItems.TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOLDEN_TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOLDEN_TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOLDEN_TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOLDEN_TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		
 		//Dol Guldur Bricks
 		ExtendedItems.DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DOL_GULDUR_BRICK_SLAB = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
