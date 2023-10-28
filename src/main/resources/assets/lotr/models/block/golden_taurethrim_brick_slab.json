@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "lotr:block/golden_taurethrim_brick",
+        "top": "lotr:block/golden_taurethrim_brick",
+        "side": "lotr:block/golden_taurethrim_brick"
+    }
+}

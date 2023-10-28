@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/wall_inventory",
+    "textures": {
+        "wall": "lotr:block/obsidian_taurethrim_brick"
+    }
+}

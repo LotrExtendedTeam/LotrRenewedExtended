@@ -3,6 +3,11 @@
   "values": [
     "lotr:dol_guldur_brick_slab",
     "lotr:cracked_dol_guldur_brick_slab",
-    "lotr:mossy_dol_guldur_brick_slab"
+    "lotr:mossy_dol_guldur_brick_slab",
+    "lotr:taurethrim_brick_slab",
+    "lotr:cracked_taurethrim_brick_slab",
+    "lotr:mossy_taurethrim_brick_slab",
+    "lotr:golden_taurethrim_brick_slab",
+    "lotr:obsidian_taurethrim_brick_slab"
   ]
 }
