@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "#",
+    "Y"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:vine"
+    },
+    "Y": {
+      "item": "lotr:taurethrim_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_taurethrim_brick"
+  }
+}

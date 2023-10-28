@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:golden_taurethrim_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:golden_taurethrim_brick_wall"
+  }
+}
