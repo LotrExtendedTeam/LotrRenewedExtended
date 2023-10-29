@@ -109,9 +109,6 @@ public class MixinLOTRItems {
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
 		ExtendedItems.HITHLAIN = regMaterialItem("hithlain");
 		ExtendedItems.ITHILDIN = regMaterialItem("ithildin");
-		ExtendedItems.HOBBIT_MARRIAGE_RING = regMaterialItem("hobbit_marriage_ring");
-		ExtendedItems.DWARF_MARRIAGE_RING = regMaterialItem("dwarven_marriage_ring");
-		ExtendedItems.BOTTLE_OF_POISON = regMaterialItem("bottle_of_poison");
 
 		//Ingots
 		ExtendedItems.GALVORN_INGOT = regMaterialItem("galvorn_ingot");
@@ -199,5 +196,11 @@ public class MixinLOTRItems {
 		//Crafting Tables
 		ExtendedItems.DOL_GULDUR_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+
+		//########################################################################MISC##########################################################
+
+		ExtendedItems.HOBBIT_MARRIAGE_RING =  regItem("hobbit_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
+		ExtendedItems.DWARF_MARRIAGE_RING =  regItem("dwarven_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
+		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
 	}
 }
