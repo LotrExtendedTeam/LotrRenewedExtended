@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_guldur",
+  "pattern": [
+    "#",
+    "Y"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:vine"
+    },
+    "Y": {
+      "item": "lotr:dol_guldur_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_dol_guldur_brick"
+  }
+}
