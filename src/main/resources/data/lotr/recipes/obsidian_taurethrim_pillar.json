@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:obsidian_shard"
+    }
+  },
+  "result": {
+    "item": "lotr:obsidian_taurethrim_pillar",
+    "count" : 3
+  }
+}
