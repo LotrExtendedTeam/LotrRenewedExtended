@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "axis=y,type=bottom": { "model": "lotr:block/dol_guldur_pillar_slab" },
+        "axis=y,type=top": { "model": "lotr:block/dol_guldur_pillar_slab_top" },
+        "axis=y,type=double": { "model": "lotr:block/dol_guldur_pillar" },
+        "axis=z,type=bottom": { "model": "lotr:block/dol_guldur_pillar_slab", "x": 270 },
+        "axis=z,type=top": { "model": "lotr:block/dol_guldur_pillar_slab_top", "x": 270 },
+        "axis=z,type=double": { "model": "lotr:block/dol_guldur_pillar", "x": 270 },
+        "axis=x,type=bottom": { "model": "lotr:block/dol_guldur_pillar_slab", "x": 90, "y": 90 },
+        "axis=x,type=top": { "model": "lotr:block/dol_guldur_pillar_slab_top", "x": 90, "y": 90 },
+        "axis=x,type=double": { "model": "lotr:block/dol_guldur_pillar", "x": 90, "y": 90 }
+    }
+}

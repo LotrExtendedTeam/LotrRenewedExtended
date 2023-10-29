@@ -101,6 +101,8 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_BRICK_SLAB = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DOL_GULDUR_BRICK_STAIRS = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DOL_GULDUR_BRICK_WALL = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DOL_GULDUR_PILLAR = regBlockItem(ExtendedBlocks.DOL_GULDUR_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DOL_GULDUR_PILLAR_SLAB = regBlockItem(ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CRACKED_DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CRACKED_DOL_GULDUR_BRICK_SLAB = regBlockItem(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
