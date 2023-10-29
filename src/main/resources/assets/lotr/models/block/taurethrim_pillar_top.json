@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "lotr:block/taurethrim_pillar_face",
+        "side": "lotr:block/taurethrim_pillar_top"
+    }
+}

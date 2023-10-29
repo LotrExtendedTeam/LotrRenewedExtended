@@ -68,6 +68,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.TAURETHRIM_BRICK_SLAB = BLOCKS.register("taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.TAURETHRIM_BRICK_STAIRS = BLOCKS.register("taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.TAURETHRIM_BRICK_WALL = BLOCKS.register("taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.TAURETHRIM_PILLAR = BLOCKS.register("taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GREEN));
+		ExtendedBlocks.TAURETHRIM_PILLAR_SLAB = BLOCKS.register("taurethrim_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.TAURETHRIM_PILLAR));
 		
 		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK = BLOCKS.register("mossy_taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
 		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_SLAB = BLOCKS.register("mossy_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));

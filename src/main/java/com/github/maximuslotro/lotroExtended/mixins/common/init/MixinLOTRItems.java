@@ -73,6 +73,8 @@ public class MixinLOTRItems {
 		ExtendedItems.TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.TAURETHRIM_PILLAR = regBlockItem(ExtendedBlocks.TAURETHRIM_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.TAURETHRIM_PILLAR_SLAB = regBlockItem(ExtendedBlocks.TAURETHRIM_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CRACKED_TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CRACKED_TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CRACKED_TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
