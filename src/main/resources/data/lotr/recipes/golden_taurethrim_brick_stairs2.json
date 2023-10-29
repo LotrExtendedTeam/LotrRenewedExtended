@@ -12,6 +12,7 @@
     }
   },
   "result": {
-    "item": "lotr:golden_taurethrim_brick_stairs"
+    "item": "lotr:golden_taurethrim_brick_stairs",
+    "count": 4
   }
 }

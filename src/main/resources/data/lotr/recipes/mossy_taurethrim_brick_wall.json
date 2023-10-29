@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "lotr:mossy_taurethrim_brick_wall"
+    "item": "lotr:mossy_taurethrim_brick_wall",
+    "count": 6
   }
 }

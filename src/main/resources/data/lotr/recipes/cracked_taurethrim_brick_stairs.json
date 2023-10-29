@@ -12,6 +12,7 @@
     }
   },
   "result": {
-    "item": "lotr:cracked_taurethrim_brick_stairs"
+    "item": "lotr:cracked_taurethrim_brick_stairs",
+    "count": 4
   }
 }

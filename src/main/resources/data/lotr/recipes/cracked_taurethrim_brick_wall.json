@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "lotr:cracked_taurethrim_brick_wall"
+    "item": "lotr:cracked_taurethrim_brick_wall",
+    "count": 6
   }
 }
