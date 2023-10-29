@@ -93,6 +93,8 @@ public class MixinLOTRItems {
 		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK_STAIRS = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.OBSIDIAN_TAURETHRIM_BRICK_WALL = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_TAURETHRIM_PILLAR = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_TAURETHRIM_PILLAR_SLAB = regBlockItem(ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		
 		//Dol Guldur Bricks
 		ExtendedItems.DOL_GULDUR_BRICK = regBlockItem(ExtendedBlocks.DOL_GULDUR_BRICK, LOTRItemGroups.BLOCKS);
