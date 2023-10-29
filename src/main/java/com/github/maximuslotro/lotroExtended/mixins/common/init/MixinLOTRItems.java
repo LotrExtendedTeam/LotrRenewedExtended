@@ -109,6 +109,9 @@ public class MixinLOTRItems {
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
 		ExtendedItems.HITHLAIN = regMaterialItem("hithlain");
 		ExtendedItems.ITHILDIN = regMaterialItem("ithildin");
+		ExtendedItems.HOBBIT_MARRIAGE_RING = regMaterialItem("hobbit_marriage_ring");
+		ExtendedItems.DWARF_MARRIAGE_RING = regMaterialItem("dwarven_marriage_ring");
+		ExtendedItems.BOTTLE_OF_POISON = regMaterialItem("bottle_of_poison");
 
 		//Ingots
 		ExtendedItems.GALVORN_INGOT = regMaterialItem("galvorn_ingot");
