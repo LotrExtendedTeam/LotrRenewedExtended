@@ -50,6 +50,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_STAIRS;
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_WALL;
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_PILLAR;
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_PILLAR_SLAB;
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK;
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_STAIRS;

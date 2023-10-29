@@ -85,7 +85,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_SLAB = BLOCKS.register("golden_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
 		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_STAIRS = BLOCKS.register("golden_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
 		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_WALL = BLOCKS.register("golden_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
-		
+		ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR = BLOCKS.register("golden_taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.GOLD));
+		ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR_SLAB = BLOCKS.register("golden_taurethrim_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR));
+
 		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK = BLOCKS.register("obsidian_taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_SLAB = BLOCKS.register("obsidian_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK));
 		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_STAIRS = BLOCKS.register("obsidian_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK));
