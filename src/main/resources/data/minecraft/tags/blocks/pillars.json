@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:taurethrim_pillar",
+    "lotr:golden_taurethrim_pillar",
+    "lotr:obsidian_taurethrim_pillar"
+  ]
+}

@@ -8,6 +8,9 @@
     "lotr:cracked_taurethrim_brick_slab",
     "lotr:mossy_taurethrim_brick_slab",
     "lotr:golden_taurethrim_brick_slab",
-    "lotr:obsidian_taurethrim_brick_slab"
+    "lotr:obsidian_taurethrim_brick_slab",
+    "lotr:taurethrim_pillar_slab",
+    "lotr:golden_taurethrim_pillar_slab",
+    "lotr:obsidian_taurethrim_pillar_slab"
   ]
 }
