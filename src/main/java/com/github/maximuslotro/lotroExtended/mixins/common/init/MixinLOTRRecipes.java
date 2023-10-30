@@ -24,5 +24,6 @@ public class MixinLOTRRecipes {
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		ExtendedRecipes.TAURETHRIM_CRAFTING = registerFaction("taurethrim", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE);
 		ExtendedRecipes.DOL_GULDUR_CRAFTING = registerFaction("dol_guldur", ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE);
+		ExtendedRecipes.RHUNIC_CRAFTING = registerFaction("rhunic", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
 	}
 }

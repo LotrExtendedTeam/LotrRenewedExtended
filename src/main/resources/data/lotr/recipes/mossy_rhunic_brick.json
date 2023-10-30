@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "#",
+    "Y"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:vine"
+    },
+    "Y": {
+      "item": "lotr:rhunic_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_rhunic_brick"
+  }
+}

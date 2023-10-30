@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "##",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "lotr:rhunic_brick"
+    },
+    "#": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:rhunic_crafting_table"
+  }
+}

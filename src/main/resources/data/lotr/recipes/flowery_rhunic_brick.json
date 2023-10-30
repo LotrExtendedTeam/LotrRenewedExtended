@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "Y#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:orange_chrysanthemum"
+    },
+    "Y": {
+      "item": "lotr:rhunic_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_rhunic_brick"
+  }
+}

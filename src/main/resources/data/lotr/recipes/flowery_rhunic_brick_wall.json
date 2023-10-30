@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:flowery_rhunic_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:flowery_rhunic_brick_wall",
+    "count": 6
+  }
+}

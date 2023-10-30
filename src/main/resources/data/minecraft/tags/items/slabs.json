@@ -12,6 +12,10 @@
     "lotr:taurethrim_pillar_slab",
     "lotr:golden_taurethrim_pillar_slab",
     "lotr:obsidian_taurethrim_pillar_slab",
-    "lotr:dol_guldur_pillar_slab"
+    "lotr:dol_guldur_pillar_slab",
+    "lotr:rhunic_brick_slab",
+    "lotr:cracked_rhunic_brick_slab",
+    "lotr:mossy_rhunic_brick_slab",
+    "lotr:rhunic_pillar_slab"
   ]
 }
