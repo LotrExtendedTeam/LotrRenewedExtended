@@ -112,6 +112,29 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSSY_DOL_GULDUR_BRICK_SLAB = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_DOL_GULDUR_BRICK_STAIRS = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_DOL_GULDUR_BRICK_WALL = regBlockItem(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+
+		//Rhunic Bricks
+		ExtendedItems.RHUNIC_BRICK = regBlockItem(ExtendedBlocks.RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RHUNIC_BRICK_SLAB = regBlockItem(ExtendedBlocks.RHUNIC_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RHUNIC_PILLAR = regBlockItem(ExtendedBlocks.RHUNIC_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RHUNIC_PILLAR_SLAB = regBlockItem(ExtendedBlocks.RHUNIC_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.CARVED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOLD_TRIMMED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.CRACKED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RHUNIC_BRICK_SLAB = regBlockItem(ExtendedBlocks.CRACKED_RHUNIC_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.CRACKED_RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.CRACKED_RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.MOSSY_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RHUNIC_BRICK_SLAB = regBlockItem(ExtendedBlocks.MOSSY_RHUNIC_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.MOSSY_RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.MOSSY_RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FLOWERY_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FLOWERY_RHUNIC_BRICK_SLAB = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FLOWERY_RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FLOWERY_RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
+
 		//###################################################################MATERIALS########################################################
 		//Misc
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
@@ -204,6 +227,7 @@ public class MixinLOTRItems {
 		//Crafting Tables
 		ExtendedItems.DOL_GULDUR_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.RHUNIC_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 
 		//########################################################################MISC##########################################################
 

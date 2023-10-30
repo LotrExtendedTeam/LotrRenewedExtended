@@ -18,5 +18,9 @@ public class ExtendedFactionCraftingTableBlock {
 		}
 
 	}
-
+	public static class Rhunic extends FactionCraftingTableBlock {
+		public Rhunic(Supplier<? extends Block> block) {
+			super(block, FactionPointers.RHUDEL, ExtendedRecipes.RHUNIC_CRAFTING, "rhunic_crafting");
+		}
+	}
 }

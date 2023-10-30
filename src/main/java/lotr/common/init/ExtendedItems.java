@@ -152,5 +152,27 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MOSSY_DOL_GULDUR_BRICK_SLAB;
 	public static RegistryObject<Item> MOSSY_DOL_GULDUR_BRICK_STAIRS;
 	public static RegistryObject<Item> MOSSY_DOL_GULDUR_BRICK_WALL;
+
+	public static RegistryObject<Item> RHUNIC_CRAFTING_TABLE;
+	public static RegistryObject<Item> RHUNIC_BRICK;
+	public static RegistryObject<Item> RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Item> RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Item> RHUNIC_BRICK_WALL;
+	public static RegistryObject<Item> RHUNIC_PILLAR;
+	public static RegistryObject<Item> RHUNIC_PILLAR_SLAB;
+	public static RegistryObject<Item> CARVED_RHUNIC_BRICK;
+	public static RegistryObject<Item> GOLD_TRIMMED_RHUNIC_BRICK;
+	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK;
+	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK_WALL;
+	public static RegistryObject<Item> MOSSY_RHUNIC_BRICK;
+	public static RegistryObject<Item> MOSSY_RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Item> MOSSY_RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Item> MOSSY_RHUNIC_BRICK_WALL;
+	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK;
+	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_WALL;
 }
 

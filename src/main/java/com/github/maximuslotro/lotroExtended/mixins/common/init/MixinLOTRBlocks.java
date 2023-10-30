@@ -115,6 +115,31 @@ public class MixinLOTRBlocks {
 		
 		ExtendedBlocks.CARVED_DOL_GULDUR_BRICK = BLOCKS.register("carved_dol_guldur_brick", () -> new LOTRStoneBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 
+		//Rhunic
+		ExtendedBlocks.RHUNIC_BRICK = BLOCKS.register("rhunic_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_YELLOW));
+		ExtendedBlocks.RHUNIC_BRICK_SLAB = BLOCKS.register("rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.RHUNIC_BRICK));
+		ExtendedBlocks.RHUNIC_BRICK_STAIRS = BLOCKS.register("rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.RHUNIC_BRICK));
+		ExtendedBlocks.RHUNIC_BRICK_WALL = BLOCKS.register("rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.RHUNIC_BRICK));
+		ExtendedBlocks.RHUNIC_PILLAR = BLOCKS.register("rhunic_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_YELLOW));
+		ExtendedBlocks.RHUNIC_PILLAR_SLAB = BLOCKS.register("rhunic_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.RHUNIC_PILLAR));
+		ExtendedBlocks.CARVED_RHUNIC_BRICK = BLOCKS.register("carved_rhunic_brick", () -> new LOTRStoneBlock(ExtendedBlocks.RHUNIC_BRICK));
+		ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK = BLOCKS.register("gold_trimmed_rhunic_brick", () -> new LOTRStoneBlock(ExtendedBlocks.RHUNIC_BRICK));
+
+		ExtendedBlocks.CRACKED_RHUNIC_BRICK = BLOCKS.register("cracked_rhunic_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_YELLOW));
+		ExtendedBlocks.CRACKED_RHUNIC_BRICK_SLAB = BLOCKS.register("cracked_rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_RHUNIC_BRICK));
+		ExtendedBlocks.CRACKED_RHUNIC_BRICK_STAIRS = BLOCKS.register("cracked_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_RHUNIC_BRICK));
+		ExtendedBlocks.CRACKED_RHUNIC_BRICK_WALL = BLOCKS.register("cracked_rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_RHUNIC_BRICK));
+
+		ExtendedBlocks.MOSSY_RHUNIC_BRICK = BLOCKS.register("mossy_rhunic_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_YELLOW));
+		ExtendedBlocks.MOSSY_RHUNIC_BRICK_SLAB = BLOCKS.register("mossy_rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_RHUNIC_BRICK));
+		ExtendedBlocks.MOSSY_RHUNIC_BRICK_STAIRS = BLOCKS.register("mossy_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_RHUNIC_BRICK));
+		ExtendedBlocks.MOSSY_RHUNIC_BRICK_WALL = BLOCKS.register("mossy_rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_RHUNIC_BRICK));
+
+		ExtendedBlocks.FLOWERY_RHUNIC_BRICK = BLOCKS.register("flowery_rhunic_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_YELLOW));
+		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_SLAB = BLOCKS.register("flowery_rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
+		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_STAIRS = BLOCKS.register("flowery_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
+		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_WALL = BLOCKS.register("flowery_rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
+		
 		//BUSHES
 		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
 		ExtendedBlocks.BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
@@ -126,5 +151,6 @@ public class MixinLOTRBlocks {
 		//CRAFTING TABLES
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
+		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = BLOCKS.register("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
 	}
 }
