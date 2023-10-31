@@ -1,9 +1,8 @@
 {
-  "type": "lotr:faction_shaped",
+  "type": "lotr:faction_shapeless",
   "table": "lotr:taurethrim",
   "pattern": [
-    "#",
-    "Y"
+    "Y#"
   ],
   "key": {
     "#": {
