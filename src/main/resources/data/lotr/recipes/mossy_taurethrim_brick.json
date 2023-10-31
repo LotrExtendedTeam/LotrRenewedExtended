@@ -1,17 +1,14 @@
 {
   "type": "lotr:faction_shapeless",
   "table": "lotr:taurethrim",
-  "pattern": [
-    "Y#"
-  ],
-  "key": {
-    "#": {
+    "ingredients": [
+    {
       "item": "minecraft:vine"
     },
-    "Y": {
+    {
       "item": "lotr:taurethrim_brick"
     }
-  },
+  ],
   "result": {
     "item": "lotr:mossy_taurethrim_brick"
   }

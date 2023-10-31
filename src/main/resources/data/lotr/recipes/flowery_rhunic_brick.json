@@ -1,17 +1,14 @@
 {
   "type": "lotr:faction_shapeless",
   "table": "lotr:rhunic",
-  "pattern": [
-    "Y#"
-  ],
-  "key": {
-    "#": {
+    "ingredients": [
+    {
       "item": "lotr:orange_chrysanthemum"
     },
-    "Y": {
+    {
       "item": "lotr:rhunic_brick"
     }
-  },
+  ],
   "result": {
     "item": "lotr:mossy_rhunic_brick"
   }
