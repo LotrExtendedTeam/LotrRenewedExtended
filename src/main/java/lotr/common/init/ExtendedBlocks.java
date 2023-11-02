@@ -103,4 +103,10 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CRANBERRY_BUSH;
 	public static RegistryObject<Block> ELDERBERRY_BUSH;
 	public static RegistryObject<Block> WILDBERRY_BUSH;
+	
+	public static RegistryObject<Block> WHITE_PACKED_FUR;
+	public static RegistryObject<Block> SILVER_PACKED_FUR;
+	public static RegistryObject<Block> GREY_PACKED_FUR;
+	public static RegistryObject<Block> BROWN_PACKED_FUR;
+	public static RegistryObject<Block> BLACK_PACKED_FUR;
 }

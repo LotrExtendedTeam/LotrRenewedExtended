@@ -66,6 +66,12 @@ public class MixinLOTRItems {
 		ExtendedItems.CRANBERRY_BUSH = regBlockItem(ExtendedBlocks.CRANBERRY_BUSH, LOTRItemGroups.DECO);
 		ExtendedItems.ELDERBERRY_BUSH = regBlockItem(ExtendedBlocks.ELDERBERRY_BUSH, LOTRItemGroups.DECO);
 		ExtendedItems.WILDBERRY_BUSH = regBlockItem(ExtendedBlocks.WILDBERRY_BUSH, LOTRItemGroups.DECO);
+		
+		ExtendedItems.WHITE_PACKED_FUR = regBlockItem(ExtendedBlocks.WHITE_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.SILVER_PACKED_FUR = regBlockItem(ExtendedBlocks.SILVER_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.TAN_PACKED_FUR = regBlockItem(ExtendedBlocks.GREY_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.BROWN_PACKED_FUR = regBlockItem(ExtendedBlocks.BROWN_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.BLACK_PACKED_FUR = regBlockItem(ExtendedBlocks.BLACK_PACKED_FUR, LOTRItemGroups.DECO);
 
 		//########### BLOCK TYPES ##################
 		//Taurethrim Bricks
@@ -140,6 +146,11 @@ public class MixinLOTRItems {
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
 		ExtendedItems.HITHLAIN = regMaterialItem("hithlain");
 		ExtendedItems.ITHILDIN = regMaterialItem("ithildin");
+
+		ExtendedItems.WHITE_FUR = regMaterialItem("white_fur");
+		ExtendedItems.SILVER_FUR = regMaterialItem("silver_fur");
+		ExtendedItems.GREY_FUR = regMaterialItem("grey_fur");
+		ExtendedItems.BLACK_FUR = regMaterialItem("black_fur");
 
 		//Ingots
 		ExtendedItems.GALVORN_INGOT = regMaterialItem("galvorn_ingot");
