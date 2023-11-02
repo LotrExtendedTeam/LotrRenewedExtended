@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:fur",
+  "ingredients": [
+    {
+      "item": "lotr:fur_bundle"
+    }
+  ],
+  "result": {
+    "item": "lotr:fur",
+    "count": 4
+  }
+}

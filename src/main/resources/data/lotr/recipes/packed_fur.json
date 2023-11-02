@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_faction",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:fur"
+    }
+  },
+  "result": {
+    "item": "lotr:packed_fur"
+  }
+}

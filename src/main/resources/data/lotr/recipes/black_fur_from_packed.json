@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:fur",
+  "ingredients": [
+    {
+      "item": "lotr:black_packed_fur"
+    }
+  ],
+  "result": {
+    "item": "lotr:black_fur",
+    "count": 9
+  }
+}

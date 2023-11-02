@@ -40,12 +40,17 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_STEEL_BLOCK = BLOCKS.register("morgul_steel_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
 
-		//Packed Fur Types
+		//Packed Fur
 		ExtendedBlocks.WHITE_PACKED_FUR = BLOCKS.register("white_packed_fur", () -> new BundleBlock(MaterialColor.WOOL));
 		ExtendedBlocks.SILVER_PACKED_FUR = BLOCKS.register("silver_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
 		ExtendedBlocks.GREY_PACKED_FUR = BLOCKS.register("grey_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.BROWN_PACKED_FUR = BLOCKS.register("packed_fur", () -> new BundleBlock(MaterialColor.COLOR_BROWN));
 		ExtendedBlocks.BLACK_PACKED_FUR = BLOCKS.register("black_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_BLACK));
+		//Bundled Fur
+		ExtendedBlocks.WHITE_FUR_BUNDLE = BLOCKS.register("white_fur_bundle", () -> new BundleBlock(MaterialColor.WOOL));
+		ExtendedBlocks.SILVER_FUR_BUNDLE = BLOCKS.register("silver_fur_bundle", () -> new BundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
+		ExtendedBlocks.GREY_FUR_BUNDLE = BLOCKS.register("grey_fur_bundle", () -> new BundleBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.BLACK_FUR_BUNDLE = BLOCKS.register("black_fur_bundle", () -> new BundleBlock(MaterialColor.COLOR_BLACK));
 
 		//GEM STORAGE
 		ExtendedBlocks.TOPAZ_BLOCK = BLOCKS.register("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));

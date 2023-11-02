@@ -69,10 +69,15 @@ public class MixinLOTRItems {
 		
 		ExtendedItems.WHITE_PACKED_FUR = regBlockItem(ExtendedBlocks.WHITE_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.SILVER_PACKED_FUR = regBlockItem(ExtendedBlocks.SILVER_PACKED_FUR, LOTRItemGroups.DECO);
-		ExtendedItems.TAN_PACKED_FUR = regBlockItem(ExtendedBlocks.GREY_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.GREY_PACKED_FUR = regBlockItem(ExtendedBlocks.GREY_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.BROWN_PACKED_FUR = regBlockItem(ExtendedBlocks.BROWN_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.BLACK_PACKED_FUR = regBlockItem(ExtendedBlocks.BLACK_PACKED_FUR, LOTRItemGroups.DECO);
-
+		
+		ExtendedItems.WHITE_FUR_BUNDLE = regBlockItem(ExtendedBlocks.WHITE_FUR_BUNDLE, LOTRItemGroups.DECO);
+		ExtendedItems.SILVER_FUR_BUNDLE = regBlockItem(ExtendedBlocks.SILVER_FUR_BUNDLE, LOTRItemGroups.DECO);
+		ExtendedItems.GREY_FUR_BUNDLE = regBlockItem(ExtendedBlocks.GREY_FUR_BUNDLE, LOTRItemGroups.DECO);
+		ExtendedItems.BLACK_FUR_BUNDLE = regBlockItem(ExtendedBlocks.BLACK_FUR_BUNDLE, LOTRItemGroups.DECO);
+		
 		//########### BLOCK TYPES ##################
 		//Taurethrim Bricks
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);

@@ -177,13 +177,17 @@ public class ExtendedItems {
 	
 	public static RegistryObject<Item> WHITE_PACKED_FUR;
 	public static RegistryObject<Item> SILVER_PACKED_FUR;
-	public static RegistryObject<Item> TAN_PACKED_FUR;
+	public static RegistryObject<Item> GREY_PACKED_FUR;
 	public static RegistryObject<Item> BROWN_PACKED_FUR;
 	public static RegistryObject<Item> BLACK_PACKED_FUR;
-	
+
 	public static RegistryObject<Item> WHITE_FUR;
 	public static RegistryObject<Item> SILVER_FUR;
 	public static RegistryObject<Item> GREY_FUR;
 	public static RegistryObject<Item> BLACK_FUR;
+	public static RegistryObject<Item> WHITE_FUR_BUNDLE;
+	public static RegistryObject<Item> SILVER_FUR_BUNDLE;
+	public static RegistryObject<Item> GREY_FUR_BUNDLE;
+	public static RegistryObject<Item> BLACK_FUR_BUNDLE;
 }
 
