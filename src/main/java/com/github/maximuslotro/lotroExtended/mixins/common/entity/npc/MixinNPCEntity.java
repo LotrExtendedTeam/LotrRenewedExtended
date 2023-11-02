@@ -22,13 +22,22 @@ public class MixinNPCEntity{
 		if(((LivingEntity)(Object)(this)) instanceof WargEntity) {
 			info.cancel();
 			WargEntity entity = ((WargEntity)(Object)(this));
-			ResourceLocation resourcelocation = entity.getLootTable();
+			ResourceLocation resourcelocation;
+			if(entity.getWargType().getId()==1) {
+				resourcelocation = new ResourceLocation("lotr", "entities/common/wargs/grey_warg");
+			}else if(entity.getWargType().getId()==2) {
+				resourcelocation = new ResourceLocation("lotr", "entities/common/wargs/black_warg");
+			}else if(entity.getWargType().getId()==3) {
+				resourcelocation = new ResourceLocation("lotr", "entities/common/wargs/silver_warg");
+			}else if(entity.getWargType().getId()==4) {
+				resourcelocation = new ResourceLocation("lotr", "entities/common/wargs/white_warg");
+			}else {
+				resourcelocation = entity.getLootTable();
+			}
 			LootTable loottable = entity.level.getServer().getLootTables().get(resourcelocation);
 			LootContext.Builder lootcontext$builder = entity.createLootContext(attackedRecently, source);
 			LootContext ctx = lootcontext$builder.create(LootParameterSets.ENTITY);
 			loottable.getRandomItems(ctx).forEach(entity::spawnAtLocation);
-			System.out.println(entity.getWargType().getId());
-			System.out.println(resourcelocation.toString());
 		}
 	}
 }
