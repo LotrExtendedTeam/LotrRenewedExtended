@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_faction",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:black_packed_fur"
+    }
+  },
+  "result": {
+    "item": "lotr:black_packed_fur_slab",
+    "count": 6
+  }
+}

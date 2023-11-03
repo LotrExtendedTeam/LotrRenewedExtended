@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_faction",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:grey_packed_fur"
+    }
+  },
+  "result": {
+    "item": "lotr:grey_packed_fur_stairs",
+    "count": 4
+  }
+}
