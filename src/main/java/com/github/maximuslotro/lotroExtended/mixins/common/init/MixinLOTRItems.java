@@ -75,6 +75,9 @@ public class MixinLOTRItems {
 		ExtendedItems.BROWN_PACKED_FUR_STAIRS = regBlockItem(ExtendedBlocks.BROWN_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BROWN_PACKED_FUR_WALL = regBlockItem(ExtendedBlocks.BROWN_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BLACK_PACKED_FUR = regBlockItem(ExtendedBlocks.BLACK_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.BLACK_PACKED_FUR_SLAB = regBlockItem(ExtendedBlocks.BLACK_PACKED_FUR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACK_PACKED_FUR_STAIRS = regBlockItem(ExtendedBlocks.BLACK_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACK_PACKED_FUR_WALL = regBlockItem(ExtendedBlocks.BLACK_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS);
 		
 		ExtendedItems.WHITE_FUR_BUNDLE = regBlockItem(ExtendedBlocks.WHITE_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.SILVER_FUR_BUNDLE = regBlockItem(ExtendedBlocks.SILVER_FUR_BUNDLE, LOTRItemGroups.DECO);
