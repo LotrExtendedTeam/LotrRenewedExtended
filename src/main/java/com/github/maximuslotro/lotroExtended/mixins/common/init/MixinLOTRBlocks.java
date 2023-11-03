@@ -47,6 +47,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WHITE_PACKED_FUR_WALL = BLOCKS.register("white_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		
 		ExtendedBlocks.SILVER_PACKED_FUR = BLOCKS.register("silver_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
+		ExtendedBlocks.SILVER_PACKED_FUR_SLAB = BLOCKS.register("silver_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.SILVER_PACKED_FUR));
+		ExtendedBlocks.SILVER_PACKED_FUR_STAIRS = BLOCKS.register("silver_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SILVER_PACKED_FUR));
+		ExtendedBlocks.SILVER_PACKED_FUR_WALL = BLOCKS.register("silver_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.SILVER_PACKED_FUR));
+		
 		ExtendedBlocks.GREY_PACKED_FUR = BLOCKS.register("grey_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.BROWN_PACKED_FUR = BLOCKS.register("packed_fur", () -> new BundleBlock(MaterialColor.COLOR_BROWN));
 		ExtendedBlocks.BROWN_PACKED_FUR_SLAB = BLOCKS.register("packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.BROWN_PACKED_FUR));

@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "lotr:block/silver_packed_fur",
+        "top": "lotr:block/silver_packed_fur",
+        "side": "lotr:block/silver_packed_fur"
+    }
+}
