@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -17,15 +18,19 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ExtendedBerryBushBlock extends BushBlock {
+import lotr.common.init.LOTRBlocks;
+
+public class ExtendedBerryBushBlock extends GlassBlock {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
     public static final BooleanProperty FULL = BooleanProperty.create("full");
     private final RegistryObject<Item> berryItem;
@@ -33,16 +38,22 @@ public class ExtendedBerryBushBlock extends BushBlock {
     private final RegistryObject<Item> berryBlock;
 
     public ExtendedBerryBushBlock(RegistryObject<Item> berryItem, RegistryObject<Item> berryBlock) {
-        super(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN)
-                .randomTicks()
-                .sound(SoundType.SWEET_BERRY_BUSH)
-                .strength(0.2F));
+    	super(Properties.of(Material.LEAVES, MaterialColor.COLOR_GREEN)
+    			.randomTicks()
+    			.sound(SoundType.SWEET_BERRY_BUSH)
+    			.strength(0.2F)
+    			.noOcclusion()
+    			.harvestTool(ToolType.HOE)
+    			.isValidSpawn(LOTRBlocks::allowSpawnOnLeaves)
+    			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
+    			.isSuffocating(LOTRBlocks::posPredicateFalse)
+    			.isViewBlocking(LOTRBlocks::posPredicateFalse));
         this.berryItem = berryItem;
         this.berryBlock = berryBlock;
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(FULL, false));
+        registerDefaultState(stateDefinition.any().setValue(AGE, 3).setValue(FULL, true));
     }
 
-    @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	@Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         super.randomTick(state, worldIn, pos, random);
@@ -114,4 +125,8 @@ public class ExtendedBerryBushBlock extends BushBlock {
             world.addFreshEntity(itemEntity);
         }
     }
+    @Override
+	public boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState) {
+		return true;
+	}
 }
