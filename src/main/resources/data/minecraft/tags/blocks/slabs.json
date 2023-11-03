@@ -17,6 +17,11 @@
     "lotr:cracked_rhunic_brick_slab",
     "lotr:mossy_rhunic_brick_slab",
     "lotr:rhunic_pillar_slab",
-    "lotr:flowery_rhunic_brick_slab"
+    "lotr:flowery_rhunic_brick_slab",
+    "lotr:white_packed_fur_slab",
+    "lotr:silver_packed_fur_slab",
+    "lotr:grey_packed_fur_slab",
+    "lotr:packed_fur_slab",
+    "lotr:black_packed_fur_slab"
   ]
 }

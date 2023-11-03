@@ -12,6 +12,11 @@
     "lotr:rhunic_brick_wall",
     "lotr:cracked_rhunic_brick_wall",
     "lotr:mossy_rhunic_brick_wall",
-    "lotr:flowery_rhunic_brick_wall"
+    "lotr:flowery_rhunic_brick_wall",
+    "lotr:white_packed_fur_wall",
+    "lotr:silver_packed_fur_wall",
+    "lotr:grey_packed_fur_wall",
+    "lotr:packed_fur_wall",
+    "lotr:black_packed_fur_wall"
   ]
 }
