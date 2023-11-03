@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:packed_fur"
+    }
+  },
+  "result": {
+    "item": "lotr:packed_fur_stairs",
+    "count": 4
+  }
+}
