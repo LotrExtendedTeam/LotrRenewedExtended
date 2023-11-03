@@ -113,6 +113,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_PACKED_FUR_STAIRS;
 	public static RegistryObject<Block> SILVER_PACKED_FUR_WALL;
 	public static RegistryObject<Block> GREY_PACKED_FUR;
+	public static RegistryObject<Block> GREY_PACKED_FUR_SLAB;
+	public static RegistryObject<Block> GREY_PACKED_FUR_STAIRS;
+	public static RegistryObject<Block> GREY_PACKED_FUR_WALL;
 	public static RegistryObject<Block> BROWN_PACKED_FUR;
 	public static RegistryObject<Block> BROWN_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> BROWN_PACKED_FUR_STAIRS;
