@@ -176,6 +176,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_WALL;
 	
 	public static RegistryObject<Item> WHITE_PACKED_FUR;
+	public static RegistryObject<Item> WHITE_PACKED_FUR_SLAB;
+	public static RegistryObject<Item> WHITE_PACKED_FUR_STAIRS;
+	public static RegistryObject<Item> WHITE_PACKED_FUR_WALL;
 	public static RegistryObject<Item> SILVER_PACKED_FUR;
 	public static RegistryObject<Item> GREY_PACKED_FUR;
 	public static RegistryObject<Item> BROWN_PACKED_FUR;
