@@ -20,9 +20,9 @@ plugins {
 }
 apply plugin: 'org.spongepowered.mixin'
 
-version = '5.5'
+version = '1.0'
 group = 'maximuslotro'
-archivesBaseName = 'lotr-1.16-extended'
+archivesBaseName = 'lotr-1.16-extended-alpha'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
