@@ -131,4 +131,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BLACK_FUR_BUNDLE;
 	
 	public static RegistryObject<Block> MORGUL_LANTERN;
+	
+	public static RegistryObject<Block> DRYSTONE_SLAB;
+	public static RegistryObject<Block> DRYSTONE_STAIRS;
+	public static RegistryObject<Block> DRYSTONE_WALL;
 }

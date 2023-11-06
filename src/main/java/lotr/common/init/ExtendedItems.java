@@ -206,5 +206,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLACK_FUR_BUNDLE;
 	
 	public static RegistryObject<Item> MORGUL_LANTERN;
+
+	public static RegistryObject<Item> DRYSTONE_SLAB;
+	public static RegistryObject<Item> DRYSTONE_STAIRS;
+	public static RegistryObject<Item> DRYSTONE_WALL;
 }
 

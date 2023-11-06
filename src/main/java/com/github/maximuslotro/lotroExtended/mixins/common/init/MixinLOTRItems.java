@@ -96,6 +96,10 @@ public class MixinLOTRItems {
 		ExtendedItems.MORGUL_LANTERN = regBlockItem(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
 		
 		//########### BLOCK TYPES ##################
+		//Stone types
+		ExtendedItems.DRYSTONE_SLAB = regBlockItem(ExtendedBlocks.DRYSTONE_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DRYSTONE_STAIRS = regBlockItem(ExtendedBlocks.DRYSTONE_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DRYSTONE_WALL = regBlockItem(ExtendedBlocks.DRYSTONE_WALL, LOTRItemGroups.BLOCKS);
 		//Taurethrim Bricks
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);

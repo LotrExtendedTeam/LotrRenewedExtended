@@ -172,6 +172,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_STAIRS = BLOCKS.register("flowery_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
 		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_WALL = BLOCKS.register("flowery_rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
 		
+		ExtendedBlocks.DRYSTONE_SLAB = BLOCKS.register("drystone_slab", () -> new AxialSlabBlock(LOTRBlocks.DRYSTONE));
+		ExtendedBlocks.DRYSTONE_STAIRS = BLOCKS.register("drystone_stairs", () -> new LOTRStairsBlock(LOTRBlocks.DRYSTONE));
+		ExtendedBlocks.DRYSTONE_WALL = BLOCKS.register("drystone_wall", () -> new LOTRWallBlock(LOTRBlocks.DRYSTONE));
+		
 		//BUSHES
 		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
 		ExtendedBlocks.BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
