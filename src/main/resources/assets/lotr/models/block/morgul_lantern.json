@@ -1,0 +1,7 @@
+{
+  "parent": "lotr:block/template_lamp",
+  "textures": {
+    "lamp": "lotr:block/morgul_lantern",
+    "fire": "lotr:block/morgul_lantern_fire"
+  }
+}

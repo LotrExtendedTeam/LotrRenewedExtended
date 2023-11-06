@@ -93,6 +93,8 @@ public class MixinLOTRItems {
 		ExtendedItems.GREY_FUR_BUNDLE = regBlockItem(ExtendedBlocks.GREY_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.BLACK_FUR_BUNDLE = regBlockItem(ExtendedBlocks.BLACK_FUR_BUNDLE, LOTRItemGroups.DECO);
 		
+		ExtendedItems.MORGUL_LANTERN = regBlockItem(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
+		
 		//########### BLOCK TYPES ##################
 		//Taurethrim Bricks
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);

@@ -129,4 +129,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_FUR_BUNDLE;
 	public static RegistryObject<Block> GREY_FUR_BUNDLE;
 	public static RegistryObject<Block> BLACK_FUR_BUNDLE;
+	
+	public static RegistryObject<Block> MORGUL_LANTERN;
 }
