@@ -223,7 +223,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
 		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 
-		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new PoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC).food(ExtendedFoods.POISON_BOTTLE)));
+		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new PoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC)));
 
 		//#######################################################################EQUIPMENT##################################################
 		ExtendedItems.COMMANDHORN = regItem("horn_of_command", () -> new CommandHornItem());
