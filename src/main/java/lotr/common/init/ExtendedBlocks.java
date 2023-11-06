@@ -1,5 +1,6 @@
 package lotr.common.init;
 
+import lotr.common.block.LOTRTorchBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -135,4 +136,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DRYSTONE_SLAB;
 	public static RegistryObject<Block> DRYSTONE_STAIRS;
 	public static RegistryObject<Block> DRYSTONE_WALL;
+
+	public static RegistryObject<Block> MORGUL_TORCH;
+	public static RegistryObject<Block> MORGUL_WALL_TORCH;
 }

@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.init.LOTRParticles;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -190,5 +191,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = BLOCKS.register("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = BLOCKS.register("morgul_lantern", MorgulLanternBlock::new);
+		
+		ExtendedBlocks.MORGUL_TORCH = BLOCKS.register("morgul_torch", () -> new LOTRTorchBlock(14));
+		ExtendedBlocks.MORGUL_WALL_TORCH = BLOCKS.register("morgul_wall_torch", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 	}
 }

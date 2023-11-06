@@ -29,6 +29,9 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regMaterialItem(String name) {return null;}
 
+	@Shadow(remap=false)
+	private static RegistryObject<Item> regWallOrFloorBlockItem(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {return null;}
+
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		//###########################################################BLOCKS################################################################
@@ -167,6 +170,7 @@ public class MixinLOTRItems {
 		ExtendedItems.FLOWERY_RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FLOWERY_RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
 
+		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItem(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 		//###################################################################MATERIALS########################################################
 		//Misc
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
