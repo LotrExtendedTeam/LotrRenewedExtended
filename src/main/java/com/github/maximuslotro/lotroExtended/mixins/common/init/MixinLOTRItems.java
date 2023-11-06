@@ -222,7 +222,9 @@ public class MixinLOTRItems {
 		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
 		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
 		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
-		
+
+		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new PoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC).food(ExtendedFoods.POISON_BOTTLE)));
+
 		//#######################################################################EQUIPMENT##################################################
 		ExtendedItems.COMMANDHORN = regItem("horn_of_command", () -> new CommandHornItem());
 
@@ -270,6 +272,5 @@ public class MixinLOTRItems {
 
 		ExtendedItems.HOBBIT_MARRIAGE_RING =  regItem("hobbit_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
 		ExtendedItems.DWARF_MARRIAGE_RING =  regItem("dwarven_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
-		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
 	}
 }
