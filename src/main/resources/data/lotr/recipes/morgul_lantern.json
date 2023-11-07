@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    " Y ",
+    " # ",
+    "YYY"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:morgul_torch"
+    },
+    "Y": {
+      "tag": "forge:ingots/morgul_ingots"
+    }
+  },
+  "result": {
+    "item": "lotr:morgul_lantern"
+  }
+}
