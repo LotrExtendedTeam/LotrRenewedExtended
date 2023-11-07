@@ -24,6 +24,8 @@
     "lotr:packed_fur_slab",
     "lotr:black_packed_fur_slab",
     "lotr:drystone_slab",
-    "lotr:mossy_drystone_slab"
+    "lotr:mossy_drystone_slab",
+    "lotr:red_rhunic_brick_slab",
+    "lotr:red_rhunic_pillar_slab"
   ]
 }

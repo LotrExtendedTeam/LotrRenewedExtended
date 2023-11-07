@@ -177,6 +177,13 @@ public class MixinLOTRItems {
 		ExtendedItems.FLOWERY_RHUNIC_BRICK_SLAB = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FLOWERY_RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FLOWERY_RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.FLOWERY_RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.RED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_RHUNIC_BRICK_SLAB = regBlockItem(ExtendedBlocks.RED_RHUNIC_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_RHUNIC_BRICK_STAIRS = regBlockItem(ExtendedBlocks.RED_RHUNIC_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_RHUNIC_BRICK_WALL = regBlockItem(ExtendedBlocks.RED_RHUNIC_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_RHUNIC_PILLAR = regBlockItem(ExtendedBlocks.RED_RHUNIC_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_RHUNIC_PILLAR_SLAB = regBlockItem(ExtendedBlocks.RED_RHUNIC_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_RED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItem(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 		//###################################################################MATERIALS########################################################
