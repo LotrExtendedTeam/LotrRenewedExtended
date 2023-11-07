@@ -13,7 +13,7 @@ public class killingPoison extends Effect{
 
 	@Override
 	public void applyEffectTick(LivingEntity p_76394_1_, int p_76394_2_) {
-		p_76394_1_.hurt(LOTRDamageSources.POISON_DRINK, 2.0F);
+		p_76394_1_.hurt(LOTRDamageSources.POISON_DRINK, 1.0F);
 	}
 
 	@Override
