@@ -103,6 +103,8 @@ public class MixinLOTRItems {
 		ExtendedItems.DRYSTONE_SLAB = regBlockItem(ExtendedBlocks.DRYSTONE_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DRYSTONE_STAIRS = regBlockItem(ExtendedBlocks.DRYSTONE_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.DRYSTONE_WALL = regBlockItem(ExtendedBlocks.DRYSTONE_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CUT_DRYSTONE = regBlockItem(ExtendedBlocks.CUT_DRYSTONE, LOTRItemGroups.BLOCKS);
+		
 		//Taurethrim Bricks
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TAURETHRIM_BRICK_SLAB = regBlockItem(ExtendedBlocks.TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);

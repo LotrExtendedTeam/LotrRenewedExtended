@@ -210,6 +210,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DRYSTONE_SLAB;
 	public static RegistryObject<Item> DRYSTONE_STAIRS;
 	public static RegistryObject<Item> DRYSTONE_WALL;
+	public static RegistryObject<Item> CUT_DRYSTONE;
 
 	public static RegistryObject<Item> MORGUL_TORCH;
 }

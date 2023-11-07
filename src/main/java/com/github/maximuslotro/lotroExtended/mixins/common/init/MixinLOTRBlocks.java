@@ -175,6 +175,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DRYSTONE_SLAB = BLOCKS.register("drystone_slab", () -> new AxialSlabBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.DRYSTONE_STAIRS = BLOCKS.register("drystone_stairs", () -> new LOTRStairsBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.DRYSTONE_WALL = BLOCKS.register("drystone_wall", () -> new LOTRWallBlock(LOTRBlocks.DRYSTONE));
+		ExtendedBlocks.CUT_DRYSTONE = BLOCKS.register("cut_drystone", () -> new LOTRStoneBlock(LOTRBlocks.DRYSTONE));
 		
 		//BUSHES
 		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));

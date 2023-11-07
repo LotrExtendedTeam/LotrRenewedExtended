@@ -135,6 +135,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DRYSTONE_SLAB;
 	public static RegistryObject<Block> DRYSTONE_STAIRS;
 	public static RegistryObject<Block> DRYSTONE_WALL;
+	public static RegistryObject<Block> CUT_DRYSTONE;
 
 	public static RegistryObject<Block> MORGUL_TORCH;
 	public static RegistryObject<Block> MORGUL_WALL_TORCH;
