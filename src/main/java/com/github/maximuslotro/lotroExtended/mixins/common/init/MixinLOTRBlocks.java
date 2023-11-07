@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
-import lotr.common.init.LOTRParticles;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

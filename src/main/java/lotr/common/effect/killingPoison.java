@@ -7,7 +7,7 @@ import net.minecraft.potion.EffectType;
 
 public class killingPoison extends Effect{
 
-	protected killingPoison(EffectType p_i50391_1_, int p_i50391_2_) {
+	public killingPoison(EffectType p_i50391_1_, int p_i50391_2_) {
 		super(p_i50391_1_, p_i50391_2_);
 	}
 

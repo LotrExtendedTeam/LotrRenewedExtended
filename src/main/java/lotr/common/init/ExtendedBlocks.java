@@ -1,6 +1,5 @@
 package lotr.common.init;
 
-import lotr.common.block.LOTRTorchBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 
