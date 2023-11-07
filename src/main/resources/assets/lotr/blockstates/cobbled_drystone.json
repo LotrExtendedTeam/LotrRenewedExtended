@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "lotr:block/cobbled_drystone" }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "axis=y,type=bottom": { "model": "lotr:block/mossy_drystone_slab" },
+        "axis=y,type=top": { "model": "lotr:block/mossy_drystone_slab_top" },
+        "axis=y,type=double": { "model": "lotr:block/mossy_drystone" },
+        "axis=z,type=bottom": { "model": "lotr:block/mossy_drystone_slab", "x": 270, "uvlock": true },
+        "axis=z,type=top": { "model": "lotr:block/mossy_drystone_slab_top", "x": 270, "uvlock": true },
+        "axis=z,type=double": { "model": "lotr:block/mossy_drystone", "x": 270, "uvlock": true },
+        "axis=x,type=bottom": { "model": "lotr:block/mossy_drystone_slab", "x": 90, "y": 90, "uvlock": true },
+        "axis=x,type=top": { "model": "lotr:block/mossy_drystone_slab_top", "x": 90, "y": 90, "uvlock": true },
+        "axis=x,type=double": { "model": "lotr:block/mossy_drystone", "x": 90, "y": 90, "uvlock": true }
+    }
+}

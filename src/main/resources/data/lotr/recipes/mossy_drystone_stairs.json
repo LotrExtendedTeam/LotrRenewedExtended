@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_drystone"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_drystone_stairs",
+    "count": 4
+  }
+}

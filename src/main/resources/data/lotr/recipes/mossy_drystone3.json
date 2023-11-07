@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:vine"
+    },
+    {
+      "item": "lotr:cobbled_drystone"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_drystone"
+  }
+}
