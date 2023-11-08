@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
+import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRPlayerData;
 
 public class MixinHooks {

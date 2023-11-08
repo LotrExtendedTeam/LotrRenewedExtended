@@ -14,8 +14,8 @@ import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
 import org.spongepowered.asm.mixin.injection.At;
 
-import lotr.common.command.data.ExtendedFellowshipDataModule;
 import lotr.common.config.LOTRConfig;
+import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fellowship.ExtendedFellowship;

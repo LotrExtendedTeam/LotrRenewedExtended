@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
-import lotr.common.command.data.ExtendedFellowshipDataModule;
+import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.fac.EntityFactionHelper;
 import lotr.common.fellowship.ExtendedFellowship;

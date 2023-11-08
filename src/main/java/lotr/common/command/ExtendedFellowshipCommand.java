@@ -8,7 +8,7 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
-import lotr.common.command.data.ExtendedFellowshipDataModule;
+import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.util.UsernameHelper;
 import net.minecraft.command.CommandSource;

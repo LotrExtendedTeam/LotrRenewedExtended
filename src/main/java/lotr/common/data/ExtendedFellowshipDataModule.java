@@ -1,4 +1,4 @@
-package lotr.common.command.data;
+package lotr.common.data;
 
 import java.util.ArrayList;
 import java.util.List;
