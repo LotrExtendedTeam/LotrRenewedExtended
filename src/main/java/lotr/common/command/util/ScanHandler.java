@@ -1,5 +1,9 @@
 package lotr.common.command.util;
 
+import com.mojang.brigadier.context.CommandContext;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
@@ -48,7 +52,7 @@ public class ScanHandler {
 		ScanHandler.nbtStateFlag = nbtStateFlag;
 	}
 
-	public static boolean scanStructure() {
+	public static boolean scanStructure(CommandContext<CommandSource> context) {
 		if(pos1==null||pos2==null) {
 			return false;
 		}
@@ -100,7 +104,7 @@ public class ScanHandler {
 		for(int y = bottomFrontLeft.getY(); y < topBackRight.getY()+1; y++) {
 			for(int x = bottomFrontLeft.getX(); x < topBackRight.getX()+1; x++) {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
-					
+					context.getSource().getLevel().setBlock(new BlockPos(x,y,z), Blocks.GLASS.defaultBlockState(), 0);
 				}
 			}
 		}

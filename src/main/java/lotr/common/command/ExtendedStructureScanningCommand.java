@@ -1,19 +1,43 @@
 package lotr.common.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
+import lotr.common.command.util.ScanHandler;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.util.text.StringTextComponent;
 
 
 public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("lotr_structure_scan").requires(context -> context.hasPermission(4))
-				.executes(context -> scanStructure(context.getSource())));
+				.then(Commands.literal("scan").executes(context -> scanStructure(context)))
+				.then(Commands.literal("pos1").then(Commands.argument("corner", BlockPosArgument.blockPos())
+						.executes(context -> setCorner(context, true))))
+				.then(Commands.literal("pos2").then(Commands.argument("corner", BlockPosArgument.blockPos())
+						.executes(context -> setCorner(context, false)))));
 	}
-	private static int scanStructure(CommandSource source) {
-		source.sendSuccess(new StringTextComponent("test") , true);
+	private static int scanStructure(CommandContext<CommandSource> context) {
+		if(ScanHandler.scanStructure(context)){
+			context.getSource().sendSuccess(new StringTextComponent("Scanned Successfully") , true);
+		}
+		else {
+			context.getSource().sendSuccess(new StringTextComponent("Scan Failed") , true);
+		}
+		return 0;
+	}
+	private static int setCorner(CommandContext<CommandSource> context, boolean one) throws CommandSyntaxException {
+		if(one){
+			ScanHandler.setPos1(BlockPosArgument.getLoadedBlockPos(context, "corner"));
+			context.getSource().sendSuccess(new StringTextComponent("Set Pos1") , true);
+		}
+		else {
+			ScanHandler.setPos2(BlockPosArgument.getLoadedBlockPos(context, "corner"));
+			context.getSource().sendSuccess(new StringTextComponent("Set Pos2") , true);
+		}
 		return 0;
 	}
 }
