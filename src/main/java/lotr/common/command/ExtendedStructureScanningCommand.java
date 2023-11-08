@@ -5,9 +5,12 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.command.util.ScanHandler;
+import lotr.common.init.ExtendedItems;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.BlockPosArgument;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 
 
@@ -18,8 +21,10 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 				.then(Commands.literal("pos1").then(Commands.argument("corner", BlockPosArgument.blockPos())
 						.executes(context -> setCorner(context, true))))
 				.then(Commands.literal("pos2").then(Commands.argument("corner", BlockPosArgument.blockPos())
-						.executes(context -> setCorner(context, false)))));
+						.executes(context -> setCorner(context, false))))
+				.then(Commands.literal("wand").executes(context -> giveWand(context))));
 	}
+
 	private static int scanStructure(CommandContext<CommandSource> context) {
 		if(ScanHandler.scanStructure(context)){
 			context.getSource().sendSuccess(new StringTextComponent("Scanned Successfully") , true);
@@ -37,6 +42,12 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 		else {
 			ScanHandler.setPos2(BlockPosArgument.getLoadedBlockPos(context, "corner"));
 			context.getSource().sendSuccess(new StringTextComponent("Set Pos2") , true);
+		}
+		return 0;
+	}
+	private static int giveWand(CommandContext<CommandSource> context) {
+		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
+			((PlayerEntity) context.getSource().getEntity()).inventory.add(new ItemStack(ExtendedItems.ANGMAR_AXE.get()));;
 		}
 		return 0;
 	}

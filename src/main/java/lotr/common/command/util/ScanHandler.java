@@ -2,19 +2,75 @@ package lotr.common.command.util;
 
 import com.mojang.brigadier.context.CommandContext;
 
-import net.minecraft.block.Blocks;
+import lotr.common.init.ExtendedItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.state.Property;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ScanHandler {
 	private static ServerPlayerEntity selectedPlayer;
+	private static String wandID;
 	private static BlockPos pos1;
 	private static BlockPos pos2;
 	private static Boolean blockStateFlag = false;
 	private static Boolean entityStateFlag = false;
 	private static Boolean nbtStateFlag = false;
 
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void playerInteractEvent(PlayerInteractEvent.LeftClickBlock event)
+    {
+    	// Only handle server events
+        if (event.getPlayer().level.isClientSide)
+            return;
+
+        PlayerEntity player = event.getPlayer();
+
+        if (!player.abilities.instabuild || !ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile())){
+            return;
+        }
+
+        if (event.getHand() == Hand.OFF_HAND || player.getMainHandItem() == null || !player.getMainHandItem().getItem().equals(ExtendedItems.ANGMAR_AXE.get())){
+            return;
+        }
+
+        pos1 = event.getPos();
+        player.createCommandSourceStack().sendSuccess(new StringTextComponent("Pos1 set to "+pos1.getX()+", "+pos1.getY()+", "+pos1.getZ()), false);
+        event.setCanceled(true);
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void playerInteractEvent(PlayerInteractEvent.RightClickBlock event)
+    {
+    	// Only handle server events
+        if (event.getPlayer().level.isClientSide)
+            return;
+
+        PlayerEntity player = event.getPlayer();
+
+        if (!player.abilities.instabuild || !ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile())){
+            return;
+        }
+
+        if (event.getHand() == Hand.OFF_HAND || player.getMainHandItem() == null || !player.getMainHandItem().getItem().equals(ExtendedItems.ANGMAR_AXE.get())){
+            return;
+        }
+
+        pos2 = event.getPos();
+        player.createCommandSourceStack().sendSuccess(new StringTextComponent("Pos2 set to "+pos2.getX()+", "+pos2.getY()+", "+pos2.getZ()), false);
+        event.setCanceled(true);
+
+    }
+    
 	public static ServerPlayerEntity getSelectedPlayer() {
 		return selectedPlayer;
 	}
@@ -54,6 +110,7 @@ public class ScanHandler {
 
 	public static boolean scanStructure(CommandContext<CommandSource> context) {
 		if(pos1==null||pos2==null) {
+			context.getSource().sendSuccess(new StringTextComponent("No corners set!") , true);
 			return false;
 		}
 		int bottomFrontLeftX = 0;
@@ -96,7 +153,7 @@ public class ScanHandler {
 			topBackRightZ = pos1.getZ();
 		}
 		if(bottomFrontLeftX==0||bottomFrontLeftY==0||bottomFrontLeftZ==0||topBackRightX==0||topBackRightY==0||topBackRightZ==0) {
-			System.out.println("Non set Corner Value");
+			context.getSource().sendSuccess(new StringTextComponent("Non set Corner Value!") , true);
 			return false;
 		}
 		BlockPos bottomFrontLeft = new BlockPos(bottomFrontLeftX,bottomFrontLeftY,bottomFrontLeftZ);
@@ -104,7 +161,15 @@ public class ScanHandler {
 		for(int y = bottomFrontLeft.getY(); y < topBackRight.getY()+1; y++) {
 			for(int x = bottomFrontLeft.getX(); x < topBackRight.getX()+1; x++) {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
-					context.getSource().getLevel().setBlock(new BlockPos(x,y,z), Blocks.GLASS.defaultBlockState(), 0);
+					//context.getSource().getLevel().setBlockAndUpdate(new BlockPos(x,y,z), Blocks.GLASS.defaultBlockState());
+					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
+					String info1 = state.getBlock().getRegistryName().getPath();
+					int info2 = Block.getId(state);
+					String info3 ="";
+					for(Property<?> key : state.getProperties()) {
+						info3 += (key.toString()+" ,");
+					}
+					context.getSource().sendSuccess(new StringTextComponent(info1+":"+info2+" ["+info3+"]") , true);
 				}
 			}
 		}
