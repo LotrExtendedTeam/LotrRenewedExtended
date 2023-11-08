@@ -9,6 +9,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import org.spongepowered.asm.mixin.injection.At;
 
 import lotr.common.command.ExtendedFellowshipCommand;
+import lotr.common.command.ExtendedStructureScanningCommand;
 import lotr.common.command.FellowshipMessageCommand;
 import lotr.common.init.LOTRCommands;
 import net.minecraft.command.CommandSource;
@@ -19,5 +20,6 @@ public class MixinLOTRCommands {
 	private static void injected(CommandDispatcher<CommandSource> dispatcher, CallbackInfo ci) {
 		FellowshipMessageCommand.register(dispatcher);
 		ExtendedFellowshipCommand.register(dispatcher);
+		ExtendedStructureScanningCommand.register(dispatcher);
 	}
 }
