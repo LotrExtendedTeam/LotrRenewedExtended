@@ -5,30 +5,54 @@ import java.util.List;
 
 import com.mojang.brigadier.context.CommandContext;
 
+import lotr.common.block.BranchBlock;
 import lotr.common.block.CandleBlock;
 import lotr.common.block.CloverBlock;
 import lotr.common.block.DirectionalMineralBlock;
+import lotr.common.block.DoubleTorchBlock;
+import lotr.common.block.DripstoneBlock;
 import lotr.common.block.ExtendedBerryBushBlock;
+import lotr.common.block.GateBlock;
+import lotr.common.block.HearthBlock;
+import lotr.common.block.KegBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRSlabBlock;
 import lotr.common.block.MordorRockBlock;
 import lotr.common.block.NonWaterloggableLanternBlock;
+import lotr.common.block.StrippableBranchBlock;
+import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
+import lotr.common.block.VesselDrinkBlock;
+import lotr.common.block.WattleAndDaubBlock;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.AbstractSignBlock;
+import net.minecraft.block.AnvilBlock;
+import net.minecraft.block.BannerBlock;
 import net.minecraft.block.BarrelBlock;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BubbleColumnBlock;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.CarvedPumpkinBlock;
+import net.minecraft.block.CauldronBlock;
+import net.minecraft.block.ChainBlock;
 import net.minecraft.block.ChestBlock;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.DoublePlantBlock;
+import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.LadderBlock;
+import net.minecraft.block.LanternBlock;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LecternBlock;
 import net.minecraft.block.LeverBlock;
 import net.minecraft.block.PaneBlock;
 import net.minecraft.block.PistonBlock;
@@ -37,22 +61,24 @@ import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RailBlock;
 import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SkullBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SnowBlock;
 import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.StandingSignBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.TripWireBlock;
 import net.minecraft.block.TripWireHookBlock;
 import net.minecraft.block.VineBlock;
+import net.minecraft.block.WallBannerBlock;
 import net.minecraft.block.WallBlock;
+import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.block.WeightedPressurePlateBlock;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.LavaFluid;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.state.Property;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Hand;
@@ -317,11 +343,44 @@ public class ScanHandler {
 					if(state.getBlock() instanceof RailBlock) {
 						parms += getProperty(state, RailBlock.SHAPE);
 					}
+					if(state.getBlock() instanceof LecternBlock) {
+						parms += getProperty(state, LecternBlock.FACING);
+						parms += getProperty(state, LecternBlock.HAS_BOOK);
+						parms += getProperty(state, LecternBlock.POWERED);
+					}
 					if(state.getBlock() instanceof MordorRockBlock) {
 						parms += getProperty(state, MordorRockBlock.MOSSY);
 					}
+					if(state.getBlock() instanceof ChainBlock) {
+						parms += getProperty(state, ChainBlock.WATERLOGGED);
+					}
+					if(state.getBlock() instanceof StandingSignBlock) {
+						parms += getProperty(state, StandingSignBlock.ROTATION);
+					}
+					if(state.getBlock() instanceof BannerBlock) {
+						parms += getProperty(state, BannerBlock.ROTATION);
+					}
+					if(state.getBlock() instanceof SkullBlock) {
+						parms += getProperty(state, SkullBlock.ROTATION);
+					}
+					if(state.getBlock() instanceof AnvilBlock) {
+						parms += getProperty(state, AnvilBlock.FACING);
+					}
+					if(state.getBlock() instanceof WallBannerBlock) {
+						parms += getProperty(state, WallBannerBlock.FACING);
+					}
+					if(state.getBlock() instanceof DoubleTorchBlock) {
+						parms += getProperty(state, DoubleTorchBlock.HALF);
+					}
+					if(state.getBlock() instanceof LanternBlock) {
+						parms += getProperty(state, LanternBlock.HANGING);
+						parms += getProperty(state, LanternBlock.WATERLOGGED);
+					}
 					if(state.getBlock() instanceof RailBlock) {
 						parms += getProperty(state, RailBlock.SHAPE);
+					}
+					if(state.getBlock() instanceof CauldronBlock) {
+						parms += getProperty(state, CauldronBlock.LEVEL);
 					}
 					if(state.getBlock() instanceof TripWireHookBlock) {
 						parms += getProperty(state, TripWireHookBlock.ATTACHED);
@@ -365,13 +424,6 @@ public class ScanHandler {
 						parms += getProperty(state, DoorBlock.OPEN);
 						parms += getProperty(state, DoorBlock.POWERED);
 					}
-					if(state.getBlock() instanceof DoorBlock) {
-						parms += getProperty(state, DoorBlock.FACING);
-						parms += getProperty(state, DoorBlock.HALF);
-						parms += getProperty(state, DoorBlock.HINGE);
-						parms += getProperty(state, DoorBlock.OPEN);
-						parms += getProperty(state, DoorBlock.POWERED);
-					}
 					if(state.getBlock() instanceof LOTRPillarBlock) {
 						parms += getProperty(state, LOTRBlockStates.PILLAR_ABOVE);
 						parms += getProperty(state, LOTRBlockStates.PILLAR_BELOW);
@@ -393,6 +445,78 @@ public class ScanHandler {
 						parms += getProperty(state, FenceBlock.EAST);
 						parms += getProperty(state, FenceBlock.WEST);
 					}
+					if(state.getBlock() instanceof LadderBlock) {
+						parms += getProperty(state, LadderBlock.WATERLOGGED);
+						parms += getProperty(state, LadderBlock.FACING);
+					}
+					if(state.getBlock() instanceof FarmlandBlock) {
+						parms += getProperty(state, FarmlandBlock.MOISTURE);
+					}
+					if(state.getBlock() instanceof StrippableWoodBlock) {
+						parms += getProperty(state, StrippableWoodBlock.AXIS);
+					}
+					if(state.getBlock() instanceof StrippableBranchBlock) {
+						parms += getProperty(state, StrippableBranchBlock.EAST);
+						parms += getProperty(state, StrippableBranchBlock.NORTH);
+						parms += getProperty(state, StrippableBranchBlock.SOUTH);
+						parms += getProperty(state, StrippableBranchBlock.WATERLOGGED);
+						parms += getProperty(state, StrippableBranchBlock.WEST);
+					}
+					if(state.getBlock() instanceof VesselDrinkBlock) {
+						parms += getProperty(state, VesselDrinkBlock.FACING);
+					}
+					if(state.getBlock() instanceof CropsBlock) {
+						parms += getProperty(state, CropsBlock.AGE);
+					}
+					if(state.getBlock() instanceof WallSignBlock) {
+						parms += getProperty(state, WallSignBlock.FACING);
+					}
+					if(state.getBlock() instanceof AbstractSignBlock) {
+						parms += getProperty(state, AbstractSignBlock.WATERLOGGED);
+					}
+					if(state.getBlock() instanceof HearthBlock) {
+						parms += getProperty(state, HearthBlock.LIT);
+					}
+					if(state.getBlock() instanceof WattleAndDaubBlock) {
+						parms += getProperty(state, WattleAndDaubBlock.CONNECTED);
+					}
+					if(state.getBlock() instanceof BranchBlock) {
+						parms += getProperty(state, BranchBlock.EAST);
+						parms += getProperty(state, BranchBlock.NORTH);
+						parms += getProperty(state, BranchBlock.SOUTH);
+						parms += getProperty(state, BranchBlock.WATERLOGGED);
+						parms += getProperty(state, BranchBlock.WEST);
+					}
+					if(state.getBlock() instanceof BedBlock) {
+						parms += getProperty(state, BedBlock.OCCUPIED);
+						parms += getProperty(state, BedBlock.PART);
+						parms += getProperty(state, BedBlock.FACING);
+					}
+					if(state.getBlock() instanceof CarvedPumpkinBlock) {
+						parms += getProperty(state, CarvedPumpkinBlock.FACING);
+					}
+					if(state.getBlock() instanceof GateBlock) {
+						parms += getProperty(state, GateBlock.DOWN);
+						parms += getProperty(state, GateBlock.EAST);
+						parms += getProperty(state, GateBlock.FACING);
+						parms += getProperty(state, GateBlock.NORTH);
+						parms += getProperty(state, GateBlock.OPEN);
+						parms += getProperty(state, GateBlock.POWERED);
+						parms += getProperty(state, GateBlock.SOUTH);
+						parms += getProperty(state, GateBlock.UP);
+						parms += getProperty(state, GateBlock.WATERLOGGED);
+						parms += getProperty(state, GateBlock.WEST);
+					}
+					if(state.getBlock() instanceof DripstoneBlock) {
+						parms += getProperty(state, DripstoneBlock.WATERLOGGED);
+						parms += getProperty(state, DripstoneBlock.DRIPSTONE_TYPE);
+					}
+					if(state.getBlock() instanceof KegBlock) {
+						parms += getProperty(state, KegBlock.OPEN);
+						parms += getProperty(state, KegBlock.UP);
+						parms += getProperty(state, KegBlock.WATERLOGGED);
+						parms += getProperty(state, KegBlock.FACING);
+					}
 					if(state.getBlock() instanceof FenceGateBlock) {
 						parms += getProperty(state, FenceGateBlock.FACING);
 						parms += getProperty(state, FenceGateBlock.IN_WALL);
@@ -402,20 +526,22 @@ public class ScanHandler {
 					if(state.getBlock() instanceof CandleBlock) {
 						parms += getProperty(state, LOTRBlockStates.CANDLES_1_4);
 					}
-					if(state.getFluidState().getType() instanceof WaterFluid) {
-						parms += getProperty(state, WaterFluid.FALLING);
-						parms += getProperty(state, WaterFluid.LEVEL);
+					if(state.getBlock() instanceof FlowingFluidBlock) {
+						parms += getProperty(state, FlowingFluidBlock.LEVEL);
 					}
-					if(state.getFluidState().getType() instanceof LavaFluid) {
-						parms += getProperty(state, LavaFluid.FALLING);
-						parms += getProperty(state, LavaFluid.LEVEL);
+					if(state.getBlock() instanceof BubbleColumnBlock) {
+						parms += getProperty(state, BubbleColumnBlock.DRAG_DOWN);
 					}
 					for(Property<?> key : state.getProperties()) {
 						if(!found.contains(key.getName())) {
 							System.out.println("ERROR found unused key: "+key.getName()+" : "+getName(state));
 						}
 					}
+					if(state.getBlock().getRegistryName().getPath().equals("air")) {
+						continue;
+					}
 					context.getSource().sendSuccess(new StringTextComponent(getName(state)+"["+parms+"]") , false);
+					//System.out.println(getName(state)+"["+parms+"]");
 					found.clear();
 				}
 			}
@@ -423,14 +549,14 @@ public class ScanHandler {
 		return true;
 	}
 	public static String getProperty(BlockState state, Property<?> prop) {
-		String temp = null;
+		String temp = "";
 		try {
 			if(!found.contains(prop.getName())) {
 				temp = "["+prop.getName()+":"+state.getValue(prop).toString()+"]";
 				found.add(prop.getName());
 			}
 		}catch(IllegalArgumentException e) {
-			System.out.println("ERROR failed to find key: "+prop.getName());
+			System.out.println("ERROR failed to find key: "+prop.getName()+" : "+getName(state));
 		}
 		return temp;
 	}
