@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.LOTRMod;
-import lotr.common.command.util.ScanHandler;
 import lotr.common.init.ExtendedEffects;
+import lotr.common.structure.ScanHandler;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mixin(LOTRMod.class)

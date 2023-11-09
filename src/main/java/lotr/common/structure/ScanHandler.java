@@ -1,8 +1,9 @@
-package lotr.common.command.util;
+package lotr.common.structure;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
 import lotr.common.block.BranchBlock;
@@ -20,6 +21,7 @@ import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRSlabBlock;
 import lotr.common.block.MordorRockBlock;
 import lotr.common.block.NonWaterloggableLanternBlock;
+import lotr.common.block.ReedsBlock;
 import lotr.common.block.StrippableBranchBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
@@ -79,11 +81,15 @@ import net.minecraft.block.WeightedPressurePlateBlock;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.state.Property;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -182,6 +188,7 @@ public class ScanHandler {
 	}
 
 	public static boolean scanStructure(CommandContext<CommandSource> context) {
+		String name = StringArgumentType.getString(context, "name");
 		if(pos1==null||pos2==null) {
 			context.getSource().sendSuccess(new StringTextComponent("No corners set!") , true);
 			return false;
@@ -229,13 +236,27 @@ public class ScanHandler {
 			context.getSource().sendSuccess(new StringTextComponent("Non set Corner Value!") , true);
 			return false;
 		}
+
+		ServerWorld world = context.getSource().getLevel();
+		ListNBT blockDataMap = new ListNBT();
+
 		BlockPos bottomFrontLeft = new BlockPos(bottomFrontLeftX,bottomFrontLeftY,bottomFrontLeftZ);
 		BlockPos topBackRight = new BlockPos(topBackRightX,topBackRightY,topBackRightZ);
+		int ypos = -1;
 		for(int y = bottomFrontLeft.getY(); y < topBackRight.getY()+1; y++) {
+			ypos++;
+			int xpos = -1;
 			for(int x = bottomFrontLeft.getX(); x < topBackRight.getX()+1; x++) {
+				xpos++;
+				int zpos = -1;
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
+					zpos++;
 					found = new ArrayList<>();
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
+					CompoundNBT blockData = NBTUtil.writeBlockState(state);
+					blockData.put("relativeLocation", StructureSaveHandler.writeBlockPos(xpos, ypos, zpos));
+					blockDataMap.add(blockData);
+					
 					String parms = "";
 					if(state.getBlock() instanceof DirectionalBlock) {
 						parms += getProperty(state, DirectionalBlock.FACING);
@@ -517,6 +538,11 @@ public class ScanHandler {
 						parms += getProperty(state, KegBlock.WATERLOGGED);
 						parms += getProperty(state, KegBlock.FACING);
 					}
+					if(state.getBlock() instanceof ReedsBlock) {
+						parms += getProperty(state, ReedsBlock.AGE);
+						parms += getProperty(state, ReedsBlock.REEDS_TYPE);
+						parms += getProperty(state, ReedsBlock.WATERLOGGED);
+					}
 					if(state.getBlock() instanceof FenceGateBlock) {
 						parms += getProperty(state, FenceGateBlock.FACING);
 						parms += getProperty(state, FenceGateBlock.IN_WALL);
@@ -546,6 +572,10 @@ public class ScanHandler {
 				}
 			}
 		}
+		CompoundNBT dataCompound = new CompoundNBT();
+		dataCompound.put("blockMap", blockDataMap);
+		dataCompound.putString("structureName", name);
+		StructureSaveHandler.save(name, world, dataCompound);
 		return true;
 	}
 	public static String getProperty(BlockState state, Property<?> prop) {
