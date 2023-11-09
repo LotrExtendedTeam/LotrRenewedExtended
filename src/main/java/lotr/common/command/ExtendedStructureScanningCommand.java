@@ -1,6 +1,7 @@
 package lotr.common.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
@@ -16,13 +17,19 @@ import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("lotr_structure_scan").requires(context -> context.hasPermission(4))
-				.then(Commands.literal("scan").executes(context -> scanStructure(context)))
-				.then(Commands.literal("pos1").then(Commands.argument("corner", BlockPosArgument.blockPos())
-						.executes(context -> setCorner(context, true))))
-				.then(Commands.literal("pos2").then(Commands.argument("corner", BlockPosArgument.blockPos())
-						.executes(context -> setCorner(context, false))))
-				.then(Commands.literal("wand").executes(context -> giveWand(context))));
+		dispatcher.register(Commands.literal("lotr_structure_scan")
+				.requires(context -> context.hasPermission(4))
+				.then(Commands.literal("scan")
+						.then(Commands.argument("name", StringArgumentType.word())
+								.executes(context -> scanStructure(context))))
+				.then(Commands.literal("pos1")
+						.then(Commands.argument("corner", BlockPosArgument.blockPos())
+								.executes(context -> setCorner(context, true))))
+				.then(Commands.literal("pos2")
+						.then(Commands.argument("corner", BlockPosArgument.blockPos())
+								.executes(context -> setCorner(context, false))))
+				.then(Commands.literal("wand")
+						.executes(context -> giveWand(context))));
 	}
 
 	private static int scanStructure(CommandContext<CommandSource> context) {
