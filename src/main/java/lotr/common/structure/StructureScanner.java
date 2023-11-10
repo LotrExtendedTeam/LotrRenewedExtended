@@ -164,12 +164,12 @@ public class StructureScanner {
 		BlockPos bottomFrontLeft = new BlockPos(bottomFrontLeftX,bottomFrontLeftY,bottomFrontLeftZ);
 		BlockPos topBackRight = new BlockPos(topBackRightX,topBackRightY,topBackRightZ);
 		int ypos = -1;
+		int xpos = -1;
+		int zpos = -1;
 		for(int y = bottomFrontLeft.getY(); y < topBackRight.getY()+1; y++) {
 			ypos++;
-			int xpos = -1;
 			for(int x = bottomFrontLeft.getX(); x < topBackRight.getX()+1; x++) {
 				xpos++;
-				int zpos = -1;
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
 					zpos++;
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
@@ -181,6 +181,7 @@ public class StructureScanner {
 		}
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put("blockMap", blockDataMap);
+		dataCompound.put("structureSize", StructureSaveHandler.createStructureSize(xpos, ypos, zpos));
 		dataCompound.putString("structureName", name);
 		StructureSaveHandler.save(name, context.getSource().getLevel(), dataCompound);
 		return true;

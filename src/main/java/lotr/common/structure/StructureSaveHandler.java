@@ -60,5 +60,13 @@ public class StructureSaveHandler {
 	      compoundnbt.putInt("Y", Y);
 	      compoundnbt.putInt("Z", Z);
 	      return compoundnbt;
-	   }
+	}
+	
+	public static CompoundNBT createStructureSize(int X, int Y, int Z) {
+	      CompoundNBT compoundnbt = new CompoundNBT();
+	      compoundnbt.putInt("X", X+1);
+	      compoundnbt.putInt("Y", Y+1);
+	      compoundnbt.putInt("Z", Z+1);
+	      return compoundnbt;
+	}
 }
