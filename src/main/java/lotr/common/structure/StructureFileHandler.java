@@ -11,7 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.FolderName;
 
-public class StructureSaveHandler {
+public class StructureFileHandler {
 	private static final FolderName STRUCTURE_GEN_FOLDER = new FolderName("structure_gen");
 	
 	public static CompoundNBT load(String fileName, ServerWorld world) {
@@ -51,22 +51,26 @@ public class StructureSaveHandler {
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		return new File(dir, fileName+".dat");
+		return new File(dir, fileName + ".dat");
 	}
-	
+
 	public static CompoundNBT writeBlockPos(int X, int Y, int Z) {
-	      CompoundNBT compoundnbt = new CompoundNBT();
-	      compoundnbt.putInt("X", X);
-	      compoundnbt.putInt("Y", Y);
-	      compoundnbt.putInt("Z", Z);
-	      return compoundnbt;
+		CompoundNBT compoundnbt = new CompoundNBT();
+		compoundnbt.putInt("X", X);
+		compoundnbt.putInt("Y", Y);
+		compoundnbt.putInt("Z", Z);
+		return compoundnbt;
 	}
-	
+
+	public static RelativePosition readBlockPos(CompoundNBT compoundnbt) {
+	    return new RelativePosition(compoundnbt.getInt("X"), compoundnbt.getInt("Y"), compoundnbt.getInt("Z"));
+	}
+
 	public static CompoundNBT createStructureSize(int X, int Y, int Z) {
-	      CompoundNBT compoundnbt = new CompoundNBT();
-	      compoundnbt.putInt("X", X+1);
-	      compoundnbt.putInt("Y", Y+1);
-	      compoundnbt.putInt("Z", Z+1);
-	      return compoundnbt;
+		CompoundNBT compoundnbt = new CompoundNBT();
+		compoundnbt.putInt("X", X + 1);
+		compoundnbt.putInt("Y", Y + 1);
+		compoundnbt.putInt("Z", Z + 1);
+		return compoundnbt;
 	}
 }

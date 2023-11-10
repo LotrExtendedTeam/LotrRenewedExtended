@@ -173,17 +173,18 @@ public class StructureScanner {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
 					zpos++;
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
-					CompoundNBT blockData = NBTUtil.writeBlockState(state);
-					blockData.put("relativeLocation", StructureSaveHandler.writeBlockPos(xpos, ypos, zpos));
-					blockDataMap.add(blockData);
+					CompoundNBT dataHolder = new CompoundNBT();
+					dataHolder.put("blockData", NBTUtil.writeBlockState(state));
+					dataHolder.put("relativeLocation", StructureFileHandler.writeBlockPos(xpos, ypos, zpos));
+					blockDataMap.add(dataHolder);
 				}
 			}
 		}
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put("blockMap", blockDataMap);
-		dataCompound.put("structureSize", StructureSaveHandler.createStructureSize(xpos, ypos, zpos));
+		dataCompound.put("structureSize", StructureFileHandler.createStructureSize(xpos, ypos, zpos));
 		dataCompound.putString("structureName", name);
-		StructureSaveHandler.save(name, context.getSource().getLevel(), dataCompound);
+		StructureFileHandler.save(name, context.getSource().getLevel(), dataCompound);
 		return true;
 	}
 }
