@@ -29,7 +29,7 @@ public class StructureLoader {
 			RelativePosition pos = StructureFileHandler.readBlockPos(nbt.getCompound("relativeLocation"));
 			CompoundNBT blockData = nbt.getCompound("blockData");
 			BlockState state = NBTUtil.readBlockState(blockData);
-			BlockPos bPos = new BlockPos(context.getSource().getPosition().x+pos.X, context.getSource().getPosition().y+pos.Y, context.getSource().getPosition().z+pos.Z);
+			BlockPos bPos = new BlockPos(context.getSource().getEntity().blockPosition().getX()+pos.X, context.getSource().getEntity().blockPosition().getY()+pos.Y, context.getSource().getEntity().blockPosition().getZ()+pos.Z);
 			world.setBlockAndUpdate(bPos, state);
 		}
 		return true;

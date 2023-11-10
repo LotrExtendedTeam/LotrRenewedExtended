@@ -23,7 +23,7 @@ public class StructureFileHandler {
 				save(fileName, world, compound);
 				return compound;
 			} else {
-				return new CompoundNBT();
+				return null;
 			}
 		} catch (Exception var2) {
 			LOTRLog.error("Error loading structure files");

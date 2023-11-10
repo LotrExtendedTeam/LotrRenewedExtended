@@ -178,7 +178,9 @@ public class StructureScanner {
 					dataHolder.put("relativeLocation", StructureFileHandler.writeBlockPos(xpos, ypos, zpos));
 					blockDataMap.add(dataHolder);
 				}
+				zpos = -1;
 			}
+			xpos = -1;
 		}
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put("blockMap", blockDataMap);
