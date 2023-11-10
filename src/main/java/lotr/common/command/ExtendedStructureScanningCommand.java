@@ -6,7 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.structure.ScanHandler;
+import lotr.common.structure.StructureScanner;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.BlockPosArgument;
@@ -33,7 +33,7 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 	}
 
 	private static int scanStructure(CommandContext<CommandSource> context) {
-		if(ScanHandler.scanStructure(context)){
+		if(StructureScanner.scanStructure(context)){
 			context.getSource().sendSuccess(new StringTextComponent("Scanned Successfully") , true);
 		}
 		else {
@@ -43,11 +43,11 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 	}
 	private static int setCorner(CommandContext<CommandSource> context, boolean one) throws CommandSyntaxException {
 		if(one){
-			ScanHandler.setPos1(BlockPosArgument.getLoadedBlockPos(context, "corner"));
+			StructureScanner.setPos1(BlockPosArgument.getLoadedBlockPos(context, "corner"));
 			context.getSource().sendSuccess(new StringTextComponent("Set Pos1") , true);
 		}
 		else {
-			ScanHandler.setPos2(BlockPosArgument.getLoadedBlockPos(context, "corner"));
+			StructureScanner.setPos2(BlockPosArgument.getLoadedBlockPos(context, "corner"));
 			context.getSource().sendSuccess(new StringTextComponent("Set Pos2") , true);
 		}
 		return 0;

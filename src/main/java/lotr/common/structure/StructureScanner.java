@@ -19,7 +19,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class ScanHandler {
+public class StructureScanner {
 	private static ServerPlayerEntity selectedPlayer;
 	private static String wandID;
 	private static BlockPos pos1;
@@ -77,37 +77,37 @@ public class ScanHandler {
 		return selectedPlayer;
 	}
 	public static void setSelectedPlayer(ServerPlayerEntity selectedPlayer) {
-		ScanHandler.selectedPlayer = selectedPlayer;
+		StructureScanner.selectedPlayer = selectedPlayer;
 	}
 	public static BlockPos getPos1() {
 		return pos1;
 	}
 	public static void setPos1(BlockPos pos1) {
-		ScanHandler.pos1 = pos1;
+		StructureScanner.pos1 = pos1;
 	}
 	public static BlockPos getPos2() {
 		return pos2;
 	}
 	public static void setPos2(BlockPos pos2) {
-		ScanHandler.pos2 = pos2;
+		StructureScanner.pos2 = pos2;
 	}
 	public static Boolean getBlockStateFlag() {
 		return blockStateFlag;
 	}
 	public static void setBlockStateFlag(Boolean blockStateFlag) {
-		ScanHandler.blockStateFlag = blockStateFlag;
+		StructureScanner.blockStateFlag = blockStateFlag;
 	}
 	public static Boolean getEntityStateFlag() {
 		return entityStateFlag;
 	}
 	public static void setEntityStateFlag(Boolean entityStateFlag) {
-		ScanHandler.entityStateFlag = entityStateFlag;
+		StructureScanner.entityStateFlag = entityStateFlag;
 	}
 	public static Boolean getNbtStateFlag() {
 		return nbtStateFlag;
 	}
 	public static void setNbtStateFlag(Boolean nbtStateFlag) {
-		ScanHandler.nbtStateFlag = nbtStateFlag;
+		StructureScanner.nbtStateFlag = nbtStateFlag;
 	}
 
 	public static boolean scanStructure(CommandContext<CommandSource> context) {
