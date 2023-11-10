@@ -111,6 +111,16 @@ mixin {
     overwriteErrorLevel = 'error'
 }
 
+// Configure server resource processing
+project.processResources {
+	from (sourceSets.main.resources.srcDirs) {
+		include 'META-INF/mods.toml'
+		duplicatesStrategy = DuplicatesStrategy.INCLUDE
+		expand (
+			'version': version
+		)
+	}
+}
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
