@@ -17,6 +17,9 @@ public class StructureLoader {
 		String name = StringArgumentType.getString(context, "name");
 		ServerWorld world = context.getSource().getLevel();
 		CompoundNBT compound = StructureFileHandler.load(name, world);
+		if(compound==null) {
+			return false;
+		}
 		
 		CompoundNBT size = compound.getCompound("structureSize");
 		ListNBT blockMap = compound.getList("blockMap", 10);

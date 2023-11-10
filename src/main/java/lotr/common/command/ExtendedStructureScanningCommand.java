@@ -6,6 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.structure.StructureLoader;
 import lotr.common.structure.StructureScanner;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("lotr_structure_scan")
+		dispatcher.register(Commands.literal("lotr_structure")
 				.requires(context -> context.hasPermission(4))
 				.then(Commands.literal("scan")
 						.then(Commands.argument("name", StringArgumentType.word())
@@ -29,7 +30,10 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 						.then(Commands.argument("corner", BlockPosArgument.blockPos())
 								.executes(context -> setCorner(context, false))))
 				.then(Commands.literal("wand")
-						.executes(context -> giveWand(context))));
+						.executes(context -> giveWand(context)))
+				.then(Commands.literal("load")
+						.then(Commands.argument("name", StringArgumentType.word())
+								.executes(context -> loadStructure(context)))));
 	}
 
 	private static int scanStructure(CommandContext<CommandSource> context) {
@@ -38,6 +42,15 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 		}
 		else {
 			context.getSource().sendSuccess(new StringTextComponent("Scan Failed") , true);
+		}
+		return 0;
+	}
+	private static int loadStructure(CommandContext<CommandSource> context) {
+		if(StructureLoader.loadStructure(context)){
+			context.getSource().sendSuccess(new StringTextComponent("Loaded Successfully"), false);
+		}
+		else {
+			context.getSource().sendSuccess(new StringTextComponent("Loading Failed"), false);
 		}
 		return 0;
 	}
