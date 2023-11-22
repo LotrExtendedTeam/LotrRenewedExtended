@@ -7,8 +7,6 @@ import java.util.UUID;
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
 import lotr.common.LOTRMod;
-import lotr.common.data.LOTRPlayerData;
-import lotr.common.data.PlayerDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.fellowship.ExtendedFellowshipInvite;
 import lotr.common.fellowship.ExtendedFellowshipHolderServer;

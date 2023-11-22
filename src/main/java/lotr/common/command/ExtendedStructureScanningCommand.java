@@ -46,7 +46,7 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int loadStructure(CommandContext<CommandSource> context) {
-		if(StructureLoader.loadStructure(context)){
+		if(StructureLoader.loadStructure(StringArgumentType.getString(context, "name"), context.getSource().getLevel(), context.getSource().getEntity().blockPosition())){
 			context.getSource().sendSuccess(new StringTextComponent("Loaded Successfully"), false);
 		}
 		else {

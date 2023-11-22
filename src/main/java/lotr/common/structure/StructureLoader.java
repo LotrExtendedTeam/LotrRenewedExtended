@@ -1,10 +1,7 @@
 package lotr.common.structure;
 
-import com.mojang.brigadier.arguments.StringArgumentType;
-import com.mojang.brigadier.context.CommandContext;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.command.CommandSource;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
@@ -13,10 +10,8 @@ import net.minecraft.world.server.ServerWorld;
 
 public class StructureLoader {
 
-	public static boolean loadStructure(CommandContext<CommandSource> context) {
-		String name = StringArgumentType.getString(context, "name");
-		ServerWorld world = context.getSource().getLevel();
-		CompoundNBT compound = StructureFileHandler.load(name, world);
+	public static boolean loadStructure(String strName, ServerWorld world, BlockPos pos) {
+		CompoundNBT compound = StructureFileHandler.load(strName, world);
 		if(compound==null) {
 			return false;
 		}
@@ -26,10 +21,10 @@ public class StructureLoader {
 		
 		for (int i = 0; i < blockMap.size(); i++) {
 			CompoundNBT nbt = blockMap.getCompound(i);
-			RelativePosition pos = StructureFileHandler.readBlockPos(nbt.getCompound("relativeLocation"));
+			RelativePosition rpos = StructureFileHandler.readBlockPos(nbt.getCompound("relativeLocation"));
 			CompoundNBT blockData = nbt.getCompound("blockData");
 			BlockState state = NBTUtil.readBlockState(blockData);
-			BlockPos bPos = new BlockPos(context.getSource().getEntity().blockPosition().getX()+pos.X, context.getSource().getEntity().blockPosition().getY()+pos.Y, context.getSource().getEntity().blockPosition().getZ()+pos.Z);
+			BlockPos bPos = new BlockPos(pos.getX()+rpos.X, pos.getY()+rpos.Y, pos.getZ()+rpos.Z);
 			world.setBlockAndUpdate(bPos, state);
 		}
 		return true;
