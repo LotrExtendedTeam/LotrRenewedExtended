@@ -204,6 +204,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = BLOCKS.register("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = BLOCKS.register("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
+		//TODO add block props
+		ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE = BLOCKS.register("half_troll_crafting_table", () -> new ExtendedFactionCraftingTableBlock.HalfTroll(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.GUNDABAD_CRAFTING_TABLE = BLOCKS.register("gundabad_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Gundabad(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = BLOCKS.register("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = BLOCKS.register("morgul_lantern", MorgulLanternBlock::new);
 		

@@ -175,6 +175,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_STAIRS;
 	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_WALL;
 	
+	public static RegistryObject<Item> MORWAITH_CRAFTING_TABLE;
+
+	public static RegistryObject<Item> GUNDABAD_CRAFTING_TABLE;
+
+	public static RegistryObject<Item> HALF_TROLL_CRAFTING_TABLE;
+
 	public static RegistryObject<Item> RED_RHUNIC_BRICK;
 	public static RegistryObject<Item> RED_RHUNIC_BRICK_SLAB;
 	public static RegistryObject<Item> RED_RHUNIC_BRICK_STAIRS;

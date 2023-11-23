@@ -286,6 +286,9 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.RHUNIC_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.GUNDABAD_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.MORWAITH_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItem(ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 
 		//########################################################################MISC##########################################################
 

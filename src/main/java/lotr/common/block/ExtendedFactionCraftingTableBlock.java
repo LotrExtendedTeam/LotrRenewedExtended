@@ -23,4 +23,19 @@ public class ExtendedFactionCraftingTableBlock {
 			super(block, FactionPointers.RHUDEL, ExtendedRecipes.RHUNIC_CRAFTING, "rhunic_crafting");
 		}
 	}
+	public static class Gundabad extends FactionCraftingTableBlock {
+		public Gundabad(Supplier<? extends Block> block) {
+			super(block, FactionPointers.NORTHERN_ORCS, ExtendedRecipes.GUNDABAD_CRAFTING, "northern_orc_crafting");
+		}
+	}
+	public static class Morwaith extends FactionCraftingTableBlock {
+		public Morwaith(Supplier<? extends Block> block) {
+			super(block, FactionPointers.MORWAITH, ExtendedRecipes.MORWAITH_CRAFTING, "morwaith_crafting");
+		}
+	}
+	public static class HalfTroll extends FactionCraftingTableBlock {
+		public HalfTroll(Supplier<? extends Block> block) {
+			super(block, FactionPointers.HALF_TROLLS, ExtendedRecipes.HALF_TROLL_CRAFTING, "half_troll_crafting");
+		}
+	}
 }

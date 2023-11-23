@@ -32,12 +32,15 @@ public class MixinLOTRRecipes {
 		ExtendedRecipes.TAURETHRIM_CRAFTING = registerFaction("taurethrim", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE);
 		ExtendedRecipes.DOL_GULDUR_CRAFTING = registerFaction("dol_guldur", ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE);
 		ExtendedRecipes.RHUNIC_CRAFTING = registerFaction("rhunic", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
+		ExtendedRecipes.MORWAITH_CRAFTING = registerFaction("morwaith", ExtendedBlocks.MORWAITH_CRAFTING_TABLE);
+		ExtendedRecipes.HALF_TROLL_CRAFTING = registerFaction("half_troll", ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE);
+		ExtendedRecipes.GUNDABAD_CRAFTING = registerFaction("northern_orc", ExtendedBlocks.GUNDABAD_CRAFTING_TABLE);
 	}
 	
 	@Inject(method = "registerMulti(Ljava/lang/String;Ljava/util/List;)Llotr/common/recipe/MultiTableType;", at = @At("HEAD"), remap=false, cancellable = true)
 	private static void injectMultipart(String s, List<FactionTableType> types, CallbackInfoReturnable<MultiTableType> ci) {
 		if(s.equals("any_orc")) {
-			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.URUK_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING)));
+			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.URUK_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING, ExtendedRecipes.GUNDABAD_CRAFTING, ExtendedRecipes.HALF_TROLL_CRAFTING)));
 		}
 		if(s.equals("any_morgul")) {
 			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING)));
