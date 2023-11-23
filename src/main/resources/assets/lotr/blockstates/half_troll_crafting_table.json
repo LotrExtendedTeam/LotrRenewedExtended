@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "lotr:block/half-troll_crafting_table" }
+        "": { "model": "lotr:block/half_troll_crafting_table" }
     }
 }
