@@ -233,5 +233,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MOSSY_DRYSTONE_WALL;
 	
 	public static RegistryObject<Item> MORGUL_TORCH;
+
+	public static RegistryObject<Item> SILVER_COIN_ONE;
+
+	public static RegistryObject<Item> SILVER_COIN_TEN;
+
+	public static RegistryObject<Item> SILVER_COIN_HUNDRED;
 }
 

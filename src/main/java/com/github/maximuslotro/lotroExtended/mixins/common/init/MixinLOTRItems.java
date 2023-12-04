@@ -294,5 +294,8 @@ public class MixinLOTRItems {
 
 		ExtendedItems.HOBBIT_MARRIAGE_RING =  regItem("hobbit_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
 		ExtendedItems.DWARF_MARRIAGE_RING =  regItem("dwarven_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
+		ExtendedItems.SILVER_COIN_ONE = regItem("silver_coin_one", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC)); });
+		ExtendedItems.SILVER_COIN_TEN = regItem("silver_coin_ten", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC)); });
+		ExtendedItems.SILVER_COIN_HUNDRED = regItem("silver_coin_hundred", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC)); });
 	}
 }
