@@ -39,7 +39,7 @@ public class StructureFileIO {
 				fileStream.close();
 				return compound;
 			} else {
-				ResourceLocation location = new ResourceLocation("lotr", "structurefiles/"+fileName+".dat");
+				ResourceLocation location = new ResourceLocation("lotr:lotr_structures/"+fileName+".dat");
 				try (IResource iresource = server.getDataPackRegistries().getResourceManager().getResource(location)) {
 					return CompressedStreamTools.readCompressed(iresource.getInputStream());
 				} catch (FileNotFoundException filenotfoundexception) {
