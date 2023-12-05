@@ -4,6 +4,8 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
+import lotr.common.structure.StructureFile;
+import lotr.common.structure.StructureFileHandler;
 import lotr.common.world.gen.feature.LOTRFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,6 +17,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends Feature<FC>{
 	public int initialX;
@@ -110,5 +113,8 @@ public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends F
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, Block block, int extra) {
 	    world.setBlock(pos, block.defaultBlockState(), 0);
+	}
+	public StructureFile getStructure(String name) {
+		return StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
 	}
 }

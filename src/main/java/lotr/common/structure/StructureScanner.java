@@ -179,7 +179,7 @@ public class StructureScanner {
 					}
 					CompoundNBT dataHolder = new CompoundNBT();
 					dataHolder.put("blockData", NBTUtil.writeBlockState(state));
-					dataHolder.put("relativeLocation", StructureFileHandler.writeBlockPos(xpos, ypos, zpos));
+					dataHolder.put("relativeLocation", writeBlockPos(xpos, ypos, zpos));
 					blockDataMap.add(dataHolder);
 				}
 				zpos = -1;
@@ -188,9 +188,25 @@ public class StructureScanner {
 		}
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put("blockMap", blockDataMap);
-		dataCompound.put("structureSize", StructureFileHandler.createStructureSize(xpos, ypos, zpos));
+		dataCompound.put("structureSize", createStructureSize(xpos, ypos, zpos));
 		dataCompound.putString("structureName", name);
-		StructureFileHandler.save(name, context.getSource().getLevel(), dataCompound);
+		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;
+	}
+
+	private static CompoundNBT writeBlockPos(int X, int Y, int Z) {
+		CompoundNBT compoundnbt = new CompoundNBT();
+		compoundnbt.putInt("X", X);
+		compoundnbt.putInt("Y", Y);
+		compoundnbt.putInt("Z", Z);
+		return compoundnbt;
+	}
+
+	private static CompoundNBT createStructureSize(int X, int Y, int Z) {
+		CompoundNBT compoundnbt = new CompoundNBT();
+		compoundnbt.putInt("X", X + 1);
+		compoundnbt.putInt("Y", Y + 1);
+		compoundnbt.putInt("Z", Z + 1);
+		return compoundnbt;
 	}
 }

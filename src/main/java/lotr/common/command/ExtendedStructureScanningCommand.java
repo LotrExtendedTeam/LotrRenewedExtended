@@ -6,13 +6,19 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.structure.StructureLoader;
+import lotr.common.structure.RelativePosition;
+import lotr.common.structure.StructureFile;
+import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.StructureScanner;
+import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 
 
@@ -46,7 +52,17 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int loadStructure(CommandContext<CommandSource> context) {
-		if(StructureLoader.loadStructure(StringArgumentType.getString(context, "name"), context.getSource().getLevel(), context.getSource().getEntity().blockPosition())){
+		StructureFile file = StructureFileHandler.getStructureFile(StringArgumentType.getString(context, "name"), context.getSource().getLevel().getServer());
+		if(file!=null){
+			BlockPos pos = context.getSource().getEntity().blockPosition();
+			for (int i = 0; i < file.getLayers().size(); i++) {
+				CompoundNBT nbt = file.getLayers().getCompound(i);
+				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound("relativeLocation"));
+				CompoundNBT blockData = nbt.getCompound("blockData");
+				BlockState state = NBTUtil.readBlockState(blockData);
+				BlockPos bPos = new BlockPos(pos.getX()+rpos.X, pos.getY()+rpos.Y, pos.getZ()+rpos.Z);
+				context.getSource().getLevel().setBlockAndUpdate(bPos, state);
+			}
 			context.getSource().sendSuccess(new StringTextComponent("Loaded Successfully"), false);
 		}
 		else {

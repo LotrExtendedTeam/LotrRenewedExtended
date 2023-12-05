@@ -1,76 +1,44 @@
 package lotr.common.structure;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import lotr.common.LOTRLog;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.FolderName;
 
 public class StructureFileHandler {
-	private static final FolderName STRUCTURE_GEN_FOLDER = new FolderName("structure_gen");
+	private static Map<String, StructureFile> loadedStructures = new HashMap<>();
 	
-	public static CompoundNBT load(String fileName, ServerWorld world) {
+	public static StructureFile getStructureFile(String strName, MinecraftServer server) {
+		if(loadedStructures.containsKey(strName)) {
+			return loadedStructures.get(strName);
+		}
+		CompoundNBT compound = StructureFileIO.load(strName, server);
+		if(compound==null) {
+			return null;
+		}
+		
+		CompoundNBT size;
+		ListNBT blockMap;
 		try {
-			if (getStructureDat(fileName, world).exists()) {
-				FileInputStream fileStream = new FileInputStream(getStructureDat(fileName, world));
-				CompoundNBT compound = CompressedStreamTools.readCompressed(fileStream);
-				fileStream.close();
-				save(fileName, world, compound);
-				return compound;
-			} else {
-				return null;
-			}
-		} catch (Exception var2) {
-			LOTRLog.error("Error loading structure files");
-			var2.printStackTrace();
+			size = compound.getCompound("structureSize");
+			blockMap = compound.getList("blockMap", 10);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return null;
-	}
-
-	public static void save(String fileName, ServerWorld world, CompoundNBT compound) {
-		try {
-			File structureGen = getStructureDat(fileName, world);
-			if (!structureGen.exists()) {
-				CompressedStreamTools.writeCompressed(new CompoundNBT(), new FileOutputStream(structureGen));
-			}
-			CompressedStreamTools.writeCompressed(compound, new FileOutputStream(structureGen));
-		} catch (Exception var3) {
-			LOTRLog.error("Error saving structure");
-			var3.printStackTrace();
+		if(size.isEmpty()) {
+			LOTRLog.error("Loaded empty structure size! "+strName);
+			return null;
 		}
-	}
-
-	private static File getStructureDat(String fileName, ServerWorld world) {
-		MinecraftServer server = world.getServer();
-		File dir = server.getWorldPath(STRUCTURE_GEN_FOLDER).toFile();
-		if (!dir.exists()) {
-			dir.mkdirs();
+		if(blockMap.isEmpty()) {
+			LOTRLog.error("Loaded empty structure array! "+strName);
+			return null;
 		}
-		return new File(dir, fileName + ".dat");
-	}
-
-	public static CompoundNBT writeBlockPos(int X, int Y, int Z) {
-		CompoundNBT compoundnbt = new CompoundNBT();
-		compoundnbt.putInt("X", X);
-		compoundnbt.putInt("Y", Y);
-		compoundnbt.putInt("Z", Z);
-		return compoundnbt;
-	}
-
-	public static RelativePosition readBlockPos(CompoundNBT compoundnbt) {
-	    return new RelativePosition(compoundnbt.getInt("X"), compoundnbt.getInt("Y"), compoundnbt.getInt("Z"));
-	}
-
-	public static CompoundNBT createStructureSize(int X, int Y, int Z) {
-		CompoundNBT compoundnbt = new CompoundNBT();
-		compoundnbt.putInt("X", X + 1);
-		compoundnbt.putInt("Y", Y + 1);
-		compoundnbt.putInt("Z", Z + 1);
-		return compoundnbt;
+		StructureFile file = new StructureFile(strName, blockMap, size);
+		loadedStructures.put(strName, file);
+		return file;
 	}
 }
