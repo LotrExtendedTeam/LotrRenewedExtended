@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -173,6 +174,9 @@ public class StructureScanner {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
 					zpos++;
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
+					if(state.getBlock().equals(Blocks.REDSTONE_BLOCK)) {
+						state = Blocks.AIR.defaultBlockState();
+					}
 					CompoundNBT dataHolder = new CompoundNBT();
 					dataHolder.put("blockData", NBTUtil.writeBlockState(state));
 					dataHolder.put("relativeLocation", StructureFileHandler.writeBlockPos(xpos, ypos, zpos));
