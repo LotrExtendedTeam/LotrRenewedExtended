@@ -21,6 +21,6 @@ public class MixinLOTRLootFunctions {
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedLootFunctions(CallbackInfo ci) {
-		ExtendedLootFunctions.WARG_FUR_TYPE = registerFunction("WARG_FUR_TYPE", new SetWargFurType.Serializer());
+		ExtendedLootFunctions.WARG_FUR_TYPE = registerFunction("warg_fur_type", new SetWargFurType.Serializer());
 	}
 }

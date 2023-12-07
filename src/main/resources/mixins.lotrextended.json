@@ -9,7 +9,6 @@
 		"common.config.MixinServerConfig",
 		"common.data.MixinLOTRPlayerData",
 		"common.data.MixinLOTRLevelData",
-		"common.entity.npc.MixinNPCEntity",
 		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRBlocks",
 		"common.init.MixinLOTRCommands",
@@ -17,6 +16,7 @@
 		"common.init.MixinLOTRMaterial",
 		"common.init.MixinLOTRRecipes",
 		"common.init.MixinLOTRSoundEvents",
+		"common.loot.functions.MixinLOTRLootFunctions",
 		"common.network.MixinLOTRPacketHandler",
 		"common.world.biome.MixinShireBiome",
 		"common.world.gen.feature.MixinLOTRFeatures"
