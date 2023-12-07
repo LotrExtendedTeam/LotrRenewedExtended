@@ -91,6 +91,11 @@ public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends F
         return 0;
     }
 
+	public void setAllBelowToBlock(ISeedReader world, int x, int y, int z, Block block) {
+		for (int level = y-1; isOpaque(world, x, level, z) && (level+initialY) >= 0; level--) {
+			setBlockAndMetadata(world, x, level, z, block);
+		}
+	}
 	public boolean isOpaque(ISeedReader world, int x, int y, int z) {
 		x += initialX;
 	    y += initialY;
@@ -105,15 +110,27 @@ public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends F
 	    z += initialZ;
 	    LOTRFeatures.setGrassToDirtBelow(world, new BlockPos(x,y,z));
 	}
-	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, Block block, int extra) {
+
+	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, Block block) {
 		x += initialX;
 	    y += initialY;
 	    z += initialZ;
-	    world.setBlock(new BlockPos(x,y,z), block.defaultBlockState(), 0);
+	    setBlockAndMetadata(world, new BlockPos(x,y,z), block);
 	}
-	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, Block block, int extra) {
+	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, Block block) {
 	    world.setBlock(pos, block.defaultBlockState(), 0);
 	}
+
+	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, BlockState blockstate) {
+		x += initialX;
+	    y += initialY;
+	    z += initialZ;
+	    setBlockAndMetadata(world, new BlockPos(x,y,z), blockstate);
+	}
+	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, BlockState blockstate) {
+	    world.setBlock(pos, blockstate, 0);
+	}
+
 	public StructureFile getStructure(String name) {
 		return StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
 	}

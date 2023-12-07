@@ -31,7 +31,7 @@ public class HobbitHoleFeature extends ExtendedStructureBase<HobbitHoleFeatureCo
 	          int k2 = i36;
 	          if (i38 * i38 + j2 * j2 + k2 * k2 < (radius + extraRadius) * (radius + extraRadius)) {
 	            boolean bool = isOpaque(world, i3, i37 + 1, i36);
-	            setBlockAndMetadata(world,i3, i37, i36, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT, 0);
+	            setBlockAndMetadata(world,i3, i37, i36, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT);
 	            setGrassToDirt(world, i3, i37, i36);
 	          } 
 	        } 
@@ -42,24 +42,24 @@ public class HobbitHoleFeature extends ExtendedStructureBase<HobbitHoleFeatureCo
 	        if (i3 * i3 + i36 * i36 < radius * radius)
 	          for (int i37 = -1; isOpaque(world, i3, i37, i36) && (i37+initialY) >= 0; i37--) {
 	            boolean bool = isOpaque(world, i3, i37 + 1, i36);
-	            setBlockAndMetadata(world,i3, i37, i36, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT, 0);
+	            setBlockAndMetadata(world,i3, i37, i36, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT);
 	            setGrassToDirt(world, i3, i37, i36);
 	          }  
 	      } 
 	    }
 	    setGrassToDirt(world, 0, 7, 0);
-	    setBlockAndMetadata(world, 0, 8, 0, Blocks.BRICKS, 0);
-	    setBlockAndMetadata(world, 0, 9, 0, Blocks.BRICKS, 0);
-	    setBlockAndMetadata(world, 0, 10, 0, Blocks.FLOWER_POT, 0);
+	    setBlockAndMetadata(world, 0, 8, 0, Blocks.BRICKS);
+	    setBlockAndMetadata(world, 0, 9, 0, Blocks.BRICKS);
+	    setBlockAndMetadata(world, 0, 10, 0, Blocks.FLOWER_POT);
 	    for (int i2 = -16; i2 <= -13; i2++) {
 	      for (int i36 = 1; i36 <= 4; i36++) {
 	        for (int i37 = -3; i37 <= 3; i37++)
-	        	setBlockAndMetadata(world, i37, i36, i2, Blocks.AIR, 0); 
+	        	setBlockAndMetadata(world, i37, i36, i2, Blocks.AIR); 
 	      } 
 	    } 
 	    for (int j1 = 1; j1 <= 3; j1++) {
 	      for (int i36 = -2; i36 <= 2; i36++)
-	    	  setBlockAndMetadata(world, i36, j1, -12, Blocks.AIR, 0); 
+	    	  setBlockAndMetadata(world, i36, j1, -12, Blocks.AIR); 
 	    } 
 	    int n;
 	    for (n = -17; n <= -13; n++) {
@@ -67,23 +67,23 @@ public class HobbitHoleFeature extends ExtendedStructureBase<HobbitHoleFeatureCo
 	        int i37;
 	        for (i37 = 0; i37 == 0 || (isOpaque(world, i36, i37, n) && (i37+initialY) >= 0); i37--) {
 	          boolean bool = (i37 == 0);
-	          setBlockAndMetadata(world, i36, i37, n, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT, 0);
+	          setBlockAndMetadata(world, i36, i37, n, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT);
 	        } 
 	        for (i37 = 1; i37 <= 3; i37++)
-	        	setBlockAndMetadata(world, i36, i37, n, Blocks.AIR, 0); 
+	        	setBlockAndMetadata(world, i36, i37, n, Blocks.AIR); 
 	      } 
 	    } 
 	    for (n = -16; n <= -13; n++) {
-	      setBlockAndMetadata(world, 4, 1, n, Blocks.OAK_FENCE, 0);
-	      setBlockAndMetadata(world, -4, 1, n, Blocks.OAK_FENCE, 0);
-	      setBlockAndMetadata(world, 0, 0, n, Blocks.GRASS_PATH, 0);
+	      setBlockAndMetadata(world, 4, 1, n, Blocks.OAK_FENCE);
+	      setBlockAndMetadata(world, -4, 1, n, Blocks.OAK_FENCE);
+	      setBlockAndMetadata(world, 0, 0, n, Blocks.GRASS_PATH);
 	    } 
 
 	    
 		//if (LOTRFeatures.isSurfaceBlock((IWorld) world, pos.below())) {
 			int up = 4 + rand.nextInt(3);
 			BlockPos tablePos = pos.above(up);
-			setBlockAndMetadata(world, tablePos, config.block.getBlock(), 0);
+			setBlockAndMetadata(world, tablePos, config.block.getBlock());
 			//world.setBlock(tablePos, config.block, 2);
 			return true;
 		//}
