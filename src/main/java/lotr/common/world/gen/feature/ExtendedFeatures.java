@@ -1,9 +1,7 @@
 package lotr.common.world.gen.feature;
 
-import lotr.common.world.gen.feature.structure.HobbitHoleFeature;
-import lotr.common.world.gen.feature.structure.HobbitTavernSmallFeature;
+import lotr.common.world.gen.feature.structure.ShireStructures;
 
 public class ExtendedFeatures {
-	public static HobbitHoleFeature HOBBIT_BURROW;
-	public static HobbitTavernSmallFeature HOBBIT_TAVERN_SMALL;
+	public static ShireStructures SHIRE_STRUCTURES;
 }

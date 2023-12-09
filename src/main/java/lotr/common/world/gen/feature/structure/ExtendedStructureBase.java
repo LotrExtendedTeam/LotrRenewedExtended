@@ -2,7 +2,6 @@ package lotr.common.world.gen.feature.structure;
 
 import java.util.Random;
 
-import com.mojang.serialization.Codec;
 
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
@@ -15,27 +14,21 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends Feature<FC>{
+public abstract class ExtendedStructureBase{
 	public int initialX;
 	public int initialY;
 	public int initialZ;
 	public int rot;
-	public ExtendedStructureBase(Codec<FC> codec) {
-		super(codec);
+
+	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
+		return placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
 	}
 
-	@Override
-	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, FC config) {
-		return placeWithRotation(world, generator, rand, pos, config, rand.nextInt(4));
-	}
+	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot);
 
-	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, FC config, int rot);
-
-	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, FC config, int rot) {
+	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot) {
 		this.rot = rot;
 		this.initialX = pos.getX();
 		this.initialY = pos.getY();
@@ -118,7 +111,7 @@ public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends F
 	    setBlockAndMetadata(world, new BlockPos(x,y,z), block);
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, Block block) {
-	    world.setBlock(pos, block.defaultBlockState(), 0);
+		setBlockAndMetadata(world, pos, block.defaultBlockState());
 	}
 
 	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, BlockState blockstate) {
@@ -128,7 +121,7 @@ public abstract class ExtendedStructureBase<FC extends IFeatureConfig> extends F
 	    setBlockAndMetadata(world, new BlockPos(x,y,z), blockstate);
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, BlockState blockstate) {
-	    world.setBlock(pos, blockstate, 0);
+	    world.setBlock(pos, blockstate, 3);
 	}
 
 	public StructureFile getStructure(String name) {

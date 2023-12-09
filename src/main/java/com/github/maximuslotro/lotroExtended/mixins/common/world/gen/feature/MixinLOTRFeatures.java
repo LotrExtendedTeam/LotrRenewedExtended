@@ -8,12 +8,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.world.gen.feature.ExtendedFeatures;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.structure.HobbitHoleFeature;
-import lotr.common.world.gen.feature.structure.HobbitHoleFeatureConfig;
-import lotr.common.world.gen.feature.structure.HobbitTavernSmallFeature;
-import lotr.common.world.gen.feature.structure.HobbitTavernSmallFeatureConfig;
+import lotr.common.world.gen.feature.structure.ShireStructures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 @Mixin(LOTRFeatures.class)
 public class MixinLOTRFeatures {
@@ -22,7 +20,6 @@ public class MixinLOTRFeatures {
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedFeatures(CallbackInfo ci) {
-		ExtendedFeatures.HOBBIT_BURROW = preRegFeature("hobbit_hole", new HobbitHoleFeature(HobbitHoleFeatureConfig.CODEC));
-		ExtendedFeatures.HOBBIT_TAVERN_SMALL = preRegFeature("hobbit_tavern_small", new HobbitTavernSmallFeature(HobbitTavernSmallFeatureConfig.CODEC));
+		ExtendedFeatures.SHIRE_STRUCTURES = preRegFeature("shire_structures", new ShireStructures(NoFeatureConfig.CODEC));
 	}
 }

@@ -1,23 +1,19 @@
-package lotr.common.world.gen.feature.structure;
+package lotr.common.world.gen.feature.structure.standalone;
 
 import java.util.Random;
 
-import com.mojang.serialization.Codec;
-
+import lotr.common.init.LOTRBlocks;
+import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 
-public class HobbitHoleFeature extends ExtendedStructureBase<HobbitHoleFeatureConfig> {
-	public HobbitHoleFeature(Codec<HobbitHoleFeatureConfig> codec) {
-		super(codec);
-	}
+public class HobbitHoleFeature extends ExtendedStructureBase {
 
 	@Override
-	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos,
-			HobbitHoleFeatureConfig config, int rot) {
-		generateOffsets(world, rand, pos, config, rot);
+	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
+		generateOffsets(world, rand, pos, rot);
 		int radius = 16;
 		int height = 7;
 		int extraRadius = 2;
@@ -83,7 +79,7 @@ public class HobbitHoleFeature extends ExtendedStructureBase<HobbitHoleFeatureCo
 		//if (LOTRFeatures.isSurfaceBlock((IWorld) world, pos.below())) {
 			int up = 4 + rand.nextInt(3);
 			BlockPos tablePos = pos.above(up);
-			setBlockAndMetadata(world, tablePos, config.block.getBlock());
+			setBlockAndMetadata(world, tablePos, LOTRBlocks.HOBBIT_CRAFTING_TABLE.get());
 			//world.setBlock(tablePos, config.block, 2);
 			return true;
 		//}

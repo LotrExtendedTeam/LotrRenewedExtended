@@ -1,11 +1,11 @@
-package lotr.common.world.gen.feature.structure;
+package lotr.common.world.gen.feature.structure.standalone;
 
 import java.util.Random;
 
-import com.mojang.serialization.Codec;
-
+import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
+import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
@@ -14,17 +14,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 
-public class HobbitTavernSmallFeature extends ExtendedStructureBase<HobbitTavernSmallFeatureConfig> {
-	public HobbitTavernSmallFeature(Codec<HobbitTavernSmallFeatureConfig> codec) {
-		super(codec);
-	}
+public class HobbitTavernSmallFeature extends ExtendedStructureBase {
 
 	@Override
-	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos,
-			HobbitTavernSmallFeatureConfig config, int rot) {
+	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
 		StructureFile file = getStructure("hobbit_tavern_small");
 		if(file!=null){
-			generateOffsets(world, rand, pos, config, rot);
+			generateOffsets(world, rand, pos, rot);
 			for (int i = 0; i < file.getLayers().size(); i++) {
 				CompoundNBT nbt = file.getLayers().getCompound(i);
 				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound("relativeLocation"));
@@ -37,7 +33,7 @@ public class HobbitTavernSmallFeature extends ExtendedStructureBase<HobbitTavern
 				//context.getSource().getLevel().setBlockAndUpdate(bPos, state);
 			}
 			BlockPos tablePos = pos.above(8);
-			setBlockAndMetadata(world, tablePos, config.block.getBlock());
+			setBlockAndMetadata(world, tablePos, LOTRBlocks.MITHRIL_ORE.get());
 			return true;
 		}
 		return false;
