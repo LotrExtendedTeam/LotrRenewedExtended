@@ -30,6 +30,12 @@ public class HobbitTavernSmallFeature extends ExtendedStructureBase {
 					setAllBelowToBlock(world, rpos.X, rpos.Y, rpos.Z, Blocks.DIRT);
 				}
 				setBlockAndMetadata(world, rpos.X, rpos.Y, rpos.Z, blockstate);
+				if(blockstate.getBlock()==Blocks.BARREL) {
+					setLockableLootTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, "hobbit_chest");
+				}
+				if(blockstate.getBlock()==Blocks.CHEST) {
+					setLockableLootTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, "hobbit_chest");
+				}
 				//context.getSource().getLevel().setBlockAndUpdate(bPos, state);
 			}
 			BlockPos tablePos = pos.above(8);

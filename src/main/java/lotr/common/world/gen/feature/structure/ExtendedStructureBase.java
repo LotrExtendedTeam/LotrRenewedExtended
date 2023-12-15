@@ -2,14 +2,20 @@ package lotr.common.world.gen.feature.structure;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
+import lotr.common.LOTRLog;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
 import lotr.common.world.gen.feature.LOTRFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -49,7 +55,7 @@ public abstract class ExtendedStructureBase{
 
 	public boolean isSurface(ISeedReader world, int x, int y, int z) {
 		x += initialX;
-	    y += initialY;
+		y += initialY;
 	    z += initialZ;
 		return LOTRFeatures.isSurfaceBlock((IWorld) world, new BlockPos(x,y,z));
 	}
@@ -91,24 +97,24 @@ public abstract class ExtendedStructureBase{
 	}
 	public boolean isOpaque(ISeedReader world, int x, int y, int z) {
 		x += initialX;
-	    y += initialY;
-	    z += initialZ;
+		y += initialY;
+		z += initialZ;
 		BlockState belowState = world.getBlockState(new BlockPos(x, y, z));
 		return !belowState.isSolidRender(world, new BlockPos(x, y, z));
 	}
 
 	public void setGrassToDirt(ISeedReader world, int x, int y, int z) {
 		x += initialX;
-	    y += initialY;
-	    z += initialZ;
-	    LOTRFeatures.setGrassToDirtBelow(world, new BlockPos(x,y,z));
+		y += initialY;
+		z += initialZ;
+		LOTRFeatures.setGrassToDirtBelow(world, new BlockPos(x,y,z));
 	}
 
 	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, Block block) {
 		x += initialX;
-	    y += initialY;
-	    z += initialZ;
-	    setBlockAndMetadata(world, new BlockPos(x,y,z), block);
+		y += initialY;
+		z += initialZ;
+		setBlockAndMetadata(world, new BlockPos(x,y,z), block);
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, Block block) {
 		setBlockAndMetadata(world, pos, block.defaultBlockState());
@@ -126,5 +132,27 @@ public abstract class ExtendedStructureBase{
 
 	public StructureFile getStructure(String name) {
 		return StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
+	}
+
+	public void setLockableLootTileEntityContents(IBlockReader world, Random random, int x, int y, int z, String table) {
+		x += initialX;
+		y += initialY;
+		z += initialZ;
+		setLockableLootTileEntityContents(world, random, new BlockPos(x,y,z), table);
+	}
+	
+	public void setLockableLootTileEntityContents(IBlockReader world, Random random, BlockPos pos, String table) {
+		TileEntity tileentity = world.getBlockEntity(pos);
+		ResourceLocation resource = makeReasourcePath(table);
+		if (tileentity instanceof LockableLootTileEntity) {
+			((LockableLootTileEntity)tileentity).setLootTable(resource, random.nextLong());
+		}
+		else {
+			LOTRLog.error("FAILED TO SET LOOTTABLE FOR: " + pos.toString() + ", " + resource + ", NOT INSTANCE OF " + LockableLootTileEntity.class.getName());
+		}
+	}
+
+	private ResourceLocation makeReasourcePath(String part) {
+		return new ResourceLocation(LotrExtendedMod.MODID, "loot_tables/" + part + ".json");
 	}
 }
