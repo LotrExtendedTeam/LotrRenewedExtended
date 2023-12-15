@@ -153,6 +153,6 @@ public abstract class ExtendedStructureBase{
 	}
 
 	private ResourceLocation makeReasourcePath(String part) {
-		return new ResourceLocation(LotrExtendedMod.MODID, "loot_tables/" + part + ".json");
+		return new ResourceLocation(LotrExtendedMod.MODID, "chests/" + part);
 	}
 }
