@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+
 import lotr.common.LOTRLog;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -39,7 +41,7 @@ public class StructureFileIO {
 				fileStream.close();
 				return compound;
 			} else {
-				ResourceLocation location = new ResourceLocation("lotr:lotr_structures/"+fileName+".dat");
+				ResourceLocation location = new ResourceLocation(LotrExtendedMod.MODID,"structures/"+fileName+".dat");
 				try (IResource iresource = server.getDataPackRegistries().getResourceManager().getResource(location)) {
 					return CompressedStreamTools.readCompressed(iresource.getInputStream());
 				} catch (FileNotFoundException filenotfoundexception) {
