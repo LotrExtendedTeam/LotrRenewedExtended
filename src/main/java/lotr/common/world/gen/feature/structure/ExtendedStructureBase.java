@@ -171,6 +171,7 @@ public abstract class ExtendedStructureBase{
 	public void setKegTileEntityContents(IBlockReader world, Random random, BlockPos pos, List<RegistryObject<Item>> pool) {
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity) {
+			if(random.nextInt(5)==0) { return; }
 			((KegTileEntity)tileentity).fillBrewedWith(KegDrinks.SetDrink(random, pool));
 		}
 		else {
