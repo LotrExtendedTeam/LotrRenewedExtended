@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
+import lotr.common.world.gen.feature.structure.standalone.HobbitBarnFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitHoleFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitTavernSmallFeature;
 import net.minecraft.util.math.BlockPos;
@@ -22,6 +23,9 @@ public class ShireStructures extends Feature<NoFeatureConfig> {
 		int random = rand.nextInt(3);
 		if(random==0) {
 			return (new HobbitHoleFeature()).place(world, generator, rand, pos);
+		}
+		else if(random==1) {
+			return (new HobbitBarnFeature()).place(world, generator, rand, pos);
 		}
 		else {
 			return (new HobbitTavernSmallFeature()).place(world, generator, rand, pos);
