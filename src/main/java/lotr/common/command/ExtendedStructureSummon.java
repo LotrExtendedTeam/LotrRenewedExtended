@@ -8,6 +8,7 @@ import com.mojang.brigadier.context.CommandContext;
 import lotr.common.world.gen.feature.structure.standalone.HobbitBarnFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitHoleFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitTavernSmallFeature;
+import lotr.common.world.gen.feature.structure.standalone.HobbitWindmillFeature;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,6 +23,8 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 				.then(Commands.literal("hobbit_hole")
 						.executes(context -> spawnHobbitHole(context)))
 				.then(Commands.literal("hobbit_barn")
+						.executes(context -> spawnHobbitBarn(context)))
+				.then(Commands.literal("hobbit_windmill")
 						.executes(context -> spawnHobbitBarn(context))));
 	}
 
@@ -40,6 +43,12 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 	private static int spawnHobbitBarn(CommandContext<CommandSource> context) {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
 			(new HobbitBarnFeature()).place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition());
+		}
+		return 0;
+	}
+	private static int spawnHobbitWindmill(CommandContext<CommandSource> context) {
+		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
+			(new HobbitWindmillFeature()).place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition());
 		}
 		return 0;
 	}
