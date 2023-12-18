@@ -25,7 +25,7 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 				.then(Commands.literal("hobbit_barn")
 						.executes(context -> spawnHobbitBarn(context)))
 				.then(Commands.literal("hobbit_windmill")
-						.executes(context -> spawnHobbitBarn(context))));
+						.executes(context -> spawnHobbitWindmill(context))));
 	}
 
 	private static int spawnHobbitHole(CommandContext<CommandSource> context) {
