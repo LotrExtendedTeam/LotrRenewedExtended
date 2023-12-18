@@ -1,5 +1,6 @@
 package lotr.common.world.gen.feature.structure;
 
+import java.util.List;
 import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
@@ -7,10 +8,13 @@ import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 import lotr.common.LOTRLog;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
+import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
+import lotr.common.world.gen.feature.structure.parts.KegDrinks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -20,6 +24,7 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public abstract class ExtendedStructureBase{
@@ -154,5 +159,22 @@ public abstract class ExtendedStructureBase{
 
 	private ResourceLocation makeReasourcePath(String part) {
 		return new ResourceLocation(LotrExtendedMod.MODID, "chests/" + part);
+	}
+	
+	public void setKegTileEntityContents(IBlockReader world, Random random, int x, int y, int z, List<RegistryObject<Item>> pool) {
+		x += initialX;
+		y += initialY;
+		z += initialZ;
+		setKegTileEntityContents(world, random, new BlockPos(x,y,z), pool);
+	}
+
+	public void setKegTileEntityContents(IBlockReader world, Random random, BlockPos pos, List<RegistryObject<Item>> pool) {
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof KegTileEntity) {
+			((KegTileEntity)tileentity).fillBrewedWith(KegDrinks.SetDrink(random, pool));
+		}
+		else {
+			LOTRLog.error("FAILED TO SET BREW FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + KegTileEntity.class.getName());
+		}
 	}
 }
