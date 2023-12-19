@@ -1,8 +1,13 @@
 package lotr.common.entity.npc;
 
+import lotr.common.entity.npc.ai.goal.*;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.world.World;
 
 public class HobbitBartenderEntity extends HobbitEntity {
@@ -21,6 +26,29 @@ public class HobbitBartenderEntity extends HobbitEntity {
         new LOTRTradeEntry(new ItemStack(Items.field_151082_bd), 3), new LOTRTradeEntry(new ItemStack(Items.field_151147_al), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.muttonRaw), 3), new LOTRTradeEntry(new ItemStack(Items.field_151076_bf), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.rabbitRaw), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.deerRaw), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.clayMug), 1), new LOTRTradeEntry(new ItemStack(LOTRMod.clayPlate), 1), new LOTRTradeEntry(new ItemStack(LOTRMod.pipeweedLeaf), 1), new LOTRTradeEntry(new ItemStack(Items.field_151174_bG, 2), 1),
                 new LOTRTradeEntry(new ItemStack(LOTRMod.leek, 2), 1), new LOTRTradeEntry(new ItemStack(Items.field_151115_aP), 2), new LOTRTradeEntry(new ItemStack(LOTRMod.salt), 10), new LOTRTradeEntry(new ItemStack(LOTRMod.clover, 1, 1), 40), new LOTRTradeEntry(new ItemStack(Items.field_151133_ar), 3), new LOTRTradeEntry(new ItemStack(Items.field_151131_as), 4), new LOTRTradeEntry(new ItemStack(Items.field_151044_h, 2, 32767), 1) });
     */
+
+    // Remove, drink, smoke and eat AIs
+    protected void addNPCAI() {
+        ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
+        this.getNavigation().setCanFloat(true);
+        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
+        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
+        this.initialiseAttackGoals(this.getAttackGoalsHolder());
+        this.addNPCTargetingAI();
+
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, OrcEntity.class, 12.0F, 1.5, 1.8));
+        this.goalSelector.addGoal(2, new PanicGoal(this, 1.6));
+        this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(10, new TalkToCurrentGoal(this));
+        this.goalSelector.addGoal(11, new FriendlyNPCConversationGoal(this, 0.001F));
+        this.goalSelector.addGoal(12, new WatchSunriseSunsetGoal(this, 0.01F));
+        this.goalSelector.addGoal(13, new WaterAvoidingRandomWalkingGoal(this, 1.1));
+        this.goalSelector.addGoal(15, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.05F));
+        this.goalSelector.addGoal(15, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.05F));
+        this.goalSelector.addGoal(16, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(17, new LookRandomlyGoal(this));
+    }
 
     public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAligned(player);
