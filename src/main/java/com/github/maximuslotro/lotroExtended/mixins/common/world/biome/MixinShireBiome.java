@@ -23,7 +23,7 @@ public class MixinShireBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addStructures(BiomeGenerationSettings.Builder builder) {
-		ExtendedBiomeFeatures.addStructure(builder, Decoration.SURFACE_STRUCTURES, 400, ExtendedFeatures.SHIRE_STRUCTURES.configured(new NoFeatureConfig()));
+		ExtendedBiomeFeatures.addStructure(builder, Decoration.SURFACE_STRUCTURES, 100, ExtendedFeatures.SHIRE_STRUCTURES.configured(new NoFeatureConfig()));
 //		LOTRBiomeFeatures.addCraftingMonument(builder,
 //				(LOTRBlocks.HOBBIT_CRAFTING_TABLE.get()).defaultBlockState(),
 //				(new WeightedBlockStateProvider()).add((LOTRBlocks.PINE_PLANKS.get()).defaultBlockState(), 1),
