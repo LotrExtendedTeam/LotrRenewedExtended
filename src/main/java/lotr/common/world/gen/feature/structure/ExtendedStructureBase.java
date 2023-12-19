@@ -64,6 +64,12 @@ public abstract class ExtendedStructureBase{
 		}
 	}
 
+	public void fixBelowBlocks(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
+		if(!setBelowToBlockIfBlock(world, x, y, z, newBlock, oldBlock)) {
+			setAllBelowToBlock(world, x, y, z, oldBlock);
+		}
+	}
+
 	public boolean setBelowToBlockIfBlock(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
 		x += initialX;
 		y += initialY;

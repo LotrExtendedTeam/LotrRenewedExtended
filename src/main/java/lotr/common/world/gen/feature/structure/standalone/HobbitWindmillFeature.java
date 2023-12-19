@@ -28,9 +28,7 @@ public class HobbitWindmillFeature extends ExtendedStructureBase {
 				CompoundNBT blockData = nbt.getCompound("blockData");
 				BlockState blockstate = NBTUtil.readBlockState(blockData);
 				if(rpos.Y==0 && blockstate.getBlock()!=Blocks.AIR) {
-					if(!setBelowToBlockIfBlock(world, rpos.X, rpos.Y, rpos.Z, Blocks.DIRT, Blocks.GRASS_BLOCK)) {
-						setAllBelowToBlock(world, rpos.X, rpos.Y, rpos.Z, Blocks.DIRT);
-					}
+					fixBelowBlocks(world, rpos.X, rpos.Y, rpos.Z, Blocks.GRASS_BLOCK, Blocks.DIRT);
 				}
 				setBlockAndMetadata(world, rpos.X, rpos.Y, rpos.Z, blockstate);
 				if(blockstate.getBlock()==Blocks.BARREL) {
