@@ -174,7 +174,10 @@ public class StructureScanner {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
 					zpos++;
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
-					if(state.getBlock().equals(Blocks.REDSTONE_BLOCK)) {
+					if(state.getBlock().equals(Blocks.REDSTONE_BLOCK)||state.getBlock().equals(Blocks.AIR)) {
+						continue;
+					}
+					if(state.getBlock().equals(Blocks.STRUCTURE_VOID)) {
 						state = Blocks.AIR.defaultBlockState();
 					}
 					CompoundNBT dataHolder = new CompoundNBT();
