@@ -13,7 +13,8 @@ import lotr.common.world.gen.feature.LOTRFeatures;
 import lotr.common.world.gen.feature.structure.parts.KegDrinks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.BushBlock;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -23,7 +24,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -58,48 +58,32 @@ public abstract class ExtendedStructureBase{
 		initialY = height;
 	}
 
-	public boolean isSurface(ISeedReader world, int x, int y, int z) {
-		x += initialX;
-		y += initialY;
-	    z += initialZ;
-		return LOTRFeatures.isSurfaceBlock((IWorld) world, new BlockPos(x,y,z));
-	}
-
-	public int getTopBlock(ISeedReader world, int x, int z) {
-	    x += initialX;
-	    z += initialZ;
-        int oldY = initialY;
-        int newY = initialY;
-        int precY = world.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING, new BlockPos(x,0,z)).getY();
-
-        if (oldY != precY)
-        {
-            if (precY == -1)
-            {
-            	newY = 0;
-                while (world.getBlockState(new BlockPos(x,newY,z)).getMaterial() != Material.AIR)
-                {
-                	newY+=1;
-                }
-                if (oldY == newY)
-                {
-                    return newY;
-                }
-            }
-            else
-            {
-            	newY = precY;
-            }
-            return newY;
-        }
-        return 0;
-    }
-
 	public void setAllBelowToBlock(ISeedReader world, int x, int y, int z, Block block) {
-		for (int level = y-1; isOpaque(world, x, level, z) && (level+initialY) >= 0; level--) {
+		for (int level = y-1; isNotSolid(world, x, level, z) && (level+initialY) >= 0; level--) {
 			setBlockAndMetadata(world, x, level, z, block);
 		}
 	}
+
+	public boolean setBelowToBlockIfBlock(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
+		x += initialX;
+		y += initialY;
+		z += initialZ;
+		BlockPos pos = new BlockPos(x, y, z);
+		if(world.getBlockState(pos.below()).getBlock().equals(oldBlock)) {
+			setBlockAndMetadata(world, pos, newBlock);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isNotSolid(ISeedReader world, int x, int y, int z) {
+		x += initialX;
+		y += initialY;
+		z += initialZ;
+		BlockState belowState = world.getBlockState(new BlockPos(x, y, z));
+		return belowState.getBlock().equals(Blocks.AIR)||(belowState.getBlock() instanceof BushBlock);
+	}
+
 	public boolean isOpaque(ISeedReader world, int x, int y, int z) {
 		x += initialX;
 		y += initialY;
