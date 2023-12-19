@@ -6,6 +6,7 @@ import java.util.Random;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
 import lotr.common.LOTRLog;
+import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
 import lotr.common.tileentity.KegTileEntity;
@@ -39,15 +40,16 @@ public abstract class ExtendedStructureBase{
 
 	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot);
 
-	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot) {
+	//TODO deal with rotation and offsets
+	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot, RelativePosition offset) {
 		this.rot = rot;
 		this.initialX = pos.getX();
 		this.initialY = pos.getY();
 		this.initialZ = pos.getZ();
-		findSurface(world, pos, rot);
+		findSurface(world, pos);
 	}
 
-	public void findSurface(ISeedReader world, BlockPos pos, int rot) {
+	public void findSurface(ISeedReader world, BlockPos pos) {
 		int height =initialY;
 		for (int y = 8; (initialY+y) >= 0; y--) {
 		      if (!LOTRFeatures.isSurfaceBlock((IWorld) world, new BlockPos(pos.getX(), initialY+y, pos.getZ()))) {
@@ -64,12 +66,6 @@ public abstract class ExtendedStructureBase{
 		}
 	}
 
-	public void fixBelowBlocks(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
-		if(!setBelowToBlockIfBlock(world, x, y, z, newBlock, oldBlock)) {
-			setAllBelowToBlock(world, x, y, z, oldBlock);
-		}
-	}
-
 	public boolean setBelowToBlockIfBlock(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
 		x += initialX;
 		y += initialY;
@@ -80,6 +76,12 @@ public abstract class ExtendedStructureBase{
 			return true;
 		}
 		return false;
+	}
+
+	public void fixBelowBlocks(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
+		if(!setBelowToBlockIfBlock(world, x, y, z, newBlock, oldBlock)) {
+			setAllBelowToBlock(world, x, y, z, oldBlock);
+		}
 	}
 	
 	public boolean isNotSolid(ISeedReader world, int x, int y, int z) {

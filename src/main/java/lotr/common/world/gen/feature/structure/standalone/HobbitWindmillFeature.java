@@ -21,7 +21,7 @@ public class HobbitWindmillFeature extends ExtendedStructureBase {
 	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
 		StructureFile file = getStructure("hobbit_windmill");
 		if(file!=null){
-			generateOffsets(world, rand, pos, rot);
+			generateOffsets(world, rand, pos, rot, file.readStructureSize());
 			for (int i = 0; i < file.getLayers().size(); i++) {
 				CompoundNBT nbt = file.getLayers().getCompound(i);
 				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound("relativeLocation"));

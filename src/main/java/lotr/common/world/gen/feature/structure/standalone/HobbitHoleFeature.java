@@ -3,6 +3,7 @@ package lotr.common.world.gen.feature.structure.standalone;
 import java.util.Random;
 
 import lotr.common.init.LOTRBlocks;
+import lotr.common.structure.RelativePosition;
 import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +14,7 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 
 	@Override
 	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
-		generateOffsets(world, rand, pos, rot);
+		generateOffsets(world, rand, pos, rot, new RelativePosition(0, 0, 0));
 		int radius = 16;
 		int height = 7;
 		int extraRadius = 2;
