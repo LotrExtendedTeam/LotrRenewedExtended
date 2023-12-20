@@ -3,6 +3,7 @@ package lotr.common.structure;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
+import lotr.common.LOTRLog;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -164,9 +165,13 @@ public class StructureScanner {
 		ListNBT blockDataMap = new ListNBT();
 		BlockPos bottomFrontLeft = new BlockPos(bottomFrontLeftX,bottomFrontLeftY,bottomFrontLeftZ);
 		BlockPos topBackRight = new BlockPos(topBackRightX,topBackRightY,topBackRightZ);
-		int ypos = -1;
+		
 		int xpos = -1;
+		int ypos = -1;
 		int zpos = -1;
+		int xSize = 0;
+		int ySize = 0;
+		int zSize = 0;
 		for(int y = bottomFrontLeft.getY(); y < topBackRight.getY()+1; y++) {
 			ypos++;
 			for(int x = bottomFrontLeft.getX(); x < topBackRight.getX()+1; x++) {
@@ -185,13 +190,29 @@ public class StructureScanner {
 					dataHolder.put("relativeLocation", writeBlockPos(xpos, ypos, zpos));
 					blockDataMap.add(dataHolder);
 				}
+				if(zpos+1>zSize &&zSize==0) {
+					zSize=zpos+1;
+				}else if(zpos+1>zSize &&zSize!=0){
+					LOTRLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON Z CONSICUTIVE PASS!");
+					LOTRLog.error("CANCELING SCAN!");
+					return false;
+				}
 				zpos = -1;
+			}
+			if(xpos+1>xSize &&xSize==0) {
+				xSize=xpos+1;
+			}else if(xpos+1>xSize &&xSize!=0){
+				LOTRLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON X CONSICUTIVE PASS!");
+				LOTRLog.error("CANCELING SCAN!");
+				return false;
 			}
 			xpos = -1;
 		}
+		ySize=ypos+1;
+		
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put("blockMap", blockDataMap);
-		dataCompound.put("structureSize", createStructureSize(xpos, ypos, zpos));
+		dataCompound.put("structureSize", createStructureSize(xSize, ySize, zSize));
 		dataCompound.putString("structureName", name);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;
@@ -207,9 +228,9 @@ public class StructureScanner {
 
 	private static CompoundNBT createStructureSize(int X, int Y, int Z) {
 		CompoundNBT compoundnbt = new CompoundNBT();
-		compoundnbt.putInt("X", X + 1);
-		compoundnbt.putInt("Y", Y + 1);
-		compoundnbt.putInt("Z", Z + 1);
+		compoundnbt.putInt("X", X);
+		compoundnbt.putInt("Y", Y);
+		compoundnbt.putInt("Z", Z);
 		return compoundnbt;
 	}
 }
