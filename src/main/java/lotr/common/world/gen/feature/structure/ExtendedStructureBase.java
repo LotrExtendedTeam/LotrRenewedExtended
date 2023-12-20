@@ -16,6 +16,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -23,7 +24,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -46,19 +46,28 @@ public abstract class ExtendedStructureBase{
 		this.initialX = (pos.getX()-((int) Math.ceil(offset.X/2)));
 		this.initialY = pos.getY();
 		this.initialZ = (pos.getZ()-((int) Math.ceil(offset.Z/2)));
-		findSurface(world);
+		//findSurface(world);
 	}
 
-	public void findSurface(ISeedReader world, BlockPos pos) {
-		int height =initialY;
-		for (int y = 8; (initialY+y) >= 0; y--) {
-		      if (!LOTRFeatures.isSurfaceBlock((IWorld) world, new BlockPos(pos.getX(), initialY+y, pos.getZ()))) {
-		        break;
-		      } 
-		      height +=y;
-		 }
-		initialY = height;
-	}
+//	public void findSurface(ISeedReader world) {
+//		System.out.println("Setting Height");
+//		int height =initialY;
+//		System.out.println("height= "+height+", initialY= "+initialY);
+//		for (int y = 8; (initialY+y) >= 0; y--) {
+//			System.out.println("height= "+height+", initialY= "+initialY+", Y= "+y);
+//			System.out.println("Looping");
+//			if (LOTRFeatures.isSurfaceBlock((IWorld) world, new BlockPos(initialX, initialY+y, initialZ))) {
+//				System.out.println("Found Surface");
+//				break;
+//			}
+//			height +=y;
+//			System.out.println("height= "+height+", initialY= "+initialY+", Y= "+y);
+//			System.out.println("End Looping");
+//		}
+//		System.out.println("height= "+height+", initialY= "+initialY);
+//		System.out.println("End Setting Height");
+//		initialY = height;
+//	}
 
 	public void setAllBelowToBlock(ISeedReader world, int x, int y, int z, Block block) {
 		for (int level = y-1; isNotSolid(world, x, level, z) && (level+initialY) >= 0; level--) {
