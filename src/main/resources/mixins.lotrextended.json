@@ -13,6 +13,7 @@
 		"common.init.MixinLOTRBlocks",
 		"common.init.MixinLOTRCommands",
 		"common.init.MixinLOTRItems",
+		"common.init.MixinLOTREntities",
 		"common.init.MixinLOTRMaterial",
 		"common.init.MixinLOTRRecipes",
 		"common.init.MixinLOTRSoundEvents",
@@ -24,7 +25,8 @@
 	
 	"client": [
 		"client.gui.MixinMiddleEarthMasterMenuScreen",
-		"client.render.entity.model.armor.MixinLOTRArmorModels"
+		"client.render.entity.model.armor.MixinLOTRArmorModels",
+		"client.render.entity.MixinLOTREntityRenderers"
 	],
 	"injectors": {
 		"defaultRequire": 1
