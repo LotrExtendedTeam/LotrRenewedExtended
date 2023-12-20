@@ -4,8 +4,6 @@ import java.util.function.Predicate;
 import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.ArmsStyleModelProvider;
 import lotr.client.render.entity.model.HobbitModel;
-import lotr.client.render.entity.model.ManModel;
-import lotr.common.entity.npc.AbstractMannishEntity;
 import lotr.common.entity.npc.HobbitEntity;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;

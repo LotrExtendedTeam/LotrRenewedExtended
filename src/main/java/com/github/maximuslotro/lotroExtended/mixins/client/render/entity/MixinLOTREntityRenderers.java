@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotroExtended.mixins.client.render.entity;
 import lotr.client.render.entity.HobbitBartenderRenderer;
 import lotr.client.render.entity.LOTREntityRenderers;
 import lotr.common.init.ExtendedNpcs;
-import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +15,7 @@ public class MixinLOTREntityRenderers {
     @Inject(method = "registerEntityRenderers()V", at = @At("HEAD"), remap=false)
     private static void addAdditionalRenderers(CallbackInfo ci) {
         // TODO: Update to bartender renderer
-        RenderingRegistry.registerEntityRenderingHandler((EntityType) ExtendedNpcs.HOBBIT_BARTENDER.get(), HobbitBartenderRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ExtendedNpcs.HOBBIT_BARTENDER.get(), HobbitBartenderRenderer::new);
     }
 
 }

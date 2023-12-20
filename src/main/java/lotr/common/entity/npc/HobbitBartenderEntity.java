@@ -1,15 +1,11 @@
 package lotr.common.entity.npc;
 
-import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.stat.LOTRStats;
-import lotr.common.util.LOTRUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
@@ -44,7 +40,7 @@ public class HobbitBartenderEntity extends HobbitEntity {
         this.addNPCTargetingAI();
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, OrcEntity.class, 12.0F, 1.5, 1.8));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<OrcEntity>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.6));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(10, new TalkToCurrentGoal(this));

@@ -5,7 +5,6 @@ import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.layers.HobbitHeldCoinLayer;
 import lotr.client.render.entity.layers.HobbitOutfitLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.inventory.EquipmentSlotType;
 
 public class HobbitBartenderRenderer extends HobbitRenderer {
