@@ -89,7 +89,7 @@ public abstract class ExtendedStructureBase{
 		y += initialY;
 		z += initialZ;
 		BlockState belowState = world.getBlockState(new BlockPos(x, y, z));
-		return belowState.getBlock().equals(Blocks.AIR)||(belowState.getBlock() instanceof BushBlock);
+		return belowState.getBlock().equals(Blocks.AIR)||(belowState.getBlock() instanceof BushBlock)||belowState.getBlock() instanceof FlowingFluidBlock;
 	}
 
 	public boolean isOpaque(ISeedReader world, int x, int y, int z) {
