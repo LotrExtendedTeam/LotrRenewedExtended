@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 
 import lotr.common.LOTRLog;
 import lotr.common.init.ExtendedItems;
+import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
@@ -163,6 +164,8 @@ public class StructureScanner {
 		}
 
 		ListNBT blockDataMap = new ListNBT();
+		ListNBT entitySpawnMap = new ListNBT();
+		ListNBT signTextMap = new ListNBT();
 		BlockPos bottomFrontLeft = new BlockPos(bottomFrontLeftX,bottomFrontLeftY,bottomFrontLeftZ);
 		BlockPos topBackRight = new BlockPos(topBackRightX,topBackRightY,topBackRightZ);
 		
@@ -184,6 +187,22 @@ public class StructureScanner {
 					}
 					if(state.getBlock().equals(Blocks.STRUCTURE_VOID)) {
 						state = Blocks.AIR.defaultBlockState();
+					}
+					if(state.getBlock() instanceof AbstractSignBlock) {
+						CompoundNBT entity = StructureScannerUtils.parseSignInfo(context.getSource().getLevel(), new BlockPos(x,y,z));
+						if(entity!=null) {
+							entity.put("relativeLocation", writeBlockPos(xpos, ypos, zpos));
+							if(entity.contains("entity")) {
+								entitySpawnMap.add(entity);
+								state = Blocks.AIR.defaultBlockState();
+							}
+							else if(entity.contains("signText")) {
+								signTextMap.add(entity);
+							}
+							else {
+								LOTRLog.error("FOUND INVALID ENTITY TYPE!");
+							}
+						}
 					}
 					CompoundNBT dataHolder = new CompoundNBT();
 					dataHolder.put("blockData", NBTUtil.writeBlockState(state));
@@ -212,6 +231,8 @@ public class StructureScanner {
 		
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put("blockMap", blockDataMap);
+		dataCompound.put("entitySpawnMap", entitySpawnMap);
+		dataCompound.put("signTextMap", signTextMap);
 		dataCompound.put("structureSize", createStructureSize(xSize, ySize, zSize));
 		dataCompound.putString("structureName", name);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
