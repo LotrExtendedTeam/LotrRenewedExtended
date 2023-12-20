@@ -40,13 +40,13 @@ public abstract class ExtendedStructureBase{
 
 	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot);
 
-	//TODO deal with rotation and offsets
+	//TODO deal with rotation
 	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot, RelativePosition offset) {
 		this.rot = rot;
-		this.initialX = pos.getX();
+		this.initialX = (pos.getX()-((int) Math.ceil(offset.X/2)));
 		this.initialY = pos.getY();
-		this.initialZ = pos.getZ();
-		findSurface(world, pos);
+		this.initialZ = (pos.getZ()-((int) Math.ceil(offset.Z/2)));
+		findSurface(world);
 	}
 
 	public void findSurface(ISeedReader world, BlockPos pos) {
