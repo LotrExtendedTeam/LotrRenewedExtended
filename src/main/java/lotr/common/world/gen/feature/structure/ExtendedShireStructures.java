@@ -14,8 +14,8 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
-public class ShireStructures extends Feature<NoFeatureConfig> {
-	public ShireStructures(Codec<NoFeatureConfig> codec) {
+public class ExtendedShireStructures extends Feature<NoFeatureConfig> {
+	public ExtendedShireStructures(Codec<NoFeatureConfig> codec) {
 		super(codec);
 	}
 

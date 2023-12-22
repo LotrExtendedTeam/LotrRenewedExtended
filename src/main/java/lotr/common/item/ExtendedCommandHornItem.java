@@ -2,7 +2,7 @@ package lotr.common.item;
 
 import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.init.LOTRItemGroups;
-import lotr.common.item.clientside.CommandHornClientSide;
+import lotr.common.item.clientside.ExtendedCommandHornClientSide;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -14,12 +14,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class CommandHornItem extends Item {
+public class ExtendedCommandHornItem extends Item {
 	public static final String type = "usageType";
-	public CommandHornItem(Properties properties) {
+	public ExtendedCommandHornItem(Properties properties) {
 		super(properties);
 	}
-	public CommandHornItem() {
+	public ExtendedCommandHornItem() {
 		super((new Item.Properties()).stacksTo(1).tab(LOTRItemGroups.COMBAT));
 	}
 
@@ -56,7 +56,7 @@ public class CommandHornItem extends Item {
 		CompoundNBT nbtTagCompound = heldItem.getTag();
 		if (nbtTagCompound == null || !nbtTagCompound.contains(type)) {
 			if (world.isClientSide()) {
-				new CommandHornClientSide().openMenu();
+				new ExtendedCommandHornClientSide().openMenu();
 			}
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 		}

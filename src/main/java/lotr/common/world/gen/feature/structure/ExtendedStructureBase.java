@@ -11,7 +11,7 @@ import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.structure.parts.KegDrinks;
+import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -173,7 +173,7 @@ public abstract class ExtendedStructureBase{
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity) {
 			if(random.nextInt(5)==0) { return; }
-			((KegTileEntity)tileentity).fillBrewedWith(KegDrinks.SetDrink(random, pool));
+			((KegTileEntity)tileentity).fillBrewedWith(ExtendedKegDrinks.SetDrink(random, pool));
 		}
 		else {
 			LOTRLog.error("FAILED TO SET BREW FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + KegTileEntity.class.getName());

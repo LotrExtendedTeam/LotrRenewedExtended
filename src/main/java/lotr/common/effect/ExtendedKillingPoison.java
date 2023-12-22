@@ -5,9 +5,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 
-public class killingPoison extends Effect{
+public class ExtendedKillingPoison extends Effect{
 
-	public killingPoison(EffectType p_i50391_1_, int p_i50391_2_) {
+	public ExtendedKillingPoison(EffectType p_i50391_1_, int p_i50391_2_) {
 		super(p_i50391_1_, p_i50391_2_);
 	}
 

@@ -6,7 +6,7 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
-import lotr.common.world.gen.feature.structure.parts.KegDrinks;
+import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
@@ -38,7 +38,7 @@ public class HobbitBarnFeature extends ExtendedStructureBase {
 					setLockableLootTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, "hobbit_chest");
 				}
 				if(blockstate.getBlock()==LOTRBlocks.KEG.get()) {
-					setKegTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, KegDrinks.shireDrinksPool);
+					setKegTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 				}
 				//context.getSource().getLevel().setBlockAndUpdate(bPos, state);
 			}

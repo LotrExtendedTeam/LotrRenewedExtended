@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.world.gen.feature.ExtendedFeatures;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.structure.ShireStructures;
+import lotr.common.world.gen.feature.structure.ExtendedShireStructures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -20,6 +20,6 @@ public class MixinLOTRFeatures {
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedFeatures(CallbackInfo ci) {
-		ExtendedFeatures.SHIRE_STRUCTURES = preRegFeature("shire_structures", new ShireStructures(NoFeatureConfig.CODEC));
+		ExtendedFeatures.SHIRE_STRUCTURES = preRegFeature("shire_structures", new ExtendedShireStructures(NoFeatureConfig.CODEC));
 	}
 }

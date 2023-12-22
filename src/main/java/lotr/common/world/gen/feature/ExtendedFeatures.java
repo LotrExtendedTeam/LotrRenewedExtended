@@ -1,7 +1,7 @@
 package lotr.common.world.gen.feature;
 
-import lotr.common.world.gen.feature.structure.ShireStructures;
+import lotr.common.world.gen.feature.structure.ExtendedShireStructures;
 
 public class ExtendedFeatures {
-	public static ShireStructures SHIRE_STRUCTURES;
+	public static ExtendedShireStructures SHIRE_STRUCTURES;
 }
