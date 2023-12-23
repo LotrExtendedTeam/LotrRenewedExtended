@@ -55,9 +55,9 @@ public class StructureScannerUtils {
 	private static String[] getFormatted(ITextComponent[] text)
     {
         String[] out = new String[text.length];
-        for (int i = 0; i < text.length; i++)
-        {
-            out[i] = text[i].getString().replace('\u00a7', '&');
+        for (int i = 0; i < text.length; i++) {
+        	out[i] = text[i].getString();
+        	//out[i] = text[i].getString().replace('\u00a7', '&');
         }
         return out;
     }

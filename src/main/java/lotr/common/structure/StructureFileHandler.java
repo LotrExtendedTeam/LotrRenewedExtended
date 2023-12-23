@@ -22,9 +22,13 @@ public class StructureFileHandler {
 		
 		CompoundNBT size;
 		ListNBT blockMap;
+		ListNBT signMap;
+		ListNBT entityMap;
 		try {
-			size = compound.getCompound("structureSize");
-			blockMap = compound.getList("blockMap", 10);
+			size = compound.getCompound(StructureScanner.structureSizeHolder);
+			blockMap = compound.getList(StructureScanner.blockMapHolder, 10);
+			signMap = compound.getList(StructureScanner.signMapHolder, 10);
+			entityMap = compound.getList(StructureScanner.entityMapHolder, 10);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
@@ -37,7 +41,13 @@ public class StructureFileHandler {
 			LOTRLog.error("Loaded empty structure array! "+strName);
 			return null;
 		}
-		StructureFile file = new StructureFile(strName, blockMap, size);
+		if(signMap.isEmpty()) {
+			LOTRLog.error("Loaded empty sign array! "+strName);
+		}
+		if(entityMap.isEmpty()) {
+			LOTRLog.error("Loaded empty entity array! "+strName);
+		}
+		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap);
 		loadedStructures.put(strName, file);
 		return file;
 	}
