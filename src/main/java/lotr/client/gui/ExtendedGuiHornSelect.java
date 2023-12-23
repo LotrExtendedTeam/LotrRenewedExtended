@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.item.CommandHornItem;
+import lotr.common.item.ExtendedCommandHornItem;
 import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.network.ExtendedSPacketSelectHorn;
 import net.minecraft.client.gui.widget.Widget;
@@ -66,7 +66,7 @@ public class ExtendedGuiHornSelect extends BasicIngameScreen{
 			this.minecraft.player.closeContainer();
 			this.onClose();
 		}
-		if(itemstack.getTag() != null && itemstack.getTag().contains(CommandHornItem.type) && itemstack.getTag().getInt(CommandHornItem.type) != 0){
+		if(itemstack.getTag() != null && itemstack.getTag().contains(ExtendedCommandHornItem.type) && itemstack.getTag().getInt(ExtendedCommandHornItem.type) != 0){
 			this.minecraft.player.closeContainer();
 			this.onClose();
 			return;

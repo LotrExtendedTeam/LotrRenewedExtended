@@ -14,8 +14,8 @@ import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class PoisonBottleItem extends Item {
-	public PoisonBottleItem(Properties properties) {
+public class ExtendedPoisonBottleItem extends Item {
+	public ExtendedPoisonBottleItem(Properties properties) {
 		super(properties);
 	}
 

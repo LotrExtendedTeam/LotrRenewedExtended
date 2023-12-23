@@ -23,6 +23,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class StructureScanner {
+	public static final String relativeLocationHolder = "relativeLocation";
+	public static final String blockMapHolder = "blockData";
+	public static final String entityMapHolder = "entitySpawnMap";
+	public static final String signMapHolder = "signTextMap";
+	public static final String signNumberHolder = "signText";
+	public static final String structureSizeHolder = "structureSize";
+	public static final String structureNameHolder = "structureName";
 	private static ServerPlayerEntity selectedPlayer;
 	private static String wandID;
 	private static BlockPos pos1;
@@ -191,7 +198,7 @@ public class StructureScanner {
 					if(state.getBlock() instanceof AbstractSignBlock) {
 						CompoundNBT entity = StructureScannerUtils.parseSignInfo(context.getSource().getLevel(), new BlockPos(x,y,z));
 						if(entity!=null) {
-							entity.put("relativeLocation", writeBlockPos(xpos, ypos, zpos));
+							entity.put(relativeLocationHolder, writeBlockPos(xpos, ypos, zpos));
 							if(entity.contains("entity")) {
 								entitySpawnMap.add(entity);
 								state = Blocks.AIR.defaultBlockState();
@@ -205,8 +212,8 @@ public class StructureScanner {
 						}
 					}
 					CompoundNBT dataHolder = new CompoundNBT();
-					dataHolder.put("blockData", NBTUtil.writeBlockState(state));
-					dataHolder.put("relativeLocation", writeBlockPos(xpos, ypos, zpos));
+					dataHolder.put(blockMapHolder, NBTUtil.writeBlockState(state));
+					dataHolder.put(relativeLocationHolder, writeBlockPos(xpos, ypos, zpos));
 					blockDataMap.add(dataHolder);
 				}
 				if(zpos+1>zSize &&zSize==0) {
@@ -230,11 +237,11 @@ public class StructureScanner {
 		ySize=ypos+1;
 		
 		CompoundNBT dataCompound = new CompoundNBT();
-		dataCompound.put("blockMap", blockDataMap);
-		dataCompound.put("entitySpawnMap", entitySpawnMap);
-		dataCompound.put("signTextMap", signTextMap);
-		dataCompound.put("structureSize", createStructureSize(xSize, ySize, zSize));
-		dataCompound.putString("structureName", name);
+		dataCompound.put(blockMapHolder, blockDataMap);
+		dataCompound.put(entityMapHolder, entitySpawnMap);
+		dataCompound.put(signMapHolder, signTextMap);
+		dataCompound.put(structureSizeHolder, createStructureSize(xSize, ySize, zSize));
+		dataCompound.putString(structureNameHolder, name);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;
 	}

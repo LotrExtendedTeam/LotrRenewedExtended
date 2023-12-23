@@ -209,7 +209,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GUNDABAD_CRAFTING_TABLE = BLOCKS.register("gundabad_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Gundabad(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = BLOCKS.register("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
-		ExtendedBlocks.MORGUL_LANTERN = BLOCKS.register("morgul_lantern", MorgulLanternBlock::new);
+		ExtendedBlocks.MORGUL_LANTERN = BLOCKS.register("morgul_lantern", ExtendedMorgulLanternBlock::new);
 		
 		ExtendedBlocks.MORGUL_TORCH = BLOCKS.register("morgul_torch", () -> new LOTRTorchBlock(14));
 		ExtendedBlocks.MORGUL_WALL_TORCH = BLOCKS.register("morgul_wall_torch", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));

@@ -15,14 +15,14 @@ import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
 
-public class SetWargFurType extends LootFunction {
+public class ExtendedSetWargFurType extends LootFunction {
 
-	private SetWargFurType(ILootCondition[] conditions) {
+	private ExtendedSetWargFurType(ILootCondition[] conditions) {
 		super(conditions);
 	}
 
 	// $FF: synthetic method
-	SetWargFurType(ILootCondition[] x0, Object x2) {
+	ExtendedSetWargFurType(ILootCondition[] x0, Object x2) {
 		this(x0);
 	}
 
@@ -58,16 +58,16 @@ public class SetWargFurType extends LootFunction {
 	}
 
 	public static Builder<?> setPouchColorFromEntityFactionBuilder() {
-		return simpleBuilder(conditions -> new SetWargFurType(conditions));
+		return simpleBuilder(conditions -> new ExtendedSetWargFurType(conditions));
 	}
 
-	public static class Serializer extends net.minecraft.loot.LootFunction.Serializer<SetWargFurType>  {
+	public static class Serializer extends net.minecraft.loot.LootFunction.Serializer<ExtendedSetWargFurType>  {
 		@Override
-		public SetWargFurType deserialize(JsonObject object, JsonDeserializationContext context, ILootCondition[] conditions) {
-			return new SetWargFurType(conditions);
+		public ExtendedSetWargFurType deserialize(JsonObject object, JsonDeserializationContext context, ILootCondition[] conditions) {
+			return new ExtendedSetWargFurType(conditions);
 		}
 
-		public void serialize(JsonObject object, SetWargFurType function, JsonSerializationContext context) {
+		public void serialize(JsonObject object, ExtendedSetWargFurType function, JsonSerializationContext context) {
 			super.serialize(object, function, context);
 		}
 	}

@@ -117,7 +117,7 @@ project.processResources {
 		include 'META-INF/mods.toml'
 		duplicatesStrategy = DuplicatesStrategy.INCLUDE
 		expand (
-			'version': version
+			'version': project.version
 		)
 	}
 }

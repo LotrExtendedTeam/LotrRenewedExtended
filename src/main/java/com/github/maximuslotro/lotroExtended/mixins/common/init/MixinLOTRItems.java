@@ -235,17 +235,17 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_HOE = regItem("dol_guldur_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		//######################################################################FOOD########################################################
 		//Berries
-		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
-		ExtendedItems.BLACKBERRY = regItem("blackberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
-		ExtendedItems.BLUEBERRY = regItem("blueberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
-		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
-		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
-		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new BerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
+		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
+		ExtendedItems.BLACKBERRY = regItem("blackberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
+		ExtendedItems.BLUEBERRY = regItem("blueberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
+		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
+		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
+		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 
-		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new PoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new ExtendedPoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC)));
 
 		//#######################################################################EQUIPMENT##################################################
-		ExtendedItems.COMMANDHORN = regItem("horn_of_command", () -> new CommandHornItem());
+		ExtendedItems.COMMANDHORN = regItem("horn_of_command", () -> new ExtendedCommandHornItem());
 
 		//Morgul Equipment
 		ExtendedItems.MORGUL_HELMET = regItem("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));

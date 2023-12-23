@@ -1,6 +1,8 @@
 package lotr.common.world.gen.feature.structure;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
@@ -9,23 +11,29 @@ import lotr.common.LOTRLog;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
+import lotr.common.structure.StructureScanner;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.structure.parts.KegDrinks;
+import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public abstract class ExtendedStructureBase{
@@ -140,6 +148,10 @@ public abstract class ExtendedStructureBase{
 		return StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
 	}
 
+	public BlockPos rPToBlockPos(RelativePosition pos) {
+		return new BlockPos(pos.X+initialX, pos.Y+initialY, pos.Z+initialZ);
+	}
+
 	public void setLockableLootTileEntityContents(IBlockReader world, Random random, int x, int y, int z, String table) {
 		x += initialX;
 		y += initialY;
@@ -173,10 +185,61 @@ public abstract class ExtendedStructureBase{
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity) {
 			if(random.nextInt(5)==0) { return; }
-			((KegTileEntity)tileentity).fillBrewedWith(KegDrinks.SetDrink(random, pool));
+			((KegTileEntity)tileentity).fillBrewedWith(ExtendedKegDrinks.SetDrink(random, pool));
 		}
 		else {
 			LOTRLog.error("FAILED TO SET BREW FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + KegTileEntity.class.getName());
+		}
+	}
+
+	public void setSignTextFromFile(IBlockReader world, Random random, StructureFile file) {
+		if(file.getSigns().isEmpty()) {
+			return;
+		}
+		Map<Integer, RelativePosition> signs = new HashMap<>();
+		for (int i = 0; i < file.getSigns().size(); i++) {
+			CompoundNBT nbt = file.getSigns().getCompound(i);
+			int num = nbt.getInt(StructureScanner.signNumberHolder);
+			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
+			signs.put(num, rpos);
+		}
+		for (int i = 0; i < signs.size(); i++) {
+			if(!signs.containsKey(i)) {
+				LOTRLog.error("INVALID SIGN COUNT FOUND IN STRUCTURE FILE: "+file.name);
+				return;
+			}
+			setSignTextFromFileData(world, random, rPToBlockPos(signs.get(i)), i);
+		}
+	}
+
+	public abstract void setSignTextFromFileData(IBlockReader world, Random random, BlockPos blockPos, int num);
+
+	public void setSignTileEntity(IBlockReader world, BlockPos pos, List<String> text) {
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof SignTileEntity) {
+			if(text.size()<1) {
+				LOTRLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", INVALID TEXT ARRAY PASSED!");
+				return;
+			}
+			ITextComponent comp1 = StringTextComponent.EMPTY;
+			ITextComponent comp2 = StringTextComponent.EMPTY;
+			ITextComponent comp3 = StringTextComponent.EMPTY;
+			ITextComponent comp4 = StringTextComponent.EMPTY;
+			if(text.size()>=1) {comp1 = new StringTextComponent(text.get(0));}
+			if(text.size()>=2) {comp2 = new StringTextComponent(text.get(1));}
+			if(text.size()>=3) {comp3 = new StringTextComponent(text.get(2));}
+			if(text.size()>=4) {comp4 = new StringTextComponent(text.get(3));}
+			if(text.size()>4) {
+				LOTRLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", INVALID TEXT ARRAY PASSED!");
+				return;
+			}
+			ITextComponent[] messages = new ITextComponent[]{comp1, comp2, comp3, comp4};
+
+			ObfuscationReflectionHelper.setPrivateValue(SignTileEntity.class, (SignTileEntity) tileentity, 
+					messages, "field_145915_a");
+		}
+		else {
+			LOTRLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + SignTileEntity.class.getName());
 		}
 	}
 }

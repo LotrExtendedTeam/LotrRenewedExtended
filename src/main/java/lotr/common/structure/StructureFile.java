@@ -6,11 +6,15 @@ import net.minecraft.nbt.ListNBT;
 public class StructureFile {
 
 	private final ListNBT layers;
+	private final ListNBT signs;
+	private final ListNBT entities;
 	public final String name;
 	private final CompoundNBT structureSize;
 
-	public StructureFile(String name, ListNBT layers, CompoundNBT structureSize) {
+	public StructureFile(String name, ListNBT layers, CompoundNBT structureSize, ListNBT signs, ListNBT entities) {
 		this.layers = layers;
+		this.signs = signs;
+		this.entities = entities;
 		this.name = name;
 		this.structureSize = structureSize;
 	}
@@ -29,5 +33,13 @@ public class StructureFile {
 	
 	public RelativePosition readStructureSize() {
 	    return new RelativePosition(structureSize.getInt("X"), structureSize.getInt("Y"), structureSize.getInt("Z"));
+	}
+
+	public ListNBT getSigns() {
+		return signs;
+	}
+
+	public ListNBT getEntities() {
+		return entities;
 	}
 }
