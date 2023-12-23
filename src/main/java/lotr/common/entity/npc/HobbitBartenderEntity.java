@@ -1,29 +1,30 @@
 package lotr.common.entity.npc;
 
+import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.init.ExtendedContainers;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
-import lotr.common.network.ExtendedOpenCoinExchangePacket;
-import lotr.common.network.ExtendedPacketHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 /**
  * @author RichardB122
  */
 public class HobbitBartenderEntity extends HobbitEntity {
-
     public HobbitBartenderEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
     }
@@ -72,7 +73,13 @@ public class HobbitBartenderEntity extends HobbitEntity {
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (canTradeWith(player)) {
             if (!this.level.isClientSide()) {
-                this.openCoinExchange((ServerPlayerEntity) player);
+            	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
+    			int id = this.getId();
+    			PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
+    			ExtendedCoinExchangeContainer.writeContainerInitData(initData, id);
+    			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> {
+    				ExtendedCoinExchangeContainer.writeContainerInitData(buf, id);
+    			});
             }
             return ActionResultType.sidedSuccess(this.level.isClientSide());
         } else {
@@ -80,23 +87,5 @@ public class HobbitBartenderEntity extends HobbitEntity {
         }
 
         return super.mobInteract(player, hand);
-    }
-
-    public void openCoinExchange(ServerPlayerEntity player) {
-        // TODO: Saw this in an example and I am not sure if it is necessary
-        /*if (player.containerMenu != player.inventoryMenu) {
-            player.closeContainer();
-        }*/
-
-        player.nextContainerCounter();
-        ExtendedPacketHandler.sendTo(new ExtendedOpenCoinExchangePacket(
-                player.containerCounter, this.getId()), player);
-
-        player.containerMenu = new ExtendedCoinExchangeContainer(
-                player.containerCounter, player, this
-        );
-
-        player.containerMenu.addSlotListener(player);
-        MinecraftForge.EVENT_BUS.post(new PlayerContainerEvent.Open(player, player.containerMenu));
     }
 }

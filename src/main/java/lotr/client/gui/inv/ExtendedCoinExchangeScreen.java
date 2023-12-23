@@ -8,7 +8,7 @@ import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.ITextComponent;
 
 /**
  * @author RichardB122
@@ -16,11 +16,12 @@ import net.minecraft.util.text.StringTextComponent;
 public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExchangeContainer> {
 
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/coin_exchange.png");
+
     ExtendedCoinExchangeButton buttonLeft;
     ExtendedCoinExchangeButton buttonRight;
 
-    public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer p_i51105_1_, PlayerInventory p_i51105_2_) {
-        super(p_i51105_1_, p_i51105_2_, new StringTextComponent("Coin Exchange"));
+    public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent title) {
+        super(p_i51105_1_, p_i51105_2_, title);
     }
 
     @Override

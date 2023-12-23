@@ -1,18 +1,24 @@
 package lotr.common.inv;
 
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 /**
  * @author RichardB122
  */
 public class ExtendedCoinExchangeContainer extends Container {
+    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("gui.lotr.container.coinexchange");
 
     private World level;
 
@@ -24,11 +30,11 @@ public class ExtendedCoinExchangeContainer extends Container {
 
     public IInventory exchangeInv = (IInventory) new ExtendedCoinExchangeInventory(this, 2);
 
-    public ExtendedCoinExchangeContainer(int containerId, PlayerEntity player, NPCEntity npc) {
-        super(null, containerId);
+    public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
+        super(ExtendedContainers.COIN_TRADING.get(), containerId);
 
-        this.level = player.level;
-        this.traderNPC = npc;
+        this.level = inventory.player.level;
+        this.traderNPC = (NPCEntity) this.level.getEntity(extraData.readVarInt());
 
         Slot inputSlot = new Slot(this.coinInputInv, 0, 80, 46) {
             public boolean mayPlace(ItemStack stack) {
@@ -43,10 +49,10 @@ public class ExtendedCoinExchangeContainer extends Container {
         int i;
         for (i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++)
-                addSlot(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 106 + i * 18));
+                addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 106 + i * 18));
         }
         for (i = 0; i < 9; i++) {
-            addSlot(new Slot(player.inventory, i, 8 + i * 18, 164));
+            addSlot(new Slot(inventory, i, 8 + i * 18, 164));
         }
 
         //func_75130_a(this.coinInputInv);
@@ -62,8 +68,12 @@ public class ExtendedCoinExchangeContainer extends Container {
 
     @Override
     public boolean stillValid(PlayerEntity p_75145_1_) {
-        return false;
+        return true;
     }
+
+    public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
+		extraData.writeVarInt(entityId);
+	}
 
     /*
     public class LOTRContainerCoinExchange  {
