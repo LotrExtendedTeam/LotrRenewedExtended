@@ -1,18 +1,27 @@
 package lotr.common.entity.npc;
 
 import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.inv.ExtendedCoinExchangeContainer;
+import lotr.common.network.ExtendedOpenCoinExchangePacket;
+import lotr.common.network.ExtendedPacketHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 
+/**
+ * @author RichardB122
+ */
 public class HobbitBartenderEntity extends HobbitEntity {
 
     public HobbitBartenderEntity(EntityType<? extends HobbitEntity> type, World w) {
@@ -62,12 +71,32 @@ public class HobbitBartenderEntity extends HobbitEntity {
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (canTradeWith(player)) {
-            player.sendMessage(new StringTextComponent("This feature has not been implemented yet."), player.getUUID());
+            if (!this.level.isClientSide()) {
+                this.openCoinExchange((ServerPlayerEntity) player);
+            }
+            return ActionResultType.sidedSuccess(this.level.isClientSide());
         } else {
             player.sendMessage(new StringTextComponent("Your alignment is too low"), player.getUUID());
         }
 
         return super.mobInteract(player, hand);
     }
-    // TODO: Add GUI from right-click
+
+    public void openCoinExchange(ServerPlayerEntity player) {
+        // TODO: Saw this in an example and I am not sure if it is necessary
+        /*if (player.containerMenu != player.inventoryMenu) {
+            player.closeContainer();
+        }*/
+
+        player.nextContainerCounter();
+        ExtendedPacketHandler.sendTo(new ExtendedOpenCoinExchangePacket(
+                player.containerCounter, this.getId()), player);
+
+        player.containerMenu = new ExtendedCoinExchangeContainer(
+                player.containerCounter, player, this
+        );
+
+        player.containerMenu.addSlotListener(player);
+        MinecraftForge.EVENT_BUS.post(new PlayerContainerEvent.Open(player, player.containerMenu));
+    }
 }
