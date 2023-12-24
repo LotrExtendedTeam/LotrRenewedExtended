@@ -24,7 +24,7 @@ public class StructureScannerUtils {
 						type.putString("entity", signText[1]);
 						if(signText[3].startsWith("spawn.")) {
 							String[] message1=(signText[3]).split("\\.");
-							type.putString("spawn", message1[1]);
+							type.putInt("spawn", Integer.valueOf(message1[1]));
 							return type;
 						}
 						ExtendedLog.error("FOUND INVALID SPAWN SIGN IN SCAN: "+blockPos.toString());

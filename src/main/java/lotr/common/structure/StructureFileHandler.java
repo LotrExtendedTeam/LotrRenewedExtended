@@ -43,10 +43,10 @@ public class StructureFileHandler {
 			return null;
 		}
 		if(signMap.isEmpty()) {
-			ExtendedLog.error("Loaded empty sign array! "+strName);
+			ExtendedLog.warn("Loaded empty sign array! "+strName);
 		}
 		if(entityMap.isEmpty()) {
-			ExtendedLog.error("Loaded empty entity array! "+strName);
+			ExtendedLog.warn("Loaded empty entity array! "+strName);
 		}
 		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap);
 		loadedStructures.put(strName, file);

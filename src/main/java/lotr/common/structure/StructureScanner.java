@@ -24,7 +24,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class StructureScanner {
 	public static final String relativeLocationHolder = "relativeLocation";
-	public static final String blockMapHolder = "blockData";
+	public static final String blockMapHolder = "blockDataMap";
 	public static final String entityMapHolder = "entitySpawnMap";
 	public static final String signMapHolder = "signTextMap";
 	public static final String signNumberHolder = "signText";

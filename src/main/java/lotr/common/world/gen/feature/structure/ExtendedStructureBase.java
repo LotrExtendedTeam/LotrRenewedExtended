@@ -151,7 +151,11 @@ public abstract class ExtendedStructureBase{
 	}
 
 	public StructureFile getStructure(String name) {
-		return StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
+		StructureFile file = StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
+		if(file == null) {
+			ExtendedLog.error("LOADED NULL STRUCTURE FILE!: "+name);
+		}
+		return file;
 	}
 
 	public BlockPos rPToBlockPos(RelativePosition pos) {
