@@ -1,0 +1,147 @@
+{
+	"type": "minecraft:chest",
+	"pools": [
+		{
+			"rolls": {
+				"min": 4,
+				"max": 6
+			},
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"weight": 100,
+					"name": "minecraft:paper",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 2,
+								"max": 8
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "minecraft:feather",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1,
+								"max": 2
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "minecraft:ink_sac",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1,
+								"max": 3
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "minecraft:glass_bottle",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 2,
+								"max": 4
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 100,
+					"name": "minecraft:book",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1,
+								"max": 4
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "minecraft:string",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1,
+								"max": 5
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "minecraft:compass",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": 1
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "minecraft:lead",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1,
+								"max": 2
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 50,
+					"name": "lotr:pocket_match",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1,
+								"max": 4
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "lotr:smoking_pipe",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	]
+}
