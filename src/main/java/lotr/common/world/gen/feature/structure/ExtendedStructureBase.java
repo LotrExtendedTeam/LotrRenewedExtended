@@ -3,6 +3,7 @@ package lotr.common.world.gen.feature.structure;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
@@ -14,6 +15,7 @@ import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.StructureScanner;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
+import lotr.common.world.gen.feature.structure.parts.ExtendedEntitySpawning;
 import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -240,6 +242,86 @@ public abstract class ExtendedStructureBase{
 		}
 		else {
 			ExtendedLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + SignTileEntity.class.getName());
+		}
+	}
+	
+	public void spawnEntitiesFile(ISeedReader world, Random random, StructureFile file) {
+		if(file.getEntities().isEmpty()) {
+			return;
+		}
+		Map<String, Map<Integer, RelativePosition>> entities = new HashMap<>();
+		
+		for (int i = 0; i < file.getEntities().size(); i++) {
+			CompoundNBT nbt = file.getEntities().getCompound(i);
+			int spawnNumber = nbt.getInt("spawn");
+			String entityType = nbt.getString("entity");
+			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
+			if(entities.containsKey(entityType)) {
+				Map<Integer, RelativePosition> entitie = entities.get(entityType);
+				if(entitie.containsKey(spawnNumber)) {
+					ExtendedLog.error("FOUND DUPLICATE SPAWN KEY IN STRUCTURE FILE: "+file.name);
+					return;
+				}
+				entitie.put(spawnNumber, rpos);
+				entities.put(entityType, entitie);
+			} else {
+				Map<Integer, RelativePosition> entitie = new HashMap<>();
+				entitie.put(spawnNumber, rpos);
+				entities.put(entityType, entitie);
+			}
+		}
+		for (Entry<String, Map<Integer, RelativePosition>> entity : entities.entrySet()) {
+			if(entity.getValue().size()==1) {
+				if(!entity.getValue().containsKey(1)) {
+					ExtendedLog.error("FOUND NON-SINGULAR KEY FOR SINGLE KEY: "+file.name+", entity: "+entity.getKey());
+					ExtendedLog.error("ENTITY NOT SUMMONED!");
+					continue;
+				}
+				ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)));
+				continue;
+			}
+			if(entity.getValue().size()>4||entity.getValue().size()<1) {
+				ExtendedLog.error("FOUND TOO MANY/TOO LITTLE KEYS FOR: "+file.name+", entity: "+entity.getKey()+", keys count: "+entity.getValue().size());
+				ExtendedLog.error("ENTITY NOT SUMMONED!");
+				continue;
+			}
+			int pick = random.nextInt(100);
+			if(entity.getValue().size()==2) {
+				if(pick<90) {
+					ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)));
+				} else {
+					ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)));
+				}
+			}
+			if(entity.getValue().size()==3) {
+				if(pick<90) {
+					ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)));
+				} else {
+					pick = random.nextInt(100);
+					if(pick<90) {
+						ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)));
+					} else {
+						ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(3)));
+					}
+				}
+			}
+			if(entity.getValue().size()==4) {
+				if(pick<90) {
+					ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)));
+				} else {
+					pick = random.nextInt(100);
+					if(pick<90) {
+						ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)));
+					} else {
+						pick = random.nextInt(100);
+						if(pick<90) {
+							ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(3)));
+						} else {
+							ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(4)));
+						}
+					}
+				}
+			}
 		}
 	}
 }
