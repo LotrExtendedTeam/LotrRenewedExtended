@@ -43,7 +43,7 @@ public class HobbitTavernSmallFeature extends ExtendedStructureBase {
 					setKegTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 				}
 			}
-			setSignTextFromFile(world, rand, file);
+			doFileGen(world, rand, file);
 			return true;
 		}
 		return false;

@@ -59,6 +59,10 @@ public abstract class ExtendedStructureBase{
 		//findSurface(world);
 	}
 
+	public void doFileGen(ISeedReader world, Random random, StructureFile file) {
+		setSignTextFromFile(world, random, file);
+		spawnEntitiesFile(world, random, file);
+	}
 //	public void findSurface(ISeedReader world) {
 //		System.out.println("Setting Height");
 //		int height =initialY;

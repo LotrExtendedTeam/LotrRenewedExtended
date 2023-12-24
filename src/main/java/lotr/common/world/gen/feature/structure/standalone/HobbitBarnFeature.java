@@ -41,8 +41,7 @@ public class HobbitBarnFeature extends ExtendedStructureBase {
 				if(blockstate.getBlock()==LOTRBlocks.KEG.get()) {
 					setKegTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 				}
-				setSignTextFromFile(world, rand, file);
-				//context.getSource().getLevel().setBlockAndUpdate(bPos, state);
+				doFileGen(world, rand, file);
 			}
 			return true;
 		}

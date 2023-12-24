@@ -42,6 +42,7 @@ public class HobbitWindmillFeature extends ExtendedStructureBase {
 					setKegTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 				}
 			}
+			doFileGen(world, rand, file);
 			return true;
 		}
 		return false;
