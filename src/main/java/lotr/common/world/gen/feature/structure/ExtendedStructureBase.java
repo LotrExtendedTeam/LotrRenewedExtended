@@ -211,14 +211,14 @@ public abstract class ExtendedStructureBase{
 			CompoundNBT nbt = file.getSigns().getCompound(i);
 			int num = nbt.getInt(StructureScanner.signNumberHolder);
 			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
-			signs.put(num, rpos);
-		}
-		for (int i = 0; i < signs.size(); i++) {
-			if(!signs.containsKey(i)) {
-				ExtendedLog.error("INVALID SIGN COUNT FOUND IN STRUCTURE FILE: "+file.name);
+			if(signs.containsKey(num)) {
+				ExtendedLog.error("DUPLICATE SIGN COUNT FOUND IN STRUCTURE FILE: "+file.name);
 				return;
 			}
-			setSignTextFromFileData(world, random, rPToBlockPos(signs.get(i)), i);
+			signs.put(num, rpos);
+		}
+		for (Entry<Integer, RelativePosition> sign : signs.entrySet()) {
+			setSignTextFromFileData(world, random, rPToBlockPos(sign.getValue()), sign.getKey());
 		}
 	}
 
@@ -258,7 +258,6 @@ public abstract class ExtendedStructureBase{
 			return;
 		}
 		Map<String, Map<Integer, RelativePosition>> entities = new HashMap<>();
-		
 		for (int i = 0; i < file.getEntities().size(); i++) {
 			CompoundNBT nbt = file.getEntities().getCompound(i);
 			int spawnNumber = nbt.getInt("spawn");
