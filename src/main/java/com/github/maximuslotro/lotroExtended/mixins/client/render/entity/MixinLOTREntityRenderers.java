@@ -14,7 +14,6 @@ public class MixinLOTREntityRenderers {
 
     @Inject(method = "registerEntityRenderers()V", at = @At("HEAD"), remap=false)
     private static void addAdditionalRenderers(CallbackInfo ci) {
-        // TODO: Update to bartender renderer
         RenderingRegistry.registerEntityRenderingHandler(ExtendedNpcs.HOBBIT_BARTENDER.get(), HobbitBartenderRenderer::new);
     }
 
