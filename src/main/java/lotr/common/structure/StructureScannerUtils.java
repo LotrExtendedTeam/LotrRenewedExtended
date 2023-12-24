@@ -1,6 +1,7 @@
 package lotr.common.structure;
 
-import lotr.common.LOTRLog;
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
+
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -26,7 +27,7 @@ public class StructureScannerUtils {
 							type.putString("spawn", message1[1]);
 							return type;
 						}
-						LOTRLog.error("FOUND INVALID SPAWN SIGN IN SCAN: "+blockPos.toString());
+						ExtendedLog.error("FOUND INVALID SPAWN SIGN IN SCAN: "+blockPos.toString());
 					}
 					else if(message[1].equals("sign")&&message[2].equals("text")){
 						CompoundNBT type = new CompoundNBT();
@@ -34,11 +35,11 @@ public class StructureScannerUtils {
 						return type;
 					}
 				}else {
-					LOTRLog.error("FOUND EMPTY SIGN IN SCAN: "+blockPos.toString());
+					ExtendedLog.error("FOUND EMPTY SIGN IN SCAN: "+blockPos.toString());
 				}
 			}
 			else {
-				LOTRLog.error("INVALID SIGN ENTITY FOUND: "+blockPos.toString()+", NOT INSTANCEOF: "+SignTileEntity.class.getName());
+				ExtendedLog.error("INVALID SIGN ENTITY FOUND: "+blockPos.toString()+", NOT INSTANCEOF: "+SignTileEntity.class.getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

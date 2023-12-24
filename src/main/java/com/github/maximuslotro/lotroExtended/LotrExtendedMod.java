@@ -12,6 +12,7 @@ public class LotrExtendedMod {
 
 	public LotrExtendedMod() {
 		MinecraftForge.EVENT_BUS.register(this);
+		ExtendedLog.make();
 	}
 
 	@SubscribeEvent

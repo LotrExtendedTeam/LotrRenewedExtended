@@ -1,9 +1,9 @@
 package lotr.common.structure;
 
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
-import lotr.common.LOTRLog;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.BlockState;
@@ -207,7 +207,7 @@ public class StructureScanner {
 								signTextMap.add(entity);
 							}
 							else {
-								LOTRLog.error("FOUND INVALID ENTITY TYPE!");
+								ExtendedLog.error("FOUND INVALID ENTITY TYPE!");
 							}
 						}
 					}
@@ -219,8 +219,8 @@ public class StructureScanner {
 				if(zpos+1>zSize &&zSize==0) {
 					zSize=zpos+1;
 				}else if(zpos+1>zSize &&zSize!=0){
-					LOTRLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON Z CONSICUTIVE PASS!");
-					LOTRLog.error("CANCELING SCAN!");
+					ExtendedLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON Z CONSICUTIVE PASS!");
+					ExtendedLog.error("CANCELING SCAN!");
 					return false;
 				}
 				zpos = -1;
@@ -228,8 +228,8 @@ public class StructureScanner {
 			if(xpos+1>xSize &&xSize==0) {
 				xSize=xpos+1;
 			}else if(xpos+1>xSize &&xSize!=0){
-				LOTRLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON X CONSICUTIVE PASS!");
-				LOTRLog.error("CANCELING SCAN!");
+				ExtendedLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON X CONSICUTIVE PASS!");
+				ExtendedLog.error("CANCELING SCAN!");
 				return false;
 			}
 			xpos = -1;

@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
-import lotr.common.LOTRLog;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
@@ -166,7 +166,7 @@ public abstract class ExtendedStructureBase{
 			((LockableLootTileEntity)tileentity).setLootTable(resource, random.nextLong());
 		}
 		else {
-			LOTRLog.error("FAILED TO SET LOOTTABLE FOR: " + pos.toString() + ", " + resource + ", NOT INSTANCE OF " + LockableLootTileEntity.class.getName());
+			ExtendedLog.error("FAILED TO SET LOOTTABLE FOR: " + pos.toString() + ", " + resource + ", NOT INSTANCE OF " + LockableLootTileEntity.class.getName());
 		}
 	}
 
@@ -188,7 +188,7 @@ public abstract class ExtendedStructureBase{
 			((KegTileEntity)tileentity).fillBrewedWith(ExtendedKegDrinks.SetDrink(random, pool));
 		}
 		else {
-			LOTRLog.error("FAILED TO SET BREW FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + KegTileEntity.class.getName());
+			ExtendedLog.error("FAILED TO SET BREW FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + KegTileEntity.class.getName());
 		}
 	}
 
@@ -205,7 +205,7 @@ public abstract class ExtendedStructureBase{
 		}
 		for (int i = 0; i < signs.size(); i++) {
 			if(!signs.containsKey(i)) {
-				LOTRLog.error("INVALID SIGN COUNT FOUND IN STRUCTURE FILE: "+file.name);
+				ExtendedLog.error("INVALID SIGN COUNT FOUND IN STRUCTURE FILE: "+file.name);
 				return;
 			}
 			setSignTextFromFileData(world, random, rPToBlockPos(signs.get(i)), i);
@@ -218,7 +218,7 @@ public abstract class ExtendedStructureBase{
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof SignTileEntity) {
 			if(text.size()<1) {
-				LOTRLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", INVALID TEXT ARRAY PASSED!");
+				ExtendedLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", INVALID TEXT ARRAY PASSED!");
 				return;
 			}
 			ITextComponent comp1 = StringTextComponent.EMPTY;
@@ -230,7 +230,7 @@ public abstract class ExtendedStructureBase{
 			if(text.size()>=3) {comp3 = new StringTextComponent(text.get(2));}
 			if(text.size()>=4) {comp4 = new StringTextComponent(text.get(3));}
 			if(text.size()>4) {
-				LOTRLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", INVALID TEXT ARRAY PASSED!");
+				ExtendedLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", INVALID TEXT ARRAY PASSED!");
 				return;
 			}
 			ITextComponent[] messages = new ITextComponent[]{comp1, comp2, comp3, comp4};
@@ -239,7 +239,7 @@ public abstract class ExtendedStructureBase{
 					messages, "field_145915_a");
 		}
 		else {
-			LOTRLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + SignTileEntity.class.getName());
+			ExtendedLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + SignTileEntity.class.getName());
 		}
 	}
 }
