@@ -152,14 +152,14 @@ public abstract class ExtendedStructureBase{
 		return new BlockPos(pos.X+initialX, pos.Y+initialY, pos.Z+initialZ);
 	}
 
-	public void setLockableLootTileEntityContents(IBlockReader world, Random random, int x, int y, int z, String table) {
+	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, String table) {
 		x += initialX;
 		y += initialY;
 		z += initialZ;
 		setLockableLootTileEntityContents(world, random, new BlockPos(x,y,z), table);
 	}
 	
-	public void setLockableLootTileEntityContents(IBlockReader world, Random random, BlockPos pos, String table) {
+	public void setLockableLootTileEntityContents(ISeedReader world, Random random, BlockPos pos, String table) {
 		TileEntity tileentity = world.getBlockEntity(pos);
 		ResourceLocation resource = makeReasourcePath(table);
 		if (tileentity instanceof LockableLootTileEntity) {
@@ -174,14 +174,14 @@ public abstract class ExtendedStructureBase{
 		return new ResourceLocation(LotrExtendedMod.MODID, "chests/" + part);
 	}
 	
-	public void setKegTileEntityContents(IBlockReader world, Random random, int x, int y, int z, List<RegistryObject<Item>> pool) {
+	public void setKegTileEntityContents(ISeedReader world, Random random, int x, int y, int z, List<RegistryObject<Item>> pool) {
 		x += initialX;
 		y += initialY;
 		z += initialZ;
 		setKegTileEntityContents(world, random, new BlockPos(x,y,z), pool);
 	}
 
-	public void setKegTileEntityContents(IBlockReader world, Random random, BlockPos pos, List<RegistryObject<Item>> pool) {
+	public void setKegTileEntityContents(ISeedReader world, Random random, BlockPos pos, List<RegistryObject<Item>> pool) {
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity) {
 			if(random.nextInt(5)==0) { return; }
@@ -192,7 +192,7 @@ public abstract class ExtendedStructureBase{
 		}
 	}
 
-	public void setSignTextFromFile(IBlockReader world, Random random, StructureFile file) {
+	public void setSignTextFromFile(ISeedReader world, Random random, StructureFile file) {
 		if(file.getSigns().isEmpty()) {
 			return;
 		}
@@ -212,7 +212,7 @@ public abstract class ExtendedStructureBase{
 		}
 	}
 
-	public abstract void setSignTextFromFileData(IBlockReader world, Random random, BlockPos blockPos, int num);
+	public abstract void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num);
 
 	public void setSignTileEntity(IBlockReader world, BlockPos pos, List<String> text) {
 		TileEntity tileentity = world.getBlockEntity(pos);

@@ -13,7 +13,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 
@@ -49,5 +48,5 @@ public class HobbitWindmillFeature extends ExtendedStructureBase {
 	}
 
 	@Override
-	public void setSignTextFromFileData(IBlockReader world, Random random, BlockPos blockPos, int num) {}
+	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num) {}
 }

@@ -7,7 +7,6 @@ import lotr.common.structure.RelativePosition;
 import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 
@@ -88,5 +87,5 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 	}
 
 	@Override
-	public void setSignTextFromFileData(IBlockReader world, Random random, BlockPos blockPos, int num) {}
+	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num) {}
 }
