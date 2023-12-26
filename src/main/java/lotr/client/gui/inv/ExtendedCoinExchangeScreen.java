@@ -4,9 +4,12 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.inv.ExtendedCoinExchangeContainer;
+import lotr.common.network.ExtendedPacketHandler;
+import lotr.common.network.ExtendedSPacketExchangeCoins;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -31,6 +34,14 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
         int i = (this.width - this.imageWidth) / 2;
         int j = ((this.height - this.imageHeight) / 2);
         this.blit(matrix, i, j, 0, 0, this.imageWidth, this.imageHeight);
+
+        if (this.menu.exchanged && this.menu.sideExchanged == 0) {
+            this.blit(matrix, i + 21, j + 41, 176, 51, 26, 26);
+        }
+
+        if (this.menu.exchanged && this.menu.sideExchanged == 1) {
+            this.blit(matrix, i + 129, j + 41, 176, 51, 26, 26);
+        }
     }
 
     @Override
@@ -68,18 +79,25 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
                    attemptToExchange(1);
                 })
         );
-
     }
 
     private void attemptToExchange(int mode) {
         if (mode == 0) {
             // attempt to exchange left
-            // TODO: Check coins and send packet
             System.out.println("Attempt to exchange left");
-        } else {
+            if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
+                this.menu.exchanged = true;
+                this.menu.sideExchanged = mode;
+                ExtendedPacketHandler.sendToServer(new ExtendedSPacketExchangeCoins(mode));
+            }
+        } else if(mode == 1) {
             // attempt to exchange right
-            // TODO: Check coins and send packet
             System.out.println("Attempt to exchange right");
+            if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
+                this.menu.exchanged = true;
+                this.menu.sideExchanged = mode;
+                ExtendedPacketHandler.sendToServer(new ExtendedSPacketExchangeCoins(mode));
+            }
         }
     }
 

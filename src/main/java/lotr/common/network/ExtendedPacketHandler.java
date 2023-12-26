@@ -16,6 +16,8 @@ public class ExtendedPacketHandler {
 		CHANNEL = NetworkRegistry.newSimpleChannel(new ResourceLocation("lotr", "extended"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 		int id = 0;
 		CHANNEL.registerMessage(id++, ExtendedSPacketSelectHorn.class, ExtendedSPacketSelectHorn::encode, ExtendedSPacketSelectHorn::decode, ExtendedSPacketSelectHorn::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketExchangeCoins.class, ExtendedSPacketExchangeCoins::encode, ExtendedSPacketExchangeCoins::decode, ExtendedSPacketExchangeCoins::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateExchangeCoinContainer.class, ExtendedCPacketUpdateExchangeCoinContainer::encode, ExtendedCPacketUpdateExchangeCoinContainer::decode, ExtendedCPacketUpdateExchangeCoinContainer::handle);
 	}
 
 	public static void sendTo(Object msg, ServerPlayerEntity player) {
