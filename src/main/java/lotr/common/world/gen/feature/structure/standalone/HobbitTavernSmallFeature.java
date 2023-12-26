@@ -2,7 +2,6 @@ package lotr.common.world.gen.feature.structure.standalone;
 
 import java.util.Random;
 
-import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureScanner;
@@ -33,15 +32,8 @@ public class HobbitTavernSmallFeature extends ExtendedStructureBase {
 					fixBelowBlocks(world, rpos.X, rpos.Y, rpos.Z, Blocks.GRASS_BLOCK, Blocks.DIRT);
 				}
 				setBlockAndMetadata(world, rpos.X, rpos.Y, rpos.Z, blockstate);
-				if(blockstate.getBlock()==Blocks.BARREL) {
-					setLockableLootTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, "hobbit_chest");
-				}
-				if(blockstate.getBlock()==Blocks.CHEST) {
-					setLockableLootTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, "hobbit_chest");
-				}
-				if(blockstate.getBlock()==LOTRBlocks.KEG.get()) {
-					setKegTileEntityContents(world, rand, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
-				}
+				doNBTGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, blockData);
+				doKegGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 			}
 			doFileGen(world, rand, file);
 			return true;

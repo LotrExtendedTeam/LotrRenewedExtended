@@ -8,12 +8,15 @@ import lotr.common.init.ExtendedItems;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ContainerBlock;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
@@ -189,6 +192,7 @@ public class StructureScanner {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
 					zpos++;
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
+					CompoundNBT dataHolder = new CompoundNBT();
 					if(state.getBlock().equals(Blocks.REDSTONE_BLOCK)||state.getBlock().equals(Blocks.AIR)) {
 						continue;
 					}
@@ -211,7 +215,19 @@ public class StructureScanner {
 							}
 						}
 					}
-					CompoundNBT dataHolder = new CompoundNBT();
+					if(state.getBlock() instanceof ContainerBlock) {
+						TileEntity tileentity = context.getSource().getLevel().getBlockEntity(new BlockPos(x,y,z));
+						if (tileentity instanceof LockableLootTileEntity) {
+							LockableLootTileEntity te =((LockableLootTileEntity)tileentity);
+							if(te.getCustomName()!=null) {
+								String loot_table_Name = te.getCustomName().getString();
+								dataHolder.putString("loot-table", loot_table_Name);
+							}
+							else {
+								ExtendedLog.error("FOUND MISSING LockableLootTileEntity LOOTTABLE! X: "+x+", Y: "+y+", Z:"+z);
+							}
+						}
+					}
 					dataHolder.put(blockMapHolder, NBTUtil.writeBlockState(state));
 					dataHolder.put(relativeLocationHolder, writeBlockPos(xpos, ypos, zpos));
 					blockDataMap.add(dataHolder);

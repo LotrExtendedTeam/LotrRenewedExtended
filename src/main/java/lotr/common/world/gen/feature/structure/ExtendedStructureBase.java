@@ -9,6 +9,7 @@ import java.util.Random;
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
+import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
@@ -63,6 +64,19 @@ public abstract class ExtendedStructureBase{
 		setSignTextFromFile(world, random, file);
 		spawnEntitiesFile(world, random, file);
 	}
+
+	public void doNBTGen(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, CompoundNBT nbt) {
+		if(blockstate.getBlock()==Blocks.BARREL||blockstate.getBlock()==Blocks.CHEST) {
+			setLockableLootTileEntityContents(world, random, x, y, z, nbt);
+		}
+	}
+
+	public void doKegGen(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, List<RegistryObject<Item>>  list) {
+		if(blockstate.getBlock()==LOTRBlocks.KEG.get()) {
+			setKegTileEntityContents(world, random, x, y, z, list);
+		}
+	}
+
 //	public void findSurface(ISeedReader world) {
 //		System.out.println("Setting Height");
 //		int height =initialY;
@@ -160,6 +174,15 @@ public abstract class ExtendedStructureBase{
 
 	public BlockPos rPToBlockPos(RelativePosition pos) {
 		return new BlockPos(pos.X+initialX, pos.Y+initialY, pos.Z+initialZ);
+	}
+
+	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt) {
+		if(nbt.contains("loot-table")) {
+			setLockableLootTileEntityContents(world, random, x, y, z, nbt.getString("loot-table"));
+		}
+		else {
+			ExtendedLog.error("MISSING LOOTTABLE FOR X: "+x+", Y: "+y+", Z:"+z+", NBT: "+nbt.toString());
+		}
 	}
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, String table) {
