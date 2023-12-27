@@ -49,9 +49,9 @@ public abstract class ExtendedStructureBase{
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
 		try {
 			UUID id = UUID.randomUUID();
-			System.out.println("Starting StructureGen: "+id.toString()+", id: "+fileName());
+			ExtendedLog.debug("Starting StructureGen: "+id.toString()+", id: "+fileName());
 			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
-			System.out.println("Finished StructureGen: "+id.toString()+", id: "+fileName());
+			ExtendedLog.debug("Finished StructureGen: "+id.toString()+", id: "+fileName());
 			return catcvhCrash;
 		}catch(Exception e) {
 			e.printStackTrace();

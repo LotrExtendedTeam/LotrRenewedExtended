@@ -23,7 +23,6 @@ public class ExtendedShireStructures extends Feature<NoFeatureConfig> {
 
 	@Override
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig p_241855_5_) {
-		System.out.println("Spawning Shire Structure");
 		int random = rand.nextInt(6);
 		if(random==0) {
 			return (new HobbitHoleFeature()).place(world, generator, rand, pos);
