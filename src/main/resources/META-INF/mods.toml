@@ -10,7 +10,7 @@ modId="lotrextended"
 version="${version}"
 displayName="Extension for The Lord of the Rings Mod"
 #logoFile="logo.png"
-authors="Maximuslotro/MaximustheMiner, WeirdBob, ServantofMelkor"
+authors="Maximuslotro/MaximustheMiner, WeirdBob, ServantofMelkor, and others"
 description='''
 Extending Lotr Renewed's functionality to include 1.7.10 features'''
 

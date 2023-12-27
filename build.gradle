@@ -20,9 +20,9 @@ plugins {
 }
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.3'
+version = '1.0'
 group = 'maximuslotro'
-archivesBaseName = 'lotr-1.16-extended-alpha'
+archivesBaseName = 'lotr-1.16-extended-beta'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -125,12 +125,12 @@ project.processResources {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "lotrmod",
-            "Specification-Vendor": "lotrmod",
+            "Specification-Title": "lotrextended",
+            "Specification-Vendor": "lotrextended",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": "MDK",
-            "Implementation-Version": "lotrmod",
-            "Implementation-Vendor" :"lotrmod",
+            "Implementation-Version": "lotrextended",
+            "Implementation-Vendor" :"lotrextended",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
             "MixinConfigs": "mixins.lotrextended.json",
             "FMLAT": "accesstransformer.cfg"
