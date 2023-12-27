@@ -5,10 +5,14 @@ import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.network.ExtendedCPacketUpdateExchangeCoinContainer;
 import lotr.common.network.ExtendedPacketHandler;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.crash.ReportedException;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
@@ -17,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -25,7 +30,7 @@ import org.lwjgl.system.CallbackI;
 /**
  * @author RichardB122
  */
-public class ExtendedCoinExchangeContainer extends Container {
+public class ExtendedCoinExchangeContainer extends Container implements IContainerListener {
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("gui.lotr.container.coinexchange");
 
     private World level;
@@ -37,13 +42,13 @@ public class ExtendedCoinExchangeContainer extends Container {
 
     private PlayerEntity player;
 
-    public IInventory coinInputInv = (IInventory) new ExtendedCoinExchangeInventory(this, 1);
+    private IInventory coinInputInv = new ExtendedCoinExchangeInventory(this, 1);
 
-    public IInventory exchangeInv = (IInventory) new ExtendedCoinExchangeInventory(this, 2);
+    private IInventory exchangeInv = new ExtendedCoinExchangeInventory(this, 2);
 
     public Slot inputSlot;
-    private Slot leftSlot;
-    private Slot rightSlot;
+    public Slot leftSlot;
+    public Slot rightSlot;
     private ItemStack lastInputSlot = null;
 
     public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
@@ -69,19 +74,8 @@ public class ExtendedCoinExchangeContainer extends Container {
             }
         });
 
-        addSlotListener(new IContainerListener() {
-            @Override
-            public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {}
-            @Override
-            public void slotChanged(Container p_71111_1_, int p_71111_2_, ItemStack p_71111_3_) {
-                if (!inputSlot.getItem().equals(lastInputSlot)) {
-                    recalculateResultSlots(inputSlot.getItem());
-                    lastInputSlot = inputSlot.getItem();
-                }
-            }
-            @Override
-            public void setContainerData(Container p_71112_1_, int p_71112_2_, int p_71112_3_) {}
-        });
+        // the slotChanged method is used to help recalculate the preview for the coin exchanges
+        addSlotListener(this);
 
         leftSlot = addSlot(new ExtendedCoinResultSlot(this, exchangeInv, 0, 26, 35));
         rightSlot = addSlot(new ExtendedCoinResultSlot(this, exchangeInv, 1, 134, 35));
@@ -96,7 +90,7 @@ public class ExtendedCoinExchangeContainer extends Container {
         }
     }
 
-    private void recalculateResultSlots(ItemStack itemStack) {
+    public void recalculateResultSlots(ItemStack itemStack) {
         System.out.println("RecalculateResultSlots - itemStack: " + itemStack);
         if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_ONE.get()) {
             leftSlot.set(ItemStack.EMPTY);
@@ -152,8 +146,9 @@ public class ExtendedCoinExchangeContainer extends Container {
             exchanged = true;
             sideExchanged = side;
             int difference = value(inputSlot.getItem()) - value(exchangeInv.getItem(side));
-            if (difference > 0) {
-                int amount = difference / valueOfItem(inputSlot.getItem().getItem());
+            int value = valueOfItem(inputSlot.getItem().getItem());
+            if (difference > 0 && value > 0) {
+                int amount = difference / value;
                 inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), amount));
                 inputSlot.setChanged();
             } else {
@@ -161,6 +156,8 @@ public class ExtendedCoinExchangeContainer extends Container {
                 inputSlot.setChanged();
             }
 
+            // clear out the other side of the converter
+            // i.e. if we convert left clear the right side
             if (side == 0) {
                 rightSlot.set(ItemStack.EMPTY);
                 exchangeInv.setItem(1, ItemStack.EMPTY);
@@ -190,40 +187,79 @@ public class ExtendedCoinExchangeContainer extends Container {
     }
 
     public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
-        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(slotId);
-        if (slot != null && slot.hasItem()) {
-            ItemStack itemstack1 = slot.getItem();
-            itemstack = itemstack1.copy();
-            boolean slotUpdated = false;
+        ItemStack itemstack = slot.getItem();
 
-            // verify the item is a coin
-            if (!(isValidCoin(itemstack))) {
-                return itemstack;
-            }
-
-            if (itemstack1.getItem().equals(inputSlot.getItem()) && inputSlot.getItem().getCount() < 64) {
-                System.out.println("Existing Stack");
-                int newAmount = inputSlot.getItem().getCount() + itemstack1.getCount();
-                if (newAmount > 64) {
-                    itemstack1.setCount(newAmount - 64);
-                    inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), 64));
-                    coinInputInv.setItem(0, new ItemStack(inputSlot.getItem().getItem(), 64));
-                    inputSlot.setChanged();
-                    return itemstack1;
-                } else {
-                    inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), newAmount));
-                    coinInputInv.setItem(0, new ItemStack(inputSlot.getItem().getItem(), newAmount));
-                    inputSlot.setChanged();
-                    return ItemStack.EMPTY;
-                }
-            } else if (inputSlot.getItem().equals(ItemStack.EMPTY)) {
-                System.out.println("Empty Stack");
-                inputSlot.set(itemstack1);
-                coinInputInv.setItem(0, itemstack1);
+        if (slot == inputSlot) {
+            if (player.inventory.add(inputSlot.getItem())) {
+                inputSlot.set(ItemStack.EMPTY);
                 inputSlot.setChanged();
+                slotsChanged(player.inventory);
+            }
+            return ItemStack.EMPTY;
+        }
+
+        if (slot == leftSlot) {
+            System.out.println("Left slot called");
+            if (exchanged && sideExchanged == 0 && (player.inventory.add(leftSlot.getItem()))) {
+                leftSlot.set(ItemStack.EMPTY);
+                leftSlot.setChanged();
+                slotsChanged(player.inventory);
+                exchanged = false;
+                sideExchanged = -1;
+                recalculateResultSlots(inputSlot.getItem());
+            }
+            return ItemStack.EMPTY;
+        }
+
+        if (slot == rightSlot) {
+            System.out.println("Right slot called");
+            if (exchanged && sideExchanged == 1 && (player.inventory.add(rightSlot.getItem()))) {
+                rightSlot.set(ItemStack.EMPTY);
+                rightSlot.setChanged();
+                slotsChanged(player.inventory);
+                exchanged = false;
+                sideExchanged = -1;
+                recalculateResultSlots(inputSlot.getItem());
+            }
+            return ItemStack.EMPTY;
+        }
+
+        // verify the item is a coin
+        if (!(isValidCoin(itemstack))) {
+            return ItemStack.EMPTY;
+        }
+
+        // handle moving from any other slot
+        System.out.println("Every other slot called");
+
+        if (itemstack.getItem().equals(inputSlot.getItem().getItem()) && inputSlot.getItem().getCount() <= 64) {
+            System.out.println("Existing Stack");
+            int newAmount = inputSlot.getItem().getCount() + itemstack.getCount();
+            if (newAmount > 64) {
+                itemstack.setCount(newAmount - 64);
+                inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), 64));
+                coinInputInv.setItem(0, new ItemStack(inputSlot.getItem().getItem(), 64));
+                inputSlot.setChanged();
+                slot.set(itemstack);
+                slot.setChanged();
+                return ItemStack.EMPTY;
+            } else {
+                inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), newAmount));
+                coinInputInv.setItem(0, new ItemStack(inputSlot.getItem().getItem(), newAmount));
+                inputSlot.setChanged();
+                slot.set(ItemStack.EMPTY);
+                slot.setChanged();
                 return ItemStack.EMPTY;
             }
+        } else if (inputSlot.getItem().equals(ItemStack.EMPTY)) {
+            System.out.println("Empty Stack");
+            inputSlot.set(itemstack);
+            coinInputInv.setItem(0, itemstack);
+            inputSlot.setChanged();
+            slot.set(ItemStack.EMPTY);
+            slot.setChanged();
+            return ItemStack.EMPTY;
         }
 
         return itemstack;
@@ -235,6 +271,16 @@ public class ExtendedCoinExchangeContainer extends Container {
                 stack.getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get();
     }
 
+    public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
+        // TODO: ItemStack does not seem to sync correctly with the server
+        //  when two stacks of the same coin type are merged or swapped in the input slot.
+        Slot s1 = slots.get(slot1);
+        Slot s2 = slots.get(slot2);
+        System.out.println("Slot1: " + s1 + ", Slot2: " + s2 + ", click: " + click + ", player: " + player);
+
+        return super.clicked(slot1, slot2, click, player);
+    }
+
     @Override
     public boolean stillValid(PlayerEntity p_75145_1_) {
         return true;
@@ -244,4 +290,19 @@ public class ExtendedCoinExchangeContainer extends Container {
 		extraData.writeVarInt(entityId);
 	}
 
+    @Override
+    public void slotChanged(Container p_71111_1_, int p_71111_2_, ItemStack p_71111_3_) {
+        if (!inputSlot.getItem().equals(lastInputSlot) && !exchanged) {
+            recalculateResultSlots(inputSlot.getItem());
+            lastInputSlot = inputSlot.getItem();
+        }
+    }
+    @Override
+    public void setContainerData(Container p_71111_1_, int p_71112_2_, int p_71112_3_) {
+        // this method is not needed
+    }
+    @Override
+    public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
+        // this method is not needed
+    }
 }

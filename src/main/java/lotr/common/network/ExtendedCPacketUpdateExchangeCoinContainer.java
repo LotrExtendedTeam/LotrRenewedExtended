@@ -34,7 +34,8 @@ public class ExtendedCPacketUpdateExchangeCoinContainer {
 
 	public static void handle(ExtendedCPacketUpdateExchangeCoinContainer packet, Supplier<Context> context) {
 		ClientPlayerEntity player = Minecraft.getInstance().player;
-	    if (player.containerMenu instanceof ExtendedCoinExchangeContainer) {
+		assert player != null;
+		if (player.containerMenu instanceof ExtendedCoinExchangeContainer) {
 			ExtendedCoinExchangeContainer container = (ExtendedCoinExchangeContainer) player.containerMenu;
 			container.sideExchanged = packet.exchangedSide;
 			container.exchanged = packet.exchanged;

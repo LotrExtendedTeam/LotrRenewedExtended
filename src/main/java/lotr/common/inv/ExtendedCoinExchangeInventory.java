@@ -22,12 +22,4 @@ public class ExtendedCoinExchangeInventory extends Inventory implements IInvento
         container.slotsChanged(this);
     }
 
-    // TODO: Not sure if the above implementation is equivalent to this
-    //  onInventoryChanged
-    /*public void func_70296_d() {
-        super.func_70296_d();
-        CoinExchangeContainer.LOTRContainerCoinExchange.this.func_75130_a((IInventory)this);
-    }*/
-
-
 }

@@ -9,6 +9,7 @@ import lotr.common.network.ExtendedSPacketExchangeCoins;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -82,7 +83,9 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
     }
 
     private void attemptToExchange(int mode) {
-        if (mode == 0) {
+        this.menu.recalculateResultSlots(menu.inputSlot.getItem());
+
+        if (mode == 0 && !this.menu.leftSlot.getItem().equals(ItemStack.EMPTY)) {
             // attempt to exchange left
             System.out.println("Attempt to exchange left");
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
@@ -90,7 +93,7 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
                 this.menu.sideExchanged = mode;
                 ExtendedPacketHandler.sendToServer(new ExtendedSPacketExchangeCoins(mode));
             }
-        } else if(mode == 1) {
+        } else if(mode == 1 && !this.menu.rightSlot.getItem().equals(ItemStack.EMPTY)) {
             // attempt to exchange right
             System.out.println("Attempt to exchange right");
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {

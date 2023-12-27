@@ -39,6 +39,7 @@ public class ExtendedCoinResultSlot extends Slot {
                 System.out.println("player.level.isClientSide: false - attempting to send packet");
                 ExtendedPacketHandler.sendTo(new ExtendedCPacketUpdateExchangeCoinContainer(false, container.sideExchanged), (ServerPlayerEntity) player);
             }
+            container.recalculateResultSlots(container.inputSlot.getItem());
         }
 
         return stack;

@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotroExtended;
 
+import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,6 +13,7 @@ public class LotrExtendedMod {
 
 	public LotrExtendedMod() {
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(ForgeInventoryEvents.class);
 	}
 
 	@SubscribeEvent
