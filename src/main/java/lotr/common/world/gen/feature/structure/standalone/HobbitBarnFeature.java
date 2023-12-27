@@ -19,7 +19,7 @@ public class HobbitBarnFeature extends ExtendedStructureBase {
 
 	@Override
 	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
-		StructureFile file = getStructure("hobbit_barn");
+		StructureFile file = getStructure();
 		if(file!=null){
 			generateOffsets(world, rand, pos.below(), rot, file.readStructureSize());
 			for (int i = 0; i < file.getLayers().size(); i++) {
@@ -31,7 +31,7 @@ public class HobbitBarnFeature extends ExtendedStructureBase {
 					fixBelowBlocks(world, rpos.X, rpos.Y, rpos.Z, Blocks.GRASS_BLOCK, Blocks.DIRT);
 				}
 				setBlockAndMetadata(world, rpos.X, rpos.Y, rpos.Z, blockstate);
-				doNBTGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, blockData);
+				doNBTGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, nbt);
 				doKegGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 			}
 			doFileGen(world, rand, file);
@@ -42,4 +42,9 @@ public class HobbitBarnFeature extends ExtendedStructureBase {
 
 	@Override
 	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num) {}
+
+	@Override
+	public String fileName() {
+		return "hobbit_barn";
+	}
 }

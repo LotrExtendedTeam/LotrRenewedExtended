@@ -8,6 +8,8 @@ import com.mojang.brigadier.context.CommandContext;
 import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
 import lotr.common.world.gen.feature.structure.standalone.HobbitBarnFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitHoleFeature;
+import lotr.common.world.gen.feature.structure.standalone.HobbitHoleSmallFeature;
+import lotr.common.world.gen.feature.structure.standalone.HobbitHouseFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitTavernSmallFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitWindmillFeature;
 import net.minecraft.command.CommandSource;
@@ -26,6 +28,10 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 						.executes(context -> spawnStructure(context, new HobbitHoleFeature())))
 				.then(Commands.literal("hobbit_barn")
 						.executes(context -> spawnStructure(context, new HobbitBarnFeature())))
+				.then(Commands.literal("hobbit_home")
+						.executes(context -> spawnStructure(context, new HobbitHouseFeature())))
+				.then(Commands.literal("hobbit_hole_small")
+						.executes(context -> spawnStructure(context, new HobbitHoleSmallFeature())))
 				.then(Commands.literal("hobbit_windmill")
 						.executes(context -> spawnStructure(context, new HobbitWindmillFeature()))));
 	}

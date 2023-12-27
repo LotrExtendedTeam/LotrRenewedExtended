@@ -88,4 +88,9 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 
 	@Override
 	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num) {}
+
+	@Override
+	public String fileName() {
+		return "hobbit_hole_legacy";
+	}
 }

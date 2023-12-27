@@ -7,7 +7,12 @@ import java.util.Random;
 
 public class ExtendedSignTexts {
 	public static List<String> ShireTavernTexts(Random rand) {
-		List<String> hobbitHouse = new ArrayList<String>() {{add("Random Tavern1");add("Random Tavern2");add("Random Tavern3");add("Random Tavern4");}};
+		List<String> hobbitTavern = new ArrayList<String>() {{add(" ");add("Tavern Text");add("Place-holder");add(" ");}};
+		return hobbitTavern;
+	}
+
+	public static List<String> ShireHouseTexts(Random random) {
+		List<String> hobbitHouse = new ArrayList<String>() {{add(" ");add("A Hobbit's");add("Home");add(" ");}};
 		return hobbitHouse;
 	}
 }

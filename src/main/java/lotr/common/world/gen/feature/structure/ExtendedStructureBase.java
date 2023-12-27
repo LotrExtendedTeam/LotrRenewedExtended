@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.UUID;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
@@ -46,10 +47,21 @@ public abstract class ExtendedStructureBase{
 	public int rot;
 
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
-		return placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
+		try {
+			UUID id = UUID.randomUUID();
+			System.out.println("Starting StructureGen: "+id.toString()+", id: "+fileName());
+			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
+			System.out.println("Finished StructureGen: "+id.toString()+", id: "+fileName());
+			return placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot);
+	
+	public abstract String fileName();
 
 	//TODO deal with rotation
 	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot, RelativePosition offset) {
@@ -164,6 +176,13 @@ public abstract class ExtendedStructureBase{
 	    world.setBlock(pos, blockstate, 3);
 	}
 
+	public StructureFile getStructure() {
+		StructureFile file = StructureFileHandler.getStructureFile(fileName(), ServerLifecycleHooks.getCurrentServer());
+		if(file == null) {
+			ExtendedLog.error("LOADED NULL STRUCTURE FILE!: "+fileName());
+		}
+		return file;
+	}
 	public StructureFile getStructure(String name) {
 		StructureFile file = StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
 		if(file == null) {
