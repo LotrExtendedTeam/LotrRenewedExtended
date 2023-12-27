@@ -52,7 +52,7 @@ public abstract class ExtendedStructureBase{
 			System.out.println("Starting StructureGen: "+id.toString()+", id: "+fileName());
 			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
 			System.out.println("Finished StructureGen: "+id.toString()+", id: "+fileName());
-			return placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
+			return catcvhCrash;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
