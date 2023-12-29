@@ -49,9 +49,9 @@ public abstract class ExtendedStructureBase{
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
 		try {
 			UUID id = UUID.randomUUID();
-			System.out.println("Starting StructureGen: "+id.toString()+", id: "+fileName());
+			ExtendedLog.debug("Starting StructureGen: "+id.toString()+", id: "+fileName());
 			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
-			System.out.println("Finished StructureGen: "+id.toString()+", id: "+fileName());
+			ExtendedLog.debug("Finished StructureGen: "+id.toString()+", id: "+fileName());
 			return catcvhCrash;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -327,15 +327,15 @@ public abstract class ExtendedStructureBase{
 				if(!entity.getValue().containsKey(1)) {
 					ExtendedLog.error("FOUND NON-SINGULAR KEY FOR SINGLE KEY: "+file.name+", entity: "+entity.getKey());
 					ExtendedLog.error("ENTITY NOT SUMMONED!");
-					continue;
+					break;
 				}
 				ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)));
-				continue;
+				break;
 			}
 			if(entity.getValue().size()>4||entity.getValue().size()<1) {
 				ExtendedLog.error("FOUND TOO MANY/TOO LITTLE KEYS FOR: "+file.name+", entity: "+entity.getKey()+", keys count: "+entity.getValue().size());
 				ExtendedLog.error("ENTITY NOT SUMMONED!");
-				continue;
+				break;
 			}
 			int pick = random.nextInt(100);
 			if(entity.getValue().size()==2) {
@@ -344,6 +344,7 @@ public abstract class ExtendedStructureBase{
 				} else {
 					ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)));
 				}
+				break;
 			}
 			if(entity.getValue().size()==3) {
 				if(pick<90) {
@@ -356,6 +357,7 @@ public abstract class ExtendedStructureBase{
 						ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(3)));
 					}
 				}
+				break;
 			}
 			if(entity.getValue().size()==4) {
 				if(pick<90) {
@@ -373,7 +375,9 @@ public abstract class ExtendedStructureBase{
 						}
 					}
 				}
+				break;
 			}
+			return;
 		}
 	}
 }

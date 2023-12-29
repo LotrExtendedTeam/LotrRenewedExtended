@@ -24,23 +24,25 @@ public class ExtendedShireStructures extends Feature<NoFeatureConfig> {
 	@Override
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig p_241855_5_) {
 		int random = rand.nextInt(6);
+		boolean done = false;
 		if(random==0) {
-			return (new HobbitHoleFeature()).place(world, generator, rand, pos);
+			done = (new HobbitHoleFeature()).place(world, generator, rand, pos);
 		}
 		else if(random==1) {
-			return (new HobbitBarnFeature()).place(world, generator, rand, pos);
+			done = (new HobbitBarnFeature()).place(world, generator, rand, pos);
 		}
 		else if(random==2) {
-			return (new HobbitWindmillFeature()).place(world, generator, rand, pos);
+			done = (new HobbitWindmillFeature()).place(world, generator, rand, pos);
 		}
 		else if(random==3) {
-			return (new HobbitHouseFeature()).place(world, generator, rand, pos);
+			done = (new HobbitHouseFeature()).place(world, generator, rand, pos);
 		}
 		else if(random==4) {
-			return (new HobbitHoleSmallFeature()).place(world, generator, rand, pos);
+			done = (new HobbitHoleSmallFeature()).place(world, generator, rand, pos);
 		}
 		else {
-			return (new HobbitTavernSmallFeature()).place(world, generator, rand, pos);
+			done = (new HobbitTavernSmallFeature()).place(world, generator, rand, pos);
 		}
+		return done;
 	}
 }

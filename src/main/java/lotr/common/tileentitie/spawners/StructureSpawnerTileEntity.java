@@ -20,7 +20,6 @@ public abstract class StructureSpawnerTileEntity<V extends TileEntity, T extends
 
 	@Override
 	public void tick() {
-		System.out.println("Ticking "+entity.getRegistryName().toString());
 		if (!level.isClientSide && !spawned && playerInDistance()) {
 			if (spawnEntity((ServerWorld)level)) {
 				level.destroyBlock(worldPosition, false);
@@ -30,7 +29,7 @@ public abstract class StructureSpawnerTileEntity<V extends TileEntity, T extends
 	}
 
 	private boolean spawnEntity(ServerWorld world) {
-		//Move code from ExtendedEntitySpawning
+		//Moved code from ExtendedEntitySpawning
 		T entity = this.entity.create(world);
 		entity.moveTo(worldPosition, 0, 0.0F);
 		entity.finalizeSpawn(world, world.getCurrentDifficultyAt(worldPosition), SpawnReason.SPAWNER, null, null);

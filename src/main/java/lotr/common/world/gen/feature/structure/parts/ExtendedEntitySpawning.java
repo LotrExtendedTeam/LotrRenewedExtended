@@ -9,8 +9,6 @@ import lotr.common.tileentitie.spawners.EntitySpawnTypes;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.WorldGenRegion;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
 
 public class ExtendedEntitySpawning {
@@ -18,22 +16,10 @@ public class ExtendedEntitySpawning {
 	public static void spawnEntity(ISeedReader iseedreader, String id, BlockPos blockpos){
 		spawnEntity(iseedreader, getEntityIdFromId(id), blockpos);
 	}
-
-	@SuppressWarnings("deprecation")
-	public static void spawnEntity(ISeedReader iseedreader, Block block, BlockPos blockpos) {
-		if(iseedreader instanceof WorldGenRegion) {
-			spawnEntity(((WorldGenRegion) iseedreader).getLevel(), block, blockpos);
-		}
-		else {
-			ExtendedLog.error("FOUND DIFFRENT WORLD INSTANCE TYPE! DOING UNSTABLE CAST!");
-			spawnEntity(((ServerWorld) iseedreader), block, blockpos);
-		}
-	}
 	
-	public static void spawnEntity(ServerWorld serverworld, Block block, BlockPos blockpos) {
+	public static void spawnEntity(ISeedReader iseedreader, Block block, BlockPos blockpos) {
 		if(block!=null) {
-			serverworld.setBlock(blockpos, block.defaultBlockState(), Constants.BlockFlags.DEFAULT);
-			System.out.println("CREATED ENTITY SPAWNER: "+block.getRegistryName().toString()+", at: "+blockpos.toString());
+			iseedreader.setBlock(blockpos, block.defaultBlockState(), Constants.BlockFlags.DEFAULT);
 			return;
 		}
 	}
