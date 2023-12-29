@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.tileentitie.spawners.EntitySpawnTypes;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -213,5 +214,9 @@ public class MixinLOTRBlocks {
 		
 		ExtendedBlocks.MORGUL_TORCH = BLOCKS.register("morgul_torch", () -> new LOTRTorchBlock(14));
 		ExtendedBlocks.MORGUL_WALL_TORCH = BLOCKS.register("morgul_wall_torch", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
+		
+		for(EntitySpawnTypes type : EntitySpawnTypes.values()) {
+			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), BLOCKS.register("entity_spawner"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
+		}
 	}
 }

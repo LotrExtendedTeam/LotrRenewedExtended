@@ -8,11 +8,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedTileEntities;
-import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRTileEntities;
-import lotr.common.tileentitie.spawners.HobbitBartenderSpawnerTileEntity;
-import net.minecraft.block.Block;
+import lotr.common.tileentitie.spawners.EntitySpawnTypes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
@@ -28,6 +27,10 @@ public class MixinLOTRTileEntities {
 
     @Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
-    	//ExtendedTileEntities.HOBBIT_BARTENDER_SPAWNER_TILEENTITY = register("alloy_forge", () -> Builder.of(HobbitBartenderSpawnerTileEntity::new, new Block[] { LOTRBlocks.ALLOY_FORGE.get() }));
+    	for(EntitySpawnTypes type : EntitySpawnTypes.values()) {
+    		ExtendedTileEntities.SPAWNER_TILEENTITYS.put(type.getSerializedName(), 
+    				register(type.getSerializedName()+"_spawner_tileentity", 
+    						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
+    	}
     }
 }

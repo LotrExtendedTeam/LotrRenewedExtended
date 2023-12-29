@@ -1,9 +1,14 @@
 package lotr.common.init;
 
-import lotr.common.tileentitie.spawners.HobbitBartenderSpawnerTileEntity;
+import java.util.HashMap;
+import java.util.Map;
+
+import lotr.common.tileentitie.spawners.StructureSpawnerTileEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedTileEntities {
-	public static RegistryObject<TileEntityType<HobbitBartenderSpawnerTileEntity>> HOBBIT_BARTENDER_SPAWNER_TILEENTITY;
+	public static final Map<String, RegistryObject<TileEntityType<StructureSpawnerTileEntity<? extends TileEntity, ? extends MobEntity>>>> SPAWNER_TILEENTITYS = new HashMap<>();;
 }
