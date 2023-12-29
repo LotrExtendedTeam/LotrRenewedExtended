@@ -33,7 +33,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraftforge.fml.RegistryObject;
@@ -49,9 +48,9 @@ public abstract class ExtendedStructureBase{
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
 		try {
 			UUID id = UUID.randomUUID();
-			ExtendedLog.debug("Starting StructureGen: "+id.toString()+", id: "+fileName());
+			System.out.println("Starting StructureGen: "+id.toString()+", id: "+fileName());
 			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
-			ExtendedLog.debug("Finished StructureGen: "+id.toString()+", id: "+fileName());
+			System.out.println("Finished StructureGen: "+id.toString()+", id: "+fileName());
 			return catcvhCrash;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -266,7 +265,7 @@ public abstract class ExtendedStructureBase{
 
 	public abstract void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num);
 
-	public void setSignTileEntity(IBlockReader world, BlockPos pos, List<String> text) {
+	public void setSignTileEntity(ISeedReader world, BlockPos pos, List<String> text) {
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof SignTileEntity) {
 			if(text.size()<1) {

@@ -4,58 +4,76 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 
+import lotr.common.entity.npc.HobbitBartenderEntity;
 import lotr.common.init.ExtendedNpcs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedEntitySpawning {
 	
-	public static void spawnEntity(ISeedReader serverworld, String id, BlockPos blockpos){
-		spawnEntity(serverworld, getEntityFromId(id), blockpos);
+	public static void spawnEntity(ISeedReader iseedreader, String id, BlockPos blockpos){
+		spawnEntity(iseedreader, getEntityIdFromId(id), blockpos);
 	}
 
-	public static void spawnEntity(ISeedReader serverworld, ResourceLocation location, BlockPos blockpos){
-		spawnEntity(serverworld, location, blockpos, new CompoundNBT());
+	@SuppressWarnings("deprecation")
+	public static void spawnEntity(ISeedReader iseedreader, ResourceLocation location, BlockPos blockpos) {
+		if(iseedreader instanceof WorldGenRegion) {
+			spawnEntity(((WorldGenRegion) iseedreader).getLevel(), location, blockpos, new CompoundNBT());
+		}
+		else {
+			ExtendedLog.error("FOUND DIFFRENT WORLD INSTANCE TYPE! DOING UNSTABLE CAST!");
+			spawnEntity(((ServerWorld) iseedreader), location, blockpos, new CompoundNBT());
+		}
 	}
 	
-	public static void spawnEntity(ISeedReader serverworld, ResourceLocation location, BlockPos blockpos, CompoundNBT nbt) {
+	public static void spawnEntity(ServerWorld serverworld, ResourceLocation location, BlockPos blockpos, CompoundNBT nbt) {
+		System.out.println("SPAWNING ENTITY: "+location.toString()+", at: "+blockpos.toString());
 		if (!World.isInSpawnableBounds(blockpos)) {
 			ExtendedLog.error("TRIED TO SPAWN ENTITY OUTSIDE OF BOUNDS");
-		} else if (location==null) {
-			ExtendedLog.error("NULL ENTITY ID FOUND WHILE SPAWNING!");
 		} else {
-			CompoundNBT compoundnbt = nbt.copy();
-	        compoundnbt.putString("id", location.toString());
-	        Entity entity = EntityType.loadEntityRecursive(compoundnbt, serverworld.getLevel(), (entity1) -> {
-	        	entity1.moveTo(blockpos.getX(), blockpos.getY(), blockpos.getZ(), entity1.yRot, entity1.xRot);
-	            return entity1;
-	        });
-	        if (entity == null) {
+			if (!serverworld.isLoaded(blockpos)) {
+				ExtendedLog.error("TRIED TO SPAWN ENTITY IN NON_LOADED_CHUNK");
+			}
+	        Entity entity = getEntityFromId(location, serverworld);
+	        if(entity ==  null) {
+	        	ExtendedLog.error("FAILED TO SPAWN ENTITY: "+location.toString()+", INVALID LOCATION!");
+	        	return;
+	        }
+	        entity.setPos(blockpos.getX(), blockpos.getY(), blockpos.getZ());
+	        if (!serverworld.addFreshEntity(entity)) {
 	        	ExtendedLog.error("FAILED TO SPAWN ENTITY: "+location.toString());
 	        } else {
-	        	if (entity instanceof MobEntity) {
-	        		((MobEntity)entity).finalizeSpawn(serverworld, serverworld.getCurrentDifficultyAt(entity.blockPosition()), SpawnReason.STRUCTURE, (ILivingEntityData)null, (CompoundNBT)null);
-	        	}
-	        	if (!serverworld.getLevel().tryAddFreshEntityWithPassengers(entity)) {
-	        		ExtendedLog.error("FAILED TO SPAWN ENTITY: "+location.toString()+", DUPLICATE UUID FOUND!");
-	            }
+	        	System.out.println(entity.toString());
+	        	System.out.println("ENTITY SPAWNED!: "+location.toString()+", at: "+blockpos.toString());
 	        }
 	    }
 	}
 
-	@Nullable
-	public static ResourceLocation getEntityFromId(String name) {
+	public static ResourceLocation getEntityIdFromId(String name) {
 		if(name.equals("hobbit_bartender")) {
 			return ExtendedNpcs.HOBBIT_BARTENDER.getId();
 		}
-		return null;
+		ExtendedLog.error("MISSING ENTITY ID FOUND WHILE SPAWNING!");
+		return new ResourceLocation("lotr", name);
+	}
+
+	@Nullable
+	public static Entity getEntityFromId(ResourceLocation location, ServerWorld serverworld) {
+		switch(location.toString()) {
+			case "lotr:hobbit_bartender":
+				return new HobbitBartenderEntity(ExtendedNpcs.HOBBIT_BARTENDER.get(), serverworld);
+			case "lotr:hobbit_farmer":
+				return null;
+			case "lotr:hobbit_farmhand":
+				return null;
+			default:
+				return null;
+		}
 	}
 }
