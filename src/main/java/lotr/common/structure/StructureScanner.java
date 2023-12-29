@@ -220,11 +220,11 @@ public class StructureScanner {
 						if (tileentity instanceof LockableLootTileEntity) {
 							LockableLootTileEntity te =((LockableLootTileEntity)tileentity);
 							if(te.getCustomName()!=null) {
-								String loot_table_Name = te.getCustomName().getString();
-								dataHolder.putString("loot-table", loot_table_Name);
+								dataHolder.putString("loot-table", te.getCustomName().getString());
 							}
 							else {
 								ExtendedLog.error("FOUND MISSING LockableLootTileEntity LOOTTABLE! X: "+x+", Y: "+y+", Z:"+z);
+								dataHolder.putString("loot-table", "EMPTY");
 							}
 						}
 					}

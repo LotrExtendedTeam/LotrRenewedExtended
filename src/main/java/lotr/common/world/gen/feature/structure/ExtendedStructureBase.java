@@ -35,6 +35,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -172,7 +173,7 @@ public abstract class ExtendedStructureBase{
 	    setBlockAndMetadata(world, new BlockPos(x,y,z), blockstate);
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, BlockState blockstate) {
-	    world.setBlock(pos, blockstate, 3);
+	    world.setBlock(pos, blockstate, Constants.BlockFlags.DEFAULT);
 	}
 
 	public StructureFile getStructure() {
@@ -196,7 +197,10 @@ public abstract class ExtendedStructureBase{
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt) {
 		if(nbt.contains("loot-table")) {
-			setLockableLootTileEntityContents(world, random, x, y, z, nbt.getString("loot-table"));
+			String table = nbt.getString("loot-table");
+			if(!table.equals("EMPTY")) {
+				setLockableLootTileEntityContents(world, random, x, y, z, nbt.getString("loot-table"));
+			}
 		}
 		else {
 			ExtendedLog.error("MISSING LOOTTABLE FOR X: "+x+", Y: "+y+", Z:"+z+", NBT: "+nbt.toString());
