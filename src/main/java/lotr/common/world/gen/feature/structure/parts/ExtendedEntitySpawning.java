@@ -18,7 +18,7 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedEntitySpawning {
 	
 	public static void spawnEntity(ISeedReader iseedreader, String id, BlockPos blockpos){
-		spawnEntity(iseedreader, getEntityIdFromId(id), blockpos);
+		//spawnEntity(iseedreader, getEntityIdFromId(id), blockpos);
 	}
 
 	@SuppressWarnings("deprecation")
