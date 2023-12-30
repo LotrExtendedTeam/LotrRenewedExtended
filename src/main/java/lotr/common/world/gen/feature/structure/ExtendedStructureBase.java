@@ -109,6 +109,38 @@ public abstract class ExtendedStructureBase{
 //		initialY = height;
 //	}
 
+	int makeYvalue(int y) {
+		return initialY + y;
+	}
+
+	int makeXvalue(int x, int z) {
+		switch(rot) {
+		case 0:
+			return initialX-x;
+		case 1:
+			return initialX-z;
+		case 2:
+			return initialX+x;
+		case 3:
+			return initialX+z;
+		}
+		return initialX;
+	}
+
+	int makeZvalue(int x, int z) {
+		switch(rot) {
+		case 0:
+			return initialZ+z;
+		case 1:
+			return initialZ-x;
+		case 2:
+			return initialZ-z;
+		case 3:
+			return initialZ+x;
+		}
+		return initialZ;
+	}
+
 	public void setAllBelowToBlock(ISeedReader world, int x, int y, int z, Block block) {
 		for (int level = y-1; isNotSolid(world, x, level, z) && (level+initialY) >= 0; level--) {
 			setBlockAndMetadata(world, x, level, z, block);
@@ -116,10 +148,7 @@ public abstract class ExtendedStructureBase{
 	}
 
 	public boolean setBelowToBlockIfBlock(ISeedReader world, int x, int y, int z, Block newBlock, Block oldBlock) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		BlockPos pos = new BlockPos(x, y, z);
+		BlockPos pos = new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z));
 		if(world.getBlockState(pos.below()).getBlock().equals(oldBlock)) {
 			setBlockAndMetadata(world, pos, newBlock);
 			return true;
@@ -134,43 +163,28 @@ public abstract class ExtendedStructureBase{
 	}
 	
 	public boolean isNotSolid(ISeedReader world, int x, int y, int z) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		BlockState belowState = world.getBlockState(new BlockPos(x, y, z));
+		BlockState belowState = world.getBlockState(new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)));
 		return belowState.getBlock().equals(Blocks.AIR)||(belowState.getBlock() instanceof BushBlock)||belowState.getBlock() instanceof FlowingFluidBlock;
 	}
 
 	public boolean isOpaque(ISeedReader world, int x, int y, int z) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		BlockState belowState = world.getBlockState(new BlockPos(x, y, z));
-		return !belowState.isSolidRender(world, new BlockPos(x, y, z));
+		BlockState belowState = world.getBlockState(new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)));
+		return !belowState.isSolidRender(world, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)));
 	}
 
 	public void setGrassToDirt(ISeedReader world, int x, int y, int z) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		LOTRFeatures.setGrassToDirtBelow(world, new BlockPos(x,y,z));
+		LOTRFeatures.setGrassToDirtBelow(world, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)));
 	}
 
 	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, Block block) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		setBlockAndMetadata(world, new BlockPos(x,y,z), block);
+		setBlockAndMetadata(world, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)), block);
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, Block block) {
 		setBlockAndMetadata(world, pos, block.defaultBlockState());
 	}
 
 	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, BlockState blockstate) {
-		x += initialX;
-	    y += initialY;
-	    z += initialZ;
-	    setBlockAndMetadata(world, new BlockPos(x,y,z), blockstate);
+	    setBlockAndMetadata(world, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)), blockstate);
 	}
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, BlockState blockstate) {
 	    world.setBlock(pos, blockstate, Constants.BlockFlags.DEFAULT);
@@ -192,7 +206,7 @@ public abstract class ExtendedStructureBase{
 	}
 
 	public BlockPos rPToBlockPos(RelativePosition pos) {
-		return new BlockPos(pos.X+initialX, pos.Y+initialY, pos.Z+initialZ);
+		return new BlockPos(makeXvalue(pos.X,pos.Z), makeYvalue(pos.Y), makeZvalue(pos.X,pos.Z));
 	}
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt) {
@@ -208,10 +222,7 @@ public abstract class ExtendedStructureBase{
 	}
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, String table) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		setLockableLootTileEntityContents(world, random, new BlockPos(x,y,z), table);
+		setLockableLootTileEntityContents(world, random, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)), table);
 	}
 	
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, BlockPos pos, String table) {
@@ -230,10 +241,7 @@ public abstract class ExtendedStructureBase{
 	}
 	
 	public void setKegTileEntityContents(ISeedReader world, Random random, int x, int y, int z, List<RegistryObject<Item>> pool) {
-		x += initialX;
-		y += initialY;
-		z += initialZ;
-		setKegTileEntityContents(world, random, new BlockPos(x,y,z), pool);
+		setKegTileEntityContents(world, random, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)), pool);
 	}
 
 	public void setKegTileEntityContents(ISeedReader world, Random random, BlockPos pos, List<RegistryObject<Item>> pool) {
