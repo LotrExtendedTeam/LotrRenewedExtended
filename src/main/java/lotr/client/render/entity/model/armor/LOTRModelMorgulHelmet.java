@@ -6,7 +6,6 @@ import net.minecraft.entity.LivingEntity;
 
 public class LOTRModelMorgulHelmet extends SpecialArmorModel<LivingEntity> {
     private ModelRenderer[] spikes = new ModelRenderer[8];
-    private ModelRenderer crest;
 
     public LOTRModelMorgulHelmet(BipedModel<LivingEntity> referenceBipedModel) {
         this(referenceBipedModel, 1.0F);

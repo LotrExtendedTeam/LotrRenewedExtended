@@ -25,5 +25,6 @@ public class MixinLOTRArmorModels {
         addSpecialArmorModel(ExtendedItems.MORGUL_HELMET, LOTRModelMorgulHelmet::new);
         addSpecialArmorModel(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET, LOTRModelTaurethrimChieftanHelmet::new);
         addSpecialArmorModel(ExtendedItems.GOLDEN_TAURETHRIM_HELMET, LOTRModelGoldenTaurethrimHelmet::new);
+        addSpecialArmorModel(ExtendedItems.LEATHER_HAT, LOTRModelLeatherHat::new);
     }
 }
