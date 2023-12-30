@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
-import lotr.common.LOTRLog;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.resources.IResource;
@@ -45,16 +45,16 @@ public class StructureFileIO {
 				try (IResource iresource = server.getDataPackRegistries().getResourceManager().getResource(location)) {
 					return CompressedStreamTools.readCompressed(iresource.getInputStream());
 				} catch (FileNotFoundException filenotfoundexception) {
-					LOTRLog.error("Failed to find structure file: "+fileName);
+					ExtendedLog.error("Failed to find structure file: "+fileName);
 					filenotfoundexception.printStackTrace();
 					return null;
 				} catch (Throwable throwable) {
-					LOTRLog.error("Failed to load structure file: "+fileName, throwable.toString());
+					ExtendedLog.error("Failed to load structure file: "+fileName, throwable.toString());
 					return null;
 				}
 			}
 		} catch (Exception var2) {
-			LOTRLog.error("Error loading structure file: "+fileName);
+			ExtendedLog.error("Error loading structure file: "+fileName);
 			var2.printStackTrace();
 		}
 		return null;
@@ -68,7 +68,7 @@ public class StructureFileIO {
 			}
 			CompressedStreamTools.writeCompressed(compound, new FileOutputStream(structureGen));
 		} catch (Exception var3) {
-			LOTRLog.error("Error saving structure: "+fileName);
+			ExtendedLog.error("Error saving structure: "+fileName);
 			var3.printStackTrace();
 		}
 	}

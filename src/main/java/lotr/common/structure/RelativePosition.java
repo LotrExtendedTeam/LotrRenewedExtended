@@ -31,4 +31,9 @@ public class RelativePosition{
         hash = 17 * hash + Z;
         return hash;
     }
+
+	@Override
+    public String toString() {
+        return "[X:"+X+", Y:"+Y+", Z:"+Z+"]";
+    }
 }

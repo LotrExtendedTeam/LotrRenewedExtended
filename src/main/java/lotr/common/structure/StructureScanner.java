@@ -1,19 +1,22 @@
 package lotr.common.structure;
 
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
-import lotr.common.LOTRLog;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ContainerBlock;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
@@ -24,7 +27,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class StructureScanner {
 	public static final String relativeLocationHolder = "relativeLocation";
-	public static final String blockMapHolder = "blockData";
+	public static final String blockMapHolder = "blockDataMap";
 	public static final String entityMapHolder = "entitySpawnMap";
 	public static final String signMapHolder = "signTextMap";
 	public static final String signNumberHolder = "signText";
@@ -189,6 +192,7 @@ public class StructureScanner {
 				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
 					zpos++;
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
+					CompoundNBT dataHolder = new CompoundNBT();
 					if(state.getBlock().equals(Blocks.REDSTONE_BLOCK)||state.getBlock().equals(Blocks.AIR)) {
 						continue;
 					}
@@ -207,11 +211,23 @@ public class StructureScanner {
 								signTextMap.add(entity);
 							}
 							else {
-								LOTRLog.error("FOUND INVALID ENTITY TYPE!");
+								ExtendedLog.error("FOUND INVALID ENTITY TYPE!");
 							}
 						}
 					}
-					CompoundNBT dataHolder = new CompoundNBT();
+					if(state.getBlock() instanceof ContainerBlock) {
+						TileEntity tileentity = context.getSource().getLevel().getBlockEntity(new BlockPos(x,y,z));
+						if (tileentity instanceof LockableLootTileEntity) {
+							LockableLootTileEntity te =((LockableLootTileEntity)tileentity);
+							if(te.getCustomName()!=null) {
+								dataHolder.putString("loot-table", te.getCustomName().getString());
+							}
+							else {
+								ExtendedLog.error("FOUND MISSING LockableLootTileEntity LOOTTABLE! X: "+x+", Y: "+y+", Z:"+z);
+								dataHolder.putString("loot-table", "EMPTY");
+							}
+						}
+					}
 					dataHolder.put(blockMapHolder, NBTUtil.writeBlockState(state));
 					dataHolder.put(relativeLocationHolder, writeBlockPos(xpos, ypos, zpos));
 					blockDataMap.add(dataHolder);
@@ -219,8 +235,8 @@ public class StructureScanner {
 				if(zpos+1>zSize &&zSize==0) {
 					zSize=zpos+1;
 				}else if(zpos+1>zSize &&zSize!=0){
-					LOTRLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON Z CONSICUTIVE PASS!");
-					LOTRLog.error("CANCELING SCAN!");
+					ExtendedLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON Z CONSICUTIVE PASS!");
+					ExtendedLog.error("CANCELING SCAN!");
 					return false;
 				}
 				zpos = -1;
@@ -228,8 +244,8 @@ public class StructureScanner {
 			if(xpos+1>xSize &&xSize==0) {
 				xSize=xpos+1;
 			}else if(xpos+1>xSize &&xSize!=0){
-				LOTRLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON X CONSICUTIVE PASS!");
-				LOTRLog.error("CANCELING SCAN!");
+				ExtendedLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON X CONSICUTIVE PASS!");
+				ExtendedLog.error("CANCELING SCAN!");
 				return false;
 			}
 			xpos = -1;

@@ -1,5 +1,8 @@
 package lotr.common.init;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -156,4 +159,6 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> MORGUL_TORCH;
 	public static RegistryObject<Block> MORGUL_WALL_TORCH;
+	
+	public static Map<String, RegistryObject<Block>> ENTITYSPAWNERBLOCKS = new HashMap<>();
 }

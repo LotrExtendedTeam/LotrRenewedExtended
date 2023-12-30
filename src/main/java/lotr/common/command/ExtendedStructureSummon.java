@@ -5,13 +5,17 @@ import java.util.Random;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 
+import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
 import lotr.common.world.gen.feature.structure.standalone.HobbitBarnFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitHoleFeature;
+import lotr.common.world.gen.feature.structure.standalone.HobbitHoleSmallFeature;
+import lotr.common.world.gen.feature.structure.standalone.HobbitHouseFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitTavernSmallFeature;
 import lotr.common.world.gen.feature.structure.standalone.HobbitWindmillFeature;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 
 
 public class ExtendedStructureSummon extends LOTRBaseCommand {
@@ -19,37 +23,32 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 		dispatcher.register(Commands.literal("lotr_structure_summon")
 				.requires(context -> context.hasPermission(4))
 				.then(Commands.literal("hobbit_tavern")
-						.executes(context -> spawnHobbitTavern(context)))
+						.executes(context -> spawnStructure(context, new HobbitTavernSmallFeature())))
 				.then(Commands.literal("hobbit_hole")
-						.executes(context -> spawnHobbitHole(context)))
+						.executes(context -> spawnStructure(context, new HobbitHoleFeature())))
 				.then(Commands.literal("hobbit_barn")
-						.executes(context -> spawnHobbitBarn(context)))
+						.executes(context -> spawnStructure(context, new HobbitBarnFeature())))
+				.then(Commands.literal("hobbit_home")
+						.executes(context -> spawnStructure(context, new HobbitHouseFeature())))
+				.then(Commands.literal("hobbit_hole_small")
+						.executes(context -> spawnStructure(context, new HobbitHoleSmallFeature())))
 				.then(Commands.literal("hobbit_windmill")
-						.executes(context -> spawnHobbitWindmill(context))));
+						.executes(context -> spawnStructure(context, new HobbitWindmillFeature()))));
 	}
 
-	private static int spawnHobbitHole(CommandContext<CommandSource> context) {
+	private static int spawnStructure(CommandContext<CommandSource> context, ExtendedStructureBase structure) {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
-			(new HobbitHoleFeature()).place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition());
+			if(structure.place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition())) {
+				context.getSource().sendSuccess(new StringTextComponent("Loaded Successfully"), false);
+				return 0;
+			}
+			else {
+				context.getSource().sendSuccess(new StringTextComponent("Loading Failed, check console"), false);
+				return 1;
+			}
 		}
-		return 0;
-	}
-	private static int spawnHobbitTavern(CommandContext<CommandSource> context) {
-		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
-			(new HobbitTavernSmallFeature()).place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition());
+		else {
+			return 1;
 		}
-		return 0;
-	}
-	private static int spawnHobbitBarn(CommandContext<CommandSource> context) {
-		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
-			(new HobbitBarnFeature()).place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition());
-		}
-		return 0;
-	}
-	private static int spawnHobbitWindmill(CommandContext<CommandSource> context) {
-		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
-			(new HobbitWindmillFeature()).place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition());
-		}
-		return 0;
 	}
 }

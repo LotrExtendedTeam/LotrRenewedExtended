@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
 import lotr.common.entity.npc.HobbitBartenderEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedNpcs;
 import lotr.common.init.LOTREntities;
 import net.minecraft.entity.EntityType;
@@ -18,7 +19,7 @@ import java.util.function.Supplier;
 public class MixinLOTREntities {
 
     @Shadow(remap=false)
-    private static <T extends lotr.common.entity.npc.NPCEntity> RegistryObject<EntityType<T>> regNPC(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
+    private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPC(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
        return null;
     }
 

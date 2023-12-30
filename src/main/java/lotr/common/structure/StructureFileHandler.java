@@ -3,7 +3,8 @@ package lotr.common.structure;
 import java.util.HashMap;
 import java.util.Map;
 
-import lotr.common.LOTRLog;
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
+
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
@@ -34,18 +35,18 @@ public class StructureFileHandler {
 			return null;
 		}
 		if(size.isEmpty()) {
-			LOTRLog.error("Loaded empty structure size! "+strName);
+			ExtendedLog.error("Loaded empty structure size! "+strName);
 			return null;
 		}
 		if(blockMap.isEmpty()) {
-			LOTRLog.error("Loaded empty structure array! "+strName);
+			ExtendedLog.error("Loaded empty structure array! "+strName);
 			return null;
 		}
 		if(signMap.isEmpty()) {
-			LOTRLog.error("Loaded empty sign array! "+strName);
+			ExtendedLog.warn("Loaded empty sign array! "+strName);
 		}
 		if(entityMap.isEmpty()) {
-			LOTRLog.error("Loaded empty entity array! "+strName);
+			ExtendedLog.warn("Loaded empty entity array! "+strName);
 		}
 		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap);
 		loadedStructures.put(strName, file);

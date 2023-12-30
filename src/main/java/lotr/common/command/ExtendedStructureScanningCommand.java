@@ -57,8 +57,8 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 			BlockPos pos = context.getSource().getEntity().blockPosition();
 			for (int i = 0; i < file.getLayers().size(); i++) {
 				CompoundNBT nbt = file.getLayers().getCompound(i);
-				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound("relativeLocation"));
-				CompoundNBT blockData = nbt.getCompound("blockData");
+				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
+				CompoundNBT blockData = nbt.getCompound(StructureScanner.blockMapHolder);
 				BlockState state = NBTUtil.readBlockState(blockData);
 				BlockPos bPos = new BlockPos(pos.getX()+rpos.X, pos.getY()+rpos.Y, pos.getZ()+rpos.Z);
 				context.getSource().getLevel().setBlockAndUpdate(bPos, state);

@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import lotr.common.LOTRLog;
+import com.github.maximuslotro.lotroExtended.ExtendedLog;
+
 import lotr.common.data.SaveUtil;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
@@ -53,7 +54,7 @@ public class ExtendedFellowshipHolderServer {
 			fellowship.load(nbt);
 			return fellowship;
 		} catch (Exception e) {
-			LOTRLog.error("Error loading LOTR fellowship data for %s", new Object[] { fsDat.getName() });
+			ExtendedLog.error("Error loading LOTR fellowship data for %s", new Object[] { fsDat.getName() });
 			e.printStackTrace();
 			return null;
 		}
@@ -66,7 +67,7 @@ public class ExtendedFellowshipHolderServer {
 					saveFellowship(world, fs);
 			}
 		} catch (Exception e) {
-			LOTRLog.error("Error saving fellowship data", new Object[0]);
+			ExtendedLog.error("Error saving fellowship data", new Object[0]);
 			e.printStackTrace();
 		}
 	}
@@ -77,7 +78,7 @@ public class ExtendedFellowshipHolderServer {
 			needsLoad = false;
 			saveAll(world);
 		} catch (Exception e) {
-			LOTRLog.error("Error loading fellowship data", new Object[0]);
+			ExtendedLog.error("Error loading fellowship data", new Object[0]);
 			e.printStackTrace();
 		}
 	}
@@ -88,7 +89,7 @@ public class ExtendedFellowshipHolderServer {
 			fs.save(nbt);
 			SaveUtil.saveNBTToFile(getFellowshipDatafile(world, fs.getFellowshipId()), nbt);
 		} catch (Exception e) {
-			LOTRLog.error("Error saving fellowship data for %s", new Object[] { fs.getFellowshipId() });
+			ExtendedLog.error("Error saving fellowship data for %s", new Object[] { fs.getFellowshipId() });
 			e.printStackTrace();
 		}
 	}

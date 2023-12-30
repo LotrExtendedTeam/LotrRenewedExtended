@@ -18,6 +18,7 @@
 		"common.init.MixinLOTRMaterial",
 		"common.init.MixinLOTRRecipes",
 		"common.init.MixinLOTRSoundEvents",
+		"common.init.MixinLOTRTileEntities",
 		"common.loot.functions.MixinLOTRLootFunctions",
 		"common.network.MixinLOTRPacketHandler",
 		"common.world.biome.MixinShireBiome",
