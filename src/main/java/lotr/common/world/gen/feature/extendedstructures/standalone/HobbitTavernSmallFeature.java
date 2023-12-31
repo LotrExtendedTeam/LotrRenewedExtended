@@ -1,12 +1,13 @@
-package lotr.common.world.gen.feature.structure.standalone;
+package lotr.common.world.gen.feature.extendedstructures.standalone;
 
 import java.util.Random;
 
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureScanner;
-import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
-import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
+import lotr.common.world.gen.feature.extendedstructures.ExtendedStructureBase;
+import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedKegDrinks;
+import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedSignTexts;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 
-public class HobbitWindmillFeature extends ExtendedStructureBase {
+public class HobbitTavernSmallFeature extends ExtendedStructureBase {
 
 	@Override
 	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
@@ -41,10 +42,12 @@ public class HobbitWindmillFeature extends ExtendedStructureBase {
 	}
 
 	@Override
-	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num) {}
+	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num) {
+		setSignTileEntity(world, blockPos, ExtendedSignTexts.ShireTavernTexts(random));
+	}
 
 	@Override
 	public String fileName() {
-		return "hobbit_windmill";
+		return "hobbit_tavern_small";
 	}
 }

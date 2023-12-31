@@ -1,13 +1,13 @@
-package lotr.common.world.gen.feature.structure.standalone;
+package lotr.common.world.gen.feature.extendedstructures.standalone;
 
 import java.util.Random;
 
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureScanner;
-import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
-import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
-import lotr.common.world.gen.feature.structure.parts.ExtendedSignTexts;
+import lotr.common.world.gen.feature.extendedstructures.ExtendedStructureBase;
+import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedKegDrinks;
+import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedSignTexts;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;

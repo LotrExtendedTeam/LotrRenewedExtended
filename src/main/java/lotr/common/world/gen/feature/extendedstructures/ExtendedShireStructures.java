@@ -1,15 +1,15 @@
-package lotr.common.world.gen.feature.structure;
+package lotr.common.world.gen.feature.extendedstructures;
 
 import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
-import lotr.common.world.gen.feature.structure.standalone.HobbitBarnFeature;
-import lotr.common.world.gen.feature.structure.standalone.HobbitHoleFeature;
-import lotr.common.world.gen.feature.structure.standalone.HobbitHoleSmallFeature;
-import lotr.common.world.gen.feature.structure.standalone.HobbitHouseFeature;
-import lotr.common.world.gen.feature.structure.standalone.HobbitTavernSmallFeature;
-import lotr.common.world.gen.feature.structure.standalone.HobbitWindmillFeature;
+import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitBarnFeature;
+import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitHoleFeature;
+import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitHoleSmallFeature;
+import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitHouseFeature;
+import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitTavernSmallFeature;
+import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitWindmillFeature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;

@@ -1,10 +1,11 @@
-package lotr.common.world.gen.feature.structure.standalone;
+package lotr.common.world.gen.feature.extendedstructures.standalone;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
-import lotr.common.world.gen.feature.structure.ExtendedStructureBase;
+import lotr.common.world.gen.feature.extendedstructures.ExtendedStructureBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -75,6 +76,8 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 	      setBlockAndMetadata(world, -4, 1, n, Blocks.OAK_FENCE);
 	      setBlockAndMetadata(world, 0, 0, n, Blocks.GRASS_PATH);
 	    } 
+	    setBlockAndMetadata(world, 0, 1, -12, Blocks.OAK_SIGN);
+	    setSignTileEntity(world, new BlockPos(makeXvalue(0, -12), makeYvalue(1), makeZvalue(0, -12)), new ArrayList<String>() {{add("An-unfinished");add("Hobbit Hole");add("You finish");add("it. :)");}});
 
 	    
 		//if (LOTRFeatures.isSurfaceBlock((IWorld) world, pos.below())) {

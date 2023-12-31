@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature.structure;
+package lotr.common.world.gen.feature.extendedstructures;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +17,8 @@ import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.StructureScanner;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.structure.parts.ExtendedEntitySpawning;
-import lotr.common.world.gen.feature.structure.parts.ExtendedKegDrinks;
+import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedEntitySpawning;
+import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedKegDrinks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -94,11 +94,11 @@ public abstract class ExtendedStructureBase{
 //		}
 	}
 
-	int makeYvalue(int y) {
+	protected int makeYvalue(int y) {
 		return initialY + y;
 	}
 
-	int makeXvalue(int x, int z) {
+	protected int makeXvalue(int x, int z) {
 		return initialX + x;
 //		switch(rot) {
 //		case 0:
@@ -113,7 +113,7 @@ public abstract class ExtendedStructureBase{
 //		return initialX;
 	}
 
-	int makeZvalue(int x, int z) {
+	protected int makeZvalue(int x, int z) {
 		return initialZ + z;
 //		switch(rot) {
 //		case 0:
@@ -389,7 +389,6 @@ public abstract class ExtendedStructureBase{
 				}
 				break;
 			}
-			return;
 		}
 	}
 }

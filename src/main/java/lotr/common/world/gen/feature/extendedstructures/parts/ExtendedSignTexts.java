@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature.structure.parts;
+package lotr.common.world.gen.feature.extendedstructures.parts;
 
 import java.util.ArrayList;
 import java.util.List;
