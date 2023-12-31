@@ -12,6 +12,7 @@
 		"common.fac.MixinEntityFactionHelper",
 		"common.init.MixinLOTRBlocks",
 		"common.init.MixinLOTRCommands",
+		"common.init.MixinLOTRContainers",
 		"common.init.MixinLOTRItems",
 		"common.init.MixinLOTREntities",
 		"common.init.MixinLOTRMaterial",
@@ -26,6 +27,7 @@
 	
 	"client": [
 		"client.gui.MixinMiddleEarthMasterMenuScreen",
+		"client.gui.inv.MixinContainerScreenHelper",
 		"client.render.entity.model.armor.MixinLOTRArmorModels",
 		"client.render.entity.MixinLOTREntityRenderers"
 	],
