@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotroExtended.mixins.client.render.entity.model.armor;
 
-import lotr.client.render.entity.model.armor.LOTRModelMorgulHelmet;
+import lotr.client.render.entity.model.armor.ExtendedModelMorgulHelmet;
 import lotr.client.render.entity.model.armor.*;
 import lotr.client.render.entity.model.armor.LOTRArmorModels;
 import lotr.client.render.entity.model.armor.SpecialArmorModelHolder.SpecialArmorModelFactory;
@@ -22,9 +22,9 @@ public class MixinLOTRArmorModels {
 
     @Inject(method = "setup()V", at = @At("RETURN"), remap = false)
     private static void setup(CallbackInfo ci) {
-        addSpecialArmorModel(ExtendedItems.MORGUL_HELMET, LOTRModelMorgulHelmet::new);
-        addSpecialArmorModel(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET, LOTRModelTaurethrimChieftanHelmet::new);
-        addSpecialArmorModel(ExtendedItems.GOLDEN_TAURETHRIM_HELMET, LOTRModelGoldenTaurethrimHelmet::new);
-        addSpecialArmorModel(ExtendedItems.LEATHER_HAT, LOTRModelLeatherHat::new);
+        addSpecialArmorModel(ExtendedItems.MORGUL_HELMET, ExtendedModelMorgulHelmet::new);
+        addSpecialArmorModel(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET, ExtendedModelTaurethrimChieftanHelmet::new);
+        addSpecialArmorModel(ExtendedItems.GOLDEN_TAURETHRIM_HELMET, ExtendedModelGoldenTaurethrimHelmet::new);
+        addSpecialArmorModel(ExtendedItems.LEATHER_HAT, ExtendedModelLeatherHat::new);
     }
 }

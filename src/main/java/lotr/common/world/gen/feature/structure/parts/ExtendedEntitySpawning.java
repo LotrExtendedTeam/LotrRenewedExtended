@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 
 import lotr.common.init.ExtendedBlocks;
-import lotr.common.tileentitie.spawners.EntitySpawnTypes;
+import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -27,7 +27,7 @@ public class ExtendedEntitySpawning {
 	@Nullable
 	public static Block getEntityIdFromId(String name) {
 		if(name.equals("hobbit_bartender")) {
-			return ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(EntitySpawnTypes.HOBBIT_BARTENDER.getSerializedName()).get();
+			return ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_BARTENDER.getSerializedName()).get();
 		}
 		ExtendedLog.error("MISSING INTERNAL ENTITY ID FOUND WHILE SPAWNING!");
 		if(ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(name)!=null) {

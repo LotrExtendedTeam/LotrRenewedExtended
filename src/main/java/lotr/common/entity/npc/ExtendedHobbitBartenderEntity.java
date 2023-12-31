@@ -13,9 +13,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class HobbitBartenderEntity extends HobbitEntity {
+public class ExtendedHobbitBartenderEntity extends HobbitEntity {
 
-    public HobbitBartenderEntity(EntityType<? extends HobbitEntity> type, World w) {
+    public ExtendedHobbitBartenderEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
     }
 

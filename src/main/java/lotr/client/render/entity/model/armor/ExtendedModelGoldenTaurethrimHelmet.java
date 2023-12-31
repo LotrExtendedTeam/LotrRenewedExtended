@@ -4,14 +4,14 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class LOTRModelGoldenTaurethrimHelmet extends SpecialArmorModel<LivingEntity> {
+public class ExtendedModelGoldenTaurethrimHelmet extends SpecialArmorModel<LivingEntity> {
     private ModelRenderer crest;
 
-    public LOTRModelGoldenTaurethrimHelmet(BipedModel<LivingEntity> referenceBipedModel) {
+    public ExtendedModelGoldenTaurethrimHelmet(BipedModel<LivingEntity> referenceBipedModel) {
         this(referenceBipedModel, 1.0F);
     }
 
-    public LOTRModelGoldenTaurethrimHelmet(BipedModel<LivingEntity> referenceBipedModel, float f) {
+    public ExtendedModelGoldenTaurethrimHelmet(BipedModel<LivingEntity> referenceBipedModel, float f) {
         super(referenceBipedModel, f);
         clearNonHelmetParts();
         head = new ModelRenderer(this, 0, 0);

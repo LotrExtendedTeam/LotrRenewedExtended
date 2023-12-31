@@ -8,12 +8,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.server.ServerWorld;
 
-public abstract class StructureSpawnerTileEntity<V extends TileEntity, T extends MobEntity> extends TileEntity implements ITickableTileEntity {
+public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T extends MobEntity> extends TileEntity implements ITickableTileEntity {
 
 	private final EntityType<T> entity;
 	private boolean spawned = false;
 
-	public StructureSpawnerTileEntity(TileEntityType<StructureSpawnerTileEntity<? extends TileEntity, ? extends MobEntity>> tileEntityType, EntityType<T> entityType) {
+	public ExtendedStructureSpawnerTileEntity(TileEntityType<ExtendedStructureSpawnerTileEntity<? extends TileEntity, ? extends MobEntity>> tileEntityType, EntityType<T> entityType) {
 		super(tileEntityType);
 		this.entity = entityType;
 	}
