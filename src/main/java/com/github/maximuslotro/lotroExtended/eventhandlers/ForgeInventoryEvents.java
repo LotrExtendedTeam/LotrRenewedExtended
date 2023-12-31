@@ -16,8 +16,6 @@ public class ForgeInventoryEvents {
     @SubscribeEvent
     public static void coinExchangeClose(final PlayerContainerEvent.Close event) {
        if (event.getContainer() instanceof ExtendedCoinExchangeContainer && !event.getPlayer().level.isClientSide) {
-           System.out.println("CoinExchangeContainer closed!");
-
            ExtendedCoinExchangeContainer container = (ExtendedCoinExchangeContainer) event.getContainer();
            PlayerEntity player = event.getPlayer();
            World world = player.level;

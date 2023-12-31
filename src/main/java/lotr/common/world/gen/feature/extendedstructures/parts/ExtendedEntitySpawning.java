@@ -14,13 +14,16 @@ import net.minecraftforge.common.util.Constants;
 public class ExtendedEntitySpawning {
 	
 	public static void spawnEntity(ISeedReader iseedreader, String id, BlockPos blockpos){
-		spawnEntity(iseedreader, getEntityIdFromId(id), blockpos);
+		spawnEntity(iseedreader, getEntityIdFromId(id), blockpos, id);
 	}
 	
-	public static void spawnEntity(ISeedReader iseedreader, Block block, BlockPos blockpos) {
+	public static void spawnEntity(ISeedReader iseedreader, Block block, BlockPos blockpos, String debugName) {
 		if(block!=null) {
 			iseedreader.setBlock(blockpos, block.defaultBlockState(), Constants.BlockFlags.DEFAULT);
 			return;
+		}
+		else {
+			System.out.println("RECIEVED NULL SPAWNER BLOCK FOR: "+debugName);
 		}
 	}
 
@@ -32,7 +35,7 @@ public class ExtendedEntitySpawning {
 		if(name.equals("hobbit_farmer")) {
 			return ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_FARMER.getSerializedName()).get();
 		}
-		ExtendedLog.error("MISSING INTERNAL ENTITY ID FOUND WHILE SPAWNING!");
+		ExtendedLog.error("MISSING INTERNAL ENTITY ID FOUND WHILE SPAWNING! "+name);
 		if(ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(name)!=null) {
 			ExtendedLog.error("FOUND MATCHING ID, TRYING INSTEAD!");
 			return ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(name).get();
