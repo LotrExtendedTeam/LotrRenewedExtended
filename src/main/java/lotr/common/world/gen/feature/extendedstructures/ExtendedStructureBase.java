@@ -339,15 +339,15 @@ public abstract class ExtendedStructureBase{
 				if(!entity.getValue().containsKey(1)) {
 					ExtendedLog.error("FOUND NON-SINGULAR KEY FOR SINGLE KEY: "+file.name+", entity: "+entity.getKey());
 					ExtendedLog.error("ENTITY NOT SUMMONED!");
-					break;
+					continue;
 				}
 				ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)));
-				break;
+				continue;
 			}
 			if(entity.getValue().size()>4||entity.getValue().size()<1) {
 				ExtendedLog.error("FOUND TOO MANY/TOO LITTLE KEYS FOR: "+file.name+", entity: "+entity.getKey()+", keys count: "+entity.getValue().size());
 				ExtendedLog.error("ENTITY NOT SUMMONED!");
-				break;
+				continue;
 			}
 			int pick = random.nextInt(100);
 			if(entity.getValue().size()==2) {
@@ -356,7 +356,7 @@ public abstract class ExtendedStructureBase{
 				} else {
 					ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)));
 				}
-				break;
+				continue;
 			}
 			if(entity.getValue().size()==3) {
 				if(pick<90) {
@@ -369,7 +369,7 @@ public abstract class ExtendedStructureBase{
 						ExtendedEntitySpawning.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(3)));
 					}
 				}
-				break;
+				continue;
 			}
 			if(entity.getValue().size()==4) {
 				if(pick<90) {
@@ -387,7 +387,7 @@ public abstract class ExtendedStructureBase{
 						}
 					}
 				}
-				break;
+				continue;
 			}
 		}
 	}

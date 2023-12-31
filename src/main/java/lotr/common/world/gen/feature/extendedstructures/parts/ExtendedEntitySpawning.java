@@ -22,9 +22,6 @@ public class ExtendedEntitySpawning {
 			iseedreader.setBlock(blockpos, block.defaultBlockState(), Constants.BlockFlags.DEFAULT);
 			return;
 		}
-		else {
-			System.out.println("RECIEVED NULL SPAWNER BLOCK FOR: "+debugName);
-		}
 	}
 
 	@Nullable
