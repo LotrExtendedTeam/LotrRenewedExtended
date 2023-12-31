@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
 import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
-import lotr.common.entity.npc.HobbitBartenderEntity;
+import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedNpcs;
 import lotr.common.init.LOTREntities;
@@ -26,7 +26,7 @@ public class MixinLOTREntities {
 
     @Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
-        ExtendedNpcs.HOBBIT_BARTENDER = regNPC("hobbit_bartender", HobbitBartenderEntity::new, HobbitBartenderEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
+        ExtendedNpcs.HOBBIT_BARTENDER = regNPC("hobbit_bartender", ExtendedHobbitBartenderEntity::new, ExtendedHobbitBartenderEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedNpcs.HOBBIT_FARMER = regNPC("hobbit_farmer", ExtendedHobbitFarmerEntity::new, ExtendedHobbitFarmerEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
     }
 
