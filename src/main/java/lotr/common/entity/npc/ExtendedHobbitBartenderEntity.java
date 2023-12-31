@@ -1,11 +1,18 @@
 package lotr.common.entity.npc;
 
+import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.init.ExtendedContainers;
+import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
@@ -82,5 +89,5 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity {
 
         return super.mobInteract(player, hand);
     }
-    // TODO: Add GUI from right-click
+
 }
