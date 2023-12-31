@@ -45,6 +45,7 @@ public abstract class ExtendedStructureBase{
 	public int initialY;
 	public int initialZ;
 	public int rot;
+	public RelativePosition offset;
 
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
 		try {
@@ -66,10 +67,65 @@ public abstract class ExtendedStructureBase{
 	//TODO deal with rotation
 	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot, RelativePosition offset) {
 		this.rot = rot;
+		this.offset = offset;
+
 		this.initialX = (pos.getX()-((int) Math.ceil(offset.X/2)));
-		this.initialY = pos.getY();
 		this.initialZ = (pos.getZ()-((int) Math.ceil(offset.Z/2)));
+		this.initialY = pos.getY();
+		//this.initialX = pos.getX();
+		//this.initialZ = pos.getZ();
 		//findSurface(world);
+//		world.setBlock(new BlockPos(pos.getX(), 78, pos.getZ()), LOTRBlocks.SILVER_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
+//
+//		world.setBlock(new BlockPos(initialX, 79, initialZ), LOTRBlocks.MITHRIL_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
+//		switch(rot) {
+//		case 0:
+//			world.setBlock(new BlockPos(initialX, 80, initialZ), LOTRBlocks.COPPER_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
+//			break;
+//		case 1:
+//			world.setBlock(new BlockPos(initialX, 81, initialZ), LOTRBlocks.DURNOR_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
+//			break;
+//		case 2:
+//			world.setBlock(new BlockPos(initialX, 82, initialZ), LOTRBlocks.GLOWSTONE_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
+//			break;
+//		case 3:
+//			world.setBlock(new BlockPos(initialX, 83, initialZ), LOTRBlocks.GULDURIL_ORE_STONE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
+//
+//		}
+	}
+
+	int makeYvalue(int y) {
+		return initialY + y;
+	}
+
+	int makeXvalue(int x, int z) {
+		return initialX + x;
+//		switch(rot) {
+//		case 0:
+//			return initialX-x+((int) Math.ceil(offset.X/2));
+//		case 1:
+//			return initialX-z+((int) Math.ceil(offset.X/2));
+//		case 2:
+//			return initialX+x-((int) Math.ceil(offset.X/2));
+//		case 3:
+//			return initialX+z-((int) Math.ceil(offset.X/2));
+//		}
+//		return initialX;
+	}
+
+	int makeZvalue(int x, int z) {
+		return initialZ + z;
+//		switch(rot) {
+//		case 0:
+//			return initialZ+z;
+//		case 1:
+//			return initialZ-x;
+//		case 2:
+//			return initialZ-z;
+//		case 3:
+//			return initialZ+x;
+//		}
+//		return initialZ;
 	}
 
 	public void doFileGen(ISeedReader world, Random random, StructureFile file) {
@@ -89,60 +145,8 @@ public abstract class ExtendedStructureBase{
 		}
 	}
 
-//	public void findSurface(ISeedReader world) {
-//		System.out.println("Setting Height");
-//		int height =initialY;
-//		System.out.println("height= "+height+", initialY= "+initialY);
-//		for (int y = 8; (initialY+y) >= 0; y--) {
-//			System.out.println("height= "+height+", initialY= "+initialY+", Y= "+y);
-//			System.out.println("Looping");
-//			if (LOTRFeatures.isSurfaceBlock((IWorld) world, new BlockPos(initialX, initialY+y, initialZ))) {
-//				System.out.println("Found Surface");
-//				break;
-//			}
-//			height +=y;
-//			System.out.println("height= "+height+", initialY= "+initialY+", Y= "+y);
-//			System.out.println("End Looping");
-//		}
-//		System.out.println("height= "+height+", initialY= "+initialY);
-//		System.out.println("End Setting Height");
-//		initialY = height;
-//	}
-
-	int makeYvalue(int y) {
-		return initialY + y;
-	}
-
-	int makeXvalue(int x, int z) {
-		switch(rot) {
-		case 0:
-			return initialX-x;
-		case 1:
-			return initialX-z;
-		case 2:
-			return initialX+x;
-		case 3:
-			return initialX+z;
-		}
-		return initialX;
-	}
-
-	int makeZvalue(int x, int z) {
-		switch(rot) {
-		case 0:
-			return initialZ+z;
-		case 1:
-			return initialZ-x;
-		case 2:
-			return initialZ-z;
-		case 3:
-			return initialZ+x;
-		}
-		return initialZ;
-	}
-
 	public void setAllBelowToBlock(ISeedReader world, int x, int y, int z, Block block) {
-		for (int level = y-1; isNotSolid(world, x, level, z) && (level+initialY) >= 0; level--) {
+		for (int level = y-1; isNotSolid(world, x, level, z) && (makeYvalue(level)) >= 0; level--) {
 			setBlockAndMetadata(world, x, level, z, block);
 		}
 	}
