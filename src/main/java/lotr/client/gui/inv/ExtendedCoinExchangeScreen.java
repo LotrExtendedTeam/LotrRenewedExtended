@@ -9,7 +9,6 @@ import lotr.common.network.ExtendedSPacketExchangeCoins;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -26,6 +25,16 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
     public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent title) {
         super(p_i51105_1_, p_i51105_2_, title);
+
+        this.imageHeight = 188;
+        this.imageWidth = 176;
+    }
+
+    @Override
+    public void render(MatrixStack p_98418_, int p_98419_, int p_98420_, float p_98421_) {
+        this.renderBackground(p_98418_);
+        super.render(p_98418_, p_98419_, p_98420_, p_98421_);
+        this.renderTooltip(p_98418_, p_98419_, p_98420_);
     }
 
     @Override
@@ -55,8 +64,10 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
     public void init() {
         super.init();
         this.imageHeight = 188;
-        this.titleLabelY = 3;
-        this.inventoryLabelY = this.imageHeight - 104;
+        this.imageWidth = 176;
+
+        this.titleLabelY = 7;
+        this.inventoryLabelY = this.imageHeight - 95;
 
         int i = (this.width - this.imageWidth) / 2;
         int j = ((this.height - this.imageHeight) / 2);
@@ -87,7 +98,6 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
         if (mode == 0 && !this.menu.leftSlot.getItem().equals(ItemStack.EMPTY)) {
             // attempt to exchange left
-            System.out.println("Attempt to exchange left");
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
                 this.menu.exchanged = true;
                 this.menu.sideExchanged = mode;
@@ -95,7 +105,6 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
             }
         } else if(mode == 1 && !this.menu.rightSlot.getItem().equals(ItemStack.EMPTY)) {
             // attempt to exchange right
-            System.out.println("Attempt to exchange right");
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
                 this.menu.exchanged = true;
                 this.menu.sideExchanged = mode;
