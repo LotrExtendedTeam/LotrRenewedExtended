@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 
-public class ExtendedGuiHornSelect extends BasicIngameScreen{
-	public ExtendedGuiHornSelect() {
+public class ExtendedHornSelectScreen extends BasicIngameScreen{
+	public ExtendedHornSelectScreen() {
 		super(new StringTextComponent("HORNSELECT"));
 	}
 

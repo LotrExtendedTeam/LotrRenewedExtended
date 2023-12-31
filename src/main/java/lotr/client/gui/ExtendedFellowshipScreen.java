@@ -5,9 +5,9 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 
-public class ExtendedGuiFellowship extends MiddleEarthMenuScreen {
+public class ExtendedFellowshipScreen extends MiddleEarthMenuScreen {
 
-	public ExtendedGuiFellowship() {
+	public ExtendedFellowshipScreen() {
 		super(new StringTextComponent("FELLOWSHIPS"));
 	}
 

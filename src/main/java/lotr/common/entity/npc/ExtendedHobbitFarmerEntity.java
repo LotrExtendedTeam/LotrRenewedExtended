@@ -1,23 +1,31 @@
 package lotr.common.entity.npc;
 
+import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ai.goal.FriendlyNPCConversationGoal;
 import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
+import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
+import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedHobbitFarmerEntity extends HobbitEntity {
 
@@ -59,8 +67,17 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity {
     }
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        if (canTradeWith(player)) {
-            player.sendMessage(new StringTextComponent("This feature has not been implemented yet."), player.getUUID());
+    	if (canTradeWith(player)) {
+            if (!this.level.isClientSide()) {
+            	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
+    			int id = this.getId();
+    			PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
+    			ExtendedCoinExchangeContainer.writeContainerInitData(initData, id);
+    			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> {
+    				ExtendedCoinExchangeContainer.writeContainerInitData(buf, id);
+    			});
+            }
+            return ActionResultType.sidedSuccess(this.level.isClientSide());
         } else {
             player.sendMessage(new StringTextComponent("Your alignment is too low"), player.getUUID());
         }

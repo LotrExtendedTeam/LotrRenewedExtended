@@ -29,6 +29,9 @@ public class ExtendedEntitySpawning {
 		if(name.equals("hobbit_bartender")) {
 			return ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_BARTENDER.getSerializedName()).get();
 		}
+		if(name.equals("hobbit_farmer")) {
+			return ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_FARMER.getSerializedName()).get();
+		}
 		ExtendedLog.error("MISSING INTERNAL ENTITY ID FOUND WHILE SPAWNING!");
 		if(ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(name)!=null) {
 			ExtendedLog.error("FOUND MATCHING ID, TRYING INSTEAD!");

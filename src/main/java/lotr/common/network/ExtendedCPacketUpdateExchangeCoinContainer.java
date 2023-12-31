@@ -3,7 +3,6 @@ package lotr.common.network;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
@@ -33,7 +32,8 @@ public class ExtendedCPacketUpdateExchangeCoinContainer {
 	}
 
 	public static void handle(ExtendedCPacketUpdateExchangeCoinContainer packet, Supplier<Context> context) {
-		ClientPlayerEntity player = Minecraft.getInstance().player;
+		Minecraft mc = Minecraft.getInstance();
+		ClientPlayerEntity player = mc.player;
 		assert player != null;
 		if (player.containerMenu instanceof ExtendedCoinExchangeContainer) {
 			ExtendedCoinExchangeContainer container = (ExtendedCoinExchangeContainer) player.containerMenu;

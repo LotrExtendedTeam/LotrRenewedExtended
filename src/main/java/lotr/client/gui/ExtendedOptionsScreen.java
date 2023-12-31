@@ -10,9 +10,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 
-public class ExtendedGuiOptions extends MiddleEarthMenuScreen {
+public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 
-	public ExtendedGuiOptions() {
+	public ExtendedOptionsScreen() {
 		super(new StringTextComponent("OPTIONS"));
 	}
 	private ExtendedGuiOptionsButton buttonFriendlyFire;
