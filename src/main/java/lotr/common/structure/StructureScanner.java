@@ -17,6 +17,7 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -34,6 +35,7 @@ public class StructureScanner {
 	public static final String signNumberHolder = "signText";
 	public static final String structureSizeHolder = "structureSize";
 	public static final String structureNameHolder = "structureName";
+	public static final String structureDirectionHolder = "facingDirection";
 	private static ServerPlayerEntity selectedPlayer;
 	private static String wandID;
 	private static BlockPos pos1;
@@ -42,6 +44,7 @@ public class StructureScanner {
 	private static Boolean blockStateFlag = false;
 	private static Boolean entityStateFlag = false;
 	private static Boolean nbtStateFlag = false;
+	private static Direction direction;
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
     public void playerInteractEvent(PlayerInteractEvent.LeftClickBlock event)
@@ -117,6 +120,12 @@ public class StructureScanner {
 	}
 	public static void setPos2(BlockPos pos2) {
 		StructureScanner.pos2 = new BlockPos(MathHelper.floor(pos2.getX()),MathHelper.floor(pos2.getY()),MathHelper.floor(pos2.getZ()));
+	}
+	public static Direction getFacingDirection() {
+		return direction;
+	}
+	public static void setFacingDirection(Direction direction) {
+		StructureScanner.direction = direction;
 	}
 	public static Boolean getBlockStateFlag() {
 		return blockStateFlag;
@@ -229,6 +238,7 @@ public class StructureScanner {
 		int XWidth = Math.abs(topX - bottomX)+1;
 		int ZWidth = Math.abs(topZ - bottomZ)+1;
 		dataCompound.put(structureSizeHolder, createStructureSize(XWidth, yHeight, ZWidth));
+		dataCompound.putString(structureDirectionHolder, direction.getName());
 		dataCompound.putString(structureNameHolder, name);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;

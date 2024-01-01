@@ -18,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -40,9 +41,37 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 								.executes(context -> setCorner(context, false))))
 				.then(Commands.literal("wand")
 						.executes(context -> giveWand(context)))
+				.then(Commands.literal("direction")
+						.then(Commands.literal("NORTH")
+								.executes(context -> setDirection(context, "NORTH")))
+						.then(Commands.literal("SOUTH")
+								.executes(context -> setDirection(context, "SOUTH")))
+						.then(Commands.literal("WEST")
+								.executes(context -> setDirection(context, "WEST")))
+						.then(Commands.literal("EAST")
+								.executes(context -> setDirection(context, "EAST")))
+						.then(Commands.literal("NODIRECTION")
+								.executes(context -> setDirection(context, "UP"))))
 				.then(Commands.literal("load")
 						.then(Commands.argument("name", StringArgumentType.word())
 								.executes(context -> loadStructure(context)))));
+	}
+
+	private static int setDirection(CommandContext<CommandSource> context, String direction) {
+		Direction dir = Direction.byName(direction);
+		if(dir!=null){
+			StructureScanner.setFacingDirection(dir);
+			if(dir==Direction.UP) {
+				context.getSource().sendSuccess(new StringTextComponent("Set facing direction to directionless") , true);
+			}
+			else {
+				context.getSource().sendSuccess(new StringTextComponent("Set facing direction to: "+dir.toString()) , true);
+			}
+		}
+		else {
+			context.getSource().sendSuccess(new StringTextComponent("Invalid direction: "+direction) , true);
+		}
+		return 0;
 	}
 
 	private static int scanStructure(CommandContext<CommandSource> context) {
