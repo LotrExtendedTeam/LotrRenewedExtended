@@ -32,6 +32,9 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 				.then(Commands.literal("pos1")
 						.then(Commands.argument("corner", BlockPosArgument.blockPos())
 								.executes(context -> setCorner(context, true))))
+				.then(Commands.literal("origin")
+						.then(Commands.argument("origin", BlockPosArgument.blockPos())
+								.executes(context -> setOrigin(context))))
 				.then(Commands.literal("pos2")
 						.then(Commands.argument("corner", BlockPosArgument.blockPos())
 								.executes(context -> setCorner(context, false))))
@@ -68,6 +71,11 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 		else {
 			context.getSource().sendSuccess(new StringTextComponent("Loading Failed"), false);
 		}
+		return 0;
+	}
+	private static int setOrigin(CommandContext<CommandSource> context) throws CommandSyntaxException {
+		StructureScanner.setOrigin(BlockPosArgument.getLoadedBlockPos(context, "origin"));
+		context.getSource().sendSuccess(new StringTextComponent("Set Origin") , true);
 		return 0;
 	}
 	private static int setCorner(CommandContext<CommandSource> context, boolean one) throws CommandSyntaxException {

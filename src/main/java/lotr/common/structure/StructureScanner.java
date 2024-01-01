@@ -19,6 +19,7 @@ import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -37,6 +38,7 @@ public class StructureScanner {
 	private static String wandID;
 	private static BlockPos pos1;
 	private static BlockPos pos2;
+	private static BlockPos origin;
 	private static Boolean blockStateFlag = false;
 	private static Boolean entityStateFlag = false;
 	private static Boolean nbtStateFlag = false;
@@ -58,7 +60,7 @@ public class StructureScanner {
             return;
         }
 
-        pos1 = event.getPos();
+        setPos1(event.getPos());
         player.createCommandSourceStack().sendSuccess(new StringTextComponent("Pos1 set to "+pos1.getX()+", "+pos1.getY()+", "+pos1.getZ()), false);
         event.setCanceled(true);
     }
@@ -80,8 +82,14 @@ public class StructureScanner {
             return;
         }
 
-        pos2 = event.getPos();
-        player.createCommandSourceStack().sendSuccess(new StringTextComponent("Pos2 set to "+pos2.getX()+", "+pos2.getY()+", "+pos2.getZ()), false);
+        if(player.isCrouching()) {
+        	setOrigin(event.getPos());
+            player.createCommandSourceStack().sendSuccess(new StringTextComponent("Origin set to "+origin.getX()+", "+origin.getY()+", "+origin.getZ()), false);
+        }
+        else {
+        	setPos2(event.getPos());
+            player.createCommandSourceStack().sendSuccess(new StringTextComponent("Pos2 set to "+pos2.getX()+", "+pos2.getY()+", "+pos2.getZ()), false);
+        }
         event.setCanceled(true);
 
     }
@@ -96,13 +104,19 @@ public class StructureScanner {
 		return pos1;
 	}
 	public static void setPos1(BlockPos pos1) {
-		StructureScanner.pos1 = pos1;
+		StructureScanner.pos1 = new BlockPos(MathHelper.floor(pos1.getX()),MathHelper.floor(pos1.getY()),MathHelper.floor(pos1.getZ()));
 	}
 	public static BlockPos getPos2() {
 		return pos2;
 	}
+	public static void setOrigin(BlockPos origin) {
+		StructureScanner.origin = new BlockPos(MathHelper.floor(origin.getX()),MathHelper.floor(origin.getY()),MathHelper.floor(origin.getZ()));
+	}
+	public static BlockPos getOrigin() {
+		return origin;
+	}
 	public static void setPos2(BlockPos pos2) {
-		StructureScanner.pos2 = pos2;
+		StructureScanner.pos2 = new BlockPos(MathHelper.floor(pos2.getX()),MathHelper.floor(pos2.getY()),MathHelper.floor(pos2.getZ()));
 	}
 	public static Boolean getBlockStateFlag() {
 		return blockStateFlag;
@@ -126,71 +140,43 @@ public class StructureScanner {
 	public static boolean scanStructure(CommandContext<CommandSource> context) {
 		String name = StringArgumentType.getString(context, "name");
 		if(pos1==null||pos2==null) {
-			context.getSource().sendSuccess(new StringTextComponent("No corners set!") , true);
+			context.getSource().sendSuccess(new StringTextComponent("Corners not set!") , true);
 			return false;
 		}
-		int bottomFrontLeftX = 0;
-		int bottomFrontLeftY = 0;
-		int bottomFrontLeftZ = 0;
-		int topBackRightX = 0;
-		int topBackRightY = 0;
-		int topBackRightZ = 0;
+		if(origin==null) {
+			context.getSource().sendSuccess(new StringTextComponent("Origin not set!") , true);
+			return false;
+		}
+		if(direction==null) {
+			context.getSource().sendSuccess(new StringTextComponent("Direction not set!") , true);
+			return false;
+		}
+		int bottomX = 0;
+		int bottomY = 0;
+		int bottomZ = 0;
+		int topX = 0;
+		int topY = 0;
+		int topZ = 0;
 		//X
-		if(pos1.getX()<pos2.getX()) {
-			bottomFrontLeftX = pos1.getX();
-			topBackRightX = pos2.getX();
-		}else if(pos1.getX()>pos2.getX()) {
-			bottomFrontLeftX = pos2.getX();
-			topBackRightX = pos1.getX();
-		}else {
-			bottomFrontLeftX = pos1.getX();
-			topBackRightX = pos1.getX();
-		}
+		bottomX = Math.min(pos1.getX(), pos2.getX());
+		topX = Math.max(pos1.getX(), pos2.getX());
 		//Y
-		if(pos1.getY()<pos2.getY()) {
-			bottomFrontLeftY = pos1.getY();
-			topBackRightY = pos2.getY();
-		}else if(pos1.getY()>pos2.getY()) {
-			bottomFrontLeftY = pos2.getY();
-			topBackRightY = pos1.getY();
-		}else {
-			bottomFrontLeftY = pos1.getY();
-			topBackRightY = pos1.getY();
-		}
+		bottomY = Math.min(pos1.getY(), pos2.getY());
+		topY = Math.max(pos1.getY(), pos2.getY());
 		//Z
-		if(pos1.getZ()<pos2.getZ()) {
-			bottomFrontLeftZ = pos1.getZ();
-			topBackRightZ = pos2.getZ();
-		}else if(pos1.getZ()>pos2.getZ()) {
-			bottomFrontLeftZ = pos2.getZ();
-			topBackRightZ = pos1.getZ();
-		}else {
-			bottomFrontLeftZ = pos1.getZ();
-			topBackRightZ = pos1.getZ();
-		}
-		if(bottomFrontLeftX==0||bottomFrontLeftY==0||bottomFrontLeftZ==0||topBackRightX==0||topBackRightY==0||topBackRightZ==0) {
-			context.getSource().sendSuccess(new StringTextComponent("Non set Corner Value!") , true);
-			return false;
-		}
+		bottomZ = Math.min(pos1.getZ(), pos2.getZ());
+		topZ = Math.max(pos1.getZ(), pos2.getZ());
 
 		ListNBT blockDataMap = new ListNBT();
 		ListNBT entitySpawnMap = new ListNBT();
 		ListNBT signTextMap = new ListNBT();
-		BlockPos bottomFrontLeft = new BlockPos(bottomFrontLeftX,bottomFrontLeftY,bottomFrontLeftZ);
-		BlockPos topBackRight = new BlockPos(topBackRightX,topBackRightY,topBackRightZ);
 		
-		int xpos = -1;
-		int ypos = -1;
-		int zpos = -1;
-		int xSize = 0;
-		int ySize = 0;
-		int zSize = 0;
-		for(int y = bottomFrontLeft.getY(); y < topBackRight.getY()+1; y++) {
-			ypos++;
-			for(int x = bottomFrontLeft.getX(); x < topBackRight.getX()+1; x++) {
-				xpos++;
-				for(int z = bottomFrontLeft.getZ(); z < topBackRight.getZ()+1; z++) {
-					zpos++;
+		for(int y = bottomY; y < topY+1; y++) {
+			for(int x = bottomX; x < topX+1; x++) {
+				for(int z = bottomZ; z < topZ+1; z++) {
+					int posX = x - origin.getX();
+					int posY = y - origin.getY();
+					int posZ = z - origin.getZ();
 					BlockState state = context.getSource().getLevel().getBlockState(new BlockPos(x,y,z));
 					CompoundNBT dataHolder = new CompoundNBT();
 					if(state.getBlock().equals(Blocks.REDSTONE_BLOCK)||state.getBlock().equals(Blocks.AIR)) {
@@ -202,7 +188,7 @@ public class StructureScanner {
 					if(state.getBlock() instanceof AbstractSignBlock) {
 						CompoundNBT entity = StructureScannerUtils.parseSignInfo(context.getSource().getLevel(), new BlockPos(x,y,z));
 						if(entity!=null) {
-							entity.put(relativeLocationHolder, writeBlockPos(xpos, ypos, zpos));
+							entity.put(relativeLocationHolder, writeBlockPos(posX, posY, posZ));
 							if(entity.contains("entity")) {
 								entitySpawnMap.add(entity);
 								state = Blocks.AIR.defaultBlockState();
@@ -211,7 +197,7 @@ public class StructureScanner {
 								signTextMap.add(entity);
 							}
 							else {
-								ExtendedLog.error("FOUND INVALID ENTITY TYPE!");
+								ExtendedLog.error("FOUND INVALID SIGN TYPE!");
 							}
 						}
 					}
@@ -229,34 +215,20 @@ public class StructureScanner {
 						}
 					}
 					dataHolder.put(blockMapHolder, NBTUtil.writeBlockState(state));
-					dataHolder.put(relativeLocationHolder, writeBlockPos(xpos, ypos, zpos));
+					dataHolder.put(relativeLocationHolder, writeBlockPos(posX, posY, posZ));
 					blockDataMap.add(dataHolder);
 				}
-				if(zpos+1>zSize &&zSize==0) {
-					zSize=zpos+1;
-				}else if(zpos+1>zSize &&zSize!=0){
-					ExtendedLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON Z CONSICUTIVE PASS!");
-					ExtendedLog.error("CANCELING SCAN!");
-					return false;
-				}
-				zpos = -1;
 			}
-			if(xpos+1>xSize &&xSize==0) {
-				xSize=xpos+1;
-			}else if(xpos+1>xSize &&xSize!=0){
-				ExtendedLog.error("ERROR SCANNING STRUCTURE! FOUND DIFFRENT SIZE LAYER ON X CONSICUTIVE PASS!");
-				ExtendedLog.error("CANCELING SCAN!");
-				return false;
-			}
-			xpos = -1;
 		}
-		ySize=ypos+1;
 		
 		CompoundNBT dataCompound = new CompoundNBT();
 		dataCompound.put(blockMapHolder, blockDataMap);
 		dataCompound.put(entityMapHolder, entitySpawnMap);
 		dataCompound.put(signMapHolder, signTextMap);
-		dataCompound.put(structureSizeHolder, createStructureSize(xSize, ySize, zSize));
+		int yHeight = Math.abs(topY - bottomY)+1;
+		int XWidth = Math.abs(topX - bottomX)+1;
+		int ZWidth = Math.abs(topZ - bottomZ)+1;
+		dataCompound.put(structureSizeHolder, createStructureSize(XWidth, yHeight, ZWidth));
 		dataCompound.putString(structureNameHolder, name);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;
