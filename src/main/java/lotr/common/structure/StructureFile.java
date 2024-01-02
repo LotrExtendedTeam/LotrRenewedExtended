@@ -2,6 +2,7 @@ package lotr.common.structure;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.Direction;
 
 public class StructureFile {
 
@@ -10,13 +11,15 @@ public class StructureFile {
 	private final ListNBT entities;
 	public final String name;
 	private final CompoundNBT structureSize;
+	private final Direction NaturalFacingDirection;
 
-	public StructureFile(String name, ListNBT layers, CompoundNBT structureSize, ListNBT signs, ListNBT entities) {
+	public StructureFile(String name, ListNBT layers, CompoundNBT structureSize, ListNBT signs, ListNBT entities, Direction dir) {
 		this.layers = layers;
 		this.signs = signs;
 		this.entities = entities;
 		this.name = name;
 		this.structureSize = structureSize;
+		this.NaturalFacingDirection = dir;
 	}
 
 	public CompoundNBT getStructureSize() {
@@ -41,5 +44,9 @@ public class StructureFile {
 
 	public ListNBT getEntities() {
 		return entities;
+	}
+
+	public Direction getNaturalFacingDirection() {
+		return NaturalFacingDirection;
 	}
 }

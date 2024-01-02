@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Direction;
 
 public class StructureFileHandler {
 	private static Map<String, StructureFile> loadedStructures = new HashMap<>();
@@ -25,11 +26,13 @@ public class StructureFileHandler {
 		ListNBT blockMap;
 		ListNBT signMap;
 		ListNBT entityMap;
+		Direction dir;
 		try {
 			size = compound.getCompound(StructureScanner.structureSizeHolder);
 			blockMap = compound.getList(StructureScanner.blockMapHolder, 10);
 			signMap = compound.getList(StructureScanner.signMapHolder, 10);
 			entityMap = compound.getList(StructureScanner.entityMapHolder, 10);
+			dir = Direction.byName(compound.getString(StructureScanner.structureDirectionHolder));
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
@@ -48,7 +51,7 @@ public class StructureFileHandler {
 		if(entityMap.isEmpty()) {
 			ExtendedLog.warn("Loaded empty entity array! "+strName);
 		}
-		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap);
+		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap, dir);
 		loadedStructures.put(strName, file);
 		return file;
 	}
