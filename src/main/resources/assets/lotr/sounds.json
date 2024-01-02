@@ -4,5 +4,11 @@
       "lotr:item/horn"
     ],
     "subtitle": "subtitles.lotr.item.horn"
+  },
+  "event.trade1": {
+    "sounds": [
+      "lotr:event/trade1"
+    ],
+    "subtitle": "subtitles.lotr.event.trade1"
   }
 }

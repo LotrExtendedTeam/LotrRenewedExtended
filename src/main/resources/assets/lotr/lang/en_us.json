@@ -3002,6 +3002,7 @@
 	"death.attack.lotr.thrownSpear": "%1$s was speared by %2$s",
 	"death.attack.lotr.thrownSpear.item": "%1$s was speared by %2$s using %3$s",
 	"subtitles.lotr.ambience.weather.wind": "Wind whistles",
+	"subtitles.lotr.event.trade1": "Coins jingle",
 	"subtitles.lotr.block.gate.close": "Gate closed",
 	"subtitles.lotr.block.gate.open": "Gate opened",
 	"subtitles.lotr.block.palantir.ponder": "Palantír pondered",

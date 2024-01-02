@@ -6,6 +6,7 @@ import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,11 +24,12 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedHobbitFarmerEntity extends HobbitEntity {
+public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedTraderEntity {
 
     public ExtendedHobbitFarmerEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
@@ -83,5 +85,11 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity {
         }
 
         return super.mobInteract(player, hand);
+    }
+
+    @Override
+    public void playTradeSound() {
+        // TODO: Randomize 1-4
+        this.level.playSound(null, this.getOnPos(), ExtendedSoundEvents.TRADE_SOUND_1, SoundCategory.MASTER, 1, 1);
     }
 }
