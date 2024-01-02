@@ -64,11 +64,17 @@ public class MixinLOTRItems {
 		//############################################################DECORATION##############################################################
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItem(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);
+		ExtendedItems.RASPBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.RASPBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.BLUEBERRY_BUSH = regBlockItem(ExtendedBlocks.BLUEBERRY_BUSH, LOTRItemGroups.DECO);
+		ExtendedItems.BLUEBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.BLUEBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.BLACKBERRY_BUSH = regBlockItem(ExtendedBlocks.BLACKBERRY_BUSH, LOTRItemGroups.DECO);
+		ExtendedItems.BLACKBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.BLACKBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.CRANBERRY_BUSH = regBlockItem(ExtendedBlocks.CRANBERRY_BUSH, LOTRItemGroups.DECO);
+		ExtendedItems.CRANBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.CRANBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.ELDERBERRY_BUSH = regBlockItem(ExtendedBlocks.ELDERBERRY_BUSH, LOTRItemGroups.DECO);
+		ExtendedItems.ELDERBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.ELDERBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.WILDBERRY_BUSH = regBlockItem(ExtendedBlocks.WILDBERRY_BUSH, LOTRItemGroups.DECO);
+		ExtendedItems.WILDBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.WILDBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		
 		ExtendedItems.WHITE_PACKED_FUR = regBlockItem(ExtendedBlocks.WHITE_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.WHITE_PACKED_FUR_SLAB = regBlockItem(ExtendedBlocks.WHITE_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
