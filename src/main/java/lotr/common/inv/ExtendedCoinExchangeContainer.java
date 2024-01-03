@@ -43,7 +43,7 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
     public Slot rightSlot;
     private ItemStack lastInputSlot = null;
 
-    ExtendedTraderEntity trader;
+    public final ExtendedTraderEntity trader;
 
     public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
         super(ExtendedContainers.COIN_TRADING.get(), containerId);

@@ -6,4 +6,8 @@ public interface ExtendedTraderEntity {
 
     void playTradeSound();
 
+    boolean isInteractingWithPlayer();
+
+    void removePlayerFromTrading(PlayerEntity player);
+
 }

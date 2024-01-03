@@ -23,10 +23,15 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import java.util.HashSet;
+import java.util.UUID;
+
 /**
  * @author RichardB122
  */
 public class ExtendedHobbitBartenderEntity extends HobbitEntity implements ExtendedTraderEntity {
+
+    HashSet<UUID> playersTradingWith = new HashSet<>();
 
     public ExtendedHobbitBartenderEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
@@ -56,10 +61,10 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         this.goalSelector.addGoal(1, new AvoidEntityGoal<OrcEntity>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.6));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(10, new TalkToCurrentGoal(this));
-        this.goalSelector.addGoal(11, new FriendlyNPCConversationGoal(this, 0.001F));
+        this.goalSelector.addGoal(10, new ExtendedTraderTalkToCurrentGoal(this, this));
+        this.goalSelector.addGoal(11, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
         this.goalSelector.addGoal(12, new WatchSunriseSunsetGoal(this, 0.01F));
-        this.goalSelector.addGoal(13, new WaterAvoidingRandomWalkingGoal(this, 1.1));
+        this.goalSelector.addGoal(13, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.1));
         this.goalSelector.addGoal(15, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.05F));
         this.goalSelector.addGoal(15, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.05F));
         this.goalSelector.addGoal(16, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
@@ -75,16 +80,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (canTradeWith(player)) {
-            if (!this.level.isClientSide()) {
-            	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
-    			int id = this.getId();
-    			PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-    			ExtendedCoinExchangeContainer.writeContainerInitData(initData, id);
-    			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> {
-    				ExtendedCoinExchangeContainer.writeContainerInitData(buf, id);
-    			});
-            }
-            return ActionResultType.sidedSuccess(this.level.isClientSide());
+            return ExtendedTraderHelper.openTraderGui(this, player, playersTradingWith);
         } else {
             player.sendMessage(new StringTextComponent("Your alignment is too low"), player.getUUID());
         }
@@ -94,8 +90,17 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
     @Override
     public void playTradeSound() {
-        // TODO: Randomize 1-4
-        this.level.playSound(null, this.getOnPos(), ExtendedSoundEvents.TRADE_SOUND_1, SoundCategory.MASTER, 1, 1);
+        ExtendedTraderHelper.playTraderSound(level, getOnPos());
+    }
+
+    @Override
+    public boolean isInteractingWithPlayer() {
+        return ExtendedTraderHelper.isInteractingWithPlayer(playersTradingWith);
+    }
+
+    @Override
+    public void removePlayerFromTrading(PlayerEntity player) {
+        playersTradingWith.remove(player.getUUID());
     }
 
 }
