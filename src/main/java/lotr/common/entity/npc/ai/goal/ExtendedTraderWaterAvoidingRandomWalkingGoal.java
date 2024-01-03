@@ -21,4 +21,12 @@ public class ExtendedTraderWaterAvoidingRandomWalkingGoal extends WaterAvoidingR
             return false;
         }
     }
+
+    public boolean canContinueToUse() {
+        if (!trader.isInteractingWithPlayer()) {
+            return super.canContinueToUse();
+        } else {
+            return false;
+        }
+    }
 }

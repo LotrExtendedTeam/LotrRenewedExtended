@@ -10,4 +10,6 @@ public interface ExtendedTraderEntity {
 
     void removePlayerFromTrading(PlayerEntity player);
 
+    void openCoinExchange(PlayerEntity player);
+
 }

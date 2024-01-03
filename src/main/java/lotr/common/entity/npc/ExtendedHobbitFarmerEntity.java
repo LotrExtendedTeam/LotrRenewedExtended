@@ -97,4 +97,9 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     public void removePlayerFromTrading(PlayerEntity player) {
         playersTradingWith.remove(player.getUUID());
     }
+
+    @Override
+    public void openCoinExchange(PlayerEntity player) {
+        ExtendedTraderHelper.openCoinExchange(this, player, playersTradingWith);
+    }
 }

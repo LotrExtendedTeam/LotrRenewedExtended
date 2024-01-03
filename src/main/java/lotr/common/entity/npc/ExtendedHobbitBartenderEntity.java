@@ -103,4 +103,9 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         playersTradingWith.remove(player.getUUID());
     }
 
+    @Override
+    public void openCoinExchange(PlayerEntity player) {
+        ExtendedTraderHelper.openCoinExchange(this, player, playersTradingWith);
+    }
+
 }
