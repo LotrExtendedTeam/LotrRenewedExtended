@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/wildberry_bush2"
+    "cross": "lotr:block/wildberry_bush2"
   }
 }

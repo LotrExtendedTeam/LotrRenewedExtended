@@ -12,6 +12,7 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.LootContext;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -32,7 +33,7 @@ import java.util.Random;
 import lotr.common.init.LOTRBlocks;
 
 public class ExtendedBerryBushBushBlock extends GlassBlock implements IGrowable{
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private final RegistryObject<Item> berryItem;
     private final RegistryObject<Item> berryBlock;
 

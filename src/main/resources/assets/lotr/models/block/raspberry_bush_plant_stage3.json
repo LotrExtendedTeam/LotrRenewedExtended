@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/raspberry_bush3"
+    "cross": "lotr:block/raspberry_bush3"
   }
 }

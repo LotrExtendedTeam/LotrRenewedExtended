@@ -25,16 +25,16 @@ import java.util.List;
 
 import lotr.common.init.LOTRBlocks;
 
-public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
+public class ExtendedBerryBushPlantBlock extends SweetBerryBushBlock {
     private final RegistryObject<Item> berryItem;
-
     private final RegistryObject<Item> berryBlock;
 
-    public ExtendedBerryBushBlock(RegistryObject<Item> berryItem, RegistryObject<Item> berryBlock) {
+    public ExtendedBerryBushPlantBlock(RegistryObject<Item> berryItem, RegistryObject<Item> berryBlock) {
     	super(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN)
     			.randomTicks()
     			.sound(SoundType.SWEET_BERRY_BUSH)
     			.harvestTool(ToolType.HOE)
+    			.noCollission()
     			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
     			.isSuffocating(LOTRBlocks::posPredicateFalse)
     			.isViewBlocking(LOTRBlocks::posPredicateFalse));
@@ -58,8 +58,7 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
         if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
            return ActionResultType.PASS;
         } else if (i > 1) {
-           int j = 1 + p_225533_2_.random.nextInt(2);
-           popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), j + (flag ? 1 : 0)));
+           popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? 1+p_225533_2_.random.nextInt(3) : 0));
            p_225533_2_.playSound((PlayerEntity)null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
            p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, Integer.valueOf(1)), 2);
            return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);

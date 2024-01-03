@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/cranberry_bush3"
+    "cross": "lotr:block/cranberry_bush3"
   }
 }
