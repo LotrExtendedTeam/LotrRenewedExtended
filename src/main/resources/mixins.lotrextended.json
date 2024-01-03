@@ -28,8 +28,9 @@
 	"client": [
 		"client.gui.MixinMiddleEarthMasterMenuScreen",
 		"client.gui.inv.MixinContainerScreenHelper",
-		"client.render.entity.model.armor.MixinLOTRArmorModels",
-		"client.render.entity.MixinLOTREntityRenderers"
+		"client.render.MixinBlockRenderHelper",
+		"client.render.entity.MixinLOTREntityRenderers",
+		"client.render.entity.model.armor.MixinLOTRArmorModels"
 	],
 	"injectors": {
 		"defaultRequire": 1

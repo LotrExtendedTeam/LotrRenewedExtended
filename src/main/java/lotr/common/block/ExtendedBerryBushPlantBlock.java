@@ -35,6 +35,7 @@ public class ExtendedBerryBushPlantBlock extends SweetBerryBushBlock {
     			.sound(SoundType.SWEET_BERRY_BUSH)
     			.harvestTool(ToolType.HOE)
     			.noCollission()
+    			.noOcclusion()
     			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
     			.isSuffocating(LOTRBlocks::posPredicateFalse)
     			.isViewBlocking(LOTRBlocks::posPredicateFalse));
