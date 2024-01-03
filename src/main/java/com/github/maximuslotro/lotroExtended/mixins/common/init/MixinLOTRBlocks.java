@@ -194,18 +194,18 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MOSSY_DRYSTONE_WALL = BLOCKS.register("mossy_drystone_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_DRYSTONE));
 		
 		//BUSHES
-		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
-		ExtendedBlocks.BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> new ExtendedBerryBushBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
-		ExtendedBlocks.BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> new ExtendedBerryBushBushBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH));
-		ExtendedBlocks.CRANBERRY_BUSH = BLOCKS.register("cranberry_bush", () -> new ExtendedBerryBushBushBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_BUSH));
-		ExtendedBlocks.ELDERBERRY_BUSH = BLOCKS.register("elderberry_bush", () -> new ExtendedBerryBushBushBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_BUSH));
-		ExtendedBlocks.WILDBERRY_BUSH = BLOCKS.register("wildberry_bush", () -> new ExtendedBerryBushBushBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_BUSH));
-		ExtendedBlocks.RASPBERRY_BUSH_PLANT = BLOCKS.register("raspberry_bush_plant", () -> new ExtendedBerryBushPlantBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH_PLANT));
-		ExtendedBlocks.BLUEBERRY_BUSH_PLANT = BLOCKS.register("blueberry_bush_plant", () -> new ExtendedBerryBushPlantBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH_PLANT));
-		ExtendedBlocks.BLACKBERRY_BUSH_PLANT = BLOCKS.register("blackberry_bush_plant", () -> new ExtendedBerryBushPlantBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH_PLANT));
-		ExtendedBlocks.CRANBERRY_BUSH_PLANT = BLOCKS.register("cranberry_bush_plant", () -> new ExtendedBerryBushPlantBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_BUSH_PLANT));
-		ExtendedBlocks.ELDERBERRY_BUSH_PLANT = BLOCKS.register("elderberry_bush_plant", () -> new ExtendedBerryBushPlantBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_BUSH_PLANT));
-		ExtendedBlocks.WILDBERRY_BUSH_PLANT = BLOCKS.register("wildberry_bush_plant", () -> new ExtendedBerryBushPlantBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_BUSH_PLANT));
+		ExtendedBlocks.BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH));
+		ExtendedBlocks.BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
+		ExtendedBlocks.CRANBERRY_BUSH = BLOCKS.register("cranberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_BUSH));
+		ExtendedBlocks.ELDERBERRY_BUSH = BLOCKS.register("elderberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_BUSH));
+		ExtendedBlocks.RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
+		ExtendedBlocks.WILDBERRY_BUSH = BLOCKS.register("wildberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_BUSH));
+		ExtendedBlocks.BLACKBERRY_BUSH_PLANT = BLOCKS.register("blackberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.BLACKBERRY));
+		ExtendedBlocks.BLUEBERRY_BUSH_PLANT = BLOCKS.register("blueberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.BLUEBERRY));
+		ExtendedBlocks.CRANBERRY_BUSH_PLANT = BLOCKS.register("cranberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.CRANBERRY));
+		ExtendedBlocks.ELDERBERRY_BUSH_PLANT = BLOCKS.register("elderberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.ELDERBERRY));
+		ExtendedBlocks.RASPBERRY_BUSH_PLANT = BLOCKS.register("raspberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.RASPBERRY));
+		ExtendedBlocks.WILDBERRY_BUSH_PLANT = BLOCKS.register("wildberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.WILDBERRY));
 
 		//CRAFTING TABLES
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = BLOCKS.register("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));

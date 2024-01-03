@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
@@ -64,17 +65,11 @@ public class MixinLOTRItems {
 		//############################################################DECORATION##############################################################
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItem(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);
-		ExtendedItems.RASPBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.RASPBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.BLUEBERRY_BUSH = regBlockItem(ExtendedBlocks.BLUEBERRY_BUSH, LOTRItemGroups.DECO);
-		ExtendedItems.BLUEBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.BLUEBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.BLACKBERRY_BUSH = regBlockItem(ExtendedBlocks.BLACKBERRY_BUSH, LOTRItemGroups.DECO);
-		ExtendedItems.BLACKBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.BLACKBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.CRANBERRY_BUSH = regBlockItem(ExtendedBlocks.CRANBERRY_BUSH, LOTRItemGroups.DECO);
-		ExtendedItems.CRANBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.CRANBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.ELDERBERRY_BUSH = regBlockItem(ExtendedBlocks.ELDERBERRY_BUSH, LOTRItemGroups.DECO);
-		ExtendedItems.ELDERBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.ELDERBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		ExtendedItems.WILDBERRY_BUSH = regBlockItem(ExtendedBlocks.WILDBERRY_BUSH, LOTRItemGroups.DECO);
-		ExtendedItems.WILDBERRY_BUSH_PLANT = regBlockItem(ExtendedBlocks.WILDBERRY_BUSH_PLANT, LOTRItemGroups.DECO);
 		
 		ExtendedItems.WHITE_PACKED_FUR = regBlockItem(ExtendedBlocks.WHITE_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.WHITE_PACKED_FUR_SLAB = regBlockItem(ExtendedBlocks.WHITE_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
@@ -241,12 +236,12 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_HOE = regItem("dol_guldur_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		//######################################################################FOOD########################################################
 		//Berries
-		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
-		ExtendedItems.BLACKBERRY = regItem("blackberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
-		ExtendedItems.BLUEBERRY = regItem("blueberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
-		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
-		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
-		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
+		ExtendedItems.BLACKBERRY = regItem("blackberry", () -> new BlockNamedItem(ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
+		ExtendedItems.BLUEBERRY = regItem("blueberry", () -> new BlockNamedItem(ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
+		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new BlockNamedItem(ExtendedBlocks.CRANBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
+		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new BlockNamedItem(ExtendedBlocks.ELDERBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
+		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new BlockNamedItem(ExtendedBlocks.RASPBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
+		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new BlockNamedItem(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 
 		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new ExtendedPoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC)));
 

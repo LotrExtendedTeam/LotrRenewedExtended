@@ -103,12 +103,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CRANBERRY;
 	public static RegistryObject<Item> ELDERBERRY;
 	public static RegistryObject<Item> WILDBERRY;
-	public static RegistryObject<Item> RASPBERRY_BUSH_PLANT;
-	public static RegistryObject<Item> BLUEBERRY_BUSH_PLANT;
-	public static RegistryObject<Item> BLACKBERRY_BUSH_PLANT;
-	public static RegistryObject<Item> CRANBERRY_BUSH_PLANT;
-	public static RegistryObject<Item> ELDERBERRY_BUSH_PLANT;
-	public static RegistryObject<Item> WILDBERRY_BUSH_PLANT;
 
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;
