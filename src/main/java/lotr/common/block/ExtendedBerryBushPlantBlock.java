@@ -47,6 +47,13 @@ public class ExtendedBerryBushPlantBlock extends SweetBerryBushBlock {
     public ItemStack getCloneItemStack(IBlockReader p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
         return new ItemStack(berryBlock.get());
      }
+    @Override
+    protected boolean mayPlaceOn(BlockState p_200014_1_, IBlockReader p_200014_2_, BlockPos p_200014_3_) {
+    	if(p_200014_1_.getBlock() instanceof ExtendedBerryBushBushBlock) {
+    		return true;
+    	}
+    	return super.mayPlaceOn(p_200014_1_, p_200014_2_, p_200014_3_);
+     }
 
     @Override
     public void entityInside(BlockState p_196262_1_, World p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {}
