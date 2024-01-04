@@ -1,5 +1,10 @@
 {
     "variants": {
-        "": { "model": "lotr:block/black_packed_fur" }
+        "": [ 
+        {"model": "lotr:block/black_packed_fur_1" },
+        {"model": "lotr:block/black_packed_fur_2" },
+        {"model": "lotr:block/black_packed_fur_3" },
+        {"model": "lotr:block/black_packed_fur_4" }
+        ]
     }
 }
