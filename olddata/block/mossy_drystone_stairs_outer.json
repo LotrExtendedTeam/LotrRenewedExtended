@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "lotr:block/mossy_drystone",
-        "top": "lotr:block/mossy_drystone",
-        "side": "lotr:block/mossy_drystone"
-    }
-}

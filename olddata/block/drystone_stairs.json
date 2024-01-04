@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lotr:block/drystone",
-        "top": "lotr:block/drystone",
-        "side": "lotr:block/drystone"
-    }
-}

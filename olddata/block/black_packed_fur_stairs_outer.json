@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "lotr:block/black_packed_fur",
-        "top": "lotr:block/black_packed_fur",
-        "side": "lotr:block/black_packed_fur"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/cracked_taurethrim_brick",
-        "top": "lotr:block/cracked_taurethrim_brick",
-        "side": "lotr:block/cracked_taurethrim_brick"
-    }
-}
