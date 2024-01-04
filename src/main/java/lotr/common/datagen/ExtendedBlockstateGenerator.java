@@ -69,6 +69,6 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
         ModelFile stairsModelInner = models().stairsInner(name + "_inner", texture, texture, texture);
         ModelFile stairsModelOuter = models().stairsOuter(name + "_outer", texture, texture, texture);
         stairsBlock((StairsBlock) stairs, stairsModel, stairsModelInner, stairsModelOuter);
-        itemModels().getBuilder(stairs.getRegistryName().getPath()).parent(stairsModel);
+        itemModels().getBuilder("lotr:"+stairs.getRegistryName().getPath()).parent(stairsModel);
 	}
 }
