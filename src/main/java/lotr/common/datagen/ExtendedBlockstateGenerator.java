@@ -64,7 +64,7 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 	}
 
 	private void genStairsBlockItem(Block stairs, ResourceLocation texture) {
-		String name = stairs.getRegistryName().toString()+"_stairs";
+		String name = stairs.getRegistryName().toString();
 		ModelFile stairsModel = models().stairs(name, texture, texture, texture);
         ModelFile stairsModelInner = models().stairsInner(name + "_inner", texture, texture, texture);
         ModelFile stairsModelOuter = models().stairsOuter(name + "_outer", texture, texture, texture);
