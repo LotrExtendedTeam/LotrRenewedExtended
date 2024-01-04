@@ -164,6 +164,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_DRYSTONE_SLAB;
 	public static RegistryObject<Block> MOSSY_DRYSTONE_STAIRS;
 	public static RegistryObject<Block> MOSSY_DRYSTONE_WALL;
+	
+	public static RegistryObject<Block> SMOOTH_GONDOR_STAIRS;
+	public static RegistryObject<Block> SMOOTH_ROHAN_STAIRS;
+	public static RegistryObject<Block> SMOOTH_MORDOR_STAIRS;
+	public static RegistryObject<Block> SMOOTH_BLUE_STAIRS;
+	public static RegistryObject<Block> SMOOTH_RED_STAIRS;
 
 	public static RegistryObject<Block> MORGUL_TORCH;
 	public static RegistryObject<Block> MORGUL_WALL_TORCH;

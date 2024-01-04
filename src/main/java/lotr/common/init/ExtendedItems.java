@@ -239,5 +239,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_COIN_HUNDRED;
 
 	public static RegistryObject<Item> LEATHER_HAT;
+
+	public static RegistryObject<Item> SMOOTH_GONDOR_STAIRS;
+	public static RegistryObject<Item> SMOOTH_ROHAN_STAIRS;
+	public static RegistryObject<Item> SMOOTH_MORDOR_STAIRS;
+	public static RegistryObject<Item> SMOOTH_RED_STAIRS;
+	public static RegistryObject<Item> SMOOTH_BLUE_STAIRS;
 }
 

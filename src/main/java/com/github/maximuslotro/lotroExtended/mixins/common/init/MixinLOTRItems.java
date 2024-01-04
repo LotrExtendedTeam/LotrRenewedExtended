@@ -187,6 +187,12 @@ public class MixinLOTRItems {
 		ExtendedItems.CARVED_RED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItem(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
+		
+		ExtendedItems.SMOOTH_GONDOR_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_GONDOR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_MORDOR_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_MORDOR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_ROHAN_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_ROHAN_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_BLUE_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_BLUE_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_RED_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_RED_STAIRS, LOTRItemGroups.BLOCKS);
 		//###################################################################MATERIALS########################################################
 		//Misc
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
