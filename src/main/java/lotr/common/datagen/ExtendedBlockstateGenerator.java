@@ -15,6 +15,7 @@ import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -44,10 +45,19 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 						continue;
 					}
 					genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
+					continue;
 				}
-				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWallBlock) {}
+			if(block.getValue().get() instanceof LOTRWallBlock) {
+				if(block.getKey().contains("_wall")) {
+					if(block.getKey().contains("packed_fur")) {
+						genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+						continue;
+					}
+					genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					continue;
+				}
+			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {}
@@ -63,12 +73,19 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		return "Renewed Extended Blockstate Provider";
 	}
 
-	private void genStairsBlockItem(Block stairs, ResourceLocation texture) {
+	private void genStairsBlockItem(StairsBlock stairs, ResourceLocation texture) {
 		String name = stairs.getRegistryName().toString();
 		ModelFile stairsModel = models().stairs(name, texture, texture, texture);
-        ModelFile stairsModelInner = models().stairsInner(name + "_inner", texture, texture, texture);
-        ModelFile stairsModelOuter = models().stairsOuter(name + "_outer", texture, texture, texture);
-        stairsBlock((StairsBlock) stairs, stairsModel, stairsModelInner, stairsModelOuter);
-        itemModels().getBuilder("lotr:"+stairs.getRegistryName().getPath()).parent(stairsModel);
+		ModelFile stairsModelInner = models().stairsInner(name + "_inner", texture, texture, texture);
+		ModelFile stairsModelOuter = models().stairsOuter(name + "_outer", texture, texture, texture);
+		stairsBlock(stairs, stairsModel, stairsModelInner, stairsModelOuter);
+		itemModels().getBuilder("lotr:" + stairs.getRegistryName().getPath()).parent(stairsModel);
+	}
+
+	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
+		String name = wall.getRegistryName().toString();
+		wallBlock(wall, texture);
+		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
+	}
 	}
 }
