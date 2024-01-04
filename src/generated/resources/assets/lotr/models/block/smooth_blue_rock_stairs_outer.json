@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "lotr:block/smooth_blue_rock",
+    "bottom": "lotr:block/smooth_blue_rock",
+    "top": "lotr:block/smooth_blue_rock"
+  }
+}

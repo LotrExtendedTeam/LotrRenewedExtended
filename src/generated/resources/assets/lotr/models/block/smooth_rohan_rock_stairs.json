@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "lotr:block/smooth_rohan_rock",
+    "bottom": "lotr:block/smooth_rohan_rock",
+    "top": "lotr:block/smooth_rohan_rock"
+  }
+}
