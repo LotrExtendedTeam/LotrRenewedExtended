@@ -1,13 +1,23 @@
 package lotr.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.network.ExtendedSPacketOpenCoinExchange;
+import lotr.common.network.ExtendedSPacketTalkWithTrader;
+import lotr.common.stat.LOTRStats;
+import lotr.common.util.LOTRUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import org.lwjgl.opengl.GL11;
 
 public class ExtendedTraderMainScreen extends BasicIngameScreen {
 
@@ -23,6 +33,8 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
 
     private int guiTop;
 
+    private Button tradeButton;
+
     public ExtendedTraderMainScreen(NPCEntity entity, ExtendedTraderEntity trader, PlayerEntity player) {
         super(new StringTextComponent("Trader Menu"));
 
@@ -35,13 +47,27 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     public void init() {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
-        this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new StringTextComponent("Talk"), button -> System.out.println("Todo: make them talk")));
-        this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new StringTextComponent("Exchange Coins"), button -> trader.openCoinExchange(player)));
+        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 115, 57, 20, new StringTextComponent("Talk"),
+                button -> talkWithNPC()));
+        tradeButton = this.addButton(new Button(this.guiLeft + ((this.xSize - 120) / 2) + 63, this.guiTop + 115, 57, 20, new StringTextComponent("Trade"), button -> System.out.println("")));
+        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 140, 120, 20, new StringTextComponent("Exchange Coins"), button -> trader.openCoinExchange(player)));
+    }
+
+    private void talkWithNPC() {
+        ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
+        ExtendedPacketHandler.sendToServer(new ExtendedSPacketTalkWithTrader(entity.getId()));
+        assert Minecraft.getInstance().player != null;
+        Minecraft.getInstance().player.closeContainer();
     }
 
     @Override
     public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
         renderBackground(matStack);
+        renderButtonTooltipIfHovered(matStack, tradeButton, new StringTextComponent("This feature has not been implemented yet"), mouseX, mouseY);
+
+        TextComponent title = new StringTextComponent(entity.getName().getString());
+        this.font.draw(matStack, title, guiLeft + ((this.xSize - font.width(title)) / 2), guiTop + 95, 16777215);
+
         super.render(matStack, mouseX, mouseY, tick);
     }
 
@@ -52,4 +78,5 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
         trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
+
 }

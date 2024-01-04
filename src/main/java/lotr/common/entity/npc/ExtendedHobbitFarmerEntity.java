@@ -1,11 +1,14 @@
 package lotr.common.entity.npc;
 
 import io.netty.buffer.Unpooled;
+import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
+import lotr.common.stat.LOTRStats;
+import lotr.common.util.LOTRUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -102,4 +105,5 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     public void openCoinExchange(PlayerEntity player) {
         ExtendedTraderHelper.openCoinExchange(this, player, playersTradingWith);
     }
+
 }
