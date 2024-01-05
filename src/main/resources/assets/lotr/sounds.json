@@ -4,5 +4,367 @@
       "lotr:item/horn"
     ],
     "subtitle": "subtitles.lotr.item.horn"
+  },
+  "event.trade1": {
+    "sounds": [
+      "lotr:event/trade1"
+    ],
+    "subtitle": "subtitles.lotr.event.trade"
+  },
+  "event.trade2": {
+    "sounds": [
+      "lotr:event/trade2"
+    ],
+    "subtitle": "subtitles.lotr.event.trade"
+  },
+  "event.trade3": {
+    "sounds": [
+      "lotr:event/trade3"
+    ],
+    "subtitle": "subtitles.lotr.event.trade"
+  },
+  "event.trade4": {
+    "sounds": [
+      "lotr:event/trade4"
+    ],
+    "subtitle": "subtitles.lotr.event.trade"
+  },
+  "ambience.weather.rain": {
+    "sounds": [
+      "lotr:ambience/weather/rain1",
+      "lotr:ambience/weather/rain2",
+      "lotr:ambience/weather/rain3"
+    ],
+    "subtitle": "subtitles.weather.rain"
+  },
+
+  "ambience.weather.thunder": {
+    "sounds": [
+      "lotr:ambience/weather/thunder1",
+      "lotr:ambience/weather/thunder2",
+      "lotr:ambience/weather/thunder3"
+    ],
+    "subtitle": "subtitles.entity.lightning_bolt.thunder"
+  },
+
+  "ambience.weather.wind": {
+    "sounds": [
+      "lotr:ambience/weather/wind1",
+      "lotr:ambience/weather/wind2",
+      "lotr:ambience/weather/wind3"
+    ],
+    "subtitle": "subtitles.lotr.ambience.weather.wind"
+  },
+
+  "block.ceramic.break": {
+    "sounds": [
+      "lotr:block/ceramic/break1",
+      "lotr:block/ceramic/break2",
+      "lotr:block/ceramic/break3"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+
+  "block.gate.close": {
+    "sounds": [
+      "lotr:block/gate/close"
+    ],
+    "subtitle": "subtitles.lotr.block.gate.close"
+  },
+
+  "block.gate.open": {
+    "sounds": [
+      "lotr:block/gate/open"
+    ],
+    "subtitle": "subtitles.lotr.block.gate.open"
+  },
+
+  "block.gate.stone_close": {
+    "sounds": [
+      "lotr:block/gate/stone_close"
+    ],
+    "subtitle": "subtitles.lotr.block.gate.close"
+  },
+
+  "block.gate.stone_open": {
+    "sounds": [
+      "lotr:block/gate/stone_open"
+    ],
+    "subtitle": "subtitles.lotr.block.gate.open"
+  },
+
+  "block.palantir.ponder": {
+    "sounds": [
+      "minecraft:block/respawn_anchor/ambient1",
+      "minecraft:block/respawn_anchor/ambient2",
+      "minecraft:block/respawn_anchor/ambient3"
+    ],
+    "subtitle": "subtitles.lotr.block.palantir.ponder"
+  },
+
+  "block.treasure.break": {
+    "sounds": [
+      "lotr:block/treasure/break1",
+      "lotr:block/treasure/break2",
+      "lotr:block/treasure/break3"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+
+  "block.treasure.fall": {
+    "sounds": [
+      "lotr:block/treasure/step1",
+      "lotr:block/treasure/step2",
+      "lotr:block/treasure/step3"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+
+  "block.treasure.hit": {
+    "sounds": [
+      "lotr:block/treasure/break1",
+      "lotr:block/treasure/break2",
+      "lotr:block/treasure/break3"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+
+  "block.treasure.place": {
+    "sounds": [
+      "lotr:block/treasure/place1"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+
+  "block.treasure.step": {
+    "sounds": [
+      "lotr:block/treasure/step1",
+      "lotr:block/treasure/step2",
+      "lotr:block/treasure/step3"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+
+  "entity.dwarf.attack": {
+    "sounds": [
+      "lotr:entity/dwarf/attack"
+    ],
+    "subtitle": "subtitles.lotr.entity.dwarf.attack"
+  },
+
+  "entity.dwarf.death": {
+    "sounds": [
+      "lotr:entity/dwarf/hurt"
+    ],
+    "subtitle": "subtitles.lotr.entity.dwarf.death"
+  },
+
+  "entity.dwarf.hurt": {
+    "sounds": [
+      "lotr:entity/dwarf/hurt"
+    ],
+    "subtitle": "subtitles.lotr.entity.dwarf.hurt"
+  },
+
+  "entity.dwarf.kill": {
+    "sounds": [
+      "lotr:entity/dwarf/kill1",
+      "lotr:entity/dwarf/kill2"
+    ],
+    "subtitle": "subtitles.lotr.entity.dwarf.kill"
+  },
+
+  "entity.orc.aeugh": {
+    "sounds": [
+      "lotr:entity/orc/aeugh"
+    ],
+    "subtitle": "subtitles.lotr.entity.orc.aeugh"
+  },
+
+  "entity.orc.death": {
+    "sounds": [
+      "lotr:entity/orc/death"
+    ],
+    "subtitle": "subtitles.lotr.entity.orc.death"
+  },
+
+  "entity.orc.ghash": {
+    "sounds": [
+      "lotr:entity/orc/ghash"
+    ],
+    "subtitle": "subtitles.lotr.entity.orc.ghash"
+  },
+
+  "entity.orc.hurt": {
+    "sounds": [
+      "lotr:entity/orc/hurt1",
+      "lotr:entity/orc/hurt2"
+    ],
+    "subtitle": "subtitles.lotr.entity.orc.hurt"
+  },
+
+  "entity.warg.ambient": {
+    "sounds": [
+      "lotr:entity/warg/say1",
+      "lotr:entity/warg/say2",
+      "lotr:entity/warg/say3",
+      "lotr:entity/warg/say4",
+      "lotr:entity/warg/say5",
+      "lotr:entity/warg/say6",
+      "lotr:entity/warg/say7"
+    ],
+    "subtitle": "subtitles.lotr.entity.warg.ambient"
+  },
+
+  "entity.warg.attack": {
+    "sounds": [
+      "lotr:entity/warg/attack1",
+      "lotr:entity/warg/attack2",
+      "lotr:entity/warg/attack3"
+    ],
+    "subtitle": "subtitles.lotr.entity.warg.attack"
+  },
+
+  "entity.warg.death": {
+    "sounds": [
+      "lotr:entity/warg/death1",
+      "lotr:entity/warg/death2",
+      "lotr:entity/warg/death3",
+      "lotr:entity/warg/death4"
+    ],
+    "subtitle": "subtitles.lotr.entity.warg.death"
+  },
+
+  "entity.warg.hurt": {
+    "sounds": [
+      "lotr:entity/warg/hurt1",
+      "lotr:entity/warg/hurt2",
+      "lotr:entity/warg/hurt3",
+      "lotr:entity/warg/hurt4"
+    ],
+    "subtitle": "subtitles.lotr.entity.warg.hurt"
+  },
+
+  "event.fast_travel": {
+    "sounds": [
+      "lotr:event/fast_travel"
+    ],
+    "subtitle": "subtitles.lotr.event.fast_travel"
+  },
+
+  "event.pledge": {
+    "sounds": [
+      "lotr:event/pledge"
+    ],
+    "subtitle": "subtitles.lotr.event.pledge"
+  },
+
+  "event.trade": {
+    "sounds": [
+      "lotr:event/trade1",
+      "lotr:event/trade2",
+      "lotr:event/trade3",
+      "lotr:event/trade4"
+    ],
+    "subtitle": "subtitles.lotr.event.trade"
+  },
+
+  "event.unpledge": {
+    "sounds": [
+      "lotr:event/unpledge"
+    ],
+    "subtitle": "subtitles.lotr.event.unpledge"
+  },
+
+  "item.mug_fill": {
+    "sounds": [
+      "lotr:item/mug_fill"
+    ],
+    "subtitle": "subtitles.lotr.item.mug_fill"
+  },
+
+  "item.pouch.large.close": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.5,
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.close"
+  },
+
+  "item.pouch.large.open": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.5,
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.open"
+  },
+
+  "item.pouch.medium.close": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.4,
+        "pitch": 1.0
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.close"
+  },
+
+  "item.pouch.medium.open": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.4,
+        "pitch": 0.84
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.open"
+  },
+
+  "item.pouch.restock": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.5,
+        "pitch": 1.0
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.restock"
+  },
+
+  "item.pouch.small.close": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.3,
+        "pitch": 0.882
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.close"
+  },
+
+  "item.pouch.small.open": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/leather",
+        "volume": 0.3,
+        "pitch": 1.1025
+      }
+    ],
+    "subtitle": "subtitles.lotr.item.pouch.open"
+  },
+
+
+  "item.smoke_puff": {
+    "sounds": [
+      "lotr:item/smoke_puff"
+    ],
+    "subtitle": "subtitles.lotr.item.smoke_puff"
   }
 }

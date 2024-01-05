@@ -1,0 +1,5 @@
+{
+  "faction": "lotr:hobbits",
+  "speechbank": "lotr:hobbits/hobbit",
+  "kill_bonus": 1
+}
