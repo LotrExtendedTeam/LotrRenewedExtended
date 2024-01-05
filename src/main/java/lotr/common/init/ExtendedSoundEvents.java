@@ -11,6 +11,10 @@ public class ExtendedSoundEvents {
 	private static final List<SoundEvent> toRegister = new ArrayList<SoundEvent>();
 
 	public static final SoundEvent HORN_BLOW = preRegSound("item.horn");
+	public static final SoundEvent TRADE_SOUND_1 = preRegSound("event.trade1");
+	public static final SoundEvent TRADE_SOUND_2 = preRegSound("event.trade2");
+	public static final SoundEvent TRADE_SOUND_3 = preRegSound("event.trade3");
+	public static final SoundEvent TRADE_SOUND_4 = preRegSound("event.trade4");
 
 	public static void register() {
 		toRegister.forEach((snd) -> {

@@ -1,5 +1,6 @@
 package lotr.common.inv;
 
+import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
@@ -42,12 +43,15 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
     public Slot rightSlot;
     private ItemStack lastInputSlot = null;
 
+    public final ExtendedTraderEntity trader;
+
     public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
         super(ExtendedContainers.COIN_TRADING.get(), containerId);
 
         this.player = inventory.player;
         this.level = inventory.player.level;
         this.traderNPC = (NPCEntity) this.level.getEntity(extraData.readVarInt());
+        this.trader = (ExtendedTraderEntity) traderNPC;
 
         inputSlot = addSlot(new Slot(this.coinInputInv, 0, 80, 46) {
             public boolean mayPlace(ItemStack stack) {
@@ -144,6 +148,8 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
                 inputSlot.set(ItemStack.EMPTY);
                 inputSlot.setChanged();
             }
+
+            trader.playTradeSound(); // attempt to play sound
 
             // clear out the other side of the converter
             // i.e. if we convert left clear the right side
