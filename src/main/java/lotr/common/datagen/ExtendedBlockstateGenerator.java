@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
@@ -19,6 +20,7 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
@@ -38,6 +40,9 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
 				genCubeBottomTopSideBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()+"_side"), lotrLoc("block/"+block.getKey()+"_bottom"), lotrLoc("block/"+block.getKey()+"_top"));
+			}
+			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
+				fourTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
 			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {}
 			if(block.getValue().get() instanceof LOTRStairsBlock) {
@@ -94,5 +99,16 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		ModelFile cubeModel = models().cubeBottomTop("lotr:"+block.getRegistryName().getPath(), side, bottom, top);
 		directionalBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void fourTexturedRandomBlockItem(Block block, String location, int numVariants) {
+		if(numVariants==4) {
+			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
+			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")));
+			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_3", new ResourceLocation("lotr",location+"_3")));
+			ConfiguredModel variant4 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_4", new ResourceLocation("lotr",location+"_4")));
+			getVariantBuilder(block).partialState().setModels(variant1, variant2, variant3, variant4);
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(variant1.model);
+		}
 	}
 }
