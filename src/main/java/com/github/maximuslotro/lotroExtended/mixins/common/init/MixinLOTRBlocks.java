@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
-import lotr.common.block.*;
 
 import lotr.common.init.ExtendedItems;
 import org.spongepowered.asm.mixin.Final;
@@ -10,6 +9,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.ExtendedBerryBushBlock;
+import lotr.common.block.ExtendedBerryPlantBlock;
+import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedFactionCraftingTableBlock;
+import lotr.common.block.ExtendedMorgulLanternBlock;
+import lotr.common.block.ExtendedPackedBundleBlock;
+import lotr.common.block.ExtendedSpawnerBlock;
+import lotr.common.block.LOTROreBlock;
+import lotr.common.block.LOTRPillarBlock;
+import lotr.common.block.LOTRStairsBlock;
+import lotr.common.block.LOTRStoneBlock;
+import lotr.common.block.LOTRTorchBlock;
+import lotr.common.block.LOTRWallBlock;
+import lotr.common.block.LOTRWallTorchBlock;
+import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
@@ -51,36 +66,36 @@ public class MixinLOTRBlocks {
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
 
 		//Packed Fur
-		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new BundleBlock(MaterialColor.WOOL));
+		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.WOOL));
 		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		ExtendedBlocks.WHITE_PACKED_FUR_STAIRS = registerB("white_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		ExtendedBlocks.WHITE_PACKED_FUR_WALL = registerB("white_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		
-		ExtendedBlocks.SILVER_PACKED_FUR = registerB("silver_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
+		ExtendedBlocks.SILVER_PACKED_FUR = registerB("silver_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
 		ExtendedBlocks.SILVER_PACKED_FUR_SLAB = registerB("silver_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_STAIRS = registerB("silver_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_WALL = registerB("silver_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		
-		ExtendedBlocks.GREY_PACKED_FUR = registerB("grey_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.GREY_PACKED_FUR = registerB("grey_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.GREY_PACKED_FUR_SLAB = registerB("grey_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.GREY_PACKED_FUR));
 		ExtendedBlocks.GREY_PACKED_FUR_STAIRS = registerB("grey_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GREY_PACKED_FUR));
 		ExtendedBlocks.GREY_PACKED_FUR_WALL = registerB("grey_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.GREY_PACKED_FUR));
 		
-		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new BundleBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_BROWN));
 		ExtendedBlocks.BROWN_PACKED_FUR_SLAB = registerB("packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		ExtendedBlocks.BROWN_PACKED_FUR_STAIRS = registerB("packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		ExtendedBlocks.BROWN_PACKED_FUR_WALL = registerB("packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		
-		ExtendedBlocks.BLACK_PACKED_FUR = registerB("black_packed_fur", () -> new BundleBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.BLACK_PACKED_FUR = registerB("black_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.BLACK_PACKED_FUR_SLAB = registerB("black_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		ExtendedBlocks.BLACK_PACKED_FUR_STAIRS = registerB("black_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		ExtendedBlocks.BLACK_PACKED_FUR_WALL = registerB("black_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		
 		//Bundled Fur
-		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new BundleBlock(MaterialColor.WOOL));
-		ExtendedBlocks.SILVER_FUR_BUNDLE = registerB("silver_fur_bundle", () -> new BundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
-		ExtendedBlocks.GREY_FUR_BUNDLE = registerB("grey_fur_bundle", () -> new BundleBlock(MaterialColor.COLOR_GRAY));
-		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new BundleBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.WOOL));
+		ExtendedBlocks.SILVER_FUR_BUNDLE = registerB("silver_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
+		ExtendedBlocks.GREY_FUR_BUNDLE = registerB("grey_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_BLACK));
 
 		//GEM STORAGE
 		ExtendedBlocks.TOPAZ_BLOCK = registerB("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));

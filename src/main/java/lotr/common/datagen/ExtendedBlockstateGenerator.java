@@ -3,8 +3,8 @@ package lotr.common.datagen;
 import java.util.Map.Entry;
 
 import lotr.common.block.AxialSlabBlock;
-import lotr.common.block.BundleBlock;
 import lotr.common.block.ExtendedBerryBushBlock;
+import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
@@ -36,7 +36,9 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof BundleBlock) {}
+			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
+				genCubeBottomTopSideBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()+"_side"), lotrLoc("block/"+block.getKey()+"_bottom"), lotrLoc("block/"+block.getKey()+"_top"));
+			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {}
 			if(block.getValue().get() instanceof LOTRStairsBlock) {
 				if(block.getKey().contains("_stairs")) {
@@ -87,5 +89,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		wallBlock(wall, texture);
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
 	}
+
+	private void genCubeBottomTopSideBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		ModelFile cubeModel = models().cubeBottomTop("lotr:"+block.getRegistryName().getPath(), side, bottom, top);
+		directionalBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 }
