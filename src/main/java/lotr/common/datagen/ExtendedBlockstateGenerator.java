@@ -8,6 +8,7 @@ import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.FactionCraftingTableBlock;
+import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
@@ -15,13 +16,17 @@ import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
+import lotr.common.block.VerticalOnlySlabBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -49,7 +54,16 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				fourTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
 				continue;
 			}
-			if(block.getValue().get() instanceof AxialSlabBlock) {}
+			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
+				if(block.getKey().contains("_slab")&&!block.getKey().contains("_pillar")) {
+					if(block.getKey().contains("packed_fur")) {
+						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+						continue;
+					}
+					genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					continue;
+				}
+			}
 			if(block.getValue().get() instanceof LOTRStairsBlock) {
 				if(block.getKey().contains("_stairs")) {
 					if(block.getKey().contains("packed_fur")) {
@@ -114,6 +128,26 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		ModelFile stairsModelOuter = models().stairsOuter(name + "_outer", texture, texture, texture);
 		stairsBlock(stairs, stairsModel, stairsModelInner, stairsModelOuter);
 		itemModels().getBuilder("lotr:" + stairs.getRegistryName().getPath()).parent(stairsModel);
+	}
+
+	private void genSlabBlockItem(SlabBlock slab, ResourceLocation texture) {
+		ModelFile slabModel = models().slab("lotr:" + slab.getRegistryName().getPath(), texture, texture, texture);
+		ModelFile slabModelTop = models().slabTop("lotr:" + slab.getRegistryName().getPath()+"_top", texture, texture, texture);
+		ModelFile slabDouble = models().getExistingFile(texture);
+
+		getVariantBuilder(slab)
+		.forAllStatesExcept(state -> {
+			Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
+			SlabType type = state.getValue(AxialSlabBlock.TYPE);
+            boolean uvlock = axis != Axis.Y;
+            return ConfiguredModel.builder()
+                    .modelFile(type == SlabType.DOUBLE ? slabDouble : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
+                    .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+                    .rotationY(axis == Axis.X ? 90 : 0)
+                    .uvLock(axis != Axis.Y)
+                    .build();
+        }, StairsBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
