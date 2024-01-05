@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "lotr:block/red_rhunic_brick",
-        "top": "lotr:block/red_rhunic_brick",
-        "side": "lotr:block/red_rhunic_brick"
-    }
-}

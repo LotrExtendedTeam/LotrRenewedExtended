@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "lotr:block/black_packed_fur",
-        "top": "lotr:block/black_packed_fur",
-        "side": "lotr:block/black_packed_fur"
-    }
-}
