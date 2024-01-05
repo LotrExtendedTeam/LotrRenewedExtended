@@ -82,7 +82,14 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStoneBlock) {}
+			if(block.getValue().get() instanceof LOTRStoneBlock) {
+				if(block.getKey()=="cobbled_drystone") {
+					genCubeBlockItem(block.getValue().get(), lotrLoc("block/drystone"));
+					continue;
+				}
+				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {}
 			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
