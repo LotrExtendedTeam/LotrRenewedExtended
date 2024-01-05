@@ -74,6 +74,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
+				genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTROreBlock) {
 				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
 				continue;
@@ -168,5 +172,20 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
             .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age2", lotrLoc(name+"_2"))).addModel()
         .partialState().with(BlockStateProperties.AGE_3, 3)
             .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age3", lotrLoc(name+"_3"))).addModel();
+	}
+
+	private void genBushAge3Block(Block block, String name) {
+		ModelFile empty = models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_empty", lotrLoc(name+"_empty"));
+		ModelFile full = models().cubeAll("lotr:"+block.getRegistryName().getPath(), lotrLoc(name));
+		getVariantBuilder(block)
+        .partialState().with(BlockStateProperties.AGE_3, 0)
+            .modelForState().modelFile(empty).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 1)
+            .modelForState().modelFile(empty).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 2)
+            .modelForState().modelFile(empty).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 3)
+            .modelForState().modelFile(full).addModel();
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(full);
 	}
 }
