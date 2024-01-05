@@ -115,13 +115,20 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
-			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {}
 			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
 				genTopBottomTwoSidedNonRotatableBlockItem(block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRTorchBlock) {}
-			if(block.getValue().get() instanceof LOTRWallTorchBlock) {}
+			if(block.getValue().get() instanceof LOTRTorchBlock) {
+				genTorchBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRWallTorchBlock) {
+				if(block.getKey().contains("_wall")) {
+					genTorchWallBlock(block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					continue;
+				}
+			}
 			System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());
 		}
 	}
@@ -164,6 +171,17 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		String name = wall.getRegistryName().toString();
 		wallBlock(wall, texture);
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
+	}
+
+	private void genTorchBlockItem(Block torch, ResourceLocation texture) {
+		ModelFile cubeModel = models().torch("lotr:"+torch.getRegistryName().getPath(), texture);
+		simpleBlock(torch, cubeModel);
+		itemModels().getBuilder("lotr:"+torch.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void genTorchWallBlock(Block torch, ResourceLocation texture) {
+		ModelFile cubeModel = models().torchWall("lotr:"+torch.getRegistryName().getPath(), texture);
+		simpleBlock(torch, cubeModel);
 	}
 
 	private void genCubeBottomTopSideBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
