@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lotr:block/cracked_rhunic_brick",
-        "top": "lotr:block/cracked_rhunic_brick",
-        "side": "lotr:block/cracked_rhunic_brick"
-    }
-}

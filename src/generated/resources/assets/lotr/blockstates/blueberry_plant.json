@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "lotr:block/blueberry_plant_age0"
+    },
+    "age=1": {
+      "model": "lotr:block/blueberry_plant_age1"
+    },
+    "age=2": {
+      "model": "lotr:block/blueberry_plant_age2"
+    },
+    "age=3": {
+      "model": "lotr:block/blueberry_plant_age3"
+    }
+  }
+}

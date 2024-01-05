@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "lotr:block/blackberry_plant_3"
+  }
+}

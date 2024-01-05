@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "lotr:block/gundabad_crafting_table_bottom",
+    "up": "lotr:block/gundabad_crafting_table_top",
+    "north": "lotr:block/gundabad_crafting_table_side_1",
+    "south": "lotr:block/gundabad_crafting_table_side_1",
+    "east": "lotr:block/gundabad_crafting_table_side_2",
+    "west": "lotr:block/gundabad_crafting_table_side_2"
+  }
+}

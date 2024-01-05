@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlocks {
+	public static Map<String, RegistryObject<Block>> REGISTEREDBLOCKS = new HashMap<>();
+	
 	public static RegistryObject<Block> GALVORN_BLOCK;
 	public static RegistryObject<Block> BLACK_URUK_STEEL_BLOCK;
 	public static RegistryObject<Block> GILDED_IRON_BLOCK;
@@ -117,6 +119,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CRANBERRY_BUSH;
 	public static RegistryObject<Block> ELDERBERRY_BUSH;
 	public static RegistryObject<Block> WILDBERRY_BUSH;
+	public static RegistryObject<Block> RASPBERRY_BUSH_PLANT;
+	public static RegistryObject<Block> BLUEBERRY_BUSH_PLANT;
+	public static RegistryObject<Block> BLACKBERRY_BUSH_PLANT;
+	public static RegistryObject<Block> CRANBERRY_BUSH_PLANT;
+	public static RegistryObject<Block> ELDERBERRY_BUSH_PLANT;
+	public static RegistryObject<Block> WILDBERRY_BUSH_PLANT;
 	
 	public static RegistryObject<Block> WHITE_PACKED_FUR;
 	public static RegistryObject<Block> WHITE_PACKED_FUR_SLAB;
@@ -156,6 +164,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_DRYSTONE_SLAB;
 	public static RegistryObject<Block> MOSSY_DRYSTONE_STAIRS;
 	public static RegistryObject<Block> MOSSY_DRYSTONE_WALL;
+	
+	public static RegistryObject<Block> SMOOTH_GONDOR_STAIRS;
+	public static RegistryObject<Block> SMOOTH_ROHAN_STAIRS;
+	public static RegistryObject<Block> SMOOTH_MORDOR_STAIRS;
+	public static RegistryObject<Block> SMOOTH_BLUE_STAIRS;
+	public static RegistryObject<Block> SMOOTH_RED_STAIRS;
 
 	public static RegistryObject<Block> MORGUL_TORCH;
 	public static RegistryObject<Block> MORGUL_WALL_TORCH;

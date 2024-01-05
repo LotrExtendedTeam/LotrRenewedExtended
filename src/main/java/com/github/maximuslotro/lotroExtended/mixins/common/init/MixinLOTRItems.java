@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
@@ -186,6 +187,12 @@ public class MixinLOTRItems {
 		ExtendedItems.CARVED_RED_RHUNIC_BRICK = regBlockItem(ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItem(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
+		
+		ExtendedItems.SMOOTH_GONDOR_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_GONDOR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_MORDOR_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_MORDOR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_ROHAN_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_ROHAN_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_BLUE_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_BLUE_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_RED_STAIRS = regBlockItem(ExtendedBlocks.SMOOTH_RED_STAIRS, LOTRItemGroups.BLOCKS);
 		//###################################################################MATERIALS########################################################
 		//Misc
 		ExtendedItems.OBSIDIAN_SHARD = regMaterialItem("obsidian_shard");
@@ -235,12 +242,12 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_HOE = regItem("dol_guldur_hoe",() -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		//######################################################################FOOD########################################################
 		//Berries
-		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
-		ExtendedItems.BLACKBERRY = regItem("blackberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
-		ExtendedItems.BLUEBERRY = regItem("blueberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
-		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
-		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
-		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new ExtendedBerryItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
+		ExtendedItems.BLACKBERRY = regItem("blackberry", () -> new BlockNamedItem(ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
+		ExtendedItems.BLUEBERRY = regItem("blueberry", () -> new BlockNamedItem(ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
+		ExtendedItems.CRANBERRY = regItem("cranberry", () -> new BlockNamedItem(ExtendedBlocks.CRANBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
+		ExtendedItems.ELDERBERRY = regItem("elderberry", () -> new BlockNamedItem(ExtendedBlocks.ELDERBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
+		ExtendedItems.RASPBERRY = regItem("raspberry", () -> new BlockNamedItem(ExtendedBlocks.RASPBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
+		ExtendedItems.WILDBERRY = regItem("wildberry", ()-> new BlockNamedItem(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 
 		ExtendedItems.BOTTLE_OF_POISON = regItem("bottle_of_poison", () -> new ExtendedPoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC)));
 

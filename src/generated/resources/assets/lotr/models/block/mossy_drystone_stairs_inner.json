@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "lotr:block/mossy_drystone",
+    "bottom": "lotr:block/mossy_drystone",
+    "top": "lotr:block/mossy_drystone"
+  }
+}

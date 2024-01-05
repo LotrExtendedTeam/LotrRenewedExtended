@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "lotr:block/taurethrim_brick",
-        "top": "lotr:block/taurethrim_brick",
-        "side": "lotr:block/taurethrim_brick"
-    }
-}
