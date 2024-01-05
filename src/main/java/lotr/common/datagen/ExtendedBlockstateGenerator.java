@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedBerryBushBlock;
+import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -18,6 +19,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -40,9 +42,11 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
 				genCubeBottomTopSideBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()+"_side"), lotrLoc("block/"+block.getKey()+"_bottom"), lotrLoc("block/"+block.getKey()+"_top"));
+				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
 				fourTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
+				continue;
 			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {}
 			if(block.getValue().get() instanceof LOTRStairsBlock) {
@@ -64,6 +68,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 					genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 					continue;
 				}
+			}
+			if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
+				genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
+				continue;
 			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
@@ -110,5 +118,17 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 			getVariantBuilder(block).partialState().setModels(variant1, variant2, variant3, variant4);
 			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(variant1.model);
 		}
+	}
+	
+	private void genPlantAge3Block(Block block, String name) {
+		getVariantBuilder(block)
+        .partialState().with(BlockStateProperties.AGE_3, 0)
+            .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age0", lotrLoc(name+"_0"))).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 1)
+            .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age1", lotrLoc(name+"_1"))).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 2)
+            .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age2", lotrLoc(name+"_2"))).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 3)
+            .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age3", lotrLoc(name+"_3"))).addModel();
 	}
 }
