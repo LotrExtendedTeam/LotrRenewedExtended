@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lotr:block/pearl_block"
+    }
+  }
+}

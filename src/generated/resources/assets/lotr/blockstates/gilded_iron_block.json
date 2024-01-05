@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lotr:block/gilded_iron_block"
+    }
+  }
+}

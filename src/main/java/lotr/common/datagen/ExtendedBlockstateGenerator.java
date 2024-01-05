@@ -16,6 +16,7 @@ import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
+import lotr.common.block.MineralBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
@@ -104,6 +105,15 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
 				continue;
 			}
+			if(block.getValue().get() instanceof MineralBlock) {
+				try {
+					genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
+				}catch(IllegalArgumentException e) {
+					System.out.println(block.getKey()+" is not CubeBlockItem!");
+					genEndSideNonRotatableBlockItem(block.getValue().get(),"block/"+block.getKey());
+				}
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {}
 			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
@@ -162,6 +172,12 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
+	private void genEndSideNonRotatableBlockItem(Block block, String sidesBase) {
+		ModelFile cubeModel = models().cubeColumn("lotr:"+block.getRegistryName().getPath(), lotrLoc(sidesBase+"_side"), lotrLoc(sidesBase+"_end"));
+		simpleBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
 	private void genTopBottomTwoSidedNonRotatableBlockItem(Block block, String sidesBase) {
 		ResourceLocation down = lotrLoc(sidesBase+"_bottom");
 		ResourceLocation up = lotrLoc(sidesBase+"_top");
@@ -186,6 +202,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
+	private void genCubeBlockItem(Block block, String allSides) {
+		genCubeBlockItem(block, lotrLoc(allSides));
+	}
+	
 	private void genCubeBlockItem(Block block, ResourceLocation allSides) {
 		ModelFile cubeModel = models().cubeAll("lotr:"+block.getRegistryName().getPath(), allSides);
 		simpleBlock(block, cubeModel);
