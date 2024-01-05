@@ -81,7 +81,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 			if(block.getValue().get() instanceof LOTRStoneBlock) {}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {}
-			if(block.getValue().get() instanceof FactionCraftingTableBlock) {}
+			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
+				genTopBottomTwoSidedNonRotatableBlockItem(block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTRTorchBlock) {}
 			if(block.getValue().get() instanceof LOTRWallTorchBlock) {}
 			System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());
@@ -111,6 +114,30 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 	private void genCubeBottomTopSideBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		ModelFile cubeModel = models().cubeBottomTop("lotr:"+block.getRegistryName().getPath(), side, bottom, top);
 		directionalBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void genTopBottomTwoSidedNonRotatableBlockItem(Block block, String sidesBase) {
+		ResourceLocation down = lotrLoc(sidesBase+"_bottom");
+		ResourceLocation up = lotrLoc(sidesBase+"_top");
+		ResourceLocation north = lotrLoc(sidesBase+"_side_1");
+		ResourceLocation south = lotrLoc(sidesBase+"_side_1");
+		ResourceLocation east = lotrLoc(sidesBase+"_side_2");
+		ResourceLocation west = lotrLoc(sidesBase+"_side_2");
+		ModelFile cubeModel = models().cube("lotr:"+block.getRegistryName().getPath(), down, up, north, south, east, west);
+		simpleBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void genTopBottomFourSidedNonRotatableBlockItem(Block block, String sidesBase) {
+		ResourceLocation down = lotrLoc(sidesBase+"_bottom");
+		ResourceLocation up = lotrLoc(sidesBase+"_top");
+		ResourceLocation north = lotrLoc(sidesBase+"_side_north");
+		ResourceLocation south = lotrLoc(sidesBase+"_side_south");
+		ResourceLocation east = lotrLoc(sidesBase+"_side_east");
+		ResourceLocation west = lotrLoc(sidesBase+"_side_west");
+		ModelFile cubeModel = models().cube("lotr:"+block.getRegistryName().getPath(), down, up, north, south, east, west);
+		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
