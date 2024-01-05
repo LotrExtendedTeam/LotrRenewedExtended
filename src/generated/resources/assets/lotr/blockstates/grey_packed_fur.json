@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotr:block/grey_packed_fur_1"
+      },
+      {
+        "model": "lotr:block/grey_packed_fur_2"
+      },
+      {
+        "model": "lotr:block/grey_packed_fur_3"
+      },
+      {
+        "model": "lotr:block/grey_packed_fur_4"
+      }
+    ]
+  }
+}
