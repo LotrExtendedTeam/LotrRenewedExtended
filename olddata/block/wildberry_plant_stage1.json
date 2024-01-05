@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "lotr:block/wildberry_plant1"
-  }
-}
