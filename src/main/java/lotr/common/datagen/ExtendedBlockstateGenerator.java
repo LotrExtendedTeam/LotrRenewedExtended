@@ -8,6 +8,7 @@ import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.FactionCraftingTableBlock;
+import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStoneBlock;
@@ -73,6 +74,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
+			if(block.getValue().get() instanceof LOTROreBlock) {
+				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {}
@@ -106,6 +111,12 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 	private void genCubeBottomTopSideBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		ModelFile cubeModel = models().cubeBottomTop("lotr:"+block.getRegistryName().getPath(), side, bottom, top);
 		directionalBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void genCubeBlockItem(Block block, ResourceLocation allSides) {
+		ModelFile cubeModel = models().cubeAll("lotr:"+block.getRegistryName().getPath(), allSides);
+		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
