@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "bottom": "lotr:block/grey_fur_bundle_bottom",
-        "top": "lotr:block/grey_fur_bundle_top",
-        "side": "lotr:block/grey_fur_bundle"
-    }
-}
