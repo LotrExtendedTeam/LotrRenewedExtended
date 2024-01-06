@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_large",
+  "textures": {
+    "layer0": "lotr:item/taurethrim_sword_large"
+  }
+}
