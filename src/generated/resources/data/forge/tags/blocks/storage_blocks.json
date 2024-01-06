@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:storage_blocks/galvorn",
+    "#forge:storage_blocks/black_uruk_steel",
+    "#forge:storage_blocks/gilded_iron",
+    "#forge:storage_blocks/morgul_steel",
+    "#forge:storage_blocks/dwarven_steel",
+    "#forge:storage_blocks/elven_steel",
+    "#forge:storage_blocks/mithril",
+    "#forge:storage_blocks/uruk_steel",
+    "#forge:storage_blocks/lotr_topaz",
+    "#forge:storage_blocks/lotr_amethyst",
+    "#forge:storage_blocks/lotr_sapphire",
+    "#forge:storage_blocks/lotr_ruby",
+    "#forge:storage_blocks/lotr_amber",
+    "#forge:storage_blocks/lotr_diamond",
+    "#forge:storage_blocks/lotr_opal",
+    "#forge:storage_blocks/lotr_emerald",
+    "#forge:storage_blocks/lotr_pearl",
+    "#forge:storage_blocks/lotr_coral",
+    "#forge:storage_blocks/durnor",
+    "#forge:storage_blocks/edhelvir",
+    "#forge:storage_blocks/gulduril"
+  ]
+}

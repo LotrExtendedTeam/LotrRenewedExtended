@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:silver_packed_fur_stairs",
+    "lotr:black_packed_fur_stairs",
+    "lotr:packed_fur_stairs",
+    "lotr:grey_packed_fur_stairs",
+    "lotr:white_packed_fur_stairs"
+  ]
+}

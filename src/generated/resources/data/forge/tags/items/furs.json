@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:black_fur",
+    "lotr:grey_fur",
+    "lotr:silver_fur",
+    "lotr:white_fur"
+  ]
+}

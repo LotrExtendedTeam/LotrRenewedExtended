@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:gems/lotr_topaz",
+    "#forge:gems/lotr_amethyst",
+    "#forge:gems/lotr_sapphire",
+    "#forge:gems/lotr_ruby",
+    "#forge:gems/lotr_amber",
+    "#forge:gems/lotr_diamond",
+    "#forge:gems/lotr_opal",
+    "#forge:gems/lotr_emerald",
+    "#forge:gems/lotr_pearl",
+    "#forge:gems/lotr_coral",
+    "#forge:gems/lotr_durnor",
+    "#forge:gems/lotr_edhelvir",
+    "#forge:gems/lotr_gulduril"
+  ]
+}

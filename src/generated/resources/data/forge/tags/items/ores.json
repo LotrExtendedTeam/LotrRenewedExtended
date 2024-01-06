@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ores/lotr_topaz",
+    "#forge:ores/lotr_amethyst",
+    "#forge:ores/lotr_sapphire",
+    "#forge:ores/lotr_ruby",
+    "#forge:ores/lotr_amber",
+    "#forge:ores/lotr_diamond",
+    "#forge:ores/lotr_opal",
+    "#forge:ores/lotr_emerald",
+    "#forge:ores/durnor",
+    "#forge:ores/edhelvir",
+    "#forge:ores/gulduril",
+    "#forge:ores/glowstone",
+    "#forge:ores/mithril",
+    "#forge:ores/morgul_iron",
+    "#forge:ores/copper",
+    "#forge:ores/niter",
+    "#forge:ores/salt",
+    "#forge:ores/silver",
+    "#forge:ores/sulfur",
+    "#forge:ores/tin"
+  ]
+}

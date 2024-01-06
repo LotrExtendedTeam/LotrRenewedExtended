@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/morgul_steel",
+    "#forge:ingots/orc_steel",
+    "#forge:ingots/galvorn",
+    "#forge:ingots/black_uruk_steel",
+    "#forge:ingots/gilded_iron",
+    "#forge:ingots/dwarven_steel",
+    "#forge:ingots/elven_steel",
+    "#forge:ingots/uruk_steel",
+    "#forge:ingots/mithril"
+  ]
+}
