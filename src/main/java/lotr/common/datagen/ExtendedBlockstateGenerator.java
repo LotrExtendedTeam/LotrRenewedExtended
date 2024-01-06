@@ -57,7 +57,7 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
-				if(block.getKey().contains("_slab")&&!block.getKey().contains("_pillar")) {
+				if(block.getKey().contains("_slab")) {
 					if(block.getKey().contains("packed_fur")) {
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
 						continue;

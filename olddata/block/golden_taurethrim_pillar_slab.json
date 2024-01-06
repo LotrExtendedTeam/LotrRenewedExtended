@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "lotr:block/golden_taurethrim_pillar_face",
-        "top": "lotr:block/golden_taurethrim_pillar_face",
-        "side": "lotr:block/golden_taurethrim_pillar"
-    }
-}
