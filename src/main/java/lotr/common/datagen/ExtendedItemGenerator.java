@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.ExtendedSilverCoin;
 import lotr.common.item.LOTRArmorItem;
@@ -76,6 +77,9 @@ public class ExtendedItemGenerator extends ItemModelProvider {
 				e.printStackTrace();
 			}
 			System.out.println("Didn't make ItemModel for: "+item.getKey());
+		}
+		for(String entity : ExtendedEntities.REGISTEREDENTITIES) {
+			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");
 		}
 	}
 

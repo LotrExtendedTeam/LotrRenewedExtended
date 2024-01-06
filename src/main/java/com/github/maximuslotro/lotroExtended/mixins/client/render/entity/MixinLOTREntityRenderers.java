@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotroExtended.mixins.client.render.entity;
 import lotr.client.render.entity.ExtendedHobbitFarmerRenderer;
 import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
 import lotr.client.render.entity.LOTREntityRenderers;
-import lotr.common.init.ExtendedNpcs;
+import lotr.common.init.ExtendedEntities;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,8 +15,8 @@ public class MixinLOTREntityRenderers {
 
     @Inject(method = "registerEntityRenderers()V", at = @At("HEAD"), remap=false)
     private static void addAdditionalRenderers(CallbackInfo ci) {
-        RenderingRegistry.registerEntityRenderingHandler(ExtendedNpcs.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(ExtendedNpcs.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
     }
 
 }
