@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotr:block/golden_taurethrim_pillar_top",
+    "end": "lotr:block/golden_taurethrim_pillar_face"
+  }
+}

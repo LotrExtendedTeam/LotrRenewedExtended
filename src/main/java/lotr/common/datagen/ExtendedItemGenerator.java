@@ -65,7 +65,8 @@ public class ExtendedItemGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
-				//genCoin(item.getKey());
+				//TODO add first/third person placement gen
+				//continue using manual generation for coins for now
 				continue;
 			}
 			try {
@@ -81,11 +82,6 @@ public class ExtendedItemGenerator extends ItemModelProvider {
 	@Override
 	public String getName() {
 		return "Renewed Extended Item Model Provider";
-	}
-
-	private ItemModelBuilder genCoin(String name) {
-		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/generated");
-		return gen(builder, lotrLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genSword(String name) {

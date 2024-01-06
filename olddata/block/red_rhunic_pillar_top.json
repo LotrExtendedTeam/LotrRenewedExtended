@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "lotr:block/red_rhunic_pillar_face",
-        "side": "lotr:block/red_rhunic_pillar_top"
-    }
-}

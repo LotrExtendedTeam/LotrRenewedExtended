@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotr:block/dol_guldur_pillar_bottom",
+    "end": "lotr:block/dol_guldur_pillar_face"
+  }
+}

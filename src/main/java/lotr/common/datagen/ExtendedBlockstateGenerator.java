@@ -115,7 +115,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 				}
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRPillarBlock) {}
+			if(block.getValue().get() instanceof LOTRPillarBlock) {
+				genPillarBlockItem((LOTRPillarBlock) block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
 			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
 				genTopBottomTwoSidedNonRotatableBlockItem(block.getValue().get(), "block/"+block.getKey());
 				continue;
@@ -150,6 +153,39 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		ModelFile stairsModelOuter = models().stairsOuter(name + "_outer", texture, texture, texture);
 		stairsBlock(stairs, stairsModel, stairsModelInner, stairsModelOuter);
 		itemModels().getBuilder("lotr:" + stairs.getRegistryName().getPath()).parent(stairsModel);
+	}
+
+	private void genPillarBlockItem(LOTRPillarBlock slab, String name) {
+		ResourceLocation pillar = lotrLoc(name);
+		ResourceLocation face = lotrLoc(name+"_face");
+		ResourceLocation top = lotrLoc(name+"_top");
+		ResourceLocation middle = lotrLoc(name+"_middle");
+		ResourceLocation bottom = lotrLoc(name+"_bottom");
+		
+		ModelFile pillarBottom = models().cubeColumn("lotr:"+slab.getRegistryName().getPath()+"_bottom", bottom, face);
+		ModelFile pillarMiddle = models().cubeColumn("lotr:"+slab.getRegistryName().getPath()+"_middle", middle, face);
+		ModelFile pillarTop = models().cubeColumn("lotr:"+slab.getRegistryName().getPath()+"_top", top, face);
+		ModelFile pillarBlock = models().cubeColumn("lotr:"+slab.getRegistryName().getPath(), pillar, face);
+		
+		getVariantBuilder(slab)
+		.forAllStatesExcept(state -> {
+			Axis axis = state.getValue(LOTRPillarBlock.AXIS);
+			Boolean above = state.getValue(LOTRPillarBlock.ABOVE);
+			Boolean below = state.getValue(LOTRPillarBlock.BELOW);
+			ModelFile selectedfile = null;
+			if(above) {
+				if(below) {selectedfile = pillarMiddle;}
+				else {selectedfile = pillarBottom;}}
+			else {
+				if(below) {selectedfile = pillarTop;}
+				else {selectedfile = pillarBlock;}}
+            return ConfiguredModel.builder()
+                    .modelFile(selectedfile)
+                    .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+                    .rotationY(axis == Axis.X ? 90 : 0)
+                    .build();
+        }, StairsBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:"+slab.getRegistryName().getPath()).parent(pillarBlock);
 	}
 
 	private void genSlabBlockItem(SlabBlock slab, ResourceLocation texture) {

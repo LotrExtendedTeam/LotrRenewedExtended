@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotr:block/obsidian_taurethrim_pillar",
+    "end": "lotr:block/obsidian_taurethrim_pillar_face"
+  }
+}
