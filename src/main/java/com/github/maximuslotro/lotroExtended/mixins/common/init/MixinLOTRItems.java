@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 
 import lotr.common.init.*;
 import lotr.common.item.*;
+import lotr.common.item.ExtendedSilverCoin.CoinType;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -316,10 +318,10 @@ public class MixinLOTRItems {
 
 		//########################################################################MISC##########################################################
 
-		ExtendedItems.HOBBIT_MARRIAGE_RING =  regItemB("hobbit_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
-		ExtendedItems.DWARF_MARRIAGE_RING =  regItemB("dwarven_marriage_ring", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC));});
-		ExtendedItems.SILVER_COIN_ONE = regItemB("silver_coin_one", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC)); });
-		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC)); });
-		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> { return new Item((new Properties()).tab(LOTRItemGroups.MISC)); });
+		ExtendedItems.HOBBIT_MARRIAGE_RING =  regItemB("hobbit_marriage_ring", () -> new Item((new Properties()).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.DWARF_MARRIAGE_RING =  regItemB("dwarven_marriage_ring", () -> new Item((new Properties()).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.SILVER_COIN_ONE = regItemB("silver_coin_one", () -> new ExtendedSilverCoin((new Properties()).tab(LOTRItemGroups.MISC), CoinType.ONE));
+		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> new ExtendedSilverCoin((new Properties()).tab(LOTRItemGroups.MISC), CoinType.TEN));
+		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> new ExtendedSilverCoin((new Properties()).tab(LOTRItemGroups.MISC), CoinType.HUNDRED));
 	}
 }

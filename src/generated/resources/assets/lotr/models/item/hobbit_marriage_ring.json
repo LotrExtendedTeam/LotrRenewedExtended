@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotr:item/hobbit_marriage_ring"
+  }
+}

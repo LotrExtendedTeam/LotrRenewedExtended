@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.item.ExtendedSilverCoin;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
@@ -63,6 +64,16 @@ public class ExtendedItemGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
+				//genCoin(item.getKey());
+				continue;
+			}
+			try {
+				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				continue;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			System.out.println("Didn't make ItemModel for: "+item.getKey());
 		}
 	}
@@ -70,6 +81,11 @@ public class ExtendedItemGenerator extends ItemModelProvider {
 	@Override
 	public String getName() {
 		return "Renewed Extended Item Model Provider";
+	}
+
+	private ItemModelBuilder genCoin(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/generated");
+		return gen(builder, lotrLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genSword(String name) {
