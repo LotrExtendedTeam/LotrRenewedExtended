@@ -17,6 +17,7 @@ import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.MineralBlock;
+import lotr.common.block.NonWaterloggableLanternBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
@@ -129,6 +130,10 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 					continue;
 				}
 			}
+			if(block.getValue().get() instanceof NonWaterloggableLanternBlock) {
+				genHangingLanternBlockItem((NonWaterloggableLanternBlock) block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
 			System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());
 		}
 	}
@@ -167,6 +172,28 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
+	private void genHangingLanternBlockItem(NonWaterloggableLanternBlock lantern, String name) {
+		ResourceLocation lamp = lotrLoc(name);
+		ResourceLocation fire = lotrLoc(name+"_fire");
+		ResourceLocation chain = lotrLoc(name+"_chain");
+		ResourceLocation parent = lotrLoc("block/template_lamp");
+		ResourceLocation parentHanging = lotrLoc("block/template_lamp_hanging");
+		ModelFile lanternModel = models().withExistingParent("lotr:"+lantern.getRegistryName().getPath(), parent)
+                .texture("lamp", lamp)
+                .texture("fire", fire);
+		ModelFile hangingModel = models().withExistingParent("lotr:"+lantern.getRegistryName().getPath()+"_hanging", parentHanging)
+                .texture("lamp", lamp)
+                .texture("fire", fire)
+                .texture("chain", chain);
+		getVariantBuilder(lantern)
+		.forAllStatesExcept(state -> {
+			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
+            return ConfiguredModel.builder()
+                    .modelFile(hanging ? hangingModel : lanternModel)
+                    .build();
+        }, StairsBlock.WATERLOGGED);
+	}
+
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
 		String name = wall.getRegistryName().toString();
 		wallBlock(wall, texture);
@@ -176,7 +203,6 @@ public class ExtendedBlockstateGenerator extends BlockStateProvider {
 	private void genTorchBlockItem(Block torch, ResourceLocation texture) {
 		ModelFile cubeModel = models().torch("lotr:"+torch.getRegistryName().getPath(), texture);
 		simpleBlock(torch, cubeModel);
-		itemModels().getBuilder("lotr:"+torch.getRegistryName().getPath()).parent(cubeModel);
 	}
 
 	private void genTorchWallBlock(Block torch, ResourceLocation texture) {

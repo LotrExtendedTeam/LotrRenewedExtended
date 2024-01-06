@@ -1,9 +1,14 @@
 package lotr.common.init;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedItems {
+	public static Map<String, RegistryObject<Item>> REGISTEREDITEMS = new HashMap<>();;
+
 	public static RegistryObject<Item> COMMANDHORN;
 
 	public static RegistryObject<Item> ITHILDIN;

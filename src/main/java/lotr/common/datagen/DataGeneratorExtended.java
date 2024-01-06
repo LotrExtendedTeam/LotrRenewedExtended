@@ -15,6 +15,7 @@ public class DataGeneratorExtended {
 		DataGenerator generator = event.getGenerator();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 		generator.addProvider(new ExtendedBlockstateGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
+		generator.addProvider(new ExtendedItemGenerator(generator, existingFileHelper));
 		//generator.addProvider(new ExtendedLootTableGenerator(generator));
 		generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));
 	}
