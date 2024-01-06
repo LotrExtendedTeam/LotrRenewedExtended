@@ -37,7 +37,11 @@ public class ExtendedItemGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrLoc("block/"+item.getKey()));
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRArmorItem) {}
+			if(item.getValue().get() instanceof LOTRArmorItem) {
+				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				continue;
+				
+			}
 			if(item.getValue().get() instanceof LOTRSwordItem) {
 				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
 				genSword(item.getKey());
