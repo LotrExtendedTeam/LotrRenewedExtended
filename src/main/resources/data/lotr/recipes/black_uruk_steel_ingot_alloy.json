@@ -2,7 +2,7 @@
   "type": "lotr:orc_forge_alloy",
   "ingredient": [
     {
-      "tag": "forge:ores/morgul"
+      "tag": "forge:ores/morgul_iron"
     },
     {
       "tag": "forge:ingots/orc_steel"
