@@ -687,3 +687,5 @@ aa47c410cdef2d3782b0aa280afe519a88e267d7 assets/lotr/models/item/topaz_block.jso
 b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fur_wall.json
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
+a9f381b9e18abe41b9cbb761660384b762bfd6e5 data/lotr/tags/blocks/pillars.json
+a9f381b9e18abe41b9cbb761660384b762bfd6e5 data/lotr/tags/items/pillars.json

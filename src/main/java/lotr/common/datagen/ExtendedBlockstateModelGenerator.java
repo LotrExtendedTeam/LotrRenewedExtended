@@ -35,9 +35,9 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedBlockstateGenerator extends BlockStateProvider {
+public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
-	public ExtendedBlockstateGenerator(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
+	public ExtendedBlockstateModelGenerator(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
 		super(gen, modid, exFileHelper);
 	}
 

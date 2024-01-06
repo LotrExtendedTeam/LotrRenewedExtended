@@ -21,9 +21,9 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedItemGenerator extends ItemModelProvider {
+public class ExtendedItemModelGenerator extends ItemModelProvider {
 
-	public ExtendedItemGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+	public ExtendedItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 		super(generator, LotrExtendedMod.MODID, existingFileHelper);
 	}
 
