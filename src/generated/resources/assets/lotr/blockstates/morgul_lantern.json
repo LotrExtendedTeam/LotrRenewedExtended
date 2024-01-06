@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "lotr:block/morgul_lantern"
+    },
+    "hanging=true": {
+      "model": "lotr:block/morgul_lantern_hanging"
+    }
+  }
+}

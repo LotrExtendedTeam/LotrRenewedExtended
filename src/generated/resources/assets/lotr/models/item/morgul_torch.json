@@ -1,3 +1,6 @@
 {
-  "parent": "lotr:block/morgul_torch"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotr:block/morgul_torch"
+  }
 }
