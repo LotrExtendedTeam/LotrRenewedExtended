@@ -1,22 +1,13 @@
 package lotr.common.network;
 
-import io.netty.buffer.Unpooled;
 import lotr.common.config.LOTRConfig;
-import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedContainers;
-import lotr.common.inv.ExtendedCoinExchangeContainer;
 import lotr.common.stat.LOTRStats;
 import lotr.common.util.LOTRUtil;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Objects;
 import java.util.Random;

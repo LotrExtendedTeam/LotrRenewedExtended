@@ -1,23 +1,16 @@
 package lotr.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.network.ExtendedSPacketOpenCoinExchange;
 import lotr.common.network.ExtendedSPacketTalkWithTrader;
-import lotr.common.stat.LOTRStats;
-import lotr.common.util.LOTRUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
-import org.lwjgl.opengl.GL11;
 
 public class ExtendedTraderMainScreen extends BasicIngameScreen {
 
@@ -56,8 +49,10 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     private void talkWithNPC() {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketTalkWithTrader(entity.getId()));
-        assert Minecraft.getInstance().player != null;
-        Minecraft.getInstance().player.closeContainer();
+        Minecraft mc = Minecraft.getInstance();
+        if(mc.player != null) {
+        	mc.player.closeContainer();
+        }
     }
 
     @Override

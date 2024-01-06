@@ -1,38 +1,23 @@
 package lotr.common.entity.npc;
 
-import io.netty.buffer.Unpooled;
-import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
-import lotr.common.init.ExtendedSoundEvents;
-import lotr.common.inv.ExtendedCoinExchangeContainer;
-import lotr.common.stat.LOTRStats;
-import lotr.common.util.LOTRUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.UUID;
 
 public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedTraderEntity {
