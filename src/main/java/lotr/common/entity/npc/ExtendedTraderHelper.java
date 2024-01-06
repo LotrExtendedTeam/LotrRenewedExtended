@@ -1,10 +1,8 @@
 package lotr.common.entity.npc;
 
-import lotr.client.gui.ExtendedTraderMainScreen;
 import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.network.ExtendedSPacketOpenCoinExchange;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
@@ -43,9 +41,9 @@ public class ExtendedTraderHelper {
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, HashSet<UUID> uuids) {
         uuids.add(player.getUUID());
 
-        if (entity.level.isClientSide()) {
-            Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
-        }
+        //if (entity.level.isClientSide()) {
+        //    Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
+        //}
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
