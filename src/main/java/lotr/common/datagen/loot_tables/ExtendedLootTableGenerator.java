@@ -1,4 +1,4 @@
-package lotr.common.datagen;
+package lotr.common.datagen.loot_tables;
 
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.loot.LootParameterSet;

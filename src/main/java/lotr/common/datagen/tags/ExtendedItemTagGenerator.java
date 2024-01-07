@@ -1,4 +1,4 @@
-package lotr.common.datagen;
+package lotr.common.datagen.tags;
 
 
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;

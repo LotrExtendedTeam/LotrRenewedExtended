@@ -1,4 +1,4 @@
-package lotr.common.datagen;
+package lotr.common.datagen.loot_tables;
 
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
