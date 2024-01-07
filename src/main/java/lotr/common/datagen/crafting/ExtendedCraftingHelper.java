@@ -6,11 +6,6 @@ import java.util.Map.Entry;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import lotr.common.block.AxialSlabBlock;
-import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRTorchBlock;
-import lotr.common.block.LOTRWallBlock;
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
@@ -25,6 +20,8 @@ import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -33,6 +30,8 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	public static List<String> GENERATEDBLOCKRECPIES = new ArrayList<>();
 	public static List<String> GENERATEDITEMRECPIES = new ArrayList<>();
 
+    public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
+    
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
 	}
@@ -41,41 +40,44 @@ public class ExtendedCraftingHelper extends RecipeProvider {
         return new ResourceLocation("lotr", name);
     }
 
-	private void makeStairRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
-		GENERATEDBLOCKRECPIES.add(blockToBeCrafted.get().getRegistryName().getPath());
+	protected void makeStairRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDBLOCKRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
 		.pattern("  #")
 		.pattern(" ##")
 		.pattern("###")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()+"_1"));
-		ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
-		.pattern("  #")
-		.pattern(" ##")
-		.pattern("###")
-		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()+"_2"));
+		.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
 
-	private void makeWallRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
-		GENERATEDBLOCKRECPIES.add(blockToBeCrafted.get().getRegistryName().getPath());
+	protected void makeWallRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDBLOCKRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 		.pattern("###")
 		.pattern("###")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
 
-	private void makeSlabRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
-		GENERATEDBLOCKRECPIES.add(blockToBeCrafted.get().getRegistryName().getPath());
+	protected void makeSlabRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDBLOCKRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 		.pattern("###")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
 
 	//ARMOR
-	private void makeArmorRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> helmetToBeCrafted,
+	protected void makeArmorRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> helmetToBeCrafted,
 			Supplier<? extends Item> chestplateToBeCrafted,
 			Supplier<? extends Item> leggingsToBeCrafted,
 			Supplier<? extends Item> bootsToBeCrafted, Supplier<? extends Item> resource) {
@@ -84,124 +86,152 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		makeLeggingsRecpie(consumer, leggingsToBeCrafted, resource);
 		makeBootsRecpie(consumer, bootsToBeCrafted, resource);
 	}
-	private void makeHelmetRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeHelmetRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("###")
 		.pattern("# #")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makeChestplateRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeChestplateRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("# #")
 		.pattern("###")
 		.pattern("###")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makeLeggingsRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeLeggingsRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("###")
 		.pattern("# #")
 		.pattern("# #")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makeBootsRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeBootsRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("# #")
 		.pattern("# #")
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
 
 	//TOOLS+SWORDS
-	private void makeSwordRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeSwordRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("#")
 		.pattern("#")
-		.pattern("#")
+		.pattern("X")
+		.define('X', STICKS)
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makePickaxeRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeToolsRecpie(Consumer<IFinishedRecipe> consumer, 
+			Supplier<? extends Item> pickaxeToBeCrafted,
+			Supplier<? extends Item> shovelToBeCrafted,
+			Supplier<? extends Item> axeToBeCrafted,
+			Supplier<? extends Item> hoeToBeCrafted, Supplier<? extends Item> resource) {
+		makePickaxeRecpie(consumer, pickaxeToBeCrafted, resource);
+		makeShovelRecpie(consumer, shovelToBeCrafted, resource);
+		makeAxeRecpie(consumer, axeToBeCrafted, resource);
+		makeHoeRecpie(consumer, hoeToBeCrafted, resource);
+	}
+	protected void makePickaxeRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("###")
-		.pattern(" # ")
-		.pattern(" # ")
+		.pattern(" X ")
+		.pattern(" X ")
+		.define('X', STICKS)
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makeShovelRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeShovelRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("#")
-		.pattern("#")
-		.pattern("#")
+		.pattern("X")
+		.pattern("X")
+		.define('X', STICKS)
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makeAxeRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeAxeRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("##")
-		.pattern("##")
-		.pattern("# ")
+		.pattern("#X")
+		.pattern(" X")
+		.define('X', STICKS)
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
-		.pattern("##")
-		.pattern("##")
-		.pattern(" #")
-		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()+"_2"));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
-	private void makeHoeRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
+	protected void makeHoeRecpie(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDITEMRECPIES.add(name);
 		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 		.pattern("##")
-		.pattern("# ")
-		.pattern("# ")
+		.pattern(" X")
+		.pattern(" X")
+		.define('X', STICKS)
 		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()));
-		GENERATEDITEMRECPIES.add(itemToBeCrafted.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
-		.pattern("##")
-		.pattern(" #")
-		.pattern(" #")
-		.define('#', Ingredient.of(resource.get()))
-		.save(consumer, lotrLoc(itemToBeCrafted.get().getRegistryName().getPath()+"_2"));
+		.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
 
 	public void checkForMissingRecpies() {
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof AxialSlabBlock) {
-				if(!GENERATEDBLOCKRECPIES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING SLAB RECPIE FOR: "+block.getValue().get().getRegistryName().toString());
-				}
-				continue;
-			}
-			if(block.getValue().get() instanceof LOTRStairsBlock) {
-				if(!GENERATEDBLOCKRECPIES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING STAIR RECPIES FOR: "+block.getValue().get().getRegistryName().toString());
-				}
-				continue;
-			}
-			if(block.getValue().get() instanceof LOTRWallBlock) {
-				if(!GENERATEDBLOCKRECPIES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING WALL RECPIE FOR: "+block.getValue().get().getRegistryName().toString());
-				}
-				continue;
-			}
-			if(block.getValue().get() instanceof LOTRTorchBlock) {}
-		}
+//		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+//			if(block.getValue().get() instanceof AxialSlabBlock) {
+//				if(!GENERATEDBLOCKRECPIES.contains(block.getValue().get().getRegistryName().getPath())) {
+//					System.out.println("MISSING SLAB RECPIE FOR: "+block.getValue().get().getRegistryName().toString());
+//				}
+//				continue;
+//			}
+//			if(block.getValue().get() instanceof LOTRStairsBlock) {
+//				if(!GENERATEDBLOCKRECPIES.contains(block.getValue().get().getRegistryName().getPath())) {
+//					System.out.println("MISSING STAIR RECPIES FOR: "+block.getValue().get().getRegistryName().toString());
+//				}
+//				continue;
+//			}
+//			if(block.getValue().get() instanceof LOTRWallBlock) {
+//				if(!GENERATEDBLOCKRECPIES.contains(block.getValue().get().getRegistryName().getPath())) {
+//					System.out.println("MISSING WALL RECPIE FOR: "+block.getValue().get().getRegistryName().toString());
+//				}
+//				continue;
+//			}
+//			if(block.getValue().get() instanceof LOTRTorchBlock) {}
+//		}
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getValue().get() instanceof LOTRArmorItem) {
 				if(!GENERATEDITEMRECPIES.contains(item.getValue().get().getRegistryName().getPath())) {
