@@ -688,6 +688,7 @@ b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fu
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
+e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
 f82d30250ecdf5fb1713cd2eaa78f5d5863d85a4 data/forge/tags/blocks/ores/durnor.json
 010019a8c5e65e8e350b9f09f3173457bb44f6e2 data/forge/tags/blocks/ores/edhelvir.json
 5f0bbf2718a967437c0db2a54bf4cd3410701833 data/forge/tags/blocks/ores/glowstone.json
@@ -702,6 +703,11 @@ b9300984e98826134840783294543357f3a54c4e data/forge/tags/blocks/ores/lotr_sapphi
 75b754588b609812f5409145200228cd866507cb data/forge/tags/blocks/ores/lotr_topaz.json
 ff0b2da05fd107a5c56f2551e7fa56b494e43297 data/forge/tags/blocks/ores/mithril.json
 e02918e4d98c6e35c09919af69bdd016f8f65ddc data/forge/tags/blocks/ores/morgul_iron.json
+297ca545fce72a5a4f862f2744e2ec8266281526 data/forge/tags/blocks/ores/niter.json
+0715b64343c2212ab85194c923ebc0f96cb5b58a data/forge/tags/blocks/ores/salt.json
+5feb69806b8ffbbd46e65545fc336e4f06dca19a data/forge/tags/blocks/ores/silver.json
+a5e4606d7446aebfb1b5cef2c5f5c1a5fa4e2e80 data/forge/tags/blocks/ores/sulfur.json
+496a024bd7c743c800dd8aa8dff840db8a4b29ef data/forge/tags/blocks/ores/tin.json
 73f609221a7e59ef18fbe9b35e50a0cf6eeab923 data/forge/tags/blocks/storage_blocks.json
 10faf0433c5c126e33d5ab14afcb9d599c6887c2 data/forge/tags/blocks/storage_blocks/black_uruk_steel.json
 41e68ac79bc9b193e9f9203a9ad0d3dfab12012a data/forge/tags/blocks/storage_blocks/durnor.json
@@ -751,7 +757,7 @@ fc889fb5e19a98c2ec86b63172b2f665a12e650a data/forge/tags/items/ingots/morgul_ing
 0f6d8634508cb765557e08c66616121332704266 data/forge/tags/items/ingots/orc_steel.json
 ee99d48891ab63be5a8f1775aaf3885d27fbd12e data/forge/tags/items/ingots/uruk_steel.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/items/ores.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/ores/copper.json
+e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/items/ores/copper.json
 f82d30250ecdf5fb1713cd2eaa78f5d5863d85a4 data/forge/tags/items/ores/durnor.json
 010019a8c5e65e8e350b9f09f3173457bb44f6e2 data/forge/tags/items/ores/edhelvir.json
 5f0bbf2718a967437c0db2a54bf4cd3410701833 data/forge/tags/items/ores/glowstone.json
@@ -766,11 +772,11 @@ b9300984e98826134840783294543357f3a54c4e data/forge/tags/items/ores/lotr_sapphir
 75b754588b609812f5409145200228cd866507cb data/forge/tags/items/ores/lotr_topaz.json
 ff0b2da05fd107a5c56f2551e7fa56b494e43297 data/forge/tags/items/ores/mithril.json
 e02918e4d98c6e35c09919af69bdd016f8f65ddc data/forge/tags/items/ores/morgul_iron.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/ores/niter.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/ores/salt.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/ores/silver.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/ores/sulfur.json
-74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/ores/tin.json
+297ca545fce72a5a4f862f2744e2ec8266281526 data/forge/tags/items/ores/niter.json
+0715b64343c2212ab85194c923ebc0f96cb5b58a data/forge/tags/items/ores/salt.json
+5feb69806b8ffbbd46e65545fc336e4f06dca19a data/forge/tags/items/ores/silver.json
+a5e4606d7446aebfb1b5cef2c5f5c1a5fa4e2e80 data/forge/tags/items/ores/sulfur.json
+496a024bd7c743c800dd8aa8dff840db8a4b29ef data/forge/tags/items/ores/tin.json
 c8f5fd82b31457a66ac2b47d0fed6e38dfe6488e data/forge/tags/items/storage_blocks.json
 10faf0433c5c126e33d5ab14afcb9d599c6887c2 data/forge/tags/items/storage_blocks/black_uruk_steel.json
 b712df6e5273db1bbba80ebdd85f36567e43622a data/forge/tags/items/storage_blocks/dwarven_steel.json
