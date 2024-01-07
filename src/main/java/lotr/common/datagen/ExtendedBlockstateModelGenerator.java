@@ -7,6 +7,7 @@ import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
+import lotr.common.block.ExtendedSpawnerBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTROreBlock;
@@ -135,6 +136,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof NonWaterloggableLanternBlock) {
 				genHangingLanternBlockItem((NonWaterloggableLanternBlock) block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedSpawnerBlock) {
+				ModelFile cubeModel = models().cubeAll("lotr:"+block.getValue().get().getRegistryName().getPath(), lotrLoc("block/spawner_block"));
+				simpleBlock(block.getValue().get(), cubeModel);
 				continue;
 			}
 			System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());

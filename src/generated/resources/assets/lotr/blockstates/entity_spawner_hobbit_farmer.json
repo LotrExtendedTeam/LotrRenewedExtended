@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lotr:block/entity_spawner_hobbit_farmer"
+    }
+  }
+}
