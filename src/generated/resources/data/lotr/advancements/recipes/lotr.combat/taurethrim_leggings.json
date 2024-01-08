@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:taurethrim_leggings"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_leggings"
+          }
+        ]
+      }
+    },
+    "has_bronze_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:taurethrim_leggings"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_leggings",
+      "has_bronze_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

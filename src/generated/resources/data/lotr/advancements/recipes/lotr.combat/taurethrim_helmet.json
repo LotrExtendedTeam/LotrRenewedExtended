@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:taurethrim_helmet"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_helmet"
+          }
+        ]
+      }
+    },
+    "has_bronze_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:taurethrim_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_helmet",
+      "has_bronze_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

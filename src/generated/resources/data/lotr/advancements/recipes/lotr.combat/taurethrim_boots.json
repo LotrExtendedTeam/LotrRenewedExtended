@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:taurethrim_boots"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_boots"
+          }
+        ]
+      }
+    },
+    "has_bronze_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:taurethrim_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_boots",
+      "has_bronze_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

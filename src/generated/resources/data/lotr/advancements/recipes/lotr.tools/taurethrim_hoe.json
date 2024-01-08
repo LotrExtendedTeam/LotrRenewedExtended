@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:taurethrim_hoe"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_hoe"
+          }
+        ]
+      }
+    },
+    "has_obsidian_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:obsidian_shard"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:taurethrim_hoe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_hoe",
+      "has_obsidian_shard",
+      "has_the_recipe"
+    ]
+  ]
+}

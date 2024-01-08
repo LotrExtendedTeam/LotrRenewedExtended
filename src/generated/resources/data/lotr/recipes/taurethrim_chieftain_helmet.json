@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "Y",
+    "#"
+  ],
+  "key": {
+    "Y": {
+      "item": "lotr:flame_of_harad"
+    },
+    "#": {
+      "item": "lotr:taurethrim_helmet"
+    }
+  },
+  "result": {
+    "item": "lotr:taurethrim_chieftain_helmet"
+  }
+}
