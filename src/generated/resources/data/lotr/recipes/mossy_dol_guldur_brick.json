@@ -3,10 +3,10 @@
   "table": "lotr:dol_guldur",
   "ingredients": [
     {
-      "item": "minecraft:vine"
+      "item": "lotr:dol_guldur_brick"
     },
     {
-      "item": "lotr:dol_guldur_brick"
+      "item": "minecraft:vine"
     }
   ],
   "result": {

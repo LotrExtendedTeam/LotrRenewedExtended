@@ -26,7 +26,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
@@ -94,6 +96,27 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
+	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDBLOCKRECIPES.add(name);
+		if(table==null) {
+			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(()->Items.VINE)))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(()->Items.VINE)))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
