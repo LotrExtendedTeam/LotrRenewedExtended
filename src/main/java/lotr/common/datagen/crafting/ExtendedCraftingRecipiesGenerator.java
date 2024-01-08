@@ -3,10 +3,11 @@ package lotr.common.datagen.crafting;
 import java.util.function.Consumer;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.ExtendedRecipes;
 import lotr.common.init.LOTRItems;
+import lotr.common.recipe.LOTRRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 
@@ -24,32 +25,32 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.MORGUL_CHESTPLATE, 
 				ExtendedItems.MORGUL_LEGGINGS, 
 				ExtendedItems.MORGUL_BOOTS, 
-				ExtendedItems.MORGUL_STEEL_INGOT);
-		makeSwordRecpie(consumer, ExtendedItems.MORGUL_SWORD, ExtendedItems.MORGUL_STEEL_INGOT);
+				ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_ORC);
+		makeSwordRecpie(consumer, ExtendedItems.MORGUL_SWORD, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_ORC);
 		//DOL GULDUR
 		makeArmorRecpie(consumer, ExtendedItems.DOL_GULDUR_HELMET, 
 				ExtendedItems.DOL_GULDUR_CHESTPLATE, 
 				ExtendedItems.DOL_GULDUR_LEGGINGS, 
 				ExtendedItems.DOL_GULDUR_BOOTS, 
-				LOTRItems.ORC_STEEL_INGOT);
+				LOTRItems.ORC_STEEL_INGOT, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeToolsRecpie(consumer, ExtendedItems.DOL_GULDUR_PICKAXE, 
 				ExtendedItems.DOL_GULDUR_SHOVEL, 
 				ExtendedItems.DOL_GULDUR_AXE, 
 				ExtendedItems.DOL_GULDUR_HOE, 
-				LOTRItems.ORC_STEEL_INGOT);
-		makeSwordRecpie(consumer, ExtendedItems.DOL_GULDUR_SWORD, LOTRItems.ORC_STEEL_INGOT);
+				LOTRItems.ORC_STEEL_INGOT, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeSwordRecpie(consumer, ExtendedItems.DOL_GULDUR_SWORD, LOTRItems.ORC_STEEL_INGOT, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		//ANGMAR
 		makeArmorRecpie(consumer, ExtendedItems.ANGMAR_HELMET, 
 				ExtendedItems.ANGMAR_CHESTPLATE, 
 				ExtendedItems.ANGMAR_LEGGINGS, 
 				ExtendedItems.ANGMAR_BOOTS, 
-				LOTRItems.ORC_STEEL_INGOT);
+				LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		makeToolsRecpie(consumer, ExtendedItems.ANGMAR_PICKAXE, 
 				ExtendedItems.ANGMAR_SHOVEL, 
 				ExtendedItems.ANGMAR_AXE, 
 				ExtendedItems.ANGMAR_HOE, 
-				LOTRItems.ORC_STEEL_INGOT);
-		makeSwordRecpie(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT);
+				LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+		makeSwordRecpie(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		//TAURETHRIM
 		//there are no recipes for golden armor
 		GENERATEDITEMRECPIES.add(ExtendedItems.GOLDEN_TAURETHRIM_HELMET.get().getRegistryName().getPath());
@@ -60,9 +61,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.TAURETHRIM_CHESTPLATE, 
 				ExtendedItems.TAURETHRIM_LEGGINGS, 
 				ExtendedItems.TAURETHRIM_BOOTS, 
-				LOTRItems.BRONZE_INGOT);
+				LOTRItems.BRONZE_INGOT, ExtendedRecipes.TAURETHRIM_CRAFTING);
 		GENERATEDITEMRECPIES.add(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET.get())
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET.get(), ExtendedRecipes.TAURETHRIM_CRAFTING)
 		.pattern("Y")
 		.pattern("#")
 		.define('Y', Ingredient.of(LOTRItems.FLAME_OF_HARAD.get()))
@@ -74,9 +75,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.TAURETHRIM_SHOVEL, 
 				ExtendedItems.TAURETHRIM_AXE, 
 				ExtendedItems.TAURETHRIM_HOE, 
-				ExtendedItems.OBSIDIAN_SHARD);
+				ExtendedItems.OBSIDIAN_SHARD, ExtendedRecipes.TAURETHRIM_CRAFTING);
 		GENERATEDITEMRECPIES.add(ExtendedItems.TAURETHRIM_SWORD.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.TAURETHRIM_SWORD.get())
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.TAURETHRIM_SWORD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING)
 		.pattern("#Z#")
 		.pattern("#Z#")
 		.pattern(" Y ")
