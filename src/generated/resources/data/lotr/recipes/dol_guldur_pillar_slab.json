@@ -2,17 +2,15 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:dol_guldur",
   "pattern": [
-    "#",
-    "#",
-    "#"
+    "###"
   ],
   "key": {
     "#": {
-      "item": "minecraft:stone"
+      "item": "lotr:dol_guldur_pillar"
     }
   },
   "result": {
-    "item": "lotr:dol_guldur_pillar",
-    "count" : 3
+    "item": "lotr:dol_guldur_pillar_slab",
+    "count": 6
   }
 }

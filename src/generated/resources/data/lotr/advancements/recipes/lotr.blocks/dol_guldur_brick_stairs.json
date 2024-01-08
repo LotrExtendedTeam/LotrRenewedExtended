@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dol_guldur_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_dol_guldur_brick_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_guldur_brick_stairs"
+          }
+        ]
+      }
+    },
+    "has_dol_guldur_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_guldur_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dol_guldur_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dol_guldur_brick_stairs",
+      "has_dol_guldur_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

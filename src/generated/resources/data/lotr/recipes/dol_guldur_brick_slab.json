@@ -2,7 +2,6 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:dol_guldur",
   "pattern": [
-    "###",
     "###"
   ],
   "key": {
@@ -11,6 +10,7 @@
     }
   },
   "result": {
-    "item": "lotr:dol_guldur_brick_wall"
+    "item": "lotr:dol_guldur_brick_slab",
+    "count": 6
   }
 }

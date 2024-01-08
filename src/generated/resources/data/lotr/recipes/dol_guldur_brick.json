@@ -2,16 +2,16 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:dol_guldur",
   "pattern": [
-    "#  ",
-    "## ",
-    "###"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
-      "item": "lotr:dol_guldur_brick"
+      "item": "minecraft:stone"
     }
   },
   "result": {
-    "item": "lotr:dol_guldur_brick_stairs"
+    "item": "lotr:dol_guldur_brick",
+    "count": 4
   }
 }
