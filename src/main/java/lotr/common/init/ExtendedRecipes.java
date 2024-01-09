@@ -1,6 +1,9 @@
 package lotr.common.init;
 
+import lotr.common.datagen.crafting.ExtendedTippedArrowRecipe;
 import lotr.common.recipe.FactionTableType;
+import net.minecraft.item.crafting.SpecialRecipeSerializer;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedRecipes {
 	public static FactionTableType TAURETHRIM_CRAFTING;
@@ -9,4 +12,5 @@ public class ExtendedRecipes {
 	public static FactionTableType MORWAITH_CRAFTING;
 	public static FactionTableType GUNDABAD_CRAFTING;
 	public static FactionTableType HALF_TROLL_CRAFTING;
+	public static RegistryObject<SpecialRecipeSerializer<ExtendedTippedArrowRecipe>> EXTENDED_TIPPED_ARROW;
 }
