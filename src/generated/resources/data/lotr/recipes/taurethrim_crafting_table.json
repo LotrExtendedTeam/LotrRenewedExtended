@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "##",
+    "XX"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "X": {
+      "item": "lotr:taurethrim_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:taurethrim_crafting_table"
+  }
+}

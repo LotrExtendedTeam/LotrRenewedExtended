@@ -1,19 +1,19 @@
 {
   "type": "lotr:faction_shaped",
-  "table": "lotr:dol_guldur",
+  "table": "lotr:half_troll",
   "pattern": [
     "##",
-    "SS"
+    "XX"
   ],
   "key": {
-    "S": {
-      "item": "lotr:dol_guldur_brick"
-    },
     "#": {
       "tag": "minecraft:planks"
+    },
+    "X": {
+      "item": "minecraft:cobblestone"
     }
   },
   "result": {
-    "item": "lotr:dol_guldur_crafting_table"
+    "item": "lotr:half_troll_crafting_table"
   }
 }

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:morwaith_crafting_table"
+    ]
+  },
+  "criteria": {
+    "has_morwaith_crafting_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:morwaith_crafting_table"
+          }
+        ]
+      }
+    },
+    "has_clay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:clay"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:morwaith_crafting_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morwaith_crafting_table",
+      "has_clay",
+      "has_the_recipe"
+    ]
+  ]
+}
