@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:drystone_stairs"
+    ]
+  },
+  "criteria": {
+    "has_drystone_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:drystone_stairs"
+          }
+        ]
+      }
+    },
+    "has_drystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:drystone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:drystone_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_drystone_stairs",
+      "has_drystone",
+      "has_the_recipe"
+    ]
+  ]
+}

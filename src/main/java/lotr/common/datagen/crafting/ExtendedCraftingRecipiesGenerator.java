@@ -8,13 +8,16 @@ import lotr.common.init.ExtendedRecipes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import lotr.common.recipe.LOTRRecipes;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	public ExtendedCraftingRecipiesGenerator(DataGenerator gen) {
@@ -102,7 +105,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.DOL_GULDUR_PILLAR, 
 				ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB, 
 				()->Blocks.STONE.asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
-		make4x4BlockRecipe(consumer, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, 
+		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, 
 				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, 
 				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
@@ -215,7 +218,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.RHUNIC_BRICK_SLAB, 
 				ExtendedBlocks.RHUNIC_BRICK_WALL, 
 				()->ExtendedBlocks.RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-		make4x4BlockRecipe(consumer, ExtendedBlocks.CARVED_RHUNIC_BRICK, 
+		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_RHUNIC_BRICK, 
 				()->ExtendedBlocks.RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedBlocks.RHUNIC_PILLAR.get(), 3, ExtendedRecipes.RHUNIC_CRAFTING)
@@ -259,13 +262,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.MOSSY_RHUNIC_BRICK_SLAB, 
 				ExtendedBlocks.MOSSY_RHUNIC_BRICK_WALL, 
 				()->ExtendedBlocks.MOSSY_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-		
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.RED_RHUNIC_BRICK, 
 				ExtendedBlocks.RED_RHUNIC_BRICK_STAIRS, 
 				ExtendedBlocks.RED_RHUNIC_BRICK_SLAB, 
 				ExtendedBlocks.RED_RHUNIC_BRICK_WALL, 
 				()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-		make4x4BlockRecipe(consumer, ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, 
+		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, 
 				()->ExtendedBlocks.RED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 		makePillarSlabRecipe(consumer, ExtendedBlocks.RED_RHUNIC_PILLAR, 
 				ExtendedBlocks.RED_RHUNIC_PILLAR_SLAB, 
@@ -301,6 +303,30 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->LOTRBlocks.SMOOTH_RED_ROCK.get().asItem(), null);
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_BLUE_STAIRS.get(), 
 				()->LOTRBlocks.SMOOTH_BLUE_ROCK.get().asItem(), null);
+		ShapelessRecipeBuilder.shapeless(LOTRBlocks.DRYSTONE.get())
+		.requires(ExtendedBlocks.COBBLED_DRYSTONE.get())
+		.unlockedBy("has_"+LOTRBlocks.DRYSTONE.get().getRegistryName().getPath(), has(LOTRBlocks.DRYSTONE.get()))
+		.unlockedBy("has_"+ExtendedBlocks.COBBLED_DRYSTONE.get().getRegistryName().getPath(), has(ExtendedBlocks.COBBLED_DRYSTONE.get()))
+		.save(consumer, lotrLoc(LOTRBlocks.DRYSTONE.get().getRegistryName().getPath()+"_from_"+ExtendedBlocks.COBBLED_DRYSTONE.get().getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(LOTRBlocks.DRYSTONE.get())
+		.requires(ExtendedBlocks.CUT_DRYSTONE.get())
+		.unlockedBy("has_"+LOTRBlocks.DRYSTONE.get().getRegistryName().getPath(), has(LOTRBlocks.DRYSTONE.get()))
+		.unlockedBy("has_"+ExtendedBlocks.CUT_DRYSTONE.get().getRegistryName().getPath(), has(ExtendedBlocks.CUT_DRYSTONE.get()))
+		.save(consumer, lotrLoc(LOTRBlocks.DRYSTONE.get().getRegistryName().getPath()+"_from_"+ExtendedBlocks.CUT_DRYSTONE.get().getRegistryName().getPath()));
+		make2x2BlockRecipe(consumer, ExtendedBlocks.CUT_DRYSTONE, 
+				()->LOTRBlocks.DRYSTONE.get().asItem(), null);
+		make3x3BlockRecipe(consumer, ExtendedBlocks.COBBLED_DRYSTONE, 
+				()->LOTRBlocks.DRYSTONE.get().asItem(), null);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.DRYSTONE_STAIRS, 
+				ExtendedBlocks.DRYSTONE_SLAB, 
+				ExtendedBlocks.DRYSTONE_WALL, 
+				()->LOTRBlocks.DRYSTONE.get().asItem(), null);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DRYSTONE, 
+				()->LOTRBlocks.DRYSTONE.get().asItem(), null);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_DRYSTONE_STAIRS, 
+				ExtendedBlocks.MOSSY_DRYSTONE_SLAB, 
+				ExtendedBlocks.MOSSY_DRYSTONE_WALL, 
+				()->ExtendedBlocks.MOSSY_DRYSTONE.get().asItem(), null);
 	}
 
 	private void addOverrides() {
@@ -339,6 +365,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.TOPAZ_ORE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.DWARF_MARRIAGE_RING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_MARRIAGE_RING.get().getRegistryName().getPath());
+		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYSPAWNERBLOCKS.values()) {
+			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
+		}
 	}
 	@Override
 	public String getName() {

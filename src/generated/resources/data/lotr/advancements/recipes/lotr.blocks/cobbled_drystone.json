@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cobbled_drystone"
+    ]
+  },
+  "criteria": {
+    "has_cobbled_drystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cobbled_drystone"
+          }
+        ]
+      }
+    },
+    "has_drystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:drystone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cobbled_drystone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cobbled_drystone",
+      "has_drystone",
+      "has_the_recipe"
+    ]
+  ]
+}

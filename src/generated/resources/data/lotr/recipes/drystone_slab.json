@@ -1,8 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##",
-    "##"
+    "###"
   ],
   "key": {
     "#": {
@@ -10,7 +9,7 @@
     }
   },
   "result": {
-    "item": "lotr:cut_drystone",
-    "count" : 4
+    "item": "lotr:drystone_slab",
+    "count": 6
   }
 }

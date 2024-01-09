@@ -64,7 +64,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			Supplier<? extends Block> slabToBeCrafted,
 			Supplier<? extends Block> wallToBeCrafted, 
 			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
-		make4x4BlockRecipe(consumer, blockToBeCrafted, resource, table);
+		make2x2BlockRecipe(consumer, blockToBeCrafted, resource, table);
 		makeStairRecipe(consumer, stairsToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
 		makeSlabRecipe(consumer, slabToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
 		makeWallRecipe(consumer, wallToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
@@ -79,7 +79,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		makeWallRecipe(consumer, wallToBeCrafted, resource, table);
 	}
 
-	protected void make4x4BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void make2x2BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
@@ -95,6 +95,30 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4, table)
 			.pattern("##")
 			.pattern("##")
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+	protected void make3x3BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 9)
+			.pattern("###")
+			.pattern("###")
+			.pattern("###")
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 9, table)
+			.pattern("###")
+			.pattern("###")
+			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))

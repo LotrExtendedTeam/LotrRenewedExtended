@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "   ",
-    " # ",
-    "   "
+    "  #",
+    " ##",
+    "###"
   ],
   "key": {
     "#": {
@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "lotr:cobbled_drystone"
+    "item": "lotr:drystone_stairs",
+    "count": 4
   }
 }

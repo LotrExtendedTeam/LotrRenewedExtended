@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:drystone"
+    }
+  },
+  "result": {
+    "item": "lotr:cobbled_drystone",
+    "count": 9
+  }
+}
