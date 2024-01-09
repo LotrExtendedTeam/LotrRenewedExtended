@@ -2,17 +2,17 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:rhunic",
   "pattern": [
-    "#  ",
-    "## ",
-    "###"
+    "#",
+    "#",
+    "#"
   ],
   "key": {
     "#": {
-      "item": "lotr:mossy_rhunic_brick"
+      "item": "minecraft:stone"
     }
   },
   "result": {
-    "item": "lotr:mossy_rhunic_brick_stairs",
-    "count": 4
+    "item": "lotr:rhunic_pillar",
+    "count": 3
   }
 }

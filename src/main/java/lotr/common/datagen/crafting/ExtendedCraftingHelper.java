@@ -9,8 +9,8 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
@@ -39,8 +39,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingHelper extends RecipeProvider {
 
-	public static List<String> GENERATEDBLOCKRECIPES = new ArrayList<>();
-	public static List<String> GENERATEDITEMRECIPES = new ArrayList<>();
+	public static List<String> GENERATEDRECIPES = new ArrayList<>();
 
     public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
     
@@ -82,7 +81,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void make4x4BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
 			.pattern("##")
@@ -105,7 +104,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makeCrackedBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		CookingRecipeBuilder.smelting(
 				Ingredient.of(resource.get()), 
 				blockToBeCrafted.get(), 0.1F, 200)
@@ -116,7 +115,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 			.requires(Ingredient.of(resource.get()))
@@ -137,7 +136,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makePillarRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 3)
 			.pattern("#")
@@ -162,7 +161,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makeStairRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
 			.pattern("  #")
@@ -187,7 +186,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makeWallRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 			.pattern("###")
@@ -210,7 +209,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makeSlabRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDBLOCKRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 			.pattern("###")
@@ -241,7 +240,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeHelmetRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
@@ -264,7 +263,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeChestplateRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("# #")
@@ -288,7 +287,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeLeggingsRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
@@ -312,7 +311,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeBootsRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("# #")
@@ -336,7 +335,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	//TOOLS+SWORDS
 	protected void makeSwordRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
@@ -372,7 +371,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makePickaxeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
@@ -398,7 +397,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeShovelRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
@@ -424,7 +423,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeAxeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("##")
@@ -450,7 +449,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 	protected void makeHoeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDITEMRECIPES.add(name);
+		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("##")
@@ -475,59 +474,86 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeStorageBlockToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block) {
+		String name1 = item.get().getRegistryName().getPath();
+		String name2 = block.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name1);
+		ShapelessRecipeBuilder.shapeless(item.get(), 9)
+		.requires(block.get())
+		.unlockedBy("has_"+name1, has(item.get()))
+		.unlockedBy("has_"+name2, has(block.get()))
+		.save(consumer, lotrLoc(name1+"_from_"+name2));
+		GENERATEDRECIPES.add(name2);
+		ShapedRecipeBuilder.shaped(block.get())
+		.pattern("###")
+		.pattern("###")
+		.pattern("###")
+		.define('#', Ingredient.of(item.get()))
+		.unlockedBy("has_"+name1, has(item.get()))
+		.unlockedBy("has_"+name2, has(block.get()))
+		.save(consumer, lotrLoc(name2+"_from_"+name1));
+	}
+
 	public void checkForMissingRecipes() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof AxialSlabBlock) {
-				if(!GENERATEDBLOCKRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING SLAB RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
 				}
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRStairsBlock) {
-				if(!GENERATEDBLOCKRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING STAIR RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
 				}
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRWallBlock) {
-				if(!GENERATEDBLOCKRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING WALL RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
 				}
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRTorchBlock) {}
+			if(block.getValue().get() instanceof LOTRPillarBlock) {
+				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
+					System.out.println("MISSING PILLAR RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+				}
+				continue;
+			}
+			System.out.println("MISSING RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
 		}
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getValue().get() instanceof LOTRArmorItem) {
-				if(!GENERATEDITEMRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING ARMOR RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
 			if(item.getValue().get() instanceof LOTRSwordItem) {
-				if(!GENERATEDITEMRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING SWORD RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {
-				if(!GENERATEDITEMRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING PICKAXE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
 			if(item.getValue().get() instanceof LOTRShovelItem) {
-				if(!GENERATEDITEMRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING SHOVEL RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
 			if(item.getValue().get() instanceof LOTRAxeItem) {
-				if(!GENERATEDITEMRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING AXE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
 			if(item.getValue().get() instanceof LOTRHoeItem ) {
-				if(!GENERATEDITEMRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING HOE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
+			System.out.println("MISSING RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 		}
 	}
 }

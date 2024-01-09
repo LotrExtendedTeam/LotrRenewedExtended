@@ -2,17 +2,16 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:rhunic",
   "pattern": [
-    "#  ",
-    "## ",
-    "###"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
-      "item": "lotr:rhunic_brick"
+      "item": "minecraft:sandstone"
     }
   },
   "result": {
-    "item": "lotr:rhunic_brick_stairs",
+    "item": "lotr:rhunic_brick",
     "count": 4
   }
 }

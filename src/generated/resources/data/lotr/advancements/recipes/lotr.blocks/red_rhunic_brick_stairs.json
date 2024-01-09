@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:red_rhunic_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_red_rhunic_brick_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:red_rhunic_brick_stairs"
+          }
+        ]
+      }
+    },
+    "has_red_rhunic_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:red_rhunic_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:red_rhunic_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_rhunic_brick_stairs",
+      "has_red_rhunic_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

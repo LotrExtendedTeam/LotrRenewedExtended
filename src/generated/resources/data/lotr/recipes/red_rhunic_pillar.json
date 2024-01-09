@@ -2,15 +2,17 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:rhunic",
   "pattern": [
-    "##",
-    "##"
+    "#",
+    "#",
+    "#"
   ],
   "key": {
     "#": {
-      "item": "lotr:rhunic_brick"
+      "item": "lotr:red_rock"
     }
   },
   "result": {
-    "item": "lotr:carved_rhunic_brick"
+    "item": "lotr:red_rhunic_pillar",
+    "count": 3
   }
 }

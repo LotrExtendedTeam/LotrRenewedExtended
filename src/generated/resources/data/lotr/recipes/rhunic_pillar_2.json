@@ -2,15 +2,17 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:rhunic",
   "pattern": [
-    "###"
+    "#",
+    "#",
+    "#"
   ],
   "key": {
     "#": {
-      "item": "lotr:red_rhunic_pillar"
+      "item": "minecraft:sandstone"
     }
   },
   "result": {
-    "item": "lotr:red_rhunic_pillar_slab",
-    "count" : 6
+    "item": "lotr:rhunic_pillar",
+    "count": 3
   }
 }

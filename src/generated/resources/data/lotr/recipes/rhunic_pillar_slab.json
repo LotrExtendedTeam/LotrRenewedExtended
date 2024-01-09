@@ -2,17 +2,15 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:rhunic",
   "pattern": [
-    "#  ",
-    "## ",
     "###"
   ],
   "key": {
     "#": {
-      "item": "lotr:flowery_rhunic_brick"
+      "item": "lotr:rhunic_pillar"
     }
   },
   "result": {
-    "item": "lotr:flowery_rhunic_brick_stairs",
-    "count": 4
+    "item": "lotr:rhunic_pillar_slab",
+    "count": 6
   }
 }

@@ -1,12 +1,12 @@
 {
   "type": "lotr:faction_shapeless",
   "table": "lotr:rhunic",
-    "ingredients": [
-    {
-      "item": "minecraft:vine"
-    },
+  "ingredients": [
     {
       "item": "lotr:rhunic_brick"
+    },
+    {
+      "item": "minecraft:vine"
     }
   ],
   "result": {

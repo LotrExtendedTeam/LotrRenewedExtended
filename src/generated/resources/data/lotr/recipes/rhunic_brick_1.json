@@ -2,9 +2,8 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:rhunic",
   "pattern": [
-    "#",
-    "#",
-    "#"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
@@ -12,7 +11,7 @@
     }
   },
   "result": {
-    "item": "lotr:rhunic_pillar",
-    "count" : 3
+    "item": "lotr:rhunic_brick",
+    "count": 4
   }
 }
