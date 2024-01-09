@@ -474,24 +474,79 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeStorageBlockToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block) {
+	protected void makeStorageBlock3x3ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = item.get().getRegistryName().getPath();
 		String name2 = block.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name1);
-		ShapelessRecipeBuilder.shapeless(item.get(), 9)
-		.requires(block.get())
-		.unlockedBy("has_"+name1, has(item.get()))
-		.unlockedBy("has_"+name2, has(block.get()))
-		.save(consumer, lotrLoc(name1+"_from_"+name2));
 		GENERATEDRECIPES.add(name2);
-		ShapedRecipeBuilder.shaped(block.get())
-		.pattern("###")
-		.pattern("###")
-		.pattern("###")
-		.define('#', Ingredient.of(item.get()))
-		.unlockedBy("has_"+name1, has(item.get()))
-		.unlockedBy("has_"+name2, has(block.get()))
-		.save(consumer, lotrLoc(name2+"_from_"+name1));
+		if(table==null) {
+			ShapelessRecipeBuilder.shapeless(item.get(), 9)
+			.requires(block.get())
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name1+"_from_"+name2));
+			GENERATEDRECIPES.add(name2);
+			ShapedRecipeBuilder.shaped(block.get())
+			.pattern("###")
+			.pattern("###")
+			.pattern("###")
+			.define('#', Ingredient.of(item.get()))
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+		else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(item.get(), 9, table)
+			.requires(block.get())
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name1+"_from_"+name2));
+			GENERATEDRECIPES.add(name2);
+			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
+			.pattern("###")
+			.pattern("###")
+			.pattern("###")
+			.define('#', Ingredient.of(item.get()))
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+	}
+	protected void makeStorageBlock2x2ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name1 = item.get().getRegistryName().getPath();
+		String name2 = block.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name1);
+		GENERATEDRECIPES.add(name2);
+		if(table==null) {
+			ShapelessRecipeBuilder.shapeless(item.get(), 4)
+			.requires(block.get())
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name1+"_from_"+name2));
+			GENERATEDRECIPES.add(name2);
+			ShapedRecipeBuilder.shaped(block.get())
+			.pattern("##")
+			.pattern("##")
+			.define('#', Ingredient.of(item.get()))
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+		else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(item.get(), 4, table)
+			.requires(block.get())
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name1+"_from_"+name2));
+			GENERATEDRECIPES.add(name2);
+			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
+			.pattern("##")
+			.pattern("##")
+			.define('#', Ingredient.of(item.get()))
+			.unlockedBy("has_"+name1, has(item.get()))
+			.unlockedBy("has_"+name2, has(block.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
 	}
 
 	public void checkForMissingRecipes() {

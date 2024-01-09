@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gold_nugget"
+    },
+    "X": {
+      "item": "lotr:rhunic_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:gold_trimmed_rhunic_brick"
+  }
+}

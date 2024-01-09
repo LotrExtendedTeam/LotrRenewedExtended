@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:silver_coin_one"
+    ]
+  },
+  "criteria": {
+    "has_silver_coin_one": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_coin_one"
+          }
+        ]
+      }
+    },
+    "has_silver_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:silver_coin_one"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_coin_one",
+      "has_silver_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

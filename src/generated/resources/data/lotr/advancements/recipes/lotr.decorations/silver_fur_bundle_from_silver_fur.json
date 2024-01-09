@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:silver_fur_bundle_from_silver_fur"
+    ]
+  },
+  "criteria": {
+    "has_silver_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_fur"
+          }
+        ]
+      }
+    },
+    "has_silver_fur_bundle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_fur_bundle"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:silver_fur_bundle_from_silver_fur"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_fur",
+      "has_silver_fur_bundle",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:grey_fur_bundle_from_grey_fur"
+    ]
+  },
+  "criteria": {
+    "has_grey_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:grey_fur"
+          }
+        ]
+      }
+    },
+    "has_grey_fur_bundle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:grey_fur_bundle"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:grey_fur_bundle_from_grey_fur"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_grey_fur",
+      "has_grey_fur_bundle",
+      "has_the_recipe"
+    ]
+  ]
+}

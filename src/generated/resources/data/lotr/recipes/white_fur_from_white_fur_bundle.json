@@ -1,6 +1,6 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "lotr:fur",
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:lossoth",
   "ingredients": [
     {
       "item": "lotr:white_fur_bundle"
