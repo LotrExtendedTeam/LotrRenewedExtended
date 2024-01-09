@@ -10,6 +10,7 @@ import lotr.common.recipe.LOTRRecipes;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 
@@ -45,24 +46,24 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS, 
 				ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, 
 				ExtendedBlocks.DOL_GULDUR_BRICK_WALL, 
-				()->Blocks.STONE, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+				()->Blocks.STONE.asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makePillarSlabRecipe(consumer, ExtendedBlocks.DOL_GULDUR_PILLAR, 
 				ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB, 
-				()->Blocks.STONE, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+				()->Blocks.STONE.asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		make4x4BlockRecipe(consumer, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, 
-				ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, 
-				ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS, 
 				ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB, 
 				ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL, 
-				ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+				()->ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK, 
-				ExtendedBlocks.DOL_GULDUR_BRICK);
+				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem());
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_STAIRS, 
 				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB, 
 				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL, 
-				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+				()->ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		checkForMissingRecipes();
 		//ANGMAR
 		makeArmorRecipe(consumer, ExtendedItems.ANGMAR_HELMET, 
@@ -112,7 +113,43 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.OBSIDIAN_SHARD.get().getRegistryName().getPath(), has(ExtendedItems.OBSIDIAN_SHARD.get()))
 		.unlockedBy("has_"+ExtendedItems.TAURETHRIM_SWORD.get().getRegistryName().getPath(), has(ExtendedItems.TAURETHRIM_SWORD.get()))
 		.save(consumer, lotrLoc(ExtendedItems.TAURETHRIM_SWORD.get().getRegistryName().getPath()));
-				
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.TAURETHRIM_BRICK, 
+				ExtendedBlocks.TAURETHRIM_BRICK_STAIRS, 
+				ExtendedBlocks.TAURETHRIM_BRICK_SLAB, 
+				ExtendedBlocks.TAURETHRIM_BRICK_WALL, 
+				()->Blocks.STONE.asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.TAURETHRIM_PILLAR, 
+				ExtendedBlocks.TAURETHRIM_PILLAR_SLAB, 
+				()->Blocks.STONE.asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_TAURETHRIM_BRICK, 
+				()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_STAIRS, 
+				ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_SLAB, 
+				ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_WALL, 
+				()->ExtendedBlocks.MOSSY_TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_TAURETHRIM_BRICK, 
+				()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem());
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_STAIRS, 
+				ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_SLAB, 
+				ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_WALL, 
+				()->ExtendedBlocks.CRACKED_TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK, 
+				ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_STAIRS, 
+				ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_SLAB, 
+				ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_WALL, 
+				()->Items.GOLD_INGOT, ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR, 
+				ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR_SLAB, 
+				()->Items.GOLD_INGOT, ExtendedRecipes.TAURETHRIM_CRAFTING);
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK, 
+				ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_STAIRS, 
+				ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_SLAB, 
+				ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_WALL, 
+				()->ExtendedItems.OBSIDIAN_SHARD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR, 
+				ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR_SLAB, 
+				()->ExtendedItems.OBSIDIAN_SHARD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+
 		checkForMissingRecipes();
 	}
 

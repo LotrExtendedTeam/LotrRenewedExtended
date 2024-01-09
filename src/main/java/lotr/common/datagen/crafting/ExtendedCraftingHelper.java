@@ -55,32 +55,32 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	protected void makePillarSlabRecipe(Consumer<IFinishedRecipe> consumer,
 			Supplier<? extends Block> pillarToBeCrafted,
 			Supplier<? extends Block> slabToBeCrafted,
-			Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		makePillarRecipe(consumer, pillarToBeCrafted, resource, table);
-		makeSlabRecipe(consumer, slabToBeCrafted, pillarToBeCrafted, table);
+		makeSlabRecipe(consumer, slabToBeCrafted, ()->pillarToBeCrafted.get().asItem(), table);
 	}
 	protected void make4x4BlockandDepandentsStairSlabWallRecipe(Consumer<IFinishedRecipe> consumer,
 			Supplier<? extends Block> blockToBeCrafted,
 			Supplier<? extends Block> stairsToBeCrafted,
 			Supplier<? extends Block> slabToBeCrafted,
 			Supplier<? extends Block> wallToBeCrafted, 
-			Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		make4x4BlockRecipe(consumer, blockToBeCrafted, resource, table);
-		makeStairRecipe(consumer, stairsToBeCrafted, blockToBeCrafted, table);
-		makeSlabRecipe(consumer, slabToBeCrafted, blockToBeCrafted, table);
-		makeWallRecipe(consumer, wallToBeCrafted, blockToBeCrafted, table);
+		makeStairRecipe(consumer, stairsToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
+		makeSlabRecipe(consumer, slabToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
+		makeWallRecipe(consumer, wallToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
 	}
 	protected void makeStairSlabWallRecipe(Consumer<IFinishedRecipe> consumer, 
 			Supplier<? extends Block> stairsToBeCrafted,
 			Supplier<? extends Block> slabToBeCrafted,
 			Supplier<? extends Block> wallToBeCrafted, 
-			Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		makeStairRecipe(consumer, stairsToBeCrafted, resource, table);
 		makeSlabRecipe(consumer, slabToBeCrafted, resource, table);
 		makeWallRecipe(consumer, wallToBeCrafted, resource, table);
 	}
 
-	protected void make4x4BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void make4x4BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		if(table==null) {
@@ -103,7 +103,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeCrackedBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
+	protected void makeCrackedBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		CookingRecipeBuilder.smelting(
@@ -114,7 +114,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.save(consumer, lotrLoc(name));
 	}
 
-	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		if(table==null) {
@@ -135,7 +135,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makePillarRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makePillarRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		if(table==null) {
@@ -160,7 +160,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeStairRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeStairRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		if(table==null) {
@@ -185,7 +185,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeWallRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeWallRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		if(table==null) {
@@ -208,7 +208,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeSlabRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeSlabRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDBLOCKRECIPES.add(name);
 		if(table==null) {
