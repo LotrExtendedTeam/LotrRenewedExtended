@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:amethyst",
   "ingredients": [
     {
-      "item": "lotr:amethyst_block"
+      "item": "lotr:pearl_block"
     }
   ],
   "result": {
-    "item": "lotr:amethyst",
+    "item": "lotr:pearl",
     "count": 9
   }
 }

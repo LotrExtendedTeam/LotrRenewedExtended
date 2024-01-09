@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:topaz",
   "ingredients": [
     {
-      "item": "lotr:topaz_block"
+      "item": "lotr:diamond_block"
     }
   ],
   "result": {
-    "item": "lotr:topaz",
+    "item": "lotr:diamond",
     "count": 9
   }
 }

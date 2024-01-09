@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:coral",
   "ingredients": [
     {
-      "item": "lotr:coral_block"
+      "item": "lotr:black_uruk_steel_block"
     }
   ],
   "result": {
-    "item": "lotr:coral",
+    "item": "lotr:black_uruk_steel_ingot",
     "count": 9
   }
 }

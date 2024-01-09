@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:pearl",
   "ingredients": [
     {
-      "item": "lotr:pearl_block"
+      "item": "lotr:galvorn_block"
     }
   ],
   "result": {
-    "item": "lotr:pearl",
+    "item": "lotr:galvorn_ingot",
     "count": 9
   }
 }

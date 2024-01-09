@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedRecipes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import lotr.common.recipe.LOTRRecipes;
 import net.minecraft.block.Blocks;
@@ -22,12 +23,27 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	@Override
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 		buildRecipes(consumer);
+		addOverrides();
 		checkForMissingRecipes();
 	}
 
-	protected void buildRecipes(Consumer<IFinishedRecipe> consumer) {
-		//there are no recipes for leather hats
-		GENERATEDRECIPES.add(ExtendedItems.LEATHER_HAT.get().getRegistryName().getPath());
+	private void buildRecipes(Consumer<IFinishedRecipe> consumer) {
+		//STORAGE BLOCKS AND ITEMS
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.TOPAZ, ExtendedBlocks.TOPAZ_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.SAPPHIRE, ExtendedBlocks.SAPPHIRE_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.RUBY, ExtendedBlocks.RUBY_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.DIAMOND, ExtendedBlocks.DIAMOND_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.OPAL, ExtendedBlocks.OPAL_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.EMERALD, ExtendedBlocks.EMERALD_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.PEARL, ExtendedBlocks.PEARL_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.GALVORN_INGOT, ExtendedBlocks.GALVORN_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.BLACK_URUK_STEEL_INGOT, ExtendedBlocks.BLACK_URUK_STEEL_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedBlocks.GILDED_IRON_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.MORGUL_STEEL_INGOT, ExtendedBlocks.MORGUL_STEEL_BLOCK);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.OBSIDIAN_SHARD, ()->Blocks.OBSIDIAN);
 		//MORGUL
 		makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET, 
 				ExtendedItems.MORGUL_CHESTPLATE, 
@@ -82,11 +98,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		//TAURETHRIM
-		//there are no recipes for golden armor
-		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_HELMET.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_CHESTPLATE.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_LEGGINGS.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_BOOTS.get().getRegistryName().getPath());
 		makeArmorRecipe(consumer, ExtendedItems.TAURETHRIM_HELMET, 
 				ExtendedItems.TAURETHRIM_CHESTPLATE, 
 				ExtendedItems.TAURETHRIM_LEGGINGS, 
@@ -230,6 +241,31 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 	}
 
+	private void addOverrides() {
+		GENERATEDRECIPES.add(ExtendedItems.LEATHER_HAT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_CHESTPLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_LEGGINGS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_BOOTS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BLACKBERRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BLUEBERRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.CRANBERRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ELDERBERRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.RASPBERRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.WILDBERRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BLACKBERRY_BUSH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BLUEBERRY_BUSH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.CRANBERRY_BUSH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ELDERBERRY_BUSH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.RASPBERRY_BUSH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.WILDBERRY_BUSH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.CRANBERRY_BUSH_PLANT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ELDERBERRY_BUSH_PLANT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.RASPBERRY_BUSH_PLANT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get().getRegistryName().getPath());
+	}
 	@Override
 	public String getName() {
 		return "Renewed Extended Crafting Recipe Provider";

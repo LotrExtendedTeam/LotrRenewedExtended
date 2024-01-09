@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:ruby",
   "ingredients": [
     {
       "item": "lotr:ruby_block"

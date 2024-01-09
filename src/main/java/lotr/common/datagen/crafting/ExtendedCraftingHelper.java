@@ -520,7 +520,9 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 				}
 				continue;
 			}
-			System.out.println("MISSING RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+			if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
+				System.out.println("MISSING BLOCK RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+			}
 		}
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getValue().get() instanceof LOTRArmorItem) {
@@ -553,7 +555,9 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 					System.out.println("MISSING HOE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
-			System.out.println("MISSING RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+				System.out.println("MISSING ITEM RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			}
 		}
 	}
 }

@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:sapphire",
   "ingredients": [
     {
-      "item": "lotr:sapphire_block"
+      "item": "lotr:gilded_iron_block"
     }
   ],
   "result": {
-    "item": "lotr:sapphire",
+    "item": "lotr:gilded_iron_ingot",
     "count": 9
   }
 }

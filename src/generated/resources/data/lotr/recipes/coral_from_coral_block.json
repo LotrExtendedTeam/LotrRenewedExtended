@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:opal",
   "ingredients": [
     {
-      "item": "lotr:opal_block"
+      "item": "lotr:coral_block"
     }
   ],
   "result": {
-    "item": "lotr:opal",
+    "item": "lotr:coral",
     "count": 9
   }
 }

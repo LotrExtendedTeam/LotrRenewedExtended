@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:emerald",
   "ingredients": [
     {
-      "item": "lotr:emerald_block"
+      "item": "lotr:topaz_block"
     }
   ],
   "result": {
-    "item": "lotr:emerald",
+    "item": "lotr:topaz",
     "count": 9
   }
 }

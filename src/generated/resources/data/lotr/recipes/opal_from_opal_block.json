@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:gilded_iron_ingot",
   "ingredients": [
     {
-      "item": "lotr:gilded_iron_block"
+      "item": "lotr:opal_block"
     }
   ],
   "result": {
-    "item": "lotr:gilded_iron_ingot",
+    "item": "lotr:opal",
     "count": 9
   }
 }

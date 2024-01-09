@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lotr:morgul_steel_ingot",
   "ingredients": [
     {
       "item": "lotr:morgul_steel_block"
