@@ -290,6 +290,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath(), has(ExtendedItems.SILVER_COIN_ONE.get()))
 		.unlockedBy("has_"+LOTRItems.SILVER_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.SILVER_NUGGET.get()))
 		.save(consumer, lotrLoc(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath()));
+		//MISC BLOCKS
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_GONDOR_STAIRS.get(), 
+				()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_STAIRS.get(), 
+				()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_ROHAN_STAIRS.get(), 
+				()->LOTRBlocks.SMOOTH_ROHAN_ROCK.get().asItem(), LOTRRecipes.ROHAN_CRAFTING);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_RED_STAIRS.get(), 
+				()->LOTRBlocks.SMOOTH_RED_ROCK.get().asItem(), null);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_BLUE_STAIRS.get(), 
+				()->LOTRBlocks.SMOOTH_BLUE_ROCK.get().asItem(), null);
 	}
 
 	private void addOverrides() {
@@ -318,6 +329,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_TEN.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_HUNDRED.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.AMBER_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.AMETHYST_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DIAMOND_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.EMERALD_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.OPAL_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.RUBY_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.SAPPHIRE_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.TOPAZ_ORE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.DWARF_MARRIAGE_RING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_MARRIAGE_RING.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {
