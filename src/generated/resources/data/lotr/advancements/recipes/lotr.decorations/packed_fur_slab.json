@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:packed_fur_slab"
+    ]
+  },
+  "criteria": {
+    "has_packed_fur_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:packed_fur_slab"
+          }
+        ]
+      }
+    },
+    "has_packed_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:packed_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:packed_fur_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_packed_fur_slab",
+      "has_packed_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

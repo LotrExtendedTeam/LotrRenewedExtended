@@ -44,6 +44,31 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedBlocks.GILDED_IRON_BLOCK);
 		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.MORGUL_STEEL_INGOT, ExtendedBlocks.MORGUL_STEEL_BLOCK);
 		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.OBSIDIAN_SHARD, ()->Blocks.OBSIDIAN);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.BLACK_FUR, ExtendedBlocks.BLACK_PACKED_FUR);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BLACK_PACKED_FUR_STAIRS, 
+				ExtendedBlocks.BLACK_PACKED_FUR_SLAB, 
+				ExtendedBlocks.BLACK_PACKED_FUR_WALL, 
+				()->ExtendedBlocks.BLACK_PACKED_FUR.get().asItem(), null);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.GREY_FUR, ExtendedBlocks.GREY_PACKED_FUR);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GREY_PACKED_FUR_STAIRS, 
+				ExtendedBlocks.GREY_PACKED_FUR_SLAB, 
+				ExtendedBlocks.GREY_PACKED_FUR_WALL, 
+				()->ExtendedBlocks.GREY_PACKED_FUR.get().asItem(), null);
+		makeStorageBlockToItemAndBackRecipe(consumer, LOTRItems.FUR, ExtendedBlocks.BROWN_PACKED_FUR);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BROWN_PACKED_FUR_STAIRS, 
+				ExtendedBlocks.BROWN_PACKED_FUR_SLAB, 
+				ExtendedBlocks.BROWN_PACKED_FUR_WALL, 
+				()->ExtendedBlocks.BROWN_PACKED_FUR.get().asItem(), null);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_PACKED_FUR);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.SILVER_PACKED_FUR_STAIRS, 
+				ExtendedBlocks.SILVER_PACKED_FUR_SLAB, 
+				ExtendedBlocks.SILVER_PACKED_FUR_WALL, 
+				()->ExtendedBlocks.SILVER_PACKED_FUR.get().asItem(), null);
+		makeStorageBlockToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_PACKED_FUR);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.WHITE_PACKED_FUR_STAIRS, 
+				ExtendedBlocks.WHITE_PACKED_FUR_SLAB, 
+				ExtendedBlocks.WHITE_PACKED_FUR_WALL, 
+				()->ExtendedBlocks.WHITE_PACKED_FUR.get().asItem(), null);
 		//MORGUL
 		makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET, 
 				ExtendedItems.MORGUL_CHESTPLATE, 

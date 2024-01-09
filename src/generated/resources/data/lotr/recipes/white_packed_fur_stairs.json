@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:white_packed_fur"
+    }
+  },
+  "result": {
+    "item": "lotr:white_packed_fur_stairs",
+    "count": 4
+  }
+}

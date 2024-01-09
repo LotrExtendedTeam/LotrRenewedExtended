@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:white_packed_fur"
+    }
+  ],
+  "result": {
+    "item": "lotr:white_fur",
+    "count": 9
+  }
+}
