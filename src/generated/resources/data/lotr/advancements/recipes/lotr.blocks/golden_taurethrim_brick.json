@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:golden_taurethrim_brick"
+    ]
+  },
+  "criteria": {
+    "has_golden_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:golden_taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:gold_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:golden_taurethrim_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_golden_taurethrim_brick",
+      "has_gold_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

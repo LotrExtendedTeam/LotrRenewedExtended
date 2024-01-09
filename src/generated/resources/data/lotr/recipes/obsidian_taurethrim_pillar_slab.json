@@ -2,17 +2,15 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:taurethrim",
   "pattern": [
-    "#  ",
-    "## ",
     "###"
   ],
   "key": {
     "#": {
-      "item": "lotr:obsidian_taurethrim_brick"
+      "item": "lotr:obsidian_taurethrim_pillar"
     }
   },
   "result": {
-    "item": "lotr:obsidian_taurethrim_brick_stairs",
-    "count": 4
+    "item": "lotr:obsidian_taurethrim_pillar_slab",
+    "count": 6
   }
 }

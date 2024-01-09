@@ -1,12 +1,12 @@
 {
   "type": "lotr:faction_shapeless",
   "table": "lotr:taurethrim",
-    "ingredients": [
-    {
-      "item": "minecraft:vine"
-    },
+  "ingredients": [
     {
       "item": "lotr:taurethrim_brick"
+    },
+    {
+      "item": "minecraft:vine"
     }
   ],
   "result": {

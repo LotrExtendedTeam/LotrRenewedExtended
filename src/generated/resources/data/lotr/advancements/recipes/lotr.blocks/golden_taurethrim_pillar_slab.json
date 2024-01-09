@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:golden_taurethrim_pillar_slab"
+    ]
+  },
+  "criteria": {
+    "has_golden_taurethrim_pillar_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:golden_taurethrim_pillar_slab"
+          }
+        ]
+      }
+    },
+    "has_golden_taurethrim_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:golden_taurethrim_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:golden_taurethrim_pillar_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_golden_taurethrim_pillar_slab",
+      "has_golden_taurethrim_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

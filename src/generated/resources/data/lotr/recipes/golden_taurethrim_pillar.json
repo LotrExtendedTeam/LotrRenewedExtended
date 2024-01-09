@@ -2,15 +2,17 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:taurethrim",
   "pattern": [
-    "###"
+    "#",
+    "#",
+    "#"
   ],
   "key": {
     "#": {
-      "item": "lotr:taurethrim_pillar"
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {
-    "item": "lotr:taurethrim_pillar_slab",
-    "count" : 6
+    "item": "lotr:golden_taurethrim_pillar",
+    "count": 3
   }
 }

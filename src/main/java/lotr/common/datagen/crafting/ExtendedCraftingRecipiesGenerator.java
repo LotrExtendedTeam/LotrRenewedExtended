@@ -21,6 +21,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 	@Override
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+		buildRecipes(consumer);
+		checkForMissingRecipes();
+	}
+
+	protected void buildRecipes(Consumer<IFinishedRecipe> consumer) {
 		//there are no recipes for leather hats
 		GENERATEDITEMRECIPES.add(ExtendedItems.LEATHER_HAT.get().getRegistryName().getPath());
 		//MORGUL
@@ -64,7 +69,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB, 
 				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL, 
 				()->ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
-		checkForMissingRecipes();
 		//ANGMAR
 		makeArmorRecipe(consumer, ExtendedItems.ANGMAR_HELMET, 
 				ExtendedItems.ANGMAR_CHESTPLATE, 
@@ -149,8 +153,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR, 
 				ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR_SLAB, 
 				()->ExtendedItems.OBSIDIAN_SHARD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING);
-
-		checkForMissingRecipes();
 	}
 
 	@Override

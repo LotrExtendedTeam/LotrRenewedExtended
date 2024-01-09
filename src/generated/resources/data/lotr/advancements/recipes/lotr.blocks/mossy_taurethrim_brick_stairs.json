@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_taurethrim_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_mossy_taurethrim_brick_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_taurethrim_brick_stairs"
+          }
+        ]
+      }
+    },
+    "has_mossy_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_taurethrim_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_taurethrim_brick_stairs",
+      "has_mossy_taurethrim_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

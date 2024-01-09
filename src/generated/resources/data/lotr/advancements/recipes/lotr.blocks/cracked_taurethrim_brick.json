@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cracked_taurethrim_brick"
+    ]
+  },
+  "criteria": {
+    "has_cracked_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cracked_taurethrim_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_taurethrim_brick",
+      "has_taurethrim_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
