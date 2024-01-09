@@ -2,6 +2,7 @@ package lotr.common.datagen.crafting;
 
 import java.util.function.Consumer;
 
+import lotr.common.datagen.tags.ExtendedItemTagGenerator;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedRecipes;
@@ -83,8 +84,21 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.MORGUL_CHESTPLATE, 
 				ExtendedItems.MORGUL_LEGGINGS, 
 				ExtendedItems.MORGUL_BOOTS, 
-				ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_ORC);
-		makeSwordRecipe(consumer, ExtendedItems.MORGUL_SWORD, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_ORC);
+				ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
+		makeSwordRecipe(consumer, ExtendedItems.MORGUL_SWORD, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
+		GENERATEDRECIPES.add(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_LANTERN.get(), LOTRRecipes.ANY_MORGUL)
+		.pattern(" Y ")
+		.pattern(" # ")
+		.pattern("YYY")
+		.define('#', Ingredient.of(ExtendedBlocks.MORGUL_TORCH.get()))
+		.define('Y', Ingredient.of(ExtendedItemTagGenerator.MORGUL_INGOTS))
+		.unlockedBy("has_"+ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_LANTERN.get()))
+		.unlockedBy("has_"+ExtendedBlocks.MORGUL_TORCH.get().getRegistryName().getPath(), has(ExtendedBlocks.MORGUL_TORCH.get()))
+		.unlockedBy("has_morgul_ingots", has(ExtendedItemTagGenerator.MORGUL_INGOTS))
+		.save(consumer, lotrLoc(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath()));
+		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, 
+				LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
 		//DOL GULDUR
 		makeArmorRecipe(consumer, ExtendedItems.DOL_GULDUR_HELMET, 
 				ExtendedItems.DOL_GULDUR_CHESTPLATE, 

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:morgul_lantern"
+    ]
+  },
+  "criteria": {
+    "has_morgul_lantern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:morgul_lantern"
+          }
+        ]
+      }
+    },
+    "has_morgul_torch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:morgul_torch"
+          }
+        ]
+      }
+    },
+    "has_morgul_ingots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/morgul_ingots"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:morgul_lantern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgul_lantern",
+      "has_morgul_torch",
+      "has_morgul_ingots",
+      "has_the_recipe"
+    ]
+  ]
+}

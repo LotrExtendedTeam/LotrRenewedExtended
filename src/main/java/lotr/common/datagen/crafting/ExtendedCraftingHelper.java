@@ -183,6 +183,32 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeTorchRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		GENERATEDRECIPES.add(name+"_wall");
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
+			.pattern("#")
+			.pattern("I")
+			.define('#', Ingredient.of(resource.get()))
+			.define('I', STICKS)
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4, table)
+			.pattern("#")
+			.pattern("I")
+			.define('#', Ingredient.of(resource.get()))
+			.define('I', STICKS)
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeStairRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
