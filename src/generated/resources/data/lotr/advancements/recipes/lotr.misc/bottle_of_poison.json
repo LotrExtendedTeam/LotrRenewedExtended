@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:bottle_of_poison"
+    ]
+  },
+  "criteria": {
+    "has_wildberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:wildberry"
+          }
+        ]
+      }
+    },
+    "has_bottle_of_poison": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bottle_of_poison"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:bottle_of_poison"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wildberry",
+      "has_bottle_of_poison",
+      "has_the_recipe"
+    ]
+  ]
+}

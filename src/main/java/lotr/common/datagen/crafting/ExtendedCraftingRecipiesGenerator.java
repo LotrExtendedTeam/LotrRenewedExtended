@@ -319,6 +319,28 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath(), has(ExtendedItems.SILVER_COIN_ONE.get()))
 		.unlockedBy("has_"+LOTRItems.SILVER_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.SILVER_NUGGET.get()))
 		.save(consumer, lotrLoc(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.HITHLAIN.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HITHLAIN.get(), 3, LOTRRecipes.GALADHRIM_CRAFTING)
+		.pattern("###")
+		.define('#', Ingredient.of(Items.STRING))
+		.unlockedBy("has_"+ExtendedItems.HITHLAIN.get().getRegistryName().getPath(), has(ExtendedItems.HITHLAIN.get()))
+		.unlockedBy("has_"+Items.STRING.getRegistryName().getPath(), has(Items.STRING))
+		.save(consumer, lotrLoc(ExtendedItems.HITHLAIN.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOTTLE_OF_POISON.get())
+		.requires(ExtendedItems.WILDBERRY.get())
+		.requires(Items.GLASS_BOTTLE)
+		.unlockedBy("has_"+ExtendedItems.WILDBERRY.get().getRegistryName().getPath(), has(ExtendedItems.WILDBERRY.get()))
+		.unlockedBy("has_"+ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath(), has(ExtendedItems.BOTTLE_OF_POISON.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.COMMANDHORN.get())
+		.pattern("#X#")
+		.define('#', Ingredient.of(BRONZE_INGOT))
+		.define('X', Ingredient.of(HORNS))
+		.unlockedBy("has_"+ExtendedItems.COMMANDHORN.get().getRegistryName().getPath(), has(ExtendedItems.COMMANDHORN.get()))
+		.unlockedBy("has_horn", has(HORNS))
+		.save(consumer, lotrLoc(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath()));
 		//MISC BLOCKS
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_GONDOR_STAIRS.get(), 
 				()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);

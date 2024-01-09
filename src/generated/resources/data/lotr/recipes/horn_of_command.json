@@ -4,11 +4,11 @@
     "#X#"
   ],
   "key": {
-    "X": {
-      "tag": "forge:horns"
-    },
     "#": {
       "tag": "forge:ingots/bronze"
+    },
+    "X": {
+      "tag": "forge:horns"
     }
   },
   "result": {

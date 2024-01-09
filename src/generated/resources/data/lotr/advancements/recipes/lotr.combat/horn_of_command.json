@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:horn_of_command"
+    ]
+  },
+  "criteria": {
+    "has_horn_of_command": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:horn_of_command"
+          }
+        ]
+      }
+    },
+    "has_horn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:horns"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:horn_of_command"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_horn_of_command",
+      "has_horn",
+      "has_the_recipe"
+    ]
+  ]
+}

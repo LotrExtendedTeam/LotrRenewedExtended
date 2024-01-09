@@ -42,6 +42,8 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	public static List<String> GENERATEDRECIPES = new ArrayList<>();
 
     public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
+    public static final ITag.INamedTag<Item> HORNS = ItemTags.bind("forge:horns");
+    public static final ITag.INamedTag<Item> BRONZE_INGOT = ItemTags.bind("forge:ingots/bronze");
     
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
