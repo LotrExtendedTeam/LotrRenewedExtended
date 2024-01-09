@@ -22,6 +22,7 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
@@ -100,6 +101,17 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
+	}
+
+	protected void makeCrackedBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDBLOCKRECIPES.add(name);
+		CookingRecipeBuilder.smelting(
+				Ingredient.of(resource.get()), 
+				blockToBeCrafted.get(), 0.1F, 200)
+		.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+		.save(consumer, lotrLoc(name));
 	}
 
 	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Block> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {

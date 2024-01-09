@@ -49,12 +49,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.DOL_GULDUR_PILLAR, 
 				ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB, 
 				()->Blocks.STONE, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		make4x4BlockRecipe(consumer, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, 
+				ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, 
 				ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS, 
 				ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB, 
 				ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL, 
 				ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK, 
+				ExtendedBlocks.DOL_GULDUR_BRICK);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_STAIRS, 
 				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB, 
 				ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL, 
