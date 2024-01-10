@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:black_uruk_steel_ingot"
+    ]
+  },
+  "criteria": {
+    "has_black_uruk_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:black_uruk_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_durnor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:durnor"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:black_uruk_steel_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_uruk_steel_ingot",
+      "has_durnor",
+      "has_the_recipe"
+    ]
+  ]
+}

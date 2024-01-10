@@ -2,6 +2,10 @@ package lotr.common.datagen.crafting;
 
 import java.util.function.Consumer;
 
+import lotr.common.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
+import lotr.common.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
+import lotr.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
+import lotr.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import lotr.common.datagen.tags.ExtendedItemTagGenerator;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
@@ -332,7 +336,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Items.GLASS_BOTTLE)
 		.unlockedBy("has_"+ExtendedItems.WILDBERRY.get().getRegistryName().getPath(), has(ExtendedItems.WILDBERRY.get()))
 		.unlockedBy("has_"+ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath(), has(ExtendedItems.BOTTLE_OF_POISON.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
+		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.COMMANDHORN.get())
 		.pattern("#X#")
@@ -342,6 +346,51 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_horn", has(HORNS))
 		.save(consumer, lotrLoc(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath()));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipes.EXTENDED_TIPPED_ARROW.get()).save(consumer, lotrLoc("tipped_arrow_poison"));
+		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(),
+				LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
+		.requires(ORC_STEEL)
+		.requires(MORGUL_IRON_ORE)
+		.requiresAlloy(LOTRItems.DURNOR.get())
+		.unlockedBy("has_"+ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.BLACK_URUK_STEEL_INGOT.get()))
+		.unlockedBy("has_"+LOTRItems.DURNOR.get().getRegistryName().getPath(), has(LOTRItems.DURNOR.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath());
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GALVORN_INGOT.get(),
+				LOTRRecipes.DWARVEN_FORGE_ALLOY_SERIALIZER.get())
+		.requires(IRON_ORE)
+		.requires(IRON_INGOT)
+		.requiresAlloy(LOTRItems.EDHELVIR.get())
+		.unlockedBy("has_"+ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.GALVORN_INGOT.get()))
+		.unlockedBy("has_"+LOTRItems.EDHELVIR.get().getRegistryName().getPath(), has(LOTRItems.EDHELVIR.get()))
+		.save(consumer, lotrLoc(ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath());
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GILDED_IRON_INGOT.get(),
+				LOTRRecipes.ALLOY_SERIALIZER.get())
+		.requires(IRON_ORE)
+		.requires(IRON_INGOT)
+		.requiresAlloy(Items.GOLD_NUGGET)
+		.unlockedBy("has_"+ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.GILDED_IRON_INGOT.get()))
+		.unlockedBy("has_"+Items.GOLD_NUGGET.getRegistryName().getPath(), has(Items.GOLD_NUGGET))
+		.save(consumer, lotrLoc(ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath());
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.MORGUL_STEEL_INGOT.get(),
+				LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
+		.requires(ORC_STEEL)
+		.requires(MORGUL_IRON_ORE)
+		.requiresAlloy(LOTRItems.GULDURIL.get())
+		.unlockedBy("has_"+ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_STEEL_INGOT.get()))
+		.unlockedBy("has_"+LOTRItems.GULDURIL.get().getRegistryName().getPath(), has(LOTRItems.GULDURIL.get()))
+		.save(consumer, lotrLoc(ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.ITHILDIN.get().getRegistryName().getPath());
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.ITHILDIN.get(),
+				LOTRRecipes.ELVEN_FORGE_ALLOY_SERIALIZER.get())
+		.requires(SILVER_INGOT)
+		.requires(SILVER_ORE)
+		.requiresAlloy(LOTRItems.MITHRIL_NUGGET.get())
+		.unlockedBy("has_"+ExtendedItems.ITHILDIN.get().getRegistryName().getPath(), has(ExtendedItems.ITHILDIN.get()))
+		.unlockedBy("has_"+LOTRItems.MITHRIL_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.MITHRIL_NUGGET.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ITHILDIN.get().getRegistryName().getPath()));
 		//MISC BLOCKS
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_GONDOR_STAIRS.get(), 
 				()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
@@ -418,6 +467,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYSPAWNERBLOCKS.values()) {
 			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
 		}
+		GENERATEDRECIPES.add(ExtendedItems.AMBER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.AMETHYST.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.DIAMOND.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.EMERALD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.OPAL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.RUBY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SAPPHIRE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.TOPAZ.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.CORAL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.PEARL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BLACK_FUR.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GREY_FUR.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SILVER_FUR.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.WHITE_FUR.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {

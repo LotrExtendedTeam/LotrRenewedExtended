@@ -12,6 +12,8 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRWallBlock;
+import lotr.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
+import lotr.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.LOTRArmorItem;
@@ -44,6 +46,12 @@ public class ExtendedCraftingHelper extends RecipeProvider {
     public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
     public static final ITag.INamedTag<Item> HORNS = ItemTags.bind("forge:horns");
     public static final ITag.INamedTag<Item> BRONZE_INGOT = ItemTags.bind("forge:ingots/bronze");
+    public static final ITag.INamedTag<Item> MORGUL_IRON_ORE = ItemTags.bind("forge:ores/morgul_iron");
+    public static final ITag.INamedTag<Item> ORC_STEEL = ItemTags.bind("forge:ingots/orc_steel");
+    public static final ITag.INamedTag<Item> IRON_ORE = ItemTags.bind("forge:ores/iron");
+    public static final ITag.INamedTag<Item> IRON_INGOT = ItemTags.bind("forge:ingots/iron");
+    public static final ITag.INamedTag<Item> SILVER_ORE = ItemTags.bind("forge:ores/silver");
+    public static final ITag.INamedTag<Item> SILVER_INGOT = ItemTags.bind("forge:ingots/silver");
     
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
@@ -554,7 +562,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	protected void makeStorageBlock3x3ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = item.get().getRegistryName().getPath();
 		String name2 = block.get().getRegistryName().getPath();
-		GENERATEDRECIPES.add(name1);
 		GENERATEDRECIPES.add(name2);
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(item.get(), 9)
@@ -562,7 +569,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			GENERATEDRECIPES.add(name2);
 			ShapedRecipeBuilder.shaped(block.get())
 			.pattern("###")
 			.pattern("###")
@@ -578,7 +584,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			GENERATEDRECIPES.add(name2);
 			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
 			.pattern("###")
 			.pattern("###")
@@ -592,7 +597,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	protected void makeStorageBlock2x2ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = item.get().getRegistryName().getPath();
 		String name2 = block.get().getRegistryName().getPath();
-		GENERATEDRECIPES.add(name1);
 		GENERATEDRECIPES.add(name2);
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(item.get(), 4)
@@ -600,7 +604,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			GENERATEDRECIPES.add(name2);
 			ShapedRecipeBuilder.shaped(block.get())
 			.pattern("##")
 			.pattern("##")
@@ -615,7 +618,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			GENERATEDRECIPES.add(name2);
 			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
 			.pattern("##")
 			.pattern("##")

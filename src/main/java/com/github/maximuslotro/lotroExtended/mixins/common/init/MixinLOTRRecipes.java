@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.google.common.collect.ImmutableList;
 
-import lotr.common.datagen.crafting.ExtendedTippedArrowRecipe;
+import lotr.common.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedRecipes;
 import lotr.common.recipe.FactionTableType;

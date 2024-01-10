@@ -1,4 +1,4 @@
-package lotr.common.datagen.crafting;
+package lotr.common.datagen.crafting.builders;
 
 import java.util.function.Consumer;
 

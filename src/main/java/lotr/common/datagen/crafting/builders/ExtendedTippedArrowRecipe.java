@@ -1,4 +1,4 @@
-package lotr.common.datagen.crafting;
+package lotr.common.datagen.crafting.builders;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedRecipes;

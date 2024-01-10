@@ -1,0 +1,20 @@
+{
+  "type": "lotr:alloy_forge",
+  "ingredient": [
+    {
+      "tag": "forge:ores/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    }
+  ],
+  "alloy": [
+    {
+      "item": "minecraft:gold_nugget"
+    }
+  ],
+  "swappable": false,
+  "result": "lotr:gilded_iron_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

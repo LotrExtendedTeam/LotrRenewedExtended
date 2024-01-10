@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:ithildin"
+    ]
+  },
+  "criteria": {
+    "has_ithildin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ithildin"
+          }
+        ]
+      }
+    },
+    "has_mithril_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:ithildin"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ithildin",
+      "has_mithril_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

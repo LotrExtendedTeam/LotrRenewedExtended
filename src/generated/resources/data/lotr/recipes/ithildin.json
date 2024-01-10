@@ -1,0 +1,20 @@
+{
+  "type": "lotr:elven_forge_alloy",
+  "ingredient": [
+    {
+      "tag": "forge:ingots/silver"
+    },
+    {
+      "tag": "forge:ores/silver"
+    }
+  ],
+  "alloy": [
+    {
+      "item": "lotr:mithril_nugget"
+    }
+  ],
+  "swappable": false,
+  "result": "lotr:ithildin",
+  "experience": 0.7,
+  "cookingtime": 200
+}

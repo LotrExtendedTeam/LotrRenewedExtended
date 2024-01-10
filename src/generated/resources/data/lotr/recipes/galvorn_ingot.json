@@ -1,5 +1,5 @@
 {
-  "type": "lotr:alloy_forge",
+  "type": "lotr:dwarven_forge_alloy",
   "ingredient": [
     {
       "tag": "forge:ores/iron"
@@ -10,14 +10,11 @@
   ],
   "alloy": [
     {
-      "item": "minecraft:gold_nugget"
+      "item": "lotr:edhelvir"
     }
   ],
-  "swappable": "false",
-  "result": {
-    "item": "lotr:gilded_iron_ingot",
-    "count": 1
-  },
+  "swappable": false,
+  "result": "lotr:galvorn_ingot",
   "experience": 0.7,
   "cookingtime": 200
 }
