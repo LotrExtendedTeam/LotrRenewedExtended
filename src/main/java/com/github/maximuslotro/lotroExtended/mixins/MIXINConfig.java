@@ -40,6 +40,12 @@ public class MIXINConfig implements IMixinConfigPlugin
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
     {
+//    	if(targetClassName.equals("craftedMods.jeiLotr.JEIPlugin")){
+//    		if(!classExists("craftedMods.jeiLotr.JEIPlugin")) {
+//    			System.out.println("NOT ADDING MIXIN: "+targetClassName+", "+mixinClassName);
+//    		}
+//    	}
+//    	System.out.println("ADDING MIXIN: "+targetClassName+", "+mixinClassName);
         return true;
     }
 
@@ -60,4 +66,14 @@ public class MIXINConfig implements IMixinConfigPlugin
         return injectedPatches;
     }
 
+    public boolean classExists(String name) {
+    	try {
+			if(Class.forName(name, false, this.getClass().getClassLoader()) != null){
+				return true;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+    	return false;
+    }
 }
