@@ -3,6 +3,7 @@ package lotr.common.datagen;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
 import lotr.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
+import lotr.common.datagen.loot_tables.ExtendedLootTableGenerator;
 import lotr.common.datagen.tags.ExtendedBlockTagGenerator;
 import lotr.common.datagen.tags.ExtendedItemTagGenerator;
 import net.minecraft.data.BlockTagsProvider;
@@ -27,7 +28,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(blocktags);
 			generator.addProvider(new ExtendedItemTagGenerator(generator, blocktags, existingFileHelper));
 			//generator.addProvider(new ExtendedFluidTagGenerator(generator, existingFileHelper));
-			//generator.addProvider(new ExtendedLootTableGenerator(generator));
+			generator.addProvider(new ExtendedLootTableGenerator(generator));
 			generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));
 		}
 	}

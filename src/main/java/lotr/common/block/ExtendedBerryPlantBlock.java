@@ -79,4 +79,9 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
         drops.add(new ItemStack(berryItem.get(), state.getValue(AGE)==3 ? builder.getLevel().getRandom().nextInt(3) + 1 : 1));
         return drops;
     }
+
+    public Item getBerryItem() {
+		return berryItem.get();
+    	
+    }
 }
