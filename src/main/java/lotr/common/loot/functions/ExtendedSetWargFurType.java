@@ -21,11 +21,6 @@ public class ExtendedSetWargFurType extends LootFunction {
 		super(conditions);
 	}
 
-	// $FF: synthetic method
-	ExtendedSetWargFurType(ILootCondition[] x0, Object x2) {
-		this(x0);
-	}
-
 	@Override
 	public LootFunctionType getType() {
 		return ExtendedLootFunctions.WARG_FUR_TYPE;

@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotroExtended;
 
+import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +18,7 @@ public class LotrExtendedMod {
 		MinecraftForge.EVENT_BUS.register(ForgeInventoryEvents.class);
 
 		ExtendedLog.make();
+		ExtendedLootModifiers.register();
 	}
 
 	@SubscribeEvent
