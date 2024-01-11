@@ -31,8 +31,8 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 	protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
 		return ImmutableList.of(
 				Pair.of(ExtendedBlockLootGenerator::new, LootParameterSets.BLOCK),
-				Pair.of(ExtendedChestLootGenerator::new, LootParameterSets.CHEST));
-				//Pair.of(ExtendedEntityLootGenerator::new, LootParameterSets.ENTITY));
+				Pair.of(ExtendedChestLootGenerator::new, LootParameterSets.CHEST),
+				Pair.of(ExtendedEntityLootGenerator::new, LootParameterSets.ENTITY));
 	}
 
 	@Override
