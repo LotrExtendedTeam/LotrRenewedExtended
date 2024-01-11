@@ -1,5 +1,4 @@
 {
-	"_comment": "common.loot.functions.MixinLOTRLootFunctions",
 	"required": true,
 	"package": "com.github.maximuslotro.lotroExtended.mixins",
 	"plugin": "com.github.maximuslotro.lotroExtended.mixins.MIXINConfig",
@@ -20,6 +19,7 @@
 		"common.init.MixinLOTRRecipes",
 		"common.init.MixinLOTRSoundEvents",
 		"common.init.MixinLOTRTileEntities",
+		"common.loot.functions.MixinLOTRLootFunctions",
 		"common.network.MixinLOTRPacketHandler",
 		"common.world.biome.MixinShireBiome",
 		"common.world.gen.feature.MixinLOTRFeatures"

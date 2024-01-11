@@ -128,11 +128,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			        						 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));});
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedSpawnerBlock) {
-				//add(block.getValue().get(), noDrop());
-				//dropSelf(Items.air);
-				continue;
-			}
 		}
     }
 	

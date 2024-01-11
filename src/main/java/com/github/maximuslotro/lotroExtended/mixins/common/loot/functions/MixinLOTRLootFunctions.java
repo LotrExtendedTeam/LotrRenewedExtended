@@ -6,6 +6,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import lotr.common.loot.functions.ExtendedLootFunctions;
+import lotr.common.loot.functions.ExtendedSetWargFurType;
 import lotr.common.loot.functions.LOTRLootFunctions;
 import net.minecraft.loot.ILootSerializer;
 import net.minecraft.loot.LootFunctionType;
@@ -19,6 +21,6 @@ public class MixinLOTRLootFunctions {
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedLootFunctions(CallbackInfo ci) {
-		//ExtendedLootFunctions.WARG_FUR_TYPE = registerFunction("warg_fur_type", new ExtendedSetWargFurType.Serializer());
+		ExtendedLootFunctions.WARG_FUR_TYPE = registerFunction("warg_fur_type", new ExtendedSetWargFurType.Serializer());
 	}
 }

@@ -6,7 +6,10 @@ import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EntityType.IFactory;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraftforge.fml.RegistryObject;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,12 +26,25 @@ public class MixinLOTREntities {
     private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPC(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
        return null;
     }
-
     private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPCD(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
     	RegistryObject<EntityType<T>> entity = regNPC(key, factory, attribFactory, size, eggColors);
     	ExtendedEntities.REGISTEREDENTITIES.add(key);
     	return entity;
-     }
+    }
+    
+    @Shadow(remap=false)
+    private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, IFactory<T> factory,
+			Supplier<MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, int trackRange,
+			int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
+    	return null;
+    }
+    private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, IFactory<T> factory,
+			Supplier<MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, int trackRange,
+			int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
+    	RegistryObject<EntityType<T>> entity = regAnimal(key, factory, attribFactory, size, trackRange, updateFreq, eggColors);
+    	ExtendedEntities.REGISTEREDENTITIES.add(key);
+    	return entity;
+    }
 
     @Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {

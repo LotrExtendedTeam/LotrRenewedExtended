@@ -52,7 +52,7 @@ public class ExtendedSetWargFurType extends LootFunction {
 		return stack;
 	}
 
-	public static Builder<?> setPouchColorFromEntityFactionBuilder() {
+	public static Builder<?> setWargFurTypeBuilder() {
 		return simpleBuilder(conditions -> new ExtendedSetWargFurType(conditions));
 	}
 
