@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotr:entities/common/parts/orc_with_orc_steel"
+        }
+      ]
+    }
+  ]
+}

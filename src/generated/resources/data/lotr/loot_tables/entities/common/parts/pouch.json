@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "name": "lotr:small_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "lotr:medium_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "lotr:large_pouch"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.016666
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotr:set_pouch_color_from_entity_faction",
+          "chance": 0.5
+        }
+      ]
+    }
+  ]
+}

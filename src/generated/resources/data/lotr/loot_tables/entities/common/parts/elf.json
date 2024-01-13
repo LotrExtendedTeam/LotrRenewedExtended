@@ -24,7 +24,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "lotr:entities/common/parts/arrows"
+          "name": "lotr:entities/common/parts/coins"
         }
       ]
     },
@@ -33,7 +33,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "lotr:entities/common/parts/coins"
+          "name": "lotr:entities/common/parts/arrows"
         }
       ]
     }
