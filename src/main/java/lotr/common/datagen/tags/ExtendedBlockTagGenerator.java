@@ -2,8 +2,6 @@ package lotr.common.datagen.tags;
 
 import java.util.Map.Entry;
 
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
-
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
@@ -72,8 +70,8 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
     public static final ITag.INamedTag<Block> EDHELVIR_ORE = BlockTags.bind("forge:ores/edhelvir");
     public static final ITag.INamedTag<Block> GULDURIL_ORE = BlockTags.bind("forge:ores/gulduril");
 
-	public ExtendedBlockTagGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		super(generator, LotrExtendedMod.MODID, existingFileHelper);
+	public ExtendedBlockTagGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
+		super(generator, modid, existingFileHelper);
 	}
 
 	@Override

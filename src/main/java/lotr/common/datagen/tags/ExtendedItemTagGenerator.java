@@ -1,8 +1,5 @@
 package lotr.common.datagen.tags;
 
-
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
-
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.BlockTagsProvider;
@@ -85,8 +82,8 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
     public static final ITag.INamedTag<Item> EDHELVIR_ORE = ItemTags.bind("forge:ores/edhelvir");
     public static final ITag.INamedTag<Item> GULDURIL_ORE = ItemTags.bind("forge:ores/gulduril");
 
-	public ExtendedItemTagGenerator(DataGenerator generator, BlockTagsProvider blockprovider, ExistingFileHelper existingFileHelper) {
-		super(generator, blockprovider, LotrExtendedMod.MODID, existingFileHelper);
+	public ExtendedItemTagGenerator(DataGenerator generator, BlockTagsProvider blockprovider, String modid, ExistingFileHelper existingFileHelper) {
+		super(generator, blockprovider, modid, existingFileHelper);
 	}
 
 	@Override

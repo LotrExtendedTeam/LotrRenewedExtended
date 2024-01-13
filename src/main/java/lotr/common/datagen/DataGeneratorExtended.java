@@ -21,15 +21,16 @@ public class DataGeneratorExtended {
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 		if (event.includeClient()) {
 			generator.addProvider(new ExtendedBlockstateModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
-			generator.addProvider(new ExtendedItemModelGenerator(generator, existingFileHelper));
+			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 		}
 		if (event.includeServer()) {
-			BlockTagsProvider blocktags = new ExtendedBlockTagGenerator(generator, existingFileHelper);
+			BlockTagsProvider blocktags = new ExtendedBlockTagGenerator(generator, LotrExtendedMod.MODID, existingFileHelper);
 			generator.addProvider(blocktags);
-			generator.addProvider(new ExtendedItemTagGenerator(generator, blocktags, existingFileHelper));
+			generator.addProvider(new ExtendedItemTagGenerator(generator, blocktags, LotrExtendedMod.MODID, existingFileHelper));
 			//generator.addProvider(new ExtendedFluidTagGenerator(generator, existingFileHelper));
 			generator.addProvider(new ExtendedLootTableGenerator(generator));
 			generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));
+			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
 		}
 	}
 }

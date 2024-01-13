@@ -16,9 +16,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
-public class WargFurModifier extends LootModifier {
+public class WargFurColorizer extends LootModifier {
 
-	public WargFurModifier(ILootCondition[] conds) {
+	public WargFurColorizer(ILootCondition[] conds) {
 		super(conds);
 	}
 
@@ -49,15 +49,15 @@ public class WargFurModifier extends LootModifier {
 		return generatedLoot;
 	}
 
-	public static class Serializer extends GlobalLootModifierSerializer<WargFurModifier> {
+	public static class Serializer extends GlobalLootModifierSerializer<WargFurColorizer> {
 		@Override
-		public WargFurModifier read(ResourceLocation name, JsonObject obj, ILootCondition[] conditions) {
-			return new WargFurModifier(conditions);
+		public WargFurColorizer read(ResourceLocation name, JsonObject obj, ILootCondition[] conditions) {
+			return new WargFurColorizer(conditions);
 		}
 
 		@Override
-		public JsonObject write(WargFurModifier instance) {
-			return null;
+		public JsonObject write(WargFurColorizer instance) {
+			return this.makeConditions(new ILootCondition[0]);
 		}
 	}
 }

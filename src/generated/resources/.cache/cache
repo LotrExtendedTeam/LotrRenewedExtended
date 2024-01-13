@@ -691,6 +691,7 @@ aa47c410cdef2d3782b0aa280afe519a88e267d7 assets/lotr/models/item/topaz_block.jso
 b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fur_wall.json
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
+85ce37103ccf64d87a3daedf6850da2ab8f4be76 data/forge/loot_modifiers/global_loot_modifiers.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
 f82d30250ecdf5fb1713cd2eaa78f5d5863d85a4 data/forge/tags/blocks/ores/durnor.json
@@ -1446,6 +1447,7 @@ dda673cdd7e09612609653cd1ae47f39d8a60346 data/lotr/recipes/white_fur_from_white_
 10649ad5f6bf65e103859d9f59f4e3085c8f878a data/lotr/recipes/white_packed_fur_wall.json
 a9f381b9e18abe41b9cbb761660384b762bfd6e5 data/lotr/tags/blocks/pillars.json
 a9f381b9e18abe41b9cbb761660384b762bfd6e5 data/lotr/tags/items/pillars.json
+a39c20da8c2eed92bb399f4220de3379e2785ce3 data/lotrextended/loot_modifiers/warg_fur_colorizer.json
 5a1d0e234aa7de4c78ec0940a672da151da88018 data/lotrextended/loot_tables/chests/hobbit_larder.json
 482bb60d710fd09c102cac37d365d7fd80283228 data/lotrextended/loot_tables/chests/hobbit_living.json
 fcea0ad82eaca8be3dd0ab05dcbba849d3e50ce8 data/lotrextended/loot_tables/chests/hobbit_treasure.json

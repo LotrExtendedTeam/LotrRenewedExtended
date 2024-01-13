@@ -2,8 +2,6 @@ package lotr.common.datagen;
 
 import java.util.Map.Entry;
 
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
-
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.ExtendedSilverCoin;
@@ -23,8 +21,8 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedItemModelGenerator extends ItemModelProvider {
 
-	public ExtendedItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		super(generator, LotrExtendedMod.MODID, existingFileHelper);
+	public ExtendedItemModelGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
+		super(generator, modid, existingFileHelper);
 	}
 
 	public ResourceLocation lotrLoc(String name) {
