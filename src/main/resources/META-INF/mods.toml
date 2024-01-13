@@ -3,16 +3,18 @@
 
 modLoader="javafml"
 loaderVersion="[36,)"
-license="All Rights Reserved"
+license="All Rights Reserved, except for the names, characters, races, locations, or any other item that is owned by J.R.R. Tolkien and his estate"
 
 [[mods]]
 modId="lotrextended"
 version="${version}"
-displayName="Extension for The Lord of the Rings Mod"
-#logoFile="logo.png"
+displayName="LOTR Renewed Extended"
+logoFile="logo.png"
 authors="Maximuslotro/MaximustheMiner, WeirdBob, ServantofMelkor, and others"
 description='''
-Extending Lotr Renewed's functionality to include 1.7.10 features'''
+Extending Lotr Renewed's functionality to include all* 1.7.10 features
+
+* Pending work'''
 
 [[dependencies.lotrextended]]
 modId="minecraft"
