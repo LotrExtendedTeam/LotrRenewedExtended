@@ -208,7 +208,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(type == SlabType.DOUBLE ? slabDouble : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
                     .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
                     .rotationY(axis == Axis.X ? 90 : 0)
-                    .uvLock(axis != Axis.Y)
+                    .uvLock(uvlock)
                     .build();
         }, StairsBlock.WATERLOGGED);
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
@@ -237,7 +237,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
-		String name = wall.getRegistryName().toString();
 		wallBlock(wall, texture);
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
 	}

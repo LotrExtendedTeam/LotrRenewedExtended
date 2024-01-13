@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -18,10 +19,10 @@ import net.minecraft.world.gen.ChunkGenerator;
 public class HobbitBarnFeature extends ExtendedStructureBase {
 
 	@Override
-	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot) {
+	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, Direction directiont) {
 		StructureFile file = getStructure();
 		if(file!=null){
-			generateOffsets(world, rand, pos.below(), rot, file.readStructureSize());
+			generateOffsets(world, rand, pos.below(), direction, file.readStructureSize(), file.getNaturalFacingDirection());
 			for (int i = 0; i < file.getLayers().size(); i++) {
 				CompoundNBT nbt = file.getLayers().getCompound(i);
 				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
@@ -31,8 +32,8 @@ public class HobbitBarnFeature extends ExtendedStructureBase {
 					fixBelowBlocks(world, rpos.X, rpos.Y, rpos.Z, Blocks.GRASS_BLOCK, Blocks.DIRT);
 				}
 				setBlockAndMetadata(world, rpos.X, rpos.Y, rpos.Z, blockstate);
-				doNBTGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, nbt);
-				doKegGen(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
+				genNBTForCurrentBlock(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, nbt);
+				genKegForCurrentBlock(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
 			}
 			doFileGen(world, rand, file);
 			return true;

@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
@@ -29,6 +30,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -44,14 +46,15 @@ public abstract class ExtendedStructureBase{
 	public int initialX;
 	public int initialY;
 	public int initialZ;
-	public int rot;
 	public RelativePosition offset;
+	public Direction direction;
+	public Direction naturalDirection;
 
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
 		try {
 			UUID id = UUID.randomUUID();
 			ExtendedLog.debug("Starting StructureGen: "+id.toString()+", id: "+fileName());
-			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, rand.nextInt(4));
+			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, DirectionTools.getRandomDirection(rand));
 			ExtendedLog.debug("Finished StructureGen: "+id.toString()+", id: "+fileName());
 			return catcvhCrash;
 		}catch(Exception e) {
@@ -60,18 +63,22 @@ public abstract class ExtendedStructureBase{
 		}
 	}
 
-	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, int rot);
+	public abstract boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, Direction direction);
 	
 	public abstract String fileName();
 
 	//TODO deal with rotation
-	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, int rot, RelativePosition offset) {
-		this.rot = rot;
+	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, Direction direction, RelativePosition offset, Direction nativeDir) {
+		this.direction = direction;
 		this.offset = offset;
-
+		this.naturalDirection = nativeDir;
 		this.initialX = (pos.getX()-((int) Math.ceil(offset.X/2)));
 		this.initialZ = (pos.getZ()-((int) Math.ceil(offset.Z/2)));
 		this.initialY = pos.getY();
+		
+		if(direction.equals(nativeDir)) {
+			
+		}
 		//this.initialX = pos.getX();
 		//this.initialZ = pos.getZ();
 		//findSurface(world);
@@ -133,13 +140,13 @@ public abstract class ExtendedStructureBase{
 		spawnEntitiesFile(world, random, file);
 	}
 
-	public void doNBTGen(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, CompoundNBT nbt) {
+	public void genNBTForCurrentBlock(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, CompoundNBT nbt) {
 		if(blockstate.getBlock()==Blocks.BARREL||blockstate.getBlock()==Blocks.CHEST) {
 			setLockableLootTileEntityContents(world, random, x, y, z, nbt);
 		}
 	}
 
-	public void doKegGen(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, List<RegistryObject<Item>>  list) {
+	public void genKegForCurrentBlock(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, List<RegistryObject<Item>>  list) {
 		if(blockstate.getBlock()==LOTRBlocks.KEG.get()) {
 			setKegTileEntityContents(world, random, x, y, z, list);
 		}
