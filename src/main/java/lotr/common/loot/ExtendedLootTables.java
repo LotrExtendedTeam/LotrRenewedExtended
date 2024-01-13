@@ -13,6 +13,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation HOBBIT_LIVING = register("chests/hobbit_living");
 	public static final ResourceLocation HOBBIT_TREASURE = register("chests/hobbit_treasure");
 
+	public static void init() {}
+
 	private static ResourceLocation register(String location) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, location));
 	}
@@ -23,5 +25,9 @@ public class ExtendedLootTables {
 		} else {
 			throw new IllegalArgumentException(location + " is already a registered built-in loot table");
 		}
+	}
+
+	public static Set<ResourceLocation> getLocations() {
+		return LOCATIONS;
 	}
 }

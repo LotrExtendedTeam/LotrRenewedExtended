@@ -18,4 +18,8 @@ public class ExtendedGlobalLootModifierGenerator extends GlobalLootModifierProvi
 		add("warg_fur_colorizer", ExtendedLootModifiers.WARG_FUR.get(), new WargFurColorizer(new ILootCondition[0]));
 	}
 
+	@Override
+	public String getName() {
+		return "Renewed Extended Global Loot Modifier Provider";
+	}
 }
