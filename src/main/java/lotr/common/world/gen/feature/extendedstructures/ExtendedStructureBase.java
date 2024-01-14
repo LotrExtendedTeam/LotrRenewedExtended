@@ -72,15 +72,9 @@ public abstract class ExtendedStructureBase{
 		this.direction = direction;
 		this.offset = offset;
 		this.naturalDirection = nativeDir;
-		this.initialX = (pos.getX()-((int) Math.ceil(offset.X/2)));
-		this.initialZ = (pos.getZ()-((int) Math.ceil(offset.Z/2)));
+		this.initialX = pos.getX();
+		this.initialZ = pos.getZ();
 		this.initialY = pos.getY();
-		
-		if(direction.equals(nativeDir)) {
-			
-		}
-		//this.initialX = pos.getX();
-		//this.initialZ = pos.getZ();
 		//findSurface(world);
 //		world.setBlock(new BlockPos(pos.getX(), 78, pos.getZ()), LOTRBlocks.SILVER_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
 //
