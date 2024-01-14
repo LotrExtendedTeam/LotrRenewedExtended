@@ -1,5 +1,7 @@
 package lotr.common.datagen;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 import lotr.common.block.AxialSlabBlock;
@@ -38,6 +40,8 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
+	private List<Block> registeredBlocks = new ArrayList<>();
+
 	public ExtendedBlockstateModelGenerator(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
 		super(gen, modid, exFileHelper);
 	}
@@ -56,36 +60,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
 				fourTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
 				continue;
-			}
-			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
-				if(block.getKey().contains("_slab")) {
-					if(block.getKey().contains("packed_fur")) {
-						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
-						continue;
-					}
-					genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
-					continue;
-				}
-			}
-			if(block.getValue().get() instanceof LOTRStairsBlock) {
-				if(block.getKey().contains("_stairs")) {
-					if(block.getKey().contains("packed_fur")) {
-						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_1"));
-						continue;
-					}
-					genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
-					continue;
-				}
-			}
-			if(block.getValue().get() instanceof LOTRWallBlock) {
-				if(block.getKey().contains("_wall")) {
-					if(block.getKey().contains("packed_fur")) {
-						genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
-						continue;
-					}
-					genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
-					continue;
-				}
 			}
 			if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
 				genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
@@ -139,11 +113,49 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedSpawnerBlock) {
+				registeredBlocks.add(block.getValue().get());
 				ModelFile cubeModel = models().cubeAll("lotr:"+block.getValue().get().getRegistryName().getPath(), lotrLoc("block/spawner_block"));
 				simpleBlock(block.getValue().get(), cubeModel);
 				continue;
 			}
-			System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());
+		}
+		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
+				if(block.getKey().contains("_slab")) {
+					if(block.getKey().contains("packed_fur")) {
+						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+						continue;
+					}
+					genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					continue;
+				}
+			}
+			if(block.getValue().get() instanceof LOTRStairsBlock) {
+				if(block.getKey().contains("_stairs")) {
+					if(block.getKey().contains("packed_fur")) {
+						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_1"));
+						continue;
+					}
+					genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
+					continue;
+				}
+			}
+			if(block.getValue().get() instanceof LOTRWallBlock) {
+				if(block.getKey().contains("_wall")) {
+					if(block.getKey().contains("packed_fur")) {
+						genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+						continue;
+					}
+					genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					continue;
+				}
+			}
+
+		}
+		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+			if(!registeredBlocks.contains(block.getValue().get())) {
+				System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());
+			}
 		}
 	}
 
@@ -153,6 +165,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genStairsBlockItem(StairsBlock stairs, ResourceLocation texture) {
+		registeredBlocks.add(stairs);
 		String name = stairs.getRegistryName().toString();
 		ModelFile stairsModel = models().stairs(name, texture, texture, texture);
 		ModelFile stairsModelInner = models().stairsInner(name + "_inner", texture, texture, texture);
@@ -161,19 +174,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + stairs.getRegistryName().getPath()).parent(stairsModel);
 	}
 
-	private void genPillarBlockItem(LOTRPillarBlock slab, String name) {
+	private void genPillarBlockItem(LOTRPillarBlock pillarB, String name) {
+		registeredBlocks.add(pillarB);
 		ResourceLocation pillar = lotrLoc(name);
 		ResourceLocation face = lotrLoc(name+"_face");
 		ResourceLocation top = lotrLoc(name+"_top");
 		ResourceLocation middle = lotrLoc(name+"_middle");
 		ResourceLocation bottom = lotrLoc(name+"_bottom");
 		
-		ModelFile pillarBottom = models().cubeColumn("lotr:"+slab.getRegistryName().getPath()+"_bottom", bottom, face);
-		ModelFile pillarMiddle = models().cubeColumn("lotr:"+slab.getRegistryName().getPath()+"_middle", middle, face);
-		ModelFile pillarTop = models().cubeColumn("lotr:"+slab.getRegistryName().getPath()+"_top", top, face);
-		ModelFile pillarBlock = models().cubeColumn("lotr:"+slab.getRegistryName().getPath(), pillar, face);
+		ModelFile pillarBottom = models().cubeColumn("lotr:"+pillarB.getRegistryName().getPath()+"_bottom", bottom, face);
+		ModelFile pillarMiddle = models().cubeColumn("lotr:"+pillarB.getRegistryName().getPath()+"_middle", middle, face);
+		ModelFile pillarTop = models().cubeColumn("lotr:"+pillarB.getRegistryName().getPath()+"_top", top, face);
+		ModelFile pillarBlock = models().cubeColumn("lotr:"+pillarB.getRegistryName().getPath(), pillar, face);
 		
-		getVariantBuilder(slab)
+		getVariantBuilder(pillarB)
 		.forAllStatesExcept(state -> {
 			Axis axis = state.getValue(LOTRPillarBlock.AXIS);
 			Boolean above = state.getValue(LOTRPillarBlock.ABOVE);
@@ -191,10 +205,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .rotationY(axis == Axis.X ? 90 : 0)
                     .build();
         }, StairsBlock.WATERLOGGED);
-		itemModels().getBuilder("lotr:"+slab.getRegistryName().getPath()).parent(pillarBlock);
+		itemModels().getBuilder("lotr:"+pillarB.getRegistryName().getPath()).parent(pillarBlock);
 	}
 
 	private void genSlabBlockItem(SlabBlock slab, ResourceLocation texture) {
+		registeredBlocks.add(slab);
 		ModelFile slabModel = models().slab("lotr:" + slab.getRegistryName().getPath(), texture, texture, texture);
 		ModelFile slabModelTop = models().slabTop("lotr:" + slab.getRegistryName().getPath()+"_top", texture, texture, texture);
 		ModelFile slabDouble = models().getExistingFile(texture);
@@ -215,6 +230,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genHangingLanternBlockItem(NonWaterloggableLanternBlock lantern, String name) {
+		registeredBlocks.add(lantern);
 		ResourceLocation lamp = lotrLoc(name);
 		ResourceLocation fire = lotrLoc(name+"_fire");
 		ResourceLocation chain = lotrLoc(name+"_chain");
@@ -237,33 +253,39 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
+		registeredBlocks.add(wall);
 		wallBlock(wall, texture);
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
 	}
 
 	private void genTorchBlockItem(Block torch, ResourceLocation texture) {
+		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torch("lotr:"+torch.getRegistryName().getPath(), texture);
 		simpleBlock(torch, cubeModel);
 	}
 
 	private void genTorchWallBlock(Block torch, ResourceLocation texture) {
+		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torchWall("lotr:"+torch.getRegistryName().getPath(), texture);
 		simpleBlock(torch, cubeModel);
 	}
 
 	private void genCubeBottomTopSideBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeBottomTop("lotr:"+block.getRegistryName().getPath(), side, bottom, top);
 		directionalBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
 	private void genEndSideNonRotatableBlockItem(Block block, String sidesBase) {
+		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeColumn("lotr:"+block.getRegistryName().getPath(), lotrLoc(sidesBase+"_side"), lotrLoc(sidesBase+"_end"));
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
 	private void genTopBottomTwoSidedNonRotatableBlockItem(Block block, String sidesBase) {
+		registeredBlocks.add(block);
 		ResourceLocation down = lotrLoc(sidesBase+"_bottom");
 		ResourceLocation up = lotrLoc(sidesBase+"_top");
 		ResourceLocation north = lotrLoc(sidesBase+"_side_1");
@@ -276,6 +298,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genTopBottomFourSidedNonRotatableBlockItem(Block block, String sidesBase) {
+		registeredBlocks.add(block);
 		ResourceLocation down = lotrLoc(sidesBase+"_bottom");
 		ResourceLocation up = lotrLoc(sidesBase+"_top");
 		ResourceLocation north = lotrLoc(sidesBase+"_side_north");
@@ -292,12 +315,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 	
 	private void genCubeBlockItem(Block block, ResourceLocation allSides) {
+		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeAll("lotr:"+block.getRegistryName().getPath(), allSides);
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
 	private void fourTexturedRandomBlockItem(Block block, String location, int numVariants) {
+		registeredBlocks.add(block);
 		if(numVariants==4) {
 			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
 			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")));
@@ -309,6 +334,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 	
 	private void genPlantAge3Block(Block block, String name) {
+		registeredBlocks.add(block);
 		getVariantBuilder(block)
         .partialState().with(BlockStateProperties.AGE_3, 0)
             .modelForState().modelFile(models().cross("lotr:"+block.getRegistryName().getPath()+"_age0", lotrLoc(name+"_0"))).addModel()
@@ -321,6 +347,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genBushAge3Block(Block block, String name) {
+		registeredBlocks.add(block);
 		ModelFile empty = models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_empty", lotrLoc(name+"_empty"));
 		ModelFile full = models().cubeAll("lotr:"+block.getRegistryName().getPath(), lotrLoc(name));
 		getVariantBuilder(block)
