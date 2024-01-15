@@ -80,23 +80,6 @@ public abstract class ExtendedStructureBase{
 		this.initialZ = pos.getZ();
 		this.initialY = pos.getY();
 		//findSurface(world);
-//		world.setBlock(new BlockPos(pos.getX(), 78, pos.getZ()), LOTRBlocks.SILVER_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
-//
-//		world.setBlock(new BlockPos(initialX, 79, initialZ), LOTRBlocks.MITHRIL_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
-//		switch(rot) {
-//		case 0:
-//			world.setBlock(new BlockPos(initialX, 80, initialZ), LOTRBlocks.COPPER_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
-//			break;
-//		case 1:
-//			world.setBlock(new BlockPos(initialX, 81, initialZ), LOTRBlocks.DURNOR_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
-//			break;
-//		case 2:
-//			world.setBlock(new BlockPos(initialX, 82, initialZ), LOTRBlocks.GLOWSTONE_ORE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
-//			break;
-//		case 3:
-//			world.setBlock(new BlockPos(initialX, 83, initialZ), LOTRBlocks.GULDURIL_ORE_STONE.get().defaultBlockState(), Constants.BlockFlags.DEFAULT);
-//
-//		}
 	}
 
 	protected int makeYvalue(int y) {
@@ -104,33 +87,38 @@ public abstract class ExtendedStructureBase{
 	}
 
 	protected int makeXvalue(int x, int z) {
-		return initialX + x;
-//		switch(rot) {
-//		case 0:
-//			return initialX-x+((int) Math.ceil(offset.X/2));
-//		case 1:
-//			return initialX-z+((int) Math.ceil(offset.X/2));
-//		case 2:
-//			return initialX+x-((int) Math.ceil(offset.X/2));
-//		case 3:
-//			return initialX+z-((int) Math.ceil(offset.X/2));
-//		}
-//		return initialX;
+		if(direction.equals(naturalDirection)) {
+			return initialX + x;
+		}
+		if(naturalDirection.equals(Direction.UP)) {
+			return initialX + x;
+		}
+		if(direction.getOpposite().equals(naturalDirection)) {
+			return initialX - x;
+		}
+		if(direction.getClockWise().equals(naturalDirection)) {
+			return initialX + z;
+		}
+		if(direction.getCounterClockWise().equals(naturalDirection)) {
+			return initialX - z;
+		}
+		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+direction.toString()+" + "+naturalDirection.toString());
 	}
 
 	protected int makeZvalue(int x, int z) {
-		return initialZ + z;
-//		switch(rot) {
-//		case 0:
-//			return initialZ+z;
-//		case 1:
-//			return initialZ-x;
-//		case 2:
-//			return initialZ-z;
-//		case 3:
-//			return initialZ+x;
-//		}
-//		return initialZ;
+		if(direction.equals(naturalDirection)||naturalDirection.equals(Direction.UP)) {
+			return initialZ + z;
+		}
+		if(direction.getOpposite().equals(naturalDirection)) {
+			return initialZ - z;
+		}
+		if(direction.getClockWise().equals(naturalDirection)) {
+			return initialZ - x;
+		}
+		if(direction.getCounterClockWise().equals(naturalDirection)) {
+			return initialZ + x;
+		}
+		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+direction.toString()+" + "+naturalDirection.toString());
 	}
 
 	public void doFileGen(ISeedReader world, Random random, StructureFile file) {
