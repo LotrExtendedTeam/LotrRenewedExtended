@@ -15,6 +15,7 @@ import lotr.common.world.gen.feature.extendedstructures.standalone.HobbitWindmil
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.text.StringTextComponent;
 
 
@@ -38,7 +39,8 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 
 	private static int spawnStructure(CommandContext<CommandSource> context, ExtendedStructureBase structure) {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
-			if(structure.place(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition())) {
+			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection();
+			if(structure.placeWithSetRotation(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition(), dir.getOpposite())) {
 				context.getSource().sendSuccess(new StringTextComponent("Loaded Successfully"), false);
 				return 0;
 			}

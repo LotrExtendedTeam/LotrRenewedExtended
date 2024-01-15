@@ -51,10 +51,14 @@ public abstract class ExtendedStructureBase{
 	public Direction naturalDirection;
 
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
+		return placeWithSetRotation(world, generator, rand, pos, DirectionTools.getRandomDirection(rand));
+	}
+
+	public boolean placeWithSetRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, Direction direction) {
 		try {
 			UUID id = UUID.randomUUID();
 			ExtendedLog.debug("Starting StructureGen: "+id.toString()+", id: "+fileName());
-			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, DirectionTools.getRandomDirection(rand));
+			Boolean catcvhCrash = placeWithRotation(world, generator, rand, pos, direction);
 			ExtendedLog.debug("Finished StructureGen: "+id.toString()+", id: "+fileName());
 			return catcvhCrash;
 		}catch(Exception e) {
