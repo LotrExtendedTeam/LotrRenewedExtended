@@ -64,7 +64,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.RASPBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))));
 
 		//ADD chestnut, pouches
-		consumer.accept(ExtendedLootTables.HOBBIT_LIVING, LootTable.lootTable()
+		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE, LootTable.lootTable()
 				.withPool(LootPool.lootPool()
                 		.setRolls(RandomValueRange.between(4, 6))
                 		.add(ItemLootEntry.lootTableItem(Items.GOLD_INGOT).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
@@ -78,8 +78,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.SILVER_RING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(25).apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 
-		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE,
-                LootTable.lootTable()
+		consumer.accept(ExtendedLootTables.HOBBIT_LIVING, LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                 		.setRolls(RandomValueRange.between(3, 6))
                 		.add(ItemLootEntry.lootTableItem(Items.PAPER).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(2, 8))))

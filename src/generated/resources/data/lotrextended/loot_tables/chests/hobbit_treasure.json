@@ -3,7 +3,7 @@
   "pools": [
     {
       "rolls": {
-        "min": 3.0,
+        "min": 4.0,
         "max": 6.0,
         "type": "minecraft:uniform"
       },
@@ -15,58 +15,28 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 8.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:paper"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
                 "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:feather"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:ink_sac"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
                 "max": 4.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "minecraft:glass_bottle"
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:gold_nugget"
         },
         {
           "type": "minecraft:item",
@@ -81,7 +51,22 @@
               }
             }
           ],
-          "name": "minecraft:book"
+          "name": "lotr:silver_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:silver_nugget"
         },
         {
           "type": "minecraft:item",
@@ -91,27 +76,31 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 5.0,
+                "max": 25.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "minecraft:string"
+          "name": "lotr:silver_coin_one"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1.0,
+                "max": 10.0,
+                "type": "minecraft:uniform"
+              }
             }
           ],
-          "name": "minecraft:compass"
+          "name": "lotr:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -122,22 +111,7 @@
               }
             }
           ],
-          "name": "minecraft:lead"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "lotr:pocket_match"
+          "name": "lotr:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -145,10 +119,44 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
             }
           ],
-          "name": "lotr:smoking_pipe"
+          "name": "lotr:gold_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:silver_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:mithril_nugget"
         }
       ]
     }
