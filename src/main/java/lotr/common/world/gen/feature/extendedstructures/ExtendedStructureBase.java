@@ -11,6 +11,9 @@ import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
 
+import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.BundleBlock;
+import lotr.common.block.GateBlock;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
@@ -20,18 +23,36 @@ import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
 import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedEntitySpawning;
 import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedKegDrinks;
+import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BarrelBlock;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
+import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.FourWayBlock;
+import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.LadderBlock;
+import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.block.StandingSignBlock;
+import net.minecraft.block.TripWireHookBlock;
+import net.minecraft.block.WallBlock;
+import net.minecraft.block.WallSignBlock;
+import net.minecraft.block.WallTorchBlock;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -71,7 +92,6 @@ public abstract class ExtendedStructureBase{
 	
 	public abstract String fileName();
 
-	//TODO deal with rotation
 	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, Direction direction, RelativePosition offset, Direction nativeDir) {
 		this.direction = direction;
 		this.offset = offset;
@@ -183,8 +203,112 @@ public abstract class ExtendedStructureBase{
 	public void setBlockAndMetadata(ISeedReader world, int x, int y, int z, BlockState blockstate) {
 	    setBlockAndMetadata(world, new BlockPos(makeXvalue(x,z), makeYvalue(y), makeZvalue(x,z)), blockstate);
 	}
+
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, BlockState blockstate) {
-	    world.setBlock(pos, blockstate, Constants.BlockFlags.DEFAULT);
+		Rotation rotation=null;
+		if(direction.getOpposite().equals(naturalDirection)) {
+			rotation = Rotation.CLOCKWISE_180;
+		}
+		if(direction.getClockWise().equals(naturalDirection)) {
+			rotation = Rotation.COUNTERCLOCKWISE_90;
+		}
+		if(direction.getCounterClockWise().equals(naturalDirection)) {
+			rotation = Rotation.CLOCKWISE_90;
+		}
+		if(rotation==null) {
+			setBlockInternal(world, pos, blockstate);
+		}
+		else {
+			Block blocky = blockstate.getBlock();
+			if(blocky instanceof StairsBlock) {
+				setBlockInternal(world, pos, ((StairsBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof StandingSignBlock) {
+				setBlockInternal(world, pos, ((StandingSignBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof WallSignBlock) {
+				setBlockInternal(world, pos, ((WallSignBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof BundleBlock) {
+				setBlockInternal(world, pos, ((BundleBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof WallTorchBlock) {
+				setBlockInternal(world, pos, ((WallTorchBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof WallBlock) {
+				setBlockInternal(world, pos, ((WallBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof TripWireHookBlock) {
+				setBlockInternal(world, pos, ((TripWireHookBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof AxialSlabBlock) {
+				setBlockInternal(world, pos, ((AxialSlabBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof FourWayBlock) {
+				setBlockInternal(world, pos, ((FourWayBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof HorizontalBlock) {
+				setBlockInternal(world, pos, ((HorizontalBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof BarrelBlock) {
+				setBlockInternal(world, pos, ((BarrelBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof ChestBlock) {
+				setBlockInternal(world, pos, ((ChestBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof BedBlock) {
+				setBlockInternal(world, pos, ((BedBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof GateBlock) {
+				setBlockInternal(world, pos, ((GateBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof DoorBlock) {
+				setBlockInternal(world, pos, ((DoorBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof AbstractFurnaceBlock) {
+				setBlockInternal(world, pos, ((AbstractFurnaceBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof RotatedPillarBlock) {
+				setBlockInternal(world, pos, ((RotatedPillarBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof LadderBlock) {
+				setBlockInternal(world, pos, ((LadderBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blocky instanceof CampfireBlock) {
+				setBlockInternal(world, pos, ((CampfireBlock)blocky).rotate(blockstate, rotation));
+				return;
+			}
+			if(blockstate.hasProperty(BlockStateProperties.FACING)||blockstate.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+				System.out.println("Found un-added rotation block, Using default method, might not work properly!");
+				System.out.println(": "+blockstate.getBlock().getRegistryName().toString());
+				setBlockInternal(world, pos, blockstate.rotate(world, pos, rotation));
+				return;
+			}
+			setBlockInternal(world, pos, blockstate);
+		}
+		
+	}
+
+	private void setBlockInternal(ISeedReader world, BlockPos pos, BlockState blockstate) {
+		world.setBlock(pos, blockstate, Constants.BlockFlags.DEFAULT);
 	}
 
 	public StructureFile getStructure() {
