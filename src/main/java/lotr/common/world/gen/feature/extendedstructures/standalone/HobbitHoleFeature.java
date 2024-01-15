@@ -18,7 +18,7 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 
 	@Override
 	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, Direction direction) {
-		generateOffsets(world, rand, pos, direction, new RelativePosition(0, 0, 0), Direction.NORTH);
+		generateOffsets(world, rand, pos, direction, new RelativePosition(0, 0, 0), Direction.SOUTH);
 		int radius = 16;
 		int height = 7;
 		int extraRadius = 2;
@@ -41,7 +41,7 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 	    for (i3 = -radius; i3 <= radius; i3++) {
 	      for (int i36 = -radius; i36 <= radius; i36++) {
 	        if (i3 * i3 + i36 * i36 < radius * radius)
-	          for (int i37 = -1; isOpaque(world, i3, i37, i36) && (i37+initialY) >= 0; i37--) {
+	          for (int i37 = -1; isOpaque(world, i3, i37, i36) && (i37+getInitialY()) >= 0; i37--) {
 	            boolean bool = isOpaque(world, i3, i37 + 1, i36);
 	            setBlockAndMetadata(world,i3, i37, i36, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT);
 	            setGrassToDirt(world, i3, i37, i36);
@@ -66,7 +66,7 @@ public class HobbitHoleFeature extends ExtendedStructureBase {
 	    for (n = -17; n <= -13; n++) {
 	      for (int i36 = -5; i36 <= 5; i36++) {
 	        int i37;
-	        for (i37 = 0; i37 == 0 || (isOpaque(world, i36, i37, n) && (i37+initialY) >= 0); i37--) {
+	        for (i37 = 0; i37 == 0 || (isOpaque(world, i36, i37, n) && (i37+getInitialY()) >= 0); i37--) {
 	          boolean bool = (i37 == 0);
 	          setBlockAndMetadata(world, i36, i37, n, bool ? Blocks.GRASS_BLOCK : Blocks.DIRT);
 	        } 

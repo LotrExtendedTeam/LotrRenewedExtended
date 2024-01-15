@@ -19,7 +19,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 public class HobbitBarnFeature extends ExtendedStructureBase {
 
 	@Override
-	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, Direction directiont) {
+	public boolean placeWithRotation(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, Direction direction) {
 		StructureFile file = getStructure();
 		if(file!=null){
 			generateOffsets(world, rand, pos.below(), direction, file.readStructureSize(), file.getNaturalFacingDirection());

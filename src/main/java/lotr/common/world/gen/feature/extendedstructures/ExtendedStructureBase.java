@@ -64,12 +64,12 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public abstract class ExtendedStructureBase{
-	public int initialX;
-	public int initialY;
-	public int initialZ;
-	public RelativePosition offset;
-	public Direction direction;
-	public Direction naturalDirection;
+	private int initialX;
+	private int initialY;
+	private int initialZ;
+	private RelativePosition offset;
+	private Direction directionSet;
+	private Direction naturalDirection;
 
 	public boolean place(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos) {
 		return placeWithSetRotation(world, generator, rand, pos, DirectionTools.getRandomDirection(rand));
@@ -93,7 +93,7 @@ public abstract class ExtendedStructureBase{
 	public abstract String fileName();
 
 	public void generateOffsets(ISeedReader world, Random rand, BlockPos pos, Direction direction, RelativePosition offset, Direction nativeDir) {
-		this.direction = direction;
+		this.directionSet = direction;
 		this.offset = offset;
 		this.naturalDirection = nativeDir;
 		this.initialX = pos.getX();
@@ -107,38 +107,38 @@ public abstract class ExtendedStructureBase{
 	}
 
 	protected int makeXvalue(int x, int z) {
-		if(direction.equals(naturalDirection)) {
+		if(directionSet.equals(naturalDirection)) {
 			return initialX + x;
 		}
 		if(naturalDirection.equals(Direction.UP)) {
 			return initialX + x;
 		}
-		if(direction.getOpposite().equals(naturalDirection)) {
+		if(directionSet.getOpposite().equals(naturalDirection)) {
 			return initialX - x;
 		}
-		if(direction.getClockWise().equals(naturalDirection)) {
+		if(directionSet.getClockWise().equals(naturalDirection)) {
 			return initialX + z;
 		}
-		if(direction.getCounterClockWise().equals(naturalDirection)) {
+		if(directionSet.getCounterClockWise().equals(naturalDirection)) {
 			return initialX - z;
 		}
-		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+direction.toString()+" + "+naturalDirection.toString());
+		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+directionSet.toString()+" + "+naturalDirection.toString());
 	}
 
 	protected int makeZvalue(int x, int z) {
-		if(direction.equals(naturalDirection)||naturalDirection.equals(Direction.UP)) {
+		if(directionSet.equals(naturalDirection)||naturalDirection.equals(Direction.UP)) {
 			return initialZ + z;
 		}
-		if(direction.getOpposite().equals(naturalDirection)) {
+		if(directionSet.getOpposite().equals(naturalDirection)) {
 			return initialZ - z;
 		}
-		if(direction.getClockWise().equals(naturalDirection)) {
+		if(directionSet.getClockWise().equals(naturalDirection)) {
 			return initialZ - x;
 		}
-		if(direction.getCounterClockWise().equals(naturalDirection)) {
+		if(directionSet.getCounterClockWise().equals(naturalDirection)) {
 			return initialZ + x;
 		}
-		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+direction.toString()+" + "+naturalDirection.toString());
+		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+directionSet.toString()+" + "+naturalDirection.toString());
 	}
 
 	public void doFileGen(ISeedReader world, Random random, StructureFile file) {
@@ -206,13 +206,13 @@ public abstract class ExtendedStructureBase{
 
 	public void setBlockAndMetadata(ISeedReader world, BlockPos pos, BlockState blockstate) {
 		Rotation rotation=null;
-		if(direction.getOpposite().equals(naturalDirection)) {
+		if(directionSet.getOpposite().equals(naturalDirection)) {
 			rotation = Rotation.CLOCKWISE_180;
 		}
-		if(direction.getClockWise().equals(naturalDirection)) {
+		if(directionSet.getClockWise().equals(naturalDirection)) {
 			rotation = Rotation.COUNTERCLOCKWISE_90;
 		}
-		if(direction.getCounterClockWise().equals(naturalDirection)) {
+		if(directionSet.getCounterClockWise().equals(naturalDirection)) {
 			rotation = Rotation.CLOCKWISE_90;
 		}
 		if(rotation==null) {
@@ -507,5 +507,9 @@ public abstract class ExtendedStructureBase{
 				continue;
 			}
 		}
+	}
+
+	public int getInitialY() {
+		return initialY;
 	}
 }
