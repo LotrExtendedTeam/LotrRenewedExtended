@@ -16,7 +16,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 
 public class ExtendedStructureSummon extends LOTRBaseCommand {
@@ -41,11 +41,11 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
 			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection();
 			if(structure.placeWithSetRotation(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition(), dir.getOpposite())) {
-				context.getSource().sendSuccess(new StringTextComponent("Structure Loaded Successfully"), false);
+				context.getSource().sendSuccess(new TranslationTextComponent("command.lotrextended.structureSummon.success"), false);
 				return 0;
 			}
 			else {
-				context.getSource().sendSuccess(new StringTextComponent("Structure Loading Failed, check console"), false);
+				context.getSource().sendSuccess(new TranslationTextComponent("command.lotrextended.structureSummon.failure"), false);
 				return 1;
 			}
 		}

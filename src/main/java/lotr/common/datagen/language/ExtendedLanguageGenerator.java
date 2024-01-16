@@ -83,9 +83,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.horn_select.option_summon");
 		addD("gui.lotrextended.horn_select.option_halt_reddy");
 		//Horn tooltip
-		addD("tooltip.lotrextended.horn.halt");
-		addD("tooltip.lotrextended.horn.reddy");
-		addD("tooltip.lotrextended.horn.summon");
+		addD("item.lotr.horn_of_command.halt");
+		addD("item.lotr.horn_of_command.reddy");
+		addD("item.lotr.horn_of_command.summon");
 
 		//Command strings
 		addD("command.lotrextended.info.listPatches");

@@ -14,9 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedFellowshipDataModule extends PlayerDataModule {
@@ -239,7 +239,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 
 	public void createFellowship(String name, boolean adminOverride) {
 		if (!ExtendedServerConfig.enableFellowshipCreation.get() && !adminOverride) {
-			TextComponent comp = new StringTextComponent("Fellowship creation is disabled!");
+			TextComponent comp = new TranslationTextComponent("gui.lotrextended.fellowships.creation.disabled");
 			comp.withStyle(TextFormatting.YELLOW);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
 			owner.sendMessage(comp, owner.getUUID());

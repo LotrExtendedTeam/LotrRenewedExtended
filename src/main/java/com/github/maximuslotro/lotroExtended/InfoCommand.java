@@ -7,6 +7,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class InfoCommand
 {
@@ -16,7 +17,7 @@ public class InfoCommand
 	}
 
 	public static int execute(CommandSource source) {
-		source.sendSuccess(new StringTextComponent("Injected patches:"), false);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.listPatches"), false);
         for (String patch : MIXINConfig.getInjectedPatches())
         	source.sendSuccess(new StringTextComponent("- " + patch), false);
         return Command.SINGLE_SUCCESS;

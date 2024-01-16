@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHornSelectScreen extends BasicIngameScreen{
 	public ExtendedHornSelectScreen() {
@@ -34,8 +35,8 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 	  public void init() {
 	    this.guiLeft = (this.width - this.xSize) / 2;
 	    this.guiTop = (this.height - this.ySize) / 2;
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new StringTextComponent("Halt/Reddy Units"), button -> setHorn(1)));
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new StringTextComponent("Summon Units"), button -> setHorn(3)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> setHorn(1)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> setHorn(3)));
 	  }
 	  
 	@Override
@@ -44,7 +45,7 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		minecraft.textureManager.bind(guiTexture);
 		blit(matStack, this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		TextComponent title = new StringTextComponent("Horn of Command Selection");
+		TextComponent title = new TranslationTextComponent("gui.lotrextended.horn_select.title");
 		this.font.draw(matStack, title, guiLeft + (85 - (font.width(title) / 2)), guiTop + 11, 4210752);
 		super.render(matStack, mouseX, mouseY, tick);
 		for (int k = 0; k < this.buttons.size(); k++) {

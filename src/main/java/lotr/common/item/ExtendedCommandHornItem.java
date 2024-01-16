@@ -66,19 +66,21 @@ public class ExtendedCommandHornItem extends Item {
 		}
 		return ActionResult.fail(heldItem);
 	}
+
 	@Override
 	public String getDescriptionId(ItemStack itemstack) {
 		CompoundNBT nbtTagCompound = itemstack.getTag();
+		String s = "";
 		if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 1) {
-			return "Horn of Command - Halt Units";
+			s = ".halt";
 		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 2) {
-			return "Horn of Command - Ready Units";
+			s = ".reddy";
 		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
 				&& nbtTagCompound.getInt(type) == 3) {
-			return "Horn of Command - Summon Units";
+			s = ".summon";
 		}
-		return "Horn of Command";
+		return super.getDescriptionId()+s;
 	}
 }
