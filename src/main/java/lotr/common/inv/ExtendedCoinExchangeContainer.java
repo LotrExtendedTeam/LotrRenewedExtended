@@ -23,7 +23,7 @@ import net.minecraft.world.World;
  * @author RichardB122
  */
 public class ExtendedCoinExchangeContainer extends Container implements IContainerListener {
-    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("gui.lotr.container.coinexchange");
+    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.coin_exchange");
 
     private World level;
 

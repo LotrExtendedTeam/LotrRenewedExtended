@@ -12,7 +12,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class ExtendedEntities {
 
 	public static List<String> REGISTEREDENTITIES = new ArrayList<>();
-    public static RegistryObject<EntityType<ExtendedHobbitBartenderEntity>> HOBBIT_BARTENDER;
-    public static RegistryObject<EntityType<ExtendedHobbitFarmerEntity>> HOBBIT_FARMER;
+	public static RegistryObject<EntityType<ExtendedHobbitBartenderEntity>> HOBBIT_BARTENDER;
+	public static RegistryObject<EntityType<ExtendedHobbitFarmerEntity>> HOBBIT_FARMER;
 
 }

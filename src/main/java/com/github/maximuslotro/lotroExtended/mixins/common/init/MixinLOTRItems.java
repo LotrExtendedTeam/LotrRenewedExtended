@@ -17,6 +17,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraft.item.Item.Properties;
 
@@ -27,21 +28,27 @@ public class MixinLOTRItems {
 	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {return null;}
 	private static RegistryObject<Item> regItemB(String name, Supplier<? extends Item> sup)  {
 		RegistryObject<Item> item = regItem(name, sup);
-		ExtendedItems.REGISTEREDITEMS.put(name, item);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDITEMS.put(name, item);
+		}
 		return item;
 	}
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
 	private static RegistryObject<Item> regBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regBlockItem(blockSup, group);
-		ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
 		return item;
 	}
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regMaterialItem(String name) {return null;}
 	private static RegistryObject<Item> regMaterialItemB(String name)  {
 		RegistryObject<Item> item = regMaterialItem(name);
-		ExtendedItems.REGISTEREDITEMS.put(name, item);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDITEMS.put(name, item);
+		}
 		return item;
 	}
 
@@ -49,7 +56,9 @@ public class MixinLOTRItems {
 	private static RegistryObject<Item> regWallOrFloorBlockItem(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {return null;}
 	private static RegistryObject<Item> regWallOrFloorBlockItemB(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {
 		RegistryObject<Item> item = regWallOrFloorBlockItem(wallBlockSup, floorBlockSup, group);
-		ExtendedItems.REGISTEREDITEMS.put(wallBlockSup.getId().getPath(), item);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDITEMS.put(wallBlockSup.getId().getPath(), item);
+		}
 		return item;
 	}
 

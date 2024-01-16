@@ -33,6 +33,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
@@ -49,7 +50,9 @@ public class MixinLOTRBlocks {
 	
 	private static RegistryObject<Block> registerB(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
-		ExtendedBlocks.REGISTEREDBLOCKS.put(name, block);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedBlocks.REGISTEREDBLOCKS.put(name, block);
+		}
 		return block;
 		
     }

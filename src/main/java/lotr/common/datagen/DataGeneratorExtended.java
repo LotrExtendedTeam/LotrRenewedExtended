@@ -4,7 +4,10 @@ import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
 import lotr.common.LOTRMod;
 import lotr.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
+import lotr.common.datagen.language.ExtendedLanguageGenerator;
 import lotr.common.datagen.loot_tables.ExtendedLootTableGenerator;
+import lotr.common.datagen.models.ExtendedBlockstateModelGenerator;
+import lotr.common.datagen.models.ExtendedItemModelGenerator;
 import lotr.common.datagen.tags.ExtendedBlockTagGenerator;
 import lotr.common.datagen.tags.ExtendedFluidTagGenerator;
 import lotr.common.datagen.tags.ExtendedItemTagGenerator;
@@ -13,10 +16,11 @@ import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
-@Mod.EventBusSubscriber(modid = LotrExtendedMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = LotrExtendedMod.MODID, bus = Bus.MOD)
 public class DataGeneratorExtended {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
@@ -26,6 +30,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedBlockstateModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LOTRMod.MOD_ID, existingFileHelper));
+			generator.addProvider(new ExtendedLanguageGenerator(generator, LotrExtendedMod.MODID,"en_us"));
 		}
 		if (event.includeServer()) {
 			ExtendedLootTables.init();

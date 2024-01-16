@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.google.common.collect.ImmutableList;
 
+import lotr.common.datagen.DataGenValueHolder;
 import lotr.common.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedRecipes;
@@ -24,6 +25,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.registries.DeferredRegister;
 
 @Mixin(LOTRRecipes.class)
@@ -36,14 +38,21 @@ public class MixinLOTRRecipes {
 	@Shadow(remap = false)
 	private static FactionTableType registerFaction(String s, Supplier<Block> blockSup) {return null;}
 
+	private static FactionTableType registerFactionD(String s, Supplier<Block> blockSup) {
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.containerTitlesHolders.add("container.lotr."+s+"_crafting");
+		}
+		return registerFaction(s, blockSup);
+	}
+
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
-		ExtendedRecipes.TAURETHRIM_CRAFTING = registerFaction("taurethrim", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE);
-		ExtendedRecipes.DOL_GULDUR_CRAFTING = registerFaction("dol_guldur", ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE);
-		ExtendedRecipes.RHUNIC_CRAFTING = registerFaction("rhunic", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
-		ExtendedRecipes.MORWAITH_CRAFTING = registerFaction("morwaith", ExtendedBlocks.MORWAITH_CRAFTING_TABLE);
-		ExtendedRecipes.HALF_TROLL_CRAFTING = registerFaction("half_troll", ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE);
-		ExtendedRecipes.GUNDABAD_CRAFTING = registerFaction("northern_orc", ExtendedBlocks.GUNDABAD_CRAFTING_TABLE);
+		ExtendedRecipes.TAURETHRIM_CRAFTING = registerFactionD("taurethrim", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE);
+		ExtendedRecipes.DOL_GULDUR_CRAFTING = registerFactionD("dol_guldur", ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE);
+		ExtendedRecipes.RHUNIC_CRAFTING = registerFactionD("rhunic", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
+		ExtendedRecipes.MORWAITH_CRAFTING = registerFactionD("morwaith", ExtendedBlocks.MORWAITH_CRAFTING_TABLE);
+		ExtendedRecipes.HALF_TROLL_CRAFTING = registerFactionD("half_troll", ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE);
+		ExtendedRecipes.GUNDABAD_CRAFTING = registerFactionD("northern_orc", ExtendedBlocks.GUNDABAD_CRAFTING_TABLE);
 
 		ExtendedRecipes.EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("extended_crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
 	}

@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityType.IFactory;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +29,9 @@ public class MixinLOTREntities {
     }
     private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPCD(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
     	RegistryObject<EntityType<T>> entity = regNPC(key, factory, attribFactory, size, eggColors);
-    	ExtendedEntities.REGISTEREDENTITIES.add(key);
+    	if(DatagenModLoader.isRunningDataGen()) {
+    		ExtendedEntities.REGISTEREDENTITIES.add(key);
+    	}
     	return entity;
     }
     
@@ -42,7 +45,9 @@ public class MixinLOTREntities {
 			Supplier<MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, int trackRange,
 			int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
     	RegistryObject<EntityType<T>> entity = regAnimal(key, factory, attribFactory, size, trackRange, updateFreq, eggColors);
-    	ExtendedEntities.REGISTEREDENTITIES.add(key);
+    	if(DatagenModLoader.isRunningDataGen()) {
+    		ExtendedEntities.REGISTEREDENTITIES.add(key);
+    	}
     	return entity;
     }
 

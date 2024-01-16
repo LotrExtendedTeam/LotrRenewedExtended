@@ -3,8 +3,10 @@ package lotr.common.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotr.common.datagen.DataGenValueHolder;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedSoundEvents {
@@ -26,6 +28,14 @@ public class ExtendedSoundEvents {
 		ResourceLocation res = new ResourceLocation("lotr", key);
 		SoundEvent snd = (SoundEvent) (new SoundEvent(res)).setRegistryName(res);
 		toRegister.add(snd);
+		if(DatagenModLoader.isRunningDataGen()) {
+			if (key.contains("event.trade")) {
+				DataGenValueHolder.soundEventHolder.add("subtitles.lotr.event.trade");
+			}
+			else {
+				DataGenValueHolder.soundEventHolder.add("subtitles.lotr."+key);
+			}
+		}
 		return snd;
 	}
 }

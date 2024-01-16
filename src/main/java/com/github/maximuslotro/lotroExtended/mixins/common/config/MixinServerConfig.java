@@ -11,9 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
+import lotr.common.datagen.DataGenValueHolder;
 import lotr.common.init.ExtendedServerConfig;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
+import net.minecraftforge.fml.DatagenModLoader;
 
 @Mixin(ServerConfig.class)
 public class MixinServerConfig {
@@ -31,6 +33,9 @@ public class MixinServerConfig {
 	private LOTRConfig.BoolHolder createBoolValue(Builder builder, String key, boolean def, boolean worldRestart, String comment) {
 		String transKey = String.format("config.%s.%s", "lotr", key);
 		builder.comment(comment).translation(transKey);
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.configCommentHolders.add(transKey);
+		}
 		if (worldRestart) {
 			builder.worldRestart();
 		}
