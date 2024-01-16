@@ -6,6 +6,7 @@
     "north": "lotr:block/rhunic_crafting_table_side_1",
     "south": "lotr:block/rhunic_crafting_table_side_1",
     "east": "lotr:block/rhunic_crafting_table_side_2",
-    "west": "lotr:block/rhunic_crafting_table_side_2"
+    "west": "lotr:block/rhunic_crafting_table_side_2",
+    "particle": "lotr:block/rhunic_crafting_table_side_1"
   }
 }

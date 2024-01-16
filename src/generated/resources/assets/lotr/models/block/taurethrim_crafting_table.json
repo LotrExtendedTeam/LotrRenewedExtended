@@ -6,6 +6,7 @@
     "north": "lotr:block/taurethrim_crafting_table_side_1",
     "south": "lotr:block/taurethrim_crafting_table_side_1",
     "east": "lotr:block/taurethrim_crafting_table_side_2",
-    "west": "lotr:block/taurethrim_crafting_table_side_2"
+    "west": "lotr:block/taurethrim_crafting_table_side_2",
+    "particle": "lotr:block/taurethrim_crafting_table_side_1"
   }
 }

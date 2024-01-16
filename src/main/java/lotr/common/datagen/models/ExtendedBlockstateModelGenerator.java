@@ -292,7 +292,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation south = lotrLoc(sidesBase+"_side_1");
 		ResourceLocation east = lotrLoc(sidesBase+"_side_2");
 		ResourceLocation west = lotrLoc(sidesBase+"_side_2");
-		ModelFile cubeModel = models().cube("lotr:"+block.getRegistryName().getPath(), down, up, north, south, east, west);
+		ModelFile cubeModel = models().cube("lotr:"+block.getRegistryName().getPath(), down, up, north, south, east, west).texture("particle", north);
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
@@ -305,7 +305,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation south = lotrLoc(sidesBase+"_side_south");
 		ResourceLocation east = lotrLoc(sidesBase+"_side_east");
 		ResourceLocation west = lotrLoc(sidesBase+"_side_west");
-		ModelFile cubeModel = models().cube("lotr:"+block.getRegistryName().getPath(), down, up, north, south, east, west);
+		ModelFile cubeModel = models().cube("lotr:"+block.getRegistryName().getPath(), down, up, north, south, east, west).texture("particle", north);
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
