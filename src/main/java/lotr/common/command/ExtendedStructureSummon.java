@@ -41,11 +41,11 @@ public class ExtendedStructureSummon extends LOTRBaseCommand {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
 			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection();
 			if(structure.placeWithSetRotation(context.getSource().getLevel(), null, new Random(), context.getSource().getEntity().blockPosition(), dir.getOpposite())) {
-				context.getSource().sendSuccess(new StringTextComponent("Loaded Successfully"), false);
+				context.getSource().sendSuccess(new StringTextComponent("Structure Loaded Successfully"), false);
 				return 0;
 			}
 			else {
-				context.getSource().sendSuccess(new StringTextComponent("Loading Failed, check console"), false);
+				context.getSource().sendSuccess(new StringTextComponent("Structure Loading Failed, check console"), false);
 				return 1;
 			}
 		}

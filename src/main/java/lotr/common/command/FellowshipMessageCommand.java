@@ -16,7 +16,7 @@ public class FellowshipMessageCommand extends LOTRBaseCommand {
 								.executes(context -> messageFellowship(context.getSource(), StringArgumentType.getString(context, "fellowship"), StringArgumentType.getString(context, "message"))))));
 	}
 	private static int messageFellowship(CommandSource source, String fellowship, String message) {
-		source.sendSuccess(new StringTextComponent(fellowship+" is recieving message: "+message) , true);
+		source.sendSuccess(new StringTextComponent("Not implimented") , true);
 		return 0;
 	}
 }

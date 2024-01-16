@@ -49,7 +49,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		addButton(new MiddleEarthMenuButton(0, 0, ExtendedFellowshipScreen.class, new StringTextComponent("Fellowships"), 6, 71));
 		//addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Titles"), 7, 84));
 		//addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Shields"), 5, 83));
-		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?/Titles"), 0, 84));
+		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?"), 0, 84));
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?/Shields"), 0, 83));
 		addButton(new MiddleEarthMenuButton(0, 0, ExtendedOptionsScreen.class, new StringTextComponent("Options"), 1, 79));
 

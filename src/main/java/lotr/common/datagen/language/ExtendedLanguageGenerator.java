@@ -53,7 +53,44 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : DataGenValueHolder.soundEventHolder) {
 			addD(entity);
 		}
+
+		//Add Menu strings
+		addD("gui.lotrextended.menu.fellowships");
+		addD("gui.lotrextended.menu.settings");
+		addD("gui.lotrextended.menu.titles");
+		addD("gui.lotrextended.menu.achievements");
 		
+		//Add Fellowship Menu strings
+		addD("gui.lotrextended.fellowships.title");
+		addD("gui.lotrextended.fellowships.creation.disabled");
+
+		//Add Settings Menu strings
+		addD("gui.lotrextended.settings.title");
+		addD("gui.lotrextended.settings.worldsettings");
+		addD("gui.lotrextended.settings.usersettings");
+		addD("gui.lotrextended.settings.friendlyFire");
+		addD("gui.lotrextended.settings.friendlyFire.enabled");
+		addD("gui.lotrextended.settings.friendlyFire.disabled");
+		addD("gui.lotrextended.settings.mapLocation");
+		addD("gui.lotrextended.settings.mapLocation.enabled");
+		addD("gui.lotrextended.settings.mapLocation.disabled");
+		addD("gui.lotrextended.settings.rankGender");
+		addD("gui.lotrextended.settings.rankGender.enabled");
+		addD("gui.lotrextended.settings.rankGender.disabled");
+	
+		//Horn Select strings
+		addD("gui.lotrextended.horn_select.title");
+		addD("gui.lotrextended.horn_select.option_summon");
+		addD("gui.lotrextended.horn_select.option_halt_reddy");
+		//Horn tooltip
+		addD("tooltip.lotrextended.horn.halt");
+		addD("tooltip.lotrextended.horn.reddy");
+		addD("tooltip.lotrextended.horn.summon");
+
+		//Command strings
+		addD("command.lotrextended.info.listPatches");
+		addD("command.lotrextended.structureSummon.success");
+		addD("command.lotrextended.structureSummon.failure");
 		//Sort keys and add to superClass processor
 		TreeMap<String, String> sorted = new TreeMap<>();
 		sorted.putAll(dataPrivate);
