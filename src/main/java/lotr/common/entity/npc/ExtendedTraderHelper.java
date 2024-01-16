@@ -8,6 +8,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 import java.util.HashSet;
@@ -40,7 +41,7 @@ public class ExtendedTraderHelper {
 
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, HashSet<UUID> uuids) {
         uuids.add(player.getUUID());
-
+        player.displayClientMessage(new StringTextComponent("This is still in development, please be patient :)"), false);
         //if (entity.level.isClientSide()) {
         //    Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
         //}
