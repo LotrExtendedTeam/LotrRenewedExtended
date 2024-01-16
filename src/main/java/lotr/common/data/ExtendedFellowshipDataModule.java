@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
-
 import lotr.common.LOTRMod;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.fellowship.ExtendedFellowshipInvite;
+import lotr.common.init.ExtendedServerConfig;
 import lotr.common.fellowship.ExtendedFellowshipHolderServer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -239,7 +238,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public void createFellowship(String name, boolean adminOverride) {
-		if (!MixinHooks.getFellowshipConfigData() && !adminOverride) {
+		if (!ExtendedServerConfig.enableFellowshipCreation.get() && !adminOverride) {
 			TextComponent comp = new StringTextComponent("Fellowship creation is disabled!");
 			comp.withStyle(TextFormatting.YELLOW);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());

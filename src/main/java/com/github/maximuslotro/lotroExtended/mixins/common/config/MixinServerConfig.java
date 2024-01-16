@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.config.LOTRConfig.ServerConfig;
+import lotr.common.init.ExtendedServerConfig;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
 
@@ -21,16 +22,21 @@ public class MixinServerConfig {
 	@Shadow(remap=false)
 	private List<LOTRConfig.ConfigValueHolder<?>> serverFields;
 
-	public LOTRConfig.BoolHolder enableFellowshipCreation;
-
 	@Inject(method = "<init>(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;)V", at = @At("TAIL"), remap=false)
 	private void injected(Builder builder, CallbackInfo ci) {
 	  builder.push("ExtendedSettings");
-	  builder.comment("Enable or disable fellowship creation").translation(String.format("config.%s.%s", "lotr", enableFellowshipCreation));
-	  BooleanValue boolVal = builder.define("enableFellowshipCreation", true);
-	  LOTRConfig.BoolHolder holder = new LOTRConfig.BoolHolder(boolVal);
-	  serverFields.add(holder);
-	  enableFellowshipCreation = holder;
+	  ExtendedServerConfig.enableFellowshipCreation = createBoolValue(builder, "enableFellowshipCreation", true, false, "Enable or disable fellowship creation");
 	  builder.pop();
+	}
+	private LOTRConfig.BoolHolder createBoolValue(Builder builder, String key, boolean def, boolean worldRestart, String comment) {
+		String transKey = String.format("config.%s.%s", "lotr", key);
+		builder.comment(comment).translation(transKey);
+		if (worldRestart) {
+			builder.worldRestart();
+		}
+		BooleanValue boolVal = builder.define("key", def);
+		LOTRConfig.BoolHolder holder = new LOTRConfig.BoolHolder(boolVal);
+		serverFields.add(holder);
+		return holder;
 	}
 }
