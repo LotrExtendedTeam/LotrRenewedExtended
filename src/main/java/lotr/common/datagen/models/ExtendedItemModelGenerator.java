@@ -1,4 +1,4 @@
-package lotr.common.datagen;
+package lotr.common.datagen.models;
 
 import java.util.Map.Entry;
 

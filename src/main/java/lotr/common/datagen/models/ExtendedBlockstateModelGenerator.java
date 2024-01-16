@@ -1,4 +1,4 @@
-package lotr.common.datagen;
+package lotr.common.datagen.models;
 
 import java.util.ArrayList;
 import java.util.List;
