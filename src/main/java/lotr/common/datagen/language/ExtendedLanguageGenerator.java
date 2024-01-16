@@ -1,6 +1,4 @@
 package lotr.common.datagen.language;
-
-import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import lotr.common.datagen.DataGenValueHolder;
@@ -13,30 +11,27 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
-	
+
 	public ExtendedLanguageGenerator(DataGenerator gen, String modid, String locale) {
 		super(gen, modid, locale);
 	}
 
 	@Override
-	protected void addTranslations() {
-		//Load From Existing File
-		addExistingLocalisationsToMap();
-
-		//Try Add New Block Names
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+	protected void makeTranslations() {
+		// Try Add New Block Names
+		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			addBlock(block.getValue(), "");
 		}
 
-		//Try Add New Item Names
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
+		// Try Add New Item Names
+		for (Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			addItem(item.getValue(), "");
 		}
 
-		//Try Add New Entity Names
-		for(String entity : ExtendedEntities.REGISTEREDENTITIES) {
-			addD("entity.lotr."+entity);
-			addD("item.lotr."+entity+"_spawn_egg");
+		// Try Add New Entity Names
+		for (String entity : ExtendedEntities.REGISTEREDENTITIES) {
+			addD("entity.lotr." + entity);
+			addD("item.lotr." + entity + "_spawn_egg");
 		}
 
 		// Try Add Container Titles
@@ -54,17 +49,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity);
 		}
 
-		//Add Menu strings
+		// Add Menu strings
 		addD("gui.lotrextended.menu.fellowships");
 		addD("gui.lotrextended.menu.settings");
 		addD("gui.lotrextended.menu.titles");
 		addD("gui.lotrextended.menu.achievements");
-		
-		//Add Fellowship Menu strings
+
+		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title");
 		addD("gui.lotrextended.fellowships.creation.disabled");
 
-		//Add Settings Menu strings
+		// Add Settings Menu strings
 		addD("gui.lotrextended.settings.title");
 		addD("gui.lotrextended.settings.worldsettings");
 		addD("gui.lotrextended.settings.usersettings");
@@ -77,26 +72,20 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.rankGender");
 		addD("gui.lotrextended.settings.rankGender.enabled");
 		addD("gui.lotrextended.settings.rankGender.disabled");
-	
-		//Horn Select strings
+
+		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title");
 		addD("gui.lotrextended.horn_select.option_summon");
 		addD("gui.lotrextended.horn_select.option_halt_reddy");
-		//Horn tooltip
+		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");
 		addD("item.lotr.horn_of_command.reddy");
 		addD("item.lotr.horn_of_command.summon");
 
-		//Command strings
+		// Command strings
 		addD("command.lotrextended.info.listPatches");
 		addD("command.lotrextended.structureSummon.success");
 		addD("command.lotrextended.structureSummon.failure");
-		//Sort keys and add to superClass processor
-		TreeMap<String, String> sorted = new TreeMap<>();
-		sorted.putAll(dataPrivate);
-		for(Entry<String, String> entry : sorted.entrySet()) {
-			add(entry.getKey(), entry.getValue());
-		}
 	}
 
 	@Override

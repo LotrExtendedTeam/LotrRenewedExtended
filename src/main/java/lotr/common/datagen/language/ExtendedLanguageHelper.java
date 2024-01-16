@@ -24,65 +24,93 @@ import net.minecraftforge.common.data.LanguageProvider;
 public abstract class ExtendedLanguageHelper extends LanguageProvider {
 
 	protected Map<String, String> dataPrivate = new TreeMap<>();
+	protected Map<String, String> dataCreated = new TreeMap<>();
 	protected final String modidHere;
 	protected final String localeHere;
 
-    public ExtendedLanguageHelper(DataGenerator gen, String modid, String locale) {
+	public ExtendedLanguageHelper(DataGenerator gen, String modid, String locale) {
 		super(gen, modid, locale);
 		this.modidHere = modid;
 		this.localeHere = locale;
 	}
 
-    @Override
-    public void add(Block key, String name) {
-        addD(key.getDescriptionId(), name);
-    }
+	@Override
+	protected void addTranslations() {
+		// Load From Existing File
+		addExistingLocalisationsToMap();
+
+		// Add dynamic and hardcoded keys
+		makeTranslations();
+
+		// Save all processed Translations
+		makeLocalisationsFile();
+	}
+
+	protected abstract void makeTranslations();
 
 	@Override
-    public void add(Item key, String name) {
-        addD(key.getDescriptionId(), name);
-    }
+	public void add(Block key, String name) {
+		addD(key.getDescriptionId(), name);
+	}
 
 	@Override
-    public void add(ItemStack key, String name) {
-        addD(key.getDescriptionId(), name);
-    }
+	public void add(Item key, String name) {
+		addD(key.getDescriptionId(), name);
+	}
 
 	@Override
-    public void add(Enchantment key, String name) {
-        addD(key.getDescriptionId(), name);
-    }
+	public void add(ItemStack key, String name) {
+		addD(key.getDescriptionId(), name);
+	}
 
 	@Override
-    public void add(Effect key, String name) {
-        addD(key.getDescriptionId(), name);
-    }
-    
+	public void add(Enchantment key, String name) {
+		addD(key.getDescriptionId(), name);
+	}
+
+	@Override
+	public void add(Effect key, String name) {
+		addD(key.getDescriptionId(), name);
+	}
+
 	public void addD(String key) {
 		addD(key, "");
 	}
+
 	public void addD(String key, String value) {
-        if (!dataPrivate.containsKey(key)) {
-        	dataPrivate.put(key, value);
-        }
-        else {
-        	System.out.println("Duplicate Key Found in Language Map: "+key);
-        }
-    }
+		if (!dataCreated.containsKey(key)) {
+			if (!dataPrivate.containsKey(key)) {
+				dataPrivate.put(key, value);
+			} else {
+				System.out.println("Discarding Duplicate Key Found in Language Map: " + key);
+			}
+		}
+	}
 
 	public void addExistingLocalisationsToMap() {
 		Builder<String, String> builder = ImmutableMap.builder();
 		BiConsumer<String, String> biconsumer = builder::put;
-		try (InputStream inputstream = LanguageMap.class.getResourceAsStream("/assets/"+modidHere+"/lang/"+localeHere+".json")) {
+		try (InputStream inputstream = LanguageMap.class
+				.getResourceAsStream("/assets/" + modidHere + "/lang/" + localeHere + ".json")) {
 			LanguageMap.loadFromJson(inputstream, biconsumer);
 		} catch (JsonParseException | NullPointerException | IOException exception) {
-			ExtendedLog.error("Couldn't read strings from /assets/"+modidHere+"/lang/"+localeHere+".json");
+			ExtendedLog.error("Couldn't read strings from /assets/" + modidHere + "/lang/" + localeHere + ".json");
 			exception.printStackTrace();
 			return;
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
-		for(Entry<String, String> entry : map.entrySet()) {
-			addD(entry.getKey(), entry.getValue());
+		for (Entry<String, String> entry : map.entrySet()) {
+			dataCreated.put(entry.getKey(), entry.getValue());
+		}
+	}
+
+	public void makeLocalisationsFile() {
+		// Sort keys and add to superClass processor
+		TreeMap<String, String> sorted = new TreeMap<>();
+		sorted.putAll(dataPrivate);
+		sorted.putAll(dataCreated);
+		for (Entry<String, String> entry : sorted.entrySet()) {
+			add(entry.getKey(), entry.getValue());
 		}
 	}
 }
