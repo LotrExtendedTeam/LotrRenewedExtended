@@ -29,6 +29,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
     public ExtendedHobbitBartenderEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
+        setPersistenceRequired();
     }
 
     /*

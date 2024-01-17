@@ -26,7 +26,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
 
     public ExtendedHobbitFarmerEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
-
+        setPersistenceRequired();
         setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.IRON_HOE.getItem(), 1));
         setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get(), 1));
     }
