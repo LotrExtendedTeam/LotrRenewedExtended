@@ -251,5 +251,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SMOOTH_MORDOR_STAIRS;
 	public static RegistryObject<Item> SMOOTH_RED_STAIRS;
 	public static RegistryObject<Item> SMOOTH_BLUE_STAIRS;
+	public static RegistryObject<Item> SMOOTH_STONE_STAIRS;
 }
 

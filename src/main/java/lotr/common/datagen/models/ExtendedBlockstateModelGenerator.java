@@ -136,6 +136,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_1"));
 						continue;
 					}
+					if(block.getKey().contains("smooth_stone_stairs")) {
+						genStairsBlockItem((StairsBlock) block.getValue().get(), mcLoc("block/smooth_stone"));
+						continue;
+					}
 					genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
 					continue;
 				}

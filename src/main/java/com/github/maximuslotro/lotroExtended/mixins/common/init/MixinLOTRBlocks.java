@@ -30,6 +30,7 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -229,6 +230,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DRYSTONE_WALL = registerB("drystone_wall", () -> new LOTRWallBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.COBBLED_DRYSTONE = registerB("cobbled_drystone", () -> new LOTRStoneBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.CUT_DRYSTONE = registerB("cut_drystone", () -> new LOTRStoneBlock(LOTRBlocks.DRYSTONE));
+		ExtendedBlocks.SMOOTH_STONE_STAIRS = registerB("smooth_stone_stairs", () -> new LOTRStairsBlock(Blocks.SMOOTH_STONE));
 		
 		ExtendedBlocks.MOSSY_DRYSTONE = registerB("mossy_drystone", () -> new LOTRStoneBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.MOSSY_DRYSTONE_SLAB = registerB("mossy_drystone_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_DRYSTONE));
