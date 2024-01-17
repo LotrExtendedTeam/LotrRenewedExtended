@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "lotr:entities/common/faction_bases/gundabad"
+          "name": "lotrextended:entities/common/faction_bases/gundabad"
         }
       ]
     }

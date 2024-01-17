@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
@@ -248,12 +250,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	}
 
 	public ResourceLocation makeQuickyBasePart(String name, Builder builder) {
-		ResourceLocation loc = new ResourceLocation("lotr", "entities/common/parts/" + name);
+		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/parts/" + name);
 		add(loc, builder);
 		return loc;
 	}
 	public ResourceLocation makeQuickyFactionPart(String name, Builder builder) {
-		ResourceLocation loc = new ResourceLocation("lotr", "entities/common/faction_bases/" + name);
+		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/faction_bases/" + name);
 		add(loc, builder);
 		return loc;
 	}

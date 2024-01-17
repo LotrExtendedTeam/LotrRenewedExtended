@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "lotr:entities/common/faction_bases/isengard_snaga"
+          "name": "lotrextended:entities/common/faction_bases/isengard_snaga"
         }
       ]
     },
@@ -15,7 +15,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "lotr:entities/common/parts/arrows"
+          "name": "lotrextended:entities/common/parts/arrows"
         }
       ]
     }

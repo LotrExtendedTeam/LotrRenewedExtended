@@ -33,5 +33,5 @@ side="BOTH"
 modId="lotr"
 mandatory=true
 versionRange="[0,)"
-ordering="BEFORE"
+ordering="AFTER"
 side="BOTH"
