@@ -35,6 +35,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CORAL_BLOCK;
 
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
+	public static RegistryObject<Block> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;
 	public static RegistryObject<Block> RHUNIC_CRAFTING_TABLE;
 	public static RegistryObject<Block> MORWAITH_CRAFTING_TABLE;

@@ -119,6 +119,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BOTTLE_OF_POISON;
 
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
+	public static RegistryObject<Item> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_STAIRS;

@@ -16,12 +16,12 @@
         ]
       }
     },
-    "has_taurethrim_brick": {
+    "has_dirt": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:taurethrim_brick"
+            "item": "minecraft:dirt"
           }
         ]
       }
@@ -36,7 +36,7 @@
   "requirements": [
     [
       "has_taurethrim_crafting_table",
-      "has_taurethrim_brick",
+      "has_dirt",
       "has_the_recipe"
     ]
   ]

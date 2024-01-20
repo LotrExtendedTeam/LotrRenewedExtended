@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:taurethrim_stone_crafting_table"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_stone_crafting_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_stone_crafting_table"
+          }
+        ]
+      }
+    },
+    "has_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:taurethrim_stone_crafting_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_stone_crafting_table",
+      "has_taurethrim_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
