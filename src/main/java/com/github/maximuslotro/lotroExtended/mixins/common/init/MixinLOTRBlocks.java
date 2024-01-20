@@ -17,6 +17,7 @@ import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
 import lotr.common.block.ExtendedMorgulLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
+import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
 import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
@@ -35,11 +36,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-
-import static lotr.common.init.LOTRBlocks.constantLight;
 
 import java.util.function.Supplier;
 
@@ -115,15 +115,18 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PEARL_BLOCK = registerB("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
 		//GEM ORES
-		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.SAPPHIRE_ORE = registerB("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.RUBY_ORE = registerB("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.DIAMOND_ORE = registerB("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.OPAL_ORE = registerB("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-		ExtendedBlocks.EMERALD_ORE = registerB("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).lightLevel(constantLight(0))).setOreLevel(1));
-
+		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.SAPPHIRE_ORE = registerB("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.RUBY_ORE = registerB("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.DIAMOND_ORE = registerB("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.OPAL_ORE = registerB("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.EMERALD_ORE = registerB("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		//Remains ores
+		ExtendedBlocks.REMAINS_ORC = registerB("remains_ore_orc", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
+		ExtendedBlocks.REMAINS_ELF = registerB("remains_ore_elf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
+		ExtendedBlocks.REMAINS_MAN = registerB("remains_ore_man", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 		///////////////////////////////BRICKS
 		//Taurethrim
 		ExtendedBlocks.TAURETHRIM_BRICK = registerB("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));

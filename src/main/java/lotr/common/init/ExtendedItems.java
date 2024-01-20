@@ -60,6 +60,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> EMERALD;
 	public static RegistryObject<Item> PEARL;
 	public static RegistryObject<Item> CORAL;
+	public static RegistryObject<Item> REMAINS_ORC;
+	public static RegistryObject<Item> REMAINS_ELF;
+	public static RegistryObject<Item> REMAINS_MAN;
 	
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;

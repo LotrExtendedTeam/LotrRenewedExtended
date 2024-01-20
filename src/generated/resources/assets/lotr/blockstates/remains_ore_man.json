@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotr:block/remains_ore_man_1"
+      },
+      {
+        "model": "lotr:block/remains_ore_man_2"
+      },
+      {
+        "model": "lotr:block/remains_ore_man_3"
+      }
+    ]
+  }
+}

@@ -21,6 +21,7 @@ import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRBlocks;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.SweetBerryBushBlock;
@@ -114,6 +115,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		         return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
 			add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> {
 		         return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
+			add(ExtendedBlocks.REMAINS_ELF.get(), (p_241170_0_) -> {
+		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+			add(ExtendedBlocks.REMAINS_MAN.get(), (p_241170_0_) -> {
+		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+			add(ExtendedBlocks.REMAINS_ORC.get(), (p_241170_0_) -> {
+		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				dropSelf(block.getValue().get());
 				continue;

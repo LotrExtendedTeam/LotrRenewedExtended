@@ -10,6 +10,7 @@ import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
+import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRBlockStates;
@@ -55,12 +56,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+			if(registeredBlocks.contains(block.getValue().get())) {continue;}
 			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
 				genCubeBottomTopSideBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()+"_side"), lotrLoc("block/"+block.getKey()+"_bottom"), lotrLoc("block/"+block.getKey()+"_top"));
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
-				fourTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
+				numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedRemainsBlock) {
+				numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
@@ -69,10 +75,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
-				continue;
-			}
-			if(block.getValue().get() instanceof LOTROreBlock) {
-				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {
@@ -125,8 +127,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				continue;
 			}
 		}
-		//Only Add entries to this loop if they depend on other models we are generating
+		//Only Add entries to this loop if they depend on other models we are generating or are supertypes of other block types
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+			if(registeredBlocks.contains(block.getValue().get())) {continue;}
 			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
 				if(block.getKey().contains("_slab")) {
 					if(block.getKey().contains("packed_fur")) {
@@ -160,6 +163,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 					continue;
 				}
+			}
+			if(block.getValue().get() instanceof LOTROreBlock) {
+				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
 			}
 		}
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
@@ -348,7 +355,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
-	private void fourTexturedRandomBlockItem(Block block, String location, int numVariants) {
+	private void numberTexturedRandomBlockItem(Block block, String location, int numVariants) {
 		registeredBlocks.add(block);
 		if(numVariants==4) {
 			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
@@ -357,6 +364,15 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			ConfiguredModel variant4 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_4", new ResourceLocation("lotr",location+"_4")));
 			getVariantBuilder(block).partialState().setModels(variant1, variant2, variant3, variant4);
 			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(variant1.model);
+			return;
+		}
+		if(numVariants==3) {
+			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
+			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")));
+			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_3", new ResourceLocation("lotr",location+"_3")));
+			getVariantBuilder(block).partialState().setModels(variant1, variant2, variant3);
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(variant1.model);
+			return;
 		}
 	}
 	
