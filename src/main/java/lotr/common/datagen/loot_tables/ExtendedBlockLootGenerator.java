@@ -121,6 +121,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
 			add(ExtendedBlocks.REMAINS_ORC.get(), (p_241170_0_) -> {
 		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+			add(ExtendedBlocks.REMAINS_DWARF.get(), (p_241170_0_) -> {
+		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				dropSelf(block.getValue().get());
 				continue;

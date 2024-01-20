@@ -63,7 +63,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_ORC;
 	public static RegistryObject<Item> REMAINS_ELF;
 	public static RegistryObject<Item> REMAINS_MAN;
-	
+	public static RegistryObject<Item> REMAINS_DWARF;
+
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;
 	public static RegistryObject<Item> TAURETHRIM_PICKAXE;

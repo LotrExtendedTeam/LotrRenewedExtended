@@ -185,4 +185,5 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> REMAINS_ORC;
 	public static RegistryObject<Block> REMAINS_ELF;
 	public static RegistryObject<Block> REMAINS_MAN;
+	public static RegistryObject<Block> REMAINS_DWARF;
 }

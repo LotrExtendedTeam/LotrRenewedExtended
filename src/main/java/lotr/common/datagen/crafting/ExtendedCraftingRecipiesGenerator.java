@@ -490,6 +490,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_ELF.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_MAN.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_ORC.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_DWARF.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {
