@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cake",
+  "textures": {
+    "particle": "lotr:block/cheese_wheel_side",
+    "bottom": "lotr:block/cheese_wheel_bottom",
+    "top": "lotr:block/cheese_wheel_top",
+    "side": "lotr:block/cheese_wheel_side"
+  }
+}

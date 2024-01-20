@@ -176,4 +176,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGUL_WALL_TORCH;
 	
 	public static Map<String, RegistryObject<Block>> ENTITYSPAWNERBLOCKS = new HashMap<>();
+
+	public static RegistryObject<Block> CHEESE_WHEEL;
 }

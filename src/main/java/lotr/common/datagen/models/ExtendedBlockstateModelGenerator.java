@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedBerryPlantBlock;
+import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
@@ -24,6 +25,7 @@ import lotr.common.block.NonWaterloggableLanternBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
@@ -118,7 +120,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				simpleBlock(block.getValue().get(), cubeModel);
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedCakeBlock) {
+				genCakeBlock((CakeBlock) block.getValue().get(), lotrLoc("block/"+block.getKey()+"_bottom"), lotrLoc("block/"+block.getKey()+"_top"), lotrLoc("block/"+block.getKey()+"_side"), lotrLoc("block/"+block.getKey()+"_inner"));
+				continue;
+			}
 		}
+		//Only Add entries to this loop if they depend on other models we are generating
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
 				if(block.getKey().contains("_slab")) {
@@ -154,7 +161,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}
-
 		}
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(!registeredBlocks.contains(block.getValue().get())) {
@@ -254,6 +260,23 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
         }, StairsBlock.WATERLOGGED);
+	}
+
+	private void genCakeBlock(CakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {
+		registeredBlocks.add(cake);
+		ModelFile cakeBlock = models().withExistingParent("lotr:" + cake.getRegistryName().getPath(), "block/cake")
+				.texture("particle", textureSide).texture("bottom", textureBottom).texture("top", textureTop)
+				.texture("side", textureSide);
+
+		getVariantBuilder(cake).forAllStatesExcept(state -> {
+			int bites = state.getValue(CakeBlock.BITES);
+			return ConfiguredModel.builder().modelFile(bites == 0 ? cakeBlock : models()
+					.withExistingParent("lotr:" + cake.getRegistryName().getPath() + bites,"block/cake_slice" + bites)
+					.texture("particle", textureSide).texture("bottom", textureBottom)
+					.texture("top", textureTop).texture("side", textureSide)
+					.texture("inside", textureInside))
+					.build();
+		}, StairsBlock.WATERLOGGED);
 	}
 
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {

@@ -33,6 +33,16 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+
+	@Shadow(remap=false)
+	private static RegistryObject<Item> regCakeBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
+	private static RegistryObject<Item> regCakeBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
+		RegistryObject<Item> item = regCakeBlockItem(blockSup, group);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
 	private static RegistryObject<Item> regBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
@@ -42,6 +52,7 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regMaterialItem(String name) {return null;}
 	private static RegistryObject<Item> regMaterialItemB(String name)  {
@@ -280,7 +291,7 @@ public class MixinLOTRItems {
 		ExtendedItems.WILDBERRY = regItemB("wildberry", ()-> new BlockNamedItem(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 
 		ExtendedItems.BOTTLE_OF_POISON = regItemB("bottle_of_poison", () -> new ExtendedPoisonBottleItem((new Properties()).tab(LOTRItemGroups.MISC)));
-
+		ExtendedItems.CHEESE_WHEEL  = regCakeBlockItemD(ExtendedBlocks.CHEESE_WHEEL, LOTRItemGroups.FOOD);
 		//#######################################################################EQUIPMENT##################################################
 		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
 

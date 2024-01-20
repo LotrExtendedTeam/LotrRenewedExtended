@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cake_slice5",
+  "textures": {
+    "particle": "lotr:block/cheese_wheel_side",
+    "bottom": "lotr:block/cheese_wheel_bottom",
+    "top": "lotr:block/cheese_wheel_top",
+    "side": "lotr:block/cheese_wheel_side",
+    "inside": "lotr:block/cheese_wheel_inner"
+  }
+}
