@@ -168,6 +168,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> RHUNIC_PILLAR_SLAB;
 	public static RegistryObject<Item> CARVED_RHUNIC_BRICK;
 	public static RegistryObject<Item> GOLD_TRIMMED_RHUNIC_BRICK;
+	public static RegistryObject<Item> GOLD_TRIMMED_RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Item> GOLD_TRIMMED_RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Item> GOLD_TRIMMED_RHUNIC_BRICK_WALL;
 	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK;
 	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK_SLAB;
 	public static RegistryObject<Item> CRACKED_RHUNIC_BRICK_STAIRS;

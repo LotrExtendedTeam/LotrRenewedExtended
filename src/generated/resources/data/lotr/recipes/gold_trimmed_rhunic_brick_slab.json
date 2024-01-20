@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:gold_trimmed_rhunic_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:gold_trimmed_rhunic_brick_slab",
+    "count": 6
+  }
+}

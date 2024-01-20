@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotr:block/gold_trimmed_rhunic_brick",
+    "bottom": "lotr:block/gold_trimmed_rhunic_brick",
+    "top": "lotr:block/gold_trimmed_rhunic_brick"
+  }
+}
