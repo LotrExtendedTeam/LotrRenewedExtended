@@ -402,6 +402,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->LOTRBlocks.SMOOTH_RED_ROCK.get().asItem(), null);
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_BLUE_STAIRS.get(), 
 				()->LOTRBlocks.SMOOTH_BLUE_ROCK.get().asItem(), null);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_STONE_STAIRS.get(), 
+				()->Blocks.SMOOTH_STONE.asItem(), null);
 		ShapelessRecipeBuilder.shapeless(LOTRBlocks.DRYSTONE.get())
 		.requires(ExtendedBlocks.COBBLED_DRYSTONE.get())
 		.unlockedBy("has_"+LOTRBlocks.DRYSTONE.get().getRegistryName().getPath(), has(LOTRBlocks.DRYSTONE.get()))
