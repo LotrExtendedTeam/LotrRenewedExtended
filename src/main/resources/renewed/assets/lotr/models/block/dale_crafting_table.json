@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "#north",
+        "down": "lotr:block/dale_crafting_table_bottom",
+        "up": "lotr:block/dale_crafting_table_top",
+        "north": "lotr:block/dale_crafting_table_front",
+        "east": "lotr:block/dale_crafting_table_side",
+        "south": "lotr:block/dale_crafting_table_front",
+        "west": "lotr:block/dale_crafting_table_side"
+    }
+}

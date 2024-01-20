@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "lotr:block/rivendell_crafting_table_bottom",
+        "top": "lotr:block/rivendell_crafting_table_top",
+        "side": "lotr:block/rivendell_crafting_table_side"
+    }
+}

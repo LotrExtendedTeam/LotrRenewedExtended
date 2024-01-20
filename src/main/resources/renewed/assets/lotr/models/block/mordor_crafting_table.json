@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "#north",
+        "down": "lotr:block/mordor_crafting_table_bottom",
+        "up": "lotr:block/mordor_crafting_table_top",
+        "north": "lotr:block/mordor_crafting_table_front",
+        "east": "lotr:block/mordor_crafting_table_side",
+        "south": "lotr:block/mordor_crafting_table_front",
+        "west": "lotr:block/mordor_crafting_table_side"
+    }
+}
