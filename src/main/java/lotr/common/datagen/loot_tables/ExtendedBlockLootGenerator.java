@@ -15,6 +15,8 @@ import lotr.common.block.ExtendedGroundGrassBlock;
 import lotr.common.block.ExtendedGroundPathBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
+import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
+import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
@@ -31,6 +33,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -79,7 +82,23 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedTwoTypeDummyBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
 			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
+				if(block.getValue().get() instanceof ExtendedTwoTypeCraftingTableBlock) {
+					ExtendedTwoTypeCraftingTableBlock blok = (ExtendedTwoTypeCraftingTableBlock)block.getValue().get();
+					add(blok, (p_241171_0_) -> {
+				         return applyExplosionDecay(p_241171_0_, LootTable.lootTable()
+				        		 .withPool(LootPool.lootPool().when(BlockStateProperty.hasBlockStateProperties(blok)
+				        				 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedTwoTypeCraftingTableBlock.ALTERNATITE, false)))
+				        				 .add(ItemLootEntry.lootTableItem(blok)).apply(SetCount.setCount(ConstantRange.exactly(1))))
+				        		 .withPool(LootPool.lootPool().when(BlockStateProperty.hasBlockStateProperties(blok)
+				        				 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedTwoTypeCraftingTableBlock.ALTERNATITE, true)))
+				        				 .add(ItemLootEntry.lootTableItem(blok.getAltBlock().get())).apply(SetCount.setCount(ConstantRange.exactly(1)))));});
+					continue;
+				}
 				dropSelf(block.getValue().get());
 				continue;
 			}

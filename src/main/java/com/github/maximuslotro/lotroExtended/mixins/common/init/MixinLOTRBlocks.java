@@ -23,6 +23,7 @@ import lotr.common.block.ExtendedMorgulLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
+import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
@@ -280,8 +281,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WILDBERRY_BUSH_PLANT = registerB("wildberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.WILDBERRY));
 
 		//CRAFTING TABLES
-		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
-		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("taurethrim_stone_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
+		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE));
+		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("taurethrim_stone_crafting_table", () -> new ExtendedTwoTypeDummyBlock(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = registerB("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
 		//TODO add block props

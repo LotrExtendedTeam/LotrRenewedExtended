@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -11,9 +11,48 @@
       ],
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "condition": "minecraft:block_state_property",
+          "block": "lotr:taurethrim_crafting_table",
+          "properties": {
+            "table_texture_type": "false"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 1
         }
       ]
+    },
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lotr:taurethrim_stone_crafting_table"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "lotr:taurethrim_crafting_table",
+          "properties": {
+            "table_texture_type": "true"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
     }
   ]
 }

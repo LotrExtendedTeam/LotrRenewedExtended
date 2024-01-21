@@ -16,6 +16,8 @@ import lotr.common.block.ExtendedGroundPathBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
+import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
+import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTROreBlock;
@@ -118,8 +120,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				genPillarBlockItem((LOTRPillarBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
-			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
-				genTopBottomTwoSidedNonRotatableBlockItem(block.getValue().get(), "block/"+block.getKey());
+			if(block.getValue().get() instanceof ExtendedTwoTypeDummyBlock) {
+				genTopBottomTwoSidedNonRotatableBlockItem((ExtendedTwoTypeDummyBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRTorchBlock) {
@@ -186,6 +188,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof LOTROreBlock) {
 				genCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
+				if(block.getValue().get() instanceof ExtendedTwoTypeCraftingTableBlock) {
+					genTwoTextureTableBlockItem((ExtendedTwoTypeCraftingTableBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				genTopBottomTwoSidedNonRotatableBlockItem(block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 		}
@@ -338,6 +348,27 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			return ConfiguredModel.allYRotations(grass, 0, false);
         });
 		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
+	}
+
+	private void genTwoTextureTableBlockItem(ExtendedTwoTypeCraftingTableBlock table, String name) {
+		registeredBlocks.add(table);
+		ResourceLocation down = lotrLoc(name+"_bottom");
+		ResourceLocation up = lotrLoc(name+"_top");
+		ResourceLocation north = lotrLoc(name+"_side_1");
+		ResourceLocation south = lotrLoc(name+"_side_1");
+		ResourceLocation east = lotrLoc(name+"_side_2");
+		ResourceLocation west = lotrLoc(name+"_side_2");
+		ModelFile cubeModel = models().cube("lotr:"+table.getRegistryName().getPath(), down, up, north, south, east, west).texture("particle", north);
+		String name2 = table.getAltBlock().get().getRegistryName().getPath();
+		ModelFile cubeModel1 = models().getExistingFile(lotrLoc(name2));
+		getVariantBuilder(table)
+		.forAllStatesExcept(state -> {
+			Boolean type = state.getValue(ExtendedTwoTypeCraftingTableBlock.ALTERNATITE);
+            return ConfiguredModel.builder()
+                    .modelFile(type ? cubeModel1 : cubeModel)
+                    .build();
+        });
+		itemModels().getBuilder("lotr:"+table.getRegistryName().getPath()).parent(cubeModel);
 	}
 
 	private void genHangingLanternBlockItem(NonWaterloggableLanternBlock lantern, String name) {

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "table_texture_type=false": {
       "model": "lotr:block/taurethrim_crafting_table"
+    },
+    "table_texture_type=true": {
+      "model": "lotr:block/taurethrim_stone_crafting_table"
     }
   }
 }
