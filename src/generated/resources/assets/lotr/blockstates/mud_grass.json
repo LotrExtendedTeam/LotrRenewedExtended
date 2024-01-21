@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "lotr:block/mud_grass"
+      },
+      {
+        "model": "lotr:block/mud_grass",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/mud_grass",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/mud_grass",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "lotr:block/mud_grass"
+    }
+  }
+}

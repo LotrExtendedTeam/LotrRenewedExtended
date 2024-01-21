@@ -5,13 +5,61 @@
         "model": "lotr:block/white_packed_fur_1"
       },
       {
+        "model": "lotr:block/white_packed_fur_1",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/white_packed_fur_1",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/white_packed_fur_1",
+        "y": 270
+      },
+      {
         "model": "lotr:block/white_packed_fur_2"
+      },
+      {
+        "model": "lotr:block/white_packed_fur_2",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/white_packed_fur_2",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/white_packed_fur_2",
+        "y": 270
       },
       {
         "model": "lotr:block/white_packed_fur_3"
       },
       {
+        "model": "lotr:block/white_packed_fur_3",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/white_packed_fur_3",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/white_packed_fur_3",
+        "y": 270
+      },
+      {
         "model": "lotr:block/white_packed_fur_4"
+      },
+      {
+        "model": "lotr:block/white_packed_fur_4",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/white_packed_fur_4",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/white_packed_fur_4",
+        "y": 270
       }
     ]
   }

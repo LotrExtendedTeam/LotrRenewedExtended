@@ -65,6 +65,19 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
 
+	public static RegistryObject<Item> MUD;
+	public static RegistryObject<Item> MUD_SLAB;
+	public static RegistryObject<Item> MUD_STAIRS;
+	public static RegistryObject<Item> MUD_PATH;
+	public static RegistryObject<Item> MUD_PATH_SLAB;
+	public static RegistryObject<Item> MUD_PATH_STAIRS;
+	public static RegistryObject<Item> MUD_GRASS;
+	public static RegistryObject<Item> MUD_FARMLAND;
+	public static RegistryObject<Item> MUD_BRICK;
+	public static RegistryObject<Item> MUD_BRICK_SLAB;
+	public static RegistryObject<Item> MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> MUD_BRICK_WALL;
+
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;
 	public static RegistryObject<Item> TAURETHRIM_PICKAXE;

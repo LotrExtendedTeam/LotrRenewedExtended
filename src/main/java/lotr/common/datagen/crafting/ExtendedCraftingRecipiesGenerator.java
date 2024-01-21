@@ -434,6 +434,19 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.MOSSY_DRYSTONE_SLAB, 
 				ExtendedBlocks.MOSSY_DRYSTONE_WALL, 
 				()->ExtendedBlocks.MOSSY_DRYSTONE.get().asItem(), null);
+		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_SLAB.get(), 
+				()->ExtendedBlocks.MUD.get().asItem(), null);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.MUD_STAIRS.get(), 
+				()->ExtendedBlocks.MUD.get().asItem(), null);
+		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_PATH_SLAB.get(), 
+				()->ExtendedBlocks.MUD_PATH.get().asItem(), null);
+		makeStairRecipe(consumer, ()->ExtendedBlocks.MUD_PATH_STAIRS.get(), 
+				()->ExtendedBlocks.MUD_PATH.get().asItem(), null);
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.MUD_BRICK, 
+				ExtendedBlocks.MUD_BRICK_STAIRS, 
+				ExtendedBlocks.MUD_BRICK_SLAB, 
+				ExtendedBlocks.MUD_BRICK_WALL, 
+				()->ExtendedBlocks.MUD.get().asItem(), null);
 	}
 
 	private void addOverrides() {
@@ -493,6 +506,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_MAN.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_ORC.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_DWARF.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.MUD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.MUD_FARMLAND.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.MUD_PATH.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.MUD_GRASS.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {

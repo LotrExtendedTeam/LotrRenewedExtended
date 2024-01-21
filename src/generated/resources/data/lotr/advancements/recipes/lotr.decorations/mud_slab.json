@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mud_slab"
+    ]
+  },
+  "criteria": {
+    "has_mud_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mud_slab"
+          }
+        ]
+      }
+    },
+    "has_mud": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mud"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mud_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mud_slab",
+      "has_mud",
+      "has_the_recipe"
+    ]
+  ]
+}

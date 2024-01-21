@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotr:block/mud",
+    "bottom": "lotr:block/mud",
+    "top": "lotr:block/mud"
+  }
+}

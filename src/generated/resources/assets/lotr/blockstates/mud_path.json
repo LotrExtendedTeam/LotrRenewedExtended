@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotr:block/mud_path"
+      },
+      {
+        "model": "lotr:block/mud_path",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/mud_path",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/mud_path",
+        "y": 270
+      }
+    ]
+  }
+}

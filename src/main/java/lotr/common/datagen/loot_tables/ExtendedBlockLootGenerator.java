@@ -9,6 +9,10 @@ import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedGroundDirtBlock;
+import lotr.common.block.ExtendedGroundFarmlandBlock;
+import lotr.common.block.ExtendedGroundGrassBlock;
+import lotr.common.block.ExtendedGroundPathBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -97,6 +101,24 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
 				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
+				dropOther(block.getValue().get(), ((ExtendedGroundFarmlandBlock)block.getValue().get()).getBase().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
+				add(block.getValue().get(), (p_241170_0_) -> {
+			         return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundGrassBlock)block.getValue().get()).getBase().get());});
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
+				add(block.getValue().get(), (p_241170_0_) -> {
+			         return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get());});
 				continue;
 			}
 			add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {

@@ -15,12 +15,15 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedGroundDirtBlock extends Block implements IGrowable {
-	private final BlockState base;
-	public ExtendedGroundDirtBlock(MaterialColor color, SoundType sound, BlockState pathBlockState) {
+	private final RegistryObject<Block> path;
+	private final RegistryObject<Block> till;
+	public ExtendedGroundDirtBlock(MaterialColor color, SoundType sound, RegistryObject<Block> pathBlockState, RegistryObject<Block> tillBlockState) {
 		super(Properties.of(Material.DIRT, color).strength(0.5F).sound(sound).harvestTool(ToolType.SHOVEL));
-		this.base = pathBlockState;
+		this.path = pathBlockState;
+		this.till = tillBlockState;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -37,7 +40,8 @@ public class ExtendedGroundDirtBlock extends Block implements IGrowable {
 
 	@Override
 	public BlockState getToolModifiedState(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack stack, ToolType toolType) {
-		return (toolType == ToolType.SHOVEL && base!=null) ? base : super.getToolModifiedState(state, world, pos, player, stack, toolType);
+		return (toolType == ToolType.SHOVEL && path!=null) ? path.get().defaultBlockState() : 
+			(toolType == ToolType.HOE && till!=null) ? till.get().defaultBlockState() : super.getToolModifiedState(state, world, pos, player, stack, toolType);
 	}
 
 	@Override

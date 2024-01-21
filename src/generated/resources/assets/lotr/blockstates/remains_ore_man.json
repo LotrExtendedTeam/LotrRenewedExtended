@@ -5,10 +5,46 @@
         "model": "lotr:block/remains_ore_man_1"
       },
       {
+        "model": "lotr:block/remains_ore_man_1",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/remains_ore_man_1",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/remains_ore_man_1",
+        "y": 270
+      },
+      {
         "model": "lotr:block/remains_ore_man_2"
       },
       {
+        "model": "lotr:block/remains_ore_man_2",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/remains_ore_man_2",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/remains_ore_man_2",
+        "y": 270
+      },
+      {
         "model": "lotr:block/remains_ore_man_3"
+      },
+      {
+        "model": "lotr:block/remains_ore_man_3",
+        "y": 90
+      },
+      {
+        "model": "lotr:block/remains_ore_man_3",
+        "y": 180
+      },
+      {
+        "model": "lotr:block/remains_ore_man_3",
+        "y": 270
       }
     ]
   }

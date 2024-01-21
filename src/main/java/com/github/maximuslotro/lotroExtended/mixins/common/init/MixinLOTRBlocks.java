@@ -15,6 +15,10 @@ import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
+import lotr.common.block.ExtendedGroundDirtBlock;
+import lotr.common.block.ExtendedGroundFarmlandBlock;
+import lotr.common.block.ExtendedGroundGrassBlock;
+import lotr.common.block.ExtendedGroundPathBlock;
 import lotr.common.block.ExtendedMorgulLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
@@ -128,7 +132,21 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.REMAINS_ELF = registerB("remains_ore_elf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 		ExtendedBlocks.REMAINS_MAN = registerB("remains_ore_man", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 		ExtendedBlocks.REMAINS_DWARF = registerB("remains_ore_dwarf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
+
 		///////////////////////////////BRICKS
+		//Mud
+		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
+		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD));
+		ExtendedBlocks.MUD_STAIRS = registerB("mud_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MUD));
+		ExtendedBlocks.MUD_PATH = registerB("mud_path", () -> new ExtendedGroundPathBlock(MaterialColor.DIRT, SoundType.GRASS, ExtendedBlocks.MUD));
+		ExtendedBlocks.MUD_PATH_SLAB = registerB("mud_path_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD_PATH));
+		ExtendedBlocks.MUD_PATH_STAIRS = registerB("mud_path_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MUD_PATH));
+		ExtendedBlocks.MUD_GRASS = registerB("mud_grass", () -> new ExtendedGroundGrassBlock(MaterialColor.DIRT, SoundType.GRASS, ExtendedBlocks.MUD, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
+		ExtendedBlocks.MUD_FARMLAND = registerB("mud_farmland", () -> new ExtendedGroundFarmlandBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD));
+		ExtendedBlocks.MUD_BRICK = registerB("mud_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.MUD_BRICK_SLAB = registerB("mud_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD_BRICK));
+		ExtendedBlocks.MUD_BRICK_STAIRS = registerB("mud_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MUD_BRICK));
+		ExtendedBlocks.MUD_BRICK_WALL = registerB("mud_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MUD_BRICK));
 		//Taurethrim
 		ExtendedBlocks.TAURETHRIM_BRICK = registerB("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
 		ExtendedBlocks.TAURETHRIM_BRICK_SLAB = registerB("taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.TAURETHRIM_BRICK));

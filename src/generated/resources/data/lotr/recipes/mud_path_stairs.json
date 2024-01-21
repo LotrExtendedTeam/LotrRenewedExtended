@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mud_path"
+    }
+  },
+  "result": {
+    "item": "lotr:mud_path_stairs",
+    "count": 4
+  }
+}

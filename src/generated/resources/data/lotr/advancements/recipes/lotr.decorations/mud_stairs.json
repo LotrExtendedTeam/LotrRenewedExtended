@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mud_stairs"
+    ]
+  },
+  "criteria": {
+    "has_mud_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mud_stairs"
+          }
+        ]
+      }
+    },
+    "has_mud": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mud"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mud_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mud_stairs",
+      "has_mud",
+      "has_the_recipe"
+    ]
+  ]
+}

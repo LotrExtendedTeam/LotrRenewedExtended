@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/grass_path",
+  "textures": {
+    "particle": "lotr:block/mud",
+    "bottom": "lotr:block/mud",
+    "top": "lotr:block/mud_path_top",
+    "side": "lotr:block/mud_path_side"
+  }
+}

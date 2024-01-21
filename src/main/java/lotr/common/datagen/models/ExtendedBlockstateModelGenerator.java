@@ -9,6 +9,10 @@ import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedGroundDirtBlock;
+import lotr.common.block.ExtendedGroundFarmlandBlock;
+import lotr.common.block.ExtendedGroundGrassBlock;
+import lotr.common.block.ExtendedGroundPathBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
@@ -75,6 +79,22 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
+				genRandomCubeBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
+				genFarmlandBlockItem((ExtendedGroundFarmlandBlock) block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
+				genGrassBlockItem((ExtendedGroundGrassBlock) block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
+				genGrassPathBlockItem((ExtendedGroundPathBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {
@@ -221,7 +241,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
                     .rotationY(axis == Axis.X ? 90 : 0)
                     .build();
-        }, StairsBlock.WATERLOGGED);
+        });
 		itemModels().getBuilder("lotr:"+pillarB.getRegistryName().getPath()).parent(pillarBlock);
 	}
 
@@ -242,8 +262,82 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .rotationY(axis == Axis.X ? 90 : 0)
                     .uvLock(uvlock)
                     .build();
-        }, StairsBlock.WATERLOGGED);
+        }, SlabBlock.WATERLOGGED);
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
+	}
+
+	private void genFarmlandBlockItem(ExtendedGroundFarmlandBlock extendedGroundFarmlandBlock, String name) {
+		registeredBlocks.add(extendedGroundFarmlandBlock);
+		ResourceLocation farmland = lotrLoc(name);
+		ResourceLocation farmlandMoist = lotrLoc(name+"_moist");
+		ResourceLocation dirt = lotrLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
+		ResourceLocation parent = mcLoc("block/template_farmland");
+		ModelFile dry = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
+                .texture("dirt", dirt)
+                .texture("top", farmland);
+		ModelFile wet = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_moist", parent)
+                .texture("dirt", dirt)
+                .texture("top", dirt);
+		getVariantBuilder(extendedGroundFarmlandBlock)
+		.forAllStatesExcept(state -> {
+			Integer dripping = state.getValue(ExtendedGroundFarmlandBlock.MOISTURE);
+            return ConfiguredModel.builder()
+                    .modelFile(dripping <7 ? dry : wet)
+                    .build();
+        });
+		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(dry);
+	}
+
+	private void genGrassBlockItem(ExtendedGroundGrassBlock extendedGroundFarmlandBlock, String name) {
+		registeredBlocks.add(extendedGroundFarmlandBlock);
+		ResourceLocation top = lotrLoc(name+"_top");
+		ResourceLocation side = lotrLoc(name+"_side");
+		ResourceLocation overlay = lotrLoc(name+"_side_overlay");
+		ResourceLocation dirt = lotrLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
+		ResourceLocation parent = mcLoc("block/grass_block");
+		ModelFile grass = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
+                .texture("particle", dirt)
+                .texture("bottom", dirt)
+                .texture("top", top)
+                .texture("side", side)
+                .texture("overlay", overlay);
+		ResourceLocation top1 = lotrLoc(name+"_snow_top");
+		ResourceLocation side1 = lotrLoc(name+"_snow_side");
+		ResourceLocation parent1 = mcLoc("block/cube_bottom_top");
+		ModelFile snow = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent1)
+                .texture("particle", dirt)
+                .texture("bottom", dirt)
+                .texture("top", top1)
+                .texture("side", side1);
+		getVariantBuilder(extendedGroundFarmlandBlock)
+		.forAllStatesExcept(state -> {
+			Boolean snowTrue = state.getValue(ExtendedGroundGrassBlock.SNOWY);
+			if(snowTrue) {
+				return ConfiguredModel.builder().modelFile(snow).build();
+			}
+			else {
+				return ConfiguredModel.allYRotations(grass, 0, false);
+			}
+        });
+		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
+	}
+
+	private void genGrassPathBlockItem(ExtendedGroundPathBlock extendedGroundFarmlandBlock, String name) {
+		registeredBlocks.add(extendedGroundFarmlandBlock);
+		ResourceLocation top = lotrLoc(name+"_top");
+		ResourceLocation side = lotrLoc(name+"_side");
+		ResourceLocation dirt = lotrLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
+		ResourceLocation parent = mcLoc("block/grass_path");
+		ModelFile grass = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
+                .texture("particle", dirt)
+                .texture("bottom", dirt)
+                .texture("top", top)
+                .texture("side", side);
+		getVariantBuilder(extendedGroundFarmlandBlock)
+		.forAllStatesExcept(state -> {
+			return ConfiguredModel.allYRotations(grass, 0, false);
+        });
+		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
 	}
 
 	private void genHangingLanternBlockItem(NonWaterloggableLanternBlock lantern, String name) {
@@ -266,7 +360,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
-        }, StairsBlock.WATERLOGGED);
+        });
 	}
 
 	private void genCakeBlock(CakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {
@@ -283,7 +377,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					.texture("top", textureTop).texture("side", textureSide)
 					.texture("inside", textureInside))
 					.build();
-		}, StairsBlock.WATERLOGGED);
+		});
 	}
 
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
@@ -355,23 +449,33 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
+	private void genRandomCubeBlockItem(Block block, ResourceLocation allSides) {
+		registeredBlocks.add(block);
+		ModelFile cubeModel = models().cubeAll("lotr:"+block.getRegistryName().getPath(), allSides);
+		getVariantBuilder(block)
+		.forAllStatesExcept(state -> {
+			return ConfiguredModel.allRotations(cubeModel, false);
+        });
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
 	private void numberTexturedRandomBlockItem(Block block, String location, int numVariants) {
 		registeredBlocks.add(block);
 		if(numVariants==4) {
-			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
-			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")));
-			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_3", new ResourceLocation("lotr",location+"_3")));
-			ConfiguredModel variant4 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_4", new ResourceLocation("lotr",location+"_4")));
-			getVariantBuilder(block).partialState().setModels(variant1, variant2, variant3, variant4);
-			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(variant1.model);
+			ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")), 0, false);
+			ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")), 0, false);
+			ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_3", new ResourceLocation("lotr",location+"_3")), 0, false);
+			ConfiguredModel[] variant4 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_4", new ResourceLocation("lotr",location+"_4")), 0, false);
+			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3).addModels(variant4);
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
 			return;
 		}
 		if(numVariants==3) {
-			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
-			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")));
-			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_3", new ResourceLocation("lotr",location+"_3")));
-			getVariantBuilder(block).partialState().setModels(variant1, variant2, variant3);
-			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(variant1.model);
+			ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")), 0, false);
+			ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_2", new ResourceLocation("lotr",location+"_2")), 0, false);
+			ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_3", new ResourceLocation("lotr",location+"_3")), 0, false);
+			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3);
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
 			return;
 		}
 	}

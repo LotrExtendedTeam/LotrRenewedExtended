@@ -42,6 +42,19 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GUNDABAD_CRAFTING_TABLE;
 	public static RegistryObject<Block> HALF_TROLL_CRAFTING_TABLE;
 
+	public static RegistryObject<Block> MUD;
+	public static RegistryObject<Block> MUD_SLAB;
+	public static RegistryObject<Block> MUD_STAIRS;
+	public static RegistryObject<Block> MUD_PATH;
+	public static RegistryObject<Block> MUD_PATH_SLAB;
+	public static RegistryObject<Block> MUD_PATH_STAIRS;
+	public static RegistryObject<Block> MUD_GRASS;
+	public static RegistryObject<Block> MUD_FARMLAND;
+	public static RegistryObject<Block> MUD_BRICK;
+	public static RegistryObject<Block> MUD_BRICK_SLAB;
+	public static RegistryObject<Block> MUD_BRICK_STAIRS;
+	public static RegistryObject<Block> MUD_BRICK_WALL;
+
 	public static RegistryObject<Block> TAURETHRIM_BRICK;
 	public static RegistryObject<Block> TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Block> TAURETHRIM_BRICK_STAIRS;
