@@ -22,7 +22,7 @@
       "model": "lotr:block/mud_farmland"
     },
     "moisture=7": {
-      "model": "lotr:block/mud_farmland_hanging"
+      "model": "lotr:block/mud_farmland_moist"
     }
   }
 }

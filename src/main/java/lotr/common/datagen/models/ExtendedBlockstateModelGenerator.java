@@ -277,7 +277,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("top", farmland);
 		ModelFile wet = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_moist", parent)
                 .texture("dirt", dirt)
-                .texture("top", dirt);
+                .texture("top", farmlandMoist);
 		getVariantBuilder(extendedGroundFarmlandBlock)
 		.forAllStatesExcept(state -> {
 			Integer dripping = state.getValue(ExtendedGroundFarmlandBlock.MOISTURE);
