@@ -282,7 +282,7 @@ public class MixinLOTRBlocks {
 
 		//CRAFTING TABLES
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE));
-		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("taurethrim_stone_crafting_table", () -> new ExtendedTwoTypeDummyBlock(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE));
+		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("stone_taurethrim_crafting_table", () -> new ExtendedTwoTypeDummyBlock(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = registerB("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
 		//TODO add block props

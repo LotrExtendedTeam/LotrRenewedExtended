@@ -30,7 +30,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lotr:taurethrim_stone_crafting_table"
+          "name": "lotr:stone_taurethrim_crafting_table"
         }
       ],
       "conditions": [
