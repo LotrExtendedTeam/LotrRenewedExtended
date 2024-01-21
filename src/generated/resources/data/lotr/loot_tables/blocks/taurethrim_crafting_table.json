@@ -14,7 +14,7 @@
           "condition": "minecraft:block_state_property",
           "block": "lotr:taurethrim_crafting_table",
           "properties": {
-            "table_texture_type": "false"
+            "table_alternative_texture": "false"
           }
         }
       ],
@@ -38,7 +38,7 @@
           "condition": "minecraft:block_state_property",
           "block": "lotr:taurethrim_crafting_table",
           "properties": {
-            "table_texture_type": "true"
+            "table_alternative_texture": "true"
           }
         }
       ],

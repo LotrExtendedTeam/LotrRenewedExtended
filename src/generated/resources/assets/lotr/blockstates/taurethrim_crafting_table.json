@@ -1,9 +1,9 @@
 {
   "variants": {
-    "table_texture_type=false": {
+    "table_alternative_texture=false": {
       "model": "lotr:block/taurethrim_crafting_table"
     },
-    "table_texture_type=true": {
+    "table_alternative_texture=true": {
       "model": "lotr:block/taurethrim_stone_crafting_table"
     }
   }

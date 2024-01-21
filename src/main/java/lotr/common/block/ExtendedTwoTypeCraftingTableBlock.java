@@ -12,7 +12,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedTwoTypeCraftingTableBlock extends FactionCraftingTableBlock {
 	//True if table is alt type
-	public static final BooleanProperty ALTERNATITE = BooleanProperty.create("table_texture_type");
+	public static final BooleanProperty ALTERNATITE = BooleanProperty.create("table_alternative_texture");
 	private final RegistryObject<Block> altBlock;
 	public ExtendedTwoTypeCraftingTableBlock(Supplier<? extends Block> block, FactionPointer tableFac, FactionTableType factionRecipeType, String tableScreenName, RegistryObject<Block> alt) {
 		super(block, tableFac, factionRecipeType, tableScreenName);
