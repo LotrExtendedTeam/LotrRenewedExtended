@@ -302,19 +302,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(extendedGroundFarmlandBlock);
 		ResourceLocation top = lotrLoc(name+"_top");
 		ResourceLocation side = lotrLoc(name+"_side");
-		ResourceLocation overlay = lotrLoc(name+"_side_overlay");
 		ResourceLocation dirt = lotrLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
-		ResourceLocation parent = mcLoc("block/grass_block");
+		ResourceLocation parent = mcLoc("block/cube_bottom_top");
 		ModelFile grass = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
                 .texture("particle", dirt)
                 .texture("bottom", dirt)
                 .texture("top", top)
-                .texture("side", side)
-                .texture("overlay", overlay);
+                .texture("side", side);
 		ResourceLocation top1 = lotrLoc(name+"_snow_top");
 		ResourceLocation side1 = lotrLoc(name+"_snow_side");
-		ResourceLocation parent1 = mcLoc("block/cube_bottom_top");
-		ModelFile snow = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent1)
+		ModelFile snow = models().withExistingParent("lotr:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_snow", parent)
                 .texture("particle", dirt)
                 .texture("bottom", dirt)
                 .texture("top", top1)
