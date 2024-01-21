@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cheese_curds"
+    ]
+  },
+  "criteria": {
+    "has_milk_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:milk_bucket"
+          }
+        ]
+      }
+    },
+    "has_cheese_curds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cheese_curds"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cheese_curds"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_milk_bucket",
+      "has_cheese_curds",
+      "has_the_recipe"
+    ]
+  ]
+}

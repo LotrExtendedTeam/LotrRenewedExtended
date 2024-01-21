@@ -15,6 +15,7 @@ import lotr.common.init.LOTRItems;
 import lotr.common.recipe.LOTRRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -22,6 +23,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
@@ -321,6 +323,22 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK_WALL, 
 				()->ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 		//ITEMS
+		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
+		.pattern("X#S")
+		.define('#', Ingredient.of(ExtendedItems.CHEESE_CURDS.get()))
+		.define('X', Ingredient.of(LOTRItems.SALT.get()))
+		.define('S', Ingredient.of(Tags.Items.MUSHROOMS))
+		.unlockedBy("has_"+ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_WHEEL.get()))
+		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(Items.MILK_BUCKET), 
+				ExtendedItems.CHEESE_CURDS.get(), 0.15F, 200)
+		.unlockedBy("has_"+Items.MILK_BUCKET.getRegistryName().getPath(), has(Items.MILK_BUCKET))
+		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath()));
+
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.SILVER_COIN_ONE.get(), 4)
 		.pattern("##")

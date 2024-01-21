@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:milk_bucket"
+  },
+  "result": "lotr:cheese_curds",
+  "experience": 0.15,
+  "cookingtime": 200
+}
