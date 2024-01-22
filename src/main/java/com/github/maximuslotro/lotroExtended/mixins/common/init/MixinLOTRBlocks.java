@@ -298,6 +298,6 @@ public class MixinLOTRBlocks {
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
-		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F));
+		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE));
 	}
 }

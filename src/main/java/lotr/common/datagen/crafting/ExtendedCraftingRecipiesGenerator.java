@@ -329,13 +329,24 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//ITEMS
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
-		.pattern("X#S")
+		.pattern("###")
+		.pattern("XSX")
+		.pattern("###")
 		.define('#', Ingredient.of(ExtendedItems.CHEESE_CURDS.get()))
 		.define('X', Ingredient.of(LOTRItems.SALT.get()))
 		.define('S', Ingredient.of(Tags.Items.MUSHROOMS))
 		.unlockedBy("has_"+ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_WHEEL.get()))
 		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
 		.save(consumer, lotrLoc(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath()));
+		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
+		.pattern("XXX")
+		.pattern("#X#")
+		.pattern("XXX")
+		.define('X', Ingredient.of(ExtendedItems.CHEESE_SLICE.get()))
+		.define('#', Ingredient.of(ExtendedItems.CHEESE_CURDS.get()))
+		.unlockedBy("has_"+ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_WHEEL.get()))
+		.unlockedBy("has_"+ExtendedItems.CHEESE_SLICE.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_SLICE.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath()+"_from_slices"));
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
 		CookingRecipeBuilder.smelting(Ingredient.of(Items.MILK_BUCKET), 
 				ExtendedItems.CHEESE_CURDS.get(), 0.15F, 200)
@@ -532,6 +543,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.MUD_FARMLAND.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.MUD_PATH.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.MUD_GRASS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.CHEESE_SLICE.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {

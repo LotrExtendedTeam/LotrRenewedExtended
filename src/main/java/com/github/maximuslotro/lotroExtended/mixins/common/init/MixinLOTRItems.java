@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotroExtended.mixins.common.init;
 
 import java.util.function.Supplier;
 
+import lotr.common.block.ExtendedDaggerItem;
 import lotr.common.init.*;
 import lotr.common.item.*;
 import lotr.common.item.ExtendedSilverCoin.CoinType;
@@ -311,6 +312,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BOTTLE_OF_POISON = regItemB("bottle_of_poison", () -> new ExtendedPoisonBottleItem((new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS))));
 		ExtendedItems.CHEESE_CURDS = regItemB("cheese_curds", () -> new Item(new Properties().stacksTo(32).tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS)));
 		ExtendedItems.CHEESE_WHEEL  = regCakeBlockItemD(ExtendedBlocks.CHEESE_WHEEL, LOTRItemGroups.FOOD);
+		ExtendedItems.CHEESE_SLICE = regItemB("cheese_slice", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_SLICE)));
 		//#######################################################################EQUIPMENT##################################################
 		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
 
@@ -341,7 +343,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_BOOTS = regItemB("angmar_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.FEET));
 		ExtendedItems.ANGMAR_SWORD = regItemB("angmar_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_SPEAR = regItemB("angmar_spear",() -> new SpearItem(LOTRMaterial.valueOf("ANGMAR")));
-		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new DaggerItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("ANGMAR")));
 
 		//Dol Guldur Equipment
 		ExtendedItems.DOL_GULDUR_HELMET = regItemB("dol_guldur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.HEAD));
@@ -350,7 +352,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_BOOTS = regItemB("dol_guldur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.FEET));
 		ExtendedItems.DOL_GULDUR_SWORD = regItemB("dol_guldur_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_SPEAR = regItemB("dol_guldur_spear",() -> new SpearItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-		ExtendedItems.DOL_GULDUR_DAGGER = regItemB("dol_guldur_dagger",() -> new DaggerItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_DAGGER = regItemB("dol_guldur_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.valueOf("COSMETIC"), EquipmentSlotType.HEAD, "leather_hat"));

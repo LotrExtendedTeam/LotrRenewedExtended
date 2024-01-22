@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "#X#",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:cheese_slice"
+    },
+    "#": {
+      "item": "lotr:cheese_curds"
+    }
+  },
+  "result": {
+    "item": "lotr:cheese_wheel"
+  }
+}

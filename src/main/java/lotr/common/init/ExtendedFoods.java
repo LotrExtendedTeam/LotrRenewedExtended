@@ -13,4 +13,5 @@ public class ExtendedFoods {
     public static final Food WILDBERRY = new Builder().nutrition(4).saturationMod(0.4F).effect(() -> new EffectInstance(Effects.POISON, 40, 1), 0.3F).build();
     
     public static final Food CHEESE_CURDS = new Builder().nutrition(2).saturationMod(0.4F).build();
+    public static final Food CHEESE_SLICE = new Builder().nutrition(4).saturationMod(0.8F).build();
 }

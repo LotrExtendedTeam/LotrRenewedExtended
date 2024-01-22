@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotroExtended;
 import com.github.maximuslotro.lotroExtended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
+import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +27,7 @@ public class LotrExtendedMod {
 		MinecraftForge.EVENT_BUS.register(ForgeInventoryEvents.class);
 
 		ExtendedLog.make();
+		ExtendedStats.init();
 		ExtendedLootModifiers.register();
 	}
 

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cheese_wheel_from_slices"
+    ]
+  },
+  "criteria": {
+    "has_cheese_wheel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cheese_wheel"
+          }
+        ]
+      }
+    },
+    "has_cheese_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cheese_slice"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cheese_wheel_from_slices"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cheese_wheel",
+      "has_cheese_slice",
+      "has_the_recipe"
+    ]
+  ]
+}

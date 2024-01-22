@@ -132,6 +132,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WILDBERRY;
 	public static RegistryObject<Item> CHEESE_WHEEL;
 	public static RegistryObject<Item> CHEESE_CURDS;
+	public static RegistryObject<Item> CHEESE_SLICE;
 	
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;
