@@ -64,12 +64,14 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 		p_199610_1_.setBlockAndUpdate(p_199610_2_, pushEntitiesUp(p_199610_0_, toChangeTo, p_199610_1_, p_199610_2_));
 	}
 
+	// Copy private method from FarmlandBlock
 	private boolean isUnderCrops(IBlockReader p_176529_0_, BlockPos p_176529_1_) {
 		BlockState plant = p_176529_0_.getBlockState(p_176529_1_.above());
 		BlockState state = p_176529_0_.getBlockState(p_176529_1_);
 		return plant.getBlock() instanceof net.minecraftforge.common.IPlantable && state.canSustainPlant(p_176529_0_, p_176529_1_, Direction.UP, (net.minecraftforge.common.IPlantable) plant.getBlock());
 	}
 
+	// Copy private method from FarmlandBlock
 	private static boolean isNearWater(IWorldReader p_176530_0_, BlockPos p_176530_1_) {
 		for (BlockPos blockpos : BlockPos.betweenClosed(p_176530_1_.offset(-4, 0, -4), p_176530_1_.offset(4, 1, 4))) {
 			if (p_176530_0_.getFluidState(blockpos).is(FluidTags.WATER)) {
