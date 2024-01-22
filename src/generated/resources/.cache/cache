@@ -566,6 +566,9 @@ bfed8c0053d9da40721b2162040baa1c9315afb8 assets/lotr/models/item/angmar_boots.js
 aa904b18d7b201abe12be10d7ba0c6647207e936 assets/lotr/models/item/angmar_leggings.json
 b1d8cf45133a1fbef704dcc1ab36c094d27c7832 assets/lotr/models/item/angmar_pickaxe.json
 c461ae7ec012b416984d998b9e1f7f2762e8492f assets/lotr/models/item/angmar_shovel.json
+e2c77ba60ad8f718f4709a4abafca41c3f683cbc assets/lotr/models/item/angmar_spear.json
+055758d0cb456c919347f61a46212ebe7f0d0ac5 assets/lotr/models/item/angmar_spear_handheld.json
+6a516ffd97745852998e43ab37199358c5aa31c8 assets/lotr/models/item/angmar_spear_handheld_pulling.json
 e9080679f7b61275ddca430f7eb1ec013db4344f assets/lotr/models/item/angmar_sword.json
 e390e60d7ecfb0caf61602a46791779eaf235914 assets/lotr/models/item/angmar_sword_handheld.json
 2b13ebdcab600124aeff4f2e0687fad2b51b16a9 assets/lotr/models/item/black_fur.json
@@ -622,6 +625,9 @@ efd2ca3462870694dafbe02d857093adf999bab1 assets/lotr/models/item/dol_guldur_pick
 8f54658d8cb395d52d2b9cd1cf551f976875a847 assets/lotr/models/item/dol_guldur_pillar.json
 7731066c7f01c1976a8447342206ea0f79507435 assets/lotr/models/item/dol_guldur_pillar_slab.json
 b090f11bdebb32718520fc05ace12eb5e27750c6 assets/lotr/models/item/dol_guldur_shovel.json
+23f92bb425f8c474d439f9d39f6d0ca49b7baf8e assets/lotr/models/item/dol_guldur_spear.json
+4a45ca1b8366a9ed18e38f606feb9f74b4b803b2 assets/lotr/models/item/dol_guldur_spear_handheld.json
+a0caa272a7626615f61c69d67dad94a0b28ff23a assets/lotr/models/item/dol_guldur_spear_handheld_pulling.json
 34da6c2fbad5d88dc2b058a84ded9ed859d46edc assets/lotr/models/item/dol_guldur_sword.json
 a98533f0b9f19c0282c641a87ed8bfc85f5049f5 assets/lotr/models/item/dol_guldur_sword_handheld.json
 134022b70b6299ccf9e8a5198c77caec29c26da4 assets/lotr/models/item/drystone_slab.json
@@ -792,7 +798,7 @@ aa47c410cdef2d3782b0aa280afe519a88e267d7 assets/lotr/models/item/topaz_block.jso
 b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fur_wall.json
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
-469003ddd65fea0b3416a1f4c0723f30163b57f0 assets/lotrextended/lang/en_us.json
+8227b0e5187146fce4fb47d20562761ed0610fd1 assets/lotrextended/lang/en_us.json
 860bec07fc5be2094bf83971044b84b578357d05 data/forge/loot_modifiers/global_loot_modifiers.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
