@@ -20,7 +20,9 @@ public class MixinBlock {
 	      BlockState plant = plantable.getPlant(world, pos.relative(facing));
 	      net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.relative(facing));
 	      if (net.minecraftforge.common.PlantType.CROP.equals(type)) {
-	    	  ci.setReturnValue(state.getBlock() instanceof ExtendedGroundFarmlandBlock);
+	    	  if (state.getBlock() instanceof ExtendedGroundFarmlandBlock) {
+		    	  ci.setReturnValue(true);
+		      }
 	      }
 	  }
 }
