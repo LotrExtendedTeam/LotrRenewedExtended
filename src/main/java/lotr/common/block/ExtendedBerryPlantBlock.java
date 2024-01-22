@@ -39,7 +39,7 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
     			.isSuffocating(LOTRBlocks::posPredicateFalse)
     			.isViewBlocking(LOTRBlocks::posPredicateFalse));
         this.berryItem = berryItem;
-        registerDefaultState(stateDefinition.any().setValue(AGE, 3));
+        registerDefaultState(stateDefinition.any().setValue(AGE, 0));
     }
 
     @Override
