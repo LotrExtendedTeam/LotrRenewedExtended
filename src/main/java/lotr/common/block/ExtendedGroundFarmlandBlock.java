@@ -58,7 +58,6 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 
 	@Override
 	   public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
-	      BlockState plant = plantable.getPlant(world, pos.relative(facing));
 	      net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.relative(facing));
 	      if (plantable instanceof BushBlock)
 	         return true;
