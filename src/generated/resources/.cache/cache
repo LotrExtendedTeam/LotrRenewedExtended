@@ -561,6 +561,8 @@ c3c9d193d3e629417ef6e7778492b6c142281070 assets/lotr/models/item/amethyst_block.
 c5a217c2bdc53f4e033abb43086a5207ac5665d7 assets/lotr/models/item/angmar_axe.json
 bfed8c0053d9da40721b2162040baa1c9315afb8 assets/lotr/models/item/angmar_boots.json
 709fc3bc6c3d875ef4aebbd93a3338753dcdd5d3 assets/lotr/models/item/angmar_chestplate.json
+0204f7dbf085c47146b3bc446df4938acb9cce13 assets/lotr/models/item/angmar_dagger.json
+38c50fc224ff30338747de1692dad088c095416f assets/lotr/models/item/angmar_dagger_sneaking.json
 8bc7e50796b724f6287e569510e1cc07889cf57a assets/lotr/models/item/angmar_helmet.json
 2739a3e4d4e3cb633a5c2d5408a0a71c57335e18 assets/lotr/models/item/angmar_hoe.json
 aa904b18d7b201abe12be10d7ba0c6647207e936 assets/lotr/models/item/angmar_leggings.json
@@ -618,6 +620,8 @@ fd008d2bbd0aca8596f82fb0a8332157c66914ea assets/lotr/models/item/dol_guldur_axe.
 bcdf3dc4ff7f7b750e3e4c9e302e797524d9aec5 assets/lotr/models/item/dol_guldur_brick_wall.json
 f9d473419dc267d06e1383c94c746b6fa4c67692 assets/lotr/models/item/dol_guldur_chestplate.json
 fb8c65488c29de43c51572bb4fecd46c2d73a593 assets/lotr/models/item/dol_guldur_crafting_table.json
+3a13dfe8386f7ae3d6649aafaf8647b3caf269cd assets/lotr/models/item/dol_guldur_dagger.json
+efdf1c5df2f1b185076b75ece53d2fd2dd73ed9c assets/lotr/models/item/dol_guldur_dagger_sneaking.json
 517d942e817b7e4bcedebc9aa98cb24381ff5e41 assets/lotr/models/item/dol_guldur_helmet.json
 67628153a8cb9331d74d7652627cd5c8749f1249 assets/lotr/models/item/dol_guldur_hoe.json
 e01df99a8299cd696fef6cd14f422f8b739f0799 assets/lotr/models/item/dol_guldur_leggings.json
@@ -798,7 +802,7 @@ aa47c410cdef2d3782b0aa280afe519a88e267d7 assets/lotr/models/item/topaz_block.jso
 b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fur_wall.json
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
-6f39085383c277adbfd5fd870d51d13f742da04f assets/lotrextended/lang/en_us.json
+6eb2a3effaf83496f9d83d598a5c86d3f3393347 assets/lotrextended/lang/en_us.json
 860bec07fc5be2094bf83971044b84b578357d05 data/forge/loot_modifiers/global_loot_modifiers.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
@@ -1019,12 +1023,14 @@ f5d3ac7ee64ec23ad07a4fdd09b571552b1ab6b8 data/lotr/advancements/recipes/lotr.blo
 63a7718d0372370db233de6be242c0c40663b668 data/lotr/advancements/recipes/lotr.blocks/topaz_block_from_topaz.json
 af65508ffa81870a2c2f541fdbe10ebbdbc053fa data/lotr/advancements/recipes/lotr.combat/angmar_boots.json
 72934c82f81a32229be40f2c39fcc3d8c8e1a78f data/lotr/advancements/recipes/lotr.combat/angmar_chestplate.json
+faa785361eb264fb416b5dd61596566a204f3f3e data/lotr/advancements/recipes/lotr.combat/angmar_dagger.json
 1822623ab53a609c6eb7f2a70f40db2ed7eb25b4 data/lotr/advancements/recipes/lotr.combat/angmar_helmet.json
 8802a4adef9a3fe693ced385a73b131724e3c10b data/lotr/advancements/recipes/lotr.combat/angmar_leggings.json
 c7647b4fc9bd1ecad1ceea4146b5f2c18f7db8e5 data/lotr/advancements/recipes/lotr.combat/angmar_spear.json
 5b7ef204ba44f6f1ad4b1e23eaed2609a447bb84 data/lotr/advancements/recipes/lotr.combat/angmar_sword.json
 a02cd500db0be603c07c28fedee348a6e0b82d79 data/lotr/advancements/recipes/lotr.combat/dol_guldur_boots.json
 742767d519ead20faecab5c204c19bc552455705 data/lotr/advancements/recipes/lotr.combat/dol_guldur_chestplate.json
+d8af0cce7830d1dd21e5febdc2a3bf9af0c193bb data/lotr/advancements/recipes/lotr.combat/dol_guldur_dagger.json
 38b5f4e24b3caf429459c00d9bbee86f5191bc04 data/lotr/advancements/recipes/lotr.combat/dol_guldur_helmet.json
 0e4dcf4eb2bd97d50d916074b7c4bee3ea8c7c1e data/lotr/advancements/recipes/lotr.combat/dol_guldur_leggings.json
 06bacba5dc15e59fdf2b651ff5f161ede646ff83 data/lotr/advancements/recipes/lotr.combat/dol_guldur_spear.json
@@ -1358,6 +1364,7 @@ e61b02ae282f8613c8b016a9e7c60a448fd619a2 data/lotr/recipes/amethyst_from_amethys
 4f26795146f7d9c00e26c39d596063192ebcc9fc data/lotr/recipes/angmar_axe.json
 68ba86eb825b64e64457e264f3e4dc4d5f2b8e0a data/lotr/recipes/angmar_boots.json
 cf9c8115a5ff4849ffc3596f9fff38411d9d6279 data/lotr/recipes/angmar_chestplate.json
+fbde084e07355668acd2eaf983d1c1054714f903 data/lotr/recipes/angmar_dagger.json
 b22e0dd6a6abe35af2404999384852ed40ff9447 data/lotr/recipes/angmar_helmet.json
 6c2c9836ac7f2df2fe5231caad7c96d9efd23af2 data/lotr/recipes/angmar_hoe.json
 bab473cc868cfaec28d7b5f19abe725850b8b87a data/lotr/recipes/angmar_leggings.json
@@ -1407,6 +1414,7 @@ dc71ef31caf427544f9a016d584d6fc4c745bcee data/lotr/recipes/dol_guldur_brick.json
 842b562e301e8a018ade576fe81120bc4126c6c8 data/lotr/recipes/dol_guldur_brick_wall.json
 7b6550bea5c687597cc9012264711e82ab37327f data/lotr/recipes/dol_guldur_chestplate.json
 a299fe3199e1f6944179793b0b4f56fb1fa25fd7 data/lotr/recipes/dol_guldur_crafting_table.json
+032cd2369da4320b4715054626b6d60f95db0fb0 data/lotr/recipes/dol_guldur_dagger.json
 adbbfd8deaff3e2d9f1dd112d1d90f4aaca77081 data/lotr/recipes/dol_guldur_helmet.json
 f2e693098ec5ff341b0b31f9ee2f7bc03a018ccf data/lotr/recipes/dol_guldur_hoe.json
 e55fc79d25543a2e721c7652a4803cd52a4572ae data/lotr/recipes/dol_guldur_leggings.json

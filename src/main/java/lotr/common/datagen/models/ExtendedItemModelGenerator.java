@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import lotr.common.item.DaggerItem;
 import lotr.common.item.ExtendedSilverCoin;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
@@ -47,6 +48,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				genSpearPulling(item.getKey());
 				genSpear(item.getKey());
+				continue;
+			}
+			if(item.getValue().get() instanceof DaggerItem) {
+				genDaggerSneaking(item.getKey());
+				genDagger(item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRSwordItem) {
@@ -107,6 +113,17 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	private ItemModelBuilder genSpearPulling(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
 		return gen(builder, lotrLoc("item/"+name+"_large"));
+	}
+
+	private ItemModelBuilder genDagger(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name, "lotr:item/handheld_dagger");
+		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_sneaking"))).predicate(new ResourceLocation("lotr:sneaking"), 1);
+		return gen(builder, lotrLoc("item/"+name));
+	}
+
+	private ItemModelBuilder genDaggerSneaking(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_sneaking", "lotr:item/handheld_dagger_sneaking");
+		return gen(builder, lotrLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genGenerated(String name, ResourceLocation... layers) {

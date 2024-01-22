@@ -1,0 +1,14 @@
+{
+  "parent": "lotr:item/handheld_dagger",
+  "textures": {
+    "layer0": "lotr:item/angmar_dagger"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotr:sneaking": 1.0
+      },
+      "model": "lotr:item/angmar_dagger_sneaking"
+    }
+  ]
+}
