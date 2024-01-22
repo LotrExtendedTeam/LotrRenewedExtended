@@ -11,7 +11,9 @@ import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
+import lotr.common.item.SpearItem;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.entity.ai.brain.task.PredicateTask;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -42,25 +44,31 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 				
 			}
+			if(item.getValue().get() instanceof SpearItem) {
+				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genSpearPulling(item.getKey());
+				genSpear(item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof LOTRSwordItem) {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				genSword(item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShovelItem) {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRAxeItem) {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRHoeItem ) {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
@@ -88,6 +96,17 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSword(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
+		return gen(builder, lotrLoc("item/"+name+"_large"));
+	}
+
+	private ItemModelBuilder genSpear(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
+		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling"))).predicate(new ResourceLocation("pulling"), 1);
+		return gen(builder, lotrLoc("item/"+name+"_large"));
+	}
+
+	private ItemModelBuilder genSpearPulling(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
 		return gen(builder, lotrLoc("item/"+name+"_large"));
 	}
 

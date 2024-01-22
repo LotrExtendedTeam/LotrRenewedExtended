@@ -103,6 +103,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DOL_GULDUR_LEGGINGS;
 	public static RegistryObject<Item> DOL_GULDUR_BOOTS;
 	public static RegistryObject<Item> DOL_GULDUR_HOE;
+	public static RegistryObject<Item> DOL_GULDUR_SPEAR;
+	public static RegistryObject<Item> DOL_GULDUR_DAGGER;
 	
 	public static RegistryObject<Item> ANGMAR_AXE;
 	public static RegistryObject<Item> ANGMAR_SHOVEL;
@@ -113,6 +115,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_LEGGINGS;
 	public static RegistryObject<Item> ANGMAR_BOOTS;
 	public static RegistryObject<Item> ANGMAR_HOE;
+	public static RegistryObject<Item> ANGMAR_SPEAR;
+	public static RegistryObject<Item> ANGMAR_DAGGER;
 
 	public static RegistryObject<Item> RASPBERRY_BUSH;
 	public static RegistryObject<Item> BLUEBERRY_BUSH;
