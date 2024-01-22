@@ -132,6 +132,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.DOL_GULDUR_HOE, 
 				LOTRItems.ORC_STEEL_INGOT, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeSwordRecipe(consumer, ExtendedItems.DOL_GULDUR_SWORD, LOTRItems.ORC_STEEL_INGOT, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeSpearRecipe(consumer, ExtendedItems.DOL_GULDUR_SPEAR, LOTRItems.ORC_STEEL_INGOT, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, 
 				ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS, 
 				ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, 
@@ -166,6 +167,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.ANGMAR_HOE, 
 				LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+		makeSpearRecipe(consumer, ExtendedItems.ANGMAR_SPEAR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		//TAURETHRIM
 		makeArmorRecipe(consumer, ExtendedItems.TAURETHRIM_HELMET, 
 				ExtendedItems.TAURETHRIM_CHESTPLATE, 

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dol_guldur_spear"
+    ]
+  },
+  "criteria": {
+    "has_dol_guldur_spear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_guldur_spear"
+          }
+        ]
+      }
+    },
+    "has_orc_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dol_guldur_spear"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dol_guldur_spear",
+      "has_orc_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -13,7 +13,6 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.entity.ai.brain.task.PredicateTask;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;

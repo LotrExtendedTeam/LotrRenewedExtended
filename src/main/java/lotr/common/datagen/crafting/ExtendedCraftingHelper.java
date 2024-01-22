@@ -444,6 +444,33 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.save(consumer, lotrLoc(name));
 		}
 	}
+
+	protected void makeSpearRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if (table == null) {
+			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("  #")
+			.pattern(" X ")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_" + resource.get().getRegistryName().getPath(),has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		} else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("  #")
+			.pattern(" X ")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_" + resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeToolsRecipe(Consumer<IFinishedRecipe> consumer, 
 			Supplier<? extends Item> pickaxeToBeCrafted,
 			Supplier<? extends Item> shovelToBeCrafted,
