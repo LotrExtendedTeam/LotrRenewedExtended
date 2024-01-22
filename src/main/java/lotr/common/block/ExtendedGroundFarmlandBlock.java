@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BushBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,12 +28,14 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 		this.base = baseBlockState;
 	}
 
+	@Override
 	public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
 		if (!p_225534_1_.canSurvive(p_225534_2_, p_225534_3_)) {
 			turnToBlock(p_225534_1_, p_225534_2_, p_225534_3_, base.get().defaultBlockState());
 		}
 	}
 
+	@Override
 	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
 		int i = p_225542_1_.getValue(MOISTURE);
 		if (!isNearWater(p_225542_2_, p_225542_3_) && !p_225542_2_.isRainingAt(p_225542_3_.above())) {
@@ -48,6 +51,29 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 	}
 
 	@Override
+	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
+	      BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.above());
+	      return blockstate.getBlock() instanceof ExtendedBerryBushBlock ? true : super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
+	   }
+
+	@Override
+	   public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
+	      BlockState plant = plantable.getPlant(world, pos.relative(facing));
+	      net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.relative(facing));
+	      if (plantable instanceof BushBlock)
+	         return true;
+	      if (net.minecraftforge.common.PlantType.CROP.equals(type)) {
+	         return true;
+	      }
+	      return false;
+	  }
+
+	@Override
+	public boolean isFertile(BlockState state, IBlockReader world, BlockPos pos) {
+		return state.getValue(MOISTURE) > 0;
+	}
+
+	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
 		return !this.defaultBlockState().canSurvive(p_196258_1_.getLevel(), p_196258_1_.getClickedPos()) ? base.get().defaultBlockState() : super.getStateForPlacement(p_196258_1_);
 	}
@@ -57,7 +83,10 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 		if (!p_180658_1_.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(p_180658_1_, p_180658_2_, base.get().defaultBlockState(), p_180658_4_, p_180658_3_)) { // Forge: Move logic to Entity#canTrample
 			turnToBlock(p_180658_1_.getBlockState(p_180658_2_), p_180658_1_, p_180658_2_, base.get().defaultBlockState());
 		}
-		super.fallOn(p_180658_1_, p_180658_2_, p_180658_3_, p_180658_4_);
+		// Pull from Block.fallOn(World p_180658_1_, BlockPos p_180658_2_, Entity p_180658_3_, float p_180658_4_)
+		// to hurt entities but bypass FarmlandBlock.fallOn conflicting with block placement
+		p_180658_3_.causeFallDamage(p_180658_4_, 1.0F);
+		//super.fallOn(p_180658_1_, p_180658_2_, p_180658_3_, p_180658_4_);
 	}
 
 	public static void turnToBlock(BlockState p_199610_0_, World p_199610_1_, BlockPos p_199610_2_, BlockState toChangeTo) {

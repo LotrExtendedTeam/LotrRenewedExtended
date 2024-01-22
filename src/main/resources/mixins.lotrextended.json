@@ -22,7 +22,10 @@
 		"lotr.common.loot.functions.MixinLOTRLootFunctions",
 		"lotr.common.network.MixinLOTRPacketHandler",
 		"lotr.common.world.biome.MixinShireBiome",
-		"lotr.common.world.gen.feature.MixinLOTRFeatures"
+		"lotr.common.world.gen.feature.MixinLOTRFeatures",
+		"minecraft.block.MixinBlock",
+		"minecraft.block.MixinFarmlandBlock",
+		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"
 	],
 	
 	"client": [

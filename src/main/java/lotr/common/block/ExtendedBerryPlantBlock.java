@@ -48,7 +48,7 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
      }
     @Override
     protected boolean mayPlaceOn(BlockState p_200014_1_, IBlockReader p_200014_2_, BlockPos p_200014_3_) {
-    	if(p_200014_1_.getBlock() instanceof ExtendedBerryBushBlock) {
+    	if(p_200014_1_.getBlock() instanceof ExtendedBerryBushBlock || p_200014_1_.getBlock() instanceof ExtendedGroundFarmlandBlock) {
     		return true;
     	}
     	return super.mayPlaceOn(p_200014_1_, p_200014_2_, p_200014_3_);
