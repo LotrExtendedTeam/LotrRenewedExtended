@@ -30,7 +30,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
 	public static RegistryObject<Item> MORGUL_LEGGINGS;
 	public static RegistryObject<Item> MORGUL_BOOTS;
-
+	public static RegistryObject<Item> MORGUL_SPEAR;
+	public static RegistryObject<Item> MORGUL_DAGGER;
+	
 	// Gemstones
 	public static RegistryObject<Item> TOPAZ_ORE;
 	public static RegistryObject<Item> AMETHYST_ORE;
