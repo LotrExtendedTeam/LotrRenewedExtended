@@ -8,6 +8,8 @@ import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
@@ -38,5 +40,10 @@ public class LotrExtendedMod {
 
 	public ModFile getModfile() {
 		return ModList.get().getModFileById(MODID).getFile();
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGH)
+	public void biomeModification(final BiomeLoadingEvent event) {
+		//TODO add structures to lotr biomes here
 	}
 }
