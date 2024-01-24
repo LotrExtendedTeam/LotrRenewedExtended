@@ -56,6 +56,7 @@ public class ExtendedStructures {
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 2, 1);
+		ExtendedStructurePieces.init();
 	}
 
 	public static ResourceLocation extendedLoc(String name) {

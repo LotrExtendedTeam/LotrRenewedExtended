@@ -10,4 +10,6 @@ public class ExtendedStructurePieces {
 	public static IStructurePieceType registerPiece(String name, IStructurePieceType piece) {
 		return Registry.register(Registry.STRUCTURE_PIECE, ExtendedStructures.extendedLoc(name), piece);
 	}
+
+	public static void init() {}
 }
