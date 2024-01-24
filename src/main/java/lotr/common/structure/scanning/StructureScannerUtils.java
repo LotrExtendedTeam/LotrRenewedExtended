@@ -1,7 +1,8 @@
-package lotr.common.structure;
+package lotr.common.structure.scanning;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 
+import lotr.common.structure.util.StructureStrings;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -31,7 +32,7 @@ public class StructureScannerUtils {
 					}
 					else if(message[1].equals("sign")&&message[2].equals("text")){
 						CompoundNBT type = new CompoundNBT();
-						type.putInt("signText", Integer.parseInt(message[3]));
+						type.putInt(StructureStrings.signNumberHolder, Integer.parseInt(message[3]));
 						return type;
 					}
 				}else {

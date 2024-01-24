@@ -2,9 +2,9 @@ package lotr.common.world.gen.feature.extendedstructures.standalone;
 
 import java.util.Random;
 
-import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
-import lotr.common.structure.StructureScanner;
+import lotr.common.structure.util.RelativePosition;
+import lotr.common.structure.util.StructureStrings;
 import lotr.common.world.gen.feature.extendedstructures.ExtendedStructureBase;
 import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedKegDrinks;
 import net.minecraft.block.BlockState;
@@ -25,8 +25,8 @@ public class HobbitWindmillFeature extends ExtendedStructureBase {
 			generateOffsets(world, rand, pos.below(), direction, file.readStructureSize(), file.getNaturalFacingDirection());
 			for (int i = 0; i < file.getLayers().size(); i++) {
 				CompoundNBT nbt = file.getLayers().getCompound(i);
-				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
-				CompoundNBT blockData = nbt.getCompound(StructureScanner.blockMapHolder);
+				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
+				CompoundNBT blockData = nbt.getCompound(StructureStrings.blockMapHolder);
 				BlockState blockstate = NBTUtil.readBlockState(blockData);
 				if(rpos.Y==0 && blockstate.getBlock()!=Blocks.AIR) {
 					fixBelowBlocks(world, rpos.X, rpos.Y, rpos.Z, Blocks.GRASS_BLOCK, Blocks.DIRT);

@@ -1,4 +1,4 @@
-package lotr.common.structure;
+package lotr.common.structure.util;
 
 public class RelativePosition{
 	public int X;

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 
+import lotr.common.structure.util.StructureStrings;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
@@ -28,11 +29,11 @@ public class StructureFileHandler {
 		ListNBT entityMap;
 		Direction dir;
 		try {
-			size = compound.getCompound(StructureScanner.structureSizeHolder);
-			blockMap = compound.getList(StructureScanner.blockMapHolder, 10);
-			signMap = compound.getList(StructureScanner.signMapHolder, 10);
-			entityMap = compound.getList(StructureScanner.entityMapHolder, 10);
-			dir = Direction.byName(compound.getString(StructureScanner.structureDirectionHolder));
+			size = compound.getCompound(StructureStrings.structureSizeHolder);
+			blockMap = compound.getList(StructureStrings.blockMapHolder, 10);
+			signMap = compound.getList(StructureStrings.signMapHolder, 10);
+			entityMap = compound.getList(StructureStrings.entityMapHolder, 10);
+			dir = Direction.byName(compound.getString(StructureStrings.structureDirectionHolder));
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;

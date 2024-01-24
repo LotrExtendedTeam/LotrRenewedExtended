@@ -6,10 +6,11 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
-import lotr.common.structure.StructureScanner;
+import lotr.common.structure.scanning.StructureScanner;
+import lotr.common.structure.util.RelativePosition;
+import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -89,8 +90,8 @@ public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
 			BlockPos pos = context.getSource().getEntity().blockPosition();
 			for (int i = 0; i < file.getLayers().size(); i++) {
 				CompoundNBT nbt = file.getLayers().getCompound(i);
-				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
-				CompoundNBT blockData = nbt.getCompound(StructureScanner.blockMapHolder);
+				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
+				CompoundNBT blockData = nbt.getCompound(StructureStrings.blockMapHolder);
 				BlockState state = NBTUtil.readBlockState(blockData);
 				BlockPos bPos = new BlockPos(pos.getX()+rpos.X, pos.getY()+rpos.Y, pos.getZ()+rpos.Z);
 				context.getSource().getLevel().setBlockAndUpdate(bPos, state);

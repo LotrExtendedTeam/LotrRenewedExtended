@@ -15,10 +15,10 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BundleBlock;
 import lotr.common.block.GateBlock;
 import lotr.common.init.LOTRBlocks;
-import lotr.common.structure.RelativePosition;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
-import lotr.common.structure.StructureScanner;
+import lotr.common.structure.util.RelativePosition;
+import lotr.common.structure.util.StructureStrings;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
 import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedEntitySpawning;
@@ -331,10 +331,10 @@ public abstract class ExtendedStructureBase{
 	}
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt) {
-		if(nbt.contains("loot-table")) {
-			String table = nbt.getString("loot-table");
-			if(!table.equals("EMPTY")) {
-				setLockableLootTileEntityContents(world, random, x, y, z, nbt.getString("loot-table"));
+		if(nbt.contains(StructureStrings.structureLootTableHolder)) {
+			String table = nbt.getString(StructureStrings.structureLootTableHolder);
+			if(!table.equals(StructureStrings.EMPTY)) {
+				setLockableLootTileEntityContents(world, random, x, y, z, nbt.getString(StructureStrings.structureLootTableHolder));
 			}
 		}
 		else {
@@ -383,8 +383,8 @@ public abstract class ExtendedStructureBase{
 		Map<Integer, RelativePosition> signs = new HashMap<>();
 		for (int i = 0; i < file.getSigns().size(); i++) {
 			CompoundNBT nbt = file.getSigns().getCompound(i);
-			int num = nbt.getInt(StructureScanner.signNumberHolder);
-			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
+			int num = nbt.getInt(StructureStrings.signNumberHolder);
+			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
 			if(signs.containsKey(num)) {
 				ExtendedLog.error("DUPLICATE SIGN COUNT FOUND IN STRUCTURE FILE: "+file.name);
 				return;
@@ -436,7 +436,7 @@ public abstract class ExtendedStructureBase{
 			CompoundNBT nbt = file.getEntities().getCompound(i);
 			int spawnNumber = nbt.getInt("spawn");
 			String entityType = nbt.getString("entity");
-			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureScanner.relativeLocationHolder));
+			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
 			if(entities.containsKey(entityType)) {
 				Map<Integer, RelativePosition> entitie = entities.get(entityType);
 				if(entitie.containsKey(spawnNumber)) {

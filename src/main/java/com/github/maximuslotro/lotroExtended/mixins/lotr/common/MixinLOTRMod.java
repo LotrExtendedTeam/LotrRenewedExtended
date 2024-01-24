@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.LOTRMod;
 import lotr.common.init.ExtendedEffects;
-import lotr.common.structure.StructureScanner;
+import lotr.common.structure.scanning.StructureScanner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.loading.FMLEnvironment;

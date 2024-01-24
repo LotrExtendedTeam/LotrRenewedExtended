@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import lotr.common.init.LOTRBlocks;
-import lotr.common.structure.RelativePosition;
+import lotr.common.structure.util.RelativePosition;
 import lotr.common.world.gen.feature.extendedstructures.ExtendedStructureBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StandingSignBlock;

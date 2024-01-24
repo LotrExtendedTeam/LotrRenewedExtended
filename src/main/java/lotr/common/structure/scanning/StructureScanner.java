@@ -1,10 +1,12 @@
-package lotr.common.structure;
+package lotr.common.structure.scanning;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.structure.StructureFileIO;
+import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,14 +30,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class StructureScanner {
-	public static final String relativeLocationHolder = "relativeLocation";
-	public static final String blockMapHolder = "blockDataMap";
-	public static final String entityMapHolder = "entitySpawnMap";
-	public static final String signMapHolder = "signTextMap";
-	public static final String signNumberHolder = "signText";
-	public static final String structureSizeHolder = "structureSize";
-	public static final String structureNameHolder = "structureName";
-	public static final String structureDirectionHolder = "facingDirection";
 	private static ServerPlayerEntity selectedPlayer;
 	private static String wandID;
 	private static BlockPos pos1;
@@ -197,12 +191,12 @@ public class StructureScanner {
 					if(state.getBlock() instanceof AbstractSignBlock) {
 						CompoundNBT entity = StructureScannerUtils.parseSignInfo(context.getSource().getLevel(), new BlockPos(x,y,z));
 						if(entity!=null) {
-							entity.put(relativeLocationHolder, writeBlockPos(posX, posY, posZ));
+							entity.put(StructureStrings.relativeLocationHolder, writeBlockPos(posX, posY, posZ));
 							if(entity.contains("entity")) {
 								entitySpawnMap.add(entity);
 								state = Blocks.AIR.defaultBlockState();
 							}
-							else if(entity.contains("signText")) {
+							else if(entity.contains(StructureStrings.signNumberHolder)) {
 								signTextMap.add(entity);
 							}
 							else {
@@ -215,31 +209,31 @@ public class StructureScanner {
 						if (tileentity instanceof LockableLootTileEntity) {
 							LockableLootTileEntity te =((LockableLootTileEntity)tileentity);
 							if(te.getCustomName()!=null) {
-								dataHolder.putString("loot-table", te.getCustomName().getString());
+								dataHolder.putString(StructureStrings.structureLootTableHolder, te.getCustomName().getString());
 							}
 							else {
 								ExtendedLog.error("FOUND MISSING LockableLootTileEntity LOOTTABLE! X: "+x+", Y: "+y+", Z:"+z);
-								dataHolder.putString("loot-table", "EMPTY");
+								dataHolder.putString(StructureStrings.structureLootTableHolder, StructureStrings.EMPTY);
 							}
 						}
 					}
-					dataHolder.put(blockMapHolder, NBTUtil.writeBlockState(state));
-					dataHolder.put(relativeLocationHolder, writeBlockPos(posX, posY, posZ));
+					dataHolder.put(StructureStrings.blockMapHolder, NBTUtil.writeBlockState(state));
+					dataHolder.put(StructureStrings.relativeLocationHolder, writeBlockPos(posX, posY, posZ));
 					blockDataMap.add(dataHolder);
 				}
 			}
 		}
 		
 		CompoundNBT dataCompound = new CompoundNBT();
-		dataCompound.put(blockMapHolder, blockDataMap);
-		dataCompound.put(entityMapHolder, entitySpawnMap);
-		dataCompound.put(signMapHolder, signTextMap);
+		dataCompound.put(StructureStrings.blockMapHolder, blockDataMap);
+		dataCompound.put(StructureStrings.entityMapHolder, entitySpawnMap);
+		dataCompound.put(StructureStrings.signMapHolder, signTextMap);
 		int yHeight = Math.abs(topY - bottomY)+1;
 		int XWidth = Math.abs(topX - bottomX)+1;
 		int ZWidth = Math.abs(topZ - bottomZ)+1;
-		dataCompound.put(structureSizeHolder, createStructureSize(XWidth, yHeight, ZWidth));
-		dataCompound.putString(structureDirectionHolder, direction.getName());
-		dataCompound.putString(structureNameHolder, name);
+		dataCompound.put(StructureStrings.structureSizeHolder, createStructureSize(XWidth, yHeight, ZWidth));
+		dataCompound.putString(StructureStrings.structureDirectionHolder, direction.getName());
+		dataCompound.putString(StructureStrings.structureNameHolder, name);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;
 	}
