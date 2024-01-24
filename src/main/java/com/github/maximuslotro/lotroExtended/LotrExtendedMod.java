@@ -52,8 +52,9 @@ public class LotrExtendedMod {
 		//TODO add structures to lotr biomes here
 		event.getName();
 		if(event.getName()!=null) {
-			if(event.getName().getNamespace().equals("lotr")) {
-				//System.out.println("Loaded lotr biome: "+event.getName().toString());
+			if(event.getName().getNamespace().equals("lotr")&&event.getName().getPath().equals("shire")) {
+				event.getGeneration().addStructureStart(ExtendedStructures.CONFIGURED_HOBBIT_TAVERN_SMALL);
+				System.out.println("Added structure to biome: "+event.getName().toString());
 			}
 		}
 		

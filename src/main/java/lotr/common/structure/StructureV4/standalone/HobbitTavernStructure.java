@@ -30,8 +30,10 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 		}
 
 		@Override
-		public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator,
-				TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig config) {
+		public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig config) {
+			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16);
+	         this.pieces.add(hobbitTavernPiece);
+	         this.calculateBoundingBox();
 		}
 	}
 }

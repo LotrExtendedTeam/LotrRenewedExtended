@@ -1,13 +1,13 @@
 package lotr.common.command;
 
-import com.github.maximuslotro.lotroExtended.common.structure.StructureFile;
-import com.github.maximuslotro.lotroExtended.common.structure.StructureFileHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.structure.StructureFile;
+import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.scanning.StructureScanner;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
