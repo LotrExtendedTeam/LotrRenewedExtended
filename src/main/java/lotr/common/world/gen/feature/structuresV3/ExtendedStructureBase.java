@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature.extendedstructures;
+package lotr.common.world.gen.feature.structuresV3;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +21,8 @@ import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedEntitySpawning;
-import lotr.common.world.gen.feature.extendedstructures.parts.ExtendedKegDrinks;
+import lotr.common.world.gen.feature.structuresV3.parts.ExtendedEntitySpawning;
+import lotr.common.world.gen.feature.structuresV3.parts.ExtendedKegDrinks;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BedBlock;

@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature.extendedstructures.parts;
+package lotr.common.world.gen.feature.structuresV3.parts;
 
 import javax.annotation.Nullable;
 

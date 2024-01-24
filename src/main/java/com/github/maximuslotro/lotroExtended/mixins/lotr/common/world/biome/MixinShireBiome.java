@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotroExtended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.ShireBiome;
+import lotr.common.world.gen.feature.ExtendedBiomeFeatures;
 import lotr.common.world.gen.feature.ExtendedFeatures;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage.Decoration;

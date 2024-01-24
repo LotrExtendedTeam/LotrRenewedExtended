@@ -1,4 +1,4 @@
-package lotr.common.world.biome;
+package lotr.common.world.gen.feature;
 
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage.Decoration;

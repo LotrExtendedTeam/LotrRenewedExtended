@@ -1,11 +1,11 @@
-package lotr.common.world.gen.feature.extendedstructures.standalone;
+package lotr.common.world.gen.feature.structuresV3.standalone;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.util.RelativePosition;
-import lotr.common.world.gen.feature.extendedstructures.ExtendedStructureBase;
+import lotr.common.world.gen.feature.structuresV3.ExtendedStructureBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StandingSignBlock;
 import net.minecraft.util.Direction;
