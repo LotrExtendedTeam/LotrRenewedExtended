@@ -34,7 +34,11 @@ public class ExtendedStructures {
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_SMALL = ExtendedStructures.HOBBIT_TAVERN_SMALL.configured(IFeatureConfig.NONE);
 
 	public static void register(RegistryEvent.Register<Structure<?>> event,
-			Structure<?> structure, StructureFeature<?, ?> feature, ResourceLocation location, boolean editLand, StructureSeparationSettings settings) {
+			Structure<?> structure, StructureFeature<?, ?> feature, ResourceLocation location, boolean editLand, int spacing, int seperation) {
+		if(seperation>=spacing) {
+			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);
+		}
+		StructureSeparationSettings settings = new StructureSeparationSettings(1, 2, SALT);
 		event.getRegistry().register(structure.setRegistryName(location));
 		Structure.STRUCTURES_REGISTRY.put(location.getNamespace(), structure);
 		if (editLand) {
@@ -48,10 +52,10 @@ public class ExtendedStructures {
 
 	public static void init(RegistryEvent.Register<Structure<?>> event) {
 		SETTINGS.clear();
-		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts
-		// the second value it minimum distance in chunks between spawn attempts
-		// Setting separation/spacing to be 0/1, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
-		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, new StructureSeparationSettings(1, 2, SALT));
+		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
+		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
+		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
+		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 2, 1);
 	}
 
 	public static ResourceLocation extendedLoc(String name) {
