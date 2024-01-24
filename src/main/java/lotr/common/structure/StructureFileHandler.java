@@ -39,18 +39,18 @@ public class StructureFileHandler {
 			return null;
 		}
 		if(size.isEmpty()) {
-			ExtendedLog.error("Loaded empty structure size! "+strName);
+			ExtendedLog.error("Loaded empty structure size: "+strName+", this should never happen!");
 			return null;
 		}
 		if(blockMap.isEmpty()) {
-			ExtendedLog.error("Loaded empty structure array! "+strName);
+			ExtendedLog.error("Loaded empty structure array: "+strName+", this should never happen!");
 			return null;
 		}
 		if(signMap.isEmpty()) {
-			ExtendedLog.warn("Loaded empty sign array! "+strName);
+			ExtendedLog.info("Loaded empty sign array: "+strName+", this is probably intentional");
 		}
 		if(entityMap.isEmpty()) {
-			ExtendedLog.warn("Loaded empty entity array! "+strName);
+			ExtendedLog.info("Loaded empty entity array: "+strName+", this is probably intentional");
 		}
 		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap, dir);
 		loadedStructures.put(strName, file);
