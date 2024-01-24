@@ -35,10 +35,10 @@ public class ExtendedStructures {
 
 	public static void register(RegistryEvent.Register<Structure<?>> event,
 			Structure<?> structure, StructureFeature<?, ?> feature, ResourceLocation location, boolean editLand, int spacing, int seperation) {
-		if(seperation>=spacing) {
+		if(spacing-seperation<= 0) {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);
 		}
-		StructureSeparationSettings settings = new StructureSeparationSettings(1, 2, SALT);
+		StructureSeparationSettings settings = new StructureSeparationSettings(spacing, seperation, SALT);
 		event.getRegistry().register(structure.setRegistryName(location));
 		Structure.STRUCTURES_REGISTRY.put(location.getNamespace(), structure);
 		if (editLand) {
