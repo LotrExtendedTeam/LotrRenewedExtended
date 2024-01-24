@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature.extendedstructuresV2;
+package lotr.common.structure.StructureV4;
 
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;

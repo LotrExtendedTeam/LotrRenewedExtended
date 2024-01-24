@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.world.gen.feature.ExtendedFeatures;
 import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.extendedstructures.ExtendedShireStructures;
+import lotr.common.world.gen.feature.structuresV3.ExtendedShireStructures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;

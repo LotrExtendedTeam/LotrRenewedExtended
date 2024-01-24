@@ -1,4 +1,4 @@
-package lotr.common.world.gen.feature.extendedstructuresV2;
+package lotr.common.structure.StructureV4;
 
 import com.mojang.serialization.Codec;
 

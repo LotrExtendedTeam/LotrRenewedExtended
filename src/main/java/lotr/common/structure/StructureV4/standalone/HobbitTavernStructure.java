@@ -1,9 +1,9 @@
-package lotr.common.structure.singleInstanceStructures;
+package lotr.common.structure.StructureV4.standalone;
 
 import com.mojang.serialization.Codec;
 
-import lotr.common.world.gen.feature.extendedstructuresV2.ExtendedStructureStart;
-import lotr.common.world.gen.feature.extendedstructuresV2.ExtendedSurfaceStructure;
+import lotr.common.structure.StructureV4.ExtendedStructureStart;
+import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.biome.Biome;
