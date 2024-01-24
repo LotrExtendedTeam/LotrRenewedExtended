@@ -18,7 +18,7 @@ public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
 	//private boolean placedMainChest;
 
 	public ExtendedHobbitTavernPiece(Random p_i48656_1_, int p_i48656_2_, int p_i48656_3_) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, p_i48656_1_, p_i48656_2_, 64, p_i48656_3_, 1, 20, 1);
+		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, p_i48656_1_, p_i48656_2_, 64, p_i48656_3_, 1, 9, 1);
 	}
 
 	public ExtendedHobbitTavernPiece(TemplateManager p_i51350_1_, CompoundNBT p_i51350_2_) {
@@ -38,16 +38,15 @@ public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
 		if (!this.updateAverageGroundHeight(p_230383_1_, p_230383_5_, 0)) {
 			return false;
 		} else {
-			System.out.println("Placing hobbit tavern blocks!");
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 10, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 11, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 12, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 13, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 14, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 15, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 16, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 17, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 18, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 0, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 1, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 2, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 3, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 4, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 5, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 6, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 7, 0, p_230383_5_);
+			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 8, 0, p_230383_5_);
 
 			return true;
 		}
