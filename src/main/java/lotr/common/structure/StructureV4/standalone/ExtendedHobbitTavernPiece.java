@@ -28,7 +28,6 @@ public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
 
 	@Override
 	protected void addMoreSaveData(CompoundNBT p_143011_1_) {
-		super.addAdditionalSaveData(p_143011_1_);
 		//p_143011_1_.putBoolean("placedMainChest", this.placedMainChest);
 
 	}
