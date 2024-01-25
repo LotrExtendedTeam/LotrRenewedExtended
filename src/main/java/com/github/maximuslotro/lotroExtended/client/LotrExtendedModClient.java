@@ -50,7 +50,6 @@ public class LotrExtendedModClient {
 	@SubscribeEvent
     public void login(EntityJoinWorldEvent event)
     {
-		System.out.println("FOUND UPDATE!");
         if (event.getEntity() instanceof ClientPlayerEntity)
         {
             VersionChecker.CheckResult result = VersionChecker.getResult(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo());
