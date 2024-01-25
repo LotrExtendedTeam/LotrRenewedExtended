@@ -4,7 +4,6 @@ import java.util.Random;
 
 import lotr.common.structure.StructureV4.ExtendedStructurePiece;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
-import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -38,16 +37,6 @@ public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
 		if (!this.updateAverageGroundHeight(p_230383_1_, p_230383_5_, 0)) {
 			return false;
 		} else {
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 0, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 1, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 2, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 3, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 4, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 5, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 6, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 7, 0, p_230383_5_);
-			this.placeBlock(p_230383_1_, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 8, 0, p_230383_5_);
-
 			return true;
 		}
 	}
