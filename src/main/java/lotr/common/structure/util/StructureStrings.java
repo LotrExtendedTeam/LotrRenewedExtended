@@ -12,6 +12,7 @@ public class StructureStrings {
 	public static final String signNumberHolder = "signText";
 	//Loot-table data
 	public static final String structureLootTableHolder = "loot-table";
+	public static final String structureLootTableNumberHolder = "chest-identifier";
 	public static final String EMPTY = "EMPTY";
 	//Block data
 	public static final String relativeLocationHolder = "relativeLocation";
