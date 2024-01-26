@@ -1,9 +1,9 @@
 package lotr.common.structure.util;
 
 public class RelativePosition{
-	public int X;
-	public int Y;
-	public int Z;
+	private int X;
+	private int Y;
+	private int Z;
 	public RelativePosition(int X, int Y, int Z) {
 		this.X = X;
 		this.Y = Y;
@@ -36,4 +36,16 @@ public class RelativePosition{
     public String toString() {
         return "[X:"+X+", Y:"+Y+", Z:"+Z+"]";
     }
+
+	public int getX() {
+		return X;
+	}
+
+	public int getY() {
+		return Y;
+	}
+
+	public int getZ() {
+		return Z;
+	}
 }

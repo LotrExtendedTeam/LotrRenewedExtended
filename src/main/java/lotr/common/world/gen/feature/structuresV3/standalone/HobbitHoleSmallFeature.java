@@ -29,12 +29,12 @@ public class HobbitHoleSmallFeature extends ExtendedStructureBase {
 				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
 				CompoundNBT blockData = nbt.getCompound(StructureStrings.blockMapHolder);
 				BlockState blockstate = NBTUtil.readBlockState(blockData);
-				if(rpos.Y==0 && blockstate.getBlock()!=Blocks.AIR) {
-					fixBelowBlocks(world, rpos.X, rpos.Y, rpos.Z, Blocks.GRASS_BLOCK, Blocks.DIRT);
+				if(rpos.getY()==0 && blockstate.getBlock()!=Blocks.AIR) {
+					fixBelowBlocks(world, rpos.getX(), rpos.getY(), rpos.getZ(), Blocks.GRASS_BLOCK, Blocks.DIRT);
 				}
-				setBlockAndMetadata(world, rpos.X, rpos.Y, rpos.Z, blockstate);
-				genNBTForCurrentBlock(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, nbt);
-				genKegForCurrentBlock(world, rand, blockstate, rpos.X, rpos.Y, rpos.Z, ExtendedKegDrinks.shireDrinksPool);
+				setBlockAndMetadata(world, rpos.getX(), rpos.getY(), rpos.getZ(), blockstate);
+				genNBTForCurrentBlock(world, rand, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), nbt);
+				genKegForCurrentBlock(world, rand, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), ExtendedKegDrinks.shireDrinksPool);
 			}
 			doFileGen(world, rand, file);
 			return true;

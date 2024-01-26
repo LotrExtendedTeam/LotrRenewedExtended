@@ -327,7 +327,7 @@ public abstract class ExtendedStructureBase{
 	}
 
 	public BlockPos rPToBlockPos(RelativePosition pos) {
-		return new BlockPos(makeXvalue(pos.X,pos.Z), makeYvalue(pos.Y), makeZvalue(pos.X,pos.Z));
+		return new BlockPos(makeXvalue(pos.getX(),pos.getZ()), makeYvalue(pos.getY()), makeZvalue(pos.getX(),pos.getZ()));
 	}
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt) {
