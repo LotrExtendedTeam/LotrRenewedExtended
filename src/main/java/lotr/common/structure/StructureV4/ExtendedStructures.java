@@ -55,7 +55,7 @@ public class ExtendedStructures {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
-		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 2, 1);
+		//register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 2, 1);
 		ExtendedStructurePieces.init();
 	}
 
@@ -78,13 +78,12 @@ public class ExtendedStructures {
 
 	public static Map<Structure<?>, StructureSeparationSettings> editMap(Map<Structure<?>, StructureSeparationSettings> map, boolean remove){
 		if(remove) {
-			ExtendedLog.info("Removing structures from invalid dimension generator");
 			for(Structure<?> str : ExtendedStructures.SETTINGS.keySet()) {
 				map.remove(str);
 			}
 		}
 		else {
-			ExtendedLog.info("Adding structures to valid dimension generator");
+			ExtendedLog.info("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
 			map.putAll(ExtendedStructures.SETTINGS);
 		}
 		return map;

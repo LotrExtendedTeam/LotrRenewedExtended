@@ -53,7 +53,7 @@ public class LotrExtendedMod {
 		event.getName();
 		if(event.getName()!=null) {
 			if(event.getName().getNamespace().equals("lotr")&&event.getName().getPath().equals("shire")) {
-				event.getGeneration().addStructureStart(ExtendedStructures.CONFIGURED_HOBBIT_TAVERN_SMALL);
+				//event.getGeneration().addStructureStart(ExtendedStructures.CONFIGURED_HOBBIT_TAVERN_SMALL);
 				System.out.println("Added structure to biome: "+event.getName().toString());
 			}
 		}
