@@ -3,15 +3,16 @@ package lotr.common.structure.StructureV4.standalone;
 import java.util.Random;
 
 import lotr.common.structure.StructureFile;
-import lotr.common.structure.StructureV4.ExtendedStructurePiece;
+import lotr.common.structure.StructureV4.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
+import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
-import lotr.common.world.gen.feature.structuresV3.parts.ExtendedKegDrinks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -20,11 +21,15 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
+public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	//private boolean placedMainChest;
 
-	public ExtendedHobbitTavernPiece(Random p_i48656_1_, int p_i48656_2_, int p_i48656_3_) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, p_i48656_1_, p_i48656_2_, 64, p_i48656_3_, 1, 9, 1, null);
+	protected ExtendedHobbitTavernPiece(Random random, int posX, int posZ, Direction direction) {
+		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, posX, 64, posZ, 0, 0, 0, direction);
+	}
+
+	protected ExtendedHobbitTavernPiece(Random random, int posX, int posZ) {
+		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, posX, 64, posZ, 0, 0, 0, null);
 	}
 
 	public ExtendedHobbitTavernPiece(TemplateManager p_i51350_1_, CompoundNBT p_i51350_2_) {
@@ -44,8 +49,9 @@ public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
 			return false;
 		} else {
 			StructureFile file = getStructure();
+			System.out.println(box.toString());
+			System.out.println(boundingBox.toString());
 			if (file != null) {
-				generateOffsets(world, random, file.getNaturalFacingDirection(), file.readGenv4StructureSize(), box);
 				for (int i = 0; i < file.getLayers().size(); i++) {
 					CompoundNBT nbt = file.getLayers().getCompound(i);
 					RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
@@ -74,6 +80,11 @@ public class ExtendedHobbitTavernPiece extends ExtendedStructurePiece {
 	@Override
 	public String fileName() {
 		return "hobbit_tavern_small";
+	}
+
+	@Override
+	public boolean isCodeDefined() {
+		return false;
 	}
 
 }

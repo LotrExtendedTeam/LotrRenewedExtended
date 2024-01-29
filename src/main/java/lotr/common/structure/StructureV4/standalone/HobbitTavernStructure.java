@@ -5,12 +5,9 @@ import com.mojang.serialization.Codec;
 import lotr.common.structure.StructureV4.ExtendedStructureStart;
 import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureConfig> {
 
@@ -30,7 +27,7 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 		}
 
 		@Override
-		public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig config) {
+		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator) {
 			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16);
 	         this.pieces.add(hobbitTavernPiece);
 	         this.calculateBoundingBox();

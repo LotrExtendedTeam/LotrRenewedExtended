@@ -1,13 +1,13 @@
 package lotr.common.structure.util;
 
 public class StructureSize{
-	private int length;
-	private int height;
 	private int width;
-	public StructureSize(int length, int height, int width) {
-		this.length = length;
-		this.height = height;
+	private int height;
+	private int depth;
+	public StructureSize(int width, int height, int depth) {
 		this.width = width;
+		this.height = height;
+		this.depth = depth;
 	}
 
 	@Override
@@ -20,32 +20,32 @@ public class StructureSize{
             return false;
         }
         StructureSize pos = (StructureSize) o;
-		return (Integer.compare(pos.length, length)==0&&Integer.compare(pos.height, height)==0&&Integer.compare(pos.width, width)==0);
+		return (Integer.compare(pos.width, width)==0&&Integer.compare(pos.height, height)==0&&Integer.compare(pos.depth, depth)==0);
 	}
 
 	@Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + length;
-        hash = 17 * hash + height;
         hash = 17 * hash + width;
+        hash = 17 * hash + height;
+        hash = 17 * hash + depth;
         return hash;
     }
 
 	@Override
     public String toString() {
-        return "[Length:"+length+", Height:"+height+", Width:"+width+"]";
+        return "[Width:"+width+", Height:"+height+", Depth:"+depth+"]";
     }
 
-	public int getLength() {
-		return length;
+	public int getWidth() {
+		return width;
 	}
 
 	public int getHeight() {
 		return height;
 	}
 
-	public int getWidth() {
-		return width;
+	public int getDepth() {
+		return depth;
 	}
 }

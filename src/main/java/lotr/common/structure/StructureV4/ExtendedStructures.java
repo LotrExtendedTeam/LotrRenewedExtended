@@ -2,6 +2,7 @@ package lotr.common.structure.StructureV4;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
@@ -27,6 +28,7 @@ import net.minecraftforge.event.world.WorldEvent;
 
 public class ExtendedStructures {
 	public static final Map<Structure<?>, StructureSeparationSettings> SETTINGS = new HashMap<>();
+	public static final Map<String, Supplier<StructureFeature<?, ?>>> CONFIGURED_STRUCTURES = new HashMap<>();
 	public static final int SALT = 785555898;
 	// Structures
 	// #######################SHIRE STANDALONE STRUCTURES
@@ -55,8 +57,10 @@ public class ExtendedStructures {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
-		//register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 2, 1);
+		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
+		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 4, 1);
 		ExtendedStructurePieces.init();
+		ExtendedStructureLists.startup();
 	}
 
 	public static ResourceLocation extendedLoc(String name) {

@@ -6,18 +6,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 
 import lotr.common.init.LOTRBlocks;
-import lotr.common.structure.StructureFile;
-import lotr.common.structure.StructureFileHandler;
-import lotr.common.structure.util.StructureSize;
+import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
 import lotr.common.structure.util.StructureStrings;
 import lotr.common.tileentity.KegTileEntity;
-import lotr.common.world.gen.feature.structuresV3.parts.ExtendedKegDrinks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
@@ -33,23 +28,18 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
-import net.minecraft.world.gen.feature.structure.ScatteredStructurePiece;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public abstract class ExtendedStructurePiece extends ScatteredStructurePiece {
+public abstract class ExtendedStructurePiece extends ExtendedScatteredStructurePiece {
 	private Map<String, Boolean> placedFeatures = new HashMap<>();
-	protected ExtendedStructurePiece(IStructurePieceType piece, Random random, int x0, int y0, int z0, int width, int height, int depth, @Nullable Direction dir) {
-		super(piece, random, x0, y0, z0, width, height, depth);
-	    if(dir!=null && Direction.Plane.HORIZONTAL.test(dir)) {
-	    	this.setOrientation(dir);
-	    	if (this.getOrientation().getAxis() == Direction.Axis.Z) {
-		         this.boundingBox = new MutableBoundingBox(x0, y0, z0, x0 + width - 1, y0 + height - 1, z0 + depth - 1);
-		      } else {
-		         this.boundingBox = new MutableBoundingBox(x0, y0, z0, x0 + depth - 1, y0 + height - 1, z0 + width - 1);
-		      }
-	    }
+
+	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, int width, int height, int depth) {
+		super(pieceType, random, posX, posY, posZ, width, height, depth, Direction.Plane.HORIZONTAL.getRandomDirection(random));
+	}
+
+	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, int width, int height, int depth, Direction direction) {
+		super(pieceType, random, posX, posY, posZ, width, height, depth, direction);
 	}
 
 	protected ExtendedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
@@ -61,17 +51,6 @@ public abstract class ExtendedStructurePiece extends ScatteredStructurePiece {
 				placedFeatures.put(key, dataHolder.getBoolean(key));
 			}
 		}
-	}
-
-	public void generateOffsets(ISeedReader world, Random rand, Direction nativeDir, StructureSize structureSize, MutableBoundingBox box) {
-		if(Direction.Plane.HORIZONTAL.test(nativeDir)) {
-	    	this.setOrientation(nativeDir);
-	    	if (this.getOrientation().getAxis() == Direction.Axis.Z) {
-		         this.boundingBox = new MutableBoundingBox(box.x0, box.y0, box.z0, box.x0 + structureSize.getLength() - 1, box.y0 + structureSize.getHeight() - 1, box.z0 + structureSize.getWidth() - 1);
-		      } else {
-		         this.boundingBox = new MutableBoundingBox(box.x0, box.y0, box.z0, box.x0 + structureSize.getWidth() - 1, box.y0 + structureSize.getLength() - 1, box.z0 + structureSize.getLength() - 1);
-		      }
-	    }
 	}
 
 	@Override
@@ -90,21 +69,10 @@ public abstract class ExtendedStructurePiece extends ScatteredStructurePiece {
 	protected abstract void addMoreSaveData(CompoundNBT nbt);
 
 	@Override
-	public abstract boolean postProcess(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen,
-			Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos);
+	public abstract boolean postProcess(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos);
 
-	public abstract String fileName();
-
-	public StructureFile getStructure() {
-		return getStructure(fileName());
-	}
-
-	public StructureFile getStructure(String name) {
-		StructureFile file = StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
-		if (file == null) {
-			ExtendedLog.error("LOADED NULL STRUCTURE FILE!: " + name);
-		}
-		return file;
+	public boolean isCodeDefined() {
+		return true;
 	}
 
 	protected void setBlockAndMetadata(ISeedReader world, BlockState blockState, int x, int y, int z,
@@ -121,9 +89,11 @@ public abstract class ExtendedStructurePiece extends ScatteredStructurePiece {
 		}
 	}
 
-	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z,
-			CompoundNBT nbt, MutableBoundingBox box) {
-		if (nbt.contains(StructureStrings.structureLootTableHolder)&& nbt.contains(StructureStrings.structureLootTableNumberHolder)) {
+	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt, MutableBoundingBox box) {
+		if (nbt.contains(StructureStrings.structureLootTableHolder)) {
+			if(!nbt.contains(StructureStrings.structureLootTableNumberHolder)) {
+				ExtendedLog.error("Missing chest identifier number for X: " + x + ", Y: " + y + ", Z:" + z + ", NBT: " + nbt.toString());
+			}
 			String table = nbt.getString(StructureStrings.structureLootTableHolder);
 			if (!table.equals(StructureStrings.EMPTY)) {
 				String data = nbt.getString(StructureStrings.structureLootTableNumberHolder);

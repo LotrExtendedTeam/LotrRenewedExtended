@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 
+import lotr.common.structure.StructureV4.ExtendedStructureLists;
 import lotr.common.structure.StructureV4.ExtendedStructures;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.api.distmarker.Dist;
@@ -53,8 +54,7 @@ public class LotrExtendedMod {
 		event.getName();
 		if(event.getName()!=null) {
 			if(event.getName().getNamespace().equals("lotr")&&event.getName().getPath().equals("shire")) {
-				//event.getGeneration().addStructureStart(ExtendedStructures.CONFIGURED_HOBBIT_TAVERN_SMALL);
-				System.out.println("Added structure to biome: "+event.getName().toString());
+				ExtendedStructureLists.addStructureType(event.getGeneration(), ExtendedStructureLists.SHIRE_STRUCTURES);
 			}
 		}
 		
