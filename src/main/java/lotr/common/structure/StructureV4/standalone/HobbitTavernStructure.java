@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 
 import lotr.common.structure.StructureV4.ExtendedStructureStart;
 import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -21,14 +22,15 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 	}
 
 	public static class Start extends ExtendedStructureStart<NoFeatureConfig> {
+		Direction dir;
 		public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ,
 				MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
 		@Override
-		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator) {
-			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16);
+		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction) {
+			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16, direction);
 	         this.pieces.add(hobbitTavernPiece);
 	         this.calculateBoundingBox();
 		}

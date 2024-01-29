@@ -3,9 +3,12 @@ package lotr.common.structure.StructureV4;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -13,6 +16,9 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureStart;
+import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 
 public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends Structure<C>{
 
@@ -31,6 +37,31 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
     public GenerationStage.Decoration step() {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
+
+	private StructureStart<C> createStart(int p_236387_1_, int p_236387_2_, MutableBoundingBox p_236387_3_, int p_236387_4_, long p_236387_5_) {
+		return this.getStartFactory().create(this, p_236387_1_, p_236387_2_, p_236387_3_, p_236387_4_, p_236387_5_);
+	}
+
+	public StructureStart<?> generate(DynamicRegistries p_242785_1_, ChunkGenerator p_242785_2_, BiomeProvider p_242785_3_, TemplateManager p_242785_4_, long p_242785_5_, ChunkPos p_242785_7_, Biome p_242785_8_, int p_242785_9_, SharedSeedRandom p_242785_10_, StructureSeparationSettings p_242785_11_, C p_242785_12_) {
+		return this.generate(p_242785_1_, p_242785_2_, p_242785_3_, p_242785_4_, p_242785_5_, p_242785_7_, p_242785_8_, p_242785_9_, p_242785_10_, p_242785_11_, p_242785_12_);
+	}
+
+	public StructureStart<?> generate(DynamicRegistries p_242785_1_, ChunkGenerator p_242785_2_, BiomeProvider p_242785_3_, TemplateManager p_242785_4_, long p_242785_5_, ChunkPos p_242785_7_, Biome p_242785_8_, int p_242785_9_, SharedSeedRandom p_242785_10_, StructureSeparationSettings p_242785_11_, IFeatureConfig config, Direction direction) {
+		@SuppressWarnings("unchecked")
+		C conf= (C)config;
+		ChunkPos chunkpos = this.getPotentialFeatureChunk(p_242785_11_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z);
+		if (p_242785_7_.x == chunkpos.x && p_242785_7_.z == chunkpos.z && this.isFeatureChunk(p_242785_2_, p_242785_3_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, chunkpos, conf)) {
+			StructureStart<C> structurestart = this.createStart(p_242785_7_.x, p_242785_7_.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
+			if(structurestart instanceof ExtendedStructureStart) {
+				((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf, direction);
+			}
+			structurestart.generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf);
+			if (structurestart.isValid()) {
+				return structurestart;
+			}
+		}
+		return StructureStart.INVALID_START;
+	}
 
     /*
      * This is where extra checks can be done to determine if the structure can spawn here.

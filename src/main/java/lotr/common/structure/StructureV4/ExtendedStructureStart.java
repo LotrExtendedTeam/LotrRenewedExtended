@@ -2,6 +2,7 @@ package lotr.common.structure.StructureV4;
 
 import java.util.Random;
 
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
@@ -23,12 +24,16 @@ public abstract class ExtendedStructureStart<C extends IFeatureConfig> extends S
 
 	@Override
 	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, C config) {
-		generatePieces(chunkX, chunkZ, chunkGenerator);
+		generatePieces(registry, chunkGenerator, templateManager, chunkX, chunkZ, biome, config, null);
+	}
+
+	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, C config, Direction direction) {
+		generatePieces(chunkX, chunkZ, chunkGenerator, direction);
 		this.calculateBoundingBox();
 		this.isCreated = true;
 	}
 
-	public abstract void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator);
+	public abstract void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction);
 //		int x = chunkX * 16;
 //        int z = chunkZ * 16;
 //        BlockPos centerPos = new BlockPos(x, 0, z);
@@ -42,7 +47,15 @@ public abstract class ExtendedStructureStart<C extends IFeatureConfig> extends S
 	public void placeInChunk(ISeedReader p_230366_1_, StructureManager p_230366_2_, ChunkGenerator p_230366_3_, Random p_230366_4_, MutableBoundingBox p_230366_5_, ChunkPos p_230366_6_) {
         if (!this.isCreated) {
            this.pieces.clear();
-           this.generatePieces(this.getChunkX(), this.getChunkZ(),p_230366_3_);
+           this.generatePieces(this.getChunkX(), this.getChunkZ(), p_230366_3_, null);
+        }
+        super.placeInChunk(p_230366_1_, p_230366_2_, p_230366_3_, p_230366_4_, p_230366_5_, p_230366_6_);
+     }
+	public void placeInChunk(ISeedReader p_230366_1_, StructureManager p_230366_2_, ChunkGenerator p_230366_3_, Random p_230366_4_, MutableBoundingBox p_230366_5_, ChunkPos p_230366_6_, Direction direction) {
+        this.placeInChunk(p_230366_1_, p_230366_2_, p_230366_3_, p_230366_4_, p_230366_5_, p_230366_6_, direction);
+		if (!this.isCreated) {
+           this.pieces.clear();
+           this.generatePieces(this.getChunkX(), this.getChunkZ(), p_230366_3_, direction);
         }
         super.placeInChunk(p_230366_1_, p_230366_2_, p_230366_3_, p_230366_4_, p_230366_5_, p_230366_6_);
      }

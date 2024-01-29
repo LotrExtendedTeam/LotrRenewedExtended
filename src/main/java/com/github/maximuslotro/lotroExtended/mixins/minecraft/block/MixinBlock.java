@@ -17,7 +17,6 @@ public class MixinBlock {
 	@Inject(method = "canSustainPlant(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/IBlockReader;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/Direction;Lnet/minecraftforge/common/IPlantable;)Z",
 			at = @At("HEAD"), cancellable = true, remap=false)
 	   private void canSustainPlantExtended(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable, CallbackInfoReturnable<Boolean> ci) {
-	      BlockState plant = plantable.getPlant(world, pos.relative(facing));
 	      net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.relative(facing));
 	      if (net.minecraftforge.common.PlantType.CROP.equals(type)) {
 	    	  if (state.getBlock() instanceof ExtendedGroundFarmlandBlock) {

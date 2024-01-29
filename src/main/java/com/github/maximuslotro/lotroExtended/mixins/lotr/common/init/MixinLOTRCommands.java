@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import lotr.common.command.ExtendedFellowshipCommand;
 import lotr.common.command.ExtendedStructureScanningCommand;
 import lotr.common.command.ExtendedStructureSummon;
+import lotr.common.command.ExtendedStructureSummonv2;
 import lotr.common.command.FellowshipMessageCommand;
 import lotr.common.init.LOTRCommands;
 import net.minecraft.command.CommandSource;
@@ -23,5 +24,6 @@ public class MixinLOTRCommands {
 		ExtendedFellowshipCommand.register(dispatcher);
 		ExtendedStructureScanningCommand.register(dispatcher);
 		ExtendedStructureSummon.register(dispatcher);
+		ExtendedStructureSummonv2.register(dispatcher);
 	}
 }
