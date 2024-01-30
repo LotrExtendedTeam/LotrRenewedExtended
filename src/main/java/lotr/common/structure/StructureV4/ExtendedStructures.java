@@ -48,6 +48,7 @@ public class ExtendedStructures {
 		}
 		DimensionStructuresSettings.DEFAULTS = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.DEFAULTS).put(structure, settings).build();
 		SETTINGS.put(structure, settings);
+		CONFIGURED_STRUCTURES.put(location.getPath(), ()-> feature);
 		Registry.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, new ResourceLocation(location.getNamespace(), "configured_"+location.getPath()), feature);
 		FlatGenerationSettings.STRUCTURE_FEATURES.put(structure, feature);
 	}

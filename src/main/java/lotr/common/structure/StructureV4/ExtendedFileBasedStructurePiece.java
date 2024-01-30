@@ -16,10 +16,6 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructurePiece{
 	private static StructureFile structureFile;
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
-		super(piece, nbt);
-	}
-
 	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, int width, int height, int depth) {
 		this(pieceType, random, posX, posY, posZ, width, height, depth, Direction.Plane.HORIZONTAL.getRandomDirection(random));
 	}
@@ -31,6 +27,10 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructureP
 		}else {
 			ExtendedLog.error("FAILED LOADING STRUCTURE FILE!: " + fileName());
 		}
+	}
+
+	protected ExtendedFileBasedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
+		super(piece, nbt);
 	}
 
 	protected void updateStructureParamiters(Direction nativeDir, StructureSize structureSize) {
