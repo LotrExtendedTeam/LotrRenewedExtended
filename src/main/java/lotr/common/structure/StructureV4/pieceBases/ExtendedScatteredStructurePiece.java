@@ -1,6 +1,8 @@
-package lotr.common.structure.StructureV4;
+package lotr.common.structure.StructureV4.pieceBases;
 
 import java.util.Random;
+
+import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -19,12 +21,14 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 	protected int height;
 	protected int depth;
 	protected int heightPosition = -1;
+	protected final StructureType structureType;
 
-	public ExtendedScatteredStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, int width, int height, int depth, Direction direction) {
+	public ExtendedScatteredStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, Direction direction, StructureType structureType) {
 		super(pieceType, 0);
-		this.width = width;
-		this.height = height;
-		this.depth = depth;
+		this.structureType = structureType;
+		this.width = defaultStructureWidth();
+		this.height = defaultStructureHeight();
+		this.depth = defaultStructureDepth();
 		if(direction==null || !Direction.Plane.HORIZONTAL.test(direction)) {
 			direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
 		}
@@ -36,12 +40,17 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 	       }
 	}
 
+	public abstract int defaultStructureWidth();
+	public abstract int defaultStructureHeight();
+	public abstract int defaultStructureDepth();
+
 	protected ExtendedScatteredStructurePiece(IStructurePieceType type, CompoundNBT nbt) {
 		super(type, nbt);
 		this.width = nbt.getInt("Width");
 		this.height = nbt.getInt("Height");
 		this.depth = nbt.getInt("Depth");
 		this.heightPosition = nbt.getInt("HPos");
+		this.structureType = StructureType.valueOf(nbt.getString("SType"));
 	}
 
 	protected void addAdditionalSaveData(CompoundNBT nbt) {
@@ -49,8 +58,14 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 		nbt.putInt("Height", this.height);
 		nbt.putInt("Depth", this.depth);
 		nbt.putInt("HPos", this.heightPosition);
+		nbt.putString("SType", this.structureType.toString());
 	}
 
+	protected void updateGroundHeight(int newHeight) {
+		if(newHeight>=0) {
+			boundingBox = new MutableBoundingBox(boundingBox.x0, newHeight, boundingBox.z0, boundingBox.x1, newHeight + height - 1, boundingBox.z1);
+		}
+	}
 	protected boolean updateAverageGroundHeight(IWorld world, MutableBoundingBox boundingBox, int yOffset) {
 		if (this.heightPosition >= 0) {
 			return true;

@@ -2,10 +2,12 @@ package lotr.common.structure.StructureV4.standalone;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotroExtended.enums.StructureType;
+
 import lotr.common.structure.StructureFile;
-import lotr.common.structure.StructureV4.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
 import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
+import lotr.common.structure.StructureV4.pieceBases.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.BlockState;
@@ -24,12 +26,8 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	//private boolean placedMainChest;
 
-	protected ExtendedHobbitTavernPiece(Random random, int posX, int posZ, Direction direction) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, posX, 75, posZ, 0, 0, 0, direction);
-	}
-
-	protected ExtendedHobbitTavernPiece(Random random, int posX, int posZ) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, posX, 75, posZ, 0, 0, 0, null);
+	protected ExtendedHobbitTavernPiece(Random random, int posX, int posZ, Direction direction, StructureType structureType) {
+		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, posX, 0, posZ, direction, structureType);
 	}
 
 	public ExtendedHobbitTavernPiece(TemplateManager p_i51350_1_, CompoundNBT p_i51350_2_) {
@@ -44,7 +42,7 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	}
 
 	@Override
-	public boolean postProcess(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos) {
+	public boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos, StructureType structureType) {
 //		if (!this.updateAverageGroundHeight(world, boundingBox, 0)) {
 //			System.out.println("Failed to update ground height");
 //			return false;
@@ -90,6 +88,21 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	@Override
 	public boolean isCodeDefined() {
 		return false;
+	}
+
+	@Override
+	public int defaultStructureWidth() {
+		return 0;
+	}
+
+	@Override
+	public int defaultStructureHeight() {
+		return 0;
+	}
+
+	@Override
+	public int defaultStructureDepth() {
+		return 0;
 	}
 
 }

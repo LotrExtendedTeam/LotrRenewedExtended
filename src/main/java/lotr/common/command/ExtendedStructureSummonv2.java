@@ -3,12 +3,14 @@ package lotr.common.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotroExtended.enums.StructureType;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
+import lotr.common.structure.StructureV4.ExtendedStructureStart;
 import lotr.common.structure.StructureV4.ExtendedStructures;
 import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
 import net.minecraft.command.CommandSource;
@@ -64,14 +66,12 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    			serverlevel.getSeed(), new ChunkPos(pos), 
 		    			serverlevel.getBiome(pos), 0, 
 		    			new SharedSeedRandom(), ExtendedStructures.SETTINGS.get(structure.feature), 
-		    			structure.config, dir);
+		    			structure.config, dir, StructureType.SPAWNED_SINGLE);
 		    }
 		    else {
-		    	structurestart = structure.generate(context.getSource().registryAccess(), chunkgenerator, 
-						chunkgenerator.getBiomeSource(), serverlevel.getStructureManager(), 
-						serverlevel.getSeed(), new ChunkPos(pos), 
-						serverlevel.getBiome(pos), 0, 
-						ExtendedStructures.SETTINGS.get(structure.feature));
+		    	System.out.println("Structure not ExtendedSurfaceStructure");
+		    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+		    	return 1;
 		    }
 		    if (!structurestart.isValid()) {
 		    	System.out.println("Structure not valid");
@@ -84,7 +84,14 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		       checkLoaded(serverlevel, chunkpos, chunkpos1);
 		       ChunkPos.rangeClosed(chunkpos, chunkpos1).forEach((chunkPosition) -> {
 		    	   MutableBoundingBox box = new MutableBoundingBox(chunkPosition.getMinBlockX(), 0, chunkPosition.getMinBlockZ(), chunkPosition.getMaxBlockX(), serverlevel.getMaxBuildHeight(), chunkPosition.getMaxBlockZ());
-		          structurestart.placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), box, chunkPosition);
+				    if(structure.feature instanceof ExtendedSurfaceStructure) {
+				    	System.out.println("Creating modded structure start");
+				    	((ExtendedStructureStart<?>)structurestart).placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), box, chunkPosition);
+				    }
+				    else {
+				    	System.out.println("Structure not ExtendedStructureStart");
+				    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+				    }
 		       });
 		       context.getSource().sendSuccess(new TranslationTextComponent("command.lotrextended.structureSummon.success"), false);
 		    }

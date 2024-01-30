@@ -1,8 +1,9 @@
-package lotr.common.structure.StructureV4;
+package lotr.common.structure.StructureV4.pieceBases;
 
 import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
+import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
@@ -16,12 +17,12 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructurePiece{
 	private static StructureFile structureFile;
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, int width, int height, int depth) {
-		this(pieceType, random, posX, posY, posZ, width, height, depth, Direction.Plane.HORIZONTAL.getRandomDirection(random));
+	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, StructureType structureType) {
+		this(pieceType, random, posX, posY, posZ, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
 	}
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, int width, int height, int depth, Direction direction) {
-		super(pieceType, random, posX, posY, posZ, width, height, depth, direction);
+	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, Direction direction, StructureType structureType) {
+		super(pieceType, random, posX, posY, posZ, direction, structureType);
 		if(getStructure()!=null) {
 			updateStructureParamiters(structureFile.getNaturalFacingDirection(), structureFile.readGenv4StructureSize());
 		}else {

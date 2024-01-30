@@ -1,5 +1,6 @@
 package lotr.common.structure.StructureV4.standalone;
 
+import com.github.maximuslotro.lotroExtended.enums.StructureType;
 import com.mojang.serialization.Codec;
 
 import lotr.common.structure.StructureV4.ExtendedStructureStart;
@@ -29,13 +30,13 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 		}
 
 		@Override
-		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction) {
+		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType) {
 			if(direction!=null) {
 				System.out.println("Generating new ExtendedHobbitTavernPiece: "+chunkX +"-"+ chunkZ+":"+direction.toString());
 			}else {
 				System.out.println("Generating new ExtendedHobbitTavernPiece: "+chunkX +"-"+ chunkZ);
 			}
-			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16, direction);
+			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16, direction, structureType);
 			pieces.add(hobbitTavernPiece);
 		}
 	}
