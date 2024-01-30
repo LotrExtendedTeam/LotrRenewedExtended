@@ -42,6 +42,7 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 		return this.getStartFactory().create(this, p_236387_1_, p_236387_2_, p_236387_3_, p_236387_4_, p_236387_5_);
 	}
 
+	@Override
 	public StructureStart<?> generate(DynamicRegistries p_242785_1_, ChunkGenerator p_242785_2_, BiomeProvider p_242785_3_, TemplateManager p_242785_4_, long p_242785_5_, ChunkPos p_242785_7_, Biome p_242785_8_, int p_242785_9_, SharedSeedRandom p_242785_10_, StructureSeparationSettings p_242785_11_, C p_242785_12_) {
 		return this.generate(p_242785_1_, p_242785_2_, p_242785_3_, p_242785_4_, p_242785_5_, p_242785_7_, p_242785_8_, p_242785_9_, p_242785_10_, p_242785_11_, p_242785_12_, null);
 	}
@@ -53,14 +54,41 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 		if (p_242785_7_.x == chunkpos.x && p_242785_7_.z == chunkpos.z && this.isFeatureChunk(p_242785_2_, p_242785_3_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, chunkpos, conf)) {
 			StructureStart<C> structurestart = this.createStart(p_242785_7_.x, p_242785_7_.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
 			if(structurestart instanceof ExtendedStructureStart) {
+				System.out.println("Adding modded pieces");
 				((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf, direction);
 			}else {
+				System.out.println("Adding pieces");
 				structurestart.generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf);
 			}
+			System.out.println(structurestart.getPieces().size()+" Pieces made");
 			if (structurestart.isValid()) {
+				System.out.println("Structure not valid in starter");
 				return structurestart;
 			}
 		}
+		System.out.println("Not feature chunk");
+		return StructureStart.INVALID_START;
+	}
+
+	public StructureStart<?> generateUnckecked(DynamicRegistries p_242785_1_, ChunkGenerator p_242785_2_, BiomeProvider p_242785_3_, TemplateManager p_242785_4_, long p_242785_5_, ChunkPos p_242785_7_, Biome p_242785_8_, int p_242785_9_, SharedSeedRandom p_242785_10_, StructureSeparationSettings p_242785_11_, IFeatureConfig config, Direction direction) {
+		@SuppressWarnings("unchecked")
+		C conf= (C)config;
+		if (this.isFeatureChunk(p_242785_2_, p_242785_3_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, p_242785_7_, conf)) {
+			StructureStart<C> structurestart = this.createStart(p_242785_7_.x, p_242785_7_.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
+			if(structurestart instanceof ExtendedStructureStart) {
+				System.out.println("Adding modded pieces1");
+				((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf, direction);
+			}else {
+				System.out.println("Adding pieces1");
+				structurestart.generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf);
+			}
+			System.out.println(structurestart.getPieces().size()+" Pieces made1");
+			if (structurestart.isValid()) {
+				System.out.println("Structure not valid in starter1");
+				return structurestart;
+			}
+		}
+		System.out.println("Not feature chunk1");
 		return StructureStart.INVALID_START;
 	}
 
@@ -109,6 +137,7 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 
         // Now we test to make sure our structure is not spawning on water or other fluids.
         // You can do height check instead too to make it spawn at high elevations.
-        return topBlock.getFluidState().isEmpty(); //landHeight > 100;
+        //return topBlock.getFluidState().isEmpty(); //landHeight > 100;
+        return true;
     }
 }

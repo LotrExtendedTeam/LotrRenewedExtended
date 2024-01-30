@@ -48,6 +48,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 	private static int spawnStructure(CommandContext<CommandSource> context, String structureName) throws CommandSyntaxException {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
 			if(!ExtendedStructures.CONFIGURED_STRUCTURES.containsKey(structureName)) {
+				System.out.println("Structure missing");
 				context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
 			}
 			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection();
@@ -57,7 +58,8 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    BlockPos pos = context.getSource().getEntity().blockPosition();
 		    StructureStart<?> structurestart;
 		    if(structure.feature instanceof ExtendedSurfaceStructure) {
-		    	structurestart = ((ExtendedSurfaceStructure<?>)structure.feature).generate(context.getSource().registryAccess(), chunkgenerator, 
+		    	System.out.println("Creating modded structure start");
+		    	structurestart = ((ExtendedSurfaceStructure<?>)structure.feature).generateUnckecked(context.getSource().registryAccess(), chunkgenerator, 
 		    			chunkgenerator.getBiomeSource(), serverlevel.getStructureManager(), 
 		    			serverlevel.getSeed(), new ChunkPos(pos), 
 		    			serverlevel.getBiome(pos), 0, 
@@ -72,6 +74,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 						ExtendedStructures.SETTINGS.get(structure.feature));
 		    }
 		    if (!structurestart.isValid()) {
+		    	System.out.println("Structure not valid");
 		    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
 		    	return 1;
 		    } else {
@@ -79,9 +82,9 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		       ChunkPos chunkpos = new ChunkPos(SectionPos.blockToSectionCoord(Math.min(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.min(boundingbox.z0, boundingbox.z1)));
 		       ChunkPos chunkpos1 = new ChunkPos(SectionPos.blockToSectionCoord(Math.max(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.max(boundingbox.z0, boundingbox.z1)));
 		       checkLoaded(serverlevel, chunkpos, chunkpos1);
-		       ChunkPos.rangeClosed(chunkpos, chunkpos1).forEach((p_269763_) -> {
-		    	   MutableBoundingBox box = new MutableBoundingBox(p_269763_.getMinBlockX(), 0, p_269763_.getMinBlockZ(), p_269763_.getMaxBlockX(), serverlevel.getMaxBuildHeight(), p_269763_.getMaxBlockZ());
-		          structurestart.placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), box, p_269763_);
+		       ChunkPos.rangeClosed(chunkpos, chunkpos1).forEach((chunkPosition) -> {
+		    	   MutableBoundingBox box = new MutableBoundingBox(chunkPosition.getMinBlockX(), 0, chunkPosition.getMinBlockZ(), chunkPosition.getMaxBlockX(), serverlevel.getMaxBuildHeight(), chunkPosition.getMaxBlockZ());
+		          structurestart.placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), box, chunkPosition);
 		       });
 		       context.getSource().sendSuccess(new TranslationTextComponent("command.lotrextended.structureSummon.success"), false);
 		    }

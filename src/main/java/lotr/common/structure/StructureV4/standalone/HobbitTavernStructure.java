@@ -30,9 +30,13 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 
 		@Override
 		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction) {
+			if(direction!=null) {
+				System.out.println("Generating new ExtendedHobbitTavernPiece: "+chunkX +"-"+ chunkZ+":"+direction.toString());
+			}else {
+				System.out.println("Generating new ExtendedHobbitTavernPiece: "+chunkX +"-"+ chunkZ);
+			}
 			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16, direction);
-	         this.pieces.add(hobbitTavernPiece);
-	         this.calculateBoundingBox();
+			pieces.add(hobbitTavernPiece);
 		}
 	}
 }
