@@ -5,13 +5,14 @@ import java.util.function.Supplier;
 import lotr.common.block.ExtendedDaggerItem;
 import lotr.common.init.*;
 import lotr.common.item.*;
-import lotr.common.item.ExtendedSilverCoin.CoinType;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.github.maximuslotro.lotroExtended.enums.CoinType;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;

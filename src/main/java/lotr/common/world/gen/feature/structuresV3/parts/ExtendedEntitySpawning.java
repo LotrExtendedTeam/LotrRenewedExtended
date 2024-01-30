@@ -3,9 +3,9 @@ package lotr.common.world.gen.feature.structuresV3.parts;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
+import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
 
 import lotr.common.init.ExtendedBlocks;
-import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;

@@ -2,7 +2,8 @@ package lotr.common.block;
 
 import javax.annotation.Nullable;
 
-import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
+import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;

@@ -8,10 +8,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
+
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRTileEntities;
-import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;

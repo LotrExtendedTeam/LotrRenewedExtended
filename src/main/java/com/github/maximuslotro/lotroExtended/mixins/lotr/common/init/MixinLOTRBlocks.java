@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
+
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedBerryPlantBlock;
@@ -34,7 +36,6 @@ import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
-import lotr.common.tileentitie.spawners.ExtendedEntitySpawnTypes;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

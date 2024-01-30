@@ -1,5 +1,7 @@
 package lotr.common.tileentitie.spawners;
 
+import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
+
 import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedTileEntities;

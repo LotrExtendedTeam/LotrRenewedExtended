@@ -1,5 +1,7 @@
 package lotr.common.item;
 
+import com.github.maximuslotro.lotroExtended.enums.CoinType;
+
 import net.minecraft.item.Item;
 
 public class ExtendedSilverCoin extends Item {
@@ -7,9 +9,5 @@ public class ExtendedSilverCoin extends Item {
 	public ExtendedSilverCoin(Properties p_i48487_1_, CoinType type) {
 		super(p_i48487_1_);
 		this.type = type;
-	}
-
-	public enum CoinType {
-		ONE, TEN, HUNDRED;
 	}
 }

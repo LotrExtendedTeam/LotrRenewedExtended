@@ -1,10 +1,13 @@
-package lotr.common.tileentitie.spawners;
+package com.github.maximuslotro.lotroExtended.enums;
 
 import java.util.Locale;
 import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import lotr.common.tileentitie.spawners.ExtendedHobbitFarmerSpawnerTileEntity;
+import lotr.common.tileentitie.spawners.ExtendedStructureSpawnerTileEntity;
+import lotr.common.tileentitie.spawners.HobbitBartenderSpawnerTileEntity;
 import net.minecraft.util.IStringSerializable;
 
 public enum ExtendedEntitySpawnTypes implements IStringSerializable {
