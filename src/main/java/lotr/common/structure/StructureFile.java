@@ -35,7 +35,8 @@ public class StructureFile {
 	public static RelativePosition readBlockPos(CompoundNBT compoundnbt) {
 	    return new RelativePosition(compoundnbt.getInt("X"), compoundnbt.getInt("Y"), compoundnbt.getInt("Z"));
 	}
-	
+
+	@Deprecated
 	public RelativePosition readStructureSize() {
 	    return new RelativePosition(structureSize.getInt("X"), structureSize.getInt("Y"), structureSize.getInt("Z"));
 	}

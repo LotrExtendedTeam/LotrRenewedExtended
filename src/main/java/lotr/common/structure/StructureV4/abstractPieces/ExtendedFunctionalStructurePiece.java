@@ -28,18 +28,18 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraftforge.fml.RegistryObject;
 
-public abstract class ExtendedStructurePiece extends ExtendedScatteredStructurePiece {
+public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStructurePiece {
 	private Map<String, Boolean> placedFeatures = new HashMap<>();
 
-	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
+	protected ExtendedFunctionalStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
 		this(pieceType, random, position, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
 	}
 
-	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
+	protected ExtendedFunctionalStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, random, position, direction, structureType);
 	}
 
-	protected ExtendedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
+	protected ExtendedFunctionalStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
 		super(piece, nbt);
 		ListNBT placedFeaturesList = nbt.getList("placedFeatures", 10);
 		for (int i = 0; i < placedFeaturesList.size(); i++) {

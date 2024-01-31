@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotroExtended.enums.StructureType;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.util.StructureSize;
+import lotr.common.structure.util.StructureSize.StructureBoxValues;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +16,7 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructurePiece{
+public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctionalStructurePiece{
 	private static StructureFile structureFile;
 
 	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
@@ -25,7 +26,7 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructureP
 	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, random, position, direction, structureType);
 		if(getStructure()!=null) {
-			updateStructureParamiters(structureFile.getNaturalFacingDirection(), structureFile.readGenv4StructureSize());
+			updateStructureParamiters(structureFile);
 		}else {
 			ExtendedLog.error("FAILED LOADING STRUCTURE FILE!: " + fileName());
 		}
@@ -35,21 +36,24 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructureP
 		super(piece, nbt);
 	}
 
-	protected void updateStructureParamiters(Direction nativeDir, StructureSize structureSize) {
+	protected void updateStructureParamiters(StructureFile file) {
+		Direction nativeDir = file.getNaturalFacingDirection();
+		StructureSize structureSize = file.readGenv4StructureSize();
 		this.height = structureSize.getHeight();
 		int posX = boundingBox.x0;
 		int posY = boundingBox.y0;
 		int posZ = boundingBox.z0;
+		StructureBoxValues boxModifer = structureSize.makeStructureBox(file.getLayers());
 		System.out.println("Structure Spawn Dir: "+this.getOrientation().toString()+"-"+nativeDir);
 		System.out.println("Structure Size: "+structureSize.toString());
-		if (this.getOrientation().getAxis() == nativeDir.getAxis() || nativeDir.equals(Direction.UP)) {
+		if (this.getOrientation() == nativeDir || this.getOrientation().getOpposite() == nativeDir || nativeDir.equals(Direction.UP)) {
 			this.width = structureSize.getWidth();
 			this.depth = structureSize.getDepth();
-			this.boundingBox = new MutableBoundingBox(posX, posY, posZ, posX + structureSize.getWidth() - 1, posY + structureSize.getHeight() - 1, posZ + structureSize.getDepth() - 1);
-		} else if (this.getOrientation().getOpposite().getAxis() == nativeDir.getAxis()){
+			this.boundingBox = new MutableBoundingBox(posX+boxModifer.widthLowX, posY+boxModifer.heightLowY, posZ+boxModifer.depthLowZ, posX+boxModifer.widthHighX, posY+boxModifer.heightHighY, posZ+boxModifer.depthHighZ);
+		} else if (this.getOrientation().getClockWise() == nativeDir||this.getOrientation().getCounterClockWise() == nativeDir){
 			this.width = structureSize.getDepth();
 			this.depth = structureSize.getWidth();
-			this.boundingBox = new MutableBoundingBox(posX, posY, posZ, posX + structureSize.getDepth() - 1, posY + structureSize.getHeight() - 1, posZ + structureSize.getWidth() - 1);
+			new MutableBoundingBox(posX+boxModifer.depthLowZ, posY+boxModifer.heightLowY, posZ+boxModifer.widthLowX, posX+boxModifer.depthHighZ, posY+boxModifer.heightHighY, posZ+boxModifer.widthHighX);
 		}
 	}
 

@@ -4,6 +4,8 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +22,7 @@ import net.minecraft.world.gen.feature.structure.StructurePiece;
 /*
  * Copied and modified from {@Link ScatteredStructurePiece}
  * */
-public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
+public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	protected int width;
 	protected int height;
 	protected int depth;
@@ -29,7 +31,7 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 	protected int heightPosition = -1;
 	protected final StructureType structureType;
 
-	public ExtendedScatteredStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
+	public ExtendedBaseStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, 0);
 		this.structureType = structureType;
 		this.width = defaultStructureWidth();
@@ -52,7 +54,7 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 	public abstract int defaultStructureHeight();
 	public abstract int defaultStructureDepth();
 
-	protected ExtendedScatteredStructurePiece(IStructurePieceType type, CompoundNBT nbt) {
+	protected ExtendedBaseStructurePiece(IStructurePieceType type, CompoundNBT nbt) {
 		super(type, nbt);
 		this.width = nbt.getInt("Width");
 		this.height = nbt.getInt("Height");
@@ -92,6 +94,7 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 			boundingBox = new MutableBoundingBox(boundingBox.x0, newHeight, boundingBox.z0, boundingBox.x1, newHeight + height - 1, boundingBox.z1);
 		}
 	}
+
 	protected boolean updateAverageGroundHeight(IWorld world, MutableBoundingBox boundingBox, int yOffset) {
 		if (this.heightPosition >= 0) {
 			return true;
@@ -123,5 +126,25 @@ public abstract class ExtendedScatteredStructurePiece extends StructurePiece {
 
 	public boolean isSetToGroundHeight() {
 		return true;
+	}
+
+	@Override
+	protected void placeBlock(ISeedReader p_175811_1_, BlockState p_175811_2_, int p_175811_3_, int p_175811_4_, int p_175811_5_, MutableBoundingBox p_175811_6_) {
+		BlockPos blockpos = new BlockPos(this.getWorldX(p_175811_3_, p_175811_5_), this.getWorldY(p_175811_4_), this.getWorldZ(p_175811_3_, p_175811_5_));
+		if (p_175811_6_.isInside(blockpos)) {
+			// if (this.mirror != Mirror.NONE) {
+			// p_175811_2_ = p_175811_2_.mirror(this.mirror);
+			// }
+
+			// if (this.rotation != Rotation.NONE) {
+			// p_175811_2_ = p_175811_2_.rotate(this.rotation);
+			// }
+
+			p_175811_1_.setBlock(blockpos, p_175811_2_, 2);
+			FluidState fluidstate = p_175811_1_.getFluidState(blockpos);
+			if (!fluidstate.isEmpty()) {
+				p_175811_1_.getLiquidTicks().scheduleTick(blockpos, fluidstate.getType(), 0);
+			}
+		}
 	}
 }

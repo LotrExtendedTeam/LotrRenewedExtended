@@ -33,9 +33,7 @@ public abstract class ExtendedStructureStart<C extends IFeatureConfig> extends S
 	}
 
 	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int posX, int posZ, Biome biome, C config, Direction direction, StructureType structureType) {
-		generatePieces(new BlockPos(posX, -1, posZ), chunkGenerator, direction, structureType);
-		System.out.println("Generated abstract pieces");
-		calculateBoundingBox();
+		generatePieces(registry, chunkGenerator, templateManager, new BlockPos(posX, -1, posZ), biome, config, direction, structureType);
 	}
 
 	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos pos, Biome biome, C config, Direction direction, StructureType structureType) {
@@ -49,7 +47,7 @@ public abstract class ExtendedStructureStart<C extends IFeatureConfig> extends S
 //        int z = chunkZ * 16;
 //        BlockPos centerPos = new BlockPos(x, 0, z);
 //        
-//        ExtendedStructurePiece piece = new ExtendedStructurePiece();
+//        ExtendedFunctionalStructurePiece piece = new ExtendedFunctionalStructurePiece();
 //        this.pieces.add(piece);
 //        this.calculateBoundingBox();
 //	}

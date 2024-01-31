@@ -71,34 +71,32 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    else {
 		    	System.out.println("Structure not ExtendedSurfaceStructure");
 		    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
-		    	return 1;
+		    	return 0;
 		    }
 		    if (!structurestart.isValid()) {
 		    	System.out.println("Structure not valid");
 		    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
-		    	return 1;
+		    	return 0;
 		    } else {
 		       MutableBoundingBox boundingbox = structurestart.getBoundingBox();
 		       ChunkPos chunkpos = new ChunkPos(SectionPos.blockToSectionCoord(Math.min(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.min(boundingbox.z0, boundingbox.z1)));
 		       ChunkPos chunkpos1 = new ChunkPos(SectionPos.blockToSectionCoord(Math.max(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.max(boundingbox.z0, boundingbox.z1)));
 		       checkLoaded(serverlevel, chunkpos, chunkpos1);
-		       ChunkPos.rangeClosed(chunkpos, chunkpos1).forEach((chunkPosition) -> {
-		    	   MutableBoundingBox box = new MutableBoundingBox(chunkPosition.getMinBlockX(), 0, chunkPosition.getMinBlockZ(), chunkPosition.getMaxBlockX(), serverlevel.getMaxBuildHeight(), chunkPosition.getMaxBlockZ());
-				    if(structure.feature instanceof ExtendedSurfaceStructure) {
-				    	System.out.println("Creating modded structure start");
-				    	((ExtendedStructureStart<?>)structurestart).placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), box, chunkPosition);
-				    }
-				    else {
-				    	System.out.println("Structure not ExtendedStructureStart");
-				    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
-				    }
-		       });
+		       if(structure.feature instanceof ExtendedSurfaceStructure) {
+			    	System.out.println("Creating modded structure start");
+			    	((ExtendedStructureStart<?>)structurestart).placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), boundingbox, new ChunkPos(pos));
+			    }
+			    else {
+			    	System.out.println("Structure not ExtendedStructureStart");
+			    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+			    	return 0;
+			    }
 		       context.getSource().sendSuccess(new TranslationTextComponent("command.lotrextended.structureSummon.success"), false);
 		    }
-		    return 0;
+		    return 1;
 		}
 		else {
-			return 1;
+			return 0;
 		}
 	}
 	private static void checkLoaded(ServerWorld p_214544_, ChunkPos p_214545_, ChunkPos p_214546_) throws CommandSyntaxException {
