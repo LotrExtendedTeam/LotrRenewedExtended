@@ -14,14 +14,16 @@ public class StructureFile {
 	public final String name;
 	private final CompoundNBT structureSize;
 	private final Direction NaturalFacingDirection;
+	public final int version;
 
-	public StructureFile(String name, ListNBT layers, CompoundNBT structureSize, ListNBT signs, ListNBT entities, Direction dir) {
+	public StructureFile(String name, ListNBT layers, CompoundNBT structureSize, ListNBT signs, ListNBT entities, Direction dir, int version) {
 		this.layers = layers;
 		this.signs = signs;
 		this.entities = entities;
 		this.name = name;
 		this.structureSize = structureSize;
 		this.NaturalFacingDirection = dir;
+		this.version = version;
 	}
 
 	public CompoundNBT getStructureSize() {

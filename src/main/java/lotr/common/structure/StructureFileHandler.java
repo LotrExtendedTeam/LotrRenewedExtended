@@ -13,7 +13,7 @@ import net.minecraft.util.Direction;
 
 public class StructureFileHandler {
 	private static Map<String, StructureFile> loadedStructures = new HashMap<>();
-	
+	public static final int currentFileVersion = 1;
 	public static StructureFile getStructureFile(String strName, MinecraftServer server) {
 		if(loadedStructures.containsKey(strName)) {
 			return loadedStructures.get(strName);
@@ -27,12 +27,14 @@ public class StructureFileHandler {
 		ListNBT blockMap;
 		ListNBT signMap;
 		ListNBT entityMap;
+		int version;
 		Direction dir;
 		try {
 			size = compound.getCompound(StructureStrings.structureSizeHolder);
 			blockMap = compound.getList(StructureStrings.blockMapHolder, 10);
 			signMap = compound.getList(StructureStrings.signMapHolder, 10);
 			entityMap = compound.getList(StructureStrings.entityMapHolder, 10);
+			version = compound.getInt("version");
 			dir = Direction.byName(compound.getString(StructureStrings.structureDirectionHolder));
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -52,7 +54,10 @@ public class StructureFileHandler {
 		if(entityMap.isEmpty()) {
 			ExtendedLog.info("Loaded empty entity array: "+strName+", this is probably intentional");
 		}
-		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap, dir);
+		if(version<currentFileVersion) {
+			ExtendedLog.info("StructureFileHandler just loaded an outdated structure file: "+strName+", pls update");
+		}
+		StructureFile file = new StructureFile(strName, blockMap, size, signMap, entityMap, dir, version);
 		loadedStructures.put(strName, file);
 		return file;
 	}

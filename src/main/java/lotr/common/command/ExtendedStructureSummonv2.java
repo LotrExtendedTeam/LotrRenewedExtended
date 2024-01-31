@@ -23,7 +23,6 @@ import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.SectionPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
@@ -79,8 +78,8 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    	return 0;
 		    } else {
 		       MutableBoundingBox boundingbox = structurestart.getBoundingBox();
-		       ChunkPos chunkpos = new ChunkPos(SectionPos.blockToSectionCoord(Math.min(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.min(boundingbox.z0, boundingbox.z1)));
-		       ChunkPos chunkpos1 = new ChunkPos(SectionPos.blockToSectionCoord(Math.max(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.max(boundingbox.z0, boundingbox.z1)));
+		       //ChunkPos chunkpos = new ChunkPos(SectionPos.blockToSectionCoord(Math.min(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.min(boundingbox.z0, boundingbox.z1)));
+		       //ChunkPos chunkpos1 = new ChunkPos(SectionPos.blockToSectionCoord(Math.max(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.max(boundingbox.z0, boundingbox.z1)));
 		       //checkLoaded(serverlevel, chunkpos, chunkpos1);
 		       if(structure.feature instanceof ExtendedSurfaceStructure) {
 			    	System.out.println("Creating modded structure start");

@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.StructureFileIO;
 import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.AbstractSignBlock;
@@ -234,6 +235,7 @@ public class StructureScanner {
 		dataCompound.put(StructureStrings.structureSizeHolder, createStructureSize(XWidth, yHeight, ZWidth));
 		dataCompound.putString(StructureStrings.structureDirectionHolder, direction.getName());
 		dataCompound.putString(StructureStrings.structureNameHolder, name);
+		dataCompound.putInt("version", StructureFileHandler.currentFileVersion);
 		StructureFileIO.save(name, context.getSource().getLevel().getServer(), dataCompound);
 		return true;
 	}

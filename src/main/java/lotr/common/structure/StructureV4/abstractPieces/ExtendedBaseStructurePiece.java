@@ -2,6 +2,8 @@ package lotr.common.structure.StructureV4.abstractPieces;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
 import net.minecraft.block.BlockState;
@@ -27,9 +29,12 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	protected int height;
 	protected int depth;
 	protected int initialX;
+	protected int initialY;
 	protected int initialZ;
 	protected int heightPosition = -1;
-	protected final StructureType structureType;
+	@Nullable
+	public final Direction ssDirection;
+	private StructureType structureType;
 
 	public ExtendedBaseStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, 0);
@@ -38,16 +43,18 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 		this.height = defaultStructureHeight();
 		this.depth = defaultStructureDepth();
 		this.initialX = position.getX();
+		this.initialY = position.getY();
 		this.initialZ = position.getZ();
 		if(direction==null || !Direction.Plane.HORIZONTAL.test(direction)) {
-			direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+			ssDirection = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+		}else {
+			ssDirection = direction;
 		}
-		this.setOrientation(direction);
-	      if (this.getOrientation().getAxis() == Direction.Axis.Z) {
-	          this.boundingBox = new MutableBoundingBox(position.getX(), position.getY(), position.getZ(), position.getX() + width - 1, position.getY() + height - 1, position.getZ() + depth - 1);
-	       } else {
-	          this.boundingBox = new MutableBoundingBox(position.getX(), position.getY(), position.getZ(), position.getX() + depth - 1, position.getY() + height - 1, position.getZ() + width - 1);
-	       }
+		if (ssDirection.getAxis() == Direction.Axis.Z) {
+			this.boundingBox = new MutableBoundingBox(initialX, initialY, initialZ, initialX + width - 1, initialY + height - 1, initialZ + depth - 1);
+		} else {
+			this.boundingBox = new MutableBoundingBox(initialX, initialY, initialZ, initialX + depth - 1, initialY + height - 1, initialZ + width - 1);
+		}
 	}
 
 	public abstract int defaultStructureWidth();
@@ -60,7 +67,10 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 		this.height = nbt.getInt("Height");
 		this.depth = nbt.getInt("Depth");
 		this.initialX = nbt.getInt("initialX");
+		this.initialY = nbt.getInt("initialY");
 		this.initialZ = nbt.getInt("initialZ");
+		int i = nbt.getInt("Direction");
+	    this.ssDirection = (i == -1) ? null : Direction.from2DDataValue(i);
 		this.heightPosition = nbt.getInt("HPos");
 		this.structureType = StructureType.valueOf(nbt.getString("SType"));
 	}
@@ -70,8 +80,10 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 		nbt.putInt("Height", this.height);
 		nbt.putInt("Depth", this.depth);
 		nbt.putInt("initialX", this.initialX);
+		nbt.putInt("initiaY", this.initialY);
 		nbt.putInt("initialZ", this.initialZ);
 		nbt.putInt("HPos", this.heightPosition);
+		nbt.putInt("Direction", ssDirection == null ? -1 : ssDirection.get2DDataValue());
 		nbt.putString("SType", this.structureType.toString());
 	}
 
@@ -91,7 +103,8 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	protected void updateGroundHeight(int newHeight) {
 		if(newHeight>=0) {
-			boundingBox = new MutableBoundingBox(boundingBox.x0, newHeight, boundingBox.z0, boundingBox.x1, newHeight + height - 1, boundingBox.z1);
+			initialY = newHeight;
+			boundingBox = new MutableBoundingBox(boundingBox.x0, initialY, boundingBox.z0, boundingBox.x1, initialY + height - 1, boundingBox.z1);
 		}
 	}
 
@@ -129,9 +142,9 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	}
 
 	@Override
-	protected void placeBlock(ISeedReader p_175811_1_, BlockState p_175811_2_, int p_175811_3_, int p_175811_4_, int p_175811_5_, MutableBoundingBox p_175811_6_) {
-		BlockPos blockpos = new BlockPos(this.getWorldX(p_175811_3_, p_175811_5_), this.getWorldY(p_175811_4_), this.getWorldZ(p_175811_3_, p_175811_5_));
-		if (p_175811_6_.isInside(blockpos)) {
+	protected void placeBlock(ISeedReader world, BlockState blockState, int xPos, int yPos, int zPos, MutableBoundingBox box) {
+		BlockPos blockpos = new BlockPos(this.getWorldX(xPos, zPos), this.getWorldY(yPos), this.getWorldZ(xPos, zPos));
+		if (box.isInside(blockpos)) {
 			// if (this.mirror != Mirror.NONE) {
 			// p_175811_2_ = p_175811_2_.mirror(this.mirror);
 			// }
@@ -140,12 +153,66 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 			// p_175811_2_ = p_175811_2_.rotate(this.rotation);
 			// }
 
-			p_175811_1_.setBlock(blockpos, p_175811_2_, 2);
-			FluidState fluidstate = p_175811_1_.getFluidState(blockpos);
+			world.setBlock(blockpos, blockState, 2);
+			FluidState fluidstate = world.getFluidState(blockpos);
 			if (!fluidstate.isEmpty()) {
-				p_175811_1_.getLiquidTicks().scheduleTick(blockpos, fluidstate.getType(), 0);
+				world.getLiquidTicks().scheduleTick(blockpos, fluidstate.getType(), 0);
 			}
 		}
-		//System.out.println("Block not in bounds: "+blockpos.toString());
+		else {
+			System.out.println("Block not in bounds: "+blockpos.toString());
+		}
+	}
+	
+	@Override
+	protected int getWorldX(int xCord, int zCord) {
+		if (ssDirection == null) {
+			return xCord;
+		} else {
+			if(ssDirection.equals(Direction.NORTH)) {
+				return initialX + xCord;
+			}
+			if(ssDirection.getOpposite().equals(Direction.NORTH)) {
+				return initialX - xCord;
+			}
+			if(ssDirection.getClockWise().equals(Direction.NORTH)) {
+				return initialX + zCord;
+			}
+			if(ssDirection.getCounterClockWise().equals(Direction.NORTH)) {
+				return initialX - zCord;
+			}
+		}
+		throw new IllegalArgumentException("Found Invalid Rotation Type: "+ssDirection.toString());
+	}
+
+	@Override
+	protected int getWorldY(int yCord) {
+		return initialY + yCord;
+	}
+
+	@Override
+	protected int getWorldZ(int xCord, int zCord) {
+		if (ssDirection == null) {
+			return zCord;
+		} else {
+			if(ssDirection.equals(Direction.NORTH)) {
+				return initialZ + zCord;
+			}
+			if(ssDirection.getOpposite().equals(Direction.NORTH)) {
+				return initialZ - zCord;
+			}
+			if(ssDirection.getClockWise().equals(Direction.NORTH)) {
+				return initialZ - xCord;
+			}
+			if(ssDirection.getCounterClockWise().equals(Direction.NORTH)) {
+				return initialZ + xCord;
+			}
+		}
+		throw new IllegalArgumentException("Found Invalid Rotation Type: "+ssDirection.toString());
+
+	}
+
+	public Direction getSsDirection() {
+		return ssDirection;
 	}
 }
