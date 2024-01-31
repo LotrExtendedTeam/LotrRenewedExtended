@@ -50,8 +50,6 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 			System.out.println(boundingBox.toString());
 			if (file != null) {
 				generateBox(world, boundingBox, 0, 0, 0, boundingBox.x1-boundingBox.x0, boundingBox.y1-boundingBox.y0, boundingBox.z1-boundingBox.z0, Blocks.BROWN_STAINED_GLASS.defaultBlockState(), Blocks.WHITE_STAINED_GLASS.defaultBlockState(), false);
-				generateBox(world, boundingBox, 0, 0, 0, boundingBox.z1-boundingBox.z0, boundingBox.y1-boundingBox.y0, boundingBox.x1-boundingBox.x0, Blocks.GREEN_STAINED_GLASS.defaultBlockState(), Blocks.LIME_STAINED_GLASS.defaultBlockState(), false);
-
 				for (int i = 0; i < file.getLayers().size(); i++) {
 					CompoundNBT nbt = file.getLayers().getCompound(i);
 					RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
