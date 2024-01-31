@@ -81,7 +81,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		       MutableBoundingBox boundingbox = structurestart.getBoundingBox();
 		       ChunkPos chunkpos = new ChunkPos(SectionPos.blockToSectionCoord(Math.min(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.min(boundingbox.z0, boundingbox.z1)));
 		       ChunkPos chunkpos1 = new ChunkPos(SectionPos.blockToSectionCoord(Math.max(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.max(boundingbox.z0, boundingbox.z1)));
-		       checkLoaded(serverlevel, chunkpos, chunkpos1);
+		       //checkLoaded(serverlevel, chunkpos, chunkpos1);
 		       if(structure.feature instanceof ExtendedSurfaceStructure) {
 			    	System.out.println("Creating modded structure start");
 			    	((ExtendedStructureStart<?>)structurestart).placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), boundingbox, new ChunkPos(pos));

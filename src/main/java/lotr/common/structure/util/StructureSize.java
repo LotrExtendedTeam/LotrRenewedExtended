@@ -81,8 +81,8 @@ public class StructureSize{
 				if(rpos.getY()>heightHighY) {
 					heightHighY = rpos.getY();
 				}
-				if(rpos.getZ()<heightHighY) {
-					heightHighY = rpos.getZ();
+				if(rpos.getZ()<depthLowZ) {
+					depthLowZ = rpos.getZ();
 				}
 				if(rpos.getZ()>depthHighZ) {
 					depthHighZ = rpos.getZ();
