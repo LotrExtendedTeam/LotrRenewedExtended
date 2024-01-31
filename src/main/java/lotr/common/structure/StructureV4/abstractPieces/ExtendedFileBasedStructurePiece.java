@@ -26,8 +26,8 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, random, position, direction, structureType);
 		if(getStructure()!=null) {
-			updateStructureParamiters(structureFile);
 			nativeDirection = structureFile.getNaturalFacingDirection();
+			updateStructureParamiters(structureFile);
 		}else {
 			ExtendedLog.error("FAILED LOADING STRUCTURE FILE!: " + fileName());
 			nativeDirection=null;
@@ -75,7 +75,7 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 
 	@Override
 	protected int getWorldX(int xCord, int zCord) {
-		if (ssDirection == null) {
+		if (ssDirection == null || nativeDirection == null) {
 			return xCord;
 		} else {
 			if(ssDirection.equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
@@ -96,7 +96,7 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 
 	@Override
 	protected int getWorldZ(int xCord, int zCord) {
-		if (ssDirection == null) {
+		if (ssDirection == null || nativeDirection == null) {
 			return zCord;
 		} else {
 			if(ssDirection.equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
