@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import lotr.common.structure.StructureV4.ExtendedStructureStart;
 import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -24,19 +25,18 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 
 	public static class Start extends ExtendedStructureStart<NoFeatureConfig> {
 		Direction dir;
-		public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ,
-				MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+		public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
 		@Override
-		public void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType) {
+		public void generatePieces(BlockPos pos, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType) {
 			if(direction!=null) {
-				System.out.println("Generating new ExtendedHobbitTavernPiece: "+chunkX +"-"+ chunkZ+":"+direction.toString());
+				System.out.println("Generating new ExtendedHobbitTavernPiece: "+pos.toString()+":"+direction.toString());
 			}else {
-				System.out.println("Generating new ExtendedHobbitTavernPiece: "+chunkX +"-"+ chunkZ);
+				System.out.println("Generating new ExtendedHobbitTavernPiece: "+pos.toString());
 			}
-			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, chunkX * 16, chunkZ * 16, direction, structureType);
+			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, pos, direction, structureType);
 			pieces.add(hobbitTavernPiece);
 		}
 	}

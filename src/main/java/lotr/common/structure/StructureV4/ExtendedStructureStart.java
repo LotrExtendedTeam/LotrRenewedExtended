@@ -29,16 +29,22 @@ public abstract class ExtendedStructureStart<C extends IFeatureConfig> extends S
 
 	@Override
 	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, C config) {
-		generatePieces(registry, chunkGenerator, templateManager, chunkX, chunkZ, biome, config, null, StructureType.NATURAL_SINGLE);
+		generatePieces(registry, chunkGenerator, templateManager, chunkX * 16, chunkZ * 16, biome, config, null, StructureType.NATURAL_SINGLE);
 	}
 
-	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, C config, Direction direction, StructureType structureType) {
-		generatePieces(chunkX, chunkZ, chunkGenerator, direction, structureType);
+	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, int posX, int posZ, Biome biome, C config, Direction direction, StructureType structureType) {
+		generatePieces(new BlockPos(posX, -1, posZ), chunkGenerator, direction, structureType);
 		System.out.println("Generated abstract pieces");
 		calculateBoundingBox();
 	}
 
-	public abstract void generatePieces(int chunkX, int chunkZ, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType);
+	public void generatePieces(DynamicRegistries registry, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos pos, Biome biome, C config, Direction direction, StructureType structureType) {
+		generatePieces(pos, chunkGenerator, direction, structureType);
+		System.out.println("Generated abstract pieces");
+		calculateBoundingBox();
+	}
+
+	public abstract void generatePieces(BlockPos pos, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType);
 //		int x = chunkX * 16;
 //        int z = chunkZ * 16;
 //        BlockPos centerPos = new BlockPos(x, 0, z);

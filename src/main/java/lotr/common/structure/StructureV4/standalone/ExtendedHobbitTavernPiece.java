@@ -6,8 +6,8 @@ import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
+import lotr.common.structure.StructureV4.abstractPieces.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
-import lotr.common.structure.StructureV4.pieceBases.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.BlockState;
@@ -17,7 +17,6 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -26,8 +25,8 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	//private boolean placedMainChest;
 
-	protected ExtendedHobbitTavernPiece(Random random, int posX, int posZ, Direction direction, StructureType structureType) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, posX, 0, posZ, direction, structureType);
+	protected ExtendedHobbitTavernPiece(Random random, BlockPos position, Direction direction, StructureType structureType) {
+		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, position, direction, structureType);
 	}
 
 	public ExtendedHobbitTavernPiece(TemplateManager p_i51350_1_, CompoundNBT p_i51350_2_) {
@@ -42,7 +41,7 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	}
 
 	@Override
-	public boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos, StructureType structureType) {
+	public boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, ChunkPos cPos, StructureType structureType) {
 //		if (!this.updateAverageGroundHeight(world, boundingBox, 0)) {
 //			System.out.println("Failed to update ground height");
 //			return false;

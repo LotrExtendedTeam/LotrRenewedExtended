@@ -1,4 +1,4 @@
-package lotr.common.structure.StructureV4.pieceBases;
+package lotr.common.structure.StructureV4.abstractPieces;
 
 import java.util.Random;
 
@@ -10,6 +10,7 @@ import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.util.StructureSize;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -17,12 +18,12 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public abstract class ExtendedFileBasedStructurePiece extends ExtendedStructurePiece{
 	private static StructureFile structureFile;
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, StructureType structureType) {
-		this(pieceType, random, posX, posY, posZ, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
+	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
+		this(pieceType, random, position, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
 	}
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, Direction direction, StructureType structureType) {
-		super(pieceType, random, posX, posY, posZ, direction, structureType);
+	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
+		super(pieceType, random, position, direction, structureType);
 		if(getStructure()!=null) {
 			updateStructureParamiters(structureFile.getNaturalFacingDirection(), structureFile.readGenv4StructureSize());
 		}else {

@@ -1,4 +1,4 @@
-package lotr.common.structure.StructureV4.pieceBases;
+package lotr.common.structure.StructureV4.abstractPieces;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,24 +23,20 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraftforge.fml.RegistryObject;
 
 public abstract class ExtendedStructurePiece extends ExtendedScatteredStructurePiece {
 	private Map<String, Boolean> placedFeatures = new HashMap<>();
 
-	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, StructureType structureType) {
-		this(pieceType, random, posX, posY, posZ, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
+	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
+		this(pieceType, random, position, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
 	}
 
-	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, int posX, int posY, int posZ, Direction direction, StructureType structureType) {
-		super(pieceType, random, posX, posY, posZ, direction, structureType);
+	protected ExtendedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
+		super(pieceType, random, position, direction, structureType);
 	}
 
 	protected ExtendedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
@@ -69,33 +65,7 @@ public abstract class ExtendedStructurePiece extends ExtendedScatteredStructureP
 
 	protected abstract void addMoreSaveData(CompoundNBT nbt);
 
-	@Override
-	public boolean postProcess(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos) {
-		return this.postProcess(world, structureManager, chunkGen, random, box, cPos, bPos);
-	}
-
-	private boolean postProcessInternal(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos) {
-		if(isSetToGroundHeight()&&structureType!=null) {
-			int i = -1;
-			if(structureType.equals(StructureType.NATURAL_SINGLE)) {
-				i = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, bPos.getX(), bPos.getZ());
-			}else if(structureType.equals(StructureType.SPAWNED_SINGLE)) {
-				i = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, bPos.getX(), bPos.getZ());
-			}
-			if(i!=-1) {
-				updateGroundHeight(i);
-			}
-		}
-		return this.placeBlocks(world, structureManager, chunkGen, random, box, cPos, bPos, structureType);
-	}
-
-	public abstract boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, MutableBoundingBox box, ChunkPos cPos, BlockPos bPos, StructureType structureType);
-
 	public boolean isCodeDefined() {
-		return true;
-	}
-
-	public boolean isSetToGroundHeight() {
 		return true;
 	}
 

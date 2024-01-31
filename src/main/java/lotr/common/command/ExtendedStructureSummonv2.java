@@ -63,7 +63,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    	System.out.println("Creating modded structure start");
 		    	structurestart = ((ExtendedSurfaceStructure<?>)structure.feature).generateUnckecked(context.getSource().registryAccess(), chunkgenerator, 
 		    			chunkgenerator.getBiomeSource(), serverlevel.getStructureManager(), 
-		    			serverlevel.getSeed(), new ChunkPos(pos), 
+		    			serverlevel.getSeed(), pos, 
 		    			serverlevel.getBiome(pos), 0, 
 		    			new SharedSeedRandom(), ExtendedStructures.SETTINGS.get(structure.feature), 
 		    			structure.config, dir, StructureType.SPAWNED_SINGLE);
