@@ -33,7 +33,7 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	protected int initialZ;
 	protected int heightPosition = -1;
 	@Nullable
-	public final Direction ssDirection;
+	private final Direction ssDirection;
 	private StructureType structureType;
 
 	public ExtendedBaseStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
@@ -166,23 +166,23 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	
 	@Override
 	protected int getWorldX(int xCord, int zCord) {
-		if (ssDirection == null) {
+		if (getSsDirection() == null) {
 			return xCord;
 		} else {
-			if(ssDirection.equals(Direction.NORTH)) {
+			if(getSsDirection().equals(Direction.NORTH)) {
 				return initialX + xCord;
 			}
-			if(ssDirection.getOpposite().equals(Direction.NORTH)) {
+			if(getSsDirection().getOpposite().equals(Direction.NORTH)) {
 				return initialX - xCord;
 			}
-			if(ssDirection.getClockWise().equals(Direction.NORTH)) {
+			if(getSsDirection().getClockWise().equals(Direction.NORTH)) {
 				return initialX + zCord;
 			}
-			if(ssDirection.getCounterClockWise().equals(Direction.NORTH)) {
+			if(getSsDirection().getCounterClockWise().equals(Direction.NORTH)) {
 				return initialX - zCord;
 			}
 		}
-		throw new IllegalArgumentException("Found Invalid Rotation Type: "+ssDirection.toString());
+		throw new IllegalArgumentException("Found Invalid Rotation Type: "+getSsDirection().toString());
 	}
 
 	@Override
@@ -192,27 +192,30 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	@Override
 	protected int getWorldZ(int xCord, int zCord) {
-		if (ssDirection == null) {
+		if (getSsDirection() == null) {
 			return zCord;
 		} else {
-			if(ssDirection.equals(Direction.NORTH)) {
+			if(getSsDirection().equals(Direction.NORTH)) {
 				return initialZ + zCord;
 			}
-			if(ssDirection.getOpposite().equals(Direction.NORTH)) {
+			if(getSsDirection().getOpposite().equals(Direction.NORTH)) {
 				return initialZ - zCord;
 			}
-			if(ssDirection.getClockWise().equals(Direction.NORTH)) {
+			if(getSsDirection().getClockWise().equals(Direction.NORTH)) {
 				return initialZ - xCord;
 			}
-			if(ssDirection.getCounterClockWise().equals(Direction.NORTH)) {
+			if(getSsDirection().getCounterClockWise().equals(Direction.NORTH)) {
 				return initialZ + xCord;
 			}
 		}
-		throw new IllegalArgumentException("Found Invalid Rotation Type: "+ssDirection.toString());
+		throw new IllegalArgumentException("Found Invalid Rotation Type: "+getSsDirection().toString());
 
 	}
 
 	public Direction getSsDirection() {
+		if(ssDirection==null) {
+			throw new IllegalArgumentException("Was asked to fetch an invalid structure direction");
+		}
 		return ssDirection;
 	}
 }

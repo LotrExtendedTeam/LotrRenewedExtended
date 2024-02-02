@@ -50,13 +50,13 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 		StructureSize structureSize = file.readGenv4StructureSize();
 		this.height = structureSize.getHeight();
 		StructureBoxValues boxModifer = structureSize.makeStructureBox(file.getLayers());
-		System.out.println("Structure Spawn Dir: "+ssDirection.toString()+"-"+nativeDirection);
+		System.out.println("Structure Spawn Dir: "+getSsDirection().toString()+"-"+nativeDirection);
 		System.out.println("Structure Size: "+structureSize.toString());
-		if (ssDirection == nativeDirection || ssDirection.getOpposite() == nativeDirection || nativeDirection.equals(Direction.UP)) {
+		if (getSsDirection() == nativeDirection || getSsDirection().getOpposite() == nativeDirection || nativeDirection.equals(Direction.UP)) {
 			this.width = structureSize.getWidth();
 			this.depth = structureSize.getDepth();
 			this.boundingBox = new MutableBoundingBox(initialX+boxModifer.widthLowX, initialY+boxModifer.heightLowY, initialZ+boxModifer.depthLowZ, initialX+boxModifer.widthHighX, initialY+boxModifer.heightHighY, initialZ+boxModifer.depthHighZ);
-		} else if (ssDirection.getClockWise() == nativeDirection || ssDirection.getCounterClockWise() == nativeDirection){
+		} else if (getSsDirection().getClockWise() == nativeDirection || getSsDirection().getCounterClockWise() == nativeDirection){
 			this.width = structureSize.getDepth();
 			this.depth = structureSize.getWidth();
 			this.boundingBox = new MutableBoundingBox(initialX+boxModifer.depthLowZ, initialY+boxModifer.heightLowY, initialZ+boxModifer.widthLowX, initialX+boxModifer.depthHighZ, initialY+boxModifer.heightHighY, initialZ+boxModifer.widthHighX);
@@ -75,44 +75,44 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 
 	@Override
 	protected int getWorldX(int xCord, int zCord) {
-		if (ssDirection == null || nativeDirection == null) {
+		if (getSsDirection() == null || nativeDirection == null) {
 			return xCord;
 		} else {
-			if(ssDirection.equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
+			if(getSsDirection().equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
 				return initialX + xCord;
 			}
-			if(ssDirection.getOpposite().equals(nativeDirection)) {
+			if(getSsDirection().getOpposite().equals(nativeDirection)) {
 				return initialX - xCord;
 			}
-			if(ssDirection.getClockWise().equals(nativeDirection)) {
+			if(getSsDirection().getClockWise().equals(nativeDirection)) {
 				return initialX + zCord;
 			}
-			if(ssDirection.getCounterClockWise().equals(nativeDirection)) {
+			if(getSsDirection().getCounterClockWise().equals(nativeDirection)) {
 				return initialX - zCord;
 			}
 		}
-		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+ssDirection.toString()+" + "+nativeDirection.toString());
+		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+getSsDirection().toString()+" + "+nativeDirection.toString());
 	}
 
 	@Override
 	protected int getWorldZ(int xCord, int zCord) {
-		if (ssDirection == null || nativeDirection == null) {
+		if (getSsDirection() == null || nativeDirection == null) {
 			return zCord;
 		} else {
-			if(ssDirection.equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
+			if(getSsDirection().equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
 				return initialZ + zCord;
 			}
-			if(ssDirection.getOpposite().equals(nativeDirection)) {
+			if(getSsDirection().getOpposite().equals(nativeDirection)) {
 				return initialZ - zCord;
 			}
-			if(ssDirection.getClockWise().equals(nativeDirection)) {
+			if(getSsDirection().getClockWise().equals(nativeDirection)) {
 				return initialZ - xCord;
 			}
-			if(ssDirection.getCounterClockWise().equals(nativeDirection)) {
+			if(getSsDirection().getCounterClockWise().equals(nativeDirection)) {
 				return initialZ + xCord;
 			}
 		}
-		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+ssDirection.toString()+" + "+nativeDirection.toString());
+		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+getSsDirection().toString()+" + "+nativeDirection.toString());
 	}
 
 	public StructureFile getStructure(String name) {

@@ -69,8 +69,7 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 		return true;
 	}
 
-	protected void setBlockAndMetadata(ISeedReader world, BlockState blockState, int x, int y, int z,
-			MutableBoundingBox box, CompoundNBT nbt, Random random) {
+	protected void setBlockAndMetadata(ISeedReader world, BlockState blockState, int x, int y, int z, MutableBoundingBox box, CompoundNBT nbt, Random random) {
 		super.placeBlock(world, blockState, x, y, z, box);
 		if (blockState.getBlock() == Blocks.BARREL || blockState.getBlock() == Blocks.CHEST) {
 			setLockableLootTileEntityContents(world, random, x, y, z, nbt, box);
@@ -101,8 +100,7 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 //		}
 	}
 
-	public boolean setLockableLootTileEntityContents(ISeedReader world, Random random, BlockPos pos, String table,
-			MutableBoundingBox box) {
+	public boolean setLockableLootTileEntityContents(ISeedReader world, Random random, BlockPos pos, String table, MutableBoundingBox box) {
 		if (box.isInside(pos)) {
 			TileEntity tileentity = world.getBlockEntity(pos);
 			ResourceLocation resource = new ResourceLocation(LotrExtendedMod.MODID, "chests/" + table);
