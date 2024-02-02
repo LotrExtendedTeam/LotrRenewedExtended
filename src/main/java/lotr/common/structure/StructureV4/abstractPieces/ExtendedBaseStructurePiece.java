@@ -94,14 +94,14 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	private boolean preProcessInternal(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, ChunkPos cPos) {
 		if(isSetToGroundHeight()&&structureType!=null&&structureType.equals(StructureType.NATURAL_SINGLE)) {
-			updateGroundHeight(world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, initialX, initialZ));
+			updateGroundHeightValue(world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, initialX, initialZ));
 		}
 		return this.placeBlocks(world, structureManager, chunkGen, random, cPos, structureType);
 	}
 
 	public abstract boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, ChunkPos cPos, StructureType structureType);
 
-	protected void updateGroundHeight(int newHeight) {
+	protected void updateGroundHeightValue(int newHeight) {
 		if(newHeight>=0) {
 			initialY = newHeight;
 			boundingBox = new MutableBoundingBox(boundingBox.x0, initialY, boundingBox.z0, boundingBox.x1, initialY + height - 1, boundingBox.z1);

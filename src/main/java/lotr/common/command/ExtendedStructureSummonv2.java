@@ -52,7 +52,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 				System.out.println("Structure missing");
 				context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
 			}
-			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection();
+			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection().getOpposite();
 			ServerWorld serverlevel = context.getSource().getLevel();
 		    StructureFeature<?, ?> structure = ExtendedStructures.CONFIGURED_STRUCTURES.get(structureName).get();
 		    ChunkGenerator chunkgenerator = serverlevel.getChunkSource().getGenerator();
