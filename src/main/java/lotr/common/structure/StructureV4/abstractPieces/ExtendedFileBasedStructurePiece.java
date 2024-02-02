@@ -52,14 +52,34 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 		StructureBoxValues boxModifer = structureSize.makeStructureBox(file.getLayers());
 		System.out.println("Structure Spawn Dir: "+getSsDirection().toString()+"-"+nativeDirection);
 		System.out.println("Structure Size: "+structureSize.toString());
-		if (getSsDirection() == nativeDirection || getSsDirection().getOpposite() == nativeDirection || nativeDirection.equals(Direction.UP)) {
+		if (getSsDirection().equals(nativeDirection) || nativeDirection.equals(Direction.UP)) {
+			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
+				System.out.println("Same direction");
+			}
 			this.width = structureSize.getWidth();
 			this.depth = structureSize.getDepth();
-			this.boundingBox = new MutableBoundingBox(initialX+boxModifer.widthLowX, initialY+boxModifer.heightLowY, initialZ+boxModifer.depthLowZ, initialX+boxModifer.widthHighX, initialY+boxModifer.heightHighY, initialZ+boxModifer.depthHighZ);
-		} else if (getSsDirection().getClockWise() == nativeDirection || getSsDirection().getCounterClockWise() == nativeDirection){
+			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.widthLowX, initialY+boxModifer.heightLowY, initialZ+boxModifer.depthLowZ, initialX+boxModifer.widthHighX, initialY+boxModifer.heightHighY, initialZ+boxModifer.depthHighZ);
+		} else if (getSsDirection().getOpposite().equals(nativeDirection)) {
+			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
+				System.out.println("Opposite direction");
+			}
+			this.width = structureSize.getWidth();
+			this.depth = structureSize.getDepth();
+			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.widthLowX, initialY+boxModifer.heightLowY, initialZ+boxModifer.depthLowZ, initialX+boxModifer.widthHighX, initialY+boxModifer.heightHighY, initialZ+boxModifer.depthHighZ);
+		}else if (getSsDirection().getClockWise().equals(nativeDirection)){
+			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
+				System.out.println("ClockWise direction");
+			}
 			this.width = structureSize.getDepth();
 			this.depth = structureSize.getWidth();
-			this.boundingBox = new MutableBoundingBox(initialX+boxModifer.depthLowZ, initialY+boxModifer.heightLowY, initialZ+boxModifer.widthLowX, initialX+boxModifer.depthHighZ, initialY+boxModifer.heightHighY, initialZ+boxModifer.widthHighX);
+			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.depthLowZ, initialY+boxModifer.heightLowY, initialZ+boxModifer.widthLowX, initialX+boxModifer.depthHighZ, initialY+boxModifer.heightHighY, initialZ+boxModifer.widthHighX);
+		}else if (getSsDirection().getCounterClockWise().equals(nativeDirection)){
+			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
+				System.out.println("CounterClockWise direction");
+			}
+			this.width = structureSize.getDepth();
+			this.depth = structureSize.getWidth();
+			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.depthLowZ, initialY+boxModifer.heightLowY, initialZ+boxModifer.widthLowX, initialX+boxModifer.depthHighZ, initialY+boxModifer.heightHighY, initialZ+boxModifer.widthHighX);
 		}
 	}
 

@@ -51,9 +51,9 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 			ssDirection = direction;
 		}
 		if (ssDirection.getAxis() == Direction.Axis.Z) {
-			this.boundingBox = new MutableBoundingBox(initialX, initialY, initialZ, initialX + width - 1, initialY + height - 1, initialZ + depth - 1);
+			this.boundingBox = MutableBoundingBox.createProper(initialX, initialY, initialZ, initialX + width - 1, initialY + height - 1, initialZ + depth - 1);
 		} else {
-			this.boundingBox = new MutableBoundingBox(initialX, initialY, initialZ, initialX + depth - 1, initialY + height - 1, initialZ + width - 1);
+			this.boundingBox = MutableBoundingBox.createProper(initialX, initialY, initialZ, initialX + depth - 1, initialY + height - 1, initialZ + width - 1);
 		}
 	}
 
@@ -143,8 +143,11 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	@Override
 	protected void placeBlock(ISeedReader world, BlockState blockState, int xPos, int yPos, int zPos, MutableBoundingBox box) {
-		BlockPos blockpos = new BlockPos(this.getWorldX(xPos, zPos), this.getWorldY(yPos), this.getWorldZ(xPos, zPos));
-		if (box.isInside(blockpos)) {
+		this.placeBlockD(world, blockState, new BlockPos(this.getWorldX(xPos, zPos), this.getWorldY(yPos), this.getWorldZ(xPos, zPos)), box);
+	}
+
+	protected void placeBlockD(ISeedReader world, BlockState blockState, BlockPos blockpos, MutableBoundingBox box) {
+		//if (box.isInside(blockpos)) {
 			// if (this.mirror != Mirror.NONE) {
 			// p_175811_2_ = p_175811_2_.mirror(this.mirror);
 			// }
@@ -158,12 +161,35 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 			if (!fluidstate.isEmpty()) {
 				world.getLiquidTicks().scheduleTick(blockpos, fluidstate.getType(), 0);
 			}
-		}
-		else {
-			System.out.println("Block not in bounds: "+blockpos.toString());
+		//}
+		//else {
+		//	System.out.println("Block not in bounds: "+blockpos.toString());
+		//}
+	}
+
+	@Override
+	protected void generateBox(ISeedReader p_175804_1_, MutableBoundingBox p_175804_2_, int smallX, int smallY, int smallZ, int bigX, int bigY, int bigZ, BlockState p_175804_9_, BlockState p_175804_10_, boolean truePos) {
+		for (int i = smallX; i <= bigX; ++i) {
+			for (int j = smallY; j <= bigY; ++j) {
+				for (int k = smallZ; k <= bigZ; ++k) {
+					if(truePos) {
+						if (i != smallX && i != bigX && j != smallY && j != bigY && k != smallZ && k != bigZ) {
+							this.placeBlockD(p_175804_1_, p_175804_10_,  new BlockPos(j, i, k), p_175804_2_);
+						} else {
+							this.placeBlockD(p_175804_1_, p_175804_9_,  new BlockPos(j, i, k), p_175804_2_);
+						}
+					}else {
+						if (i != smallX && i != bigX && j != smallY && j != bigY && k != smallZ && k != bigZ) {
+							this.placeBlock(p_175804_1_, p_175804_10_, j, i, k, p_175804_2_);
+						} else {
+							this.placeBlock(p_175804_1_, p_175804_9_, j, i, k, p_175804_2_);
+						}
+					}
+				}
+			}
 		}
 	}
-	
+
 	@Override
 	protected int getWorldX(int xCord, int zCord) {
 		if (getSsDirection() == null) {
@@ -217,5 +243,9 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 			throw new IllegalArgumentException("Was asked to fetch an invalid structure direction");
 		}
 		return ssDirection;
+	}
+
+	public StructureType getStructureType() {
+		return structureType;
 	}
 }

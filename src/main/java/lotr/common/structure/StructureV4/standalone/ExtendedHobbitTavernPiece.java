@@ -49,7 +49,7 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 			StructureFile file = getStructure();
 			System.out.println(boundingBox.toString());
 			if (file != null) {
-				generateBox(world, boundingBox, 0, 0, 0, boundingBox.x1-boundingBox.x0, boundingBox.y1-boundingBox.y0, boundingBox.z1-boundingBox.z0, Blocks.BROWN_STAINED_GLASS.defaultBlockState(), Blocks.WHITE_STAINED_GLASS.defaultBlockState(), false);
+				generateBox(world, boundingBox, boundingBox.x0, boundingBox.y0, boundingBox.z0, boundingBox.x1, boundingBox.y1, boundingBox.z1, Blocks.BROWN_STAINED_GLASS.defaultBlockState(), Blocks.WHITE_STAINED_GLASS.defaultBlockState(), true);
 				for (int i = 0; i < file.getLayers().size(); i++) {
 					CompoundNBT nbt = file.getLayers().getCompound(i);
 					RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
@@ -60,12 +60,6 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 					genKegForCurrentBlock(world, random, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, ExtendedKegDrinks.shireDrinksPool);
 				}
 				//doFileGen(world, rand, file);
-				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 0, 0, boundingBox);
-				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 1, 0, boundingBox);
-				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 2, 0, boundingBox);
-				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 3, 0, boundingBox);
-				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 4, 0, boundingBox);
-				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 5, 0, boundingBox);
 				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 6, 0, boundingBox);
 				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 7, 0, boundingBox);
 				this.placeBlock(world, Blocks.MAGENTA_GLAZED_TERRACOTTA.defaultBlockState(), 0, 8, 0, boundingBox);
