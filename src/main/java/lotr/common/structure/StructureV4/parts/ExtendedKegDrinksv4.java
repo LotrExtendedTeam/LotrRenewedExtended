@@ -11,7 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedKegDrinks {
+//TODO move to Json driven pools
+public class ExtendedKegDrinksv4 {
 	public static List<RegistryObject<Item>> shireDrinksPool = new ArrayList<RegistryObject<Item>>(){{ add(LOTRItems.ALE); add(LOTRItems.CIDER);add(LOTRItems.PERRY);add(LOTRItems.CHERRY_LIQUEUR);add(LOTRItems.APPLE_JUICE);}};
 
 	public static ItemStack SetDrink(Random rand, List<RegistryObject<Item>> pool) {

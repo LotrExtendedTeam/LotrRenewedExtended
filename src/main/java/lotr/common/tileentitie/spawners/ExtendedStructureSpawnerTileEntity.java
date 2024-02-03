@@ -36,7 +36,7 @@ public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T
 		return world.addFreshEntity(entity);
 	}
 
-	private Double playerDistance() {
+	public Double playerDistance() {
 		return 50D;
 	}
 	private boolean playerInDistance() {

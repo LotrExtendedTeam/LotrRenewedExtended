@@ -7,8 +7,8 @@ import com.github.maximuslotro.lotroExtended.enums.StructureType;
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
 import lotr.common.structure.StructureV4.abstractPieces.ExtendedFileBasedStructurePiece;
-import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
-import lotr.common.structure.StructureV4.parts.ExtendedSignTexts;
+import lotr.common.structure.StructureV4.parts.ExtendedKegDrinksv4;
+import lotr.common.structure.StructureV4.parts.ExtendedSignTextsv4;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.BlockState;
@@ -51,7 +51,7 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 					BlockState blockstate = NBTUtil.readBlockState(blockData);
 
 					setBlockAndMetadata(world, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, nbt, random);
-					genKegForCurrentBlock(world, random, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, ExtendedKegDrinks.shireDrinksPool);
+					genKegForCurrentBlock(world, random, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, ExtendedKegDrinksv4.shireDrinksPool);
 				}
 				doFileGen(world, random, file, boundingBox);
 				return true;
@@ -87,6 +87,6 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 
 	@Override
 	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num, MutableBoundingBox box) {
-		setSignTileEntity(world, blockPos, ExtendedSignTexts.ShireTavernTexts(random), box);
+		setSignTileEntity(world, blockPos, ExtendedSignTextsv4.ShireTavernTexts(random), box);
 	}
 }

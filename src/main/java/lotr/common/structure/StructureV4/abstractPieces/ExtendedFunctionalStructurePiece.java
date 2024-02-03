@@ -12,7 +12,8 @@ import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.StructureFile;
-import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
+import lotr.common.structure.StructureV4.parts.ExtendedEntitySpawningv4;
+import lotr.common.structure.StructureV4.parts.ExtendedKegDrinksv4;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
 import lotr.common.tileentity.KegTileEntity;
@@ -86,7 +87,7 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 	// TODO merge with above
 	public void doFileGen(ISeedReader world, Random random, StructureFile file, MutableBoundingBox box) {
 		setSignTextFromFile(world, random, file, box);
-		//spawnEntitiesFile(world, random, file);
+		spawnEntitiesFile(world, random, file, box);
 	}
 	public void genKegForCurrentBlock(ISeedReader world, Random random, BlockState blockstate, int x, int y, int z, MutableBoundingBox box, List<RegistryObject<Item>>  list) {
 		if(blockstate.getBlock()==LOTRBlocks.KEG.get()) {
@@ -141,7 +142,7 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 				if (random.nextInt(5) == 0) {
 					return true;
 				}
-				((KegTileEntity) tileentity).fillBrewedWith(ExtendedKegDrinks.SetDrink(random, pool));
+				((KegTileEntity) tileentity).fillBrewedWith(ExtendedKegDrinksv4.SetDrink(random, pool));
 				return true;
 			} else {
 				ExtendedLog.error("FAILED TO SET BREW FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + KegTileEntity.class.getName());
@@ -149,6 +150,7 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 		}
 		return false;
 	}
+
 	public void setSignTextFromFile(ISeedReader world, Random random, StructureFile file, MutableBoundingBox box) {
 		if(file.getSigns().isEmpty()) {
 			return;
@@ -198,6 +200,88 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 			}
 			else {
 				ExtendedLog.error("FAILED TO SET TEXT FOR: " + pos.toString() + ", " + ", NOT INSTANCE OF " + SignTileEntity.class.getName());
+			}
+		}
+	}
+
+	public void spawnEntitiesFile(ISeedReader world, Random random, StructureFile file, MutableBoundingBox box) {
+		if(file.getEntities().isEmpty()) {
+			return;
+		}
+		Map<String, Map<Integer, RelativePosition>> entities = new HashMap<>();
+		for (int i = 0; i < file.getEntities().size(); i++) {
+			CompoundNBT nbt = file.getEntities().getCompound(i);
+			int spawnNumber = nbt.getInt("spawn");
+			String entityType = nbt.getString("entity");
+			RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
+			if(entities.containsKey(entityType)) {
+				Map<Integer, RelativePosition> entitie = entities.get(entityType);
+				if(entitie.containsKey(spawnNumber)) {
+					ExtendedLog.error("FOUND DUPLICATE SPAWN KEY IN STRUCTURE FILE: "+file.name);
+					return;
+				}
+				entitie.put(spawnNumber, rpos);
+				entities.put(entityType, entitie);
+			} else {
+				Map<Integer, RelativePosition> entitie = new HashMap<>();
+				entitie.put(spawnNumber, rpos);
+				entities.put(entityType, entitie);
+			}
+		}
+		for (Entry<String, Map<Integer, RelativePosition>> entity : entities.entrySet()) {
+			if(entity.getValue().size()==1) {
+				if(!entity.getValue().containsKey(1)) {
+					ExtendedLog.error("FOUND NON-SINGULAR KEY FOR SINGLE KEY: "+file.name+", entity: "+entity.getKey());
+					ExtendedLog.error("ENTITY NOT SUMMONED!");
+					continue;
+				}
+				ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)), box);
+				continue;
+			}
+			if(entity.getValue().size()>4||entity.getValue().size()<1) {
+				ExtendedLog.error("FOUND TOO MANY/TOO LITTLE KEYS FOR: "+file.name+", entity: "+entity.getKey()+", keys count: "+entity.getValue().size());
+				ExtendedLog.error("ENTITY NOT SUMMONED!");
+				continue;
+			}
+			int pick = random.nextInt(100);
+			if(entity.getValue().size()==2) {
+				if(pick<90) {
+					ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)), box);
+				} else {
+					ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)), box);
+				}
+				continue;
+			}
+			if(entity.getValue().size()==3) {
+				if(pick<90) {
+					ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)), box);
+				} else {
+					pick = random.nextInt(100);
+					if(pick<90) {
+						ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)), box);
+					} else {
+						ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(3)), box);
+					}
+				}
+				continue;
+			}
+			if(entity.getValue().size()==4) {
+				if(pick<90) {
+					ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(1)), box);
+				} else {
+					pick = random.nextInt(100);
+					if(pick<90) {
+						ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(2)), box);
+					} else {
+						pick = random.nextInt(100);
+						if(pick<90) {
+							ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(3)), box);
+						} else {
+							ExtendedEntitySpawningv4.spawnEntity(world, entity.getKey(), rPToBlockPos(entity.getValue().get(4)), box);
+						}
+					}
+				}
+				continue;
 			}
 		}
 	}

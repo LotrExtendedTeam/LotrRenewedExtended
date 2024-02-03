@@ -50,10 +50,9 @@ public class LotrExtendedMod {
 	}
 
 	public void addStructuresToBiomes(final BiomeLoadingEvent event) {
-		//TODO add structures to lotr biomes here
 		event.getName();
 		if(event.getName()!=null) {
-			if(event.getName().getNamespace().equals("lotr")&&event.getName().getPath().equals("shire")) {
+			if(event.getName().toString().equals("lotr:shire")) {
 				ExtendedStructureLists.addStructureType(event.getGeneration(), ExtendedStructureLists.SHIRE_STRUCTURES);
 			}
 		}
