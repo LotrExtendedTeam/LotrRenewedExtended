@@ -8,6 +8,7 @@ import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
 import lotr.common.structure.StructureV4.abstractPieces.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
+import lotr.common.structure.StructureV4.parts.ExtendedSignTexts;
 import lotr.common.structure.util.RelativePosition;
 import lotr.common.structure.util.StructureStrings;
 import net.minecraft.block.BlockState;
@@ -16,6 +17,7 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -51,6 +53,7 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 					setBlockAndMetadata(world, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, nbt, random);
 					genKegForCurrentBlock(world, random, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, ExtendedKegDrinks.shireDrinksPool);
 				}
+				doFileGen(world, random, file, boundingBox);
 				return true;
 			}
 			return false;
@@ -82,4 +85,8 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 		return 0;
 	}
 
+	@Override
+	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num, MutableBoundingBox box) {
+		setSignTileEntity(world, blockPos, ExtendedSignTexts.ShireTavernTexts(random), box);
+	}
 }
