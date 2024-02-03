@@ -23,7 +23,9 @@ import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.structure.StructureStart;
@@ -49,17 +51,17 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 	private static int spawnStructure(CommandContext<CommandSource> context, String structureName) throws CommandSyntaxException {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
 			if(!ExtendedStructures.CONFIGURED_STRUCTURES.containsKey(structureName)) {
-				System.out.println("Structure missing");
-				context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+				context.getSource().sendFailure((new TranslationTextComponent("command.lotrextended.structureSummon.failure")).withStyle((p_211704_1_) -> {
+		               return p_211704_1_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Structure not found")));
+	            }));
 			}
 			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection().getOpposite();
 			ServerWorld serverlevel = context.getSource().getLevel();
 		    StructureFeature<?, ?> structure = ExtendedStructures.CONFIGURED_STRUCTURES.get(structureName).get();
 		    ChunkGenerator chunkgenerator = serverlevel.getChunkSource().getGenerator();
-		    BlockPos pos = context.getSource().getEntity().blockPosition();
+		    BlockPos pos = context.getSource().getEntity().blockPosition().below();
 		    StructureStart<?> structurestart;
 		    if(structure.feature instanceof ExtendedSurfaceStructure) {
-		    	System.out.println("Creating modded structure start");
 		    	structurestart = ((ExtendedSurfaceStructure<?>)structure.feature).generateUnckecked(context.getSource().registryAccess(), chunkgenerator, 
 		    			chunkgenerator.getBiomeSource(), serverlevel.getStructureManager(), 
 		    			serverlevel.getSeed(), pos, 
@@ -68,13 +70,15 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    			structure.config, dir, StructureType.SPAWNED_SINGLE);
 		    }
 		    else {
-		    	System.out.println("Structure not ExtendedSurfaceStructure");
-		    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+		    	context.getSource().sendFailure((new TranslationTextComponent("command.lotrextended.structureSummon.failure")).withStyle((p_211704_1_) -> {
+		               return p_211704_1_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Structure not ExtendedSurfaceStructure")));
+	            }));
 		    	return 0;
 		    }
 		    if (!structurestart.isValid()) {
-		    	System.out.println("Structure not valid");
-		    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+		    	context.getSource().sendFailure((new TranslationTextComponent("command.lotrextended.structureSummon.failure")).withStyle((p_211704_1_) -> {
+		               return p_211704_1_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Structure not valid")));
+	            }));
 		    	return 0;
 		    } else {
 		       MutableBoundingBox boundingbox = structurestart.getBoundingBox();
@@ -82,12 +86,12 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		       //ChunkPos chunkpos1 = new ChunkPos(SectionPos.blockToSectionCoord(Math.max(boundingbox.x0, boundingbox.x1)), SectionPos.blockToSectionCoord(Math.max(boundingbox.z0, boundingbox.z1)));
 		       //checkLoaded(serverlevel, chunkpos, chunkpos1);
 		       if(structure.feature instanceof ExtendedSurfaceStructure) {
-			    	System.out.println("Creating modded structure start");
 			    	((ExtendedStructureStart<?>)structurestart).placeInChunk(serverlevel, serverlevel.structureFeatureManager(), chunkgenerator, serverlevel.getRandom(), boundingbox, new ChunkPos(pos));
 			    }
 			    else {
-			    	System.out.println("Structure not ExtendedStructureStart");
-			    	context.getSource().sendFailure(new TranslationTextComponent("command.lotrextended.structureSummon.failure"));
+			    	context.getSource().sendFailure((new TranslationTextComponent("command.lotrextended.structureSummon.failure")).withStyle((p_211704_1_) -> {
+			               return p_211704_1_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Structure not ExtendedStructureStart")));
+		            }));
 			    	return 0;
 			    }
 		       context.getSource().sendSuccess(new TranslationTextComponent("command.lotrextended.structureSummon.success"), false);

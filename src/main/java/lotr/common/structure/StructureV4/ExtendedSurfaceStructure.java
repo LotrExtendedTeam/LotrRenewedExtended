@@ -61,11 +61,9 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 			}
 			System.out.println(structurestart.getPieces().size()+" Pieces made");
 			if (structurestart.isValid()) {
-				System.out.println("Structure not valid in starter");
 				return structurestart;
 			}
 		}
-		System.out.println("Not feature chunk");
 		return StructureStart.INVALID_START;
 	}
 
@@ -74,14 +72,11 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 		ChunkPos cposition = new ChunkPos(blockPos);
 		StructureStart<C> structurestart = this.createStart(cposition.x, cposition.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
 		if(structurestart instanceof ExtendedStructureStart) {
-			System.out.println("Adding modded pieces1");
 			((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, blockPos, p_242785_8_, conf, direction, structureType);
 		}else {
 			ExtendedLog.error("Tried generating pieces for a ExtendedSurfaceStructure for a non ExtendedStructureStart");
 		}
-		System.out.println(structurestart.getPieces().size()+" Pieces made1");
 		if (structurestart.isValid()) {
-			System.out.println("Structure not valid in starter1");
 			return structurestart;
 		}
 		return StructureStart.INVALID_START;

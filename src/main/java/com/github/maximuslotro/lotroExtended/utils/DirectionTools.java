@@ -3,8 +3,10 @@ package com.github.maximuslotro.lotroExtended.utils;
 import java.util.Random;
 
 import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 
 public class DirectionTools {
+	@Deprecated
 	public static Direction getRandomDirection(Random rand) {
 		switch(rand.nextInt(4)) {
 			case 0:
@@ -20,45 +22,19 @@ public class DirectionTools {
 		}
 	}
 
-	public static Direction getOppositeDirection(Direction direction) {
-		switch(direction) {
-			case NORTH:
-				return Direction.SOUTH;
-			case SOUTH:
-				return Direction.NORTH;
-			case WEST:
-				return Direction.EAST;
-			case EAST:
-				return Direction.WEST;
-			default:
-				throw new IllegalArgumentException("Direction MUST be NORTH, SOUTH, WEST, or EAST!");
+	public static Rotation getRotationDirection(Direction structure, Direction facing) {
+		if(structure==facing||facing==Direction.UP) {
+			return Rotation.NONE;
 		}
-	}
-
-	public static boolean isOppositeDirection(Direction direction, Direction directionOPP) {
-		switch(direction) {
-			case NORTH:
-				if(directionOPP.equals(Direction.SOUTH)) {
-					return true;
-				}
-				return false;
-			case SOUTH:
-				if(directionOPP.equals(Direction.NORTH)) {
-					return true;
-				}
-				return false;
-			case WEST:
-				if(directionOPP.equals(Direction.EAST)) {
-					return true;
-				}
-				return false;
-			case EAST:
-				if(directionOPP.equals(Direction.WEST)) {
-					return true;
-				}
-				return false;
-			default:
-				throw new IllegalArgumentException("Direction MUST be NORTH, SOUTH, WEST, or EAST!");
+		if(structure.getOpposite()==facing) {
+			return Rotation.CLOCKWISE_180;
 		}
+		if(structure.getClockWise()==facing) {
+			return Rotation.COUNTERCLOCKWISE_90;
+		}
+		if(structure.getCounterClockWise()==facing) {
+			return Rotation.CLOCKWISE_90;
+		}
+		return Rotation.NONE;
 	}
 }

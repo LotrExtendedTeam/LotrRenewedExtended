@@ -5,11 +5,13 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -143,28 +145,22 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	@Override
 	protected void placeBlock(ISeedReader world, BlockState blockState, int xPos, int yPos, int zPos, MutableBoundingBox box) {
-		this.placeBlockD(world, blockState, new BlockPos(this.getWorldX(xPos, zPos), this.getWorldY(yPos), this.getWorldZ(xPos, zPos)), box);
+		this.placeBlockInternal(world, blockState, new BlockPos(this.getWorldX(xPos, zPos), this.getWorldY(yPos), this.getWorldZ(xPos, zPos)), box);
 	}
 
-	protected void placeBlockD(ISeedReader world, BlockState blockState, BlockPos blockpos, MutableBoundingBox box) {
-		//if (box.isInside(blockpos)) {
-			// if (this.mirror != Mirror.NONE) {
-			// p_175811_2_ = p_175811_2_.mirror(this.mirror);
-			// }
-
-			// if (this.rotation != Rotation.NONE) {
-			// p_175811_2_ = p_175811_2_.rotate(this.rotation);
-			// }
+	protected void placeBlockInternal(ISeedReader world, BlockState blockState, BlockPos blockpos, MutableBoundingBox box) {
+		if (box.isInside(blockpos)) {
+			Rotation rot = DirectionTools.getRotationDirection(this.ssDirection, Direction.NORTH);
+			if(rot!=Rotation.NONE) {
+				blockState = blockState.rotate(world, blockpos, rot);
+			}
 
 			world.setBlock(blockpos, blockState, 2);
 			FluidState fluidstate = world.getFluidState(blockpos);
 			if (!fluidstate.isEmpty()) {
 				world.getLiquidTicks().scheduleTick(blockpos, fluidstate.getType(), 0);
 			}
-		//}
-		//else {
-		//	System.out.println("Block not in bounds: "+blockpos.toString());
-		//}
+		}
 	}
 
 	@Override
@@ -174,9 +170,9 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 				for (int k = smallZ; k <= bigZ; ++k) {
 					if(truePos) {
 						if (i != smallX && i != bigX && j != smallY && j != bigY && k != smallZ && k != bigZ) {
-							this.placeBlockD(world, blockStateInside,  new BlockPos(i, j, k), box);
+							this.placeBlockInternal(world, blockStateInside,  new BlockPos(i, j, k), box);
 						} else {
-							this.placeBlockD(world, blockStateOutside,  new BlockPos(i, j, k), box);
+							this.placeBlockInternal(world, blockStateOutside,  new BlockPos(i, j, k), box);
 						}
 					}else {
 						if (i != smallX && i != bigX && j != smallY && j != bigY && k != smallZ && k != bigZ) {
@@ -193,7 +189,7 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	@Override
 	protected int getWorldX(int xCord, int zCord) {
 		if (getSsDirection() == null) {
-			return xCord;
+			return 0;
 		} else {
 			if(getSsDirection().equals(Direction.NORTH)) {
 				return initialX + xCord;
@@ -219,7 +215,7 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	@Override
 	protected int getWorldZ(int xCord, int zCord) {
 		if (getSsDirection() == null) {
-			return zCord;
+			return 0;
 		} else {
 			if(getSsDirection().equals(Direction.NORTH)) {
 				return initialZ + zCord;

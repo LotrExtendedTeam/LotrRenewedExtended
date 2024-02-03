@@ -4,15 +4,20 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
 import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
 
 import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureFileHandler;
 import lotr.common.structure.util.StructureSize;
 import lotr.common.structure.util.StructureSize.StructureBoxValues;
+import net.minecraft.block.BlockState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -49,38 +54,15 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 	protected void updateStructureParamiters(StructureFile file) {
 		StructureSize structureSize = file.readGenv4StructureSize();
 		this.height = structureSize.getHeight();
+		this.width = structureSize.getWidth();
+		this.depth = structureSize.getDepth();
 		StructureBoxValues boxModifer = structureSize.makeStructureBox(file.getLayers());
-		System.out.println("Structure Spawn Dir: "+getSsDirection().toString()+"-"+nativeDirection);
-		System.out.println("Structure Size: "+structureSize.toString());
-		if (getSsDirection().equals(nativeDirection) || nativeDirection.equals(Direction.UP)) {
-			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
-				System.out.println("Same direction");
-			}
-			this.width = structureSize.getWidth();
-			this.depth = structureSize.getDepth();
-			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.widthLowX, initialY+boxModifer.heightLowY, initialZ+boxModifer.depthLowZ, initialX+boxModifer.widthHighX, initialY+boxModifer.heightHighY, initialZ+boxModifer.depthHighZ);
-		} else if (getSsDirection().getOpposite().equals(nativeDirection)) {
-			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
-				System.out.println("Opposite direction");
-			}
-			this.width = structureSize.getWidth();
-			this.depth = structureSize.getDepth();
-			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.widthLowX, initialY+boxModifer.heightLowY, initialZ+boxModifer.depthLowZ, initialX+boxModifer.widthHighX, initialY+boxModifer.heightHighY, initialZ+boxModifer.depthHighZ);
-		}else if (getSsDirection().getClockWise().equals(nativeDirection)){
-			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
-				System.out.println("ClockWise direction");
-			}
-			this.width = structureSize.getDepth();
-			this.depth = structureSize.getWidth();
-			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.depthLowZ, initialY+boxModifer.heightLowY, initialZ+boxModifer.widthLowX, initialX+boxModifer.depthHighZ, initialY+boxModifer.heightHighY, initialZ+boxModifer.widthHighX);
-		}else if (getSsDirection().getCounterClockWise().equals(nativeDirection)){
-			if(getStructureType().equals(StructureType.SPAWNED_SINGLE)) {
-				System.out.println("CounterClockWise direction");
-			}
-			this.width = structureSize.getDepth();
-			this.depth = structureSize.getWidth();
-			this.boundingBox = MutableBoundingBox.createProper(initialX+boxModifer.depthLowZ, initialY+boxModifer.heightLowY, initialZ+boxModifer.widthLowX, initialX+boxModifer.depthHighZ, initialY+boxModifer.heightHighY, initialZ+boxModifer.widthHighX);
-		}
+		this.boundingBox = MutableBoundingBox.createProper(getWorldX(boxModifer.widthLowX,boxModifer.depthLowZ), 
+										getWorldY(boxModifer.heightLowY), 
+										getWorldZ(boxModifer.widthLowX,boxModifer.depthLowZ), 
+										getWorldX(boxModifer.widthHighX,boxModifer.depthHighZ), 
+										getWorldY(boxModifer.heightHighY), 
+										getWorldZ(boxModifer.widthHighX,boxModifer.depthHighZ));
 	}
 
 	public StructureFile getStructure() {
@@ -96,7 +78,7 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 	@Override
 	protected int getWorldX(int xCord, int zCord) {
 		if (getSsDirection() == null || nativeDirection == null) {
-			return xCord;
+			return 0;
 		} else {
 			if(getSsDirection().equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
 				return initialX + xCord;
@@ -117,7 +99,7 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 	@Override
 	protected int getWorldZ(int xCord, int zCord) {
 		if (getSsDirection() == null || nativeDirection == null) {
-			return zCord;
+			return 0;
 		} else {
 			if(getSsDirection().equals(nativeDirection)||nativeDirection.equals(Direction.UP)) {
 				return initialZ + zCord;
@@ -134,7 +116,21 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 		}
 		throw new IllegalArgumentException("Found Invalid Rotation Type combination: "+getSsDirection().toString()+" + "+nativeDirection.toString());
 	}
+	@Override
+	protected void placeBlockInternal(ISeedReader world, BlockState blockState, BlockPos blockpos, MutableBoundingBox box) {
+		if (box.isInside(blockpos)&& nativeDirection!=null) {
+			Rotation rot = DirectionTools.getRotationDirection(getSsDirection(), nativeDirection);
+			if(rot!=Rotation.NONE) {
+				blockState = blockState.rotate(world, blockpos, rot);
+			}
 
+			world.setBlock(blockpos, blockState, 2);
+			FluidState fluidstate = world.getFluidState(blockpos);
+			if (!fluidstate.isEmpty()) {
+				world.getLiquidTicks().scheduleTick(blockpos, fluidstate.getType(), 0);
+			}
+		}
+	}
 	public StructureFile getStructure(String name) {
 		StructureFile file = StructureFileHandler.getStructureFile(name, ServerLifecycleHooks.getCurrentServer());
 		if (file == null) {

@@ -24,18 +24,12 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 	}
 
 	public static class Start extends ExtendedStructureStart<NoFeatureConfig> {
-		Direction dir;
 		public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
 		@Override
 		public void generatePieces(BlockPos pos, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType) {
-			if(direction!=null) {
-				System.out.println("Generating new ExtendedHobbitTavernPiece: "+pos.toString()+":"+direction.toString());
-			}else {
-				System.out.println("Generating new ExtendedHobbitTavernPiece: "+pos.toString());
-			}
 			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, pos, direction, structureType);
 			pieces.add(hobbitTavernPiece);
 		}

@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structure.StructureV4.parts.ExtendedKegDrinks;
+import lotr.common.structure.util.StructureStrings;
 import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -83,21 +84,22 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 	}
 
 	public void setLockableLootTileEntityContents(ISeedReader world, Random random, int x, int y, int z, CompoundNBT nbt, MutableBoundingBox box) {
-//		if (nbt.contains(StructureStrings.structureLootTableHolder)) {
+		if (nbt.contains(StructureStrings.structureLootTableHolder)) {
 //			if(!nbt.contains(StructureStrings.structureLootTableNumberHolder)) {
 //				ExtendedLog.error("Missing chest identifier number for X: " + x + ", Y: " + y + ", Z:" + z + ", NBT: " + nbt.toString());
 //			}
-//			String table = nbt.getString(StructureStrings.structureLootTableHolder);
-//			if (!table.equals(StructureStrings.EMPTY)) {
+			String table = nbt.getString(StructureStrings.structureLootTableHolder);
+			if (!table.equals(StructureStrings.EMPTY)) {
 //				String data = nbt.getString(StructureStrings.structureLootTableNumberHolder);
 //				if(placedFeatures.containsKey(data)&&placedFeatures.get(data)) {
 //					return;
 //				}
 //				placedFeatures.put(data, setLockableLootTileEntityContents(world, random, locToBlockPos(x, y, z), table, box));
-//			}
-//		} else {
-//			ExtendedLog.error("MISSING LOOTTABLE VALUES FOR X: " + x + ", Y: " + y + ", Z:" + z + ", NBT: " + nbt.toString());
-//		}
+				setLockableLootTileEntityContents(world, random, locToBlockPos(x, y, z), table, box);
+			}
+		} else {
+			ExtendedLog.error("MISSING LOOTTABLE VALUES FOR X: " + x + ", Y: " + y + ", Z:" + z + ", NBT: " + nbt.toString());
+		}
 	}
 
 	public boolean setLockableLootTileEntityContents(ISeedReader world, Random random, BlockPos pos, String table, MutableBoundingBox box) {
