@@ -168,21 +168,21 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	}
 
 	@Override
-	protected void generateBox(ISeedReader p_175804_1_, MutableBoundingBox p_175804_2_, int smallX, int smallY, int smallZ, int bigX, int bigY, int bigZ, BlockState p_175804_9_, BlockState p_175804_10_, boolean truePos) {
+	protected void generateBox(ISeedReader world, MutableBoundingBox box, int smallX, int smallY, int smallZ, int bigX, int bigY, int bigZ, BlockState blockStateOutside, BlockState blockStateInside, boolean truePos) {
 		for (int i = smallX; i <= bigX; ++i) {
 			for (int j = smallY; j <= bigY; ++j) {
 				for (int k = smallZ; k <= bigZ; ++k) {
 					if(truePos) {
 						if (i != smallX && i != bigX && j != smallY && j != bigY && k != smallZ && k != bigZ) {
-							this.placeBlockD(p_175804_1_, p_175804_10_,  new BlockPos(j, i, k), p_175804_2_);
+							this.placeBlockD(world, blockStateInside,  new BlockPos(i, j, k), box);
 						} else {
-							this.placeBlockD(p_175804_1_, p_175804_9_,  new BlockPos(j, i, k), p_175804_2_);
+							this.placeBlockD(world, blockStateOutside,  new BlockPos(i, j, k), box);
 						}
 					}else {
 						if (i != smallX && i != bigX && j != smallY && j != bigY && k != smallZ && k != bigZ) {
-							this.placeBlock(p_175804_1_, p_175804_10_, j, i, k, p_175804_2_);
+							this.placeBlock(world, blockStateInside, i, j, k, box);
 						} else {
-							this.placeBlock(p_175804_1_, p_175804_9_, j, i, k, p_175804_2_);
+							this.placeBlock(world, blockStateOutside, i, j, k, box);
 						}
 					}
 				}
