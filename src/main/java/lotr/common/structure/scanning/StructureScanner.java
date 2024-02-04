@@ -174,8 +174,6 @@ public class StructureScanner {
 		ListNBT blockDataMap = new ListNBT();
 		ListNBT entitySpawnMap = new ListNBT();
 		ListNBT signTextMap = new ListNBT();
-		
-		int containerCounter=0;
 		for(int y = bottomY; y < topY+1; y++) {
 			for(int x = bottomX; x < topX+1; x++) {
 				for(int z = bottomZ; z < topZ+1; z++) {
@@ -212,7 +210,6 @@ public class StructureScanner {
 							LockableLootTileEntity te =((LockableLootTileEntity)tileentity);
 							if(te.getCustomName()!=null) {
 								dataHolder.putString(StructureStrings.structureLootTableHolder, te.getCustomName().getString());
-								dataHolder.putString(StructureStrings.structureLootTableNumberHolder, "containerNo:"+containerCounter);
 							}
 							else {
 								ExtendedLog.error("FOUND MISSING LockableLootTileEntity LOOTTABLE! X: "+x+", Y: "+y+", Z:"+z);

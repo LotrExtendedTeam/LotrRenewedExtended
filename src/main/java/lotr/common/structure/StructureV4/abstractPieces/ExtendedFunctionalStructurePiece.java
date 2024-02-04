@@ -86,16 +86,10 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 		if (nbt.contains(StructureStrings.structureLootTableHolder)) {
 			String table = nbt.getString(StructureStrings.structureLootTableHolder);
 			if (!table.equals(StructureStrings.EMPTY)) {
-				if(!nbt.contains(StructureStrings.structureLootTableNumberHolder)) {
-					ExtendedLog.error("Missing chest identifier number for X: " + x + ", Y: " + y + ", Z:" + z + ", NBT: " + nbt.toString());
-					setLockableLootTileEntityContents(world, random, locToBlockPos(x, y, z), table, box);
+				if(placedFeatures.containsKey("conVX"+x+"Y"+y+"Z"+z)&&placedFeatures.get("conVX"+x+"Y"+y+"Z"+z)) {
 					return;
 				}
-				String data = nbt.getString(StructureStrings.structureLootTableNumberHolder);
-				if(placedFeatures.containsKey(data)&&placedFeatures.get(data)) {
-					return;
-				}
-				placedFeatures.put(data, setLockableLootTileEntityContents(world, random, locToBlockPos(x, y, z), table, box));
+				placedFeatures.put("conVX"+x+"Y"+y+"Z"+z, setLockableLootTileEntityContents(world, random, locToBlockPos(x, y, z), table, box));
 			}
 		} else {
 			ExtendedLog.error("MISSING LOOTTABLE VALUES FOR X: " + x + ", Y: " + y + ", Z:" + z + ", NBT: " + nbt.toString());
@@ -117,10 +111,10 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 	}
 
 	public void setKegTileEntityContents(ISeedReader world, Random random, int x, int y, int z, MutableBoundingBox box) {
-		if(placedFeatures.containsKey("kegValueX"+x+"Y"+y+"Z"+z)&&placedFeatures.get("kegValueX"+x+"Y"+y+"Z"+z)) {
+		if(placedFeatures.containsKey("kegVX"+x+"Y"+y+"Z"+z)&&placedFeatures.get("kegVX"+x+"Y"+y+"Z"+z)) {
 			return;
 		}
-		placedFeatures.put("kegValueX"+x+"Y"+y+"Z"+z, setKegTileEntityContents(world, random, locToBlockPos(x, y, z), box, defaultDrinks()));
+		placedFeatures.put("kegVX"+x+"Y"+y+"Z"+z, setKegTileEntityContents(world, random, locToBlockPos(x, y, z), box, defaultDrinks()));
 	}
 
 	public List<RegistryObject<Item>> defaultDrinks(){
