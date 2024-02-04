@@ -1,27 +1,22 @@
 package lotr.common.structure.StructureV4.standalone;
 
+import java.util.List;
 import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.enums.StructureType;
 
-import lotr.common.structure.StructureFile;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
 import lotr.common.structure.StructureV4.abstractPieces.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.StructureV4.parts.ExtendedKegDrinksv4;
 import lotr.common.structure.StructureV4.parts.ExtendedSignTextsv4;
-import lotr.common.structure.util.RelativePosition;
-import lotr.common.structure.util.StructureStrings;
-import net.minecraft.block.BlockState;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 
@@ -36,29 +31,9 @@ public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
 	@Override
 	protected void addMoreSaveData(CompoundNBT p_143011_1_) {}
 
-	@Override
-	public boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, ChunkPos cPos, StructureType structureType) {
-//		if (!this.updateAverageGroundHeight(world, boundingBox, 0)) {
-//			System.out.println("Failed to update ground height");
-//			return false;
-//		} else {
-			StructureFile file = getStructure();
-			if (file != null) {
-				for (int i = 0; i < file.getLayers().size(); i++) {
-					CompoundNBT nbt = file.getLayers().getCompound(i);
-					RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
-					CompoundNBT blockData = nbt.getCompound(StructureStrings.blockMapHolder);
-					BlockState blockstate = NBTUtil.readBlockState(blockData);
-
-					setBlockAndMetadata(world, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, nbt, random);
-					genKegForCurrentBlock(world, random, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, ExtendedKegDrinksv4.shireDrinksPool);
-				}
-				doFileGen(world, random, file, boundingBox);
-				return true;
-			}
-			return false;
-		}
-//	}
+	public List<RegistryObject<Item>> defaultDrinks(){
+		return ExtendedKegDrinksv4.shireDrinksPool;
+	}
 
 	@Override
 	public String fileName() {
