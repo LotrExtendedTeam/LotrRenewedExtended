@@ -9,7 +9,7 @@ import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import lotr.common.structure.StructureV4.standalone.HobbitTavernStructure;
+import lotr.common.structure.StructureV4.standalone.*;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -32,8 +32,16 @@ public class ExtendedStructures {
 	public static final int SALT = 785555898;
 	// Structures
 	// #######################SHIRE STANDALONE STRUCTURES
-	public static final Structure<NoFeatureConfig> HOBBIT_TAVERN_SMALL = new HobbitTavernStructure(NoFeatureConfig.CODEC);
+	public static final Structure<NoFeatureConfig> HOBBIT_TAVERN_SMALL = new ExtendedHobbitTavernStructure(NoFeatureConfig.CODEC);
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_SMALL = ExtendedStructures.HOBBIT_TAVERN_SMALL.configured(IFeatureConfig.NONE);
+	public static final Structure<NoFeatureConfig> HOBBIT_BARN = new ExtendedHobbitBarnStructure(NoFeatureConfig.CODEC);
+	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_BARN = ExtendedStructures.HOBBIT_BARN.configured(IFeatureConfig.NONE);
+	public static final Structure<NoFeatureConfig> HOBBIT_HOUSE = new ExtendedHobbitHouseStructure(NoFeatureConfig.CODEC);
+	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOUSE = ExtendedStructures.HOBBIT_HOUSE.configured(IFeatureConfig.NONE);
+	public static final Structure<NoFeatureConfig> HOBBIT_HOLE_SMALL = new ExtendedHobbitHoleSmallStructure(NoFeatureConfig.CODEC);
+	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOLE_SMALL = ExtendedStructures.HOBBIT_HOLE_SMALL.configured(IFeatureConfig.NONE);
+	public static final Structure<NoFeatureConfig> HOBBIT_WINDMILL = new ExtendedHobbitWindmillStructure(NoFeatureConfig.CODEC);
+	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_WINDMILL = ExtendedStructures.HOBBIT_WINDMILL.configured(IFeatureConfig.NONE);
 
 	public static void register(RegistryEvent.Register<Structure<?>> event,
 			Structure<?> structure, StructureFeature<?, ?> feature, ResourceLocation location, boolean editLand, int spacing, int seperation) {
@@ -59,7 +67,11 @@ public class ExtendedStructures {
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
-		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 3, 1);
+		register(event, HOBBIT_TAVERN_SMALL, CONFIGURED_HOBBIT_TAVERN_SMALL, extendedLoc("hobbit_tavern_small"), true, 6, 2);
+		register(event, HOBBIT_BARN, CONFIGURED_HOBBIT_BARN, extendedLoc("hobbit_barn"), true, 5, 2);
+		register(event, HOBBIT_HOUSE, CONFIGURED_HOBBIT_HOUSE, extendedLoc("hobbit_house"), true, 3, 1);
+		register(event, HOBBIT_HOLE_SMALL, CONFIGURED_HOBBIT_HOLE_SMALL, extendedLoc("hobbit_hole_small"), true, 3, 1);
+		register(event, HOBBIT_WINDMILL, CONFIGURED_HOBBIT_WINDMILL, extendedLoc("hobbit_windmill"), true, 7, 3);
 		ExtendedStructurePieces.init();
 		ExtendedStructureLists.startup();
 	}

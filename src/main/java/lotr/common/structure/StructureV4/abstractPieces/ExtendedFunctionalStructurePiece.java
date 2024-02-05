@@ -34,15 +34,15 @@ import net.minecraftforge.fml.RegistryObject;
 public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStructurePiece {
 	private Map<String, Boolean> placedFeatures = new HashMap<>();
 
-	protected ExtendedFunctionalStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
+	public ExtendedFunctionalStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
 		this(pieceType, random, position, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
 	}
 
-	protected ExtendedFunctionalStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
+	public ExtendedFunctionalStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, random, position, direction, structureType);
 	}
 
-	protected ExtendedFunctionalStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
+	public ExtendedFunctionalStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
 		super(piece, nbt);
 		ListNBT placedFeaturesList = nbt.getList("placedFeatures", 10);
 		for (int i = 0; i < placedFeaturesList.size(); i++) {

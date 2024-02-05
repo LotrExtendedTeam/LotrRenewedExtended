@@ -40,11 +40,11 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctionalStructurePiece{
 	private static StructureFile structureFile;
 	public final Direction nativeDirection;
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
+	public ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
 		this(pieceType, random, position, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);
 	}
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
+	public ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
 		super(pieceType, random, position, direction, structureType);
 		if(getStructure()!=null) {
 			nativeDirection = structureFile.getNaturalFacingDirection();
@@ -55,7 +55,7 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 		}
 	}
 
-	protected ExtendedFileBasedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
+	public ExtendedFileBasedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
 		super(piece, nbt);
 		int i = nbt.getInt("NativeDirection");
 	    this.nativeDirection = (i == -1) ? null : Direction.from2DDataValue(i);
@@ -63,25 +63,20 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 
 	@Override
 	public boolean placeBlocks(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGen, Random random, ChunkPos cPos, StructureType structureType) {
-//		if (!this.updateAverageGroundHeight(world, boundingBox, 0)) {
-//			System.out.println("Failed to update ground height");
-//			return false;
-//		} else {
-			StructureFile file = getStructure();
-			if (file != null) {
-				for (int i = 0; i < file.getLayers().size(); i++) {
-					CompoundNBT nbt = file.getLayers().getCompound(i);
-					RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
-					CompoundNBT blockData = nbt.getCompound(StructureStrings.blockMapHolder);
-					BlockState blockstate = NBTUtil.readBlockState(blockData);
-					setBlockAndMetadata(world, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, nbt, random);
-				}
-				doFileGen(world, random, file, boundingBox);
-				return true;
+		StructureFile file = getStructure();
+		if (file != null) {
+			for (int i = 0; i < file.getLayers().size(); i++) {
+				CompoundNBT nbt = file.getLayers().getCompound(i);
+				RelativePosition rpos = StructureFile.readBlockPos(nbt.getCompound(StructureStrings.relativeLocationHolder));
+				CompoundNBT blockData = nbt.getCompound(StructureStrings.blockMapHolder);
+				BlockState blockstate = NBTUtil.readBlockState(blockData);
+				setBlockAndMetadata(world, blockstate, rpos.getX(), rpos.getY(), rpos.getZ(), boundingBox, nbt, random);
 			}
-			return false;
+			doFileGen(world, random, file, boundingBox);
+			return true;
 		}
-//	}
+		return false;
+	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT nbt) {

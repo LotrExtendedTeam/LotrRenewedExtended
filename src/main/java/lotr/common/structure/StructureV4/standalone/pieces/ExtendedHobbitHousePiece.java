@@ -1,4 +1,4 @@
-package lotr.common.structure.StructureV4.standalone;
+package lotr.common.structure.StructureV4.standalone.pieces;
 
 import java.util.List;
 import java.util.Random;
@@ -18,46 +18,32 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedHobbitTavernPiece extends ExtendedFileBasedStructurePiece {
+public class ExtendedHobbitHousePiece extends ExtendedFileBasedStructurePiece {
 
-	protected ExtendedHobbitTavernPiece(Random random, BlockPos position, Direction direction, StructureType structureType) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, random, position, direction, structureType);
+	public ExtendedHobbitHousePiece(Random random, BlockPos position, Direction direction, StructureType structureType) {
+		super(ExtendedStructurePieces.HOBBIT_HOUSE_START, random, position, direction, structureType);
 	}
 
-	public ExtendedHobbitTavernPiece(TemplateManager p_i51350_1_, CompoundNBT p_i51350_2_) {
-		super(ExtendedStructurePieces.HOBBIT_TAVERN_SMALL_START, p_i51350_2_);
+	public ExtendedHobbitHousePiece(TemplateManager p_i51350_1_, CompoundNBT p_i51350_2_) {
+		super(ExtendedStructurePieces.HOBBIT_HOUSE_START, p_i51350_2_);
 	}
 
 	@Override
 	protected void addMoreSaveData(CompoundNBT p_143011_1_) {}
 
+	@Override
 	public List<RegistryObject<Item>> defaultDrinks(){
 		return ExtendedKegDrinksv4.shireDrinksPool;
 	}
 
 	@Override
 	public String fileName() {
-		return "hobbit_tavern_small";
+		return "hobbit_house";
 	}
 
 	@Override
 	public boolean isCodeDefined() {
 		return false;
-	}
-
-	@Override
-	public int defaultStructureWidth() {
-		return 0;
-	}
-
-	@Override
-	public int defaultStructureHeight() {
-		return 0;
-	}
-
-	@Override
-	public int defaultStructureDepth() {
-		return 0;
 	}
 
 	@Override

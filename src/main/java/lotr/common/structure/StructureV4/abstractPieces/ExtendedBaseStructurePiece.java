@@ -59,11 +59,17 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 		}
 	}
 
-	public abstract int defaultStructureWidth();
-	public abstract int defaultStructureHeight();
-	public abstract int defaultStructureDepth();
+	public int defaultStructureWidth() {
+		return 0;
+	};
+	public int defaultStructureHeight() {
+		return 0;
+	};
+	public int defaultStructureDepth() {
+		return 0;
+	};
 
-	protected ExtendedBaseStructurePiece(IStructurePieceType type, CompoundNBT nbt) {
+	public ExtendedBaseStructurePiece(IStructurePieceType type, CompoundNBT nbt) {
 		super(type, nbt);
 		this.width = nbt.getInt("Width");
 		this.height = nbt.getInt("Height");

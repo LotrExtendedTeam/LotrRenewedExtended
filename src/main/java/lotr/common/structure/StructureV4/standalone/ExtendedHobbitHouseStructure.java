@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 
 import lotr.common.structure.StructureV4.ExtendedStructureStart;
 import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
+import lotr.common.structure.StructureV4.standalone.pieces.ExtendedHobbitHousePiece;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -12,15 +13,15 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureConfig> {
+public class ExtendedHobbitHouseStructure extends ExtendedSurfaceStructure<NoFeatureConfig> {
 
-	public HobbitTavernStructure(Codec<NoFeatureConfig> p_i231997_1_) {
+	public ExtendedHobbitHouseStructure(Codec<NoFeatureConfig> p_i231997_1_) {
 		super(p_i231997_1_);
 	}
 
 	@Override
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
-		return HobbitTavernStructure.Start::new;
+		return ExtendedHobbitHouseStructure.Start::new;
 	}
 
 	public static class Start extends ExtendedStructureStart<NoFeatureConfig> {
@@ -30,7 +31,7 @@ public class HobbitTavernStructure extends ExtendedSurfaceStructure<NoFeatureCon
 
 		@Override
 		public void generatePieces(BlockPos pos, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType) {
-			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, pos, direction, structureType);
+			ExtendedHobbitHousePiece hobbitTavernPiece = new ExtendedHobbitHousePiece(this.random, pos, direction, structureType);
 			pieces.add(hobbitTavernPiece);
 		}
 	}
