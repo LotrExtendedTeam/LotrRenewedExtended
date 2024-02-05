@@ -8,7 +8,7 @@ import com.github.maximuslotro.lotroExtended.enums.StructureType;
 import lotr.common.structure.StructureV4.ExtendedStructurePieces;
 import lotr.common.structure.StructureV4.abstractPieces.ExtendedFileBasedStructurePiece;
 import lotr.common.structure.StructureV4.parts.ExtendedKegDrinksv4;
-import lotr.common.world.gen.feature.structuresV3.parts.ExtendedSignTexts;
+import lotr.common.structure.StructureV4.parts.ExtendedSignTextsv4;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -48,6 +48,6 @@ public class ExtendedHobbitHoleSmallPiece extends ExtendedFileBasedStructurePiec
 
 	@Override
 	public void setSignTextFromFileData(ISeedReader world, Random random, BlockPos blockPos, int num, MutableBoundingBox box) {
-		setSignTileEntity(world, blockPos, ExtendedSignTexts.ShireHouseTexts(random), box);
+		setSignTileEntity(world, blockPos, ExtendedSignTextsv4.ShireHouseTexts(random), box);
 	}
 }

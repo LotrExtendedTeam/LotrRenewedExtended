@@ -38,11 +38,6 @@ public class StructureFile {
 	    return new RelativePosition(compoundnbt.getInt("X"), compoundnbt.getInt("Y"), compoundnbt.getInt("Z"));
 	}
 
-	@Deprecated
-	public RelativePosition readStructureSize() {
-	    return new RelativePosition(structureSize.getInt("X"), structureSize.getInt("Y"), structureSize.getInt("Z"));
-	}
-
 	public StructureSize readGenv4StructureSize() {
 	    return new StructureSize(structureSize.getInt("X"), structureSize.getInt("Y"), structureSize.getInt("Z"));
 	}
