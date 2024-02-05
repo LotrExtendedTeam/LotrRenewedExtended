@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 
 import com.github.maximuslotro.lotroExtended.ExtendedLog;
@@ -57,13 +56,15 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 	protected void addAdditionalSaveData(CompoundNBT nbt) {
 		super.addAdditionalSaveData(nbt);
 		this.addMoreSaveData(nbt);
-		ListNBT placedFeaturesList = new ListNBT();
-		for(Entry<String, Boolean> feature : placedFeatures.entrySet()) {
-			CompoundNBT dataHolder = new CompoundNBT();
-			dataHolder.putBoolean(feature.getKey(), feature.getValue());
-			placedFeaturesList.add(dataHolder);
-		}
-		nbt.put("placedFeatures", placedFeaturesList);
+//		ListNBT placedFeaturesList = new ListNBT();
+//		for(Entry<String, Boolean> feature : placedFeatures.entrySet()) {
+//			CompoundNBT dataHolder = new CompoundNBT();
+//			dataHolder.putBoolean(feature.getKey(), feature.getValue());
+//			placedFeaturesList.add(dataHolder);
+//		}
+//		if(!placedFeaturesList.isEmpty()) {
+//			nbt.put("placedFeatures", placedFeaturesList);
+//		}
 	}
 
 	protected abstract void addMoreSaveData(CompoundNBT nbt);

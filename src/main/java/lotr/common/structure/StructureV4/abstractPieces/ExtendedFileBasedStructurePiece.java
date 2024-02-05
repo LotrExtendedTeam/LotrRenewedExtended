@@ -57,8 +57,12 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 
 	public ExtendedFileBasedStructurePiece(IStructurePieceType piece, CompoundNBT nbt) {
 		super(piece, nbt);
-		int i = nbt.getInt("NativeDirection");
-	    this.nativeDirection = (i == -1) ? null : Direction.from2DDataValue(i);
+		if(getStructure()!=null) {
+			nativeDirection = structureFile.getNaturalFacingDirection();
+		}else {
+			ExtendedLog.error("FAILED LOADING STRUCTURE FILE!: " + fileName());
+			nativeDirection=null;
+		}
 	}
 
 	@Override
@@ -76,12 +80,6 @@ public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctional
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	protected void addAdditionalSaveData(CompoundNBT nbt) {
-		super.addAdditionalSaveData(nbt);
-		nbt.putInt("NativeDirection", nativeDirection == null ? -1 : nativeDirection.get2DDataValue());
 	}
 
 	protected void updateStructureParamiters(StructureFile file) {

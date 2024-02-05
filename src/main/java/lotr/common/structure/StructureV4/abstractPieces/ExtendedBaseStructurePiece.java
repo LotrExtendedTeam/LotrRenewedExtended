@@ -2,8 +2,6 @@ package lotr.common.structure.StructureV4.abstractPieces;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotroExtended.enums.StructureType;
 import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
 
@@ -16,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
@@ -33,9 +30,6 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	protected int initialX;
 	protected int initialY;
 	protected int initialZ;
-	protected int heightPosition = -1;
-	@Nullable
-	private final Direction ssDirection;
 	private StructureType structureType;
 
 	public ExtendedBaseStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, Direction direction, StructureType structureType) {
@@ -48,11 +42,11 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 		this.initialY = position.getY();
 		this.initialZ = position.getZ();
 		if(direction==null || !Direction.Plane.HORIZONTAL.test(direction)) {
-			ssDirection = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+			setOrientation(Direction.Plane.HORIZONTAL.getRandomDirection(random));
 		}else {
-			ssDirection = direction;
+			setOrientation(direction);
 		}
-		if (ssDirection.getAxis() == Direction.Axis.Z) {
+		if (getOrientation().getAxis() == Direction.Axis.Z) {
 			this.boundingBox = MutableBoundingBox.createProper(initialX, initialY, initialZ, initialX + width - 1, initialY + height - 1, initialZ + depth - 1);
 		} else {
 			this.boundingBox = MutableBoundingBox.createProper(initialX, initialY, initialZ, initialX + depth - 1, initialY + height - 1, initialZ + width - 1);
@@ -71,27 +65,20 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	public ExtendedBaseStructurePiece(IStructurePieceType type, CompoundNBT nbt) {
 		super(type, nbt);
-		this.width = nbt.getInt("Width");
-		this.height = nbt.getInt("Height");
-		this.depth = nbt.getInt("Depth");
+		this.width = defaultStructureWidth();
+		this.height = defaultStructureHeight();
+		this.depth = defaultStructureDepth();
 		this.initialX = nbt.getInt("initialX");
 		this.initialY = nbt.getInt("initialY");
 		this.initialZ = nbt.getInt("initialZ");
-		int i = nbt.getInt("Direction");
-	    this.ssDirection = (i == -1) ? null : Direction.from2DDataValue(i);
-		this.heightPosition = nbt.getInt("HPos");
 		this.structureType = StructureType.valueOf(nbt.getString("SType"));
 	}
 
+	@Override
 	protected void addAdditionalSaveData(CompoundNBT nbt) {
-		nbt.putInt("Width", this.width);
-		nbt.putInt("Height", this.height);
-		nbt.putInt("Depth", this.depth);
 		nbt.putInt("initialX", this.initialX);
-		nbt.putInt("initiaY", this.initialY);
+		nbt.putInt("initialY", this.initialY);
 		nbt.putInt("initialZ", this.initialZ);
-		nbt.putInt("HPos", this.heightPosition);
-		nbt.putInt("Direction", ssDirection == null ? -1 : ssDirection.get2DDataValue());
 		nbt.putString("SType", this.structureType.toString());
 	}
 
@@ -116,35 +103,6 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 		}
 	}
 
-	protected boolean updateAverageGroundHeight(IWorld world, MutableBoundingBox boundingBox, int yOffset) {
-		if (this.heightPosition >= 0) {
-			return true;
-		} else {
-			int i = 0;
-			int j = 0;
-			BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-
-			for (int k = this.boundingBox.z0; k <= this.boundingBox.z1; ++k) {
-				for (int l = this.boundingBox.x0; l <= this.boundingBox.x1; ++l) {
-					blockpos$mutable.set(l, 64, k);
-					if (boundingBox.isInside(blockpos$mutable)) {
-						i += world.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, blockpos$mutable)
-														.getY();
-						++j;
-					}
-				}
-			}
-
-			if (j == 0) {
-				return false;
-			} else {
-				this.heightPosition = i / j;
-				this.boundingBox.move(0, this.heightPosition - this.boundingBox.y0 + yOffset, 0);
-				return true;
-			}
-		}
-	}
-
 	public boolean isSetToGroundHeight() {
 		return true;
 	}
@@ -156,7 +114,7 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 
 	protected void placeBlockInternal(ISeedReader world, BlockState blockState, BlockPos blockpos, MutableBoundingBox box) {
 		if (box.isInside(blockpos)) {
-			Rotation rot = DirectionTools.getRotationDirection(this.ssDirection, Direction.NORTH);
+			Rotation rot = DirectionTools.getRotationDirection(getSsDirection(), Direction.NORTH);
 			if(rot!=Rotation.NONE) {
 				blockState = blockState.rotate(world, blockpos, rot);
 			}
@@ -241,10 +199,10 @@ public abstract class ExtendedBaseStructurePiece extends StructurePiece {
 	}
 
 	public Direction getSsDirection() {
-		if(ssDirection==null) {
-			throw new IllegalArgumentException("Was asked to fetch an invalid structure direction");
+		if(getOrientation()==null) {
+			setOrientation(Direction.Plane.HORIZONTAL.getRandomDirection((new Random())));
 		}
-		return ssDirection;
+		return getOrientation();
 	}
 
 	public StructureType getStructureType() {

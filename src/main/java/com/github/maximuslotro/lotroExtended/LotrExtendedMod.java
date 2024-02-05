@@ -30,15 +30,15 @@ public class LotrExtendedMod {
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::clientSetup);
 		MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
-		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
-		MinecraftForge.EVENT_BUS.addListener(ExtendedStructures::addStructureSeparationSettingsToDimension);
+		//MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
+		//IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
+		//modbus.addGenericListener(Structure.class, ExtendedStructures::init);
+		//MinecraftForge.EVENT_BUS.addListener(ExtendedStructures::addStructureSeparationSettingsToDimension);
 		MinecraftForge.EVENT_BUS.register(ForgeInventoryEvents.class);
 
 		ExtendedLog.make();
 		ExtendedStats.init();
 		ExtendedLootModifiers.register();
-		IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
-		modbus.addGenericListener(Structure.class, ExtendedStructures::init);
 	}
 
 	public void registerCommands(RegisterCommandsEvent event) {
@@ -49,13 +49,12 @@ public class LotrExtendedMod {
 		return ModList.get().getModFileById(MODID).getFile();
 	}
 
-	public void addStructuresToBiomes(final BiomeLoadingEvent event) {
-		event.getName();
-		if(event.getName()!=null) {
-			if(event.getName().toString().equals("lotr:shire")) {
-				ExtendedStructureLists.addStructureType(event.getGeneration(), ExtendedStructureLists.SHIRE_STRUCTURES);
-			}
-		}
-		
-	}
+//	public void addStructuresToBiomes(final BiomeLoadingEvent event) {
+//		event.getName();
+//		if(event.getName()!=null) {
+//			if(event.getName().toString().equals("lotr:shire")) {
+//				ExtendedStructureLists.addStructureType(event.getGeneration(), ExtendedStructureLists.SHIRE_STRUCTURES);
+//			}
+//		}
+//	}
 }

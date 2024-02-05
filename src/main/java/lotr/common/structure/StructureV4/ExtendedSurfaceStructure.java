@@ -56,12 +56,10 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 		if (p_242785_7_.x == chunkpos.x && p_242785_7_.z == chunkpos.z && this.isFeatureChunk(p_242785_2_, p_242785_3_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, chunkpos, conf)) {
 			StructureStart<C> structurestart = createStart(p_242785_7_.x, p_242785_7_.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
 			if(structurestart instanceof ExtendedStructureStart) {
-				System.out.println("Adding modded pieces");
 				((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf, direction, StructureType.NATURAL_SINGLE);
 			}else {
 				ExtendedLog.error("Tried generating pieces for a ExtendedSurfaceStructure for a non ExtendedStructureStart");
 			}
-			System.out.println(structurestart.getPieces().size()+" Pieces made");
 			if (structurestart.isValid()) {
 				return structurestart;
 			}
