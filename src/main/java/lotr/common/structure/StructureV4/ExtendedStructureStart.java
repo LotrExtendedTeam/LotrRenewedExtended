@@ -57,11 +57,13 @@ public abstract class ExtendedStructureStart<C extends IFeatureConfig> extends S
 	}
 
 	public void placeInChunkD(ISeedReader p_230366_1_, StructureManager p_230366_2_, ChunkGenerator p_230366_3_, Random p_230366_4_, MutableBoundingBox p_230366_5_, ChunkPos p_230366_6_) {
+		System.out.println("Placing structure in chunk");
 		if (!this.pieces.isEmpty()) {
 			MutableBoundingBox mutableboundingbox = (pieces.get(0)).getBoundingBox();
 			Vector3i vector3i = mutableboundingbox.getCenter();
 			BlockPos blockpos = new BlockPos(vector3i.getX(), mutableboundingbox.y0, vector3i.getZ());
 			Iterator<StructurePiece> iterator = pieces.iterator();
+			System.out.println("lacing structure in chunk");
 			while (iterator.hasNext()) {
 				StructurePiece structurepiece = iterator.next();
 				if (structurepiece.getBoundingBox().intersects(p_230366_5_) && !structurepiece.postProcess(p_230366_1_, p_230366_2_, p_230366_3_, p_230366_4_, p_230366_5_, p_230366_6_, blockpos)) {

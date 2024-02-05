@@ -10,13 +10,13 @@ public class ExtendedStructureLists {
 	public static List<StructureFeature<?, ?>> SHIRE_STRUCTURES = new ArrayList<>();
 
 	public static void startup() {
-		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_TAVERN_SMALL);
-		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_BARN);
-		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_HOUSE);
-		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_HOLE_SMALL);
-		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_WINDMILL);
+		SHIRE_STRUCTURES.add(ExtendedConfiguredStructures.CONFIGURED_HOBBIT_TAVERN_SMALL);
+//		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_BARN);
+//		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_HOUSE);
+//		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_HOLE_SMALL);
+//		SHIRE_STRUCTURES.add(ExtendedStructures.CONFIGURED_HOBBIT_WINDMILL);
 	}
-	public static void addStructureType(BiomeGenerationSettingsBuilder builder,List<StructureFeature<?, ?>> structures) {
+	public static void addStructureType(BiomeGenerationSettingsBuilder builder, List<StructureFeature<?, ?>> structures) {
 		for(StructureFeature<?, ?> structure : structures) {
 			builder.addStructureStart(structure);
 		}

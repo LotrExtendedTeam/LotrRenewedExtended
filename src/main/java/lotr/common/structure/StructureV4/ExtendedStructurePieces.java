@@ -1,10 +1,6 @@
 package lotr.common.structure.StructureV4;
 
-import lotr.common.structure.StructureV4.standalone.pieces.ExtendedHobbitBarnPiece;
-import lotr.common.structure.StructureV4.standalone.pieces.ExtendedHobbitHoleSmallPiece;
-import lotr.common.structure.StructureV4.standalone.pieces.ExtendedHobbitHousePiece;
-import lotr.common.structure.StructureV4.standalone.pieces.ExtendedHobbitTavernPiece;
-import lotr.common.structure.StructureV4.standalone.pieces.ExtendedHobbitWindmillPiece;
+import lotr.common.structure.StructureV4.standalone.pieces.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 

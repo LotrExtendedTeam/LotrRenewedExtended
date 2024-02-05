@@ -31,6 +31,7 @@ public class ExtendedHobbitTavernStructure extends ExtendedSurfaceStructure<NoFe
 
 		@Override
 		public void generatePieces(BlockPos pos, ChunkGenerator chunkGenerator, Direction direction, StructureType structureType) {
+			System.out.println("Adding hobbit tavern piece");
 			ExtendedHobbitTavernPiece hobbitTavernPiece = new ExtendedHobbitTavernPiece(this.random, pos, direction, structureType);
 			pieces.add(hobbitTavernPiece);
 		}

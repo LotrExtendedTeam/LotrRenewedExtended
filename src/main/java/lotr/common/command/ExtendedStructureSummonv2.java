@@ -10,8 +10,8 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
+import lotr.common.structure.StructureV4.ExtendedConfiguredStructures;
 import lotr.common.structure.StructureV4.ExtendedStructureStart;
-import lotr.common.structure.StructureV4.ExtendedStructures;
 import lotr.common.structure.StructureV4.ExtendedSurfaceStructure;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -29,6 +29,7 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.structure.StructureStart;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.server.ServerWorld;
 
 
@@ -44,20 +45,20 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 	}
 
 	public static SuggestionProvider<CommandSource> SUGGEST_group = (ctx, builder) -> {
-        List<String> listgroup = new ArrayList<>(ExtendedStructures.CONFIGURED_STRUCTURES.keySet());
+        List<String> listgroup = new ArrayList<>(ExtendedConfiguredStructures.CONFIGURED_STRUCTURES.keySet());
         return ISuggestionProvider.suggest(listgroup, builder);
     };
 
 	private static int spawnStructure(CommandContext<CommandSource> context, String structureName) throws CommandSyntaxException {
 		if(context.getSource().getEntity()!=null &&context.getSource().getEntity() instanceof PlayerEntity) {
-			if(!ExtendedStructures.CONFIGURED_STRUCTURES.containsKey(structureName)) {
+			if(!ExtendedConfiguredStructures.CONFIGURED_STRUCTURES.containsKey(structureName)) {
 				context.getSource().sendFailure((new TranslationTextComponent("command.lotrextended.structureSummon.failure")).withStyle((p_211704_1_) -> {
 		               return p_211704_1_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Structure not found")));
 	            }));
 			}
 			Direction dir =((PlayerEntity)context.getSource().getEntity()).getDirection().getOpposite();
 			ServerWorld serverlevel = context.getSource().getLevel();
-		    StructureFeature<?, ?> structure = ExtendedStructures.CONFIGURED_STRUCTURES.get(structureName).get();
+		    StructureFeature<?, ?> structure = ExtendedConfiguredStructures.CONFIGURED_STRUCTURES.get(structureName).get();
 		    ChunkGenerator chunkgenerator = serverlevel.getChunkSource().getGenerator();
 		    BlockPos pos = context.getSource().getEntity().blockPosition().below();
 		    StructureStart<?> structurestart;
@@ -66,7 +67,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
 		    			chunkgenerator.getBiomeSource(), serverlevel.getStructureManager(), 
 		    			serverlevel.getSeed(), pos, 
 		    			serverlevel.getBiome(pos), 0, 
-		    			new SharedSeedRandom(), ExtendedStructures.SETTINGS.get(structure.feature), 
+		    			new SharedSeedRandom(), DimensionStructuresSettings.DEFAULTS.get(structure.feature), 
 		    			structure.config, dir, StructureType.SPAWNED_SINGLE);
 		    }
 		    else {

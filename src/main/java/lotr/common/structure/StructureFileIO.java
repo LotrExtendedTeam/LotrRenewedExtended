@@ -35,6 +35,7 @@ public class StructureFileIO {
 	}
 	public static CompoundNBT load(String fileName, MinecraftServer server) {
 		try {
+			System.out.println("Loading structure file "+fileName);
 			if (getStructureScanDataFile(fileName, server).exists()) {
 				FileInputStream fileStream = new FileInputStream(getStructureScanDataFile(fileName, server));
 				CompoundNBT compound = CompressedStreamTools.readCompressed(fileStream);
