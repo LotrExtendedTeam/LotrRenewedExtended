@@ -38,7 +38,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public abstract class ExtendedFileBasedStructurePiece extends ExtendedFunctionalStructurePiece{
-	private static StructureFile structureFile;
+	private StructureFile structureFile;
 	public final Direction nativeDirection;
 	public ExtendedFileBasedStructurePiece(IStructurePieceType pieceType, Random random, BlockPos position, StructureType structureType) {
 		this(pieceType, random, position, Direction.Plane.HORIZONTAL.getRandomDirection(random), structureType);

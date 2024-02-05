@@ -43,7 +43,7 @@ public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
                         ));
 	}
 
-	public static final SuggestionProvider<CommandSource> SUGGEST_group = (ctx, builder) -> {
+	public static SuggestionProvider<CommandSource> SUGGEST_group = (ctx, builder) -> {
         List<String> listgroup = new ArrayList<>(ExtendedStructures.CONFIGURED_STRUCTURES.keySet());
         return ISuggestionProvider.suggest(listgroup, builder);
     };

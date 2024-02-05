@@ -54,7 +54,7 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 		C conf= (C)config;
 		ChunkPos chunkpos = this.getPotentialFeatureChunk(p_242785_11_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z);
 		if (p_242785_7_.x == chunkpos.x && p_242785_7_.z == chunkpos.z && this.isFeatureChunk(p_242785_2_, p_242785_3_, p_242785_5_, p_242785_10_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, chunkpos, conf)) {
-			StructureStart<C> structurestart = this.createStart(p_242785_7_.x, p_242785_7_.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
+			StructureStart<C> structurestart = createStart(p_242785_7_.x, p_242785_7_.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
 			if(structurestart instanceof ExtendedStructureStart) {
 				System.out.println("Adding modded pieces");
 				((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, p_242785_7_.x, p_242785_7_.z, p_242785_8_, conf, direction, StructureType.NATURAL_SINGLE);
@@ -72,7 +72,7 @@ public abstract class ExtendedSurfaceStructure<C extends IFeatureConfig> extends
 	public StructureStart<?> generateUnckecked(DynamicRegistries p_242785_1_, ChunkGenerator p_242785_2_, BiomeProvider p_242785_3_, TemplateManager p_242785_4_, long p_242785_5_, BlockPos blockPos, Biome p_242785_8_, int p_242785_9_, SharedSeedRandom p_242785_10_, StructureSeparationSettings p_242785_11_, IFeatureConfig config, Direction direction, StructureType structureType) {
 		C conf= (C)config;
 		ChunkPos cposition = new ChunkPos(blockPos);
-		StructureStart<C> structurestart = this.createStart(cposition.x, cposition.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
+		StructureStart<C> structurestart = createStart(cposition.x, cposition.z, MutableBoundingBox.getUnknownBox(), p_242785_9_, p_242785_5_);
 		if(structurestart instanceof ExtendedStructureStart) {
 			((ExtendedStructureStart<C>)structurestart).generatePieces(p_242785_1_, p_242785_2_, p_242785_4_, blockPos, p_242785_8_, conf, direction, structureType);
 		}else {
