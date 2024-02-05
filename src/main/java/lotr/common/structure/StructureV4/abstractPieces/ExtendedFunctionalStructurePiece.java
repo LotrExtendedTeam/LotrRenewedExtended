@@ -125,9 +125,6 @@ public abstract class ExtendedFunctionalStructurePiece extends ExtendedBaseStruc
 		if (box.isInside(pos)) {
 			TileEntity tileentity = world.getBlockEntity(pos);
 			if (tileentity instanceof KegTileEntity) {
-				if (random.nextInt(5) == 0) {
-					return true;
-				}
 				((KegTileEntity) tileentity).fillBrewedWith(ExtendedKegDrinksv4.SetDrink(random, pool));
 				return true;
 			} else {
