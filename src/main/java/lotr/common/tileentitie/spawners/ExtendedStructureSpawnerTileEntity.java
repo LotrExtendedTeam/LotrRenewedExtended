@@ -1,5 +1,7 @@
 package lotr.common.tileentitie.spawners;
 
+import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
@@ -20,7 +22,7 @@ public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T
 
 	@Override
 	public void tick() {
-		if (!level.isClientSide && !spawned && playerInDistance()) {
+		if (!level.isClientSide && !spawned && playerInDistance()&&!ExtendedServerConfig.enableDevMode.get()) {
 			if (spawnEntity((ServerWorld)level)) {
 				level.destroyBlock(worldPosition, false);
 				spawned = true;
