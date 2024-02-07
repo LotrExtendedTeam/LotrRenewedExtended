@@ -7,15 +7,13 @@ import com.github.maximuslotro.lotroExtended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotroExtended.commands.ExtendedCommands;
 import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotroExtended.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 
-import lotr.common.datagen.DataGeneratorExtended;
-import lotr.common.datagen.NPCLootTableGenerator;
 import lotr.common.structureV5.ExtendedConfiguredStructuresV5;
 import lotr.common.structureV5.ExtendedStructuresV5;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -102,10 +100,6 @@ public class LotrExtendedMod {
 
 	@SubscribeEvent
 	public void gatherData(GatherDataEvent event) {
-		if (event.includeServer()) {
-			DataGenerator generator = event.getGenerator();
-			generator.addProvider(new NPCLootTableGenerator(generator));
-		}
-
+		DataGeneratorExtended.gatherData(event);
 	}
 }

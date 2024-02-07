@@ -9,7 +9,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import lotr.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotroExtended.datagen.DataGenValueHolder;
+
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
 import lotr.common.inv.ExtendedCoinExchangeContainer;

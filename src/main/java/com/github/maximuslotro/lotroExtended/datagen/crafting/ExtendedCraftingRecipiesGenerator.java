@@ -1,12 +1,13 @@
-package lotr.common.datagen.crafting;
+package com.github.maximuslotro.lotroExtended.datagen.crafting;
 
 import java.util.function.Consumer;
 
-import lotr.common.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
-import lotr.common.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
-import lotr.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
-import lotr.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
-import lotr.common.datagen.tags.ExtendedItemTagGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
+import com.github.maximuslotro.lotroExtended.datagen.tags.ExtendedItemTagGenerator;
+
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedRecipes;

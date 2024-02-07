@@ -1,7 +1,8 @@
-package lotr.common.datagen.language;
+package com.github.maximuslotro.lotroExtended.datagen.language;
 import java.util.Map.Entry;
 
-import lotr.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotroExtended.datagen.DataGenValueHolder;
+
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;

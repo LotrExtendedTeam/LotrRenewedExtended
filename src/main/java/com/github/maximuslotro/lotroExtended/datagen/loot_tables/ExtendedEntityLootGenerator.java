@@ -1,4 +1,4 @@
-package lotr.common.datagen.loot_tables;
+package com.github.maximuslotro.lotroExtended.datagen.loot_tables;
 
 import java.util.ArrayList;
 import java.util.List;

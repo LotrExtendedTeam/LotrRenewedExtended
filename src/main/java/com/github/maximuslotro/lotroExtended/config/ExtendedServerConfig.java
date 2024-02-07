@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotroExtended.config;
 
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotroExtended.datagen.DataGenValueHolder;
 
-import lotr.common.datagen.DataGenValueHolder;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
 import net.minecraftforge.fml.DatagenModLoader;

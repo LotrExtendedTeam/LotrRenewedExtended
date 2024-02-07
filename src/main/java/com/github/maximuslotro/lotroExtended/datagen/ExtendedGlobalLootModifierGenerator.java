@@ -1,4 +1,4 @@
-package lotr.common.datagen;
+package com.github.maximuslotro.lotroExtended.datagen;
 
 
 import net.minecraft.data.DataGenerator;

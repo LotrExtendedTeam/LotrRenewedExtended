@@ -1,4 +1,4 @@
-package lotr.common.datagen.crafting.builders;
+package com.github.maximuslotro.lotroExtended.datagen.crafting.builders;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedRecipes;

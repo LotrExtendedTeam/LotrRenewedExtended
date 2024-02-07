@@ -1,4 +1,4 @@
-package lotr.common.datagen.crafting;
+package com.github.maximuslotro.lotroExtended.datagen.crafting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,13 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
+
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRWallBlock;
-import lotr.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
-import lotr.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.LOTRArmorItem;

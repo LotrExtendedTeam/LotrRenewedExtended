@@ -1,4 +1,4 @@
-package lotr.common.datagen.tags;
+package com.github.maximuslotro.lotroExtended.datagen.tags;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;

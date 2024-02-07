@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotroExtended.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 import com.google.common.collect.ImmutableList;
 
-import lotr.common.datagen.DataGenValueHolder;
-import lotr.common.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedRecipes;
 import lotr.common.recipe.FactionTableType;

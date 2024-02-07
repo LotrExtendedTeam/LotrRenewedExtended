@@ -1,4 +1,4 @@
-package lotr.common.datagen.loot_tables;
+package com.github.maximuslotro.lotroExtended.datagen.loot_tables;
 
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.loot.LootParameterSet;

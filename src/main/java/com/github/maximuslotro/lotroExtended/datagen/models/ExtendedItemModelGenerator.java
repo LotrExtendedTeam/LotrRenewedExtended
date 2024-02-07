@@ -1,4 +1,4 @@
-package lotr.common.datagen.models;
+package com.github.maximuslotro.lotroExtended.datagen.models;
 
 import java.util.Map.Entry;
 

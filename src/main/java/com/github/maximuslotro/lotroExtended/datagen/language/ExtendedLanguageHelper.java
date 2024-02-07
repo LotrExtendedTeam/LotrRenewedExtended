@@ -1,4 +1,4 @@
-package lotr.common.datagen.language;
+package com.github.maximuslotro.lotroExtended.datagen.language;
 
 import java.io.IOException;
 import java.io.InputStream;

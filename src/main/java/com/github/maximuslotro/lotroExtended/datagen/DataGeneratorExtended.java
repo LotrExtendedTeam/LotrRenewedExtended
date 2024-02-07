@@ -1,16 +1,16 @@
-package lotr.common.datagen;
+package com.github.maximuslotro.lotroExtended.datagen;
 
 import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotroExtended.datagen.crafting.ExtendedCraftingRecipiesGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.language.ExtendedLanguageGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.loot_tables.ExtendedLootTableGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.models.ExtendedBlockstateModelGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.models.ExtendedItemModelGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.tags.ExtendedBlockTagGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.tags.ExtendedFluidTagGenerator;
+import com.github.maximuslotro.lotroExtended.datagen.tags.ExtendedItemTagGenerator;
 
 import lotr.common.LOTRMod;
-import lotr.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
-import lotr.common.datagen.language.ExtendedLanguageGenerator;
-import lotr.common.datagen.loot_tables.ExtendedLootTableGenerator;
-import lotr.common.datagen.models.ExtendedBlockstateModelGenerator;
-import lotr.common.datagen.models.ExtendedItemModelGenerator;
-import lotr.common.datagen.tags.ExtendedBlockTagGenerator;
-import lotr.common.datagen.tags.ExtendedFluidTagGenerator;
-import lotr.common.datagen.tags.ExtendedItemTagGenerator;
 import lotr.common.loot.ExtendedLootTables;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
