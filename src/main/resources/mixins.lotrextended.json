@@ -18,7 +18,6 @@
 		"lotr.common.init.MixinLOTRSoundEvents",
 		"lotr.common.init.MixinLOTRTileEntities",
 		"lotr.common.loot.functions.MixinLOTRLootFunctions",
-		"lotr.common.network.MixinLOTRPacketHandler",
 		"minecraft.block.MixinBlock",
 		"minecraft.block.MixinFarmlandBlock",
 		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"

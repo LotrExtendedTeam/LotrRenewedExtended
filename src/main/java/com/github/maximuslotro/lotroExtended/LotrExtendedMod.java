@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotroExtended.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 
+import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.structureV5.ExtendedConfiguredStructuresV5;
 import lotr.common.structureV5.ExtendedStructuresV5;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
@@ -54,6 +55,7 @@ public class LotrExtendedMod {
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
+		ExtendedPacketHandler.register();
 		ExtendedStats.init();
 		ExtendedLootModifiers.register();
 	}
