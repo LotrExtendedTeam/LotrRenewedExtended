@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotroExtended.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 
-import lotr.common.structure.scanning.StructureScanner;
 import lotr.common.structureV5.ExtendedConfiguredStructuresV5;
 import lotr.common.structureV5.ExtendedStructuresV5;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
@@ -33,7 +32,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 @Mod(value = LotrExtendedMod.MODID)
@@ -58,9 +56,6 @@ public class LotrExtendedMod {
 		forgeBus.register(ForgeInventoryEvents.class);
 		ExtendedStats.init();
 		ExtendedLootModifiers.register();
-		if(!FMLEnvironment.dist.equals(Dist.CLIENT)) {
-			MinecraftForge.EVENT_BUS.register(new StructureScanner());
-		}
 	}
 
 	public void setup(final FMLCommonSetupEvent event) {

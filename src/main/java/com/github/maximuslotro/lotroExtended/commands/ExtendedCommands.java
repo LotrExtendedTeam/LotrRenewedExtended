@@ -10,7 +10,7 @@ public class ExtendedCommands {
 		ExtendedInfoCommand.register(dispatcher);
 		FellowshipMessageCommand.register(dispatcher);
 		ExtendedFellowshipCommand.register(dispatcher);
-		ExtendedStructureScanningCommand.register(dispatcher);
-		ExtendedStructureSummonv2.register(dispatcher);
+		//ExtendedStructureScanningCommand.register(dispatcher);
+		//ExtendedStructureSummonv2.register(dispatcher);
 	}
 }
