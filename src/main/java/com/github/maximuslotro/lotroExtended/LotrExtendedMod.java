@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotroExtended.client.LotrExtendedModClient;
+import com.github.maximuslotro.lotroExtended.commands.ExtendedCommands;
 import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
@@ -46,7 +47,6 @@ public class LotrExtendedMod {
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
 		
-		MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
 		MinecraftForge.EVENT_BUS.register(ForgeInventoryEvents.class);
 
 		ExtendedLog.make();
@@ -60,9 +60,10 @@ public class LotrExtendedMod {
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
         });
     }
-	
+
+	@SubscribeEvent
 	public void registerCommands(RegisterCommandsEvent event) {
-		InfoCommand.register(event.getDispatcher());
+		ExtendedCommands.registerCommands(event.getDispatcher(), event.getEnvironment());
 	}
 
 	public ModFile getModfile() {

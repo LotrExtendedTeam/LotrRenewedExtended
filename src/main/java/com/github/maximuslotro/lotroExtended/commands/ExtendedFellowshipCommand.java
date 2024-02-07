@@ -1,4 +1,4 @@
-package lotr.common.command;
+package com.github.maximuslotro.lotroExtended.commands;
 
 import java.util.UUID;
 
@@ -8,6 +8,7 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
+import lotr.common.command.LOTRBaseCommand;
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.util.UsernameHelper;

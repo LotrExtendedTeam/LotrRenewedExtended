@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotroExtended;
+package com.github.maximuslotro.lotroExtended.commands;
 
 import com.github.maximuslotro.lotroExtended.mixins.MIXINConfig;
 import com.mojang.brigadier.Command;
@@ -9,7 +9,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class InfoCommand
+public class ExtendedInfoCommand
 {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("lotrExtendedInfo")

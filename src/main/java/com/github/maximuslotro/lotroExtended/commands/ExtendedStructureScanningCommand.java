@@ -1,4 +1,4 @@
-package lotr.common.command;
+package com.github.maximuslotro.lotroExtended.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 
 
-public class ExtendedStructureScanningCommand extends LOTRBaseCommand {
+public class ExtendedStructureScanningCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("lotr_structure")
 				.requires(context -> context.hasPermission(4))

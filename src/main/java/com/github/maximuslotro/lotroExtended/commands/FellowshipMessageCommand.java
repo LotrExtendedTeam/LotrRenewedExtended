@@ -1,8 +1,9 @@
-package lotr.common.command;
+package com.github.maximuslotro.lotroExtended.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
+import lotr.common.command.LOTRBaseCommand;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.StringTextComponent;

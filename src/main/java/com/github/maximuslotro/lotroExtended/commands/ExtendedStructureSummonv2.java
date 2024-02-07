@@ -1,4 +1,4 @@
-package lotr.common.command;
+package com.github.maximuslotro.lotroExtended.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.server.ServerWorld;
 
 
-public class ExtendedStructureSummonv2 extends LOTRBaseCommand {
+public class ExtendedStructureSummonv2 {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("lotr_structure_summon")
 				.requires(context -> context.hasPermission(4))

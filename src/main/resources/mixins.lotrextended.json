@@ -11,7 +11,6 @@
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.fac.MixinEntityFactionHelper",
 		"lotr.common.init.MixinLOTRBlocks",
-		"lotr.common.init.MixinLOTRCommands",
 		"lotr.common.init.MixinLOTRContainers",
 		"lotr.common.init.MixinLOTRItems",
 		"lotr.common.init.MixinLOTREntities",
