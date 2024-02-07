@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
+
 import lotr.common.LOTRMod;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.fellowship.ExtendedFellowshipInvite;
-import lotr.common.init.ExtendedServerConfig;
 import lotr.common.fellowship.ExtendedFellowshipHolderServer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

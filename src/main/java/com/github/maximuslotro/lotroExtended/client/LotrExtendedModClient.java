@@ -32,7 +32,7 @@ public class LotrExtendedModClient {
 		return LotrExtendedMod.INSTANCE;
 	}
 	
-	public static void clientSetup() {
+	public static void staticClientSetup() {
 		if(Minecraft.getInstance()==null) {
 			return;
 		}

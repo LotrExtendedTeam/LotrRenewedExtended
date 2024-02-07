@@ -6,7 +6,6 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"lotr.common.MixinLOTRMod",
-		"lotr.common.config.MixinServerConfig",
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.fac.MixinEntityFactionHelper",
