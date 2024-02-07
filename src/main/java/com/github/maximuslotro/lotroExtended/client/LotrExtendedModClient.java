@@ -13,25 +13,25 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
 
 @OnlyIn(Dist.CLIENT)
 public class LotrExtendedModClient {
-	
+
 	public static LotrExtendedModClient INSTANCE;
 
 	public LotrExtendedModClient() {
-		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.addListener(this::login);
 		INSTANCE = this;
 		createPack("legacy", "Legacy TexturePack");
 		createPack("renewed", "Remastered Renewed TexturePack");
 	}
+
 	public LotrExtendedMod getParentInstance() {
 		return LotrExtendedMod.INSTANCE;
 	}
-	
+
 	public static void staticClientSetup() {
 		if(Minecraft.getInstance()==null) {
 			return;
@@ -46,8 +46,7 @@ public class LotrExtendedModClient {
 				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), namespace, name), 
 				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
 	}
-	
-	@SubscribeEvent
+
     public void login(EntityJoinWorldEvent event)
     {
         if (event.getEntity() instanceof ClientPlayerEntity)
