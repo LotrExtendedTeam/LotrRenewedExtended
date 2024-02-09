@@ -5,6 +5,6 @@
   "scale_power": 7,
   "title": "gui.lotr.map.title.middle_earth",
   "translate_title": true,
-  "lock_sides": [],
+  "lock_sides": [ "south", "east" ],
   "procedural_rivers": true
 }
