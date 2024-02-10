@@ -18,6 +18,7 @@
 		"lotr.common.init.MixinLOTRSoundEvents",
 		"lotr.common.init.MixinLOTRTileEntities",
 		"lotr.common.loot.functions.MixinLOTRLootFunctions",
+		"lotr.common.tileentity.MixinKegTileEntity",
 		"minecraft.block.MixinBlock",
 		"minecraft.block.MixinFarmlandBlock",
 		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"
