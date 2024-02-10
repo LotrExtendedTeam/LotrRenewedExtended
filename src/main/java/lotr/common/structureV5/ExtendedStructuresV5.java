@@ -38,7 +38,7 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_HOLE_SMALL.get(), true, 6, 3, 444);
 		register(HOBBIT_HOUSE.get(), true, 6, 3, 445);
 		register(HOBBIT_PICNIC_BLANKET.get(), false, 7, 4, 446);
-		register(HOBBIT_PICNIC_TABLE.get(), true, 7, 4, 447);
+		register(HOBBIT_PICNIC_TABLE.get(), false, 7, 4, 447);
 		register(HOBBIT_TAVERN_SMALL.get(), true, 13, 9, 448);
 		register(HOBBIT_WINDMILL.get(), true, 18, 10, 449);
 

@@ -37,10 +37,18 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
                         10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn,
                 blockpos, this.pieces, this.random, false,true);
 
-        this.pieces.forEach(piece -> piece.move(0, 1, 0));
-        this.pieces.forEach(piece -> piece.getBoundingBox().y1 -= 1);
-
+        this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
+        
+//        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
+//        int xOffset = blockpos.getX() - structureCenter.getX();
+//        int zOffset = blockpos.getZ() - structureCenter.getZ();
+//        for(StructurePiece structurePiece : this.pieces){
+//            structurePiece.move(xOffset, 0, zOffset);
+//        }
         this.calculateBoundingBox();
 	}
 
+	public int yShift() {
+		return 0;
+	}
 }

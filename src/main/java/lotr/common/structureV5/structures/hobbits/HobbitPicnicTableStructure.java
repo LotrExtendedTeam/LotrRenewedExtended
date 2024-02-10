@@ -26,5 +26,10 @@ public class HobbitPicnicTableStructure extends ExtendedSurfaceStructuresV5<NoFe
 		public String getLocation() {
 			return "hobbit/hobbit_picnic_table_pool";
 		}
+
+		@Override
+		public int yShift() {
+			return 1;
+		}
     }
 }
