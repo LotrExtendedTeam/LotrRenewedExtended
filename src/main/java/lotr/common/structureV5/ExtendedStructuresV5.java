@@ -34,21 +34,21 @@ public class ExtendedStructuresV5 {
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
-		register(HOBBIT_BARN.get(), true, 12, 3);
-		register(HOBBIT_HOLE_SMALL.get(), true, 6, 3);
-		register(HOBBIT_HOUSE.get(), true, 6, 3);
-		register(HOBBIT_PICNIC_BLANKET.get(), false, 7, 4);
-		register(HOBBIT_PICNIC_TABLE.get(), true, 7, 4);
-		register(HOBBIT_TAVERN_SMALL.get(), true, 13, 9);
-		register(HOBBIT_WINDMILL.get(), true, 18, 10);
+		register(HOBBIT_BARN.get(), true, 12, 3, 443);
+		register(HOBBIT_HOLE_SMALL.get(), true, 6, 3, 444);
+		register(HOBBIT_HOUSE.get(), true, 6, 3, 445);
+		register(HOBBIT_PICNIC_BLANKET.get(), false, 7, 4, 446);
+		register(HOBBIT_PICNIC_TABLE.get(), true, 7, 4, 447);
+		register(HOBBIT_TAVERN_SMALL.get(), true, 13, 9, 448);
+		register(HOBBIT_WINDMILL.get(), true, 18, 10, 449);
 
 	}
 	
-	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation) {
+	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
 		if(spacing-seperation<= 0) {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);
 		}
-		StructureSeparationSettings SSsettings = new StructureSeparationSettings(spacing, seperation, SALT);
+		StructureSeparationSettings SSsettings = new StructureSeparationSettings(spacing, seperation, salt);
 		
 		Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
 
