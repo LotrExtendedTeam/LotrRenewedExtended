@@ -2,11 +2,13 @@ package com.github.maximuslotro.lotroExtended.mixins.lotr.common.tileentity;
 
 import java.util.Optional;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.common.item.VesselDrinkItem;
+import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.recipe.DrinkBrewingRecipe;
 import lotr.common.recipe.LOTRRecipes;
 import lotr.common.tileentity.KegTileEntity;
@@ -19,9 +21,11 @@ import net.minecraft.world.World;
 @Mixin(KegTileEntity.class)
 public class MixinKegTileEntity {
 
+	@Final
 	@Shadow(remap = false)
 	private static final int[] SLOTS_INGREDIENT = { 0, 1, 2, 3, 4, 5 };
 
+	@Final
 	@Shadow(remap = false)
 	private static final int[] SLOTS_WATER = { 6, 7, 8 };
 	
@@ -37,7 +41,7 @@ public class MixinKegTileEntity {
 	@Shadow(remap = false)
 	private int brewTimeTotal;
 
-	@Shadow(remap = false)
+	@Shadow
 	public void setItem(int index, ItemStack stack) {}
 
 	@Shadow
@@ -48,64 +52,54 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite(remap = false)
 	private void updateBrewingRecipe() {
-		System.out.println("A1");
-		if (kegMode == KegTileEntity.KegMode.EMPTY) {
+		if (this.kegMode == KegTileEntity.KegMode.EMPTY) {
 			IInventory proxyInv = new Inventory(9);
-			System.out.println("A2");
 			int[] var2 = SLOTS_INGREDIENT;
-			System.out.println("A3");
 			int var3 = var2.length;
 
-			System.out.println("B1");
 			int var4;
 			int i;
 			for (var4 = 0; var4 < var3; ++var4) {
 				i = var2[var4];
-				proxyInv.setItem(i, getItem(i));
+				proxyInv.setItem(i, this.getItem(i));
 			}
-			System.out.println("B2");
+
 			var2 = SLOTS_WATER;
 			var3 = var2.length;
-			System.out.println("B3");
+
 			for (var4 = 0; var4 < var3; ++var4) {
 				i = var2[var4];
-				proxyInv.setItem(i, getItem(i));
+				proxyInv.setItem(i, this.getItem(i));
 			}
-			System.out.println("B4");
-			World level = ((KegTileEntity)(Object)(this)).getLevel();
-			System.out.println("B5");
-			Optional<DrinkBrewingRecipe>  opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING, proxyInv, level);
-			if (opt.isPresent()) {
-				System.out.println("C6");
-				DrinkBrewingRecipe recipe = (DrinkBrewingRecipe) opt.get();
-				System.out.println("C7");
-				currentBrewingRecipe = recipe.getId();
-				System.out.println("C8");
-				ItemStack result = recipe.assemble(proxyInv);
-				System.out.println("C9");
-				result.setCount(16);
-				System.out.println("C10");
-				VesselDrinkItem.setPotency(result, VesselDrinkItem.Potency.WEAK);
-				System.out.println("C11");
-				setItem(9, result);
-				System.out.println("C12");
-				brewTimeTotal = recipe.getBrewTime();
-			} else {
-				System.out.println("D13");
+			KegTileEntity entity = ((KegTileEntity)(Object)(this));
+			if(!entity.hasLevel()) {
 				currentBrewingRecipe = null;
-				System.out.println("D14");
 				setItem(9, ItemStack.EMPTY);
-				System.out.println("D15");
 				brewTimeTotal = 0;
+				entity.setChanged();
+				return;
 			}
-			System.out.println("E16");
-			((KegTileEntity)(Object)(this)).setChanged();
-			if (!level.isClientSide) {
-				System.out.println("F17");
-				resendKegInventoryToPlayers();
+			World level = entity.getLevel();
+			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
+					proxyInv, level);
+			if (opt.isPresent()) {
+				DrinkBrewingRecipe recipe = (DrinkBrewingRecipe) opt.get();
+				this.currentBrewingRecipe = recipe.getId();
+				ItemStack result = recipe.assemble(proxyInv);
+				result.setCount(16);
+				VesselDrinkItem.setPotency(result, Potency.WEAK);
+				this.setItem(9, result);
+				this.brewTimeTotal = recipe.getBrewTime();
+			} else {
+				this.currentBrewingRecipe = null;
+				this.setItem(9, ItemStack.EMPTY);
+				this.brewTimeTotal = 0;
 			}
-			System.out.println("E18");
-		}
 
+			entity.setChanged();
+			if (!level.isClientSide) {
+				this.resendKegInventoryToPlayers();
+			}
+		}
 	}
 }
