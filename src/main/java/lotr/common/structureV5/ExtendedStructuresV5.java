@@ -7,8 +7,7 @@ import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import lotr.common.structureV5.structures.HouseStructure;
-
+import lotr.common.structureV5.structures.hobbits.*;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -20,12 +19,28 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedStructuresV5 {
     public static final DeferredRegister<Structure<?>> STRUCTURE_REGISTRY = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, LotrExtendedMod.MODID);
-    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new HouseStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new HobbitBarnStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new HobbitHoleSmallStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new HobbitHouseStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new HobbitPicnicBlanketStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new HobbitPicnicTableStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new HobbitTavernSmallStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new HobbitWindmillStructure());
     
     public static final int SALT = 785555898;
    
 	public static void setupStructures() {
-		register(HOBBIT_HOUSE.get(), true, 40, 6);
+		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
+		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
+		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
+		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
+		register(HOBBIT_BARN.get(), true, 12, 3);
+		register(HOBBIT_HOLE_SMALL.get(), true, 6, 3);
+		register(HOBBIT_HOUSE.get(), true, 6, 3);
+		register(HOBBIT_PICNIC_BLANKET.get(), false, 7, 4);
+		register(HOBBIT_PICNIC_TABLE.get(), true, 7, 4);
+		register(HOBBIT_TAVERN_SMALL.get(), true, 13, 9);
+		register(HOBBIT_WINDMILL.get(), true, 18, 10);
 
 	}
 	

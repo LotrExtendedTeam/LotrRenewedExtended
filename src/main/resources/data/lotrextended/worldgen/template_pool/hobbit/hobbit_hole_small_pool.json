@@ -1,11 +1,11 @@
 {
-  "name": "lotrextended:hobbit_picnic_table/hobbit_picnic_table_pool",
+  "name": "lotrextended:hobbit/hobbit_hole_small_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_picnic_table",
+        "location": "lotrextended:hobbit_hole_small_pool",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

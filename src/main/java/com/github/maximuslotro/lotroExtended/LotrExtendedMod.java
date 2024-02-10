@@ -1,8 +1,5 @@
 package com.github.maximuslotro.lotroExtended;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.github.maximuslotro.lotroExtended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotroExtended.commands.ExtendedCommands;
 import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
@@ -12,12 +9,10 @@ import com.github.maximuslotro.lotroExtended.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
 
 import lotr.common.network.ExtendedPacketHandler;
+import lotr.common.structureV5.BiomeStructureAdder;
 import lotr.common.structureV5.ExtendedConfiguredStructuresV5;
 import lotr.common.structureV5.ExtendedStructuresV5;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.settings.DimensionStructuresSettings;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -76,11 +71,7 @@ public class LotrExtendedMod {
 	}
 
 	public void addStructuresToBiomes(final BiomeLoadingEvent event) {
-		if(event.getName()!=null) {
-			if(event.getName().toString().equals("lotr:shire")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
-			}
-		}
+		BiomeStructureAdder.addStructuresToBiomes(event);
 	}
 
     public void addDimensionalSpacing(final WorldEvent.Load event) {
@@ -90,10 +81,7 @@ public class LotrExtendedMod {
             if(!(provider.generator instanceof MiddleEarthChunkGenerator)){
             	return;
             }
-            ExtendedLog.info("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
-            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(provider.generator.getSettings().structureConfig());
-            tempMap.putIfAbsent(ExtendedStructuresV5.HOBBIT_HOUSE.get(), DimensionStructuresSettings.DEFAULTS.get(ExtendedStructuresV5.HOBBIT_HOUSE.get()));
-            provider.generator.getSettings().structureConfig = tempMap;
+            BiomeStructureAdder.addDimensionalSpacing(provider);
         }
     }
 

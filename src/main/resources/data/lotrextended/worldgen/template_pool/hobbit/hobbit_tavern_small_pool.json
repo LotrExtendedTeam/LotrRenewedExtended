@@ -1,5 +1,5 @@
 {
-  "name": "lotrextended:hobbit_tavern_small/hobbit_tavern_small_pool",
+  "name": "lotrextended:hobbit/hobbit_tavern_small_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {

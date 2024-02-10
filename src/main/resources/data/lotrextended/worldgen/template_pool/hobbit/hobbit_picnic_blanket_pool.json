@@ -1,13 +1,13 @@
 {
-  "name": "lotrextended:hobbit_barn/hobbit_barn_pool",
+  "name": "lotrextended:hobbit/hobbit_picnic_blanket_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_barn",
+        "location": "lotrextended:hobbit_picnic_blanket",
         "processors": "minecraft:empty",
-        "projection": "rigid",
+        "projection": "terrain_matching",
         "element_type": "minecraft:single_pool_element"
       }
     }

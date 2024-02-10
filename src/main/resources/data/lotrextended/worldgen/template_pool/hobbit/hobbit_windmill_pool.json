@@ -1,11 +1,11 @@
 {
-  "name": "lotrextended:hobbit_picnic_blanket/hobbit_picnic_blanket_pool",
+  "name": "lotrextended:hobbit/hobbit_windmill_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_picnic_blanket",
+        "location": "lotrextended:hobbit_windmill",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
