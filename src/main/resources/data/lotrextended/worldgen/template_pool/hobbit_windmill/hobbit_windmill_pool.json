@@ -1,11 +1,11 @@
 {
-  "name": "lotrextended:hobbit_house/start_pool",
+  "name": "lotrextended:hobbit_windmill/hobbit_windmill_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_house",
+        "location": "lotrextended:hobbit_windmill",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

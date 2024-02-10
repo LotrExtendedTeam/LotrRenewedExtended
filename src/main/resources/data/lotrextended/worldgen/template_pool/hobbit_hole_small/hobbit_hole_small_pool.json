@@ -1,0 +1,15 @@
+{
+  "name": "lotrextended:hobbit_hole_small/hobbit_hole_small_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "lotrextended:hobbit_hole_small_pool",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
