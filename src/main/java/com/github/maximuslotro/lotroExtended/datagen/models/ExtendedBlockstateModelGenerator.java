@@ -40,6 +40,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -130,7 +131,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof LOTRWallTorchBlock) {
 				if(block.getKey().contains("_wall")) {
-					genTorchWallBlock(block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					genTorchWallBlock((LOTRWallTorchBlock)block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 					continue;
 				}
 			}
@@ -383,7 +384,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("fire", fire)
                 .texture("chain", chain);
 		getVariantBuilder(lantern)
-		.forAllStatesExcept(state -> {
+		.forAllStates(state -> {
 			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
@@ -397,7 +398,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.texture("particle", textureSide).texture("bottom", textureBottom).texture("top", textureTop)
 				.texture("side", textureSide);
 
-		getVariantBuilder(cake).forAllStatesExcept(state -> {
+		getVariantBuilder(cake).forAllStates(state -> {
 			int bites = state.getValue(CakeBlock.BITES);
 			return ConfiguredModel.builder().modelFile(bites == 0 ? cakeBlock : models()
 					.withExistingParent("lotr:" + cake.getRegistryName().getPath() + bites,"block/cake_slice" + bites)
@@ -420,10 +421,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(torch, cubeModel);
 	}
 
-	private void genTorchWallBlock(Block torch, ResourceLocation texture) {
+	private void genTorchWallBlock(LOTRWallTorchBlock torch, ResourceLocation texture) {
 		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torchWall("lotr:"+torch.getRegistryName().getPath(), texture);
-		simpleBlock(torch, cubeModel);
+		getVariantBuilder(torch).forAllStates(state -> {
+			Direction bites = state.getValue(LOTRWallTorchBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(cubeModel)
+                    .rotationY(bites == Direction.EAST ? 0 : (bites == Direction.SOUTH ? 90 : (bites == Direction.WEST ? 180 : 270)))
+                    .build();
+		});
 	}
 
 	private void genCubeBottomTopSideBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
