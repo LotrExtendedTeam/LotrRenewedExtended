@@ -808,7 +808,7 @@ aa47c410cdef2d3782b0aa280afe519a88e267d7 assets/lotr/models/item/topaz_block.jso
 b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fur_wall.json
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
-2a17dcc2731086234644b6f817fcdaa3481ce334 assets/lotrextended/lang/en_us.json
+866c99f7132cb5368afcc0854ae674b93d82c04b assets/lotrextended/lang/en_us.json
 860bec07fc5be2094bf83971044b84b578357d05 data/forge/loot_modifiers/global_loot_modifiers.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json

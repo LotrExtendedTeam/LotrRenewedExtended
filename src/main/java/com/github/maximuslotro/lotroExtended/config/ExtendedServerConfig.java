@@ -36,7 +36,7 @@ public class ExtendedServerConfig {
 
 	private static ForgeConfigSpec.BooleanValue createBooleanValue(Builder builder, String key, boolean defaultValue, boolean needsWorldRestart, String comment){
 		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
-		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.configCommentHolders.add(transKey);}
+		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.configCommentHolders.put(transKey, comment);}
 		builder.comment(comment).translation(transKey);
 		if (needsWorldRestart) {builder.worldRestart();}
 		return builder.define(key, defaultValue);

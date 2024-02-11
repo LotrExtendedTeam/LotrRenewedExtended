@@ -41,8 +41,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add New Config Value Names
-		for (String entity : DataGenValueHolder.configCommentHolders) {
-			addD(entity);
+		for (Entry<String, String> entity : DataGenValueHolder.configCommentHolders.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add New Subtitles
