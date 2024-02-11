@@ -19,11 +19,14 @@ public class WorldEventHandlers {
     	}
         if (event.getPlayer().level.getBlockState(event.getPos()).getBlock() instanceof ContainerBlock) {
         	TileEntity tileentity = event.getPlayer().level.getBlockEntity(event.getPos());
-			if (tileentity instanceof LockableLootTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null) {
+			if (tileentity instanceof LockableLootTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
 				event.setCanceled(true);
 				TextComponent comp = new StringTextComponent("Chest opening disabled because devworld loot-table is set!");
 				comp.withStyle(TextFormatting.YELLOW);
 				event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+				TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
+				comp2.withStyle(TextFormatting.YELLOW);
+				event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
 			}
        }
     }
