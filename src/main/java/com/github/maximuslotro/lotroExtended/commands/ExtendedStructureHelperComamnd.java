@@ -41,7 +41,7 @@ public class ExtendedStructureHelperComamnd {
 			source.sendSuccess(new StringTextComponent("Set Keg Location: "+loc.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
-		source.sendFailure(new StringTextComponent("Destanation is not instanceof "+LockableLootTileEntity.class.getName()));
+		source.sendFailure(new StringTextComponent("Destanation is not instanceof supported tile entities!"));
         return Command.SINGLE_SUCCESS;
     }
 

@@ -4,7 +4,6 @@ import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 
 import lotr.common.tileentity.KegTileEntity;
-import net.minecraft.block.ContainerBlock;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.StringTextComponent;
@@ -19,26 +18,31 @@ public class WorldEventHandlers {
     	if(event.getPlayer().level.isClientSide || !ExtendedServerConfig.enableDevMode.get()) {
     		return;
     	}
-        if (event.getPlayer().level.getBlockState(event.getPos()).getBlock() instanceof ContainerBlock) {
-        	TileEntity tileentity = event.getPlayer().level.getBlockEntity(event.getPos());
-			if (tileentity instanceof LockableLootTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
-				event.setCanceled(true);
-				TextComponent comp = new StringTextComponent("Chest/Barrel opening disabled because devworld loot-table is set!");
-				comp.withStyle(TextFormatting.YELLOW);
-				event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
-				TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
-				comp2.withStyle(TextFormatting.YELLOW);
-				event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
-			}
-			if (tileentity instanceof KegTileEntity&&MixinHooks.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
-				event.setCanceled(true);
-				TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
-				comp.withStyle(TextFormatting.YELLOW);
-				event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
-				TextComponent comp2 = new StringTextComponent("Location: "+MixinHooks.getKegLootTable((KegTileEntity)tileentity).toString());
-				comp2.withStyle(TextFormatting.YELLOW);
-				event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
-			}
-       }
+    	TileEntity tileentity = event.getPlayer().level.getBlockEntity(event.getPos());
+    	if(tileentity==null) {
+    		return;
+    	}
+		if (tileentity instanceof LockableLootTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Chest/Barrel opening disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			return;
+		}
+		System.out.println("Checking for kegs");
+		if (tileentity instanceof KegTileEntity&&MixinHooks.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
+			System.out.println("kegs true");
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			TextComponent comp2 = new StringTextComponent("Location: "+MixinHooks.getKegLootTable((KegTileEntity)tileentity).toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			return;
+		}
     }
 }

@@ -262,7 +262,7 @@ public class MixinKegTileEntity {
 	}
 
 	//Inject intp 
-	private void setLootTable(ResourceLocation table, long seed) {
+	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
 	}
