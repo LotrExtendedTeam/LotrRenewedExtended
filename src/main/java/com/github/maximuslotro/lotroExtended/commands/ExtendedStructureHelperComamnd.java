@@ -1,9 +1,13 @@
 package com.github.maximuslotro.lotroExtended.commands;
 
+import java.util.Random;
+
+import com.github.maximuslotro.lotroExtended.hooks.MixinHooks;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
+import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.BlockPosArgument;
@@ -28,7 +32,13 @@ public class ExtendedStructureHelperComamnd {
 		if (tileentity instanceof LockableLootTileEntity) {
 			ResourceLocation loc = new ResourceLocation(location);
 			((LockableLootTileEntity)tileentity).lootTable = loc;
-			source.sendSuccess(new StringTextComponent("Location: "+loc.toString()), false);
+			source.sendSuccess(new StringTextComponent("Set Chest/Barrel Location: "+loc.toString()), false);
+			return Command.SINGLE_SUCCESS;
+		}
+		if (tileentity instanceof KegTileEntity) {
+			ResourceLocation loc = new ResourceLocation(location);
+			MixinHooks.setKegloottable((KegTileEntity)tileentity, loc, new Random().nextLong());
+			source.sendSuccess(new StringTextComponent("Set Keg Location: "+loc.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		source.sendFailure(new StringTextComponent("Destanation is not instanceof "+LockableLootTileEntity.class.getName()));

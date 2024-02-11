@@ -1634,6 +1634,7 @@ cc880a00a3526914fd46a618c5b891ecbc83a6b1 data/lotrextended/loot_tables/entities/
 a01c14af166a593533d52d7475852f2ba00dabd0 data/lotrextended/loot_tables/entities/common/parts/warg.json
 164b3a9aaa80c5c9fe3aa31004567e45374dd257 data/lotrextended/loot_tables/entities/common/parts/warg_bones.json
 b67faa30ff54c2afc51b185d8ba0dc8699e67a28 data/lotrextended/loot_tables/entities/common/parts/warg_fur.json
+c46390f6f769364a66d6a617d689ab07191ac0d2 data/lotrextended/loot_tables/kegs/hobbit.json
 90875908bbe2ba442abd9da94b11b17616445b64 data/minecraft/tags/blocks/beacon_base_blocks.json
 5854bf3c7cc53f419317a54f88aea8202b3a2abc data/minecraft/tags/blocks/slabs.json
 d85704ef117195f12173997145d371335c72604a data/minecraft/tags/blocks/stairs.json

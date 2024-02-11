@@ -32,7 +32,8 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 		return ImmutableList.of(
 				Pair.of(ExtendedBlockLootGenerator::new, LootParameterSets.BLOCK),
 				Pair.of(ExtendedChestLootGenerator::new, LootParameterSets.CHEST),
-				Pair.of(ExtendedEntityLootGenerator::new, LootParameterSets.ENTITY));
+				Pair.of(ExtendedEntityLootGenerator::new, LootParameterSets.ENTITY),
+				Pair.of(ExtendedKegLootGenerator::new, LootParameterSets.CHEST));
 	}
 
 	@Override

@@ -13,6 +13,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation HOBBIT_LIVING = register("chests/hobbit_living");
 	public static final ResourceLocation HOBBIT_TREASURE = register("chests/hobbit_treasure");
 
+	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
+
 	public static void init() {}
 
 	private static ResourceLocation register(String location) {
