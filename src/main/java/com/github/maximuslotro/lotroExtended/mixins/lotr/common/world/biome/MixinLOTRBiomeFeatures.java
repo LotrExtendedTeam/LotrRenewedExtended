@@ -18,8 +18,8 @@ public class MixinLOTRBiomeFeatures {
 	 * @reason Removing crafting pyramids from finished biomes
 	 * @author maximuslotro
 	 */
-	@Inject(method = "addCraftingMonument(Lnet/minecraft/world/biome/BiomeGenerationSettings$Builder;ILnet/minecraft/block/BlockState;Lnet/minecraft/world/gen/blockstateprovider/BlockStateProvider;Lnet/minecraft/world/gen/blockstateprovider/BlockStateProvider;Lnet/minecraft/world/gen/blockstateprovider/BlockStateProvider;)V", at = @At("HEAD"), remap = false)
-	public static void addCraftingMonument(BiomeGenerationSettings.Builder builder, int relativeChance, BlockState table, BlockStateProvider baseProvider, BlockStateProvider postProvider, BlockStateProvider torchProvider, CallbackInfo info) {
+	@Inject(method = "addCraftingMonument(Lnet/minecraft/world/biome/BiomeGenerationSettings$Builder;ILnet/minecraft/block/BlockState;Lnet/minecraft/world/gen/blockstateprovider/BlockStateProvider;Lnet/minecraft/world/gen/blockstateprovider/BlockStateProvider;Lnet/minecraft/world/gen/blockstateprovider/BlockStateProvider;)V", at = @At("HEAD"), cancellable = true, remap = false)
+	private static void addCraftingMonumentInject(BiomeGenerationSettings.Builder builder, int relativeChance, BlockState table, BlockStateProvider baseProvider, BlockStateProvider postProvider, BlockStateProvider torchProvider, CallbackInfo info) {
 		if(table.getBlock()==LOTRBlocks.HOBBIT_CRAFTING_TABLE.get()) {
 			info.cancel();
 		}

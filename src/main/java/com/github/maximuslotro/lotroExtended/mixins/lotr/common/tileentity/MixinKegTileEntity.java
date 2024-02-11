@@ -138,7 +138,7 @@ public class MixinKegTileEntity {
 	}
 
 	//Handle Loot-tables
-	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"), cancellable = false)
+	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
 	public void injectedSave(CompoundNBT nbt, CallbackInfoReturnable<CompoundNBT> info) {
 		if (this.lootTable != null) {
 			nbt.putString("LootTable", this.lootTable.toString());
@@ -148,7 +148,7 @@ public class MixinKegTileEntity {
 		}
 	}
 
-	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), cancellable = false)
+	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void load(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
 	         this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
