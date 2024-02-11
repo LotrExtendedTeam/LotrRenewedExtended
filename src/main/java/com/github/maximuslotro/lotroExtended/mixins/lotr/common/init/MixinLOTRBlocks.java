@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotroExtended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
 
 import lotr.common.block.AxialSlabBlock;
@@ -64,6 +65,7 @@ public class MixinLOTRBlocks {
 		return block;
 		
     }
+	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		//ORE STORAGE
@@ -292,8 +294,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", ExtendedMorgulLanternBlock::new);
-		
-		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new LOTRTorchBlock(14));
+
+		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new LOTRTorchBlock(14).setParticles(() -> { return ExtendedParticles.MORGUL_FLAME.get();}));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {

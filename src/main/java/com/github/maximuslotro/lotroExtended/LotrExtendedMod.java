@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotroExtended;
 
 import com.github.maximuslotro.lotroExtended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotroExtended.commands.ExtendedCommands;
+import com.github.maximuslotro.lotroExtended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotroExtended.datagen.DataGeneratorExtended;
@@ -52,6 +53,7 @@ public class LotrExtendedMod {
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		ExtendedParticles.register();
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();
 		ExtendedLootModifiers.register();

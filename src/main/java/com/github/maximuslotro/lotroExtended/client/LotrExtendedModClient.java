@@ -13,10 +13,13 @@ import net.minecraft.resources.ResourcePackList;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @OnlyIn(Dist.CLIENT)
 public class LotrExtendedModClient {
@@ -24,7 +27,10 @@ public class LotrExtendedModClient {
 	public static LotrExtendedModClient INSTANCE;
 
 	public LotrExtendedModClient() {
-		MinecraftForge.EVENT_BUS.addListener(this::login);
+		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		forgeBus.addListener(this::login);
+		modBus.addListener(this::onParticleRegistry);
 		INSTANCE = this;
 		createPack("legacy", "Legacy TexturePack");
 		createPack("renewed", "Remastered Renewed TexturePack");
@@ -65,4 +71,8 @@ public class LotrExtendedModClient {
             }
         }
     }
+
+	public void onParticleRegistry(ParticleFactoryRegisterEvent event) {
+		ExtendedClientParticles.register(event);
+	}
 }
