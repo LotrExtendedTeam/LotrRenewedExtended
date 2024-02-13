@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:numenorean_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:black_carved_gondor_brick",
+    "count": 4
+  }
+}
