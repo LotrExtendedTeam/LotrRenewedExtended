@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:roasted_chestnut"
+    ]
+  },
+  "criteria": {
+    "has_roasted_chestnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:roasted_chestnut"
+          }
+        ]
+      }
+    },
+    "has_conker": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:conker"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:roasted_chestnut"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_roasted_chestnut",
+      "has_conker",
+      "has_the_recipe"
+    ]
+  ]
+}

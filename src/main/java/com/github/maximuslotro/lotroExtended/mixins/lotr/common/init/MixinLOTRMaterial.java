@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 import lotr.common.init.LOTRItems;
+
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -30,6 +32,7 @@ public class MixinLOTRMaterial {
 	@Shadow(remap = false)
 	@Final
 	@Mutable
+	@Dynamic
 	private static LOTRMaterial[] $VALUES;
 	
 	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {

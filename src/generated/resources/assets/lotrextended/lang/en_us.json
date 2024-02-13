@@ -226,6 +226,7 @@
   "item.lotr.bottle_of_poison": "Bottle of Poison",
   "item.lotr.cheese_curds": "Cheese Curds",
   "item.lotr.cheese_slice": "Cheese Slice",
+  "item.lotr.conker": "Conker",
   "item.lotr.coral": "Coral Shard",
   "item.lotr.cranberry": "Cranberry",
   "item.lotr.diamond": "Diamond",
@@ -272,6 +273,7 @@
   "item.lotr.opal": "Opal",
   "item.lotr.pearl": "Pearl",
   "item.lotr.raspberry": "Raspberry",
+  "item.lotr.roasted_chestnut": "Roasted Chestnut",
   "item.lotr.ruby": "Ruby",
   "item.lotr.sapphire": "Sapphire",
   "item.lotr.silver_coin_hundred": "Silver Coin (100)",
@@ -291,6 +293,7 @@
   "item.lotr.topaz": "Topaz",
   "item.lotr.white_fur": "White Fur",
   "item.lotr.wildberry": "Wildberry",
+  "stats.lotrextendedeat_cheese_slice": "Cheese Slices Eaten",
   "subtitles.lotr.event.trade": "Coins jingle",
   "subtitles.lotr.item.horn": "Horn Blows"
 }

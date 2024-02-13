@@ -314,6 +314,8 @@ public class MixinLOTRItems {
 		ExtendedItems.CHEESE_CURDS = regItemB("cheese_curds", () -> new Item(new Properties().stacksTo(32).tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS)));
 		ExtendedItems.CHEESE_WHEEL  = regCakeBlockItemD(ExtendedBlocks.CHEESE_WHEEL, LOTRItemGroups.FOOD);
 		ExtendedItems.CHEESE_SLICE = regItemB("cheese_slice", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_SLICE)));
+
+		ExtendedItems.ROASTED_CHESTNUT = regItemB("roasted_chestnut", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ROASTED_CHESTNUT)));
 		//#######################################################################EQUIPMENT##################################################
 		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
 
@@ -377,5 +379,6 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_COIN_ONE = regItemB("silver_coin_one", () -> new ExtendedSilverCoin((new Properties()).tab(LOTRItemGroups.MISC), CoinType.ONE));
 		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> new ExtendedSilverCoin((new Properties()).tab(LOTRItemGroups.MISC), CoinType.TEN));
 		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> new ExtendedSilverCoin((new Properties()).tab(LOTRItemGroups.MISC), CoinType.HUNDRED));
+		ExtendedItems.CONKER =  regItemB("conker", () -> new Item((new Properties()).tab(LOTRItemGroups.MISC)));
 	}
 }

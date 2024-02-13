@@ -356,6 +356,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+Items.MILK_BUCKET.getRegistryName().getPath(), has(Items.MILK_BUCKET))
 		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
 		.save(consumer, lotrLoc(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.CONKER.get()), 
+				ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, 200)
+		.unlockedBy("has_"+ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath(), has(ExtendedItems.ROASTED_CHESTNUT.get()))
+		.unlockedBy("has_"+ExtendedItems.CONKER.get().getRegistryName().getPath(), has(ExtendedItems.CONKER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.SILVER_COIN_ONE.get(), 4)
@@ -547,6 +553,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.MUD_PATH.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.MUD_GRASS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_SLICE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.CONKER.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {

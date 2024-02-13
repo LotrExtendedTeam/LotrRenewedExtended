@@ -140,6 +140,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;
 	public static RegistryObject<Item> BOTTLE_OF_POISON;
 
+	public static RegistryObject<Item> ROASTED_CHESTNUT;
+	public static RegistryObject<Item> CONKER;
+
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
