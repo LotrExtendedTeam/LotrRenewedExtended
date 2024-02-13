@@ -2,5 +2,25 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "lotr:item/horn_of_command"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotr:usage_type": 1.0
+      },
+      "model": "lotr:item/horn_of_command_halt"
+    },
+    {
+      "predicate": {
+        "lotr:usage_type": 2.0
+      },
+      "model": "lotr:item/horn_of_command_reddy"
+    },
+    {
+      "predicate": {
+        "lotr:usage_type": 3.0
+      },
+      "model": "lotr:item/horn_of_command_summon"
+    }
+  ]
 }

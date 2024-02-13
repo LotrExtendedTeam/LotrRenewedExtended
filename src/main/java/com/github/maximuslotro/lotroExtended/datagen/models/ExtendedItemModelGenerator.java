@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
+import lotr.common.item.ExtendedCommandHornItem;
 import lotr.common.item.ExtendedSilverCoin;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
@@ -76,6 +77,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedCommandHornItem ) {
+				genCommandHorn(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
 				//TODO add first/third person placement gen
 				//continue using manual generation for coins for now
@@ -134,6 +139,21 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	private ItemModelBuilder genHandheld(String name, ResourceLocation... layers) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/handheld");
 		return gen(builder, layers);
+	}
+
+	private ItemModelBuilder genCommandHorn(String name, String location) {
+		ResourceLocation horn = lotrLoc(location);
+		ResourceLocation horn_summon = lotrLoc(location+"_summon");
+		ResourceLocation horn_halt = lotrLoc(location+"_halt");
+		ResourceLocation horn_reddy = lotrLoc(location+"_halt");
+		ItemModelBuilder builder_halt = gen(withExistingParent("lotr:"+name+"_halt", "item/generated"), horn_halt);
+		ItemModelBuilder builder_reddy = gen(withExistingParent("lotr:"+name+"_reddy", "item/generated"), horn_reddy);
+		ItemModelBuilder builder_summon = gen(withExistingParent("lotr:"+name+"_summon", "item/generated"), horn_summon);
+		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, "item/generated"), horn);
+		builder.override().model(builder_halt).predicate(lotrLoc(ExtendedCommandHornItem.type), 1);
+		builder.override().model(builder_reddy).predicate(lotrLoc(ExtendedCommandHornItem.type), 2);
+		builder.override().model(builder_summon).predicate(lotrLoc(ExtendedCommandHornItem.type), 3);
+		return builder;
 	}
 
 	private ItemModelBuilder gen(ItemModelBuilder builder, ResourceLocation... layers) {

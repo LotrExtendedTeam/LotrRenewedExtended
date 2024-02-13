@@ -15,7 +15,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ExtendedCommandHornItem extends Item {
-	public static final String type = "usageType";
+	public static final String type = "usage_type";
 	public ExtendedCommandHornItem(Properties properties) {
 		super(properties);
 	}
