@@ -1,9 +1,11 @@
 package lotr.common.block;
 
+import lotr.common.tileentitie.ExtendedWeaponRackTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.EntityType;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
@@ -22,4 +24,9 @@ public class ExtendedWeaponrack extends Block {
 	public boolean canCreatureSpawn(BlockState state, IBlockReader world, BlockPos pos, PlacementType type, EntityType<?> entityType) {
 		return false;
 	}
+
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new ExtendedWeaponRackTileEntity();
+    }
 }

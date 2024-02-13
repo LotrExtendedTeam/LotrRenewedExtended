@@ -33,5 +33,6 @@ public class MixinLOTRTileEntities {
     				register(type.getSerializedName()+"_spawner_tileentity", 
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
+    	//register("weapon_rack",() -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK));	
     }
 }
