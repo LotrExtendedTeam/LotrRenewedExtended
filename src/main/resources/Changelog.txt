@@ -1,0 +1,565 @@
+Beta 1.3.0
+* Blocks
+ * Added Gold Trimmed Rhûnic Brick Slab
+ * Added Gold Trimmed Rhûnic Brick Stairs
+ * Added Gold Trimmed Rhûnic Brick Wall
+ * Added Jungle Mud Path Stairs
+ * Added Jungle Mud Stairs
+ * Added Remains Ore (Man, Orc, Elf, and Dwarf variants)
+ * Added Smooth Stone Stairs
+ * Added a Cheese Wheel
+ * Added a Stone Taurethrim Crafting Table variant
+ * Added custom particles for Morgul Torches
+ * Fixed Berry Plants planting as full plants
+ * Fixed Incorrect Rotation for Morgul Torches
+ * Ported Black Carved Gondor Brick
+ * Ported Jungle Farmland
+ * Ported Jungle Grass Block
+ * Ported Jungle Mud
+ * Ported Jungle Mud Bricks
+ * Ported Jungle Mud Bricks Slab
+ * Ported Jungle Mud Bricks Stairs
+ * Ported Jungle Mud Bricks Wall
+ * Ported Jungle Mud Path
+ * Ported Jungle Mud Path Slab
+ * Ported Jungle Mud Slabs
+* Items
+ * Added Cheese Curds
+ * Added Morgul Dagger
+ * Added Morgul Spear
+ * Added an edible Cheese Slice
+ * Fixed Tools and Swords incorrect handheld item rotation
+ * Ported Angmar Dagger
+ * Ported Angmar Spear
+ * Ported Dol Guldur Dagger
+ * Ported Dol Guldur Spear
+ * Ported Conker
+ * Ported Roasted Chestnuts
+* Features
+ * Added Hobbit Picnic Blankets
+ * Added Hobbit Picnic Tables
+ * Fixed Hobbit farmers escaping the barn
+ * Made structure spawn earlier on chunk creation, stopping them from generating on top of trees
+ * Made structures locatable with the /locate command
+ * Revamped structure generation system (SGSv5)
+* Misc
+ * Added DataGen for stats description localization
+ * Changed some logging levels
+ * Fixed typo in White Packed Fur blocks spellings
+ * Re-locked ME map to east-south bounds
+* Textures
+ * Fixed a minor pixel error on Morgul Steel Block texture
+ * Fixed swapped Morgul block textures
+ * Remastered Angmar Dagger texture
+ * Remastered Dol Guldur Dagger texture
+ * Remastered the bottom texture of 9 renewed crafting tables (put in the renewed built-in pack)
+
+Beta 1.2.1
+* Entities
+ * Stop Hobbit traders naturally despawning
+* Misc
+ * Remove extra space hiding in Black Fur Bundle lang
+ * Added support for patch versions in the update checker
+
+Beta 1.2
+* Blocks
+ * Added Blackberry Plant
+ * Added Blueberry Plant
+ * Added Cranberry Plant
+ * Added Elderberry Plant
+ * Added Raspberry Plant
+ * Added Wildberry Plant
+ * Added Smooth Gondor Rock Stairs
+ * Added Smooth Rohan Rock Stairs
+ * Added Smooth Mordor Rock Stairs
+ * Added Smooth Luigon Rock Stairs
+ * Added Smooth Cargon Rock Stairs
+
+* Entities
+ * Fixed wargs not always dropping fur based upon their color
+
+* Features
+ * Fixed Legacy Hobbit Hole Sign Rotation
+ * Revamped structure system (v3) (direction, rotation, origin point)
+
+* GUIs
+ * Temporarily disabled the Coin Exchange GUI
+
+* Misc
+ * Add Localization for all items and block and most gui elements
+ * Added Automatic DataGen for Block and Item Models, Blockstate definitions, Crafting Recipes, Block and Items Tags, Loot-tables
+ * Added an Update Checker!
+
+* Textures
+ * Added Built-in Legacy Texture Pack
+ * Added Built-in Texture Pack for remasters of Renewed items/blocks that still had Legacy textures
+ * Remastered Warg Bone texture
+ * Updated Amber Block texture
+ * Updated Amber Ore texture
+ * Updated Amethyst Ore texture
+ * Updated Black Fur texture
+ * Updated Blackberry Bush texture
+ * Updated Carved Rhûnic Brick texture
+ * Updated Coral Block (storage) texture
+ * Updated Coral texture
+ * Updated Cracked Rhûnic Brick texture
+ * Updated Diamond Block texture
+ * Updated Diamond Ore texture
+ * Updated Diamond texture
+ * Updated Elderberry Plant texture
+ * Updated Emerald Ore texture
+ * Updated Flowery Rhûnic Brick texture
+ * Updated Galvorn Block texture
+ * Updated Galvorn Ingot texture
+ * Updated Gold Trimmed Rhûnic Brick texture
+ * Updated Grey Fur texture
+ * Updated Morgul Steel Block texture
+ * Updated Morgul Steel Ingot texture
+ * Updated Mossy Rhûnic Brick texture
+ * Updated Pearl Block texture
+ * Updated Pearl texture
+ * Updated Red Carved Rhûnic Brick texture
+ * Updated Red Rhûnic Brick texture
+ * Updated Red Rhûnic Pillar texture
+ * Updated Rhûnic Brick texture
+ * Updated Rhûnic Crafting Table texture
+ * Updated Rhûnic Pillar texture
+ * Updated Ruby Block texture
+ * Updated Ruby Ore texture
+ * Updated Ruby texture
+ * Updated Sapphire Block texture
+ * Updated Sapphire Ore texture
+ * Updated Sapphire texture
+ * Updated Silver Coin (1) texture
+ * Updated Silver Coin (10) texture
+ * Updated Silver Fur texture
+ * Updated Topaz Block texture
+ * Updated Topaz Ore texture
+ * Updated Topaz texture
+ * Updated White Fur texture
+
+Beta 1.1
+* Items
+ * Ported Leather Hat
+ * Fixed Morgul Blade being small when held in the hand
+
+* Entities
+ * Ported Hobbit Farmer NPC
+
+* Features
+ * Fixed Hobbit Bartenders not spawning in taverns and crashes
+
+* GUIs
+ * Ported Coin Exchange GUI
+
+* Textures
+ * Updated Amethyst texture
+ * Updated Amethyst Ore texture
+ * Updated Amethyst Block texture
+ * Updated Sapphire texture
+ * Updated Sapphire Ore texture
+ * Updated Sapphire Block texture
+ * Updated Ruby texture
+ * Updated Ruby Ore texture
+ * Updated Ruby Block texture
+ * Updated Opal texture
+ * Updated Opal Ore texture
+ * Updated Opal Block texture
+ * Updated Topaz texture
+ * Updated Emerald texture
+ * Updated Emerald Ore texture
+ * Updated Diamond Ore texture
+ * Updated Pearl Block texture
+ * Updated Galvorn Ingot texture
+ * Updated Galvorn Block texture
+ * Updated Morgul Steel Ingot texture
+ * Updated Hithlain texture
+ * Updated Obsidian Shard texture
+ * Updated Blackberry texture
+ * Updated Blackberry Bush texture
+ * Updated Blueberry texture
+ * Updated Blueberry Bush texture
+ * Updated Cranberry texture
+ * Updated Cranberry Bush texture
+ * Updated Elderberry texture
+ * Updated Elderberry Bush texture
+ * Updated Raspberry texture
+ * Updated Raspberry Bush texture
+ * Updated Wildberry texture
+ * Updated Wildberry Bush texture
+ * Updated Mossy Drystone texture
+ * Updated Dol Guldur Axe texture
+ * Updated Angmar Boots texture
+ * Updated Morgul Blade texture
+ * Remastered Dol Amroth Sword texture
+ * Remastered Gundabad Crafting Table texture
+ * Remastered Half-Troll Crafting Table texture
+ * Remastered Morwaith Crafting Table texture
+
+Beta 1
+* Blocks
+ * Added Packed Fur
+ * Added Packed Fur Slab
+ * Added Packed Fur Stair
+ * Added Packed Fur Wall
+ * Added Black Packed Fur
+ * Added Black Packed Fur Slab
+ * Added Black Packed Fur Stair
+ * Added Black Packed Fur Wall
+ * Added Grey Packed Fur
+ * Added Grey Packed Fur Slab
+ * Added Grey Packed Fur Stair
+ * Added Grey Packed Fur Wall
+ * Added Silver Packed Fur
+ * Added Silver Packed Fur Slab
+ * Added Silver Packed Fur Stair
+ * Added Silver Packed Fur Wall
+ * Added White Packed Fur
+ * Added White Packed Fur Slab
+ * Added White Packed Fur Stair
+ * Added White Packed Fur Wall
+ * Added Black Bundled Fur
+ * Added Grey Bundled Fur
+ * Added Silver Bundled Fur
+ * Added White Bundled Fur
+ * Added Cut Drystone
+ * Added Cobbled Drystone
+ * Added Mossy Drystone
+ * Added Mossy Drystone Slab
+ * Added Mossy Drystone Stairs
+ * Added Mossy Drystone Wall
+ * Added Drystone Slab
+ * Added Drystone Stair
+ * Added Drystone Wall
+ * Added Morgul Lantern
+ * Ported Morgul Torch
+ * Ported Morwaith Crafting Table
+ * Ported Half-Troll Crafting Table
+ * Ported Gundabad Crafting Table
+ * Ported Red Rhûnic Brick
+ * Ported Red Rhûnic Brick Slab
+ * Ported Red Rhûnic Brick Stairs
+ * Ported Red Rhûnic Brick Wall
+ * Ported Carved Red Rhûnic Block
+ * Ported Red Rhûnic Pillar
+ * Ported Red Rhûnic Pillar Slab
+ * Ported Rhûnic Brick
+ * Ported Rhûnic Brick Slab
+ * Ported Rhûnic Brick Stairs
+ * Ported Rhûnic Brick Wall
+ * Ported Rhûnic Pillar
+ * Ported Rhûnic Pillar Slab
+ * Ported Carved Rhûnic Brick
+ * Ported Gold Trimmed Rhûnic Brick
+ * Ported Mossy Rhûnic Brick
+ * Ported Mossy Rhûnic Brick Slab
+ * Ported Mossy Rhûnic Brick Stairs
+ * Ported Mossy Rhûnic Brick Wall
+ * Ported Cracked Rhûnic Brick
+ * Ported Cracked Rhûnic Brick Slab
+ * Ported Cracked Rhûnic Brick Stairs
+ * Ported Cracked Rhûnic Brick Wall
+ * Ported Flowery Rhûnic Brick
+ * Ported Flowery Rhûnic Brick Slab
+ * Ported Flowery Rhûnic Brick Stairs
+ * Ported Flowery Rhûnic Brick Wall
+ * Ported Dol Guldur Pillar
+ * Ported Dol Guldur Pillar Slab
+ * Ported Taurethrim Brick Slab
+ * Ported Taurethrim Brick Stairs
+ * Ported Taurethrim Brick Wall
+ * Ported Taurethrim Pillar
+ * Ported Taurethrim Pillar Slab
+ * Ported Mossy Taurethrim Brick
+ * Ported Mossy Taurethrim Brick Slab
+ * Ported Mossy Taurethrim Brick Stairs
+ * Ported Mossy Taurethrim Brick Wall
+ * Ported Golden Taurethrim Brick
+ * Ported Golden Taurethrim Brick Slab
+ * Ported Golden Taurethrim Brick Stairs
+ * Ported Golden Taurethrim Brick Wall
+ * Ported Golden Taurethrim Pillar
+ * Ported Golden Taurethrim Pillar Slab
+ * Ported Cracked Taurethrim Brick
+ * Ported Cracked Taurethrim Brick Slab
+ * Ported Cracked Taurethrim Brick Stairs
+ * Ported Cracked Taurethrim Brick Wall
+ * Ported Obsidian Taurethrim Brick
+ * Ported Obsidian Taurethrim Brick Slab
+ * Ported Obsidian Taurethrim Brick Stairs
+ * Ported Obsidian Taurethrim Brick Wall
+ * Ported Obsidian Taurethrim Pillar
+ * Ported Obsidian Taurethrim Pillar Slab
+ * Ported Dol Guldur Brick Slab
+ * Ported Dol Guldur Brick Stairs
+ * Ported Dol Guldur Brick Wall
+ * Ported Carved Dol Guldur Brick
+ * Ported Cracked Dol Guldur Brick
+ * Ported Cracked Dol Guldur Brick Slab
+ * Ported Cracked Dol Guldur Brick Stairs
+ * Ported Cracked Dol Guldur Brick Wall
+ * Ported Mossy Dol Guldur Brick
+ * Ported Mossy Dol Guldur Brick Slab
+ * Ported Mossy Dol Guldur Brick Stairs
+ * Ported Mossy Dol Guldur Brick Wall
+ * Ported Dol Guldur Brick
+ * Ported Raspberry Bush
+ * Ported Blackberry Bush
+ * Ported Blueberry Bush
+ * Ported Cranberry Bush
+ * Ported Elderberry Bush
+ * Ported Wildberry Bush
+ * Ported Coral Block
+ * Ported Pearl Block
+ * Ported Dol Guldur Crafting Table
+ * Ported Taurethrim Crafting Table
+ * Ported Amber Block
+ * Ported Amethyst Block
+ * Ported Diamond Block
+ * Ported Emerald Block
+ * Ported Opal Block
+ * Ported Ruby Block
+ * Ported Sapphire Block
+ * Ported Topaz Block
+ * Ported Amber Ore
+ * Ported Amethyst Ore
+ * Ported Diamond Ore
+ * Ported Emerald Ore
+ * Ported Opal Ore
+ * Ported Ruby Ore
+ * Ported Sapphire Ore
+ * Ported Topaz Ore
+ * Ported Morgul Steel Block
+ * Ported Gilded Iron Block
+ * Ported Black Uruk Steel Block
+ * Ported Galvorn Block
+
+* Entities
+ * Ported Hobbit Bartender NPC
+
+* Features
+ * Ported Fellowships -no gui yet. Fully usable via command
+ * Ported Hobbit Barn Spawns in Shire
+ * Ported Hobbit Tavern Spawns in Shire
+ * Ported Hobbit Windmill Spawns in Shire
+ * Ported Hobbit Houses Spawns in Shire
+ * Ported Hobbit Hole Small Spawns in Shire
+ * Made wargs drop different fur depending on the warg's color
+
+* GUIs
+ * Ported Horn of Command Gui
+ * Ported Settings Menu
+
+* Items
+ * Added Black Fur
+ * Added Grey Fur
+ * Added Silver Fur
+ * Added White Fur
+ * Ported Silver Coin
+ * Ported Silver Coin (10)
+ * Ported Silver Coin (100)
+ * Ported Bottle of Poison
+ * Ported Dwarf Marriage Ring
+ * Ported Hobbit Marriage Ring
+ * Ported Raspberry
+ * Ported Blackberry
+ * Ported Blueberry
+ * Ported Cranberry
+ * Ported Elderberry
+ * Ported Wildberry
+ * Ported Angmar Hoe
+ * Ported Dol Guldur Hoe
+ * Ported Coral
+ * Ported Pearl
+ * Ported Angmar Helmet
+ * Ported Angmar Chestplate
+ * Ported Angmar Leggings
+ * Ported Angmar Boots
+ * Ported Angmar Pickaxe
+ * Ported Angmar Axe
+ * Ported Angmar Shovel
+ * Ported Angmar Sword
+ * Ported Dol Guldur Helmet
+ * Ported Dol Guldur Chestplate
+ * Ported Dol Guldur Leggings
+ * Ported Dol Guldur Boots
+ * Ported Dol Guldur Pickaxe
+ * Ported Dol Guldur Axe
+ * Ported Dol Guldur Shovel
+ * Ported Dol Guldur Sword
+ * Ported Taurethrim Chieftain Helmet
+ * Ported Amber
+ * Ported Amethyst
+ * Ported Diamond
+ * Ported Emerald
+ * Ported Opal
+ * Ported Ruby
+ * Ported Sapphire
+ * Ported Topaz
+ * Ported Golden Taurethrim Helmet
+ * Ported Golden Taurethrim Chestplate
+ * Ported Golden Taurethrim Leggings
+ * Ported Golden Taurethrim Boots
+ * Ported Taurethrim Helmet
+ * Ported Taurethrim Chestplate
+ * Ported Taurethrim Leggings
+ * Ported Taurethrim Boots
+ * Ported Taurethrim Pickaxe
+ * Ported Taurethrim Axe
+ * Ported Taurethrim Shovel
+ * Ported Taurethrim Hoe
+ * Ported Morgul Blade
+ * Ported Morgul Helmet
+ * Ported Morgul Chestplate
+ * Ported Morgul Leggings
+ * Ported Morgul Boots
+ * Ported Morgul Steel Ingot
+ * Ported Hithlain
+ * Ported Gilded Iron Ingot
+ * Ported Black Uruk Steel Ingot
+ * Ported Ithildin
+ * Ported Galvorn Ingot
+ * Ported Horn of Command
+
+* Misc
+ * Added Coins to NPC Loot-Tables
+ * Added Loot-Tables for Warg Fur Types
+ * Ported Killing Poison Effect
+ * Unlocked the East and South movement of the ME map
+
+* Models
+ * Ported Taurethrim armor model
+ * Ported Golden Taurethrim armor model
+ * Ported Morgul armor model
+
+* Textures
+ * Remastered Carved Dol Guldur Brick
+ * Remastered Cracked Dol Guldur Brick
+ * Remastered Cracked Dol Guldur Brick Slab
+ * Remastered Cracked Dol Guldur Brick Stairs
+ * Remastered Cracked Dol Guldur Brick Wall
+ * Remastered Dol Guldur Brick
+ * Remastered Dol Guldur Brick Slab
+ * Remastered Dol Guldur Brick Stairs
+ * Remastered Dol Guldur Brick Wall
+ * Remastered Dol Guldur Pillar
+ * Remastered Dol Guldur Pillar Slab
+ * Remastered Dol Gudur Crafting Table texture
+ * Remastered Dol Guldur Helmet texture
+ * Remastered Dol Guldur Chestplate texture
+ * Remastered Dol Guldur Leggings texture
+ * Remastered Dol Guldur Boots texture
+ * Remastered Dol Guldur Pickaxe texture
+ * Remastered Dol Guldur Axe texture
+ * Remastered Dol Guldur Shovel texture
+ * Remastered Dol Guldur Sword texture
+ * Remastered Dol Guldur Armor model
+ * Remastered Mossy Dol Guldur Brick
+ * Remastered Mossy Dol Guldur Brick Slab
+ * Remastered Mossy Dol Guldur Brick Stairs
+ * Remastered Mossy Dol Guldur Brick Wall
+ * Remastered Morgul Torch Texture
+ * Remastered Blackberry Bush
+ * Remastered Blueberry Bush
+ * Remastered Cranberry Bush
+ * Remastered Elderberry Bush
+ * Remastered Raspberry Bush
+ * Remastered Wildberry Bush
+ * Remastered Blackberry
+ * Remastered Blueberry
+ * Remastered Cranberry
+ * Remastered Raspberry
+ * Remastered Wildberry
+ * Remastered Amber texture
+ * Remastered Amethyst texture
+ * Remastered Coral texture
+ * Remastered Diamond texture
+ * Remastered Emerald texture
+ * Remastered Opal texture
+ * Remastered Pearl texture
+ * Remastered Ruby texture
+ * Remastered Sapphire texture
+ * Remastered Topaz texture
+ * Remastered Amber Block texture
+ * Remastered Amethyst Block texture
+ * Remastered Coral Block texture
+ * Remastered Diamond Block texture
+ * Remastered Emerald Block texture
+ * Remastered Opal Block texture
+ * Remastered Pearl Block texture
+ * Remastered Ruby Block texture
+ * Remastered Sapphire Block texture
+ * Remastered Topaz Block texture
+ * Remastered Amber Ore texture
+ * Remastered Amethyst Ore texture
+ * Remastered Diamond Ore texture
+ * Remastered Emerald Ore texture
+ * Remastered Opal Ore texture
+ * Remastered Pearl Ore texture
+ * Remastered Ruby Ore texture
+ * Remastered Sapphire Ore texture
+ * Remastered Topaz Ore texture
+ * Remastered Dwarven Marriage Ring texture
+ * Remastered Hobbit Marriage Ring texture
+ * Remastered Bottle of Poison texture
+ * Remastered Elderberry texture
+ * Remastered Angmar Helmet texture
+ * Remastered Angmar Chestplate texture
+ * Remastered Angmar Leggings texture
+ * Remastered Angmar Boots texture
+ * Remastered Angmar Pickaxe texture
+ * Remastered Angmar Axe texture
+ * Remastered Angmar Shovel texture
+ * Remastered Angmar Sword texture
+ * Remastered Angmar Armor model
+ * Remastered Taurethrim Crafting Table texture
+ * Remastered Gilded Iron Block texture
+ * Remastered Gilded Iron Ingot texture
+ * Remastered Taurethrim Helmet texture
+ * Remastered Taurethrim Chestplate texture
+ * Remastered Taurethrim Leggings texture
+ * Remastered Taurethrim Boots texture
+ * Remastered Golden Taurethrim Helmet texture
+ * Remastered Golden Taurethrim Chestplate texture
+ * Remastered Golden Taurethrim Leggings texture
+ * Remastered Golden Taurethrim Boots texture
+ * Remastered Taurethrim Pickaxe texture
+ * Remastered Taurethrim Axe texture
+ * Remastered Taurethrim Shovel texture
+ * Remastered Taurethrim Hoe texture
+ * Remastered Black Uruk Steel Block texture
+ * Remastered Black Uruk Steel Ingot texture
+ * Remastered Galvorn Ingot texture
+ * Remastered Obsidian Shard texture
+ * Remastered Hithlain texture
+ * Remastered Morgul Blade texture
+ * Remastered Morgul Steel Block texture
+ * Remastered Horn of Command texture
+ * Remastered Ithildin texture
+ * Remastered Morgul Armor texture
+ * Remastered Galvorn Ingot texture
+ * Remastered Morgul Helmet texture
+ * Remastered Morgul Chestplate texture
+ * Remastered Morgul Leggings texture
+ * Remastered Morgul Boots texture
+ * Remastered Morgul Steel Ingot texture
+ * Remastered Silver Coin (1) texture
+ * Remastered Silver Coin (10) texture
+ * Remastered Silver Coin (100) texture
+ * Remastered Taurethrim Brick texture
+ * Remastered Cracked Taurethrim Brick texture
+ * Remastered Mossy Taurethrim Brick texture
+ * Remastered Taurethrim Pillar texture
+ * Remastered Golden Taurethrim Brick texture
+ * Remastered Golden Taurethrim Pillar texture
+ * Remastered Rhûnic Brick texture
+ * Remastered Cracked Rhûnic Brick texture
+ * Remastered Carved Rhûnic Brick texture
+ * Remastered Flowery Rhûnic Brick texture
+ * Remastered Mossy Rhûnic Brick texture
+ * Remastered Gold Trimmed Rhûnic Brick texture
+ * Remastered Rhûnic Pillar texture
+ * Remastered Red Rhûnic Brick texture
+ * Remastered Red Rhûnic Pillar texture
+ * Remastered Obsidian Taurethrim Brick texture
+ * Remastered Obsidian Taurethrim Pillar texture
