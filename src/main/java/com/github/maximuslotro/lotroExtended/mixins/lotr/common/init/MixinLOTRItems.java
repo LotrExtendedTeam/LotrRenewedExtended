@@ -7,6 +7,7 @@ import lotr.common.init.*;
 import lotr.common.item.*;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -55,14 +56,26 @@ public class MixinLOTRItems {
 		return item;
 	}
 
-	@Shadow(remap=false)
-	private static RegistryObject<Item> regMaterialItem(String name) {return null;}
+	//@Shadow(remap=false)
+	//private static RegistryObject<Item> regMaterialItem(String name) {return null;}
 	private static RegistryObject<Item> regMaterialItemB(String name)  {
 		RegistryObject<Item> item = regMaterialItem(name);
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDITEMS.put(name, item);
 		}
 		return item;
+	}
+
+	/**
+	 * @author maximuslotro
+	 * @reason Need to change registration objects for some materials while also being call-able
+	 * */
+	@Overwrite(remap = false)
+	private static RegistryObject<Item> regMaterialItem(String name) {
+		if(name.equals("gulduril")) {
+			return regItem(name, () -> new ExtendedGuldurilItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
+		}
+		return regItem(name, () -> new Item((new Properties()).tab(LOTRItemGroups.MATERIALS)));
 	}
 
 	@Shadow(remap=false)
