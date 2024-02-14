@@ -9,6 +9,7 @@ import lotr.common.block.ExtendedBerryBushBlock;
 import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedFireBlock;
 import lotr.common.block.ExtendedGroundDirtBlock;
 import lotr.common.block.ExtendedGroundFarmlandBlock;
 import lotr.common.block.ExtendedGroundGrassBlock;
@@ -128,6 +129,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof LOTRTorchBlock) {
 				genTorchBlockItem(block.getValue().get(), lotrLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedFireBlock) {
+				genFireTextureBlock(block.getValue().get());
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRWallTorchBlock) {
@@ -533,6 +538,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_1", new ResourceLocation("lotr",location+"_1")));
 			return;
 		}
+	}
+
+	private void genFireTextureBlock(Block block) {
+		registeredBlocks.add(block);
+		ModelFile zero = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_floor0", "minecraft:block/template_fire_floor")
+                .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_0"));
+		ModelFile one = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_floor1", "minecraft:block/template_fire_floor")
+                .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_1"));
+		ConfiguredModel varians0 = new ConfiguredModel(zero);
+		ConfiguredModel varians1 = new ConfiguredModel(one);
+		getVariantBuilder(block).partialState().addModels(varians0).addModels(varians1);
 	}
 	
 	private void genPlantAge3Block(Block block, String name) {

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotr:block/green_fire_floor0"
+      },
+      {
+        "model": "lotr:block/green_fire_floor1"
+      }
+    ]
+  }
+}

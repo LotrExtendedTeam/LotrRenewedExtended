@@ -58,6 +58,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	@Override
     protected void addTables() {
 		dropSelf(ExtendedBlocks.MORGUL_LANTERN.get());
+		add(ExtendedBlocks.GREEN_FIRE_BLOCK.get(), noDrop());
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof AxialSlabBlock) {
 				add(block.getValue().get(), BlockLootTables::createSlabItemTable);

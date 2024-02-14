@@ -192,7 +192,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGUL_TORCH;
 	public static RegistryObject<Block> MORGUL_WALL_TORCH;
 	public static RegistryObject<Block> GREEN_FLAME_HEARTH_BLOCK;
-	
+	public static RegistryObject<Block> GREEN_FIRE_BLOCK;
+
 	public static Map<String, RegistryObject<Block>> ENTITYSPAWNERBLOCKS = new HashMap<>();
 
 	public static RegistryObject<Block> CHEESE_WHEEL;

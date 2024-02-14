@@ -18,6 +18,7 @@ import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
+import lotr.common.block.ExtendedGreenFireBlock;
 import lotr.common.block.ExtendedGreenHearthBlock;
 import lotr.common.block.ExtendedGroundDirtBlock;
 import lotr.common.block.ExtendedGroundFarmlandBlock;
@@ -39,6 +40,7 @@ import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
@@ -299,6 +301,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new LOTRTorchBlock(14).setParticles(() -> { return ExtendedParticles.MORGUL_FLAME.get();}));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());
+		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(AbstractBlock.Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> {
+		      return 10;
+		   }).sound(SoundType.WOOL)));
 
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
