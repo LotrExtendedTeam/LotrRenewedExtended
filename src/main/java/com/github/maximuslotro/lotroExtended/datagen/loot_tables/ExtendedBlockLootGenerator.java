@@ -13,6 +13,7 @@ import lotr.common.block.ExtendedGroundDirtBlock;
 import lotr.common.block.ExtendedGroundFarmlandBlock;
 import lotr.common.block.ExtendedGroundGrassBlock;
 import lotr.common.block.ExtendedGroundPathBlock;
+import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
@@ -126,6 +127,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedHearthBlock) {
+				dropOther(block.getValue().get(), LOTRBlocks.HEARTH_BLOCK.get());
+				continue;
+			}
 			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
 				dropOther(block.getValue().get(), ((ExtendedGroundFarmlandBlock)block.getValue().get()).getBase().get());
 				continue;
@@ -190,9 +195,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
     protected Iterable<Block> getKnownBlocks() {
 		List<RegistryObject<Block>> filtered = new ArrayList<>();
 		for(Entry<String, RegistryObject<Block>> bl : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(!(bl.getValue().get() instanceof ExtendedSpawnerBlock)){
-				filtered.add(bl.getValue());
+			if(bl.getValue().get() instanceof ExtendedSpawnerBlock){
+				continue;
 			}
+			filtered.add(bl.getValue());
 		}
         return filtered.stream().map(RegistryObject::get)::iterator;
     }

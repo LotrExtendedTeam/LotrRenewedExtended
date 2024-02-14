@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotroExtended;
 import com.github.maximuslotro.lotroExtended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotroExtended.commands.ExtendedCommands;
 import com.github.maximuslotro.lotroExtended.common.init.ExtendedParticles;
+import com.github.maximuslotro.lotroExtended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotroExtended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotroExtended.datagen.DataGeneratorExtended;
@@ -57,6 +58,7 @@ public class LotrExtendedMod {
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();
 		ExtendedLootModifiers.register();
+		ExtendedTags.init();
 	}
 
 	public void setup(final FMLCommonSetupEvent event) {

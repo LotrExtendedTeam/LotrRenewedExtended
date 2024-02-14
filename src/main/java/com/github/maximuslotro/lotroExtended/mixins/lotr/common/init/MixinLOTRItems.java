@@ -75,6 +75,9 @@ public class MixinLOTRItems {
 		if(name.equals("gulduril")) {
 			return regItem(name, () -> new ExtendedGuldurilItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
 		}
+		if(name.equals("copper_ingot")) {
+			return regItem(name, () -> new ExtendedCopperIngotItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
+		}
 		return regItem(name, () -> new Item((new Properties()).tab(LOTRItemGroups.MATERIALS)));
 	}
 

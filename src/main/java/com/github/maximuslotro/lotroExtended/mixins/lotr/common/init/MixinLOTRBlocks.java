@@ -18,6 +18,7 @@ import lotr.common.block.ExtendedBerryPlantBlock;
 import lotr.common.block.ExtendedCakeBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
+import lotr.common.block.ExtendedGreenHearthBlock;
 import lotr.common.block.ExtendedGroundDirtBlock;
 import lotr.common.block.ExtendedGroundFarmlandBlock;
 import lotr.common.block.ExtendedGroundGrassBlock;
@@ -295,10 +296,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", ExtendedMorgulLanternBlock::new);
-
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new LOTRTorchBlock(14).setParticles(() -> { return ExtendedParticles.MORGUL_FLAME.get();}));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
-		
+		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());
+
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}

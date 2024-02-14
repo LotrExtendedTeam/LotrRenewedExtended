@@ -13,6 +13,7 @@ import lotr.common.block.ExtendedGroundDirtBlock;
 import lotr.common.block.ExtendedGroundFarmlandBlock;
 import lotr.common.block.ExtendedGroundGrassBlock;
 import lotr.common.block.ExtendedGroundPathBlock;
+import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
@@ -147,6 +148,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedCakeBlock) {
 				genCakeBlock((CakeBlock) block.getValue().get(), lotrLoc("block/"+block.getKey()+"_bottom"), lotrLoc("block/"+block.getKey()+"_top"), lotrLoc("block/"+block.getKey()+"_side"), lotrLoc("block/"+block.getKey()+"_inner"));
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedHearthBlock) {
+				genHearthBlockType((ExtendedHearthBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 		}
@@ -429,6 +434,21 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			return ConfiguredModel.builder()
                     .modelFile(cubeModel)
                     .rotationY(bites == Direction.EAST ? 0 : (bites == Direction.SOUTH ? 90 : (bites == Direction.WEST ? 180 : 270)))
+                    .build();
+		});
+	}
+
+	private void genHearthBlockType(ExtendedHearthBlock block, String base) {
+		registeredBlocks.add(block);
+		ResourceLocation top = lotrLoc(base+"_lit_top");
+		ResourceLocation bottom = new ResourceLocation("lotr:block/hearth_block_bottom");
+		ResourceLocation side = lotrLoc(base+"_lit_side");
+		ModelFile lit = models().cubeBottomTop("lotr:"+block.getRegistryName().getPath()+"_lit", side, bottom, top);
+		ModelFile unlit = models().getExistingFile(new ResourceLocation("lotr:block/hearth_block"));
+		getVariantBuilder(block).forAllStates(state -> {
+			Boolean litBoolean = state.getValue(ExtendedHearthBlock.LIT);
+			return ConfiguredModel.builder()
+                    .modelFile(litBoolean ? lit : unlit)
                     .build();
 		});
 	}
