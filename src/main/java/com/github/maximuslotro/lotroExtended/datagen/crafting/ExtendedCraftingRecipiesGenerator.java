@@ -2,11 +2,11 @@ package com.github.maximuslotro.lotroExtended.datagen.crafting;
 
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotroExtended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
 import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
 import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
-import com.github.maximuslotro.lotroExtended.datagen.tags.ExtendedItemTagGenerator;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
@@ -116,10 +116,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern(" # ")
 		.pattern("YYY")
 		.define('#', Ingredient.of(ExtendedBlocks.MORGUL_TORCH.get()))
-		.define('Y', Ingredient.of(ExtendedItemTagGenerator.MORGUL_INGOTS))
+		.define('Y', Ingredient.of(ExtendedTags.Items.MORGUL_INGOTS))
 		.unlockedBy("has_"+ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_LANTERN.get()))
 		.unlockedBy("has_"+ExtendedBlocks.MORGUL_TORCH.get().getRegistryName().getPath(), has(ExtendedBlocks.MORGUL_TORCH.get()))
-		.unlockedBy("has_morgul_ingots", has(ExtendedItemTagGenerator.MORGUL_INGOTS))
+		.unlockedBy("has_morgul_ingots", has(ExtendedTags.Items.MORGUL_INGOTS))
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath()));
 		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, 
 				LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
@@ -558,6 +558,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_SLICE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.CONKER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.GREEN_FIRE_BLOCK.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {
