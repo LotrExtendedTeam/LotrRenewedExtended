@@ -34,13 +34,13 @@ public class ExtendedStructuresV5 {
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
-		register(HOBBIT_BARN.get(), true, 16, 12, 445575475);
-		register(HOBBIT_HOLE_SMALL.get(), true, 8, 5, 445436262);
-		register(HOBBIT_HOUSE.get(), true, 8, 5, 445546465);
+		register(HOBBIT_BARN.get(), true,            32, 12, 445575475);
+		register(HOBBIT_HOLE_SMALL.get(), true,      24, 5, 445436262);
+		register(HOBBIT_HOUSE.get(), true,           24, 5, 445546465);
 		register(HOBBIT_PICNIC_BLANKET.get(), false, 14, 8, 745785884);
-		register(HOBBIT_PICNIC_TABLE.get(), true, 14, 8, 747348);
-		register(HOBBIT_TAVERN_SMALL.get(), true, 25, 15, 489984587);
-		register(HOBBIT_WINDMILL.get(), true, 40, 20, 965983479);
+		register(HOBBIT_PICNIC_TABLE.get(), true,    14, 8, 747348);
+		register(HOBBIT_TAVERN_SMALL.get(), true,    25, 15, 489984587);
+		register(HOBBIT_WINDMILL.get(), true,        40, 20, 965983479);
 
 	}
 	
