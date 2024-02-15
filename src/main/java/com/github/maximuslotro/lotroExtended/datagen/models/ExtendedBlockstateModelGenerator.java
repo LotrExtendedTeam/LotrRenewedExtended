@@ -47,6 +47,7 @@ import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -542,15 +543,28 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genFireTextureBlock(Block block) {
 		registeredBlocks.add(block);
-		ModelFile zero = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_floor0", "minecraft:block/template_fire_floor")
+		ModelFile floor0 = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_floor0", "minecraft:block/template_fire_floor")
                 .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_0"));
-		ModelFile one = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_floor1", "minecraft:block/template_fire_floor")
+		ModelFile floor1 = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_floor1", "minecraft:block/template_fire_floor")
                 .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_1"));
-		ConfiguredModel varians0 = new ConfiguredModel(zero);
-		ConfiguredModel varians1 = new ConfiguredModel(one);
-		getVariantBuilder(block).partialState().addModels(varians0).addModels(varians1);
+		
+		ModelFile side_alt0 = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_side_alt0", "minecraft:block/template_fire_side_alt")
+                .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_0"));
+		ModelFile side_alt1 = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_side_alt1", "minecraft:block/template_fire_side_alt")
+                .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_1"));
+		
+		ModelFile side0 = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_side0", "minecraft:block/template_fire_side")
+                .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_0"));
+		ModelFile side1 = models().withExistingParent("lotr:"+block.getRegistryName().getPath()+"_side1", "minecraft:block/template_fire_side")
+                .texture("fire", lotrLoc("block/"+block.getRegistryName().getPath()+"_1"));
+
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block).part().modelFile(floor0).nextModel().modelFile(floor1).addModel().end();
+        builder.part().modelFile(side0).nextModel().modelFile(side1).nextModel().modelFile(side_alt0).nextModel().modelFile(side_alt1).addModel().end();
+        builder.part().modelFile(side0).rotationY(90).nextModel().modelFile(side1).rotationY(90).nextModel().modelFile(side_alt0).rotationY(90).nextModel().modelFile(side_alt1).rotationY(90).addModel().end();
+        builder.part().modelFile(side0).rotationY(180).nextModel().modelFile(side1).rotationY(180).nextModel().modelFile(side_alt0).rotationY(180).nextModel().modelFile(side_alt1).rotationY(180).addModel().end();
+        builder.part().modelFile(side0).rotationY(270).nextModel().modelFile(side1).rotationY(270).nextModel().modelFile(side_alt0).rotationY(270).nextModel().modelFile(side_alt1).rotationY(270).addModel().end();
 	}
-	
+
 	private void genPlantAge3Block(Block block, String name) {
 		registeredBlocks.add(block);
 		getVariantBuilder(block)
@@ -569,14 +583,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile empty = models().cubeAll("lotr:"+block.getRegistryName().getPath()+"_empty", lotrLoc(name+"_empty"));
 		ModelFile full = models().cubeAll("lotr:"+block.getRegistryName().getPath(), lotrLoc(name));
 		getVariantBuilder(block)
-        .partialState().with(BlockStateProperties.AGE_3, 0)
-            .modelForState().modelFile(empty).addModel()
-        .partialState().with(BlockStateProperties.AGE_3, 1)
-            .modelForState().modelFile(empty).addModel()
-        .partialState().with(BlockStateProperties.AGE_3, 2)
-            .modelForState().modelFile(empty).addModel()
-        .partialState().with(BlockStateProperties.AGE_3, 3)
-            .modelForState().modelFile(full).addModel();
+        .partialState().with(BlockStateProperties.AGE_3, 0).modelForState().modelFile(empty).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 1).modelForState().modelFile(empty).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 2).modelForState().modelFile(empty).addModel()
+        .partialState().with(BlockStateProperties.AGE_3, 3).modelForState().modelFile(full).addModel();
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(full);
 	}
 }

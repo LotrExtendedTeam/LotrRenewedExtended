@@ -1,12 +1,90 @@
 {
-  "variants": {
-    "": [
-      {
-        "model": "lotr:block/green_fire_floor0"
-      },
-      {
-        "model": "lotr:block/green_fire_floor1"
-      }
-    ]
-  }
+  "multipart": [
+    {
+      "apply": [
+        {
+          "model": "lotr:block/green_fire_floor0"
+        },
+        {
+          "model": "lotr:block/green_fire_floor1"
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "lotr:block/green_fire_side0"
+        },
+        {
+          "model": "lotr:block/green_fire_side1"
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt0"
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt1"
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "lotr:block/green_fire_side0",
+          "y": 90
+        },
+        {
+          "model": "lotr:block/green_fire_side1",
+          "y": 90
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt0",
+          "y": 90
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "lotr:block/green_fire_side0",
+          "y": 180
+        },
+        {
+          "model": "lotr:block/green_fire_side1",
+          "y": 180
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt0",
+          "y": 180
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "lotr:block/green_fire_side0",
+          "y": 270
+        },
+        {
+          "model": "lotr:block/green_fire_side1",
+          "y": 270
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt0",
+          "y": 270
+        },
+        {
+          "model": "lotr:block/green_fire_side_alt1",
+          "y": 270
+        }
+      ]
+    }
+  ]
 }
