@@ -1,0 +1,17 @@
+{
+  "item.horn_blow": {
+    "subtitle": "subtitles.lotrextended.item.horn_blow",
+    "sounds": [
+      "lotrextended:item/horn_blow"
+    ]
+  },
+  "event.trade": {
+    "subtitle": "subtitles.lotrextended.event.trade",
+    "sounds": [
+      "lotrextended:event/trade1",
+      "lotrextended:event/trade2",
+      "lotrextended:event/trade3",
+      "lotrextended:event/trade4"
+    ]
+  }
+}

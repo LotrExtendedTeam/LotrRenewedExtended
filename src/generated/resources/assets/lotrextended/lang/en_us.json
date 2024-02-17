@@ -296,7 +296,7 @@
   "item.lotr.topaz": "Topaz",
   "item.lotr.white_fur": "White Fur",
   "item.lotr.wildberry": "Wildberry",
-  "stats.lotrextendedeat_cheese_slice": "Cheese Slices Eaten",
-  "subtitles.lotr.event.trade": "Coins jingle",
-  "subtitles.lotr.item.horn": "Horn Blows"
+  "stats.lotrextended.eat_cheese_slice": "Cheese Slices Eaten",
+  "subtitles.lotrextended.event.trade": "Coins jingle",
+  "subtitles.lotrextended.item.horn_blow": "Horn Blows"
 }
