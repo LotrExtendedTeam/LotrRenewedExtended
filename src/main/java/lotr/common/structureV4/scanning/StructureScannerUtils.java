@@ -1,6 +1,6 @@
 package lotr.common.structureV4.scanning;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
 
 import lotr.common.structureV4.util.StructureStrings;
 import net.minecraft.nbt.CompoundNBT;

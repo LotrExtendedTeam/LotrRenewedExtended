@@ -2,8 +2,8 @@ package lotr.common.structureV4.structure.parts;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
-import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.common.enums.ExtendedEntitySpawnTypes;
 
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;

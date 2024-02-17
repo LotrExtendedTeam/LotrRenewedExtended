@@ -1,6 +1,6 @@
 package lotr.common.block;
 
-import com.github.maximuslotro.lotroExtended.stats.ExtendedStats;
+import com.github.maximuslotro.lotrExtended.stats.ExtendedStats;
 
 import lotr.common.event.CompostingHelper;
 import lotr.common.item.DaggerItem;

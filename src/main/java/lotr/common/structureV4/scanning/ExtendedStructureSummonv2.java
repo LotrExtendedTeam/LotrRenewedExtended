@@ -3,7 +3,7 @@ package lotr.common.structureV4.scanning;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;

@@ -2,8 +2,8 @@ package lotr.common.structureV4.structure.abstractPieces;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
-import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.utils.DirectionTools;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;

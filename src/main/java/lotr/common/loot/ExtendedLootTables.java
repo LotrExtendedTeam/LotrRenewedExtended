@@ -2,7 +2,7 @@ package lotr.common.loot;
 
 import java.util.Set;
 
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
 import com.google.common.collect.Sets;
 
 import net.minecraft.util.ResourceLocation;

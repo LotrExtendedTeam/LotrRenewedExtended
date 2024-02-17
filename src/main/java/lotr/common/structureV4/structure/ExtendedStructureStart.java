@@ -3,7 +3,7 @@ package lotr.common.structureV4.structure;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
 
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;

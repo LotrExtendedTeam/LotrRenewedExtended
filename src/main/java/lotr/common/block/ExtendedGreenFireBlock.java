@@ -1,6 +1,6 @@
 package lotr.common.block;
 
-import com.github.maximuslotro.lotroExtended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrExtended.common.init.ExtendedTags;
 
 import net.minecraft.block.Block;
 import net.minecraft.tags.ITag.INamedTag;

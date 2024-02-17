@@ -1,6 +1,6 @@
 package lotr.common.init;
 
-import com.github.maximuslotro.lotroExtended.datagen.crafting.builders.ExtendedTippedArrowRecipe;
+import com.github.maximuslotro.lotrExtended.common.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 
 import lotr.common.recipe.FactionTableType;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;

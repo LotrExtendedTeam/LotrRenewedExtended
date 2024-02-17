@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
-import com.github.maximuslotro.lotroExtended.utils.DirectionTools;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.utils.DirectionTools;
 
 import lotr.common.structureV4.StructureFile;
 import lotr.common.structureV4.StructureFileHandler;

@@ -3,7 +3,7 @@ package lotr.common.structureV5;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 

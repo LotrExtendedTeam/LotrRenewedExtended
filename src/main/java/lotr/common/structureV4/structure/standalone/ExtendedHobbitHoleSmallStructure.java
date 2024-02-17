@@ -1,6 +1,6 @@
 package lotr.common.structureV4.structure.standalone;
 
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
 import com.mojang.serialization.Codec;
 
 import lotr.common.structureV4.structure.ExtendedStructureStart;

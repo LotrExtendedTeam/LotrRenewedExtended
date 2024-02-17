@@ -1,6 +1,6 @@
 package lotr.common.structureV5.extendedClasses;
 
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;

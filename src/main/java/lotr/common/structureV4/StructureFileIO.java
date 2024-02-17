@@ -6,8 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;

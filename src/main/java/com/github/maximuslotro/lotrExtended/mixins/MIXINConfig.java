@@ -1,0 +1,79 @@
+package com.github.maximuslotro.lotrExtended.mixins;
+
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.objectweb.asm.tree.ClassNode;
+import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
+import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
+
+public class MIXINConfig implements IMixinConfigPlugin
+{
+
+    protected static TreeSet<String> injectedPatches = new TreeSet<String>();
+
+    @Override
+    public void onLoad(String mixinPackage)
+    {
+        /* do nothing */
+    }
+
+    @Override
+    public String getRefMapperConfig()
+    {
+        return null;
+    }
+
+    @Override
+    public List<String> getMixins()
+    {
+        return null;
+    }
+
+    @Override
+    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets)
+    {
+        /* do nothing */
+    }
+
+    @Override
+    public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
+    {
+//    	if(targetClassName.equals("craftedMods.jeiLotr.JEIPlugin")){
+//    		if(!classExists("craftedMods.jeiLotr.JEIPlugin")) {
+//    			System.out.println("NOT ADDING MIXIN: "+targetClassName+", "+mixinClassName);
+//    		}
+//    	}
+//    	System.out.println("ADDING MIXIN: "+targetClassName+", "+mixinClassName);
+        return true;
+    }
+
+    @Override
+    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo)
+    {
+        /* do nothing */
+    }
+
+    @Override
+    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo)
+    {
+        injectedPatches.add(mixinInfo.getName());
+    }
+
+    public static TreeSet<String> getInjectedPatches()
+    {
+        return injectedPatches;
+    }
+
+    public boolean classExists(String name) {
+    	try {
+			if(Class.forName(name, false, this.getClass().getClassLoader()) != null){
+				return true;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+    	return false;
+    }
+}

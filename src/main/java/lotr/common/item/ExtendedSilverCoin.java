@@ -1,6 +1,6 @@
 package lotr.common.item;
 
-import com.github.maximuslotro.lotroExtended.enums.CoinType;
+import com.github.maximuslotro.lotrExtended.common.enums.CoinType;
 
 import net.minecraft.item.Item;
 

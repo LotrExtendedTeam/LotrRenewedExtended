@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 

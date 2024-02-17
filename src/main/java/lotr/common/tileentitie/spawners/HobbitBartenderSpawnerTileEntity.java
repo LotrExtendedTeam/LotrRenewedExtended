@@ -1,6 +1,6 @@
 package lotr.common.tileentitie.spawners;
 
-import com.github.maximuslotro.lotroExtended.enums.ExtendedEntitySpawnTypes;
+import com.github.maximuslotro.lotrExtended.common.enums.ExtendedEntitySpawnTypes;
 
 import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.init.ExtendedEntities;

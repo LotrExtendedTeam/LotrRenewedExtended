@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
 
 import lotr.common.data.SaveUtil;
 import net.minecraft.nbt.CompoundNBT;

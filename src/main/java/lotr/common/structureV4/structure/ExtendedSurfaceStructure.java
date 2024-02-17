@@ -1,7 +1,7 @@
 package lotr.common.structureV4.structure;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.block.BlockState;

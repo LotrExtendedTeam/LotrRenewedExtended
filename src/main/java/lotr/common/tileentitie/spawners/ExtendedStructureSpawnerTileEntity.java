@@ -1,6 +1,6 @@
 package lotr.common.tileentitie.spawners;
 
-import com.github.maximuslotro.lotroExtended.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrExtended.common.config.ExtendedServerConfig;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;

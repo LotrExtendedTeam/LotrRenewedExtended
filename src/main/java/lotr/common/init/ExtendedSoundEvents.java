@@ -3,7 +3,7 @@ package lotr.common.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotroExtended.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrExtended.common.datagen.DataGenValueHolder;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;

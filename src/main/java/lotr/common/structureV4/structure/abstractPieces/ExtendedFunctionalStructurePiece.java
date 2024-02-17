@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.github.maximuslotro.lotroExtended.ExtendedLog;
-import com.github.maximuslotro.lotroExtended.LotrExtendedMod;
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.structureV4.structure.parts.ExtendedKegDrinksv4;

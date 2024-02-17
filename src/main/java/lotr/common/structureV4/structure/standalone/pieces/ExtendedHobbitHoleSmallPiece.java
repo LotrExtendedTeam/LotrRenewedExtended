@@ -3,7 +3,7 @@ package lotr.common.structureV4.structure.standalone.pieces;
 import java.util.List;
 import java.util.Random;
 
-import com.github.maximuslotro.lotroExtended.enums.StructureType;
+import com.github.maximuslotro.lotrExtended.common.enums.StructureType;
 
 import lotr.common.structureV4.structure.ExtendedStructurePieces;
 import lotr.common.structureV4.structure.abstractPieces.ExtendedFileBasedStructurePiece;
