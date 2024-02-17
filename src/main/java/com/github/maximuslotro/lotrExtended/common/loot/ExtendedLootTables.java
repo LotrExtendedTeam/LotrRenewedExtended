@@ -1,4 +1,4 @@
-package lotr.common.loot;
+package com.github.maximuslotro.lotrExtended.common.loot;
 
 import java.util.Set;
 

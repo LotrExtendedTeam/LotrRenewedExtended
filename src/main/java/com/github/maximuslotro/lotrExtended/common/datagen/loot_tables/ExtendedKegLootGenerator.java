@@ -2,8 +2,9 @@ package com.github.maximuslotro.lotrExtended.common.datagen.loot_tables;
 
 import java.util.function.BiConsumer;
 
+import com.github.maximuslotro.lotrExtended.common.loot.ExtendedLootTables;
+
 import lotr.common.init.LOTRItems;
-import lotr.common.loot.ExtendedLootTables;
 import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;

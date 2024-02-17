@@ -54,10 +54,10 @@ public class LotrExtendedMod {
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
-		ExtendedParticles.register();
+		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();
-		ExtendedLootModifiers.register();
+		ExtendedLootModifiers.register(modBus);
 		ExtendedTags.init();
 	}
 

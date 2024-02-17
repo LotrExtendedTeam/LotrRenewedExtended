@@ -9,9 +9,8 @@ import com.github.maximuslotro.lotrExtended.common.datagen.models.ExtendedItemMo
 import com.github.maximuslotro.lotrExtended.common.datagen.tags.ExtendedBlockTagGenerator;
 import com.github.maximuslotro.lotrExtended.common.datagen.tags.ExtendedFluidTagGenerator;
 import com.github.maximuslotro.lotrExtended.common.datagen.tags.ExtendedItemTagGenerator;
+import com.github.maximuslotro.lotrExtended.common.loot.ExtendedLootTables;
 
-import lotr.common.LOTRMod;
-import lotr.common.loot.ExtendedLootTables;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -24,7 +23,7 @@ public class DataGeneratorExtended {
 		if (event.includeClient()) {
 			generator.addProvider(new ExtendedBlockstateModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
-			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LOTRMod.MOD_ID, existingFileHelper));
+			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedLanguageGenerator(generator, LotrExtendedMod.MODID,"en_us"));
 		}
 		if (event.includeServer()) {
