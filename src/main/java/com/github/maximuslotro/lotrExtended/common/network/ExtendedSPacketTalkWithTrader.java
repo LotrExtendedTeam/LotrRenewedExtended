@@ -1,4 +1,4 @@
-package lotr.common.network;
+package com.github.maximuslotro.lotrExtended.common.network;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.NPCEntity;

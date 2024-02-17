@@ -1,4 +1,4 @@
-package lotr.common.network;
+package com.github.maximuslotro.lotrExtended.common.network;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;

@@ -1,4 +1,4 @@
-package lotr.common.network;
+package com.github.maximuslotro.lotrExtended.common.network;
 
 import java.util.function.Supplier;
 

@@ -1,7 +1,5 @@
 package lotr.common.entity.npc;
 
-import lotr.common.network.ExtendedPacketHandler;
-import lotr.common.network.ExtendedSPacketOpenCoinExchange;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
@@ -13,6 +11,8 @@ import java.util.HashSet;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenCoinExchange;
 
 public class ExtendedTraderHelper {
 

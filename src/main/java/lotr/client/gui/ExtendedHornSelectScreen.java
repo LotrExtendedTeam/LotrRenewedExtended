@@ -2,12 +2,12 @@ package lotr.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketSelectHorn;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.ExtendedCommandHornItem;
-import lotr.common.network.ExtendedPacketHandler;
-import lotr.common.network.ExtendedSPacketSelectHorn;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;

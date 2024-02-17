@@ -1,11 +1,11 @@
 package lotr.client.gui.inv;
 
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketExchangeCoins;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.inv.ExtendedCoinExchangeContainer;
-import lotr.common.network.ExtendedPacketHandler;
-import lotr.common.network.ExtendedSPacketExchangeCoins;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;

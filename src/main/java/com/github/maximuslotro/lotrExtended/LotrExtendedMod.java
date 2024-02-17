@@ -10,9 +10,9 @@ import com.github.maximuslotro.lotrExtended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrExtended.common.loot.ExtendedLootModifiers;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrExtended.stats.ExtendedStats;
 
-import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.structureV5.BiomeStructureAdder;
 import lotr.common.structureV5.ExtendedConfiguredStructuresV5;
 import lotr.common.structureV5.ExtendedStructuresV5;

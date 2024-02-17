@@ -1,11 +1,11 @@
 package lotr.client.gui;
 
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketTalkWithTrader;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.network.ExtendedPacketHandler;
-import lotr.common.network.ExtendedSPacketOpenCoinExchange;
-import lotr.common.network.ExtendedSPacketTalkWithTrader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;

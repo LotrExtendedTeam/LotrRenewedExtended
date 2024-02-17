@@ -1,4 +1,4 @@
-package lotr.common.network;
+package com.github.maximuslotro.lotrExtended.common.network;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
