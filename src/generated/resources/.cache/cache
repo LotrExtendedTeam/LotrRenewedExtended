@@ -841,7 +841,7 @@ af57833b5d43ef4d9bc8769ab1d4797172ea3c99 data/forge/tags/blocks/ores/lotr_diamon
 0a48c98ac54283d58c280b1e8350fd8cb49b7098 data/forge/tags/blocks/ores/lotr_opal.json
 5c6fd6b965050720f7582768e7f00c8129ab4dab data/forge/tags/blocks/ores/lotr_ruby.json
 b9300984e98826134840783294543357f3a54c4e data/forge/tags/blocks/ores/lotr_sapphire.json
-75b754588b609812f5409145200228cd866507cb data/forge/tags/blocks/ores/lotr_topaz.json
+26252144d7a364f6a5e0ba8d161aa40a2c53dc0c data/forge/tags/blocks/ores/lotr_topaz.json
 ff0b2da05fd107a5c56f2551e7fa56b494e43297 data/forge/tags/blocks/ores/mithril.json
 e02918e4d98c6e35c09919af69bdd016f8f65ddc data/forge/tags/blocks/ores/morgul_iron.json
 297ca545fce72a5a4f862f2744e2ec8266281526 data/forge/tags/blocks/ores/niter.json
@@ -910,7 +910,7 @@ af57833b5d43ef4d9bc8769ab1d4797172ea3c99 data/forge/tags/items/ores/lotr_diamond
 0a48c98ac54283d58c280b1e8350fd8cb49b7098 data/forge/tags/items/ores/lotr_opal.json
 5c6fd6b965050720f7582768e7f00c8129ab4dab data/forge/tags/items/ores/lotr_ruby.json
 b9300984e98826134840783294543357f3a54c4e data/forge/tags/items/ores/lotr_sapphire.json
-75b754588b609812f5409145200228cd866507cb data/forge/tags/items/ores/lotr_topaz.json
+26252144d7a364f6a5e0ba8d161aa40a2c53dc0c data/forge/tags/items/ores/lotr_topaz.json
 ff0b2da05fd107a5c56f2551e7fa56b494e43297 data/forge/tags/items/ores/mithril.json
 e02918e4d98c6e35c09919af69bdd016f8f65ddc data/forge/tags/items/ores/morgul_iron.json
 297ca545fce72a5a4f862f2744e2ec8266281526 data/forge/tags/items/ores/niter.json

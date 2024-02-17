@@ -113,7 +113,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
         tag(ExtendedTags.Blocks.SULFUR_ORE).add(LOTRBlocks.SULFUR_ORE.get());
         tag(ExtendedTags.Blocks.TIN_ORE).add(LOTRBlocks.TIN_ORE.get());
 
-		tag(ExtendedTags.Blocks.TOPAZ_ORE).add(ExtendedBlocks.AMBER_ORE.get());
+		tag(ExtendedTags.Blocks.TOPAZ_ORE).add(ExtendedBlocks.TOPAZ_ORE.get());
 	    tag(ExtendedTags.Blocks.AMETHYST_ORE).add(ExtendedBlocks.AMETHYST_ORE.get());
 	    tag(ExtendedTags.Blocks.SAPPHIRE_ORE).add(ExtendedBlocks.SAPPHIRE_ORE.get());
 	    tag(ExtendedTags.Blocks.RUBY_ORE).add(ExtendedBlocks.RUBY_ORE.get());
