@@ -15,7 +15,6 @@
 		"lotr.common.init.MixinLOTREntities",
 		"lotr.common.init.MixinLOTRMaterial",
 		"lotr.common.init.MixinLOTRRecipes",
-		"lotr.common.init.MixinLOTRSoundEvents",
 		"lotr.common.init.MixinLOTRTileEntities",
 		"lotr.common.loot.functions.MixinLOTRLootFunctions",
 		"lotr.common.tileentity.MixinKegTileEntity",

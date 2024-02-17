@@ -1,36 +1,23 @@
 package lotr.common.entity.npc;
 
-import lotr.common.init.ExtendedSoundEvents;
 import lotr.common.network.ExtendedPacketHandler;
 import lotr.common.network.ExtendedSPacketOpenCoinExchange;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.UUID;
+
+import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
 
 public class ExtendedTraderHelper {
 
     public static void playTraderSound(World level, BlockPos pos) {
-        int number = new Random().nextInt(3) + 1;
-        SoundEvent sound = null;
-        switch (number) {
-            case 1: sound = ExtendedSoundEvents.TRADE_SOUND_1;
-                break;
-            case 2: sound = ExtendedSoundEvents.TRADE_SOUND_2;
-                break;
-            case 3: sound = ExtendedSoundEvents.TRADE_SOUND_3;
-                break;
-            case 4: sound = ExtendedSoundEvents.TRADE_SOUND_4;
-        }
-
-        level.playSound(null, pos, sound, SoundCategory.MASTER, 1, 1);
+        level.playSound(null, pos, ExtendedSounds.TRADE.get(), SoundCategory.MASTER, 1, 1);
     }
 
     public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, HashSet<UUID> uuids) {

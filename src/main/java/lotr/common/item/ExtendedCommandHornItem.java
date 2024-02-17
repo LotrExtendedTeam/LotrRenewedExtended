@@ -1,6 +1,7 @@
 package lotr.common.item;
 
-import lotr.common.init.ExtendedSoundEvents;
+import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
+
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.item.clientside.ExtendedCommandHornClientSide;
 import net.minecraft.entity.LivingEntity;
@@ -46,7 +47,7 @@ public class ExtendedCommandHornItem extends Item {
 		} else if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 2) {
 			nbtTagCompound.putInt(type, 1);
 		}
-		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSoundEvents.HORN_BLOW, SoundCategory.PLAYERS, 4.0F, 1.0F);
+		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
 	}
 	
