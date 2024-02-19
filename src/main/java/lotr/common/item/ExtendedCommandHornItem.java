@@ -42,10 +42,10 @@ public class ExtendedCommandHornItem extends Item {
 	        itemstack.setTag(nbtTagCompound);
 	    }
 
-		if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 1) {
-			nbtTagCompound.putInt(type, 2);
-		} else if (nbtTagCompound!=null&&nbtTagCompound.contains(type) && nbtTagCompound.getInt(type) == 2) {
-			nbtTagCompound.putInt(type, 1);
+		if (isHalt(itemstack)) {
+			nbtTagCompound.putFloat(type, 2.0F);
+		} else if (isReddy(itemstack)) {
+			nbtTagCompound.putFloat(type, 1.0F);
 		}
 		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
@@ -72,16 +72,33 @@ public class ExtendedCommandHornItem extends Item {
 	public String getDescriptionId(ItemStack itemstack) {
 		CompoundNBT nbtTagCompound = itemstack.getTag();
 		String s = "";
-		if (nbtTagCompound != null && nbtTagCompound.contains(type)
-				&& nbtTagCompound.getInt(type) == 1) {
+		if (isHalt(itemstack)) {
 			s = ".halt";
-		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
-				&& nbtTagCompound.getInt(type) == 2) {
+		} else if (isReddy(itemstack)) {
 			s = ".reddy";
-		} else if (nbtTagCompound != null && nbtTagCompound.contains(type)
-				&& nbtTagCompound.getInt(type) == 3) {
+		} else if (isSummon(itemstack)) {
 			s = ".summon";
 		}
 		return super.getDescriptionId()+s;
+	}
+
+	public static boolean isNotEmpty(ItemStack itemStack) {
+		CompoundNBT compoundnbt = itemStack.getTag();
+		return compoundnbt != null && compoundnbt.contains(type);
+	}
+
+	public static boolean isHalt(ItemStack itemStack) {
+		CompoundNBT compoundnbt = itemStack.getTag();
+		return compoundnbt != null && compoundnbt.contains(type) && compoundnbt.getInt(type) == 1.0F;
+	}
+
+	public static boolean isReddy(ItemStack itemStack) {
+		CompoundNBT compoundnbt = itemStack.getTag();
+		return compoundnbt != null && compoundnbt.contains(type) && compoundnbt.getInt(type) == 2.0F;
+	}
+
+	public static boolean isSummon(ItemStack itemStack) {
+		CompoundNBT compoundnbt = itemStack.getTag();
+		return compoundnbt != null && compoundnbt.contains(type) && compoundnbt.getInt(type) == 3.0F;
 	}
 }

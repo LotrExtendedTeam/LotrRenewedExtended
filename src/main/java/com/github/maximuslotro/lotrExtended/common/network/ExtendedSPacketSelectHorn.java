@@ -11,35 +11,35 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ExtendedSPacketSelectHorn {
-	private int type;
+	private float type;
 
 	public ExtendedSPacketSelectHorn() {}
 	
-	public ExtendedSPacketSelectHorn(int type) {
+	public ExtendedSPacketSelectHorn(float type) {
 		this.type = type;
 	}
 
 	public static void encode(ExtendedSPacketSelectHorn packet, PacketBuffer buf) {
-		buf.writeInt(packet.type);
+		buf.writeFloat(packet.type);
 	}
 
 	public static ExtendedSPacketSelectHorn decode(PacketBuffer buf) {
 		ExtendedSPacketSelectHorn packet = new ExtendedSPacketSelectHorn();
-		packet.type = buf.readInt();
+		packet.type = buf.readFloat();
 		return packet;
 	}
 
 	public static void handle(ExtendedSPacketSelectHorn packet, Supplier<Context> context) {
-		ServerPlayerEntity player = ((Context) context.get()).getSender();
+		ServerPlayerEntity player = context.get().getSender();
 		ItemStack itemstack = player.getMainHandItem();
 	    if (itemstack != null && itemstack.getItem() == ExtendedItems.COMMANDHORN.get()) {
-	    	if(itemstack.getTag()==null||!itemstack.getTag().contains(ExtendedCommandHornItem.type)||itemstack.getTag().getInt(ExtendedCommandHornItem.type)==0) {
+	    	if(!ExtendedCommandHornItem.isNotEmpty(itemstack)) {
 	    		CompoundNBT nbtTagCompound = itemstack.getTag();
 	    		if (nbtTagCompound == null) {
 	    	        nbtTagCompound = new CompoundNBT();
 	    	        itemstack.setTag(nbtTagCompound);
 	    	    }
-	    		nbtTagCompound.putInt(ExtendedCommandHornItem.type, packet.type);
+	    		nbtTagCompound.putFloat(ExtendedCommandHornItem.type, packet.type);
 	    	}
 	    }
 		context.get().setPacketHandled(true);

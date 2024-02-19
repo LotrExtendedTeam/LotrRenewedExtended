@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrExtended.common.datagen.models;
 
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrExtended.client.render.item.ExtendedItemModelsProperties;
+
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
@@ -145,14 +147,13 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		ResourceLocation horn = lotrLoc(location);
 		ResourceLocation horn_summon = lotrLoc(location+"_summon");
 		ResourceLocation horn_halt = lotrLoc(location+"_halt");
-		ResourceLocation horn_reddy = lotrLoc(location+"_halt");
 		ItemModelBuilder builder_halt = gen(withExistingParent("lotr:"+name+"_halt", "item/generated"), horn_halt);
-		ItemModelBuilder builder_reddy = gen(withExistingParent("lotr:"+name+"_reddy", "item/generated"), horn_reddy);
+		ItemModelBuilder builder_reddy = gen(withExistingParent("lotr:"+name+"_reddy", "item/generated"), horn_halt);
 		ItemModelBuilder builder_summon = gen(withExistingParent("lotr:"+name+"_summon", "item/generated"), horn_summon);
 		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, "item/generated"), horn);
-		builder.override().model(builder_halt).predicate(lotrLoc(ExtendedCommandHornItem.type), 1);
-		builder.override().model(builder_reddy).predicate(lotrLoc(ExtendedCommandHornItem.type), 2);
-		builder.override().model(builder_summon).predicate(lotrLoc(ExtendedCommandHornItem.type), 3);
+		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1.0F);
+		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2.0F);
+		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3.0F);
 		return builder;
 	}
 

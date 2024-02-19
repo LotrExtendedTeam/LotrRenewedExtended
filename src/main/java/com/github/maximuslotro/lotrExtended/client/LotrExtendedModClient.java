@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrExtended.client;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 
 import com.github.maximuslotro.lotrExtended.LotrExtendedMod;
+import com.github.maximuslotro.lotrExtended.client.render.item.ExtendedItemModelsProperties;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -19,32 +20,35 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @OnlyIn(Dist.CLIENT)
 public class LotrExtendedModClient {
-
-	public static LotrExtendedModClient INSTANCE;
-
-	public LotrExtendedModClient() {
-		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		forgeBus.addListener(this::login);
-		modBus.addListener(this::onParticleRegistry);
-		INSTANCE = this;
-		createPack("legacy", "Legacy TexturePack");
-		createPack("renewed", "Remastered Renewed TexturePack");
-	}
-
-	public LotrExtendedMod getParentInstance() {
-		return LotrExtendedMod.INSTANCE;
-	}
 
 	public static void staticClientSetup() {
 		if(Minecraft.getInstance()==null) {
 			return;
 		}
 		new LotrExtendedModClient();
+	}
+
+	public static LotrExtendedModClient INSTANCE;
+
+	public LotrExtendedMod getParentInstance() {
+		return LotrExtendedMod.INSTANCE;
+	}
+
+	public LotrExtendedModClient() {
+		INSTANCE = this;
+		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		forgeBus.addListener(this::login);
+		modBus.addListener(this::onParticleRegistry);
+		modBus.addListener(this::clientStartupEvent);
+
+		createPack("legacy", "Legacy TexturePack");
+		createPack("renewed", "Remastered Renewed TexturePack");
 	}
 
 	public static void createPack(String namespace, String name) {
@@ -54,6 +58,12 @@ public class LotrExtendedModClient {
 				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), namespace, name), 
 				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
 	}
+
+	public void clientStartupEvent(final FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+        	ExtendedItemModelsProperties.createAlternateModels();
+        });
+    }
 
     public void login(EntityJoinWorldEvent event)
     {

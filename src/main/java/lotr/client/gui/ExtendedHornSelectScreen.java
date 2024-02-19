@@ -35,8 +35,8 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 	  public void init() {
 	    this.guiLeft = (this.width - this.xSize) / 2;
 	    this.guiTop = (this.height - this.ySize) / 2;
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> setHorn(1)));
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> setHorn(3)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> setHorn(1.0F)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> setHorn(3.0F)));
 	  }
 	  
 	@Override
@@ -54,7 +54,7 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 		}
 	}
 
-	public void setHorn(int type) {
+	public void setHorn(float type) {
 		ExtendedPacketHandler.sendToServer(new ExtendedSPacketSelectHorn(type));
 		this.minecraft.player.closeContainer();
 	}
@@ -67,7 +67,7 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 			this.minecraft.player.closeContainer();
 			this.onClose();
 		}
-		if(itemstack.getTag() != null && itemstack.getTag().contains(ExtendedCommandHornItem.type) && itemstack.getTag().getInt(ExtendedCommandHornItem.type) != 0){
+		if(ExtendedCommandHornItem.isNotEmpty(itemstack)){
 			this.minecraft.player.closeContainer();
 			this.onClose();
 			return;
