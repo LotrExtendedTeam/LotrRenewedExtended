@@ -36,8 +36,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add Container Titles
-		for (String entity : DataGenValueHolder.containerTitlesHolders) {
-			addD(entity);
+		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add New Config Value Names
@@ -51,8 +51,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add New Subtitles
-		for (String entity : DataGenValueHolder.soundEventHolder) {
-			addD(entity);
+		for (Entry<String, String> entity : DataGenValueHolder.soundEventHolder.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Add Menu strings

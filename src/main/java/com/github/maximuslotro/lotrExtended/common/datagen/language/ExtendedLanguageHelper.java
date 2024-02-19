@@ -23,8 +23,8 @@ import net.minecraftforge.common.data.LanguageProvider;
 
 public abstract class ExtendedLanguageHelper extends LanguageProvider {
 
-	protected Map<String, String> dataPrivate = new TreeMap<>();
-	protected Map<String, String> dataCreated = new TreeMap<>();
+	protected Map<String, String> newStrings = new TreeMap<>();
+	protected Map<String, String> existingStrings = new TreeMap<>();
 	protected final String modidHere;
 	protected final String localeHere;
 
@@ -78,9 +78,9 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 	}
 
 	public void addD(String key, String value) {
-		if (!dataCreated.containsKey(key)) {
-			if (!dataPrivate.containsKey(key)) {
-				dataPrivate.put(key, value);
+		if (!existingStrings.containsKey(key)) {
+			if (!newStrings.containsKey(key)) {
+				newStrings.put(key, value);
 			} else {
 				System.out.println("Discarding Duplicate Key Found in Language Map: " + key);
 			}
@@ -100,15 +100,15 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
 		for (Entry<String, String> entry : map.entrySet()) {
-			dataCreated.put(entry.getKey(), entry.getValue());
+			existingStrings.put(entry.getKey(), entry.getValue());
 		}
 	}
 
 	public void makeLocalisationsFile() {
 		// Sort keys and add to superClass processor
 		TreeMap<String, String> sorted = new TreeMap<>();
-		sorted.putAll(dataPrivate);
-		sorted.putAll(dataCreated);
+		sorted.putAll(newStrings);
+		sorted.putAll(existingStrings);
 		for (Entry<String, String> entry : sorted.entrySet()) {
 			add(entry.getKey(), entry.getValue());
 		}

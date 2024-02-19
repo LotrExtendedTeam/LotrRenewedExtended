@@ -13,12 +13,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedSounds {
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, LotrExtendedMod.MODID);
-	public static final RegistryObject<SoundEvent> HORN_BLOW = register("item.horn_blow");
-	public static final RegistryObject<SoundEvent> TRADE = register("event.trade");
+	public static final RegistryObject<SoundEvent> HORN_BLOW = register("item.horn_blow", "Horn Blows");
+	public static final RegistryObject<SoundEvent> TRADE = register("event.trade", "Coins jingle");
 
-	public static RegistryObject<SoundEvent> register(String name) {
+	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.soundEventHolder.add("subtitles."+LotrExtendedMod.MODID+"."+name);
+			DataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);
 		}
 		return SOUNDS.register(name, () -> new SoundEvent(new ResourceLocation(LotrExtendedMod.MODID, name)));
 	}
