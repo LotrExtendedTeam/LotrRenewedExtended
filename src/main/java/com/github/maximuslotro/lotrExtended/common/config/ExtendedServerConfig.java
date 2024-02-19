@@ -29,8 +29,8 @@ public class ExtendedServerConfig {
 	private static void setupConfig(ForgeConfigSpec.Builder builder) {
 		builder.push("Gameplay settings");
 		enableFellowshipCreation = createBooleanValue(builder, "enableFellowshipCreation", true, false, "Enable or disable fellowship creation");
-		//enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable or disable renewed based waypoint creation");
-		//enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable or disable legacy based waypoint creation");
+		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable or disable renewed based waypoint creation");
+		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable or disable legacy based waypoint creation");
 		builder.pop();
 
 		builder.push("Special settings");

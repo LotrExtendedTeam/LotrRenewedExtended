@@ -51,12 +51,12 @@ public class MixinKegTileEntity {
 	public ResourceLocation lootTable;
 	protected long lootTableSeed;
 
-	@Final
 	@Shadow(remap = false)
+	@Final
 	private static final int[] SLOTS_INGREDIENT = { 0, 1, 2, 3, 4, 5 };
 
-	@Final
 	@Shadow(remap = false)
+	@Final
 	private static final int[] SLOTS_WATER = { 6, 7, 8 };
 	
 	@Shadow(remap = false)
