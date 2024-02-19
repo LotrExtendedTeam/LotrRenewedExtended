@@ -1,4 +1,4 @@
-package lotr.common.structureV4;
+package com.github.maximuslotro.lotrExtended.zzzDepricated;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +18,9 @@ import net.minecraft.world.storage.FolderName;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 
+/**
+ * Cool code to get internal file from mod
+ * */
 public class StructureFileIO {
 	private static final FolderName STRUCTURE_GEN_FOLDER = new FolderName("structure_gen");
 	private static File MOD_FILE;
@@ -33,6 +36,7 @@ public class StructureFileIO {
             }
         }
 	}
+
 	public static CompoundNBT load(String fileName, MinecraftServer server) {
 		try {
 			System.out.println("Loading structure file "+fileName);
