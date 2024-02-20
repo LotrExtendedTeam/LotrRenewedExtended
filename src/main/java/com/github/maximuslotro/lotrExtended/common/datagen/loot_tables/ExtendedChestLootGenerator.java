@@ -62,12 +62,13 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.BLUEBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.CRANBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.ELDERBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
-                		.add(ItemLootEntry.lootTableItem(ExtendedItems.RASPBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))));
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.RASPBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(2, 4))))));
 
 		//ADD chestnut, pouches
 		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE, LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-                		.setRolls(RandomValueRange.between(4, 6))
+                		.setRolls(RandomValueRange.between(3, 5))
                 		.add(ItemLootEntry.lootTableItem(Items.GOLD_INGOT).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
                 		.add(ItemLootEntry.lootTableItem(Items.GOLD_NUGGET).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.SILVER_INGOT.get()).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
@@ -91,6 +92,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(Items.COMPASS).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))
                 		.add(ItemLootEntry.lootTableItem(Items.LEAD).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.POCKET_MATCH.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
-                		.add(ItemLootEntry.lootTableItem(LOTRItems.SMOKING_PIPE.get()).setWeight(10).apply(SetCount.setCount(ConstantRange.exactly(1))))));
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.SMOKING_PIPE.get()).setWeight(10).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.CONKER.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 6))))));
 	}
 }
