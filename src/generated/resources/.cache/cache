@@ -598,6 +598,8 @@ e3b569f78c2c3c3f7ec058b78681f35adbf4ef74 assets/lotr/models/item/blackberry_bush
 d629aadd54f948835281305ec6d708a970c1d98a assets/lotr/models/item/blueberry.json
 37fd8cd97c50de75a2d06d2f28468c1ed18617c1 assets/lotr/models/item/blueberry_bush.json
 38802787b2ec049c864d76caf59113b1156b30e2 assets/lotr/models/item/bottle_of_poison.json
+494ae0cb00dcf18ef0d5eb774de6a129c9c5b378 assets/lotr/models/item/branding_iron.json
+430d19acc8dace6ae64b04fab9a6be35a9ecc607 assets/lotr/models/item/branding_iron_hot.json
 f55e6ebd9f1715694ce5ff6e5abdf993f889bc5a assets/lotr/models/item/carved_dol_guldur_brick.json
 f7ae6803323ea2127e3355ff6bb062d2bf87b1c2 assets/lotr/models/item/carved_red_rhunic_brick.json
 4fd3e621383b21f8bee97df0d8d0dcca24c8de61 assets/lotr/models/item/carved_rhunic_brick.json
@@ -825,7 +827,7 @@ aa47c410cdef2d3782b0aa280afe519a88e267d7 assets/lotr/models/item/topaz_block.jso
 b8bcefb49e6fa46989677ba38517b57ce769a9b8 assets/lotr/models/item/white_packed_fur_wall.json
 3b514bfa3464f0eee06220e9f3be1868ec54fbaa assets/lotr/models/item/wildberry.json
 61e5012bee4d7311c4765ce9410fb86a507e8c93 assets/lotr/models/item/wildberry_bush.json
-8bc36958d4eb6a72e7589c7bdf5945fa43bd19a6 assets/lotrextended/lang/en_us.json
+a63e71872ea26ba1c64e99463594f34169f1ab4f assets/lotrextended/lang/en_us.json
 fab7f084c36033ecbc4ddf6a09f65a5bc8a6947a assets/lotrextended/sounds.json
 860bec07fc5be2094bf83971044b84b578357d05 data/forge/loot_modifiers/global_loot_modifiers.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
@@ -1148,6 +1150,7 @@ e912fa08ae79e09f054585c65d5ef9f96d2fc175 data/lotr/advancements/recipes/lotr.mis
 262f6d0273e8197a5a3597d7c004b0b0cd060eec data/lotr/advancements/recipes/lotr.tools/angmar_hoe.json
 0b2160c5499322fbf6b4db07e519294800b3f79a data/lotr/advancements/recipes/lotr.tools/angmar_pickaxe.json
 eb14d6a616eda53036b1870716746fc1c6083581 data/lotr/advancements/recipes/lotr.tools/angmar_shovel.json
+28ffc840f59eba9246ac5f5121a8f3c46ae5878c data/lotr/advancements/recipes/lotr.tools/branding_iron.json
 2992db6c6d55c14b452c9b8e0071d8c3a87f2972 data/lotr/advancements/recipes/lotr.tools/dol_guldur_axe.json
 2ca15f92ef41f7f7260c2408b90f8d063f6351ce data/lotr/advancements/recipes/lotr.tools/dol_guldur_hoe.json
 f0d2427820507fc8862d136d87de35aea78fa525 data/lotr/advancements/recipes/lotr.tools/dol_guldur_pickaxe.json
@@ -1416,6 +1419,7 @@ e128ce6cb973b8a14dd6b195bf934970f51419c8 data/lotr/recipes/black_uruk_steel_bloc
 76970030e6a64d3a55cbba24edf207f554e8654b data/lotr/recipes/black_uruk_steel_ingot.json
 951a99133fbd08f1588970c8f4774fcfcfd875f0 data/lotr/recipes/black_uruk_steel_ingot_from_black_uruk_steel_block.json
 88450d2571134bae4b8d2a18c1268119997e6cd2 data/lotr/recipes/bottle_of_poison.json
+8deb6aca1c3ed350bacb1e588291299ac13ee5f2 data/lotr/recipes/branding_iron.json
 69633798ad26da51271d9b6edc4ef1433ece4d77 data/lotr/recipes/carved_dol_guldur_brick.json
 096582f70ba50548568e31dcbd76d14e96f625ba data/lotr/recipes/carved_red_rhunic_brick.json
 483df756da4bafd56de273881543730bb3343039 data/lotr/recipes/carved_rhunic_brick.json

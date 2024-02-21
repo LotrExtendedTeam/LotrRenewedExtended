@@ -335,6 +335,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK, 
 				()->LOTRBlocks.NUMENOREAN_BRICK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
 		//ITEMS
+		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
+		.pattern("  #")
+		.pattern(" X ")
+		.pattern("#  ")
+		.define('#', Ingredient.of(IRON_INGOT))
+		.define('X', Ingredient.of(Items.LEATHER))
+		.unlockedBy("has_"+ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath(), has(ExtendedItems.BRANDING_IRON.get()))
+		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
+		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
+		
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
 		.pattern("###")

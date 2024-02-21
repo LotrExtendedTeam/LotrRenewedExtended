@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrExtended.client.render.item.ExtendedItemModel
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
+import lotr.common.item.ExtendedBrandingIronItem;
 import lotr.common.item.ExtendedCommandHornItem;
 import lotr.common.item.ExtendedSilverCoin;
 import lotr.common.item.LOTRArmorItem;
@@ -83,6 +84,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genCommandHorn(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedBrandingIronItem ) {
+				genBrandingIron(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
 				//TODO add first/third person placement gen
 				//continue using manual generation for coins for now
@@ -154,6 +159,15 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1.0F);
 		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2.0F);
 		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3.0F);
+		return builder;
+	}
+
+	private ItemModelBuilder genBrandingIron(String name, String location) {
+		ResourceLocation iron = lotrLoc(location);
+		ResourceLocation iron_hot = lotrLoc(location+"_hot");
+		ItemModelBuilder builder_iron_hot = gen(withExistingParent("lotr:"+name+"_hot", "item/generated"), iron_hot);
+		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, "item/generated"), iron);
+		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1.0F);
 		return builder;
 	}
 

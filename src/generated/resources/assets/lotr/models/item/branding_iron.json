@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotr:item/branding_iron"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotrextended:heated": 1.0
+      },
+      "model": "lotr:item/branding_iron_hot"
+    }
+  ]
+}

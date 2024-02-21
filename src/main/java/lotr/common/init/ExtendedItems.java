@@ -120,6 +120,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_SPEAR;
 	public static RegistryObject<Item> ANGMAR_DAGGER;
 
+	public static RegistryObject<Item> BRANDING_IRON;
+
 	public static RegistryObject<Item> RASPBERRY_BUSH;
 	public static RegistryObject<Item> BLUEBERRY_BUSH;
 	public static RegistryObject<Item> BLACKBERRY_BUSH;
