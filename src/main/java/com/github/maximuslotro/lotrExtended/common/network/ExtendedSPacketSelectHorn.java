@@ -6,7 +6,6 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.item.ExtendedCommandHornItem;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
@@ -34,12 +33,7 @@ public class ExtendedSPacketSelectHorn {
 		ItemStack itemstack = player.getMainHandItem();
 	    if (itemstack != null && itemstack.getItem() == ExtendedItems.COMMANDHORN.get()) {
 	    	if(!ExtendedCommandHornItem.isNotEmpty(itemstack)) {
-	    		CompoundNBT nbtTagCompound = itemstack.getTag();
-	    		if (nbtTagCompound == null) {
-	    	        nbtTagCompound = new CompoundNBT();
-	    	        itemstack.setTag(nbtTagCompound);
-	    	    }
-	    		nbtTagCompound.putFloat(ExtendedCommandHornItem.type, packet.type);
+	    		ExtendedCommandHornItem.setType(itemstack, packet.type);
 	    	}
 	    }
 		context.get().setPacketHandled(true);

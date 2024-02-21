@@ -52,11 +52,9 @@ public class MixinKegTileEntity {
 	protected long lootTableSeed;
 
 	@Shadow(remap = false)
-	@Final
 	private static final int[] SLOTS_INGREDIENT = { 0, 1, 2, 3, 4, 5 };
 
 	@Shadow(remap = false)
-	@Final
 	private static final int[] SLOTS_WATER = { 6, 7, 8 };
 	
 	@Shadow(remap = false)
@@ -81,7 +79,7 @@ public class MixinKegTileEntity {
 	@Shadow(remap = false)
 	private IIntArray kegData;
 	/**
-	 * @reason Trying to find structure gen null pointer exception
+	 * @reason Fixing structure generation null-pointer exception
 	 * @author maximuslotro
 	 */
 	@Overwrite(remap = false)
@@ -106,6 +104,7 @@ public class MixinKegTileEntity {
 				proxyInv.setItem(i, getItem(i));
 			}
 			KegTileEntity entity = ((KegTileEntity)(Object)(this));
+			//Fix structure generation null-pointer exception. Level is null before chunk creation baking
 			if(!entity.hasLevel()) {
 				currentBrewingRecipe = null;
 				setItem(9, ItemStack.EMPTY);

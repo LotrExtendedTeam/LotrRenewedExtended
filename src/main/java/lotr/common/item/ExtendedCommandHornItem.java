@@ -16,12 +16,14 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ExtendedCommandHornItem extends Item {
-	public static final String type = "usage_type";
+	public static final String NBTvalue = "usage_type";
+
 	public ExtendedCommandHornItem(Properties properties) {
 		super(properties);
 	}
+
 	public ExtendedCommandHornItem() {
-		super((new Item.Properties()).stacksTo(1).tab(LOTRItemGroups.COMBAT));
+		super(new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT));
 	}
 
 	@Override
@@ -36,16 +38,10 @@ public class ExtendedCommandHornItem extends Item {
 	
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, World world, LivingEntity entityplayer) {
-		CompoundNBT nbtTagCompound = itemstack.getTag();
-		if (nbtTagCompound == null) {
-	        nbtTagCompound = new CompoundNBT();
-	        itemstack.setTag(nbtTagCompound);
-	    }
-
 		if (isHalt(itemstack)) {
-			nbtTagCompound.putFloat(type, 2.0F);
+			setType(itemstack, 2.0F);
 		} else if (isReddy(itemstack)) {
-			nbtTagCompound.putFloat(type, 1.0F);
+			setType(itemstack, 1.0F);
 		}
 		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
@@ -55,13 +51,13 @@ public class ExtendedCommandHornItem extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
 		CompoundNBT nbtTagCompound = heldItem.getTag();
-		if (nbtTagCompound == null || !nbtTagCompound.contains(type)) {
+		if (!isNotEmpty(heldItem)) {
 			if (world.isClientSide()) {
 				new ExtendedCommandHornClientSide().openMenu();
 			}
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 		}
-		if (nbtTagCompound != null && nbtTagCompound.contains(type)) {
+		if (isNotEmpty(heldItem)) {
 			player.startUsingItem(hand);
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 		}
@@ -84,21 +80,28 @@ public class ExtendedCommandHornItem extends Item {
 
 	public static boolean isNotEmpty(ItemStack itemStack) {
 		CompoundNBT compoundnbt = itemStack.getTag();
-		return compoundnbt != null && compoundnbt.contains(type);
+		return compoundnbt != null && compoundnbt.contains(NBTvalue);
 	}
 
 	public static boolean isHalt(ItemStack itemStack) {
 		CompoundNBT compoundnbt = itemStack.getTag();
-		return compoundnbt != null && compoundnbt.contains(type) && compoundnbt.getInt(type) == 1.0F;
+		return isNotEmpty(itemStack) && compoundnbt.getInt(NBTvalue) == 1.0F;
 	}
 
 	public static boolean isReddy(ItemStack itemStack) {
 		CompoundNBT compoundnbt = itemStack.getTag();
-		return compoundnbt != null && compoundnbt.contains(type) && compoundnbt.getInt(type) == 2.0F;
+		return isNotEmpty(itemStack) && compoundnbt.getInt(NBTvalue) == 2.0F;
 	}
 
 	public static boolean isSummon(ItemStack itemStack) {
 		CompoundNBT compoundnbt = itemStack.getTag();
-		return compoundnbt != null && compoundnbt.contains(type) && compoundnbt.getInt(type) == 3.0F;
+		return isNotEmpty(itemStack) && compoundnbt.getInt(NBTvalue) == 3.0F;
+	}
+
+	public static void setType(ItemStack itemStack, float type) {
+		if(!itemStack.hasTag()) {
+			itemStack.setTag(new CompoundNBT());
+		}
+		itemStack.getTag().putFloat(NBTvalue, type);
 	}
 }
