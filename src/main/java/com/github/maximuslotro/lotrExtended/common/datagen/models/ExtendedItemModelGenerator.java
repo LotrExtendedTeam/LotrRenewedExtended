@@ -155,7 +155,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		ItemModelBuilder builder_halt = gen(withExistingParent("lotr:"+name+"_halt", "item/generated"), horn_halt);
 		ItemModelBuilder builder_reddy = gen(withExistingParent("lotr:"+name+"_reddy", "item/generated"), horn_halt);
 		ItemModelBuilder builder_summon = gen(withExistingParent("lotr:"+name+"_summon", "item/generated"), horn_summon);
-		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, "item/generated"), horn);
+		ItemModelBuilder builder = genGenerated(name, horn);
 		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1.0F);
 		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2.0F);
 		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3.0F);
@@ -165,8 +165,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	private ItemModelBuilder genBrandingIron(String name, String location) {
 		ResourceLocation iron = lotrLoc(location);
 		ResourceLocation iron_hot = lotrLoc(location+"_hot");
-		ItemModelBuilder builder_iron_hot = gen(withExistingParent("lotr:"+name+"_hot", "item/generated"), iron_hot);
-		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, "item/generated"), iron);
+		ItemModelBuilder builder_iron_hot = genHandheld(name+"_hot", iron_hot);
+		ItemModelBuilder builder = genHandheld(name, iron);
 		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1.0F);
 		return builder;
 	}
