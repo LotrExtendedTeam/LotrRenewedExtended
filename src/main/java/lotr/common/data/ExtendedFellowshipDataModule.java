@@ -238,13 +238,13 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		}
 	}
 
-	public void createFellowship(String name, boolean adminOverride) {
+	public boolean createFellowship(String name, boolean adminOverride) {
 		if (!ExtendedServerConfig.enableFellowshipCreation.get() && !adminOverride) {
 			TextComponent comp = new TranslationTextComponent("gui.lotrextended.fellowships.creation.disabled");
 			comp.withStyle(TextFormatting.YELLOW);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
 			owner.sendMessage(comp, owner.getUUID());
-			return;
+			return false;
 		}
 
 		if (!anyMatchingFellowshipNames(name)) {
@@ -252,7 +252,9 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			fellowship.createAndRegister();
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
 			fellowship.createNotification("Fellowship created!", owner);
+			return true;
 		}
+		return false;
 	}
 
 	public void leaveFellowship(ExtendedFellowship fs) {
@@ -265,7 +267,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		}
 	}
 
-	public void disbandFellowship(ExtendedFellowship fs) {
+	public boolean disbandFellowship(ExtendedFellowship fs) {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
 			for(UUID user : fs.getFellowshipMembers()) {
 				PlayerEntity player = getPlayerFromUUID(user);
@@ -275,7 +277,9 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			}
 			fs.disband();
 			removeFellowship(fs);
+			return true;
 		}
+		return false;
 	}
 
 	public boolean anyMatchingFellowshipNames(String name) {

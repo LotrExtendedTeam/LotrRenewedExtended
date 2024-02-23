@@ -50,12 +50,13 @@ public class ExtendedCakeBlock extends CakeBlock {
 			ItemStack itemstack = entity.getItemInHand(hand);
 			if(itemstack.getItem() instanceof DaggerItem) {
 				popResource(entity.level, pos, new ItemStack(sliceitem.get(), 1));
+				entity.awardStat(ExtendedStats.SLICE_CHEESE_SLICE);
 			}
 			else {
 				entity.getFoodData().eat(2, 0.1F);
+				entity.awardStat(ExtendedStats.EAT_CHEESE_SLICE);
 			}
 			world.playSound((PlayerEntity)null, pos, SoundEvents.PLAYER_BURP, SoundCategory.BLOCKS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
-			entity.awardStat(ExtendedStats.EAT_CHEESE_SLICE);
 			int i = state.getValue(BITES);
 			if (i < 6) {
 				world.setBlock(pos, state.setValue(BITES, Integer.valueOf(i + 1)), 3);

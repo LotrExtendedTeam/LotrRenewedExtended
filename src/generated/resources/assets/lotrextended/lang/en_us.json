@@ -301,6 +301,9 @@
   "item.lotr.wildberry": "Wildberry",
   "stats.lotrextended.animals_branded": "Animals Branded",
   "stats.lotrextended.eat_cheese_slice": "Cheese Slices Eaten",
+  "stats.lotrextended.fellowship_create": "Fellowships Created",
+  "stats.lotrextended.fellowship_delete": "Fellowships Disbanded",
+  "stats.lotrextended.sliced_cheese": "Cheese Slices Cut",
   "subtitles.lotrextended.event.trade": "Coins jingle",
   "subtitles.lotrextended.item.horn_blow": "Horn Blows"
 }

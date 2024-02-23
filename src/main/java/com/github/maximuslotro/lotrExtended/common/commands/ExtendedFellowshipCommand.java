@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrExtended.common.commands;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrExtended.hooks.MixinHooks;
+import com.github.maximuslotro.lotrExtended.stats.ExtendedStats;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -205,7 +206,9 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
-        	fellowshipData.createFellowship(fellowshipname, adminOverride);
+        	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
+    			player.awardStat(ExtendedStats.FELLOWSHIP_CREATE);
+        	}
         	return 0;
         } 
 		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists!").withStyle(TextFormatting.RED), true);
@@ -346,8 +349,12 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
-        	fellowshipData.disbandFellowship(fellowship);
-        	source.sendSuccess(new StringTextComponent("Disbanded the fellowship"), true);
+        	if(fellowshipData.disbandFellowship(fellowship)) {
+        		player.awardStat(ExtendedStats.FELLOWSHIP_DISBAND);
+            	source.sendSuccess(new StringTextComponent("Disbanded the fellowship"), true);
+            	return 0;
+        	}
+        	source.sendFailure(new StringTextComponent("Failed to Disbanded the fellowship"));
         	return 0;
         }
         source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);

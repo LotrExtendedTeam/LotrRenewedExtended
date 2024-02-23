@@ -44,11 +44,11 @@ public class ExtendedFellowship {
 	public boolean needsSave() {
 		return needsSaving;
 	}
-	  public void createAndRegister() {
-		    ExtendedFellowshipHolderServer.addFellowship(this);
-		    MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
-		    markDirty();
-		  }
+	public void createAndRegister() {
+		ExtendedFellowshipHolderServer.addFellowship(this);
+		MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
+		markDirty();
+	}
 	public void load(CompoundNBT arg0) {
 		removed = arg0.getBoolean("Disbanded");
 		if (arg0.contains("Owner"))
