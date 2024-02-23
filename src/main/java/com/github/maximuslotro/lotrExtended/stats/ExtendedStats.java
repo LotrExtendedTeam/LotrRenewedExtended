@@ -10,9 +10,11 @@ import net.minecraftforge.fml.DatagenModLoader;
 
 public class ExtendedStats {
 	public static ResourceLocation EAT_CHEESE_SLICE;
+	public static ResourceLocation ANIMALS_BRANDED;
 
 	public static void init() {
 		EAT_CHEESE_SLICE = registerStat("eat_cheese_slice", "Cheese Slices Eaten", IStatFormatter.DEFAULT);
+		ANIMALS_BRANDED = registerStat("animals_branded", "Animals Branded", IStatFormatter.DEFAULT);
 	}
 
 	private static ResourceLocation registerStat(String key, String defaultName, IStatFormatter formatter) {

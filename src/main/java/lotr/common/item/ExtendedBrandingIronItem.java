@@ -4,12 +4,26 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrExtended.stats.ExtendedStats;
+
 import lotr.common.init.LOTRItemGroups;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 
 public class ExtendedBrandingIronItem extends Item{
 	public static final String isHot = "heated";
@@ -28,6 +42,41 @@ public class ExtendedBrandingIronItem extends Item{
 	@Override
 	public boolean isValidRepairItem(ItemStack p_82789_1_, ItemStack p_82789_2_) {
 		return p_82789_2_.getItem() == Items.IRON_INGOT;
+	}
+
+	public ActionResultType interactLivingEntity(ItemStack item, PlayerEntity player, LivingEntity entity, Hand p_111207_4_) {
+		if(isTempered(item)&&getTemperedName(item)!=null) {
+			if(entity instanceof AnimalEntity) {
+				AnimalEntity animal = ((AnimalEntity) entity);
+				if(!animal.hasCustomName() || !animal.getCustomName().getString().equals(getTemperedName(item))) {
+					animal.setCustomName(new StringTextComponent(getTemperedName(item)));
+					animal.setPersistenceRequired();
+					animal.playAmbientSound();
+					animal.getJumpControl().jump();
+					damageItem(item);
+					entity.level.playSound(player, entity.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
+					if(!entity.level.isClientSide()) {
+						setTempererName(entity, player.getUUID());
+					}
+					player.awardStat(ExtendedStats.ANIMALS_BRANDED);
+					ActionResultType.sidedSuccess(entity.level.isClientSide);
+				}
+			}
+		}
+		return super.interactLivingEntity(item, player, entity, p_111207_4_);
+	}
+
+	public ActionResultType useOn(ItemUseContext p_195939_1_) {
+		BlockState blockstate = p_195939_1_.getLevel().getBlockState(p_195939_1_.getClickedPos());
+		if (blockstate.is(BlockTags.FIRE)||blockstate.is(BlockTags.CAMPFIRES)) {
+			World world = p_195939_1_.getLevel();
+			if (!world.isClientSide) {
+				setTempered(p_195939_1_.getItemInHand(), true);
+			}
+			return ActionResultType.sidedSuccess(world.isClientSide);
+		} else {
+			return super.useOn(p_195939_1_);
+		}
 	}
 
 	//Item Heated Handling
@@ -65,6 +114,21 @@ public class ExtendedBrandingIronItem extends Item{
 		itemStack.getTag().putInt(USES_LEFT, number);
 	}
 
+	public static void damageItem(ItemStack itemStack) {
+		if(!itemStack.hasTag()) {
+			return;
+		}
+		if(getUses(itemStack)!=0) {
+			if(getUses(itemStack)-1<=0) {
+				setTempered(itemStack, false);
+				itemStack.getTag().remove(USES_LEFT);
+			}
+			else {
+				setUses(itemStack, getUses(itemStack)-1);
+			}
+		}
+	}
+
 	//Item Renamed Data Handling
 	@Nullable
 	public static String getTemperedName(ItemStack itemStack) {
@@ -72,7 +136,7 @@ public class ExtendedBrandingIronItem extends Item{
 		if(compoundnbt != null && compoundnbt.contains(Name)) {
 			return compoundnbt.getString(Name);
 		}
-		return null;
+		return "Placeholder name :)";
 	}
 
 	public static void setTemperedName(ItemStack itemStack, String name) {
