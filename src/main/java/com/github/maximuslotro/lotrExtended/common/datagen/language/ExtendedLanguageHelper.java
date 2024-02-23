@@ -100,6 +100,15 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
 		for (Entry<String, String> entry : map.entrySet()) {
+			if(entry.getKey().contains("stat.lotrextended")) {
+				continue;
+			}
+			if(entry.getKey().contains("config.lotrextended")) {
+				continue;
+			}
+			if(entry.getKey().contains("subtitles.lotrextended")) {
+				continue;
+			}
 			existingStrings.put(entry.getKey(), entry.getValue());
 		}
 	}

@@ -24,7 +24,7 @@ public class ExtendedStats {
 	}
 
 	private static ResourceLocation registerStat(String key, String defaultName, IStatFormatter formatter) {
-		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.statsHolders.put("stats.lotrextended."+key, defaultName);}
+		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.statsHolders.put("stat.lotrextended."+key, defaultName);}
 		ResourceLocation res = new ResourceLocation("lotrextended", key);
 		Registry.register(Registry.CUSTOM_STAT, res.toString(), res);
 		Stats.CUSTOM.get(res, formatter);

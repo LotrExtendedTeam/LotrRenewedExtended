@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class ExtendedPoisonBottleItem extends Item {
 	public ExtendedPoisonBottleItem(Properties properties) {
-		super(properties);
+		super(properties.craftRemainder(Items.GLASS_BOTTLE));
 	}
 
 	@Override
