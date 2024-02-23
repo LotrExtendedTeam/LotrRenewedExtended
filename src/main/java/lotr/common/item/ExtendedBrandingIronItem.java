@@ -25,7 +25,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ExtendedBrandingIronItem extends Item{
+public class ExtendedBrandingIronItem extends Item {
 	public static final String isHot = "heated";
 	public static final String UserUUID = "TempererName";
 	public static final String Name = "TempererName";
@@ -45,18 +45,18 @@ public class ExtendedBrandingIronItem extends Item{
 	}
 
 	public ActionResultType interactLivingEntity(ItemStack item, PlayerEntity player, LivingEntity entity, Hand p_111207_4_) {
-		if(isTempered(item)&&getTemperedName(item)!=null) {
+		if(isTempered(player.getMainHandItem())&&getTemperedName(player.getMainHandItem())!=null) {
 			if(entity instanceof AnimalEntity) {
 				AnimalEntity animal = ((AnimalEntity) entity);
-				if(!animal.hasCustomName() || !animal.getCustomName().getString().equals(getTemperedName(item))) {
-					animal.setCustomName(new StringTextComponent(getTemperedName(item)));
+				if(!animal.hasCustomName() || !animal.getCustomName().getString().equals(getTemperedName(player.getMainHandItem()))) {
+					animal.setCustomName(new StringTextComponent(getTemperedName(player.getMainHandItem())));
 					animal.setPersistenceRequired();
 					animal.playAmbientSound();
 					animal.getJumpControl().jump();
-					damageItem(item);
 					entity.level.playSound(player, entity.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
 					if(!entity.level.isClientSide()) {
 						setTempererName(entity, player.getUUID());
+						damageItem(player.getMainHandItem());
 					}
 					player.awardStat(ExtendedStats.ANIMALS_BRANDED);
 					ActionResultType.sidedSuccess(entity.level.isClientSide);
@@ -116,6 +116,7 @@ public class ExtendedBrandingIronItem extends Item{
 
 	public static void damageItem(ItemStack itemStack) {
 		if(!itemStack.hasTag()) {
+			setUses(itemStack, 5);
 			return;
 		}
 		if(getUses(itemStack)!=0) {
