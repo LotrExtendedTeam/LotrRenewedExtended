@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrExtended.mixins.lotr.common.init;
 
 import java.util.function.Supplier;
 
-import lotr.common.block.ExtendedDaggerItem;
 import lotr.common.init.*;
 import lotr.common.item.*;
 
