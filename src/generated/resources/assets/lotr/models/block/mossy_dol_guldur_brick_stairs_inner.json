@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "lotr:block/mossy_dol_guldur_brick",
-    "bottom": "lotr:block/mossy_dol_guldur_brick",
-    "top": "lotr:block/mossy_dol_guldur_brick"
-  }
-}

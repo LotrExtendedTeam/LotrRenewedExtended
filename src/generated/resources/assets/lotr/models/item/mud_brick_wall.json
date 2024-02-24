@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "lotr:block/mud_brick"
+    "wall": "lotrextended:block/mud_brick"
   }
 }

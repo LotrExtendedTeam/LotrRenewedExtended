@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/gundabad_crafting_table"
+      "model": "lotrextended:block/gundabad_crafting_table"
     }
   }
 }

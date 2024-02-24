@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/morwaith_crafting_table"
+      "model": "lotrextended:block/morwaith_crafting_table"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/carved_red_rhunic_brick"
+      "model": "lotrextended:block/carved_red_rhunic_brick"
     }
   }
 }

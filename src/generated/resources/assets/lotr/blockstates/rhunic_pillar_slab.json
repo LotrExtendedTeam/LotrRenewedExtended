@@ -1,44 +1,44 @@
 {
   "variants": {
     "axis=x,type=top": {
-      "model": "lotr:block/rhunic_pillar_slab_top",
+      "model": "lotrextended:block/rhunic_pillar_slab_top",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=top": {
-      "model": "lotr:block/rhunic_pillar_slab_top"
+      "model": "lotrextended:block/rhunic_pillar_slab_top"
     },
     "axis=z,type=top": {
-      "model": "lotr:block/rhunic_pillar_slab_top",
+      "model": "lotrextended:block/rhunic_pillar_slab_top",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=bottom": {
-      "model": "lotr:block/rhunic_pillar_slab",
+      "model": "lotrextended:block/rhunic_pillar_slab",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=bottom": {
-      "model": "lotr:block/rhunic_pillar_slab"
+      "model": "lotrextended:block/rhunic_pillar_slab"
     },
     "axis=z,type=bottom": {
-      "model": "lotr:block/rhunic_pillar_slab",
+      "model": "lotrextended:block/rhunic_pillar_slab",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=double": {
-      "model": "lotr:block/rhunic_pillar",
+      "model": "lotrextended:block/rhunic_pillar",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=double": {
-      "model": "lotr:block/rhunic_pillar"
+      "model": "lotrextended:block/rhunic_pillar"
     },
     "axis=z,type=double": {
-      "model": "lotr:block/rhunic_pillar",
+      "model": "lotrextended:block/rhunic_pillar",
       "x": 270,
       "uvlock": true
     }

@@ -1,51 +1,51 @@
 {
   "variants": {
     "above=false,axis=x,below=false": {
-      "model": "lotr:block/rhunic_pillar",
+      "model": "lotrextended:block/rhunic_pillar",
       "x": 90,
       "y": 90
     },
     "above=true,axis=x,below=false": {
-      "model": "lotr:block/rhunic_pillar_bottom",
+      "model": "lotrextended:block/rhunic_pillar_bottom",
       "x": 90,
       "y": 90
     },
     "above=false,axis=y,below=false": {
-      "model": "lotr:block/rhunic_pillar"
+      "model": "lotrextended:block/rhunic_pillar"
     },
     "above=true,axis=y,below=false": {
-      "model": "lotr:block/rhunic_pillar_bottom"
+      "model": "lotrextended:block/rhunic_pillar_bottom"
     },
     "above=false,axis=z,below=false": {
-      "model": "lotr:block/rhunic_pillar",
+      "model": "lotrextended:block/rhunic_pillar",
       "x": 270
     },
     "above=true,axis=z,below=false": {
-      "model": "lotr:block/rhunic_pillar_bottom",
+      "model": "lotrextended:block/rhunic_pillar_bottom",
       "x": 270
     },
     "above=false,axis=x,below=true": {
-      "model": "lotr:block/rhunic_pillar_top",
+      "model": "lotrextended:block/rhunic_pillar_top",
       "x": 90,
       "y": 90
     },
     "above=true,axis=x,below=true": {
-      "model": "lotr:block/rhunic_pillar_middle",
+      "model": "lotrextended:block/rhunic_pillar_middle",
       "x": 90,
       "y": 90
     },
     "above=false,axis=y,below=true": {
-      "model": "lotr:block/rhunic_pillar_top"
+      "model": "lotrextended:block/rhunic_pillar_top"
     },
     "above=true,axis=y,below=true": {
-      "model": "lotr:block/rhunic_pillar_middle"
+      "model": "lotrextended:block/rhunic_pillar_middle"
     },
     "above=false,axis=z,below=true": {
-      "model": "lotr:block/rhunic_pillar_top",
+      "model": "lotrextended:block/rhunic_pillar_top",
       "x": 270
     },
     "above=true,axis=z,below=true": {
-      "model": "lotr:block/rhunic_pillar_middle",
+      "model": "lotrextended:block/rhunic_pillar_middle",
       "x": 270
     }
   }

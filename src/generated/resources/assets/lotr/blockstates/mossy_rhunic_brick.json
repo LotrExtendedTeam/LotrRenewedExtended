@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/mossy_rhunic_brick"
+      "model": "lotrextended:block/mossy_rhunic_brick"
     }
   }
 }

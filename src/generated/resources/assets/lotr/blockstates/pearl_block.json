@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/pearl_block"
+      "model": "lotrextended:block/pearl_block"
     }
   }
 }

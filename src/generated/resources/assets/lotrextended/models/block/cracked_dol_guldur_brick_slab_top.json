@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "lotrextended:block/cracked_dol_guldur_brick",
+    "bottom": "lotrextended:block/cracked_dol_guldur_brick",
+    "top": "lotrextended:block/cracked_dol_guldur_brick"
+  }
+}

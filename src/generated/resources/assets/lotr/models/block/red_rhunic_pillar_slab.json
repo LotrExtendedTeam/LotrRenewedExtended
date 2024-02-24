@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "lotr:block/red_rhunic_pillar",
-    "bottom": "lotr:block/red_rhunic_pillar",
-    "top": "lotr:block/red_rhunic_pillar"
-  }
-}

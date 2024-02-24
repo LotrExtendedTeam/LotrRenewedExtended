@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/gilded_iron_block"
+      "model": "lotrextended:block/gilded_iron_block"
     }
   }
 }

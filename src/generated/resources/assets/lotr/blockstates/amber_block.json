@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/amber_block"
+      "model": "lotrextended:block/amber_block"
     }
   }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "lotrextended:block/remains_ore_elf_3"
+  }
+}

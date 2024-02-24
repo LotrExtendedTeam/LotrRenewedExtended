@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "lotrextended:block/raspberry_plant_1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/black_uruk_steel_block_side",
+    "end": "lotrextended:block/black_uruk_steel_block_end"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "lotr:block/red_rhunic_brick"
+    "wall": "lotrextended:block/red_rhunic_brick"
   }
 }

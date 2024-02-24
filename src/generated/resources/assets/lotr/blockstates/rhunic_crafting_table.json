@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/rhunic_crafting_table"
+      "model": "lotrextended:block/rhunic_crafting_table"
     }
   }
 }

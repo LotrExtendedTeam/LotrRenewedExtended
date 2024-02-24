@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/golden_taurethrim_brick"
+      "model": "lotrextended:block/golden_taurethrim_brick"
     }
   }
 }

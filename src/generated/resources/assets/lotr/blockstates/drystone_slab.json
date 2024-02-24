@@ -1,30 +1,30 @@
 {
   "variants": {
     "axis=x,type=top": {
-      "model": "lotr:block/drystone_slab_top",
+      "model": "lotrextended:block/drystone_slab_top",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=top": {
-      "model": "lotr:block/drystone_slab_top"
+      "model": "lotrextended:block/drystone_slab_top"
     },
     "axis=z,type=top": {
-      "model": "lotr:block/drystone_slab_top",
+      "model": "lotrextended:block/drystone_slab_top",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=bottom": {
-      "model": "lotr:block/drystone_slab",
+      "model": "lotrextended:block/drystone_slab",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=bottom": {
-      "model": "lotr:block/drystone_slab"
+      "model": "lotrextended:block/drystone_slab"
     },
     "axis=z,type=bottom": {
-      "model": "lotr:block/drystone_slab",
+      "model": "lotrextended:block/drystone_slab",
       "x": 270,
       "uvlock": true
     },

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/mossy_dol_guldur_brick"
+      "model": "lotrextended:block/mossy_dol_guldur_brick"
     }
   }
 }

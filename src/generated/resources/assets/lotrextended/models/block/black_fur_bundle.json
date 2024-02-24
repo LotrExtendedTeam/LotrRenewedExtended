@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "lotrextended:block/black_fur_bundle_side",
+    "bottom": "lotrextended:block/black_fur_bundle_bottom",
+    "top": "lotrextended:block/black_fur_bundle_top"
+  }
+}

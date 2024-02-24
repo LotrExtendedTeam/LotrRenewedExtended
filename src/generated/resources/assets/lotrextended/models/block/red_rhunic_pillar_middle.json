@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/red_rhunic_pillar_middle",
+    "end": "lotrextended:block/red_rhunic_pillar_face"
+  }
+}

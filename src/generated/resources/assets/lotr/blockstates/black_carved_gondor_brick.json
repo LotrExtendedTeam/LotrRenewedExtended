@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/black_carved_gondor_brick"
+      "model": "lotrextended:block/black_carved_gondor_brick"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/emerald_block"
+      "model": "lotrextended:block/emerald_block"
     }
   }
 }

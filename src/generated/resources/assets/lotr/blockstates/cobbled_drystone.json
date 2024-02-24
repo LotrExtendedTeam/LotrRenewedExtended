@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/cobbled_drystone"
+      "model": "lotrextended:block/cobbled_drystone"
     }
   }
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "lotr:block/taurethrim_brick",
-    "bottom": "lotr:block/taurethrim_brick",
-    "top": "lotr:block/taurethrim_brick"
-  }
-}

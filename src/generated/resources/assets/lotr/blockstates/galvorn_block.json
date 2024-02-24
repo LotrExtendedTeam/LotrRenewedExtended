@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/galvorn_block"
+      "model": "lotrextended:block/galvorn_block"
     }
   }
 }

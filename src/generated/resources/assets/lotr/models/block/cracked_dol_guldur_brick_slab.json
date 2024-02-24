@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "lotr:block/cracked_dol_guldur_brick",
-    "bottom": "lotr:block/cracked_dol_guldur_brick",
-    "top": "lotr:block/cracked_dol_guldur_brick"
-  }
-}

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/sapphire_ore"
+      "model": "lotrextended:block/sapphire_ore"
     }
   }
 }

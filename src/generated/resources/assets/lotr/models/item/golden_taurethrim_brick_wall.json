@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "lotr:block/golden_taurethrim_brick"
+    "wall": "lotrextended:block/golden_taurethrim_brick"
   }
 }

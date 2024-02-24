@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/morgul_steel_block_side",
+    "end": "lotrextended:block/morgul_steel_block_end"
+  }
+}

@@ -1,19 +1,19 @@
 {
   "variants": {
     "facing=north": {
-      "model": "lotr:block/morgul_torch_wall",
+      "model": "lotrextended:block/morgul_torch_wall",
       "y": 270
     },
     "facing=south": {
-      "model": "lotr:block/morgul_torch_wall",
+      "model": "lotrextended:block/morgul_torch_wall",
       "y": 90
     },
     "facing=west": {
-      "model": "lotr:block/morgul_torch_wall",
+      "model": "lotrextended:block/morgul_torch_wall",
       "y": 180
     },
     "facing=east": {
-      "model": "lotr:block/morgul_torch_wall"
+      "model": "lotrextended:block/morgul_torch_wall"
     }
   }
 }

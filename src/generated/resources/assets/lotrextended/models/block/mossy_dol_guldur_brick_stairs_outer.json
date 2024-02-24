@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "lotrextended:block/mossy_dol_guldur_brick",
+    "bottom": "lotrextended:block/mossy_dol_guldur_brick",
+    "top": "lotrextended:block/mossy_dol_guldur_brick"
+  }
+}

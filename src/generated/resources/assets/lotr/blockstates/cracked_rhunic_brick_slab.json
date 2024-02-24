@@ -1,44 +1,44 @@
 {
   "variants": {
     "axis=x,type=top": {
-      "model": "lotr:block/cracked_rhunic_brick_slab_top",
+      "model": "lotrextended:block/cracked_rhunic_brick_slab_top",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=top": {
-      "model": "lotr:block/cracked_rhunic_brick_slab_top"
+      "model": "lotrextended:block/cracked_rhunic_brick_slab_top"
     },
     "axis=z,type=top": {
-      "model": "lotr:block/cracked_rhunic_brick_slab_top",
+      "model": "lotrextended:block/cracked_rhunic_brick_slab_top",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=bottom": {
-      "model": "lotr:block/cracked_rhunic_brick_slab",
+      "model": "lotrextended:block/cracked_rhunic_brick_slab",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=bottom": {
-      "model": "lotr:block/cracked_rhunic_brick_slab"
+      "model": "lotrextended:block/cracked_rhunic_brick_slab"
     },
     "axis=z,type=bottom": {
-      "model": "lotr:block/cracked_rhunic_brick_slab",
+      "model": "lotrextended:block/cracked_rhunic_brick_slab",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=double": {
-      "model": "lotr:block/cracked_rhunic_brick",
+      "model": "lotrextended:block/cracked_rhunic_brick",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=double": {
-      "model": "lotr:block/cracked_rhunic_brick"
+      "model": "lotrextended:block/cracked_rhunic_brick"
     },
     "axis=z,type=double": {
-      "model": "lotr:block/cracked_rhunic_brick",
+      "model": "lotrextended:block/cracked_rhunic_brick",
       "x": 270,
       "uvlock": true
     }

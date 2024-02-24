@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/black_uruk_steel_block"
+      "model": "lotrextended:block/black_uruk_steel_block"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/mossy_drystone"
+      "model": "lotrextended:block/mossy_drystone"
     }
   }
 }

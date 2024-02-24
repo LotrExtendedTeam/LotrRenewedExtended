@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "lotrextended:block/cracked_dol_guldur_brick"
+  }
+}

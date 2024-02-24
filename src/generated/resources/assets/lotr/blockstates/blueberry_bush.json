@@ -1,16 +1,16 @@
 {
   "variants": {
     "age=0": {
-      "model": "lotr:block/blueberry_bush_empty"
+      "model": "lotrextended:block/blueberry_bush_empty"
     },
     "age=1": {
-      "model": "lotr:block/blueberry_bush_empty"
+      "model": "lotrextended:block/blueberry_bush_empty"
     },
     "age=2": {
-      "model": "lotr:block/blueberry_bush_empty"
+      "model": "lotrextended:block/blueberry_bush_empty"
     },
     "age=3": {
-      "model": "lotr:block/blueberry_bush"
+      "model": "lotrextended:block/blueberry_bush"
     }
   }
 }

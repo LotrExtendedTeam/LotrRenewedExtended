@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "lotrextended:block/taurethrim_brick",
+    "bottom": "lotrextended:block/taurethrim_brick",
+    "top": "lotrextended:block/taurethrim_brick"
+  }
+}

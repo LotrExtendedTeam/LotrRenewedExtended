@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "lotr:block/white_packed_fur_1",
-    "bottom": "lotr:block/white_packed_fur_1",
-    "top": "lotr:block/white_packed_fur_1"
-  }
-}

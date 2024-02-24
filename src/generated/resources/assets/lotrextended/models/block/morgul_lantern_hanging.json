@@ -1,0 +1,8 @@
+{
+  "parent": "lotr:block/template_lamp_hanging",
+  "textures": {
+    "lamp": "lotrextended:block/morgul_lantern",
+    "fire": "lotrextended:block/morgul_lantern_fire",
+    "chain": "lotrextended:block/morgul_lantern_chain"
+  }
+}

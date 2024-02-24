@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/morgul_steel_block"
+      "model": "lotrextended:block/morgul_steel_block"
     }
   }
 }

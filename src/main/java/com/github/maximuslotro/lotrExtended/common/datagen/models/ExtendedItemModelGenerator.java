@@ -31,6 +31,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		super(generator, modid, existingFileHelper);
 	}
 
+	public ResourceLocation lotrExtendedLoc(String name) {
+        return new ResourceLocation("lotrextended", name);
+    }
+
 	public ResourceLocation lotrLoc(String name) {
         return new ResourceLocation("lotr", name);
     }
@@ -40,7 +44,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getKey().contains("torch")) {
-				genGenerated(item.getKey(), lotrLoc("block/"+item.getKey()));
+				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRArmorItem) {

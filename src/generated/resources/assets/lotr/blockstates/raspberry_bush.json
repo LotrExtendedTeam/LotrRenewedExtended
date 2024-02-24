@@ -1,16 +1,16 @@
 {
   "variants": {
     "age=0": {
-      "model": "lotr:block/raspberry_bush_empty"
+      "model": "lotrextended:block/raspberry_bush_empty"
     },
     "age=1": {
-      "model": "lotr:block/raspberry_bush_empty"
+      "model": "lotrextended:block/raspberry_bush_empty"
     },
     "age=2": {
-      "model": "lotr:block/raspberry_bush_empty"
+      "model": "lotrextended:block/raspberry_bush_empty"
     },
     "age=3": {
-      "model": "lotr:block/raspberry_bush"
+      "model": "lotrextended:block/raspberry_bush"
     }
   }
 }

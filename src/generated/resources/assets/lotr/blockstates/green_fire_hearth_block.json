@@ -4,7 +4,7 @@
       "model": "lotr:block/hearth_block"
     },
     "lit=true": {
-      "model": "lotr:block/green_fire_hearth_block_lit"
+      "model": "lotrextended:block/green_fire_hearth_block_lit"
     }
   }
 }

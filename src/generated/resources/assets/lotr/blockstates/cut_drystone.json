@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/cut_drystone"
+      "model": "lotrextended:block/cut_drystone"
     }
   }
 }

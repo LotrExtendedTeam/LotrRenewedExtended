@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "lotr:block/packed_fur_1"
+    "wall": "lotrextended:block/packed_fur_1"
   }
 }

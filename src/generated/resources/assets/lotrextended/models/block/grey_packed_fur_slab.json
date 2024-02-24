@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotrextended:block/grey_packed_fur_1",
+    "bottom": "lotrextended:block/grey_packed_fur_1",
+    "top": "lotrextended:block/grey_packed_fur_1"
+  }
+}

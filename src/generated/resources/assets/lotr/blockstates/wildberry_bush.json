@@ -1,16 +1,16 @@
 {
   "variants": {
     "age=0": {
-      "model": "lotr:block/wildberry_bush_empty"
+      "model": "lotrextended:block/wildberry_bush_empty"
     },
     "age=1": {
-      "model": "lotr:block/wildberry_bush_empty"
+      "model": "lotrextended:block/wildberry_bush_empty"
     },
     "age=2": {
-      "model": "lotr:block/wildberry_bush_empty"
+      "model": "lotrextended:block/wildberry_bush_empty"
     },
     "age=3": {
-      "model": "lotr:block/wildberry_bush"
+      "model": "lotrextended:block/wildberry_bush"
     }
   }
 }

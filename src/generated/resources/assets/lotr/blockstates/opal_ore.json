@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/opal_ore"
+      "model": "lotrextended:block/opal_ore"
     }
   }
 }

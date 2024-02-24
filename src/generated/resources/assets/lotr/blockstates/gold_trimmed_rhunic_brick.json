@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/gold_trimmed_rhunic_brick"
+      "model": "lotrextended:block/gold_trimmed_rhunic_brick"
     }
   }
 }

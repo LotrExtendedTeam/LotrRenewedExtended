@@ -1,28 +1,28 @@
 {
   "variants": {
     "facing=down": {
-      "model": "lotr:block/black_fur_bundle",
+      "model": "lotrextended:block/black_fur_bundle",
       "x": 180
     },
     "facing=up": {
-      "model": "lotr:block/black_fur_bundle"
+      "model": "lotrextended:block/black_fur_bundle"
     },
     "facing=north": {
-      "model": "lotr:block/black_fur_bundle",
+      "model": "lotrextended:block/black_fur_bundle",
       "x": 90
     },
     "facing=south": {
-      "model": "lotr:block/black_fur_bundle",
+      "model": "lotrextended:block/black_fur_bundle",
       "x": 90,
       "y": 180
     },
     "facing=west": {
-      "model": "lotr:block/black_fur_bundle",
+      "model": "lotrextended:block/black_fur_bundle",
       "x": 90,
       "y": 270
     },
     "facing=east": {
-      "model": "lotr:block/black_fur_bundle",
+      "model": "lotrextended:block/black_fur_bundle",
       "x": 90,
       "y": 90
     }

@@ -1,44 +1,44 @@
 {
   "variants": {
     "axis=x,type=top": {
-      "model": "lotr:block/packed_fur_slab_top",
+      "model": "lotrextended:block/packed_fur_slab_top",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=top": {
-      "model": "lotr:block/packed_fur_slab_top"
+      "model": "lotrextended:block/packed_fur_slab_top"
     },
     "axis=z,type=top": {
-      "model": "lotr:block/packed_fur_slab_top",
+      "model": "lotrextended:block/packed_fur_slab_top",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=bottom": {
-      "model": "lotr:block/packed_fur_slab",
+      "model": "lotrextended:block/packed_fur_slab",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=bottom": {
-      "model": "lotr:block/packed_fur_slab"
+      "model": "lotrextended:block/packed_fur_slab"
     },
     "axis=z,type=bottom": {
-      "model": "lotr:block/packed_fur_slab",
+      "model": "lotrextended:block/packed_fur_slab",
       "x": 270,
       "uvlock": true
     },
     "axis=x,type=double": {
-      "model": "lotr:block/packed_fur_1",
+      "model": "lotrextended:block/packed_fur_1",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=double": {
-      "model": "lotr:block/packed_fur_1"
+      "model": "lotrextended:block/packed_fur_1"
     },
     "axis=z,type=double": {
-      "model": "lotr:block/packed_fur_1",
+      "model": "lotrextended:block/packed_fur_1",
       "x": 270,
       "uvlock": true
     }

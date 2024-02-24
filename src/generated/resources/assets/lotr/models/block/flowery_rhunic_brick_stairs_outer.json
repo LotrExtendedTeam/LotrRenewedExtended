@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "lotr:block/flowery_rhunic_brick",
-    "bottom": "lotr:block/flowery_rhunic_brick",
-    "top": "lotr:block/flowery_rhunic_brick"
-  }
-}

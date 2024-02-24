@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotrextended:block/obsidian_taurethrim_pillar",
+    "bottom": "lotrextended:block/obsidian_taurethrim_pillar",
+    "top": "lotrextended:block/obsidian_taurethrim_pillar"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "lotr:block/rhunic_brick",
-    "bottom": "lotr:block/rhunic_brick",
-    "top": "lotr:block/rhunic_brick"
-  }
-}

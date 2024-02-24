@@ -1,16 +1,16 @@
 {
   "variants": {
     "age=0": {
-      "model": "lotr:block/cranberry_plant_age0"
+      "model": "lotrextended:block/cranberry_plant_age0"
     },
     "age=1": {
-      "model": "lotr:block/cranberry_plant_age1"
+      "model": "lotrextended:block/cranberry_plant_age1"
     },
     "age=2": {
-      "model": "lotr:block/cranberry_plant_age2"
+      "model": "lotrextended:block/cranberry_plant_age2"
     },
     "age=3": {
-      "model": "lotr:block/cranberry_plant_age3"
+      "model": "lotrextended:block/cranberry_plant_age3"
     }
   }
 }

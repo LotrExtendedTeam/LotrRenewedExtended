@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "particle": "lotr:block/mud",
-    "bottom": "lotr:block/mud",
-    "top": "lotr:block/mud_grass_top",
-    "side": "lotr:block/mud_grass_side"
-  }
-}

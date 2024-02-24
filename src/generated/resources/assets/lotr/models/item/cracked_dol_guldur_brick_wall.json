@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "lotr:block/cracked_dol_guldur_brick"
+    "wall": "lotrextended:block/cracked_dol_guldur_brick"
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/sapphire_block"
+      "model": "lotrextended:block/sapphire_block"
     }
   }
 }

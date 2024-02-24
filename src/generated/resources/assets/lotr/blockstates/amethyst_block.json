@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/amethyst_block"
+      "model": "lotrextended:block/amethyst_block"
     }
   }
 }

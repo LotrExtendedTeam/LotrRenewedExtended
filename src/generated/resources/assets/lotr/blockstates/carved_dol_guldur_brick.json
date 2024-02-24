@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/carved_dol_guldur_brick"
+      "model": "lotrextended:block/carved_dol_guldur_brick"
     }
   }
 }

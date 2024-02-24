@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/ruby_block"
+      "model": "lotrextended:block/ruby_block"
     }
   }
 }

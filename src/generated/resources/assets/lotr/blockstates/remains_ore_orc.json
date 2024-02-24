@@ -2,48 +2,48 @@
   "variants": {
     "": [
       {
-        "model": "lotr:block/remains_ore_orc_1"
+        "model": "lotrextended:block/remains_ore_orc_1"
       },
       {
-        "model": "lotr:block/remains_ore_orc_1",
+        "model": "lotrextended:block/remains_ore_orc_1",
         "y": 90
       },
       {
-        "model": "lotr:block/remains_ore_orc_1",
+        "model": "lotrextended:block/remains_ore_orc_1",
         "y": 180
       },
       {
-        "model": "lotr:block/remains_ore_orc_1",
+        "model": "lotrextended:block/remains_ore_orc_1",
         "y": 270
       },
       {
-        "model": "lotr:block/remains_ore_orc_2"
+        "model": "lotrextended:block/remains_ore_orc_2"
       },
       {
-        "model": "lotr:block/remains_ore_orc_2",
+        "model": "lotrextended:block/remains_ore_orc_2",
         "y": 90
       },
       {
-        "model": "lotr:block/remains_ore_orc_2",
+        "model": "lotrextended:block/remains_ore_orc_2",
         "y": 180
       },
       {
-        "model": "lotr:block/remains_ore_orc_2",
+        "model": "lotrextended:block/remains_ore_orc_2",
         "y": 270
       },
       {
-        "model": "lotr:block/remains_ore_orc_3"
+        "model": "lotrextended:block/remains_ore_orc_3"
       },
       {
-        "model": "lotr:block/remains_ore_orc_3",
+        "model": "lotrextended:block/remains_ore_orc_3",
         "y": 90
       },
       {
-        "model": "lotr:block/remains_ore_orc_3",
+        "model": "lotrextended:block/remains_ore_orc_3",
         "y": 180
       },
       {
-        "model": "lotr:block/remains_ore_orc_3",
+        "model": "lotrextended:block/remains_ore_orc_3",
         "y": 270
       }
     ]

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lotr:block/topaz_block"
+      "model": "lotrextended:block/topaz_block"
     }
   }
 }

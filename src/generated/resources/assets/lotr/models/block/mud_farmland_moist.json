@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_farmland",
-  "textures": {
-    "dirt": "lotr:block/mud",
-    "top": "lotr:block/mud_farmland_moist"
-  }
-}
