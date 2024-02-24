@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/bottle_of_poison"
+    "layer0": "lotrextended:item/bottle_of_poison"
   }
 }

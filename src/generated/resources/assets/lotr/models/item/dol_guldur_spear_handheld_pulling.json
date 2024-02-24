@@ -1,6 +1,6 @@
 {
   "parent": "lotr:item/handheld_spear_pulling",
   "textures": {
-    "layer0": "lotr:item/dol_guldur_spear_large"
+    "layer0": "lotrextended:item/dol_guldur_spear_large"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "lotr:item/handheld_spear_pulling",
   "textures": {
-    "layer0": "lotr:item/morgul_spear_large"
+    "layer0": "lotrextended:item/morgul_spear_large"
   }
 }

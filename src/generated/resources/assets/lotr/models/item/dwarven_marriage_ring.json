@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/dwarven_marriage_ring"
+    "layer0": "lotrextended:item/dwarven_marriage_ring"
   }
 }

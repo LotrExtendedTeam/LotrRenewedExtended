@@ -1,7 +1,7 @@
 {
   "parent": "lotr:item/handheld_dagger",
   "textures": {
-    "layer0": "lotr:item/morgul_dagger"
+    "layer0": "lotrextended:item/morgul_dagger"
   },
   "overrides": [
     {

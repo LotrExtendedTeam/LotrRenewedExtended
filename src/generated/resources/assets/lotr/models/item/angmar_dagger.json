@@ -1,7 +1,7 @@
 {
   "parent": "lotr:item/handheld_dagger",
   "textures": {
-    "layer0": "lotr:item/angmar_dagger"
+    "layer0": "lotrextended:item/angmar_dagger"
   },
   "overrides": [
     {

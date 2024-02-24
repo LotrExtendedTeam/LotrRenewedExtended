@@ -1,6 +1,6 @@
 {
   "parent": "lotr:item/handheld_large",
   "textures": {
-    "layer0": "lotr:item/morgul_blade_large"
+    "layer0": "lotrextended:item/morgul_blade_large"
   }
 }

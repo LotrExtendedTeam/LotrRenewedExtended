@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/hithlain"
+    "layer0": "lotrextended:item/hithlain"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/wildberry"
+    "layer0": "lotrextended:item/wildberry"
   }
 }

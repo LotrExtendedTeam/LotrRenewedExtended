@@ -41,19 +41,19 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
+		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getKey().contains("torch")) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRArmorItem) {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 				
 			}
 			if(item.getValue().get() instanceof SpearItem) {
-				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSpearPulling(item.getKey());
 				genSpear(item.getKey());
 				continue;
@@ -64,24 +64,24 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRSwordItem) {
-				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSword(item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {
-				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShovelItem) {
-				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRAxeItem) {
-				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRHoeItem ) {
-				genHandheld(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedCommandHornItem ) {
@@ -98,7 +98,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			try {
-				genGenerated(item.getKey(), lotrLoc("item/"+item.getKey()));
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -117,29 +117,29 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSword(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
-		return gen(builder, lotrLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genSpear(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
 		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling"))).predicate(new ResourceLocation("pulling"), 1);
-		return gen(builder, lotrLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genSpearPulling(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
-		return gen(builder, lotrLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genDagger(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "lotr:item/handheld_dagger");
 		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_sneaking"))).predicate(new ResourceLocation("lotr:sneaking"), 1);
-		return gen(builder, lotrLoc("item/"+name));
+		return gen(builder, lotrExtendedLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genDaggerSneaking(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_sneaking", "lotr:item/handheld_dagger_sneaking");
-		return gen(builder, lotrLoc("item/"+name));
+		return gen(builder, lotrExtendedLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genGenerated(String name, ResourceLocation... layers) {
@@ -153,12 +153,12 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder genCommandHorn(String name, String location) {
-		ResourceLocation horn = lotrLoc(location);
-		ResourceLocation horn_summon = lotrLoc(location+"_summon");
-		ResourceLocation horn_halt = lotrLoc(location+"_halt");
-		ItemModelBuilder builder_halt = gen(withExistingParent("lotr:"+name+"_halt", "item/generated"), horn_halt);
-		ItemModelBuilder builder_reddy = gen(withExistingParent("lotr:"+name+"_reddy", "item/generated"), horn_halt);
-		ItemModelBuilder builder_summon = gen(withExistingParent("lotr:"+name+"_summon", "item/generated"), horn_summon);
+		ResourceLocation horn = lotrExtendedLoc(location);
+		ResourceLocation horn_summon = lotrExtendedLoc(location+"_summon");
+		ResourceLocation horn_halt = lotrExtendedLoc(location+"_halt");
+		ItemModelBuilder builder_halt = genGenerated(name+"_halt", horn_halt);
+		ItemModelBuilder builder_reddy = genGenerated(name+"_reddy", horn_halt);
+		ItemModelBuilder builder_summon = genGenerated(name+"_summon", horn_summon);
 		ItemModelBuilder builder = genGenerated(name, horn);
 		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1.0F);
 		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2.0F);
@@ -167,8 +167,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder genBrandingIron(String name, String location) {
-		ResourceLocation iron = lotrLoc(location);
-		ResourceLocation iron_hot = lotrLoc(location+"_hot");
+		ResourceLocation iron = lotrExtendedLoc(location);
+		ResourceLocation iron_hot = lotrExtendedLoc(location+"_hot");
 		ItemModelBuilder builder_iron_hot = genHandheld(name+"_hot", iron_hot);
 		ItemModelBuilder builder = genHandheld(name, iron);
 		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1.0F);

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/dol_guldur_helmet"
+    "layer0": "lotrextended:item/dol_guldur_helmet"
   }
 }

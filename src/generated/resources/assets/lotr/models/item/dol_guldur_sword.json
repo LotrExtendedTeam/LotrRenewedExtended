@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "lotr:item/dol_guldur_sword"
+    "layer0": "lotrextended:item/dol_guldur_sword"
   }
 }

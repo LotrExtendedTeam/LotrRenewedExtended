@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/morgul_leggings"
+    "layer0": "lotrextended:item/morgul_leggings"
   }
 }

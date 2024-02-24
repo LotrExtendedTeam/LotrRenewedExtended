@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "lotr:item/angmar_shovel"
+    "layer0": "lotrextended:item/angmar_shovel"
   }
 }

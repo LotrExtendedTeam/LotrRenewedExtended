@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "lotr:item/taurethrim_sword"
+    "layer0": "lotrextended:item/taurethrim_sword"
   }
 }

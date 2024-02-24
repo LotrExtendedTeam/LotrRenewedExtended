@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "lotr:item/branding_iron_hot"
+    "layer0": "lotrextended:item/branding_iron_hot"
   }
 }

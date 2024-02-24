@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/taurethrim_chieftain_helmet"
+    "layer0": "lotrextended:item/taurethrim_chieftain_helmet"
   }
 }

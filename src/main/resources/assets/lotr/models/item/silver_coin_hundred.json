@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "lotr:item/silver_coin_hundred"
+    "layer0": "lotrextended:item/silver_coin_hundred"
   },
   "display": {
     "thirdperson": {

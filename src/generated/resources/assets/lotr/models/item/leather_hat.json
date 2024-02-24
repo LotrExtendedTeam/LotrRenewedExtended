@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotr:item/leather_hat"
+    "layer0": "lotrextended:item/leather_hat"
   }
 }
