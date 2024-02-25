@@ -141,6 +141,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.REMAINS_DWARF = registerB("remains_ore_dwarf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 
 		///////////////////////////////BRICKS
+		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new Block(AbstractBlock.Properties.copy(Blocks.DIRT)));
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
 		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD));

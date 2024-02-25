@@ -456,6 +456,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.MITHRIL_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.MITHRIL_NUGGET.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ITHILDIN.get().getRegistryName().getPath()));
 		//MISC BLOCKS
+		GENERATEDRECIPES.add(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get())
+		.pattern("###")
+		.pattern("#X#")
+		.pattern("###")
+		.define('#', Ingredient.of(Blocks.DIRT))
+		.define('X', Ingredient.of(LOTRItems.SALT.get()))
+		.unlockedBy("has_"+LOTRItems.SALT.get().getRegistryName().getPath(), has(LOTRItems.SALT.get()))
+		.unlockedBy("has_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath(), has(ExtendedBlocks.BARREN_DIRT.get()))
+		.save(consumer, lotrLoc(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath()));
+		
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_STAIRS.get(), 
 				()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING);
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_ROHAN_STAIRS.get(), 

@@ -164,6 +164,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				genHearthBlockType((ExtendedHearthBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
+			if(block.getKey().contains("barren_dirt")) {
+				genExistingBlock(block.getValue().get(), "dirt");
+				continue;
+			}
 		}
 		//Only Add entries to this loop if they depend on other models we are generating or are supertypes of other block types
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
@@ -244,6 +248,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		return "Renewed Extended Blockstate Provider";
 	}
 
+	private void genExistingBlock(Block block, String model) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().getExistingFile(new ResourceLocation(model));
+		simpleBlock(block, modelFile);
+		itemModels().getBuilder("lotr:" + block.getRegistryName().getPath()).parent(modelFile);
+	}
 	private void genStairsBlockItem(StairsBlock stairs, ResourceLocation texture) {
 		registeredBlocks.add(stairs);
 		String name = "lotrextended:"+stairs.getRegistryName().getPath();

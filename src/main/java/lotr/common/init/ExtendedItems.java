@@ -66,7 +66,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_ELF;
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
-
+	public static RegistryObject<Item> BARREN_DIRT;
 	public static RegistryObject<Item> MUD;
 	public static RegistryObject<Item> MUD_SLAB;
 	public static RegistryObject<Item> MUD_STAIRS;
