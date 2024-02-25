@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrExtended.mixins.lotr.client.gui.inv;
 
+import lotr.client.gui.inv.ExtendedTradeScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,5 +17,6 @@ public class MixinContainerScreenHelper {
 	@Inject(method = "registerScreens()V", at = @At("HEAD"), remap=false)
     private static void addAdditionalScreens(CallbackInfo ci) {
 		ScreenManager.register(ExtendedContainers.COIN_TRADING.get(), ExtendedCoinExchangeScreen::new);
+        ScreenManager.register(ExtendedContainers.TRADING.get(), ExtendedTradeScreen::new);
     }
 }

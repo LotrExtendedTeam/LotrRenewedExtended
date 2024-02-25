@@ -4,6 +4,7 @@ import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
+import lotr.common.util.CoinUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -11,7 +12,6 @@ import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
@@ -55,7 +55,7 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 
         inputSlot = addSlot(new Slot(this.coinInputInv, 0, 80, 46) {
             public boolean mayPlace(ItemStack stack) {
-                return super.mayPlace(stack) && isValidCoin(stack);
+                return super.mayPlace(stack) && CoinUtils.isValidCoin(stack);
             }
 
             public boolean mayPickup(PlayerEntity p_82869_1_) {
@@ -77,10 +77,10 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 
         int i;
         for (i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) // 95
+            for (int j = 0; j < 9; j++)
                 addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 106 + i * 18));
         }
-        for (i = 0; i < 9; i++) { // 153
+        for (i = 0; i < 9; i++) {
             addSlot(new Slot(inventory, i, 8 + i * 18, 164));
         }
     }
@@ -135,11 +135,11 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
     }
 
     public void handleExchange(int side) {
-        if (!exchanged && isValidCoin(inputSlot.getItem())) {
+        if (!exchanged && CoinUtils.isValidCoin(inputSlot.getItem())) {
             exchanged = true;
             sideExchanged = side;
-            int difference = value(inputSlot.getItem()) - value(exchangeInv.getItem(side));
-            int value = valueOfItem(inputSlot.getItem().getItem());
+            int difference = CoinUtils.value(inputSlot.getItem()) - CoinUtils.value(exchangeInv.getItem(side));
+            int value = CoinUtils.valueOfItem(inputSlot.getItem().getItem());
             if (difference > 0 && value > 0) {
                 int amount = difference / value;
                 inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), amount));
@@ -163,22 +163,6 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
                 leftSlot.setChanged();
             }
         }
-    }
-
-    private static int valueOfItem(Item item) {
-        if (item.equals(ExtendedItems.SILVER_COIN_ONE.get())) {
-            return 1;
-        } else if (item.equals(ExtendedItems.SILVER_COIN_TEN.get())) {
-            return 10;
-        } else if (item.equals(ExtendedItems.SILVER_COIN_HUNDRED.get())) {
-            return 100;
-        }
-        return 0;
-    }
-
-    private static int value(ItemStack stack) {
-       if (!isValidCoin(stack)) return 0;
-       return valueOfItem(stack.getItem()) * stack.getCount();
     }
 
     public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
@@ -219,7 +203,7 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
         }
 
         // verify the item is a coin
-        if (!(isValidCoin(itemstack))) {
+        if (!(CoinUtils.isValidCoin(itemstack))) {
             return ItemStack.EMPTY;
         }
 
@@ -257,12 +241,6 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
         return itemstack;
     }
 
-    public static boolean isValidCoin(ItemStack stack) {
-        return stack.getItem() == ExtendedItems.SILVER_COIN_ONE.get() ||
-                stack.getItem() == ExtendedItems.SILVER_COIN_TEN.get() ||
-                stack.getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get();
-    }
-
     /* PICKUP clicks that stack an item on the inputSlot do not sync with the server. This method makes that happen
        by determining if that type of click has occurred in the input slot, supering the action and then marking the
        input slot has updated. */
@@ -289,8 +267,8 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
     }
 
     public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
-		extraData.writeVarInt(entityId);
-	}
+        extraData.writeVarInt(entityId);
+    }
 
     @Override
     public void slotChanged(Container p_71111_1_, int p_71111_2_, ItemStack p_71111_3_) {
