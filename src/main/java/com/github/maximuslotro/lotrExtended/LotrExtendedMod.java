@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrExtended.common.datagen.DataGeneratorExtended
 import com.github.maximuslotro.lotrExtended.common.datagen.ExtendedDataIdFixer;
 import com.github.maximuslotro.lotrExtended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrExtended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrExtended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedTags;
@@ -63,6 +64,7 @@ public class LotrExtendedMod{
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();
+		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
 		ExtendedLootModifiers.register(modBus);
 		ExtendedTags.init();

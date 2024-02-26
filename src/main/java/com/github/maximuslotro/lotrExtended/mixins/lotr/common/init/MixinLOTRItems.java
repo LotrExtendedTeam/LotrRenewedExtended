@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrExtended.common.enums.CoinType;
+import com.github.maximuslotro.lotrExtended.common.init.ExtendedFoods;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;

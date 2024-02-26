@@ -50,7 +50,6 @@ public class ExtendedCommandHornItem extends Item {
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
-		CompoundNBT nbtTagCompound = heldItem.getTag();
 		if (!isNotEmpty(heldItem)) {
 			if (world.isClientSide()) {
 				new ExtendedCommandHornClientSide().openMenu();
@@ -66,7 +65,6 @@ public class ExtendedCommandHornItem extends Item {
 
 	@Override
 	public String getDescriptionId(ItemStack itemstack) {
-		CompoundNBT nbtTagCompound = itemstack.getTag();
 		String s = "";
 		if (isHalt(itemstack)) {
 			s = ".halt";
