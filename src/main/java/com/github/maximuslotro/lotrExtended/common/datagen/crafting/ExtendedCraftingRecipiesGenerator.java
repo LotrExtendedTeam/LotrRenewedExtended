@@ -245,16 +245,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedBlocks.RHUNIC_BRICK.get(), 4, ExtendedRecipes.RHUNIC_CRAFTING)
 		.pattern("##")
 		.pattern("##")
-		.define('#', Ingredient.of(Blocks.STONE))
+		.define('#', Ingredient.of(Blocks.STONE.asItem()))
 		.unlockedBy("has_"+ExtendedBlocks.RHUNIC_BRICK.get().getRegistryName().getPath(), has(ExtendedBlocks.RHUNIC_BRICK.get()))
-		.unlockedBy("has_"+Blocks.STONE.getRegistryName().getPath(), has(Blocks.STONE))
+		.unlockedBy("has_"+Blocks.STONE.getRegistryName().getPath(), has(Blocks.STONE.asItem()))
 		.save(consumer, lotrLoc(ExtendedBlocks.RHUNIC_BRICK.get().getRegistryName().getPath()+"_1"));
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedBlocks.RHUNIC_BRICK.get(), 4, ExtendedRecipes.RHUNIC_CRAFTING)
 		.pattern("##")
 		.pattern("##")
-		.define('#', Ingredient.of(Blocks.SANDSTONE))
+		.define('#', Ingredient.of(Blocks.SANDSTONE.asItem()))
 		.unlockedBy("has_"+ExtendedBlocks.RHUNIC_BRICK.get().getRegistryName().getPath(), has(ExtendedBlocks.RHUNIC_BRICK.get()))
-		.unlockedBy("has_"+Blocks.SANDSTONE.getRegistryName().getPath(), has(Blocks.SANDSTONE))
+		.unlockedBy("has_"+Blocks.SANDSTONE.getRegistryName().getPath(), has(Blocks.SANDSTONE.asItem()))
 		.save(consumer, lotrLoc(ExtendedBlocks.RHUNIC_BRICK.get().getRegistryName().getPath()+"_2"));
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.RHUNIC_BRICK_STAIRS, 
 				ExtendedBlocks.RHUNIC_BRICK_SLAB, 
@@ -267,17 +267,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("#")
 		.pattern("#")
 		.pattern("#")
-		.define('#', Ingredient.of(Blocks.STONE))
+		.define('#', Ingredient.of(Blocks.STONE.asItem()))
 		.unlockedBy("has_"+ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath(), has(ExtendedBlocks.RHUNIC_PILLAR.get()))
-		.unlockedBy("has_"+Blocks.STONE.getRegistryName().getPath(), has(Blocks.STONE))
+		.unlockedBy("has_"+Blocks.STONE.getRegistryName().getPath(), has(Blocks.STONE.asItem()))
 		.save(consumer, lotrLoc(ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath()+"_1"));
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedBlocks.RHUNIC_PILLAR.get(), 3, ExtendedRecipes.RHUNIC_CRAFTING)
 		.pattern("#")
 		.pattern("#")
 		.pattern("#")
-		.define('#', Ingredient.of(Blocks.SANDSTONE))
+		.define('#', Ingredient.of(Blocks.SANDSTONE.asItem()))
 		.unlockedBy("has_"+ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath(), has(ExtendedBlocks.RHUNIC_PILLAR.get()))
-		.unlockedBy("has_"+Blocks.SANDSTONE.getRegistryName().getPath(), has(Blocks.SANDSTONE))
+		.unlockedBy("has_"+Blocks.SANDSTONE.getRegistryName().getPath(), has(Blocks.SANDSTONE.asItem()))
 		.save(consumer, lotrLoc(ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath()+"_2"));
 		makeSlabRecipe(consumer, ExtendedBlocks.RHUNIC_PILLAR_SLAB, 
 				()->ExtendedBlocks.RHUNIC_PILLAR.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
@@ -461,12 +461,18 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("###")
 		.pattern("#X#")
 		.pattern("###")
-		.define('#', Ingredient.of(Blocks.DIRT))
+		.define('#', Ingredient.of(Blocks.DIRT.asItem()))
 		.define('X', Ingredient.of(LOTRItems.SALT.get()))
 		.unlockedBy("has_"+LOTRItems.SALT.get().getRegistryName().getPath(), has(LOTRItems.SALT.get()))
 		.unlockedBy("has_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath(), has(ExtendedBlocks.BARREN_DIRT.get()))
 		.save(consumer, lotrLoc(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath()));
-		
+
+		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath());
+	    CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE.asItem()), ExtendedBlocks.SCORCHED_COBBLESTONE.get(), 0.1F, 100)
+	    .unlockedBy("has_"+Blocks.COBBLESTONE.getRegistryName().getPath(), has(Blocks.COBBLESTONE))
+	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_COBBLESTONE.get()))
+	    .save(consumer, "coal_from_blasting");
+
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_STAIRS.get(), 
 				()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING);
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_ROHAN_STAIRS.get(), 

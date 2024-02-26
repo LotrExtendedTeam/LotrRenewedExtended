@@ -168,6 +168,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				genExistingBlock(block.getValue().get(), "dirt");
 				continue;
 			}
+			if(block.getKey().contains("scorched_cobblestone")) {
+				genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
+				continue;
+			}
 		}
 		//Only Add entries to this loop if they depend on other models we are generating or are supertypes of other block types
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
