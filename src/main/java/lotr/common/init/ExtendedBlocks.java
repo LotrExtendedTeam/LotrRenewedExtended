@@ -151,10 +151,10 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> SILVER_PACKED_FUR_STAIRS;
 	public static RegistryObject<Block> SILVER_PACKED_FUR_WALL;
-	public static RegistryObject<Block> GREY_PACKED_FUR;
-	public static RegistryObject<Block> GREY_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> GREY_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> GREY_PACKED_FUR_WALL;
+	public static RegistryObject<Block> GRAY_PACKED_FUR;
+	public static RegistryObject<Block> GRAY_PACKED_FUR_SLAB;
+	public static RegistryObject<Block> GRAY_PACKED_FUR_STAIRS;
+	public static RegistryObject<Block> GRAY_PACKED_FUR_WALL;
 	public static RegistryObject<Block> BROWN_PACKED_FUR;
 	public static RegistryObject<Block> BROWN_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> BROWN_PACKED_FUR_STAIRS;
@@ -166,7 +166,7 @@ public class ExtendedBlocks {
 	
 	public static RegistryObject<Block> WHITE_FUR_BUNDLE;
 	public static RegistryObject<Block> SILVER_FUR_BUNDLE;
-	public static RegistryObject<Block> GREY_FUR_BUNDLE;
+	public static RegistryObject<Block> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Block> BLACK_FUR_BUNDLE;
 	
 	public static RegistryObject<Block> MORGUL_LANTERN;

@@ -92,10 +92,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SILVER_PACKED_FUR_STAIRS = registerB("silver_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_WALL = registerB("silver_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		
-		ExtendedBlocks.GREY_PACKED_FUR = registerB("grey_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_GRAY));
-		ExtendedBlocks.GREY_PACKED_FUR_SLAB = registerB("grey_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.GREY_PACKED_FUR));
-		ExtendedBlocks.GREY_PACKED_FUR_STAIRS = registerB("grey_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GREY_PACKED_FUR));
-		ExtendedBlocks.GREY_PACKED_FUR_WALL = registerB("grey_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.GREY_PACKED_FUR));
+		ExtendedBlocks.GRAY_PACKED_FUR = registerB("gray_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.GRAY_PACKED_FUR_SLAB = registerB("gray_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.GRAY_PACKED_FUR));
+		ExtendedBlocks.GRAY_PACKED_FUR_STAIRS = registerB("gray_packed_fur_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GRAY_PACKED_FUR));
+		ExtendedBlocks.GRAY_PACKED_FUR_WALL = registerB("gray_packed_fur_wall", () -> new LOTRWallBlock(ExtendedBlocks.GRAY_PACKED_FUR));
 		
 		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.COLOR_BROWN));
 		ExtendedBlocks.BROWN_PACKED_FUR_SLAB = registerB("packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.BROWN_PACKED_FUR));
@@ -110,7 +110,7 @@ public class MixinLOTRBlocks {
 		//Bundled Fur
 		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.WOOL));
 		ExtendedBlocks.SILVER_FUR_BUNDLE = registerB("silver_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
-		ExtendedBlocks.GREY_FUR_BUNDLE = registerB("grey_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.GRAY_FUR_BUNDLE = registerB("gray_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_BLACK));
 
 		//GEM STORAGE

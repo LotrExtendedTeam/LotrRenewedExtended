@@ -76,11 +76,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.BLACK_PACKED_FUR_SLAB, 
 				ExtendedBlocks.BLACK_PACKED_FUR_WALL, 
 				()->ExtendedBlocks.BLACK_PACKED_FUR.get().asItem(), null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GREY_FUR, ExtendedBlocks.GREY_PACKED_FUR, null);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GREY_PACKED_FUR_STAIRS, 
-				ExtendedBlocks.GREY_PACKED_FUR_SLAB, 
-				ExtendedBlocks.GREY_PACKED_FUR_WALL, 
-				()->ExtendedBlocks.GREY_PACKED_FUR.get().asItem(), null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GRAY_FUR, ExtendedBlocks.GRAY_PACKED_FUR, null);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GRAY_PACKED_FUR_STAIRS, 
+				ExtendedBlocks.GRAY_PACKED_FUR_SLAB, 
+				ExtendedBlocks.GRAY_PACKED_FUR_WALL, 
+				()->ExtendedBlocks.GRAY_PACKED_FUR.get().asItem(), null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, LOTRItems.FUR, ExtendedBlocks.BROWN_PACKED_FUR, null);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BROWN_PACKED_FUR_STAIRS, 
 				ExtendedBlocks.BROWN_PACKED_FUR_SLAB, 
@@ -97,7 +97,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.WHITE_PACKED_FUR_WALL, 
 				()->ExtendedBlocks.WHITE_PACKED_FUR.get().asItem(), null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_FUR, ExtendedBlocks.BLACK_FUR_BUNDLE, LOTRRecipes.LOSSOTH_CRAFTING);
-		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.GREY_FUR, ExtendedBlocks.GREY_FUR_BUNDLE, LOTRRecipes.LOSSOTH_CRAFTING);
+		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.GRAY_FUR, ExtendedBlocks.GRAY_FUR_BUNDLE, LOTRRecipes.LOSSOTH_CRAFTING);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_FUR_BUNDLE, LOTRRecipes.LOSSOTH_CRAFTING);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, LOTRRecipes.LOSSOTH_CRAFTING);
 
@@ -566,7 +566,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.CORAL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.PEARL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_FUR.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedItems.GREY_FUR.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GRAY_FUR.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_FUR.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.WHITE_FUR.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.REMAINS_ELF.get().getRegistryName().getPath());

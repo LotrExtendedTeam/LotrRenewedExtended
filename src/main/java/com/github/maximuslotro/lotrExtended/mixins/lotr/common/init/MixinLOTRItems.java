@@ -149,10 +149,10 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
 		ExtendedItems.SILVER_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR_STAIRS, LOTRItemGroups.DECO);
 		ExtendedItems.SILVER_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR_WALL, LOTRItemGroups.DECO);
-		ExtendedItems.GREY_PACKED_FUR = regBlockItemB(ExtendedBlocks.GREY_PACKED_FUR, LOTRItemGroups.DECO);
-		ExtendedItems.GREY_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.GREY_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
-		ExtendedItems.GREY_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.GREY_PACKED_FUR_STAIRS, LOTRItemGroups.DECO);
-		ExtendedItems.GREY_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.GREY_PACKED_FUR_WALL, LOTRItemGroups.DECO);
+		ExtendedItems.GRAY_PACKED_FUR = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR, LOTRItemGroups.DECO);
+		ExtendedItems.GRAY_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
+		ExtendedItems.GRAY_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR_STAIRS, LOTRItemGroups.DECO);
+		ExtendedItems.GRAY_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR_WALL, LOTRItemGroups.DECO);
 		ExtendedItems.BROWN_PACKED_FUR = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.BROWN_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
 		ExtendedItems.BROWN_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR_STAIRS, LOTRItemGroups.DECO);
@@ -164,7 +164,7 @@ public class MixinLOTRItems {
 		
 		ExtendedItems.WHITE_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.WHITE_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.SILVER_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.SILVER_FUR_BUNDLE, LOTRItemGroups.DECO);
-		ExtendedItems.GREY_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.GREY_FUR_BUNDLE, LOTRItemGroups.DECO);
+		ExtendedItems.GRAY_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.GRAY_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.BLACK_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.BLACK_FUR_BUNDLE, LOTRItemGroups.DECO);
 		
 		ExtendedItems.MORGUL_LANTERN = regBlockItemB(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
@@ -281,7 +281,7 @@ public class MixinLOTRItems {
 
 		ExtendedItems.WHITE_FUR = regMaterialItemB("white_fur");
 		ExtendedItems.SILVER_FUR = regMaterialItemB("silver_fur");
-		ExtendedItems.GREY_FUR = regMaterialItemB("grey_fur");
+		ExtendedItems.GRAY_FUR = regMaterialItemB("gray_fur");
 		ExtendedItems.BLACK_FUR = regMaterialItemB("black_fur");
 
 		//Ingots

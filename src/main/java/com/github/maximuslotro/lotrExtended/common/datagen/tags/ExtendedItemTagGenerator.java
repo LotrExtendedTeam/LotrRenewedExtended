@@ -136,7 +136,7 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 	    .addTag(ExtendedTags.Items.SILVER_ORE).addTag(ExtendedTags.Items.SULFUR_ORE)
 	    .addTag(ExtendedTags.Items.TIN_ORE);
 		
-		tag(FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GREY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
+		tag(FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 	}
 
 	@Override

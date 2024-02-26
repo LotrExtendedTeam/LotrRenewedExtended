@@ -1,0 +1,13 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:lossoth",
+  "ingredients": [
+    {
+      "item": "lotr:gray_fur_bundle"
+    }
+  ],
+  "result": {
+    "item": "lotr:gray_fur",
+    "count": 4
+  }
+}
