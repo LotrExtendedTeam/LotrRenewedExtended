@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "lotrextended:block/scorched_brick",
+    "bottom": "lotrextended:block/scorched_brick",
+    "top": "lotrextended:block/scorched_brick"
+  }
+}

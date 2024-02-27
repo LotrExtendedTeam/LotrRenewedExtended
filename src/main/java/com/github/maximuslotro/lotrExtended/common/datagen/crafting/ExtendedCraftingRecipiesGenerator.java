@@ -483,6 +483,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	    makeStairSlabRecipe(consumer, ExtendedBlocks.SCORCHED_STONE_STAIRS, 
 				ExtendedBlocks.SCORCHED_STONE_SLAB,
 				()->ExtendedBlocks.SCORCHED_STONE.get().asItem(), null);
+	    make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.SCORCHED_BRICK, 
+				ExtendedBlocks.SCORCHED_BRICK_STAIRS, 
+				ExtendedBlocks.SCORCHED_BRICK_SLAB, 
+				ExtendedBlocks.SCORCHED_BRICK_WALL, 
+				()->ExtendedItems.SCORCHED_STONE.get(), null);
+	    CookingRecipeBuilder.blasting(Ingredient.of(Blocks.STONE_BRICKS.asItem()), ExtendedBlocks.SCORCHED_BRICK.get(), 0.1F, 100)
+	    .unlockedBy("has_"+Blocks.STONE_BRICKS.getRegistryName().getPath(), has(Blocks.STONE_BRICKS))
+	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_BRICK.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_BRICK.get()))
+	    .save(consumer, ExtendedBlocks.SCORCHED_BRICK.get().getRegistryName().getPath()+"_from_blasting");
 	    //Missing smooth stair recipes
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_STAIRS.get(),
 				()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING);

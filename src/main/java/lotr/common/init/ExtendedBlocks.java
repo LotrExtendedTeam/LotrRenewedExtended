@@ -210,6 +210,10 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SCORCHED_STONE;
 	public static RegistryObject<Block> SCORCHED_STONE_SLAB;
 	public static RegistryObject<Block> SCORCHED_STONE_STAIRS;
+	public static RegistryObject<Block> SCORCHED_BRICK;
+	public static RegistryObject<Block> SCORCHED_BRICK_SLAB;
+	public static RegistryObject<Block> SCORCHED_BRICK_STAIRS;
+	public static RegistryObject<Block> SCORCHED_BRICK_WALL;
 
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
 }
