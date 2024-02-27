@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_post",
   "textures": {
-    "wall": "lotrextended:block/gray_packed_fur_1"
+    "wall": "lotrextended:block/gray_packed_fur"
   }
 }

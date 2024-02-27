@@ -77,7 +77,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
-				numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
+				genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedRemainsBlock) {
@@ -179,10 +179,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			if(registeredBlocks.contains(block.getValue().get())) {continue;}
 			if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
 				if(block.getKey().contains("_slab")) {
-					if(block.getKey().contains("packed_fur")) {
-						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
-						continue;
-					}
 					if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 						continue;
@@ -193,10 +189,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof LOTRStairsBlock) {
 				if(block.getKey().contains("_stairs")) {
-					if(block.getKey().contains("packed_fur")) {
-						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_1"));
-						continue;
-					}
 					if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
 						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
 						continue;
@@ -216,10 +208,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof LOTRWallBlock) {
 				if(block.getKey().contains("_wall")) {
-					if(block.getKey().contains("packed_fur")) {
-						genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
-						continue;
-					}
 					if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
 						genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 						continue;

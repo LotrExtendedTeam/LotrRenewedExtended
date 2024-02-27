@@ -29,16 +29,16 @@
       "uvlock": true
     },
     "axis=x,type=double": {
-      "model": "lotrextended:block/gray_packed_fur_1",
+      "model": "lotrextended:block/gray_packed_fur",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=double": {
-      "model": "lotrextended:block/gray_packed_fur_1"
+      "model": "lotrextended:block/gray_packed_fur"
     },
     "axis=z,type=double": {
-      "model": "lotrextended:block/gray_packed_fur_1",
+      "model": "lotrextended:block/gray_packed_fur",
       "x": 270,
       "uvlock": true
     }

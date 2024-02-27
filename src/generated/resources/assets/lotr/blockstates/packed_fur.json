@@ -1,66 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "lotrextended:block/packed_fur_1"
-      },
-      {
-        "model": "lotrextended:block/packed_fur_1",
-        "y": 90
-      },
-      {
-        "model": "lotrextended:block/packed_fur_1",
-        "y": 180
-      },
-      {
-        "model": "lotrextended:block/packed_fur_1",
-        "y": 270
-      },
-      {
-        "model": "lotrextended:block/packed_fur_2"
-      },
-      {
-        "model": "lotrextended:block/packed_fur_2",
-        "y": 90
-      },
-      {
-        "model": "lotrextended:block/packed_fur_2",
-        "y": 180
-      },
-      {
-        "model": "lotrextended:block/packed_fur_2",
-        "y": 270
-      },
-      {
-        "model": "lotrextended:block/packed_fur_3"
-      },
-      {
-        "model": "lotrextended:block/packed_fur_3",
-        "y": 90
-      },
-      {
-        "model": "lotrextended:block/packed_fur_3",
-        "y": 180
-      },
-      {
-        "model": "lotrextended:block/packed_fur_3",
-        "y": 270
-      },
-      {
-        "model": "lotrextended:block/packed_fur_4"
-      },
-      {
-        "model": "lotrextended:block/packed_fur_4",
-        "y": 90
-      },
-      {
-        "model": "lotrextended:block/packed_fur_4",
-        "y": 180
-      },
-      {
-        "model": "lotrextended:block/packed_fur_4",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "lotrextended:block/packed_fur"
+    }
   }
 }
