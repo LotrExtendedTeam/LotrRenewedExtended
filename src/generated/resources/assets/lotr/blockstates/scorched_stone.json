@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
-      "model": "lotrextended:block/scorched_stone"
-    }
+    "": [
+      {
+        "model": "lotrextended:block/scorched_stone"
+      },
+      {
+        "model": "lotrextended:block/scorched_stone",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/scorched_stone_mirrored"
+      },
+      {
+        "model": "lotrextended:block/scorched_stone_mirrored",
+        "y": 180
+      }
+    ]
   }
 }
