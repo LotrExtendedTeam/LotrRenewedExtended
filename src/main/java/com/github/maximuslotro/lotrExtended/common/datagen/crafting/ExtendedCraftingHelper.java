@@ -89,6 +89,13 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		makeSlabRecipe(consumer, slabToBeCrafted, resource, table);
 		makeWallRecipe(consumer, wallToBeCrafted, resource, table);
 	}
+	protected void makeStairSlabRecipe(Consumer<IFinishedRecipe> consumer, 
+			Supplier<? extends Block> stairsToBeCrafted,
+			Supplier<? extends Block> slabToBeCrafted, 
+			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		makeStairRecipe(consumer, stairsToBeCrafted, resource, table);
+		makeSlabRecipe(consumer, slabToBeCrafted, resource, table);
+	}
 
 	protected void make2x2BlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();

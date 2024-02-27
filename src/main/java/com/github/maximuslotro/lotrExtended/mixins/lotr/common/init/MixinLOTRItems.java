@@ -126,6 +126,11 @@ public class MixinLOTRItems {
 
 		ExtendedItems.BARREN_DIRT = regBlockItemB(ExtendedBlocks.BARREN_DIRT, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SCORCHED_COBBLESTONE = regBlockItemB(ExtendedBlocks.SCORCHED_COBBLESTONE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SCORCHED_COBBLESTONE_SLAB = regBlockItemB(ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SCORCHED_COBBLESTONE_STAIRS = regBlockItemB(ExtendedBlocks.SCORCHED_COBBLESTONE_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SCORCHED_STONE = regBlockItemB(ExtendedBlocks.SCORCHED_STONE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SCORCHED_STONE_SLAB = regBlockItemB(ExtendedBlocks.SCORCHED_STONE_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SCORCHED_STONE_STAIRS = regBlockItemB(ExtendedBlocks.SCORCHED_STONE_STAIRS, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.MUD = regBlockItemB(ExtendedBlocks.MUD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MUD_SLAB = regBlockItemB(ExtendedBlocks.MUD_SLAB, LOTRItemGroups.BLOCKS);

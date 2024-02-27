@@ -18,6 +18,7 @@ import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
+import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -108,6 +109,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {
+				genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedStoneBlock) {
 				if(block.getKey()=="cobbled_drystone") {
 					genCubeBlockItem(block.getValue().get(), lotrLoc("block/drystone"));
 					continue;
@@ -166,10 +171,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getKey().contains("barren_dirt")) {
 				genExistingBlock(block.getValue().get(), "dirt");
-				continue;
-			}
-			if(block.getKey().contains("scorched_cobblestone")) {
-				genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 				continue;
 			}
 		}

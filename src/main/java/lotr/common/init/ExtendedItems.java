@@ -67,7 +67,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
 	public static RegistryObject<Item> BARREN_DIRT;
+
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_STONE;
+	public static RegistryObject<Item> SCORCHED_STONE_SLAB;
+	public static RegistryObject<Item> SCORCHED_STONE_STAIRS;
+
 	public static RegistryObject<Item> MUD;
 	public static RegistryObject<Item> MUD_SLAB;
 	public static RegistryObject<Item> MUD_STAIRS;

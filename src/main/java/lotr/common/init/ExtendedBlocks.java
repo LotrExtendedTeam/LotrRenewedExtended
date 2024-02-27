@@ -203,7 +203,13 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> REMAINS_MAN;
 	public static RegistryObject<Block> REMAINS_DWARF;
 	public static RegistryObject<Block> BARREN_DIRT;
+
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE;
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB;
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Block> SCORCHED_STONE;
+	public static RegistryObject<Block> SCORCHED_STONE_SLAB;
+	public static RegistryObject<Block> SCORCHED_STONE_STAIRS;
 
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
 }
