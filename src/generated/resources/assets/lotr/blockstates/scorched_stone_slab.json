@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "axis=x,type=top": {
+      "model": "lotrextended:block/scorched_stone_slab_top",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,type=top": {
+      "model": "lotrextended:block/scorched_stone_slab_top"
+    },
+    "axis=z,type=top": {
+      "model": "lotrextended:block/scorched_stone_slab_top",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,type=bottom": {
+      "model": "lotrextended:block/scorched_stone_slab",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,type=bottom": {
+      "model": "lotrextended:block/scorched_stone_slab"
+    },
+    "axis=z,type=bottom": {
+      "model": "lotrextended:block/scorched_stone_slab",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,type=double": {
+      "model": "lotrextended:block/scorched_stone",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,type=double": {
+      "model": "lotrextended:block/scorched_stone"
+    },
+    "axis=z,type=double": {
+      "model": "lotrextended:block/scorched_stone",
+      "x": 270,
+      "uvlock": true
+    }
+  }
+}

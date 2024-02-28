@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft:stone"
+  },
+  "result": "lotr:scorched_stone",
+  "experience": 0.1,
+  "cookingtime": 100
+}

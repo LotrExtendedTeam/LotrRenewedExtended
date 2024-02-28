@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "lotrextended:block/gray_packed_fur_4"
-  }
-}

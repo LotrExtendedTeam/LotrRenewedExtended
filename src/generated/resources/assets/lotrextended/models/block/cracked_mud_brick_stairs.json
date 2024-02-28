@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "lotrextended:block/cracked_mud_brick",
+    "bottom": "lotrextended:block/cracked_mud_brick",
+    "top": "lotrextended:block/cracked_mud_brick"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:scorched_stone"
+    }
+  },
+  "result": {
+    "item": "lotr:scorched_stone_slab",
+    "count": 6
+  }
+}

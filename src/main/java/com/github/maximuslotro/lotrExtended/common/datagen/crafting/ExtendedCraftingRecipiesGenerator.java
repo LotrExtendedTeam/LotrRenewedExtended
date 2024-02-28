@@ -466,23 +466,44 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.SALT.get().getRegistryName().getPath(), has(LOTRItems.SALT.get()))
 		.unlockedBy("has_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath(), has(ExtendedBlocks.BARREN_DIRT.get()))
 		.save(consumer, lotrLoc(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath()));
-
+		//Scorched blocks
 		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath());
 	    CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE.asItem()), ExtendedBlocks.SCORCHED_COBBLESTONE.get(), 0.1F, 100)
 	    .unlockedBy("has_"+Blocks.COBBLESTONE.getRegistryName().getPath(), has(Blocks.COBBLESTONE))
 	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_COBBLESTONE.get()))
-	    .save(consumer, "coal_from_blasting");
-
-		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_STAIRS.get(), 
+	    .save(consumer, ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath()+"_from_blasting");
+	    makeStairSlabRecipe(consumer, ExtendedBlocks.SCORCHED_COBBLESTONE_STAIRS, 
+				ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB,
+				()->ExtendedBlocks.SCORCHED_COBBLESTONE.get().asItem(), null);
+		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_STONE.get().getRegistryName().getPath());
+	    CookingRecipeBuilder.blasting(Ingredient.of(Blocks.STONE.asItem()), ExtendedBlocks.SCORCHED_STONE.get(), 0.1F, 100)
+	    .unlockedBy("has_"+Blocks.STONE.getRegistryName().getPath(), has(Blocks.STONE))
+	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_STONE.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_STONE.get()))
+	    .save(consumer, ExtendedBlocks.SCORCHED_STONE.get().getRegistryName().getPath()+"_from_blasting");
+	    makeStairSlabRecipe(consumer, ExtendedBlocks.SCORCHED_STONE_STAIRS, 
+				ExtendedBlocks.SCORCHED_STONE_SLAB,
+				()->ExtendedBlocks.SCORCHED_STONE.get().asItem(), null);
+	    make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.SCORCHED_BRICK, 
+				ExtendedBlocks.SCORCHED_BRICK_STAIRS, 
+				ExtendedBlocks.SCORCHED_BRICK_SLAB, 
+				ExtendedBlocks.SCORCHED_BRICK_WALL, 
+				()->ExtendedItems.SCORCHED_STONE.get(), null);
+	    CookingRecipeBuilder.blasting(Ingredient.of(Blocks.STONE_BRICKS.asItem()), ExtendedBlocks.SCORCHED_BRICK.get(), 0.1F, 100)
+	    .unlockedBy("has_"+Blocks.STONE_BRICKS.getRegistryName().getPath(), has(Blocks.STONE_BRICKS))
+	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_BRICK.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_BRICK.get()))
+	    .save(consumer, ExtendedBlocks.SCORCHED_BRICK.get().getRegistryName().getPath()+"_from_blasting");
+	    //Missing smooth stair recipes
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_STAIRS.get(),
 				()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING);
-		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_ROHAN_STAIRS.get(), 
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_ROHAN_STAIRS.get(),
 				()->LOTRBlocks.SMOOTH_ROHAN_ROCK.get().asItem(), LOTRRecipes.ROHAN_CRAFTING);
-		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_RED_STAIRS.get(), 
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_RED_STAIRS.get(),
 				()->LOTRBlocks.SMOOTH_RED_ROCK.get().asItem(), null);
-		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_BLUE_STAIRS.get(), 
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_BLUE_STAIRS.get(),
 				()->LOTRBlocks.SMOOTH_BLUE_ROCK.get().asItem(), null);
-		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_STONE_STAIRS.get(), 
+		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_STONE_STAIRS.get(),
 				()->Blocks.SMOOTH_STONE.asItem(), null);
+		//drystone
 		ShapelessRecipeBuilder.shapeless(LOTRBlocks.DRYSTONE.get())
 		.requires(ExtendedBlocks.COBBLED_DRYSTONE.get())
 		.unlockedBy("has_"+LOTRBlocks.DRYSTONE.get().getRegistryName().getPath(), has(LOTRBlocks.DRYSTONE.get()))
@@ -507,6 +528,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.MOSSY_DRYSTONE_SLAB, 
 				ExtendedBlocks.MOSSY_DRYSTONE_WALL, 
 				()->ExtendedBlocks.MOSSY_DRYSTONE.get().asItem(), null);
+		//Mud
 		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_SLAB.get(), 
 				()->ExtendedBlocks.MUD.get().asItem(), null);
 		makeStairRecipe(consumer, ()->ExtendedBlocks.MUD_STAIRS.get(), 
@@ -520,6 +542,18 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.MUD_BRICK_SLAB, 
 				ExtendedBlocks.MUD_BRICK_WALL, 
 				()->ExtendedBlocks.MUD.get().asItem(), null);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_MUD_BRICK, 
+				()->ExtendedBlocks.MUD_BRICK.get().asItem(), null);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, 
+				ExtendedBlocks.MOSSY_MUD_BRICK_SLAB, 
+				ExtendedBlocks.MOSSY_MUD_BRICK_WALL, 
+				()->ExtendedBlocks.MOSSY_MUD_BRICK.get().asItem(), null);
+		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_MUD_BRICK, 
+				()->ExtendedBlocks.MUD_BRICK.get().asItem());
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_MUD_BRICK_STAIRS, 
+				ExtendedBlocks.CRACKED_MUD_BRICK_SLAB, 
+				ExtendedBlocks.CRACKED_MUD_BRICK_WALL, 
+				()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
 	}
 
 	private void addOverrides() {

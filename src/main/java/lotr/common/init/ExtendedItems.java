@@ -67,7 +67,18 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
 	public static RegistryObject<Item> BARREN_DIRT;
+	//Scorched stuff
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_STONE;
+	public static RegistryObject<Item> SCORCHED_STONE_SLAB;
+	public static RegistryObject<Item> SCORCHED_STONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_BRICK;
+	public static RegistryObject<Item> SCORCHED_BRICK_SLAB;
+	public static RegistryObject<Item> SCORCHED_BRICK_STAIRS;
+	public static RegistryObject<Item> SCORCHED_BRICK_WALL;
+	//MUD
 	public static RegistryObject<Item> MUD;
 	public static RegistryObject<Item> MUD_SLAB;
 	public static RegistryObject<Item> MUD_STAIRS;
@@ -80,6 +91,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MUD_BRICK_SLAB;
 	public static RegistryObject<Item> MUD_BRICK_STAIRS;
 	public static RegistryObject<Item> MUD_BRICK_WALL;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_SLAB;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_WALL;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_SLAB;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_WALL;
 
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;

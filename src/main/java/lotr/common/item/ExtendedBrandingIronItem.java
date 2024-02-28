@@ -137,7 +137,10 @@ public class ExtendedBrandingIronItem extends Item {
 		if(compoundnbt != null && compoundnbt.contains(Name)) {
 			return compoundnbt.getString(Name);
 		}
-		return "Placeholder name :)";
+		if(itemStack.hasCustomHoverName()) {
+			return itemStack.getHoverName().getString();
+		}
+		return null;
 	}
 
 	public static void setTemperedName(ItemStack itemStack, String name) {

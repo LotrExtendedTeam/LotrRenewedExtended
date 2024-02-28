@@ -1,15 +1,24 @@
 {
-  "name": "lotrextended:hobbit/hobbit_hole_small_pool",
-  "fallback": "minecraft:empty",
-  "elements": [
-    {
-      "weight": 1,
-      "element": {
-        "location": "lotrextended:hobbit_hole_small",
-        "processors": "minecraft:empty",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    }
-  ]
+	"name": "lotrextended:hobbit/hobbit_hole_small_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:hobbit_hole_small_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 100,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:hobbit_hole_small_2",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
 }

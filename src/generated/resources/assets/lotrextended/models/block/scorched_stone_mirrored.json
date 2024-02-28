@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_mirrored_all",
+  "textures": {
+    "texture": "lotrextended:block/scorched_stone"
+  }
+}
