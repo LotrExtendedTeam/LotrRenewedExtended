@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrExtended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedParticles;
@@ -39,6 +40,7 @@ import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -47,6 +49,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -70,7 +73,7 @@ public class MixinLOTRBlocks {
     }
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
-	private static void bootstrapExtendedItems(CallbackInfo ci) {
+	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
 		//ORE STORAGE
 		ExtendedBlocks.GALVORN_BLOCK = registerB("galvorn_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL), 2);});
@@ -311,5 +314,10 @@ public class MixinLOTRBlocks {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
 		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE));
+	}
+
+	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
+	private static void bootstrapExtendedBiomeFeatures(CallbackInfo ci, IEventBus bus) {
+		bus.addGenericListener(Block.class, ExtendedBiomeFeatures::setup);
 	}
 }
