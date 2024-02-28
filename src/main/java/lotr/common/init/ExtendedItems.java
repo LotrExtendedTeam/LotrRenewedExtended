@@ -91,6 +91,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MUD_BRICK_SLAB;
 	public static RegistryObject<Item> MUD_BRICK_STAIRS;
 	public static RegistryObject<Item> MUD_BRICK_WALL;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_SLAB;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_WALL;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_SLAB;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_WALL;
 
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;

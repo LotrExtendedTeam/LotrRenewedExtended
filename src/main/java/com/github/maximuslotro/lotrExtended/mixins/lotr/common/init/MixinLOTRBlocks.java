@@ -167,6 +167,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MUD_BRICK_SLAB = registerB("mud_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD_BRICK));
 		ExtendedBlocks.MUD_BRICK_STAIRS = registerB("mud_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MUD_BRICK));
 		ExtendedBlocks.MUD_BRICK_WALL = registerB("mud_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MUD_BRICK));
+		ExtendedBlocks.CRACKED_MUD_BRICK = registerB("cracked_mud_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.CRACKED_MUD_BRICK_SLAB = registerB("cracked_mud_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_MUD_BRICK));
+		ExtendedBlocks.CRACKED_MUD_BRICK_STAIRS = registerB("cracked_mud_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_MUD_BRICK));
+		ExtendedBlocks.CRACKED_MUD_BRICK_WALL = registerB("cracked_mud_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_MUD_BRICK));
+		ExtendedBlocks.MOSSY_MUD_BRICK = registerB("mossy_mud_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.MOSSY_MUD_BRICK_SLAB = registerB("mossy_mud_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_MUD_BRICK));
+		ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS = registerB("mossy_mud_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_MUD_BRICK));
+		ExtendedBlocks.MOSSY_MUD_BRICK_WALL = registerB("mossy_mud_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_MUD_BRICK));
 		//Taurethrim
 		ExtendedBlocks.TAURETHRIM_BRICK = registerB("taurethrim_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GREEN));
 		ExtendedBlocks.TAURETHRIM_BRICK_SLAB = registerB("taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.TAURETHRIM_BRICK));

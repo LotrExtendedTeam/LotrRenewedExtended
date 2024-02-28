@@ -145,6 +145,14 @@ public class MixinLOTRItems {
 		ExtendedItems.MUD_BRICK_SLAB = regBlockItemB(ExtendedBlocks.MUD_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_MUD_BRICK = regBlockItemB(ExtendedBlocks.CRACKED_MUD_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_MUD_BRICK_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_MUD_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.CRACKED_MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.CRACKED_MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_MUD_BRICK = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_MUD_BRICK_SLAB = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		//############################################################DECORATION##############################################################
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItemB(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);

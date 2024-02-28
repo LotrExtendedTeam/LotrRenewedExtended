@@ -54,7 +54,14 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MUD_BRICK_SLAB;
 	public static RegistryObject<Block> MUD_BRICK_STAIRS;
 	public static RegistryObject<Block> MUD_BRICK_WALL;
-
+	public static RegistryObject<Block> CRACKED_MUD_BRICK;
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_SLAB;
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_STAIRS;
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_WALL;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_SLAB;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_STAIRS;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_WALL;
 	public static RegistryObject<Block> TAURETHRIM_BRICK;
 	public static RegistryObject<Block> TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Block> TAURETHRIM_BRICK_STAIRS;

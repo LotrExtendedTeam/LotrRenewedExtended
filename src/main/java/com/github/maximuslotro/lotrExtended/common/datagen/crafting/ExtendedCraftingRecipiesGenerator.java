@@ -542,6 +542,18 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.MUD_BRICK_SLAB, 
 				ExtendedBlocks.MUD_BRICK_WALL, 
 				()->ExtendedBlocks.MUD.get().asItem(), null);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_MUD_BRICK, 
+				()->ExtendedBlocks.MUD_BRICK.get().asItem(), null);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, 
+				ExtendedBlocks.MOSSY_MUD_BRICK_SLAB, 
+				ExtendedBlocks.MOSSY_MUD_BRICK_WALL, 
+				()->ExtendedBlocks.MOSSY_MUD_BRICK.get().asItem(), null);
+		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_MUD_BRICK, 
+				()->ExtendedBlocks.MUD_BRICK.get().asItem());
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_MUD_BRICK_STAIRS, 
+				ExtendedBlocks.CRACKED_MUD_BRICK_SLAB, 
+				ExtendedBlocks.CRACKED_MUD_BRICK_WALL, 
+				()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
 	}
 
 	private void addOverrides() {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "lotrextended:block/cracked_mud_brick"
+  }
+}

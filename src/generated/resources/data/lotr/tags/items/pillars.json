@@ -3,9 +3,9 @@
   "values": [
     "lotr:red_rhunic_pillar",
     "lotr:golden_taurethrim_pillar",
-    "lotr:obsidian_taurethrim_pillar",
     "lotr:rhunic_pillar",
     "lotr:dol_guldur_pillar",
+    "lotr:obsidian_taurethrim_pillar",
     "lotr:taurethrim_pillar"
   ]
 }
