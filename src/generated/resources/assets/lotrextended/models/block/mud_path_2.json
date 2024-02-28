@@ -3,7 +3,7 @@
   "textures": {
     "particle": "lotrextended:block/mud",
     "bottom": "lotrextended:block/mud",
-    "top": "lotrextended:block/mud_path_top",
-    "side": "lotrextended:block/mud_path_side"
+    "top": "lotrextended:block/mud_path_2",
+    "side": "lotrextended:block/mud_path_2"
   }
 }

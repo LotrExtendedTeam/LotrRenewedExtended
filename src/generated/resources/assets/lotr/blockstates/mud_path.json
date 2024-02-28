@@ -2,19 +2,10 @@
   "variants": {
     "": [
       {
-        "model": "lotrextended:block/mud_path"
+        "model": "lotrextended:block/mud_path_1"
       },
       {
-        "model": "lotrextended:block/mud_path",
-        "y": 90
-      },
-      {
-        "model": "lotrextended:block/mud_path",
-        "y": 180
-      },
-      {
-        "model": "lotrextended:block/mud_path",
-        "y": 270
+        "model": "lotrextended:block/mud_path_2"
       }
     ]
   }

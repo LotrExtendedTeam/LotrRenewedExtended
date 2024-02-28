@@ -187,6 +187,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 						continue;
 					}
+					if(block.getKey().contains("mud_path")) {
+						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+						continue;
+					}
 					genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 					continue;
 				}
@@ -206,6 +210,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genStairsBlockItem((StairsBlock) block.getValue().get(), mcLoc("block/smooth_stone"));
 						continue;
 					}
+					if(block.getKey().contains("mud_path")) {
+						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_1"));
+						continue;
+					}
 					genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
 					continue;
 				}
@@ -214,6 +222,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				if(block.getKey().contains("_wall")) {
 					if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
 						genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+						continue;
+					}
+					if(block.getKey().contains("mud_path")) {
+						genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
 						continue;
 					}
 					genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
@@ -371,19 +383,23 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genGrassPathBlockItem(ExtendedGroundPathBlock extendedGroundFarmlandBlock, String name) {
 		registeredBlocks.add(extendedGroundFarmlandBlock);
-		ResourceLocation top = lotrExtendedLoc(name+"_top");
-		ResourceLocation side = lotrExtendedLoc(name+"_side");
-		ResourceLocation dirt = lotrExtendedLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
+		ResourceLocation tex1 = lotrExtendedLoc(name+"_1");
+		ResourceLocation tex2 = lotrExtendedLoc(name+"_2");
+		ResourceLocation base = lotrExtendedLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
 		ResourceLocation parent = mcLoc("block/grass_path");
-		ModelFile grass = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
-                .texture("particle", dirt)
-                .texture("bottom", dirt)
-                .texture("top", top)
-                .texture("side", side);
-		getVariantBuilder(extendedGroundFarmlandBlock)
-		.forAllStatesExcept(state -> {
-			return ConfiguredModel.allYRotations(grass, 0, false);
-        });
+		ModelFile grass = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_1", parent)
+                .texture("particle", base)
+                .texture("bottom", base)
+                .texture("top", tex1)
+                .texture("side", tex1);
+		ModelFile grass1 = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_2", parent)
+                .texture("particle", base)
+                .texture("bottom", base)
+                .texture("top", tex2)
+                .texture("side", tex2);
+		ConfiguredModel ConfiguredblockMir1 = new ConfiguredModel(grass);
+		ConfiguredModel ConfiguredblockMir2 = new ConfiguredModel(grass1);
+		simpleBlock(extendedGroundFarmlandBlock, ConfiguredblockMir1, ConfiguredblockMir2);
 		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
 	}
 
