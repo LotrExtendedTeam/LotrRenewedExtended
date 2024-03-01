@@ -54,7 +54,14 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MUD_BRICK_SLAB;
 	public static RegistryObject<Block> MUD_BRICK_STAIRS;
 	public static RegistryObject<Block> MUD_BRICK_WALL;
-
+	public static RegistryObject<Block> CRACKED_MUD_BRICK;
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_SLAB;
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_STAIRS;
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_WALL;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_SLAB;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_STAIRS;
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_WALL;
 	public static RegistryObject<Block> TAURETHRIM_BRICK;
 	public static RegistryObject<Block> TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Block> TAURETHRIM_BRICK_STAIRS;
@@ -151,10 +158,10 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> SILVER_PACKED_FUR_STAIRS;
 	public static RegistryObject<Block> SILVER_PACKED_FUR_WALL;
-	public static RegistryObject<Block> GREY_PACKED_FUR;
-	public static RegistryObject<Block> GREY_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> GREY_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> GREY_PACKED_FUR_WALL;
+	public static RegistryObject<Block> GRAY_PACKED_FUR;
+	public static RegistryObject<Block> GRAY_PACKED_FUR_SLAB;
+	public static RegistryObject<Block> GRAY_PACKED_FUR_STAIRS;
+	public static RegistryObject<Block> GRAY_PACKED_FUR_WALL;
 	public static RegistryObject<Block> BROWN_PACKED_FUR;
 	public static RegistryObject<Block> BROWN_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> BROWN_PACKED_FUR_STAIRS;
@@ -166,7 +173,7 @@ public class ExtendedBlocks {
 	
 	public static RegistryObject<Block> WHITE_FUR_BUNDLE;
 	public static RegistryObject<Block> SILVER_FUR_BUNDLE;
-	public static RegistryObject<Block> GREY_FUR_BUNDLE;
+	public static RegistryObject<Block> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Block> BLACK_FUR_BUNDLE;
 	
 	public static RegistryObject<Block> MORGUL_LANTERN;
@@ -202,7 +209,18 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> REMAINS_ELF;
 	public static RegistryObject<Block> REMAINS_MAN;
 	public static RegistryObject<Block> REMAINS_DWARF;
+	public static RegistryObject<Block> BARREN_DIRT;
+
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE;
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB;
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Block> SCORCHED_STONE;
+	public static RegistryObject<Block> SCORCHED_STONE_SLAB;
+	public static RegistryObject<Block> SCORCHED_STONE_STAIRS;
+	public static RegistryObject<Block> SCORCHED_BRICK;
+	public static RegistryObject<Block> SCORCHED_BRICK_SLAB;
+	public static RegistryObject<Block> SCORCHED_BRICK_STAIRS;
+	public static RegistryObject<Block> SCORCHED_BRICK_WALL;
 
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
-
 }

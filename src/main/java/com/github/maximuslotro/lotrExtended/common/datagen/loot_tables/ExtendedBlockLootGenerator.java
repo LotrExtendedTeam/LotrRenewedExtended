@@ -16,6 +16,7 @@ import lotr.common.block.ExtendedGroundPathBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedSpawnerBlock;
+import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -58,6 +59,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	@Override
     protected void addTables() {
 		dropSelf(ExtendedBlocks.MORGUL_LANTERN.get());
+		dropSelf(ExtendedBlocks.BARREN_DIRT.get());
 		add(ExtendedBlocks.GREEN_FIRE_BLOCK.get(), noDrop());
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof AxialSlabBlock) {
@@ -81,6 +83,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedStoneBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

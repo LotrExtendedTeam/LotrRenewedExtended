@@ -4,8 +4,10 @@ import com.github.maximuslotro.lotrExtended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotrExtended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrExtended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrExtended.common.datagen.DataGeneratorExtended;
+import com.github.maximuslotro.lotrExtended.common.datagen.ExtendedDataIdFixer;
 import com.github.maximuslotro.lotrExtended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrExtended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrExtended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrExtended.common.init.ExtendedTags;
@@ -17,6 +19,8 @@ import lotr.common.structureV5.BiomeStructureAdder;
 import lotr.common.structureV5.ExtendedConfiguredStructuresV5;
 import lotr.common.structureV5.ExtendedStructuresV5;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,7 +39,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 @Mod(value = LotrExtendedMod.MODID)
-public class LotrExtendedMod {
+public class LotrExtendedMod{
 
 	public static final String MODID = "lotrextended";
 
@@ -46,6 +50,8 @@ public class LotrExtendedMod {
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
+		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::setup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
@@ -58,12 +64,13 @@ public class LotrExtendedMod {
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();
+		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
 		ExtendedLootModifiers.register(modBus);
 		ExtendedTags.init();
 	}
 
-	public void setup(final FMLCommonSetupEvent event) {
+	public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ExtendedStructuresV5.setupStructures();
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
@@ -78,11 +85,11 @@ public class LotrExtendedMod {
 		return ModList.get().getModFileById(MODID).getFile();
 	}
 
-	public void addStructuresToBiomes(final BiomeLoadingEvent event) {
+	public void addStructuresToBiomes(BiomeLoadingEvent event) {
 		BiomeStructureAdder.addStructuresToBiomes(event);
 	}
 
-    public void addDimensionalSpacing(final WorldEvent.Load event) {
+    public void addDimensionalSpacing(WorldEvent.Load event) {
 		if(event.getWorld() instanceof ServerWorld){
             ServerWorld serverWorld = (ServerWorld)event.getWorld();
             ServerChunkProvider provider = serverWorld.getChunkSource();

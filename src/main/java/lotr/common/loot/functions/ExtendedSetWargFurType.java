@@ -35,7 +35,7 @@ public class ExtendedSetWargFurType extends LootFunction {
 					WargEntity warg = (WargEntity) entity;
 					int count = stack.getCount();
 					if(warg.getWargType().getId()==1) {
-						stack = new ItemStack(ExtendedItems.GREY_FUR.get());
+						stack = new ItemStack(ExtendedItems.GRAY_FUR.get());
 					}else if(warg.getWargType().getId()==2) {
 						stack = new ItemStack(ExtendedItems.BLACK_FUR.get());
 					}else if(warg.getWargType().getId()==3) {

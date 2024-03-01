@@ -37,7 +37,7 @@ public class WargFurColorizer extends LootModifier {
 	        }
 			generatedLoot.removeIf(x -> x.getItem() == LOTRItems.FUR.get());
 			if(warg.getWargType().getId()==1) {
-				generatedLoot.add(new ItemStack(ExtendedItems.GREY_FUR.get(), numFur));
+				generatedLoot.add(new ItemStack(ExtendedItems.GRAY_FUR.get(), numFur));
 			}else if(warg.getWargType().getId()==2) {
 				generatedLoot.add(new ItemStack(ExtendedItems.BLACK_FUR.get(), numFur));
 			}else if(warg.getWargType().getId()==3) {

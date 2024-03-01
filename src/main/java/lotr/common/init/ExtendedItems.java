@@ -66,7 +66,19 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_ELF;
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
-
+	public static RegistryObject<Item> BARREN_DIRT;
+	//Scorched stuff
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_STONE;
+	public static RegistryObject<Item> SCORCHED_STONE_SLAB;
+	public static RegistryObject<Item> SCORCHED_STONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_BRICK;
+	public static RegistryObject<Item> SCORCHED_BRICK_SLAB;
+	public static RegistryObject<Item> SCORCHED_BRICK_STAIRS;
+	public static RegistryObject<Item> SCORCHED_BRICK_WALL;
+	//MUD
 	public static RegistryObject<Item> MUD;
 	public static RegistryObject<Item> MUD_SLAB;
 	public static RegistryObject<Item> MUD_STAIRS;
@@ -79,6 +91,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MUD_BRICK_SLAB;
 	public static RegistryObject<Item> MUD_BRICK_STAIRS;
 	public static RegistryObject<Item> MUD_BRICK_WALL;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_SLAB;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> CRACKED_MUD_BRICK_WALL;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_SLAB;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_STAIRS;
+	public static RegistryObject<Item> MOSSY_MUD_BRICK_WALL;
 
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;
@@ -238,10 +258,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_PACKED_FUR_SLAB;
 	public static RegistryObject<Item> SILVER_PACKED_FUR_STAIRS;
 	public static RegistryObject<Item> SILVER_PACKED_FUR_WALL;
-	public static RegistryObject<Item> GREY_PACKED_FUR;
-	public static RegistryObject<Item> GREY_PACKED_FUR_SLAB;
-	public static RegistryObject<Item> GREY_PACKED_FUR_STAIRS;
-	public static RegistryObject<Item> GREY_PACKED_FUR_WALL;
+	public static RegistryObject<Item> GRAY_PACKED_FUR;
+	public static RegistryObject<Item> GRAY_PACKED_FUR_SLAB;
+	public static RegistryObject<Item> GRAY_PACKED_FUR_STAIRS;
+	public static RegistryObject<Item> GRAY_PACKED_FUR_WALL;
 	public static RegistryObject<Item> BROWN_PACKED_FUR;
 	public static RegistryObject<Item> BROWN_PACKED_FUR_SLAB;
 	public static RegistryObject<Item> BROWN_PACKED_FUR_STAIRS;
@@ -253,11 +273,11 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> WHITE_FUR;
 	public static RegistryObject<Item> SILVER_FUR;
-	public static RegistryObject<Item> GREY_FUR;
+	public static RegistryObject<Item> GRAY_FUR;
 	public static RegistryObject<Item> BLACK_FUR;
 	public static RegistryObject<Item> WHITE_FUR_BUNDLE;
 	public static RegistryObject<Item> SILVER_FUR_BUNDLE;
-	public static RegistryObject<Item> GREY_FUR_BUNDLE;
+	public static RegistryObject<Item> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Item> BLACK_FUR_BUNDLE;
 	
 	public static RegistryObject<Item> MORGUL_LANTERN;

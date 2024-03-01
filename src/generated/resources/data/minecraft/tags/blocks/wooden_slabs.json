@@ -3,8 +3,8 @@
   "values": [
     "lotr:black_packed_fur_slab",
     "lotr:silver_packed_fur_slab",
+    "lotr:gray_packed_fur_slab",
     "lotr:white_packed_fur_slab",
-    "lotr:packed_fur_slab",
-    "lotr:grey_packed_fur_slab"
+    "lotr:packed_fur_slab"
   ]
 }

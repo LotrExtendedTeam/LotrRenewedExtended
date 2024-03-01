@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:scorched_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_scorched_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:scorched_brick_slab"
+          }
+        ]
+      }
+    },
+    "has_scorched_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:scorched_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:scorched_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_scorched_brick_slab",
+      "has_scorched_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

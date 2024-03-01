@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:barren_dirt"
+    ]
+  },
+  "criteria": {
+    "has_salt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:salt"
+          }
+        ]
+      }
+    },
+    "has_barren_dirt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:barren_dirt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:barren_dirt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_salt",
+      "has_barren_dirt",
+      "has_the_recipe"
+    ]
+  ]
+}

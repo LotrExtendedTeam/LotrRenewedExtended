@@ -122,7 +122,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSpear(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
-		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling"))).predicate(new ResourceLocation("pulling"), 1);
+		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling"))).predicate(mcLoc("pulling"), 1);
 		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
@@ -133,7 +133,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genDagger(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "lotr:item/handheld_dagger");
-		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_sneaking"))).predicate(new ResourceLocation("lotr:sneaking"), 1);
+		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_sneaking"))).predicate(lotrLoc("sneaking"), 1);
 		return gen(builder, lotrExtendedLoc("item/"+name));
 	}
 
