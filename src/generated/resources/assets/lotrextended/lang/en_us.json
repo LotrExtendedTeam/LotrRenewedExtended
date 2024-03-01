@@ -323,6 +323,7 @@
   "stat.lotrextended.fellowship_create": "Fellowships Created",
   "stat.lotrextended.fellowship_delete": "Fellowships Disbanded",
   "stat.lotrextended.sliced_cheese": "Cheese Slices Cut",
+  "stat.lotrextended.traders_traded": "Times Traded With Traders",
   "subtitles.lotrextended.event.trade": "Coins jingle",
   "subtitles.lotrextended.item.horn_blow": "Horn Blows"
 }
