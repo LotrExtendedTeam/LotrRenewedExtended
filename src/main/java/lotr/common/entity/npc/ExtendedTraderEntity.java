@@ -5,6 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface ExtendedTraderEntity {
 
@@ -13,6 +15,9 @@ public interface ExtendedTraderEntity {
     boolean isInteractingWithPlayer();
 
     void removePlayerFromTrading(PlayerEntity player);
+
+    void updatePlayerTradingWith(UUID uuid);
+    Optional<UUID> getPlayerTradingWith();
 
     void openCoinExchange(PlayerEntity player);
 

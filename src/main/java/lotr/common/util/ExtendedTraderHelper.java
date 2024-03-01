@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenCoinExchange;
 import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenTradeMenu;
+import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.VesselDrinkItem;
 
@@ -21,6 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ExtendedTraderHelper {
@@ -49,26 +51,25 @@ public class ExtendedTraderHelper {
         level.playSound(null, pos, ExtendedSounds.TRADE.get(), SoundCategory.MASTER, 1, 1);
     }
 
-    public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, HashSet<UUID> uuids) {
+    public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), true));
-        uuids.add(player.getUUID());
+        trader.updatePlayerTradingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
-    public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player, HashSet<UUID> uuids) {
+    public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenTradeMenu(entity.getId()));
-        uuids.add(player.getUUID());
+        trader.updatePlayerTradingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
-    public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, HashSet<UUID> uuids) {
-        // TODO: Not sure if we should keep this but otherwise it could be difficult to sync trades left
-        if (!uuids.isEmpty()) {
-            player.sendMessage(new StringTextComponent("The trader is busy with another player at the moment."), player.getUUID());
+    public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
+        if (trader.getPlayerTradingWith().isPresent()) {
+            if (!entity.level.isClientSide) player.sendMessage(new StringTextComponent("The trader is busy with another player at the moment."), player.getUUID());
             return ActionResultType.sidedSuccess(entity.level.isClientSide());
         }
 
-        uuids.add(player.getUUID());
+        trader.updatePlayerTradingWith(player.getUUID());
 
         if (entity.level.isClientSide()) {
             ExtendedTraderHelperClientside.openTraderGui(entity, player);
@@ -76,8 +77,8 @@ public class ExtendedTraderHelper {
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
-        public static boolean isInteractingWithPlayer(HashSet<UUID> uuids) {
-        return !uuids.isEmpty();
+    public static boolean isInteractingWithPlayer(Optional<UUID> uuid) {
+        return !uuid.isPresent();
     }
 
     public static String getTraderName(ITextComponent displayName) {

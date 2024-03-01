@@ -48,6 +48,8 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
 
     private void talkWithNPC() {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
+        trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
+
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketTalkWithTrader(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
         if(mc.player != null) {

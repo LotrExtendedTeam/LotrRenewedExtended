@@ -1,5 +1,6 @@
 package lotr.common.entity.npc;
 
+import lotr.common.fac.FactionPointer;
 import lotr.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.*;
@@ -18,6 +19,9 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
@@ -25,10 +29,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author RichardB122
@@ -36,8 +37,9 @@ import java.util.UUID;
 public class ExtendedHobbitBartenderEntity extends HobbitEntity implements ExtendedTraderEntity {
 
     int lastTickCooldownReduced = 0;
+    int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
-    HashSet<UUID> playersTradingWith = new HashSet<>();
+    private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.OPTIONAL_UUID);
 
     // trading pools that bartenders will buy from players
     private final ExtendedTradeEntries HOBBIT_BARTENDER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
@@ -69,6 +71,16 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
             new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.CIDER.get()), 8, 13), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.PERRY.get()), 5, 8),
             new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.PERRY.get()), 6, 10), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.PERRY.get()), 8, 13)
     });
+
+    @Override
+    public void updatePlayerTradingWith(UUID uuid) {
+        this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
+    }
+
+    @Override
+    public Optional<UUID> getPlayerTradingWith() {
+        return this.entityData.get(PLAYER_TRADING_WITH);
+    }
 
     private ArrayList<ExtendedTrade> itemsSoldByTrader;
     private ArrayList<ExtendedTrade> itemsBoughtByTrader;
@@ -104,6 +116,12 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         this.goalSelector.addGoal(17, new LookRandomlyGoal(this));
     }
 
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
+    }
+
     public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAligned(player);
     }
@@ -113,7 +131,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (canTradeWith(player)) {
-            return ExtendedTraderHelper.openTraderGui(this, player, playersTradingWith);
+            return ExtendedTraderHelper.openTraderGui(this, player, this);
         } else {
             player.sendMessage(new StringTextComponent("Your alignment is too low"), player.getUUID());
         }
@@ -148,22 +166,25 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
     @Override
     public boolean isInteractingWithPlayer() {
-        return ExtendedTraderHelper.isInteractingWithPlayer(playersTradingWith);
+        return ExtendedTraderHelper.isInteractingWithPlayer(getPlayerTradingWith());
     }
 
+    // TODO: move this to ExtendedTraderHelper eventually
     @Override
     public void removePlayerFromTrading(PlayerEntity player) {
-        playersTradingWith.remove(player.getUUID());
+        if (this.entityData.get(PLAYER_TRADING_WITH).isPresent() && this.entityData.get(PLAYER_TRADING_WITH).get().equals(player.getUUID())) {
+            this.entityData.set(PLAYER_TRADING_WITH, Optional.empty());
+        }
     }
 
     @Override
     public void openCoinExchange(PlayerEntity player) {
-        ExtendedTraderHelper.openCoinExchange(this, player, playersTradingWith);
+        ExtendedTraderHelper.openCoinExchange(this, player, this);
     }
 
     @Override
     public void openTradeMenu(PlayerEntity player) {
-        ExtendedTraderHelper.openTradeMenu(this, player, playersTradingWith);
+        ExtendedTraderHelper.openTradeMenu(this, player, this);
     }
 
     @Override
@@ -222,6 +243,18 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
         if (level.isClientSide) {
             return;
+        }
+
+        if (lastTickVerifiedPlayerTradingWithIsOnline >= 100) {
+            if (entityData.get(PLAYER_TRADING_WITH).isPresent()) {
+                UUID uuid = entityData.get(PLAYER_TRADING_WITH).get();
+                if (level.getPlayerByUUID(uuid) == null) entityData.set(PLAYER_TRADING_WITH, Optional.empty());
+                System.out.println("Player must have logged out and has been removed as the player being traded with");
+            }
+
+            lastTickVerifiedPlayerTradingWithIsOnline = 0;
+        } else {
+            lastTickVerifiedPlayerTradingWithIsOnline++;
         }
 
         // every 1 minute allow one more trade in both buys and sells to be done again
