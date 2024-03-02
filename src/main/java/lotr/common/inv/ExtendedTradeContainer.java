@@ -226,18 +226,19 @@ public class ExtendedTradeContainer extends Container {
     public ItemStack clicked(int index, int p_184996_2_, ClickType clickType, PlayerEntity p_184996_4_) {
         // handle buy items
         if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP) || clickType.equals(ClickType.PICKUP_ALL))) {
+            System.out.println("Inside handle buy items: " + index);
             boolean canPerformTrade =
                     CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index]
                             && soldQuantities[index] > 0;
 
             if (index < soldItems.length) {
-                displayInventory.setItem(index, soldItems[index]);
+                displayInventory.setItem(index, soldItems[index].copy());
                 displayInventory.setChanged();
             }
 
-            if (canPerformTrade || player.inventory.getCarried().equals(ItemStack.EMPTY) ||
+            if (canPerformTrade && (player.inventory.getCarried().equals(ItemStack.EMPTY) ||
                     (player.inventory.getCarried().getItem().equals(soldItems[index].getItem())
-                            && player.inventory.getCarried().getCount() + soldQuantities[index] <= 64)) {
+                            && player.inventory.getCarried().getCount() + soldItems[index].getCount() <= soldItems[index].getMaxStackSize()))) {
                 CoinUtils.removeCoins(player, player.inventory, soldPrices[index]);
                 trader.playTradeSound();
                 if (player.inventory.getCarried().equals(ItemStack.EMPTY)) {
@@ -251,10 +252,9 @@ public class ExtendedTradeContainer extends Container {
                     trader.getSells().get(index).setQuantityLeft(trader.getSells().get(index).getQuantityLeft() - 1);
                 }
                 player.inventory.setChanged();
-                return player.inventory.getCarried();
-            } else {
-                return ItemStack.EMPTY;
             }
+
+            return player.inventory.getCarried();
         }
 
         return super.clicked(index, p_184996_2_, clickType, p_184996_4_);

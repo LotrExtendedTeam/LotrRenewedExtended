@@ -232,7 +232,6 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
             if (entityData.get(PLAYER_TRADING_WITH).isPresent()) {
                 UUID uuid = entityData.get(PLAYER_TRADING_WITH).get();
                 if (level.getPlayerByUUID(uuid) == null) entityData.set(PLAYER_TRADING_WITH, Optional.empty());
-                System.out.println("Player must have logged out and has been removed as the player being traded with");
             }
 
             lastTickVerifiedPlayerTradingWithIsOnline = 0;
