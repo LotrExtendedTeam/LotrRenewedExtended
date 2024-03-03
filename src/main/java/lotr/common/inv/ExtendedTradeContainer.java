@@ -10,6 +10,7 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -225,8 +226,7 @@ public class ExtendedTradeContainer extends Container {
     @Override
     public ItemStack clicked(int index, int p_184996_2_, ClickType clickType, PlayerEntity p_184996_4_) {
         // handle buy items
-        if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP) || clickType.equals(ClickType.PICKUP_ALL))) {
-            System.out.println("Inside handle buy items: " + index);
+        if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP))) {
             boolean canPerformTrade =
                     CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index]
                             && soldQuantities[index] > 0;
@@ -236,9 +236,13 @@ public class ExtendedTradeContainer extends Container {
                 displayInventory.setChanged();
             }
 
-            if (canPerformTrade && (player.inventory.getCarried().equals(ItemStack.EMPTY) ||
+            // note: always use ItemStack.isEmpty() and not .equals(ItemStack.EMPTY) - caused some really weird behavior
+            // that took quite a while to debug
+            boolean stackHasSpace = player.inventory.getCarried().isEmpty() ||
                     (player.inventory.getCarried().getItem().equals(soldItems[index].getItem())
-                            && player.inventory.getCarried().getCount() + soldItems[index].getCount() <= soldItems[index].getMaxStackSize()))) {
+                            && player.inventory.getCarried().getCount() + soldItems[index].getCount() <= soldItems[index].getMaxStackSize());
+
+            if (canPerformTrade && stackHasSpace) {
                 CoinUtils.removeCoins(player, player.inventory, soldPrices[index]);
                 trader.playTradeSound();
                 if (player.inventory.getCarried().equals(ItemStack.EMPTY)) {
@@ -265,6 +269,7 @@ public class ExtendedTradeContainer extends Container {
         return true;
     }
 
+    @Override
     public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
         Slot slot = this.slots.get(slotId);
         ItemStack item = slot.getItem();
@@ -278,7 +283,6 @@ public class ExtendedTradeContainer extends Container {
                 }
 
                 if (tradesToPerform == 0) return ItemStack.EMPTY;
-                // System.out.println("Performing Buy - tradesToPerform = " + tradesToPerform);
 
                 // actually perform buy
                 ItemStack stack = displayInventory.getItem(slot.index).copy();
@@ -307,7 +311,6 @@ public class ExtendedTradeContainer extends Container {
 
         // any other slot was shift-clicked so we should attempt to move it to sell
         if (TradeUtils.isValidSellItem(item, trader.getBuys())) {
-            System.out.println("isValidItem");
             if (sellInventory.canAddItem(item)) {
                 ItemStack remaining = sellInventory.addItem(item);
                 sellInventory.setChanged();
@@ -318,6 +321,7 @@ public class ExtendedTradeContainer extends Container {
                     slot.set(remaining);
                 }
                 slot.setChanged();
+                player.inventory.setChanged();
             }
         }
         return ItemStack.EMPTY;
