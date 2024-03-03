@@ -78,7 +78,7 @@ public class ExtendedTraderHelper {
     }
 
     public static boolean isInteractingWithPlayer(Optional<UUID> uuid) {
-        return !uuid.isPresent();
+        return uuid.isPresent();
     }
 
     public static String getTraderName(ITextComponent displayName) {
