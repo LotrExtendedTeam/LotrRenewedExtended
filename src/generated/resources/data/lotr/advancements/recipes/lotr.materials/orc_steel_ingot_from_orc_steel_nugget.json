@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:orc_steel_ingot_from_orc_steel_nugget"
+    ]
+  },
+  "criteria": {
+    "has_orc_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_orc_steel_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:orc_steel_ingot_from_orc_steel_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orc_steel_ingot",
+      "has_orc_steel_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

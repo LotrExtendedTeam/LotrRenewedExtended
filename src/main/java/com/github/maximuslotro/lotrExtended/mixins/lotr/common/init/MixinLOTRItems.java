@@ -310,7 +310,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BLACK_URUK_STEEL_INGOT = regMaterialItemB("black_uruk_steel_ingot");
 		ExtendedItems.GILDED_IRON_INGOT = regMaterialItemB("gilded_iron_ingot");
 		ExtendedItems.MORGUL_STEEL_INGOT = regMaterialItemB("morgul_steel_ingot");
-
+		ExtendedItems.ORC_STEEL_NUGGET = regMaterialItemB("orc_steel_nugget");
 		//Gems
 		ExtendedItems.TOPAZ = regMaterialItemB("topaz");
 		ExtendedItems.AMETHYST = regMaterialItemB("amethyst");
