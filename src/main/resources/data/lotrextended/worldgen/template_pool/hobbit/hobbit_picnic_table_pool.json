@@ -7,7 +7,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit_picnic_table_1",
+				"location": "lotrextended:hobbit/picnic_table/hobbit_picnic_table_1",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -16,7 +16,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit_picnic_table_2",
+				"location": "lotrextended:hobbit/picnic_table/hobbit_picnic_table_2",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -25,7 +25,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit_picnic_table_3",
+				"location": "lotrextended:hobbit/picnic_table/hobbit_picnic_table_3",
 				"processors": "minecraft:empty"
 			}
 		}

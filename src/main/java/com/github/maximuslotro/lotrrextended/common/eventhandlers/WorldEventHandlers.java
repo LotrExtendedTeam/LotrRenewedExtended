@@ -32,9 +32,7 @@ public class WorldEventHandlers {
 			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
 			return;
 		}
-		System.out.println("Checking for kegs");
 		if (tileentity instanceof KegTileEntity&&MixinHooks.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
-			System.out.println("kegs true");
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);

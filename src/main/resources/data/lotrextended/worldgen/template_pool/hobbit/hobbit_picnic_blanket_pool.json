@@ -5,7 +5,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_picnic_blanket",
+        "location": "lotrextended:hobbit/hobbit_picnic_blanket",
         "processors": "minecraft:empty",
         "projection": "terrain_matching",
         "element_type": "minecraft:single_pool_element"

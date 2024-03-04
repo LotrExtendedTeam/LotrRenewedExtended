@@ -5,7 +5,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_windmill",
+        "location": "lotrextended:hobbit/hobbit_windmill",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

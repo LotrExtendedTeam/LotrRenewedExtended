@@ -5,7 +5,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "lotrextended:hobbit_house_1",
+        "location": "lotrextended:hobbit/hobbit_house_1",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

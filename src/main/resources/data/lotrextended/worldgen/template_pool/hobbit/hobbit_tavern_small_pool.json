@@ -7,7 +7,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit_tavern_small_1",
+				"location": "lotrextended:hobbit/hobbit_tavern_small_1",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -16,7 +16,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit_tavern_small_2",
+				"location": "lotrextended:hobbit/hobbit_tavern_small_2",
 				"processors": "minecraft:empty"
 			}
 		}
