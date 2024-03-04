@@ -110,7 +110,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> TAURETHRIM_LEGGINGS;
 	public static RegistryObject<Item> TAURETHRIM_BOOTS;
 	public static RegistryObject<Item> TAURETHRIM_HOE;
-	
+	public static RegistryObject<Item> TAURETHRIM_SPEAR;
+	public static RegistryObject<Item> TAURETHRIM_DAGGER;
+
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_HELMET;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_CHESTPLATE;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_LEGGINGS;

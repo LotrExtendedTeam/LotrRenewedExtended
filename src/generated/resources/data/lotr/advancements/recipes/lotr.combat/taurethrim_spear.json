@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:taurethrim_spear"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_spear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:taurethrim_spear"
+          }
+        ]
+      }
+    },
+    "has_obsidian_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:obsidian_shard"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:taurethrim_spear"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_spear",
+      "has_obsidian_shard",
+      "has_the_recipe"
+    ]
+  ]
+}
