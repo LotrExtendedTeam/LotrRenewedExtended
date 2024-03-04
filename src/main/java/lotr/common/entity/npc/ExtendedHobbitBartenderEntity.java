@@ -1,6 +1,5 @@
 package lotr.common.entity.npc;
 
-import lotr.common.fac.FactionPointer;
 import lotr.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.*;

@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrExtended.common.network;
 
-import lotr.common.inv.ExtendedCoinExchangeContainer;
 import lotr.common.inv.ExtendedTradeContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;

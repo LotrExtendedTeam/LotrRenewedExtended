@@ -53,7 +53,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         this.minecraft.getTextureManager().bind(GUI_TEXTURE);
         int i = (this.width - this.imageWidth) / 2;
         int j = ((this.height - this.imageHeight) / 2);
-        this.blit(matrix, i, j, 0, 0, this.imageWidth, this.imageHeight, 280, 280);
+        blit(matrix, i, j, 0, 0, this.imageWidth, this.imageHeight, 280, 280);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
             // TODO: Figure out how to render font at smaller size
             if (container.getSoldQuantities()[i] == 0) {
                 this.minecraft.getTextureManager().bind(GUI_TEXTURE);
-                this.blit(matrix, 8 + (i * 18), 57, 194, 18, 18, 18, 280, 280);
+                blit(matrix, 8 + (i * 18), 57, 194, 18, 18, 18, 280, 280);
             }
             this.font.draw(matrix, String.valueOf(amount), 8 + (18 * i) + ((18 - this.font.width(String.valueOf(amount))) / 2), 62, 4210752);
         }
@@ -84,7 +84,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
             // TODO: Figure out how to render font at smaller size
             if (container.getBoughtQuantities()[i] == 0) {
                 this.minecraft.getTextureManager().bind(GUI_TEXTURE);
-                this.blit(matrix, 8 + (i * 18), 109, 194, 18, 18, 18, 280, 280);
+                blit(matrix, 8 + (i * 18), 109, 194, 18, 18, 18, 280, 280);
             }
             this.font.draw(matrix, String.valueOf(amount), 8 + (18 * i) + ((18 - this.font.width(String.valueOf(amount))) / 2), 114, 4210752);
         }

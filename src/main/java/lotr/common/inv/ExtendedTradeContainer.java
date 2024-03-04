@@ -10,7 +10,6 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

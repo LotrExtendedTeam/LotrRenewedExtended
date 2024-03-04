@@ -21,7 +21,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
 
