@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrExtended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.LOTRMod;
 import lotr.common.fellowship.ExtendedFellowship;

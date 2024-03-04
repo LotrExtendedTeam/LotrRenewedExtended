@@ -1,9 +1,5 @@
 package lotr.common.util;
 
-import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenCoinExchange;
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenTradeMenu;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.VesselDrinkItem;
@@ -23,6 +19,11 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenTradeMenu;
 
 public class ExtendedTraderHelper {
 

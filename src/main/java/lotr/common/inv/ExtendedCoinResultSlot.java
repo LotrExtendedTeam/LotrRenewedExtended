@@ -1,7 +1,8 @@
 package lotr.common.inv;
 
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedCPacketUpdateExchangeCoinContainer;
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketUpdateExchangeCoinContainer;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;

@@ -3,7 +3,7 @@ package lotr.common.structureV5;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.maximuslotro.lotrExtended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;

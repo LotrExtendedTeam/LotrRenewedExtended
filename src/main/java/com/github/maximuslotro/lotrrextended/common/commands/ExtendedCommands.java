@@ -1,0 +1,17 @@
+package com.github.maximuslotro.lotrrextended.common.commands;
+
+import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands.EnvironmentType;
+
+public class ExtendedCommands {
+	public static void registerCommands(CommandDispatcher<CommandSource> dispatcher, EnvironmentType environment) {
+		ExtendedInfoCommand.register(dispatcher);
+		FellowshipMessageCommand.register(dispatcher);
+		ExtendedFellowshipCommand.register(dispatcher);
+		ExtendedStructureHelperComamnd.register(dispatcher);
+		//ExtendedStructureScanningCommand.register(dispatcher);
+		//ExtendedStructureSummonv2.register(dispatcher);
+	}
+}

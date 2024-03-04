@@ -1,0 +1,39 @@
+package com.github.maximuslotro.lotrrextended.common.network;
+
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
+
+public class ExtendedPacketHandler {
+
+	private static final String PROTOCOL_VERSION = "2";
+
+	private static SimpleChannel CHANNEL;
+
+	public static void register() {
+		CHANNEL = NetworkRegistry.newSimpleChannel(new ResourceLocation("lotr", "extended"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+		int id = 0;
+		CHANNEL.registerMessage(id++, ExtendedSPacketSelectHorn.class, ExtendedSPacketSelectHorn::encode, ExtendedSPacketSelectHorn::decode, ExtendedSPacketSelectHorn::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketExchangeCoins.class, ExtendedSPacketExchangeCoins::encode, ExtendedSPacketExchangeCoins::decode, ExtendedSPacketExchangeCoins::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateExchangeCoinContainer.class, ExtendedCPacketUpdateExchangeCoinContainer::encode, ExtendedCPacketUpdateExchangeCoinContainer::decode, ExtendedCPacketUpdateExchangeCoinContainer::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketOpenCoinExchange.class, ExtendedSPacketOpenCoinExchange::encode, ExtendedSPacketOpenCoinExchange::decode, ExtendedSPacketOpenCoinExchange::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketTalkWithTrader.class, ExtendedSPacketTalkWithTrader::encode, ExtendedSPacketTalkWithTrader::decode, ExtendedSPacketTalkWithTrader::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketOpenTradeMenu.class, ExtendedSPacketOpenTradeMenu::encode, ExtendedSPacketOpenTradeMenu::decode, ExtendedSPacketOpenTradeMenu::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketTradeSellItems.class, ExtendedSPacketTradeSellItems::encode, ExtendedSPacketTradeSellItems::decode, ExtendedSPacketTradeSellItems::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateTradeQuantities.class, ExtendedCPacketUpdateTradeQuantities::encode, ExtendedCPacketUpdateTradeQuantities::decode, ExtendedCPacketUpdateTradeQuantities::handle);
+	}
+
+	public static void sendTo(Object msg, ServerPlayerEntity player) {
+		CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), msg);
+	}
+
+	public static void sendToAll(Object msg) {
+		CHANNEL.send(PacketDistributor.ALL.noArg(), msg);
+	}
+
+	public static void sendToServer(Object msg) {
+	  CHANNEL.send(PacketDistributor.SERVER.noArg(), msg);
+	}
+}

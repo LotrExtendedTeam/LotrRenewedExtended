@@ -2,7 +2,7 @@ package lotr.common.block;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrExtended.common.enums.ExtendedEntitySpawnTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

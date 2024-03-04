@@ -2,8 +2,8 @@ package lotr.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketSelectHorn;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketSelectHorn;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedItems;

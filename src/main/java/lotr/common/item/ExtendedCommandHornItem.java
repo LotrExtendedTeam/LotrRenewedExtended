@@ -1,6 +1,6 @@
 package lotr.common.item;
 
-import com.github.maximuslotro.lotrExtended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.item.clientside.ExtendedCommandHornClientSide;
