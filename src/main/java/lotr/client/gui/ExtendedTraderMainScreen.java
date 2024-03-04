@@ -42,23 +42,24 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
         this.guiTop = (this.height - this.ySize) / 2;
         this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 115, 57, 20, new StringTextComponent("Talk"),
                 button -> talkWithNPC()));
-        tradeButton = this.addButton(new Button(this.guiLeft + ((this.xSize - 120) / 2) + 63, this.guiTop + 115, 57, 20, new StringTextComponent("Trade"), button -> System.out.println("")));
+        tradeButton = this.addButton(new Button(this.guiLeft + ((this.xSize - 120) / 2) + 63, this.guiTop + 115, 57, 20, new StringTextComponent("Trade"), button -> trader.openTradeMenu(player)));
         this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 140, 120, 20, new StringTextComponent("Exchange Coins"), button -> trader.openCoinExchange(player)));
     }
 
     private void talkWithNPC() {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
+        trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
+
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketTalkWithTrader(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
         if(mc.player != null) {
-        	mc.player.closeContainer();
+            mc.player.closeContainer();
         }
     }
 
     @Override
     public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
         renderBackground(matStack);
-        renderButtonTooltipIfHovered(matStack, tradeButton, new StringTextComponent("This feature has not been implemented yet"), mouseX, mouseY);
 
         TextComponent title = new StringTextComponent(entity.getName().getString());
         this.font.draw(matStack, title, guiLeft + ((this.xSize - font.width(title)) / 2), guiTop + 95, 16777215);
@@ -73,5 +74,4 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
         ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
         trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
-
 }

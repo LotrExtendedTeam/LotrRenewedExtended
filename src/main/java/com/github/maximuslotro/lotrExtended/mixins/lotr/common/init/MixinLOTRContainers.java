@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrExtended.common.datagen.DataGenValueHolder;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
+import lotr.common.inv.ExtendedTradeContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -32,6 +33,9 @@ public class MixinLOTRContainers {
 	private static void bootstrapExtendedContainers(CallbackInfo ci) {
 		ExtendedContainers.COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> {
 			return IForgeContainerType.create(ExtendedCoinExchangeContainer::new);
+		});
+		ExtendedContainers.TRADING = CONTAINERS.register("trading", () -> {
+			return IForgeContainerType.create(ExtendedTradeContainer::new);
 		});
 	}
 

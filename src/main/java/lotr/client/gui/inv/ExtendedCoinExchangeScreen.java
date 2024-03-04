@@ -2,12 +2,14 @@ package lotr.client.gui.inv;
 
 import com.github.maximuslotro.lotrExtended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketExchangeCoins;
+import com.github.maximuslotro.lotrExtended.common.network.ExtendedSPacketOpenCoinExchange;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -20,12 +22,18 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/coin_exchange.png");
 
+    ExtendedCoinExchangeContainer container;
+
+    PlayerEntity player;
+
     ImageButton buttonLeft;
     ImageButton buttonRight;
 
-    public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent title) {
-        super(p_i51105_1_, p_i51105_2_, title);
+    public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer container, PlayerInventory p_i51105_2_, ITextComponent title) {
+        super(container, p_i51105_2_, title);
 
+        this.container = container;
+        this.player = p_i51105_2_.player;
         this.imageHeight = 188;
         this.imageWidth = 176;
     }
@@ -111,6 +119,14 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
                 ExtendedPacketHandler.sendToServer(new ExtendedSPacketExchangeCoins(mode));
             }
         }
+    }
+
+    @Override
+    public void onClose() {
+        super.onClose();
+        // notify the server that player is no longer interacting with this trader
+        ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(container.traderNPC.getId(), false));
+        container.trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
 
 }

@@ -20,6 +20,9 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateExchangeCoinContainer.class, ExtendedCPacketUpdateExchangeCoinContainer::encode, ExtendedCPacketUpdateExchangeCoinContainer::decode, ExtendedCPacketUpdateExchangeCoinContainer::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketOpenCoinExchange.class, ExtendedSPacketOpenCoinExchange::encode, ExtendedSPacketOpenCoinExchange::decode, ExtendedSPacketOpenCoinExchange::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketTalkWithTrader.class, ExtendedSPacketTalkWithTrader::encode, ExtendedSPacketTalkWithTrader::decode, ExtendedSPacketTalkWithTrader::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketOpenTradeMenu.class, ExtendedSPacketOpenTradeMenu::encode, ExtendedSPacketOpenTradeMenu::decode, ExtendedSPacketOpenTradeMenu::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketTradeSellItems.class, ExtendedSPacketTradeSellItems::encode, ExtendedSPacketTradeSellItems::decode, ExtendedSPacketTradeSellItems::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateTradeQuantities.class, ExtendedCPacketUpdateTradeQuantities::encode, ExtendedCPacketUpdateTradeQuantities::decode, ExtendedCPacketUpdateTradeQuantities::handle);
 	}
 
 	public static void sendTo(Object msg, ServerPlayerEntity player) {
