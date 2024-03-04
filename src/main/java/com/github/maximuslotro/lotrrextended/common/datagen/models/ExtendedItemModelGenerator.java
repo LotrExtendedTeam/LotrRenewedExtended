@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.datagen.models;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
-import lotr.common.item.ExtendedBrandingIronItem;
-import lotr.common.item.ExtendedCommandHornItem;
-import lotr.common.item.ExtendedSilverCoin;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;

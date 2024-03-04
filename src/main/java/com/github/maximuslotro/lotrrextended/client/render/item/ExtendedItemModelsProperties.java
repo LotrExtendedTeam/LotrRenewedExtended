@@ -1,8 +1,9 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+
 import lotr.common.init.ExtendedItems;
-import lotr.common.item.ExtendedBrandingIronItem;
-import lotr.common.item.ExtendedCommandHornItem;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 

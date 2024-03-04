@@ -1,4 +1,4 @@
-package lotr.common.item.clientside;
+package com.github.maximuslotro.lotrrextended.common.item.clientside;
 
 import lotr.client.gui.ExtendedHornSelectScreen;
 import net.minecraft.client.Minecraft;

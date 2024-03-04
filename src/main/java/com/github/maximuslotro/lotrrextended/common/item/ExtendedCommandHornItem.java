@@ -1,9 +1,9 @@
-package lotr.common.item;
+package com.github.maximuslotro.lotrrextended.common.item;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
 
 import lotr.common.init.LOTRItemGroups;
-import lotr.common.item.clientside.ExtendedCommandHornClientSide;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

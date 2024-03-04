@@ -1,5 +1,6 @@
-package lotr.common.item;
+package com.github.maximuslotro.lotrrextended.common.item;
 
+import lotr.common.item.ExtendedPoisonedDrinks;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

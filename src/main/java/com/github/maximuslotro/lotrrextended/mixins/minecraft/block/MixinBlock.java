@@ -5,7 +5,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import lotr.common.block.ExtendedGroundFarmlandBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;

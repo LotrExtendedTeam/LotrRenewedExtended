@@ -5,7 +5,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import lotr.common.block.ExtendedBerryBushBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.util.math.BlockPos;

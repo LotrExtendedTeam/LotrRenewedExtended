@@ -1,4 +1,4 @@
-package lotr.common.item;
+package com.github.maximuslotro.lotrrextended.common.item;
 
 import java.util.UUID;
 

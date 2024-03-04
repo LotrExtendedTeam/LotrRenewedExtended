@@ -14,6 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;

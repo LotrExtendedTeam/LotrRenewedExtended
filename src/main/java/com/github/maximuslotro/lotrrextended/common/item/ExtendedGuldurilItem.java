@@ -1,4 +1,4 @@
-package lotr.common.item;
+package com.github.maximuslotro.lotrrextended.common.item;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;

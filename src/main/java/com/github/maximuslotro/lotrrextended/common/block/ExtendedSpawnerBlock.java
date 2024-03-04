@@ -1,4 +1,4 @@
-package lotr.common.block;
+package com.github.maximuslotro.lotrrextended.common.block;
 
 import javax.annotation.Nullable;
 
