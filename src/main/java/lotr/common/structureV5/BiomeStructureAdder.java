@@ -32,7 +32,8 @@ public class BiomeStructureAdder {
 
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
 		if(event.getName()!=null) {
-			if(event.getName().toString().equals("lotr:shire")) {
+			if(event.getName().toString().equals("lotr:shire")||event.getName().toString().equals("lotr:shire_woodlands")
+					||event.getName().toString().equals("lotr:shire_moors")||event.getName().toString().equals("lotr:white_downs")) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
