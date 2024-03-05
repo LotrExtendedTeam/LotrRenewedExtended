@@ -176,6 +176,7 @@
   "block.lotr.smooth_red_rock_stairs": "Smooth Cargon Rock Stairs",
   "block.lotr.smooth_rohan_rock_stairs": "Smooth Rohan Rock Stairs",
   "block.lotr.smooth_stone_stairs": "Smooth Stone Stairs",
+  "block.lotr.stone_chest": "Stone Chest",
   "block.lotr.stone_taurethrim_crafting_table": "Taurethrim Crafting Table",
   "block.lotr.taurethrim_brick": "Taurethrim Brick",
   "block.lotr.taurethrim_brick_slab": "Taurethrim Brick Slab",
@@ -326,6 +327,7 @@
   "stat.lotrextended.fellowship_create": "Fellowships Created",
   "stat.lotrextended.fellowship_delete": "Fellowships Disbanded",
   "stat.lotrextended.sliced_cheese": "Cheese Slices Cut",
+  "stat.lotrextended.stone_chest_open": "Stone Chests Opened",
   "stat.lotrextended.traders_traded": "Times Traded With Traders",
   "subtitles.lotrextended.event.trade": "Coins jingle",
   "subtitles.lotrextended.item.horn_blow": "Horn Blows"

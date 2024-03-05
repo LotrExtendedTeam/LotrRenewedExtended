@@ -624,6 +624,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.CONKER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GREEN_FIRE_BLOCK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.STONE_CHEST.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {

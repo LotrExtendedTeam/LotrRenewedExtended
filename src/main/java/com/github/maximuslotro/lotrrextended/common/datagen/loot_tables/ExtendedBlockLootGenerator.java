@@ -43,6 +43,7 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -196,6 +197,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			        						 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));});
 				continue;
 			}
+			add(ExtendedBlocks.STONE_CHEST.get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 		}
     }
 	
@@ -210,4 +212,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		}
         return filtered.stream().map(RegistryObject::get)::iterator;
     }
+
+	protected static LootTable.Builder createNameableBlockEntityTable(Block p_218481_0_) {
+		return LootTable.lootTable().withPool(applyExplosionCondition(p_218481_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));
+	}
 }

@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneChestBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 
@@ -333,6 +334,8 @@ public class MixinLOTRBlocks {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
 		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE));
+
+		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedStoneChestBlock());
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)

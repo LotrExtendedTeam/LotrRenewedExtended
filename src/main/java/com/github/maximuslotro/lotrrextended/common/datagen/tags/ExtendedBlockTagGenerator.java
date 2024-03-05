@@ -139,6 +139,8 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	    .addTag(ExtendedTags.Blocks.NITER_ORE).addTag(ExtendedTags.Blocks.SALT_ORE)
 	    .addTag(ExtendedTags.Blocks.SILVER_ORE).addTag(ExtendedTags.Blocks.SULFUR_ORE)
 	    .addTag(ExtendedTags.Blocks.TIN_ORE);
+
+	    tag(Tags.Blocks.CHESTS).add(ExtendedBlocks.STONE_CHEST.get());
 	}
 
 	@Override

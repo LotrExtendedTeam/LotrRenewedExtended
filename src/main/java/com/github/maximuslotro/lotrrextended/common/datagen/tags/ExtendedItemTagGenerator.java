@@ -137,6 +137,8 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 	    .addTag(ExtendedTags.Items.TIN_ORE);
 		
 		tag(FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
+		
+		tag(Tags.Items.CHESTS).add(ExtendedItems.STONE_CHEST.get());
 	}
 
 	@Override

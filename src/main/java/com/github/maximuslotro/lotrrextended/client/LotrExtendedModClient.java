@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.client;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 
 import net.minecraft.client.Minecraft;
@@ -62,6 +63,7 @@ public class LotrExtendedModClient {
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
         	ExtendedItemModelsProperties.createAlternateModels();
+        	BlockRendererSetup.regModels();
         });
     }
 

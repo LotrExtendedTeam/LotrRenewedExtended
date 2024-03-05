@@ -223,4 +223,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SCORCHED_BRICK_WALL;
 
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
+
+	public static RegistryObject<Block> STONE_CHEST;
 }

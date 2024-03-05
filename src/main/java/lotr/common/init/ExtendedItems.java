@@ -311,5 +311,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SMOOTH_BLUE_STAIRS;
 	public static RegistryObject<Item> SMOOTH_STONE_STAIRS;
 	public static RegistryObject<Item> CARVED_BLACK_GONDOR_BRICK;
+
+	public static RegistryObject<Item> STONE_CHEST;
 }
 
