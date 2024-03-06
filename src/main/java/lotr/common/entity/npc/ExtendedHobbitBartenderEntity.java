@@ -43,32 +43,32 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     // trading pools that bartenders will buy from players
     private final ExtendedTradeEntries HOBBIT_BARTENDER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_PLATE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_MUG.get()), 1, 1),
-            new ExtendedTradeEntry(new ItemStack(Items.BEEF), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.PORKCHOP), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(Items.RABBIT), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.CHICKEN), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(Items.POTATO, 3), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.COD), 2, 3),
-            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5), new ExtendedTradeEntry(new ItemStack(Items.COAL, 2), 1, 1),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.SALT.get()), 8, 13), new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.FOUR_LEAF_CLOVER.get()), 30, 50), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1),
-            new ExtendedTradeEntry(new ItemStack(Items.SALMON), 2, 3)
+            new ExtendedTradeEntry(new ItemStack(Items.BEEF), 2, 4, 128), new ExtendedTradeEntry(new ItemStack(Items.PORKCHOP), 2, 4, 128),
+            new ExtendedTradeEntry(new ItemStack(Items.RABBIT), 2, 4, 128), new ExtendedTradeEntry(new ItemStack(Items.CHICKEN), 2, 4, 128),
+            new ExtendedTradeEntry(new ItemStack(Items.POTATO, 3), 1, 1, 128), new ExtendedTradeEntry(new ItemStack(Items.COD), 2, 3, 128),
+            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 32), new ExtendedTradeEntry(new ItemStack(Items.COAL, 2), 1, 1, 128),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.SALT.get()), 8, 13, 128), new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.FOUR_LEAF_CLOVER.get()), 30, 50, 32), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1, 160),
+            new ExtendedTradeEntry(new ItemStack(Items.SALMON), 2, 3, 128)
     });
 
     // items you can buy from a hobbit bartender
     // TODO: Change from using ExtendedTraderHelper to DrinkUtils
     private final ExtendedTradeEntries HOBBIT_BARTENDER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 5, 9), new ExtendedTradeEntry(new ItemStack(Items.COOKED_PORKCHOP), 5, 9),
-            new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 5, 9), new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 5, 8),
-            new ExtendedTradeEntry(new ItemStack(Items.BREAD), 4, 6), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED.get(), 6), 5, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.WOODEN_MUG.get()), 2, 3), new ExtendedTradeEntry(new ItemStack(LOTRItems.CERAMIC_MUG.get()), 2, 3),
-            new ExtendedTradeEntry(new ItemStack(Items.BAKED_POTATO, 2), 5, 9), new ExtendedTradeEntry(new ItemStack(Items.SALMON), 5, 8),
-            new ExtendedTradeEntry(new ItemStack(Items.COD), 5,8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.CHOCOLATE_DRINK.get()), 3, 5), new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_JUICE.get()), 5, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 5, 9), new ExtendedTradeEntry(new ItemStack(Items.MUSHROOM_STEW), 8, 13),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.FINE_PLATE.get()), 2, 3), new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_MARRIAGE_RING.get()), 11, 18),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 30, 50), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.ALE.get()), 5, 8),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.ALE.get()), 6, 10), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.ALE.get()), 8, 13),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.CIDER.get()), 5, 8), new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.CIDER.get()), 6, 10),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.CIDER.get()), 8, 13), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.PERRY.get()), 5, 8),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.PERRY.get()), 6, 10), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.PERRY.get()), 8, 13)
+            new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_PORKCHOP), 5, 9, 32),
+            new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 5, 8, 32),
+            new ExtendedTradeEntry(new ItemStack(Items.BREAD), 4, 6, 40), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED.get(), 6), 5, 8, 64),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.WOODEN_MUG.get()), 2, 3, 64), new ExtendedTradeEntry(new ItemStack(LOTRItems.CERAMIC_MUG.get()), 2, 3, 64),
+            new ExtendedTradeEntry(new ItemStack(Items.BAKED_POTATO, 2), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.SALMON), 5, 8, 32),
+            new ExtendedTradeEntry(new ItemStack(Items.COD), 5,8, 32),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.CHOCOLATE_DRINK.get()), 3, 5, 20), new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_JUICE.get()), 5, 8, 20),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.MUSHROOM_STEW), 8, 13, 8),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.FINE_PLATE.get()), 2, 3, 32), new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_MARRIAGE_RING.get()), 11, 18, 8),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 30, 50, 2), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.ALE.get()), 5, 8, 16),
+            new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.ALE.get()), 6, 10, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.ALE.get()), 8, 13, 16),
+            new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.CIDER.get()), 5, 8, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.CIDER.get()), 6, 10, 16),
+            new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.CIDER.get()), 8, 13, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.PERRY.get()), 5, 8, 16),
+            new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.PERRY.get()), 6, 10, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.PERRY.get()), 8, 13, 16)
     });
 
     @Override
