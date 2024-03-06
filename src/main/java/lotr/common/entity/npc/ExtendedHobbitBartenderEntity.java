@@ -4,6 +4,8 @@ import lotr.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.VesselDrinkItem;
+import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
@@ -27,6 +29,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+
+import static lotr.common.item.VesselDrinkItem.Potency;
 
 import java.util.*;
 
@@ -53,7 +57,6 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     });
 
     // items you can buy from a hobbit bartender
-    // TODO: Change from using ExtendedTraderHelper to DrinkUtils
     private final ExtendedTradeEntries HOBBIT_BARTENDER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_PORKCHOP), 5, 9, 32),
             new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 5, 8, 32),
@@ -64,11 +67,11 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CHOCOLATE_DRINK.get()), 3, 5, 20), new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_JUICE.get()), 5, 8, 20),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.MUSHROOM_STEW), 8, 13, 8),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.FINE_PLATE.get()), 2, 3, 32), new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_MARRIAGE_RING.get()), 11, 18, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 30, 50, 2), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.ALE.get()), 5, 8, 16),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.ALE.get()), 6, 10, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.ALE.get()), 8, 13, 16),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.CIDER.get()), 5, 8, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.CIDER.get()), 6, 10, 16),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.CIDER.get()), 8, 13, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getLightAlcohol(LOTRItems.PERRY.get()), 5, 8, 16),
-            new ExtendedTradeEntry(ExtendedTraderHelper.getModerateAlcohol(LOTRItems.PERRY.get()), 6, 10, 16), new ExtendedTradeEntry(ExtendedTraderHelper.getStrongAlcohol(LOTRItems.PERRY.get()), 8, 13, 16)
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 30, 50, 2), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.LIGHT), 5, 8, 16),
+            new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.MODERATE), 6, 10, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.STRONG), 8, 13, 16),
+            new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.CIDER.get(), Potency.LIGHT), 5, 8, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.CIDER.get(), Potency.MODERATE), 6, 10, 16),
+            new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.CIDER.get(), Potency.STRONG), 8, 13, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.PERRY.get(), Potency.LIGHT), 5, 8, 16),
+            new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.PERRY.get(), Potency.MODERATE), 6, 10, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.PERRY.get(), Potency.STRONG), 8, 13, 16)
     });
 
     @Override
@@ -256,6 +259,8 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         }
 
         // every 1 minute allow one more trade in both buys and sells to be done again
+        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
+        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
         if (lastTickCooldownReduced >= 1200) {
             for (ExtendedTrade trade : itemsSoldByTrader) {
                 if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
