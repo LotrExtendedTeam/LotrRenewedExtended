@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.function.BiPredicate;
+import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
 import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 
 import lotr.common.init.ExtendedTileEntities;
@@ -32,11 +32,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class ExtendedStoneChestBlock extends ChestBlock {
-
-	public ExtendedStoneChestBlock() {
+public class ExtendedSingleChestBlock extends ChestBlock {
+	private final Supplier<ChestTileEntity> tileentityholder;
+	public ExtendedSingleChestBlock(Supplier<ChestTileEntity> tileentityholder) {
 		super(AbstractBlock.Properties.of(Material.STONE).strength(4.0F).sound(SoundType.STONE), ()-> ExtendedTileEntities.STONE_CHEST.get());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, Boolean.valueOf(false)));
+		this.tileentityholder = tileentityholder;
 	}
 
 	public static TileEntityMerger.Type getExtendedBlockType(BlockState p_226919_0_) {
@@ -95,10 +96,10 @@ public class ExtendedStoneChestBlock extends ChestBlock {
 		}
 
 		return TileEntityMerger.combineWithNeigbour(this.blockEntityType.get(),
-				ExtendedStoneChestBlock::getExtendedBlockType, ExtendedStoneChestBlock::getExtendedConnectedDirection, FACING, p_225536_1_, p_225536_2_, p_225536_3_, bipredicate);
+				ExtendedSingleChestBlock::getExtendedBlockType, ExtendedSingleChestBlock::getExtendedConnectedDirection, FACING, p_225536_1_, p_225536_2_, p_225536_3_, bipredicate);
 	}
 
 	   public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		      return new ExtendedStoneChestTileEntity();
+		      return tileentityholder.get();
 		   }
 }

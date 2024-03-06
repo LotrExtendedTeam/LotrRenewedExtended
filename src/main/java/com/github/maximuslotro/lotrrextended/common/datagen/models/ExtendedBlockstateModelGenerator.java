@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
@@ -172,6 +173,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedHearthBlock) {
 				genHearthBlockType((ExtendedHearthBlock) block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
+				geChestBlockItem(block.getValue().get());
 				continue;
 			}
 			if(block.getKey().contains("barren_dirt")) {
@@ -553,6 +558,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath(), allSides);
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void geChestBlockItem(Block block) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
+		simpleBlock(block, modelFile);
 	}
 
 	private void genRandomCubeBlockItem(Block block, ResourceLocation allSides) {
