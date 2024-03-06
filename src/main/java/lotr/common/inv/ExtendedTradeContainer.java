@@ -1,5 +1,6 @@
 package lotr.common.inv;
 
+import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
@@ -38,6 +39,8 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
  */
 public class ExtendedTradeContainer extends Container {
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("gui.lotr.container.trade");
+
+    private boolean tradedYet = false;
 
     private World level;
 
@@ -256,6 +259,11 @@ public class ExtendedTradeContainer extends Container {
                     trader.getSells().get(index).setQuantityLeft(trader.getSells().get(index).getQuantityLeft() - 1);
                 }
                 player.inventory.setChanged();
+
+                if (!tradedYet) {
+                    player.awardStat(ExtendedStats.TRADERS_TRADED);
+                    tradedYet = true;
+                }
             }
 
             return player.inventory.getCarried();
@@ -283,6 +291,11 @@ public class ExtendedTradeContainer extends Container {
                 }
 
                 if (tradesToPerform == 0) return ItemStack.EMPTY;
+
+                if (!tradedYet) {
+                    player.awardStat(ExtendedStats.TRADERS_TRADED);
+                    tradedYet = true;
+                }
 
                 // actually perform buy
                 ItemStack stack = displayInventory.getItem(slot.index).copy();
@@ -354,6 +367,11 @@ public class ExtendedTradeContainer extends Container {
                 trade.setQuantityLeft(trade.getQuantityLeft() - totalTrades);
                 sellInventory.setChanged();
             }
+        }
+
+        if (coinsGiven > 0 && !tradedYet) {
+            player.awardStat(ExtendedStats.TRADERS_TRADED, 1);
+            tradedYet = true;
         }
 
         // give in the largest currencies first
