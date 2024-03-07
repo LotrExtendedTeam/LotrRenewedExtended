@@ -71,22 +71,31 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         // render prices
         for (int i = 0; i < container.getSoldPrices().length; i++) {
             int amount = container.getSoldPrices()[i];
-            // TODO: Figure out how to render font at smaller size
-            if (container.getSoldQuantities()[i] == 0) {
+            // TODO: Maybe make trades eventually completely get used up like they do in Legacy? For now this isn't needed
+            //  anymore
+            /*if (container.getSoldQuantities()[i] == 0) {
                 this.minecraft.getTextureManager().bind(GUI_TEXTURE);
-                blit(matrix, 8 + (i * 18), 57, 194, 18, 18, 18, 280, 280);
-            }
-            this.font.draw(matrix, String.valueOf(amount), 8 + (18 * i) + ((18 - this.font.width(String.valueOf(amount))) / 2), 62, 4210752);
+                //blit(matrix, 8 + (i * 18), 57, 194, 18, 18, 18, 280, 280);
+            }*/
+
+            // TODO: Figure out how to render font at smaller size
+            String priceStr = String.valueOf(container.getSoldPrices()[i]);
+            if (container.getSoldQuantities()[i] == 0) priceStr = "...";
+            this.font.draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 62, 4210752);
         }
 
         for (int i = 0; i < container.getBoughtPrices().length; i++) {
-            int amount = container.getBoughtPrices()[i];
-            // TODO: Figure out how to render font at smaller size
-            if (container.getBoughtQuantities()[i] == 0) {
+            // TODO: Maybe make trades eventually completely get used up like they do in Legacy? For now this isn't needed
+            //  anymore
+            /*if (container.getBoughtQuantities()[i] == 0) {
                 this.minecraft.getTextureManager().bind(GUI_TEXTURE);
-                blit(matrix, 8 + (i * 18), 109, 194, 18, 18, 18, 280, 280);
-            }
-            this.font.draw(matrix, String.valueOf(amount), 8 + (18 * i) + ((18 - this.font.width(String.valueOf(amount))) / 2), 114, 4210752);
+                //blit(matrix, 8 + (i * 18), 109, 194, 18, 18, 18, 280, 280);
+            }*/
+
+            // TODO: Figure out how to render font at smaller size
+            String priceStr = String.valueOf(container.getBoughtPrices()[i]);
+            if (container.getBoughtQuantities()[i] == 0) priceStr = "...";
+            this.font.draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 114, 4210752);
         }
 
         // render a blocker in front of items sold to player
