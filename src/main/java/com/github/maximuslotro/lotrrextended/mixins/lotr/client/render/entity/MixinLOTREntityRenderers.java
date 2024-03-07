@@ -8,7 +8,6 @@ import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
 import lotr.client.render.entity.LOTREntityRenderers;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedTileEntities;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +25,7 @@ public class MixinLOTREntityRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
 
         // tile entities
-        ClientRegistry.bindTileEntityRenderer((TileEntityType) ExtendedTileEntities.STONE_CHEST.get(), ExtendedChestTileEntityRenderer<ExtendedStoneChestTileEntity>::new);
+        ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_CHEST.get(), ExtendedChestTileEntityRenderer<ExtendedStoneChestTileEntity>::new);
     }
 
 }
