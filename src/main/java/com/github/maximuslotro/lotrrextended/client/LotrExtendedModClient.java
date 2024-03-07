@@ -47,6 +47,7 @@ public class LotrExtendedModClient {
 		forgeBus.addListener(this::login);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
+		modBus.addListener(BlockRendererSetup::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 
 		createPack("legacy", "Legacy TexturePack");
 		createPack("renewed", "Remastered Renewed TexturePack");
@@ -63,7 +64,6 @@ public class LotrExtendedModClient {
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
         	ExtendedItemModelsProperties.createAlternateModels();
-        	BlockRendererSetup.regModels();
         });
     }
 
