@@ -1,4 +1,4 @@
-package lotr.common.tileentitie.spawners;
+package lotr.common.tileentity.spawners;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 

@@ -1,6 +1,6 @@
 package lotr.common.block;
 
-import lotr.common.tileentitie.ExtendedWeaponRackTileEntity;
+import lotr.common.tileentity.ExtendedWeaponRackTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;

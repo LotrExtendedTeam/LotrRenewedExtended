@@ -1,4 +1,4 @@
-package lotr.common.tileentitie;
+package lotr.common.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
 
