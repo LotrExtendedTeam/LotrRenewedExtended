@@ -13,7 +13,7 @@ public class ExtendedItemModelsProperties {
 	public static ResourceLocation heated = new ResourceLocation("lotrextended", "heated");
 	public static ResourceLocation poisoned = new ResourceLocation("lotrextended", "poisoned");
 
-	public static void createAlternateModels() {
+	public static void registerAlternativeHandheldTextures() {
 		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> {
 			return ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F;
 		});

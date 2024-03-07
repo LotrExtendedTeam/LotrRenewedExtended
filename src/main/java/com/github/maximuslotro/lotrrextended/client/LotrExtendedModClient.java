@@ -62,9 +62,8 @@ public class LotrExtendedModClient {
 	}
 
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-        	ExtendedItemModelsProperties.createAlternateModels();
-        });
+		ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
+		BlockRendererSetup.regModels();
     }
 
     public void login(EntityJoinWorldEvent event)

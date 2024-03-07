@@ -22,6 +22,5 @@ public class MixinBlockRenderHelper {
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RASPBERRY_BUSH_PLANT.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GREEN_FIRE_BLOCK.get(), RenderType.cutout());
-
     }
 }

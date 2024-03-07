@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
 
-import lotr.common.tileentitie.spawners.ExtendedStructureSpawnerTileEntity;
+import lotr.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
