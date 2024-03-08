@@ -105,7 +105,6 @@ public class ExtendedTradeContainer extends Container {
 
         // add buy slots
         for (int i = 0; i < 9; i++) {
-            final int currentI = i;
             addSlot(new Slot(displayInventory, i, 8 + (i * 18), 40) {
                 @Override
                 public boolean mayPickup(PlayerEntity player) {

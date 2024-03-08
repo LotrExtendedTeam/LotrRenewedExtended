@@ -79,7 +79,6 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
         int i = (this.width - this.imageWidth) / 2;
         int j = ((this.height - this.imageHeight) / 2);
-        int k = 16;
 
         this.buttonLeft = addButton(new ImageButton(i + 44,  j + 45,
                 32, 16,
