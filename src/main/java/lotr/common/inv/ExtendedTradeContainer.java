@@ -37,7 +37,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
  * @author RichardB122
  */
 public class ExtendedTradeContainer extends Container {
-    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("gui.lotr.container.trade");
+    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.trading");
 
     private World level;
 

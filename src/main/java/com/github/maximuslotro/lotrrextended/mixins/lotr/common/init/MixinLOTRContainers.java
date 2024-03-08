@@ -34,14 +34,14 @@ public class MixinLOTRContainers {
 		ExtendedContainers.COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> {
 			return IForgeContainerType.create(ExtendedCoinExchangeContainer::new);
 		});
-		ExtendedContainers.TRADING = CONTAINERS.register("trading", () -> {
+		ExtendedContainers.TRADING = register("trading", "Trading", () -> {
 			return IForgeContainerType.create(ExtendedTradeContainer::new);
 		});
 	}
 
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
-    		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, "Coin Exchange");
+    		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
     	}
 		return CONTAINERS.register(name, sup);
 	}
