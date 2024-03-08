@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.tileentity;
+package com.github.maximuslotro.lotrrextended.client.render.item;
 
 import java.util.function.Supplier;
 

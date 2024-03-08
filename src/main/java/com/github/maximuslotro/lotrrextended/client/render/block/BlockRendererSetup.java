@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotrrextended.client.render.block;
 import java.util.concurrent.Callable;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemStackRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedChestTileEntityRenderer;
-import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedItemStackRenderer;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
 
 import lotr.common.init.ExtendedTileEntities;
