@@ -3,8 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChestTileEntity;
 import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 
+import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
@@ -19,6 +21,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.properties.ChestType;
 import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.ActionResultType;
@@ -31,6 +34,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedSingleChestBlock extends ChestBlock {
 	private final Supplier<ChestTileEntity> tileentityholder;
@@ -84,8 +89,9 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public TileEntityMerger.ICallbackWrapper<? extends ChestTileEntity> combine(BlockState p_225536_1_, World p_225536_2_, BlockPos p_225536_3_, boolean p_225536_4_) {
+	public TileEntityMerger.ICallbackWrapper<? extends ExtendedChestTileEntity> combine(BlockState p_225536_1_, World world, BlockPos blockPos, boolean p_225536_4_) {
 		BiPredicate<IWorld, BlockPos> bipredicate;
 		if (p_225536_4_) {
 			bipredicate = (p_226918_0_, p_226918_1_) -> {
@@ -94,12 +100,34 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 		} else {
 			bipredicate = ChestBlock::isChestBlockedAt;
 		}
-
-		return TileEntityMerger.combineWithNeigbour(this.blockEntityType.get(),
-				ExtendedSingleChestBlock::getExtendedBlockType, ExtendedSingleChestBlock::getExtendedConnectedDirection, FACING, p_225536_1_, p_225536_2_, p_225536_3_, bipredicate);
+		ExtendedChestTileEntity<?> s = (ExtendedChestTileEntity<?>) this.blockEntityType.get().getBlockEntity(world, blockPos);
+		if (s == null) {
+			return TileEntityMerger.ICallback::acceptNone;
+		} else if (bipredicate.test(world, blockPos)) {
+			return TileEntityMerger.ICallback::acceptNone;
+		} else {
+			return new TileEntityMerger.ICallbackWrapper.Single<>(s);
+		}
 	}
 
-	   public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		      return tileentityholder.get();
-		   }
+	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
+		return tileentityholder.get();
+	}
+
+	   @OnlyIn(Dist.CLIENT)
+	   public static TileEntityMerger.ICallback<ChestTileEntity, Float2FloatFunction> opennessCombiner(final IChestLid p_226917_0_) {
+	      return new TileEntityMerger.ICallback<ChestTileEntity, Float2FloatFunction>() {
+	         public Float2FloatFunction acceptDouble(ChestTileEntity p_225539_1_, ChestTileEntity p_225539_2_) {
+	        	 return p_225539_1_::getOpenNess;
+	         }
+
+	         public Float2FloatFunction acceptSingle(ChestTileEntity p_225538_1_) {
+	            return p_225538_1_::getOpenNess;
+	         }
+
+	         public Float2FloatFunction acceptNone() {
+	            return p_226917_0_::getOpenNess;
+	         }
+	      };
+	   }
 }
