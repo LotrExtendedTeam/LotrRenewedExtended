@@ -18,6 +18,9 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlo
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
+import lotr.common.block.ExtendedLOTRTorchBlock;
+import lotr.common.block.ExtendedLOTRWallTorchBlock;
+import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedStoneBlock;
@@ -29,11 +32,9 @@ import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStoneBlock;
-import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.MineralBlock;
-import lotr.common.block.NonWaterloggableLanternBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
@@ -143,22 +144,22 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				genTopBottomTwoSidedNonRotatableBlockItem((ExtendedTwoTypeDummyBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRTorchBlock) {
-				genTorchBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+			if(block.getValue().get() instanceof ExtendedLOTRTorchBlock) {
+				genTorchBlockItem((ExtendedLOTRTorchBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedFireBlock) {
 				genFireTextureBlock(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWallTorchBlock) {
+			if(block.getValue().get() instanceof ExtendedLOTRWallTorchBlock) {
 				if(block.getKey().contains("_wall")) {
-					genTorchWallBlock((LOTRWallTorchBlock)block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+					genTorchWallBlock((ExtendedLOTRWallTorchBlock)block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 					continue;
 				}
 			}
-			if(block.getValue().get() instanceof NonWaterloggableLanternBlock) {
-				genHangingLanternBlockItem((NonWaterloggableLanternBlock) block.getValue().get(), "block/"+block.getKey());
+			if(block.getValue().get() instanceof ExtendedLanternBlock) {
+				genHangingLanternBlockItem((ExtendedLanternBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedSpawnerBlock) {
@@ -430,7 +431,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+table.getRegistryName().getPath()).parent(cubeModel);
 	}
 
-	private void genHangingLanternBlockItem(NonWaterloggableLanternBlock lantern, String name) {
+	private void genHangingLanternBlockItem(ExtendedLanternBlock lantern, String name) {
 		registeredBlocks.add(lantern);
 		ResourceLocation lamp = lotrExtendedLoc(name);
 		ResourceLocation fire = lotrExtendedLoc(name+"_fire");
@@ -446,7 +447,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("chain", chain);
 		getVariantBuilder(lantern)
 		.forAllStates(state -> {
-			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
+			Boolean hanging = state.getValue(ExtendedLanternBlock.HANGING);
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
@@ -476,13 +477,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
 	}
 
-	private void genTorchBlockItem(Block torch, ResourceLocation texture) {
+	private void genTorchBlockItem(ExtendedLOTRTorchBlock torch, ResourceLocation texture) {
 		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torch("lotrextended:"+torch.getRegistryName().getPath(), texture);
-		simpleBlock(torch, cubeModel);
+		getVariantBuilder(torch).forAllStates(state -> {
+			return ConfiguredModel.builder()
+                    .modelFile(cubeModel)
+                    .build();
+		});
 	}
 
-	private void genTorchWallBlock(LOTRWallTorchBlock torch, ResourceLocation texture) {
+	private void genTorchWallBlock(ExtendedLOTRWallTorchBlock torch, ResourceLocation texture) {
 		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torchWall("lotrextended:"+torch.getRegistryName().getPath(), texture);
 		getVariantBuilder(torch).forAllStates(state -> {
@@ -564,6 +569,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(block);
 		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
 		simpleBlock(block, modelFile);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genRandomCubeBlockItem(Block block, ResourceLocation allSides) {

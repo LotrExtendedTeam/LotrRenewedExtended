@@ -34,7 +34,7 @@ public class MixinLOTRTileEntities {
     				register(type.getSerializedName()+"_spawner_tileentity", 
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
-    	ExtendedTileEntities.STONE_CHEST= register("stone_chest_tileentity", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));
+    	ExtendedTileEntities.STONE_CHEST = register("stone_chest_tileentity", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));
     	//register("weapon_rack",() -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK));	
     }
 }

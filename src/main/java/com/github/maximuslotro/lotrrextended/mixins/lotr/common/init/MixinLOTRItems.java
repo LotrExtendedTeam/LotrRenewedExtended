@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
@@ -218,8 +217,8 @@ public class MixinLOTRItems {
 		ExtendedItems.MUD_PATH_STAIRS = regBlockItemB(ExtendedBlocks.MUD_PATH_STAIRS, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_FARMLAND = regBlockItemB(ExtendedBlocks.MUD_FARMLAND, LOTRItemGroups.DECO);
 
-		ExtendedItems.STONE_CHEST = regBlockItemStackRenderer(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO, ()-> BlockRendererSetup.createStoneChestRenderer());
-		//ExtendedItems.STONE_CHEST = regBlockItemB(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO);
+		//ExtendedItems.STONE_CHEST = regBlockItemStackRenderer(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO, ()-> BlockRendererSetup.createStoneChestRenderer());
+		ExtendedItems.STONE_CHEST = regBlockItemB(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO);
 		//########### BLOCK TYPES ##################
 		//Stone types
 		ExtendedItems.DRYSTONE_SLAB = regBlockItemB(ExtendedBlocks.DRYSTONE_SLAB, LOTRItemGroups.BLOCKS);

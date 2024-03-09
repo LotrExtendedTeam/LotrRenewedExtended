@@ -64,7 +64,7 @@ public class ExtendedSPacketOpenCoinExchange {
                 }
 
                 ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
-                ((ExtendedTraderEntity) entity).removePlayerFromTrading(context.get().getSender());
+                trader.removePlayerFromTrading(context.get().getSender());
             }
         }
 

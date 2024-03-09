@@ -38,7 +38,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
  * @author RichardB122
  */
 public class ExtendedTradeContainer extends Container {
-    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("gui.lotr.container.trade");
+    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.trading");
 
     private boolean tradedYet = false;
 
@@ -108,7 +108,6 @@ public class ExtendedTradeContainer extends Container {
 
         // add buy slots
         for (int i = 0; i < 9; i++) {
-            final int currentI = i;
             addSlot(new Slot(displayInventory, i, 8 + (i * 18), 40) {
                 @Override
                 public boolean mayPickup(PlayerEntity player) {

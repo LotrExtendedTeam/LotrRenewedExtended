@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChestTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -11,8 +12,6 @@ import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -20,12 +19,10 @@ import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.tileentity.DualBrightnessCallback;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -55,30 +52,31 @@ public class ExtendedChestTileEntityRenderer<T extends TileEntity & IChestLid> e
 	   public void render(T tileEntity, float p_225616_2_, MatrixStack p_225616_3_, IRenderTypeBuffer p_225616_4_, int p_225616_5_, int p_225616_6_) {
 	      World world = tileEntity.getLevel();
 	      boolean flag = world != null;
-	      BlockState blockstate = flag ? tileEntity.getBlockState() : Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);
+	      BlockState blockstate = flag ? tileEntity.getBlockState() : Blocks.CHEST.defaultBlockState().setValue(ExtendedSingleChestBlock.FACING, Direction.SOUTH);
 	      Block block = blockstate.getBlock();
 	      if (block instanceof ExtendedSingleChestBlock) {
 	    	  ExtendedSingleChestBlock chestblock = (ExtendedSingleChestBlock) block;
 	    	  
 	         p_225616_3_.pushPose();
-	         float f = blockstate.getValue(ChestBlock.FACING).toYRot();
+	         float f = blockstate.getValue(ExtendedSingleChestBlock.FACING).toYRot();
 	         p_225616_3_.translate(0.5D, 0.5D, 0.5D);
 	         p_225616_3_.mulPose(Vector3f.YP.rotationDegrees(-f));
 	         p_225616_3_.translate(-0.5D, -0.5D, -0.5D);
 	         
-	         TileEntityMerger.ICallbackWrapper<? extends ChestTileEntity> icallbackwrapper;
+	         @SuppressWarnings("rawtypes")
+			TileEntityMerger.ICallbackWrapper<? extends ExtendedChestTileEntity> icallbackwrapper;
 	         if (flag) {
 	            icallbackwrapper = chestblock.combine(blockstate, world, tileEntity.getBlockPos(), true);
 	         } else {
 	            icallbackwrapper = TileEntityMerger.ICallback::acceptNone;
 	         }
 
-	         float f1 = icallbackwrapper.<Float2FloatFunction>apply(ChestBlock.opennessCombiner(tileEntity)).get(p_225616_2_);
+	         float f1 = icallbackwrapper.<Float2FloatFunction>apply(ExtendedSingleChestBlock.opennessCombiner(tileEntity)).get(p_225616_2_);
 	         f1 = 1.0F - f1;
 	         f1 = 1.0F - f1 * f1 * f1;
 	         int i = icallbackwrapper.<Int2IntFunction>apply(new DualBrightnessCallback<>()).applyAsInt(p_225616_5_);
 	         
-	         RenderMaterial rendermaterial = new RenderMaterial(Atlases.CHEST_SHEET, getMaterial(tileEntity));
+	         RenderMaterial rendermaterial = getMaterial(tileEntity);
 	         IVertexBuilder ivertexbuilder = rendermaterial.buffer(p_225616_4_, RenderType::entityCutout);
 	         this.renderChest(p_225616_3_, ivertexbuilder, this.lid, this.lock, this.bottom, f1, i, p_225616_6_);
 
@@ -94,9 +92,9 @@ public class ExtendedChestTileEntityRenderer<T extends TileEntity & IChestLid> e
 		p_228871_5_.render(p_228871_1_, p_228871_2_, p_228871_7_, p_228871_8_);
 	}
 
-	protected ResourceLocation getMaterial(T tileEntity) {
+	protected RenderMaterial getMaterial(T tileEntity) {
 		if(tileEntity instanceof ExtendedStoneChestTileEntity) {
-			return BlockRendererSetup.STONE_CHEST;
+			return BlockRendererSetup.STONE_CHEST_MATERIAL;
 		}
 		return null;
 	}
