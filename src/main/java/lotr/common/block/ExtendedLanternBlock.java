@@ -1,24 +1,30 @@
 package lotr.common.block;
 
-import lotr.common.init.LOTRBlocks;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 
-public class ExtendedMorgulLanternBlock extends NonWaterloggableLanternBlock {
+public class ExtendedLanternBlock extends NonWaterloggableLanternBlock {
+	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	private static final VoxelShape morgulGroundShape = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
 	private static final VoxelShape morgulHangingShape = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 	private static final VoxelShape morgulGroundCollisionShape = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 2.0D, 11.0D);
 	private static final VoxelShape morgulHangingCollisionShape = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 3.0D, 11.0D);
 
-	public ExtendedMorgulLanternBlock() {
-		super(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(LOTRBlocks.constantLight(14)).noOcclusion());
+	public ExtendedLanternBlock(int lightLevel) {
+		super(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlocks.litBlockEmission(lightLevel)).noOcclusion());
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
 	}
 
 	@Override
@@ -29,5 +35,11 @@ public class ExtendedMorgulLanternBlock extends NonWaterloggableLanternBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
 		return state.getValue(HANGING) ? morgulHangingShape : morgulGroundShape;
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+		super.createBlockStateDefinition(stateBuilder);
+		stateBuilder.add(LIT);
 	}
 }

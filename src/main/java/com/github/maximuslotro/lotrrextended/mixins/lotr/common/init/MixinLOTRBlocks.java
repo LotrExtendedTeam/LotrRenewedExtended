@@ -28,7 +28,9 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
 import lotr.common.block.ExtendedGreenHearthBlock;
-import lotr.common.block.ExtendedMorgulLanternBlock;
+import lotr.common.block.ExtendedLOTRTorchBlock;
+import lotr.common.block.ExtendedLOTRWallTorchBlock;
+import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedStoneBlock;
@@ -37,9 +39,7 @@ import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStoneBlock;
-import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallBlock;
-import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
@@ -323,9 +323,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GUNDABAD_CRAFTING_TABLE = registerB("gundabad_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Gundabad(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
-		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", ExtendedMorgulLanternBlock::new);
-		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new LOTRTorchBlock(14).setParticles(() -> { return ExtendedParticles.MORGUL_FLAME.get();}));
-		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new LOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
+		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
+		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(() -> { return ExtendedParticles.MORGUL_FLAME.get();}));
+		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());
 		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(AbstractBlock.Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> {
 		      return 10;

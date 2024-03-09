@@ -1,9 +1,15 @@
 {
   "variants": {
-    "hanging=false": {
+    "hanging=false,lit=false": {
       "model": "lotrextended:block/morgul_lantern"
     },
-    "hanging=true": {
+    "hanging=true,lit=false": {
+      "model": "lotrextended:block/morgul_lantern_hanging"
+    },
+    "hanging=false,lit=true": {
+      "model": "lotrextended:block/morgul_lantern"
+    },
+    "hanging=true,lit=true": {
       "model": "lotrextended:block/morgul_lantern_hanging"
     }
   }

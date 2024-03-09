@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,lit=false": {
       "model": "lotrextended:block/morgul_torch_wall",
       "y": 270
     },
-    "facing=south": {
+    "facing=south,lit=false": {
       "model": "lotrextended:block/morgul_torch_wall",
       "y": 90
     },
-    "facing=west": {
+    "facing=west,lit=false": {
       "model": "lotrextended:block/morgul_torch_wall",
       "y": 180
     },
-    "facing=east": {
+    "facing=east,lit=false": {
+      "model": "lotrextended:block/morgul_torch_wall"
+    },
+    "facing=north,lit=true": {
+      "model": "lotrextended:block/morgul_torch_wall",
+      "y": 270
+    },
+    "facing=south,lit=true": {
+      "model": "lotrextended:block/morgul_torch_wall",
+      "y": 90
+    },
+    "facing=west,lit=true": {
+      "model": "lotrextended:block/morgul_torch_wall",
+      "y": 180
+    },
+    "facing=east,lit=true": {
       "model": "lotrextended:block/morgul_torch_wall"
     }
   }

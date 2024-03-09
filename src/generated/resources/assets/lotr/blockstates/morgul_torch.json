@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "lit=false": {
+      "model": "lotrextended:block/morgul_torch"
+    },
+    "lit=true": {
       "model": "lotrextended:block/morgul_torch"
     }
   }
