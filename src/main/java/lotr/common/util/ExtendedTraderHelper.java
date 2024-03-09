@@ -11,6 +11,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class ExtendedTraderHelper {
 
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         if (trader.getPlayerTradingWith().isPresent()) {
-            if (!entity.level.isClientSide) player.sendMessage(new StringTextComponent("The trader is busy with another player at the moment."), player.getUUID());
+            if (!entity.level.isClientSide) player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), player.getUUID());
             return ActionResultType.sidedSuccess(entity.level.isClientSide());
         }
 

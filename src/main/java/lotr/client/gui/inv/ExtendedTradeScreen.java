@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * @author RichardB122
@@ -61,9 +62,9 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         // render labels
         this.font.draw(matrix, container.trader.getTraderName(), (((imageWidth - 32) - font.width(container.trader.getTraderName())) / 2) + 16, 11, 4210752);
         this.font.draw(matrix, this.inventory.getDisplayName(), 8, this.inventoryLabelY, 4210752);
-        this.font.draw(matrix, "Buy", 8, 30, 4210752);
-        this.font.draw(matrix, "Sell", 8, 82, 4210752);
-        this.font.draw(matrix, "Sell Offers", 8, 131, 4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.buy"), 8, 30, 4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell"), 8, 82, 4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.trading.sell_offers"), 8, 131, 4210752);
         if (container.getSellValue() > 0) {
             this.font.draw(matrix, "x " + container.getSellValue(), 99, 168, 4210752);
         }

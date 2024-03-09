@@ -27,6 +27,7 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -135,11 +136,12 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
         if (canTradeWith(player)) {
             return ExtendedTraderHelper.openTraderGui(this, player, this);
         } else {
-            player.sendMessage(new StringTextComponent("Your alignment is too low"), player.getUUID());
+            if (!player.level.isClientSide)
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
         }
 
         return super.mobInteract(player, hand);
-    }
+   }
 
     @Override
     public void playTradeSound() {

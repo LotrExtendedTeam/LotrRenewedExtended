@@ -11,6 +11,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedTraderMainScreen extends BasicIngameScreen {
 
@@ -40,10 +41,10 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     public void init() {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
-        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 115, 57, 20, new StringTextComponent("Talk"),
+        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"),
                 button -> talkWithNPC()));
-        tradeButton = this.addButton(new Button(this.guiLeft + ((this.xSize - 120) / 2) + 63, this.guiTop + 115, 57, 20, new StringTextComponent("Trade"), button -> trader.openTradeMenu(player)));
-        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 140, 120, 20, new StringTextComponent("Exchange Coins"), button -> trader.openCoinExchange(player)));
+        tradeButton = this.addButton(new Button(this.guiLeft + ((this.xSize - 120) / 2) + 63, this.guiTop + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> trader.openTradeMenu(player)));
+        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 140, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.exchange_button"), button -> trader.openCoinExchange(player)));
     }
 
     private void talkWithNPC() {
