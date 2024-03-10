@@ -43,14 +43,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ExtendedOddmentCollector extends ManEntity implements ExtendedTraderEntity {
+// TODO: really should extend ManEntity but I couldn't get it to render when I did that
+public class ExtendedOddmentCollectorEntity extends BreeManEntity implements ExtendedTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
-    private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedOddmentCollector.class, DataSerializers.OPTIONAL_UUID);
+    private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedOddmentCollectorEntity.class, DataSerializers.OPTIONAL_UUID);
 
     // items Oddment Collectors can buy from players
     // TODO: Following Items missing from Renewed Extended:
@@ -108,16 +109,18 @@ public class ExtendedOddmentCollector extends ManEntity implements ExtendedTrade
         this.addNPCTargetingAI();
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.addAttackGoal(2);
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         // TODO: Should Oddment Collectors talk to other NPCs? Not sure it feels fitting
         this.goalSelector.addGoal(10, new ExtendedTraderTalkToCurrentGoal(this, this));
         this.goalSelector.addGoal(11, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
         this.goalSelector.addGoal(12, new WatchSunriseSunsetGoal(this, 0.01F));
         this.goalSelector.addGoal(13, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.1));
+        this.addConsumingGoals(14);
         this.goalSelector.addGoal(15, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.05F));
-        this.goalSelector.addGoal(15, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.05F));
-        this.goalSelector.addGoal(16, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(17, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(16, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.05F));
+        this.goalSelector.addGoal(17, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(18, new LookRandomlyGoal(this));
     }
 
     @Override
@@ -133,7 +136,7 @@ public class ExtendedOddmentCollector extends ManEntity implements ExtendedTrade
     private ArrayList<ExtendedTrade> itemsSoldByTrader;
     private ArrayList<ExtendedTrade> itemsBoughtByTrader;
 
-    public ExtendedOddmentCollector(EntityType<? extends ExtendedOddmentCollector> type, World w) {
+    public ExtendedOddmentCollectorEntity(EntityType<? extends ExtendedOddmentCollectorEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
 
@@ -153,6 +156,11 @@ public class ExtendedOddmentCollector extends ManEntity implements ExtendedTrade
 
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
+    }
+
+    @Override
+    protected void addNPCTargetingAI() {
+        this.addNonAggressiveTargetingGoals();
     }
 
     @Override
@@ -182,6 +190,7 @@ public class ExtendedOddmentCollector extends ManEntity implements ExtendedTrade
         return NPCNameGenerators.DUNLENDING;
     }
 
+    @Override
     protected Goal createAttackGoal() {
         return new NPCMeleeAttackGoal(this, 1.3);
     }
@@ -203,8 +212,10 @@ public class ExtendedOddmentCollector extends ManEntity implements ExtendedTrade
         }
     }
 
+    // TODO: Maybe some sort of negative reputation limit should prevent a player from trading but for now I don't want killing
+    //  an Oddment Collector once to prevent you from being able to sell to them
     public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAligned(player);
+        return true;
     }
 
     @Override

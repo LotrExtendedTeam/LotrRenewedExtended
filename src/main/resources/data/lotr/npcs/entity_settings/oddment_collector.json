@@ -1,4 +1,5 @@
 {
-  "speechbank": "lotr:misc/oddment_collector",
-  "kill_bonus": 1
+  "faction": "lotr:oddment_collectors",
+  "speechbank": "lotr:oddment_collectors/oddment_collector",
+  "kill_bonus": 0
 }
