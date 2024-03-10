@@ -29,15 +29,22 @@ import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRBlockStates;
+import lotr.common.block.LOTRDoorBlock;
+import lotr.common.block.LOTRFenceBlock;
+import lotr.common.block.LOTRFenceGateBlock;
 import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
+import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
+import lotr.common.block.LOTRTrapdoorBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
+import lotr.common.block.LOTRWoodButtonBlock;
+import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
@@ -50,6 +57,7 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ResourceLocation;
@@ -141,6 +149,52 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			if(block.getValue().get() instanceof LOTRPlanksBlock) {
 				genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 				continue;
+			}
+			if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
+				genTrapdoorBlockItem((LOTRTrapdoorBlock)block.getValue().get(),"block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRSaplingBlock) {
+				genSapplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
+				genPressurePlateBlockItem((LOTRWoodPressurePlateBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 15)+"_planks"));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRWoodButtonBlock) {
+				genButtonBlockItem((LOTRWoodButtonBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_planks"));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRDoorBlock) {
+				genDoorBlock((LOTRDoorBlock)block.getValue().get(),"block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRFenceBlock) {
+				boolean didGen = false;
+				for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
+					if(block.getKey().contains(woodType)) {
+						didGen = true;
+						genFenceBlockItem((LOTRFenceBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 6)+"_planks"));
+						continue;
+					}
+				}
+				if(didGen) {
+					continue;
+				}
+			}
+			if(block.getValue().get() instanceof LOTRFenceGateBlock) {
+				boolean didGen = false;
+				for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
+					if(block.getKey().contains(woodType)) {
+						didGen = true;
+						genFenceGateBlockItem((LOTRFenceGateBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 11)+"_planks"));
+						continue;
+					}
+				}
+				if(didGen) {
+					continue;
+				}
 			}
 			if(block.getValue().get() instanceof LOTRStoneBlock) {
 				genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
@@ -364,6 +418,109 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + stairs.getRegistryName().getPath()).parent(stairsModel);
 	}
 
+	private void genPressurePlateBlockItem(LOTRWoodPressurePlateBlock plate, ResourceLocation texture) {
+		registeredBlocks.add(plate);
+		ResourceLocation parent = mcLoc("block/pressure_plate_up");
+		ModelFile plateModel = models().withExistingParent("lotrextended:"+plate.getRegistryName().getPath(), parent).texture("texture", texture);
+		ResourceLocation parent2 = mcLoc("block/pressure_plate_down");
+		ModelFile down = models().withExistingParent("lotrextended:"+plate.getRegistryName().getPath()+"_down", parent2).texture("texture", texture);
+		getVariantBuilder(plate)
+		.forAllStatesExcept(state -> {
+			Boolean powered = state.getValue(LOTRWoodPressurePlateBlock.POWERED);
+            return ConfiguredModel.builder()
+                    .modelFile(powered ? down : plateModel)
+                    .build();
+        });
+		itemModels().getBuilder("lotr:" + plate.getRegistryName().getPath()).parent(plateModel);
+	}
+
+	private void genButtonBlockItem(LOTRWoodButtonBlock button, ResourceLocation texture) {
+		registeredBlocks.add(button);
+		ResourceLocation parent = mcLoc("block/button");
+		ModelFile buttonModel = models().withExistingParent("lotrextended:"+button.getRegistryName().getPath(), parent).texture("texture", texture);
+		ResourceLocation parent2 = mcLoc("block/button_pressed");
+		ModelFile pressed = models().withExistingParent("lotrextended:"+button.getRegistryName().getPath()+"_pressed", parent2).texture("texture", texture);
+		ResourceLocation parent3 = mcLoc("block/button_inventory");
+		ModelFile inventory = models().withExistingParent("lotrextended:"+button.getRegistryName().getPath()+"_inventory", parent3).texture("texture", texture);
+		
+		getVariantBuilder(button)
+		.forAllStatesExcept(state -> {
+			AttachFace face = state.getValue(LOTRWoodButtonBlock.FACE);
+			Direction faciing = state.getValue(LOTRWoodButtonBlock.FACING);
+			Boolean powered = state.getValue(LOTRWoodButtonBlock.POWERED);
+			int yValue = 0;
+			if(faciing==Direction.EAST) {
+				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
+					yValue=90;
+				}
+				else {
+					yValue=270;
+				}
+			}
+			if(faciing==Direction.NORTH) {
+				if(face==AttachFace.CEILING) {
+					yValue=180;
+				}
+			}
+			if(faciing==Direction.SOUTH) {
+				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
+					yValue=180;
+				}
+			}
+			if(faciing==Direction.WEST) {
+				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
+					yValue=270;
+				}
+				else {
+					yValue=90;
+				}
+			}
+            return ConfiguredModel.builder()
+                    .modelFile(powered ? pressed : buttonModel)
+                    .uvLock(face==AttachFace.WALL)
+                    .rotationX(face == AttachFace.CEILING ? 180 : (face == AttachFace.WALL ? 90 : 0))
+                    .rotationY(yValue)
+                    .build();
+        });
+		itemModels().getBuilder("lotr:" + button.getRegistryName().getPath()).parent(inventory);
+	}
+
+	private void genDoorBlock(LOTRDoorBlock door, String texture) {
+		registeredBlocks.add(door);
+		ResourceLocation bottom = lotrExtendedLoc(texture+"_bottom");
+		ResourceLocation top = lotrExtendedLoc(texture+"_top");
+		doorBlock(door, bottom, top);
+	}
+
+	private void genFenceBlockItem(LOTRFenceBlock fence, ResourceLocation texture) {
+		registeredBlocks.add(fence);
+		ModelFile post = models().fencePost("lotrextended:"+fence.getRegistryName().getPath()+"_post", texture);
+		ModelFile side = models().fenceSide("lotrextended:"+fence.getRegistryName().getPath()+"_side", texture);
+		ModelFile inventory = models().fenceInventory("lotrextended:"+fence.getRegistryName().getPath()+"_post", texture);
+        fourWayBlock(fence, post, side);
+		itemModels().getBuilder("lotr:" + fence.getRegistryName().getPath()).parent(inventory);
+	}
+
+	private void genFenceGateBlockItem(LOTRFenceGateBlock gateBlock, ResourceLocation texture) {
+		registeredBlocks.add(gateBlock);
+        ModelFile gate = models().fenceGate("lotrextended:"+gateBlock.getRegistryName().getPath(), texture);
+        ModelFile gateOpen = models().fenceGateOpen("lotrextended:"+gateBlock.getRegistryName().getPath()+"_open", texture);
+        ModelFile gateWall = models().fenceGateWall("lotrextended:"+gateBlock.getRegistryName().getPath()+"_wall", texture);
+        ModelFile gateWallOpen = models().fenceGateWallOpen("lotrextended:"+gateBlock.getRegistryName().getPath()+"_wall_open", texture);
+        fenceGateBlock(gateBlock, gate, gateOpen, gateWall, gateWallOpen);
+		itemModels().getBuilder("lotr:" + gateBlock.getRegistryName().getPath()).parent(gate);
+	}
+
+	private void genTrapdoorBlockItem(LOTRTrapdoorBlock trapdoor, String location) {
+		registeredBlocks.add(trapdoor);
+		ResourceLocation texture = lotrExtendedLoc(location);
+		ModelFile bottom = models().trapdoorOrientableBottom("lotrextended:"+trapdoor.getRegistryName().getPath()+"_bottom", texture);
+        ModelFile top = models().trapdoorOrientableTop("lotrextended:"+trapdoor.getRegistryName().getPath()+"_top", texture);
+        ModelFile open = models().trapdoorOrientableOpen("lotrextended:"+trapdoor.getRegistryName().getPath()+"_open", texture);
+		trapdoorBlock(trapdoor, bottom, top, open, true);
+		itemModels().getBuilder("lotr:" + trapdoor.getRegistryName().getPath()).parent(bottom);
+	}
+
 	private void genPillarBlockItem(LOTRPillarBlock pillarB, String name) {
 		registeredBlocks.add(pillarB);
 		ResourceLocation pillar = lotrExtendedLoc(name);
@@ -563,6 +720,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(wall);
 		wallBlock(wall, "lotrextended:"+wall.getRegistryName().getPath(), texture);
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
+	}
+
+	private void genSapplingBlock(LOTRSaplingBlock sapling, ResourceLocation texture) {
+		registeredBlocks.add(sapling);
+		ModelFile model = models().cross("lotrextended:"+sapling.getRegistryName().getPath(), texture);
+		simpleBlock(sapling, model);
 	}
 
 	private void genTorchBlockItem(ExtendedLOTRTorchBlock torch, ResourceLocation texture) {

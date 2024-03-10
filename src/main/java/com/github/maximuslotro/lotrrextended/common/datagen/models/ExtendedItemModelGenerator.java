@@ -7,6 +7,8 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
+import lotr.common.block.LOTRDoorBlock;
+import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
@@ -18,6 +20,7 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -42,6 +45,16 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
+		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRSaplingBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
+				continue;
+			}
+		}
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getKey().contains("torch")) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));

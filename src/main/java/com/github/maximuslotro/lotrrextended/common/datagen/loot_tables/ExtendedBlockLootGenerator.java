@@ -25,6 +25,7 @@ import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
+import lotr.common.block.LOTRLeavesBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
@@ -195,6 +196,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof LOTRSaplingBlock) {
 				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRLeavesBlock) {
+				add(block.getValue().get(), noDrop());
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
