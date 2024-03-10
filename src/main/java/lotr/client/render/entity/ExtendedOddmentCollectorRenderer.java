@@ -1,6 +1,7 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.RandomTextureVariants;
+import lotr.client.render.entity.layers.BreeManHeldCoinLayer;
 import lotr.common.entity.npc.BreeManEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -10,8 +11,7 @@ public class ExtendedOddmentCollectorRenderer extends BreeManRenderer {
 
     public ExtendedOddmentCollectorRenderer(EntityRendererManager mgr) {
         super(mgr);
-        // TODO: Create a HumanHeldCoinLayer
-        // this.addLayer(new HobbitHeldCoinLayer(this));
+         this.addLayer(new BreeManHeldCoinLayer(this));
     }
 
     @Override
