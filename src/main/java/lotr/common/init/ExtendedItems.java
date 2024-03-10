@@ -25,6 +25,36 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_STEEL_INGOT;
 	public static RegistryObject<Item> MORGUL_STEEL_BLOCK;
 
+	public static RegistryObject<Item> CHESTNUT_LOG;
+	public static RegistryObject<Item> CHESTNUT_WOOD;
+	public static RegistryObject<Item> CHESTNUT_PLANKS;
+	public static RegistryObject<Item> CHESTNUT_LEAVES;
+	public static RegistryObject<Item> CHESTNUT_LEAVES_FRUIT;
+	public static RegistryObject<Item> CHESTNUT_LEAVES_FLOWERS;
+	public static RegistryObject<Item> CHESTNUT_SAPLING;
+	public static RegistryObject<Item> CHESTNUT_SLAB;
+	public static RegistryObject<Item> CHESTNUT_STAIRS;
+	public static RegistryObject<Item> CHESTNUT_FENCE;
+	public static RegistryObject<Item> CHESTNUT_FENCE_GATE;
+	public static RegistryObject<Item> CHESTNUT_DOOR;
+	public static RegistryObject<Item> CHESTNUT_TRAPDOOR;
+	public static RegistryObject<Item> CHESTNUT_PRESSURE_PLATE;
+	public static RegistryObject<Item> CHESTNUT_BUTTON;
+	public static RegistryObject<Item> STRIPPED_CHESTNUT_LOG;
+	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD;
+	public static RegistryObject<Item> CHESTNUT_BEAM;
+	public static RegistryObject<Item> CHESTNUT_SIGN;
+	public static RegistryObject<Item> CHESTNUT_BOAT;
+	public static RegistryObject<Item> CHESTNUT_LOG_SLAB;
+	public static RegistryObject<Item> CHESTNUT_WOOD_SLAB;
+	public static RegistryObject<Item> CHESTNUT_WOOD_STAIRS;
+	public static RegistryObject<Item> CHESTNUT_BRANCH;
+	public static RegistryObject<Item> STRIPPED_CHESTNUT_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_CHESTNUT_BRANCH;
+	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
+
 	public static RegistryObject<Item> MORGUL_SWORD;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
