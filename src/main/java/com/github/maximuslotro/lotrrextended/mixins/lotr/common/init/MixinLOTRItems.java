@@ -4,8 +4,21 @@ import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import lotr.common.init.*;
-import lotr.common.item.*;
+import lotr.common.entity.item.LOTRBoatEntity;
+import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItemGroups;
+import lotr.common.init.LOTRItems;
+import lotr.common.init.LOTRMaterial;
+import lotr.common.item.ExtendedDaggerItem;
+import lotr.common.item.LOTRArmorItem;
+import lotr.common.item.LOTRAxeItem;
+import lotr.common.item.LOTRBoatItem;
+import lotr.common.item.LOTRHoeItem;
+import lotr.common.item.LOTRPickaxeItem;
+import lotr.common.item.LOTRShovelItem;
+import lotr.common.item.LOTRSwordItem;
+import lotr.common.item.SpearItem;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -77,6 +90,25 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+	@Shadow(remap=false)
+	private static RegistryObject<Item> regTallBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
+	private static RegistryObject<Item> regTallBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
+		RegistryObject<Item> item = regTallBlockItem(blockSup, group);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
+
+	@Shadow(remap=false)
+	private static RegistryObject<Item> regSignBlockItem(RegistryObject<Block> standingSignSup, RegistryObject<Block> wallSignSup) {return null;}
+	private static RegistryObject<Item> regSignBlockItemB(RegistryObject<Block> standingSignSup, RegistryObject<Block> wallSignSup) {
+		RegistryObject<Item> item = regSignBlockItem(standingSignSup, wallSignSup);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
 
 	//@Shadow(remap=false)
 	//private static RegistryObject<Item> regMaterialItem(String name) {return null;}
@@ -116,6 +148,36 @@ public class MixinLOTRItems {
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		//###########################################################BLOCKS################################################################
+		ExtendedItems.CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_PLANKS = regBlockItemB(ExtendedBlocks.CHESTNUT_PLANKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_LEAVES = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES, LOTRItemGroups.DECO);
+		ExtendedItems.CHESTNUT_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT, LOTRItemGroups.DECO);
+		ExtendedItems.CHESTNUT_LEAVES_FLOWERS = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS, LOTRItemGroups.DECO);
+		ExtendedItems.CHESTNUT_SAPLING = regBlockItemB(ExtendedBlocks.CHESTNUT_SAPLING, LOTRItemGroups.DECO);
+		ExtendedItems.CHESTNUT_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_STAIRS = regBlockItemB(ExtendedBlocks.CHESTNUT_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_FENCE = regBlockItemB(ExtendedBlocks.CHESTNUT_FENCE, LOTRItemGroups.DECO);
+		ExtendedItems.CHESTNUT_FENCE_GATE = regBlockItemB(ExtendedBlocks.CHESTNUT_FENCE_GATE, LOTRItemGroups.UTIL);
+		ExtendedItems.CHESTNUT_DOOR = regTallBlockItemB(ExtendedBlocks.CHESTNUT_DOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.CHESTNUT_TRAPDOOR = regBlockItemB(ExtendedBlocks.CHESTNUT_TRAPDOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.CHESTNUT_PRESSURE_PLATE = regBlockItemB(ExtendedBlocks.CHESTNUT_PRESSURE_PLATE, LOTRItemGroups.UTIL);
+		ExtendedItems.CHESTNUT_BUTTON = regBlockItemB(ExtendedBlocks.CHESTNUT_BUTTON, LOTRItemGroups.UTIL);
+		ExtendedItems.STRIPPED_CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BEAM = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_SIGN = regSignBlockItemB(ExtendedBlocks.CHESTNUT_SIGN, ExtendedBlocks.CHESTNUT_WALL_SIGN);
+		ExtendedItems.CHESTNUT_BOAT = regItem("chestnut_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("CHESTNUT")));
+		ExtendedItems.CHESTNUT_LOG_SLAB = regBlockItem(ExtendedBlocks.CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_WOOD_SLAB = regBlockItem(ExtendedBlocks.CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_WOOD_STAIRS = regBlockItem(ExtendedBlocks.CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BRANCH = regBlockItem(ExtendedBlocks.CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_LOG_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_BRANCH = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItem(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+
 		//ORE/GEM STORAGE
 		ExtendedItems.GALVORN_BLOCK = regBlockItemB(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BLACK_URUK_STEEL_BLOCK = regBlockItemB(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, LOTRItemGroups.BLOCKS);

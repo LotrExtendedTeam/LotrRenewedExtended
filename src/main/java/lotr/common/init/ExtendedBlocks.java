@@ -34,6 +34,37 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> PEARL_BLOCK;
 	public static RegistryObject<Block> CORAL_BLOCK;
 
+	public static RegistryObject<Block> CHESTNUT_LOG;
+	public static RegistryObject<Block> CHESTNUT_WOOD;
+	public static RegistryObject<Block> CHESTNUT_PLANKS;
+	public static RegistryObject<Block> CHESTNUT_LEAVES;
+	public static RegistryObject<Block> CHESTNUT_LEAVES_FRUIT;
+	public static RegistryObject<Block> CHESTNUT_LEAVES_FLOWERS;
+	public static RegistryObject<Block> CHESTNUT_SAPLING;
+	public static RegistryObject<Block> POTTED_CHESTNUT_SAPLING;
+	public static RegistryObject<Block> CHESTNUT_SLAB;
+	public static RegistryObject<Block> CHESTNUT_STAIRS;
+	public static RegistryObject<Block> CHESTNUT_FENCE;
+	public static RegistryObject<Block> CHESTNUT_FENCE_GATE;
+	public static RegistryObject<Block> CHESTNUT_DOOR;
+	public static RegistryObject<Block> CHESTNUT_TRAPDOOR;
+	public static RegistryObject<Block> CHESTNUT_PRESSURE_PLATE;
+	public static RegistryObject<Block> CHESTNUT_BUTTON;
+	public static RegistryObject<Block> STRIPPED_CHESTNUT_LOG;
+	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD;
+	public static RegistryObject<Block> CHESTNUT_BEAM;
+	public static RegistryObject<Block> CHESTNUT_SIGN;
+	public static RegistryObject<Block> CHESTNUT_WALL_SIGN;
+	public static RegistryObject<Block> CHESTNUT_LOG_SLAB;
+	public static RegistryObject<Block> CHESTNUT_WOOD_SLAB;
+	public static RegistryObject<Block> CHESTNUT_WOOD_STAIRS;
+	public static RegistryObject<Block> CHESTNUT_BRANCH;
+	public static RegistryObject<Block> STRIPPED_CHESTNUT_LOG_SLAB;
+	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD_SLAB;
+	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD_STAIRS;
+	public static RegistryObject<Block> STRIPPED_CHESTNUT_BRANCH;
+	public static RegistryObject<Block> CHESTNUT_BEAM_SLAB;
+
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;

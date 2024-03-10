@@ -25,6 +25,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
 
 import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.BranchBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
 import lotr.common.block.ExtendedGreenHearthBlock;
@@ -35,12 +36,36 @@ import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
+import lotr.common.block.LOTRDoorBlock;
+import lotr.common.block.LOTRFenceBlock;
+import lotr.common.block.LOTRFenceGateBlock;
+import lotr.common.block.LOTRLeavesBlock;
 import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
+import lotr.common.block.LOTRPlanksBlock;
+import lotr.common.block.LOTRPottedPlantBlock;
+import lotr.common.block.LOTRSaplingBlock;
+import lotr.common.block.LOTRSignTypes;
 import lotr.common.block.LOTRStairsBlock;
+import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStoneBlock;
+import lotr.common.block.LOTRStrippedLogBlock;
+import lotr.common.block.LOTRStrippedWoodBlock;
+import lotr.common.block.LOTRTrapdoorBlock;
 import lotr.common.block.LOTRWallBlock;
+import lotr.common.block.LOTRWallSignBlock;
+import lotr.common.block.LOTRWoodButtonBlock;
+import lotr.common.block.LOTRWoodPressurePlateBlock;
+import lotr.common.block.LogSlabBlock;
+import lotr.common.block.LogStairsBlock;
 import lotr.common.block.MineralBlock;
+import lotr.common.block.StrippableBranchBlock;
+import lotr.common.block.StrippableLogBlock;
+import lotr.common.block.StrippableLogSlabBlock;
+import lotr.common.block.StrippableLogStairsBlock;
+import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.WoodBeamBlock;
+import lotr.common.block.trees.AppleTree;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
@@ -72,8 +97,8 @@ public class MixinLOTRBlocks {
 			ExtendedBlocks.REGISTEREDBLOCKS.put(name, block);
 		}
 		return block;
-		
     }
+
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
@@ -86,6 +111,38 @@ public class MixinLOTRBlocks {
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
 		ExtendedBlocks.MORGUL_STEEL_BLOCK = registerB("morgul_steel_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
+
+		//Wood Types
+		ExtendedBlocks.CHESTNUT_LOG = registerB("chestnut_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.PODZOL, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get()));
+		ExtendedBlocks.CHESTNUT_WOOD = registerB("chestnut_wood", () -> new StrippableWoodBlock(ExtendedBlocks.CHESTNUT_LOG, () -> ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get()));
+		ExtendedBlocks.CHESTNUT_PLANKS = registerB("chestnut_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
+		ExtendedBlocks.CHESTNUT_LEAVES = registerB("chestnut_leaves", LOTRLeavesBlock::new);
+		ExtendedBlocks.CHESTNUT_LEAVES_FRUIT = registerB("chestnut_leaves_fruit", LOTRLeavesBlock::new);
+		ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS = registerB("chestnut_leaves_flowers", LOTRLeavesBlock::new);
+		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new AppleTree()));//TODO change
+		ExtendedBlocks.POTTED_CHESTNUT_SAPLING = registerB("potted_chestnut_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.CHESTNUT_SAPLING));
+		ExtendedBlocks.CHESTNUT_SLAB = registerB("chestnut_slab", () -> new AxialSlabBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_STAIRS = registerB("chestnut_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_FENCE = registerB("chestnut_fence", () -> new LOTRFenceBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_FENCE_GATE = registerB("chestnut_fence_gate", () -> new LOTRFenceGateBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_DOOR = registerB("chestnut_door", () -> new LOTRDoorBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_TRAPDOOR = registerB("chestnut_trapdoor", () -> new LOTRTrapdoorBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_PRESSURE_PLATE = registerB("chestnut_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.CHESTNUT_PLANKS));
+		ExtendedBlocks.CHESTNUT_BUTTON = registerB("chestnut_button", LOTRWoodButtonBlock::new);
+		ExtendedBlocks.STRIPPED_CHESTNUT_LOG = registerB("stripped_chestnut_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.CHESTNUT_LOG));
+		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD = registerB("stripped_chestnut_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_CHESTNUT_LOG));
+		ExtendedBlocks.CHESTNUT_BEAM = registerB("chestnut_beam", () -> new WoodBeamBlock(ExtendedBlocks.CHESTNUT_LOG));
+		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, LOTRSignTypes.APPLE));
+		ExtendedBlocks.CHESTNUT_WALL_SIGN = registerB("chestnut_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.CHESTNUT_SIGN));
+		ExtendedBlocks.CHESTNUT_LOG_SLAB = registerB("chestnut_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_LOG, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB.get()));
+		ExtendedBlocks.CHESTNUT_WOOD_SLAB = registerB("chestnut_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_WOOD, () -> ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB.get()));
+		ExtendedBlocks.CHESTNUT_WOOD_STAIRS = registerB("chestnut_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.CHESTNUT_WOOD, () -> ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS.get()));
+		ExtendedBlocks.CHESTNUT_BRANCH = registerB("chestnut_branch", () -> new StrippableBranchBlock(ExtendedBlocks.CHESTNUT_WOOD, () -> ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH.get()));
+		ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB = registerB("stripped_chestnut_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_CHESTNUT_LOG));
+		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB = registerB("stripped_chestnut_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
+		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS = registerB("stripped_chestnut_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
+		ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH = registerB("stripped_chestnut_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
+		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 
 		//Packed Fur
 		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.WOOL));
