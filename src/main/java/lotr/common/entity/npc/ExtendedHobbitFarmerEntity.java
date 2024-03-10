@@ -10,7 +10,9 @@ import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import lotr.common.util.representation.ExtendedTradeEntry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +30,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -220,6 +224,17 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     @Override
     public List<ExtendedTrade> getSells() {
         return itemsSoldByTrader;
+    }
+
+    @Override
+    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+        this.npcItemsInv.setIdleItem(new ItemStack(Items.IRON_HOE.getItem()));
+
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
+        setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.IRON_HOE.getItem(), 1));
+
+        return spawnData;
     }
 
     @Override

@@ -1,0 +1,107 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "#p. I see your pockets bulge with unwanted scraps! Let me replace them with a little coin...",
+        "Bring me your useless clutter in exchange for silver!",
+        "You look like you might have some useless bits and scrap, #p!",
+        "I offer the best prices in the land!",
+        "Trade is slow recently. Perhaps you could help me...",
+        "Silver for your scrap. No questions asked!",
+        "No rusty metals accepted.",
+        "Are you in need of a pretty penny, #p?",
+        "I could line your pack with coins for only a few pieces of scrap...",
+        "These wild lands are riddled with fear. But fear no more! Scrap for silver is here!",
+        "One day I hope to own halls of gold, admired even by the Dwarves...",
+        "They say the Orcs of Gundabad are in possession of much wealth. Perhaps I'll go travelling to them next.",
+        "You look like a good person, #p. Would you do an old merchant a favour and trade with me?",
+        "Iron, tin, copper and steel. Trade with me to fund your next meal!",
+        "I have been in the markets a long time. I know a customer when I see one. Hello, #p!",
+        "Some call me crooked. I prefer the term 'experienced'.",
+        "Odds are my trade, silver my pay. Swap your scrap for a brighter day!",
+        "Us merchants make good poets; talk a little longer and I may see fit to give you a rhyme.",
+        "I have traded with kings, you know, #p.",
+        "All I seek is a little metal. Bring sword, pan, pot and kettle!",
+        "Ah, #p. It would be my honour to swap that scrap of yours for a little... coin.",
+        "#p! Do you come with a deal?",
+        "By my own admission I am a fine tradesman!",
+        "I walk many roads and light many fires. Yet of oddment-dealing a man never tires.",
+        "#p. Scrap deals are my tipple!",
+        "I like to think of myself as a little bit of a expert. Trade with me and I will show you why.",
+        "My favourite metal is... why. It's gold! But a bit of rusty scrap never went amiss...",
+        "As metals go, lead is a poor fare.",
+        "I dream of fine clothes, a warm hearth and... more gold.",
+        "I smell scrap!",
+        "#pally, I like a little ale. Are you fond of the drink too? Why, yes! I could give you the coin to buy more!",
+        "You know where to come if you ever need to rid yourself of that scrap, #p.",
+        "You have no need of that scrap, #p. I will take it off your hands and give you silver beyond your wildest dreams.",
+        "I'll even accept half a sword if that's all you have, #p.",
+        "I can tell a metal by taste, any metal!",
+        "My poetry is as fine as my bargains.",
+        "Come strike a deal with me, #p! A merchant can't make all his living from selling earth to the Goblins.",
+        "Bring me scrap, and oddments funny, and I shall fill your hands with money!",
+        "What's that? No, of course I have no sinister underlying motive for buying all this scrap off you. Haha!",
+        "What do I do with all this scrap I buy? Well, that's none of your business, my friend!",
+        "You have been visited by the rare scrap trader of wealth and prosperity! Great riches and fortune shall come to you, but only if you say, 'Thank you, mister scrap trader!'",
+        "Your coming was foretold, #p. And it was also foretold that you would sell me some of that scrap you have!",
+        "Give me coin or I'll kidnap your daughter when you're on holiday in Harad!",
+        "Some may call this junk... me, I call them treasures.",
+        "Scrap for the Scrap God!",
+        "And with this scrap you sell me, my master plan will final- oh, hello there, #p!",
+        "Some say there are murderous spirits from the Elder Days that can take the form of any living creature. Even an oddment collector.",
+        "Say, #p, you look just like the last poor soul that wandered into my tr... emendously good bargains!",
+        "One man's trash is another man's treasure!",
+        "Scrap isn't good for anyone's health. But give it to me, and I'll bless you with wealth!",
+        "If you don't give me your scrap, I'll curse the sun to not rise tomorrow! Haha!",
+        "We scrap collectors wander the lands, looking for scrap to take off your hands!",
+        "Everything is going as planned.",
+        "Everything has a price, even your life."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "I shall never have dealings with you again!",
+        "May your metal rust, #p!",
+        "Begone, fool!",
+        "My trade has brought me into many dangers. I am well-accustomed to thugs like you!",
+        "You are bad for business!",
+        "I don't plan to end my scrap trading days here!",
+        "A rusty blade would be a kindness for you!",
+        "I will never accept your scrap!",
+        "I curse you to a life of little coin!",
+        "I will not negotiate with bandits!",
+        "In all my years I have never seen one so awful as you, #p!",
+        "I may be a humble tradesman, but a coward I am not!",
+        "You will not see another moon, #p!",
+        "You are a fool, #p!",
+        "It shames me to think I would have traded with you, #p!",
+        "Do not approach me again, #p!",
+        "May your weapon forever rust!",
+        "Your gold is fake, #p!",
+        "Begone, #p!",
+        "I hope never to set eyes upon you again, #p!",
+        "You will rot, #p!",
+        "Tradesmen will spit upon your name and your grave!",
+        "Why do you challenge me, #p?",
+        "Curse you, #p!",
+        "Curse you to poverty!",
+        "I curse your name and your goods, #p!",
+        "You are nothing but a common scoundrel! Begone, #p!",
+        "Do not suppose to trade with me!",
+        "Begone, you ruffian!",
+        "Get away from me, ruffian!",
+        "You look like a common bandit! Off with you!"
+      ]
+    }
+  ]
+}
