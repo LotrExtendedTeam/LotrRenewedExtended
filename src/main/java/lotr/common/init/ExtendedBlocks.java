@@ -136,6 +136,14 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> RED_RHUNIC_PILLAR;
 	public static RegistryObject<Block> RED_RHUNIC_PILLAR_SLAB;
 	public static RegistryObject<Block> CARVED_RED_RHUNIC_BRICK;
+	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK;
+	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_WALL;
+	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK;
+	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_SLAB;
+	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_STAIRS;
+	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_WALL;
 
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;

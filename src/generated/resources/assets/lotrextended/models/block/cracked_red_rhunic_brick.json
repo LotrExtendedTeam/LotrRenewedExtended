@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "lotrextended:block/cracked_red_rhunic_brick"
+  }
+}

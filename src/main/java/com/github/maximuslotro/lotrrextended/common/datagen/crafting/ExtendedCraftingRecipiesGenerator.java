@@ -317,6 +317,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.RED_RHUNIC_PILLAR, 
 				ExtendedBlocks.RED_RHUNIC_PILLAR_SLAB, 
 				()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		
+		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, 
+				()->ExtendedBlocks.RED_RHUNIC_BRICK.get().asItem());
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_STAIRS, 
+				ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_SLAB, 
+				ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_WALL, 
+				()->ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK, 
+				()->ExtendedBlocks.RED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK_STAIRS, 
+				ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK_SLAB, 
+				ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK_WALL, 
+				()->ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		
 		GENERATEDRECIPES.add(ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK.get(), ExtendedRecipes.RHUNIC_CRAFTING)
 		.pattern(" # ")

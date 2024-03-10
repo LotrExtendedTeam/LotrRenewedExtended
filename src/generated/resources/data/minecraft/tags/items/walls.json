@@ -3,6 +3,7 @@
   "values": [
     "lotr:dol_guldur_brick_wall",
     "lotr:red_rhunic_brick_wall",
+    "lotr:cracked_red_rhunic_brick_wall",
     "lotr:rhunic_brick_wall",
     "lotr:mossy_rhunic_brick_wall",
     "lotr:scorched_brick_wall",
@@ -18,6 +19,7 @@
     "lotr:gold_trimmed_rhunic_brick_wall",
     "lotr:cracked_taurethrim_brick_wall",
     "lotr:golden_taurethrim_brick_wall",
+    "lotr:mossy_red_rhunic_brick_wall",
     "lotr:cracked_mud_brick_wall",
     "lotr:silver_packed_fur_wall",
     "lotr:taurethrim_brick_wall",

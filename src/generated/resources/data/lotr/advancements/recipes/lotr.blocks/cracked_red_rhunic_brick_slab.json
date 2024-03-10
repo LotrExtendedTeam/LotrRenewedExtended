@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cracked_red_rhunic_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_cracked_red_rhunic_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_red_rhunic_brick_slab"
+          }
+        ]
+      }
+    },
+    "has_cracked_red_rhunic_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_red_rhunic_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cracked_red_rhunic_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_red_rhunic_brick_slab",
+      "has_cracked_red_rhunic_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
