@@ -1,7 +1,10 @@
 package lotr.common.block;
 
+import java.lang.reflect.Field;
 import java.util.Random;
 import java.util.function.Supplier;
+
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -31,8 +34,14 @@ public class ExtendedLOTRWallTorchBlock extends LOTRWallTorchBlock{
 	}
 
 	public ExtendedLOTRWallTorchBlock(SoundType sound, Supplier<Block> lootBlock) {
-		super(Properties.copy((AbstractBlock) lootBlock.get()).lootFrom(lootBlock));
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
+		this(Properties.copy((AbstractBlock) lootBlock.get()).lootFrom(lootBlock));
+		try {
+			Field privateField = LOTRWallTorchBlock.class.getDeclaredField("torchParticles");
+			privateField.setAccessible(true);
+			privateField.set(this, ((LOTRTorchBlock) lootBlock.get()).copyTorchParticles());
+		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+			ExtendedLog.error("Failed to set torchParticles for ExtendedLOTRWallTorchBlock, of type "+lootBlock.get().getRegistryName().toString());
+		}
 	}
 
 	public ExtendedLOTRWallTorchBlock(Supplier<Block> lootBlock) {
