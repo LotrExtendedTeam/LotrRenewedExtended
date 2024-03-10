@@ -2,18 +2,16 @@ package lotr.common.util;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.item.VesselDrinkItem;
 
 import lotr.common.util.client.ExtendedTraderHelperClientside;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -26,24 +24,6 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenC
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenTradeMenu;
 
 public class ExtendedTraderHelper {
-
-    public static ItemStack getStrongAlcohol(Item item) {
-       ItemStack stack = new ItemStack(item);
-       VesselDrinkItem.setPotency(stack, VesselDrinkItem.Potency.STRONG);
-       return stack;
-    }
-    public static ItemStack getModerateAlcohol(Item item) {
-        ItemStack stack = new ItemStack(item);
-        VesselDrinkItem.setPotency(stack, VesselDrinkItem.Potency.MODERATE);
-        return stack;
-    }
-
-    public static ItemStack getLightAlcohol(Item item) {
-        ItemStack stack = new ItemStack(item);
-        VesselDrinkItem.setPotency(stack, VesselDrinkItem.Potency.LIGHT);
-        return stack;
-    }
-
 
     private ExtendedTraderHelper() {}
 
@@ -65,7 +45,7 @@ public class ExtendedTraderHelper {
 
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         if (trader.getPlayerTradingWith().isPresent()) {
-            if (!entity.level.isClientSide) player.sendMessage(new StringTextComponent("The trader is busy with another player at the moment."), player.getUUID());
+            if (!entity.level.isClientSide) player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), player.getUUID());
             return ActionResultType.sidedSuccess(entity.level.isClientSide());
         }
 

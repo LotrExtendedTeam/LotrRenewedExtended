@@ -27,6 +27,7 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -39,18 +40,18 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitFarmerEntity.class, DataSerializers.OPTIONAL_UUID);
 
     private final ExtendedTradeEntries HOBBIT_FARMER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.BONE_MEAL, 6), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HOE.get()), 5, 8),
-            new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.IRON_HOE), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.STONE_HOE), 1, 1),
-            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5)
+            new ExtendedTradeEntry(new ItemStack(Items.BONE_MEAL, 6), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HOE.get()), 5, 8, 16),
+            new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16), new ExtendedTradeEntry(new ItemStack(Items.IRON_HOE), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.STONE_HOE), 1, 1, 32),
+            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 16)
     });
 
     private final ExtendedTradeEntries HOBBIT_FARMER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.CARROT), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.HAY_BLOCK), 9, 15),
-            new ExtendedTradeEntry(new ItemStack(Items.LEAD), 6, 10), new ExtendedTradeEntry(new ItemStack(LOTRItems.LETTUCE.get()), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(Items.MILK_BUCKET), 6, 10), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 3, 5),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get()), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.POTATO), 2, 3),
-            new ExtendedTradeEntry(new ItemStack(Items.WHEAT_SEEDS), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.WHEAT), 2, 3),
-            new ExtendedTradeEntry(new ItemStack(Items.WHITE_WOOL), 2,3)
+            new ExtendedTradeEntry(new ItemStack(Items.CARROT), 2, 4, 50), new ExtendedTradeEntry(new ItemStack(Items.HAY_BLOCK), 9, 15, 64),
+            new ExtendedTradeEntry(new ItemStack(Items.LEAD), 6, 10, 8), new ExtendedTradeEntry(new ItemStack(LOTRItems.LETTUCE.get()), 2, 4, 64),
+            new ExtendedTradeEntry(new ItemStack(Items.MILK_BUCKET), 6, 10, 10), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 3, 5, 64),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get()), 2, 4, 64), new ExtendedTradeEntry(new ItemStack(Items.POTATO), 2, 3, 64),
+            new ExtendedTradeEntry(new ItemStack(Items.WHEAT_SEEDS), 1, 1, 128), new ExtendedTradeEntry(new ItemStack(Items.WHEAT), 2, 3, 64),
+            new ExtendedTradeEntry(new ItemStack(Items.WHITE_WOOL), 2,3, 128), new ExtendedTradeEntry(new ItemStack(ExtendedItems.BRANDING_IRON.get()), 20, 30, 8)
     });
 
     private ArrayList<ExtendedTrade> itemsSoldByTrader;
@@ -135,11 +136,12 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
         if (canTradeWith(player)) {
             return ExtendedTraderHelper.openTraderGui(this, player, this);
         } else {
-            player.sendMessage(new StringTextComponent("Your alignment is too low"), player.getUUID());
+            if (!player.level.isClientSide)
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
         }
 
         return super.mobInteract(player, hand);
-    }
+   }
 
     @Override
     public void playTradeSound() {

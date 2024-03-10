@@ -45,6 +45,10 @@ public class ExtendedTradeEntries {
                 .collect(Collectors.toList());
 
         randomElements.forEach(entry -> {
+            if (entry instanceof ExtendedMultitradeEntry) {
+                entry = ((ExtendedMultitradeEntry) entry).pickRandom();
+            }
+
             int amount;
             int difference = entry.getMax() - entry.getMin();
             if (difference <= 0) {

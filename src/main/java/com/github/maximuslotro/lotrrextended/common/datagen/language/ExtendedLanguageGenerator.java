@@ -61,6 +61,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.titles");
 		addD("gui.lotrextended.menu.achievements");
 
+		// trade system
+		addD("gui.lotrextended.trading.trade_button");
+		addD("gui.lotrextended.trading.trader_busy");
+		addD("gui.lotrextended.trading.trader_alignment_too_low");
+		addD("gui.lotrextended.trading.talk_button");
+		addD("gui.lotrextended.trading.exchange_button");
+		addD("gui.lotrextended.trading.buy");
+		addD("gui.lotrextended.trading.sell");
+		addD("gui.lotrextended.trading.sell_offers");
+
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title");
 		addD("gui.lotrextended.fellowships.creation.disabled");
