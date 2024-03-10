@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/chestnut_beam",
+    "end": "lotrextended:block/chestnut_beam_top"
+  }
+}

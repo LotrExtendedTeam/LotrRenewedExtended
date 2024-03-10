@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
 
 import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.BranchBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
@@ -21,13 +22,29 @@ import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
+import lotr.common.block.LOTRDoorBlock;
+import lotr.common.block.LOTRFenceBlock;
+import lotr.common.block.LOTRFenceGateBlock;
 import lotr.common.block.LOTRPillarBlock;
+import lotr.common.block.LOTRPlanksBlock;
+import lotr.common.block.LOTRPottedPlantBlock;
+import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
+import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStoneBlock;
+import lotr.common.block.LOTRStrippedLogBlock;
+import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTorchBlock;
+import lotr.common.block.LOTRTrapdoorBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
+import lotr.common.block.LOTRWoodButtonBlock;
+import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.MineralBlock;
+import lotr.common.block.StrippableBranchBlock;
+import lotr.common.block.StrippableLogBlock;
+import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
@@ -118,6 +135,74 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof LOTRWallTorchBlock) {
 				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof StrippableLogBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof StrippableWoodBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRStrippedLogBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRStrippedWoodBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof WoodBeamBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRPlanksBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRFenceBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRFenceGateBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof StrippableBranchBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof BranchBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRWoodButtonBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRStandingSignBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRSaplingBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRDoorBlock) {
+				add(block.getValue().get(), BlockLootTables::createDoorTable);
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
+				dropPottedContents(block.getValue().get());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {

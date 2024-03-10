@@ -3,8 +3,11 @@
   "values": [
     "lotr:silver_packed_fur_stairs",
     "lotr:black_packed_fur_stairs",
+    "lotr:stripped_chestnut_wood_stairs",
     "lotr:gray_packed_fur_stairs",
     "lotr:white_packed_fur_stairs",
-    "lotr:packed_fur_stairs"
+    "lotr:chestnut_wood_stairs",
+    "lotr:packed_fur_stairs",
+    "lotr:chestnut_stairs"
   ]
 }

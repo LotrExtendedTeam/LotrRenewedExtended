@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "lotrextended:block/chestnut_planks",
+    "bottom": "lotrextended:block/chestnut_planks",
+    "top": "lotrextended:block/chestnut_planks"
+  }
+}
