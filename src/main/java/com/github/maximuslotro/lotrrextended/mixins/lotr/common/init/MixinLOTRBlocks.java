@@ -46,6 +46,7 @@ import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
 import lotr.common.block.LOTRSaplingBlock;
+import lotr.common.block.LOTRSignTypes;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStoneBlock;
@@ -133,7 +134,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_LOG = registerB("stripped_chestnut_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.CHESTNUT_LOG));
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD = registerB("stripped_chestnut_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_CHESTNUT_LOG));
 		ExtendedBlocks.CHESTNUT_BEAM = registerB("chestnut_beam", () -> new WoodBeamBlock(ExtendedBlocks.CHESTNUT_LOG));
-		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, ExtendedSignTypes.CHESTNUT));
+		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, LOTRSignTypes.APPLE));//TODO tmr fix crash
 		ExtendedBlocks.CHESTNUT_WALL_SIGN = registerB("chestnut_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.CHESTNUT_SIGN));
 		ExtendedBlocks.CHESTNUT_LOG_SLAB = registerB("chestnut_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_LOG, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB.get()));
 		ExtendedBlocks.CHESTNUT_WOOD_SLAB = registerB("chestnut_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_WOOD, () -> ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB.get()));
