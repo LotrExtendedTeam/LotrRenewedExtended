@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:chestnut_pressure_plate"
+    ]
+  },
+  "criteria": {
+    "has_chestnut_pressure_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_pressure_plate"
+          }
+        ]
+      }
+    },
+    "has_chestnut_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:chestnut_pressure_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chestnut_pressure_plate",
+      "has_chestnut_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

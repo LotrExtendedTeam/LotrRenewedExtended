@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:chestnut_branch"
+    ]
+  },
+  "criteria": {
+    "has_chestnut_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_branch"
+          }
+        ]
+      }
+    },
+    "has_chestnut_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:chestnut_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chestnut_branch",
+      "has_chestnut_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

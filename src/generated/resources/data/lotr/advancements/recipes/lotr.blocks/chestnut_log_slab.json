@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:chestnut_log_slab"
+    ]
+  },
+  "criteria": {
+    "has_chestnut_log_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_log_slab"
+          }
+        ]
+      }
+    },
+    "has_chestnut_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:chestnut_log_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chestnut_log_slab",
+      "has_chestnut_log",
+      "has_the_recipe"
+    ]
+  ]
+}

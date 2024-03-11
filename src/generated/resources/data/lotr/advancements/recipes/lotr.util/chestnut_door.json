@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:chestnut_door"
+    ]
+  },
+  "criteria": {
+    "has_chestnut_door": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_door"
+          }
+        ]
+      }
+    },
+    "has_chestnut_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:chestnut_door"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chestnut_door",
+      "has_chestnut_planks",
+      "has_the_recipe"
+    ]
+  ]
+}
