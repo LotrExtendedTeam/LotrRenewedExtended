@@ -282,6 +282,7 @@ f24d2be7ca748899243540c90e135d882f8f9bc8 assets/lotr/models/item/cheese_curds.js
 a83203f08c78a1d701232eb83eaab673939020a6 assets/lotr/models/item/cheese_wheel.json
 6482b96af98ad3490c6e02f4f551b79453affe60 assets/lotr/models/item/chestnut_beam.json
 6497b611d0adc8f1a31c125f2a7018b0fe9a4e1d assets/lotr/models/item/chestnut_beam_slab.json
+6ff19df89444e645f12b9b1d2202af16624a51b0 assets/lotr/models/item/chestnut_boat.json
 2afaf89d970f7a3790f4eeb95c1d63535afd8da3 assets/lotr/models/item/chestnut_branch.json
 3ccded1fca2477a19799743d6ee510b529c06846 assets/lotr/models/item/chestnut_button.json
 d2f8d09ef117fe0f01debda3ece592d50c1e919e assets/lotr/models/item/chestnut_door.json
@@ -562,7 +563,7 @@ de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundl
 c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fur_wall.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-dac35a14220b579629bcd43bee9037a819673b12 assets/lotrextended/lang/en_us.json
+f6c03abb5b62f58c19ccea90e646d7f63b532434 assets/lotrextended/lang/en_us.json
 055694b088e7d9ca56f38dc706fb59140f50f595 assets/lotrextended/models/block/amber_block.json
 9d83be4302913f0319cc4b9f01e6d84df36c7e2e assets/lotrextended/models/block/amber_ore.json
 3fb574dabb770b95a5f692c4aed3a8d6e67ba624 assets/lotrextended/models/block/amethyst_block.json
