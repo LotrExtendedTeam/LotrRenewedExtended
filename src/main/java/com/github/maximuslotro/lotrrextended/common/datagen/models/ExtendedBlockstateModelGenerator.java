@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 
 import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.BranchBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
@@ -32,16 +33,20 @@ import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
+import lotr.common.block.LOTRLeavesBlock;
 import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
+import lotr.common.block.LOTRPottedPlantBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
+import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTrapdoorBlock;
 import lotr.common.block.LOTRWallBlock;
+import lotr.common.block.LOTRWallSignBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
@@ -110,6 +115,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
+			if(block.getValue().get() instanceof BranchBlock) {
+				genBranchBlockItem((BranchBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_log"));
+				continue;
+			}
 			if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
 				genRandomCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 				continue;
@@ -146,6 +155,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				genBeamBlockItem((WoodBeamBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 				continue;
 			}
+			if(block.getValue().get() instanceof LOTRStandingSignBlock) {
+				genSignBlock((LOTRStandingSignBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_planks"));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRWallSignBlock) {
+				genWallSignBlock((LOTRWallSignBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_planks"));
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTRPlanksBlock) {
 				genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 				continue;
@@ -156,6 +173,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof LOTRSaplingBlock) {
 				genSapplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
+				genPottedSapplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7, block.getKey().length())));
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
@@ -231,6 +252,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedLOTRTorchBlock) {
 				genTorchBlockItem((ExtendedLOTRTorchBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				continue;
+			}
+			if(block.getValue().get() instanceof LOTRLeavesBlock) {
+				genLeavesBlockItem((LOTRLeavesBlock) block.getValue().get());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedFireBlock) {
@@ -434,6 +459,21 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + plate.getRegistryName().getPath()).parent(plateModel);
 	}
 
+	private void genBranchBlockItem(BranchBlock branch, ResourceLocation texture) {
+		registeredBlocks.add(branch);
+		ResourceLocation sideParent = lotrLoc("block/template_branch_side");
+		ModelFile sideModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_side", sideParent).texture("branch", texture);
+		ResourceLocation postParent = lotrLoc("block/template_branch_post");
+		ModelFile postModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_post", postParent).texture("texture", texture);
+		MultiPartBlockStateBuilder builder = getMultipartBuilder(branch).part().modelFile(postModel).addModel().end();
+	        builder.part().modelFile(sideModel).uvLock(true).addModel().condition(BranchBlock.EAST, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(90).addModel().condition(BranchBlock.NORTH, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(180).addModel().condition(BranchBlock.SOUTH, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(270).addModel().condition(BranchBlock.WEST, true).end();
+		itemModels().getBuilder("lotr:" + branch.getRegistryName().getPath()).parent(postModel);
+	}
+	
+
 	private void genButtonBlockItem(LOTRWoodButtonBlock button, ResourceLocation texture) {
 		registeredBlocks.add(button);
 		ResourceLocation parent = mcLoc("block/button");
@@ -490,6 +530,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation bottom = lotrExtendedLoc(texture+"_bottom");
 		ResourceLocation top = lotrExtendedLoc(texture+"_top");
 		doorBlock(door, bottom, top);
+	}
+
+	private void genSignBlock(LOTRStandingSignBlock sign, ResourceLocation texture) {
+		registeredBlocks.add(sign);
+		ModelFile model = models().getBuilder("lotrextended:"+sign.getRegistryName().getPath()).texture("particle", texture);
+		simpleBlock(sign, model);
+	}
+
+	private void genWallSignBlock(LOTRWallSignBlock wallSign, ResourceLocation texture) {
+		registeredBlocks.add(wallSign);
+		ModelFile model = models().getBuilder("lotrextended:"+wallSign.getRegistryName().getPath()).texture("particle", texture);
+		simpleBlock(wallSign, model);
 	}
 
 	private void genFenceBlockItem(LOTRFenceBlock fence, ResourceLocation texture) {
@@ -726,6 +778,33 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(sapling);
 		ModelFile model = models().cross("lotrextended:"+sapling.getRegistryName().getPath(), texture);
 		simpleBlock(sapling, model);
+	}
+
+	private void genPottedSapplingBlock(LOTRPottedPlantBlock sapling, ResourceLocation texture) {
+		registeredBlocks.add(sapling);
+		ResourceLocation parent = mcLoc("block/flower_pot_cross");
+		ModelFile model = models().withExistingParent("lotrextended:"+sapling.getRegistryName().getPath(), parent).texture("plant", texture);
+		simpleBlock(sapling, model);
+	}
+
+	private void genLeavesBlockItem(LOTRLeavesBlock leaves) {
+		registeredBlocks.add(leaves);
+		ModelFile model;
+		String baseObject;
+		String[] parts = leaves.getRegistryName().getPath().split("_");
+		if(parts.length>=3) {
+			baseObject = parts[0]+"_"+parts[1];
+			ResourceLocation parent = lotrLoc("block/leaves_fruit");
+			model = models().withExistingParent("lotrextended:"+leaves.getRegistryName().getPath(), parent)
+	                .texture("end", lotrExtendedLoc("block/"+baseObject))
+	                .texture("side", lotrExtendedLoc("block/"+leaves.getRegistryName().getPath()));
+		}
+		else {
+			baseObject = leaves.getRegistryName().getPath();
+			model = models().cubeAll("lotrextended:"+leaves.getRegistryName().getPath(), lotrExtendedLoc("block/"+baseObject));
+		}
+		simpleBlock(leaves, model);
+		itemModels().getBuilder("lotr:"+leaves.getRegistryName().getPath()).parent(model);
 	}
 
 	private void genTorchBlockItem(ExtendedLOTRTorchBlock torch, ResourceLocation texture) {
