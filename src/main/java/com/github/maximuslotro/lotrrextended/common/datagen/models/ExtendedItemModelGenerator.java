@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRSaplingBlock;
+import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
@@ -52,6 +53,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRSaplingBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRStandingSignBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 		}

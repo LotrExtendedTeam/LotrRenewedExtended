@@ -25,7 +25,6 @@ import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
-import lotr.common.block.LOTRLeavesBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
@@ -49,17 +48,24 @@ import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
+import net.minecraft.advancements.criterion.EnchantmentPredicate;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Items;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.conditions.ILootCondition;
+import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.SetCount;
@@ -67,6 +73,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlockLootGenerator extends BlockLootTables  {
+	private static final ILootCondition.IBuilder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
+	private static final ILootCondition.IBuilder HAS_NO_SILK_TOUCH = HAS_SILK_TOUCH.invert();
+	private static final ILootCondition.IBuilder HAS_SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
+	private static final ILootCondition.IBuilder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
+	private static final ILootCondition.IBuilder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
+	private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 
 	@Override
 	protected void add(Block p_218507_1_, LootTable.Builder p_218507_2_) {
@@ -198,10 +210,13 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRLeavesBlock) {
-				add(block.getValue().get(), noDrop());
-				continue;
-			}
+			add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (p_241170_0_) -> {
+		         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		         });
+			add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get(), (p_241170_0_) -> {
+		         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
+			add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (p_241170_0_) -> {
+		         return createChestnutLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
 				continue;
@@ -305,5 +320,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 
 	protected static LootTable.Builder createNameableBlockEntityTable(Block p_218481_0_) {
 		return LootTable.lootTable().withPool(applyExplosionCondition(p_218481_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));
+	}
+
+	protected static LootTable.Builder createChestnutLeavesDrops(Block p_218526_0_, Block p_218526_1_, float... p_218526_2_) {
+		return createLeavesDrops(p_218526_0_, p_218526_1_, p_218526_2_).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(p_218526_0_, ItemLootEntry.lootTableItem(ExtendedItems.CONKER.get())).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
 	}
 }
