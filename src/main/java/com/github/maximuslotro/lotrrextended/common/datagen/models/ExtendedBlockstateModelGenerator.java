@@ -464,7 +464,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation sideParent = lotrLoc("block/template_branch_side");
 		ModelFile sideModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_side", sideParent).texture("branch", texture);
 		ResourceLocation postParent = lotrLoc("block/template_branch_post");
-		ModelFile postModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_post", postParent).texture("texture", texture);
+		ModelFile postModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_post", postParent).texture("branch", texture);
 		MultiPartBlockStateBuilder builder = getMultipartBuilder(branch).part().modelFile(postModel).addModel().end();
 	        builder.part().modelFile(sideModel).uvLock(true).addModel().condition(BranchBlock.EAST, true).end();
 	        builder.part().modelFile(sideModel).uvLock(true).rotationY(90).addModel().condition(BranchBlock.NORTH, true).end();
@@ -529,7 +529,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(door);
 		ResourceLocation bottom = lotrExtendedLoc(texture+"_bottom");
 		ResourceLocation top = lotrExtendedLoc(texture+"_top");
-		doorBlock(door, bottom, top);
+		ModelFile bottomLeft = models().doorBottomLeft("lotrextended:"+door.getRegistryName().getPath() + "_bottom", bottom, top);
+        ModelFile bottomRight = models().doorBottomRight("lotrextended:"+door.getRegistryName().getPath() + "_bottom_hinge", bottom, top);
+        ModelFile topLeft = models().doorTopLeft("lotrextended:"+door.getRegistryName().getPath() + "_top", bottom, top);
+        ModelFile topRight = models().doorTopRight("lotrextended:"+door.getRegistryName().getPath() + "_top_hinge", bottom, top);
+        doorBlock(door, bottomLeft, bottomRight, topLeft, topRight);
 	}
 
 	private void genSignBlock(LOTRStandingSignBlock sign, ResourceLocation texture) {
