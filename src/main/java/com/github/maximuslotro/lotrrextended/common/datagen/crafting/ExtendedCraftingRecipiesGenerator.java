@@ -40,6 +40,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	}
 
 	private void buildRecipes(Consumer<IFinishedRecipe> consumer) {
+		//Wood
+		makePillarSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_BEAM, 
+				ExtendedBlocks.CHESTNUT_BEAM_SLAB, ExtendedItems.CHESTNUT_LOG, null);
+		makeBoatRecipe(consumer, ExtendedItems.CHESTNUT_BOAT, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeWallRecipe(consumer, ExtendedBlocks.CHESTNUT_BRANCH, ExtendedItems.CHESTNUT_WOOD, null);
+		makeButtonRecipe(consumer, ExtendedItems.CHESTNUT_BUTTON, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeDoorRecipe(consumer, ExtendedItems.CHESTNUT_DOOR, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeFenceAndFenceGateRecipe(consumer, ExtendedBlocks.CHESTNUT_FENCE, ExtendedBlocks.CHESTNUT_FENCE_GATE,
+				ExtendedItems.CHESTNUT_PLANKS, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_LOG_SLAB, ExtendedItems.CHESTNUT_LOG, null);
+		makePressurePlateRecipe(consumer, ExtendedBlocks.CHESTNUT_PRESSURE_PLATE, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_STAIRS, ExtendedBlocks.CHESTNUT_SLAB, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeTrapdoorRecipe(consumer, ExtendedBlocks.CHESTNUT_TRAPDOOR, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_WOOD_STAIRS, ExtendedBlocks.CHESTNUT_WOOD_SLAB, ExtendedItems.CHESTNUT_WOOD, null);
+		makeSignRecipe(consumer, ExtendedBlocks.CHESTNUT_SIGN, ExtendedBlocks.CHESTNUT_WALL_SIGN, ExtendedItems.CHESTNUT_PLANKS, null);
+		makeWoodRecipe(consumer, ExtendedBlocks.CHESTNUT_WOOD, ExtendedItems.CHESTNUT_LOG, null);
+		makePlanksRecipe(consumer, ExtendedBlocks.CHESTNUT_PLANKS, ExtendedBlocks.CHESTNUT_LOG, 
+				ExtendedTags.Items.CHESTNUT_LOGS, null);
+		makePlanksFromBlocksRecipe(consumer, ExtendedItems.CHESTNUT_PLANKS, ExtendedItems.CHESTNUT_LOG_SLAB, 
+				ExtendedItems.STRIPPED_CHESTNUT_LOG_SLAB, ExtendedItems.CHESTNUT_BRANCH, ExtendedItems.STRIPPED_CHESTNUT_BRANCH, 
+				ExtendedItems.CHESTNUT_WOOD_SLAB, ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB, 
+				ExtendedItems.CHESTNUT_WOOD_STAIRS, ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS, null);
+		makeWallRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, ExtendedItems.STRIPPED_CHESTNUT_WOOD, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB, ExtendedItems.STRIPPED_CHESTNUT_LOG, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, 
+				ExtendedItems.STRIPPED_CHESTNUT_WOOD, null);
+		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, ExtendedItems.STRIPPED_CHESTNUT_LOG, null);
 		//CRAFTING TABLES
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE, 
 				()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
@@ -430,8 +457,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(),
 				LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
-		.requires(ORC_STEEL)
-		.requires(MORGUL_IRON_ORE)
+		.requires(ExtendedTags.Items.ORC_STEEL)
+		.requires(ExtendedTags.Items.MORGUL_IRON_ORE)
 		.requiresAlloy(LOTRItems.DURNOR.get())
 		.unlockedBy("has_"+ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.BLACK_URUK_STEEL_INGOT.get()))
 		.unlockedBy("has_"+LOTRItems.DURNOR.get().getRegistryName().getPath(), has(LOTRItems.DURNOR.get()))
@@ -457,8 +484,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.MORGUL_STEEL_INGOT.get(),
 				LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
-		.requires(ORC_STEEL)
-		.requires(MORGUL_IRON_ORE)
+		.requires(ExtendedTags.Items.ORC_STEEL)
+		.requires(ExtendedTags.Items.MORGUL_IRON_ORE)
 		.requiresAlloy(LOTRItems.GULDURIL.get())
 		.unlockedBy("has_"+ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_STEEL_INGOT.get()))
 		.unlockedBy("has_"+LOTRItems.GULDURIL.get().getRegistryName().getPath(), has(LOTRItems.GULDURIL.get()))
@@ -466,8 +493,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.ITHILDIN.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.ITHILDIN.get(),
 				LOTRRecipes.ELVEN_FORGE_ALLOY_SERIALIZER.get())
-		.requires(SILVER_INGOT)
-		.requires(SILVER_ORE)
+		.requires(ExtendedTags.Items.SILVER_INGOT)
+		.requires(ExtendedTags.Items.SILVER_ORE)
 		.requiresAlloy(LOTRItems.MITHRIL_NUGGET.get())
 		.unlockedBy("has_"+ExtendedItems.ITHILDIN.get().getRegistryName().getPath(), has(ExtendedItems.ITHILDIN.get()))
 		.unlockedBy("has_"+LOTRItems.MITHRIL_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.MITHRIL_NUGGET.get()))
@@ -639,6 +666,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GREEN_FIRE_BLOCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.STONE_CHEST.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_CHESTNUT_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_SAPLING.get().getRegistryName().getPath());
 	}
 	@Override
 	public String getName() {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_rh",
+  "textures": {
+    "bottom": "lotrextended:block/chestnut_door_bottom",
+    "top": "lotrextended:block/chestnut_door_top"
+  }
+}

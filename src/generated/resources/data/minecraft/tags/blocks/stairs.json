@@ -13,6 +13,7 @@
     "lotr:flowery_rhunic_brick_stairs",
     "lotr:mossy_mud_brick_stairs",
     "lotr:taurethrim_brick_stairs",
+    "lotr:stripped_chestnut_wood_stairs",
     "lotr:smooth_red_rock_stairs",
     "lotr:red_rhunic_brick_stairs",
     "lotr:rhunic_brick_stairs",
@@ -24,6 +25,7 @@
     "lotr:gray_packed_fur_stairs",
     "lotr:mossy_dol_guldur_brick_stairs",
     "lotr:white_packed_fur_stairs",
+    "lotr:chestnut_wood_stairs",
     "lotr:smooth_mordor_rock_stairs",
     "lotr:smooth_stone_stairs",
     "lotr:scorched_brick_stairs",
@@ -37,6 +39,7 @@
     "lotr:cracked_rhunic_brick_stairs",
     "lotr:cracked_red_rhunic_brick_stairs",
     "lotr:golden_taurethrim_brick_stairs",
+    "lotr:chestnut_stairs",
     "lotr:cracked_taurethrim_brick_stairs"
   ]
 }

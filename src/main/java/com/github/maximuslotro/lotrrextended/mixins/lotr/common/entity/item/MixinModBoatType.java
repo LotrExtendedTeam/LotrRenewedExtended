@@ -11,11 +11,14 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
+import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+
 import lotr.common.entity.item.LOTRBoatEntity.ModBoatType;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.DatagenModLoader;
 
 @Mixin(ModBoatType.class)
 public class MixinModBoatType {
@@ -39,6 +42,9 @@ public class MixinModBoatType {
 		ModBoatType instrument = lotrModBoatType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, plank, boat, s);
 		variants.add(instrument);
 		MixinModBoatType.$VALUES = variants.toArray(new ModBoatType[0]);
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.newWoodTypesHolder.add(s);
+		}
 		return instrument;
 	}
 }

@@ -57,7 +57,9 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Block> DURNOR_ORE = BlockTags.bind("forge:ores/durnor");
 	    public static final ITag.INamedTag<Block> EDHELVIR_ORE = BlockTags.bind("forge:ores/edhelvir");
 	    public static final ITag.INamedTag<Block> GULDURIL_ORE = BlockTags.bind("forge:ores/gulduril");
+
 		public static final ITag.INamedTag<Block> GREEN_FIRE_BASE_BLOCKS = BlockTags.bind("lotrextended:green_fire_base_blocks");
+		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
 	}
 
 	public static class Items {
@@ -71,7 +73,11 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Item> DWARVEN_STEEL = ItemTags.bind("forge:ingots/dwarven_steel");
 	    public static final ITag.INamedTag<Item> ELVEN_STEEL = ItemTags.bind("forge:ingots/elven_steel");
 	    public static final ITag.INamedTag<Item> URUK_STEEL = ItemTags.bind("forge:ingots/uruk_steel");
+	    public static final ITag.INamedTag<Item> SILVER_INGOT = ItemTags.bind("forge:ingots/silver");
 	    public static final ITag.INamedTag<Item> MITHRIL = ItemTags.bind("forge:ingots/mithril");
+
+	    public static final ITag.INamedTag<Item> ORC_STEEL_NUGGET = ItemTags.bind("forge:nuggets/orc_steel");
+
 	    public static final ITag.INamedTag<Item> TOPAZ_GEMS = ItemTags.bind("forge:gems/lotr_topaz");
 	    public static final ITag.INamedTag<Item> AMETHYST_GEMS = ItemTags.bind("forge:gems/lotr_amethyst");
 	    public static final ITag.INamedTag<Item> SAPPHIRE_GEMS = ItemTags.bind("forge:gems/lotr_sapphire");
@@ -85,6 +91,7 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Item> DURNOR_GEMS = ItemTags.bind("forge:gems/lotr_durnor");
 	    public static final ITag.INamedTag<Item> EDHELVIR_GEMS = ItemTags.bind("forge:gems/lotr_edhelvir");
 	    public static final ITag.INamedTag<Item> GULDURIL_GEMS = ItemTags.bind("forge:gems/lotr_gulduril");
+
 	    public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GALVORN = ItemTags.bind("forge:storage_blocks/galvorn");
 	    public static final ITag.INamedTag<Item> STORAGE_BLOCKS_BLACK_URUK_STEEL = ItemTags.bind("forge:storage_blocks/black_uruk_steel");
 	    public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GILDED_IRON = ItemTags.bind("forge:storage_blocks/gilded_iron");
@@ -128,5 +135,7 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Item> DURNOR_ORE = ItemTags.bind("forge:ores/durnor");
 	    public static final ITag.INamedTag<Item> EDHELVIR_ORE = ItemTags.bind("forge:ores/edhelvir");
 	    public static final ITag.INamedTag<Item> GULDURIL_ORE = ItemTags.bind("forge:ores/gulduril");
+	    
+	    public static final ITag.INamedTag<Item> CHESTNUT_LOGS = ItemTags.bind("lotrextended:chestnut_logs");
 	}
 }

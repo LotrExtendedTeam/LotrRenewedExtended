@@ -7,6 +7,7 @@
 	"mixins": [
 		"lotr.common.MixinLOTRMod",
 		"lotr.common.MixinLOTRGameRules",
+		"lotr.common.block.MixinLOTRSignTypes",
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.entity.item.MixinModBoatType",

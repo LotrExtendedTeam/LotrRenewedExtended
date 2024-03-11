@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:block/template_branch_post",
+  "textures": {
+    "branch": "lotrextended:block/stripped_chestnut_log"
+  }
+}

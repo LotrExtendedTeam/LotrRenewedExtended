@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "lotrextended:block/chestnut_log",
+    "bottom": "lotrextended:block/chestnut_log",
+    "top": "lotrextended:block/chestnut_log"
+  }
+}

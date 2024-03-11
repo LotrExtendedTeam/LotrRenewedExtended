@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lotrextended:block/chestnut_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lotrextended:block/chestnut_log"
+    },
+    "axis=z": {
+      "model": "lotrextended:block/chestnut_log",
+      "x": 90
+    }
+  }
+}
