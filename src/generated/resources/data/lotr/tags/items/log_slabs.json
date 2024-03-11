@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:chestnut_log_slab",
+    "lotr:stripped_chestnut_wood_slab",
+    "lotr:chestnut_wood_slab",
+    "lotr:stripped_chestnut_log_slab"
+  ]
+}

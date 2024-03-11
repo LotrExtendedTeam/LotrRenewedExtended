@@ -14,10 +14,21 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ExtendedItemTagGenerator extends ItemTagsProvider {
-
-    public static final ITag.INamedTag<Item> PILLARS = ItemTags.bind("lotr:pillars");
+	//FORGE
     public static final ITag.INamedTag<Item> FURS = ItemTags.bind("forge:furs");
-
+	//LOTR
+    public static final ITag.INamedTag<Item> PILLARS = ItemTags.bind("lotr:pillars");
+	public static final ITag.INamedTag<Item> WOODEN_FENCES = ItemTags.bind("lotr:wooden_fences");
+	public static final ITag.INamedTag<Item> WOODEN_FENCE_GATES = ItemTags.bind("lotr:wooden_fence_gates");
+	public static final ITag.INamedTag<Item> LOG_SLABS = ItemTags.bind("lotr:log_slabs");
+	public static final ITag.INamedTag<Item> LOG_STAIRS = ItemTags.bind("lotr:log_stairs");
+	public static final ITag.INamedTag<Item> WOODEN_BEAMS = ItemTags.bind("lotr:wooden_beams");
+	public static final ITag.INamedTag<Item> WOODEN_BEAM_SLABS = ItemTags.bind("lotr:wooden_beam_slabs");
+	public static final ITag.INamedTag<Item> BRANCHES = ItemTags.bind("lotr:branches");
+	public static final ITag.INamedTag<Item> CHARRABLE_LOGS = ItemTags.bind("lotr:charrable_logs");
+	public static final ITag.INamedTag<Item> CHARRABLE_WOODS = ItemTags.bind("lotr:charrable_woods");
+	public static final ITag.INamedTag<Item> CHARRABLE_STRIPPED_LOGS = ItemTags.bind("lotr:charrable_stripped_logs");
+	public static final ITag.INamedTag<Item> CHARRABLE_STRIPPED_WOODS = ItemTags.bind("lotr:charrable_stripped_woods");
 
 	public ExtendedItemTagGenerator(DataGenerator generator, BlockTagsProvider blockprovider, String modid, ExistingFileHelper existingFileHelper) {
 		super(generator, blockprovider, modid, existingFileHelper);
@@ -31,7 +42,30 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		this.copy(ExtendedBlockTagGenerator.STAIRS, ItemTags.STAIRS);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
 		this.copy(ExtendedBlockTagGenerator.WALLS, ItemTags.WALLS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+		this.copy(ExtendedBlockTagGenerator.STANDING_SIGNS, ItemTags.SIGNS);
+		this.copy(ExtendedBlockTagGenerator.SAPLINGS, ItemTags.SAPLINGS);
+		this.copy(ExtendedBlockTagGenerator.PLANKS, ItemTags.PLANKS);
+		this.copy(ExtendedBlockTagGenerator.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+		this.copy(ExtendedBlockTagGenerator.LEAVES, ItemTags.LEAVES);
+
+		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCES, ExtendedItemTagGenerator.WOODEN_FENCES);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCE_GATES, ExtendedItemTagGenerator.WOODEN_FENCE_GATES);
+		this.copy(ExtendedBlockTagGenerator.LOG_SLABS, ExtendedItemTagGenerator.LOG_SLABS);
+		this.copy(ExtendedBlockTagGenerator.LOG_STAIRS, ExtendedItemTagGenerator.LOG_STAIRS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_BEAMS, ExtendedItemTagGenerator.WOODEN_BEAMS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_BEAM_SLABS, ExtendedItemTagGenerator.WOODEN_BEAM_SLABS);
+		this.copy(ExtendedBlockTagGenerator.BRANCHES, ExtendedItemTagGenerator.BRANCHES);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_LOGS, ExtendedItemTagGenerator.CHARRABLE_LOGS);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_WOODS, ExtendedItemTagGenerator.CHARRABLE_WOODS);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_STRIPPED_LOGS, ExtendedItemTagGenerator.CHARRABLE_STRIPPED_LOGS);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_STRIPPED_WOODS, ExtendedItemTagGenerator.CHARRABLE_STRIPPED_WOODS);
 		
+		this.copy(ExtendedTags.Blocks.CHESTNUT_LOGS, ExtendedTags.Items.CHESTNUT_LOGS);
+
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN, ExtendedTags.Items.STORAGE_BLOCKS_GALVORN);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON, ExtendedTags.Items.STORAGE_BLOCKS_GILDED_IRON);
@@ -96,11 +130,15 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		tag(ExtendedTags.Items.URUK_STEEL).add(LOTRItems.URUK_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.MITHRIL).add(LOTRItems.MITHRIL_INGOT.get());
 
+		tag(ExtendedTags.Items.ORC_STEEL_NUGGET).add(ExtendedItems.ORC_STEEL_NUGGET.get());
+
 		tag(Tags.Items.INGOTS).addTag(ExtendedTags.Items.MORGUL_STEEL)
 		.addTag(ExtendedTags.Items.ORC_STEEL).addTag(ExtendedTags.Items.GALVORN)
 		.addTag(ExtendedTags.Items.BLACK_URUK_STEEL).addTag(ExtendedTags.Items.GILDED_IRON)
 		.addTag(ExtendedTags.Items.DWARVEN_STEEL).addTag(ExtendedTags.Items.ELVEN_STEEL)
 		.addTag(ExtendedTags.Items.URUK_STEEL).addTag(ExtendedTags.Items.MITHRIL);
+
+		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET);
 		
 		tag(ExtendedTags.Items.TOPAZ_GEMS).add(ExtendedItems.TOPAZ.get());
 		tag(ExtendedTags.Items.AMETHYST_GEMS).add(ExtendedItems.AMETHYST.get());
@@ -139,6 +177,9 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		tag(FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 		
 		tag(Tags.Items.CHESTS).add(ExtendedItems.STONE_CHEST.get());
+
+		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get());
+
 	}
 
 	@Override
