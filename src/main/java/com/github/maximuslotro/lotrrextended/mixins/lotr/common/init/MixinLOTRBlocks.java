@@ -209,9 +209,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SCORCHED_STONE = registerB("scorched_stone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_STONE_SLAB = registerB("scorched_stone_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_STONE));
 		ExtendedBlocks.SCORCHED_STONE_STAIRS = registerB("scorched_stone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_STONE));
+		ExtendedBlocks.SCORCHED_STONE_WALL = registerB("scorched_stone_wall", () -> new LOTRWallBlock(ExtendedBlocks.SCORCHED_STONE));
 		ExtendedBlocks.SCORCHED_COBBLESTONE = registerB("scorched_cobblestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB = registerB("scorched_cobblestone_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_COBBLESTONE));
 		ExtendedBlocks.SCORCHED_COBBLESTONE_STAIRS = registerB("scorched_cobblestone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_COBBLESTONE));
+		ExtendedBlocks.SCORCHED_COBBLESTONE_WALL = registerB("scorched_cobblestone_wall", () -> new LOTRWallBlock(ExtendedBlocks.SCORCHED_COBBLESTONE));
 		ExtendedBlocks.SCORCHED_BRICK = registerB("scorched_brick", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_BRICK_SLAB = registerB("scorched_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_BRICK));
 		ExtendedBlocks.SCORCHED_BRICK_STAIRS = registerB("scorched_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_BRICK));
