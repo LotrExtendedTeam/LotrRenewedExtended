@@ -6,10 +6,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.init.LOTRBlocks;
+import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mixin(LOTRBiomeFeatures.class)
 public class MixinLOTRBiomeFeatures {
@@ -22,6 +26,13 @@ public class MixinLOTRBiomeFeatures {
 	private static void addCraftingMonumentInject(BiomeGenerationSettings.Builder builder, int relativeChance, BlockState table, BlockStateProvider baseProvider, BlockStateProvider postProvider, BlockStateProvider torchProvider, CallbackInfo info) {
 		if(table.getBlock()==LOTRBlocks.HOBBIT_CRAFTING_TABLE.get()) {
 			info.cancel();
+		}
+	}
+
+	@Inject(method = "setup", at = @At("TAIL"), remap = false)
+	private static void setup(RegistryEvent.Register<Block> event, CallbackInfo info) {
+		if (event.getRegistry() == ForgeRegistries.BLOCKS) {
+			ExtendedBiomeFeatures.setup(event);
 		}
 	}
 }

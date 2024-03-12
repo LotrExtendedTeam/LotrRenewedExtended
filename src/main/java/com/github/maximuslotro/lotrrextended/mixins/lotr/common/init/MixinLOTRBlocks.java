@@ -66,7 +66,7 @@ import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableLogStairsBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.WoodBeamBlock;
-import lotr.common.block.trees.AppleTree;
+import lotr.common.block.trees.ChestnutTree;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
@@ -121,7 +121,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CHESTNUT_LEAVES = registerB("chestnut_leaves", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_LEAVES_FRUIT = registerB("chestnut_leaves_fruit", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS = registerB("chestnut_leaves_flowers", LOTRLeavesBlock::new);
-		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new AppleTree()));//TODO change
+		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
 		ExtendedBlocks.POTTED_CHESTNUT_SAPLING = registerB("potted_chestnut_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.CHESTNUT_SAPLING));
 		ExtendedBlocks.CHESTNUT_SLAB = registerB("chestnut_slab", () -> new AxialSlabBlock(ExtendedBlocks.CHESTNUT_PLANKS));
 		ExtendedBlocks.CHESTNUT_STAIRS = registerB("chestnut_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CHESTNUT_PLANKS));
