@@ -76,7 +76,7 @@ public class ExtendedBiomeFeatures {
 		CHESTNUT_LEAVES = ExtendedBlocks.CHESTNUT_LEAVES.get().defaultBlockState();
 		CHESTNUT_LEAVES_FRUIT = ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().defaultBlockState();
 		CHESTNUT_LEAVES_FLOWERS = ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get().defaultBlockState();
-		CHESTNUT_LEAVES_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 30).add(CHESTNUT_LEAVES_FRUIT, 1).add(CHESTNUT_LEAVES_FLOWERS, 1);
+		CHESTNUT_LEAVES_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 28).add(CHESTNUT_LEAVES_FRUIT, 3).add(CHESTNUT_LEAVES_FLOWERS, 1);
 		CHESTNUT_SAPLING = (IPlantable) ExtendedBlocks.CHESTNUT_SAPLING.get();
 		CHESTNUT_TREE = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
 		CHESTNUT_TREE_BEES = buildClassicTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
