@@ -3,16 +3,19 @@ package lotr.common.block.trees;
 import java.util.Random;
 
 import lotr.common.world.biome.ExtendedBiomeFeatures;
-import lotr.common.world.gen.feature.WeightedRandomFeatureConfig;
-import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-public class ChestnutTree extends Tree {
-	@SuppressWarnings("unchecked")
+public class ChestnutTree extends PartyableTree {
 	@Override
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random rand, boolean bees) {
-		return bees ? (ConfiguredFeature<BaseTreeFeatureConfig, ?>) ((WeightedRandomFeatureConfig<?>) ExtendedBiomeFeatures.chestnutBees().config).getRandomFeature(rand) : 
-			(ConfiguredFeature<BaseTreeFeatureConfig, ?>) ((WeightedRandomFeatureConfig<?>) ExtendedBiomeFeatures.chestnut().config).getRandomFeature(rand);
+		if (rand.nextInt(10) == 0)
+			return bees ? ExtendedBiomeFeatures.chestnutFancyBees() : ExtendedBiomeFeatures.chestnutFancy(); 
+		return bees ? ExtendedBiomeFeatures.chestnutBees() : ExtendedBiomeFeatures.chestnut();
+	}
+
+	@Override
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getPartyTreeFeature(Random var1) {
+		return ExtendedBiomeFeatures.chestnutParty();
 	}
 }

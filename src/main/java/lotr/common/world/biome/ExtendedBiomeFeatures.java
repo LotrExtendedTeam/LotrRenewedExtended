@@ -2,15 +2,16 @@ package lotr.common.world.biome;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.init.ExtendedBlocks;
-import lotr.common.world.gen.feature.LOTRFeatures;
-import lotr.common.world.gen.feature.WeightedFeature;
-import lotr.common.world.gen.feature.WeightedRandomFeatureConfig;
+import lotr.common.world.gen.tree.ClusterFoliagePlacer;
+import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
@@ -21,58 +22,70 @@ import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
+import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.RegistryEvent;
 
-@SuppressWarnings("unchecked")
 public class ExtendedBiomeFeatures {
 	private static BlockState CHESTNUT_LOG;
+	private static BlockState CHESTNUT_WOOD;
+	private static BlockState CHESTNUT_BRANCH;
 	private static BlockState CHESTNUT_LEAVES;
 	private static BlockState CHESTNUT_LEAVES_FRUIT;
 	private static BlockState CHESTNUT_LEAVES_FLOWERS;
-	private static BlockStateProvider CHESTNUT_LEAVES_FRUIT_POOL;
-	private static BlockStateProvider CHESTNUT_LEAVES_FLOWERS_POOL;
-	private static BlockStateProvider CHESTNUT_LEAVES_MIX_POOL;
+	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
 	private static IPlantable CHESTNUT_SAPLING;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FRUIT;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FRUIT_BEES;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FLOWERS;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FLOWERS_BEES;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_MIX;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_MIX_BEES;
+	public static BaseTreeFeatureConfig CHESTNUT_TREE;
+	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY;
+	public static BaseTreeFeatureConfig CHESTNUT_TREE_BEES;
+	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
+	public static BaseTreeFeatureConfig CHESTNUT_PARTY;
 
-	public static ConfiguredFeature<WeightedRandomFeatureConfig<BaseTreeFeatureConfig>, ?> chestnut() {
-		return LOTRFeatures.getWeightedRandom().configured(fromEntries(Feature.TREE.configured(CHESTNUT_TREE_FRUIT), 19, Feature.TREE.configured(CHESTNUT_TREE_FLOWERS), 19, Feature.TREE.configured(CHESTNUT_TREE_MIX), 2));
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnut() {
+		return Feature.TREE.configured(CHESTNUT_TREE);
 	}
 
-	public static ConfiguredFeature<WeightedRandomFeatureConfig<BaseTreeFeatureConfig>, ?>  chestnutBees() {
-		return LOTRFeatures.getWeightedRandom().configured(fromEntries(Feature.TREE.configured(CHESTNUT_TREE_FRUIT_BEES), 19, Feature.TREE.configured(CHESTNUT_TREE_FLOWERS_BEES), 19, Feature.TREE.configured(CHESTNUT_TREE_MIX_BEES), 2));
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnutFancy() {
+		return Feature.TREE.configured(CHESTNUT_TREE_FANCY);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnutBees() {
+		return Feature.TREE.configured(CHESTNUT_TREE_BEES);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnutFancyBees() {
+		return Feature.TREE.configured(CHESTNUT_TREE_FANCY_BEES);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnutParty() {
+		return Feature.TREE.configured(CHESTNUT_PARTY);
 	}
 
 	public static void setup(RegistryEvent.Register<Block> event) {
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
+		CHESTNUT_WOOD = ExtendedBlocks.CHESTNUT_WOOD.get().defaultBlockState();
+		CHESTNUT_BRANCH = ExtendedBlocks.CHESTNUT_BRANCH.get().defaultBlockState();
 		CHESTNUT_LEAVES = ExtendedBlocks.CHESTNUT_LEAVES.get().defaultBlockState();
 		CHESTNUT_LEAVES_FRUIT = ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().defaultBlockState();
 		CHESTNUT_LEAVES_FLOWERS = ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get().defaultBlockState();
-		CHESTNUT_LEAVES_FRUIT_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 15).add(CHESTNUT_LEAVES_FRUIT, 1);
-		CHESTNUT_LEAVES_FLOWERS_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 15).add(CHESTNUT_LEAVES_FLOWERS, 1);
-		CHESTNUT_LEAVES_MIX_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 30).add(CHESTNUT_LEAVES_FRUIT, 1).add(CHESTNUT_LEAVES_FLOWERS, 1);
+		CHESTNUT_LEAVES_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 30).add(CHESTNUT_LEAVES_FRUIT, 1).add(CHESTNUT_LEAVES_FLOWERS, 1);
 		CHESTNUT_SAPLING = (IPlantable) ExtendedBlocks.CHESTNUT_SAPLING.get();
-		CHESTNUT_TREE_FRUIT = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_FRUIT_POOL, 4, 3);
-		CHESTNUT_TREE_FRUIT_BEES = buildClassicTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_FRUIT_POOL, 4, 3);
-		CHESTNUT_TREE_FLOWERS = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_FLOWERS_POOL, 4, 3);
-		CHESTNUT_TREE_FLOWERS_BEES = buildClassicTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_FLOWERS_POOL, 4, 3);
-		CHESTNUT_TREE_MIX = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_MIX_POOL, 4, 3);
-		CHESTNUT_TREE_MIX_BEES = buildClassicTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_MIX_POOL, 4, 3);
+		CHESTNUT_TREE = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
+		CHESTNUT_TREE_BEES = buildClassicTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
+		CHESTNUT_TREE_FANCY = buildFancyTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL);
+		CHESTNUT_TREE_FANCY_BEES = buildFancyTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL);
+		CHESTNUT_PARTY = buildNormalPartyTree(CHESTNUT_LOG, CHESTNUT_WOOD, CHESTNUT_BRANCH, CHESTNUT_LEAVES_POOL);
 	}
 
+	//Classic Trees
 	private static BaseTreeFeatureConfig buildClassicTree(BlockState log, BlockStateProvider leavesPool, int baseHeight, int heightRandA) {
 		return buildClassicTree(log, leavesPool, baseHeight, heightRandA, false, false);
 	}
@@ -99,22 +112,41 @@ public class ExtendedBiomeFeatures {
 		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new StraightTrunkPlacer(baseHeight, heightRandA, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static <FC extends IFeatureConfig> WeightedRandomFeatureConfig fromEntries(Object... entries) {
-		try {
-			List<WeightedFeature<FC>> tempList = new ArrayList<>();
+	//Fancy Trees
+	private static BaseTreeFeatureConfig buildFancyTree(BlockState log, BlockStateProvider leavesPool) {
+		return buildFancyTree(log, leavesPool, false);
+	}
 
-			for (int i = 0; i < entries.length; i += 2) {
-				ConfiguredFeature<FC, ?> feature = (ConfiguredFeature<FC, ?>) entries[i];
-				int weight = (Integer) entries[i + 1];
-				WeightedFeature<FC> wf = WeightedFeature.make(feature, weight);
-				tempList.add(wf);
-			}
+	private static BaseTreeFeatureConfig buildFancyTreeWithBees(BlockState log, BlockStateProvider leavesPool) {
+		return buildFancyTree(log, leavesPool, true);
+	}
 
-			return new WeightedRandomFeatureConfig<FC>(ImmutableList.copyOf(tempList));
-		} catch (ArrayIndexOutOfBoundsException | ClassCastException var6) {
-			throw new IllegalArgumentException(
-					"Error adding biome trees! A list of (tree1, weight1), (tree2, weight2)... is required", var6);
+	private static BaseTreeFeatureConfig buildFancyTree(BlockState log, BlockStateProvider leavesPool, boolean bees) {
+		List<TreeDecorator> decorators = new ArrayList<>();
+		if (bees) {
+			decorators.add(Placements.BEEHIVE_005);
 		}
+
+		return new Builder(new SimpleBlockStateProvider(log), leavesPool, new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(4), 4), new FancyTrunkPlacer(3, 11, 0), new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))).ignoreVines().heightmap(Type.MOTION_BLOCKING).decorators(ImmutableList.copyOf(decorators)).build();
+	}
+	//Party aka Huge trees
+	private static BaseTreeFeatureConfig buildNormalFoliagePartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA) {
+		return buildPartyTree(log, wood, branch, leavesPool, baseHeight, heightRandA, new ClusterFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), ImmutableList.of());
+	}
+
+	private static BaseTreeFeatureConfig buildNormalHeightPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, FoliagePlacer foliage) {
+		return buildPartyTree(log, wood, branch, leavesPool, 10, 14, foliage, ImmutableList.of());
+	}
+
+	private static BaseTreeFeatureConfig buildNormalPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool) {
+		return buildNormalFoliagePartyTree(log, wood, branch, leavesPool, 10, 14);
+	}
+
+	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage) {
+		return buildPartyTree(log, wood, branch, leavesPool, baseHeight, heightRandA, foliage, ImmutableList.of());
+	}
+
+	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, List decorators) {
+		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new PartyTrunkPlacer(baseHeight, heightRandA, 0, wood, branch), new TwoLayerFeature(1, 1, 2)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
 	}
 }
