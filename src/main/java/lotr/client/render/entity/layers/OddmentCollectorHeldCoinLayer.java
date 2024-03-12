@@ -2,7 +2,7 @@ package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.client.render.entity.model.ManModel;
-import lotr.common.entity.npc.BreeManEntity;
+import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -13,12 +13,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class BreeManHeldCoinLayer extends LayerRenderer<BreeManEntity, ManModel<BreeManEntity>> {
-    public BreeManHeldCoinLayer(IEntityRenderer<BreeManEntity, ManModel<BreeManEntity>> renderer) {
+public class OddmentCollectorHeldCoinLayer extends LayerRenderer<ExtendedOddmentCollectorEntity, ManModel<ExtendedOddmentCollectorEntity>> {
+    public OddmentCollectorHeldCoinLayer(IEntityRenderer<ExtendedOddmentCollectorEntity, ManModel<ExtendedOddmentCollectorEntity>> renderer) {
         super(renderer);
     }
 
-    public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, BreeManEntity man, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, ExtendedOddmentCollectorEntity man, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         matStack.pushPose();
 
         this.getParentModel().translateToHand(HandSide.LEFT, matStack);

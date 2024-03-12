@@ -44,7 +44,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 // TODO: really should extend ManEntity but I couldn't get it to render when I did that
-public class ExtendedOddmentCollectorEntity extends BreeManEntity implements ExtendedTraderEntity {
+//public class ExtendedOddmentCollectorEntity extends BreeManEntity implements ExtendedTraderEntity {
+public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
