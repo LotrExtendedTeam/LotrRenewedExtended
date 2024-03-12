@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/fence_inventory",
+  "parent": "minecraft:block/fence_post",
   "textures": {
     "texture": "lotrextended:block/chestnut_planks"
   }
