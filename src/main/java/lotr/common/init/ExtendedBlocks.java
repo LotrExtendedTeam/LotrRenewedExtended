@@ -253,9 +253,11 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB;
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE_WALL;
 	public static RegistryObject<Block> SCORCHED_STONE;
 	public static RegistryObject<Block> SCORCHED_STONE_SLAB;
 	public static RegistryObject<Block> SCORCHED_STONE_STAIRS;
+	public static RegistryObject<Block> SCORCHED_STONE_WALL;
 	public static RegistryObject<Block> SCORCHED_BRICK;
 	public static RegistryObject<Block> SCORCHED_BRICK_SLAB;
 	public static RegistryObject<Block> SCORCHED_BRICK_STAIRS;

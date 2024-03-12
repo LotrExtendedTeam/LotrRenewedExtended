@@ -102,9 +102,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_COBBLESTONE_WALL;
 	public static RegistryObject<Item> SCORCHED_STONE;
 	public static RegistryObject<Item> SCORCHED_STONE_SLAB;
 	public static RegistryObject<Item> SCORCHED_STONE_STAIRS;
+	public static RegistryObject<Item> SCORCHED_STONE_WALL;
 	public static RegistryObject<Item> SCORCHED_BRICK;
 	public static RegistryObject<Item> SCORCHED_BRICK_SLAB;
 	public static RegistryObject<Item> SCORCHED_BRICK_STAIRS;

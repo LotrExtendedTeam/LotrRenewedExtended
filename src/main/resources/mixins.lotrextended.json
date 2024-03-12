@@ -7,7 +7,6 @@
 	"mixins": [
 		"lotr.common.MixinLOTRMod",
 		"lotr.common.MixinLOTRGameRules",
-		"lotr.common.block.MixinLOTRSignTypes",
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.entity.item.MixinModBoatType",
@@ -24,6 +23,7 @@
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
 		"lotr.common.tileentity.MixinKegTileEntity",
 		"lotr.common.world.biome.MixinLOTRBiomeFeatures",
+		"lotr.common.world.biome.MixinShireBiome",
 		"minecraft.block.MixinBlock",
 		"minecraft.block.MixinFarmlandBlock",
 		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"

@@ -516,16 +516,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	    .unlockedBy("has_"+Blocks.COBBLESTONE.getRegistryName().getPath(), has(Blocks.COBBLESTONE))
 	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_COBBLESTONE.get()))
 	    .save(consumer, ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath()+"_from_blasting");
-	    makeStairSlabRecipe(consumer, ExtendedBlocks.SCORCHED_COBBLESTONE_STAIRS, 
-				ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB,
+	    makeStairSlabWallRecipe(consumer, ExtendedBlocks.SCORCHED_COBBLESTONE_STAIRS, 
+				ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB, ExtendedBlocks.SCORCHED_COBBLESTONE_WALL,
 				()->ExtendedBlocks.SCORCHED_COBBLESTONE.get().asItem(), null);
 		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_STONE.get().getRegistryName().getPath());
 	    CookingRecipeBuilder.blasting(Ingredient.of(Blocks.STONE.asItem()), ExtendedBlocks.SCORCHED_STONE.get(), 0.1F, 100)
 	    .unlockedBy("has_"+Blocks.STONE.getRegistryName().getPath(), has(Blocks.STONE))
 	    .unlockedBy("has_"+ExtendedBlocks.SCORCHED_STONE.get().getRegistryName().getPath(), has(ExtendedBlocks.SCORCHED_STONE.get()))
 	    .save(consumer, ExtendedBlocks.SCORCHED_STONE.get().getRegistryName().getPath()+"_from_blasting");
-	    makeStairSlabRecipe(consumer, ExtendedBlocks.SCORCHED_STONE_STAIRS, 
-				ExtendedBlocks.SCORCHED_STONE_SLAB,
+	    makeStairSlabWallRecipe(consumer, ExtendedBlocks.SCORCHED_STONE_STAIRS, 
+				ExtendedBlocks.SCORCHED_STONE_SLAB, ExtendedBlocks.SCORCHED_STONE_WALL,
 				()->ExtendedBlocks.SCORCHED_STONE.get().asItem(), null);
 	    make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.SCORCHED_BRICK, 
 				ExtendedBlocks.SCORCHED_BRICK_STAIRS, 

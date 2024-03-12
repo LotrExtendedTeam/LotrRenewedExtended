@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:scorched_cobblestone"
+    }
+  },
+  "result": {
+    "item": "lotr:scorched_cobblestone_wall",
+    "count": 6
+  }
+}

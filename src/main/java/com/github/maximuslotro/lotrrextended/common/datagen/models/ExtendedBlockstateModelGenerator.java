@@ -466,8 +466,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation postParent = lotrLoc("block/template_branch_post");
 		ModelFile postModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_post", postParent).texture("branch", texture);
 		MultiPartBlockStateBuilder builder = getMultipartBuilder(branch).part().modelFile(postModel).addModel().end();
-	        builder.part().modelFile(sideModel).uvLock(true).addModel().condition(BranchBlock.EAST, true).end();
-	        builder.part().modelFile(sideModel).uvLock(true).rotationY(90).addModel().condition(BranchBlock.NORTH, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).addModel().condition(BranchBlock.NORTH, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(90).addModel().condition(BranchBlock.EAST, true).end();
 	        builder.part().modelFile(sideModel).uvLock(true).rotationY(180).addModel().condition(BranchBlock.SOUTH, true).end();
 	        builder.part().modelFile(sideModel).uvLock(true).rotationY(270).addModel().condition(BranchBlock.WEST, true).end();
 		itemModels().getBuilder("lotr:" + branch.getRegistryName().getPath()).parent(postModel);
@@ -552,7 +552,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(fence);
 		ModelFile post = models().fencePost("lotrextended:"+fence.getRegistryName().getPath()+"_post", texture);
 		ModelFile side = models().fenceSide("lotrextended:"+fence.getRegistryName().getPath()+"_side", texture);
-		ModelFile inventory = models().fenceInventory("lotrextended:"+fence.getRegistryName().getPath()+"_post", texture);
+		ModelFile inventory = models().fenceInventory("lotrextended:"+fence.getRegistryName().getPath()+"_inventory", texture);
         fourWayBlock(fence, post, side);
 		itemModels().getBuilder("lotr:" + fence.getRegistryName().getPath()).parent(inventory);
 	}
