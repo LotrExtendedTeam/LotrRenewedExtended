@@ -354,6 +354,7 @@ a103807a5c3806482359157cd1780cd3d6d4fc44 assets/lotr/models/item/dol_guldur_swor
 fdc6bb0d472a745fe03c7cdfd537fe4bfcc79fe2 assets/lotr/models/item/drystone_slab.json
 63b2987acede34482e458e6e33e9901e06ce0ebf assets/lotr/models/item/drystone_stairs.json
 05a820432dcab8f4910550b99bd775a51d1080a5 assets/lotr/models/item/drystone_wall.json
+98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/dunedain_ranger_spawn_egg.json
 07083b154b42ab21acfdddb1b76cc7b6cb77d4ae assets/lotr/models/item/dwarven_marriage_ring.json
 fca01fce6bf2a53bc0e215f4dc51b8e0409fd133 assets/lotr/models/item/elderberry.json
 7c7516a142803e767d21bf523588daf0f7b11a81 assets/lotr/models/item/elderberry_bush.json
@@ -459,6 +460,7 @@ e2ab05ca05925057863de598ddbc43ee53135ce1 assets/lotr/models/item/obsidian_shard.
 720e9456766c860fc0d6d90d505314365e6d4df7 assets/lotr/models/item/obsidian_taurethrim_brick_wall.json
 5e5c4cc09145e2341eb4bc4a160fdebfa37cdd88 assets/lotr/models/item/obsidian_taurethrim_pillar.json
 ad050d80972e7468bc93abd2f01b6c7357c2e7f4 assets/lotr/models/item/obsidian_taurethrim_pillar_slab.json
+98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/oddment_collector_spawn_egg.json
 2f573d072534f642eb5a91ae25c3e2b83bb01e59 assets/lotr/models/item/opal.json
 690e53f208f8ba6a4acc815ad83ebf7821723896 assets/lotr/models/item/opal_block.json
 ce18b92e52b1c9de86a4d95b96e3e4a49b949866 assets/lotr/models/item/opal_ore.json
@@ -559,7 +561,7 @@ de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundl
 c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fur_wall.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-33ea8d7198d2e75ed0116056254a2aef8420a8d3 assets/lotrextended/lang/en_us.json
+611fdf1f9237dc3cbfcfa8676b351d77ee2ed1f9 assets/lotrextended/lang/en_us.json
 055694b088e7d9ca56f38dc706fb59140f50f595 assets/lotrextended/models/block/amber_block.json
 9d83be4302913f0319cc4b9f01e6d84df36c7e2e assets/lotrextended/models/block/amber_ore.json
 3fb574dabb770b95a5f692c4aed3a8d6e67ba624 assets/lotrextended/models/block/amethyst_block.json
@@ -1690,6 +1692,7 @@ f0266b86d509baafb030ddb9915394ea06d372cd data/lotr/loot_tables/entities/caracal.
 fdbbf7b75caaebeccb40dbd2cdadf685bc3dd91a data/lotr/loot_tables/entities/dale_bowman.json
 8a55a3c221d9078e5074802e8b71e87223bd046b data/lotr/loot_tables/entities/dale_man.json
 8a55a3c221d9078e5074802e8b71e87223bd046b data/lotr/loot_tables/entities/dale_soldier.json
+cba795314940df7a35f5aff3121f47ba5c322b96 data/lotr/loot_tables/entities/dunedain_ranger.json
 720dfd863891f5c51e617a6e09cc60031304740a data/lotr/loot_tables/entities/dunlending.json
 276ed9f5a4eb2ce17ebf33327710474a97ff5370 data/lotr/loot_tables/entities/dunlending_bowman.json
 720dfd863891f5c51e617a6e09cc60031304740a data/lotr/loot_tables/entities/dunlending_warrior.json
@@ -1718,6 +1721,7 @@ f4a56ea045af10e45be45399d2bc3dddefd14cc5 data/lotr/loot_tables/entities/lindon_w
 33ae4295c1ba651f3df0fbe1305988b43b8e765c data/lotr/loot_tables/entities/mordor_orc.json
 0e743c011e53b00d518cb2e1a3824915dfd3ee5e data/lotr/loot_tables/entities/mordor_orc_archer.json
 35490e66c75bf1cd09d317ba00f32cfa5ce94d78 data/lotr/loot_tables/entities/mordor_warg.json
+cba795314940df7a35f5aff3121f47ba5c322b96 data/lotr/loot_tables/entities/oddment_collector.json
 73729f7c23cfd92f1c7a577bf8147705245ad5d1 data/lotr/loot_tables/entities/rivendell_elf.json
 73729f7c23cfd92f1c7a577bf8147705245ad5d1 data/lotr/loot_tables/entities/rivendell_warrior.json
 8b96e81c2c89f70992f800987a330388fdd08d60 data/lotr/loot_tables/entities/rohan_man.json
