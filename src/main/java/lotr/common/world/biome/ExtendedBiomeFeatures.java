@@ -48,7 +48,8 @@ public class ExtendedBiomeFeatures {
 	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
 	public static BaseTreeFeatureConfig CHESTNUT_PARTY;
 
-
+	//Chestnut
+	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
 	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnut() {
 		return Feature.TREE.configured(CHESTNUT_TREE);
 	}

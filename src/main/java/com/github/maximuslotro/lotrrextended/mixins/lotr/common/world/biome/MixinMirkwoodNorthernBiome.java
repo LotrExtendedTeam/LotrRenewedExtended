@@ -9,7 +9,7 @@ import lotr.common.world.biome.MirkwoodBiome.Northern;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
 
 @Mixin(Northern.class)
-public class MixinNorthernMirkwoodBiome {
+public class MixinMirkwoodNorthernBiome {
 
 	/***
 	 * @author maximuslotro
