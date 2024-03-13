@@ -1,5 +1,4 @@
 (beta 1.4.0)
-Progress update for March 12th 2024
 * Blocks
  * Added Chestnut Branch
  * Added Chestnut Wood
