@@ -27,7 +27,6 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
