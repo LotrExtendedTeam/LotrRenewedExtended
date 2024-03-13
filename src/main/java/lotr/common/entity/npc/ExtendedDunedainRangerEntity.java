@@ -22,16 +22,32 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
+    public double xCloakO;
+    public double yCloakO;
+    public double zCloakO;
+    public double xCloak;
+    public double yCloak;
+    public double zCloak;
+
+    public float oBob;
+    public float bob;
+
     public ExtendedDunedainRangerEntity(EntityType<? extends ExtendedDunedainRangerEntity> type, World w) {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeRangedSwitching());
         this.spawnRequiresSurfaceBlock = true;
+    }
+
+    public void tick() {
+        super.tick();
+        moveCloak();
     }
 
     // TODO: Add Ranger eat and drink from Legacy
@@ -51,6 +67,50 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     protected void initialiseAttackGoals(AttackGoalsHolder holder) {
         holder.setMeleeAttackGoal(this.createRangerMeleeAttackGoal());
         holder.setRangedAttackGoal(this.createRangerRangedAttackGoal());
+    }
+
+    // from Minecraft PlayerEntity class
+    private void moveCloak() {
+        this.xCloakO = this.xCloak;
+        this.yCloakO = this.yCloak;
+        this.zCloakO = this.zCloak;
+        double d0 = this.getX() - this.xCloak;
+        double d1 = this.getY() - this.yCloak;
+        double d2 = this.getZ() - this.zCloak;
+        double d3 = 10.0;
+        if (d0 > 10.0) {
+            this.xCloak = this.getX();
+            this.xCloakO = this.xCloak;
+        }
+
+        if (d2 > 10.0) {
+            this.zCloak = this.getZ();
+            this.zCloakO = this.zCloak;
+        }
+
+        if (d1 > 10.0) {
+            this.yCloak = this.getY();
+            this.yCloakO = this.yCloak;
+        }
+
+        if (d0 < -10.0) {
+            this.xCloak = this.getX();
+            this.xCloakO = this.xCloak;
+        }
+
+        if (d2 < -10.0) {
+            this.zCloak = this.getZ();
+            this.zCloakO = this.zCloak;
+        }
+
+        if (d1 < -10.0) {
+            this.yCloak = this.getY();
+            this.yCloakO = this.yCloak;
+        }
+
+        this.xCloak += d0 * 0.25;
+        this.zCloak += d2 * 0.25;
+        this.yCloak += d1 * 0.25;
     }
 
     // TODO: This might cause problems?
@@ -122,6 +182,10 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()));
 
         return spawnData;
+    }
+
+    public ResourceLocation getCloakTextureLocation() {
+        return new ResourceLocation("lotr", "textures/cape/ranger.png");
     }
 
     // TODO: Add support for Ranger Sneaking
