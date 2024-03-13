@@ -102,13 +102,10 @@ public abstract class MixinLOTRKeyHandler{
 						i = regionList.indexOf(currentRegion);
 						i += groupShift;
 						i = IntMath.mod(i, regionList.size());
-						System.out.println(regionList.get(i).getName().toString().equals("lotr:special"));
 						if(regionList.get(i).getName().toString().equals("lotr:special")) {
-							System.out.println("Changing region");
 							i += groupShift;
 							i = IntMath.mod(i, regionList.size());
 						}
-						System.out.println(regionList.get(i).getName().toString().equals("lotr:special"));
 						alignData.setCurrentViewedFaction(alignData.getRegionLastViewedFaction((FactionRegion) regionList.get(i)));
 						changedAlignmentView = true;
 					}

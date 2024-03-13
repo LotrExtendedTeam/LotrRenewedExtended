@@ -84,7 +84,6 @@ public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 				++i;
 				i = IntMath.mod(i, regionList.size());
 				if(regionList.get(i).getName().toString().equals("lotr:special")) {
-					System.out.println("Changing region");
 					++i;
 					i = IntMath.mod(i, regionList.size());
 				}
