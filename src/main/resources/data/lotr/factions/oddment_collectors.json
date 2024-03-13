@@ -1,0 +1,37 @@
+{
+  "name": {
+    "text": "Oddment Collectors",
+    "translate": false
+  },
+  "subtitle": {
+    "text": "Often distrusted, these traders travel through Middle-Earth buying scrap, but they do pay well.",
+    "translate": false
+  },
+  "region": "lotr:special",
+  "ordering": -1,
+  "color": "779177",
+  "map_square": {
+    "x": 1080,
+    "z": 600,
+    "radius": 125
+  },
+  "types": [ "lotr:man" ],
+  "ranks": [
+    {
+      "name": "guest",
+      "alignment": 10
+    }
+  ],
+  "approves_civilian_kills": false,
+  "areas_of_influence": {
+    "isolationist": true,
+	"areas": [
+      {
+        "type": "waypoint",
+        "waypoint": "lotr:firwold",
+        "radius": 125
+      }
+	]
+  },
+  "speechbank_home_biomes": [ "lotr:dunland" ]
+}

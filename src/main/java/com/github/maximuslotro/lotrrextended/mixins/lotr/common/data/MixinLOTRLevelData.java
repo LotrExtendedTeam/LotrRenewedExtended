@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.hooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 
 import org.spongepowered.asm.mixin.injection.At;
 

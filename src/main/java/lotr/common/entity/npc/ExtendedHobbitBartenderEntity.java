@@ -132,6 +132,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         return HobbitEntity.regAttrs();
     }
 
+    @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (canTradeWith(player)) {
             return ExtendedTraderHelper.openTraderGui(this, player, this);
