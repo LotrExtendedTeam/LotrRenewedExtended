@@ -8,6 +8,7 @@
 		"lotr.common.MixinLOTRMod",
 		"lotr.common.MixinLOTRGameRules",
 		"lotr.common.block.MixinLOTRSignTypes",
+		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.entity.item.MixinModBoatType",
@@ -30,6 +31,8 @@
 	],
 	
 	"client": [
+		"lotr.client.MixinLOTRKeyHandler",
+		"lotr.client.gui.MixinMiddleEarthFactionsScreen",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
 		"lotr.client.gui.inv.MixinContainerScreenHelper",
 		"lotr.client.render.MixinBlockRenderHelper",

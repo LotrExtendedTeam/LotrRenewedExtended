@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.hooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRLevelData;

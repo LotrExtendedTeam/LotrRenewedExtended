@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.hooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 
 import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
