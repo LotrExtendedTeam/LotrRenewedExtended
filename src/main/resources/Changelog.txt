@@ -1,3 +1,152 @@
+(beta 1.4.0)
+Progress update for March 12th 2024
+* Blocks
+ * Added Chestnut Branch
+ * Added Chestnut Wood
+ * Added Chestnut Wood Slab
+ * Added Chestnut Wood Stairs
+ * Added Cracked Mud Bricks
+ * Added Cracked Red Rhûnic Brick
+ * Added Cracked Red Rhûnic Brick Slab
+ * Added Cracked Red Rhûnic Brick Stairs
+ * Added Cracked Red Rhûnic Brick Wall
+ * Added Green Flame Block
+ * Added Green Flame Hearth
+ * Added Mossy Mud Bricks
+ * Added Mossy Red Rhûnic Brick
+ * Added Mossy Red Rhûnic Brick Slab
+ * Added Mossy Red Rhûnic Brick Stairs
+ * Added Mossy Red Rhûnic Brick Wall
+ * Added Scorched Brick
+ * Added Scorched Brick Slab
+ * Added Scorched Brick Stairs
+ * Added Scorched Brick Wall
+ * Added Scorched Cobblestone Slab
+ * Added Scorched Cobblestone Stairs
+ * Added Scorched Cobblestone Wall
+ * Added Scorched Stone
+ * Added Scorched Stone Slab
+ * Added Scorched Stone Stairs
+ * Added Scorched Stone Wall
+ * Added Stripped Chestnut Branch
+ * Added Stripped Chestnut Log
+ * Added Stripped Chestnut Log Slab
+ * Added Stripped Chestnut Wood
+ * Added Stripped Chestnut Wood Slab
+ * Added Stripped Chestnut Wood Stairs
+ * Fixed Morgul Torch not having it's new custom particle
+ * Made the particles and output light for extended's torches toggleable
+ * Ported Barren Dirt
+ * Ported Chestnut Beam
+ * Ported Chestnut Beam Slab
+ * Ported Chestnut Button
+ * Ported Chestnut Door
+ * Ported Chestnut Fence
+ * Ported Chestnut Fence Gate
+ * Ported Chestnut Leaves
+ * Ported Chestnut Log
+ * Ported Chestnut Log Slab
+ * Ported Chestnut Planks
+ * Ported Chestnut Planks Slab
+ * Ported Chestnut Planks Stairs
+ * Ported Chestnut Pressure Plate
+ * Ported Chestnut Sign
+ * Ported Chestnut Trapdoor
+ * Ported Scorched Cobblestone
+ * Ported Stone Chest
+* Items
+ * Added Chestnut Boat
+ * Added Orc Steel Nugget
+ * Gave Horn of Command a different texture depending on its type (ready/halt or summon)
+ * Made Bottle of Poison stack to 16
+ * Ported Chestnut Sapling
+ * Ported Taurethrim Dagger
+ * Ported Taurethrim Spear
+ * Porting Branding Iron
+* Entities
+ * Ported Oddment Collector
+* Features
+ * Added Chestnut Trees to the Shire Biomes
+ * Added Chestnut Trees with Beehives
+ * Added Large Chestnut Trees with Beehives
+ * Ported Chestnut Party Trees
+ * Ported Chestnut Trees
+ * Ported Large Chestnut Trees
+* Misc
+ * Added Stats for Slicing Cheese Wheels, Creating Fellowships, Disbanding Fellowships, and Trading with Traders
+ * Added more waypoint config options for servers
+ * Fixed Cheese Slices not adding to the statistic when eaten
+ * Fixed Stats not using their localized description names
+ * Fixed horn sounds not playing
+ * Remapped ID Grey Fur -> Gray Fur
+* Structures
+ * Added Alternate Variants For Hobbit Picnic tables, Small Hole, and Tavern
+ * Added Roasted Chestnuts and Conkers to Hobbit Structure loot-tables
+ * Changed Hobbit House spawn distributions
+ * Fixed Shire structures not spawning in Shire Woodlands, Shire Moors, or the White Downs
+ * Fixed some Shire Structure chests not having loot
+ * Updated Hobbit Barn, House, and Windmill
+* Textures
+ * Added Cheese Curds texture
+ * Added pack image for legacy textures resourcepack
+ * Fixed Legacy texture pack remains ore
+ * Fixed missing texture for Dwarf Remains Ore
+ * Remastered All Chestnut Wood type textures
+ * Remastered Jungle Grass texture
+ * Remastered Lindon and Rivendell armor texture in renewed resource pack
+ * Remastered Taurethrim Dagger texture
+ * Remastered Taurethrim Spear texture
+ * Revamped Packed Fur textures
+ * Updated Amethyst Block texture
+ * Updated Amethyst Ore texture
+ * Updated Angmar Equipment textures
+ * Updated Angmar Weapons/Tools textures
+ * Updated Black Fur texture
+ * Updated Carved Dol Guldur Brick texture
+ * Updated Carved Red Rhûnic Brick texture
+ * Updated Coin(1,10,100) textures
+ * Updated Cracked Dol Guldur Brick texture
+ * Updated Diamond Ore texture
+ * Updated Diamond texture
+ * Updated Dol Guldur Brick texture
+ * Updated Dol Guldur Crafting Table texture
+ * Updated Dol Guldur Equipment textures
+ * Updated Dol Guldur Pillar texture
+ * Updated Dol Guldur Weapons/Tools textures
+ * Updated Elderberry texture
+ * Updated Emerald Block texture
+ * Updated Emerald Ore texture
+ * Updated Emerald texture
+ * Updated Galvorn Block texture
+ * Updated Galvorn Ingot texture
+ * Updated Gilded Iron Block texture
+ * Updated Ithildin texture
+ * Updated Morgul Equipment textures
+ * Updated Morgul Lantern texture
+ * Updated Morgul Steel Ingot texture
+ * Updated Mossy Dol Guldur Brick texture
+ * Updated Mud Brick texture
+ * Updated Mud Path texture
+ * Updated Mud Farmland textures
+ * Updated Mud texture
+ * Updated Opal Ore texture
+ * Updated Pearl Block texture
+ * Updated Raspberry texture
+ * Updated Red Rhûnic Brick texture
+ * Updated Red Rhûnic Pillar texture
+ * Updated Rhûnic Crafting Table texture
+ * Updated Ruby Block texture
+ * Updated Ruby Ore texture 
+ * Updated Ruby texture
+ * Updated Silver Fur texture
+ * Updated Taurethrim Equipment textures
+ * Updated Taurethrim Weapons/Tools textures
+ * Updated Topaz Ore texture
+ * Updated Topaz texture
+ * Updated White Fur texture
+* Trading System
+ * Ported NPC trading, Hobbit Bartender, Farmer, and Oddment Collector trades
+
 Beta 1.3.0
 * Blocks
  * Added Gold Trimmed Rhûnic Brick Slab
