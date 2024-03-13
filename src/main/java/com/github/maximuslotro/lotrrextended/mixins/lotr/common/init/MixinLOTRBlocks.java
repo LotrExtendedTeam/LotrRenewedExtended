@@ -46,7 +46,6 @@ import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
 import lotr.common.block.LOTRSaplingBlock;
-import lotr.common.block.LOTRSignTypes;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStoneBlock;
@@ -66,7 +65,7 @@ import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableLogStairsBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.WoodBeamBlock;
-import lotr.common.block.trees.AppleTree;
+import lotr.common.block.trees.ChestnutTree;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
@@ -103,7 +102,6 @@ public class MixinLOTRBlocks {
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
-		ExtendedSignTypes.bumpSignTypeCreation();
 		//ORE STORAGE
 		ExtendedBlocks.GALVORN_BLOCK = registerB("galvorn_block", () ->{
 			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL), 2);});
@@ -121,7 +119,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CHESTNUT_LEAVES = registerB("chestnut_leaves", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_LEAVES_FRUIT = registerB("chestnut_leaves_fruit", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS = registerB("chestnut_leaves_flowers", LOTRLeavesBlock::new);
-		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new AppleTree()));//TODO change
+		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
 		ExtendedBlocks.POTTED_CHESTNUT_SAPLING = registerB("potted_chestnut_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.CHESTNUT_SAPLING));
 		ExtendedBlocks.CHESTNUT_SLAB = registerB("chestnut_slab", () -> new AxialSlabBlock(ExtendedBlocks.CHESTNUT_PLANKS));
 		ExtendedBlocks.CHESTNUT_STAIRS = registerB("chestnut_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CHESTNUT_PLANKS));
@@ -134,7 +132,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_LOG = registerB("stripped_chestnut_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.CHESTNUT_LOG));
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD = registerB("stripped_chestnut_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_CHESTNUT_LOG));
 		ExtendedBlocks.CHESTNUT_BEAM = registerB("chestnut_beam", () -> new WoodBeamBlock(ExtendedBlocks.CHESTNUT_LOG));
-		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, LOTRSignTypes.APPLE));//TODO tmr fix crash
+		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, ExtendedSignTypes.CHESTNUT));
 		ExtendedBlocks.CHESTNUT_WALL_SIGN = registerB("chestnut_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.CHESTNUT_SIGN));
 		ExtendedBlocks.CHESTNUT_LOG_SLAB = registerB("chestnut_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_LOG, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB.get()));
 		ExtendedBlocks.CHESTNUT_WOOD_SLAB = registerB("chestnut_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_WOOD, () -> ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB.get()));
@@ -211,9 +209,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SCORCHED_STONE = registerB("scorched_stone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_STONE_SLAB = registerB("scorched_stone_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_STONE));
 		ExtendedBlocks.SCORCHED_STONE_STAIRS = registerB("scorched_stone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_STONE));
+		ExtendedBlocks.SCORCHED_STONE_WALL = registerB("scorched_stone_wall", () -> new LOTRWallBlock(ExtendedBlocks.SCORCHED_STONE));
 		ExtendedBlocks.SCORCHED_COBBLESTONE = registerB("scorched_cobblestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB = registerB("scorched_cobblestone_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_COBBLESTONE));
 		ExtendedBlocks.SCORCHED_COBBLESTONE_STAIRS = registerB("scorched_cobblestone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_COBBLESTONE));
+		ExtendedBlocks.SCORCHED_COBBLESTONE_WALL = registerB("scorched_cobblestone_wall", () -> new LOTRWallBlock(ExtendedBlocks.SCORCHED_COBBLESTONE));
 		ExtendedBlocks.SCORCHED_BRICK = registerB("scorched_brick", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_BRICK_SLAB = registerB("scorched_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_BRICK));
 		ExtendedBlocks.SCORCHED_BRICK_STAIRS = registerB("scorched_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_BRICK));

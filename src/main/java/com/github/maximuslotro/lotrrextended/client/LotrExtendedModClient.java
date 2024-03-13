@@ -6,8 +6,10 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 
+import lotr.common.block.ExtendedSignTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackInfo.Priority;
@@ -62,6 +64,9 @@ public class LotrExtendedModClient {
 	}
 
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
+		event.enqueueWork(()->{
+			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
+		});
 		ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		BlockRendererSetup.regModels();
     }
