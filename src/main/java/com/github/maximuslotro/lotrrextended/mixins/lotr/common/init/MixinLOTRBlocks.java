@@ -28,6 +28,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChes
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedDoubleTorchBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
 import lotr.common.block.ExtendedGreenHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
@@ -169,6 +170,9 @@ public class MixinLOTRBlocks {
 		}else if(name.equals("blubber_wall_torch")) {
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(BLUBBER_TORCH);});
+		}else if(name.equals("orc_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedDoubleTorchBlock(14);});
 		}
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);
