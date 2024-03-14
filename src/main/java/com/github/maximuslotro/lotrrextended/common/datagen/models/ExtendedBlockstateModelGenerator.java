@@ -982,10 +982,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genRandomCubeBlockItem(Block block, ResourceLocation allSides) {
 		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath(), allSides);
-		getVariantBuilder(block)
-		.forAllStatesExcept(state -> {
-			return ConfiguredModel.allRotations(cubeModel, false);
-        });
+		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
@@ -1013,7 +1010,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genMirroredBlockItem(Block block, ResourceLocation location) {
 		registeredBlocks.add(block);
 		ModelFile blockModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath(), location);
-		ModelFile blockModelMir = models().singleTexture("lotrextended:"+block.getRegistryName().getPath()+"_mirrored", mcLoc("block/cube_mirrored_all"), location);
+		ModelFile blockModelMir = models().singleTexture("lotrextended:"+block.getRegistryName().getPath()+"_mirrored", mcLoc("block/cube_mirrored_all"), "all", location);
 		ConfiguredModel Configuredblock = new ConfiguredModel(blockModel);
 		ConfiguredModel ConfiguredblockMir = new ConfiguredModel(blockModel, 0, 180, false);
 		ConfiguredModel Configuredblock180 = new ConfiguredModel(blockModelMir);
