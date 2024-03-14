@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -68,6 +69,7 @@ import lotr.common.block.WoodBeamBlock;
 import lotr.common.block.trees.ChestnutTree;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.init.LOTRParticles;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.AbstractBlock;
@@ -86,11 +88,94 @@ import java.util.function.Supplier;
 
 @Mixin(LOTRBlocks.class)
 public class MixinLOTRBlocks {
-	
+
 	@Final
 	@Shadow(remap=false)
 	public static DeferredRegister<Block> BLOCKS;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> BLUE_MALLORN_TORCH;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> GREEN_MALLORN_TORCH;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> GOLD_MALLORN_TORCH;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> SILVER_MALLORN_TORCH;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> HIGH_ELVEN_TORCH;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> DWARVEN_TORCH;
+
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> BLUBBER_TORCH;
 	
+	@SuppressWarnings("unchecked")
+	@Redirect(method = "<clinit>", 
+			at = @At(value = "INVOKE", 
+			target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
+	private static RegistryObject<Block> injectedBlockRegister(DeferredRegister<Block> register, String name, Supplier<? extends Block> sup) {
+		RegistryObject<Block> returnBlock = null;
+		if(name.equals("blue_mallorn_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW});});
+		}else if(name.equals("blue_mallorn_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(BLUE_MALLORN_TORCH);});
+		}else if(name.equals("green_mallorn_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GREEN_ELVEN_GLOW});});
+		}else if(name.equals("green_mallorn_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(GREEN_MALLORN_TORCH);});
+		}else if(name.equals("gold_mallorn_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GOLD_ELVEN_GLOW});});
+		}else if(name.equals("gold_mallorn_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(GOLD_MALLORN_TORCH);});
+		}else if(name.equals("silver_mallorn_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.SILVER_ELVEN_GLOW});});
+		}else if(name.equals("silver_mallorn_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(SILVER_MALLORN_TORCH);});
+		}else if(name.equals("high_elven_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW});});
+		}else if(name.equals("high_elven_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(HIGH_ELVEN_TORCH);});
+		}else if(name.equals("dwarven_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRTorchBlock(14);});
+		}else if(name.equals("dwarven_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(DWARVEN_TORCH);});
+		}else if(name.equals("blubber_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRTorchBlock(12);});
+		}else if(name.equals("blubber_wall_torch")) {
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedLOTRWallTorchBlock(BLUBBER_TORCH);});
+		}
+		if(returnBlock==null) {
+			returnBlock = BLOCKS.register(name, sup);
+		}
+		return returnBlock;
+	}
+
 	private static RegistryObject<Block> registerB(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {

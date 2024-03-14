@@ -110,6 +110,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 
+	//Moved to overwrite method
 	//@Shadow(remap=false)
 	//private static RegistryObject<Item> regMaterialItem(String name) {return null;}
 	private static RegistryObject<Item> regMaterialItemB(String name)  {
