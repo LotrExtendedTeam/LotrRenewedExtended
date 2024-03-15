@@ -6,13 +6,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import org.apache.commons.lang3.ArrayUtils;
-import org.lwjgl.system.CallbackI;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CoinUtils {
 
@@ -157,9 +154,36 @@ public class CoinUtils {
             }
         }
 
-        // TODO: Implement this
-        System.out.println("Will have to pay with coins from multiple denominations");
+        int amountLeft = amount;
+        for (int denomination : denominationOrder) {
+            if (amountLeft == 0) break;
+            int quantity = denominations.get(denomination);
 
+            if (denomination * quantity <= amountLeft) {
+                removeCoinsByDenomination(player, denomination, quantity);
+                amountLeft -= (denomination * quantity);
+            } else {
+                // attempt to make change
+                int coinsToConsume = 0;
+                while (coinsToConsume * denomination < amount) {
+                    coinsToConsume++;
+                }
+
+                // determine change
+                int change = (coinsToConsume * denomination) - amount;
+                if (change >= 10) {
+                    int changeInTens = change / 10;
+                    int changeInOnes = change % 10;
+
+                    givePlayerCoins(player, denomination / 10, changeInTens);
+                    if (changeInOnes > 0) givePlayerCoins(player, 1, changeInOnes);
+                } else {
+                    givePlayerCoins(player, 1, change);
+                }
+
+                removeCoinsByDenomination(player, denomination, coinsToConsume); // consume coins
+            }
+        }
 
         return true;
     }
