@@ -10,6 +10,8 @@ import net.minecraft.world.World;
 public class ExtendedDispenserConker extends ProjectileDispenseBehavior {
 	@Override
 	protected ProjectileEntity getProjectile(World world, IPosition pos, ItemStack stack) {
-		return new ExtendedConkerEntity(pos.x(), pos.y(), pos.z(), world, stack);
+		ExtendedConkerEntity conker = new ExtendedConkerEntity(world, pos.x(), pos.y(), pos.z());
+		conker.setItem(stack);
+		return conker;
 	}
 }

@@ -5,6 +5,8 @@ import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
 import lotr.client.render.entity.ExtendedOddmentCollectorRenderer;
 import lotr.client.render.entity.LOTREntityRenderers;
 import lotr.common.init.ExtendedEntities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +21,7 @@ public class MixinLOTREntityRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedOddmentCollectorRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_CONKER.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
     }
 
     //@Inject(method = "registerTileEntityRenderers()V", at = @At("TAIL"), remap=false)
