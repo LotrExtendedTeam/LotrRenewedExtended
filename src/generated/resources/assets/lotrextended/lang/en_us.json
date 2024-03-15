@@ -252,6 +252,7 @@
   "entity.lotr.hobbit_bartender": "Hobbit Bartender",
   "entity.lotr.hobbit_farmer": "Hobbit Farmer",
   "entity.lotr.oddment_collector": "Oddment Collector",
+  "entity.lotr.thrown_conker": "Magical Conker",
   "gui.lotrextended.fellowships.creation.disabled": "Fellowship creation is disabled!",
   "gui.lotrextended.fellowships.title": "Middle-earth Fellowships",
   "gui.lotrextended.horn_select.option_halt_reddy": "Halt/Reddy Units",

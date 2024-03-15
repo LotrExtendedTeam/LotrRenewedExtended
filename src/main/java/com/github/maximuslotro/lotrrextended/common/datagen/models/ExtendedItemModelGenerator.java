@@ -123,7 +123,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			System.out.println("Didn't make ItemModel for: "+item.getKey());
 		}
-		for(String entity : ExtendedEntities.REGISTEREDENTITIES) {
+		for(String entity : ExtendedEntities.REGISTEREDMOBENTITIES) {
 			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");
 		}
 	}

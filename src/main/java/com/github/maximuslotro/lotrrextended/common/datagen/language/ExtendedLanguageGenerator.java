@@ -30,9 +30,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add New Entity Names
-		for (String entity : ExtendedEntities.REGISTEREDENTITIES) {
+		for (String entity : ExtendedEntities.REGISTEREDMOBENTITIES) {
 			addD("entity.lotr." + entity);
 			addD("item.lotr." + entity + "_spawn_egg");
+		}
+		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIES) {
+			addD("entity.lotr." + entity);
 		}
 
 		// Try Add Container Titles
