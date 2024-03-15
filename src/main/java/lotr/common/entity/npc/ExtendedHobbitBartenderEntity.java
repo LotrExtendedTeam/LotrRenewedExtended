@@ -4,6 +4,7 @@ import lotr.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -29,6 +31,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+
+import javax.swing.*;
 
 import static lotr.common.item.VesselDrinkItem.Potency;
 
@@ -133,14 +137,17 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+        if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem
+                || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
+            return ActionResultType.SUCCESS;
+        }
         if (canTradeWith(player)) {
             return ExtendedTraderHelper.openTraderGui(this, player, this);
         } else {
             if (!player.level.isClientSide)
                 player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
+            return ActionResultType.FAIL;
         }
-
-        return super.mobInteract(player, hand);
     }
 
     @Override
