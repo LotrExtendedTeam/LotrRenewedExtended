@@ -46,6 +46,7 @@
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
 		"minecraft.block.MixinBlock",
 		"minecraft.block.MixinFarmlandBlock",
+		"minecraft.entity.MixinEntityType",
 		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"
 	],
 	
