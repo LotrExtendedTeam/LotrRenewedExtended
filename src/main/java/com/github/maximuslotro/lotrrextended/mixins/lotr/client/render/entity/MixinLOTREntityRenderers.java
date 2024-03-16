@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.client.render.entity;
 import lotr.client.render.entity.ExtendedHobbitFarmerRenderer;
 import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
 import lotr.client.render.entity.ExtendedOddmentCollectorRenderer;
+import lotr.client.render.entity.ExtendedDunedainRangerRenderer;
 import lotr.client.render.entity.LOTREntityRenderers;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;

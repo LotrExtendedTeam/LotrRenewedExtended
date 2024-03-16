@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
 import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.projectile.ExtendedConkerEntity;
 import lotr.common.init.ExtendedEntities;

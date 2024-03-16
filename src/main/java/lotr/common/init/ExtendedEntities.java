@@ -8,6 +8,7 @@ import java.util.List;
 
 import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.projectile.ExtendedConkerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -23,5 +24,4 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;
 	public static RegistryObject<EntityType<ExtendedConkerEntity>> THROWN_CONKER;
 
-	public static  RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;
 }
