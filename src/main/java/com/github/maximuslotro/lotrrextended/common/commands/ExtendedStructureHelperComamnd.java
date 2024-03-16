@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.commands;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.hooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;

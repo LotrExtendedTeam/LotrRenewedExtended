@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrrextended.hooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 
 import lotr.common.data.LOTRLevelData;
 import net.minecraft.entity.player.PlayerEntity;

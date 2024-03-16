@@ -48,7 +48,8 @@ public class ExtendedBiomeFeatures {
 	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
 	public static BaseTreeFeatureConfig CHESTNUT_PARTY;
 
-
+	//Chestnut
+	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
 	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnut() {
 		return Feature.TREE.configured(CHESTNUT_TREE);
 	}
@@ -146,7 +147,7 @@ public class ExtendedBiomeFeatures {
 		return buildPartyTree(log, wood, branch, leavesPool, baseHeight, heightRandA, foliage, ImmutableList.of());
 	}
 
-	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, List decorators) {
+	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, List<TreeDecorator> decorators) {
 		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new PartyTrunkPlacer(baseHeight, heightRandA, 0, wood, branch), new TwoLayerFeature(1, 1, 2)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
 	}
 }

@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.hooks;
+package com.github.maximuslotro.lotrrextended.mixinhooks;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

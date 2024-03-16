@@ -5,6 +5,7 @@ import org.apache.maven.artifact.versioning.ComparableVersion;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 
 import lotr.common.block.ExtendedSignTypes;
 import net.minecraft.client.Minecraft;
@@ -15,8 +16,12 @@ import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackInfo.Priority;
 import net.minecraft.resources.ResourcePackList;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -47,19 +52,48 @@ public class LotrExtendedModClient {
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::login);
+		forgeBus.addListener(this::commandevent);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(BlockRendererSetup::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 
-		createPack("legacy", "Legacy TexturePack");
-		createPack("renewed", "Remastered Renewed TexturePack");
+		//Moved to Mixin
+		//createPack("legacy", "Legacy TexturePack");
+		//createPack("renewed", "Remastered Renewed TexturePack");
 	}
 
-	public static void createPack(String namespace, String name) {
-		ResourcePackList packs =Minecraft.getInstance().getResourcePackRepository();
+    /**
+     * A fix since forge does not have client commands in 1.16.5
+     */
+    public void commandevent(ClientChatEvent event)
+    {
+        if (event.getOriginalMessage().equals("!lotrExtendedInfoClient"))
+        {
+            event.setCanceled(true);
+            Minecraft instance = Minecraft.getInstance();
+            instance.gui.getChat().addMessage(new TranslationTextComponent("command.lotrextended.info.listPatches"));
+        	TextComponent prefex = new StringTextComponent("-");
+        	prefex.withStyle(TextFormatting.GREEN);
+            for (String patch : MIXINConfig.getInjectedPatches()) {
+                TextComponent patchName = new StringTextComponent(patch);
+                patchName.withStyle(TextFormatting.GOLD);
+                TextComponent message = new TranslationTextComponent("%s %s", prefex, patchName);
+                instance.gui.getChat().addMessage(message);
+            }
+        }
+    }
+
+	public static void createLecacyPack(ResourcePackList packs) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
-				LotrExtendedMod.MODID+":"+namespace+"_textures", 
-				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), namespace, name), 
+				LotrExtendedMod.MODID+":legacy_textures", 
+				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"), 
+				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
+	}
+
+	public static void createRenewedPack(ResourcePackList packs) {
+		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
+				LotrExtendedMod.MODID+":renewed_textures", 
+				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Remastered Renewed TexturePack"), 
 				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
 	}
 

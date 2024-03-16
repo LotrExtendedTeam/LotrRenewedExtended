@@ -7,6 +7,7 @@
 	"mixins": [
 		"lotr.common.MixinLOTRMod",
 		"lotr.common.MixinLOTRGameRules",
+		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.entity.item.MixinModBoatType",
@@ -22,19 +23,42 @@
 		"lotr.common.loot.functions.MixinLOTRLootFunctions",
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
 		"lotr.common.tileentity.MixinKegTileEntity",
+		"lotr.common.world.biome.MixinAnduinValeBiome",
+		"lotr.common.world.biome.MixinBlackrootValeBiome",
+		"lotr.common.world.biome.MixinBreelandBiome",
+		"lotr.common.world.biome.MixinDaleBiome",
+		"lotr.common.world.biome.MixinDaleNorthernBiome",
+		"lotr.common.world.biome.MixinDunlandBiome",
+		"lotr.common.world.biome.MixinEnedwaithBiome",
+		"lotr.common.world.biome.MixinEregionBiome",
+		"lotr.common.world.biome.MixinEriadorBiome",
+		"lotr.common.world.biome.MixinIthilienBiome",
+		"lotr.common.world.biome.MixinLamedonBiome",
+		"lotr.common.world.biome.MixinLindonBiome",
+		"lotr.common.world.biome.MixinLossarnachBiome",
 		"lotr.common.world.biome.MixinLOTRBiomeFeatures",
+		"lotr.common.world.biome.MixinMirkwoodNorthernBiome",
+		"lotr.common.world.biome.MixinPinnathGelinBiome",
+		"lotr.common.world.biome.MixinRivendellBiome",
 		"lotr.common.world.biome.MixinShireBiome",
+		"lotr.common.world.biome.MixinShireMoors",
+		"lotr.common.world.biome.MixinWilderlandBiome",
+		"lotr.common.world.biome.MixinWoodlandRealmBiome",
 		"minecraft.block.MixinBlock",
 		"minecraft.block.MixinFarmlandBlock",
+		"minecraft.entity.MixinEntityType",
 		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"
 	],
 	
 	"client": [
+		"lotr.client.MixinLOTRKeyHandler",
+		"lotr.client.gui.MixinMiddleEarthFactionsScreen",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
 		"lotr.client.gui.inv.MixinContainerScreenHelper",
 		"lotr.client.render.MixinBlockRenderHelper",
 		"lotr.client.render.entity.MixinLOTREntityRenderers",
-		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels"
+		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
+		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],
 	"injectors": {
 		"defaultRequire": 1

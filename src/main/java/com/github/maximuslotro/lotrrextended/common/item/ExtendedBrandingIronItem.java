@@ -44,6 +44,7 @@ public class ExtendedBrandingIronItem extends Item {
 		return p_82789_2_.getItem() == Items.IRON_INGOT;
 	}
 
+	@Override
 	public ActionResultType interactLivingEntity(ItemStack item, PlayerEntity player, LivingEntity entity, Hand p_111207_4_) {
 		if(isTempered(player.getMainHandItem())&&getTemperedName(player.getMainHandItem())!=null) {
 			if(entity instanceof AnimalEntity) {
@@ -66,6 +67,7 @@ public class ExtendedBrandingIronItem extends Item {
 		return super.interactLivingEntity(item, player, entity, p_111207_4_);
 	}
 
+	@Override
 	public ActionResultType useOn(ItemUseContext p_195939_1_) {
 		BlockState blockstate = p_195939_1_.getLevel().getBlockState(p_195939_1_.getClickedPos());
 		if (blockstate.is(BlockTags.FIRE)||blockstate.is(BlockTags.CAMPFIRES)) {

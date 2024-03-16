@@ -35,6 +35,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
 import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 
@@ -110,6 +111,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 
+	//Moved to overwrite method
 	//@Shadow(remap=false)
 	//private static RegistryObject<Item> regMaterialItem(String name) {return null;}
 	private static RegistryObject<Item> regMaterialItemB(String name)  {
@@ -519,6 +521,6 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_COIN_ONE = regItemB("silver_coin_one", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), CoinType.ONE));
 		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), CoinType.TEN));
 		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), CoinType.HUNDRED));
-		ExtendedItems.CONKER =  regItemB("conker", () -> new Item(new Properties().tab(LOTRItemGroups.MISC).stacksTo(16)));
+		ExtendedItems.CONKER =  regItemB("conker", () -> new ExtendedThrowableConkerItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(16)));
 	}
 }
