@@ -1,10 +1,10 @@
 package lotr.common.entity.npc;
 
+import lotr.common.entity.npc.data.ExtendedFoodPools;
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCFoodPool;
-import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.LOTRAttributes;
@@ -13,7 +13,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -50,17 +49,12 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         moveCloak();
     }
 
-    // TODO: Add Ranger eat and drink from Legacy
-    //  RANGER = new LOTRFoods(new ItemStack[] { new ItemStack(Items.field_151157_am), new ItemStack(Items.field_151077_bg), new ItemStack(Items.field_151083_be), new ItemStack(Items.field_151101_aQ), new ItemStack(LOTRMod.muttonCooked),
-    //  new ItemStack(LOTRMod.deerCooked), new ItemStack(Items.field_151168_bH), new ItemStack(Items.field_151034_e), new ItemStack(LOTRMod.appleGreen), new ItemStack(LOTRMod.pear), new ItemStack(Items.field_151025_P),
-    //  new ItemStack(LOTRMod.blueberry), new ItemStack(LOTRMod.blackberry), new ItemStack(LOTRMod.cranberry), new ItemStack(LOTRMod.raspberry), new ItemStack(LOTRMod.elderberry) });
-    //  RANGER_DRINK = (new LOTRFoods(new ItemStack[] { new ItemStack(LOTRMod.mugAle), new ItemStack(LOTRMod.mugAle), new ItemStack(LOTRMod.mugCider), new ItemStack(LOTRMod.mugPerry), new ItemStack(LOTRMod.mugAppleJuice)
     protected NPCFoodPool getEatPool() {
-        return NPCFoodPools.GONDOR;
+        return ExtendedFoodPools.RANGER;
     }
 
     protected NPCFoodPool getDrinkPool() {
-        return NPCFoodPools.GONDOR_DRINK;
+        return ExtendedFoodPools.RANGER_DRINK;
     }
 
     @Override
