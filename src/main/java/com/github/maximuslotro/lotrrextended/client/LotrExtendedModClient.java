@@ -52,6 +52,7 @@ public class LotrExtendedModClient {
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::login);
+		forgeBus.addListener(this::commandevent);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(BlockRendererSetup::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
@@ -59,6 +60,34 @@ public class LotrExtendedModClient {
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
+	}
+
+    /**
+     * A fix since forge does not have client commands in 1.16.5
+     */
+    public void commandevent(ClientChatEvent event)
+    {
+        if (event.getOriginalMessage().equals("!lotrExtendedInfoClient"))
+        {
+            event.setCanceled(true);
+            Minecraft instance = Minecraft.getInstance();
+            instance.gui.getChat().addMessage(new TranslationTextComponent("command.lotrextended.info.listPatches"));
+        	TextComponent prefex = new StringTextComponent("-");
+        	prefex.withStyle(TextFormatting.GREEN);
+            for (String patch : MIXINConfig.getInjectedPatches()) {
+                TextComponent patchName = new StringTextComponent(patch);
+                patchName.withStyle(TextFormatting.GOLD);
+                TextComponent message = new TranslationTextComponent("%s %s", prefex, patchName);
+                instance.gui.getChat().addMessage(message);
+            }
+        }
+    }
+
+	public static void createLecacyPack(ResourcePackList packs) {
+		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
+				LotrExtendedMod.MODID+":legacy_textures", 
+				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"), 
+				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
 	}
 
 	public static void createRenewedPack(ResourcePackList packs) {
