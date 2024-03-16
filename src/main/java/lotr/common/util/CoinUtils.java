@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CoinUtils {
@@ -47,100 +48,144 @@ public class CoinUtils {
         return totalValue;
     }
 
-    // TODO: brought in from my LOTR: Companions mod could probably be cleaned up
-    public static boolean removeCoins(PlayerEntity player, PlayerInventory inventory, int amount) {
-        int coinsRemoved = 0;
+    // total the amount of each denomination they have
+    private static HashMap<Integer, Integer> totalOfEachDenomination(PlayerInventory inventory) {
+        HashMap<Integer, Integer> denominations = new HashMap<>();
+        denominations.put(1, 0);
+        denominations.put(10, 0);
+        denominations.put(100, 0);
 
         for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack itemStack = inventory.getItem(i);
-
-            if (!CoinUtils.isValidCoin(itemStack)) {
-                continue;
-            }
-
-            int currency = CoinUtils.valueOfItem(itemStack.getItem());
-            int value = itemStack.getCount() * currency;
-
-            if (coinsRemoved + value >= amount) {
-                // check if change has to be mode
-                int amountLeft = amount - coinsRemoved;
-                int newDifference = value - amountLeft;
-
-                if (newDifference == 0) {
-                    inventory.setItem(i, ItemStack.EMPTY);
-                    return true;
+            ItemStack stack = inventory.getItem(i);
+            if (CoinUtils.isValidCoin(stack)) {
+                if (CoinUtils.valueOfItem(stack.getItem()) == 1) {
+                   denominations.merge(1, stack.getCount(), Integer::sum);
                 }
-
-                if (newDifference % currency == 0) {
-                    // no change has to be made - simply reduce it
-                    int newCount = newDifference / currency;
-                    if (newCount > 64) {
-                        itemStack.setCount(64);
-                        List<ItemStack> stacks = new ArrayList<>();
-                        int remainder = newCount - 64;
-                        while (remainder > 64) {
-                            stacks.add(new ItemStack(itemStack.getItem(), 64));
-                            remainder -= 64;
-                        }
-                        if (remainder > 0) {
-                            stacks.add(new ItemStack(itemStack.getItem(), remainder));
-                        }
-                        for (ItemStack stack : stacks) {
-                            if (!inventory.add(stack)) {
-                                ItemEntity itemEntity = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), stack);
-                                player.level.addFreshEntity(itemEntity);
-                            }
-                        }
-                    } else {
-                        itemStack.setCount(newCount);
-                    }
-                    return true;
-                } else {
-                    int currencyOfChange = 1;
-                    Item item = ExtendedItems.SILVER_COIN_ONE.get();
-                    if (newDifference % 100 == 0) {
-                        currencyOfChange = 100;
-                        item = ExtendedItems.SILVER_COIN_HUNDRED.get();
-                    } else if (newDifference % 10 == 0) {
-                        currencyOfChange = 10;
-                        item = ExtendedItems.SILVER_COIN_TEN.get();
-                    }
-                    int newAmount = newDifference / currencyOfChange;
-                    if (newAmount > 64) {
-                        ItemStack newItemStack = new ItemStack(item, 64);
-                        inventory.setItem(i, newItemStack);
-                        List<ItemStack> stacks = new ArrayList<>();
-
-                        int remainder = newAmount - 64;
-                        while (remainder > 64) {
-                            stacks.add(new ItemStack(item, 64));
-                            remainder -= 64;
-                        }
-
-                        if (remainder > 0) {
-                            stacks.add(new ItemStack(item, remainder));
-                        }
-
-                        for (ItemStack stack : stacks) {
-                            if (!inventory.add(stack)) {
-                                ItemEntity itemEntity = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), stack);
-                                player.level.addFreshEntity(itemEntity);
-                            }
-                        }
-                    } else {
-                        ItemStack newItemStack = new ItemStack(item, newAmount);
-                        inventory.setItem(i, newItemStack);
-                    }
-                    return true;
+                if (CoinUtils.valueOfItem(stack.getItem()) == 10) {
+                    denominations.merge(10, stack.getCount(), Integer::sum);
                 }
-            } else {
-                // remove all coins
-                coinsRemoved += value;
-                inventory.setItem(i, ItemStack.EMPTY);
+                if (CoinUtils.valueOfItem(stack.getItem()) == 100) {
+                    denominations.merge(100, stack.getCount(), Integer::sum);
+
+                }
             }
         }
 
-        return false;
+        return denominations;
+    }
+
+    private static Item itemFromDenomination(int denomination) {
+        if (denomination == 1) {
+            return ExtendedItems.SILVER_COIN_ONE.get();
+        } else if (denomination == 10) {
+            return ExtendedItems.SILVER_COIN_TEN.get();
+        } else if (denomination == 100) {
+            return ExtendedItems.SILVER_COIN_HUNDRED.get();
+        }
+
+        return null;
+    }
+
+    private static void givePlayerCoins(PlayerEntity player, int denomination, int amount) {
+        List<ItemStack> stacks = new ArrayList<>();
+        while (amount > 0) {
+            if (amount > 64) {
+                stacks.add(new ItemStack(CoinUtils.itemFromDenomination(denomination), 64));
+                amount -= 64;
+            } else {
+                stacks.add(new ItemStack(CoinUtils.itemFromDenomination(denomination), amount));
+                amount = 0;
+            }
+        }
+
+        for (ItemStack stack : stacks) {
+            if (!player.inventory.add(stack)) {
+                ItemEntity itemEntity = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), stack);
+                player.level.addFreshEntity(itemEntity);
+            }
+        }
+    }
+
+    private static boolean removeCoinsByDenomination(PlayerEntity player, int denomination, int amount) {
+        while (amount > 0) {
+            int stackSize = Math.min(amount, 64); // determine the stack size to remove
+            int slot = player.inventory.findSlotMatchingItem(new ItemStack(itemFromDenomination(denomination), stackSize));
+            if (slot > -1) {
+                player.inventory.removeItem(slot, stackSize);
+                amount -= stackSize; // reduce the amount by the stack size
+            } else {
+                return false; // error case
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean removeCoins(PlayerEntity player, PlayerInventory inventory, int amount) {
+        if (CoinUtils.totalValueInPlayerInventory(inventory) < amount) return false;
+
+        HashMap<Integer, Integer> denominations = totalOfEachDenomination(inventory);
+
+        // attempt to pay directly from a single denomination first
+        Integer[] denominationOrder = new Integer[] {1, 10, 100};
+        for (int denomination : denominationOrder) {
+            int quantity = denominations.get(denomination);
+
+            if (denomination * quantity >= amount) {
+                int coinsToConsume = 0;
+                while (coinsToConsume * denomination < amount) {
+                    coinsToConsume++;
+                }
+
+                // determine change
+                int change = (coinsToConsume * denomination) - amount;
+                if (change >= 10) {
+                    int changeInTens = change / 10;
+                    int changeInOnes = change % 10;
+
+                    givePlayerCoins(player, denomination / 10, changeInTens);
+                    if (changeInOnes > 0) givePlayerCoins(player, 1, changeInOnes);
+                } else {
+                    givePlayerCoins(player, 1, change);
+                }
+
+                removeCoinsByDenomination(player, denomination, coinsToConsume); // consume coins
+                return true;
+            }
+        }
+
+        int amountLeft = amount;
+        for (int denomination : denominationOrder) {
+            if (amountLeft == 0) break;
+            int quantity = denominations.get(denomination);
+
+            if (denomination * quantity <= amountLeft) {
+                removeCoinsByDenomination(player, denomination, quantity);
+                amountLeft -= (denomination * quantity);
+            } else {
+                // attempt to make change
+                int coinsToConsume = 0;
+                while (coinsToConsume * denomination < amount) {
+                    coinsToConsume++;
+                }
+
+                // determine change
+                int change = (coinsToConsume * denomination) - amount;
+                if (change >= 10) {
+                    int changeInTens = change / 10;
+                    int changeInOnes = change % 10;
+
+                    givePlayerCoins(player, denomination / 10, changeInTens);
+                    if (changeInOnes > 0) givePlayerCoins(player, 1, changeInOnes);
+                } else {
+                    givePlayerCoins(player, 1, change);
+                }
+
+                removeCoinsByDenomination(player, denomination, coinsToConsume); // consume coins
+            }
+        }
+
+        return true;
     }
 
 }

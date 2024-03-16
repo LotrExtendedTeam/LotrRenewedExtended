@@ -43,4 +43,6 @@ public interface ExtendedTraderEntity {
 
     List<ExtendedTrade> getSells();
 
+    boolean canTradeWith(PlayerEntity player);
+
 }
