@@ -4,6 +4,7 @@ import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 
+import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
@@ -20,6 +21,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -136,14 +138,17 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     }
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+        if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem
+                || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
+            return ActionResultType.SUCCESS;
+        }
         if (canTradeWith(player)) {
             return ExtendedTraderHelper.openTraderGui(this, player, this);
         } else {
             if (!player.level.isClientSide)
                 player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
+            return ActionResultType.FAIL;
         }
-
-        return super.mobInteract(player, hand);
    }
 
     @Override

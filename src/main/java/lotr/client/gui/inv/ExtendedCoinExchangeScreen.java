@@ -7,6 +7,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.inv.ExtendedCoinExchangeContainer;
+import lotr.common.util.CoinUtils;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerEntity;
@@ -64,6 +65,12 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
     @Override
     protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
+        // render coin amount in inventory
+        this.fill(matrix, 180, 105, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 120, 0x99000000);
+        this.minecraft.getTextureManager().bind(GUI_TEXTURE);
+        blit(matrix, 179, 104, 176, 77, 18, 18);
+        this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 109, 0xFFFFFFFF);
+
         this.font.draw(matrix, this.title, (float) this.titleLabelX, (float) this.titleLabelY, 4210752);
         this.font.draw(matrix, this.inventory.getDisplayName(), (float) this.inventoryLabelX, (float) this.inventoryLabelY, 4210752);
     }
