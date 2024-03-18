@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStrawBedTileEntity;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedTileEntities;
@@ -35,6 +36,7 @@ public class MixinLOTRTileEntities {
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
     	ExtendedTileEntities.STONE_CHEST = register("stone_chest_tileentity", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));
+    	ExtendedTileEntities.STRAW_BED = register("straw_bed_tileentity", () -> Builder.of(ExtendedStrawBedTileEntity::new, ExtendedBlocks.STRAW_BED.get()));
     	//register("weapon_rack",() -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK));	
     }
 }

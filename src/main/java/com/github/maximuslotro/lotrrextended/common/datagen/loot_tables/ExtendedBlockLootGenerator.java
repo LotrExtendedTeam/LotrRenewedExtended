@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -52,6 +53,7 @@ import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.data.loot.BlockLootTables;
@@ -69,6 +71,7 @@ import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -220,6 +223,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedBedBlock) {
+				add(block.getValue().get(), (p_218569_0_) -> {
+			         return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
+			      });
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {

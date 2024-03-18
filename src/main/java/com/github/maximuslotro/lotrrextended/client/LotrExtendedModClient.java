@@ -98,6 +98,7 @@ public class LotrExtendedModClient {
 	}
 
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
+		BlockRendererSetup.setupBlockRenderers();
 		event.enqueueWork(()->{
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
 		});

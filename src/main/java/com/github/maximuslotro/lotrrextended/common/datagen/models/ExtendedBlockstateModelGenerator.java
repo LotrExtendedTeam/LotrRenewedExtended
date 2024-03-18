@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -113,6 +114,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedBedBlock) {
+				genBedBlockItem((ExtendedBedBlock) block.getValue().get(), "block/"+block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof BranchBlock) {
@@ -753,6 +758,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
         });
+	}
+
+	private void genBedBlockItem(ExtendedBedBlock bed, String name) {
+		ModelFile modelFile = models().getExistingFile(mcLoc("block/bed"));
+		simpleBlock(bed, modelFile);
 	}
 
 	private void genCakeBlock(CakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {
