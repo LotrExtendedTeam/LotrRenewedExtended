@@ -2,11 +2,19 @@ package lotr.client.render.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import lotr.client.render.entity.ExtendedDunedainRangerRenderer;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
+import lotr.common.entity.npc.ManEntity;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nullable;
 
 public class ExtendedRangerModel<E extends ExtendedDunedainRangerEntity> extends ManModel<E> {
+
+    private boolean isCloaked = false;
 
     private final ModelRenderer cloak;
 
@@ -20,6 +28,7 @@ public class ExtendedRangerModel<E extends ExtendedDunedainRangerEntity> extends
 
     public ExtendedRangerModel(float f, boolean isArmor, boolean smallArms) {
         super(f, isArmor, smallArms);
+        this.isCloaked = false;
         if (!isArmor) {
             this.createLongHairModel(0.0F, f);
         }
@@ -50,8 +59,28 @@ public class ExtendedRangerModel<E extends ExtendedDunedainRangerEntity> extends
         }
     }
 
-    public void renderCloak(MatrixStack p_228289_1_, IVertexBuilder p_228289_2_, int p_228289_3_, int p_228289_4_) {
-        this.cloak.render(p_228289_1_, p_228289_2_, p_228289_3_, p_228289_4_);
+    @Override
+    public void prepareMobModel(E ranger, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
+        this.isCloaked = ranger.isCloaked();
+        super.prepareMobModel(ranger, p_212843_2_, p_212843_3_, p_212843_4_);
     }
+
+    public void renderCloak(E entity, MatrixStack p_228289_1_, IVertexBuilder p_228289_2_, int p_228289_3_, int p_228289_4_) {
+        if (entity.isCloaked()) {
+            this.cloak.render(p_228289_1_, p_228289_2_, p_228289_3_, p_228289_4_, 1.0F, 1.0F, 1.0F, 0.6F);
+        } else {
+            this.cloak.render(p_228289_1_, p_228289_2_, p_228289_3_, p_228289_4_);
+        }
+    }
+    @Override
+    public void renderToBuffer(MatrixStack matStack, IVertexBuilder buf, int packedLight, int packedOverlay, float r, float g, float b, float a) {
+        if (isCloaked) {
+            super.renderToBuffer(matStack, buf, packedLight, packedOverlay, r, g, b, 0.6F);
+        } else {
+            super.renderToBuffer(matStack, buf, packedLight, packedOverlay, r, g, b, a);
+        }
+    }
+
+
 
 }

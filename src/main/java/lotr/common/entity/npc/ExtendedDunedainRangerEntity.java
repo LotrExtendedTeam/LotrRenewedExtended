@@ -21,12 +21,18 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
+
+    private static final DataParameter<Boolean> IS_CLOAKED = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class,
+            DataSerializers.BOOLEAN);
 
     public double xCloakO;
     public double yCloakO;
@@ -47,6 +53,21 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     public void tick() {
         super.tick();
         moveCloak();
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        // TODO: remove this eventually just testing that both and not cloaked render correctly
+        if (random.nextInt(2) == 0) {
+            this.entityData.define(IS_CLOAKED, true);
+        } else {
+            this.entityData.define(IS_CLOAKED, false);
+        }
+    }
+
+    public boolean isCloaked() {
+        return this.entityData.get(IS_CLOAKED);
     }
 
     protected NPCFoodPool getEatPool() {
@@ -183,16 +204,4 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     }
 
     // TODO: Add support for Ranger Sneaking
-    //  Code from 1.7.10
-    // Looks like 1.7.10's equivalent of DataParameter
-    // /*     */   public boolean isRangerSneaking() {
-    ///*  55 */     return (this.dataWatcher.getWatchableObjectByte(17) == 1);
-    ///*     */   }
-    ///*     */   public void setRangerSneaking(boolean flag) {
-    ///*  60 */     this.field_70180_af.func_75692_b(17, Byte.valueOf(flag ? 1 : 0));
-    ///*  61 */     if (flag)
-    ///*     */     {
-    ///*  63 */       this.sneakCooldown = 20;
-    ///*     */     }
-    ///*     */   }
 }

@@ -52,8 +52,15 @@ public class DunedainCapeLayer extends LayerRenderer<ExtendedDunedainRangerEntit
                 matrixStack.mulPose(Vector3f.XP.rotationDegrees(6.0F + xRotationOffset / 2.0F + verticalOffset));
                 matrixStack.mulPose(Vector3f.ZP.rotationDegrees(zRotationOffset / 2.0F));
                 matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F - zRotationOffset / 2.0F));
-                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entitySolid(ranger.getCloakTextureLocation()));
-                getParentModel().renderCloak(matrixStack, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY);
+
+                IVertexBuilder vertexBuilder = null;
+                if (ranger.isCloaked()) {
+                    vertexBuilder = buffer.getBuffer(RenderType.itemEntityTranslucentCull(ranger.getCloakTextureLocation()));
+                } else {
+                    vertexBuilder = buffer.getBuffer(RenderType.entitySolid(ranger.getCloakTextureLocation()));
+                }
+
+                getParentModel().renderCloak(ranger, matrixStack, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY);
                 matrixStack.popPose();
             }
         }
