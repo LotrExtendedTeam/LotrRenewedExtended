@@ -31,6 +31,9 @@ import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
+    private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
+            ExtendedDunedainRangerEntity.class, DataSerializers.INT);
+
     private static final DataParameter<Boolean> IS_CLOAKED = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class,
             DataSerializers.BOOLEAN);
 
@@ -52,22 +55,35 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     public void tick() {
         super.tick();
+
+        if (getCooldownLeft() > 0) {
+            decrementCooldown();
+        }
+
         moveCloak();
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        // TODO: remove this eventually just testing that both and not cloaked render correctly
-        if (random.nextInt(2) == 0) {
-            this.entityData.define(IS_CLOAKED, true);
-        } else {
-            this.entityData.define(IS_CLOAKED, false);
-        }
+        this.entityData.define(IS_CLOAKED, false);
+        this.entityData.define(CLOAK_COOLDOWN, 0);
     }
 
     public boolean isCloaked() {
         return this.entityData.get(IS_CLOAKED);
+    }
+
+    public int getCooldownLeft() {
+        return this.entityData.get(CLOAK_COOLDOWN);
+    }
+
+    public void resetCooldown() {
+        this.entityData.set(CLOAK_COOLDOWN, 200);
+    }
+
+    public void decrementCooldown() {
+        this.entityData.set(CLOAK_COOLDOWN, entityData.get(CLOAK_COOLDOWN) - 1);
     }
 
     protected NPCFoodPool getEatPool() {
@@ -128,10 +144,18 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         this.yCloak += d1 * 0.25;
     }
 
-    // TODO: This might cause problems?
     @Override
     protected Goal createAttackGoal() {
         return createRangerRangedAttackGoal();
+    }
+
+    public void cloak() {
+        this.entityData.set(IS_CLOAKED, true);
+    }
+
+    public void unCloak() {
+        this.entityData.set(IS_CLOAKED, false);
+        this.resetCooldown();
     }
 
     @Override
@@ -149,11 +173,11 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     // TODO: Make sure these values match Legacy
     protected Goal createRangerRangedAttackGoal() {
-        return new NPCRangedAttackGoal(this, 1.25, 20, 16.0F);
+        return new ExtendedRangerRangedAttackGoal(this, 1.25, 20, 16.0F);
     }
 
     protected Goal createRangerMeleeAttackGoal() {
-        return new NPCMeleeAttackGoal(this, 1.4);
+        return new ExtendedRangerMeleeAttackGoal(this, 1.4);
     }
 
     @Override

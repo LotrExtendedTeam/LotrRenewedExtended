@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
@@ -12,8 +13,10 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
@@ -79,6 +82,20 @@ public class ForgeInventoryEvents {
                }
                event.setCanceled(true);
            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void preventCloakedRangersFromBeingTargeted(LivingSetAttackTargetEvent event) {
+        if (event.getTarget() instanceof ExtendedDunedainRangerEntity) {
+            ExtendedDunedainRangerEntity ranger = (ExtendedDunedainRangerEntity) event.getTarget();
+            if (ranger.isCloaked()) {
+                // set target to null
+                if (event.getEntityLiving() instanceof NPCEntity) {
+                    NPCEntity npc = (NPCEntity) event.getEntityLiving();
+                    npc.setTarget(null);
+                }
+            }
         }
     }
 
