@@ -31,6 +31,8 @@ import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
+    private static final SpawnEquipmentTable DAGGERS;
+
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
             ExtendedDunedainRangerEntity.class, DataSerializers.INT);
 
@@ -108,7 +110,6 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         double d0 = this.getX() - this.xCloak;
         double d1 = this.getY() - this.yCloak;
         double d2 = this.getZ() - this.zCloak;
-        double d3 = 10.0;
         if (d0 > 10.0) {
             this.xCloak = this.getX();
             this.xCloakO = this.xCloak;
@@ -209,14 +210,13 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 
         // setup weapons
-        // TODO: Once the Barrow Dagger is an item add a chance of them spawning with it
-        this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.IRON_DAGGER.get()));
+        this.npcItemsInv.setMeleeWeapon(DAGGERS.getRandomItem(this.random));
         this.npcItemsInv.setRangedWeapon(new ItemStack(Items.BOW));
         this.npcItemsInv.setIdleItemsFromRangedWeapons();
 
         // setup armor
         this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()));
-        this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_ITHILIEN_LEGGINGS.get()));
+        this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()));
         this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()));
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()));
 
@@ -227,5 +227,9 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         return new ResourceLocation("lotr", "textures/cape/ranger.png");
     }
 
-    // TODO: Add support for Ranger Sneaking
+    static {
+        // TODO: Once the Barrow Dagger is an item add a chance of them spawning with it
+        DAGGERS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.IRON_DAGGER, LOTRItems.IRON_DAGGER, LOTRItems.ARNOR_DAGGER);
+    }
+
 }

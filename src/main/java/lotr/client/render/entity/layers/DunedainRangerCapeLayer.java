@@ -3,7 +3,6 @@ package lotr.client.render.entity.layers;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import lotr.client.render.entity.model.ExtendedRangerModel;
-import lotr.client.render.entity.model.LOTRBipedModel;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -16,8 +15,8 @@ import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class DunedainCapeLayer extends LayerRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>> {
-    public DunedainCapeLayer(IEntityRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>> renderer) {
+public class DunedainRangerCapeLayer extends LayerRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>> {
+    public DunedainRangerCapeLayer(IEntityRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>> renderer) {
         super(renderer);
     }
 

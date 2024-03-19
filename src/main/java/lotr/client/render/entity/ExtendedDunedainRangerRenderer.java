@@ -1,8 +1,8 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
-import lotr.client.render.entity.layers.DunedainBipedArmorLayer;
-import lotr.client.render.entity.layers.DunedainCapeLayer;
+import lotr.client.render.entity.layers.DunedainRangerArmorLayer;
+import lotr.client.render.entity.layers.DunedainRangerCapeLayer;
 import lotr.client.render.entity.model.ExtendedRangerModel;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import net.minecraft.client.renderer.RenderType;
@@ -32,8 +32,8 @@ public class ExtendedDunedainRangerRenderer extends LOTRBipedRenderer<ExtendedDu
             this.layers.remove(layer);
         }
 
-        this.addLayer(new DunedainBipedArmorLayer(this, new ExtendedRangerModel(0.5F), new ExtendedRangerModel(1.0F)));
-        this.addLayer(new DunedainCapeLayer(this));
+        this.addLayer(new DunedainRangerArmorLayer(this, new ExtendedRangerModel(0.5F), new ExtendedRangerModel(1.0F)));
+        this.addLayer(new DunedainRangerCapeLayer(this));
     }
 
     @Override

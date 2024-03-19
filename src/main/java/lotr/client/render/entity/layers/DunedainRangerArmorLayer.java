@@ -16,14 +16,14 @@ import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class DunedainBipedArmorLayer extends BipedArmorLayer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>, ExtendedRangerModel<ExtendedDunedainRangerEntity>> {
+public class DunedainRangerArmorLayer extends BipedArmorLayer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>, ExtendedRangerModel<ExtendedDunedainRangerEntity>> {
 
     private final ExtendedRangerModel<ExtendedDunedainRangerEntity> innerModel;
     private final ExtendedRangerModel<ExtendedDunedainRangerEntity> outerModel;
 
     private boolean isCloaked = false;
 
-    public DunedainBipedArmorLayer(IEntityRenderer renderer, ExtendedRangerModel<ExtendedDunedainRangerEntity> innerModel, ExtendedRangerModel<ExtendedDunedainRangerEntity> outerModel) {
+    public DunedainRangerArmorLayer(IEntityRenderer renderer, ExtendedRangerModel<ExtendedDunedainRangerEntity> innerModel, ExtendedRangerModel<ExtendedDunedainRangerEntity> outerModel) {
         super(renderer, innerModel, outerModel);
         this.innerModel = innerModel;
         this.outerModel = outerModel;
