@@ -1,7 +1,6 @@
 {
     "parent": "block/block",
     "textures": {
-        "texture": "lotrextended:entity/chest/stone_chest",
         "particle": "minecraft:block/stone"
     },
     "elements": [

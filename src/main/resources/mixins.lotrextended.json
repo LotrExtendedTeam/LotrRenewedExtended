@@ -58,7 +58,6 @@
 		"lotr.client.render.MixinBlockRenderHelper",
 		"lotr.client.render.entity.MixinLOTREntityRenderers",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
-		"net.minecraft.client.renderer.tileentity.MixinItemStackTileEntityRenderer",
 		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],
 	"injectors": {

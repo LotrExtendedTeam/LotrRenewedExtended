@@ -98,7 +98,7 @@ public class MixinLOTRItems {
 	private static RegistryObject<Item> regArbitraryBlockItemD(RegistryObject<Block> blockSup,
 			Function<Block, ? extends BlockItem> itemMaker) {
 		String name = blockSup.getId().getPath();
-		return regItemB(name, () -> {
+		return regItem(name, () -> {
 			return (BlockItem) itemMaker.apply(blockSup.get());
 		});
 	}

@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+//CURRENTLY DISABLED?NOT CALLED. IF NEEDED, ADD MIXIN TO mixin.lotrextended.json
 @Mixin(ItemStackTileEntityRenderer.class)
 public class MixinItemStackTileEntityRenderer {
 	private final ExtendedStrawBedTileEntity strawBed = new ExtendedStrawBedTileEntity();

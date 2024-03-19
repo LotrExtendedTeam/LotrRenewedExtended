@@ -40,6 +40,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	}
 
 	private void buildRecipes(Consumer<IFinishedRecipe> consumer) {
+		//Beds
+		makeBedRecipe(consumer, ExtendedBlocks.STRAW_BED, Items.WHEAT, null);
 		//Wood
 		makePillarSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_BEAM, 
 				ExtendedBlocks.CHESTNUT_BEAM_SLAB, ExtendedItems.CHESTNUT_LOG, null);
