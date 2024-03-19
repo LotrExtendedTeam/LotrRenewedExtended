@@ -1,7 +1,13 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStrawBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -111,6 +117,24 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 		protected RenderMaterial getMaterial(T tileEntity) {
 			if(tileEntity instanceof ExtendedStrawBedTileEntity) {
 				return BlockRendererSetup.STRAW_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedOrcBedTileEntity) {
+				return BlockRendererSetup.ORC_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedBlackFurBedTileEntity) {
+				return BlockRendererSetup.BLACK_FUR_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedFurBedTileEntity) {
+				return BlockRendererSetup.FUR_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedGrayFurBedTileEntity) {
+				return BlockRendererSetup.GRAY_FUR_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedSilverFurBedTileEntity) {
+				return BlockRendererSetup.SILVER_FUR_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedWhiteFurBedTileEntity) {
+				return BlockRendererSetup.WHITE_FUR_BED_MATERIAL;
 			}
 			return null;
 		}

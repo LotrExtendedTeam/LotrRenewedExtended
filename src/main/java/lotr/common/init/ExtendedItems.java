@@ -353,6 +353,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CARVED_BLACK_GONDOR_BRICK;
 
 	public static RegistryObject<Item> STONE_CHEST;
+
 	public static RegistryObject<Item> STRAW_BED;
+	public static RegistryObject<Item> ORC_BED;
+	public static RegistryObject<Item> BLACK_FUR_BED;
+	public static RegistryObject<Item> FUR_BED;
+	public static RegistryObject<Item> GRAY_FUR_BED;
+	public static RegistryObject<Item> SILVER_FUR_BED;
+	public static RegistryObject<Item> WHITE_FUR_BED;
 }
 

@@ -42,6 +42,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	private void buildRecipes(Consumer<IFinishedRecipe> consumer) {
 		//Beds
 		makeBedRecipe(consumer, ExtendedBlocks.STRAW_BED, Items.WHEAT, null);
+		makeBedRecipeTag(consumer, ExtendedBlocks.ORC_BED, WOOL, LOTRRecipes.ANY_ORC);
+		makeBedRecipe(consumer, ExtendedBlocks.BLACK_FUR_BED, ExtendedItems.BLACK_FUR.get(), null);
+		makeBedRecipe(consumer, ExtendedBlocks.FUR_BED, LOTRItems.FUR.get(), null);
+		makeBedRecipe(consumer, ExtendedBlocks.GRAY_FUR_BED, ExtendedItems.GRAY_FUR.get(), null);
+		makeBedRecipe(consumer, ExtendedBlocks.SILVER_FUR_BED, ExtendedItems.SILVER_FUR.get(), null);
+		makeBedRecipe(consumer, ExtendedBlocks.WHITE_FUR_BED, ExtendedItems.WHITE_FUR.get(), null);
 		//Wood
 		makePillarSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_BEAM, 
 				ExtendedBlocks.CHESTNUT_BEAM_SLAB, ExtendedItems.CHESTNUT_LOG, null);

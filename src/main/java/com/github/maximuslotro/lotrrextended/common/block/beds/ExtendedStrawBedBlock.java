@@ -1,6 +1,7 @@
-package com.github.maximuslotro.lotrrextended.common.block;
+package com.github.maximuslotro.lotrrextended.common.block.beds;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStrawBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
 
 import net.minecraft.item.DyeColor;
 import net.minecraft.tileentity.TileEntity;

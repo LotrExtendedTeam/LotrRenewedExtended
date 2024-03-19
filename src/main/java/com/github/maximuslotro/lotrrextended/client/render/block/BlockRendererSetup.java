@@ -22,6 +22,18 @@ public class BlockRendererSetup {
 	public static final RenderMaterial STONE_CHEST_MATERIAL = new RenderMaterial(Atlases.CHEST_SHEET, STONE_CHEST);
 	public static final ResourceLocation STRAW_BED = createNewBedModel("straw_bed");
 	public static final RenderMaterial STRAW_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, STRAW_BED);
+	public static final ResourceLocation ORC_BED = createNewBedModel("orc_bed");
+	public static final RenderMaterial ORC_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, ORC_BED);
+	public static final ResourceLocation BLACK_FUR_BED = createNewBedModel("black_fur_bed");
+	public static final RenderMaterial BLACK_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, BLACK_FUR_BED);
+	public static final ResourceLocation FUR_BED = createNewBedModel("fur_bed");
+	public static final RenderMaterial FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, FUR_BED);
+	public static final ResourceLocation GRAY_FUR_BED = createNewBedModel("gray_fur_bed");
+	public static final RenderMaterial GRAY_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, GRAY_FUR_BED);
+	public static final ResourceLocation SILVER_FUR_BED = createNewBedModel("silver_fur_bed");
+	public static final RenderMaterial SILVER_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, SILVER_FUR_BED);
+	public static final ResourceLocation WHITE_FUR_BED = createNewBedModel("white_fur_bed");
+	public static final RenderMaterial WHITE_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, WHITE_FUR_BED);
 //	public static Callable<ItemStackTileEntityRenderer> createStoneChestRenderer() {
 //		return () -> new ExtendedItemStackRenderer(ExtendedStoneChestTileEntity::new);
 //	}
@@ -29,6 +41,12 @@ public class BlockRendererSetup {
 	public static void regModels() {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_CHEST.get(), ExtendedChestTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STRAW_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.ORC_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.BLACK_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.GRAY_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.SILVER_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WHITE_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 	}
 
 	public static ResourceLocation createNewChestModel(String name) {
@@ -45,6 +63,12 @@ public class BlockRendererSetup {
 		}
 		if (event.getMap().location().equals(Atlases.BED_SHEET)) {
 			event.addSprite(STRAW_BED);
+			event.addSprite(ORC_BED);
+			event.addSprite(BLACK_FUR_BED);
+			event.addSprite(FUR_BED);
+			event.addSprite(GRAY_FUR_BED);
+			event.addSprite(SILVER_FUR_BED);
+			event.addSprite(WHITE_FUR_BED);
 		}
 	}
 

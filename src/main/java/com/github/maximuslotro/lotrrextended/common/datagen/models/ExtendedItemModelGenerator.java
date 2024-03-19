@@ -111,8 +111,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
-				//TODO add first/third person placement gen
-				//continue using manual generation for coins for now
+				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
+				builder.texture("layer0", lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			try {

@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/template_coin",
+  "textures": {
+    "layer0": "lotrextended:item/silver_coin_ten"
+  }
+}
