@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dwarven",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:obsidian_dwarven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:obsidian_dwarven_brick_stairs",
+    "count": 4
+  }
+}

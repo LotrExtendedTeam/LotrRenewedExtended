@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "lotrextended:block/obsidian_dwarven_brick",
+    "bottom": "lotrextended:block/obsidian_dwarven_brick",
+    "top": "lotrextended:block/obsidian_dwarven_brick"
+  }
+}
