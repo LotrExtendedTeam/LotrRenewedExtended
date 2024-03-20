@@ -696,20 +696,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genGrassPathBlockItem(ExtendedGroundPathBlock extendedGroundFarmlandBlock, String name) {
 		registeredBlocks.add(extendedGroundFarmlandBlock);
-		ResourceLocation tex1 = lotrExtendedLoc(name+"_1");
-		ResourceLocation tex2 = lotrExtendedLoc(name+"_2");
+		ResourceLocation topTexture1 = lotrExtendedLoc(name+"_1");
+		ResourceLocation topTexture2 = lotrExtendedLoc(name+"_2");
 		ResourceLocation base = lotrExtendedLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
 		ResourceLocation parent = mcLoc("block/grass_path");
 		ModelFile grass = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_1", parent)
                 .texture("particle", base)
                 .texture("bottom", base)
-                .texture("top", tex1)
-                .texture("side", tex1);
+                .texture("top", topTexture1)
+                .texture("side", base);
 		ModelFile grass1 = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_2", parent)
                 .texture("particle", base)
                 .texture("bottom", base)
-                .texture("top", tex2)
-                .texture("side", tex2);
+                .texture("top", topTexture2)
+                .texture("side", base);
 		ConfiguredModel ConfiguredblockMir1 = new ConfiguredModel(grass);
 		ConfiguredModel ConfiguredblockMir2 = new ConfiguredModel(grass1);
 		simpleBlock(extendedGroundFarmlandBlock, ConfiguredblockMir1, ConfiguredblockMir2);
