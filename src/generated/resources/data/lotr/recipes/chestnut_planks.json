@@ -1,17 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#I#",
-    "#I#"
-  ],
-  "key": {
-    "#": {
-      "tag": "lotrextended:chestnut_logs"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:chestnut_log"
     },
-    "I": {
-      "tag": "forge:rods/wooden"
+    {
+      "tag": "lotrextended:chestnut_logs"
     }
-  },
+  ],
   "result": {
     "item": "lotr:chestnut_planks",
     "count": 4
