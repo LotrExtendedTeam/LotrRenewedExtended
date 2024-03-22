@@ -257,21 +257,17 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = planks.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(planks.get(), 4)
-			.pattern("#I#")
-			.pattern("#I#")
-			.define('#', resource)
-			.define('I', STICKS)
+			ShapelessRecipeBuilder.shapeless(planks.get(), 4)
+			.requires(log.get())
+			.requires(resource)
 			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
 			.save(consumer, lotrLoc(name));
 		}
 		else {
-			ExtendedFactionShapedRecipeBuilder.shaped(planks.get(), 4, table)
-			.pattern("#I#")
-			.pattern("#I#")
-			.define('#', resource)
-			.define('I', STICKS)
+			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 4, table)
+			.requires(log.get())
+			.requires(resource)
 			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
 			.save(consumer, lotrLoc(name));
