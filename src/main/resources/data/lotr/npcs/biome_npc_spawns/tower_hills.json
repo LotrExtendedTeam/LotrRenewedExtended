@@ -1,0 +1,39 @@
+{
+  "faction_spawn_lists": [
+    {
+      "faction": "lotr:high_elves",
+      "base_weight": 45,
+      "lists": [
+        {
+          "list": "lotr:few_lindon_elves",
+          "weight": 18
+        },
+        {
+          "list": "lotr:few_rivendell_elves",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "faction": "lotr:lothlorien",
+      "base_weight": 5,
+      "lists": [
+        {
+          "list": "lotr:few_galadhrim_elves",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "faction": "lotr:dunedain_north",
+      "base_weight": 50,
+      "lists": [
+        {
+          "list": "lotr:rangers",
+          "weight": 10
+        }
+      ]
+    }
+  ],
+  "npc_density": 0.02
+}
