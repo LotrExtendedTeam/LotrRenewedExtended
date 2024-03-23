@@ -2,7 +2,7 @@
   "parent": "minecraft:block/slab_top",
   "textures": {
     "side": "lotrextended:block/dol_guldur_pillar",
-    "bottom": "lotrextended:block/dol_guldur_pillar",
-    "top": "lotrextended:block/dol_guldur_pillar"
+    "bottom": "lotrextended:block/dol_guldur_pillar_face",
+    "top": "lotrextended:block/dol_guldur_pillar_face"
   }
 }

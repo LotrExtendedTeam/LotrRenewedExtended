@@ -2,7 +2,7 @@
   "parent": "minecraft:block/slab",
   "textures": {
     "side": "lotrextended:block/taurethrim_pillar",
-    "bottom": "lotrextended:block/taurethrim_pillar",
-    "top": "lotrextended:block/taurethrim_pillar"
+    "bottom": "lotrextended:block/taurethrim_pillar_face",
+    "top": "lotrextended:block/taurethrim_pillar_face"
   }
 }

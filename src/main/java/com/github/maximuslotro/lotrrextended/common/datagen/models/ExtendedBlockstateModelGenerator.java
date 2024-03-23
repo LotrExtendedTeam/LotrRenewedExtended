@@ -309,6 +309,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 						continue;
 					}
+					if(block.getKey().contains("pillar")) {
+						ResourceLocation TB = lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_face");
+						ResourceLocation S = lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5));
+						genSlabBlockItem((SlabBlock) block.getValue().get(), S, TB, TB);
+						continue;
+					}
 					if(block.getKey().contains("mud_path")) {
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
 						continue;
