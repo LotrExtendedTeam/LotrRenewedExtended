@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:block/template_chest",
+  "textures": {
+    "texture": "lotrextended:entity/chest/stone_chest"
+  }
+}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -113,6 +114,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedBedBlock) {
+				genBedBlockItem((ExtendedBedBlock) block.getValue().get(), block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof BranchBlock) {
@@ -287,7 +292,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
-				geChestBlockItem(block.getValue().get());
+				geChestBlockItem(block.getValue().get(), block.getKey());
 				continue;
 			}
 			if(block.getKey().contains("barren_dirt")) {
@@ -691,20 +696,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genGrassPathBlockItem(ExtendedGroundPathBlock extendedGroundFarmlandBlock, String name) {
 		registeredBlocks.add(extendedGroundFarmlandBlock);
-		ResourceLocation tex1 = lotrExtendedLoc(name+"_1");
-		ResourceLocation tex2 = lotrExtendedLoc(name+"_2");
+		ResourceLocation topTexture1 = lotrExtendedLoc(name+"_1");
+		ResourceLocation topTexture2 = lotrExtendedLoc(name+"_2");
 		ResourceLocation base = lotrExtendedLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
 		ResourceLocation parent = mcLoc("block/grass_path");
 		ModelFile grass = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_1", parent)
                 .texture("particle", base)
                 .texture("bottom", base)
-                .texture("top", tex1)
-                .texture("side", tex1);
+                .texture("top", topTexture1)
+                .texture("side", base);
 		ModelFile grass1 = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_2", parent)
                 .texture("particle", base)
                 .texture("bottom", base)
-                .texture("top", tex2)
-                .texture("side", tex2);
+                .texture("top", topTexture2)
+                .texture("side", base);
 		ConfiguredModel ConfiguredblockMir1 = new ConfiguredModel(grass);
 		ConfiguredModel ConfiguredblockMir2 = new ConfiguredModel(grass1);
 		simpleBlock(extendedGroundFarmlandBlock, ConfiguredblockMir1, ConfiguredblockMir2);
@@ -753,6 +758,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
         });
+	}
+
+	private void genBedBlockItem(ExtendedBedBlock bed, String name) {
+		registeredBlocks.add(bed);
+		ModelFile modelFile = models().getExistingFile(mcLoc("block/bed"));
+		simpleBlock(bed, modelFile);
+		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
 	}
 
 	private void genCakeBlock(CakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {
@@ -972,11 +984,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
-	private void geChestBlockItem(Block block) {
+	private void geChestBlockItem(Block block, String name) {
 		registeredBlocks.add(block);
-		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), "lotrextended:block/template_chest").texture("texture", lotrExtendedLoc("entity/chest/"+name));
 		simpleBlock(block, modelFile);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
+
 	}
 
 	private void genRandomCubeBlockItem(Block block, ResourceLocation allSides) {

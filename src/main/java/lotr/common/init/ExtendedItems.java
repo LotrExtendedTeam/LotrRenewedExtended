@@ -228,7 +228,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> OBSIDIAN_TAURETHRIM_BRICK_WALL;
 	public static RegistryObject<Item> OBSIDIAN_TAURETHRIM_PILLAR;
 	public static RegistryObject<Item> OBSIDIAN_TAURETHRIM_PILLAR_SLAB;
-	
+
+	public static RegistryObject<Item> OBSIDIAN_DWARVEN_BRICK;
+	public static RegistryObject<Item> OBSIDIAN_DWARVEN_BRICK_SLAB;
+	public static RegistryObject<Item> OBSIDIAN_DWARVEN_BRICK_STAIRS;
+	public static RegistryObject<Item> OBSIDIAN_DWARVEN_BRICK_WALL;
+
 	public static RegistryObject<Item> DOL_GULDUR_CRAFTING_TABLE;
 	public static RegistryObject<Item> DOL_GULDUR_BRICK;
 	public static RegistryObject<Item> DOL_GULDUR_BRICK_SLAB;
@@ -353,5 +358,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CARVED_BLACK_GONDOR_BRICK;
 
 	public static RegistryObject<Item> STONE_CHEST;
+
+	public static RegistryObject<Item> STRAW_BED;
+	public static RegistryObject<Item> ORC_BED;
+	public static RegistryObject<Item> BLACK_FUR_BED;
+	public static RegistryObject<Item> FUR_BED;
+	public static RegistryObject<Item> GRAY_FUR_BED;
+	public static RegistryObject<Item> SILVER_FUR_BED;
+	public static RegistryObject<Item> WHITE_FUR_BED;
 }
 

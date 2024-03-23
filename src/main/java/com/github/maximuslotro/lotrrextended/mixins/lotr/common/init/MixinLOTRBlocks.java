@@ -20,10 +20,17 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedGrayFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -359,7 +366,12 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_WALL = registerB("obsidian_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK));
 		ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR = registerB("obsidian_taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR_SLAB = registerB("obsidian_taurethrim_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR));
-		
+
+		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK = registerB("obsidian_dwarven_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB = registerB("obsidian_dwarven_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK));
+		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS = registerB("obsidian_dwarven_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK));
+		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL = registerB("obsidian_dwarven_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK));
+
 		//Dol Guldur
 		ExtendedBlocks.DOL_GULDUR_BRICK = registerB("dol_guldur_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.DOL_GULDUR_BRICK_SLAB = registerB("dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
@@ -494,6 +506,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE));
 
 		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedSingleChestBlock(()-> new ExtendedStoneChestTileEntity()));
+
+		ExtendedBlocks.STRAW_BED = registerB("straw_bed", () -> new ExtendedStrawBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.ORC_BED = registerB("orc_bed", () -> new ExtendedOrcBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.BLACK_FUR_BED = registerB("black_fur_bed", () -> new ExtendedBlackFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.FUR_BED = registerB("fur_bed", () -> new ExtendedFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.GRAY_FUR_BED = registerB("gray_fur_bed", () -> new ExtendedGrayFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.SILVER_FUR_BED = registerB("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)

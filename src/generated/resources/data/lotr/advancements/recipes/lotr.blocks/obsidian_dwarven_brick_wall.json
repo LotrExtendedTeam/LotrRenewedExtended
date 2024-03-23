@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:obsidian_dwarven_brick_wall"
+    ]
+  },
+  "criteria": {
+    "has_obsidian_dwarven_brick_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:obsidian_dwarven_brick_wall"
+          }
+        ]
+      }
+    },
+    "has_obsidian_dwarven_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:obsidian_dwarven_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:obsidian_dwarven_brick_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_obsidian_dwarven_brick_wall",
+      "has_obsidian_dwarven_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -44,10 +44,10 @@
 		"lotr.common.world.biome.MixinShireMoors",
 		"lotr.common.world.biome.MixinWilderlandBiome",
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
-		"minecraft.block.MixinBlock",
-		"minecraft.block.MixinFarmlandBlock",
-		"minecraft.entity.MixinEntityType",
-		"minecraft.entity.MixinRabbitEntityRaidFarmGoal"
+		"net.minecraft.block.MixinBlock",
+		"net.minecraft.block.MixinFarmlandBlock",
+		"net.minecraft.entity.MixinEntityType",
+		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal"
 	],
 	
 	"client": [

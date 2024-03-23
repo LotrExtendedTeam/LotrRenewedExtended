@@ -9,7 +9,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneChestTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedTileEntities;
@@ -35,6 +42,13 @@ public class MixinLOTRTileEntities {
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
     	ExtendedTileEntities.STONE_CHEST = register("stone_chest_tileentity", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));
+    	ExtendedTileEntities.STRAW_BED = register("straw_bed_tileentity", () -> Builder.of(ExtendedStrawBedTileEntity::new, ExtendedBlocks.STRAW_BED.get()));
+    	ExtendedTileEntities.ORC_BED = register("orc_bed_tileentity", () -> Builder.of(ExtendedOrcBedTileEntity::new, ExtendedBlocks.ORC_BED.get()));
+    	ExtendedTileEntities.BLACK_FUR_BED = register("black_fur_bed_tileentity", () -> Builder.of(ExtendedBlackFurBedTileEntity::new, ExtendedBlocks.BLACK_FUR_BED.get()));
+    	ExtendedTileEntities.FUR_BED = register("fur_bed_tileentity", () -> Builder.of(ExtendedFurBedTileEntity::new, ExtendedBlocks.FUR_BED.get()));
+    	ExtendedTileEntities.GRAY_FUR_BED = register("gray_fur_bed_tileentity", () -> Builder.of(ExtendedGrayFurBedTileEntity::new, ExtendedBlocks.GRAY_FUR_BED.get()));
+    	ExtendedTileEntities.SILVER_FUR_BED = register("silver_fur_bed_tileentity", () -> Builder.of(ExtendedSilverFurBedTileEntity::new, ExtendedBlocks.SILVER_FUR_BED.get()));
+    	ExtendedTileEntities.WHITE_FUR_BED = register("white_fur_bed_tileentity", () -> Builder.of(ExtendedWhiteFurBedTileEntity::new, ExtendedBlocks.WHITE_FUR_BED.get()));
     	//register("weapon_rack",() -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK));	
     }
 }

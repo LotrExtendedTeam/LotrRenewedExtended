@@ -176,6 +176,11 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_STAIRS;
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_WALL;
 
+	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK;
+	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_SLAB;
+	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_STAIRS;
+	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_WALL;
+
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;
 	public static RegistryObject<Block> BLACKBERRY_BUSH;
@@ -266,4 +271,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
 
 	public static RegistryObject<Block> STONE_CHEST;
+
+	public static RegistryObject<Block> STRAW_BED;
+	public static RegistryObject<Block> ORC_BED;
+	public static RegistryObject<Block> BLACK_FUR_BED;
+	public static RegistryObject<Block> FUR_BED;
+	public static RegistryObject<Block> GRAY_FUR_BED;
+	public static RegistryObject<Block> SILVER_FUR_BED;
+	public static RegistryObject<Block> WHITE_FUR_BED;
 }

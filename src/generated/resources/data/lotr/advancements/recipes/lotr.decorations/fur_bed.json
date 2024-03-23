@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:fur_bed"
+    ]
+  },
+  "criteria": {
+    "has_fur_bed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur_bed"
+          }
+        ]
+      }
+    },
+    "has_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:fur_bed"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fur_bed",
+      "has_fur",
+      "has_the_recipe"
+    ]
+  ]
+}
