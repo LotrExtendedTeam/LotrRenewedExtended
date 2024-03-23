@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:hobbit/large_hole/basement_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:hobbit/large_hole/basement_pool_fallback",
 	"elements": [
 		{
 			"weight": 1,
