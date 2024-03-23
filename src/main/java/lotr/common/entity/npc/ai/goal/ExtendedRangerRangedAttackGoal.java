@@ -11,11 +11,23 @@ public class ExtendedRangerRangedAttackGoal extends NPCRangedAttackGoal<Extended
         this.ranger = entity;
     }
 
+    @Override
     public void start() {
         super.start();
 
         if (!ranger.isCloaked() && ranger.getCooldownLeft() == 0) {
             ranger.cloak();
         }
+    }
+
+    @Override
+    public void tick() {
+        ranger.renewCloak();
+
+        if (!ranger.isCloaked() && ranger.getCooldownLeft() == 0) {
+            ranger.cloak();
+        }
+
+        super.tick();
     }
 }

@@ -24,6 +24,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -35,6 +36,10 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
             ExtendedDunedainRangerEntity.class, DataSerializers.INT);
+
+    private static final DataParameter<Integer> AUTO_DECLOAK_IN = EntityDataManager.defineId(
+            ExtendedDunedainRangerEntity.class, DataSerializers.INT
+    );
 
     private static final DataParameter<Boolean> IS_CLOAKED = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class,
             DataSerializers.BOOLEAN);
@@ -62,7 +67,18 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
             decrementCooldown();
         }
 
+        if (getAutoDecloak() > 0 && isCloaked()) {
+           decrementAutoDecloak();
+           if (getAutoDecloak() == 0) unCloak();
+        }
+
         moveCloak();
+    }
+
+    @Override
+    public void swing(Hand p_184609_1_) {
+        if (isCloaked()) unCloak();
+        super.swing(p_184609_1_);
     }
 
     @Override
@@ -70,6 +86,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         super.defineSynchedData();
         this.entityData.define(IS_CLOAKED, false);
         this.entityData.define(CLOAK_COOLDOWN, 0);
+        this.entityData.define(AUTO_DECLOAK_IN, 40);
     }
 
     public boolean isCloaked() {
@@ -81,11 +98,19 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     }
 
     public void resetCooldown() {
-        this.entityData.set(CLOAK_COOLDOWN, 200);
+        this.entityData.set(CLOAK_COOLDOWN, 100);
     }
 
     public void decrementCooldown() {
         this.entityData.set(CLOAK_COOLDOWN, entityData.get(CLOAK_COOLDOWN) - 1);
+    }
+
+    public void decrementAutoDecloak() {
+        this.entityData.set(AUTO_DECLOAK_IN, entityData.get(AUTO_DECLOAK_IN) - 1);
+    }
+
+    public int getAutoDecloak() {
+        return this.entityData.get(AUTO_DECLOAK_IN);
     }
 
     protected NPCFoodPool getEatPool() {
@@ -152,6 +177,11 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     public void cloak() {
         this.entityData.set(IS_CLOAKED, true);
+        this.entityData.set(AUTO_DECLOAK_IN, 40);
+    }
+
+    public void renewCloak() {
+        this.entityData.set(AUTO_DECLOAK_IN, 40);
     }
 
     public void unCloak() {

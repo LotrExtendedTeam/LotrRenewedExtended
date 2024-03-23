@@ -1,6 +1,7 @@
 package lotr.common.entity.npc.ai.goal;
 
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
+import net.minecraft.entity.LivingEntity;
 
 public class ExtendedRangerMeleeAttackGoal extends NPCMeleeAttackGoal {
 
@@ -13,7 +14,13 @@ public class ExtendedRangerMeleeAttackGoal extends NPCMeleeAttackGoal {
 
     public void start() {
         super.start();
-        ranger.unCloak();
+        //ranger.unCloak();
     }
 
+    /*@Override
+    protected void checkAndPerformAttack(LivingEntity target, double distToEnemySq) {
+        if ( == NPCMeleeAttackGoal.MeleeMode.AGGRESSIVE && this.isInRangeToAttack(target, distToEnemySq) && this.weaponAccountedSwingCooldown <= 0) {
+
+        }
+    }*/
 }
