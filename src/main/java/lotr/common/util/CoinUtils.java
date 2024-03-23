@@ -4,6 +4,7 @@ import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -42,6 +43,17 @@ public class CoinUtils {
 
         for (int i = 0; i < inv.getContainerSize(); i++) {
             ItemStack stack = inv.getItem(i);
+            totalValue += value(stack);
+        }
+
+        return totalValue;
+    }
+
+    public static int totalValueInInventory(IInventory inventory) {
+        int totalValue = 0;
+
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
             totalValue += value(stack);
         }
 
