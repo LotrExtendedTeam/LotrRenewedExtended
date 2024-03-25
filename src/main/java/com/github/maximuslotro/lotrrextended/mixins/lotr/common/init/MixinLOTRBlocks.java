@@ -86,6 +86,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DatagenModLoader;
@@ -493,7 +494,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
-		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(() -> { return ExtendedParticles.MORGUL_FLAME.get();}));
+		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());
 		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(AbstractBlock.Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> {
