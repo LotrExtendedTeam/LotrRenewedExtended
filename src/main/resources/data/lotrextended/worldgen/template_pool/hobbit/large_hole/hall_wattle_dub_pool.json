@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:hobbit/large_hole/hall_wattle_dub_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:hobbit/large_hole/end_wattle_dub_pool",
 	"elements": [
 		{
 			"weight": 1,
