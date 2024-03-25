@@ -1,0 +1,33 @@
+{
+	"name": "lotrextended:hobbit/large_hole/hall_stripped_pine_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:hobbit/large_hole/stripped_pine_hall_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:hobbit/large_hole/stripped_pine_hall_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:hobbit/large_hole/stripped_pine_hall_2",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}
