@@ -58,7 +58,9 @@
 		"lotr.client.render.MixinBlockRenderHelper",
 		"lotr.client.render.entity.MixinLOTREntityRenderers",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
-		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
+		"net.minecraftforge.fml.packs.MixinResourcePackLoader",
+		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
+		"net.minecraft.client.gui.screen.inventory.MixinChestScreen"
 	],
 	"injectors": {
 		"defaultRequire": 1
