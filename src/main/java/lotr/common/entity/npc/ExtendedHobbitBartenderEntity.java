@@ -32,8 +32,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-import javax.swing.*;
-
 import static lotr.common.item.VesselDrinkItem.Potency;
 
 import java.util.*;

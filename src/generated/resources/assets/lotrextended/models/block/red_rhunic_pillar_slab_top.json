@@ -2,7 +2,7 @@
   "parent": "minecraft:block/slab_top",
   "textures": {
     "side": "lotrextended:block/red_rhunic_pillar",
-    "bottom": "lotrextended:block/red_rhunic_pillar",
-    "top": "lotrextended:block/red_rhunic_pillar"
+    "bottom": "lotrextended:block/red_rhunic_pillar_face",
+    "top": "lotrextended:block/red_rhunic_pillar_face"
   }
 }

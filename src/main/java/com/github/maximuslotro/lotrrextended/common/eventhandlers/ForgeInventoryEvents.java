@@ -1,13 +1,19 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 
+import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
 import lotr.common.inv.ExtendedTradeContainer;
+import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
@@ -55,6 +61,23 @@ public class ForgeInventoryEvents {
             }
 
             container.trader.removePlayerFromTrading(event.getPlayer());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
+        if (event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof SpawnEggItem) {
+           if (event.getTarget() instanceof ExtendedTraderEntity) {
+               ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getTarget();
+
+               if (trader.canTradeWith(event.getPlayer())) {
+                   ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
+               } else {
+                   if (!event.getPlayer().level.isClientSide)
+                       event.getPlayer().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), event.getPlayer().getUUID());
+               }
+               event.setCanceled(true);
+           }
         }
     }
 
