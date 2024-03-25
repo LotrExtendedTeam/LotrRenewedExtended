@@ -66,7 +66,7 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
     @Override
     protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
         // render coin amount in inventory
-        this.fill(matrix, 180, 105, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 120, 0x99000000);
+        fill(matrix, 180, 105, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 120, 0x99000000);
         this.minecraft.getTextureManager().bind(GUI_TEXTURE);
         blit(matrix, 179, 104, 176, 77, 18, 18);
         this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 109, 0xFFFFFFFF);

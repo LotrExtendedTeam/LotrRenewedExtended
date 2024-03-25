@@ -11,16 +11,11 @@ import lotr.common.inv.ExtendedTradeContainer;
 
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import org.lwjgl.opengl.GL11;
 
 /**
  * @author RichardB122
@@ -66,7 +61,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
     @Override
     protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
         // render coin amount in inventory
-        this.fill(matrix, 180, 188, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 203, 0x99000000);
+        fill(matrix, 180, 188, 180 + 19 + this.font.width(String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory))), 203, 0x99000000);
         this.minecraft.getTextureManager().bind(GUI_TEXTURE);
         blit(matrix, 179, 187, 176, 54, 18, 18, 280, 280);
         this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 192, 0xFFFFFFFF);

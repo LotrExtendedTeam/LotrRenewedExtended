@@ -29,14 +29,15 @@ public abstract class MixinInventoryScreen extends DisplayEffectsScreen<PlayerCo
         assert Minecraft.getInstance().gameMode != null;
         assert Minecraft.getInstance().player != null;
 
-        if (!Minecraft.getInstance().gameMode.hasInfiniteItems()) {
-            int amount = CoinUtils.totalValueInPlayerInventory(Minecraft.getInstance().player.inventory);
+        Minecraft mc = Minecraft.getInstance();
+        if (!mc.gameMode.hasInfiniteItems()) {
+            int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
             if (amount == 0) return;
 
             String amountStr = String.valueOf(amount);
-            this.fill(p_230451_1_, 180, 14, 180 + 19 + Minecraft.getInstance().font.width(amountStr), 29, 0x99000000);
-            Minecraft.getInstance().font.draw(p_230451_1_, amountStr, 196, 18, 0xFFFFFF);
-            Minecraft.getInstance().getTextureManager().bind(COIN_LOCATION);
+            fill(p_230451_1_, 180, 14, 180 + 19 + mc.font.width(amountStr), 29, 0x99000000);
+            mc.font.draw(p_230451_1_, amountStr, 196, 18, 0xFFFFFF);
+            mc.getTextureManager().bind(COIN_LOCATION);
             blit(p_230451_1_, 179, 13, 176, 77, 18, 18);
         }
     }
