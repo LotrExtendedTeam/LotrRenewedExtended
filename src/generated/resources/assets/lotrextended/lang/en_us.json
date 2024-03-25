@@ -278,7 +278,7 @@
   "gui.lotrextended.settings.friendlyFire.enabled": "Friendly Fire Enabled",
   "gui.lotrextended.settings.mapLocation": "Show Map Location",
   "gui.lotrextended.settings.mapLocation.disabled": "Map Location Hidden",
-  "gui.lotrextended.settings.mapLocation.enabled": "Map Location Showen",
+  "gui.lotrextended.settings.mapLocation.enabled": "Map Location Shown",
   "gui.lotrextended.settings.rankGender": "Feminine Rank Override",
   "gui.lotrextended.settings.rankGender.disabled": "Feminine Rank Disabled",
   "gui.lotrextended.settings.rankGender.enabled": "Feminine Rank Enabled",
