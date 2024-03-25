@@ -35,4 +35,9 @@ public class MixinLOTRBiomeFeatures {
 			ExtendedBiomeFeatures.setup(event);
 		}
 	}
+
+	@Inject(method = "addOres", at = @At("TAIL"), remap = false)
+	private static void addOres(BiomeGenerationSettings.Builder builder, CallbackInfo info) {
+		ExtendedBiomeFeatures.addOres(builder);
+	}
 }

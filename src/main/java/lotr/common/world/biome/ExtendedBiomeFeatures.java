@@ -11,15 +11,13 @@ import lotr.common.world.gen.tree.ClusterFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.feature.TwoLayerFeature;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
@@ -40,6 +38,15 @@ public class ExtendedBiomeFeatures {
 	private static BlockState CHESTNUT_LEAVES;
 	private static BlockState CHESTNUT_LEAVES_FRUIT;
 	private static BlockState CHESTNUT_LEAVES_FLOWERS;
+	private static BlockState AMETHYST_ORE;
+	private static BlockState TOPAZ_ORE;
+	private static BlockState AMBER_ORE;
+	private static BlockState OPAL_ORE;
+	private static BlockState SAPPHIRE_ORE;
+	private static BlockState RUBY_ORE;
+	private static BlockState EMERALD_ORE;
+	private static BlockState DIAMOND_ORE;
+
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
 	private static IPlantable CHESTNUT_SAPLING;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE;
@@ -71,12 +78,25 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void setup(RegistryEvent.Register<Block> event) {
+		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
 		CHESTNUT_WOOD = ExtendedBlocks.CHESTNUT_WOOD.get().defaultBlockState();
 		CHESTNUT_BRANCH = ExtendedBlocks.CHESTNUT_BRANCH.get().defaultBlockState();
 		CHESTNUT_LEAVES = ExtendedBlocks.CHESTNUT_LEAVES.get().defaultBlockState();
 		CHESTNUT_LEAVES_FRUIT = ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().defaultBlockState();
 		CHESTNUT_LEAVES_FLOWERS = ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get().defaultBlockState();
+
+		// gem block states
+		AMETHYST_ORE = ExtendedBlocks.AMETHYST_ORE.get().defaultBlockState();
+		TOPAZ_ORE = ExtendedBlocks.TOPAZ_ORE.get().defaultBlockState();
+		AMBER_ORE = ExtendedBlocks.AMBER_ORE.get().defaultBlockState();
+		OPAL_ORE = ExtendedBlocks.OPAL_ORE.get().defaultBlockState();
+		SAPPHIRE_ORE = ExtendedBlocks.SAPPHIRE_ORE.get().defaultBlockState();
+		RUBY_ORE = ExtendedBlocks.RUBY_ORE.get().defaultBlockState();
+		EMERALD_ORE = ExtendedBlocks.EMERALD_ORE.get().defaultBlockState();
+		DIAMOND_ORE = ExtendedBlocks.DIAMOND_ORE.get().defaultBlockState();
+
+		// tree setup
 		CHESTNUT_LEAVES_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 28).add(CHESTNUT_LEAVES_FRUIT, 3).add(CHESTNUT_LEAVES_FLOWERS, 1);
 		CHESTNUT_SAPLING = (IPlantable) ExtendedBlocks.CHESTNUT_SAPLING.get();
 		CHESTNUT_TREE = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
@@ -84,6 +104,18 @@ public class ExtendedBiomeFeatures {
 		CHESTNUT_TREE_FANCY = buildFancyTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL);
 		CHESTNUT_TREE_FANCY_BEES = buildFancyTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL);
 		CHESTNUT_PARTY = buildNormalPartyTree(CHESTNUT_LOG, CHESTNUT_WOOD, CHESTNUT_BRANCH, CHESTNUT_LEAVES_POOL);
+	}
+
+
+	public static void addOres(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AMETHYST_ORE, 6)).range(64).squared().weighted(2F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, TOPAZ_ORE, 6)).range(64).squared().weighted(2F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AMBER_ORE, 5)).range(48).squared().weighted(1.5F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, OPAL_ORE, 5)).range(48).squared().weighted(1.5F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SAPPHIRE_ORE, 4)).range(32).squared().weighted(1F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 4)).range(32).squared().weighted(1F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, EMERALD_ORE, 4)).range(24).squared().weighted(0.75F).feature.get());
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, DIAMOND_ORE, 4)).range(16).squared().weighted(0.5F).feature.get());
 	}
 
 	//Classic Trees
