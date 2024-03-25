@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:hobbit/large_hole/hall_stripped_pine_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:hobbit/large_hole/end_stripped_pine_pool",
 	"elements": [
 		{
 			"weight": 1,
