@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:hobbit/large_hole/kitchen_chimney_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:hobbit/large_hole/kitchen_chimney_pool_fallback",
 	"elements": [
 		{
 			"weight": 1,

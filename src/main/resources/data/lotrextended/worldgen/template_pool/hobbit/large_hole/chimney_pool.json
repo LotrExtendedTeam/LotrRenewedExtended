@@ -1,5 +1,5 @@
 {
-	"name": "lotrextended:hobbit/large_hole/chimney_pool",
+	"name": "lotrextended:hobbit/large_hole/chimney_pool_fallback",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
