@@ -47,7 +47,8 @@
 		"net.minecraft.block.MixinBlock",
 		"net.minecraft.block.MixinFarmlandBlock",
 		"net.minecraft.entity.MixinEntityType",
-		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal"
+		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.tileentity.MixinStructureBlockTileEntity"
 	],
 	
 	"client": [
