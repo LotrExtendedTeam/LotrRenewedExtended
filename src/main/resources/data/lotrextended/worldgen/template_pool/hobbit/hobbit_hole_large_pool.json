@@ -7,7 +7,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit/large_hole/hobbit_hill_1",
+				"location": "lotrextended:hobbit/large_hole/hobbit_hill",
 				"processors": "minecraft:empty"
 			}
 		}
