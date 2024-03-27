@@ -26,5 +26,10 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
 		public String getLocation() {
 			return "hobbit/hobbit_hole_large_pool";
 		}
+
+		@Override
+		public int maxDepth() {
+			return 6;
+		}
     }
 }

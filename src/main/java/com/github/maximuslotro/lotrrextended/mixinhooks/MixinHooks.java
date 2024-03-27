@@ -10,6 +10,10 @@ import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class MixinHooks {
+	public static final int StructureLimit = 256;
+	public static final int StructureLimitPosBounds = StructureLimit - 1;
+	public static final int StructureLimitNegBounds = -(StructureLimit-1);
+
 	public static ExtendedFellowshipDataModule getFellowshipData(LOTRPlayerData data) {
 		ExtendedFellowshipDataModule fellowData = null;
 		try {

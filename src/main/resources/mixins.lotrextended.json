@@ -47,7 +47,9 @@
 		"net.minecraft.block.MixinBlock",
 		"net.minecraft.block.MixinFarmlandBlock",
 		"net.minecraft.entity.MixinEntityType",
-		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal"
+		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket",
+		"net.minecraft.tileentity.MixinStructureBlockTileEntity"
 	],
 	
 	"client": [
@@ -58,9 +60,10 @@
 		"lotr.client.render.MixinBlockRenderHelper",
 		"lotr.client.render.entity.MixinLOTREntityRenderers",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
-		"net.minecraftforge.fml.packs.MixinResourcePackLoader",
+		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
-		"net.minecraft.client.gui.screen.inventory.MixinChestScreen"
+		"net.minecraft.tileentity.MixinStructureBlockTileEntityClient",
+		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],
 	"injectors": {
 		"defaultRequire": 1

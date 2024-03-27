@@ -33,9 +33,8 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 
         JigsawManager.addPieces(dynamicRegistryManager,
                 new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                								.get(new ResourceLocation(LotrExtendedMod.MODID, getLocation())),
-                        10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn,
-                blockpos, this.pieces, this.random, false,true);
+                		.get(new ResourceLocation(LotrExtendedMod.MODID, getLocation())), maxDepth()), AbstractVillagePiece::new, 
+                chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false,true);
 
         this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
         
@@ -50,5 +49,9 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 
 	public int yShift() {
 		return 0;
+	}
+
+	public int maxDepth() {
+		return 7;
 	}
 }
