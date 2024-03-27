@@ -51,9 +51,9 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.OPTIONAL_UUID);
 
-    // items Rivendell Wanderers will buy from you
+    // items Rivendell Wanderers sell to a player
     // TODO: Add Bows, Longspears, and and Battlestaffs when they are added
-    private final ExtendedTradeEntries RIVENDELL_WANDERER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
+    private final ExtendedTradeEntries RIVENDELL_WANDERER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_HELMET.get()), 19, 31),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_CHESTPLATE.get()), 27, 45),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_LEGGINGS.get()), 23, 38),
@@ -72,9 +72,9 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
             new ExtendedTradeEntry(new ItemStack(LOTRItems.BEECH_LOG.get(), 4), 3, 5)
     });
 
-    // items you can buy from a Rivendell Wanderer
+    // items a Rivendell Wanderer will buy from a player
     // TODO: Add Coral when it's added
-    private final ExtendedTradeEntries RIVENDELL_WANDERER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
+    private final ExtendedTradeEntries RIVENDELL_WANDERER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
            new ExtendedTradeEntry(new ItemStack(Items.FEATHER), 2, 3), new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4),
            new ExtendedTradeEntry(new ItemStack(LOTRItems.MITHRIL_NUGGET.get()), 30, 50), new ExtendedTradeEntry(new ItemStack(LOTRItems.WOODEN_MUG.get()), 1, 1),
            new ExtendedTradeEntry(new ItemStack(LOTRItems.ORC_BONE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.STRING, 2), 1, 1),
@@ -95,7 +95,7 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.RIVENDELL_DAGGER.get()));
-        this.npcItemsInv.setRangedWeapon(null); // Rivendell Wanderers do not have ranged weapons
+        this.npcItemsInv.clearRangedWeapon(); // Rivendell Wanderers do not have ranged weapons
         this.npcItemsInv.clearIdleItem();
         return spawnData;
     }
@@ -146,7 +146,7 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
         return isFriendlyAndAligned(player);
     }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return HobbitEntity.regAttrs();
+        return ElfEntity.regAttrs();
     }
 
     @Override
