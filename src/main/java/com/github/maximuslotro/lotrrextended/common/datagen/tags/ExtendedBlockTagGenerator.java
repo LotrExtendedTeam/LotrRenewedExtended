@@ -165,7 +165,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 				tag(CHARRABLE_STRIPPED_WOODS).add(block.getValue().get());
 			}
 		}
-
+		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.BARREN_DIRT.get());
 		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS);
 
 	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).add(ExtendedBlocks.GALVORN_BLOCK.get());
