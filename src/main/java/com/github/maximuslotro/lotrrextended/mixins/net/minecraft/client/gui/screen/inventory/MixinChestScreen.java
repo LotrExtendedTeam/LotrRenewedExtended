@@ -23,13 +23,9 @@ public abstract class MixinChestScreen extends ContainerScreen<ChestContainer> i
 
     @Override
     protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        assert Minecraft.getInstance().gameMode != null;
-        assert Minecraft.getInstance().player != null;
-
-        this.menu.getContainer();
-
+    	super.renderLabels(p_230451_1_, p_230451_2_, p_230451_3_);
         Minecraft mc = Minecraft.getInstance();
-        if (!mc.gameMode.hasInfiniteItems()) {
+        if (mc.gameMode != null && mc.player != null && !mc.gameMode.hasInfiniteItems()) {
             int chestAmount = CoinUtils.totalValueInInventory(menu.getContainer());
             if (chestAmount > 0) {
                 String chestStr = String.valueOf(chestAmount);
