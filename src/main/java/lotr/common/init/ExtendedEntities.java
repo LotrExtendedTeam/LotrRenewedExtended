@@ -1,12 +1,13 @@
 package lotr.common.init;
 
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
+import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
+import lotr.common.entity.npc.ExtendedRivendellWandererEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
 import lotr.common.entity.projectile.ExtendedConkerEntity;
 import net.minecraft.entity.EntityType;
@@ -22,5 +23,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedHobbitFarmerEntity>> HOBBIT_FARMER;
 	public static RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;
 	public static RegistryObject<EntityType<ExtendedConkerEntity>> THROWN_CONKER;
+	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
 
 }

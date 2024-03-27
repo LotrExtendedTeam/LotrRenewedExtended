@@ -1,10 +1,6 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
-import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
-import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
-import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
-import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.*;
 import lotr.common.entity.projectile.ExtendedConkerEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
@@ -72,6 +68,7 @@ public class MixinLOTREntities {
         ExtendedEntities.HOBBIT_BARTENDER = regNPCD("hobbit_bartender", ExtendedHobbitBartenderEntity::new, ExtendedHobbitBartenderEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedEntities.HOBBIT_FARMER = regNPCD("hobbit_farmer", ExtendedHobbitFarmerEntity::new, ExtendedHobbitFarmerEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));
+		ExtendedEntities.RIVENDELL_WANDERER = regNPCD("rivendell_wanderer", ExtendedRivendellWandererEntity::new, ExtendedRivendellWandererEntity::regAttrs, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(869480, 15003391));
         ExtendedEntities.THROWN_CONKER = regEntityNOND("thrown_conker", ExtendedConkerEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
     }
 
