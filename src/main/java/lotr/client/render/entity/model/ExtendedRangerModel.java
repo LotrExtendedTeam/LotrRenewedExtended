@@ -2,15 +2,9 @@ package lotr.client.render.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import lotr.client.render.entity.ExtendedDunedainRangerRenderer;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.ManEntity;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.util.ResourceLocation;
-
-import javax.annotation.Nullable;
 
 public class ExtendedRangerModel<E extends ExtendedDunedainRangerEntity> extends ManModel<E> {
 
@@ -80,7 +74,5 @@ public class ExtendedRangerModel<E extends ExtendedDunedainRangerEntity> extends
             super.renderToBuffer(matStack, buf, packedLight, packedOverlay, r, g, b, a);
         }
     }
-
-
 
 }

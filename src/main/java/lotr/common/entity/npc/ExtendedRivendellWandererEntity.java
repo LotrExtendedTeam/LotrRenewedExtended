@@ -1,9 +1,10 @@
 package lotr.common.entity.npc;
 
-import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
-import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
+import lotr.common.entity.npc.ai.AttackGoalsHolder;
+import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
+import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.entity.npc.data.name.NPCNameGenerator;
+import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.LOTRSpawnEggItem;
@@ -34,6 +35,7 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -44,7 +46,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ExtendedRivendellWandererEntity extends RivendellElfEntity implements ExtendedTraderEntity {
+public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -83,9 +85,14 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31)
     });
 
-    public ExtendedRivendellWandererEntity(EntityType<? extends RivendellElfEntity> type, World w) {
+    protected NPCNameGenerator getNameGenerator() {
+        return NPCNameGenerators.SINDARIN;
+    }
+
+    public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
+        this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
 
         itemsBoughtByTrader = RIVENDELL_WANDERER_BOUGHT.generateTrades();
         itemsSoldByTrader = RIVENDELL_WANDERER_SOLD.generateTrades();
@@ -123,17 +130,24 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
         this.addNPCTargetingAI();
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<OrcEntity>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
-        this.goalSelector.addGoal(2, new PanicGoal(this, 1.6));
-        this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(10, new ExtendedTraderTalkToCurrentGoal(this, this));
-        this.goalSelector.addGoal(11, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
-        this.goalSelector.addGoal(12, new WatchSunriseSunsetGoal(this, 0.01F));
-        this.goalSelector.addGoal(13, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.1));
-        this.goalSelector.addGoal(15, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.05F));
-        this.goalSelector.addGoal(15, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.05F));
-        this.goalSelector.addGoal(16, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(17, new LookRandomlyGoal(this));
+        this.addAttackGoal(2);
+        this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(5, new ExtendedTraderTalkToCurrentGoal(this, this));
+        this.goalSelector.addGoal(6, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
+        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.01F));
+        this.goalSelector.addGoal(8, new StargazingGoal(this, 4.0E-4F));
+        this.goalSelector.addGoal(9, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this,1.0));
+        this.goalSelector.addGoal(10, new NPCEatGoal(this, this.getEatPool(), 12000));
+        this.goalSelector.addGoal(10, new NPCDrinkGoal(this, this.getDrinkPool(), 8000));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
+        this.goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(13, new LookRandomlyGoal(this));
+    }
+
+    @Override
+    protected void addNPCTargetingAI() {
+        this.addNonAggressiveTargetingGoals();
     }
 
     @Override
@@ -182,6 +196,11 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
         if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag) != null) {
             itemsSoldByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag);
         }
+    }
+
+    @Override
+    protected void initialiseAttackGoals(AttackGoalsHolder holder) {
+        holder.setMeleeAttackGoal(this.createElfMeleeAttackGoal());
     }
 
     @Override
@@ -266,6 +285,8 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
     public void tick() {
         super.tick();
 
+        moveCloak();
+
         if (level.isClientSide) {
             return;
         }
@@ -301,4 +322,10 @@ public class ExtendedRivendellWandererEntity extends RivendellElfEntity implemen
             lastTickCooldownReduced++;
         }
     }
+
+    @Override
+    public ResourceLocation getCloakTextureLocation() {
+        return new ResourceLocation("lotr", "textures/cape/rivendell_trader.png");
+    }
+
 }
