@@ -1,5 +1,7 @@
 package lotr.common.structureV5.structures.hobbits;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MutableBoundingBox;
 import lotr.common.structureV5.extendedClasses.ExtendedStructureStartV5;
 import lotr.common.structureV5.extendedClasses.ExtendedSurfaceStructuresV5;
@@ -35,6 +37,16 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
 		@Override
 		public int yShift() {
 			return -1;
+		}
+
+		@Override
+		public boolean usesFoundations() {
+			return true;
+		}
+
+		@Override
+		public BlockState defaultFoundationmaterial() {
+			return Blocks.DIRT.defaultBlockState();
 		}
     }
 }
