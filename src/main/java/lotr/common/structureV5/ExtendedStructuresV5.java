@@ -37,7 +37,7 @@ public class ExtendedStructuresV5 {
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
 		register(HOBBIT_BARN.get(), true,            32, 12, 445575475);
 		register(HOBBIT_HOLE_SMALL.get(), true,      24, 5, 445436262);
-		register(HOBBIT_HOLE_LARGE.get(), true,      30, 10, 445436264);
+		register(HOBBIT_HOLE_LARGE.get(), false,     30, 10, 445436264);
 		register(HOBBIT_HOUSE.get(), true,           24, 5, 445546465);
 		register(HOBBIT_PICNIC_BLANKET.get(), false, 14, 8, 745785884);
 		register(HOBBIT_PICNIC_TABLE.get(), true,    14, 8, 747348);

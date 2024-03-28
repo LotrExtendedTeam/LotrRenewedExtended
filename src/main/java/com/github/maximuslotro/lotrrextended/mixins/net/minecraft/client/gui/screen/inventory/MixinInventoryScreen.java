@@ -26,11 +26,8 @@ public abstract class MixinInventoryScreen extends DisplayEffectsScreen<PlayerCo
 
     @Inject(method = "renderLabels", at = @At("TAIL"))
     protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_, CallbackInfo info) {
-        assert Minecraft.getInstance().gameMode != null;
-        assert Minecraft.getInstance().player != null;
-
         Minecraft mc = Minecraft.getInstance();
-        if (!mc.gameMode.hasInfiniteItems()) {
+        if (mc.gameMode != null && mc.player != null && !mc.gameMode.hasInfiniteItems()) {
             int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
             if (amount == 0) return;
 

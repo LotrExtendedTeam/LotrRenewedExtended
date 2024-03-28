@@ -7,15 +7,6 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:hobbit/large_hole/hobbit_carved_basement",
-				"processors": "minecraft:empty"
-			}
-		},
-		{
-			"weight": 1,
-			"element": {
-				"element_type": "minecraft:single_pool_element",
-				"projection": "rigid",
 				"location": "lotrextended:hobbit/large_hole/hobbit_carved_bedroom",
 				"processors": "minecraft:empty"
 			}

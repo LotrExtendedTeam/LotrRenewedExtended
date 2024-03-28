@@ -29,7 +29,12 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
 
 		@Override
 		public int maxDepth() {
-			return 6;
+			return 7;
+		}
+
+		@Override
+		public int yShift() {
+			return -1;
 		}
     }
 }

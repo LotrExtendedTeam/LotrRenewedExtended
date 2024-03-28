@@ -1099,6 +1099,7 @@ b528b2f2f66cde5ed4f2bc0aad545a179015c0b6 assets/lotrextended/models/block/wildbe
 fab7f084c36033ecbc4ddf6a09f65a5bc8a6947a assets/lotrextended/sounds.json
 860bec07fc5be2094bf83971044b84b578357d05 data/forge/loot_modifiers/global_loot_modifiers.json
 0fa07fc7da64342829214b580c533a6513146b82 data/forge/tags/blocks/chests.json
+df965f1823a3df2ed4ee2399b036a0b292ba8ef0 data/forge/tags/blocks/dirt.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
 f82d30250ecdf5fb1713cd2eaa78f5d5863d85a4 data/forge/tags/blocks/ores/durnor.json
