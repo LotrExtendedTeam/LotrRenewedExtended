@@ -115,11 +115,6 @@ public class LotrExtendedModClient {
             {
                 event.getEntity().sendMessage(new StringTextComponent("\u00A72[LotrRenewed Extended]:\u00A7r A new version (\u00A73" + result.target.toString () + "\u00A7r) was found"), event.getEntity().getUUID());
             }
-            if (result != null && (result.status == VersionChecker.Status.AHEAD))
-            {
-            	ComparableVersion ver =new ComparableVersion(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString());
-                event.getEntity().sendMessage(new StringTextComponent("\u00A72[LotrRenewed Extended]:\u00A7r You are playing a version from the future! (\u00A73" + ver.toString() + "\u00A7r)"), event.getEntity().getUUID());
-            }
         }
     }
 
