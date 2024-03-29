@@ -11,6 +11,7 @@
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.entity.item.MixinModBoatType",
+		"lotr.common.entity.npc.MixinNPCEntity",
 		"lotr.common.fac.MixinEntityFactionHelper",
 		"lotr.common.init.MixinLOTRBlocks",
 		"lotr.common.init.MixinLOTRContainers",
