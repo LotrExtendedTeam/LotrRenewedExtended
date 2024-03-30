@@ -45,10 +45,10 @@ public abstract class MixinPouchScreen extends ContainerScreen<PouchContainer> {
 		int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
 		if (amount > 0) {
 			String amountStr = String.valueOf(amount);
-			fill(matStack, 180, 14 + ((pouchRows + 1) * 18), 180 + 19 + mc.font.width(amountStr), 29 + ((pouchRows + 1) * 18), 0x99000000);
-			mc.font.draw(matStack, amountStr, 196, 18 + ((pouchRows + 1) * 18), 0xFFFFFF);
+			fill(matStack, 180, 14 + 81, 180 + 19 + mc.font.width(amountStr), 29 + 81, 0x99000000);
+			mc.font.draw(matStack, amountStr, 196, 18 + 81, 0xFFFFFF);
 			mc.getTextureManager().bind(ExtendedCoinExchangeScreen.GUI_TEXTURE);
-			blit(matStack, 179, 13 + ((pouchRows + 1) * 18), 176, 77, 18, 18);
+			blit(matStack, 179, 13 + 81, 176, 77, 18, 18);
 		}
 	}
 }
