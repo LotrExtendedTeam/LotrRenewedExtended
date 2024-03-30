@@ -1,3 +1,31 @@
+(beta 1.4.3)
+* Blocks
+ * Allowed for plants to be placed on barren dirt
+* Entities
+ * Tweaked the AI of some traders
+* Misc
+ * Fixed Chestnut Planks recipe still being broken
+ * Fixed Container names being removed (bug with addition of inv coin totals)
+* Structures
+ * Fixed the Large Hobbit Hole chimneys not spawning
+ * Fixed the Large Hobbit Hole entrance chests not having loot
+ * Fixed the Large Hobbit Hole floating/not having foundations
+ * Fixed some Large Hobbit Hill piece bugs
+ * Structures should now only rarely spawn on roads ()-()
+ * Updated the Large Hobbit Hill shape
+* Textures
+ * Fixed Renewed Hobbit textures not applying when selecting the renewed resource pack
+ * Updated Morgul Steel Ingot texture
+* Trade System
+ * Added coin total within creative inventory
+ * Added coin total within Faction crafting tables
+ * Added coin total within Furnace screens
+ * Added coin total within Blast Furnace screens
+ * Added coin total within Hobbit Ovens and all LOTR Alloy forges
+ * Added coin total within pouches
+ * Added coin total within the crafting table
+ * Fixed coin totals being hidden when in creative
+
 (beta 1.4.2)
 * Blocks
  * Added Black Fur bed

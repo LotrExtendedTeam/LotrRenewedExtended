@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -15,7 +18,7 @@ public class ExtendedPacketHandler {
 	public static void register() {
 		CHANNEL = NetworkRegistry.newSimpleChannel(new ResourceLocation("lotr", "extended"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 		int id = 0;
-		CHANNEL.registerMessage(id++, ExtendedSPacketSelectHorn.class, ExtendedSPacketSelectHorn::encode, ExtendedSPacketSelectHorn::decode, ExtendedSPacketSelectHorn::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketSelectHorn.class, ExtendedCPacketSelectHorn::encode, ExtendedCPacketSelectHorn::decode, ExtendedCPacketSelectHorn::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketExchangeCoins.class, ExtendedSPacketExchangeCoins::encode, ExtendedSPacketExchangeCoins::decode, ExtendedSPacketExchangeCoins::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateExchangeCoinContainer.class, ExtendedCPacketUpdateExchangeCoinContainer::encode, ExtendedCPacketUpdateExchangeCoinContainer::decode, ExtendedCPacketUpdateExchangeCoinContainer::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketOpenCoinExchange.class, ExtendedSPacketOpenCoinExchange::encode, ExtendedSPacketOpenCoinExchange::decode, ExtendedSPacketOpenCoinExchange::handle);
@@ -23,6 +26,10 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSPacketOpenTradeMenu.class, ExtendedSPacketOpenTradeMenu::encode, ExtendedSPacketOpenTradeMenu::decode, ExtendedSPacketOpenTradeMenu::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketTradeSellItems.class, ExtendedSPacketTradeSellItems::encode, ExtendedSPacketTradeSellItems::decode, ExtendedSPacketTradeSellItems::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateTradeQuantities.class, ExtendedCPacketUpdateTradeQuantities::encode, ExtendedCPacketUpdateTradeQuantities::decode, ExtendedCPacketUpdateTradeQuantities::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketNpcMarriageInfo.class, ExtendedSPacketNpcMarriageInfo::encode, ExtendedSPacketNpcMarriageInfo::decode, ExtendedSPacketNpcMarriageInfo::handle);
+		if (id >= 255) {
+			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
+		}
 	}
 
 	public static void sendTo(Object msg, ServerPlayerEntity player) {
@@ -35,5 +42,9 @@ public class ExtendedPacketHandler {
 
 	public static void sendToServer(Object msg) {
 	  CHANNEL.send(PacketDistributor.SERVER.noArg(), msg);
+	}
+
+	public static void sendToAllTrackingEntity(Object msg, Entity entity) {
+		CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
 	}
 }

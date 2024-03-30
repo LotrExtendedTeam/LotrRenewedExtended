@@ -109,17 +109,14 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.addAttackGoal(2);
-        this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
-        // I don't think Oddment Collectors should be as likely to talk to NPCs so I'll leave it commented out for now
-        //this.goalSelector.addGoal(10, new ExtendedTraderTalkToCurrentGoal(this, this));
-        //this.goalSelector.addGoal(11, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
-        this.goalSelector.addGoal(12, new WatchSunriseSunsetGoal(this, 0.01F));
-        this.goalSelector.addGoal(13, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.0));
-        this.addConsumingGoals(14);
-        this.goalSelector.addGoal(15, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.05F));
-        this.goalSelector.addGoal(16, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.05F));
-        this.goalSelector.addGoal(17, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(18, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.005F));
+        this.goalSelector.addGoal(8, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.0));
+        this.addConsumingGoals(9);
+        this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(10, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(12, new LookRandomlyGoal(this));
     }
 
     @Override
