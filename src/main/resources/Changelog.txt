@@ -18,7 +18,10 @@
  * Updated Morgul Steel Ingot texture
 * Trade System
  * Added coin total within creative inventory
- * Added coin total within faction crafting tables
+ * Added coin total within Faction crafting tables
+ * Added coin total within Furnace screens
+ * Added coin total within Blast Furnace screens
+ * Added coin total within Hobbit Ovens and all LOTR Alloy forges
  * Added coin total within pouches
  * Added coin total within the crafting table
  * Fixed coin totals being hidden when in creative
