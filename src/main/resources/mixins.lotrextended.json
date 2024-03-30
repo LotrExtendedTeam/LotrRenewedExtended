@@ -57,6 +57,7 @@
 		"lotr.client.gui.MixinMiddleEarthFactionsScreen",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
 		"lotr.client.gui.inv.MixinContainerScreenHelper",
+		"lotr.client.gui.inv.MixinFactionCraftingScreen",
 		"lotr.client.render.MixinBlockRenderHelper",
 		"lotr.client.render.entity.MixinLOTREntityRenderers",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
