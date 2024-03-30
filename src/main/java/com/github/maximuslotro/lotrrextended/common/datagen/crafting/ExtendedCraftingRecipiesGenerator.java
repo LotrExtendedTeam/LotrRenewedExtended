@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedBlocks;
@@ -13,6 +14,7 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.ExtendedRecipes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
+import lotr.common.init.LOTRTags;
 import lotr.common.recipe.LOTRRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -90,6 +92,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->Blocks.COBBLESTONE.asItem(), ExtendedRecipes.GUNDABAD_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.MORWAITH_CRAFTING_TABLE, 
 				()->Blocks.CLAY.asItem(), ExtendedRecipes.MORWAITH_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CONQUEST_TABLE.get())
+		.pattern("XXX")
+		.pattern("YYY")
+		.pattern("ZZZ")
+		.define('X', Ingredient.of(Items.PAPER))
+		.define('Y', Ingredient.of(ItemTags.PLANKS))
+		.define('Z', Ingredient.of(LOTRTags.Items.INGOTS_BRONZE))
+		.unlockedBy("has_"+LOTRItems.BRONZE_INGOT.get().getRegistryName().getPath(), has(LOTRItems.BRONZE_INGOT.get()))
+		.unlockedBy("has_"+ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath(), has(ExtendedItems.CONQUEST_TABLE.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK, null);
@@ -236,7 +249,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("#Z#")
 		.pattern("#Z#")
 		.pattern(" Y ")
-		.define('Z', Ingredient.of(ItemTags.PLANKS))
+		.define('Z', PLANKS)
 		.define('Y', STICKS)
 		.define('#', Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()))
 		.unlockedBy("has_"+ExtendedItems.OBSIDIAN_SHARD.get().getRegistryName().getPath(), has(ExtendedItems.OBSIDIAN_SHARD.get()))

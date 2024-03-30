@@ -2,6 +2,7 @@ package lotr.common.structureV5.extendedClasses;
 
 import com.mojang.serialization.Codec;
 
+import lotr.common.world.map.MapSettingsManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -50,6 +51,9 @@ public abstract class ExtendedSurfaceStructuresV5 <C extends IFeatureConfig> ext
 
         // Now we test to make sure our structure is not spawning on water or other fluids.
         // You can do height check instead too to make it spawn at high elevations.
-        return topBlock.getFluidState().isEmpty(); //landHeight > 100;
+        boolean noWater = topBlock.getFluidState().isEmpty(); //landHeight > 100;
+        
+        boolean road = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(centerOfChunk.getX(), centerOfChunk.getZ(), 16) >= 0.0F);
+        return noWater && !road;
     }
 }

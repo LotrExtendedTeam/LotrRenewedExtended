@@ -6,10 +6,16 @@ import java.lang.reflect.Method;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRPlayerData;
+import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class MixinHooks {
+	public static final int StructureLimit = 256;
+	public static final int StructureLimitPosBounds = StructureLimit - 1;
+	public static final int StructureLimitNegBounds = -(StructureLimit-1);
+
 	public static ExtendedFellowshipDataModule getFellowshipData(LOTRPlayerData data) {
 		ExtendedFellowshipDataModule fellowData = null;
 		try {
@@ -39,5 +45,16 @@ public class MixinHooks {
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static ExtendedNpcMarriageHolder getMarriageData(NPCEntity data) {
+		ExtendedNpcMarriageHolder fellowData = null;
+		try {
+			Field field = NPCEntity.class.getField("marriageInfo");
+			fellowData = (ExtendedNpcMarriageHolder) field.get(data);
+		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+		return fellowData;
 	}
 }

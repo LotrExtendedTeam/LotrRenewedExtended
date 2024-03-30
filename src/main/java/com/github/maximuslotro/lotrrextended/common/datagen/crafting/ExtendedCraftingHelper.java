@@ -258,18 +258,18 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(planks.get(), 4)
-			.requires(log.get())
 			.requires(resource)
 			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
+			.group("planks")
 			.save(consumer, lotrLoc(name));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 4, table)
-			.requires(log.get())
 			.requires(resource)
 			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
+			.group("planks")
 			.save(consumer, lotrLoc(name));
 		}
 	}

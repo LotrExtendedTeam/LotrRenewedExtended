@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketSelectHorn;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketSelectHorn;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedItems;
@@ -55,7 +55,7 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 	}
 
 	public void setHorn(float type) {
-		ExtendedPacketHandler.sendToServer(new ExtendedSPacketSelectHorn(type));
+		ExtendedPacketHandler.sendToServer(new ExtendedCPacketSelectHorn(type));
 		this.minecraft.player.closeContainer();
 	}
 

@@ -366,5 +366,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GRAY_FUR_BED;
 	public static RegistryObject<Item> SILVER_FUR_BED;
 	public static RegistryObject<Item> WHITE_FUR_BED;
+
+	public static RegistryObject<Item> CONQUEST_TABLE;
 }
 

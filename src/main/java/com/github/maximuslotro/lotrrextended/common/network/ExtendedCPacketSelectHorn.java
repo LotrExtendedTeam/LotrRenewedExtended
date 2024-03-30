@@ -10,26 +10,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public class ExtendedSPacketSelectHorn {
+public class ExtendedCPacketSelectHorn {
 	private float type;
 
-	public ExtendedSPacketSelectHorn() {}
+	public ExtendedCPacketSelectHorn() {}
 	
-	public ExtendedSPacketSelectHorn(float type) {
+	public ExtendedCPacketSelectHorn(float type) {
 		this.type = type;
 	}
 
-	public static void encode(ExtendedSPacketSelectHorn packet, PacketBuffer buf) {
+	public static void encode(ExtendedCPacketSelectHorn packet, PacketBuffer buf) {
 		buf.writeFloat(packet.type);
 	}
 
-	public static ExtendedSPacketSelectHorn decode(PacketBuffer buf) {
-		ExtendedSPacketSelectHorn packet = new ExtendedSPacketSelectHorn();
+	public static ExtendedCPacketSelectHorn decode(PacketBuffer buf) {
+		ExtendedCPacketSelectHorn packet = new ExtendedCPacketSelectHorn();
 		packet.type = buf.readFloat();
 		return packet;
 	}
 
-	public static void handle(ExtendedSPacketSelectHorn packet, Supplier<Context> context) {
+	public static void handle(ExtendedCPacketSelectHorn packet, Supplier<Context> context) {
 		ServerPlayerEntity player = context.get().getSender();
 		ItemStack itemstack = player.getMainHandItem();
 	    if (itemstack != null && itemstack.getItem() == ExtendedItems.COMMANDHORN.get()) {

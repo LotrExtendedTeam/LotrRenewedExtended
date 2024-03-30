@@ -1,3 +1,84 @@
+(beta 1.4.3)
+* Blocks
+ * Allowed for plants to be placed on barren dirt
+* Entities
+ * Tweaked the AI of some traders
+* Misc
+ * Fixed Chestnut Planks recipe still being broken
+ * Fixed Container names being removed (bug with addition of inv coin totals)
+* Structures
+ * Fixed the Large Hobbit Hole chimneys not spawning
+ * Fixed the Large Hobbit Hole entrance chests not having loot
+ * Fixed the Large Hobbit Hole floating/not having foundations
+ * Fixed some Large Hobbit Hill piece bugs
+ * Structures should now only rarely spawn on roads ()-()
+ * Updated the Large Hobbit Hill shape
+* Textures
+ * Fixed Renewed Hobbit textures not applying when selecting the renewed resource pack
+ * Updated Morgul Steel Ingot texture
+* Trade System
+ * Added coin total within creative inventory
+ * Added coin total within Faction crafting tables
+ * Added coin total within Furnace screens
+ * Added coin total within Blast Furnace screens
+ * Added coin total within Hobbit Ovens and all LOTR Alloy forges
+ * Added coin total within pouches
+ * Added coin total within the crafting table
+ * Fixed coin totals being hidden when in creative
+
+(beta 1.4.2)
+* Blocks
+ * Added Black Fur bed
+ * Added Gray Fur bed
+ * Added Silver Fur bed
+ * Added Smoke Particles to Morgul torches
+ * Added White Fur bed
+ * Ported Fur bed
+ * Ported Obsidian Dwarven Brick
+ * Ported Obsidian Dwarven Brick Slab
+ * Ported Obsidian Dwarven Brick Stairs
+ * Ported Obsidian Dwarven Brick Wall
+ * Ported Orc bed
+ * Ported Straw Bed
+* Features
+ * Gems now spawn naturally throughout Middle-Earth
+* Misc
+ * Fixed Chestnut Planks recipe being a sign recipe
+* Structures
+ * Added the Large Hobbit Hole
+* Textures
+ * Fixed texture issues for all pillar slabs
+ * Remastered 13/13 Adult Male Hobbit Skins
+ * Remastered 3/13 Adult Female Hobbit Skins
+ * Remastered Fur Bed texture
+ * Remastered Obsidian Dwarven Brick texture
+ * Remastered Orc Bed texture
+ * Remastered Straw Bed texture
+ * Tweaked the mud path texture layout
+* Trade System
+ * Added coin total to the player inventory screen
+ * Added coin total within chests (including stone chests)
+
+(beta 1.4.1)
+* Blocks
+ * Fixed being unable to cut cheese wheels if not hungry or in creative
+ * Made all of Renewed's Torches Toggleable
+* Entities
+ * Fixed loot-tables to use extended's loot-tables (proper warg fur color, etc)
+* Features
+ * Added Chestnut Trees to remaining legacy spawning biomes that have been currently ported
+* Items
+ * Made Conkers Throwable and Dispensable
+* Textures
+ * Fixed the broken Scorched Stone rotated textures
+ * Fixed Mud's texture seemingly rotating itself
+ * Updated Sapphire Ore texture
+ * Fixed the Built-in Legacy and Renewed ResourcePacks always being disabled on start (even if you had previously enabled them)
+* Trade System
+ * Fixed Buggy Behavior when coins are dispensed when trading
+ * Added Total Coin Earnable to Trade GUI
+ * Fixed buggy behavior caused by clicking traders with a spawn egg
+
 (beta 1.4.0)
 * Blocks
  * Added Chestnut Branch
