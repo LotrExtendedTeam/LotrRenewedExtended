@@ -27,7 +27,6 @@ public abstract class MixinInventoryScreen extends DisplayEffectsScreen<PlayerCo
     @Inject(method = "renderLabels", at = @At("TAIL"))
     protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_, CallbackInfo info) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.gameMode != null && mc.player != null && !mc.gameMode.hasInfiniteItems()) {
             int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
             if (amount == 0) return;
 
@@ -36,6 +35,5 @@ public abstract class MixinInventoryScreen extends DisplayEffectsScreen<PlayerCo
             mc.font.draw(p_230451_1_, amountStr, 196, 18, 0xFFFFFF);
             mc.getTextureManager().bind(COIN_LOCATION);
             blit(p_230451_1_, 179, 13, 176, 77, 18, 18);
-        }
     }
 }

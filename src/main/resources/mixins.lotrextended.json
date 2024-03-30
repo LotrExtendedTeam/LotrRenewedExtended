@@ -62,6 +62,8 @@
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
 		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
+		"net.minecraft.client.gui.screen.inventory.MixinCraftingScreen",
+		"net.minecraft.client.gui.screen.inventory.MixinCreativeScreen",
 		"net.minecraft.tileentity.MixinStructureBlockTileEntityClient",
 		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],

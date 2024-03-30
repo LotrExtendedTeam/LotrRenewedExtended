@@ -25,25 +25,24 @@ public abstract class MixinChestScreen extends ContainerScreen<ChestContainer> i
     protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
     	super.renderLabels(p_230451_1_, p_230451_2_, p_230451_3_);
         Minecraft mc = Minecraft.getInstance();
-        if (mc.gameMode != null && mc.player != null && !mc.gameMode.hasInfiniteItems()) {
-            int chestAmount = CoinUtils.totalValueInInventory(menu.getContainer());
-            if (chestAmount > 0) {
-                String chestStr = String.valueOf(chestAmount);
-                fill(p_230451_1_, 180, 14, 180 + 19 + mc.font.width(chestStr), 29, 0x99000000);
-                mc.font.draw(p_230451_1_, chestStr, 196, 18, 0xFFFFFF);
-                mc.getTextureManager().bind(COIN_LOCATION);
-                blit(p_230451_1_, 179, 13, 176, 77, 18, 18);
-            }
 
-            int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
-            if (amount > 0) {
-                String amountStr = String.valueOf(amount);
-                fill(p_230451_1_, 180, 14 + ((menu.getRowCount() + 1) * 18), 180 + 19 + mc.font.width(amountStr),
-                        29 + ((menu.getRowCount() + 1) * 18), 0x99000000);
-                mc.font.draw(p_230451_1_, amountStr, 196, 18 + ((menu.getRowCount() + 1) * 18), 0xFFFFFF);
-                mc.getTextureManager().bind(COIN_LOCATION);
-                blit(p_230451_1_, 179, 13 + ((menu.getRowCount() + 1) * 18), 176, 77, 18, 18);
-            }
+        int chestAmount = CoinUtils.totalValueInInventory(menu.getContainer());
+        if (chestAmount > 0) {
+            String chestStr = String.valueOf(chestAmount);
+            fill(p_230451_1_, 180, 14, 180 + 19 + mc.font.width(chestStr), 29, 0x99000000);
+            mc.font.draw(p_230451_1_, chestStr, 196, 18, 0xFFFFFF);
+            mc.getTextureManager().bind(COIN_LOCATION);
+            blit(p_230451_1_, 179, 13, 176, 77, 18, 18);
+        }
+
+        int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
+        if (amount > 0) {
+            String amountStr = String.valueOf(amount);
+            fill(p_230451_1_, 180, 14 + ((menu.getRowCount() + 1) * 18), 180 + 19 + mc.font.width(amountStr),
+                    29 + ((menu.getRowCount() + 1) * 18), 0x99000000);
+            mc.font.draw(p_230451_1_, amountStr, 196, 18 + ((menu.getRowCount() + 1) * 18), 0xFFFFFF);
+            mc.getTextureManager().bind(COIN_LOCATION);
+            blit(p_230451_1_, 179, 13 + ((menu.getRowCount() + 1) * 18), 176, 77, 18, 18);
         }
     }
 }
