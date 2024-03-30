@@ -13,6 +13,7 @@ import lotr.common.init.LOTRMaterial;
 import lotr.common.item.ExtendedDaggerItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
+import lotr.common.item.LOTRBlockItem;
 import lotr.common.item.LOTRBoatItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
@@ -89,6 +90,15 @@ public class MixinLOTRItems {
 	}
 	private static RegistryObject<Item> regBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regBlockItem(blockSup, group);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
+	private static RegistryObject<Item> regHiddenBlockItemB(RegistryObject<Block> blockSup) {
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
+			return new LOTRBlockItem(b, new Properties());
+		});
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
@@ -548,6 +558,8 @@ public class MixinLOTRItems {
 		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItemB(ExtendedBlocks.RHUNIC_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_CRAFTING_TABLE = regBlockItemB(ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_STONE_CRAFTING_TABLE = regBlockItemB(ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE, LOTRItemGroups.UTIL);
+
+		ExtendedItems.CONQUEST_TABLE = regHiddenBlockItemB(ExtendedBlocks.CONQUEST_TABLE);
 
 		//########################################################################MISC##########################################################
 
