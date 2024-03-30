@@ -20,6 +20,7 @@ public class MixinFurnaceScreen extends AbstractFurnaceScreen<FurnaceContainer> 
         super(p_i51104_1_, p_i51104_2_, p_i51104_3_, p_i51104_4_, p_i51104_5_);
     }
 
+    @Override
     protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
         super.renderLabels(p_230451_1_, p_230451_2_, p_230451_3_);
 
