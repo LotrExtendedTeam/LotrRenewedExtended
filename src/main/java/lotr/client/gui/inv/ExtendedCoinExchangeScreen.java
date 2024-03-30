@@ -21,7 +21,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExchangeContainer> {
 
-    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/coin_exchange.png");
+    public static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/coin_exchange.png");
 
     ExtendedCoinExchangeContainer container;
 

@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.client;
 
-import org.apache.maven.artifact.versioning.ComparableVersion;
-
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
