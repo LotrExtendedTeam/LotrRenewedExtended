@@ -1,5 +1,7 @@
 package lotr.common.structureV5.structures.hobbits;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MutableBoundingBox;
 import lotr.common.structureV5.extendedClasses.ExtendedStructureStartV5;
 import lotr.common.structureV5.extendedClasses.ExtendedSurfaceStructuresV5;
@@ -30,6 +32,21 @@ public class HobbitTavernLargeStructure extends ExtendedSurfaceStructuresV5<NoFe
 		@Override
 		public int yShift() {
 			return -6;
+		}
+
+		@Override
+		public boolean usesFoundations() {
+			return true;
+		}
+
+		@Override
+		public BlockState defaultFoundationmaterial() {
+			return Blocks.DIRT.defaultBlockState();
+		}
+
+		@Override
+		public int foundationUpwardsOffsetBasementSpecial() {
+			return 6;
 		}
     }
 }

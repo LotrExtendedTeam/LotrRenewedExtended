@@ -43,7 +43,7 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_PICNIC_BLANKET.get(), false, 14, 8, 745785884);
 		register(HOBBIT_PICNIC_TABLE.get(), true,    14, 8, 747348);
 		register(HOBBIT_TAVERN_SMALL.get(), true,    25, 15, 489984587);
-		register(HOBBIT_TAVERN_LARGE.get(), true,    43, 30, 965956779);
+		register(HOBBIT_TAVERN_LARGE.get(), false,   43, 30, 965956779);
 		register(HOBBIT_WINDMILL.get(), true,        40, 20, 965983479);
 
 	}

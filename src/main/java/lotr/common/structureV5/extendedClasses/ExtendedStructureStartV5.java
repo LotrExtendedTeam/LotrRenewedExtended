@@ -67,6 +67,10 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return false;
 	}
 
+	public int foundationUpwardsOffsetBasementSpecial() {
+		return 0;
+	}
+
 	public BlockState defaultFoundationmaterial() {
 		return Blocks.COBBLESTONE.defaultBlockState();
 	}
