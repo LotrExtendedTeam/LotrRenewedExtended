@@ -55,6 +55,26 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_BRANCH;
 	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
 
+	public static RegistryObject<Item> BANANA_LOG;
+	public static RegistryObject<Item> BANANA_PLANKS;
+	public static RegistryObject<Item> BANANA_LEAVES;
+	public static RegistryObject<Item> BANANA_SAPLING;
+	public static RegistryObject<Item> BANANA_SLAB;
+	public static RegistryObject<Item> BANANA_STAIRS;
+	public static RegistryObject<Item> BANANA_FENCE;
+	public static RegistryObject<Item> BANANA_FENCE_GATE;
+	public static RegistryObject<Item> BANANA_DOOR;
+	public static RegistryObject<Item> BANANA_TRAPDOOR;
+	public static RegistryObject<Item> BANANA_PRESSURE_PLATE;
+	public static RegistryObject<Item> BANANA_BUTTON;
+	public static RegistryObject<Item> STRIPPED_BANANA_LOG;
+	public static RegistryObject<Item> BANANA_BEAM;
+	public static RegistryObject<Item> BANANA_SIGN;
+	public static RegistryObject<Item> BANANA_BOAT;
+	public static RegistryObject<Item> BANANA_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
+	public static RegistryObject<Item> BANANA_BEAM_SLAB;
+
 	public static RegistryObject<Item> MORGUL_SWORD;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
@@ -192,6 +212,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CHEESE_WHEEL;
 	public static RegistryObject<Item> CHEESE_CURDS;
 	public static RegistryObject<Item> CHEESE_SLICE;
+	public static RegistryObject<Item> BANANA;
 	
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;

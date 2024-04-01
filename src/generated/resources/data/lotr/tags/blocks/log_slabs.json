@@ -3,7 +3,9 @@
   "values": [
     "lotr:chestnut_log_slab",
     "lotr:stripped_chestnut_wood_slab",
+    "lotr:banana_log_slab",
     "lotr:chestnut_wood_slab",
-    "lotr:stripped_chestnut_log_slab"
+    "lotr:stripped_chestnut_log_slab",
+    "lotr:stripped_banana_log_slab"
   ]
 }

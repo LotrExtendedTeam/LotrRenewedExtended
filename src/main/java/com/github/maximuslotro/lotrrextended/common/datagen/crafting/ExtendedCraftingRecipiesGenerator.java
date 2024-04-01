@@ -77,6 +77,24 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, 
 				ExtendedItems.STRIPPED_CHESTNUT_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, ExtendedItems.STRIPPED_CHESTNUT_LOG, null);
+		
+		makePillarSlabRecipe(consumer, ExtendedBlocks.BANANA_BEAM, 
+				ExtendedBlocks.BANANA_BEAM_SLAB, ExtendedItems.BANANA_LOG, null);
+		makeBoatRecipe(consumer, ExtendedItems.BANANA_BOAT, ExtendedItems.BANANA_PLANKS, null);
+		makeButtonRecipe(consumer, ExtendedItems.BANANA_BUTTON, ExtendedItems.BANANA_PLANKS, null);
+		makeDoorRecipe(consumer, ExtendedItems.BANANA_DOOR, ExtendedItems.BANANA_PLANKS, null);
+		makeFenceAndFenceGateRecipe(consumer, ExtendedBlocks.BANANA_FENCE, ExtendedBlocks.BANANA_FENCE_GATE,
+				ExtendedItems.BANANA_PLANKS, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.BANANA_LOG_SLAB, ExtendedItems.BANANA_LOG, null);
+		makePressurePlateRecipe(consumer, ExtendedBlocks.BANANA_PRESSURE_PLATE, ExtendedItems.BANANA_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.BANANA_STAIRS, ExtendedBlocks.BANANA_SLAB, ExtendedItems.BANANA_PLANKS, null);
+		makeTrapdoorRecipe(consumer, ExtendedBlocks.BANANA_TRAPDOOR, ExtendedItems.BANANA_PLANKS, null);
+		makeSignRecipe(consumer, ExtendedBlocks.BANANA_SIGN, ExtendedBlocks.BANANA_WALL_SIGN, ExtendedItems.BANANA_PLANKS, null);
+		makePlanksRecipe(consumer, ExtendedBlocks.BANANA_PLANKS, ExtendedBlocks.BANANA_LOG, 
+				ExtendedTags.Items.BANANA_LOGS, null);
+		makePlanksFromBlocksRecipeNoBranchWood(consumer, ExtendedItems.BANANA_PLANKS, ExtendedItems.BANANA_LOG_SLAB, 
+				ExtendedItems.STRIPPED_BANANA_LOG_SLAB, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB, ExtendedItems.STRIPPED_BANANA_LOG, null);
 		//CRAFTING TABLES
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE, 
 				()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
@@ -701,7 +719,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BANANA.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.BANANA_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_BANANA_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_BANANA_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.BANANA_LEAVES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.BANANA_SAPLING.get().getRegistryName().getPath());
 	}
+
 	@Override
 	public String getName() {
 		return "Renewed Extended Crafting Recipe Provider";

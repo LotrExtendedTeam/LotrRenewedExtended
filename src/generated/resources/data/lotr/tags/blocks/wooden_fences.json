@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "lotr:banana_fence",
     "lotr:chestnut_fence"
   ]
 }

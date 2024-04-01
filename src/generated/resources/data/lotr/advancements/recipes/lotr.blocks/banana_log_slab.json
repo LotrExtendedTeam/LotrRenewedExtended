@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:banana_log_slab"
+    ]
+  },
+  "criteria": {
+    "has_banana_log_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_log_slab"
+          }
+        ]
+      }
+    },
+    "has_banana_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:banana_log_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_log_slab",
+      "has_banana_log",
+      "has_the_recipe"
+    ]
+  ]
+}

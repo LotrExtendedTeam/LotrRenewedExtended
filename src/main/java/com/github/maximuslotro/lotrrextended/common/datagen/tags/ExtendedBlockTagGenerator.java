@@ -166,7 +166,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 			}
 		}
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.BARREN_DIRT.get());
-		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS);
+		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS);
 
 	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).add(ExtendedBlocks.GALVORN_BLOCK.get());
 	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).add(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK.get());
@@ -253,6 +253,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 
 	    tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
 	    .add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());
+	    tag(ExtendedTags.Blocks.BANANA_LOGS).add(ExtendedBlocks.BANANA_LOG.get()).add(ExtendedBlocks.STRIPPED_BANANA_LOG.get());
 	}
 
 	@Override

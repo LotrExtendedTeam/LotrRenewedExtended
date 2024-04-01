@@ -230,6 +230,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
 				continue;
 			}
+			add(ExtendedBlocks.BANANA_LEAVES.get(), (p_241170_0_) -> {
+		         return createLeavesDrops(p_241170_0_, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		         });
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
 			         return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);

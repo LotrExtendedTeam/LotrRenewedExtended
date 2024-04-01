@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:banana_pressure_plate"
+    ]
+  },
+  "criteria": {
+    "has_banana_pressure_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_pressure_plate"
+          }
+        ]
+      }
+    },
+    "has_banana_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:banana_pressure_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_pressure_plate",
+      "has_banana_planks",
+      "has_the_recipe"
+    ]
+  ]
+}
