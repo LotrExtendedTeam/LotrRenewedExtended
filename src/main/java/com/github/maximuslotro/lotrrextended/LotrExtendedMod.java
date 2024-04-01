@@ -36,7 +36,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
@@ -44,22 +43,23 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 public class LotrExtendedMod{
 
 	public static final String MODID = "lotrextended";
-
+	IEventBus modBus;
+	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
 	public LotrExtendedMod() {
 		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
-		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		modBus = FMLJavaModLoadingContext.get().getModEventBus();
+		forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
-		forgeBus.addListener(this::serverStarting);
 		modBus.addListener(this::setup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
 		forgeBus.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
 		forgeBus.addListener(this::addDimensionalSpacing);
+		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
@@ -78,12 +78,6 @@ public class LotrExtendedMod{
             ExtendedStructuresV5.setupStructures();
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
         });
-    }
-
-	public void serverStarting(FMLServerStartingEvent event) {
-		if(ExtendedServerConfig.enableDevMode.get()) {
-			DevEventHandlers.registerDevListender();
-		}
     }
 
 	public void registerCommands(RegisterCommandsEvent event) {
