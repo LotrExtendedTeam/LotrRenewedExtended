@@ -480,6 +480,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath(), has(ExtendedItems.BANANA_CAKE.get()))
 		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.BANANA_BREAD.get())
+		.pattern("XSX")
+		.define('S', Ingredient.of(ExtendedItems.BANANA.get()))
+		.define('X', Ingredient.of(Items.WHEAT))
+		.unlockedBy("has_"+ExtendedItems.BANANA_BREAD.get().getRegistryName().getPath(), has(ExtendedItems.BANANA_BREAD.get()))
+		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BANANA_BREAD.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.SILVER_COIN_ONE.get(), 4)

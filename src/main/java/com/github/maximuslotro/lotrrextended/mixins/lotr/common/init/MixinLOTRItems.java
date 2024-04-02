@@ -520,6 +520,7 @@ public class MixinLOTRItems {
 		ExtendedItems.CHEESE_WHEEL  = regCakeBlockItemD(ExtendedBlocks.CHEESE_WHEEL, LOTRItemGroups.FOOD);
 		ExtendedItems.CHEESE_SLICE = regItemB("cheese_slice", () -> new ExtendedUseItemAwardStatItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_SLICE), ExtendedStats.EAT_CHEESE_SLICE));
 		ExtendedItems.BANANA = regItemB("banana", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BANANA)));
+		ExtendedItems.BANANA_BREAD = regItemB("banana_bread", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BANANA_BREAD)));
 		ExtendedItems.BANANA_CAKE  = regCakeBlockItemD(ExtendedBlocks.BANANA_CAKE, LOTRItemGroups.FOOD);
 
 

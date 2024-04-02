@@ -17,6 +17,7 @@ public class ExtendedFoods {
 
 	public static final Food ROASTED_CHESTNUT = new Builder().nutrition(2).saturationMod(0.8F).build();
 	public static final Food BANANA = new Builder().nutrition(2).saturationMod(2.0F).build();
+	public static final Food BANANA_BREAD = new Builder().nutrition(5).saturationMod(6).build();
 
 	public static void init() {}
 }

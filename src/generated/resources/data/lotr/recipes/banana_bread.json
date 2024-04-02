@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XSX"
+  ],
+  "key": {
+    "S": {
+      "item": "lotr:banana"
+    },
+    "X": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "lotr:banana_bread"
+  }
+}
