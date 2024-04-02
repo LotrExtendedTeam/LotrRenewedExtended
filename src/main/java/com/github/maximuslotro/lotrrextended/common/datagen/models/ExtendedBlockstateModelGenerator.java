@@ -289,7 +289,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedCakeBlock) {
-				genCakeBlock((CakeBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_inner"));
+				genCakeBlock((ExtendedCakeBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_inner"));
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedHearthBlock) {
@@ -778,7 +778,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
 	}
 
-	private void genCakeBlock(CakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {
+	private void genCakeBlock(ExtendedCakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {
 		registeredBlocks.add(cake);
 		ModelFile cakeBlock = models().withExistingParent("lotrextended:" + cake.getRegistryName().getPath(), "block/cake")
 				.texture("particle", textureSide).texture("bottom", textureBottom).texture("top", textureTop)

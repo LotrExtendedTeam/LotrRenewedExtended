@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "XSX",
+    "ZZZ"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:milk_bucket"
+    },
+    "X": {
+      "item": "lotr:banana"
+    },
+    "S": {
+      "item": "minecraft:egg"
+    },
+    "Z": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "lotr:banana_cake"
+  }
+}
