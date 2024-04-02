@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.client.render.entity;
 import lotr.client.render.entity.ExtendedHobbitFarmerRenderer;
 import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
 import lotr.client.render.entity.ExtendedOddmentCollectorRenderer;
+import lotr.client.render.entity.ExtendedDunedainRangerRenderer;
 import lotr.client.render.entity.LOTREntityRenderers;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;
@@ -21,6 +22,7 @@ public class MixinLOTREntityRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedOddmentCollectorRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_CONKER.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
     }
 

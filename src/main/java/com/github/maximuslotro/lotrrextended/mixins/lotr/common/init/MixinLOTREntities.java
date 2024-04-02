@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
 import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
 import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.projectile.ExtendedConkerEntity;
 import lotr.common.init.ExtendedEntities;
@@ -40,11 +41,11 @@ public class MixinLOTREntities {
     }
     
     @Shadow(remap=false)
-    private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory, 
+    private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
     		LOTREntities.EntitySizeHolder size, int trackRange,int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
     	return null;
     }
-    private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory, 
+    private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
     		LOTREntities.EntitySizeHolder size, int trackRange,int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
     	RegistryObject<EntityType<T>> entity = regAnimal(key, factory, attribFactory, size, trackRange, updateFreq, eggColors);
     	if(DatagenModLoader.isRunningDataGen()) {
@@ -52,7 +53,7 @@ public class MixinLOTREntities {
     	}
     	return entity;
     }
-    
+
     @Shadow(remap=false)
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
 		return null;
@@ -67,6 +68,7 @@ public class MixinLOTREntities {
 
     @Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
+        ExtendedEntities.DUNEDAIN_RANGER = regNPCD("dunedain_ranger", ExtendedDunedainRangerEntity::new, ExtendedDunedainRangerEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
         ExtendedEntities.HOBBIT_BARTENDER = regNPCD("hobbit_bartender", ExtendedHobbitBartenderEntity::new, ExtendedHobbitBartenderEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedEntities.HOBBIT_FARMER = regNPCD("hobbit_farmer", ExtendedHobbitFarmerEntity::new, ExtendedHobbitFarmerEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));

@@ -1,0 +1,61 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Long have we guarded these lands, #p.",
+        "We Rangers have watched over these lands for generations lost to memory.",
+        "What brings you to this wilderness, #p?",
+        "May your journey be swift and your cloak warm, #p.",
+        "By nightfall this land will be crawling with Orcs.",
+        "Be on your guard, #p. There are many enemies in these parts.",
+        "Good day, #p. From which land do you hail?",
+        "Keep a safe camp at night, and stay out of the shadows.",
+        "It is not for nothing that we watch these lands, #p. Many foul beasts nest here.",
+        "We Rangers remember the ancient lore of the West. We have ways to walk unseen.",
+        "These lands are my domain, #p, and I do all in my power to safeguard them.",
+        "Beware the wretched Morgul-scum that crawls out at night, #p.",
+        "The wolf that one hears is worse than the Orc that one fears.",
+        "Were it not for us, these lands would have fallen to the darkness long ago.",
+        "Many of the folk that dwell here consider us bandits and outcasts. They do not know our true duties.",
+        "My kin has long guarded these lands from the dangers that lie to the North.",
+        "Be wary, #p. Many new dangers have arisen in these dark days.",
+        "As long as we watch over these lands, travellers such as you will be able to travel in peace, #p.",
+        "Lonely folk are we, Rangers of the wild, hunters - but hunters ever of the servants of the Enemy.",
+        "The servants of the Enemy are found in many places, not in Mordor only.",
+        "Beware of the ancient wights and shades that roam this land, #p. It is said they can take over your body.",
+        "In time of need, we will ride to the aid of Isildur's heir.",
+        "Our homes, such as we have, are here in the North. "
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Your death shall come swift as the arrow that pierces flesh, #p!",
+        "I shall make an end of you!",
+        "You are not welcome in these lands, #p!",
+        "Flee our lands, you wretched ally of the Morgul-filth!",
+        "You are an enemy of the race of Men, #p!",
+        "What madness led you here?",
+        "Crawl back into the night, #p!",
+        "You thought you could match our skill? You are sorely mistaken!",
+        "When did #p forsake reason for madness?",
+        "Your doom approaches, #p!",
+        "Do not underestimate the Rangers of the North.",
+        "Go back to the darkness whence you came!",
+        "What devilry of the Dark Lord do you bring here?",
+        "Begone from these lands!",
+        "You shall meet your doom swiftly, scum of Mordor!",
+        "I will not allow you to harm the free folk of these lands!"
+      ]
+    }
+  ]
+}

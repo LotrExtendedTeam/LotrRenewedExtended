@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
+
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
@@ -67,7 +68,6 @@ public class ForgeInventoryEvents {
     public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
         if (event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof SpawnEggItem) {
            if (event.getTarget() instanceof ExtendedTraderEntity) {
-               System.out.println("Right-clicked a trader with a SpawnEgg");
                ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getTarget();
 
                if (trader.canTradeWith(event.getPlayer())) {

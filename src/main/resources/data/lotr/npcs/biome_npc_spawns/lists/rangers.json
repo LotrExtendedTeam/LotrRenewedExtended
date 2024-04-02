@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "entity_type": "lotr:dunedain_ranger",
+      "weight": 10,
+      "min_count": 2,
+      "max_count": 4
+    }
+  ]
+}

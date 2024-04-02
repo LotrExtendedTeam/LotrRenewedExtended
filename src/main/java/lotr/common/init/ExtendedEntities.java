@@ -1,5 +1,6 @@
 package lotr.common.init;
 
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class ExtendedEntities {
 
 	public static List<String> REGISTEREDMOBENTITIES = new ArrayList<>();
 	public static List<String> REGISTEREDNONMOBENTITIES = new ArrayList<>();
+	public static List<String> REGISTEREDENTITIES = new ArrayList<>();
+	public static  RegistryObject<EntityType<ExtendedDunedainRangerEntity>> DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedHobbitBartenderEntity>> HOBBIT_BARTENDER;
 	public static RegistryObject<EntityType<ExtendedHobbitFarmerEntity>> HOBBIT_FARMER;
 	public static RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;
