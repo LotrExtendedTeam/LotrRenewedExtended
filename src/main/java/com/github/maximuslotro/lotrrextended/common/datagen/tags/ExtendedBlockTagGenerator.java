@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
@@ -53,6 +55,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	public static final ITag.INamedTag<Block> CHARRABLE_STRIPPED_LOGS = BlockTags.bind("lotr:charrable_stripped_logs");
 	public static final ITag.INamedTag<Block> CHARRABLE_STRIPPED_WOODS = BlockTags.bind("lotr:charrable_stripped_woods");
 	//MINECRAFT
+	public static final ITag.INamedTag<Block> BEDS = BlockTags.bind(BlockTags.BEDS.getName().toString());
     public static final ITag.INamedTag<Block> SLABS = BlockTags.bind(BlockTags.SLABS.getName().toString());
     public static final ITag.INamedTag<Block> WOODEN_SLABS = BlockTags.bind(BlockTags.WOODEN_SLABS.getName().toString());
     public static final ITag.INamedTag<Block> STAIRS = BlockTags.bind(BlockTags.STAIRS.getName().toString());
@@ -81,6 +84,9 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
 				tag(FLOWER_POTS).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof ExtendedBedBlock||block.getValue().get() instanceof ExtendedFullBedBlock) {
+				tag(BEDS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRPlanksBlock) {
 				tag(PLANKS).add(block.getValue().get());

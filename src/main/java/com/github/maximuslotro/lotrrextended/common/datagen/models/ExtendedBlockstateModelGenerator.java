@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -65,6 +66,7 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
+import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ResourceLocation;
@@ -123,6 +125,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
 				genBedBlockItem((ExtendedBedBlock) block.getValue().get(), block.getKey());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedFullBedBlock) {
+				genBedrollBlockItem((ExtendedFullBedBlock) block.getValue().get(), block.getKey());
 				continue;
 			}
 			if(block.getValue().get() instanceof BranchBlock) {
@@ -776,6 +782,21 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile modelFile = models().getExistingFile(mcLoc("block/bed"));
 		simpleBlock(bed, modelFile);
 		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
+	}
+
+	private void genBedrollBlockItem(ExtendedFullBedBlock bed, String name) {
+		registeredBlocks.add(bed);
+		ModelFile head = models().getExistingFile(lotrExtendedLoc("block/bedroll_head"));
+		ModelFile foot = models().getExistingFile(lotrExtendedLoc("block/bedroll_foot"));
+		getVariantBuilder(bed).forAllStates(state -> {
+			Direction bites = state.getValue(ExtendedFullBedBlock.FACING);
+			BedPart part = state.getValue(ExtendedFullBedBlock.PART);
+			return ConfiguredModel.builder()
+                    .modelFile(part == BedPart.HEAD ? head : foot)
+                    .rotationY(bites == Direction.EAST ? 270 : (bites == Direction.SOUTH ? 0 : (bites == Direction.WEST ? 90 : 180)))
+                    .build();
+		});
+		//itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("layer0", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_roll")));
 	}
 
 	private void genCakeBlock(ExtendedCakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {

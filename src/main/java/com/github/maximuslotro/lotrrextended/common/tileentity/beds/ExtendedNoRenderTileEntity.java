@@ -4,10 +4,10 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBedTileEn
 
 import lotr.common.init.ExtendedTileEntities;
 
-public class ExtendedBedrollTileEntity extends ExtendedBedTileEntity<ExtendedBedrollTileEntity>{
+public class ExtendedNoRenderTileEntity extends ExtendedBedTileEntity<ExtendedNoRenderTileEntity>{
 
-	public ExtendedBedrollTileEntity() {
-		super(ExtendedTileEntities.BEDROLL.get());
+	public ExtendedNoRenderTileEntity() {
+		super(ExtendedTileEntities.NORENDER.get());
 	}
 
 }

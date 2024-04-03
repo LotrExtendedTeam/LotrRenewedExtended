@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -236,6 +237,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
 			         return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
+			      });
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedFullBedBlock) {
+				add(block.getValue().get(), (p_218569_0_) -> {
+			         return createSinglePropConditionTable(p_218569_0_, ExtendedFullBedBlock.PART, BedPart.HEAD);
 			      });
 				continue;
 			}

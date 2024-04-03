@@ -1,6 +1,0 @@
-{
-  "parent": "lotrextended:item/template_bed",
-  "textures": {
-    "1": "lotrextended:entity/bed/bedroll"
-  }
-}
