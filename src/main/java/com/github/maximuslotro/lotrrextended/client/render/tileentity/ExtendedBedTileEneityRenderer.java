@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBedrollTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -135,6 +136,9 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 			}
 			if(tileEntity instanceof ExtendedWhiteFurBedTileEntity) {
 				return BlockRendererSetup.WHITE_FUR_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedBedrollTileEntity) {
+				return BlockRendererSetup.BEDROLL_MATERIAL;
 			}
 			return null;
 		}

@@ -34,6 +34,8 @@ public class BlockRendererSetup {
 	public static final RenderMaterial SILVER_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, SILVER_FUR_BED);
 	public static final ResourceLocation WHITE_FUR_BED = createNewBedModel("white_fur_bed");
 	public static final RenderMaterial WHITE_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, WHITE_FUR_BED);
+	public static final ResourceLocation BEDROLL = createNewBedModel("bedroll");
+	public static final RenderMaterial BEDROLL_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, BEDROLL);
 //	public static Callable<ItemStackTileEntityRenderer> createStoneChestRenderer() {
 //		return () -> new ExtendedItemStackRenderer(ExtendedStoneChestTileEntity::new);
 //	}
@@ -47,6 +49,7 @@ public class BlockRendererSetup {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.GRAY_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.SILVER_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WHITE_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.BEDROLL.get(), ExtendedBedTileEneityRenderer::new);
 	}
 
 	public static ResourceLocation createNewChestModel(String name) {
@@ -69,6 +72,7 @@ public class BlockRendererSetup {
 			event.addSprite(GRAY_FUR_BED);
 			event.addSprite(SILVER_FUR_BED);
 			event.addSprite(WHITE_FUR_BED);
+			event.addSprite(BEDROLL);
 		}
 	}
 
