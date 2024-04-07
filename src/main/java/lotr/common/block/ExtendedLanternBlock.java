@@ -1,6 +1,6 @@
 package lotr.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBlockParms;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +23,7 @@ public class ExtendedLanternBlock extends NonWaterloggableLanternBlock {
 	private static final VoxelShape morgulHangingCollisionShape = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 3.0D, 11.0D);
 
 	public ExtendedLanternBlock(int lightLevel) {
-		super(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlocks.litBlockEmission(lightLevel)).noOcclusion());
+		super(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(lightLevel)).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
 	}
 

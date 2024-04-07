@@ -14,6 +14,7 @@ public class ExtendedFoods {
 
 	public static final Food CHEESE_CURDS = new Builder().nutrition(2).saturationMod(0.4F).build();
 	public static final Food CHEESE_SLICE = new Builder().nutrition(4).saturationMod(0.8F).build();
+	public static final Food AGED_CHEESE_SLICE = new Builder().nutrition(5).saturationMod(0.8F).build();
 
 	public static final Food ROASTED_CHESTNUT = new Builder().nutrition(2).saturationMod(0.8F).build();
 	public static final Food BANANA = new Builder().nutrition(2).saturationMod(2.0F).build();

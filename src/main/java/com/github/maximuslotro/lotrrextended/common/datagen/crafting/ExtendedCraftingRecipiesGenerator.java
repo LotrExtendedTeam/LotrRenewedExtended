@@ -754,6 +754,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_BANANA_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BANANA_LEAVES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BANANA_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.AGED_CHEESE_WHEEL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.AGED_CHEESE_SLICE.get().getRegistryName().getPath());
 	}
 
 	@Override

@@ -210,8 +210,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ELDERBERRY;
 	public static RegistryObject<Item> WILDBERRY;
 	public static RegistryObject<Item> CHEESE_WHEEL;
+	public static RegistryObject<Item> AGED_CHEESE_WHEEL;
 	public static RegistryObject<Item> CHEESE_CURDS;
 	public static RegistryObject<Item> CHEESE_SLICE;
+	public static RegistryObject<Item> AGED_CHEESE_SLICE;
 	public static RegistryObject<Item> BANANA;
 	public static RegistryObject<Item> BANANA_CAKE;
 	public static RegistryObject<Item> BANANA_BREAD;

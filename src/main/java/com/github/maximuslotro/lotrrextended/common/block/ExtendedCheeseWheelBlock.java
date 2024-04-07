@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import java.util.Random;
+
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 
 import lotr.common.item.DaggerItem;
@@ -13,13 +16,16 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock {
+public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements ExtedndedAgeingCheese {
 	private final RegistryObject<Item> sliceitem;
-	public ExtendedCheeseWheelBlock(Properties p_i48434_1_, float compostValue, RegistryObject<Item> sliceitem) {
+	private final ExtendedCheeseState age;
+	public ExtendedCheeseWheelBlock(Properties p_i48434_1_, float compostValue, RegistryObject<Item> sliceitem, ExtendedCheeseState age) {
 		super(p_i48434_1_, compostValue);
 		this.sliceitem = sliceitem;
+		this.age = age;
 	}
 
 	@Override
@@ -34,7 +40,12 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock {
 			if (!entity.canEat(false)) {
 				return ActionResultType.PASS;
 			}
-			entity.getFoodData().eat(2, 0.1F);
+			if(getAge()==ExtendedCheeseState.AGED) {
+				entity.getFoodData().eat(3, 0.1F);
+			}
+			else {
+				entity.getFoodData().eat(2, 0.1F);
+			}
 			entity.awardStat(ExtendedStats.EAT_CHEESE_SLICE);
 			world.playSound((PlayerEntity)null, pos, SoundEvents.PLAYER_BURP, SoundCategory.BLOCKS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
 		}
@@ -45,5 +56,20 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock {
 			world.removeBlock(pos, false);
 		}
 		return ActionResultType.SUCCESS;
+	}
+
+	@Override
+	public void randomTick(BlockState p_154929_, ServerWorld p_154930_, BlockPos p_154931_, Random p_154932_) {
+		this.onRandomTick(p_154929_, p_154930_, p_154931_, p_154932_);
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState p_154935_) {
+		return ExtedndedAgeingCheese.getNext(p_154935_.getBlock()).isPresent();
+	}
+	  
+	@Override
+	public ExtendedCheeseState getAge() {
+		return age;
 	}
 }

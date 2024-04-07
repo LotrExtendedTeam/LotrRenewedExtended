@@ -269,6 +269,7 @@ public class ExtendedBlocks {
 	public static Map<String, RegistryObject<Block>> ENTITYSPAWNERBLOCKS = new HashMap<>();
 
 	public static RegistryObject<Block> CHEESE_WHEEL;
+	public static RegistryObject<Block> AGED_CHEESE_WHEEL;
 	public static RegistryObject<Block> BANANA_CAKE;
 
 	public static RegistryObject<Block> REMAINS_ORC;
