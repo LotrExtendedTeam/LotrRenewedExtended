@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedNoRenderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -30,5 +31,6 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedSilverFurBedTileEntity>> SILVER_FUR_BED;
 	public static RegistryObject<TileEntityType<ExtendedWhiteFurBedTileEntity>> WHITE_FUR_BED;
 	public static RegistryObject<TileEntityType<ExtendedNoRenderTileEntity>> NORENDER;
+	public static RegistryObject<TileEntityType<ExtendedBookshelfTileEntity>> BOOKSHELF;
 }
 

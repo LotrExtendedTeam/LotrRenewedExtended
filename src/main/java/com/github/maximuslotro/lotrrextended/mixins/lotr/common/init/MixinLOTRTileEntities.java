@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedNoRenderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -22,6 +23,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedSt
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRTileEntities;
+import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
@@ -51,6 +53,7 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.SILVER_FUR_BED = register("silver_fur_bed_tileentity", () -> Builder.of(ExtendedSilverFurBedTileEntity::new, ExtendedBlocks.SILVER_FUR_BED.get()));
     	ExtendedTileEntities.WHITE_FUR_BED = register("white_fur_bed_tileentity", () -> Builder.of(ExtendedWhiteFurBedTileEntity::new, ExtendedBlocks.WHITE_FUR_BED.get()));
     	ExtendedTileEntities.NORENDER = register("no_render_tileentity", () -> Builder.of(ExtendedNoRenderTileEntity::new, ExtendedBlocks.BEDROLL.get()));
+    	ExtendedTileEntities.BOOKSHELF = register("bookshelf", () -> Builder.of(ExtendedBookshelfTileEntity::new, Blocks.BOOKSHELF));
     	//register("weapon_rack",() -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK));	
     }
 }

@@ -16,6 +16,7 @@ public class ExtendedStats {
 	public static ResourceLocation ANIMALS_BRANDED;
 	public static ResourceLocation TRADERS_TRADED;
 	public static ResourceLocation OPEN_STONE_CHEST;
+	public static ResourceLocation OPEN_BOOKSHELF;
 
 	public static void init() {
 		FELLOWSHIP_CREATE = registerStat("fellowship_create", "Fellowships Created", IStatFormatter.DEFAULT);
@@ -25,6 +26,7 @@ public class ExtendedStats {
 		ANIMALS_BRANDED = registerStat("animals_branded", "Animals Branded", IStatFormatter.DEFAULT);
 		TRADERS_TRADED = registerStat("traders_traded", "Times Traded With Traders", IStatFormatter.DEFAULT);
 		OPEN_STONE_CHEST = registerStat("stone_chest_open", "Stone Chests Opened", IStatFormatter.DEFAULT);
+		OPEN_BOOKSHELF = registerStat("bookshelves_opened", "Bookshelves Interacted", IStatFormatter.DEFAULT);
 	}
 
 	private static ResourceLocation registerStat(String key, String defaultName, IStatFormatter formatter) {
