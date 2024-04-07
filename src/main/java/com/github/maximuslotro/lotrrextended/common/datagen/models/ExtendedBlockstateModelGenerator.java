@@ -779,9 +779,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genBedBlockItem(ExtendedBedBlock bed, String name) {
 		registeredBlocks.add(bed);
-		ModelFile modelFile = models().getExistingFile(mcLoc("block/bed"));
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), mcLoc("block/bed")).texture("particle", lotrExtendedLoc("entity/bed/"+name));
 		simpleBlock(bed, modelFile);
-		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
+		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
 	}
 
 	private void genBedrollBlockItem(ExtendedFullBedBlock bed, String name) {
@@ -796,7 +796,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .rotationY(bites == Direction.EAST ? 270 : (bites == Direction.SOUTH ? 0 : (bites == Direction.WEST ? 90 : 180)))
                     .build();
 		});
-		//itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("layer0", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_roll")));
+		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("0", lotrExtendedLoc("entity/bed/"+name)).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bedroll")));
 	}
 
 	private void genCakeBlock(ExtendedCakeBlock cake, ResourceLocation textureBottom, ResourceLocation textureTop, ResourceLocation textureSide, ResourceLocation textureInside) {

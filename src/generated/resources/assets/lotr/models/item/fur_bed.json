@@ -1,6 +1,7 @@
 {
   "parent": "lotrextended:item/template_bed",
   "textures": {
-    "1": "lotrextended:entity/bed/fur_bed"
+    "1": "lotrextended:entity/bed/fur_bed",
+    "particle": "lotrextended:entity/bed/fur_bed"
   }
 }

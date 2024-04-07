@@ -1,10 +1,6 @@
 {
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
-	"textures": {
-		"0": "lotrextended:entity/bed/bedroll",
-		"particle": "lotrextended:entity/bed/bedroll"
-	},
 	"elements": [
 		{
 			"name": "bedroll",
