@@ -307,7 +307,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					geChestBlockItem(block.getValue().get(), block.getKey());
 					continue;
 				}
-				if(block.getKey().contains("barren_dirt")) {
+				if(block.getKey().equals("barren_dirt")) {
 					genExistingMcBlock(block.getValue().get(), "dirt");
 					continue;
 				}
@@ -328,7 +328,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						if(block.getKey().contains("pillar")) {
 							ResourceLocation TB = lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_face");
 							ResourceLocation S = lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5));
-							genSlabBlockItem((SlabBlock) block.getValue().get(), S, TB, TB);
+							genSlabBlockItem((SlabBlock) block.getValue().get(), S, TB, TB, S);
 							continue;
 						}
 						if(block.getKey().contains("mud_path")) {
@@ -342,7 +342,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						if(block.getKey().contains("log")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)),
 									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"));
+									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
+									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 							continue;
 						}
 						boolean didGen = false;
@@ -356,11 +357,32 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 								didGen = true;
 								genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)),
 										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"));
+										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
+										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 								continue;
 							}
 						}
 						if(didGen) {
+							continue;
+						}
+						if(block.getKey().equals("coarse_dirt_slab")||(block.getKey().equals("dirt_slab"))) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/coarse_dirt"));
+							continue;
+						}
+						if(block.getKey().equals("grass_path_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_side"),
+									mcLoc("block/dirt"),
+									mcLoc("block/grass_path_top"), mcLoc("block/grass_path"));
+							continue;
+						}
+						if(block.getKey().equals("grass_block_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_side"),
+									mcLoc("block/dirt"),
+									mcLoc("block/grass_block_top"), mcLoc("block/grass_block"));
+							continue;
+						}
+						if(block.getKey().contains("barren_dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
@@ -642,14 +664,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genSlabBlockItem(SlabBlock slab, ResourceLocation texture) {
-		genSlabBlockItem(slab, texture, texture, texture);
+		genSlabBlockItem(slab, texture, texture, texture, texture);
 	}
 
-	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation doubleModel) {
 		registeredBlocks.add(slab);
 		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), side, bottom, top);
 		ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", side, bottom, top);
-		ModelFile slabDouble = models().getExistingFile(side);
+		ModelFile slabDouble = models().getExistingFile(doubleModel);
 
 		getVariantBuilder(slab)
 		.forAllStatesExcept(state -> {

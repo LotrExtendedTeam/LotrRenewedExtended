@@ -277,6 +277,11 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> REMAINS_MAN;
 	public static RegistryObject<Block> REMAINS_DWARF;
 	public static RegistryObject<Block> BARREN_DIRT;
+	public static RegistryObject<Block> BARREN_DIRT_SLAB;
+	public static RegistryObject<Block> COARSE_DIRT_SLAB;
+	public static RegistryObject<Block> GRASS_PATH_SLAB;
+	public static RegistryObject<Block> DIRT_SLAB;
+	public static RegistryObject<Block> GRASS_BLOCK_SLAB;
 
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB;
