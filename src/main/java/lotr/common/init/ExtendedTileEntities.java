@@ -3,8 +3,8 @@ package lotr.common.init;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;

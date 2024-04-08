@@ -35,9 +35,6 @@ public class BlockRendererSetup {
 	public static final RenderMaterial SILVER_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, SILVER_FUR_BED);
 	public static final ResourceLocation WHITE_FUR_BED = createNewBedModel("white_fur_bed");
 	public static final RenderMaterial WHITE_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, WHITE_FUR_BED);
-//	public static Callable<ItemStackTileEntityRenderer> createStoneChestRenderer() {
-//		return () -> new ExtendedItemStackRenderer(ExtendedStoneChestTileEntity::new);
-//	}
 
 	public static void regModels() {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_CHEST.get(), ExtendedChestTileEntityRenderer::new);

@@ -789,7 +789,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(bed);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), mcLoc("block/bed")).texture("particle", lotrExtendedLoc("entity/bed/"+name));
 		simpleBlock(bed, modelFile);
-		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
+		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(mcLoc("item/template_bed")));
+		//itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("1", lotrExtendedLoc("entity/bed/"+name)).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(lotrExtendedLoc("item/template_bed")));
 	}
 
 	private void genBedrollBlockItem(ExtendedFullBedBlock bed, String name) {

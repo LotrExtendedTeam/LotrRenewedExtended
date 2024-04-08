@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedNoRenderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BedBlock;

@@ -28,6 +28,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.client.render.block.ItemRenderHelper;
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
@@ -39,6 +40,13 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 import com.google.common.base.Function;
 
@@ -49,6 +57,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraft.item.Item.Properties;
@@ -105,8 +115,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 
-	private static RegistryObject<Item> regArbitraryBlockItemD(RegistryObject<Block> blockSup,
-			Function<Block, ? extends BlockItem> itemMaker) {
+	private static RegistryObject<Item> regArbitraryBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
 		String name = blockSup.getId().getPath();
 		return regItem(name, () -> {
 			return (BlockItem) itemMaker.apply(blockSup.get());
@@ -116,6 +125,16 @@ public class MixinLOTRItems {
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
 			return new ExtendedBedItem(b, (new Properties()).stacksTo(1).tab(group));
+		});
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
+
+	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
+			return new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group).setISTER(ister));
 		});
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
@@ -294,13 +313,13 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSSY_MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		//############################################################DECORATION##############################################################
-		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO);
-		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO);
-		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO);
-		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO);
-		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO);
-		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO);
-		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO);
+		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, () -> strawBedRenderer());
+		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, () -> orcBedRenderer());
+		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, () -> blackFurBedRenderer());
+		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, () -> furBedRenderer());
+		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, () -> grayFurBedRenderer());
+		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, () -> silverFurBedRenderer());
+		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, () -> whiteFurBedRenderer());
 		ExtendedItems.BEDROLL = regBedBlockItemD(ExtendedBlocks.BEDROLL, LOTRItemGroups.DECO);
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItemB(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);
@@ -597,5 +616,41 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), CoinType.TEN));
 		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), CoinType.HUNDRED));
 		ExtendedItems.CONKER =  regItemB("conker", () -> new ExtendedThrowableConkerItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(16)));
+	}
+
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> blackFurBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedBlackFurBedTileEntity::new);
+	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> furBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedFurBedTileEntity::new);
+	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> grayFurBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedGrayFurBedTileEntity::new);
+	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> silverFurBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedSilverFurBedTileEntity::new);
+	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedWhiteFurBedTileEntity::new);
+	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> orcBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedOrcBedTileEntity::new);
+	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> strawBedRenderer() {
+		return () -> new ItemRenderHelper(ExtendedStrawBedTileEntity::new);
 	}
 }

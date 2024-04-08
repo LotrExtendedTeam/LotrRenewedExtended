@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
-import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;

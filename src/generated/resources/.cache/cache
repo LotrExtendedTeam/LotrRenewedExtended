@@ -1,3 +1,4 @@
+b63ae2c004e0212be074d5901af9c6f0d456c9cb assets/lotr/blockstates/aged_cheese_wheel.json
 e8bdf28b43546c7cd367d28ecf7693b22cb98396 assets/lotr/blockstates/amber_block.json
 3b2907b4e96280c428cfe420fbb2abda8c8d1dd4 assets/lotr/blockstates/amber_ore.json
 3433b848f6b7255ccedcb3ea3935bec9279dfb24 assets/lotr/blockstates/amethyst_block.json
@@ -315,7 +316,7 @@ cb04c7d86e7b5f50a4f6af30844c3945900cc08e assets/lotr/models/item/barren_dirt.jso
 3688251a01925f90babd1d2345627ab7dea4b0c5 assets/lotr/models/item/bedroll.json
 d0f51c6cd35211cb3869d2ae6d61fcd5fa6b9984 assets/lotr/models/item/black_carved_gondor_brick.json
 a0c0cf3a3cf0a9ac7af76b987c58217f817ad2b4 assets/lotr/models/item/black_fur.json
-f25c950639d3d7792934c155eec5a3a559b41ca5 assets/lotr/models/item/black_fur_bed.json
+013fa664727d8ee1a5abf084949d6f24a27dc53e assets/lotr/models/item/black_fur_bed.json
 650726148314bc48c253ddcd667a3317b490f4c1 assets/lotr/models/item/black_fur_bundle.json
 09129bcf89f620394a6c440fedaa3e2b331b22b3 assets/lotr/models/item/black_packed_fur.json
 406171af4a50c89754ffd01c54452e7a4350b6a0 assets/lotr/models/item/black_packed_fur_slab.json
@@ -426,7 +427,7 @@ f4dfff327e80f2576e966a5cf12b519f27b97051 assets/lotr/models/item/emerald.json
 04c7626934c9d6c1d8fb1196b86977516b8e6954 assets/lotr/models/item/flowery_rhunic_brick_slab.json
 cc0c3809134de4faa78f72f2f18054b249723907 assets/lotr/models/item/flowery_rhunic_brick_stairs.json
 58821ab8785682d96119697d19479750fcfca87f assets/lotr/models/item/flowery_rhunic_brick_wall.json
-f32fc51097a35f10f180b6c263f29efa863f10a0 assets/lotr/models/item/fur_bed.json
+963c46b8dab1e657cde8c4eafe8f203607b016dc assets/lotr/models/item/fur_bed.json
 2536473d6a48064522786dae8bbbf6e8e9ac1baf assets/lotr/models/item/galvorn_block.json
 76223217474a0297a5eac2110dd44413f64f016f assets/lotr/models/item/galvorn_ingot.json
 6c4ac82ec163ea1bd8ef2f15dcd2707b4535dfdd assets/lotr/models/item/gilded_iron_block.json
@@ -446,7 +447,7 @@ ca9d1a4d19bb5ba3b364456b4ee8c3b1e4a4aba8 assets/lotr/models/item/golden_taurethr
 306e600a2b41d4260b713a49c99dc343be70bbcd assets/lotr/models/item/golden_taurethrim_pillar.json
 1ea8aa3fa3d9a935cffbd3ed1e13370cdb9075eb assets/lotr/models/item/golden_taurethrim_pillar_slab.json
 94cfcb17130c63c814a92ea435d6e52f06f1e3c7 assets/lotr/models/item/gray_fur.json
-64d08bde48019819699b9fa7853a3b88e30b856b assets/lotr/models/item/gray_fur_bed.json
+bc94a2e5baeadbbda3e960db2f54cbb3a419d5be assets/lotr/models/item/gray_fur_bed.json
 6e600b6ad6e0d570dfb928d83fcf6eb7159eb403 assets/lotr/models/item/gray_fur_bundle.json
 687e0b54282acdd602f081ec730393f17410038c assets/lotr/models/item/gray_packed_fur.json
 9327f1d101455e959b3d76220ece86f54033848c assets/lotr/models/item/gray_packed_fur_slab.json
@@ -531,7 +532,7 @@ ad050d80972e7468bc93abd2f01b6c7357c2e7f4 assets/lotr/models/item/obsidian_tauret
 2f573d072534f642eb5a91ae25c3e2b83bb01e59 assets/lotr/models/item/opal.json
 690e53f208f8ba6a4acc815ad83ebf7821723896 assets/lotr/models/item/opal_block.json
 ce18b92e52b1c9de86a4d95b96e3e4a49b949866 assets/lotr/models/item/opal_ore.json
-af9cf2ca5a087846ae943bdb525cceea832c52f1 assets/lotr/models/item/orc_bed.json
+981303f8e3a4a760ce90a7706cc66c6ca9fce8da assets/lotr/models/item/orc_bed.json
 21e061194438f7a0b7f88676514d4a5533d7757d assets/lotr/models/item/orc_steel_nugget.json
 602a8c71e9482fb665d6daff64a918717fb6a525 assets/lotr/models/item/packed_fur.json
 2f23434c19e1535954d3966dae302a5c3d6ad928 assets/lotr/models/item/packed_fur_slab.json
@@ -581,7 +582,7 @@ c2f94b6a67d6a2e4c5786c748a91124d98fa7788 assets/lotr/models/item/scorched_stone.
 d4196f118eddebbce13a4c38955328f79c36db66 assets/lotr/models/item/silver_coin_one.json
 74c66b2718d4e975dac79b0800a6de9d76709637 assets/lotr/models/item/silver_coin_ten.json
 f0d7b002729e125bcea4d2b48ae3b84a662b1ec8 assets/lotr/models/item/silver_fur.json
-481d7353f006376315bc4ef615db500418697c9e assets/lotr/models/item/silver_fur_bed.json
+45dcd08857055d1a920219518ac87aeb38428dde assets/lotr/models/item/silver_fur_bed.json
 9a2fb41e66a2e262f7c0cbcf9bb627c530652703 assets/lotr/models/item/silver_fur_bundle.json
 52011a92189e75cf05631874e7c5925e86bab156 assets/lotr/models/item/silver_packed_fur.json
 c11ba2d275a37baafe9c6884d527f8743352f552 assets/lotr/models/item/silver_packed_fur_slab.json
@@ -595,7 +596,7 @@ e587a0ff1e41beacffd0c9b559ae8b35cb9bec7a assets/lotr/models/item/smooth_gondor_r
 6a852bf875680f555d8c6d4d1d1730c8ab4d8736 assets/lotr/models/item/smooth_stone_stairs.json
 3fe98af1f6c91b3d6f4e41691fdc0f29578ab360 assets/lotr/models/item/stone_chest.json
 0b4dc990ab52b2326fb5a3fc33a54b04e6aba11f assets/lotr/models/item/stone_taurethrim_crafting_table.json
-cec33cca7b52f32583dde84de31ff62a3dcf257e assets/lotr/models/item/straw_bed.json
+499e5003dfd3583038e0f85c36a78d1c793b20a9 assets/lotr/models/item/straw_bed.json
 d572f2f15eca9b672d15c45a4737c2c312390777 assets/lotr/models/item/stripped_banana_log.json
 852640a53bdb7d6877ac433fe1203baa2d936433 assets/lotr/models/item/stripped_banana_log_slab.json
 31d484aa6c59820e7f2a7b8e35693c80ceae93e7 assets/lotr/models/item/stripped_chestnut_branch.json
@@ -631,7 +632,7 @@ acc49ea56dcac7c5345ae8af4f2dcdb8825af2cd assets/lotr/models/item/taurethrim_pick
 8a24f503e2dc4206669d6b20087ffbf5550dc2d6 assets/lotr/models/item/topaz_block.json
 432cafd3e29694fb13b4f871f096521d2e0ec83d assets/lotr/models/item/topaz_ore.json
 5b33d9a77bbad2666ee888ee17bc6a404088c0f9 assets/lotr/models/item/white_fur.json
-53c727d9548870b7bca6e957d3d0a5696f1efee7 assets/lotr/models/item/white_fur_bed.json
+1d88d196c645b34955da98c88bc97e0186909d3c assets/lotr/models/item/white_fur_bed.json
 de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundle.json
 1481c8fe24e733e895c2d2676f685b1e8b37ad2c assets/lotr/models/item/white_packed_fur.json
 0787d358dc18d73d2810c567a5f3ebb9b4c46322 assets/lotr/models/item/white_packed_fur_slab.json
@@ -640,7 +641,13 @@ c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fu
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
 056a2710985cd0e9c6d5c9cb786be5b2f01c6ec8 assets/lotrextended/lang/en_us.json
-c3831238d29ae7e1b011895b18916fed425c68c8 assets/lotrextended/models/block/aged_cheese_wheel.json
+f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
+49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
+b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
+c76ee90f96b4330da08ee8b012c2d865be39d33f assets/lotrextended/models/block/aged_cheese_wheel3.json
+8add99468c68a96e4d5ccceb7edd8fee3d63012d assets/lotrextended/models/block/aged_cheese_wheel4.json
+9afc5560df1078e6918e17a4e55bbee38cf852ed assets/lotrextended/models/block/aged_cheese_wheel5.json
+71cfacc8d25b0f70b7c943633e261e57c1746374 assets/lotrextended/models/block/aged_cheese_wheel6.json
 055694b088e7d9ca56f38dc706fb59140f50f595 assets/lotrextended/models/block/amber_block.json
 9d83be4302913f0319cc4b9f01e6d84df36c7e2e assets/lotrextended/models/block/amber_ore.json
 3fb574dabb770b95a5f692c4aed3a8d6e67ba624 assets/lotrextended/models/block/amethyst_block.json
