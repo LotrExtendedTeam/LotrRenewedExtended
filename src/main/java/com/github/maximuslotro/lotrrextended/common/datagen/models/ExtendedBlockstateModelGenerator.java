@@ -370,15 +370,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						if(block.getKey().equals("grass_path_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_side"),
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_top"),
 									mcLoc("block/dirt"),
-									mcLoc("block/grass_path_top"), mcLoc("block/grass_path"));
+									mcLoc("block/grass_path_top"),
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")));
 							continue;
 						}
 						if(block.getKey().equals("grass_block_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_side"),
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
 									mcLoc("block/dirt"),
-									mcLoc("block/grass_block_top"), mcLoc("block/grass_block"));
+									mcLoc("block/grass_block_top"),
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_block_top")));
 							continue;
 						}
 						if(block.getKey().contains("barren_dirt_slab")) {
@@ -667,11 +669,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		genSlabBlockItem(slab, texture, texture, texture, texture);
 	}
 
+
 	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation doubleModel) {
+		ModelFile slabDouble = models().getExistingFile(doubleModel);
+		genSlabBlockItem(slab, side, bottom, top, slabDouble);
+	}
+
+	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel) {
 		registeredBlocks.add(slab);
 		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), side, bottom, top);
 		ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", side, bottom, top);
-		ModelFile slabDouble = models().getExistingFile(doubleModel);
 
 		getVariantBuilder(slab)
 		.forAllStatesExcept(state -> {
@@ -679,7 +686,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			SlabType type = state.getValue(AxialSlabBlock.TYPE);
             boolean uvlock = axis != Axis.Y;
             return ConfiguredModel.builder()
-                    .modelFile(type == SlabType.DOUBLE ? slabDouble : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
+                    .modelFile(type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
                     .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
                     .rotationY(axis == Axis.X ? 90 : 0)
                     .uvLock(uvlock)
