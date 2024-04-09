@@ -365,25 +365,29 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						if(didGen) {
 							continue;
 						}
-						if(block.getKey().equals("coarse_dirt_slab")||(block.getKey().equals("dirt_slab"))) {
+						if(block.getKey().equals("coarse_dirt_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/coarse_dirt"));
+							continue;
+						}
+						if(block.getKey().equals("dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
 						if(block.getKey().equals("grass_path_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_top"),
-									mcLoc("block/dirt"),
 									mcLoc("block/grass_path_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")));
+									mcLoc("block/grass_path_top"),
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")), false);
 							continue;
 						}
 						if(block.getKey().equals("grass_block_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
-									mcLoc("block/dirt"),
 									mcLoc("block/grass_block_top"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_block_top")));
+									mcLoc("block/grass_block_top"),
+									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/cube_all_tinted"), "all", mcLoc("block/grass_block_top")), true);
 							continue;
 						}
-						if(block.getKey().contains("barren_dirt_slab")) {
+						if(block.getKey().equals("barren_dirt_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
@@ -672,13 +676,31 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation doubleModel) {
 		ModelFile slabDouble = models().getExistingFile(doubleModel);
-		genSlabBlockItem(slab, side, bottom, top, slabDouble);
+		genSlabBlockItem(slab, side, bottom, top, slabDouble, false);
 	}
 
-	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel) {
+	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, boolean tint) {
 		registeredBlocks.add(slab);
-		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), side, bottom, top);
-		ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", side, bottom, top);
+		ModelFile slabModel;
+		ModelFile slabModelTop;
+		if(tint) {
+			slabModel = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath(), lotrExtendedLoc("block/slab_tinted"))
+					.texture("side", side)
+	                .texture("bottom", bottom)
+	                .texture("top", top);
+		}
+		else {
+			slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), side, bottom, top);
+		}
+		if(tint) {
+			slabModelTop = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/slab_top_tinted"))
+					.texture("side", side)
+	                .texture("bottom", bottom)
+	                .texture("top", top);
+		}
+		else {
+			slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", side, bottom, top);
+		}
 
 		getVariantBuilder(slab)
 		.forAllStatesExcept(state -> {

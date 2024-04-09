@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
 
 import lotr.common.block.AxialSlabBlock;
@@ -57,6 +58,7 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
@@ -74,6 +76,7 @@ import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.state.properties.BedPart;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -100,6 +103,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		dropSelf(ExtendedBlocks.BARREN_DIRT.get());
 		add(ExtendedBlocks.GREEN_FIRE_BLOCK.get(), noDrop());
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+			if(block.getValue().get() instanceof ExtendedGrowableAxialSlabBlock) {
+				add(block.getValue().get(), createGrowableSlabItemTable((ExtendedGrowableAxialSlabBlock)block.getValue().get()));
+				continue;
+			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {
 				add(block.getValue().get(), BlockLootTables::createSlabItemTable);
 				continue;
@@ -352,4 +359,13 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				.when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(p_218526_0_, ItemLootEntry.lootTableItem(item))
 								.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay())));
 	}
+
+	protected static LootTable.Builder createGrowableSlabItemTable(ExtendedGrowableAxialSlabBlock block) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(ItemLootEntry.lootTableItem(block)
+						.apply(SetCount.setCount(ConstantRange.exactly(2)).when(BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE)))).when(HAS_SILK_TOUCH)
+						.otherwise(applyExplosionCondition(block, ItemLootEntry.lootTableItem(block.getBase().get())
+								.apply(SetCount.setCount(ConstantRange.exactly(2)).when(BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE))))))));
+	}
+
 }

@@ -21,6 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
@@ -336,7 +337,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new AxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
 		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new AxialSlabBlock(Blocks.COARSE_DIRT));
 		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new AxialSlabBlock(Blocks.DIRT));
-		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new AxialSlabBlock(Blocks.GRASS_BLOCK));
+		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedGrowableAxialSlabBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
 		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new AxialSlabBlock(Blocks.GRASS_PATH));
 		//Scorched Stuff
 		ExtendedBlocks.SCORCHED_STONE = registerB("scorched_stone", () -> new ExtendedStoneBlock(MaterialColor.STONE));

@@ -5,26 +5,67 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:block_state_property",
-                  "block": "lotr:grass_block_slab",
-                  "properties": {
-                    "type": "double"
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
                   }
                 }
               ],
-              "count": 2
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "lotr:grass_block_slab",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 2
+                }
+              ],
+              "name": "lotr:grass_block_slab"
             },
             {
-              "function": "minecraft:explosion_decay"
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "lotr:grass_block_slab",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 2
+                }
+              ],
+              "name": "lotr:dirt_slab"
             }
-          ],
-          "name": "lotr:grass_block_slab"
+          ]
         }
       ]
     }

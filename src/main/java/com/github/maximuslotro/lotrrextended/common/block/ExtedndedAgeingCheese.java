@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
+import com.github.maximuslotro.lotrrextended.utils.BlockStateUtils;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
@@ -11,7 +12,6 @@ import com.google.common.collect.ImmutableBiMap;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.state.Property;
 
 public interface ExtedndedAgeingCheese extends ExtendedChangingOverTimeBlock<ExtendedCheeseState> {
 	   Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> {
@@ -37,7 +37,7 @@ public interface ExtedndedAgeingCheese extends ExtendedChangingOverTimeBlock<Ext
 
 	   static Optional<BlockState> getPrevious(BlockState p_154900_) {
 	      return getPrevious(p_154900_.getBlock()).map((p_154903_) -> {
-	         return withPropertiesOf(p_154903_, p_154900_);
+	         return BlockStateUtils.withPropertiesOf(p_154903_, p_154900_);
 	      });
 	   }
 
@@ -47,25 +47,11 @@ public interface ExtedndedAgeingCheese extends ExtendedChangingOverTimeBlock<Ext
 
 	   default Optional<BlockState> getNext(BlockState p_154893_) {
 	      return getNext(p_154893_.getBlock()).map((p_154896_) -> {
-	         return withPropertiesOf(p_154896_, p_154893_);
+	         return BlockStateUtils.withPropertiesOf(p_154896_, p_154893_);
 	      });
 	   }
 
 	   default float getChanceModifier() {
 	      return this.getAge() == ExtendedCheeseState.UNAFFECTED ? 0.75F : 1.0F;
 	   }
-
-	   public static BlockState withPropertiesOf(Block block, BlockState p_152466_) {
-		   BlockState blockstate = block.defaultBlockState();
-		   for(Property<?> property : p_152466_.getBlock().getStateDefinition().getProperties()) {
-			   if (blockstate.hasProperty(property)) {
-				   blockstate = copyProperty(p_152466_, blockstate, property);
-			  }
-			}
-		   return blockstate;
-	}
-	   
-	   static <T extends Comparable<T>> BlockState copyProperty(BlockState p_152455_, BlockState p_152456_, Property<T> p_152457_) {
-		   return p_152456_.setValue(p_152457_, p_152455_.getValue(p_152457_));
-		}
-	}
+}
