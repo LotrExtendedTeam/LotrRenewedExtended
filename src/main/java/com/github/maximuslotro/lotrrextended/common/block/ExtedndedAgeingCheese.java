@@ -37,7 +37,7 @@ public interface ExtedndedAgeingCheese extends ExtendedChangingOverTimeBlock<Ext
 
 	   static Optional<BlockState> getPrevious(BlockState p_154900_) {
 	      return getPrevious(p_154900_.getBlock()).map((p_154903_) -> {
-	         return BlockStateUtils.withPropertiesOf(p_154903_, p_154900_);
+	         return BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(p_154903_, p_154900_);
 	      });
 	   }
 
@@ -47,7 +47,7 @@ public interface ExtedndedAgeingCheese extends ExtendedChangingOverTimeBlock<Ext
 
 	   default Optional<BlockState> getNext(BlockState p_154893_) {
 	      return getNext(p_154893_.getBlock()).map((p_154896_) -> {
-	         return BlockStateUtils.withPropertiesOf(p_154896_, p_154893_);
+	         return BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(p_154896_, p_154893_);
 	      });
 	   }
 

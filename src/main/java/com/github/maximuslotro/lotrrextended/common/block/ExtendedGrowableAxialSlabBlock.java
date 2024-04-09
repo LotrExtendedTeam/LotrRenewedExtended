@@ -9,7 +9,9 @@ import lotr.common.block.AxialSlabBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SnowBlock;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -33,48 +35,56 @@ public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
 		this(block.get(), slabBase, blockBase, blockGrowable);
 	}
 
-	public Supplier<Block> getBase() {
+	public Supplier<Block> getBaseForLootTables() {
 		return slabBase;
 	}
 
-	private static boolean canBeGrass(BlockState p_220257_0_, IWorldReader p_220257_1_, BlockPos p_220257_2_) {
-		BlockPos blockpos = p_220257_2_.above();
-		BlockState blockstate = p_220257_1_.getBlockState(blockpos);
+	public static boolean canBeGrass(BlockState givenBlockState, IWorldReader world, BlockPos givenBlockPos) {
+		BlockPos blockpos = givenBlockPos.above();
+		BlockState blockstate = world.getBlockState(blockpos);
 		if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowBlock.LAYERS) == 1) {
 			return true;
 		} else if (blockstate.getFluidState().getAmount() == 8) {
 			return false;
 		} else {
-			int i = LightEngine.getLightBlockInto(p_220257_1_, p_220257_0_, p_220257_2_, blockstate, blockpos,
-					Direction.UP, blockstate.getLightBlock(p_220257_1_, blockpos));
-			return i < p_220257_1_.getMaxLightLevel();
+			if(givenBlockState.hasProperty(SlabBlock.TYPE)) {
+				BlockState fixTopSlabError = givenBlockState.setValue(SlabBlock.TYPE, SlabType.DOUBLE);
+				int i = LightEngine.getLightBlockInto(world, fixTopSlabError, givenBlockPos, blockstate, blockpos,
+						Direction.UP, blockstate.getLightBlock(world, blockpos));
+				return i < world.getMaxLightLevel();
+			}
+			int i = LightEngine.getLightBlockInto(world, givenBlockState, givenBlockPos, blockstate, blockpos,
+					Direction.UP, blockstate.getLightBlock(world, blockpos));
+			return i < world.getMaxLightLevel();
 		}
 	}
 
-	private static boolean canPropagate(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_) {
+	public static boolean canPropagate(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_) {
 		BlockPos blockpos = p_220256_2_.above();
 		return canBeGrass(p_220256_0_, p_220256_1_, p_220256_2_) && !p_220256_1_.getFluidState(blockpos).is(FluidTags.WATER);
 	}
 
 	@Override
-	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
-		if (!canBeGrass(p_225542_1_, p_225542_2_, p_225542_3_)) {
-			if (!p_225542_2_.isAreaLoaded(p_225542_3_, 3))
+	public void randomTick(BlockState blockState, ServerWorld world, BlockPos thisPos, Random random) {
+		if (!canBeGrass(blockState, world, thisPos)) {
+			if (!world.isAreaLoaded(thisPos, 3))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-			p_225542_2_.setBlockAndUpdate(p_225542_3_, BlockStateUtils.withPropertiesOf(slabBase.get(), p_225542_1_));
+			world.setBlockAndUpdate(thisPos, BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(slabBase.get(), blockState));
 		} else {
-			if (p_225542_2_.getMaxLocalRawBrightness(p_225542_3_.above()) >= 9) {
-				BlockState blockstate = this.defaultBlockState();
-				BlockState blockstate2 = blockGrowable.get().defaultBlockState();
+			if (world.getMaxLocalRawBrightness(thisPos.above()) >= 9) {
+				BlockState stateBlock = blockGrowable.get().defaultBlockState();
 				for (int i = 0; i < 4; ++i) {
-					BlockPos blockpos = p_225542_3_.offset(p_225542_4_.nextInt(3) - 1, p_225542_4_.nextInt(5) - 3, p_225542_4_.nextInt(3) - 1);
-					if (p_225542_2_.getBlockState(blockpos).is(slabBase.get()) && canPropagate(blockstate, p_225542_2_, blockpos)) {
-						p_225542_2_.setBlockAndUpdate(blockpos, blockstate);
+					BlockPos blockpos = thisPos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+					if (world.getBlockState(blockpos).is(blockBase.get()) && canPropagate(stateBlock, world, blockpos)) {
+						world.setBlockAndUpdate(blockpos, stateBlock);
 						continue;
 					}
-					if (p_225542_2_.getBlockState(blockpos).is(blockBase.get()) && canPropagate(blockstate2, p_225542_2_, blockpos)) {
-						p_225542_2_.setBlockAndUpdate(blockpos, blockstate2);
-						continue;
+					if (world.getBlockState(blockpos).is(slabBase.get())) {
+						BlockState stateSlab = BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(this, world.getBlockState(blockpos));
+						if (canPropagate(stateSlab, world, blockpos)) {
+							world.setBlockAndUpdate(blockpos, stateSlab);
+							continue;
+						}
 					}
 				}
 			}

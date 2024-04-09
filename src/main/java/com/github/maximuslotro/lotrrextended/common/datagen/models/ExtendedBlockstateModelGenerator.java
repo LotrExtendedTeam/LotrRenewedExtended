@@ -380,6 +380,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")), false);
 							continue;
 						}
+						if(block.getKey().equals("podzol_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/podzol_top"),
+									mcLoc("block/podzol_top"),
+									mcLoc("block/podzol_top"),
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/podzol_top")), false);
+							continue;
+						}
+						if(block.getKey().equals("mycelium_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/mycelium_top"),
+									mcLoc("block/mycelium_top"),
+									mcLoc("block/mycelium_top"),
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/mycelium_top")), false);
+							continue;
+						}
 						if(block.getKey().equals("grass_block_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
 									mcLoc("block/grass_block_top"),

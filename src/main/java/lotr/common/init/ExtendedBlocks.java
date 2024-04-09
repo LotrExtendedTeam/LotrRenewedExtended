@@ -282,6 +282,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GRASS_PATH_SLAB;
 	public static RegistryObject<Block> DIRT_SLAB;
 	public static RegistryObject<Block> GRASS_BLOCK_SLAB;
+	public static RegistryObject<Block> PODZOL_SLAB;
+	public static RegistryObject<Block> MYCELIUM_SLAB;
 
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB;
