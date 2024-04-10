@@ -23,7 +23,7 @@ public class DunedainRangerArmorLayer extends BipedArmorLayer<ExtendedDunedainRa
 
     private boolean isCloaked = false;
 
-    public DunedainRangerArmorLayer(IEntityRenderer renderer, ExtendedRangerModel<ExtendedDunedainRangerEntity> innerModel, ExtendedRangerModel<ExtendedDunedainRangerEntity> outerModel) {
+    public DunedainRangerArmorLayer(IEntityRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>> renderer, ExtendedRangerModel<ExtendedDunedainRangerEntity> innerModel, ExtendedRangerModel<ExtendedDunedainRangerEntity> outerModel) {
         super(renderer, innerModel, outerModel);
         this.innerModel = innerModel;
         this.outerModel = outerModel;

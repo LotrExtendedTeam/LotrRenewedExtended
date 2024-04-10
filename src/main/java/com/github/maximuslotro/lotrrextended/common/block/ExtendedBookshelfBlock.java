@@ -43,7 +43,8 @@ public class ExtendedBookshelfBlock extends ContainerBlock {
 	      }
 	   }
 
-	   @Override
+	@SuppressWarnings("deprecation")
+	@Override
 	   public void onRemove(BlockState p_196243_1_, World p_196243_2_, BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
 	      if (!p_196243_1_.is(p_196243_4_.getBlock())) {
 	         TileEntity tileentity = p_196243_2_.getBlockEntity(p_196243_3_);
