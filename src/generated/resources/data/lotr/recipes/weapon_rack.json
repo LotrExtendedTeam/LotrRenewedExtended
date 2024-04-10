@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "X": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:weapon_rack"
+  }
+}

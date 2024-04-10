@@ -575,6 +575,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.MITHRIL_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.MITHRIL_NUGGET.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ITHILDIN.get().getRegistryName().getPath()));
 		//MISC BLOCKS
+		GENERATEDRECIPES.add(ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedBlocks.WEAPON_RACK.get())
+		.pattern("X X")
+		.pattern("###")
+		.define('#', Ingredient.of(PLANKS))
+		.define('X', Ingredient.of(STICKS))
+		.unlockedBy("has_planks", has(PLANKS))
+		.unlockedBy("has_"+ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath(), has(ExtendedBlocks.WEAPON_RACK.get()))
+		.save(consumer, lotrLoc(ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get())
 		.pattern("###")

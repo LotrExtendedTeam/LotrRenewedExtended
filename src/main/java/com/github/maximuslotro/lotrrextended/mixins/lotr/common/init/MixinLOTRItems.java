@@ -371,6 +371,7 @@ public class MixinLOTRItems {
 
 		//ExtendedItems.STONE_CHEST = regBlockItemStackRenderer(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO, ()-> BlockRendererSetup.createStoneChestRenderer());
 		ExtendedItems.STONE_CHEST = regBlockItemB(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO);
+		ExtendedItems.WEAPON_RACK = regBlockItemB(ExtendedBlocks.WEAPON_RACK, LOTRItemGroups.DECO);
 		//########### BLOCK TYPES ##################
 		//Stone types
 		ExtendedItems.DRYSTONE_SLAB = regBlockItemB(ExtendedBlocks.DRYSTONE_SLAB, LOTRItemGroups.BLOCKS);

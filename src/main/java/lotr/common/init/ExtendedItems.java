@@ -401,5 +401,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BEDROLL;
 
 	public static RegistryObject<Item> CONQUEST_TABLE;
+	public static RegistryObject<Item> WEAPON_RACK;
 }
 

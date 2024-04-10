@@ -46,6 +46,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
+		genGenerated(ExtendedItems.WEAPON_RACK.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.getId().getPath()));
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));

@@ -312,4 +312,5 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BEDROLL;
 
 	public static RegistryObject<Block> CONQUEST_TABLE;
+	public static RegistryObject<Block> WEAPON_RACK;
 }

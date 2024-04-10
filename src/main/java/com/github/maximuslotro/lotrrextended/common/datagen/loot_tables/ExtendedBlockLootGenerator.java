@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -273,6 +274,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedHearthBlock) {
 				dropOther(block.getValue().get(), LOTRBlocks.HEARTH_BLOCK.get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
+				dropSelf(block.getValue().get());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {

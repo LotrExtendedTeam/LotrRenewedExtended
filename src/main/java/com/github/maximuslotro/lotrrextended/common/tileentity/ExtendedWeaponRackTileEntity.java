@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
+import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -8,10 +9,9 @@ import net.minecraftforge.common.util.Constants.NBT;
 
 public class ExtendedWeaponRackTileEntity extends TileEntity{
 	private ItemStack containedItem;
-	// TODO please remove the null
 	public ExtendedWeaponRackTileEntity() {
-		super(null);
-		this.containedItem= ItemStack.EMPTY;
+		super(ExtendedTileEntities.WEAPON_RACK.get());
+		this.containedItem = ItemStack.EMPTY;
 	}
 
 	@Override
@@ -27,5 +27,13 @@ public class ExtendedWeaponRackTileEntity extends TileEntity{
 		super.save(p_189515_1_);
 		p_189515_1_.put("extended_ditem", this.containedItem.save(new CompoundNBT()));
         return p_189515_1_;
+	}
+
+	public ItemStack getContainedItem() {
+		return containedItem;
+	}
+
+	public void setContainedItem(ItemStack containedItem) {
+		this.containedItem = containedItem;
 	}
 }

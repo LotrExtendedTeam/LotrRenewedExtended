@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 
@@ -170,6 +171,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof WoodBeamBlock) {
 					genBeamBlockItem((WoodBeamBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
+					genWeaponRackBlock((ExtendedWeaponRackBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRStandingSignBlock) {
@@ -947,6 +952,55 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			return ConfiguredModel.builder()
                     .modelFile(cubeModel)
                     .rotationY(bites == Direction.EAST ? 0 : (bites == Direction.SOUTH ? 90 : (bites == Direction.WEST ? 180 : 270)))
+                    .build();
+		});
+	}
+
+	private void genWeaponRackBlock(ExtendedWeaponRackBlock weaponRack) {
+		registeredBlocks.add(weaponRack);
+		ModelFile wall = models().getExistingFile(lotrExtendedLoc("block/weapon_rack"));
+		ModelFile ground = models().getExistingFile(lotrExtendedLoc("block/weapon_rack_ground"));
+		getVariantBuilder(weaponRack).forAllStates(state -> {
+			AttachFace face = state.getValue(ExtendedWeaponRackBlock.FACE);
+			Direction direction = state.getValue(ExtendedWeaponRackBlock.FACING);
+			int yValue = 0;
+			if(face==AttachFace.WALL) {
+				if(direction==Direction.SOUTH) {
+					yValue=180;
+				}
+				if(direction==Direction.EAST) {
+					yValue=90;
+				}
+				if(direction==Direction.WEST) {
+					yValue=270;
+				}
+			}
+			else if(face==AttachFace.CEILING) {
+				if(direction==Direction.NORTH) {
+					yValue=180;
+				}
+				if(direction==Direction.EAST) {
+					yValue=270;
+				}
+				if(direction==Direction.WEST) {
+					yValue=90;
+				}
+			}
+			else {
+				if(direction==Direction.SOUTH) {
+					yValue=180;
+				}
+				if(direction==Direction.EAST) {
+					yValue=90;
+				}
+				if(direction==Direction.WEST) {
+					yValue=270;
+				}
+			}
+			return ConfiguredModel.builder()
+                    .modelFile(face==AttachFace.WALL ? wall : ground)
+                    .rotationX(face==AttachFace.CEILING ? 180 : 0)
+                    .rotationY(yValue)
                     .build();
 		});
 	}
