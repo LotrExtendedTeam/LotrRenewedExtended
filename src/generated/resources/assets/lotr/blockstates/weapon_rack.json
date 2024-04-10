@@ -7,8 +7,7 @@
       "model": "lotrextended:block/weapon_rack"
     },
     "face=ceiling,facing=north": {
-      "model": "lotrextended:block/weapon_rack_ground",
-      "x": 180,
+      "model": "lotrextended:block/weapon_rack_ceiling",
       "y": 180
     },
     "face=floor,facing=south": {
@@ -20,8 +19,7 @@
       "y": 180
     },
     "face=ceiling,facing=south": {
-      "model": "lotrextended:block/weapon_rack_ground",
-      "x": 180
+      "model": "lotrextended:block/weapon_rack_ceiling"
     },
     "face=floor,facing=west": {
       "model": "lotrextended:block/weapon_rack_ground",
@@ -32,8 +30,7 @@
       "y": 270
     },
     "face=ceiling,facing=west": {
-      "model": "lotrextended:block/weapon_rack_ground",
-      "x": 180,
+      "model": "lotrextended:block/weapon_rack_ceiling",
       "y": 90
     },
     "face=floor,facing=east": {
@@ -45,8 +42,7 @@
       "y": 90
     },
     "face=ceiling,facing=east": {
-      "model": "lotrextended:block/weapon_rack_ground",
-      "x": 180,
+      "model": "lotrextended:block/weapon_rack_ceiling",
       "y": 270
     }
   }

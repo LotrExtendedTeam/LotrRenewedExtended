@@ -960,6 +960,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(weaponRack);
 		ModelFile wall = models().getExistingFile(lotrExtendedLoc("block/weapon_rack"));
 		ModelFile ground = models().getExistingFile(lotrExtendedLoc("block/weapon_rack_ground"));
+		ModelFile ceiling = models().getExistingFile(lotrExtendedLoc("block/weapon_rack_ceiling"));
 		getVariantBuilder(weaponRack).forAllStates(state -> {
 			AttachFace face = state.getValue(ExtendedWeaponRackBlock.FACE);
 			Direction direction = state.getValue(ExtendedWeaponRackBlock.FACING);
@@ -998,8 +999,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 			}
 			return ConfiguredModel.builder()
-                    .modelFile(face==AttachFace.WALL ? wall : ground)
-                    .rotationX(face==AttachFace.CEILING ? 180 : 0)
+                    .modelFile(face==AttachFace.WALL ? wall : (face==AttachFace.FLOOR ? ground : ceiling))
                     .rotationY(yValue)
                     .build();
 		});
