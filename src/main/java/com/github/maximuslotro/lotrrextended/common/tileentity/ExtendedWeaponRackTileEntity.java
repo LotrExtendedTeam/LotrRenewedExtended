@@ -19,17 +19,26 @@ public class ExtendedWeaponRackTileEntity extends TileEntity{
 		super.load(p_230337_1_, p_230337_2_);
 		if (p_230337_2_.contains("extended_ditem", NBT.TAG_COMPOUND)) {
             this.containedItem = ItemStack.of(p_230337_2_.getCompound("displayed_item"));
+            if(containedItem==null) {
+            	containedItem = ItemStack.EMPTY;
+            }
         }
 	}
 
 	@Override
 	public CompoundNBT save(CompoundNBT p_189515_1_) {
 		super.save(p_189515_1_);
+		if(containedItem==null) {
+        	containedItem = ItemStack.EMPTY;
+        }
 		p_189515_1_.put("extended_ditem", this.containedItem.save(new CompoundNBT()));
         return p_189515_1_;
 	}
 
 	public ItemStack getContainedItem() {
+		if(containedItem==null) {
+        	containedItem = ItemStack.EMPTY;
+        }
 		return containedItem;
 	}
 

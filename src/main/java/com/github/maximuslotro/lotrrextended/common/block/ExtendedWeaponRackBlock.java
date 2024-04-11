@@ -9,6 +9,7 @@ import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.entity.EntityType;
@@ -16,8 +17,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -73,13 +77,45 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (p_225533_2_.isClientSide) {
-			return ActionResultType.SUCCESS;
-		} else {
-			return ActionResultType.CONSUME;
+	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand unused, BlockRayTraceResult p_225533_6_) {
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof ExtendedWeaponRackTileEntity) {
+			ExtendedWeaponRackTileEntity entity = ((ExtendedWeaponRackTileEntity)tileentity);
+			ItemStack item = entity.getContainedItem();
+			ItemStack playerItem = player.getMainHandItem();
+			if(!item.isEmpty()) {
+				System.out.println("Getting item");
+				if(!world.isClientSide()) {
+					if(playerItem.isEmpty()) {
+						System.out.println("Giveing the player the item");
+						player.setItemInHand(Hand.MAIN_HAND, item.copy());
+						player.inventory.setChanged();
+						world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
+					}else {
+						System.out.println("Poping the item for the player");
+						popResource(world, pos, item.copy());
+					}
+					item = null;
+					entity.setContainedItem(ItemStack.EMPTY);
+				}
+			}else {
+				if(!playerItem.isEmpty()) {
+					System.out.println("Setting Item");
+					ItemStack setItem = playerItem.copy();
+					setItem.setCount(1);
+					entity.setContainedItem(setItem);
+					if(!player.abilities.instabuild) {
+						System.out.println("Reducing player stack size");
+						playerItem.setCount((playerItem.getCount()-1));
+						player.inventory.setChanged();
+					}
+				}
+			}
+			ActionResultType.sidedSuccess(world.isClientSide());
 		}
+		return super.use(blockState, world, pos, player, unused, p_225533_6_);
 	}
 
 	@Override
@@ -135,4 +171,16 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		}
 		return 0;
 	}
+
+	@Override
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof ExtendedWeaponRackTileEntity) {
+			ItemStack item = ((ExtendedWeaponRackTileEntity)tileentity).getContainedItem();
+			if(!item.isEmpty()) {
+				return item;
+			}
+		}
+        return super.getPickBlock(state, target, world, pos, player);
+    }
 }
