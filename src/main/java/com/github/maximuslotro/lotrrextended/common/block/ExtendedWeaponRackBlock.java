@@ -24,14 +24,14 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
-	protected static final VoxelShape NORTH_AABB = Block.box(5.0D, 4.0D, 10.0D, 11.0D, 12.0D, 16.0D);
-	protected static final VoxelShape SOUTH_AABB = Block.box(5.0D, 4.0D, 0.0D, 11.0D, 12.0D, 6.0D);
-	protected static final VoxelShape WEST_AABB = Block.box(10.0D, 4.0D, 5.0D, 16.0D, 12.0D, 11.0D);
-	protected static final VoxelShape EAST_AABB = Block.box(0.0D, 4.0D, 5.0D, 6.0D, 12.0D, 11.0D);
-	protected static final VoxelShape UP_AABB_Z = Block.box(5.0D, 0.0D, 4.0D, 11.0D, 6.0D, 12.0D);
-	protected static final VoxelShape UP_AABB_X = Block.box(4.0D, 0.0D, 5.0D, 12.0D, 6.0D, 11.0D);
-	protected static final VoxelShape DOWN_AABB_Z = Block.box(5.0D, 10.0D, 4.0D, 11.0D, 16.0D, 12.0D);
-	protected static final VoxelShape DOWN_AABB_X = Block.box(4.0D, 10.0D, 5.0D, 12.0D, 16.0D, 11.0D);
+	protected static final VoxelShape NORTH_AABB = Block.box(1.0D, 4.0D, 12.0D, 15.0D, 10.0D, 16.0D);
+	protected static final VoxelShape SOUTH_AABB = Block.box(1.0D, 4.0D, 0.0D, 15.0D, 10.0D, 4.0D);
+	protected static final VoxelShape WEST_AABB = Block.box(12.0D, 4.0D, 1.0D, 16.0D, 10.0D, 15.0D);
+	protected static final VoxelShape EAST_AABB = Block.box(0.0D, 4.0D, 1.0D, 4.0D, 10.0D, 15.0D);
+	protected static final VoxelShape UP_AABB_Z = Block.box(5.0D, 0.0D, 1.0D, 11.0D, 11.0D, 15.0D);
+	protected static final VoxelShape UP_AABB_X = Block.box(1.0D, 0.0D, 5.0D, 15.0D, 11.0D, 11.0D);
+	protected static final VoxelShape DOWN_AABB_Z = Block.box(5.0D, 3.0D, 1.0D, 11.0D, 16.0D, 15.0D);
+	protected static final VoxelShape DOWN_AABB_X = Block.box(1.0D, 3.0D, 5.0D, 15.0D, 16.0D, 11.0D);
 
 	public ExtendedWeaponRackBlock(Properties p_i48440_1_) {
 		super(p_i48440_1_);
@@ -44,10 +44,10 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 			case FLOOR :
 				switch (p_220053_1_.getValue(FACING).getAxis()) {
 					case X :
-						return UP_AABB_X;
+						return UP_AABB_Z;
 					case Z :
 					default :
-						return UP_AABB_Z;
+						return UP_AABB_X;
 				}
 			case WALL :
 				switch (p_220053_1_.getValue(FACING)) {
@@ -65,10 +65,10 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 			default :
 				switch (p_220053_1_.getValue(FACING).getAxis()) {
 					case X :
-						return DOWN_AABB_X;
+						return DOWN_AABB_Z;
 					case Z :
 					default :
-						return DOWN_AABB_Z;
+						return DOWN_AABB_X;
 				}
 		}
 	}
