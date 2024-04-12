@@ -18,7 +18,7 @@ public interface ExtendedChangingOverTimeBlock<T extends Enum<T>> {
 
 	   default void onRandomTick(BlockState p_153042_, ServerWorld p_153043_, BlockPos p_153044_, Random p_153045_) {
 	      float f = 0.05688889F;
-	      if (p_153045_.nextFloat() < 0.05688889F) {
+	      if (p_153045_.nextFloat() < f) {
 	         this.applyChangeOverTime(p_153042_, p_153043_, p_153044_, p_153045_);
 	      }
 
