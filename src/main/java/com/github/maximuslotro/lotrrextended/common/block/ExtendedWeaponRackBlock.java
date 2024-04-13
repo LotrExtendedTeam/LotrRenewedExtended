@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 
 import net.minecraft.block.Block;
@@ -9,10 +11,14 @@ import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -28,6 +34,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
+	public static final BooleanProperty FAKE_PROPERTY = BooleanProperty.create("faker_property");
 	protected static final VoxelShape NORTH_AABB = Block.box(1.0D, 4.0D, 12.0D, 15.0D, 10.0D, 16.0D);
 	protected static final VoxelShape SOUTH_AABB = Block.box(1.0D, 4.0D, 0.0D, 15.0D, 10.0D, 4.0D);
 	protected static final VoxelShape WEST_AABB = Block.box(12.0D, 4.0D, 1.0D, 16.0D, 10.0D, 15.0D);
@@ -39,7 +46,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 
 	public ExtendedWeaponRackBlock(Properties p_i48440_1_) {
 		super(p_i48440_1_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(FACE, AttachFace.WALL));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(FACE, AttachFace.WALL).setValue(FAKE_PROPERTY, false));
 	}
 
 	@Override
@@ -77,45 +84,53 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
+    	return super.getStateForPlacement(p_196258_1_).setValue(FAKE_PROPERTY, false);
+    }
+    @Override
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
+        if (tileentity instanceof ExtendedWeaponRackTileEntity) {
+            tileentity.onLoad();
+            worldIn.setBlockEntity(pos, tileentity);
+        }
+    }
+
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand unused, BlockRayTraceResult p_225533_6_) {
 		TileEntity tileentity = world.getBlockEntity(pos);
-		if (tileentity instanceof ExtendedWeaponRackTileEntity) {
+		if(!world.isClientSide && tileentity instanceof ExtendedWeaponRackTileEntity) {
 			ExtendedWeaponRackTileEntity entity = ((ExtendedWeaponRackTileEntity)tileentity);
-			ItemStack item = entity.getContainedItem();
-			ItemStack playerItem = player.getMainHandItem();
-			if(!item.isEmpty()) {
-				System.out.println("Getting item");
-				if(!world.isClientSide()) {
-					if(playerItem.isEmpty()) {
-						System.out.println("Giveing the player the item");
-						player.setItemInHand(Hand.MAIN_HAND, item.copy());
-						player.inventory.setChanged();
-						world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
-					}else {
-						System.out.println("Poping the item for the player");
-						popResource(world, pos, item.copy());
-					}
-					item = null;
-					entity.setContainedItem(ItemStack.EMPTY);
-				}
+			if (player.isCrouching()) {
+                if (entity.hasItem()) {
+                    final ItemStack toDrop = entity.getContainedItem().copy();
+                    entity.setContainedItem(ItemStack.EMPTY);
+                    if(player.getMainHandItem().isEmpty()) {
+                    	player.setItemInHand(Hand.MAIN_HAND, toDrop);
+                    }
+                    else {
+                        popResource(world, pos, toDrop);
+                    }
+					world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
+                }
 			}else {
-				if(!playerItem.isEmpty()) {
-					System.out.println("Setting Item");
-					ItemStack setItem = playerItem.copy();
-					setItem.setCount(1);
-					entity.setContainedItem(setItem);
-					if(!player.abilities.instabuild) {
-						System.out.println("Reducing player stack size");
-						playerItem.setCount((playerItem.getCount()-1));
-						player.inventory.setChanged();
-					}
-				}
+                ItemStack stack = player.getMainHandItem();
+                boolean isSword = stack.getItem() instanceof SwordItem;
+
+                if (!entity.hasItem() && isSword) {
+                    ItemStack copy = stack.copy();
+                    entity.setContainedItem(copy);
+                    stack.shrink(1);
+					world.playSound((PlayerEntity)null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
+                    return ActionResultType.SUCCESS;
+                }
+                if (entity.hasItem() && stack.isEmpty()) {
+                    world.setBlock(pos, blockState.setValue(FAKE_PROPERTY, !blockState.getValue(FAKE_PROPERTY)), 3);
+                }
 			}
-			ActionResultType.sidedSuccess(world.isClientSide());
 		}
-		return super.use(blockState, world, pos, player, unused, p_225533_6_);
+		return ActionResultType.SUCCESS;
 	}
 
 	@Override
@@ -140,7 +155,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING, FACE);
+		p_206840_1_.add(FACING, FACE, FAKE_PROPERTY);
 	}
 
 	@Override
@@ -149,7 +164,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		if (!blockState.is(blockStateOther.getBlock())) {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof ExtendedWeaponRackTileEntity) {
-				InventoryHelper.dropItemStack(world, (double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), ((ExtendedWeaponRackTileEntity)tileentity).getContainedItem());
+				InventoryHelper.dropItemStack(world, (double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), ((ExtendedWeaponRackTileEntity)tileentity).getContainedItem().copy());
 				world.updateNeighbourForOutputSignal(blockPos, this);
 			}
 			super.onRemove(blockState, world, blockPos, blockStateOther, p_196243_5_);
@@ -178,7 +193,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		if (tileentity instanceof ExtendedWeaponRackTileEntity) {
 			ItemStack item = ((ExtendedWeaponRackTileEntity)tileentity).getContainedItem();
 			if(!item.isEmpty()) {
-				return item;
+				return item.copy();
 			}
 		}
         return super.getPickBlock(state, target, world, pos, player);

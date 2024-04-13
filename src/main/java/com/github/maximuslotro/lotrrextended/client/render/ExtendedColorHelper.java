@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.block;
+package com.github.maximuslotro.lotrrextended.client.render;
 
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;

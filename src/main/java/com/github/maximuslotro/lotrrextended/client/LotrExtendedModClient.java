@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.client;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
-import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 

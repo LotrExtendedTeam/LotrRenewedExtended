@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.block;
+package com.github.maximuslotro.lotrrextended.client.render.item;
 
 
 import com.mojang.blaze3d.matrix.MatrixStack;
