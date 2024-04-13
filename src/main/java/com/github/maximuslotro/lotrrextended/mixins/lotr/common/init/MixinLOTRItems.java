@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.client.render.block.ItemRenderHelper;
+import com.github.maximuslotro.lotrrextended.client.render.item.ItemRenderHelper;
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;

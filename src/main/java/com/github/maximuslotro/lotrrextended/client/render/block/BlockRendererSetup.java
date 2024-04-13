@@ -45,6 +45,7 @@ public class BlockRendererSetup {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.GRAY_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.SILVER_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WHITE_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WEAPON_RACK.get(), ExtendedWeaponRackItemRenderer::new);
 	}
 
 	public static ResourceLocation createNewChestModel(String name) {
