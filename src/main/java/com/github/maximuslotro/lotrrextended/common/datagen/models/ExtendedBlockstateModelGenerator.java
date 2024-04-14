@@ -341,8 +341,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), S, TB, TB, S);
 							continue;
 						}
-						if(block.getKey().contains("mud_path")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+						if(block.getKey().equals("mud_path_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/mud_path"),
+									lotrExtendedLoc("block/mud_path"),
+									lotrExtendedLoc("block/mud_path"),
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")), false);
 							continue;
 						}
 						if(block.getKey().contains("wood")) {
@@ -803,8 +806,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("bottom", base)
                 .texture("top", lotrExtendedLoc(name))
                 .texture("side", base);
-		ConfiguredModel ConfiguredblockMir1 = new ConfiguredModel(grass);
-		simpleBlock(extendedGroundFarmlandBlock, ConfiguredblockMir1);
+		simpleBlock(extendedGroundFarmlandBlock, grass);
 		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
 	}
 

@@ -29,16 +29,16 @@
       "uvlock": true
     },
     "axis=x,type=double": {
-      "model": "lotrextended:block/mud_path",
+      "model": "lotrextended:block/mud_path_slab_double",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=double": {
-      "model": "lotrextended:block/mud_path"
+      "model": "lotrextended:block/mud_path_slab_double"
     },
     "axis=z,type=double": {
-      "model": "lotrextended:block/mud_path",
+      "model": "lotrextended:block/mud_path_slab_double",
       "x": 270,
       "uvlock": true
     }
