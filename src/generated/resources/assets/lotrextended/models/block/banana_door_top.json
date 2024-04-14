@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "bottom": "lotrextended:block/banana_door_bottom",
+    "top": "lotrextended:block/banana_door_top"
+  }
+}

@@ -7,6 +7,7 @@
  * Fixed Chestnut Planks recipe still being broken
  * Fixed Container names being removed (bug with addition of inv coin totals)
 * Structures
+ * Ported the Large Hobbit Tavern
  * Fixed the Large Hobbit Hole chimneys not spawning
  * Fixed the Large Hobbit Hole entrance chests not having loot
  * Fixed the Large Hobbit Hole floating/not having foundations
@@ -14,6 +15,7 @@
  * Structures should now only rarely spawn on roads ()-()
  * Updated the Large Hobbit Hill shape
 * Textures
+ * Remastered 7/13 Adult Female Hobbit Skins
  * Fixed Renewed Hobbit textures not applying when selecting the renewed resource pack
  * Updated Morgul Steel Ingot texture
 * Trade System

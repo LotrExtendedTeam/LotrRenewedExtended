@@ -1,0 +1,15 @@
+{
+	"name": "lotrextended:hobbit/hobbit_tavern_large_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 100,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:hobbit/hobbit_tavern_large_1",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

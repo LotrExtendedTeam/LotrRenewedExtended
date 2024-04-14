@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:chestnut_boat"
+    "lotr:chestnut_boat",
+    "lotr:banana_boat"
   ]
 }

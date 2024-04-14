@@ -136,6 +136,6 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 			if(tileEntity instanceof ExtendedWhiteFurBedTileEntity) {
 				return BlockRendererSetup.WHITE_FUR_BED_MATERIAL;
 			}
-			return null;
+			throw new IllegalArgumentException("Recieved invalid Bed Renderign Type!");
 		}
 }

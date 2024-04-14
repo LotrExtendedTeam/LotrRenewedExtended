@@ -68,8 +68,7 @@ public class ExtendedGroundGrassBlock extends SpreadableSnowyDirtBlock implement
 
 	private static boolean canPropagate(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_) {
 		BlockPos blockpos = p_220256_2_.above();
-		return canBeGrass(p_220256_0_, p_220256_1_, p_220256_2_)
-				&& !p_220256_1_.getFluidState(blockpos).is(FluidTags.WATER);
+		return canBeGrass(p_220256_0_, p_220256_1_, p_220256_2_) && !p_220256_1_.getFluidState(blockpos).is(FluidTags.WATER);
 	}
 
 	@Override

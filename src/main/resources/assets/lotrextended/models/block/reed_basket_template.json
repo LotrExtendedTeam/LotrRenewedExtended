@@ -1,0 +1,20 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"texture_size": [48, 48],
+	"elements": [
+		{
+			"name": "basket",
+			"from": [1, 0, 1],
+			"to": [15, 11, 15],
+			"faces": {
+				"north": {"uv": [4.66667, 0, 9.33333, 3.66667], "texture": "#1"},
+				"east": {"uv": [4.66667, 3.66667, 9.33333, 7.33333], "texture": "#1"},
+				"south": {"uv": [4.66667, 7.33333, 9.33333, 11], "texture": "#1"},
+				"west": {"uv": [0, 9.33333, 4.66667, 13], "texture": "#1"},
+				"up": {"uv": [4.66667, 4.66667, 0, 0], "texture": "#1"},
+				"down": {"uv": [4.66667, 4.66667, 0, 9.33333], "texture": "#1"}
+			}
+		}
+	]
+}

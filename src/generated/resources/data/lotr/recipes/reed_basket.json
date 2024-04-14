@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "L L",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "lotr:dried_reeds"
+    }
+  },
+  "result": {
+    "item": "lotr:reed_basket"
+  }
+}

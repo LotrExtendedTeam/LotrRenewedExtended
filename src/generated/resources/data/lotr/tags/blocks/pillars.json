@@ -1,11 +1,15 @@
 {
   "replace": false,
   "values": [
+    "lotr:ornate_golden_rohan_beam",
     "lotr:red_rhunic_pillar",
+    "lotr:rohan_beam",
     "lotr:golden_taurethrim_pillar",
+    "lotr:ornate_rohan_beam",
     "lotr:rhunic_pillar",
     "lotr:dol_guldur_pillar",
     "lotr:obsidian_taurethrim_pillar",
+    "lotr:golden_rohan_beam",
     "lotr:taurethrim_pillar"
   ]
 }

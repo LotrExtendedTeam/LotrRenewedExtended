@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
+import lotr.common.inv.ExtendedBookshelfContainer;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
 import lotr.common.inv.ExtendedTradeContainer;
 import net.minecraft.inventory.container.Container;
@@ -36,6 +37,9 @@ public class MixinLOTRContainers {
 		});
 		ExtendedContainers.TRADING = register("trading", "Trading", () -> {
 			return IForgeContainerType.create(ExtendedTradeContainer::new);
+		});
+		ExtendedContainers.BOOKSHELF = register("bookshelf", "Bookshelf", () -> {
+			return IForgeContainerType.create(ExtendedBookshelfContainer::threeRows);
 		});
 	}
 

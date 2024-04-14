@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "lotr:banana_door",
     "lotr:chestnut_door"
   ]
 }

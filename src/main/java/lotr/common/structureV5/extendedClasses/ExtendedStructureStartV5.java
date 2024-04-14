@@ -67,6 +67,10 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return false;
 	}
 
+	public int foundationUpwardsOffsetBasementSpecial() {
+		return 0;
+	}
+
 	public BlockState defaultFoundationmaterial() {
 		return Blocks.COBBLESTONE.defaultBlockState();
 	}
@@ -75,7 +79,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
 		if(usesFoundations()) {
-			int baseYvalue = this.boundingBox.y0;
+			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
 
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
 				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {

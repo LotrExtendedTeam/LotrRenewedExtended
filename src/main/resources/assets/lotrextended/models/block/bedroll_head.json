@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "lotrextended:entity/bed/bedroll",
+		"particle": "lotrextended:entity/bed/bedroll"
+	},
+	"elements": [
+		{
+			"name": "bedroll",
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [8, 1.5, 12, 2], "texture": "#0"},
+				"east": {"uv": [8, 2, 12, 2.5], "texture": "#0"},
+				"south": {"uv": [8, 2.5, 12, 3], "texture": "#0"},
+				"west": {"uv": [8, 3, 12, 3.5], "texture": "#0"},
+				"up": {"uv": [8, 4, 4, 0], "texture": "#0"},
+				"down": {"uv": [8, 4, 4, 8], "texture": "#0"}
+			}
+		}
+	]
+}

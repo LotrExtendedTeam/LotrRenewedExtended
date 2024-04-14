@@ -3,7 +3,7 @@ package lotr.common.block;
 import java.util.Random;
 import java.util.function.ToIntFunction;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBlockParms;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -31,7 +31,7 @@ public class ExtendedLOTRTorchBlock extends LOTRTorchBlock{
 	}
 
 	public ExtendedLOTRTorchBlock(int light, SoundType sound) {
-		this(ExtendedBlocks.litBlockEmission(light), sound);
+		this(ExtendedBlockParms.litBlockEmission(light), sound);
 	}
 
 	public ExtendedLOTRTorchBlock(ToIntFunction<BlockState> lightLevel, SoundType sound) {

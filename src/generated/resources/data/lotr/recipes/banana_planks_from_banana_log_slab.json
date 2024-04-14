@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:banana_log_slab"
+    },
+    {
+      "item": "lotr:stripped_banana_log_slab"
+    }
+  ],
+  "result": {
+    "item": "lotr:banana_planks",
+    "count": 2
+  }
+}

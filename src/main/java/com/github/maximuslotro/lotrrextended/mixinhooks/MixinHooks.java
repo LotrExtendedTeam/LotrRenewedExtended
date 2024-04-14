@@ -53,7 +53,9 @@ public class MixinHooks {
 			Field field = NPCEntity.class.getField("marriageInfo");
 			fellowData = (ExtendedNpcMarriageHolder) field.get(data);
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Reflection failed to get marriageInfo");
+			fellowData = null;
 		}
 		return fellowData;
 	}

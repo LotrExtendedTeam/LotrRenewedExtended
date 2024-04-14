@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    "X",
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:rohan_beam"
+    }
+  },
+  "result": {
+    "item": "lotr:ornate_rohan_beam",
+    "count": 3
+  }
+}
