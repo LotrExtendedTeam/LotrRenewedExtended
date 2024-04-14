@@ -160,6 +160,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MOSSY_MUD_BRICK_STAIRS;
 	public static RegistryObject<Item> MOSSY_MUD_BRICK_WALL;
 
+	public static RegistryObject<Item> ROHAN_BEAM;
+	public static RegistryObject<Item> ORNATE_ROHAN_BEAM;
+	public static RegistryObject<Item> GOLDEN_ROHAN_BEAM;
+	public static RegistryObject<Item> ORNATE_GOLDEN_ROHAN_BEAM;
+
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;
 	public static RegistryObject<Item> TAURETHRIM_PICKAXE;
