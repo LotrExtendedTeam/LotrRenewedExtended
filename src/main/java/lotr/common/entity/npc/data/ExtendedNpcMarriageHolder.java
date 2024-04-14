@@ -119,12 +119,14 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 		if (entity instanceof NPCEntity) {
 			NPCEntity npc = (NPCEntity) entity;
 			ExtendedNpcMarriageHolder marriageInfo = MixinHooks.getMarriageData(npc);
-			marriageInfo.numberOfCurrentChildren = buf.readInt();
-			marriageInfo.maxNumberOfCurrentChildren = buf.readInt();
-			marriageInfo.spouseID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
-			marriageInfo.maleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
-			marriageInfo.femaleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
-			marriageInfo.playerID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
+			if(marriageInfo!=null) {
+				marriageInfo.numberOfCurrentChildren = buf.readInt();
+				marriageInfo.maxNumberOfCurrentChildren = buf.readInt();
+				marriageInfo.spouseID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
+				marriageInfo.maleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
+				marriageInfo.femaleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
+				marriageInfo.playerID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
+			}
 		}
 	}
 

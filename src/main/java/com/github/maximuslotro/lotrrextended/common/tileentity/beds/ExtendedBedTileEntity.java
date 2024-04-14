@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.tileentity;
+package com.github.maximuslotro.lotrrextended.common.tileentity.beds;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;

@@ -301,6 +301,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
 
 	public static RegistryObject<Block> STONE_CHEST;
+	public static RegistryObject<Block> REED_BASKET;
 
 	public static RegistryObject<Block> STRAW_BED;
 	public static RegistryObject<Block> ORC_BED;

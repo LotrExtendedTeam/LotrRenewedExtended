@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.tileentity;
+package com.github.maximuslotro.lotrrextended.common.tileentity.chests;
 
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.TileEntityType;

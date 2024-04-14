@@ -255,7 +255,9 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	    .addTag(ExtendedTags.Blocks.SILVER_ORE).addTag(ExtendedTags.Blocks.SULFUR_ORE)
 	    .addTag(ExtendedTags.Blocks.TIN_ORE);
 
-	    tag(Tags.Blocks.CHESTS).add(ExtendedBlocks.STONE_CHEST.get());
+	    tag(Tags.Blocks.CHESTS).add(ExtendedBlocks.STONE_CHEST.get()).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(Tags.Blocks.BARRELS).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(Tags.Blocks.BARRELS_WOODEN).add(ExtendedBlocks.REED_BASKET.get());
 
 	    tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
 	    .add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());

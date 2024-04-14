@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedBe
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedChestTileEntityRenderer;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;
@@ -78,6 +79,9 @@ public class BlockRendererSetup {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedFullBedBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedReedBasketBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}
