@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/stairs",
   "textures": {
-    "side": "lotrextended:block/mud_path_1",
-    "bottom": "lotrextended:block/mud_path_1",
-    "top": "lotrextended:block/mud_path_1"
+    "side": "lotrextended:block/mud_path",
+    "bottom": "lotrextended:block/mud_path",
+    "top": "lotrextended:block/mud_path"
   }
 }

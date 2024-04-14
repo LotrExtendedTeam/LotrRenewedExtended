@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/bed",
+  "textures": {
+    "particle": "lotrextended:entity/bed/straw_bed"
+  }
+}

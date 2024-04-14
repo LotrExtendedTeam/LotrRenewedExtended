@@ -1,31 +1,100 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
+import javax.annotation.Nullable;
+
+import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants.NBT;
 
-public class ExtendedWeaponRackTileEntity extends TileEntity{
+public class ExtendedWeaponRackTileEntity extends TileEntity {
 	private ItemStack containedItem;
-	// TODO please remove the null
 	public ExtendedWeaponRackTileEntity() {
-		super(null);
-		this.containedItem= ItemStack.EMPTY;
+		super(ExtendedTileEntities.WEAPON_RACK.get());
+		this.containedItem = ItemStack.EMPTY;
+	}
+
+	@Override
+	public void setChanged() {
+		super.setChanged();
 	}
 
 	@Override
 	public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
 		super.load(p_230337_1_, p_230337_2_);
 		if (p_230337_2_.contains("extended_ditem", NBT.TAG_COMPOUND)) {
-            this.containedItem = ItemStack.of(p_230337_2_.getCompound("displayed_item"));
-        }
+			this.containedItem = ItemStack.of(p_230337_2_.getCompound("displayed_item"));
+			if (containedItem == null) {
+				containedItem = ItemStack.EMPTY;
+			}
+		}
 	}
 
 	@Override
 	public CompoundNBT save(CompoundNBT p_189515_1_) {
 		super.save(p_189515_1_);
+		if (containedItem == null) {
+			containedItem = ItemStack.EMPTY;
+		}
 		p_189515_1_.put("extended_ditem", this.containedItem.save(new CompoundNBT()));
-        return p_189515_1_;
+		return p_189515_1_;
+	}
+
+	@Override
+	@Nullable
+	public SUpdateTileEntityPacket getUpdatePacket() {
+		return new SUpdateTileEntityPacket(this.worldPosition, 12, this.getUpdateTag());
+	}
+
+	@Override
+	public CompoundNBT getUpdateTag() {
+		return this.save(new CompoundNBT());
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+		super.onDataPacket(net, pkt);
+		this.load(level.getBlockState(pkt.getPos()), pkt.getTag());
+	}
+
+	@Override
+	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+		super.handleUpdateTag(state, tag);
+	}
+
+	@Override
+	public boolean triggerEvent(int id, int type) {
+		return super.triggerEvent(id, type);
+	}
+
+	public void markAndUpdate() {
+		this.setChanged();
+		this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+	}
+
+	public boolean hasItem() {
+		if (containedItem != null && !containedItem.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+	public ItemStack getContainedItem() {
+		if (containedItem == null) {
+			containedItem = ItemStack.EMPTY;
+			this.markAndUpdate();
+		}
+		return containedItem;
+	}
+
+	public void setContainedItem(ItemStack containedItem) {
+		this.containedItem = containedItem;
+		if (containedItem == null) {
+			containedItem = ItemStack.EMPTY;
+		}
+		this.markAndUpdate();
 	}
 }

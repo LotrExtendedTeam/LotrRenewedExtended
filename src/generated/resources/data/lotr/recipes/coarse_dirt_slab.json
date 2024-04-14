@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:coarse_dirt"
+    }
+  },
+  "result": {
+    "item": "lotr:coarse_dirt_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    " G ",
+    "GXG",
+    " G "
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:ornate_rohan_beam"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "item": "lotr:ornate_golden_rohan_beam"
+  }
+}

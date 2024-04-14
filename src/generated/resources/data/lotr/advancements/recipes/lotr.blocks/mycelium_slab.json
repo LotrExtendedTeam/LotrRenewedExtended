@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mycelium_slab"
+    ]
+  },
+  "criteria": {
+    "has_mycelium_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mycelium_slab"
+          }
+        ]
+      }
+    },
+    "has_mycelium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:mycelium"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mycelium_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mycelium_slab",
+      "has_mycelium",
+      "has_the_recipe"
+    ]
+  ]
+}

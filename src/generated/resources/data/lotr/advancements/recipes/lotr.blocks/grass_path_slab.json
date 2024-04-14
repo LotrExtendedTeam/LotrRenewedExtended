@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:grass_path_slab"
+    ]
+  },
+  "criteria": {
+    "has_grass_path_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:grass_path_slab"
+          }
+        ]
+      }
+    },
+    "has_grass_path": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:grass_path"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:grass_path_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_grass_path_slab",
+      "has_grass_path",
+      "has_the_recipe"
+    ]
+  ]
+}

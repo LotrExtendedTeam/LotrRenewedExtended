@@ -65,6 +65,27 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_BRANCH;
 	public static RegistryObject<Block> CHESTNUT_BEAM_SLAB;
 
+	public static RegistryObject<Block> BANANA_LOG;
+	public static RegistryObject<Block> BANANA_PLANKS;
+	public static RegistryObject<Block> BANANA_LEAVES;
+	public static RegistryObject<Block> BANANA_SAPLING;
+	public static RegistryObject<Block> POTTED_BANANA_SAPLING;
+	public static RegistryObject<Block> BANANA_SLAB;
+	public static RegistryObject<Block> BANANA_STAIRS;
+	public static RegistryObject<Block> BANANA_FENCE;
+	public static RegistryObject<Block> BANANA_FENCE_GATE;
+	public static RegistryObject<Block> BANANA_DOOR;
+	public static RegistryObject<Block> BANANA_TRAPDOOR;
+	public static RegistryObject<Block> BANANA_PRESSURE_PLATE;
+	public static RegistryObject<Block> BANANA_BUTTON;
+	public static RegistryObject<Block> STRIPPED_BANANA_LOG;
+	public static RegistryObject<Block> BANANA_BEAM;
+	public static RegistryObject<Block> BANANA_SIGN;
+	public static RegistryObject<Block> BANANA_WALL_SIGN;
+	public static RegistryObject<Block> BANANA_LOG_SLAB;
+	public static RegistryObject<Block> STRIPPED_BANANA_LOG_SLAB;
+	public static RegistryObject<Block> BANANA_BEAM_SLAB;
+
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;
@@ -176,6 +197,11 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_STAIRS;
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_WALL;
 
+	public static RegistryObject<Block> ROHAN_BEAM;
+	public static RegistryObject<Block> ORNATE_ROHAN_BEAM;
+	public static RegistryObject<Block> GOLDEN_ROHAN_BEAM;
+	public static RegistryObject<Block> ORNATE_GOLDEN_ROHAN_BEAM;
+
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK;
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_SLAB;
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_STAIRS;
@@ -248,12 +274,21 @@ public class ExtendedBlocks {
 	public static Map<String, RegistryObject<Block>> ENTITYSPAWNERBLOCKS = new HashMap<>();
 
 	public static RegistryObject<Block> CHEESE_WHEEL;
+	public static RegistryObject<Block> AGED_CHEESE_WHEEL;
+	public static RegistryObject<Block> BANANA_CAKE;
 
 	public static RegistryObject<Block> REMAINS_ORC;
 	public static RegistryObject<Block> REMAINS_ELF;
 	public static RegistryObject<Block> REMAINS_MAN;
 	public static RegistryObject<Block> REMAINS_DWARF;
 	public static RegistryObject<Block> BARREN_DIRT;
+	public static RegistryObject<Block> BARREN_DIRT_SLAB;
+	public static RegistryObject<Block> COARSE_DIRT_SLAB;
+	public static RegistryObject<Block> GRASS_PATH_SLAB;
+	public static RegistryObject<Block> DIRT_SLAB;
+	public static RegistryObject<Block> GRASS_BLOCK_SLAB;
+	public static RegistryObject<Block> PODZOL_SLAB;
+	public static RegistryObject<Block> MYCELIUM_SLAB;
 
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB;
@@ -271,6 +306,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK;
 
 	public static RegistryObject<Block> STONE_CHEST;
+	public static RegistryObject<Block> REED_BASKET;
 
 	public static RegistryObject<Block> STRAW_BED;
 	public static RegistryObject<Block> ORC_BED;
@@ -279,4 +315,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GRAY_FUR_BED;
 	public static RegistryObject<Block> SILVER_FUR_BED;
 	public static RegistryObject<Block> WHITE_FUR_BED;
+	public static RegistryObject<Block> BEDROLL;
+
+	public static RegistryObject<Block> CONQUEST_TABLE;
+	public static RegistryObject<Block> WEAPON_RACK;
 }

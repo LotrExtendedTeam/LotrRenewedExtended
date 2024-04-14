@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity.chests;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChestTileEntity;
-
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

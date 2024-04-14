@@ -8,16 +8,24 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
+import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
 import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
@@ -55,6 +63,7 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
@@ -72,6 +81,7 @@ import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.state.properties.BedPart;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -94,15 +104,24 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 
 	@Override
     protected void addTables() {
-		dropSelf(ExtendedBlocks.MORGUL_LANTERN.get());
-		dropSelf(ExtendedBlocks.BARREN_DIRT.get());
-		add(ExtendedBlocks.GREEN_FIRE_BLOCK.get(), noDrop());
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+			if(block.getValue().get() instanceof ExtendedGrowableAxialSlabBlock) {
+				add(block.getValue().get(), createGrowableSlabItemTable((SlabBlock)block.getValue().get(),((ExtendedGrowableAxialSlabBlock)block.getValue().get()).getBaseForLootTables().get()));
+				continue;
+			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {
 				add(block.getValue().get(), BlockLootTables::createSlabItemTable);
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRWallBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedFireBlock) {
+				add(block.getValue().get(), noDrop());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedLanternBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -123,6 +142,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedStoneBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedConquestTableBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -214,13 +237,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (p_241170_0_) -> {
-		         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
-		         });
-			add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get(), (p_241170_0_) -> {
-		         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
-			add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (p_241170_0_) -> {
-		         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
 				continue;
@@ -228,6 +244,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
 			         return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
+			      });
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedFullBedBlock) {
+				add(block.getValue().get(), (p_218569_0_) -> {
+			         return createSinglePropConditionTable(p_218569_0_, ExtendedFullBedBlock.PART, BedPart.HEAD);
 			      });
 				continue;
 			}
@@ -255,6 +277,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropOther(block.getValue().get(), LOTRBlocks.HEARTH_BLOCK.get());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
 			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
 				dropOther(block.getValue().get(), ((ExtendedGroundFarmlandBlock)block.getValue().get()).getBase().get());
 				continue;
@@ -269,30 +295,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			         return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get());});
 				continue;
 			}
-			add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
-			add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.TOPAZ.get());});
-			add(ExtendedBlocks.AMETHYST_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.AMETHYST.get());});
-			add(ExtendedBlocks.SAPPHIRE_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.SAPPHIRE.get());});
-			add(ExtendedBlocks.RUBY_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.RUBY.get());});
-			add(ExtendedBlocks.DIAMOND_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.DIAMOND.get());});
-			add(ExtendedBlocks.OPAL_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
-			add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> {
-		         return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
-			add(ExtendedBlocks.REMAINS_ELF.get(), (p_241170_0_) -> {
-		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-			add(ExtendedBlocks.REMAINS_MAN.get(), (p_241170_0_) -> {
-		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-			add(ExtendedBlocks.REMAINS_ORC.get(), (p_241170_0_) -> {
-		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-			add(ExtendedBlocks.REMAINS_DWARF.get(), (p_241170_0_) -> {
-		         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
+				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			}
+			if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
+				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				dropSelf(block.getValue().get());
 				continue;
@@ -312,8 +320,43 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			        						 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));});
 				continue;
 			}
-			add(ExtendedBlocks.STONE_CHEST.get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 		}
+		dropSelf(ExtendedBlocks.BARREN_DIRT.get());
+		add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (p_241170_0_) -> {
+	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+	         });
+		add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get(), (p_241170_0_) -> {
+	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
+		add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (p_241170_0_) -> {
+	         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
+		add(ExtendedBlocks.BANANA_LEAVES.get(), (p_241170_0_) -> {
+	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+	         });
+		add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
+		add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.TOPAZ.get());});
+		add(ExtendedBlocks.AMETHYST_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.AMETHYST.get());});
+		add(ExtendedBlocks.SAPPHIRE_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.SAPPHIRE.get());});
+		add(ExtendedBlocks.RUBY_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.RUBY.get());});
+		add(ExtendedBlocks.DIAMOND_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.DIAMOND.get());});
+		add(ExtendedBlocks.OPAL_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
+		add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> {
+	         return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
+		add(ExtendedBlocks.REMAINS_ELF.get(), (p_241170_0_) -> {
+	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+		add(ExtendedBlocks.REMAINS_MAN.get(), (p_241170_0_) -> {
+	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+		add(ExtendedBlocks.REMAINS_ORC.get(), (p_241170_0_) -> {
+	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+		add(ExtendedBlocks.REMAINS_DWARF.get(), (p_241170_0_) -> {
+	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
     }
 	
 	@Override
@@ -337,4 +380,13 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				.when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(p_218526_0_, ItemLootEntry.lootTableItem(item))
 								.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay())));
 	}
+
+	protected static LootTable.Builder createGrowableSlabItemTable(SlabBlock block, Block baseSlabDropNoSilk) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(ItemLootEntry.lootTableItem(block)
+						.apply(SetCount.setCount(ConstantRange.exactly(2)).when(BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE)))).when(HAS_SILK_TOUCH)
+						.otherwise(applyExplosionCondition(block, ItemLootEntry.lootTableItem(baseSlabDropNoSilk)
+								.apply(SetCount.setCount(ConstantRange.exactly(2)).when(BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE))))))));
+	}
+
 }

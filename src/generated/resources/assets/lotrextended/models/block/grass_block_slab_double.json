@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:block/cube_all_tinted",
+  "textures": {
+    "all": "minecraft:block/grass_block_top"
+  }
+}

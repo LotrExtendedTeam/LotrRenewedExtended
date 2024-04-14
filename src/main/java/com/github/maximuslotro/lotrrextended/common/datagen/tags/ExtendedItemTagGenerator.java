@@ -65,6 +65,7 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		this.copy(ExtendedBlockTagGenerator.CHARRABLE_STRIPPED_WOODS, ExtendedItemTagGenerator.CHARRABLE_STRIPPED_WOODS);
 		
 		this.copy(ExtendedTags.Blocks.CHESTNUT_LOGS, ExtendedTags.Items.CHESTNUT_LOGS);
+		this.copy(ExtendedTags.Blocks.BANANA_LOGS, ExtendedTags.Items.BANANA_LOGS);
 
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN, ExtendedTags.Items.STORAGE_BLOCKS_GALVORN);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL);
@@ -178,7 +179,7 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		
 		tag(Tags.Items.CHESTS).add(ExtendedItems.STONE_CHEST.get());
 
-		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get());
+		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get());
 
 	}
 

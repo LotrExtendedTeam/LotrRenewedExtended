@@ -35,7 +35,7 @@ public class MixinLOTRMaterial {
 	@Dynamic
 	private static LOTRMaterial[] $VALUES;
 	
-	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
+	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) ExtendedItems.MORGUL_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 
 	private static final LOTRMaterial TAURETHRIM = lotrmaterialExpansion$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
@@ -46,10 +46,10 @@ public class MixinLOTRMaterial {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) Items.INGOTS_GOLD});}, new LOTRMaterial.Specials[0]);
 
 
-	private static final LOTRMaterial ANGMAR = lotrmaterialExpansion$addVariant("ANGMAR", "angmar", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
+	private static final LOTRMaterial ANGMAR = lotrmaterialExpansion$addVariant("ANGMAR", "angmar", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.ORC_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 
-	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 450, 5.5F, 3.0F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
+	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, () -> {
 		return Ingredient.of(new IItemProvider[]{(IItemProvider) LOTRItems.ORC_STEEL_INGOT.get()});}, new LOTRMaterial.Specials[0]);
 
 	

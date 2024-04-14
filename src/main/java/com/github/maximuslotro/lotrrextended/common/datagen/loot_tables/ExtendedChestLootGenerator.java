@@ -68,7 +68,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 		//ADD chestnut, pouches
 		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE, LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-                		.setRolls(RandomValueRange.between(3, 5))
+                		.setRolls(RandomValueRange.between(1, 4))
                 		.add(ItemLootEntry.lootTableItem(Items.GOLD_INGOT).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
                 		.add(ItemLootEntry.lootTableItem(Items.GOLD_NUGGET).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.SILVER_INGOT.get()).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))

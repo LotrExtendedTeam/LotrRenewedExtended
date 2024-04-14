@@ -60,6 +60,7 @@ public class ExtendedTags {
 
 		public static final ITag.INamedTag<Block> GREEN_FIRE_BASE_BLOCKS = BlockTags.bind("lotrextended:green_fire_base_blocks");
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
+		public static final ITag.INamedTag<Block> BANANA_LOGS = BlockTags.bind("lotrextended:banana_logs");
 	}
 
 	public static class Items {
@@ -137,5 +138,6 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Item> GULDURIL_ORE = ItemTags.bind("forge:ores/gulduril");
 	    
 	    public static final ITag.INamedTag<Item> CHESTNUT_LOGS = ItemTags.bind("lotrextended:chestnut_logs");
+	    public static final ITag.INamedTag<Item> BANANA_LOGS = ItemTags.bind("lotrextended:banana_logs");
 	}
 }

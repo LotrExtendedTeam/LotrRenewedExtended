@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:banana_door"
+    ]
+  },
+  "criteria": {
+    "has_banana_door": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_door"
+          }
+        ]
+      }
+    },
+    "has_banana_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:banana_door"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_door",
+      "has_banana_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -258,18 +258,18 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(planks.get(), 4)
-			.requires(log.get())
 			.requires(resource)
 			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
+			.group("planks")
 			.save(consumer, lotrLoc(name));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 4, table)
-			.requires(log.get())
 			.requires(resource)
 			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
+			.group("planks")
 			.save(consumer, lotrLoc(name));
 		}
 	}
@@ -346,6 +346,32 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.save(consumer, lotrLoc(name+"_from_"+wood_stairs.get().getRegistryName().getPath()));
 		}
 	}
+
+	protected void makePlanksFromBlocksRecipeNoBranchWood(Consumer<IFinishedRecipe> consumer, 
+			Supplier<? extends Item> planks, 
+			Supplier<? extends Item> log_slab,
+			Supplier<? extends Item> stripped_log_slab, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = planks.get().getRegistryName().getPath();
+		if(table==null) {
+			ShapelessRecipeBuilder.shapeless(planks.get(), 2)
+			.requires(log_slab.get())
+			.requires(stripped_log_slab.get())
+			.unlockedBy("has_"+name, has(planks.get()))
+			.unlockedBy("has_"+log_slab.get().getRegistryName().getPath(), has(log_slab.get()))
+			.unlockedBy("has_"+stripped_log_slab.get().getRegistryName().getPath(), has(stripped_log_slab.get()))
+			.save(consumer, lotrLoc(name+"_from_"+log_slab.get().getRegistryName().getPath()));
+		}
+		else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 2, table)
+			.requires(log_slab.get())
+			.requires(stripped_log_slab.get())
+			.unlockedBy("has_"+name, has(planks.get()))
+			.unlockedBy("has_"+log_slab.get().getRegistryName().getPath(), has(log_slab.get()))
+			.unlockedBy("has_"+stripped_log_slab.get().getRegistryName().getPath(), has(stripped_log_slab.get()))
+			.save(consumer, lotrLoc(name+"_from_"+log_slab.get().getRegistryName().getPath()));
+		}
+	}
+
 
 	protected void makeFenceAndFenceGateRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> fence, Supplier<? extends Block> gate, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String fenceName = fence.get().getRegistryName().getPath();

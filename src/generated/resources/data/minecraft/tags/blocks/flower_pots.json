@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "lotr:potted_banana_sapling",
     "lotr:potted_chestnut_sapling"
   ]
 }

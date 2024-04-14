@@ -1,7 +1,6 @@
 package lotr.common.entity.npc.ai.goal;
 
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import net.minecraft.entity.LivingEntity;
 
 public class ExtendedRangerMeleeAttackGoal extends NPCMeleeAttackGoal {
 

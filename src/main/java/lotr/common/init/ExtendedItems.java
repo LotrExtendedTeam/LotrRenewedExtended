@@ -55,6 +55,26 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_BRANCH;
 	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
 
+	public static RegistryObject<Item> BANANA_LOG;
+	public static RegistryObject<Item> BANANA_PLANKS;
+	public static RegistryObject<Item> BANANA_LEAVES;
+	public static RegistryObject<Item> BANANA_SAPLING;
+	public static RegistryObject<Item> BANANA_SLAB;
+	public static RegistryObject<Item> BANANA_STAIRS;
+	public static RegistryObject<Item> BANANA_FENCE;
+	public static RegistryObject<Item> BANANA_FENCE_GATE;
+	public static RegistryObject<Item> BANANA_DOOR;
+	public static RegistryObject<Item> BANANA_TRAPDOOR;
+	public static RegistryObject<Item> BANANA_PRESSURE_PLATE;
+	public static RegistryObject<Item> BANANA_BUTTON;
+	public static RegistryObject<Item> STRIPPED_BANANA_LOG;
+	public static RegistryObject<Item> BANANA_BEAM;
+	public static RegistryObject<Item> BANANA_SIGN;
+	public static RegistryObject<Item> BANANA_BOAT;
+	public static RegistryObject<Item> BANANA_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
+	public static RegistryObject<Item> BANANA_BEAM_SLAB;
+
 	public static RegistryObject<Item> MORGUL_SWORD;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
@@ -98,6 +118,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
 	public static RegistryObject<Item> BARREN_DIRT;
+	public static RegistryObject<Item> BARREN_DIRT_SLAB;
+	public static RegistryObject<Item> COARSE_DIRT_SLAB;
+	public static RegistryObject<Item> GRASS_PATH_SLAB;
+	public static RegistryObject<Item> DIRT_SLAB;
+	public static RegistryObject<Item> GRASS_BLOCK_SLAB;
+	public static RegistryObject<Item> PODZOL_SLAB;
+	public static RegistryObject<Item> MYCELIUM_SLAB;
 	//Scorched stuff
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
@@ -132,6 +159,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MOSSY_MUD_BRICK_SLAB;
 	public static RegistryObject<Item> MOSSY_MUD_BRICK_STAIRS;
 	public static RegistryObject<Item> MOSSY_MUD_BRICK_WALL;
+
+	public static RegistryObject<Item> ROHAN_BEAM;
+	public static RegistryObject<Item> ORNATE_ROHAN_BEAM;
+	public static RegistryObject<Item> GOLDEN_ROHAN_BEAM;
+	public static RegistryObject<Item> ORNATE_GOLDEN_ROHAN_BEAM;
 
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;
@@ -190,9 +222,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ELDERBERRY;
 	public static RegistryObject<Item> WILDBERRY;
 	public static RegistryObject<Item> CHEESE_WHEEL;
+	public static RegistryObject<Item> AGED_CHEESE_WHEEL;
 	public static RegistryObject<Item> CHEESE_CURDS;
 	public static RegistryObject<Item> CHEESE_SLICE;
-	
+	public static RegistryObject<Item> AGED_CHEESE_SLICE;
+	public static RegistryObject<Item> BANANA;
+	public static RegistryObject<Item> BANANA_CAKE;
+	public static RegistryObject<Item> BANANA_BREAD;
+
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;
 	public static RegistryObject<Item> BOTTLE_OF_POISON;
@@ -358,6 +395,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CARVED_BLACK_GONDOR_BRICK;
 
 	public static RegistryObject<Item> STONE_CHEST;
+	public static RegistryObject<Item> REED_BASKET;
 
 	public static RegistryObject<Item> STRAW_BED;
 	public static RegistryObject<Item> ORC_BED;
@@ -366,5 +404,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GRAY_FUR_BED;
 	public static RegistryObject<Item> SILVER_FUR_BED;
 	public static RegistryObject<Item> WHITE_FUR_BED;
+	public static RegistryObject<Item> BEDROLL;
+
+	public static RegistryObject<Item> CONQUEST_TABLE;
+	public static RegistryObject<Item> WEAPON_RACK;
 }
 

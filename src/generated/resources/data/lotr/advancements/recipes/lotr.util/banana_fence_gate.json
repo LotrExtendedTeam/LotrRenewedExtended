@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:banana_fence_gate"
+    ]
+  },
+  "criteria": {
+    "has_banana_fence_gate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_fence_gate"
+          }
+        ]
+      }
+    },
+    "has_banana_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:banana_fence_gate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_fence_gate",
+      "has_banana_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

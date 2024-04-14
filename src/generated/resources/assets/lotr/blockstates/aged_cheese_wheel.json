@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "lotrextended:block/aged_cheese_wheel"
+    },
+    "bites=1": {
+      "model": "lotrextended:block/aged_cheese_wheel1"
+    },
+    "bites=2": {
+      "model": "lotrextended:block/aged_cheese_wheel2"
+    },
+    "bites=3": {
+      "model": "lotrextended:block/aged_cheese_wheel3"
+    },
+    "bites=4": {
+      "model": "lotrextended:block/aged_cheese_wheel4"
+    },
+    "bites=5": {
+      "model": "lotrextended:block/aged_cheese_wheel5"
+    },
+    "bites=6": {
+      "model": "lotrextended:block/aged_cheese_wheel6"
+    }
+  }
+}

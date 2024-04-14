@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/reed_basket_template",
+  "textures": {
+    "1": "lotrextended:entity/chest/reed_basket",
+    "particle": "lotrextended:entity/chest/reed_basket"
+  }
+}

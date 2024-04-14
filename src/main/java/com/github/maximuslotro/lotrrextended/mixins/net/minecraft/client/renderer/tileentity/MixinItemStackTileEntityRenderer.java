@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
@@ -30,7 +30,7 @@ public class MixinItemStackTileEntityRenderer {
 		if (item instanceof BlockItem) {
 			Block block = ((BlockItem)item).getBlock();
 			TileEntity tileentity = null;
-			if (block == Blocks.CONDUIT) {
+			if (block == ExtendedBlocks.STRAW_BED.get()) {
 				tileentity = strawBed;
 			}
 			if(tileentity!=null) {

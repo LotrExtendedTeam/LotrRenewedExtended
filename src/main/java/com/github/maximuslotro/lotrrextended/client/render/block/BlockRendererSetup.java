@@ -4,6 +4,8 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedBedTileEneityRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedChestTileEntityRenderer;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;
@@ -34,9 +36,6 @@ public class BlockRendererSetup {
 	public static final RenderMaterial SILVER_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, SILVER_FUR_BED);
 	public static final ResourceLocation WHITE_FUR_BED = createNewBedModel("white_fur_bed");
 	public static final RenderMaterial WHITE_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, WHITE_FUR_BED);
-//	public static Callable<ItemStackTileEntityRenderer> createStoneChestRenderer() {
-//		return () -> new ExtendedItemStackRenderer(ExtendedStoneChestTileEntity::new);
-//	}
 
 	public static void regModels() {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_CHEST.get(), ExtendedChestTileEntityRenderer::new);
@@ -47,6 +46,7 @@ public class BlockRendererSetup {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.GRAY_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.SILVER_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WHITE_FUR_BED.get(), ExtendedBedTileEneityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WEAPON_RACK.get(), ExtendedWeaponRackItemRenderer::new);
 	}
 
 	public static ResourceLocation createNewChestModel(String name) {
@@ -76,6 +76,12 @@ public class BlockRendererSetup {
 		for(RegistryObject<Block> reg: LOTRBlocks.BLOCKS.getEntries()) {
 			Block block = reg.get();
 			if(block instanceof ExtendedBedBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedFullBedBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedReedBasketBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}

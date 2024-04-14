@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "lotr:banana_button",
     "lotr:chestnut_button"
   ]
 }

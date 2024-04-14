@@ -46,6 +46,9 @@ public class ExtendedBrandingIronItem extends Item {
 
 	@Override
 	public ActionResultType interactLivingEntity(ItemStack item, PlayerEntity player, LivingEntity entity, Hand p_111207_4_) {
+		if (item.getDamageValue() >= item.getMaxDamage() - 1) {
+	         return ActionResultType.FAIL;
+	      }
 		if(isTempered(player.getMainHandItem())&&getTemperedName(player.getMainHandItem())!=null) {
 			if(entity instanceof AnimalEntity) {
 				AnimalEntity animal = ((AnimalEntity) entity);
@@ -58,6 +61,7 @@ public class ExtendedBrandingIronItem extends Item {
 					if(!entity.level.isClientSide()) {
 						setTempererName(entity, player.getUUID());
 						damageItem(player.getMainHandItem());
+						player.getMainHandItem().setDamageValue(player.getMainHandItem().getDamageValue()+1);
 					}
 					player.awardStat(ExtendedStats.ANIMALS_BRANDED);
 					ActionResultType.sidedSuccess(entity.level.isClientSide);

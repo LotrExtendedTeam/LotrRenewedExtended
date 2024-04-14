@@ -105,6 +105,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.info.listPatches");
 		addD("command.lotrextended.structureSummon.success");
 		addD("command.lotrextended.structureSummon.failure");
+
+		// Bookshelf
+		addD("gui.lotrextended.bookshelf.title");
 	}
 
 	@Override

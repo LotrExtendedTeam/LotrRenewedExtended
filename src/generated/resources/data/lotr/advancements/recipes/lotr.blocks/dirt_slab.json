@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dirt_slab"
+    ]
+  },
+  "criteria": {
+    "has_dirt_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dirt_slab"
+          }
+        ]
+      }
+    },
+    "has_dirt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:dirt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dirt_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dirt_slab",
+      "has_dirt",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -14,12 +14,18 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCheeseWheelBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGreenFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedGrayFurBedBlock;
@@ -28,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFur
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
@@ -241,6 +248,33 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH = registerB("stripped_chestnut_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
 		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 
+		ExtendedBlocks.BANANA_LOG = registerB("banana_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.PODZOL, () -> ExtendedBlocks.STRIPPED_BANANA_LOG.get()));
+		//ExtendedBlocks.BANANA_WOOD = registerB("banana_wood", () -> new StrippableWoodBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD.get()));
+		ExtendedBlocks.BANANA_PLANKS = registerB("banana_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
+		ExtendedBlocks.BANANA_LEAVES = registerB("banana_leaves", LOTRLeavesBlock::new);
+		ExtendedBlocks.BANANA_SAPLING = registerB("banana_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
+		ExtendedBlocks.POTTED_BANANA_SAPLING = registerB("potted_banana_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.BANANA_SAPLING));
+		ExtendedBlocks.BANANA_SLAB = registerB("banana_slab", () -> new AxialSlabBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_STAIRS = registerB("banana_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_FENCE = registerB("banana_fence", () -> new LOTRFenceBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_FENCE_GATE = registerB("banana_fence_gate", () -> new LOTRFenceGateBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_DOOR = registerB("banana_door", () -> new LOTRDoorBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_TRAPDOOR = registerB("banana_trapdoor", () -> new LOTRTrapdoorBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_PRESSURE_PLATE = registerB("banana_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.BANANA_PLANKS));
+		ExtendedBlocks.BANANA_BUTTON = registerB("banana_button", LOTRWoodButtonBlock::new);
+		ExtendedBlocks.STRIPPED_BANANA_LOG = registerB("stripped_banana_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.BANANA_LOG));
+		//ExtendedBlocks.STRIPPED_BANANA_WOOD = registerB("stripped_banana_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
+		ExtendedBlocks.BANANA_BEAM = registerB("banana_beam", () -> new WoodBeamBlock(ExtendedBlocks.BANANA_LOG));
+		ExtendedBlocks.BANANA_SIGN = registerB("banana_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.BANANA_PLANKS, ExtendedSignTypes.BANANA));
+		ExtendedBlocks.BANANA_WALL_SIGN = registerB("banana_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.BANANA_SIGN));
+		ExtendedBlocks.BANANA_LOG_SLAB = registerB("banana_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB.get()));
+		//ExtendedBlocks.BANANA_WOOD_SLAB = registerB("banana_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB.get()));
+		//ExtendedBlocks.BANANA_WOOD_STAIRS = registerB("banana_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS.get()));
+		ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB = registerB("stripped_banana_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
+		//ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB = registerB("stripped_banana_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
+		//ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS = registerB("stripped_banana_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
+		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
+
 		//Packed Fur
 		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.WOOL));
 		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));
@@ -302,6 +336,13 @@ public class MixinLOTRBlocks {
 
 		///////////////////////////////BRICKS
 		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new Block(AbstractBlock.Properties.copy(Blocks.DIRT)));
+		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new AxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
+		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new AxialSlabBlock(Blocks.COARSE_DIRT));
+		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new AxialSlabBlock(Blocks.DIRT));
+		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedGrowableAxialSlabBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
+		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new AxialSlabBlock(Blocks.GRASS_PATH));
+		ExtendedBlocks.PODZOL_SLAB = registerB("podzol_slab", () -> new AxialSlabBlock(Blocks.PODZOL));
+		ExtendedBlocks.MYCELIUM_SLAB = registerB("mycelium_slab", () -> new ExtendedGrowableAxialSlabBlock(Blocks.MYCELIUM, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.MYCELIUM));
 		//Scorched Stuff
 		ExtendedBlocks.SCORCHED_STONE = registerB("scorched_stone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.SCORCHED_STONE_SLAB = registerB("scorched_stone_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_STONE));
@@ -440,6 +481,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK_STAIRS = registerB("mossy_red_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK));
 		ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK_WALL = registerB("mossy_red_rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_RED_RHUNIC_BRICK));
 
+		ExtendedBlocks.ROHAN_BEAM = registerB("rohan_beam", () -> new LOTRPillarBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.ORNATE_ROHAN_BEAM = registerB("ornate_rohan_beam", () -> new LOTRPillarBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.GOLDEN_ROHAN_BEAM = registerB("golden_rohan_beam", () -> new LOTRPillarBlock(MaterialColor.COLOR_BROWN));
+		ExtendedBlocks.ORNATE_GOLDEN_ROHAN_BEAM = registerB("ornate_golden_rohan_beam", () -> new LOTRPillarBlock(MaterialColor.COLOR_BROWN));
+		
 		//Gondor
 		ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK = registerB("black_carved_gondor_brick", () -> new LOTRStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
 		ExtendedBlocks.SMOOTH_GONDOR_STAIRS = registerB("smooth_gondor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_GONDOR_ROCK));
@@ -488,6 +534,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("stone_taurethrim_crafting_table", () -> new ExtendedTwoTypeDummyBlock(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = registerB("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
+		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(AbstractBlock.Properties.of(Material.METAL).sound(SoundType.METAL).strength(2.5F)));
 		//TODO add block props
 		ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE = registerB("half_troll_crafting_table", () -> new ExtendedFactionCraftingTableBlock.HalfTroll(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.GUNDABAD_CRAFTING_TABLE = registerB("gundabad_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Gundabad(ExtendedBlocks.TAURETHRIM_BRICK));
@@ -504,9 +551,14 @@ public class MixinLOTRBlocks {
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
-		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE));
+		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE, ExtendedCheeseState.UNAFFECTED));
+		ExtendedBlocks.AGED_CHEESE_WHEEL = registerB("aged_cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.AGED_CHEESE_SLICE, ExtendedCheeseState.AGED));
+
+		ExtendedBlocks.BANANA_CAKE = registerB("banana_cake", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F));
 
 		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedSingleChestBlock(()-> new ExtendedStoneChestTileEntity()));
+		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(AbstractBlock.Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));
+		ExtendedBlocks.WEAPON_RACK = registerB("weapon_rack", () -> new ExtendedWeaponRackBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));
 
 		ExtendedBlocks.STRAW_BED = registerB("straw_bed", () -> new ExtendedStrawBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.ORC_BED = registerB("orc_bed", () -> new ExtendedOrcBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
@@ -515,6 +567,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GRAY_FUR_BED = registerB("gray_fur_bed", () -> new ExtendedGrayFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.SILVER_FUR_BED = registerB("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)

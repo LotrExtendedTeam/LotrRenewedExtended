@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "lotr:banana_planks",
     "lotr:chestnut_planks"
   ]
 }

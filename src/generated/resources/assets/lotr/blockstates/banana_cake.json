@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "lotrextended:block/banana_cake"
+    },
+    "bites=1": {
+      "model": "lotrextended:block/banana_cake1"
+    },
+    "bites=2": {
+      "model": "lotrextended:block/banana_cake2"
+    },
+    "bites=3": {
+      "model": "lotrextended:block/banana_cake3"
+    },
+    "bites=4": {
+      "model": "lotrextended:block/banana_cake4"
+    },
+    "bites=5": {
+      "model": "lotrextended:block/banana_cake5"
+    },
+    "bites=6": {
+      "model": "lotrextended:block/banana_cake6"
+    }
+  }
+}

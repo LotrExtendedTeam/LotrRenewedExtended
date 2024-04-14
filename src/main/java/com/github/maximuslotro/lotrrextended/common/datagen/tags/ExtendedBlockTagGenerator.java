@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
@@ -53,6 +55,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	public static final ITag.INamedTag<Block> CHARRABLE_STRIPPED_LOGS = BlockTags.bind("lotr:charrable_stripped_logs");
 	public static final ITag.INamedTag<Block> CHARRABLE_STRIPPED_WOODS = BlockTags.bind("lotr:charrable_stripped_woods");
 	//MINECRAFT
+	public static final ITag.INamedTag<Block> BEDS = BlockTags.bind(BlockTags.BEDS.getName().toString());
     public static final ITag.INamedTag<Block> SLABS = BlockTags.bind(BlockTags.SLABS.getName().toString());
     public static final ITag.INamedTag<Block> WOODEN_SLABS = BlockTags.bind(BlockTags.WOODEN_SLABS.getName().toString());
     public static final ITag.INamedTag<Block> STAIRS = BlockTags.bind(BlockTags.STAIRS.getName().toString());
@@ -81,6 +84,9 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
 				tag(FLOWER_POTS).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof ExtendedBedBlock||block.getValue().get() instanceof ExtendedFullBedBlock) {
+				tag(BEDS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRPlanksBlock) {
 				tag(PLANKS).add(block.getValue().get());
@@ -166,7 +172,7 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 			}
 		}
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.BARREN_DIRT.get());
-		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS);
+		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS);
 
 	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).add(ExtendedBlocks.GALVORN_BLOCK.get());
 	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).add(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK.get());
@@ -249,10 +255,13 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	    .addTag(ExtendedTags.Blocks.SILVER_ORE).addTag(ExtendedTags.Blocks.SULFUR_ORE)
 	    .addTag(ExtendedTags.Blocks.TIN_ORE);
 
-	    tag(Tags.Blocks.CHESTS).add(ExtendedBlocks.STONE_CHEST.get());
+	    tag(Tags.Blocks.CHESTS).add(ExtendedBlocks.STONE_CHEST.get()).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(Tags.Blocks.BARRELS).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(Tags.Blocks.BARRELS_WOODEN).add(ExtendedBlocks.REED_BASKET.get());
 
 	    tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
 	    .add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());
+	    tag(ExtendedTags.Blocks.BANANA_LOGS).add(ExtendedBlocks.BANANA_LOG.get()).add(ExtendedBlocks.STRIPPED_BANANA_LOG.get());
 	}
 
 	@Override

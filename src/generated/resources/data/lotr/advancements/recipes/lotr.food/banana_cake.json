@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:banana_cake"
+    ]
+  },
+  "criteria": {
+    "has_banana_cake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_cake"
+          }
+        ]
+      }
+    },
+    "has_banana": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:banana_cake"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_cake",
+      "has_banana",
+      "has_the_recipe"
+    ]
+  ]
+}

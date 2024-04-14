@@ -3,6 +3,9 @@ package lotr.common.init;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -10,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcB
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedReedBasketTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
 import lotr.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
@@ -28,5 +32,9 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedGrayFurBedTileEntity>> GRAY_FUR_BED;
 	public static RegistryObject<TileEntityType<ExtendedSilverFurBedTileEntity>> SILVER_FUR_BED;
 	public static RegistryObject<TileEntityType<ExtendedWhiteFurBedTileEntity>> WHITE_FUR_BED;
+	public static RegistryObject<TileEntityType<ExtendedNoRenderTileEntity>> NORENDER;
+	public static RegistryObject<TileEntityType<ExtendedBookshelfTileEntity>> BOOKSHELF;
+	public static RegistryObject<TileEntityType<ExtendedWeaponRackTileEntity>> WEAPON_RACK;
+	public static RegistryObject<TileEntityType<ExtendedReedBasketTileEntity>> REED_BASKET;
 }
 

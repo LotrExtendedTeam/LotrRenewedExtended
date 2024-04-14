@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLF"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "F": {
+      "tag": "forge:furs"
+    }
+  },
+  "result": {
+    "item": "lotr:bedroll"
+  }
+}

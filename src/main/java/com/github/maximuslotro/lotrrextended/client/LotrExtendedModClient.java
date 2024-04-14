@@ -1,8 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client;
 
-import org.apache.maven.artifact.versioning.ComparableVersion;
-
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
@@ -56,7 +55,8 @@ public class LotrExtendedModClient {
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(BlockRendererSetup::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
-
+		modBus.addListener(ExtendedColorHelper::makeBlockColors);
+		modBus.addListener(ExtendedColorHelper::makeItemsColors);
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
