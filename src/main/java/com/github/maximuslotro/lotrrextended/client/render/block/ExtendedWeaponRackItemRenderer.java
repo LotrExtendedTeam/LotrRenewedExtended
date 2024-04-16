@@ -20,7 +20,12 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 
 public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedWeaponRackTileEntity>{
-
+	public static double transX = 0.5D;
+	public static double transY = 0.5D;
+	public static double transZ = 0.5D;
+	public static float scaleX = 1F;
+	public static float scaleY = 1F;
+	public static float scaleZ = 1F;
 	public ExtendedWeaponRackItemRenderer(TileEntityRendererDispatcher p_i226006_1_) {
 		super(p_i226006_1_);
 	}
@@ -42,10 +47,10 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 		if(block instanceof ExtendedWeaponRackBlock) {
 			stack.pushPose();
 	         float f = blockstate.getValue(ChestBlock.FACING).toYRot();
-	         stack.translate(0.5D, 0.5D, 0.5D);
+	         stack.translate(transX, transY, transZ);
 	         stack.mulPose(Vector3f.YP.rotationDegrees(-f));
 	         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
-	         stack.scale(1F, 1F, 1F);
+	         stack.scale(scaleX, scaleY, scaleZ);
 	         renderer.renderStatic(new ItemStack(Items.DIAMOND_AXE), TransformType.FIXED, light, overlay, stack, buffer);
 	         stack.popPose();
 		}
