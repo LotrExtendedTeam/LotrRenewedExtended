@@ -16,6 +16,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.state.properties.AttachFace;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 
@@ -45,14 +47,47 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 		BlockState blockstate = flag ? rack.getBlockState() : ExtendedBlocks.WEAPON_RACK.get().defaultBlockState();
 		Block block = blockstate.getBlock();
 		if(block instanceof ExtendedWeaponRackBlock) {
+			Direction dir = blockstate.getValue(ExtendedWeaponRackBlock.FACING);
+			AttachFace face = blockstate.getValue(ExtendedWeaponRackBlock.FACE);
 			stack.pushPose();
-	         float f = blockstate.getValue(ChestBlock.FACING).toYRot();
-	         stack.translate(transX, transY, transZ);
-	         stack.mulPose(Vector3f.YP.rotationDegrees(-f));
-	         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
-	         stack.scale(scaleX, scaleY, scaleZ);
-	         renderer.renderStatic(new ItemStack(Items.DIAMOND_AXE), TransformType.FIXED, light, overlay, stack, buffer);
-	         stack.popPose();
+			if(face == AttachFace.WALL) {
+				if(dir==Direction.NORTH) {
+					
+				}else if(dir==Direction.SOUTH) {
+					
+				}else if(dir==Direction.EAST) {
+					
+				}else if(dir==Direction.WEST) {
+					
+				}
+			}else if(face == AttachFace.CEILING){
+				if(dir==Direction.NORTH) {
+					
+				}else if(dir==Direction.SOUTH) {
+					
+				}else if(dir==Direction.EAST) {
+					
+				}else if(dir==Direction.WEST) {
+					
+				}
+			}else {
+				if(dir==Direction.NORTH) {
+					
+				}else if(dir==Direction.SOUTH) {
+					
+				}else if(dir==Direction.EAST) {
+					
+				}else if(dir==Direction.WEST) {
+					
+				}
+			}
+			float f = blockstate.getValue(ExtendedWeaponRackBlock.FACING).toYRot();
+			stack.translate(transX, transY, transZ);
+			stack.mulPose(Vector3f.YP.rotationDegrees(-f));
+			ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
+			stack.scale(scaleX, scaleY, scaleZ);
+			renderer.renderStatic(new ItemStack(Items.DIAMOND_AXE), TransformType.FIXED, light, overlay, stack, buffer);
+			stack.popPose();
 		}
 	}
 }
