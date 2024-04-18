@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
@@ -33,14 +32,9 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 
 	@Override
 	public void render(ExtendedWeaponRackTileEntity rack, float ticks, MatrixStack stack, IRenderTypeBuffer buffer, int light, int overlay) {
-//		if(rack.hasItem()) {
-//			ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
-//			stack.pushPose();
-//			stack.translate(0.5D, 0.6D, 0.5D);
-//			stack.scale(1F, 1F, 1F);
-//			renderer.renderStatic(rack.getContainedItem(), TransformType.FIXED, light, overlay, stack, buffer);
-//			stack.popPose();
-//		}
+		if(!rack.hasItem()) {
+			return;
+		}
 		World world = rack.getLevel();
 		boolean flag = world != null;
 		BlockState blockstate = flag ? rack.getBlockState() : ExtendedBlocks.WEAPON_RACK.get().defaultBlockState();
@@ -85,7 +79,8 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 			stack.mulPose(Vector3f.ZP.rotationDegrees(225F));
 			ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 			stack.scale(0.625F, 0.625F, 0.625F);
-			renderer.renderStatic(new ItemStack(Items.DIAMOND_AXE), TransformType.FIXED, light, overlay, stack, buffer);
+			final ItemStack item = rack.getContainedItem().copy();
+			renderer.renderStatic(item, TransformType.FIXED, light, overlay, stack, buffer);
 			stack.popPose();
 		}
 	}
