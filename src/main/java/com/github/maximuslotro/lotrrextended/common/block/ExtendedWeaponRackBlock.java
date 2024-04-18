@@ -86,7 +86,11 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-    	return super.getStateForPlacement(p_196258_1_).setValue(FAKE_PROPERTY, false);
+    	BlockState state = super.getStateForPlacement(p_196258_1_);
+    	if(state !=null) {
+    		return super.getStateForPlacement(p_196258_1_).setValue(FAKE_PROPERTY, false);
+    	}
+    	return state;
     }
     @Override
     public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
