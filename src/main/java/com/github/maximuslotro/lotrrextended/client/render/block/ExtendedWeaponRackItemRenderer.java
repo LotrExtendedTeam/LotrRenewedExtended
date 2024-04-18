@@ -7,7 +7,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -25,9 +24,9 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 	public static double transX = 0.5D;
 	public static double transY = 0.5D;
 	public static double transZ = 0.5D;
-	public static float scaleX = 1F;
-	public static float scaleY = 1F;
-	public static float scaleZ = 1F;
+	public static float ROTX = 0.0F;
+	public static float ROTY = 0.0F;
+	public static float ROTZ = 0.0F;
 	public ExtendedWeaponRackItemRenderer(TileEntityRendererDispatcher p_i226006_1_) {
 		super(p_i226006_1_);
 	}
@@ -52,40 +51,40 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 			stack.pushPose();
 			if(face == AttachFace.WALL) {
 				if(dir==Direction.NORTH) {
-					
+					stack.translate(0.55D, 0.41D, 0.75D);
 				}else if(dir==Direction.SOUTH) {
-					
+					stack.translate(0.45F, 0.41D, 0.25D);
 				}else if(dir==Direction.EAST) {
-					
+					stack.translate(0.25D, 0.41D, 0.55D);
 				}else if(dir==Direction.WEST) {
-					
+					stack.translate(0.75D, 0.41D, 0.45D);
 				}
-			}else if(face == AttachFace.CEILING){
-				if(dir==Direction.NORTH) {
-					
-				}else if(dir==Direction.SOUTH) {
-					
+				if(dir==Direction.SOUTH) {
+					stack.mulPose(Vector3f.YP.rotationDegrees(180F));
 				}else if(dir==Direction.EAST) {
-					
+					stack.mulPose(Vector3f.YP.rotationDegrees(270F));
 				}else if(dir==Direction.WEST) {
-					
+					stack.mulPose(Vector3f.YP.rotationDegrees(90F));
 				}
 			}else {
+				if(face == AttachFace.CEILING){
+					stack.translate(0.5D, 0.3D, 0.5D);
+				}else {
+					stack.translate(0.5D, 0.75D, 0.5D);
+				}
 				if(dir==Direction.NORTH) {
-					
+					stack.mulPose(Vector3f.YP.rotationDegrees(180F));
 				}else if(dir==Direction.SOUTH) {
-					
+					stack.mulPose(Vector3f.YP.rotationDegrees(0F));
 				}else if(dir==Direction.EAST) {
-					
+					stack.mulPose(Vector3f.YP.rotationDegrees(90F));
 				}else if(dir==Direction.WEST) {
-					
+					stack.mulPose(Vector3f.YP.rotationDegrees(270F));
 				}
 			}
-			float f = blockstate.getValue(ExtendedWeaponRackBlock.FACING).toYRot();
-			stack.translate(transX, transY, transZ);
-			stack.mulPose(Vector3f.YP.rotationDegrees(-f));
+			stack.mulPose(Vector3f.ZP.rotationDegrees(225F));
 			ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
-			stack.scale(scaleX, scaleY, scaleZ);
+			stack.scale(0.625F, 0.625F, 0.625F);
 			renderer.renderStatic(new ItemStack(Items.DIAMOND_AXE), TransformType.FIXED, light, overlay, stack, buffer);
 			stack.popPose();
 		}

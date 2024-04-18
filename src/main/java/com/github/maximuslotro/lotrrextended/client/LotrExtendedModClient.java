@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.client;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
-import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedWeaponRackItemRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 
@@ -81,32 +80,6 @@ public class LotrExtendedModClient {
                 TextComponent message = new TranslationTextComponent("%s %s", prefex, patchName);
                 instance.gui.getChat().addMessage(message);
             }
-        }
-        if (event.getOriginalMessage().startsWith("!lec"))
-        {
-            String[] nums = event.getOriginalMessage().split(":");
-            int num = Integer.parseInt(nums[1]);
-            if(num==1) {
-            	ExtendedWeaponRackItemRenderer.transX = Double.parseDouble(nums[2]);
-            }
-            if(num==2) {
-            	ExtendedWeaponRackItemRenderer.transY = Double.parseDouble(nums[2]);
-            }
-            if(num==3) {
-            	ExtendedWeaponRackItemRenderer.transZ = Double.parseDouble(nums[2]);
-            }
-            if(num==4) {
-            	ExtendedWeaponRackItemRenderer.scaleX = Float.parseFloat(nums[2]);
-            }
-            if(num==5) {
-            	ExtendedWeaponRackItemRenderer.scaleY = Float.parseFloat(nums[2]);
-            }
-            if(num==6) {
-            	ExtendedWeaponRackItemRenderer.scaleZ = Float.parseFloat(nums[2]);
-            }
-            Minecraft instance = Minecraft.getInstance();
-            TextComponent message = new StringTextComponent("Setting Value "+ nums[1] + " to "+nums[2]);
-            instance.gui.getChat().addMessage(message);
         }
     }
 
