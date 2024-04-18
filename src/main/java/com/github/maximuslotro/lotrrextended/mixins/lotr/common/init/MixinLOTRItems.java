@@ -11,6 +11,7 @@ import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
 import lotr.common.item.ExtendedDaggerItem;
+import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRBlockItem;
@@ -581,7 +582,7 @@ public class MixinLOTRItems {
 		ExtendedItems.TAURETHRIM_LEGGINGS = regItemB("taurethrim_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("TAURETHRIM"), EquipmentSlotType.LEGS));
 		ExtendedItems.TAURETHRIM_BOOTS = regItemB("taurethrim_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("TAURETHRIM"), EquipmentSlotType.FEET));
 		ExtendedItems.TAURETHRIM_SWORD = regItemB("taurethrim_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("TAURETHRIM")));
-		ExtendedItems.TAURETHRIM_SPEAR = regItemB("taurethrim_spear",() -> new SpearItem(LOTRMaterial.valueOf("TAURETHRIM")));
+		ExtendedItems.TAURETHRIM_SPEAR = regItemB("taurethrim_spear",() -> new HammerItem(LOTRMaterial.valueOf("TAURETHRIM")).noClink());
 		ExtendedItems.TAURETHRIM_DAGGER = regItemB("taurethrim_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("TAURETHRIM")));
 
 		ExtendedItems.GOLDEN_TAURETHRIM_HELMET = regItemB("golden_taurethrim_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("GOLDEN_TAURETHRIM"), EquipmentSlotType.HEAD, "helmet"));
