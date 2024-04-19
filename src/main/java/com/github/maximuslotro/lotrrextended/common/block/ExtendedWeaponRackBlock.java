@@ -2,10 +2,10 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 
-import lotr.common.item.LOTRSwordItem;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -21,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.OnAStickItem;
 import net.minecraft.item.ShearsItem;
+import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;
 import net.minecraft.item.TridentItem;
 import net.minecraft.state.BooleanProperty;
@@ -215,7 +216,15 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 	public static boolean isValidWeaponRackItem(ItemStack stack) {
 		if(stack!=null) {
 			Item item = stack.getItem();
-			if(item instanceof LOTRSwordItem) {
+			//Handle tags logic
+			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE)) {
+				return false;
+			}
+			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS)) {
+				return true;
+			}
+			//Check Minecraft items and handle some modded types
+			if(item instanceof SwordItem) {
 				return true;
 			}
 			if(item instanceof ToolItem) {
@@ -239,10 +248,6 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 			if(item instanceof FishingRodItem) {
 				return true;
 			}
-			if(item instanceof ExtendedBrandingIronItem) {
-				return true;
-			}
-			
 		}
 		return false;
 	}

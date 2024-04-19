@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:angmar_sword",
+    "lotr:morgul_blade",
+    "lotr:morgul_spear",
+    "lotr:taurethrim_spear",
+    "lotr:dol_guldur_spear",
+    "lotr:angmar_spear",
+    "lotr:dol_guldur_sword",
+    "lotr:taurethrim_sword"
+  ]
+}

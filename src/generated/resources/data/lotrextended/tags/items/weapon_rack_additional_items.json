@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:taurethrim_dagger",
+    "lotr:angmar_sword",
+    "lotr:dol_guldur_axe",
+    "lotr:morgul_blade",
+    "lotr:angmar_hoe",
+    "lotr:taurethrim_shovel",
+    "lotr:taurethrim_pickaxe",
+    "lotr:branding_iron",
+    "lotr:taurethrim_hoe",
+    "lotr:morgul_dagger",
+    "lotr:morgul_spear",
+    "lotr:horn_of_command",
+    "lotr:taurethrim_spear",
+    "lotr:dol_guldur_spear",
+    "lotr:angmar_axe",
+    "lotr:angmar_pickaxe",
+    "lotr:dol_guldur_shovel",
+    "lotr:angmar_spear",
+    "lotr:dol_guldur_hoe",
+    "lotr:dol_guldur_sword",
+    "lotr:taurethrim_sword",
+    "lotr:dol_guldur_pickaxe",
+    "lotr:angmar_shovel",
+    "lotr:taurethrim_axe",
+    "lotr:angmar_dagger",
+    "lotr:dol_guldur_dagger"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:air",
+    "minecraft:barrier",
+    "minecraft:structure_void",
+    "minecraft:debug_stick",
+    "minecraft:command_block"
+  ]
+}
