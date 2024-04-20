@@ -31,6 +31,7 @@ import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
+import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
@@ -279,6 +280,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
 				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof FallenLeavesBlock) {
+				dropWhenSilkTouch(block.getValue().get());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
