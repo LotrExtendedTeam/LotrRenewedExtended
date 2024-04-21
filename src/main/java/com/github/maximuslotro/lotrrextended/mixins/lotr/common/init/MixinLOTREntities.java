@@ -65,6 +65,8 @@ public class MixinLOTREntities {
     @Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
         ExtendedEntities.DUNEDAIN_RANGER = regNPCD("dunedain_ranger", ExtendedDunedainRangerEntity::new, ExtendedDunedainRangerEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
+		// TODO: Figure out spawn egg colors
+		ExtendedEntities.GALADHRIM_WANDERER = regNPCD("galadhrim_wanderer", ExtendedGaladhrimWandererEntity::new, ExtendedGaladhrimWandererEntity::regAttrs, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(869480, 15003391));
         ExtendedEntities.HOBBIT_BARTENDER = regNPCD("hobbit_bartender", ExtendedHobbitBartenderEntity::new, ExtendedHobbitBartenderEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedEntities.HOBBIT_FARMER = regNPCD("hobbit_farmer", ExtendedHobbitFarmerEntity::new, ExtendedHobbitFarmerEntity::regAttrs, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
         ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));
