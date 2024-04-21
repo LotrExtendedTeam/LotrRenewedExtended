@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:banana_leaves"
+    }
+  },
+  "result": {
+    "item": "lotr:fallen_banana_leaves",
+    "count": 16
+  }
+}

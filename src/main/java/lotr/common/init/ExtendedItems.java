@@ -54,6 +54,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_BRANCH;
 	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
+	public static RegistryObject<Item> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Item> BANANA_LOG;
 	public static RegistryObject<Item> BANANA_PLANKS;
@@ -74,6 +75,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
 	public static RegistryObject<Item> BANANA_BEAM_SLAB;
+	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
 
 	public static RegistryObject<Item> MORGUL_SWORD;
 	public static RegistryObject<Item> MORGUL_HELMET;

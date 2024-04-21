@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:chestnut_leaves"
+    }
+  },
+  "result": {
+    "item": "lotr:fallen_chestnut_leaves",
+    "count": 16
+  }
+}

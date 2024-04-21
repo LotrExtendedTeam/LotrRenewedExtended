@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -12,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class ExtendedWeaponRackTileEntity extends TileEntity {
+	private static final String tagName = "extended_ditem";
 	private ItemStack containedItem;
 	public ExtendedWeaponRackTileEntity() {
 		super(ExtendedTileEntities.WEAPON_RACK.get());
@@ -26,10 +29,12 @@ public class ExtendedWeaponRackTileEntity extends TileEntity {
 	@Override
 	public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
 		super.load(p_230337_1_, p_230337_2_);
-		if (p_230337_2_.contains("extended_ditem", NBT.TAG_COMPOUND)) {
-			this.containedItem = ItemStack.of(p_230337_2_.getCompound("displayed_item"));
+		if (p_230337_2_.contains(tagName, NBT.TAG_COMPOUND)) {
+			this.containedItem = ItemStack.of(p_230337_2_.getCompound(tagName));
 			if (containedItem == null) {
+				ExtendedLog.warn("Weapon Rack Loaded with a null Item, this should not happen. All Contained Items Have been lost!");
 				containedItem = ItemStack.EMPTY;
+				this.markAndUpdate();
 			}
 		}
 	}
@@ -38,9 +43,11 @@ public class ExtendedWeaponRackTileEntity extends TileEntity {
 	public CompoundNBT save(CompoundNBT p_189515_1_) {
 		super.save(p_189515_1_);
 		if (containedItem == null) {
+			ExtendedLog.warn("Weapon Rack failed to save as contained item is NULL! This should not happen. All Contained Items Have been lost!");
 			containedItem = ItemStack.EMPTY;
+			this.markAndUpdate();
 		}
-		p_189515_1_.put("extended_ditem", this.containedItem.save(new CompoundNBT()));
+		p_189515_1_.put(tagName, this.containedItem.save(new CompoundNBT()));
 		return p_189515_1_;
 	}
 
@@ -84,6 +91,7 @@ public class ExtendedWeaponRackTileEntity extends TileEntity {
 	}
 	public ItemStack getContainedItem() {
 		if (containedItem == null) {
+			ExtendedLog.warn("Weapon Rack contains a null Item, this should not happen. All Contained Items Have been lost!");
 			containedItem = ItemStack.EMPTY;
 			this.markAndUpdate();
 		}
@@ -93,6 +101,7 @@ public class ExtendedWeaponRackTileEntity extends TileEntity {
 	public void setContainedItem(ItemStack containedItem) {
 		this.containedItem = containedItem;
 		if (containedItem == null) {
+			ExtendedLog.warn("Tried Setting a NULL item to a Weapon Rack, correcting to ItemStack.EMPTY!");
 			containedItem = ItemStack.EMPTY;
 		}
 		this.markAndUpdate();

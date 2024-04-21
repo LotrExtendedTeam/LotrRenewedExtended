@@ -66,6 +66,7 @@
 		"lotr.client.render.MixinBlockRenderHelper",
 		"lotr.client.render.entity.MixinLOTREntityRenderers",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
+		"lotr.client.render.model.MixinHandheldWrapperModel",
 		"net.minecraft.client.gui.screen.inventory.MixinBlastFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinCreativeScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",

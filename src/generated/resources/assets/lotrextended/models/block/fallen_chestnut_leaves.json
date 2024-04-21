@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:block/template_fallen_leaves",
+  "textures": {
+    "leaves": "lotrextended:block/chestnut_leaves"
+  }
+}

@@ -1,17 +1,31 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
+import java.util.Map.Entry;
+
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.DaggerItem;
+import lotr.common.item.HammerItem;
+import lotr.common.item.LOTRAxeItem;
+import lotr.common.item.LOTRHoeItem;
+import lotr.common.item.LOTRPickaxeItem;
+import lotr.common.item.LOTRShovelItem;
+import lotr.common.item.LOTRSwordItem;
+import lotr.common.item.SpearItem;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedItemTagGenerator extends ItemTagsProvider {
 	//FORGE
@@ -181,6 +195,64 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 
 		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get());
 
+		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
+		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
+
+		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
+			if(item.getValue().get() instanceof SpearItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof HammerItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof DaggerItem) {
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRSwordItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.getValue().get());
+				continue;
+			}
+		}
+		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
+			if(item.getValue().get() instanceof SpearItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof DaggerItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRSwordItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRPickaxeItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRShovelItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRAxeItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRHoeItem ) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				continue;
+			}
+		}
 	}
 
 	@Override

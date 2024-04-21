@@ -13,6 +13,7 @@ import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
+import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
@@ -58,6 +59,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRStandingSignBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()) instanceof FallenLeavesItem) {
+				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey().substring(7)));
 				continue;
 			}
 		}

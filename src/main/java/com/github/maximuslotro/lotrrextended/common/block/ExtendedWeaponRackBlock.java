@@ -2,7 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
+
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -12,8 +14,16 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.OnAStickItem;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolItem;
+import net.minecraft.item.TridentItem;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
@@ -86,7 +96,11 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-    	return super.getStateForPlacement(p_196258_1_).setValue(FAKE_PROPERTY, false);
+    	BlockState state = super.getStateForPlacement(p_196258_1_);
+    	if(state !=null) {
+    		return super.getStateForPlacement(p_196258_1_).setValue(FAKE_PROPERTY, false);
+    	}
+    	return state;
     }
     @Override
     public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
@@ -116,17 +130,17 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
                 }
 			}else {
                 ItemStack stack = player.getMainHandItem();
-                boolean isSword = stack.getItem() instanceof SwordItem;
-
-                if (!entity.hasItem() && isSword) {
-                    ItemStack copy = stack.copy();
-                    entity.setContainedItem(copy);
-                    stack.shrink(1);
-					world.playSound((PlayerEntity)null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
-                    return ActionResultType.SUCCESS;
-                }
-                if (entity.hasItem() && stack.isEmpty()) {
-                    world.setBlock(pos, blockState.setValue(FAKE_PROPERTY, !blockState.getValue(FAKE_PROPERTY)), 3);
+                if(!stack.isEmpty()) {
+                    if (!entity.hasItem() && isValidWeaponRackItem(stack)) {
+                        ItemStack copy = stack.copy();
+                        entity.setContainedItem(copy);
+                        stack.shrink(1);
+    					world.playSound((PlayerEntity)null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
+                        return ActionResultType.SUCCESS;
+                    }
+                    if (entity.hasItem() && stack.isEmpty()) {
+                        world.setBlock(pos, blockState.setValue(FAKE_PROPERTY, !blockState.getValue(FAKE_PROPERTY)), 3);
+                    }
                 }
 			}
 		}
@@ -198,4 +212,43 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		}
         return super.getPickBlock(state, target, world, pos, player);
     }
+
+	public static boolean isValidWeaponRackItem(ItemStack stack) {
+		if(stack!=null) {
+			Item item = stack.getItem();
+			//Handle tags logic
+			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE)) {
+				return false;
+			}
+			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS)) {
+				return true;
+			}
+			//Check Minecraft items and handle some modded types
+			if(item instanceof SwordItem) {
+				return true;
+			}
+			if(item instanceof ToolItem) {
+				return true;
+			}
+			if(item instanceof ShearsItem) {
+				return true;
+			}
+			if(item instanceof TridentItem) {
+				return true;
+			}
+			if(item instanceof BowItem) {
+				return true;
+			}
+			if(item instanceof CrossbowItem) {
+				return true;
+			}
+			if(item instanceof OnAStickItem) {
+				return true;
+			}
+			if(item instanceof FishingRodItem) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

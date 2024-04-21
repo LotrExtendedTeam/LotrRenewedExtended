@@ -64,6 +64,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD_STAIRS;
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_BRANCH;
 	public static RegistryObject<Block> CHESTNUT_BEAM_SLAB;
+	public static RegistryObject<Block> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Block> BANANA_LOG;
 	public static RegistryObject<Block> BANANA_PLANKS;
@@ -85,6 +86,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BANANA_LOG_SLAB;
 	public static RegistryObject<Block> STRIPPED_BANANA_LOG_SLAB;
 	public static RegistryObject<Block> BANANA_BEAM_SLAB;
+	public static RegistryObject<Block> FALLEN_BANANA_LEAVES;
 
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> TAURETHRIM_STONE_CRAFTING_TABLE;

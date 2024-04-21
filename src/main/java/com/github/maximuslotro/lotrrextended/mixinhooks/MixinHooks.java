@@ -54,7 +54,9 @@ public class MixinHooks {
 			fellowData = (ExtendedNpcMarriageHolder) field.get(data);
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
 			//e.printStackTrace();
-			System.out.println("Reflection failed to get marriageInfo");
+			//TODO fix, this is being thrown on clients constantly
+			//FIXME before hobbit marriage update
+			//System.out.println("Reflection failed to get marriageInfo");
 			fellowData = null;
 		}
 		return fellowData;
