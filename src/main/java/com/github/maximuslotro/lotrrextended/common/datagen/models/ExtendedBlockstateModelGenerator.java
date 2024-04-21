@@ -34,6 +34,7 @@ import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
+import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
@@ -128,6 +129,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedBedBlock) {
 					genBedBlockItem((ExtendedBedBlock) block.getValue().get(), block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof FallenLeavesBlock) {
+					genFallenLeavesBlock((FallenLeavesBlock) block.getValue().get(), block.getKey().substring(7));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
@@ -264,7 +269,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					try {
 						genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}catch(IllegalArgumentException e) {
-						System.out.println(block.getKey()+" is not CubeBlockItem!");
+						System.out.println(block.getKey()+" is not CubeBlockItem! Using alternative model.");
 						genEndSideNonRotatableBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}
 					continue;
@@ -860,6 +865,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(bed, modelFile);
 		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(mcLoc("item/template_bed")));
 	}
+
+	private void genFallenLeavesBlock(FallenLeavesBlock bed, String name) {
+		registeredBlocks.add(bed);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrLoc("block/template_fallen_leaves")).texture("leaves", lotrExtendedLoc("block/"+name));
+		simpleBlock(bed, modelFile);
+	}
+
 	private void genReedBarrelBlockItem(ExtendedReedBasketBlock extendedReedBasketBlock, String name) {
 		registeredBlocks.add(extendedReedBasketBlock);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("block/reed_basket_template")).texture("1", lotrExtendedLoc("entity/chest/"+name)).texture("particle", lotrExtendedLoc("entity/chest/"+name));

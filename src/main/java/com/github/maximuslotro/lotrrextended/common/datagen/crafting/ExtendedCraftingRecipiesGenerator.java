@@ -87,6 +87,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, 
 				ExtendedItems.STRIPPED_CHESTNUT_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, ExtendedItems.STRIPPED_CHESTNUT_LOG, null);
+		makeFallenLeavesRecipe(consumer, ExtendedBlocks.FALLEN_CHESTNUT_LEAVES, ExtendedItems.CHESTNUT_LEAVES, null);
 		//BANANA
 		makePillarSlabRecipe(consumer, ExtendedBlocks.BANANA_BEAM, 
 				ExtendedBlocks.BANANA_BEAM_SLAB, ExtendedItems.BANANA_LOG, null);
@@ -105,6 +106,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePlanksFromBlocksRecipeNoBranchWood(consumer, ExtendedItems.BANANA_PLANKS, ExtendedItems.BANANA_LOG_SLAB, 
 				ExtendedItems.STRIPPED_BANANA_LOG_SLAB, null);
 		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB, ExtendedItems.STRIPPED_BANANA_LOG, null);
+		makeFallenLeavesRecipe(consumer, ExtendedBlocks.FALLEN_BANANA_LEAVES, ExtendedItems.BANANA_LEAVES, null);
 		//ROHAN
 		GENERATEDRECIPES.add(ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ROHAN_BEAM.get(), 3, LOTRRecipes.ROHAN_CRAFTING)

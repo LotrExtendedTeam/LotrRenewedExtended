@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:fallen_banana_leaves"
+    ]
+  },
+  "criteria": {
+    "has_fallen_banana_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fallen_banana_leaves"
+          }
+        ]
+      }
+    },
+    "has_banana_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:banana_leaves"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:fallen_banana_leaves"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fallen_banana_leaves",
+      "has_banana_leaves",
+      "has_the_recipe"
+    ]
+  ]
+}

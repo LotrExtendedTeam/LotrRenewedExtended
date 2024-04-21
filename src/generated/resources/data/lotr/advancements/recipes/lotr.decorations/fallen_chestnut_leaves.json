@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:fallen_chestnut_leaves"
+    ]
+  },
+  "criteria": {
+    "has_fallen_chestnut_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fallen_chestnut_leaves"
+          }
+        ]
+      }
+    },
+    "has_chestnut_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chestnut_leaves"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:fallen_chestnut_leaves"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fallen_chestnut_leaves",
+      "has_chestnut_leaves",
+      "has_the_recipe"
+    ]
+  ]
+}
