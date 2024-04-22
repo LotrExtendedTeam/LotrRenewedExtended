@@ -16,6 +16,7 @@ public class MixinLOTREntityRenderers {
     @Inject(method = "registerEntityRenderers()V", at = @At("TAIL"), remap=false)
     private static void addAdditionalEntityRenderers(CallbackInfo ci) {
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GALADHRIM_WANDERER.get(), ExtendedGaladhrimWandererRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedOddmentCollectorRenderer::new);

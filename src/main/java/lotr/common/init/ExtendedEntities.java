@@ -14,8 +14,8 @@ public class ExtendedEntities {
 	public static List<String> REGISTEREDMOBENTITIES = new ArrayList<>();
 	public static List<String> REGISTEREDNONMOBENTITIES = new ArrayList<>();
 	public static List<String> REGISTEREDENTITIES = new ArrayList<>();
-	public static  RegistryObject<EntityType<ExtendedDunedainRangerEntity>> DUNEDAIN_RANGER;
-	public static  RegistryObject<EntityType<ExtendedGaladhrimWandererEntity>> GALADHRIM_WANDERER;
+	public static RegistryObject<EntityType<ExtendedDunedainRangerEntity>> DUNEDAIN_RANGER;
+	public static RegistryObject<EntityType<ExtendedGaladhrimWandererEntity>> GALADHRIM_WANDERER;
 	public static RegistryObject<EntityType<ExtendedHobbitBartenderEntity>> HOBBIT_BARTENDER;
 	public static RegistryObject<EntityType<ExtendedHobbitFarmerEntity>> HOBBIT_FARMER;
 	public static RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;

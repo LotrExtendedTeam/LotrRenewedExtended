@@ -4,6 +4,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import lotr.client.render.entity.model.ExtendedElfWandererModel;
 import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
+import lotr.common.entity.npc.ExtendedGaladhrimWandererEntity;
+import lotr.common.entity.npc.ExtendedRivendellWandererEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
@@ -40,7 +42,11 @@ public class ElfWandererCloakLayer<E extends ExtendedAbstractElfWandererEntity> 
     private void renderCloak(MatrixStack p_241739_1_, IRenderTypeBuffer p_241739_2_, E p_241739_3_, EquipmentSlotType p_241739_4_, int p_241739_5_, ExtendedElfWandererModel<E> armorModel) {
         this.getParentModel().copyPropertiesTo(armorModel);
         this.setPartVisibility(armorModel, p_241739_4_);
-        this.renderModelElf(p_241739_1_, p_241739_2_, p_241739_5_, false, armorModel, 1.0F, 1.0F, 1.0F, new ResourceLocation("lotr", "textures/entity/elf/rivendell_trader_cloak.png"));
+        if (p_241739_3_ instanceof ExtendedRivendellWandererEntity) {
+            this.renderModelElf(p_241739_1_, p_241739_2_, p_241739_5_, false, armorModel, 1.0F, 1.0F, 1.0F, new ResourceLocation("lotr", "textures/entity/elf/rivendell_trader_cloak.png"));
+        } else if (p_241739_3_ instanceof ExtendedGaladhrimWandererEntity) {
+            this.renderModelElf(p_241739_1_, p_241739_2_, p_241739_5_, false, armorModel, 1.0F, 1.0F, 1.0F, new ResourceLocation("lotr", "textures/entity/elf/galadhrim_trader_cloak.png"));
+        }
     }
 
 }

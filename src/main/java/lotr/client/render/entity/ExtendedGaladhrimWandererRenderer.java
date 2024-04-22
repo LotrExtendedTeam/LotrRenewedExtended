@@ -2,11 +2,12 @@ package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
 import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
+import lotr.common.entity.npc.ExtendedGaladhrimWandererEntity;
 import lotr.common.entity.npc.ExtendedRivendellWandererEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedGaladhrimWandererRenderer extends ExtendedAbstractElfWandererRenderer<ExtendedRivendellWandererEntity> {
+public class ExtendedGaladhrimWandererRenderer extends ExtendedAbstractElfWandererRenderer<ExtendedGaladhrimWandererEntity> {
 
     private static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/elf/galadhrim");
 
