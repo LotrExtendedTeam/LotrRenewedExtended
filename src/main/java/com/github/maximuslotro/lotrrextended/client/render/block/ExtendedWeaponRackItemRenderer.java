@@ -1,11 +1,15 @@
 package com.github.maximuslotro.lotrrextended.client.render.block;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.LOTRItems;
+import lotr.common.item.DaggerItem;
+import lotr.common.item.HammerItem;
+import lotr.common.item.LOTRSwordItem;
+import lotr.common.item.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -80,13 +84,22 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 			stack.mulPose(Vector3f.ZP.rotationDegrees(225F));
 			ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 			final ItemStack item = rack.getContainedItem().copy();
-			if(item.getItem().is(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE)) {
+			if(item.getItem() instanceof SpearItem) {
 				stack.scale(1.0F, 1.0F, 1.0F);
-			}else if(item.getItem().is(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING)) {
-				stack.scale(0.5F, 0.5F, 0.5F);
+			}else if(item.getItem() instanceof HammerItem && !(item.getItem() == LOTRItems.BLACKSMITH_HAMMER.get())){
+				stack.scale(1.0F, 1.0F, 1.0F);
+			}else if(item.getItem() instanceof LOTRSwordItem && !(item.getItem() instanceof DaggerItem)){
+				stack.scale(1.0F, 1.0F, 1.0F);
 			}else {
 				stack.scale(0.625F, 0.625F, 0.625F);
 			}
+//			if(item.getItem().is(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE)) {
+//				stack.scale(1.0F, 1.0F, 1.0F);
+//			}else if(item.getItem().is(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING)) {
+//				stack.scale(0.5F, 0.5F, 0.5F);
+//			}else {
+//				stack.scale(0.625F, 0.625F, 0.625F);
+//			}
 			renderer.renderStatic(item, TransformType.FIXED, light, overlay, stack, buffer);
 			stack.popPose();
 		}
