@@ -75,6 +75,4 @@ public class ExtendedRangerModel<E extends ExtendedDunedainRangerEntity> extends
         }
     }
 
-
-
 }

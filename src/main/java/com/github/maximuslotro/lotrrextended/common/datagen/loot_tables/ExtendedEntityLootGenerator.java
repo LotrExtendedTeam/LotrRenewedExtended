@@ -249,6 +249,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit);
 		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase); // TODO: Update this to their own
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase); // TODO: Update this to their own
+		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfRivendell); // TODO: Update this to their own
+		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfGaladhrim); // TODO: Update this to their own
 	}
 
 	public ResourceLocation makeQuickyBasePart(String name, Builder builder) {
