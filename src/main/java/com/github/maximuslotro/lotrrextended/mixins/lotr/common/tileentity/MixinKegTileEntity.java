@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.inv.ExtendedKegDataHolderIInventory;
 import lotr.common.inv.KegContainer;
 import lotr.common.item.VesselDrinkItem;
@@ -244,21 +246,28 @@ public class MixinKegTileEntity {
 
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
-		if (this.lootTable != null && entity.getLevel().getServer() != null) {
-			LootTable loottable = entity.getLevel().getServer().getLootTables().get(lootTable);
-			if (player instanceof ServerPlayerEntity) {
-				CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) player, lootTable);
-			}
+		try {
+			if (this.lootTable != null && entity.getLevel() != null && entity.getLevel().getServer() != null) {
+				LootTable loottable = entity.getLevel().getServer().getLootTables().get(lootTable);
+				if (player instanceof ServerPlayerEntity) {
+					CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) player, lootTable);
+				}
 
-			this.lootTable = null;
-			LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) entity.getLevel()))
-					.withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(entity.getBlockPos())).withOptionalRandomSeed(lootTableSeed);
-			if (player != null) {
-				lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
+				this.lootTable = null;
+				LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) entity.getLevel()))
+						.withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(entity.getBlockPos())).withOptionalRandomSeed(lootTableSeed);
+				if (player != null) {
+					lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
+				}
+				ExtendedKegDataHolderIInventory placeHolder = new ExtendedKegDataHolderIInventory();
+				loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
+				entity.fillBrewedWith(DrinkUtils.createDrink(new Random(lootTableSeed), placeHolder.getItem(0)));
 			}
-			ExtendedKegDataHolderIInventory placeHolder = new ExtendedKegDataHolderIInventory();
-			loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
-			entity.fillBrewedWith(DrinkUtils.createDrink(new Random(lootTableSeed), placeHolder.getItem(0)));
+		}catch(NullPointerException e) {
+			ExtendedLog.error("Caught a null-pointer exception while unpacking keg loot-table");
+			ExtendedLog.error("Location: "+lootTable.toString()+", Pos: "+entity.getBlockPos().toString());
+			e.printStackTrace();
+			ExtendedLog.error("Please report this if it happens again");
 		}
 	}
 

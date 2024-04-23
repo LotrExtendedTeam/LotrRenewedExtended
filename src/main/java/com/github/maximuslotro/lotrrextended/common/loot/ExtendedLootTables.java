@@ -14,6 +14,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation HOBBIT_TREASURE = register("chests/hobbit_treasure");
 
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
+	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
 
 	public static void init() {}
 

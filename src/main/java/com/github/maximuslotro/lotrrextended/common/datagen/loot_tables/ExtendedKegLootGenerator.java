@@ -26,5 +26,12 @@ public class ExtendedKegLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.PERRY.get()).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.CHERRY_LIQUEUR.get()).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.APPLE_JUICE.get()).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))));
+		consumer.accept(ExtendedLootTables.RANGER_KEGS, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                		.setRolls(ConstantRange.exactly(1))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.ALE.get()).setWeight(100).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.CIDER.get()).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.PERRY.get()).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.APPLE_JUICE.get()).setWeight(50).apply(SetCount.setCount(ConstantRange.exactly(1))))));
 	}
 }
