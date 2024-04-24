@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:gold_trimmed_rhunic_brick"
+  },
+  "result": "lotr:gold_trimmed_rhunic_brick_stairs",
+  "count": 1
+}

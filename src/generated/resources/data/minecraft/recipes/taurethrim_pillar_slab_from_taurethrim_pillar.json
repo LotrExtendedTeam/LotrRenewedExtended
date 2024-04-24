@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:taurethrim_pillar"
+  },
+  "result": "lotr:taurethrim_pillar_slab",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mud"
+  },
+  "result": "lotr:mud_slab",
+  "count": 2
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:rhunic_pillar_slab_from_rhunic_pillar"
+    ]
+  },
+  "criteria": {
+    "has_rhunic_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rhunic_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:rhunic_pillar_slab_from_rhunic_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rhunic_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

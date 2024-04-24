@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:smooth_gondor_rock"
+  },
+  "result": "lotr:smooth_gondor_rock_slab",
+  "count": 2
+}

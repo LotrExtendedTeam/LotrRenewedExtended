@@ -31,6 +31,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.ICraftingRecipe;
@@ -1118,6 +1119,17 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
+
+
+	protected void makeStoneCutterRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> ing, Supplier<? extends Block> output) {
+		makeStoneCutterRecipe(consumer, ing, output, 1);
+	}
+	protected void makeStoneCutterRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> ing, Supplier<? extends Block> output, int num) {
+		String name1 = ing.get().getRegistryName().getPath();
+		String name2 = output.get().getRegistryName().getPath();
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(ing.get()), output.get(), num).unlocks("has_"+name1, has(ing.get())).save(consumer, name2+"_from_"+name1);
+	}
+
 	public void checkForMissingRecipes() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof AxialSlabBlock) {

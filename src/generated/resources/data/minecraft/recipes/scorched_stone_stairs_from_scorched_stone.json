@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:scorched_stone"
+  },
+  "result": "lotr:scorched_stone_stairs",
+  "count": 1
+}

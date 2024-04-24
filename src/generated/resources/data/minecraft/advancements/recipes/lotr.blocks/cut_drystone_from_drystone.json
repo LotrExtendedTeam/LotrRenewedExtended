@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:cut_drystone_from_drystone"
+    ]
+  },
+  "criteria": {
+    "has_drystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:drystone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:cut_drystone_from_drystone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_drystone",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_drystone_slab_from_mossy_drystone"
+    ]
+  },
+  "criteria": {
+    "has_mossy_drystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_drystone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mossy_drystone_slab_from_mossy_drystone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_drystone",
+      "has_the_recipe"
+    ]
+  ]
+}

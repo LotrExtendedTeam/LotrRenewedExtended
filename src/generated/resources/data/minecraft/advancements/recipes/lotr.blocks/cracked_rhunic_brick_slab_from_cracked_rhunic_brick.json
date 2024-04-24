@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:cracked_rhunic_brick_slab_from_cracked_rhunic_brick"
+    ]
+  },
+  "criteria": {
+    "has_cracked_rhunic_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_rhunic_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:cracked_rhunic_brick_slab_from_cracked_rhunic_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_rhunic_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

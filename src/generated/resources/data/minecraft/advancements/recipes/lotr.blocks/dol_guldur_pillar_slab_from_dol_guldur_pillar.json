@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:dol_guldur_pillar_slab_from_dol_guldur_pillar"
+    ]
+  },
+  "criteria": {
+    "has_dol_guldur_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_guldur_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:dol_guldur_pillar_slab_from_dol_guldur_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dol_guldur_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

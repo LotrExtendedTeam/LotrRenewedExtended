@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:obsidian_taurethrim_brick"
+  },
+  "result": "lotr:obsidian_taurethrim_brick_slab",
+  "count": 2
+}
