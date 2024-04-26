@@ -198,20 +198,20 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
 
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if(item.getValue().get() instanceof SpearItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.getValue().get());
+		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
+			if(item.get() instanceof SpearItem) {
+				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof HammerItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.getValue().get());
+			if(item.get() instanceof HammerItem) {
+				addTagWithFilter(tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof DaggerItem) {
+			if(item.get() instanceof DaggerItem) {
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRSwordItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.getValue().get());
+			if(item.get() instanceof LOTRSwordItem) {
+				addTagWithFilter(tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE), item.get());
 				continue;
 			}
 		}
@@ -253,6 +253,14 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 				continue;
 			}
 		}
+	}
+
+	public void addTagWithFilter(Builder<Item> builder, Item itemToAdd) {
+		if(itemToAdd == LOTRItems.BLUE_DWARVEN_SWORD.get()||itemToAdd == LOTRItems.DWARVEN_SWORD.get()||itemToAdd == LOTRItems.BRONZE_SWORD.get()
+				||itemToAdd == LOTRItems.MALLORN_SWORD.get()||itemToAdd == LOTRItems.DALE_SWORD.get()||itemToAdd == LOTRItems.BLACKSMITH_HAMMER.get()) {
+			return;
+		}
+		builder.add(itemToAdd);
 	}
 
 	@Override
