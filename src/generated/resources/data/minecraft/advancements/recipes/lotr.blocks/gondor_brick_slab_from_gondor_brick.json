@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:gondor_brick_slab_from_gondor_brick"
+    ]
+  },
+  "criteria": {
+    "has_gondor_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gondor_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:gondor_brick_slab_from_gondor_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gondor_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

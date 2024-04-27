@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:dale_brick"
+  },
+  "result": "lotr:carved_dale_brick",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:arnor_brick"
+  },
+  "result": "lotr:arnor_brick_stairs",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:red_harad_brick"
+  },
+  "result": "lotr:red_harad_brick_stairs",
+  "count": 1
+}

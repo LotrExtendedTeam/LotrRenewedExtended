@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:snowy_angmar_brick_stairs_from_snowy_angmar_brick"
+    ]
+  },
+  "criteria": {
+    "has_snowy_angmar_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:snowy_angmar_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:snowy_angmar_brick_stairs_from_snowy_angmar_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_snowy_angmar_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

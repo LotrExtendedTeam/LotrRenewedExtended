@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mossy_gondor_brick"
+  },
+  "result": "lotr:mossy_gondor_brick_slab",
+  "count": 2
+}

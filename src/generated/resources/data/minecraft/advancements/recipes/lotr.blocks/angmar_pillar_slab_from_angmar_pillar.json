@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:angmar_pillar_slab_from_angmar_pillar"
+    ]
+  },
+  "criteria": {
+    "has_angmar_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:angmar_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:angmar_pillar_slab_from_angmar_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_angmar_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mossy_dale_paving"
+  },
+  "result": "lotr:mossy_dale_paving_stairs",
+  "count": 1
+}

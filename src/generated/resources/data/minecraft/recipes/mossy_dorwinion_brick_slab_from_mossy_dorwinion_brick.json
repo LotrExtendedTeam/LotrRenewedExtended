@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mossy_dorwinion_brick"
+  },
+  "result": "lotr:mossy_dorwinion_brick_slab",
+  "count": 2
+}

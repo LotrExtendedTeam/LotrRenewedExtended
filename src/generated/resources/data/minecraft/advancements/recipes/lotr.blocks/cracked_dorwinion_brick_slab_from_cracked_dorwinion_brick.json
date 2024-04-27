@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:cracked_dorwinion_brick_slab_from_cracked_dorwinion_brick"
+    ]
+  },
+  "criteria": {
+    "has_cracked_dorwinion_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_dorwinion_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:cracked_dorwinion_brick_slab_from_cracked_dorwinion_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_dorwinion_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

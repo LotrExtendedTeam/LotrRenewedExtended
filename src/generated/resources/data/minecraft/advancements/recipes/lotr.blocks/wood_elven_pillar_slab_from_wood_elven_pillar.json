@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:wood_elven_pillar_slab_from_wood_elven_pillar"
+    ]
+  },
+  "criteria": {
+    "has_wood_elven_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:wood_elven_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:wood_elven_pillar_slab_from_wood_elven_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wood_elven_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

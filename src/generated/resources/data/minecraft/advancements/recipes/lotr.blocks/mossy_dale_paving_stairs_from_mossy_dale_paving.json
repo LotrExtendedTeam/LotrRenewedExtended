@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_dale_paving_stairs_from_mossy_dale_paving"
+    ]
+  },
+  "criteria": {
+    "has_mossy_dale_paving": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_dale_paving"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mossy_dale_paving_stairs_from_mossy_dale_paving"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_dale_paving",
+      "has_the_recipe"
+    ]
+  ]
+}

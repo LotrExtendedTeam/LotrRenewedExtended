@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mordor_pillar"
+  },
+  "result": "lotr:mordor_pillar_slab",
+  "count": 2
+}

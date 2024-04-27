@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:dwarven_brick"
+  },
+  "result": "lotr:dwarven_brick_wall",
+  "count": 1
+}

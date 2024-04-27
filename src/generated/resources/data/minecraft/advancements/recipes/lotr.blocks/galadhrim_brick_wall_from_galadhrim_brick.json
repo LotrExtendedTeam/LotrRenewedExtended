@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:galadhrim_brick_wall_from_galadhrim_brick"
+    ]
+  },
+  "criteria": {
+    "has_galadhrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:galadhrim_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:galadhrim_brick_wall_from_galadhrim_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_galadhrim_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

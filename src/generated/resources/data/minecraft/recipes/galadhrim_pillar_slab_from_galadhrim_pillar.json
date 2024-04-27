@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:galadhrim_pillar"
+  },
+  "result": "lotr:galadhrim_pillar_slab",
+  "count": 2
+}

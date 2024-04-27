@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mossy_rohan_brick"
+  },
+  "result": "lotr:mossy_rohan_brick_wall",
+  "count": 1
+}

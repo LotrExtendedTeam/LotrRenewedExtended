@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:snow_brick_slab_from_snow_brick"
+    ]
+  },
+  "criteria": {
+    "has_snow_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:snow_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:snow_brick_slab_from_snow_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_snow_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

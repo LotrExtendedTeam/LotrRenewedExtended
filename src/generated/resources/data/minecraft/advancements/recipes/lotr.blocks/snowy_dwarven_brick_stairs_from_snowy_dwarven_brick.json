@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:snowy_dwarven_brick_stairs_from_snowy_dwarven_brick"
+    ]
+  },
+  "criteria": {
+    "has_snowy_dwarven_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:snowy_dwarven_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:snowy_dwarven_brick_stairs_from_snowy_dwarven_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_snowy_dwarven_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

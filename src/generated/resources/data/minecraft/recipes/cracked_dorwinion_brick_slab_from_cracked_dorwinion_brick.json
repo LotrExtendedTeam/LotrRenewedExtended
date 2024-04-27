@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:cracked_dorwinion_brick"
+  },
+  "result": "lotr:cracked_dorwinion_brick_slab",
+  "count": 2
+}

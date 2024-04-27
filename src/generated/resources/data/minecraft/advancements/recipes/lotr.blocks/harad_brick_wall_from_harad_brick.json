@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:harad_brick_wall_from_harad_brick"
+    ]
+  },
+  "criteria": {
+    "has_harad_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:harad_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:harad_brick_wall_from_harad_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_harad_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

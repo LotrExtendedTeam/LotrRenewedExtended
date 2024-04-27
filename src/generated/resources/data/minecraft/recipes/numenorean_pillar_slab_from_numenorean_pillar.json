@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:numenorean_pillar"
+  },
+  "result": "lotr:numenorean_pillar_slab",
+  "count": 2
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mordor_pillar_slab_from_mordor_pillar"
+    ]
+  },
+  "criteria": {
+    "has_mordor_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mordor_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mordor_pillar_slab_from_mordor_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mordor_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

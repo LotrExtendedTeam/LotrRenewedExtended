@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:dorwinion_brick"
+  },
+  "result": "lotr:dorwinion_brick_wall",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mossy_dwarven_brick"
+  },
+  "result": "lotr:mossy_dwarven_brick_stairs",
+  "count": 1
+}

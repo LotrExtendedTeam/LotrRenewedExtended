@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_dol_amroth_brick_slab_from_mossy_dol_amroth_brick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_dol_amroth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_dol_amroth_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mossy_dol_amroth_brick_slab_from_mossy_dol_amroth_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_dol_amroth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

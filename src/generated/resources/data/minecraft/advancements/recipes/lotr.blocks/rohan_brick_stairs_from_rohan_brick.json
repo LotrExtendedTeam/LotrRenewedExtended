@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:rohan_brick_stairs_from_rohan_brick"
+    ]
+  },
+  "criteria": {
+    "has_rohan_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rohan_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:rohan_brick_stairs_from_rohan_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rohan_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

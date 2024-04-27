@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:dol_amroth_brick"
+  },
+  "result": "lotr:dol_amroth_brick_stairs",
+  "count": 1
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:carved_arnor_brick_from_arnor_brick"
+    ]
+  },
+  "criteria": {
+    "has_arnor_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:arnor_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:carved_arnor_brick_from_arnor_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_arnor_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_arnor_brick_stairs_from_mossy_arnor_brick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_arnor_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_arnor_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mossy_arnor_brick_stairs_from_mossy_arnor_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_arnor_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:dorwinion_pillar"
+  },
+  "result": "lotr:dorwinion_pillar_slab",
+  "count": 2
+}

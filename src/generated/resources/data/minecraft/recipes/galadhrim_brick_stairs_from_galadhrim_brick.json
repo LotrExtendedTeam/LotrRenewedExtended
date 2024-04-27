@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:galadhrim_brick"
+  },
+  "result": "lotr:galadhrim_brick_stairs",
+  "count": 1
+}

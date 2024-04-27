@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:dwarven_pillar_slab_from_dwarven_pillar"
+    ]
+  },
+  "criteria": {
+    "has_dwarven_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dwarven_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:dwarven_pillar_slab_from_dwarven_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dwarven_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

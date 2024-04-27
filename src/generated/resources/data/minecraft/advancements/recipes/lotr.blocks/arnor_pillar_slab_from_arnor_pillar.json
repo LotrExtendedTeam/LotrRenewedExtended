@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:arnor_pillar_slab_from_arnor_pillar"
+    ]
+  },
+  "criteria": {
+    "has_arnor_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:arnor_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:arnor_pillar_slab_from_arnor_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_arnor_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

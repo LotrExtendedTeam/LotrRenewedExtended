@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:gondor_brick"
+  },
+  "result": "lotr:carved_gondor_brick",
+  "count": 1
+}

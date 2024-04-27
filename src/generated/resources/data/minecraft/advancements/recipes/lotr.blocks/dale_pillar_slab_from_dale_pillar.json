@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:dale_pillar_slab_from_dale_pillar"
+    ]
+  },
+  "criteria": {
+    "has_dale_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dale_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:dale_pillar_slab_from_dale_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dale_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

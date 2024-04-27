@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mordor_basalt_brick"
+  },
+  "result": "lotr:carved_mordor_basalt_brick",
+  "count": 1
+}

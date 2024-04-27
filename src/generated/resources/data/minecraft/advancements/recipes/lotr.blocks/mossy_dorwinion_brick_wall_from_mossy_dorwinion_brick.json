@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_dorwinion_brick_wall_from_mossy_dorwinion_brick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_dorwinion_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_dorwinion_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mossy_dorwinion_brick_wall_from_mossy_dorwinion_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_dorwinion_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

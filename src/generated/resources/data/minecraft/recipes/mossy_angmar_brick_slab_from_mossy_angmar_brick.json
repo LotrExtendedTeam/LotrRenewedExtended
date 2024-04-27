@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mossy_angmar_brick"
+  },
+  "result": "lotr:mossy_angmar_brick_slab",
+  "count": 2
+}

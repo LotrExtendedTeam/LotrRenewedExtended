@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:umbar_pillar_slab_from_umbar_pillar"
+    ]
+  },
+  "criteria": {
+    "has_umbar_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:umbar_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:umbar_pillar_slab_from_umbar_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_umbar_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}
