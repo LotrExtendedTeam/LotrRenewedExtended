@@ -1,20 +1,21 @@
-package lotr.common.structureV5.structures.hobbits;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.hobbits;
+
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
 import net.minecraft.util.math.MutableBoundingBox;
-import lotr.common.structureV5.extendedClasses.ExtendedStructureStartV5;
-import lotr.common.structureV5.extendedClasses.ExtendedSurfaceStructuresV5;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-public class HobbitWindmillStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
+public class HobbitHouseStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
 
-	public HobbitWindmillStructure() {
+	public HobbitHouseStructure() {
 		super(NoFeatureConfig.CODEC);
 	}
 
 	@Override
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
-		return HobbitWindmillStructure.Start::new;
+		return HobbitHouseStructure.Start::new;
 	}
     
     public static class Start extends ExtendedStructureStartV5<NoFeatureConfig> {
@@ -24,7 +25,7 @@ public class HobbitWindmillStructure extends ExtendedSurfaceStructuresV5<NoFeatu
 
 		@Override
 		public String getLocation() {
-			return "hobbit/hobbit_windmill_pool";
+			return "hobbit/hobbit_house_pool";
 		}
     }
 }

@@ -1,20 +1,21 @@
-package lotr.common.structureV5.structures.hobbits;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.hobbits;
+
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
 import net.minecraft.util.math.MutableBoundingBox;
-import lotr.common.structureV5.extendedClasses.ExtendedStructureStartV5;
-import lotr.common.structureV5.extendedClasses.ExtendedSurfaceStructuresV5;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-public class HobbitPicnicTableStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
+public class HobbitTavernSmallStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
 
-	public HobbitPicnicTableStructure() {
+	public HobbitTavernSmallStructure() {
 		super(NoFeatureConfig.CODEC);
 	}
 
 	@Override
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
-		return HobbitPicnicTableStructure.Start::new;
+		return HobbitTavernSmallStructure.Start::new;
 	}
     
     public static class Start extends ExtendedStructureStartV5<NoFeatureConfig> {
@@ -24,7 +25,7 @@ public class HobbitPicnicTableStructure extends ExtendedSurfaceStructuresV5<NoFe
 
 		@Override
 		public String getLocation() {
-			return "hobbit/hobbit_picnic_table_pool";
+			return "hobbit/hobbit_tavern_small_pool";
 		}
     }
 }

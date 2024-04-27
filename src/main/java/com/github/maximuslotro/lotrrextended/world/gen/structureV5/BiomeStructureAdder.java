@@ -1,4 +1,4 @@
-package lotr.common.structureV5;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5;
 
 import java.util.HashMap;
 import java.util.Map;

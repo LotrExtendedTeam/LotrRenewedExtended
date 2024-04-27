@@ -1,10 +1,11 @@
-package lotr.common.structureV5.structures.hobbits;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.hobbits;
+
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MutableBoundingBox;
-import lotr.common.structureV5.extendedClasses.ExtendedStructureStartV5;
-import lotr.common.structureV5.extendedClasses.ExtendedSurfaceStructuresV5;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 

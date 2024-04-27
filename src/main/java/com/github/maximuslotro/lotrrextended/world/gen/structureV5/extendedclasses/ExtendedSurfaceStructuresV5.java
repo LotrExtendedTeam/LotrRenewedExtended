@@ -1,4 +1,4 @@
-package lotr.common.structureV5.extendedClasses;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses;
 
 import com.mojang.serialization.Codec;
 

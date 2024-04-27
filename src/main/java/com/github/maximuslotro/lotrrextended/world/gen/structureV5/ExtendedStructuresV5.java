@@ -1,13 +1,13 @@
-package lotr.common.structureV5;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.hobbits.*;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import lotr.common.structureV5.structures.hobbits.*;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;

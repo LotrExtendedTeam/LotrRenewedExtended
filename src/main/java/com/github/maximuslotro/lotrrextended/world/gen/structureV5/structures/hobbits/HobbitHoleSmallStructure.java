@@ -1,20 +1,21 @@
-package lotr.common.structureV5.structures.hobbits;
+package com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.hobbits;
+
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
 import net.minecraft.util.math.MutableBoundingBox;
-import lotr.common.structureV5.extendedClasses.ExtendedStructureStartV5;
-import lotr.common.structureV5.extendedClasses.ExtendedSurfaceStructuresV5;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-public class HobbitBarnStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
+public class HobbitHoleSmallStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
 
-	public HobbitBarnStructure() {
+	public HobbitHoleSmallStructure() {
 		super(NoFeatureConfig.CODEC);
 	}
 
 	@Override
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
-		return HobbitBarnStructure.Start::new;
+		return HobbitHoleSmallStructure.Start::new;
 	}
     
     public static class Start extends ExtendedStructureStartV5<NoFeatureConfig> {
@@ -24,7 +25,7 @@ public class HobbitBarnStructure extends ExtendedSurfaceStructuresV5<NoFeatureCo
 
 		@Override
 		public String getLocation() {
-			return "hobbit/hobbit_barn_pool";
+			return "hobbit/hobbit_hole_small_pool";
 		}
     }
 }
