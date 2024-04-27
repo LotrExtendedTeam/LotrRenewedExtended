@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:rohan_rock"
+  },
+  "result": "lotr:rohan_rock_slab",
+  "count": 2
+}

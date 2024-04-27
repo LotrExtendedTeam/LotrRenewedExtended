@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:dale_paving"
+  },
+  "result": "lotr:dale_paving_slab",
+  "count": 2
+}

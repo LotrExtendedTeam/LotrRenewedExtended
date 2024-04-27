@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:ice_brick_stairs_from_ice_brick"
+    ]
+  },
+  "criteria": {
+    "has_ice_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ice_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ice_brick_stairs_from_ice_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ice_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

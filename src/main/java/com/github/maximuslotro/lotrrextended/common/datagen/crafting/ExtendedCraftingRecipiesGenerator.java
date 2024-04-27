@@ -762,9 +762,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_PILLAR);
 //		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_PILLAR_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_PILLAR, LOTRBlocks.ROHAN_PILLAR_SLAB, 2);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_ROCK_SLAB, 2);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_ROCK_STAIRS);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_ROCK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_ROCK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_ROCK_STAIRS);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_ROCK, LOTRBlocks.ROHAN_ROCK_WALL);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_BRICK, LOTRBlocks.ROHAN_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_BRICK, LOTRBlocks.ROHAN_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ROHAN_BRICK, LOTRBlocks.ROHAN_BRICK_WALL);
@@ -784,9 +784,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_PILLAR);
 //		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_PILLAR_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_PILLAR, LOTRBlocks.GONDOR_PILLAR_SLAB, 2);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_ROCK_SLAB, 2);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_ROCK_STAIRS);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_ROCK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_ROCK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_ROCK_STAIRS);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_ROCK, LOTRBlocks.GONDOR_ROCK_WALL);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_BRICK, LOTRBlocks.GONDOR_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_BRICK, LOTRBlocks.GONDOR_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.GONDOR_BRICK, LOTRBlocks.GONDOR_BRICK_WALL);
@@ -835,9 +835,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_PILLAR);
 //		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_PILLAR_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_PILLAR, LOTRBlocks.MORDOR_PILLAR_SLAB, 2);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_ROCK_SLAB, 2);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_ROCK_STAIRS);
-//		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_ROCK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_ROCK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_ROCK_STAIRS);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRBlocks.MORDOR_ROCK_WALL);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_BRICK, LOTRBlocks.MORDOR_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_BRICK, LOTRBlocks.MORDOR_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MORDOR_BRICK, LOTRBlocks.MORDOR_BRICK_WALL);
@@ -942,6 +942,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, LOTRBlocks.DWARVEN_BRICK, LOTRBlocks.DWARVEN_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.DWARVEN_BRICK, LOTRBlocks.DWARVEN_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.DWARVEN_BRICK, LOTRBlocks.DWARVEN_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.DWARVEN_BRICK, LOTRBlocks.CARVED_DWARVEN_BRICK);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_DWARVEN_BRICK, LOTRBlocks.MOSSY_DWARVEN_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_DWARVEN_BRICK, LOTRBlocks.MOSSY_DWARVEN_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_DWARVEN_BRICK, LOTRBlocks.MOSSY_DWARVEN_BRICK_WALL);
@@ -962,6 +963,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, LOTRBlocks.CRACKED_DALE_BRICK, LOTRBlocks.CRACKED_DALE_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.CRACKED_DALE_BRICK, LOTRBlocks.CRACKED_DALE_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.CRACKED_DALE_BRICK, LOTRBlocks.CRACKED_DALE_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.DALE_PAVING, LOTRBlocks.DALE_PAVING_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.DALE_PAVING, LOTRBlocks.DALE_PAVING_STAIRS);
 		//makeStoneCutterRecipe(consumer, LOTRBlocks.DALE_PAVING, LOTRBlocks.DALE_PAVING_WALL);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_DALE_PAVING, LOTRBlocks.MOSSY_DALE_PAVING_SLAB, 2);
@@ -983,6 +985,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, LOTRBlocks.SNOW_BRICK, LOTRBlocks.SNOW_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.SNOW_BRICK, LOTRBlocks.SNOW_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.SNOW_BRICK, LOTRBlocks.SNOW_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ICE_BRICK, LOTRBlocks.ICE_BRICK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ICE_BRICK, LOTRBlocks.ICE_BRICK_STAIRS);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ICE_BRICK, LOTRBlocks.ICE_BRICK_WALL);
 
 		//Add extended blocks recipes for renewed blocks
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.COBBLED_DRYSTONE, LOTRBlocks.DRYSTONE);

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:ice_brick"
+  },
+  "result": "lotr:ice_brick_wall",
+  "count": 1
+}

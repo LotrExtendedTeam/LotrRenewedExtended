@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:mordor_rock"
+  },
+  "result": "lotr:mordor_rock_wall",
+  "count": 1
+}
