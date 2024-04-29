@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHand
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -75,6 +76,7 @@ public class LotrExtendedMod{
 
 	public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+        	ExtendedStructureProcessors.init();
             ExtendedStructuresV5.setupStructures();
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
         });
