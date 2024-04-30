@@ -21,6 +21,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 	@Override
     public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
+		//revamp
 		//ADD cooked venison, plum, hobbit pancake, corn, cooked corn, leek, roasted chestnut, leek soup, turnip, cooked turnip, marzipan, chocolate marzipan, 
 		//ale, cider, perry, cherry liqueur, apple juice, 
 		consumer.accept(ExtendedLootTables.HOBBIT_LARDER, LootTable.lootTable()
@@ -65,6 +66,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.RASPBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(2, 4))))));
 
+		//revamp
 		//ADD chestnut, pouches
 		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE, LootTable.lootTable()
 				.withPool(LootPool.lootPool()
@@ -80,6 +82,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.SILVER_RING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(25).apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 
+		//revamp
 		consumer.accept(ExtendedLootTables.HOBBIT_LIVING, LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                 		.setRolls(RandomValueRange.between(3, 6))
@@ -94,5 +97,55 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.POCKET_MATCH.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.SMOKING_PIPE.get()).setWeight(10).apply(SetCount.setCount(ConstantRange.exactly(1))))
                 		.add(ItemLootEntry.lootTableItem(ExtendedItems.CONKER.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 6))))));
+
+		consumer.accept(ExtendedLootTables.RANGER_CAMP_FARM_WHEAT, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                		.setRolls(RandomValueRange.between(3, 6))
+                		.add(ItemLootEntry.lootTableItem(Items.WHEAT).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(4, 10))))
+                		.add(ItemLootEntry.lootTableItem(Items.STICK).setWeight(40).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(Items.BREAD).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(Items.APPLE).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.GREEN_APPLE.get()).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(Items.WHEAT_SEEDS).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(2, 7))))
+                		.add(ItemLootEntry.lootTableItem(Items.HAY_BLOCK).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+
+		consumer.accept(ExtendedLootTables.RANGER_CAMP_FARM_FLAX, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                		.setRolls(RandomValueRange.between(3, 6))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.FLAX.get()).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(3, 8))))
+                		.add(ItemLootEntry.lootTableItem(Items.STRING).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.FLAX_BALE.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.FLAX_SEEDS.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(2, 7))))
+                		.add(ItemLootEntry.lootTableItem(Items.APPLE).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.GREEN_APPLE.get()).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.LETTUCE.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(Items.POTATO).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(Items.CARROT).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))));
+
+		consumer.accept(ExtendedLootTables.RANGER_CAMP_SMITHY, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                		.setRolls(RandomValueRange.between(1, 4))
+                		.add(ItemLootEntry.lootTableItem(Items.IRON_INGOT).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(Items.IRON_ORE).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(Items.IRON_NUGGET).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(3, 7))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.COPPER_INGOT.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.COPPER_ORE.get()).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.TIN_INGOT.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.TIN_ORE.get()).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.GREEN_APPLE.get()).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BRONZE_INGOT.get()).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(Items.COAL).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(5, 8))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BLACKSMITH_HAMMER.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BRONZE_AXE.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BRONZE_PICKAXE.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BRONZE_SWORD.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.BRONZE_SPEAR.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(Items.IRON_AXE).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(Items.IRON_PICKAXE).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(Items.IRON_SWORD).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.IRON_DAGGER.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.IRON_SPEAR.get()).setWeight(20).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(Items.CHARCOAL).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(5, 7))))));
 	}
 }
