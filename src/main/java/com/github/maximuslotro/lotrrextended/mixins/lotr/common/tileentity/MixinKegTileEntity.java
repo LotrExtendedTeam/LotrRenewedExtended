@@ -261,7 +261,7 @@ public class MixinKegTileEntity {
 				}
 				ExtendedKegDataHolderIInventory placeHolder = new ExtendedKegDataHolderIInventory();
 				loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
-				entity.fillBrewedWith(DrinkUtils.createDrink(new Random(lootTableSeed), placeHolder.getItem(0)));
+				entity.fillBrewedWith(DrinkUtils.createDrink(new Random(), placeHolder.getItem(0)));
 			}
 		}catch(NullPointerException e) {
 			ExtendedLog.error("Caught a null-pointer exception while unpacking keg loot-table");
@@ -271,7 +271,7 @@ public class MixinKegTileEntity {
 		}
 	}
 
-	//Inject intp 
+	//Inject into 
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;

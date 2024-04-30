@@ -12,6 +12,10 @@ public class ExtendedLootTables {
 	public static final ResourceLocation HOBBIT_LARDER = register("chests/hobbit_larder");
 	public static final ResourceLocation HOBBIT_LIVING = register("chests/hobbit_living");
 	public static final ResourceLocation HOBBIT_TREASURE = register("chests/hobbit_treasure");
+	public static final ResourceLocation RANGER_CAMP_FARM_WHEAT = register("chests/ranger_camp_farm_wheat");
+	public static final ResourceLocation RANGER_CAMP_FARM_FLAX = register("chests/ranger_camp_farm_flax");
+	public static final ResourceLocation RANGER_CAMP_SUPPLIES = register("chests/ranger_camp_general");
+	public static final ResourceLocation RANGER_CAMP_SMITHY = register("chests/ranger_camp_smithy");
 
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");

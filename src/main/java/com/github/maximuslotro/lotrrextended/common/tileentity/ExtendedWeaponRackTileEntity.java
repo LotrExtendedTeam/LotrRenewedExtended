@@ -6,14 +6,19 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.util.Constants.NBT;
 
-public class ExtendedWeaponRackTileEntity extends TileEntity {
+public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity {
 	private static final String tagName = "extended_ditem";
 	private ItemStack containedItem;
 	public ExtendedWeaponRackTileEntity() {
@@ -27,28 +32,32 @@ public class ExtendedWeaponRackTileEntity extends TileEntity {
 	}
 
 	@Override
-	public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
-		super.load(p_230337_1_, p_230337_2_);
-		if (p_230337_2_.contains(tagName, NBT.TAG_COMPOUND)) {
-			this.containedItem = ItemStack.of(p_230337_2_.getCompound(tagName));
-			if (containedItem == null) {
-				ExtendedLog.warn("Weapon Rack Loaded with a null Item, this should not happen. All Contained Items Have been lost!");
-				containedItem = ItemStack.EMPTY;
-				this.markAndUpdate();
+	public void load(BlockState p_230337_1_, CompoundNBT nbt) {
+		super.load(p_230337_1_, nbt);
+		if (!this.tryLoadLootTable(nbt)) {
+			if (nbt.contains(tagName, NBT.TAG_COMPOUND)) {
+				this.containedItem = ItemStack.of(nbt.getCompound(tagName));
+				if (containedItem == null) {
+					ExtendedLog.warn("Weapon Rack Loaded with a null Item, this should not happen. All Contained Items Have been lost!");
+					containedItem = ItemStack.EMPTY;
+					this.markAndUpdate();
+				}
 			}
 		}
 	}
 
 	@Override
-	public CompoundNBT save(CompoundNBT p_189515_1_) {
-		super.save(p_189515_1_);
-		if (containedItem == null) {
-			ExtendedLog.warn("Weapon Rack failed to save as contained item is NULL! This should not happen. All Contained Items Have been lost!");
-			containedItem = ItemStack.EMPTY;
-			this.markAndUpdate();
+	public CompoundNBT save(CompoundNBT nbt) {
+		super.save(nbt);
+		if (!this.trySaveLootTable(nbt)) {
+			if (containedItem == null) {
+				ExtendedLog.warn("Weapon Rack failed to save as contained item is NULL! This should not happen. All Contained Items Have been lost!");
+				containedItem = ItemStack.EMPTY;
+				this.markAndUpdate();
+			}
+			nbt.put(tagName, this.containedItem.save(new CompoundNBT()));
 		}
-		p_189515_1_.put(tagName, this.containedItem.save(new CompoundNBT()));
-		return p_189515_1_;
+		return nbt;
 	}
 
 	@Override
@@ -105,5 +114,32 @@ public class ExtendedWeaponRackTileEntity extends TileEntity {
 			containedItem = ItemStack.EMPTY;
 		}
 		this.markAndUpdate();
+	}
+
+	@Override
+	public int getContainerSize() {
+		return 1;
+	}
+
+	@Override
+	protected NonNullList<ItemStack> getItems() {
+		return NonNullList.withSize(1, this.containedItem==null ? ItemStack.EMPTY : this.containedItem);
+	}
+
+	@Override
+	protected void setItems(NonNullList<ItemStack> list) {
+		if(list.size()>=1) {
+			this.containedItem=list.get(0);
+		}
+	}
+
+	@Override
+	protected ITextComponent getDefaultName() {
+		return new StringTextComponent("Weapon Rack Secret Lounge");
+	}
+
+	@Override
+	protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
+		return null; //Return null, since weapon racks don't have an GUI
 	}
 }

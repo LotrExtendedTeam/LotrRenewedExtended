@@ -2,17 +2,26 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
+import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 
+import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.CommandEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class DevEventHandlers {
 
 	public static void registerDevListender(IEventBus modBus, IEventBus forgeBus) {
 		forgeBus.addListener(DevEventHandlers::commandEvent);
+		forgeBus.addListener(DevEventHandlers::devSpawnerListener);
 	}
 
 	public static void commandEvent(CommandEvent event) {
@@ -55,4 +64,44 @@ public class DevEventHandlers {
             event.setCanceled(false);
         }
 	}
+
+    public static void devSpawnerListener(final PlayerInteractEvent event) {
+    	if(event.getPlayer().level.isClientSide || !ExtendedServerConfig.enableDevMode.get()) {
+    		return;
+    	}
+    	TileEntity tileentity = event.getPlayer().level.getBlockEntity(event.getPos());
+    	if(tileentity==null) {
+    		return;
+    	}
+		if (tileentity instanceof KegTileEntity&&MixinHooks.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			TextComponent comp2 = new StringTextComponent("Location: "+MixinHooks.getKegLootTable((KegTileEntity)tileentity).toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			return;
+		}
+		if (tileentity instanceof ExtendedWeaponRackTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Weapon rack item setting is disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			return;
+		}
+		if (tileentity instanceof LockableLootTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Chest/Barrel opening disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			return;
+		}
+    }
 }

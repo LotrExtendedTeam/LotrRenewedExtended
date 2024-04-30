@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
-import java.util.Random;
-
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -29,16 +28,22 @@ public class ExtendedStructureHelperComamnd {
 
 	public static int execute(CommandSource source, String location, BlockPos pos) {
 		TileEntity tileentity = source.getLevel().getBlockEntity(pos);
+		if (tileentity instanceof KegTileEntity) {
+			ResourceLocation loc = new ResourceLocation(location);
+			MixinHooks.setKegloottable((KegTileEntity)tileentity, loc, 0L);
+			source.sendSuccess(new StringTextComponent("Set Keg Location: "+loc.toString()), false);
+			return Command.SINGLE_SUCCESS;
+		}
+		if (tileentity instanceof ExtendedWeaponRackTileEntity) {
+			ResourceLocation loc = new ResourceLocation(location);
+			((ExtendedWeaponRackTileEntity)tileentity).setLootTable(loc, 0L);
+			source.sendSuccess(new StringTextComponent("Set Weapon Rack Location: "+loc.toString()), false);
+			return Command.SINGLE_SUCCESS;
+		}
 		if (tileentity instanceof LockableLootTileEntity) {
 			ResourceLocation loc = new ResourceLocation(location);
 			((LockableLootTileEntity)tileentity).lootTable = loc;
 			source.sendSuccess(new StringTextComponent("Set Chest/Barrel Location: "+loc.toString()), false);
-			return Command.SINGLE_SUCCESS;
-		}
-		if (tileentity instanceof KegTileEntity) {
-			ResourceLocation loc = new ResourceLocation(location);
-			MixinHooks.setKegloottable((KegTileEntity)tileentity, loc, new Random().nextLong());
-			source.sendSuccess(new StringTextComponent("Set Keg Location: "+loc.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		source.sendFailure(new StringTextComponent("Destanation is not instanceof supported tile entities!"));
