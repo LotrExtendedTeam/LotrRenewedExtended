@@ -124,7 +124,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 		consumer.accept(ExtendedLootTables.RANGER_CAMP_SMITHY, LootTable.lootTable()
                 .withPool(LootPool.lootPool()
-                		.setRolls(RandomValueRange.between(1, 4))
+                		.setRolls(RandomValueRange.between(2, 5))
                 		.add(ItemLootEntry.lootTableItem(Items.IRON_INGOT).setWeight(30).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
                 		.add(ItemLootEntry.lootTableItem(Items.IRON_ORE).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
                 		.add(ItemLootEntry.lootTableItem(Items.IRON_NUGGET).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(3, 7))))
