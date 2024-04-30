@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_bottom_top",
     "textures": {
-        "bottom": "block/hobbit_crafting_table_bottom",
+        "bottom": "lotr:block/hobbit_crafting_table_bottom",
         "top": "lotr:block/hobbit_crafting_table_top",
         "side": "lotr:block/hobbit_crafting_table_side"
     }
