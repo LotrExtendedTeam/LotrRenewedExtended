@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.client.render.block;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedBedTileEneityRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedChestTileEntityRenderer;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
 
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;

@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.block;
+package com.github.maximuslotro.lotrrextended.common.block.beds;
 
 import net.minecraft.block.BedBlock;
 import net.minecraft.item.DyeColor;

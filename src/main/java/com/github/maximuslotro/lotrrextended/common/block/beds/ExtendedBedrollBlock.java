@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block.beds;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;

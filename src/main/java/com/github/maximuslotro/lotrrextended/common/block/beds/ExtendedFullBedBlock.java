@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.block;
+package com.github.maximuslotro.lotrrextended.common.block.beds;
 
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 
@@ -20,7 +20,7 @@ public class ExtendedFullBedBlock extends BedBlock {
 		return BlockRenderType.MODEL;
 	}
 
-	   public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		      return new ExtendedNoRenderTileEntity();
-		   }
+	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
+		return new ExtendedNoRenderTileEntity();
+	}
 }

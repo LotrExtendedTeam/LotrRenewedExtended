@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
 import java.util.Map.Entry;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
