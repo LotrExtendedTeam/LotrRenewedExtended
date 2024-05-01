@@ -121,7 +121,16 @@ public class CoinUtils {
     private static boolean removeCoinsByDenomination(PlayerEntity player, int denomination, int amount) {
         while (amount > 0) {
             int stackSize = Math.min(amount, 64); // determine the stack size to remove
-            int slot = player.inventory.findSlotMatchingItem(new ItemStack(itemFromDenomination(denomination), stackSize));
+            ItemStack itemStack = new ItemStack(itemFromDenomination(denomination));
+            int slot = -1;
+
+            for(int i = 0; i < player.inventory.items.size(); ++i) {
+                if (!(player.inventory.items.get(i)).isEmpty() && isSameItem(itemStack, player.inventory.items.get(i))) {
+                    slot = i;
+                    break;
+                }
+            }
+
             if (slot > -1) {
                 player.inventory.removeItem(slot, stackSize);
                 amount -= stackSize; // reduce the amount by the stack size
@@ -198,6 +207,10 @@ public class CoinUtils {
         }
 
         return true;
+    }
+
+    private static boolean isSameItem(ItemStack p_184431_1_, ItemStack p_184431_2_) {
+        return p_184431_1_.getItem() == p_184431_2_.getItem() && ItemStack.tagMatches(p_184431_1_, p_184431_2_);
     }
 
 }
