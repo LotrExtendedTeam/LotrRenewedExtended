@@ -5,29 +5,440 @@
         "relation": "friendly"
       },
       "lines": [
-        "Long have we guarded these lands, #p.",
-        "We Rangers have watched over these lands for generations lost to memory.",
-        "What brings you to this wilderness, #p?",
-        "May your journey be swift and your cloak warm, #p.",
-        "By nightfall this land will be crawling with Orcs.",
-        "Be on your guard, #p. There are many enemies in these parts.",
-        "Good day, #p. From which land do you hail?",
+        "Be on your guard. There are many enemies in these parts.",
         "Keep a safe camp at night, and stay out of the shadows.",
-        "It is not for nothing that we watch these lands, #p. Many foul beasts nest here.",
         "We Rangers remember the ancient lore of the West. We have ways to walk unseen.",
-        "These lands are my domain, #p, and I do all in my power to safeguard them.",
-        "Beware the wretched Morgul-scum that crawls out at night, #p.",
+        "Beware the wretched Morgul-scum that crawls out at night.",
         "The wolf that one hears is worse than the Orc that one fears.",
-        "Were it not for us, these lands would have fallen to the darkness long ago.",
-        "Many of the folk that dwell here consider us bandits and outcasts. They do not know our true duties.",
-        "My kin has long guarded these lands from the dangers that lie to the North.",
-        "Be wary, #p. Many new dangers have arisen in these dark days.",
-        "As long as we watch over these lands, travellers such as you will be able to travel in peace, #p.",
+        "Be wary, many new dangers have arisen in these dark days.",
         "Lonely folk are we, Rangers of the wild, hunters - but hunters ever of the servants of the Enemy.",
         "The servants of the Enemy are found in many places, not in Mordor only.",
-        "Beware of the ancient wights and shades that roam this land, #p. It is said they can take over your body.",
         "In time of need, we will ride to the aid of Isildur's heir.",
-        "Our homes, such as we have, are here in the North. "
+        "The numbers of our company grow few as of late.",
+        "The men of the west are faltering, but so long as I draw breath I will defend our people.",
+        "It is unsafe in the wilds, you never know when you are being hunted.",
+        "Watch your back in the wilderness.",
+        "There have been foul airs on the wind of late.",
+        "What tidings do you carry?",
+        "There is a cold darkness coming down onto the realms of Men.",
+        "I have seen with my eyes the ruin of Annúminas, where once was our capital city.",
+        "In my heart, #p, I still dream of a day when the Dúnedain are to be united.",
+        "Oh how I wish we could have seen Arnor in its splendour - now there are only ruins and tombs."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain | snow"
+      },
+      "lines": [
+      "May your cloak keep you dry, #p.",
+      "The wilds can be rough and unforgiving",
+      "The weather can be harsh but the orcs are fouler.",
+      "I hope this weather clears up soon.",
+      "The weather may be wet and cold but it makes good cover against enemies unseen.",
+      "These clouds gives spead to the foul creatures of the dark."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+      "Well met Captain #p!",
+      "Greetings Captain!",
+      "What news do you bring, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith",
+        "rank": "<=warden"
+      },
+      "lines": [
+        "You are not a spy of the enemy are you?",
+        "Will you join us in our fight against the foul forces growing in these lands?",
+        "I am wary to trust you, many spies have been seen in these parts.",
+        "These are dark times, you never know who you can trust.",
+        "Are you friend or foe?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+        "My kin has long guarded these lands from the dangers that lie to the North.",
+        "As long as we watch over these lands, travellers such as you will be able to travel in peace.",
+        "Beware of the ancient wights and shades that roam this land. It is said they can take over your body.",
+        "Our homes, such as we have, are here in the North. ",
+        "Be wary of the Ettenmoors, trolls have been seen coming down from the mountains.",
+        "Were it not for us, these lands would have fallen to the darkness long ago.",
+        "These lands are my domain, and I do all in my power to safeguard them.",
+        "It is not for nothing that we watch these lands. Many foul beasts nest here.",
+        "What brings you to this wilderness.",
+        "We Rangers have watched over these lands for generations lost to memory.",
+        "Long have we guarded these lands.",
+        "Our once great kingdom ruled over these lands.",
+        "In the days of old our cities sprawled across these lands, now our cities are but rubble and our people scattered.",
+        "Only we remember the glory of Arnor.",
+        "Our people have protected these lands for centuries.",
+        "This used to be the Kingdom of Arnor before it fell, now we are all that is left of our once great kingdom.",
+        "These lands were a great kingdom in days of old, but those days have long passed by...",
+        "No one but us remembers the great kingdom that once ruled these lands long ago...",
+        "If you head north up the Greenway you will end up at the ruins of Fornost Erain, the Norbury of Kings. At its height it was a great city of Arnor, now it is just a memory of our fallen Kingdom."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands_hills"
+      },
+      "lines": [
+        "Have you seen the ruins of Amon Sûl? They are just south of here and make a good camp.",
+        "Weathertop is just south of here. It was known as the watchtower of Amon Sûl back in the days of our Old-Kingdom.",
+        "I hear the watchtower of Amon Sûl once held a palantír during the days of Arnor. It was lost when King Arvedui drowned with it in the Icebay of Forochel. He should have listened to the forewarning of the Snowmen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:hills_of_evendim"
+      },
+      "lines": [
+        "The once great city of Annúminas was built in these hills, it was the first capital of the Kingdom of Arnor."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:shire | lotr:breeland | lotr:shire_woodlands | lotr:shire_moors | lotr:white_downs | lotr:chetwood"
+      },
+      "lines": [
+        "Were it not for us, these lands would have fallen to the darkness long ago.",
+        "These lands are my domain, and I do all in my power to safeguard them.",
+        "Long have we guarded these .",
+        "From the shadows we protect these lands.",
+        "The halflings may not be particularly fond of us, but from a distance we are their guardians.",
+        "Riders in black cloaks have been seen around these parts.",
+        "We fight hard to keep these lands under peace.",
+        "The halfings live a simple life under the watchful eyes of the Dúnedain.",
+        "It has been hard to protect these lands since we were chased out of Sarn Ford.",
+        "These folk know not of the dangers growing outside their lands.",
+        "Foul folk have grown interest in these lands."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:breeland | lotr:chetwood"
+      },
+      "lines": [
+        "Foul folk have been coming into Bree.",
+        "Do not trust the robbers wandering around the Bree-lands.",
+        "The folk of Bree are wary of us, but we mean them no harm.",
+        "Many of the folk that dwell here consider us bandits and outcasts. They do not know our true duties."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:further_gondor | lotr:anorien | lotr:pinnath_gelin | lotr:anfalas | lotr:blackroot_vale | lotr:lamedon | lotr:pelargir | lotr:lossarnach | lotr:lebennin | lotr:emyn_en_ernil | lotr:dor_en_ernil"
+      },
+      "lines": [
+        "These are the lands of our kin, though many of the folk here seem to have forgotten that.",
+        "The men of Gondor have little respect for us Rangers of the North.",
+        "The stewards of Gondor will never accept Isildur's heir as the rightful king.",
+        "The Dúnedain of the north and south were once unified, now news of these lands rarely reach us.",
+        "The men of Gondor are our last defense unless the dark lands of Mordor.",
+        "One day Isildur's heir will rule as king over these lands and our people will be united once again.",
+        "I have hope for the men of Gondor who stand against the armies of Mordor.",
+        "In Ithilien there are Gondorians like us, who guard the wilderness as rangers.",
+        "Gondor. The southern kingdom of the Dúnedain.",
+        "Gondor was once a close ally with Arnor before our kingdom fell."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:rivendell | lotr:rivendell_hills"
+      },
+      "lines": [
+        "Lord Elrond is a gracious host for welcoming us into his lands.",
+        "The Dúnedain of the north and the elves of Imladris have always had close ties.",
+        "Rivendell. The last homely house of elves east of the sea",
+        "Few places in Middle-Earth are as beautiful as this.",
+        "The elves of Rivendell are very welcoming.",
+        "Rivendell is home to many relics of our people, such as the shards of Narsil, the sword which cut the ring from Sauron's hand.",
+        "Many of the elves here were there to witness our kingdom fall.",
+        "The loremasters of Imladris carry much knowledge of the Númenorians, our ancestors.",
+        "You are lucky to be welcome in this lands, #p.",
+        "Elrond holds the Sceptre of Annúminas, a relic of our kings of old until the coming of Isildur's heir.",
+        "Rivendell has many books about the history on the old Kingdom of Arnor."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:breeland | lotr:chetwood",
+        "rank": ">=warden"
+
+      },
+      "lines": [
+        "I advise stopping at the inn of the Prancing Pony before returning to the wilds, #p.",
+        "The black riders that attacked Sarn Ford came here into Bree, these are dark times #p.",
+        "Watch your back, #p, Bree has been filled with unsavory folk as of late.",
+        "I wonder what interest these spies have in Bree.",
+        "Foul folk from the south have been coming into Bree.",
+        "We are being watched #p, do not say too much.",
+        "Reports say Bree has been filled with spies as of late."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "biome": "lotr:shire | lotr:breeland | lotr:shire_woodlands | lotr:shire_moors | lotr:white_downs | lotr:chetwood"
+      },
+      "lines": [
+        "Long have we guarded these lands, #p.",
+        "What brings you to this wilderness, #p?",
+        "It is not for nothing that we watch these lands, #p. Many foul beasts nest here.",
+        "As long as we watch over these lands, travellers such as you will be able to travel in peace, #p.",
+        "Beware of the ancient wights and shades that roam this land, #p. It is said they can take over your body.",
+        "These lands are my domain, #p, and I do all in my power to safeguard them.",
+        "The people here know not what lies outsides their borders.",
+        "We rangers protect these lands from afar.",
+        "I will make sure no danger enters these lands."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "May your journey be swift and your cloak warm, #p.",
+        "Beware the wretched Morgul-scum that crawls out at night, #p.",
+        "Be wary, #p. Many new dangers have arisen in these dark days.",
+        "I am gladdened to know you are not a servent of the enemy, #p!",
+        "May your steps be light and your cloak hide you, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Good day, #p. From which land do you hail?",
+        "Good day, #p!",
+        "By nightfall this land will be crawling with Orcs."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warden"
+      },
+      "lines": [
+        "Well met #p! Do you bear any news?",
+        "Bree was attacked by Black Riders, the same whom attacked the rangers at Sarn Ford. These are dark times.",
+        "Be wary if you head into Bree, spies and robbers have been moving into those parts.",
+        "Greetings #p, do you carry any news of our kin to the south?",
+        "Every day more orcs come down from the mountains.",
+        "Our enemy is rising, #p.",
+        "News has it that orcs have filled Isengard, it seems Saruman is now amongst our enemy.",
+        "The hillmen of the north have been growing in numbers as of late.",
+        "Our old enemy in the north is growing, #p.",
+        "Have you heard any news from the south?",
+        "Be wary of our tombs #p, they have been cursed."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:rohan"
+      },
+      "lines": [
+      "Rider of Rohan! What news from the mark?",
+      "Rumors are that orcs have been pillaging your lands bearing the White Hand. Is it true then, has Saruman betrayed us?",
+      "Robbers and spys have been making their way up The Greenway from the Gap of Rohan and settling in Bree, do you know of this?",
+      "Greetings #p, Rider of Rohan.",
+      "I have heard King Théoden has been poisoned, is this true?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:high_elves | lotr:lothlorien | lotr:woodland_realm"
+      },
+      "lines": [
+      "Mae govannen, #p.",
+      "Ai! What news from the Elves?",
+      "Mae govannen mellon nín.",
+      "I have heard a single bite of lembas can fill the stomach of a grown man!",
+      "Tales of Black Riders have been heard throughout Eriador, I fear the Nazgûl of old may have returned.",
+      "Long have the elves stood by our people.",
+      "The splendor of the elves is always welcome among the Dúnedain.",
+      "Do you feel it? Do you feel the darkness growing throughout Middle-Earth?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:gondor"
+      },
+      "lines": [
+      "Will you stand by the heir of Isildur when he comes into your realm?",
+      "Well met, #p! What news of our kin to the south?",
+      "Rumours are that mercenaries from the south have begun raiding the coasts of Gondor!",
+      "The stewards cannot stand against the heir of Isildur's claim to the throne.",
+      "Have you seen the shards of Narsil? They are held in Rivendell.",
+      "Gondor is our last stand against the armies of Mordor.",
+      "We are the last memory of the west.",
+      "Together, the Men of the West stand against the servants of enemy.",
+      "Well met, how goes the Dúnedain of the South?",
+      "I hear the view from Minas Tirith is a sight to see.",
+      "Greetings, #p! How goes the fight against Mordor?",
+      "I hear the Rangers of Ithilien have been having trouble with the Haradrim from the South."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:lossoth"
+      },
+      "lines": [
+      "The Lossoth harboured the last king of our old kingdom, and for that they have our thanks.",
+      "Greetings! How have the Snowmen of Forochel been faring through the harsh winters?",
+      "The Rangers are accustomed to the wilderness, but to live in the frozen wastes of the north is brave of you, #p.",
+      "Well met, #p. How goes the people of Forodwaith?",
+      "I hear the Lossoth live in huts of snow, your perseverance against the cold winter is admirable.",
+      "Without your people, an heirloom of our house, the Ring of Barahir would have been lost to the sea.",
+      "Long ago, your people harboured Arvedui, our last king from the dangers of the Witch-King."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:bree"
+      },
+      "lines": [
+      "Do not trust those ruffians, #p. They are spies of the enemy.",
+      "We guard the wilderness surrounding your lands.",
+      "Fear not of our people, we may not look fair, but we mean you no harm.",
+      "Be wary of the Barrow-Downs, a foul curse lies on our ancient tombs.",
+      "Be cautious in Bree, a lot of unsavory folk have been coming in from the south.",
+      "I hear Black Riders have been in Bree? Things are worse then you could possibly realize."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "I feel a deep dread in my heart, we should not linger here.",
+        "Beware the wretched Morgul-scum that scour these lands.",
+        "It is not safe here #p.",
+        "The servants of the enemy are many in these lands.",
+        "These lands are shrouded in an unnatural darkness.",
+        "I would not dare wander here willingly, you are braver than I #p.",
+        "The enemy would have all of Middle-Earth shrouded in this darkness.",
+        "These lands are crawling with orcs.",
+        "Never have felt such fear as I do in these lands, tread carefully.",
+        "This place makes the wilderness feel inviting.",
+        "I would rather be anywhere but in these foul lands.",
+        "I should never have come into this lands.",
+        "I am eager to return to the wilds of Eriador.",
+        "It is against this darkness which we swear to fight.",
+        "This is no place for men.",
+        "The air feels toxic here.",
+        "I wish to flee from these accursed lands."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "This is the kingdom of Angmar, our ancient enemy.",
+        "In the olden days of our kingdom, the Witch-King of Angmar commanded his forces from these accursed lands.",
+        "I thought the kingdom of Angmar was all but abandoned, I am disheartened to know that the enemy has returned.",
+        "The men of these lands were once part of our kingdom, now they are servants of the enemy."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "My duty is to my captain #p and the lands over which I stand guard.",
+        "The Morgul-filth of the night shall perish before us!",
+        "I have sworn to defend the lands of the free peoples, and defend them I shall!",
+        "May your journey be swift and your cloak warm, captain #p.",
+        "By nightfall this land will be crawling with Orcs.",
+        "Be on your guard, captain #p. There are many enemies in these parts.",
+        "We Rangers remember the ancient lore of the West. We have ways to walk unseen.",
+        "The wolf that one hears is worse than the Orc that one fears.",
+        "We Rangers have ways to move unseen and unheard.",
+        "I will follow you wherever you go!",
+        "I have ways to move unseen in the shadows.",
+        "Let's hunt some Orc!",
+        "I fight for memory of The West, #p.",
+        "You are a true friend of the Dúnedain, #p.",
+        "We shall follow you through death and ruin!",
+        "The wretched Morgul-scum shall face our wrath!",
+        "Ruin to all the enemies of the Dúnedain!",
+        "We should keep to the shadows, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+        "My kin have long guarded these lands.",
+        "Long have we guarded these lands, captain #p.",
+        "We Rangers have watched over these lands for generations lost to memory."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+        "You are not welcome in these lands, #p!",
+        "Flee our lands, you wretched ally of the Morgul-filth!",
+        "We Rangers have watched over these lands for generations lost to memory, we will not let them fall to the likes of you!",
+        "Flee these lands, #p! You are not welcome here!",
+        "I will not leave these lands unguarded. Flee filfth!",
+        "These lands are protected by the last of Dúnedain!",
+        "Begone from these lands!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "lotr:shire | lotr:breeland | lotr:shire_woodlands | lotr:shire_moors | lotr:white_downs | lotr:chetwood"
+      },
+      "lines": [
+        "I will not allow you to harm the free folk of these lands!",
+        "I will protect the life of these folk to my dying breath!",
+        "The halflings will not bear any of your treachery!",
+        "These lands are my domain! I will do all in my power to protect them!",
+        "Do not think these lands are unprotected, #p!",
+        "These lands are protected by the Rangers of the North!"
       ]
     },
     {
@@ -39,10 +450,13 @@
         ]
       },
       "lines": [
+        "Our people may be scattered but we stand together against you!",
+        "Go back to your wretched hole, servant of the enemy!",
+        "We will not let the memory of the west fade!",
+        "The men of the west stand against you!",
         "Your death shall come swift as the arrow that pierces flesh, #p!",
         "I shall make an end of you!",
-        "You are not welcome in these lands, #p!",
-        "Flee our lands, you wretched ally of the Morgul-filth!",
+        "You will not be missed, #p!",
         "You are an enemy of the race of Men, #p!",
         "What madness led you here?",
         "Crawl back into the night, #p!",
@@ -52,9 +466,7 @@
         "Do not underestimate the Rangers of the North.",
         "Go back to the darkness whence you came!",
         "What devilry of the Dark Lord do you bring here?",
-        "Begone from these lands!",
-        "You shall meet your doom swiftly, scum of Mordor!",
-        "I will not allow you to harm the free folk of these lands!"
+        "You shall meet your doom swiftly, scum of Mordor!"
       ]
     }
   ]
