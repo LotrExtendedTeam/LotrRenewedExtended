@@ -1,0 +1,33 @@
+{
+	"name": "lotrextended:ranger/camp_parts/features_beech_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/animal_pen/ranger_camp_animal_pen_beech",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/archery/ranger_camp_archery_range_beech",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/storage/ranger_camp_storage_beech",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

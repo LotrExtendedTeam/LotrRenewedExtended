@@ -1,0 +1,60 @@
+{
+	"name": "lotrextended:ranger/camp_parts/hay_four_chestnut_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/tent/bed/ranger_tent_bed_chestnut",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/tent/captain/ranger_tent_captain_chestnut",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/tent/general/ranger_tent_general_chestnut",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/tent/smithy/ranger_tent_smithy_chestnut",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/tent/supplies/ranger_tent_supplies_chestnut",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/tent/wood/ranger_tent_wood_chestnut",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

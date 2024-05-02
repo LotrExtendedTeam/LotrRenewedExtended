@@ -1,0 +1,24 @@
+{
+	"name": "lotrextended:ranger/camp_parts/firepit_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_fire_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_fire_2",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

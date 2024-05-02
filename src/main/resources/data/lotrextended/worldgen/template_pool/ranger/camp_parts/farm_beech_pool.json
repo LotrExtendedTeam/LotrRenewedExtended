@@ -1,0 +1,33 @@
+{
+	"name": "lotrextended:ranger/camp_parts/farm_beech_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/haylocator/ranger_camp_hay_temp_beech",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/farm/wheat/ranger_camp_farm_beech",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/farm/berry/ranger_camp_berry_farm_beech",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}
