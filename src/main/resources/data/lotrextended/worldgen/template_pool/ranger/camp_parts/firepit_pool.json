@@ -6,7 +6,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "rigid",
+				"projection": "terrain_matching",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_fire_1",
 				"processors": "minecraft:empty"
 			}
@@ -15,7 +15,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "rigid",
+				"projection": "terrain_matching",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_fire_2",
 				"processors": "minecraft:empty"
 			}
