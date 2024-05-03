@@ -41,7 +41,7 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
 		}
 
 		@Override
-		public boolean usesFoundations() {
+		public boolean usesFullStructureFoundations() {
 			return true;
 		}
 

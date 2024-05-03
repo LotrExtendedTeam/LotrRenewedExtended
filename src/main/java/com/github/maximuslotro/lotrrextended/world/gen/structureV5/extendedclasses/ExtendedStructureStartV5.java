@@ -63,7 +63,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return 7;
 	}
 
-	public boolean usesFoundations() {
+	public boolean usesFullStructureFoundations() {
 		return false;
 	}
 
@@ -78,7 +78,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	@Override
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
-		if(usesFoundations()) {
+		if(usesFullStructureFoundations()) {
 			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
 
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {

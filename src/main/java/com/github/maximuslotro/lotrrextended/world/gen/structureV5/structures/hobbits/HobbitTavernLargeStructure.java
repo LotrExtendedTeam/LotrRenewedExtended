@@ -36,7 +36,7 @@ public class HobbitTavernLargeStructure extends ExtendedSurfaceStructuresV5<NoFe
 		}
 
 		@Override
-		public boolean usesFoundations() {
+		public boolean usesFullStructureFoundations() {
 			return true;
 		}
 
