@@ -27,6 +27,9 @@ public class MixinLOTRBiomeFeatures {
 		if(table.getBlock()==LOTRBlocks.HOBBIT_CRAFTING_TABLE.get()) {
 			info.cancel();
 		}
+		if(table.getBlock()==LOTRBlocks.RANGER_CRAFTING_TABLE.get()) {
+			info.cancel();
+		}
 	}
 
 	@Inject(method = "setup", at = @At("TAIL"), remap = false)

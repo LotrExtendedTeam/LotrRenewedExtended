@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.hobbits.*;
+import com.github.maximuslotro.lotrrextended.world.gen.structureV5.structures.rangers.*;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
@@ -28,6 +29,7 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new HobbitTavernSmallStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new HobbitTavernLargeStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new HobbitWindmillStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new RangerCampStructure());
     
     public static final int SALT = 785555898;
    
@@ -45,6 +47,7 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_TAVERN_SMALL.get(), true,    25, 15, 489984587);
 		register(HOBBIT_TAVERN_LARGE.get(), false,   43, 30, 965956779);
 		register(HOBBIT_WINDMILL.get(), true,        40, 20, 965983479);
+		register(RANGER_CAMP.get(), true,            40, 20, 96598387);
 
 	}
 	
