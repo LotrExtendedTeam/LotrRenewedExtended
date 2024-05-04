@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:umbar",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:numenorean_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_black_umbar_brick",
+    "count": 4
+  }
+}

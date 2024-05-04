@@ -477,6 +477,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
 		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK, 
 				()->LOTRBlocks.NUMENOREAN_BRICK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
+		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK, 
+				()->LOTRBlocks.NUMENOREAN_BRICK.get().asItem(), LOTRRecipes.UMBAR_CRAFTING);
+		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK, 
+				()->LOTRBlocks.UMBAR_BRICK.get().asItem(), LOTRRecipes.UMBAR_CRAFTING);
 		//DWARVEN
 		make2x2BlockRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK, 
 				ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.DWARVEN_CRAFTING);
@@ -998,6 +1002,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 		//Add renewed dependent recipes for extended blocks
 		makeStoneCutterRecipe(consumer, LOTRBlocks.NUMENOREAN_BRICK, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.NUMENOREAN_BRICK, ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.UMBAR_BRICK, ExtendedBlocks.CARVED_UMBAR_BRICK);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.SMOOTH_BLUE_ROCK, ExtendedBlocks.SMOOTH_BLUE_ROCK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.SMOOTH_RED_ROCK, ExtendedBlocks.SMOOTH_RED_ROCK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.SMOOTH_MORDOR_ROCK, ExtendedBlocks.SMOOTH_MORDOR_ROCK_STAIRS);
