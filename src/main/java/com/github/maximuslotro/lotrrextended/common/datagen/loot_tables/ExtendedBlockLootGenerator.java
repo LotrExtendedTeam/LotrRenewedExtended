@@ -16,10 +16,11 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -369,6 +370,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		List<RegistryObject<Block>> filtered = new ArrayList<>();
 		for(Entry<String, RegistryObject<Block>> bl : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(bl.getValue().get() instanceof ExtendedSpawnerBlock){
+				continue;
+			}
+			if(bl.getValue().get() instanceof ExtendedGroupSpawnerBlock){
 				continue;
 			}
 			filtered.add(bl.getValue());

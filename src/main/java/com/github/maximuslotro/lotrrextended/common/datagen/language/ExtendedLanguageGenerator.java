@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.language;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
@@ -19,6 +21,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 	@Override
 	protected void makeTranslations() {
+		//Add default made Spawner Names
+		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.entrySet()) {
+			addOverride(block.getValue().get().getDescriptionId(), ((ExtendedGroupSpawnerBlock)block.getValue().get()).getEntitySpawn().getSerializedName() + " Spawner");
+		}
+		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYSPAWNERBLOCKS.entrySet()) {
+			addOverride(block.getValue().get().getDescriptionId(), ((ExtendedSpawnerBlock)block.getValue().get()).getEntitySpawn().getSerializedName() + " Spawner");
+		}
+
 		// Try Add New Block Names
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			addBlock(block.getValue(), "");

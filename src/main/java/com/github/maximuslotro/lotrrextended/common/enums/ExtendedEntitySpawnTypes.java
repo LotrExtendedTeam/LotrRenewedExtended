@@ -5,9 +5,10 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import lotr.common.tileentity.spawners.ExtendedHobbitFarmerSpawnerTileEntity;
-import lotr.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
-import lotr.common.tileentity.spawners.HobbitBartenderSpawnerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.ExtendedHobbitFarmerSpawnerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.HobbitBartenderSpawnerTileEntity;
+
 import net.minecraft.util.IStringSerializable;
 
 public enum ExtendedEntitySpawnTypes implements IStringSerializable {

@@ -15,8 +15,9 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStra
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedReedBasketTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.group.ExtendedStructureGroupSpawnerTileEntity;
 
-import lotr.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -24,6 +25,8 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedTileEntities {
 	public static final Map<String, RegistryObject<TileEntityType<ExtendedStructureSpawnerTileEntity<? extends TileEntity, ? extends MobEntity>>>> SPAWNER_TILEENTITYS = new HashMap<>();
+	public static final Map<String, RegistryObject<TileEntityType<ExtendedStructureGroupSpawnerTileEntity<? extends TileEntity>>>> SPAWNER_GROUP_TILEENTITYS = new HashMap<>();
+
 	public static RegistryObject<TileEntityType<ExtendedStoneChestTileEntity>> STONE_CHEST;
 	public static RegistryObject<TileEntityType<ExtendedStrawBedTileEntity>> STRAW_BED;
 	public static RegistryObject<TileEntityType<ExtendedOrcBedTileEntity>> ORC_BED;

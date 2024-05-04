@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
@@ -45,6 +46,11 @@ public class MixinLOTRTileEntities {
     		ExtendedTileEntities.SPAWNER_TILEENTITYS.put(type.getSerializedName(), 
     				register(type.getSerializedName()+"_spawner_tileentity", 
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
+    	}
+    	for(ExtendedEntitySpawnGroupTypes type : ExtendedEntitySpawnGroupTypes.values()) {
+    		ExtendedTileEntities.SPAWNER_GROUP_TILEENTITYS.put(type.getSerializedName(), 
+    				register(type.getSerializedName()+"_group_spawner_tileentity", 
+    						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
     	ExtendedTileEntities.STONE_CHEST = register("stone_chest_tileentity", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));
     	ExtendedTileEntities.STRAW_BED = register("straw_bed_tileentity", () -> Builder.of(ExtendedStrawBedTileEntity::new, ExtendedBlocks.STRAW_BED.get()));

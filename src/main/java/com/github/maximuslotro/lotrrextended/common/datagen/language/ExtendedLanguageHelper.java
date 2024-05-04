@@ -24,6 +24,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 public abstract class ExtendedLanguageHelper extends LanguageProvider {
 
 	protected Map<String, String> newStrings = new TreeMap<>();
+	protected Map<String, String> overrideStrings = new TreeMap<>();
 	protected Map<String, String> existingStrings = new TreeMap<>();
 	protected final String modidHere;
 	protected final String localeHere;
@@ -47,6 +48,10 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 	}
 
 	protected abstract void makeTranslations();
+
+	public void addOverride(String key, String name) {
+		existingStrings.put(key, name);
+	}
 
 	@Override
 	public void add(Block key, String name) {
@@ -118,6 +123,7 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 		TreeMap<String, String> sorted = new TreeMap<>();
 		sorted.putAll(newStrings);
 		sorted.putAll(existingStrings);
+		sorted.putAll(overrideStrings);
 		for (Entry<String, String> entry : sorted.entrySet()) {
 			add(entry.getKey(), entry.getValue());
 		}

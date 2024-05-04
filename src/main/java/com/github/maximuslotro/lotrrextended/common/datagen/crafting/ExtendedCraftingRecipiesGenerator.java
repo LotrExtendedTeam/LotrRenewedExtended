@@ -1160,6 +1160,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYSPAWNERBLOCKS.values()) {
 			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
 		}
+		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.values()) {
+			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
+		}
 		GENERATEDRECIPES.add(ExtendedItems.AMBER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.AMETHYST.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.DIAMOND.get().getRegistryName().getPath());

@@ -1,23 +1,18 @@
-package lotr.common.tileentity.spawners;
+package com.github.maximuslotro.lotrrextended.common.tileentity.spawners.group;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.server.ServerWorld;
 
-public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T extends MobEntity> extends TileEntity implements ITickableTileEntity {
+public abstract class ExtendedStructureGroupSpawnerTileEntity<V extends TileEntity> extends TileEntity implements ITickableTileEntity {
 
-	private final EntityType<T> entity;
 	private boolean spawned = false;
 
-	public ExtendedStructureSpawnerTileEntity(TileEntityType<ExtendedStructureSpawnerTileEntity<? extends TileEntity, ? extends MobEntity>> tileEntityType, EntityType<T> entityType) {
+	public ExtendedStructureGroupSpawnerTileEntity(TileEntityType<? extends ExtendedStructureGroupSpawnerTileEntity<? extends TileEntity>> tileEntityType) {
 		super(tileEntityType);
-		this.entity = entityType;
 	}
 
 	@Override
@@ -30,12 +25,14 @@ public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T
 		}
 	}
 
+	public abstract boolean spawnGroup(ServerWorld world);
+
 	private boolean spawnEntity(ServerWorld world) {
-		//Moved code from ExtendedEntitySpawning
-		T entity = this.entity.create(world);
-		entity.moveTo(worldPosition, 0, 0.0F);
-		entity.finalizeSpawn(world, world.getCurrentDifficultyAt(worldPosition), SpawnReason.SPAWNER, null, null);
-		return world.addFreshEntity(entity);
+//		T entity = this.entity.create(world);
+//		entity.moveTo(worldPosition, 0, 0.0F);
+//		entity.finalizeSpawn(world, world.getCurrentDifficultyAt(worldPosition), SpawnReason.SPAWNER, null, null);
+//		return world.addFreshEntity(entity);
+		return spawnGroup(world);
 	}
 
 	public Double playerDistance() {
