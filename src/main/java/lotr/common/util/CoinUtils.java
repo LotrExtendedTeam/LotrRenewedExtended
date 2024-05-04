@@ -33,9 +33,9 @@ public class CoinUtils {
     }
 
     public static boolean isValidCoin(ItemStack stack) {
-        return stack.getItem() == ExtendedItems.SILVER_COIN_ONE.get() ||
-                stack.getItem() == ExtendedItems.SILVER_COIN_TEN.get() ||
-                stack.getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get();
+        return isSameItem(stack, ExtendedItems.SILVER_COIN_ONE.get()) ||
+                isSameItem(stack, ExtendedItems.SILVER_COIN_TEN.get()) ||
+                isSameItem(stack, ExtendedItems.SILVER_COIN_HUNDRED.get());
     }
 
     public static int totalValueInPlayerInventory(PlayerInventory inv) {
@@ -211,6 +211,10 @@ public class CoinUtils {
 
     private static boolean isSameItem(ItemStack p_184431_1_, ItemStack p_184431_2_) {
         return p_184431_1_.getItem() == p_184431_2_.getItem() && ItemStack.tagMatches(p_184431_1_, p_184431_2_);
+    }
+
+    private static boolean isSameItem(ItemStack stack, Item item) {
+        return stack.getItem() == item && ItemStack.tagMatches(stack, new ItemStack(item));
     }
 
 }
