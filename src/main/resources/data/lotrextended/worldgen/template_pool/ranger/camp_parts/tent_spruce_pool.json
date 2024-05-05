@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:ranger/camp_parts/hay_four_spruce_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:ranger/camp_parts/path_spruce_tent_override_pool",
 	"elements": [
 		{
 			"weight": 10,

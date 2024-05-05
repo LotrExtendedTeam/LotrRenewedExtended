@@ -1,0 +1,15 @@
+{
+	"name": "lotrextended:ranger/camp_parts/path_oak_tent_override_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_straight_1_oak",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		}
+	]
+}
