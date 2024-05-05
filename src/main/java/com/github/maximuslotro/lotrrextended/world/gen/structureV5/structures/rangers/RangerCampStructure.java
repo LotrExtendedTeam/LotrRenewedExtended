@@ -25,7 +25,7 @@ public class RangerCampStructure extends ExtendedSurfaceStructuresV5<NoFeatureCo
 
 		@Override
 		public String getLocation() {
-			return "ranger/camp_parts/camp_pool";
+			return "ranger/camp_parts/firepit_pool";
 		}
     }
 }
