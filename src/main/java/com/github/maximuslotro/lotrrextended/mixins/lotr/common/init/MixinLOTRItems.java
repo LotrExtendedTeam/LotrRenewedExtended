@@ -10,18 +10,7 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
-import lotr.common.item.ExtendedDaggerItem;
-import lotr.common.item.FallenLeavesItem;
-import lotr.common.item.HammerItem;
-import lotr.common.item.LOTRArmorItem;
-import lotr.common.item.LOTRAxeItem;
-import lotr.common.item.LOTRBlockItem;
-import lotr.common.item.LOTRBoatItem;
-import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
-import lotr.common.item.LOTRShovelItem;
-import lotr.common.item.LOTRSwordItem;
-import lotr.common.item.SpearItem;
+import lotr.common.item.*;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -622,6 +611,9 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_SWORD = regItemB("dol_guldur_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_SPEAR = regItemB("dol_guldur_spear",() -> new SpearItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_DAGGER = regItemB("dol_guldur_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+
+		//Ranger of the North equipment
+		ExtendedItems.RANGER_NORTH_BOW = regItemB("ranger_north_bow",() -> new ExtendedBowItem(LOTRMaterial.valueOf("RANGER_NORTH")));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.valueOf("COSMETIC"), EquipmentSlotType.HEAD, "leather_hat"));
