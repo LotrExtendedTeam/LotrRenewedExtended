@@ -6,7 +6,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_spruce",
 				"processors": "minecraft:empty"
 			}
@@ -15,7 +15,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_spruce",
 				"processors": "minecraft:empty"
 			}
@@ -24,7 +24,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_spruce",
 				"processors": "minecraft:empty"
 			}
@@ -33,7 +33,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_spruce",
 				"processors": "minecraft:empty"
 			}
@@ -42,7 +42,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_spruce",
 				"processors": "minecraft:empty"
 			}
@@ -51,7 +51,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_spruce",
 				"processors": "minecraft:empty"
 			}
@@ -60,7 +60,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_oak",
 				"processors": "minecraft:empty"
 			}
@@ -69,7 +69,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_oak",
 				"processors": "minecraft:empty"
 			}
@@ -78,7 +78,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_oak",
 				"processors": "minecraft:empty"
 			}
@@ -87,7 +87,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_oak",
 				"processors": "minecraft:empty"
 			}
@@ -96,7 +96,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_oak",
 				"processors": "minecraft:empty"
 			}
@@ -105,7 +105,7 @@
 			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
-				"projection": "terrain_matching",
+				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_oak",
 				"processors": "minecraft:empty"
 			}
