@@ -22,6 +22,7 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -75,6 +76,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 				
+			}
+			if(item.getValue().get() instanceof BannerPatternItem) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
 			}
 			if(item.getValue().get() instanceof SpearItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
