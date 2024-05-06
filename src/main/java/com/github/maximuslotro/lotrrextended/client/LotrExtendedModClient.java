@@ -7,6 +7,8 @@ import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemMode
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 
 import lotr.common.block.ExtendedSignTypes;
+import lotr.common.init.ExtendedItems;
+import lotr.common.item.ExtendedBowItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.Atlases;
@@ -101,6 +103,8 @@ public class LotrExtendedModClient {
 		BlockRendererSetup.setupBlockRenderers();
 		event.enqueueWork(()->{
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
+
+			ExtendedBowItem.registerBowItemModelProperties(ExtendedItems.RANGER_NORTH_BOW.get());
 		});
 		ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		BlockRendererSetup.regModels();
