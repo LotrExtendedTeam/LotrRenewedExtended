@@ -573,6 +573,7 @@ d1ed5cbcaad7e46ca6b345ac729f07bb8c964a59 assets/lotr/models/item/packed_fur_stai
 76353331d5c2e98785062d67b46245faefe39d6f assets/lotr/models/item/pearl.json
 394454585076a8160f88e10f2e4fccc96aadb4bd assets/lotr/models/item/pearl_block.json
 f6a1dce59292336c57f13319bef603880b69548b assets/lotr/models/item/podzol_slab.json
+47376b609429605639ab76cf964518032bb5721e assets/lotr/models/item/ranger_north_bow.json
 c042100935a7263a43a501de70f6bf80becb1cd9 assets/lotr/models/item/raspberry.json
 105f94aaae8c6dc02af9b0b80cc52fc65fe27671 assets/lotr/models/item/raspberry_bush.json
 18220aaa8dd6c3b83d84e2f0be3361597f8ee459 assets/lotr/models/item/red_rhunic_brick.json
@@ -677,7 +678,7 @@ de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundl
 c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fur_wall.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-94e9d45cad48a6e7a7a1d517bae79c070c97046f assets/lotrextended/lang/en_us.json
+edb600c54bdb8eaa0c8dfcaa2ef822640e2814cf assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
