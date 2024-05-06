@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.language;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
@@ -10,7 +11,9 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.BannerPattern;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
@@ -37,6 +40,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Try Add New Item Names
 		for (Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			addItem(item.getValue(), "");
+		}
+
+		// Try Add New Banner Patterns
+		for (BannerPattern entity : ExtendedBannerPatterns.getPatterns()) {
+			for(DyeColor col : DyeColor.values()) {
+				addOverride("block.minecraft.banner." + entity.getFilename()+"."+col.getName(), TextChanger.getColorFullTextChnager(col) +" "+ ExtendedBannerPatterns.getHashtoname().get(entity.getFilename()));
+			}
+		}
+		for (Entry<String, String> entity : DataGenValueHolder.bannerPatternItemNameHolders.entrySet()) {
+			addOverride("item.lotr." + entity.getKey(), "Banner Pattern");
+			addOverride("item.lotr." + entity.getKey() + ".desc", ExtendedBannerPatterns.getHashtoname().get(entity.getValue()));
 		}
 
 		// Try Add New Entity Names
