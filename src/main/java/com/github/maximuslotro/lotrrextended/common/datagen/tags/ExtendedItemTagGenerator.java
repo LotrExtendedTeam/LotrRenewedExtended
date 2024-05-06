@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
@@ -198,69 +199,82 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
 
+		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
 			if(item.get() instanceof SpearItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(item.get());
+				fullitems.put(item.get().getRegistryName().getPath(), item.get());
 				continue;
 			}
 			if(item.get() instanceof HammerItem) {
-				addTagWithFilter(tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE), item.get());
+				if(addTagWithFilter(item.get())) {
+					fullitems.put(item.get().getRegistryName().getPath(), item.get());
+				}
 				continue;
 			}
 			if(item.get() instanceof DaggerItem) {
 				continue;
 			}
 			if(item.get() instanceof LOTRSwordItem) {
-				addTagWithFilter(tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE), item.get());
+				if(addTagWithFilter(item.get())) {
+					fullitems.put(item.get().getRegistryName().getPath(), item.get());
+				}
 				continue;
 			}
 		}
+		for(Entry<String, Item> ent : fullitems.entrySet()) {
+			tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(ent.getValue());
+		}
+
+		TreeMap<String, Item> additems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if(item.getValue().get() instanceof SpearItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof DaggerItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRSwordItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShovelItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRAxeItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRHoeItem ) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
-				tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(item.getValue().get());
+				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 		}
+		for(Entry<String, Item> ent : additems.entrySet()) {
+			tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(ent.getValue());
+		}
 	}
 
-	public void addTagWithFilter(Builder<Item> builder, Item itemToAdd) {
+	public boolean addTagWithFilter(Item itemToAdd) {
 		if(itemToAdd == LOTRItems.BLUE_DWARVEN_SWORD.get()||itemToAdd == LOTRItems.DWARVEN_SWORD.get()||itemToAdd == LOTRItems.BRONZE_SWORD.get()
 				||itemToAdd == LOTRItems.MALLORN_SWORD.get()||itemToAdd == LOTRItems.DALE_SWORD.get()||itemToAdd == LOTRItems.BLACKSMITH_HAMMER.get()) {
-			return;
+			return false;
 		}
-		builder.add(itemToAdd);
+		return true;
 	}
 
 	@Override
