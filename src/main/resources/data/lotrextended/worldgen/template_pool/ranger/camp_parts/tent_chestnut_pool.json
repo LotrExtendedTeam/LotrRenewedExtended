@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:ranger/camp_parts/hay_four_chestnut_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:ranger/camp_parts/path_chestnut_tent_override_pool",
 	"elements": [
 		{
 			"weight": 10,

@@ -1,0 +1,96 @@
+{
+	"name": "lotrextended:ranger/camp_parts/path_chestnut_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_l_1_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_l_2_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_l_3_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_straight_1_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_straight_2_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_straight_3_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_t_1_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_t_2_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_t_3_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:ranger/camp/path/ranger_camp_road_t_4_chestnut",
+				"processors": "lotrextended:ranger_camp_roads"
+			}
+		}
+	]
+}
