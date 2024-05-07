@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:ranger/camp_parts/farm_pine_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:ranger/camp_parts/hay_pine_pool",
 	"elements": [
 		{
 			"weight": 1,
