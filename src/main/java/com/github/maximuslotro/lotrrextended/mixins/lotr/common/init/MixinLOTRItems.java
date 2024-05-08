@@ -613,7 +613,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_DAGGER = regItemB("dol_guldur_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
 		//Ranger of the North equipment
-		ExtendedItems.RANGER_NORTH_BOW = regItemB("ranger_north_bow",() -> new ExtendedBowItem(LOTRMaterial.RANGER_NORTH));
+		ExtendedItems.DUNEDAIN_BOW = regItemB("dunedain_bow",() -> new ExtendedBowItem(LOTRMaterial.RANGER_NORTH, 1.2D));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));

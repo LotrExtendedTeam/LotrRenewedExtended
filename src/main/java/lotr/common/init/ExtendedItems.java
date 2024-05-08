@@ -414,7 +414,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
 
-	public static RegistryObject<Item> RANGER_NORTH_BOW;
+	public static RegistryObject<Item> DUNEDAIN_BOW;
 
 }
 

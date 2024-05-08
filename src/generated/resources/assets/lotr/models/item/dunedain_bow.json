@@ -15,7 +15,7 @@
       "scale": [
         1.8,
         1.8,
-        1.8
+        0.9
       ]
     },
     "thirdperson_lefthand": {
@@ -32,7 +32,7 @@
       "scale": [
         1.8,
         1.8,
-        1.8
+        0.9
       ]
     },
     "firstperson_righthand": {
@@ -71,28 +71,28 @@
     }
   },
   "textures": {
-    "layer0": "lotrextended:item/ranger_north_bow"
+    "layer0": "lotrextended:item/dunedain_bow"
   },
   "overrides": [
     {
       "predicate": {
         "minecraft:pulling": 1
       },
-      "model": "lotr:item/ranger_north_bow_pulling_0"
+      "model": "lotr:item/dunedain_bow_pulling_0"
     },
     {
       "predicate": {
         "minecraft:pulling": 1,
         "minecraft:pull": 0.65
       },
-      "model": "lotr:item/ranger_north_bow_pulling_1"
+      "model": "lotr:item/dunedain_bow_pulling_1"
     },
     {
       "predicate": {
         "minecraft:pulling": 1,
         "minecraft:pull": 0.9
       },
-      "model": "lotr:item/ranger_north_bow_pulling_2"
+      "model": "lotr:item/dunedain_bow_pulling_2"
     }
   ]
 }
