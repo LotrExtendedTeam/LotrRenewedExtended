@@ -18,6 +18,7 @@ import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
+import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
@@ -95,6 +96,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof LOTRSwordItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSword(item.getKey());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRShieldItem) {
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {

@@ -417,5 +417,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DURIN_BANNER_PATTERN;
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNEDAIN_BANNER_PATTERN;
+
+	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 }
 
