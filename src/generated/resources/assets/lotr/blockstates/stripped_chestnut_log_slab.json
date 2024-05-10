@@ -3,44 +3,38 @@
     "axis=x,type=top": {
       "model": "lotrextended:block/stripped_chestnut_log_slab_top",
       "x": 90,
-      "y": 90,
-      "uvlock": true
+      "y": 90
     },
     "axis=y,type=top": {
       "model": "lotrextended:block/stripped_chestnut_log_slab_top"
     },
     "axis=z,type=top": {
       "model": "lotrextended:block/stripped_chestnut_log_slab_top",
-      "x": 270,
-      "uvlock": true
+      "x": 270
     },
     "axis=x,type=bottom": {
       "model": "lotrextended:block/stripped_chestnut_log_slab",
       "x": 90,
-      "y": 90,
-      "uvlock": true
+      "y": 90
     },
     "axis=y,type=bottom": {
       "model": "lotrextended:block/stripped_chestnut_log_slab"
     },
     "axis=z,type=bottom": {
       "model": "lotrextended:block/stripped_chestnut_log_slab",
-      "x": 270,
-      "uvlock": true
+      "x": 270
     },
     "axis=x,type=double": {
       "model": "lotrextended:block/stripped_chestnut_log",
       "x": 90,
-      "y": 90,
-      "uvlock": true
+      "y": 90
     },
     "axis=y,type=double": {
       "model": "lotrextended:block/stripped_chestnut_log"
     },
     "axis=z,type=double": {
       "model": "lotrextended:block/stripped_chestnut_log",
-      "x": 270,
-      "uvlock": true
+      "x": 270
     }
   }
 }

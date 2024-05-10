@@ -18,10 +18,12 @@ import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
+import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -76,6 +78,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 				
 			}
+			if(item.getValue().get() instanceof BannerPatternItem) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(item.getValue().get() instanceof SpearItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSpearPulling(item.getKey());
@@ -90,6 +96,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof LOTRSwordItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSword(item.getKey());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRShieldItem) {
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {

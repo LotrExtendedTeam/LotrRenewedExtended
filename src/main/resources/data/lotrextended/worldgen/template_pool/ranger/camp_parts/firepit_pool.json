@@ -8,7 +8,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -17,7 +17,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -26,7 +26,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -35,7 +35,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -44,7 +44,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -53,7 +53,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -62,7 +62,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -71,7 +71,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -80,7 +80,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -89,7 +89,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -98,7 +98,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		},
 		{
@@ -107,7 +107,223 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_fir",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_fir",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_fir",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_fir",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_fir",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_fir",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_beech",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_beech",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_beech",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_beech",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_beech",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_beech",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_pine",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_pine",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_pine",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_pine",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_pine",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_pine",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_1_chestnut",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_2_chestnut",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_3_chestnut",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_4_chestnut",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_5_chestnut",
+				"processors": "lotrextended:ranger_camp_firepit"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/camp/fire/ranger_camp_firepit_6_chestnut",
+				"processors": "lotrextended:ranger_camp_firepit"
 			}
 		}
 	]

@@ -47,7 +47,7 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_TAVERN_SMALL.get(), true,    25, 15, 489984587);
 		register(HOBBIT_TAVERN_LARGE.get(), false,   43, 30, 965956779);
 		register(HOBBIT_WINDMILL.get(), true,        40, 20, 965983479);
-		register(RANGER_CAMP.get(), false,           30, 20, 96598387);
+		register(RANGER_CAMP.get(), true,            25, 20, 96598387);
 
 	}
 	

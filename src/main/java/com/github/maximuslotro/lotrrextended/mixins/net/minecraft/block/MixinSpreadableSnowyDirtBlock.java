@@ -48,7 +48,7 @@ public abstract class MixinSpreadableSnowyDirtBlock {
 						}
 						if (world.getBlockState(blockpos).is(ExtendedBlocks.DIRT_SLAB.get())) {
 							BlockState blockstateSlab = BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), world.getBlockState(blockpos));
-							if (ExtendedGrowableAxialSlabBlock.canPropagate(blockstateSlab, world, blockpos)) {
+							if (ExtendedGrowableAxialSlabBlock.canPropagate(blockstateSlab, world, blockpos, ()->Blocks.GRASS_BLOCK)) {
 								world.setBlockAndUpdate(blockpos, blockstateSlab);
 								continue;
 							}
@@ -74,7 +74,7 @@ public abstract class MixinSpreadableSnowyDirtBlock {
 						}
 						if (world.getBlockState(blockpos).is(ExtendedBlocks.DIRT_SLAB.get())) {
 							BlockState blockstateSlab = BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(ExtendedBlocks.MYCELIUM_SLAB.get(), world.getBlockState(blockpos));
-							if (ExtendedGrowableAxialSlabBlock.canPropagate(blockstateSlab, world, blockpos)) {
+							if (ExtendedGrowableAxialSlabBlock.canPropagate(blockstateSlab, world, blockpos, ()->Blocks.MYCELIUM)) {
 								world.setBlockAndUpdate(blockpos, blockstateSlab);
 								continue;
 							}

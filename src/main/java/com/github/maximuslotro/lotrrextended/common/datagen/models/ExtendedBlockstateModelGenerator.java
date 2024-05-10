@@ -357,18 +357,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/mud_path"),
 									lotrExtendedLoc("block/mud_path"),
 									lotrExtendedLoc("block/mud_path"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")), false);
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")), false, true);
 							continue;
 						}
 						if(block.getKey().contains("wood")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_log"));
+							genSlabBlockItemWOOD((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_log"));
 							continue;
 						}
 						if(block.getKey().contains("log")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)),
 									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
 									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), false, false);
 							continue;
 						}
 						boolean didGen = false;
@@ -383,7 +383,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 								genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)),
 										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
 										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), false, false);
 								continue;
 							}
 						}
@@ -402,28 +402,28 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_top"),
 									mcLoc("block/grass_path_top"),
 									mcLoc("block/grass_path_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")), false);
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")), false, true);
 							continue;
 						}
 						if(block.getKey().equals("podzol_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/podzol_top"),
 									mcLoc("block/podzol_top"),
 									mcLoc("block/podzol_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/podzol_top")), false);
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/podzol_top")), false, true);
 							continue;
 						}
 						if(block.getKey().equals("mycelium_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/mycelium_top"),
 									mcLoc("block/mycelium_top"),
 									mcLoc("block/mycelium_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/mycelium_top")), false);
+							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/mycelium_top")), false, true);
 							continue;
 						}
 						if(block.getKey().equals("grass_block_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
 									mcLoc("block/grass_block_top"),
 									mcLoc("block/grass_block_top"),
-									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/cube_all_tinted"), "all", mcLoc("block/grass_block_top")), true);
+									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/cube_all_tinted"), "all", mcLoc("block/grass_block_top")), true, true);
 							continue;
 						}
 						if(block.getKey().equals("barren_dirt_slab")) {
@@ -712,13 +712,23 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		genSlabBlockItem(slab, texture, texture, texture, texture);
 	}
 
+	private void genSlabBlockItemWOOD(SlabBlock slab, ResourceLocation texture) {
+		ModelFile slabDouble = models().getExistingFile(texture);
+		genSlabBlockItem(slab, texture, texture, texture, slabDouble, false, false);
+	}
+
 
 	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation doubleModel) {
 		ModelFile slabDouble = models().getExistingFile(doubleModel);
-		genSlabBlockItem(slab, side, bottom, top, slabDouble, false);
+		genSlabBlockItem(slab, side, bottom, top, slabDouble, false, true);
 	}
 
-	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, boolean tint) {
+	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation doubleModel, boolean tint, boolean notwood) {
+		ModelFile slabDouble = models().getExistingFile(doubleModel);
+		genSlabBlockItem(slab, side, bottom, top, slabDouble, tint, notwood);
+	}
+
+	private void genSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, boolean tint, boolean notwood) {
 		registeredBlocks.add(slab);
 		ModelFile slabModel;
 		ModelFile slabModelTop;
@@ -750,7 +760,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
                     .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
                     .rotationY(axis == Axis.X ? 90 : 0)
-                    .uvLock(uvlock)
+                    .uvLock(uvlock && notwood)
                     .build();
         }, SlabBlock.WATERLOGGED);
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);

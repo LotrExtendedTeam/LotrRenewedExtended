@@ -39,10 +39,10 @@ public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
 		return slabBase;
 	}
 
-	public static boolean canBeGrass(BlockState givenBlockState, IWorldReader world, BlockPos givenBlockPos) {
+	public static boolean canBeGrass(BlockState givenBlockState, IWorldReader world, BlockPos givenBlockPos, Supplier<Block> growableBlock) {
 		BlockPos blockpos = givenBlockPos.above();
 		BlockState blockstate = world.getBlockState(blockpos);
-		if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowBlock.LAYERS) == 1) {
+		if ((blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowBlock.LAYERS) == 1) || blockstate.is(givenBlockState.getBlock())|| blockstate.is(growableBlock.get())) {
 			return true;
 		} else if (blockstate.getFluidState().getAmount() == 8) {
 			return false;
@@ -59,14 +59,14 @@ public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
 		}
 	}
 
-	public static boolean canPropagate(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_) {
+	public static boolean canPropagate(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_, Supplier<Block> growableBlock) {
 		BlockPos blockpos = p_220256_2_.above();
-		return canBeGrass(p_220256_0_, p_220256_1_, p_220256_2_) && !p_220256_1_.getFluidState(blockpos).is(FluidTags.WATER);
+		return canBeGrass(p_220256_0_, p_220256_1_, p_220256_2_, growableBlock) && !p_220256_1_.getFluidState(blockpos).is(FluidTags.WATER);
 	}
 
 	@Override
 	public void randomTick(BlockState blockState, ServerWorld world, BlockPos thisPos, Random random) {
-		if (!canBeGrass(blockState, world, thisPos)) {
+		if (!canBeGrass(blockState, world, thisPos, blockGrowable)) {
 			if (!world.isAreaLoaded(thisPos, 3))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
 			world.setBlockAndUpdate(thisPos, BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(slabBase.get(), blockState));
@@ -75,13 +75,13 @@ public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
 				BlockState stateBlock = blockGrowable.get().defaultBlockState();
 				for (int i = 0; i < 4; ++i) {
 					BlockPos blockpos = thisPos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-					if (world.getBlockState(blockpos).is(blockBase.get()) && canPropagate(stateBlock, world, blockpos)) {
+					if (world.getBlockState(blockpos).is(blockBase.get()) && canPropagate(stateBlock, world, blockpos, blockGrowable)) {
 						world.setBlockAndUpdate(blockpos, stateBlock);
 						continue;
 					}
 					if (world.getBlockState(blockpos).is(slabBase.get())) {
 						BlockState stateSlab = BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(this, world.getBlockState(blockpos));
-						if (canPropagate(stateSlab, world, blockpos)) {
+						if (canPropagate(stateSlab, world, blockpos, blockGrowable)) {
 							world.setBlockAndUpdate(blockpos, stateSlab);
 							continue;
 						}
