@@ -415,6 +415,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WEAPON_RACK;
 
 	public static RegistryObject<Item> DUNEDAIN_BOW;
+	public static RegistryObject<Item> LONGBOW;
 
 }
 

@@ -29,7 +29,12 @@ public class ExtendedBowItem extends BowItem {
     }
 
     public ExtendedBowItem(LOTRMaterial material, double damageFactor) {
-        super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(material.asTool().getUses()));
+        super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(material == LOTRMaterial.RANGER_NORTH ? 525 : 400));
+        this.arrowDamageFactor = damageFactor;
+    }
+
+    public ExtendedBowItem(int durability, double damageFactor) {
+        super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(durability));
         this.arrowDamageFactor = damageFactor;
     }
 
@@ -37,7 +42,9 @@ public class ExtendedBowItem extends BowItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         tooltip.add(new StringTextComponent(""));
+        tooltip.add(new StringTextComponent("Draw Speed: 100%").withStyle(TextFormatting.DARK_GREEN));
         tooltip.add(new StringTextComponent("Ranged Damage: " + String.format("%.0f%%", arrowDamageFactor * 100)).withStyle(TextFormatting.DARK_GREEN));
+        tooltip.add(new StringTextComponent("Range: " + String.format("%.0f%%", arrowDamageFactor * 100)).withStyle(TextFormatting.DARK_GREEN));
     }
 
     @Override
@@ -133,5 +140,10 @@ public class ExtendedBowItem extends BowItem {
             return p_239428_2_ != null //&& p_239428_2_.getUseItem() != null
             && p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F;
         });
+    }
+
+    @Override
+    public int getDefaultProjectileRange() {
+        return (int) Math.ceil(15 * arrowDamageFactor);
     }
 }
