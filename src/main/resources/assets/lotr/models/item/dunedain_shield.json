@@ -1,11 +1,10 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "lotr:item/template_shield",
 	"textures": {
-		"straps": "lotr:item/dunedain_shield_straps",
-		"back": "lotr:item/dunedain_shield_back",
-		"particle": "lotr:item/dunedain_shield_front",
-		"front": "lotr:item/dunedain_shield_front"
+		"straps": "lotrextended:item/dunedain_shield_straps",
+		"back": "lotrextended:item/dunedain_shield_back",
+		"particle": "lotrextended:item/dunedain_shield_front",
+		"front": "lotrextended:item/dunedain_shield_front"
 	},
 	"elements": [
 		{
@@ -203,7 +202,12 @@
 	],
 	"gui_light": "front",
 	"overrides": [
-		{"predicate": {"blocking": 1}, "model": "lotr:item/dunedain_shield_blocking"}
+		{
+			"predicate": {
+				"blocking": 1
+			}, 
+			"model": "lotr:item/dunedain_shield_blocking"
+		}
 	],
 	"display": {
 		"ground": {
