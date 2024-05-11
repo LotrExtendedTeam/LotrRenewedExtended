@@ -27,5 +27,10 @@ public class RangerFortStructure extends ExtendedSurfaceStructuresV5<NoFeatureCo
 		public String getLocation() {
 			return "ranger/fort_pool";
 		}
+
+		@Override
+		public int yShift() {
+			return -1;
+		}
     }
 }

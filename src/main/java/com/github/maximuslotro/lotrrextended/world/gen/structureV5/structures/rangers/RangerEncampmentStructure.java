@@ -27,5 +27,10 @@ public class RangerEncampmentStructure extends ExtendedSurfaceStructuresV5<NoFea
 		public String getLocation() {
 			return "ranger/encampment_pool";
 		}
+
+		@Override
+		public int yShift() {
+			return -1;
+		}
     }
 }

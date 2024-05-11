@@ -30,7 +30,7 @@ public class RangerHideoutStructure extends ExtendedSurfaceStructuresV5<NoFeatur
 
 		@Override
 		public int yShift() {
-			return -1;
+			return -2;
 		}
     }
 }
