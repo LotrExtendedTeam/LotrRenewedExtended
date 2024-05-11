@@ -114,7 +114,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         double dxzSq = MathHelper.sqrt(dx * dx + dz * dz);
 
         // this section right here has been updated
-        float power = 1.6F;
+        float power = 2.0F;
         if (heldItem.getItem() instanceof ExtendedBowItem) {
             power *= ExtendedBowItem.getLaunchSpeedFactor(heldItem);
         }
