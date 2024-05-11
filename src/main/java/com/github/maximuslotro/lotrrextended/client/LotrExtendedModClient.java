@@ -105,6 +105,7 @@ public class LotrExtendedModClient {
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
 
 			ExtendedBowItem.registerBowItemModelProperties(ExtendedItems.DUNEDAIN_BOW.get());
+			ExtendedBowItem.registerBowItemModelProperties(ExtendedItems.LONGBOW.get());
 		});
 		ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		BlockRendererSetup.regModels();
