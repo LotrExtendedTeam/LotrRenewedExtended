@@ -26,6 +26,14 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.HOBBIT_TAVERN_LARGE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.HOBBIT_WINDMILL.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_CAMP.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_CAPTAIN_ENCAMPMENT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_ENCAMPMENT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_FORT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HIDEOUT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_HIDEOUT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_RUIN.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_WATCHTOWER.get());
+		
 
 		provider.generator.getSettings().structureConfig = tempMap;
 	}

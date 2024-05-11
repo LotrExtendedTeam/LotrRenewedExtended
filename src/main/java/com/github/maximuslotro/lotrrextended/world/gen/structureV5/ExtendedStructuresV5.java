@@ -82,7 +82,7 @@ public class ExtendedStructuresV5 {
             if (structureMap instanceof ImmutableMap) {
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, SSsettings);
-                structureSettings.getValue().structureSettings().structureConfig();
+                structureSettings.getValue().structureSettings().structureConfig = tempMap;
 
             } else {
                 structureMap.put(structure, SSsettings);
