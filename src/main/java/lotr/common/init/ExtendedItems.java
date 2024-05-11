@@ -73,6 +73,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_SIGN;
 	public static RegistryObject<Item> BANANA_BOAT;
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
+	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
 	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
