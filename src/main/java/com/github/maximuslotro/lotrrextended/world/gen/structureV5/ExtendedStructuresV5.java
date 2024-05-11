@@ -30,6 +30,13 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new HobbitTavernLargeStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new HobbitWindmillStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new RangerCampStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_CAPTAIN_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_captain_encampment", () -> new RangerCaptainEncampmentStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new RangerEncampmentStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new RangerHideoutStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new RangerRuinsStructure());
     
     public static final int SALT = 785555898;
    
@@ -38,17 +45,23 @@ public class ExtendedStructuresV5 {
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
-		register(HOBBIT_BARN.get(), true,            32, 12, 445575475);
-		register(HOBBIT_HOLE_SMALL.get(), true,      24, 5, 445436262);
-		register(HOBBIT_HOLE_LARGE.get(), false,     30, 10, 445436264);
-		register(HOBBIT_HOUSE.get(), true,           24, 5, 445546465);
-		register(HOBBIT_PICNIC_BLANKET.get(), false, 14, 8, 745785884);
-		register(HOBBIT_PICNIC_TABLE.get(), true,    14, 8, 747348);
-		register(HOBBIT_TAVERN_SMALL.get(), true,    25, 15, 489984587);
-		register(HOBBIT_TAVERN_LARGE.get(), false,   43, 30, 965956779);
-		register(HOBBIT_WINDMILL.get(), true,        40, 20, 965983479);
-		register(RANGER_CAMP.get(), true,            25, 20, 96598387);
-
+		register(HOBBIT_BARN.get(), true,              32, 12, 795386759);
+		register(HOBBIT_HOLE_SMALL.get(), true,        24, 5,  212561518);
+		register(HOBBIT_HOLE_LARGE.get(), false,       30, 10, 445436264);
+		register(HOBBIT_HOUSE.get(), true,             24, 5,  764008750);
+		register(HOBBIT_PICNIC_BLANKET.get(), false,   14, 8,  639354136);
+		register(HOBBIT_PICNIC_TABLE.get(), true,      14, 8,  852604573);
+		register(HOBBIT_TAVERN_SMALL.get(), true,      25, 15, 489984587);
+		register(HOBBIT_TAVERN_LARGE.get(), false,     43, 30, 230050245);
+		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
+		register(RANGER_CAMP.get(), true,              26, 21, 663198446);
+		register(RANGER_CAPTAIN_ENCAMPMENT.get(), true,40, 34, 438987603);
+		register(RANGER_ENCAMPMENT.get(), true,        35, 28, 232963172);
+		register(RANGER_FORT.get(), true,              31, 26, 213435145);
+		register(RANGER_HIDEOUT.get(), true,           32, 28, 752122251);
+		register(RANGER_WATCHTOWER.get(), true,        28, 21, 002406043);
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     32, 27, 358719680);
+		register(RANGER_HOUSE_RUIN.get(), true,        26, 18, 340638920);
 	}
 	
 	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
@@ -69,7 +82,7 @@ public class ExtendedStructuresV5 {
             if (structureMap instanceof ImmutableMap) {
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, SSsettings);
-                structureSettings.getValue().structureSettings().structureConfig();
+                structureSettings.getValue().structureSettings().structureConfig = tempMap;
 
             } else {
                 structureMap.put(structure, SSsettings);
