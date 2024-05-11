@@ -35,7 +35,8 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new RangerHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
-
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new RangerRuinsStructure());
     
     public static final int SALT = 785555898;
    
@@ -59,7 +60,8 @@ public class ExtendedStructuresV5 {
 		register(RANGER_FORT.get(), true,              29, 26, 965745738);
 		register(RANGER_HIDEOUT.get(), true,           30, 28, 9664438);
 		register(RANGER_WATCHTOWER.get(), true,        26, 21, 9645758);
-
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     30, 27, 96653538);
+		register(RANGER_HOUSE_RUIN.get(), true,        22, 18, 96456338);
 	}
 	
 	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
