@@ -40,7 +40,7 @@ import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
-    private static final SpawnEquipmentTable DAGGERS;
+    private static final SpawnEquipmentTable WEAPONS;
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
             ExtendedDunedainRangerEntity.class, DataSerializers.INT);
@@ -283,7 +283,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 
         // setup weapons
-        this.npcItemsInv.setMeleeWeapon(DAGGERS.getRandomItem(this.random));
+        this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
         this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
         this.npcItemsInv.setIdleItemsFromRangedWeapons();
 
@@ -302,7 +302,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     static {
         // TODO: Once the Barrow Dagger is an item add a chance of them spawning with it
-        DAGGERS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.IRON_DAGGER, LOTRItems.IRON_DAGGER, LOTRItems.ARNOR_DAGGER);
+        WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_SPEAR, LOTRItems.ARNOR_SPEAR, LOTRItems.ARNOR_SWORD, LOTRItems.ARNOR_SPEAR);
     }
 
 }

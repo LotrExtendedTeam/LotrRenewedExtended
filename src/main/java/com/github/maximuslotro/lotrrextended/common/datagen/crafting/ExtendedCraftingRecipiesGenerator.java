@@ -499,7 +499,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath(), has(ExtendedItems.BRANDING_IRON.get()))
 		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
-		
+
+		GENERATEDRECIPES.add(ExtendedItems.BOWSTRING.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOWSTRING.get())
+		.requires(Items.STRING)
+		.requires(Items.STRING)
+		.requires(Items.STRING)
+		.unlockedBy("has_string", has(Items.STRING))
+		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
+
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
 		.pattern("###")
