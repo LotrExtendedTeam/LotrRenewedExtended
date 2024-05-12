@@ -12,16 +12,7 @@ import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
-import lotr.common.item.DaggerItem;
-import lotr.common.item.FallenLeavesItem;
-import lotr.common.item.LOTRArmorItem;
-import lotr.common.item.LOTRAxeItem;
-import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
-import lotr.common.item.LOTRShieldItem;
-import lotr.common.item.LOTRShovelItem;
-import lotr.common.item.LOTRSwordItem;
-import lotr.common.item.SpearItem;
+import lotr.common.item.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
@@ -101,6 +92,12 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof LOTRShieldItem) {
 				continue;
 			}
+
+			// ignore bows as they have their own custom models
+			if(item.getValue().get() instanceof ExtendedBowItem) {
+				continue;
+			}
+
 			if(item.getValue().get() instanceof LOTRPickaxeItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
