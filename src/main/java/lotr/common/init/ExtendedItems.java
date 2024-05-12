@@ -73,6 +73,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_SIGN;
 	public static RegistryObject<Item> BANANA_BOAT;
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
+	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
 	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
@@ -414,10 +415,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
 
+	public static RegistryObject<Item> DUNEDAIN_SHIELD;
+	public static RegistryObject<Item> DUNEDAIN_BOW;
+	public static RegistryObject<Item> LONGBOW;
+	
 	public static RegistryObject<Item> DURIN_BANNER_PATTERN;
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNEDAIN_BANNER_PATTERN;
-
-	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 }
 

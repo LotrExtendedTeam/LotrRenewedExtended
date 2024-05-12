@@ -7,17 +7,23 @@ import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRAttributes;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.ExtendedBowItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -26,13 +32,15 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
-    private static final SpawnEquipmentTable DAGGERS;
+    private static final SpawnEquipmentTable WEAPONS;
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
             ExtendedDunedainRangerEntity.class, DataSerializers.INT);
@@ -79,6 +87,41 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     public void swing(Hand p_184609_1_) {
         if (isCloaked()) unCloak();
         super.swing(p_184609_1_);
+    }
+
+    public void performRangedAttack(LivingEntity target, float charge) {
+        this.rangerArrowAttack(target, charge);
+    }
+
+    /**
+     * New method that actually takes into account the additional damage factor of ExtendedBowItem items
+     * @param target
+     * @param charge
+     */
+    private void rangerArrowAttack(LivingEntity target, float charge) {
+        ItemStack heldItem = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, (item) -> {
+            return item instanceof BowItem;
+        }));
+        ItemStack ammoItem = this.getProjectile(heldItem);
+        AbstractArrowEntity arrow = ProjectileHelper.getMobArrow(this, ammoItem, charge);
+        if (heldItem.getItem() instanceof BowItem) {
+            arrow = ((BowItem)heldItem.getItem()).customArrow(arrow);
+        }
+
+        double dx = target.getX() - this.getX();
+        double dy = target.getY(0.3333333333333333) - arrow.getY();
+        double dz = target.getZ() - this.getZ();
+        double dxzSq = MathHelper.sqrt(dx * dx + dz * dz);
+
+        // this section right here has been updated
+        float power = 2.0F;
+        if (heldItem.getItem() instanceof ExtendedBowItem) {
+            power *= ExtendedBowItem.getLaunchSpeedFactor(heldItem);
+        }
+        arrow.shoot(dx, dy + dxzSq * 0.20000000298023224, dz, power, (float)this.getAttributeValue(LOTRAttributes.NPC_RANGED_INACCURACY.get()));
+
+        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.random.nextFloat() * 0.4F + 0.8F));
+        this.level.addFreshEntity(arrow);
     }
 
     @Override
@@ -240,8 +283,8 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 
         // setup weapons
-        this.npcItemsInv.setMeleeWeapon(DAGGERS.getRandomItem(this.random));
-        this.npcItemsInv.setRangedWeapon(new ItemStack(Items.BOW));
+        this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
+        this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
         this.npcItemsInv.setIdleItemsFromRangedWeapons();
 
         // setup armor
@@ -259,7 +302,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     static {
         // TODO: Once the Barrow Dagger is an item add a chance of them spawning with it
-        DAGGERS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.IRON_DAGGER, LOTRItems.IRON_DAGGER, LOTRItems.ARNOR_DAGGER);
+        WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_SPEAR, LOTRItems.ARNOR_SPEAR, LOTRItems.ARNOR_SWORD, LOTRItems.ARNOR_SPEAR);
     }
 
 }

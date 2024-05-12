@@ -441,6 +441,7 @@ fdc6bb0d472a745fe03c7cdfd537fe4bfcc79fe2 assets/lotr/models/item/drystone_slab.j
 63b2987acede34482e458e6e33e9901e06ce0ebf assets/lotr/models/item/drystone_stairs.json
 05a820432dcab8f4910550b99bd775a51d1080a5 assets/lotr/models/item/drystone_wall.json
 80502d6f0511d880a2f9df6ae43d8ec41d87d449 assets/lotr/models/item/dunedain_banner_pattern.json
+fb29d4050385d60fe752c4da93eddb1aa981520b assets/lotr/models/item/dunedain_bow.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/dunedain_ranger_spawn_egg.json
 a03012b0377239d63d2a96b96b8de5a12fe804aa assets/lotr/models/item/durin_banner_pattern.json
 07083b154b42ab21acfdddb1b76cc7b6cb77d4ae assets/lotr/models/item/dwarven_marriage_ring.json
@@ -497,6 +498,7 @@ ee25a2b7d20bb01acb7dff03d5db68358c0718e3 assets/lotr/models/item/horn_of_command
 bc2f0faa8824d4cdc95c7d51be6e6e3ed652df85 assets/lotr/models/item/horn_of_command_summon.json
 60720ef08286e5ad6a2101a79b184626abdc27fc assets/lotr/models/item/ithildin.json
 aa9b13f48d3ad7e71ea0a73adc6a48ea787f278a assets/lotr/models/item/leather_hat.json
+47376b609429605639ab76cf964518032bb5721e assets/lotr/models/item/longbow.json
 6c1fdc8abe7a4792b28962cd1a299d67f945aaf1 assets/lotr/models/item/morgul_blade.json
 88e931f02320f7cc3582d5ad7f1c9e150959fa8a assets/lotr/models/item/morgul_blade_handheld.json
 dc74739cd4c090c196d4275c92219441654094b0 assets/lotr/models/item/morgul_boots.json
@@ -680,7 +682,7 @@ de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundl
 c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fur_wall.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-841653aadeb392c26dd5d159287fd50a9863b8d1 assets/lotrextended/lang/en_us.json
+8af7d706ce482374315270e11280a050e715dce6 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
