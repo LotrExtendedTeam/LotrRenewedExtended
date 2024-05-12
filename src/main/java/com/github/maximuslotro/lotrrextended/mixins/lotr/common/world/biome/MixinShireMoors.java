@@ -17,7 +17,6 @@ public abstract class MixinShireMoors extends ShireBiome{
 
 	public MixinShireMoors(boolean major) {
 		super(major);
-		// TODO Auto-generated constructor stub
 	}
 
 	/***
