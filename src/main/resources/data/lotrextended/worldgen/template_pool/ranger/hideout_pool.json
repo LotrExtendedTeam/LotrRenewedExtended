@@ -8,7 +8,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_beech",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -17,7 +17,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_chestnut",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -26,7 +26,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_fir",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -35,7 +35,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -44,7 +44,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_pine",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -53,7 +53,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -62,7 +62,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_2_beech",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -71,7 +71,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_2_chestnut",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -80,7 +80,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_2_fir",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -89,7 +89,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_2_oak",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -98,7 +98,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_2_pine",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
 		{
@@ -107,7 +107,7 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_2_spruce",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		}
 	]

@@ -69,7 +69,7 @@ public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
 		if (!canBeGrass(blockState, world, thisPos, blockGrowable)) {
 			if (!world.isAreaLoaded(thisPos, 3))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-			world.setBlockAndUpdate(thisPos, BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(slabBase.get(), blockState));
+			world.setBlockAndUpdate(thisPos, BlockStateUtils.copyBlockStateToBlock(slabBase.get(), blockState));
 		} else {
 			if (world.getMaxLocalRawBrightness(thisPos.above()) >= 9) {
 				BlockState stateBlock = blockGrowable.get().defaultBlockState();
@@ -80,7 +80,7 @@ public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
 						continue;
 					}
 					if (world.getBlockState(blockpos).is(slabBase.get())) {
-						BlockState stateSlab = BlockStateUtils.makeNewBlockstateFromBlockWithPropertiesOf(this, world.getBlockState(blockpos));
+						BlockState stateSlab = BlockStateUtils.copyBlockStateToBlock(this, world.getBlockState(blockpos));
 						if (canPropagate(stateSlab, world, blockpos, blockGrowable)) {
 							world.setBlockAndUpdate(blockpos, stateSlab);
 							continue;

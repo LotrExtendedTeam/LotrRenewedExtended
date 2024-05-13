@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.state.Property;
 
 public class BlockStateUtils {
-	public static BlockState makeNewBlockstateFromBlockWithPropertiesOf(Block block, BlockState p_152466_) {
+	public static BlockState copyBlockStateToBlock(Block block, BlockState p_152466_) {
 		BlockState blockstate = block.defaultBlockState();
 		for (Property<?> property : p_152466_.getBlock().getStateDefinition().getProperties()) {
 			if (blockstate.hasProperty(property)) {
