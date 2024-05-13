@@ -144,6 +144,7 @@ public class ExtendedBowItem extends BowItem {
 
     @Override
     public int getDefaultProjectileRange() {
-        return (int) Math.ceil(15 * arrowDamageFactor);
+        return 15;
+        //return (int) Math.ceil(15 * arrowDamageFactor);
     }
 }
