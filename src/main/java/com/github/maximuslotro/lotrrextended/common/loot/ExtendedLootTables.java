@@ -16,6 +16,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation RANGER_CAMP_FARM_FLAX = register("chests/ranger_camp_farm_flax");
 	public static final ResourceLocation RANGER_CAMP_SUPPLIES = register("chests/ranger_camp_general");
 	public static final ResourceLocation RANGER_CAMP_SMITHY = register("chests/ranger_camp_smithy");
+	public static final ResourceLocation RANGER_WACHTOWER = register("chests/ranger_watchtower");
 
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
