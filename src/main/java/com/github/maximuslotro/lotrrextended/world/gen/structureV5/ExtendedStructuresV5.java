@@ -37,8 +37,6 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new RangerRuinsStructure());
-    
-    public static final int SALT = 785555898;
    
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
@@ -55,12 +53,12 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_TAVERN_LARGE.get(), false,     43, 30, 230050245);
 		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
 		register(RANGER_CAMP.get(), true,              26, 21, 663198446);
-		register(RANGER_CAPTAIN_ENCAMPMENT.get(), true,40, 34, 438987603);
-		register(RANGER_ENCAMPMENT.get(), true,        35, 28, 232963172);
-		register(RANGER_FORT.get(), true,              31, 26, 213435145);
-		register(RANGER_HIDEOUT.get(), true,           32, 28, 752122251);
-		register(RANGER_WATCHTOWER.get(), true,        28, 21, 002406043);
-		register(RANGER_HOUSE_HIDEOUT.get(), true,     32, 27, 358719680);
+		register(RANGER_CAPTAIN_ENCAMPMENT.get(), true,50, 44, 438987603);
+		register(RANGER_ENCAMPMENT.get(), true,        45, 38, 232963172);
+		register(RANGER_FORT.get(), true,              41, 36, 213435145);
+		register(RANGER_HIDEOUT.get(), true,           42, 38, 752122251);
+		register(RANGER_WATCHTOWER.get(), true,        38, 31, 002406043);
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     42, 37, 358719680);
 		register(RANGER_HOUSE_RUIN.get(), true,        26, 18, 340638920);
 	}
 	
