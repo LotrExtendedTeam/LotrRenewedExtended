@@ -349,6 +349,7 @@ e351c92a80b29da26d02f629ee55a91a0995233f assets/lotr/models/item/blackberry.json
 bf8aa925b8f33b5c9d5fac57d2dd25d6349e647f assets/lotr/models/item/blueberry.json
 38ee2029a1566b294a16487f6686886fab73003f assets/lotr/models/item/blueberry_bush.json
 fe20c97088f16035c18fe435aa05bb7b93d10c66 assets/lotr/models/item/bottle_of_poison.json
+023041e260ff9fb61dfd8a8a96baa95c09019dca assets/lotr/models/item/bowstring.json
 4b7d6f4099bf5c94bdec31933ba1e32ef6bb552d assets/lotr/models/item/branding_iron.json
 3a1f3569ff4e73695209aac04835b12582d8763d assets/lotr/models/item/branding_iron_hot.json
 aed8f4b2be690f816a468f87b9924414d7daa647 assets/lotr/models/item/carved_black_umbar_brick.json
@@ -441,7 +442,6 @@ fdc6bb0d472a745fe03c7cdfd537fe4bfcc79fe2 assets/lotr/models/item/drystone_slab.j
 63b2987acede34482e458e6e33e9901e06ce0ebf assets/lotr/models/item/drystone_stairs.json
 05a820432dcab8f4910550b99bd775a51d1080a5 assets/lotr/models/item/drystone_wall.json
 80502d6f0511d880a2f9df6ae43d8ec41d87d449 assets/lotr/models/item/dunedain_banner_pattern.json
-fb29d4050385d60fe752c4da93eddb1aa981520b assets/lotr/models/item/dunedain_bow.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/dunedain_ranger_spawn_egg.json
 a03012b0377239d63d2a96b96b8de5a12fe804aa assets/lotr/models/item/durin_banner_pattern.json
 07083b154b42ab21acfdddb1b76cc7b6cb77d4ae assets/lotr/models/item/dwarven_marriage_ring.json
@@ -498,7 +498,6 @@ ee25a2b7d20bb01acb7dff03d5db68358c0718e3 assets/lotr/models/item/horn_of_command
 bc2f0faa8824d4cdc95c7d51be6e6e3ed652df85 assets/lotr/models/item/horn_of_command_summon.json
 60720ef08286e5ad6a2101a79b184626abdc27fc assets/lotr/models/item/ithildin.json
 aa9b13f48d3ad7e71ea0a73adc6a48ea787f278a assets/lotr/models/item/leather_hat.json
-47376b609429605639ab76cf964518032bb5721e assets/lotr/models/item/longbow.json
 6c1fdc8abe7a4792b28962cd1a299d67f945aaf1 assets/lotr/models/item/morgul_blade.json
 88e931f02320f7cc3582d5ad7f1c9e150959fa8a assets/lotr/models/item/morgul_blade_handheld.json
 dc74739cd4c090c196d4275c92219441654094b0 assets/lotr/models/item/morgul_boots.json
@@ -682,7 +681,7 @@ de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundl
 c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fur_wall.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-8af7d706ce482374315270e11280a050e715dce6 assets/lotrextended/lang/en_us.json
+4adf079cb7e7c335e41cd54033bce176a7a0cb8a assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -1611,6 +1610,7 @@ d8af0cce7830d1dd21e5febdc2a3bf9af0c193bb data/lotr/advancements/recipes/lotr.com
 06bacba5dc15e59fdf2b651ff5f161ede646ff83 data/lotr/advancements/recipes/lotr.combat/dol_guldur_spear.json
 2418033837e4a6f76348b6615e4125840cfb14f5 data/lotr/advancements/recipes/lotr.combat/dol_guldur_sword.json
 fe3618d85fdfe7d19a504d05419af900753f3d21 data/lotr/advancements/recipes/lotr.combat/horn_of_command.json
+0e98c15d79468f47fe3182d144106f2fc6bd04f5 data/lotr/advancements/recipes/lotr.combat/longbow.json
 731f58b56e0154c82549c5d420c2f1be121b903d data/lotr/advancements/recipes/lotr.combat/morgul_blade.json
 efb339e76a491469c81ddb83dc32904ed1a88328 data/lotr/advancements/recipes/lotr.combat/morgul_boots.json
 e349eb65d0cd8960bd814af5af29af9f0a323b08 data/lotr/advancements/recipes/lotr.combat/morgul_chestplate.json
@@ -1708,6 +1708,7 @@ ecc16077da0ece8bc7921da2b341c37e0bea34b8 data/lotr/advancements/recipes/lotr.mat
 e22906257c317bd625abd792f373d9fa8c4c58a8 data/lotr/advancements/recipes/lotr.materials/white_fur_from_white_fur_bundle.json
 2a0d800b257dfc170d730449da9d50c0970aaaa6 data/lotr/advancements/recipes/lotr.materials/white_fur_from_white_packed_fur.json
 896ffe19d61e7611130314603dbe099d64e2f91f data/lotr/advancements/recipes/lotr.misc/banana_boat.json
+919e9bd33fed157b7ac4500c651d34b14636811f data/lotr/advancements/recipes/lotr.misc/bowstring.json
 9977fd9463e53b78610b9872726faa838b74dfe8 data/lotr/advancements/recipes/lotr.misc/chestnut_boat.json
 e912fa08ae79e09f054585c65d5ef9f96d2fc175 data/lotr/advancements/recipes/lotr.misc/silver_coin_one.json
 50640836a7e5022ca5672b8826c56edb2c91b714 data/lotr/advancements/recipes/lotr.tools/angmar_axe.json
@@ -2071,6 +2072,7 @@ e128ce6cb973b8a14dd6b195bf934970f51419c8 data/lotr/recipes/black_uruk_steel_bloc
 76970030e6a64d3a55cbba24edf207f554e8654b data/lotr/recipes/black_uruk_steel_ingot.json
 951a99133fbd08f1588970c8f4774fcfcfd875f0 data/lotr/recipes/black_uruk_steel_ingot_from_black_uruk_steel_block.json
 88450d2571134bae4b8d2a18c1268119997e6cd2 data/lotr/recipes/bottle_of_poison.json
+7cf958c7507f6a46555371447d1a891fdb368b74 data/lotr/recipes/bowstring.json
 8deb6aca1c3ed350bacb1e588291299ac13ee5f2 data/lotr/recipes/branding_iron.json
 c8d71a41b826a184465f9117d91cfee006236fc1 data/lotr/recipes/carved_black_umbar_brick.json
 69633798ad26da51271d9b6edc4ef1433ece4d77 data/lotr/recipes/carved_dol_guldur_brick.json
@@ -2196,6 +2198,7 @@ c90e7d91108c8757f0ab6e8326549cda48c237af data/lotr/recipes/gray_packed_fur_stair
 14d69b9072f96d991e42d9da343095fbd243c674 data/lotr/recipes/hithlain.json
 8f7e7794b74677e4ced2223c4b2eff6e531af8b4 data/lotr/recipes/horn_of_command.json
 c2984c7e5c6dcfc22d32053a10ca4975de0d298a data/lotr/recipes/ithildin.json
+acfd1a5df895e1545ceeba0a20fd4596bd201416 data/lotr/recipes/longbow.json
 093ba9233f954a1f3103d670701bd87d1eaeabe9 data/lotr/recipes/morgul_blade.json
 916de024c556d7d8bc758a21dbecb3c005a0b783 data/lotr/recipes/morgul_boots.json
 ae23dd1b870c59e0945deccad839a28a51d4e862 data/lotr/recipes/morgul_chestplate.json
