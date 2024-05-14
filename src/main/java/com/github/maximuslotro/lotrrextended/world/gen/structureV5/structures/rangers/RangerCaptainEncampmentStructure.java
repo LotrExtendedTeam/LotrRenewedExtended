@@ -30,7 +30,7 @@ public class RangerCaptainEncampmentStructure extends ExtendedSurfaceStructuresV
 
 		@Override
 		public int yShift() {
-			return -2;
+			return -1;
 		}
     }
 }

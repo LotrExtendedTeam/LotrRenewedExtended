@@ -27,10 +27,5 @@ public class RangerRuinsStructure extends ExtendedSurfaceStructuresV5<NoFeatureC
 		public String getLocation() {
 			return "ranger/ruins_pool";
 		}
-
-		@Override
-		public int yShift() {
-			return -1;
-		}
     }
 }
