@@ -1,0 +1,490 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 5.0,
+        "max": 7.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:bone"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:skeleton_skull"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 7.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:bronze_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 9.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:bronze_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 9.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:iron_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:silver_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 9.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:silver_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 9.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:gold_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 20.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:silver_coin_one"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:iron_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:iron_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:iron_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:bow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:crossbow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:shield"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:longbow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:iron_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:iron_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:iron_spear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_spear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:arnor_spear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:small_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:medium_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:large_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:arrow"
+        }
+      ]
+    }
+  ]
+}
