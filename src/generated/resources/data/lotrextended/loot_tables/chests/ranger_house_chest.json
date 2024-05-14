@@ -1,0 +1,605 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 2.0,
+        "max": 5.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:wooden_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:wooden_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "minecraft:wooden_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bronze_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:hay_block"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 75,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:bread"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 75,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:apple"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:pear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 45,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:green_apple"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 67,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:blackberry"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 67,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:blueberry"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 67,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:cranberry"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 67,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:elderberry"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 67,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:raspberry"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5.0,
+                "max": 12.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:stick"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 10.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:wheat"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 55,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 7.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:wheat_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:porkchop"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:cooked_porkchop"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:beef"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:cooked_beef"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:chicken"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:cooked_chicken"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:mutton"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:cooked_mutton"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:rabbit"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 70,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:cooked_rabbit"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:oak_log"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:oak_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:spruce_log"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:spruce_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:fir_log"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:fir_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:beech_log"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:beech_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:chestnut_log"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:chestnut_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:pine_log"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 65,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:pine_planks"
+        }
+      ]
+    }
+  ]
+}
