@@ -1,8 +1,27 @@
 (Beta 1.5.0)
 * Blocks
+ * Added Ability for Weapon Racks to have loot-tables
+ * Added Aged Cheese Wheel
+ * Added Barren Dirt Slabs
+ * Added Bedroll
+ * Added Coarse Dirt Slabs
+ * Added Dirt Slabs
+ * Added Fallen Banana Leaves
+ * Added Fallen Chestnut Leaves
+ * Added Grass Block Slabs
+ * Added Grass Path Slabs
+ * Added Mycelium Slabs
+ * Added Ornate Golden Rohan Beams
+ * Added Ornate Rohan Beams
+ * Added Podzol Slabs
+ * Added Stripped Banana Log
+ * Added Stripped Banana Log Slab
+ * Bookshelves work as book storage (book, written book, writable book, red book, book of true silver, knowledge book)
+ * Changed the Cheese Wheel eat sound
  * Ported Banana Beam
  * Ported Banana Beam Slab
  * Ported Banana Button
+ * Ported Banana Cake
  * Ported Banana Door
  * Ported Banana Fence
  * Ported Banana Fence Gate
@@ -15,38 +34,19 @@
  * Ported Banana Pressure Plate
  * Ported Banana Sign
  * Ported Banana Trapdoor
- * Ported Banana Cake
- * Added Stripped Banana Log
- * Added Stripped Banana Log Slab
- * Added Bedroll
- * Added Aged Cheese Wheel
- * Bookshelves work as book storage (book, written book, writable book, red book, book of true silver, knowledge book)
- * Added Dirt Slabs
- * Added Barren Dirt Slabs
- * Added Coarse Dirt Slabs
- * Added Grass Path Slabs
- * Added Grass Block Slabs
- * Added Podzol Slabs
- * Added Mycelium Slabs
+ * Ported Carved Black Umbar Brick
+ * Ported Carved Umbar Brick
+ * Ported Golden Rohan Beams
+ * Ported Rohan Beams
  * Ported Weapon Rack
  * Ported the Reed Basket
- * Changed the Cheese Wheel eat sound
- * Ported Rohan Beams
- * Ported Golden Rohan Beams
- * Added Ornate Rohan Beams
- * Added Ornate Golden Rohan Beams
- * Added Fallen Banana Leaves
- * Added Fallen Chestnut Leaves
- * Added Ability for Weapon Racks to have loot-tables
- * Ported Carved Umbar Brick
- * Ported Carved Black Umbar Brick
 * Entities
- * Ported Ranger of the North
- * Ported Galadhrim Wanderers
- * Ported Rivendell Wanderers
- * Added 309 new entity name combinations for Orcs
  * Added 154 new entity name combinations for other races
+ * Added 309 new entity name combinations for Orcs
  * Overhauled the Ranger of the North's speechbank
+ * Ported Galadhrim Wanderers
+ * Ported Ranger of the North
+ * Ported Rivendell Wanderers
 * Features
  * Made Cheese Wheels age (kinda like 1.17 copper blocks)
  * Made Grass spread from Grass Block Slabs to Dirt Slabs and Dirt Blocks
@@ -54,78 +54,73 @@
  * Made Mycelium spread from Mycelium Blocks to Dirt Slabs
  * Made Mycelium spread from Mycelium Slabs to Dirt Slabs and Dirt Blocks
 * Items
+ * Added 3 new banner patterns: Durin, Dunedain, Blue Mountains
+ * Added Aged Cheese Slice
+ * Added Banana Boat
+ * Added Bowstring
+ * Added Dunedain Shield
+ * Added Longbow
+ * Fixed Branding Irons not using durability when branding
+ * Fixed Taurethrim Sword not giving knock-back (club behavior)
  * Ported Banana
  * Ported Banana Bread
  * Ported Banana Sapling
- * Added Banana Boat
- * Added Bowstring
- * Added Aged Cheese Slice
+ * Ported Dunedain Bow
  * Tweaked the Morgul, Angmar, and Dol Guldur attack and durability values to align with legacy’s
  * Tweaked the rendering positions of extended's bed items
- * Fixed Branding Irons not using durability when branding
- * Fixed Taurethrim Sword not giving knock-back (club behavior)
- * Added 3 new banner patterns: Durin, Dunedain, Blue Mountains
- * Added Dunedain Shield
- * Ported Dunedain Bow
- * Added Longbow
 * Misc
  * Add 114 missing stonecutter recipes for extended's blocks
  * Add 3 missing stonecutter recipes for renewed's blocks
 Structures
- * Removed Large (Hobbit Hole/Tavern) from shire moors, white downs, and shire woodlands
- * Fixed the Large Hobbit Tavern basement being blocked by dirt
- * Fixed the Large Hobbit Tavern bartender escaping the bar
- * Fixed a crash when generating kegs in taverns
- * Ported and Re-designed Ranger Camps
- * Ported Ranger Watchtowers
  * Added Ranger Hideout Houses
- * Added Ranger Ruined Houses
  * Added Ranger Hideouts
+ * Added Ranger Ruined Houses
+ * Fixed a crash when generating kegs in taverns
+ * Fixed the Large Hobbit Tavern bartender escaping the bar
+ * Fixed the Large Hobbit Tavern basement being blocked by dirt
+ * Ported Ranger Watchtowers
+ * Ported and Re-designed Ranger Camps
+ * Removed Large (Hobbit Hole/Tavern) from shire moors, white downs, and shire woodlands
 * Textures
- * Remastered All Banana Wood type textures
- * Updated Chestnut Leaves texture
- * Changed extended's beds break particle texture
- * Remastered Ranger Armor item textures
- * Updated Angmar's Tools, Weapons and Armor textures
- * Updated Dol Guldur's Tools, Weapons and Armor textures
- * Updated Galvorn Ingot texture
- * Updated Mossy Mud Brick texture
- * Updated the Rivendell Armor item texture in the renewed pack
  * Added a remastered texture for mallorn swords to the renewed pack
+ * Added a remastered texture for the Blacksmith Hammer texture to the renewed pack
+ * Changed extended's beds break particle texture
  * Fixed Mud Path Slab double slab graphical glitch
  * Fixed Ranger and Hobbit Table Bottoms in Renewed Pack having invalid textures
- * Updated Amber texture
+ * Fixed Wood and Log slab texture rotations
+ * Remastered All Banana Wood type textures
+ * Remastered Ranger Armor item textures
  * Updated Amber Block texture
  * Updated Amber Ore texture
- * Updated Topaz texture
- * Updated Topaz Block texture
- * Updated Topaz Ore texture
+ * Updated Amber texture
+ * Updated Amethyst texture
+ * Updated Angmar's Tools, Weapons and Armor textures
+ * Updated Blackberry Bush texture
+ * Updated Blackberry Plant texture
+ * Updated Blackberry texture
+ * Updated Carved Dol Guldur Brick texture
+ * Updated Chestnut Leaves texture
+ * Updated Cracked Dol Guldur Brick texture
+ * Updated Dol Guldur Brick texture
+ * Updated Dol Guldur Crafting Table texture
+ * Updated Dol Guldur Pillar texture
+ * Updated Dol Guldur's Tools, Weapons and Armor textures
+ * Updated Galvorn Ingot texture
+ * Updated Gilded Iron Ingot texture
+ * Updated Mossy Dol Guldur Brick texture
+ * Updated Mossy Mud Brick texture
  * Updated Pearl Block texture
  * Updated Pearl texture
- * Updated Amethyst texture
- *  Angmar Axe texture
- * Updated Gilded Iron Ingot texture
+ * Updated Topaz Block texture
+ * Updated Topaz Ore texture
  * Updated Topaz texture
- * Fixed Wood and Log slab texture rotations
- * Added a remastered texture for the Blacksmith Hammer texture to the renewed pack
- * Updated Blackberry texture
- * Updated Blackberry Bush texture
- * Updated Blackberry Plant texture
- * Updated Dol Guldur Crafting Table texture
- * Updated Dol Guldur Brick texture
- * Updated Cracked Dol Guldur Brick texture
- * Updated Mossy Dol Guldur Brick texture
- * Updated Carved Dol Guldur Brick texture
- * Updated Dol Guldur Pillar texture
- * Updated Wildberry texture
  * Updated Wildberry Bush texture
  * Updated Wildberry Plant texture
- * Updated Blackberry texture
- * Updated Blackberry Bush texture
- * Updated Blackberry Plant texture
+ * Updated Wildberry texture
+ * Updated the Rivendell Armor item texture in the renewed pack
 * Trading
- * Made Coins with custom NBT data not tradable
  * Fixed a server crash when trading with traders
+ * Made Coins with custom NBT data not tradable
  
 (Beta 1.4.3)
 * Blocks
