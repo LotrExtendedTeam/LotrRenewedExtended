@@ -30,9 +30,9 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new HobbitTavernLargeStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new HobbitWindmillStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new RangerCampStructure());
-    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_CAPTAIN_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_captain_encampment", () -> new RangerCaptainEncampmentStructure());
-    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new RangerEncampmentStructure());
-    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
+    //public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_CAPTAIN_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_captain_encampment", () -> new RangerCaptainEncampmentStructure());
+    //public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new RangerEncampmentStructure());
+    //public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new RangerHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
@@ -53,9 +53,9 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_TAVERN_LARGE.get(), false,     43, 30, 230050245);
 		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
 		register(RANGER_CAMP.get(), true,              26, 21, 663198446);
-		register(RANGER_CAPTAIN_ENCAMPMENT.get(), true,50, 44, 438987603);
-		register(RANGER_ENCAMPMENT.get(), true,        45, 38, 232963172);
-		register(RANGER_FORT.get(), true,              41, 36, 213435145);
+		//register(RANGER_CAPTAIN_ENCAMPMENT.get(), true,50, 44, 438987603);
+		//register(RANGER_ENCAMPMENT.get(), true,        45, 38, 232963172);
+		//register(RANGER_FORT.get(), true,              41, 36, 213435145);
 		register(RANGER_HIDEOUT.get(), true,           42, 38, 752122251);
 		register(RANGER_WATCHTOWER.get(), true,        38, 31, 002406043);
 		register(RANGER_HOUSE_HIDEOUT.get(), true,     42, 37, 358719680);
