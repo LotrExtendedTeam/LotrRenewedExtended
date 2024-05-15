@@ -1,6 +1,6 @@
 {
-  "parent": "lotr:item/dunedain_bow",
+  "parent": "lotr:item/longbow",
   "textures": {
-    "layer0": "lotrextended:item/dunedain_bow_pulling_0"
+    "layer0": "lotrextended:item/longbow_pulling_0"
   }
 }
