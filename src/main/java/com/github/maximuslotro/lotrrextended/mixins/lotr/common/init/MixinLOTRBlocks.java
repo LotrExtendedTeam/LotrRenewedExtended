@@ -225,7 +225,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CHESTNUT_PLANKS = registerB("chestnut_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 		ExtendedBlocks.CHESTNUT_LEAVES = registerB("chestnut_leaves", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_LEAVES_FRUIT = registerB("chestnut_leaves_fruit", LOTRLeavesBlock::new);
-		ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS = registerB("chestnut_leaves_flowers", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
 		ExtendedBlocks.POTTED_CHESTNUT_SAPLING = registerB("potted_chestnut_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.CHESTNUT_SAPLING));
 		ExtendedBlocks.CHESTNUT_SLAB = registerB("chestnut_slab", () -> new AxialSlabBlock(ExtendedBlocks.CHESTNUT_PLANKS));

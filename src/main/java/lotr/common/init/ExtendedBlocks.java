@@ -39,7 +39,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CHESTNUT_PLANKS;
 	public static RegistryObject<Block> CHESTNUT_LEAVES;
 	public static RegistryObject<Block> CHESTNUT_LEAVES_FRUIT;
-	public static RegistryObject<Block> CHESTNUT_LEAVES_FLOWERS;
 	public static RegistryObject<Block> CHESTNUT_SAPLING;
 	public static RegistryObject<Block> POTTED_CHESTNUT_SAPLING;
 	public static RegistryObject<Block> CHESTNUT_SLAB;

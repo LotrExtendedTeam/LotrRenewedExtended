@@ -289,11 +289,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRLeavesBlock) {
 					if(block.getKey().equals("chestnut_leaves")) {
-						numberTexturedBlockItem(block.getValue().get(), 2);
-						continue;
-					}
-					if(block.getKey().equals("chestnut_leaves_flowers")) {
-						numberTexturedBlockItem(block.getValue().get(), 3);
+						numberTexturedBlockItem(block.getValue().get(), 5);
 						continue;
 					}
 					if(block.getKey().equals("chestnut_leaves_fruit")) {

@@ -1224,7 +1224,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_CHESTNUT_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.CHESTNUT_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.BANANA.get().getRegistryName().getPath());

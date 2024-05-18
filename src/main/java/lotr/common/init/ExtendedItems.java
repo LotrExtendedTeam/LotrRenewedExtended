@@ -30,7 +30,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CHESTNUT_PLANKS;
 	public static RegistryObject<Item> CHESTNUT_LEAVES;
 	public static RegistryObject<Item> CHESTNUT_LEAVES_FRUIT;
-	public static RegistryObject<Item> CHESTNUT_LEAVES_FLOWERS;
 	public static RegistryObject<Item> CHESTNUT_SAPLING;
 	public static RegistryObject<Item> CHESTNUT_SLAB;
 	public static RegistryObject<Item> CHESTNUT_STAIRS;

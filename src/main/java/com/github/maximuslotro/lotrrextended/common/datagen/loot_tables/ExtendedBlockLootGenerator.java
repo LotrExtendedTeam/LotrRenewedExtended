@@ -331,8 +331,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (p_241170_0_) -> {
 	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
 	         });
-		add(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS.get(), (p_241170_0_) -> {
-	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 		add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (p_241170_0_) -> {
 	         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 		add(ExtendedBlocks.BANANA_LEAVES.get(), (p_241170_0_) -> {

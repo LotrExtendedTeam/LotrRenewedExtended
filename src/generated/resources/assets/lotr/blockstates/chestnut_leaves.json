@@ -6,6 +6,15 @@
       },
       {
         "model": "lotrextended:block/chestnut_leaves_1"
+      },
+      {
+        "model": "lotrextended:block/chestnut_leaves_2"
+      },
+      {
+        "model": "lotrextended:block/chestnut_leaves_3"
+      },
+      {
+        "model": "lotrextended:block/chestnut_leaves_4"
       }
     ]
   }

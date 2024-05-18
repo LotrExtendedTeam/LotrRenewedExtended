@@ -219,7 +219,6 @@ public class MixinLOTRItems {
 		ExtendedItems.CHESTNUT_PLANKS = regBlockItemB(ExtendedBlocks.CHESTNUT_PLANKS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_LEAVES = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT, LOTRItemGroups.DECO);
-		ExtendedItems.CHESTNUT_LEAVES_FLOWERS = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FLOWERS, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_SAPLING = regBlockItemB(ExtendedBlocks.CHESTNUT_SAPLING, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_STAIRS = regBlockItemB(ExtendedBlocks.CHESTNUT_STAIRS, LOTRItemGroups.BLOCKS);
