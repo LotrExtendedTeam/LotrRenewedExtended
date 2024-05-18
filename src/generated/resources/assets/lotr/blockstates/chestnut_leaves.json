@@ -1,7 +1,12 @@
 {
   "variants": {
-    "": {
-      "model": "lotrextended:block/chestnut_leaves"
-    }
+    "": [
+      {
+        "model": "lotrextended:block/chestnut_leaves_0"
+      },
+      {
+        "model": "lotrextended:block/chestnut_leaves_1"
+      }
+    ]
   }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "lotr:block/leaves_fruit",
+  "textures": {
+    "end": "lotrextended:block/chestnut_leaves_0",
+    "side": "lotrextended:block/chestnut_leaves_flowers_2"
+  }
+}

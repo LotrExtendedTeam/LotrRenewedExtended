@@ -288,7 +288,19 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRLeavesBlock) {
-					genLeavesBlockItem((LOTRLeavesBlock) block.getValue().get());
+					if(block.getKey().equals("chestnut_leaves")) {
+						numberTexturedBlockItem(block.getValue().get(), 2);
+						continue;
+					}
+					if(block.getKey().equals("chestnut_leaves_flowers")) {
+						numberTexturedBlockItem(block.getValue().get(), 3);
+						continue;
+					}
+					if(block.getKey().equals("chestnut_leaves_fruit")) {
+						numberTexturedBlockItem(block.getValue().get(), 1);
+						continue;
+					}
+					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedFireBlock) {
@@ -885,8 +897,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genFallenLeavesBlock(FallenLeavesBlock bed, String name) {
 		registeredBlocks.add(bed);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrLoc("block/template_fallen_leaves")).texture("leaves", lotrExtendedLoc("block/"+name));
-		simpleBlock(bed, modelFile);
+		try {
+			ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrLoc("block/template_fallen_leaves")).texture("leaves", lotrExtendedLoc("block/"+name));
+			simpleBlock(bed, modelFile);
+		}catch(IllegalArgumentException e) {
+			ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrLoc("block/template_fallen_leaves")).texture("leaves", lotrExtendedLoc("block/"+name+"_0"));
+			simpleBlock(bed, modelFile);
+		}
 	}
 
 	private void genReedBarrelBlockItem(ExtendedReedBasketBlock extendedReedBasketBlock, String name) {
@@ -954,26 +971,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation parent = mcLoc("block/flower_pot_cross");
 		ModelFile model = models().withExistingParent("lotrextended:"+sapling.getRegistryName().getPath(), parent).texture("plant", texture);
 		simpleBlock(sapling, model);
-	}
-
-	private void genLeavesBlockItem(LOTRLeavesBlock leaves) {
-		registeredBlocks.add(leaves);
-		ModelFile model;
-		String baseObject;
-		String[] parts = leaves.getRegistryName().getPath().split("_");
-		if(parts.length>=3) {
-			baseObject = parts[0]+"_"+parts[1];
-			ResourceLocation parent = lotrLoc("block/leaves_fruit");
-			model = models().withExistingParent("lotrextended:"+leaves.getRegistryName().getPath(), parent)
-	                .texture("end", lotrExtendedLoc("block/"+baseObject))
-	                .texture("side", lotrExtendedLoc("block/"+leaves.getRegistryName().getPath()));
-		}
-		else {
-			baseObject = leaves.getRegistryName().getPath();
-			model = models().cubeAll("lotrextended:"+leaves.getRegistryName().getPath(), lotrExtendedLoc("block/"+baseObject));
-		}
-		simpleBlock(leaves, model);
-		itemModels().getBuilder("lotr:"+leaves.getRegistryName().getPath()).parent(model);
 	}
 
 	private void genTorchBlockItem(ExtendedLOTRTorchBlock torch, ResourceLocation texture) {
@@ -1227,6 +1224,39 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
 			return;
 		}
+	}
+
+	private void numberTexturedBlockItem(Block block, int numVariants) {
+		registeredBlocks.add(block);
+		String name = block.getRegistryName().getPath();
+		List<ConfiguredModel> variants = new ArrayList<>();
+		ModelFile intModel = null;
+		for(int i=0; i<numVariants; i++) {
+			ModelFile model = null;
+			if(name.contains("leaves_fruit")) {
+				String[] parts = name.split("_");
+				if(parts.length>=3) {
+					String baseObject = parts[0]+"_"+parts[1];
+					ResourceLocation parent = lotrLoc("block/leaves_fruit");
+					model = models().withExistingParent("lotrextended:"+name+"_"+i, parent).texture("end", lotrExtendedLoc("block/"+baseObject+"_0")).texture("side", lotrExtendedLoc("block/"+name+"_"+i));
+				}
+			} else if(name.contains("leaves_flowers")) {
+				String[] parts = name.split("_");
+				if(parts.length>=3) {
+					String baseObject = parts[0]+"_"+parts[1];
+					ResourceLocation parent = lotrLoc("block/leaves_fruit");
+					model = models().withExistingParent("lotrextended:"+name+"_"+i, parent).texture("end", lotrExtendedLoc("block/"+baseObject+"_0")).texture("side", lotrExtendedLoc("block/"+name+"_"+i));
+				}
+			}else {
+				model = models().cubeAll("lotrextended:"+name+"_"+i, lotrExtendedLoc("block/"+name+"_"+i));
+			}
+			if(intModel==null) {
+				intModel = model;
+			}
+			variants.add(new ConfiguredModel(model));
+		}
+		getVariantBuilder(block).partialState().addModels(variants.toArray(new ConfiguredModel[0]));
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(intModel);
 	}
 
 	private void genMirroredBlockItem(Block block, ResourceLocation location) {
