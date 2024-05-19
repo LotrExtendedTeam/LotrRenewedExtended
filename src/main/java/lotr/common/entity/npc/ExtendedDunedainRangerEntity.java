@@ -1,6 +1,7 @@
 package lotr.common.entity.npc;
 
 import lotr.common.entity.npc.data.ExtendedFoodPools;
+
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
@@ -10,7 +11,6 @@ import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRAttributes;
 import lotr.common.init.LOTRItems;
-import lotr.common.item.ExtendedBowItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -24,6 +24,7 @@ import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -305,7 +306,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     static {
         // TODO: Once the Barrow Dagger is an item add a chance of them spawning with it
-        WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_SPEAR, LOTRItems.ARNOR_SPEAR, LOTRItems.ARNOR_SWORD, LOTRItems.ARNOR_SPEAR);
+        WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_SPEAR, LOTRItems.ARNOR_SPEAR, LOTRItems.ARNOR_SWORD, Items.IRON_SWORD);
     }
 
 }
