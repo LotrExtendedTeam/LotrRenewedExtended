@@ -25,6 +25,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;

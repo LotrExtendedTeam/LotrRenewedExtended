@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.models;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;

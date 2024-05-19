@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 
 import lotr.common.block.ExtendedSignTypes;
@@ -57,6 +58,7 @@ public class LotrExtendedModClient {
 		modBus.addListener(BlockRendererSetup::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 		modBus.addListener(ExtendedColorHelper::makeBlockColors);
 		modBus.addListener(ExtendedColorHelper::makeItemsColors);
+		ExtendedClientConfig.register();
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
@@ -101,8 +103,8 @@ public class LotrExtendedModClient {
 		BlockRendererSetup.setupBlockRenderers();
 		event.enqueueWork(()->{
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
+			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		});
-		ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		BlockRendererSetup.regModels();
     }
 

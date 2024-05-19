@@ -1,4 +1,4 @@
-package lotr.common.item;
+package com.github.maximuslotro.lotrrextended.common.item;
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRMaterial;
@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.*;
@@ -29,7 +28,7 @@ public class ExtendedBowItem extends BowItem {
     }
 
     public ExtendedBowItem(LOTRMaterial material, double damageFactor) {
-        super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(material == LOTRMaterial.RANGER_NORTH ? 525 : 400));
+        this(material == LOTRMaterial.RANGER_NORTH ? 525 : 400, damageFactor);
         this.arrowDamageFactor = damageFactor;
     }
 
@@ -65,7 +64,7 @@ public class ExtendedBowItem extends BowItem {
                 }
 
                 float f = getPowerForTime(i);
-                if (f >= 0.1) {
+                if (f >= 0.1D) {
                     boolean flag1 = playerentity.abilities.instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, bow, playerentity);
                     if (!p_77615_2_.isClientSide) {
                         ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
