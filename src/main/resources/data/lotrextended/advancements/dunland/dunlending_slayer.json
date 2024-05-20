@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:dunland/land_of_the_wild_men",
+  "display": {
+    "title": {
+      "text": "Dunlending Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Dunlending."
+    },
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_dunlending": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:dunlending"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_dunlending": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

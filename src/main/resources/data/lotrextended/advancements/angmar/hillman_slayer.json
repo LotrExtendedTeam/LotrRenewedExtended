@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:angmar/the_ruin_of_arnor",
+  "display": {
+    "title": {
+      "text": "Hillman Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Hillman of Rhudaur."
+    },
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_hillman_of_rhudaur": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotrextended:hillman_of_rhudaur"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_hillman_of_rhudaur": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

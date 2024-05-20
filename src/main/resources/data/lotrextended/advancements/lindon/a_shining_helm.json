@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "title": {
+      "text": "A Shining Helm",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a full set of Lindon armor."
+    },
+    "icon": {
+      "item": "lotr:lindon_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "lindon_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:lindon_helmet"
+          },
+          {
+            "item": "lotr:lindon_chestplate"
+          },
+          {
+            "item": "lotr:lindon_leggings"
+          },
+          {
+            "item": "lotr:lindon_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "lindon_armor"
+    ]
+  ]
+}

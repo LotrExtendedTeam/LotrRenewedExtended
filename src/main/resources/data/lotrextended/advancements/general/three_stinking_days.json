@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "Three Stinking Days!",
+      "color": "green"
+    },
+    "description": {
+      "text": "Eat some Maggoty Bread."
+    },
+    "icon": {
+      "item": "lotr:maggoty_bread"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "eat_maggoty_bread": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:maggoty_bread"
+          }
+        ]
+      }
+    }
+  }
+}

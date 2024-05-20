@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:mirkwood/guest_of_the_elvenking",
+  "display": {
+    "title": {
+      "text": "Wood-Elf Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Wood-Elf."
+    },
+    "icon": {
+      "item": "lotr:elf_bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_wood_elf": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:wood_elf"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_wood_elf": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:the_shire/a_simple_land",
+  "display": {
+    "title": {
+      "text": "Feeling Lucky?",
+      "color": "green"
+    },
+    "description": {
+      "text": "Find a rare Four-Leaf Clover."
+    },
+    "icon": {
+      "item": "lotr:four_leaf_clover"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_four_leaf_clover": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:four_leaf_clover"
+          }
+        ]
+      }
+    }
+  }
+}

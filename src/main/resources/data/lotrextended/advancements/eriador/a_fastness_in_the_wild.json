@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "title": {
+      "text": "A Fastness in the Wild",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Lands of the Angle."
+    },
+    "icon": {
+      "item": "minecraft:green_wool"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_the_angle": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotrextended:the_angle"
+      }
+    }
+  }
+}

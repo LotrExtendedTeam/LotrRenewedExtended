@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:eriador/the_hidden_valley",
+  "display": {
+    "title": {
+      "text": "Livery of Lord Elrond",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a full set of Rivendell armor."
+    },
+    "icon": {
+      "item": "lotr:rivendell_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rivendell_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rivendell_helmet"
+          },
+          {
+            "item": "lotr:rivendell_chestplate"
+          },
+          {
+            "item": "lotr:rivendell_leggings"
+          },
+          {
+            "item": "lotr:rivendell_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rivendell_armor"
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:eriador/a_lonely_land",
+  "display": {
+    "title": {
+      "text": "Bigger, Stronger, Meaner",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Gundabad Uruk."
+    },
+    "icon": {
+      "item": "lotrextended:gundabad_uruk_helmet"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_gundabad_uruk": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotrextended:gundabad_uruk"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_gundabad_uruk": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

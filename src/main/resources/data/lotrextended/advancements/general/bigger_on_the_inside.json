@@ -1,0 +1,56 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "Bigger on the Inside",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a pouch."
+    },
+    "icon": {
+      "item": "lotr:small_pouch"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "small_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:small_pouch"
+          }
+        ]
+      }
+    },
+    "medium_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:medium_pouch"
+          }
+        ]
+      }
+    },
+    "large_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:large_pouch"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["small_pouch"],
+    ["medium_pouch"],
+    ["large_pouch"]
+  ]
+}

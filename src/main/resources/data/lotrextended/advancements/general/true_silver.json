@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "True Silver",
+      "color": "dark_purple"
+    },
+    "description": {
+      "text": "Obtain Mithril Ore."
+    },
+    "icon": {
+      "item": "lotr:mithril_ore"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_mithril_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_ore"
+          }
+        ]
+      }
+    }
+  }
+}

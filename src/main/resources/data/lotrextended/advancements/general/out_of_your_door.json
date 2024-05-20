@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "Out of Your Door",
+      "color": "green"
+    },
+    "description": {
+      "text": "Travel to 10 different regions of Middle-earth."
+    },
+    "icon": {
+      "item": "minecraft:leather_boots"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "biomes_entered": {
+      "trigger": "lotr:biome_entered",
+      "conditions": {
+        "biomes": {
+          "type": "minecraft:location_check",
+          "location": {
+            "dimension": "lotr:middle_earth"
+          }
+        },
+        "num_biomes": 10
+      }
+    }
+  }
+}

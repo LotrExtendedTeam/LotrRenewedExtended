@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "title": {
+      "text": "The Hills of the Dead",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Barrow-downs."
+    },
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_barrow_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:barrow_downs"
+      }
+    }
+  }
+}

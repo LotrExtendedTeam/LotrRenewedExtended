@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:rhovanion/the_great_river",
+  "display": {
+    "title": {
+      "text": "Field of Victory",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Field of Celebrant."
+    },
+    "icon": {
+      "item": "minecraft:azure_bluet"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_field_of_celebrant": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:field_of_celebrant"
+      }
+    }
+  }
+}

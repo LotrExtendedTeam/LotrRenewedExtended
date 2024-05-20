@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "Suspicious...",
+      "color": "green"
+    },
+    "description": {
+      "text": "Produce some suspicious meat from questionable ingredients."
+    },
+    "icon": {
+      "item": "lotr:suspicious_meat"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_suspicious_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:suspicious_meat"
+          }
+        ]
+      }
+    }
+  }
+}

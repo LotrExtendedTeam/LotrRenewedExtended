@@ -1,0 +1,60 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "Warg Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Warg."
+    },
+    "icon": {
+      "item": "lotr:warg_bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_warg": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:gundabad_warg"
+        }
+      }
+    },
+    "kill_mordor_warg": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:mordor_warg"
+        }
+      }
+    },
+    "kill_isengard_warg": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:isengard_warg"
+        }
+      }
+    }
+  },
+  "requirements": {
+    "kills": {
+      "criteria": {
+        "kill_gundabad_warg": {
+          "trigger": "minecraft:entity_killed_player"
+        },
+        "kill_mordor_warg": {
+          "trigger": "minecraft:entity_killed_player"
+        },
+        "kill_isengard_warg": {
+          "trigger": "minecraft:entity_killed_player"
+        }
+      }
+    }
+  }
+}

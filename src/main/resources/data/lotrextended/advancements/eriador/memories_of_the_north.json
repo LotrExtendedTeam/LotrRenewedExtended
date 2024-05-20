@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "title": {
+      "text": "Memories of the North",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a full set of Arnorian armor."
+    },
+    "icon": {
+      "item": "lotr:arnor_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "arnor_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:arnor_helmet"
+          },
+          {
+            "item": "lotr:arnor_chestplate"
+          },
+          {
+            "item": "lotr:arnor_leggings"
+          },
+          {
+            "item": "lotr:arnor_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "arnor_armor"
+    ]
+  ]
+}

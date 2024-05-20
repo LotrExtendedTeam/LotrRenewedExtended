@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:lindon/elven_smith",
+  "display": {
+    "title": {
+      "text": "Master Elven Smith",
+      "color": "light_purple"
+    },
+    "description": {
+      "text": "Acquire a Reinforced Elven Steel Ingot."
+    },
+    "icon": {
+      "item": "lotrextended:reinforced_elven_steel_ingot"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_reinforced_elven_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:reinforced_elven_steel_ingot"
+          }
+        ]
+      }
+    }
+  }
+}

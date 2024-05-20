@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "Emyn Beraid",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Tower Hills."
+    },
+    "icon": {
+      "item": "lotr:chalk_brick"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/lindon.png"
+  },
+  "criteria": {
+    "enter_tower_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:tower_hills"
+      }
+    }
+  }
+}

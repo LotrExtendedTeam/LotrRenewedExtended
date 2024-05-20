@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "display": {
+    "title": {
+      "text": "Et tu, Brute?",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Ruffian Brute."
+    },
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_ruffian_brute": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotrextended:ruffian_brute"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_ruffian_brute": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:general/true_silver",
+  "display": {
+    "title": {
+      "text": "Treasures of Old",
+      "color": "dark_purple"
+    },
+    "description": {
+      "text": "Acquire a full set of Mithril armor."
+    },
+    "icon": {
+      "item": "lotr:mithril_chestplate"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mithril_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_helmet"
+          },
+          {
+            "item": "lotr:mithril_chestplate"
+          },
+          {
+            "item": "lotr:mithril_leggings"
+          },
+          {
+            "item": "lotr:mithril_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mithril_armor"
+    ]
+  ]
+}

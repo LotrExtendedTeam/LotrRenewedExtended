@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "Faded Splendor",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the land of Eregion."
+    },
+    "icon": {
+      "item": "lotr:holly_sapling"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/eregion.png"
+  },
+  "criteria": {
+    "enter_eregion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:eregion"
+      }
+    }
+  }
+}

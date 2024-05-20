@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "Everlasting Chill",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the region of Forodwaith."
+    },
+    "icon": {
+      "item": "minecraft:ice"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/forodwaith.png"
+  },
+  "criteria": {
+    "enter_forodwaith": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:forodwaith"
+      }
+    }
+  }
+}

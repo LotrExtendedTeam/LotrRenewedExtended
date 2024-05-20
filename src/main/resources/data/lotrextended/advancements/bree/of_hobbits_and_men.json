@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "Of Hobbits and Men",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Region of Bree-land."
+    },
+    "icon": {
+      "item": "lotr:drystone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/bree.png"
+  },
+  "criteria": {
+    "enter_bree_land": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:bree_land"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:rhovanion/the_great_river",
+  "display": {
+    "title": {
+      "text": "Here be Dragons?",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Grey Mountains."
+    },
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_grey_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:grey_mountains"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:eregion/faded_splendor",
+  "display": {
+    "title": {
+      "text": "Like a Star",
+      "color": "light_purple"
+    },
+    "description": {
+      "text": "Acquire a full set of Eregion armor."
+    },
+    "icon": {
+      "item": "lotrextended:eregion_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "eregion_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:eregion_helmet"
+          },
+          {
+            "item": "lotrextended:eregion_chestplate"
+          },
+          {
+            "item": "lotrextended:eregion_leggings"
+          },
+          {
+            "item": "lotrextended:eregion_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eregion_armor"
+    ]
+  ]
+}

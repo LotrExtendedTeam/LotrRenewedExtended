@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:angmar/the_ruin_of_arnor",
+  "display": {
+    "title": {
+      "text": "Forth to Ruin",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a full set of Angmar armor."
+    },
+    "icon": {
+      "item": "lotrextended:angmar_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "angmar_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:angmar_helmet"
+          },
+          {
+            "item": "lotrextended:angmar_chestplate"
+          },
+          {
+            "item": "lotrextended:angmar_leggings"
+          },
+          {
+            "item": "lotrextended:angmar_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "angmar_armor"
+    ]
+  ]
+}

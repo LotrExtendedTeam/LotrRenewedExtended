@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:rhovanion/the_great_river",
+  "display": {
+    "title": {
+      "text": "Axes of Old",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the East Bight."
+    },
+    "icon": {
+      "item": "minecraft:oak_log"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_east_bight": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:east_bight"
+      }
+    }
+  }
+}

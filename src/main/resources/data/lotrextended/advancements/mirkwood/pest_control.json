@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:mirkwood/hill_of_sorcery",
+  "display": {
+    "title": {
+      "text": "Pest Control",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Mirkwood Spider."
+    },
+    "icon": {
+      "item": "minecraft:string"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_mirkwood_spider": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotrextended:mirkwood_spider"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_mirkwood_spider": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

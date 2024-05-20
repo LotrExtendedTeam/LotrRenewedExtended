@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "title": {
+      "text": "Elven Smith",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire an Elven Steel Ingot."
+    },
+    "icon": {
+      "item": "lotr:elven_steel_ingot"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_elven_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:elven_steel_ingot"
+          }
+        ]
+      }
+    }
+  }
+}

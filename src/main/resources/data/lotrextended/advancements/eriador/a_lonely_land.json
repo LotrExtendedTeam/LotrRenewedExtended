@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "title": {
+      "text": "A Lonely Land",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Lone Lands."
+    },
+    "icon": {
+      "item": "minecraft:cracked_stone_bricks"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_lone_lands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:lone_lands"
+      }
+    }
+  }
+}

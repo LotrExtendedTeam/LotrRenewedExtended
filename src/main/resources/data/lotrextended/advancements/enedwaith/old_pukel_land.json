@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:enedwaith/forsaken_country",
+  "display": {
+    "title": {
+      "text": "Old Púkel Land",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the region of Drúwaith Iaur."
+    },
+    "icon": {
+      "item": "minecraft:dark_oak_sapling"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_druwaith_laur": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:druwaith_laur"
+      }
+    }
+  }
+}

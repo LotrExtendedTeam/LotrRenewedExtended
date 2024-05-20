@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "title": {
+      "text": "Between the Rivers",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the region of Minhiriath."
+    },
+    "icon": {
+      "item": "minecraft:grass_block"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_minhiriath": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:minhiriath"
+      }
+    }
+  }
+}

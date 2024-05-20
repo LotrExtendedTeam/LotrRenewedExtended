@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "It's Our Birthday",
+      "color": "green"
+    },
+    "description": {
+      "text": "Catch a ring with a fishing rod"
+    },
+    "icon": {
+      "item": "minecraft:fishing_rod"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fish_ring": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_ring"
+          },
+          {
+            "item": "lotr:silver_ring"
+          },
+          {
+            "item": "lotr:gold_ring"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:mirkwood/guest_of_the_elvenking",
+  "display": {
+    "title": {
+      "text": "Camouflaged",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a full set of Wood-Elven Scout armor."
+    },
+    "icon": {
+      "item": "lotrextended:wood_elven_scout_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "wood_elven_scout_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:wood_elven_scout_helmet"
+          },
+          {
+            "item": "lotrextended:wood_elven_scout_chestplate"
+          },
+          {
+            "item": "lotrextended:wood_elven_scout_leggings"
+          },
+          {
+            "item": "lotrextended:wood_elven_scout_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wood_elven_scout_armor"
+    ]
+  ]
+}

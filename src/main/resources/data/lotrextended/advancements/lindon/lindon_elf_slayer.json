@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "title": {
+      "text": "Lindon Elf Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Lindon Elf."
+    },
+    "icon": {
+      "item": "lotr:elf_bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_lindon_elf": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:lindon_elf"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_lindon_elf": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

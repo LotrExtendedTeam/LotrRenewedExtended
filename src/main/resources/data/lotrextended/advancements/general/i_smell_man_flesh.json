@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "I Smell Man-Flesh!",
+      "color": "green"
+    },
+    "description": {
+      "text": "Eat a hunk of Man-Flesh."
+    },
+    "icon": {
+      "item": "lotr:man_flesh"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "eat_man_flesh": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:man_flesh"
+          }
+        ]
+      }
+    }
+  }
+}

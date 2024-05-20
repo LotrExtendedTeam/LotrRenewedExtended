@@ -1,0 +1,31 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "title": {
+      "text": "Bronze Award",
+      "color": "green"
+    },
+    "description": {
+      "text": "Craft a bronze ingot by combining tin and copper."
+    },
+    "icon": {
+      "item": "lotr:bronze_ingot"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_bronze_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_ingot"
+          }
+        ]
+      }
+    }
+  }
+}

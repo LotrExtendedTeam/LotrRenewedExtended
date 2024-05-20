@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "Firebeards and Broadbeams",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Blue Mountains."
+    },
+    "icon": {
+      "item": "lotr:luigon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/blue_mountains.png"
+  },
+  "criteria": {
+    "enter_blue_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:blue_mountains"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:eriador/a_lonely_land",
+  "display": {
+    "title": {
+      "text": "Gundabad Orc Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Gundabad Orc."
+    },
+    "icon": {
+      "item": "lotr:orc_bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_gundabad_orc": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotr:gundabad_orc"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_gundabad_orc": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

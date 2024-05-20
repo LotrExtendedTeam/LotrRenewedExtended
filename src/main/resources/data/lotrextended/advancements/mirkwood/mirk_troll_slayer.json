@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:mirkwood/hill_of_sorcery",
+  "display": {
+    "title": {
+      "text": "Mirk-Troll Slayer",
+      "color": "green"
+    },
+    "description": {
+      "text": "Kill a Mirk-Troll."
+    },
+    "icon": {
+      "item": "lotr:troll_bone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_mirk_troll": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+        "entity": {
+          "type": "lotrextended:mirk_troll"
+        }
+      }
+    },
+    "requirements": {
+      "kills": {
+        "criteria": {
+          "kill_mirk_troll": {
+            "trigger": "minecraft:entity_killed_player"
+          }
+        }
+      }
+    }
+  }
+}

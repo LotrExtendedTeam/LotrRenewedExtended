@@ -1,0 +1,27 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "title": {
+      "text": "Roast Mutton",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Trollshaws."
+    },
+    "icon": {
+      "item": "minecraft:cooked_mutton"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_trollshaws": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:trollshaws"
+      }
+    }
+  }
+}

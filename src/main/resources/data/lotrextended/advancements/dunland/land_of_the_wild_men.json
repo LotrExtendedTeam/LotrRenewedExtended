@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "Land of the Wild Men",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the hills of Dunland."
+    },
+    "icon": {
+      "item": "minecraft:stone_sword"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/dunland.png"
+  },
+  "criteria": {
+    "enter_dunland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:dunland"
+      }
+    }
+  }
+}

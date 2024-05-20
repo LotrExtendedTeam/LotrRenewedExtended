@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:mirkwood/hill_of_sorcery",
+  "display": {
+    "title": {
+      "text": "The Corrupt",
+      "color": "green"
+    },
+    "description": {
+      "text": "Acquire a full set of Dol Guldur armor."
+    },
+    "icon": {
+      "item": "lotrextended:dol_guldur_chestplate"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "dol_guldur_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:dol_guldur_helmet"
+          },
+          {
+            "item": "lotrextended:dol_guldur_chestplate"
+          },
+          {
+            "item": "lotrextended:dol_guldur_leggings"
+          },
+          {
+            "item": "lotrextended:dol_guldur_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dol_guldur_armor"
+    ]
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": {
+      "text": "The Mountains Cold",
+      "color": "green"
+    },
+    "description": {
+      "text": "Enter the Misty Mountains."
+    },
+    "icon": {
+      "item": "minecraft:snowy_stone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/misty_mountains.png"
+  },
+  "criteria": {
+    "enter_misty_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "lotr:misty_mountains"
+      }
+    }
+  }
+}
