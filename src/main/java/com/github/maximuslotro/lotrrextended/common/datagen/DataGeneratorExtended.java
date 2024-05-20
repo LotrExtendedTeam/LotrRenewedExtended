@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedAdvancementProvider;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
@@ -30,6 +31,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedLootTableGenerator(generator));
 			generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));
 			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
