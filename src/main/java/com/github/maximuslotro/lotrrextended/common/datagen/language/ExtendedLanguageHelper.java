@@ -114,6 +114,9 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 			if(entry.getKey().contains("subtitles.lotrextended")) {
 				continue;
 			}
+			if(entry.getKey().contains("advancements.lotrextended")) {
+				continue;
+			}
 			existingStrings.put(entry.getKey(), entry.getValue());
 		}
 	}

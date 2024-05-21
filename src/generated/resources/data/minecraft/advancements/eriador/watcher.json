@@ -1,15 +1,16 @@
 {
-  "parent": "lotrextended:eriador/the_kindly_west",
+  "parent": "minecraft:eriador/the_kindly_west",
   "display": {
+    "icon": {
+      "item": "lotr:ranger_north_chestplate",
+      "nbt": "{Damage:0}"
+    },
     "title": {
-      "text": "Watcher",
-      "color": "green"
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.watcher.title"
     },
     "description": {
-      "text": "Acquire a full set of Ranger armor."
-    },
-    "icon": {
-      "item": "lotr:ranger_north_chestplate"
+      "translate": "advancements.lotrextended.eriador.watcher.description"
     },
     "frame": "task",
     "show_toast": true,

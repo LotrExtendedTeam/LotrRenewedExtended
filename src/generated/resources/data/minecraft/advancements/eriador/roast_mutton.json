@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:eriador/the_kindly_west",
+  "display": {
+    "icon": {
+      "item": "minecraft:cooked_mutton"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.roast_mutton.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.eriador.roast_mutton.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_trollshaws": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:trollshaws"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_trollshaws"
+    ]
+  ]
+}

@@ -18,4 +18,9 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 	protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
 		new EriadorAdvancementsProvider().accept(consumer);
 	}
+
+	@Override
+	public String getName() {
+		return "Renewed Extended Advancements Provider";
+	}
 }
