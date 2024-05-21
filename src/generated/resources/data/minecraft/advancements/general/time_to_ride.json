@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "minecraft:saddle"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.time_to_ride.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.time_to_ride.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_use_saddle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:saddle"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_use_saddle"
+    ]
+  ]
+}

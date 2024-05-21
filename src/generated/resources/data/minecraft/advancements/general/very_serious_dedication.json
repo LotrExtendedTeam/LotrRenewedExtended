@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:general/true_silver",
+  "display": {
+    "icon": {
+      "item": "lotr:mithril_hoe",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.very_serious_dedication.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.very_serious_dedication.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_has_mithril_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_hoe"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_has_mithril_hoe"
+    ]
+  ]
+}

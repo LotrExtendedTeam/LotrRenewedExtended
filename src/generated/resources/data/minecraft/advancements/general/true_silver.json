@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:mithril_ore"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.true_silver.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.true_silver.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_has_mithril_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_ore"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_has_mithril_ore"
+    ]
+  ]
+}

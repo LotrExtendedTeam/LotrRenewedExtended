@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:general/suspicious",
+  "display": {
+    "icon": {
+      "item": "lotr:suspicious_meat"
+    },
+    "title": {
+      "color": "dark_green",
+      "translate": "advancements.lotrextended.general.very_suspicious.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.very_suspicious.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_use_suspicious_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:suspicious_meat"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_use_suspicious_meat"
+    ]
+  ]
+}

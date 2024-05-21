@@ -16,6 +16,7 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 	}
 
 	protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
+		new GeneralAdvancementsProvider().accept(consumer);
 		new EriadorAdvancementsProvider().accept(consumer);
 	}
 

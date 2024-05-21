@@ -9,15 +9,18 @@ import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.criterion.ConsumeItemTrigger;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.FishingRodHookedTrigger;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.PositionTrigger;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -41,6 +44,27 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 
 	public static Advancement.Builder addArmorTrigger(Advancement.Builder builder, String name, Item helmet, Item chestplate, Item leggings, Item boots) {
 		return builder.addCriterion(name+"_armor", InventoryChangeTrigger.Instance.hasItems(helmet, chestplate, leggings, boots));
+	}
+
+	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, Item item) {
+		return addItemTrigger(builder, "has_"+item.getRegistryName().getPath(), item);
+	}
+	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
+		return builder.addCriterion("has_"+name, InventoryChangeTrigger.Instance.hasItems(items));
+	}
+
+	public static Advancement.Builder addFishTrigger(Advancement.Builder builder, Item item) {
+		return builder.addCriterion("fished"+item.getRegistryName().getPath(), FishingRodHookedTrigger.Instance.fishedItem(ItemPredicate.ANY, EntityPredicate.ANY, ItemPredicate.Builder.item().of(item).build()));
+	}
+
+	public static Advancement.Builder addUseTrigger(Advancement.Builder builder, Item item) {
+		return addItemTrigger(builder, "use_"+item.getRegistryName().getPath(), item);
+	}
+	public static Advancement.Builder addUseTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
+		for(IItemProvider item : items) {
+			builder.addCriterion("use_"+name, ConsumeItemTrigger.Instance.usedItem(item));
+		}
+		return builder;
 	}
 
 	public static Advancement.Builder addKillEntityTrigger(Advancement.Builder builder, EntityType<?> entity) {

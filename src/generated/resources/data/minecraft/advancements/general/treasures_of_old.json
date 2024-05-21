@@ -1,15 +1,16 @@
 {
-  "parent": "lotrextended:general/true_silver",
+  "parent": "minecraft:general/true_silver",
   "display": {
+    "icon": {
+      "item": "lotr:mithril_chestplate",
+      "nbt": "{Damage:0}"
+    },
     "title": {
-      "text": "Treasures of Old",
-      "color": "dark_purple"
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.treasures_of_old.title"
     },
     "description": {
-      "text": "Acquire a full set of Mithril armor."
-    },
-    "icon": {
-      "item": "lotr:mithril_chestplate"
+      "translate": "advancements.lotrextended.general.treasures_of_old.description"
     },
     "frame": "challenge",
     "show_toast": true,
