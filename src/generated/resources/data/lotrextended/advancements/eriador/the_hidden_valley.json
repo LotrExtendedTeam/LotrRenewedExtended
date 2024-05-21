@@ -1,0 +1,43 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "icon": {
+      "item": "lotr:high_elven_brick"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.the_hidden_valley.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.eriador.the_hidden_valley.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_rivendell": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell"
+        }
+      }
+    },
+    "enter_rivendell_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell_hills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_rivendell",
+      "enter_rivendell_hills"
+    ]
+  ]
+}

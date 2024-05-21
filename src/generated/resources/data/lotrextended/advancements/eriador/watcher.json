@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "icon": {
+      "item": "lotr:ranger_north_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.watcher.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.eriador.watcher.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ranger_north_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ranger_north_helmet"
+          },
+          {
+            "item": "lotr:ranger_north_chestplate"
+          },
+          {
+            "item": "lotr:ranger_north_leggings"
+          },
+          {
+            "item": "lotr:ranger_north_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ranger_north_armor"
+    ]
+  ]
+}

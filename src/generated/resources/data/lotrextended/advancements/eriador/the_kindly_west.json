@@ -1,0 +1,142 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:arnor_brick"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.the_kindly_west.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.eriador.the_kindly_west.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/eriador.png"
+  },
+  "criteria": {
+    "enter_eriador": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eriador"
+        }
+      }
+    },
+    "enter_eriador_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eriador_downs"
+        }
+      }
+    },
+    "enter_lone_lands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lone_lands"
+        }
+      }
+    },
+    "enter_lone_lands_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lone_lands_hills"
+        }
+      }
+    },
+    "enter_midgewater": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:midgewater"
+        }
+      }
+    },
+    "enter_minhiriath": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:minhiriath"
+        }
+      }
+    },
+    "enter_eryn_vorn": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eryn_vorn"
+        }
+      }
+    },
+    "enter_trollshaws": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:trollshaws"
+        }
+      }
+    },
+    "enter_ettenmoors": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ettenmoors"
+        }
+      }
+    },
+    "enter_coldfells": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:coldfells"
+        }
+      }
+    },
+    "enter_swanfleet": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:swanfleet"
+        }
+      }
+    },
+    "enter_rivendell": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell"
+        }
+      }
+    },
+    "enter_rivendell_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell_hills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_eriador",
+      "enter_eriador_downs",
+      "enter_lone_lands",
+      "enter_lone_lands_hills",
+      "enter_midgewater",
+      "enter_minhiriath",
+      "enter_eryn_vorn",
+      "enter_trollshaws",
+      "enter_ettenmoors",
+      "enter_coldfells",
+      "enter_swanfleet",
+      "enter_rivendell",
+      "enter_rivendell_hills"
+    ]
+  ]
+}

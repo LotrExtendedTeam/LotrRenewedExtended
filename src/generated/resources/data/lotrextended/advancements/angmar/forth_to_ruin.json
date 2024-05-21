@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:angmar/the_ruin_of_arnor",
+  "display": {
+    "icon": {
+      "item": "lotr:angmar_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.angmar.forth_to_ruin.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.angmar.forth_to_ruin.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ranger_north_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:angmar_helmet"
+          },
+          {
+            "item": "lotr:angmar_chestplate"
+          },
+          {
+            "item": "lotr:angmar_leggings"
+          },
+          {
+            "item": "lotr:angmar_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ranger_north_armor"
+    ]
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:orc_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.orc_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.orc_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_gundabad_orc": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gundabad_orc"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_gundabad_orc_archer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gundabad_orc_archer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_mordor_orc": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:mordor_orc"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_mordor_orc_archer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:mordor_orc_archer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_isengard_snaga": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:isengard_snaga"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_isengard_snaga_archer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:isengard_snaga_archer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_gundabad_orc",
+      "kill_gundabad_orc_archer",
+      "kill_mordor_orc",
+      "kill_mordor_orc_archer",
+      "kill_isengard_snaga",
+      "kill_isengard_snaga_archer"
+    ]
+  ]
+}

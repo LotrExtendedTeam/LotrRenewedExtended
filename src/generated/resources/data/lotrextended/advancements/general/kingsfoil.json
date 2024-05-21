@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:athelas"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.kingsfoil.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.kingsfoil.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_has_athelas": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:athelas"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_has_athelas"
+    ]
+  ]
+}

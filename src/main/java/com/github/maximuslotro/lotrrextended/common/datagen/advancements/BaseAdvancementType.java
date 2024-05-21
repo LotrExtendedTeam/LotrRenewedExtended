@@ -96,7 +96,8 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 
 	public Advancement build(BaseData data, Advancement.Builder builder){
 		builder.display(data.makeInfo());
-		return builder.save(con, getFolder()+"/"+data.name);
+		ExtendedAdvancementProvider.advancementsNum +=1;
+		return builder.save(con, "lotrextended:"+getFolder()+"/"+data.name);
 	}
 
 	public static RegistryKey<Biome> biome(PreRegisteredLOTRBiome biome){
@@ -141,7 +142,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 			TranslationTextComponent descriptionI = new TranslationTextComponent("advancements.lotrextended."+getFolder()+"."+name+".description");
 			ResourceLocation backgroundI = null;
 			if(mainCat) {
-				backgroundI = new ResourceLocation("textures/gui/advancements/backgrounds/"+getFolder()+".png");
+				backgroundI = new ResourceLocation("lotrextended", "textures/gui/advancements/backgrounds/"+getFolder()+".png");
 			}
 			DisplayInfo info = new DisplayInfo(icon, titleI, descriptionI, backgroundI, frame, showToast, announceChat, hidden);
 			if(x!=0.34F && y != 0.34F) {

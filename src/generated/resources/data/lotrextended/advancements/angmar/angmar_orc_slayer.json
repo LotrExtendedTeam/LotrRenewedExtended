@@ -1,0 +1,55 @@
+{
+  "parent": "lotrextended:angmar/the_ruin_of_arnor",
+  "display": {
+    "icon": {
+      "item": "lotr:orc_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.angmar.angmar_orc_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.angmar.angmar_orc_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_gundabad_orc": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gundabad_orc"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_gundabad_orc_archer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gundabad_orc_archer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_gundabad_orc",
+      "kill_gundabad_orc_archer"
+    ]
+  ]
+}

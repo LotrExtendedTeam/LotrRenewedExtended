@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "icon": {
+      "item": "lotr:quagmire"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.more_midges_than_water.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.eriador.more_midges_than_water.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_midgewater": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:midgewater"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_midgewater"
+    ]
+  ]
+}

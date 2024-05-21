@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/three_stinking_days",
+  "display": {
+    "icon": {
+      "item": "lotr:man_flesh"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.i_smell_man_flesh.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.i_smell_man_flesh.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_use_man_flesh": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:man_flesh"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_use_man_flesh"
+    ]
+  ]
+}

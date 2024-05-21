@@ -1,0 +1,58 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:small_pouch"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.bigger_on_the_inside.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.bigger_on_the_inside.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_has_small_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:small_pouch"
+          }
+        ]
+      }
+    },
+    "has_has_medium_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:medium_pouch"
+          }
+        ]
+      }
+    },
+    "has_has_large_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:large_pouch"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_has_small_pouch",
+      "has_has_medium_pouch",
+      "has_has_large_pouch"
+    ]
+  ]
+}

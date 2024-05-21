@@ -1,4 +1,10 @@
 {
+  "advancements.lotrextended.angmar.angmar_orc_slayer.description": "Kill an Angmar Orc.",
+  "advancements.lotrextended.angmar.angmar_orc_slayer.title": "Angmar Orc Slayer",
+  "advancements.lotrextended.angmar.forth_to_ruin.description": "Acquire a full set of Angmar armor.",
+  "advancements.lotrextended.angmar.forth_to_ruin.title": "Forth to Ruin",
+  "advancements.lotrextended.angmar.the_ruin_of_arnor.description": "Enter the Region of Angmar.",
+  "advancements.lotrextended.angmar.the_ruin_of_arnor.title": "The Ruin of Arnor",
   "advancements.lotrextended.eriador.a_lonely_land.description": "Enter the Lone Lands.",
   "advancements.lotrextended.eriador.a_lonely_land.title": "A Lonely Land",
   "advancements.lotrextended.eriador.between_the_rivers.description": "Enter the region of Minhiriath.",

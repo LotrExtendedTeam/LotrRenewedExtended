@@ -1,0 +1,35 @@
+{
+  "parent": "lotrextended:general/its_our_birthday",
+  "display": {
+    "icon": {
+      "item": "minecraft:fishing_rod",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.swag_catch.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.swag_catch.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fishedmithril_ring": {
+      "trigger": "minecraft:fishing_rod_hooked",
+      "conditions": {
+        "item": {
+          "item": "lotr:mithril_ring"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fishedmithril_ring"
+    ]
+  ]
+}
