@@ -20,6 +20,14 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new GeneralAdvancementsProvider().accept(consumer);
 		new EriadorAdvancementsProvider().accept(consumer);
 		new AngmarAdvancementsProvider().accept(consumer);
+		new MirkwoodAdvancementsProvider().accept(consumer);
+		new BlueMountainsAdvancementsProvider().accept(consumer);
+		new BreeAdvancementsProvider().accept(consumer);
+		new DunlandAdvancementsProvider().accept(consumer);
+		new ForodwaithAdvancementsProvider().accept(consumer);
+		new EnedwaithAdvancementsProvider().accept(consumer);
+		new EregionAdvancementsProvider().accept(consumer);
+		new MistyMountainsAdvancementsProvider().accept(consumer);
 		ExtendedLog.info("Built "+advancementsNum+" advancements");
 	}
 

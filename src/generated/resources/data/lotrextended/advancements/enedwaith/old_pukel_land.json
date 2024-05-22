@@ -1,0 +1,35 @@
+{
+  "parent": "lotrextended:enedwaith/forsaken_country",
+  "display": {
+    "icon": {
+      "item": "minecraft:dark_oak_sapling"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.enedwaith.old_pukel_land.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.enedwaith.old_pukel_land.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/enedwaith.png"
+  },
+  "criteria": {
+    "enter_druwaith_iaur": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:druwaith_iaur"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_druwaith_iaur"
+    ]
+  ]
+}

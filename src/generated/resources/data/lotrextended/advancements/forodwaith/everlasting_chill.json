@@ -1,0 +1,52 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:ice"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.forodwaith.everlasting_chill.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.forodwaith.everlasting_chill.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/forodwaith.png"
+  },
+  "criteria": {
+    "enter_forodwaith": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:forodwaith"
+        }
+      }
+    },
+    "enter_forodwaith_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:forodwaith_mountains"
+        }
+      }
+    },
+    "enter_forochel": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:forochel"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_forodwaith",
+      "enter_forodwaith_mountains",
+      "enter_forochel"
+    ]
+  ]
+}

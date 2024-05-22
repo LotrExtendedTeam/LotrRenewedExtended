@@ -1,0 +1,61 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:hanging_web"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mirkwood.stay_on_the_path.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.mirkwood.stay_on_the_path.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/mirkwood.png"
+  },
+  "criteria": {
+    "enter_mirkwood": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mirkwood"
+        }
+      }
+    },
+    "enter_mirkwood_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mirkwood_mountains"
+        }
+      }
+    },
+    "enter_northern_mirkwood": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northern_mirkwood"
+        }
+      }
+    },
+    "enter_woodland_realm": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:woodland_realm"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_mirkwood",
+      "enter_mirkwood_mountains",
+      "enter_northern_mirkwood",
+      "enter_woodland_realm"
+    ]
+  ]
+}

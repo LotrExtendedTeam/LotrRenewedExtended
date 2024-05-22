@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:enedwaith/forsaken_country",
+  "display": {
+    "icon": {
+      "item": "lotr:uruk_berserker_cleaver",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.enedwaith.vale_of_the_wizard.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.enedwaith.vale_of_the_wizard.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/enedwaith.png"
+  },
+  "criteria": {
+    "enter_nan_curunir": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nan_curunir"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_nan_curunir"
+    ]
+  ]
+}

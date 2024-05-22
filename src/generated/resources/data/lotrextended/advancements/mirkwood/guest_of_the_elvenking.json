@@ -1,0 +1,35 @@
+{
+  "parent": "lotrextended:mirkwood/stay_on_the_path",
+  "display": {
+    "icon": {
+      "item": "minecraft:bow",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mirkwood.guest_of_the_elvenking.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.mirkwood.guest_of_the_elvenking.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_woodland_realm": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:woodland_realm"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_woodland_realm"
+    ]
+  ]
+}

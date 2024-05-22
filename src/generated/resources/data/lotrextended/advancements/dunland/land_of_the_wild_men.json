@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:stone_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dunland.land_of_the_wild_men.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.dunland.land_of_the_wild_men.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/dunland.png"
+  },
+  "criteria": {
+    "enter_dunland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dunland"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_dunland"
+    ]
+  ]
+}
