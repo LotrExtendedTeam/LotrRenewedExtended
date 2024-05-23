@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:rhovanion/the_great_river",
+  "display": {
+    "icon": {
+      "item": "minecraft:grass_block"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rhovanion.eastward_bound.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.rhovanion.eastward_bound.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_wilderland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:wilderland"
+        }
+      }
+    },
+    "enter_northern_wilderland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northern_wilderland"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_wilderland"
+    ],
+    [
+      "enter_northern_wilderland"
+    ]
+  ]
+}

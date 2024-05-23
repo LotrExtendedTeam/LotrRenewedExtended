@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:rhovanion/the_great_river",
+  "display": {
+    "icon": {
+      "item": "lotr:yellow_iris"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rhovanion.watery_grave.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.rhovanion.watery_grave.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_gladden_fields": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:gladden_fields"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_gladden_fields"
+    ]
+  ]
+}
