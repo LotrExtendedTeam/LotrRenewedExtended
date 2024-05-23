@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:shire/hobbit_hayward",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.shire.hobbit_bounder.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.hobbit_bounder.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_hobbits_level": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:hobbits",
+          "level": {
+            "min": 500.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hobbits_level"
+    ]
+  ]
+}

@@ -36,9 +36,7 @@
   },
   "requirements": [
     [
-      "enter_wilderland"
-    ],
-    [
+      "enter_wilderland",
       "enter_northern_wilderland"
     ]
   ]

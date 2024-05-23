@@ -36,9 +36,7 @@
   },
   "requirements": [
     [
-      "enter_misty_mountains"
-    ],
-    [
+      "enter_misty_mountains",
       "enter_misty_mountains_foothills"
     ]
   ]

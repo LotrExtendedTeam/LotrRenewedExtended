@@ -36,9 +36,7 @@
   },
   "requirements": [
     [
-      "enter_grey_mountains"
-    ],
-    [
+      "enter_grey_mountains",
       "enter_grey_mountains_foothills"
     ]
   ]

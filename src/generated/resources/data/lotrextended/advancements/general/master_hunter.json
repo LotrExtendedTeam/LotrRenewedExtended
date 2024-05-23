@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:general/true_silver",
+  "parent": "lotrextended:general/first_steps",
   "display": {
     "icon": {
       "item": "lotr:fur_chestplate",

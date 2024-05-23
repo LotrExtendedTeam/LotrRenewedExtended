@@ -9,6 +9,7 @@ import lotr.common.init.LOTRBiomes;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.TextFormatting;
 
@@ -22,7 +23,7 @@ public class MistyMountainsAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement mm = build(data(Items.SNOW_BLOCK, "the_misty_mountains_cold", true, FrameType.TASK, true, true, false)
 				.setTitle("The Mountains Cold").setDescription("Enter the Misty Mountains.").setTitleStype(TextFormatting.GREEN), 
-				addBiomeTriggers(make(), MISTY_MOUNTAIN_BIOMES));
+				addBiomeTriggers(make(), MISTY_MOUNTAIN_BIOMES).requirements(IRequirementsStrategy.OR));
 	}
 
 	@Override

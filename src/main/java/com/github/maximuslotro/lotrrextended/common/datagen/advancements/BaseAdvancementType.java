@@ -3,8 +3,11 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.AlignmentLevelTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.AlignmentPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
+import lotr.common.fac.FactionPointer;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
@@ -16,6 +19,7 @@ import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
 import net.minecraft.advancements.criterion.PositionTrigger;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -51,6 +55,12 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		return builder.addCriterion("has_"+name, InventoryChangeTrigger.Instance.hasItems(items));
+	}
+
+	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {
+		AlignmentPredicate pred = new AlignmentPredicate(FloatBound.atLeast(level), factionPointer.getNameString());
+		AlignmentLevelTrigger.Instance trigegr = AlignmentLevelTrigger.Instance.alignmentLevel(pred);
+		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level", trigegr);
 	}
 
 	public static Advancement.Builder addFishTrigger(Advancement.Builder builder, Item item) {

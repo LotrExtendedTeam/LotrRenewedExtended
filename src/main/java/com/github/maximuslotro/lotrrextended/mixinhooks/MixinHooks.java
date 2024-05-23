@@ -3,9 +3,11 @@ package com.github.maximuslotro.lotrrextended.mixinhooks;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRPlayerData;
+import lotr.common.data.PlayerDataModule;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.tileentity.KegTileEntity;
@@ -21,6 +23,18 @@ public class MixinHooks {
 		try {
 			Method fooMethod = LOTRPlayerData.class.getMethod("getFellowshipData");
 			fellowData = (ExtendedFellowshipDataModule) fooMethod.invoke(data);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return fellowData;
+	}
+
+	public static UUID getAlignmentData(PlayerDataModule data) {
+		UUID fellowData = null;
+		try {
+			Method fooMethod = PlayerDataModule.class.getDeclaredMethod("getPlayerUUID");
+			fooMethod.setAccessible(true);
+			fellowData = (UUID) fooMethod.invoke((PlayerDataModule)data);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

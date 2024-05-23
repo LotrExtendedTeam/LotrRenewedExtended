@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:shire/hobbit_friend",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.hobbit_hayward.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.hobbit_hayward.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_hobbits_level": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:hobbits",
+          "level": {
+            "min": 250.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hobbits_level"
+    ]
+  ]
+}

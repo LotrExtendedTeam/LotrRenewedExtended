@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
@@ -65,6 +66,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		ExtendedCriteriaTriggers.generate();
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();

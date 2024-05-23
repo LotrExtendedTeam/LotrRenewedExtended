@@ -77,7 +77,7 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 		Advancement warg_armor = build(data(LOTRItems.FUR_CHESTPLATE.get(), "master_hunter", false, FrameType.TASK, true, true, false)
 				.setTitle("Master Hunter").setDescription("Acquire a full set of Warg Fur armor.").setTitleStype(TextFormatting.GREEN), 
 				addArmorTrigger(make(), "warg", LOTRItems.FUR_HELMET.get(), LOTRItems.FUR_CHESTPLATE.get(), 
-						LOTRItems.FUR_LEGGINGS.get(), LOTRItems.FUR_BOOTS.get()).parent(true_silver));
+						LOTRItems.FUR_LEGGINGS.get(), LOTRItems.FUR_BOOTS.get()).parent(base));
 
 		Advancement copper_award = build(data(LOTRItems.COPPER_INGOT.get(), "copper_award", false, FrameType.TASK, true, true, false)
 				.setTitle("Copper Award").setDescription("Obtain a copper ingot by smelting copper ore.").setTitleStype(TextFormatting.GREEN), 

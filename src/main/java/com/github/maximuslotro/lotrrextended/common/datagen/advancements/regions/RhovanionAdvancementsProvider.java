@@ -44,7 +44,7 @@ public class RhovanionAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement eastward_bound = build(data(Items.GRASS_BLOCK, "eastward_bound", false, FrameType.TASK, true, true, false)
 		.setTitle("Eastward Bound").setDescription("Enter the Wilderland.").setTitleStype(TextFormatting.GREEN), 
-		addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.WILDERLAND), LOTRBiomes.NORTHERN_WILDERLAND).parent(rhovanion));
+		addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.WILDERLAND), LOTRBiomes.NORTHERN_WILDERLAND).requirements(IRequirementsStrategy.OR).parent(rhovanion));
 
 //		Advancement field_of_victory = build(data(Items.AZURE_BLUET, "field_of_victory", false, FrameType.TASK, true, true, false)
 //		.setTitle("Field of Victory").setDescription("Enter the Field of Celebrant.").setTitleStype(TextFormatting.GREEN), 
@@ -52,7 +52,7 @@ public class RhovanionAdvancementsProvider extends BaseAdvancementType{
 		
 		Advancement here_be_dragons = build(data(Items.STONE, "here_be_dragons", false, FrameType.TASK, true, true, false)
 		.setTitle("Here be Dragons?").setDescription("Enter the Grey Mountains.").setTitleStype(TextFormatting.GREEN), 
-		addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.GREY_MOUNTAINS), LOTRBiomes.GREY_MOUNTAINS_FOOTHILLS).parent(rhovanion));
+		addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.GREY_MOUNTAINS), LOTRBiomes.GREY_MOUNTAINS_FOOTHILLS).requirements(IRequirementsStrategy.OR).parent(rhovanion));
 
 		Advancement past_the_rushes_past_the_reeds = build(data(LOTRItems.REEDS.get(), "past_the_rushes_past_the_reeds", false, FrameType.TASK, true, true, false)
 		.setTitle("Past the Rushes, Past the Reeds").setDescription("Enter the Long Marshes.").setTitleStype(TextFormatting.GREEN), 
