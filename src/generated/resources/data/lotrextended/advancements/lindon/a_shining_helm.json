@@ -1,17 +1,18 @@
 {
-  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "parent": "lotrextended:lindon/elven_smith",
   "display": {
+    "icon": {
+      "item": "lotr:lindon_chestplate",
+      "nbt": "{Damage:0}"
+    },
     "title": {
-      "text": "A Shining Helm",
-      "color": "green"
+      "color": "green",
+      "translate": "advancements.lotrextended.lindon.a_shining_helm.title"
     },
     "description": {
-      "text": "Acquire a full set of Lindon armor."
+      "translate": "advancements.lotrextended.lindon.a_shining_helm.description"
     },
-    "icon": {
-      "item": "lotr:lindon_chestplate"
-    },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

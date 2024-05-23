@@ -28,6 +28,8 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new EnedwaithAdvancementsProvider().accept(consumer);
 		new EregionAdvancementsProvider().accept(consumer);
 		new MistyMountainsAdvancementsProvider().accept(consumer);
+		new LindonAdvancementsProvider().accept(consumer);
+		new ShireAdvancementsProvider().accept(consumer);
 		ExtendedLog.info("Built "+advancementsNum+" advancements");
 	}
 

@@ -1,0 +1,70 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:grass_block"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.a_simple_land.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.a_simple_land.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/shire.png"
+  },
+  "criteria": {
+    "enter_shire": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire"
+        }
+      }
+    },
+    "enter_shire_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire_marshes"
+        }
+      }
+    },
+    "enter_shire_moors": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire_moors"
+        }
+      }
+    },
+    "enter_shire_woodlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire_woodlands"
+        }
+      }
+    },
+    "enter_white_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_downs"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_shire",
+      "enter_shire_marshes",
+      "enter_shire_moors",
+      "enter_shire_woodlands",
+      "enter_white_downs"
+    ]
+  ]
+}

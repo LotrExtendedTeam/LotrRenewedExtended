@@ -100,7 +100,7 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 				addItemTrigger(make(), LOTRItems.SUSPICIOUS_MEAT.get()).parent(get_moldy_bread));
 
 		Advancement eat_bad_meat = build(data(LOTRItems.SUSPICIOUS_MEAT.get(), "very_suspicious", false, FrameType.GOAL, true, true, false)
-				.setTitle("Yum...").setDescription("Eat some suspicious meat...").setTitleStype(TextFormatting.DARK_GREEN), 
+				.setTitle("Yum...").setDescription("Eat some suspicious meat...").setTitleStype(TextFormatting.GOLD), 
 				addUseTrigger(make(), LOTRItems.SUSPICIOUS_MEAT.get()).parent(get_bad_meat));
 
 		Advancement get_man_meat = build(data(LOTRItems.MAN_FLESH.get(), "i_smell_man_flesh", false, FrameType.TASK, true, true, false)

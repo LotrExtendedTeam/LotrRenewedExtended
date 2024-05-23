@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:shire/a_simple_land",
+  "display": {
+    "icon": {
+      "item": "lotr:four_leaf_clover"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.shire.feeling_lucky.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.feeling_lucky.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_has_four_leaf_clover": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:four_leaf_clover"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_has_four_leaf_clover"
+    ]
+  ]
+}
