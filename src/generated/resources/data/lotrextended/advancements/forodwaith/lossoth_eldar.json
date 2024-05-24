@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "gold",
+      "color": "dark_purple",
       "translate": "advancements.lotrextended.forodwaith.lossoth_eldar.title"
     },
     "description": {
       "translate": "advancements.lotrextended.forodwaith.lossoth_eldar.description"
     },
-    "frame": "goal",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "gold",
+      "color": "dark_purple",
       "translate": "advancements.lotrextended.mirkwood.wood_elf_hir_hiril_eryn.title"
     },
     "description": {
       "translate": "advancements.lotrextended.mirkwood.wood_elf_hir_hiril_eryn.description"
     },
-    "frame": "goal",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

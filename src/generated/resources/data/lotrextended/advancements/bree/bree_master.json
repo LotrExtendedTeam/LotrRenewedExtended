@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "gold",
+      "color": "dark_purple",
       "translate": "advancements.lotrextended.bree.bree_master.title"
     },
     "description": {
       "translate": "advancements.lotrextended.bree.bree_master.description"
     },
-    "frame": "goal",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

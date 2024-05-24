@@ -59,12 +59,12 @@ public class DunlandAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Dunlending Avenger").setDescription("Reach +500.0 alignment with the Dunlendings.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 500).parent(dunland_200));
 
-		Advancement dunland_1000 = build(data(LOTRItems.GOLD_RING.get(), "dunland_warlord", false, FrameType.TASK, true, true, false)
-				.setTitle("Dunlending Warlord").setDescription("Reach +1000.0 alignment with the Dunlendings.").setTitleStype(TextFormatting.GREEN), 
+		Advancement dunland_1000 = build(data(LOTRItems.GOLD_RING.get(), "dunland_warlord", false, FrameType.GOAL, true, true, false)
+				.setTitle("Dunlending Warlord").setDescription("Reach +1000.0 alignment with the Dunlendings.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 1000).parent(dunland_500));
 
-		Advancement dunland_2000 = build(data(LOTRItems.GOLD_RING.get(), "dunland_chieftain", false, FrameType.GOAL, true, true, false)
-				.setTitle("Dunlending Chieftain").setDescription("Reach +2000.0 alignment with the Dunlendings.").setTitleStype(TextFormatting.GOLD), 
+		Advancement dunland_2000 = build(data(LOTRItems.GOLD_RING.get(), "dunland_chieftain", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Dunlending Chieftain").setDescription("Reach +2000.0 alignment with the Dunlendings.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 2000).parent(dunland_1000));
 	}
 

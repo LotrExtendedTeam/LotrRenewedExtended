@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "gold",
+      "color": "dark_purple",
       "translate": "advancements.lotrextended.eriador.orc_chieftain.title"
     },
     "description": {
       "translate": "advancements.lotrextended.eriador.orc_chieftain.description"
     },
-    "frame": "goal",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

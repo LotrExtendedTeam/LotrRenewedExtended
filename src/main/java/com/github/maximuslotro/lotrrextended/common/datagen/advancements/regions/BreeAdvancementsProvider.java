@@ -61,12 +61,12 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Champion of Bree").setDescription("Reach +500.0 alignment with Bree-land.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.BREE, 500).parent(bree_200));
 
-		Advancement bree_1000 = build(data(LOTRItems.GOLD_RING.get(), "bree_captain", false, FrameType.TASK, true, true, false)
-				.setTitle("Captain of Bree").setDescription("Reach +1000.0 alignment with Bree-land.").setTitleStype(TextFormatting.GREEN), 
+		Advancement bree_1000 = build(data(LOTRItems.GOLD_RING.get(), "bree_captain", false, FrameType.GOAL, true, true, false)
+				.setTitle("Captain of Bree").setDescription("Reach +1000.0 alignment with Bree-land.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.BREE, 1000).parent(bree_500));
 
-		Advancement bree_2000 = build(data(LOTRItems.GOLD_RING.get(), "bree_master", false, FrameType.GOAL, true, true, false)
-				.setTitle("Master of Bree").setDescription("Reach +2000.0 alignment with Bree-land.").setTitleStype(TextFormatting.GOLD), 
+		Advancement bree_2000 = build(data(LOTRItems.GOLD_RING.get(), "bree_master", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Master of Bree").setDescription("Reach +2000.0 alignment with Bree-land.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.BREE, 2000).parent(bree_1000));
 	}
 

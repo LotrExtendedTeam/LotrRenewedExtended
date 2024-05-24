@@ -73,12 +73,12 @@ public class MirkwoodAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Mirkwood Despoiler").setDescription("Reach +500.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 500).parent(dol_guldur_200));
 
-		Advancement dol_guldur_1000 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_captain", false, FrameType.TASK, true, true, false)
-				.setTitle("Dol Guldur Captain").setDescription("Reach +1000.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+		Advancement dol_guldur_1000 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_captain", false, FrameType.GOAL, true, true, false)
+				.setTitle("Dol Guldur Captain").setDescription("Reach +1000.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 1000).parent(dol_guldur_500));
 
-		Advancement dol_guldur_2000 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_lieutnant", false, FrameType.GOAL, true, true, false)
-				.setTitle("Khamûl's Lieutnant").setDescription("Reach +2000.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GOLD), 
+		Advancement dol_guldur_2000 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_lieutnant", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Khamûl's Lieutnant").setDescription("Reach +2000.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 2000).parent(dol_guldur_1000));
 
 		Advancement wood_elf_50 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_guest", false, FrameType.TASK, true, true, false)
@@ -101,12 +101,12 @@ public class MirkwoodAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Woodland Captain").setDescription("Reach +1000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 1000).parent(wood_elf_500));
 
-		Advancement wood_elf_2000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_arphen_eryn", false, FrameType.TASK, true, true, false)
-				.setTitle("Arphen Eryn").setDescription("Reach +2000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+		Advancement wood_elf_2000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_arphen_eryn", false, FrameType.GOAL, true, true, false)
+				.setTitle("Arphen Eryn").setDescription("Reach +2000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 2000).parent(wood_elf_1000));
 
-		Advancement wood_elf_3000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_hir_hiril_eryn", false, FrameType.GOAL, true, true, false)
-				.setTitle("Hîr/Híril Eryn").setDescription("Reach +3000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GOLD), 
+		Advancement wood_elf_3000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_hir_hiril_eryn", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Hîr/Híril Eryn").setDescription("Reach +3000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 3000).parent(wood_elf_2000));
 
 	}

@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "green",
+      "color": "gold",
       "translate": "advancements.lotrextended.eriador.orc_warlord.title"
     },
     "description": {
       "translate": "advancements.lotrextended.eriador.orc_warlord.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

@@ -52,12 +52,12 @@ public class ForodwaithAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Lossoth Fire-Starter").setDescription("Reach +500.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 500).parent(lossoth_200));
 
-		Advancement lossoth_1000 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_chieftain", false, FrameType.TASK, true, true, false)
-				.setTitle("Lossoth Chieftain").setDescription("Reach +1000.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
+		Advancement lossoth_1000 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_chieftain", false, FrameType.GOAL, true, true, false)
+				.setTitle("Lossoth Chieftain").setDescription("Reach +1000.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 1000).parent(lossoth_500));
 
-		Advancement lossoth_2000 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_eldar", false, FrameType.GOAL, true, true, false)
-				.setTitle("Lossoth Eldar").setDescription("Reach +2000.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GOLD), 
+		Advancement lossoth_2000 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_eldar", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Lossoth Eldar").setDescription("Reach +2000.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 2000).parent(lossoth_1000));
 	}
 

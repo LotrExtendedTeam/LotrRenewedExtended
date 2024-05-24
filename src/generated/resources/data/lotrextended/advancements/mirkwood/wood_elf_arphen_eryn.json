@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "green",
+      "color": "gold",
       "translate": "advancements.lotrextended.mirkwood.wood_elf_arphen_eryn.title"
     },
     "description": {
       "translate": "advancements.lotrextended.mirkwood.wood_elf_arphen_eryn.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
