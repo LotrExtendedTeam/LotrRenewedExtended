@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_high_elves_level": {
+    "has_high_elves_level_10": {
       "trigger": "lotrextended:alignment_changed",
       "conditions": {
         "alignment": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_high_elves_level"
+      "has_high_elves_level_10"
     ]
   ]
 }

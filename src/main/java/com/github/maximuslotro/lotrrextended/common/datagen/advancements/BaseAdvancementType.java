@@ -60,7 +60,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {
 		AlignmentPredicate pred = new AlignmentPredicate(FloatBound.atLeast(level), factionPointer.getNameString());
 		AlignmentLevelTrigger.Instance trigegr = AlignmentLevelTrigger.Instance.alignmentLevel(pred);
-		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level", trigegr);
+		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level_"+Math.round(level), trigegr);
 	}
 
 	public static Advancement.Builder addFishTrigger(Advancement.Builder builder, Item item) {

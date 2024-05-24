@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_blue_mountains_level": {
+    "has_blue_mountains_level_50": {
       "trigger": "lotrextended:alignment_changed",
       "conditions": {
         "alignment": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_blue_mountains_level"
+      "has_blue_mountains_level_50"
     ]
   ]
 }
