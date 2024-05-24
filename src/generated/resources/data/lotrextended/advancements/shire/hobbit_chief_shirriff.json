@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "dark_purple",
+      "color": "gold",
       "translate": "advancements.lotrextended.shire.hobbit_chief_shirriff.title"
     },
     "description": {
       "translate": "advancements.lotrextended.shire.hobbit_chief_shirriff.description"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

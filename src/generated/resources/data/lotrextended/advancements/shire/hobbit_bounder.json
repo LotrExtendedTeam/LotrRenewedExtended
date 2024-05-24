@@ -5,13 +5,13 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "gold",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.hobbit_bounder.title"
     },
     "description": {
       "translate": "advancements.lotrextended.shire.hobbit_bounder.description"
     },
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

@@ -41,7 +41,7 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Hobbit Slayer").setDescription("Kill a Hobbit.").setTitleStype(TextFormatting.GREEN), 
 				addKillEntityTrigger(make(), LOTREntities.HOBBIT.get()).requirements(IRequirementsStrategy.OR).parent(shire));
 
-		Advancement cover = build(data(LOTRItems.FOUR_LEAF_CLOVER.get(), "feeling_lucky", false, FrameType.GOAL, true, true, false)
+		Advancement clover = build(data(LOTRItems.FOUR_LEAF_CLOVER.get(), "feeling_lucky", false, FrameType.GOAL, true, true, false)
 				.setTitle("Feeling Lucky?").setDescription("Find a rare Four-Leaf Clover.").setTitleStype(TextFormatting.GOLD), 
 				addItemTrigger(make(), LOTRItems.FOUR_LEAF_CLOVER.get()).parent(shire));
 
@@ -54,14 +54,14 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 		Advancement hobbit_250 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_hayward", false, FrameType.TASK, true, true, false)
 				.setTitle("Hobbit Hayward").setDescription("Reach +250.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.HOBBITS, 250).parent(hobbit_100));
-		Advancement hobbit_500 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_bounder", false, FrameType.GOAL, true, true, false)
-				.setTitle("Hobbit Bounder").setDescription("Reach +500.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.GOLD), 
+		Advancement hobbit_500 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_bounder", false, FrameType.TASK, true, true, false)
+				.setTitle("Hobbit Bounder").setDescription("Reach +500.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.HOBBITS, 500).parent(hobbit_250));
-		Advancement hobbit_1000 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_shirriff", false, FrameType.GOAL, true, true, false)
-				.setTitle("Hobbit Shirriff").setDescription("Reach +1000.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.GOLD), 
+		Advancement hobbit_1000 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_shirriff", false, FrameType.TASK, true, true, false)
+				.setTitle("Hobbit Shirriff").setDescription("Reach +1000.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.HOBBITS, 1000).parent(hobbit_500));
-		Advancement hobbit_2000 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_chief_shirriff", false, FrameType.CHALLENGE, true, true, false)
-				.setTitle("Chief Shirriff").setDescription("Reach +2000.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.DARK_PURPLE), 
+		Advancement hobbit_2000 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_chief_shirriff", false, FrameType.GOAL, true, true, false)
+				.setTitle("Chief Shirriff").setDescription("Reach +2000.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.HOBBITS, 2000).parent(hobbit_1000));
 		Advancement hobbit_3000 = build(data(LOTRItems.GOLD_RING.get(), "hobbit_thain", false, FrameType.CHALLENGE, true, true, false)
 				.setTitle("Thain of the Shire").setDescription("Reach +3000.0 alignment with the Hobbits of the Shire.").setTitleStype(TextFormatting.DARK_PURPLE), 

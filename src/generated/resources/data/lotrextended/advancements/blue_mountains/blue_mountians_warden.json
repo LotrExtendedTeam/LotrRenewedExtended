@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:blue_mountains/blue_mountians_friend",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.blue_mountains.blue_mountians_warden.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.blue_mountains.blue_mountians_warden.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_blue_mountains_level": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:blue_mountains",
+          "level": {
+            "min": 100.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_mountains_level"
+    ]
+  ]
+}
