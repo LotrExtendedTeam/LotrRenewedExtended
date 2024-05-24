@@ -6,6 +6,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
+import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
@@ -110,6 +111,62 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 		Advancement swanfleet = build(data(Items.LILY_PAD, "nin_in_eilph", false, FrameType.TASK, true, true, false)
 				.setTitle("Nîn-in-Eilph").setDescription("Enter the fenlands of Swanfleet.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTrigger(make(), LOTRBiomes.SWANFLEET).parent(eriadorBase));
+
+		Advancement ranger_10 = build(data(LOTRItems.GOLD_RING.get(), "dunedain_friend", false, FrameType.TASK, true, true, false)
+				.setTitle("Dúnedain Friend").setDescription("Reach +10.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 10).parent(eriadorBase));
+
+		Advancement ranger_50 = build(data(LOTRItems.GOLD_RING.get(), "dunedain_warden", false, FrameType.TASK, true, true, false)
+				.setTitle("Dúnedain Warden").setDescription("Reach +50.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 50).parent(ranger_10));
+
+		Advancement ranger_100 = build(data(LOTRItems.GOLD_RING.get(), "ranger_of_the_north", false, FrameType.TASK, true, true, false)
+				.setTitle("Ranger of the North").setDescription("Reach +100.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 100).parent(ranger_50));
+
+		Advancement ranger_200 = build(data(LOTRItems.GOLD_RING.get(), "ohtar_of_the_north", false, FrameType.TASK, true, true, false)
+				.setTitle("Ohtar of the North").setDescription("Reach +200.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 200).parent(ranger_100));
+
+		Advancement ranger_500 = build(data(LOTRItems.GOLD_RING.get(), "roquen_of_the_north", false, FrameType.TASK, true, true, false)
+				.setTitle("Roquen of the North").setDescription("Reach +500.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 500).parent(ranger_200));
+
+		Advancement ranger_1000 = build(data(LOTRItems.GOLD_RING.get(), "champion_of_the_north", false, FrameType.TASK, true, true, false)
+				.setTitle("Champion of the North").setDescription("Reach +1000.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 1000).parent(ranger_500));
+
+		Advancement ranger_2000 = build(data(LOTRItems.GOLD_RING.get(), "captain_of_the_north", false, FrameType.GOAL, true, true, false)
+				.setTitle("Captain of the North").setDescription("Reach +2000.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 2000).parent(ranger_1000));
+
+		Advancement orc_10 = build(data(LOTRItems.GOLD_RING.get(), "orc_thrall", false, FrameType.TASK, true, true, false)
+				.setTitle("Mountain-thrall").setDescription("Reach +10.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 10).parent(eriadorBase));
+
+		Advancement orc_50 = build(data(LOTRItems.GOLD_RING.get(), "orc_snaga", false, FrameType.TASK, true, true, false)
+				.setTitle("Mountain-snaga").setDescription("Reach +50.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 50).parent(orc_10));
+
+		Advancement orc_100 = build(data(LOTRItems.GOLD_RING.get(), "orc_raider", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Raider").setDescription("Reach +100.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 100).parent(orc_50));
+
+		Advancement orc_200 = build(data(LOTRItems.GOLD_RING.get(), "orc_ravager", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Ravager").setDescription("Reach +200.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 200).parent(orc_100));
+
+		Advancement orc_500 = build(data(LOTRItems.GOLD_RING.get(), "orc_scourge", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Scourge").setDescription("Reach +500.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 500).parent(orc_200));
+
+		Advancement orc_1000 = build(data(LOTRItems.GOLD_RING.get(), "orc_warlord", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Warlord").setDescription("Reach +1000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 1000).parent(orc_500));
+
+		Advancement orc_2000 = build(data(LOTRItems.GOLD_RING.get(), "orc_chieftain", false, FrameType.GOAL, true, true, false)
+				.setTitle("Gundabad Chieftain").setDescription("Reach +2000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 2000).parent(orc_1000));
 	}
 
 	@Override

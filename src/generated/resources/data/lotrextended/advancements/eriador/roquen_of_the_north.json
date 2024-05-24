@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:eriador/ohtar_of_the_north",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.roquen_of_the_north.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.eriador.roquen_of_the_north.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dunedain_north_level": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:dunedain_north",
+          "level": {
+            "min": 500.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dunedain_north_level"
+    ]
+  ]
+}

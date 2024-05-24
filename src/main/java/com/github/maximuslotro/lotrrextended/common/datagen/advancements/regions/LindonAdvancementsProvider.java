@@ -6,6 +6,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
+import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTREntities;
@@ -57,6 +58,38 @@ public class LindonAdvancementsProvider extends BaseAdvancementType{
 //		Advancement rein_elven_ingot = build(data(LOTRItems.ELVEN_STEEL_INGOT.get(), "elven_smith", false, FrameType.GOAL, true, true, false)
 //				.setTitle("Master Elven Smith").setDescription("Acquire a Reinforced Elven Steel Ingot.").setTitleStype(TextFormatting.GOLD), 
 //				addItemTrigger(make(), LOTRItems.ELVEN_STEEL_INGOT.get()).parent(elven_ingot));
+
+		Advancement elf_10 = build(data(LOTRItems.GOLD_RING.get(), "high_elf_guest", false, FrameType.TASK, true, true, false)
+				.setTitle("Blue Mountains Guest").setDescription("Reach +10.0 alignment with the High Elves.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 10).parent(lindon));
+
+		Advancement elf_50 = build(data(LOTRItems.GOLD_RING.get(), "high_elf_friend", false, FrameType.TASK, true, true, false)
+				.setTitle("Blue Mountains Friend").setDescription("Reach +50.0 alignment with the High Elves.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 50).parent(elf_10));
+
+		Advancement elf_100 = build(data(LOTRItems.GOLD_RING.get(), "mahtar", false, FrameType.TASK, true, true, false)
+				.setTitle("Mahtar").setDescription("Reach +100.0 alignment with the High Elves.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 100).parent(elf_50));
+
+		Advancement elf_200 = build(data(LOTRItems.GOLD_RING.get(), "tercano", false, FrameType.TASK, true, true, false)
+				.setTitle("Tercáno").setDescription("Reach +200.0 alignment with the High Elves.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 200).parent(elf_100));
+
+		Advancement elf_500 = build(data(LOTRItems.GOLD_RING.get(), "hesto", false, FrameType.TASK, true, true, false)
+				.setTitle("Hesto").setDescription("Reach +500.0 alignment with the High Elves.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 500).parent(elf_200));
+
+		Advancement elf_1000 = build(data(LOTRItems.GOLD_RING.get(), "arquen", false, FrameType.TASK, true, true, false)
+				.setTitle("Arquen").setDescription("Reach +1000.0 alignment with the High Elves.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 1000).parent(elf_500));
+
+		Advancement elf_2000 = build(data(LOTRItems.GOLD_RING.get(), "cano_noldoro", false, FrameType.GOAL, true, true, false)
+				.setTitle("Cáno Noldoro").setDescription("Reach +2000.0 alignment with the High Elves.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 2000).parent(elf_1000));
+
+		Advancement elf_3000 = build(data(LOTRItems.GOLD_RING.get(), "heru_heri_noldoro", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Heru/Heri Noldoro").setDescription("Reach +3000.0 alignment with the High Elves.").setTitleStype(TextFormatting.DARK_PURPLE), 
+				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 3000).parent(elf_2000));
 	}
 
 	@Override
