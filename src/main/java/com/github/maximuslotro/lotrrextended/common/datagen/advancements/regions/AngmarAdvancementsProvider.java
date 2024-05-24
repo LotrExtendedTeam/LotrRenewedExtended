@@ -6,6 +6,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
+import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTREntities;
@@ -36,6 +37,34 @@ public class AngmarAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Forth to Ruin").setDescription("Acquire a full set of Angmar armor.").setTitleStype(TextFormatting.GREEN), 
 				addArmorTrigger(make(), "ranger_north", ExtendedItems.ANGMAR_HELMET.get(), ExtendedItems.ANGMAR_CHESTPLATE.get(), 
 						ExtendedItems.ANGMAR_LEGGINGS.get(), ExtendedItems.ANGMAR_BOOTS.get()).parent(angmar));
+
+		Advancement orc_10 = build(data(LOTRItems.GOLD_RING.get(), "angmar_thrall", false, FrameType.TASK, true, true, false)
+				.setTitle("Angmar Thrall").setDescription("Reach +10.0 alignment with Angmar.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 10).parent(angmar));
+
+		Advancement orc_50 = build(data(LOTRItems.GOLD_RING.get(), "angmar_snaga", false, FrameType.TASK, true, true, false)
+				.setTitle("Angmar Servant").setDescription("Reach +50.0 alignment with Angmar.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 50).parent(orc_10));
+
+		Advancement orc_100 = build(data(LOTRItems.GOLD_RING.get(), "angmar_raider", false, FrameType.TASK, true, true, false)
+				.setTitle("Angmar Kinsman").setDescription("Reach +100.0 alignment with Angmar.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 100).parent(orc_50));
+
+		Advancement orc_200 = build(data(LOTRItems.GOLD_RING.get(), "angmar_ravager", false, FrameType.TASK, true, true, false)
+				.setTitle("Angmar Warrior").setDescription("Reach +200.0 alignment with Angmar.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 200).parent(orc_100));
+
+		Advancement orc_500 = build(data(LOTRItems.GOLD_RING.get(), "angmar_scourge", false, FrameType.TASK, true, true, false)
+				.setTitle("Angmar Champion").setDescription("Reach +500.0 alignment with Angmar.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 500).parent(orc_200));
+
+		Advancement orc_1000 = build(data(LOTRItems.GOLD_RING.get(), "angmar_warlord", false, FrameType.TASK, true, true, false)
+				.setTitle("Angmar Warlord").setDescription("Reach +1000.0 alignment with Angmar.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 1000).parent(orc_500));
+
+		Advancement orc_2000 = build(data(LOTRItems.GOLD_RING.get(), "angmar_chieftain", false, FrameType.GOAL, true, true, false)
+				.setTitle("Angmar Chieftain").setDescription("Reach +2000.0 alignment with Angmar.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 2000).parent(orc_1000));
 	}
 
 	@Override
