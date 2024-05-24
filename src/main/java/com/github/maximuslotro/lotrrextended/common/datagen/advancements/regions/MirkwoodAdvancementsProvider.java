@@ -6,6 +6,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
+import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTREntities;
@@ -51,6 +52,63 @@ public class MirkwoodAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("The Corrupt").setDescription( "Acquire a full set of Dol Guldur armor.").setTitleStype(TextFormatting.GREEN), 
 				addArmorTrigger(make(), "arnor", ExtendedItems.DOL_GULDUR_HELMET.get(), ExtendedItems.DOL_GULDUR_CHESTPLATE.get(), 
 						ExtendedItems.DOL_GULDUR_LEGGINGS.get(), ExtendedItems.DOL_GULDUR_BOOTS.get()).parent(mirkwoodBase));
+
+		Advancement dol_guldur_10 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_thrall", false, FrameType.TASK, true, true, false)
+				.setTitle("Mirkwood Thrall").setDescription("Reach +10.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 10).parent(mirkwoodBase));
+
+		Advancement dol_guldur_50 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_servant", false, FrameType.TASK, true, true, false)
+				.setTitle("Mirkwood Servant").setDescription("Reach +50.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 50).parent(dol_guldur_10));
+
+		Advancement dol_guldur_100 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_brigand", false, FrameType.TASK, true, true, false)
+				.setTitle("Mirkwood Brigand").setDescription("Reach +100.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 100).parent(dol_guldur_50));
+
+		Advancement dol_guldur_200 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_torchbearer", false, FrameType.TASK, true, true, false)
+				.setTitle("Mirkwood Torchbearer").setDescription("Reach +200.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 200).parent(dol_guldur_100));
+
+		Advancement dol_guldur_500 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_despoiler", false, FrameType.TASK, true, true, false)
+				.setTitle("Mirkwood Despoiler").setDescription("Reach +500.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 500).parent(dol_guldur_200));
+
+		Advancement dol_guldur_1000 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_captain", false, FrameType.TASK, true, true, false)
+				.setTitle("Dol Guldur Captain").setDescription("Reach +1000.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 1000).parent(dol_guldur_500));
+
+		Advancement dol_guldur_2000 = build(data(LOTRItems.GOLD_RING.get(), "dol_guldur_lieutnant", false, FrameType.GOAL, true, true, false)
+				.setTitle("Khamûl's Lieutnant").setDescription("Reach +2000.0 alignment with Dol Guldur.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.DOL_GULDUR, 2000).parent(dol_guldur_1000));
+
+		Advancement wood_elf_50 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_guest", false, FrameType.TASK, true, true, false)
+				.setTitle("Woodland Guest").setDescription("Reach +50.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 50).parent(mirkwoodBase));
+
+		Advancement wood_elf_100 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_friend", false, FrameType.TASK, true, true, false)
+				.setTitle("Woodland Friend").setDescription("Reach +100.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 100).parent(wood_elf_50));
+
+		Advancement wood_elf_200 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_warden", false, FrameType.TASK, true, true, false)
+				.setTitle("Woodland Marchwarden").setDescription("Reach +200.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 200).parent(wood_elf_100));
+
+		Advancement wood_elf_500 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_herald", false, FrameType.TASK, true, true, false)
+				.setTitle("Woodland Herald").setDescription("Reach +500.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 500).parent(wood_elf_200));
+
+		Advancement wood_elf_1000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_captain", false, FrameType.TASK, true, true, false)
+				.setTitle("Woodland Captain").setDescription("Reach +1000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 1000).parent(wood_elf_500));
+
+		Advancement wood_elf_2000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_arphen_eryn", false, FrameType.TASK, true, true, false)
+				.setTitle("Arphen Eryn").setDescription("Reach +2000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 2000).parent(wood_elf_1000));
+
+		Advancement wood_elf_3000 = build(data(LOTRItems.GOLD_RING.get(), "wood_elf_hir_hiril_eryn", false, FrameType.GOAL, true, true, false)
+				.setTitle("Hîr/Híril Eryn").setDescription("Reach +3000.0 alignment with the Wood-elves of Mirkwood.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 3000).parent(wood_elf_2000));
+
 	}
 
 	@Override

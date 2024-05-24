@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:mirkwood/wood_elf_captain",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mirkwood.wood_elf_arphen_eryn.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.mirkwood.wood_elf_arphen_eryn.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_woodland_realm_level_2000": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:woodland_realm",
+          "level": {
+            "min": 2000.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_woodland_realm_level_2000"
+    ]
+  ]
+}

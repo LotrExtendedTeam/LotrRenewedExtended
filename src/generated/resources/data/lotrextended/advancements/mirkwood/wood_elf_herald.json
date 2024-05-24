@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:mirkwood/wood_elf_warden",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mirkwood.wood_elf_herald.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.mirkwood.wood_elf_herald.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_woodland_realm_level_500": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:woodland_realm",
+          "level": {
+            "min": 500.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_woodland_realm_level_500"
+    ]
+  ]
+}
