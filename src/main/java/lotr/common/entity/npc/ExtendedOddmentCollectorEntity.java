@@ -211,7 +211,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     // TODO: Maybe some sort of negative reputation limit should prevent a player from trading but for now I don't want killing
     //  an Oddment Collector once to prevent you from being able to sell to them
     public boolean canTradeWith(PlayerEntity player) {
-        return true;
+        return this.isNotFighting(player);
     }
 
     @Override

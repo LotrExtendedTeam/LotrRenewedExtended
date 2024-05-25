@@ -1,5 +1,7 @@
 package lotr.common.entity.npc;
 
+import lotr.common.data.LOTRLevelData;
+import lotr.common.fac.AlignmentPredicates;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -10,39 +12,43 @@ import java.util.UUID;
 
 public interface ExtendedTraderEntity {
 
-    void playTradeSound();
+	void playTradeSound();
 
-    boolean isInteractingWithPlayer();
+	boolean isInteractingWithPlayer();
 
-    void removePlayerFromTrading(PlayerEntity player);
+	void removePlayerFromTrading(PlayerEntity player);
 
-    void updatePlayerTradingWith(UUID uuid);
-    Optional<UUID> getPlayerTradingWith();
+	void updatePlayerTradingWith(UUID uuid);
+	Optional<UUID> getPlayerTradingWith();
 
-    void openCoinExchange(PlayerEntity player);
+	void openCoinExchange(PlayerEntity player);
 
-    void openTradeMenu(PlayerEntity player);
+	void openTradeMenu(PlayerEntity player);
 
-    String getTraderName();
+	String getTraderName();
 
-    Inventory getDisplayInventory();
+	Inventory getDisplayInventory();
 
-    List<ExtendedTrade> getBuys();
+	List<ExtendedTrade> getBuys();
 
-    int[] getBoughtPrices();
+	int[] getBoughtPrices();
 
-    int[] getBoughtQuantities();
+	int[] getBoughtQuantities();
 
-    int[] getSoldPrices();
+	int[] getSoldPrices();
 
-    int[] getSoldQuantities();
+	int[] getSoldQuantities();
 
-    int[] getSoldOriginalQuantities();
+	int[] getSoldOriginalQuantities();
 
-    int[] getBoughtOriginalQuantities();
+	int[] getBoughtOriginalQuantities();
 
-    List<ExtendedTrade> getSells();
+	List<ExtendedTrade> getSells();
 
-    boolean canTradeWith(PlayerEntity player);
+	boolean canTradeWith(PlayerEntity player);
 
+	default public boolean isFriendlyAndAlignedWithLevel(PlayerEntity player, NPCEntity entity, float level) {
+		return entity.isNotFighting(player) && LOTRLevelData.getSidedData(player).getAlignmentData()
+				.hasAlignment(entity.getFaction(),AlignmentPredicates.greaterThanOrEqual(level));
+	}
 }

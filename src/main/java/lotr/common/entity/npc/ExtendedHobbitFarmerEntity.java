@@ -131,7 +131,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     }
 
     public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAligned(player);
+        return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
     }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return HobbitEntity.regAttrs();

@@ -169,7 +169,7 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAligned(player);
+        return isFriendlyAndAlignedWithLevel(player, this, 75.0F);
     }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return ElfEntity.regAttrs();
