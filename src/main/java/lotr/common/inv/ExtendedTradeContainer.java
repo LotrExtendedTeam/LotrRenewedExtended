@@ -262,6 +262,9 @@ public class ExtendedTradeContainer extends Container {
 
                 if (!tradedYet) {
                     player.awardStat(ExtendedStats.TRADERS_TRADED);
+                    if (!player.level.isClientSide()) {
+                    	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true);
+                    }
                     tradedYet = true;
                 }
             }
@@ -395,10 +398,9 @@ public class ExtendedTradeContainer extends Container {
         }
         player.inventory.setChanged();
 
-
         // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
-        	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType());
+        	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false);
         	ExtendedPacketHandler.sendTo(new ExtendedCPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }

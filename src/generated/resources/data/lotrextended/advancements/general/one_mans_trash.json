@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.one_mans_trash.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.general.one_mans_trash.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_oddment_collector_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:oddment_collector",
+        "istraderselling": "false"
+      }
+    },
+    "trade_oddment_collector_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:oddment_collector",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_oddment_collector_buy",
+      "trade_oddment_collector_sell"
+    ]
+  ]
+}

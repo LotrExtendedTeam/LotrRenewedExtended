@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.AlignmentLevelTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.TraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.AlignmentPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
@@ -12,6 +13,7 @@ import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.ConsumeItemTrigger;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.FishingRodHookedTrigger;
@@ -38,7 +40,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
 			builder.addCriterion("enter_"+lotrBiomeObject.getName(), inBiome(lotrBiomeObject));
 		}
-		return builder;
+		return builder.requirements(IRequirementsStrategy.OR);
 	}
 	
 	public static Advancement.Builder addBiomeTrigger(Advancement.Builder builder, PreRegisteredLOTRBiome biome) {
@@ -74,11 +76,17 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		for(IItemProvider item : items) {
 			builder.addCriterion("use_"+name, ConsumeItemTrigger.Instance.usedItem(item));
 		}
-		return builder;
+		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
 	public static Advancement.Builder addKillEntityTrigger(Advancement.Builder builder, EntityType<?> entity) {
 		return builder.addCriterion("kill_"+entity.getRegistryName().getPath(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.entity().of(entity)));
+	}
+
+	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", TraderTradedTrigger.Instance.tradedWith(entityType, false));
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", TraderTradedTrigger.Instance.tradedWith(entityType, true));
+		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
 	Consumer<Advancement> con;

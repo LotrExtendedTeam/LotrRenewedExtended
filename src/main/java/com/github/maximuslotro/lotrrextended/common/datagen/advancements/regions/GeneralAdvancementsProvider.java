@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
 
+import lotr.common.init.ExtendedEntities;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRDimensions;
 import lotr.common.init.LOTREntities;
@@ -51,6 +53,10 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 		Advancement athelas = build(data(LOTRItems.ATHELAS.get(), "kingsfoil", false, FrameType.TASK, true, true, false)
 				.setTitle("Kingsfoil").setDescription("Find the Athelas herb.").setTitleStype(TextFormatting.GREEN), 
 				addItemTrigger(make(), LOTRItems.ATHELAS.get()).parent(base));
+
+		Advancement trash = build(data(ExtendedItems.SILVER_COIN_ONE.get(), "one_mans_trash", false, FrameType.TASK, true, true, false)
+				.setTitle("One Man's Trash").setDescription("Trade with a travelling Oddment Collector.").setTitleStype(TextFormatting.GREEN), 
+				addTradeEntityTrigger(make(), ExtendedEntities.ODDMENT_COLLECTOR.get()).parent(base));
 
 		Advancement pouches = build(data(LOTRItems.SMALL_POUCH.get(), "bigger_on_the_inside", false, FrameType.TASK, true, true, false)
 				.setTitle("Bigger on the Inside").setDescription("Acquire a pouch.").setTitleStype(TextFormatting.GREEN), 
