@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.AlignmentLevelTrigger;
-import com.github.maximuslotro.lotrrextended.common.advancements.AlignmentPredicate;
+import com.github.maximuslotro.lotrrextended.common.advancements.predicates.AlignmentPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import lotr.common.fac.FactionPointer;

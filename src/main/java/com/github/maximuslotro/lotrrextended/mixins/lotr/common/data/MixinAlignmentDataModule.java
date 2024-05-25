@@ -65,7 +65,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 		}
 		UUID uuid = MixinHooks.getAlignmentData(((AlignmentDataModule)(Object)this));
 		ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
-		ExtendedCriteriaTriggers.TARGET_BLOCK_HIT.trigger(player, faction, alignment);
+		ExtendedCriteriaTriggers.ALIGNMENT_TRIGGER.trigger(player, faction, alignment);
 	}
 	/**
 	 * @author maximuslotro

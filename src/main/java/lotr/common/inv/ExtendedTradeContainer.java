@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketUpdateTradeQuantities;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
@@ -394,9 +395,11 @@ public class ExtendedTradeContainer extends Container {
         }
         player.inventory.setChanged();
 
+
         // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
-            ExtendedPacketHandler.sendTo(new ExtendedCPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
+        	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType());
+        	ExtendedPacketHandler.sendTo(new ExtendedCPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }
 

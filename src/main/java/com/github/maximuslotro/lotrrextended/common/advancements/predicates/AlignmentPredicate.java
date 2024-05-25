@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.advancements;
+package com.github.maximuslotro.lotrrextended.common.advancements.predicates;
 
 import javax.annotation.Nullable;
 

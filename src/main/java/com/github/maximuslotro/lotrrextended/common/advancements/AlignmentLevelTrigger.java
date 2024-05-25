@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.advancements;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.predicates.AlignmentPredicate;
 import com.google.gson.JsonObject;
 
 import lotr.common.fac.Faction;
