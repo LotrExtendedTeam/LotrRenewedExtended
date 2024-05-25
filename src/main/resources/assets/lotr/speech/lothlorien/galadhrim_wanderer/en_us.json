@@ -1,0 +1,47 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Greetings from the land of Lothlórien, #p!",
+        "The fruits of Lórien may be bought for silver coins.",
+        "If you desire Elven crafts, I could exchange something for silver coins.",
+        "Do you wish to trade, #p?",
+        "The sea calls me home, but I value silver coins as much as the next merchant.",
+        "Greetings, #p. Perhaps you have something to trade?",
+        "I am an Elf of the Golden Wood.",
+        "I shall soon be leaving these shores.",
+        "I bring you the craftwork of the Elves of Lothlórien!",
+        "Mê govannen, #p! Do you wish to trade with me?",
+        "I have travelled far and wide... and now I come to you! I have many treasures that will interest you, #p.",
+        "I hail from the Golden Wood, and I bring many gifts and treasures with me!",
+        "You have not seen beauty until you have beheld the Golden Wood, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "You are not welcome among the Elves, #p.",
+        "Lothlórien does not welcome you.",
+        "Those such as myself do not hold those such as yourself in high regard.",
+        "You are no friend of the Galadhrim; that much is plain to see.",
+        "Were you to set foot in Lórien, I guarantee you would regret it, #p.",
+        "You are in the service of the Enemy!",
+        "I share neither silver nor the craft of Elves with the likes of you.",
+        "Begone, servant of evil!",
+        "I should rather die than give you any of my goods!",
+        "No evil hand may touch the precious tokens that I carry!",
+        "My kin would rather perish than ally with the servants of the Nameless One!",
+        "Go back to the shadow whence you came!"
+      ]
+    }
+  ]
+}
