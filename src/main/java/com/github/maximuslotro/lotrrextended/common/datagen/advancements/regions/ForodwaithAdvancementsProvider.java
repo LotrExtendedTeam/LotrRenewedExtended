@@ -24,39 +24,39 @@ public class ForodwaithAdvancementsProvider extends BaseAdvancementType{
 	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
-		Advancement everlasting_chill = build(data(Items.SNOW_BLOCK, "everlasting_chill", true, FrameType.TASK, true, true, false)
+		Advancement everlasting_chill = build(true, data(Items.SNOW_BLOCK, "everlasting_chill", true, FrameType.TASK, true, true, false)
 				.setTitle("Everlasting Chill").setDescription("Enter the region of Forodwaith.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTriggers(make(), FORODWAITH_BIOMES).requirements(IRequirementsStrategy.OR));
 
-		Advancement forochel = build(data(Items.ICE, "forochel", true, FrameType.TASK, false, true, false)
+		Advancement forochel = build(false, data(Items.ICE, "forochel", true, FrameType.TASK, false, true, false)
 				.setTitle("A small Respite").setDescription("Enter the icebay of Forochel.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTrigger(make(), LOTRBiomes.FOROCHEL).parent(everlasting_chill));
 
-		Advancement lossoth_10 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_guest", false, FrameType.TASK, true, true, false)
+		Advancement lossoth_10 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_guest", false, FrameType.TASK, true, true, false)
 				.setTitle("Lossoth Guest").setDescription("Reach +10.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.LOSSOTH, 10).parent(everlasting_chill));
 
-		Advancement lossoth_50 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_kinsman", false, FrameType.TASK, true, true, false)
+		Advancement lossoth_50 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_kinsman", false, FrameType.TASK, true, true, false)
 				.setTitle("Lossoth Kinsman").setDescription("Reach +50.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 50).parent(lossoth_10));
 
-		Advancement lossoth_100 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_warrior", false, FrameType.TASK, true, true, false)
+		Advancement lossoth_100 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_warrior", false, FrameType.TASK, true, true, false)
 				.setTitle("Lossoth Warrior").setDescription("Reach +100.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 100).parent(lossoth_50));
 
-		Advancement lossoth_200 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_ice_breaker", false, FrameType.TASK, true, true, false)
+		Advancement lossoth_200 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_ice_breaker", false, FrameType.TASK, true, true, false)
 				.setTitle("Lossoth Ice-Breaker").setDescription("Reach +200.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 200).parent(lossoth_100));
 
-		Advancement lossoth_500 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_fire_starter", false, FrameType.TASK, true, true, false)
+		Advancement lossoth_500 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_fire_starter", false, FrameType.TASK, true, true, false)
 				.setTitle("Lossoth Fire-Starter").setDescription("Reach +500.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GREEN), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 500).parent(lossoth_200));
 
-		Advancement lossoth_1000 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_chieftain", false, FrameType.GOAL, true, true, false)
+		Advancement lossoth_1000 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_chieftain", false, FrameType.GOAL, true, true, false)
 				.setTitle("Lossoth Chieftain").setDescription("Reach +1000.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.GOLD), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 1000).parent(lossoth_500));
 
-		Advancement lossoth_2000 = build(data(LOTRItems.GOLD_RING.get(), "lossoth_eldar", false, FrameType.CHALLENGE, true, true, false)
+		Advancement lossoth_2000 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_eldar", false, FrameType.CHALLENGE, true, true, false)
 				.setTitle("Lossoth Eldar").setDescription("Reach +2000.0 alignment with the Men of Lossoth.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.DUNLAND, 2000).parent(lossoth_1000));
 	}

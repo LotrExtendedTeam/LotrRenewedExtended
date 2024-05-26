@@ -112,9 +112,13 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		return new BaseData(icon, name, mainCat, frame, showToast, announceChat, ishidden);
 	}
 
-	public Advancement build(BaseData data, Advancement.Builder builder){
+	public Advancement build(boolean isLegacy, BaseData data, Advancement.Builder builder){
 		builder.display(data.makeInfo());
-		ExtendedAdvancementProvider.advancementsNum +=1;
+		if(isLegacy) {
+			ExtendedAdvancementProvider.advancementsLegacyNum +=1;
+		}else {
+			ExtendedAdvancementProvider.advancementsExtendedNum +=1;
+		}
 		return builder.save(con, "lotrextended:"+getFolder()+"/"+data.name);
 	}
 

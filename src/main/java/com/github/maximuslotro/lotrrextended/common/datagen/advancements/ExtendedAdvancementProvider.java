@@ -11,7 +11,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ExtendedAdvancementProvider extends AdvancementProvider{
-	public static int advancementsNum = 0;
+	public static int advancementsLegacyNum = 0;
+	public static int advancementsExtendedNum = 0;
 	public ExtendedAdvancementProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 		super(generator, existingFileHelper);
 	}
@@ -31,7 +32,8 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new LindonAdvancementsProvider().accept(consumer);
 		new ShireAdvancementsProvider().accept(consumer);
 		new RhovanionAdvancementsProvider().accept(consumer);
-		ExtendedLog.info("Built "+advancementsNum+" advancements of 666. Which is "+((advancementsNum/666.0F)*100.0F)+"%");
+		ExtendedLog.info("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).");
+		ExtendedLog.info("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
 	}
 
 	@Override

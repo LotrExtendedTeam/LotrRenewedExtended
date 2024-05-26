@@ -14,7 +14,7 @@ public class EregionAdvancementsProvider extends BaseAdvancementType{
 	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
-		Advancement eregion = build(data(LOTRItems.HOLLY_SAPLING.get(), "faded_splendor", true, FrameType.TASK, true, true, false)
+		Advancement eregion = build(true, data(LOTRItems.HOLLY_SAPLING.get(), "faded_splendor", true, FrameType.TASK, true, true, false)
 				.setTitle("Faded Splendor").setDescription("Enter the land of Eregion.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTrigger(make(), LOTRBiomes.EREGION));
 	}

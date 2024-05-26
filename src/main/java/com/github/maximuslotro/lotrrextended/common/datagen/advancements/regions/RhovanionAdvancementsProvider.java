@@ -22,15 +22,15 @@ public class RhovanionAdvancementsProvider extends BaseAdvancementType{
 	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
-		Advancement rhovanion = build(data(Items.OAK_SAPLING, "the_great_river", true, FrameType.TASK, true, true, false)
+		Advancement rhovanion = build(true, data(Items.OAK_SAPLING, "the_great_river", true, FrameType.TASK, true, true, false)
 				.setTitle("The Great River").setDescription("Enter the region of Anduin.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTriggers(make(), Rhovanion_BIOMES).requirements(IRequirementsStrategy.OR));
 
-		Advancement brown_lands = build(data(Items.DIRT, "barren_wasteland", false, FrameType.TASK, true, true, false)
+		Advancement brown_lands = build(true, data(Items.DIRT, "barren_wasteland", false, FrameType.TASK, true, true, false)
 		.setTitle("Barren Wasteland").setDescription("Enter the Brown Lands.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(make(), LOTRBiomes.BROWN_LANDS).parent(rhovanion));
 
-		Advancement a_nasty_drop = build(data(Items.STONE, "a_nasty_drop", false, FrameType.TASK, true, true, false)
+		Advancement a_nasty_drop = build(true, data(Items.STONE, "a_nasty_drop", false, FrameType.TASK, true, true, false)
 		.setTitle("A Nasty Drop").setDescription("Enter the Emyn Muil.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(make(), LOTRBiomes.EMYN_MUIL).parent(rhovanion));
 
@@ -38,11 +38,11 @@ public class RhovanionAdvancementsProvider extends BaseAdvancementType{
 //		.setTitle("Axes of Old").setDescription("Enter the East Bight.").setTitleStype(TextFormatting.GREEN), 
 //		addBiomeTrigger(make(), LOTRBiomes.EAST_BLIGHT).parent(rhovanion));
 
-		Advancement dagorlad = build(data(LOTRItems.MORDOR_GRAVEL.get(), "battle_plain", false, FrameType.TASK, true, true, false)
+		Advancement dagorlad = build(true, data(LOTRItems.MORDOR_GRAVEL.get(), "battle_plain", false, FrameType.TASK, true, true, false)
 		.setTitle("Battle Plain").setDescription("Enter the plain of Dagorlad.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(make(), LOTRBiomes.DAGORLAD).parent(rhovanion));
 
-		Advancement eastward_bound = build(data(Items.GRASS_BLOCK, "eastward_bound", false, FrameType.TASK, true, true, false)
+		Advancement eastward_bound = build(true, data(Items.GRASS_BLOCK, "eastward_bound", false, FrameType.TASK, true, true, false)
 		.setTitle("Eastward Bound").setDescription("Enter the Wilderland.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.WILDERLAND), LOTRBiomes.NORTHERN_WILDERLAND).requirements(IRequirementsStrategy.OR).parent(rhovanion));
 
@@ -50,15 +50,15 @@ public class RhovanionAdvancementsProvider extends BaseAdvancementType{
 //		.setTitle("Field of Victory").setDescription("Enter the Field of Celebrant.").setTitleStype(TextFormatting.GREEN), 
 //		addBiomeTrigger(make(), LOTRBiomes.field_of_celebrant).parent(rhovanion));
 		
-		Advancement here_be_dragons = build(data(Items.STONE, "here_be_dragons", false, FrameType.TASK, true, true, false)
+		Advancement here_be_dragons = build(true, data(Items.STONE, "here_be_dragons", false, FrameType.TASK, true, true, false)
 		.setTitle("Here be Dragons?").setDescription("Enter the Grey Mountains.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.GREY_MOUNTAINS), LOTRBiomes.GREY_MOUNTAINS_FOOTHILLS).requirements(IRequirementsStrategy.OR).parent(rhovanion));
 
-		Advancement past_the_rushes_past_the_reeds = build(data(LOTRItems.REEDS.get(), "past_the_rushes_past_the_reeds", false, FrameType.TASK, true, true, false)
+		Advancement past_the_rushes_past_the_reeds = build(true, data(LOTRItems.REEDS.get(), "past_the_rushes_past_the_reeds", false, FrameType.TASK, true, true, false)
 		.setTitle("Past the Rushes, Past the Reeds").setDescription("Enter the Long Marshes.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(make(), LOTRBiomes.LONG_MARSHES).parent(rhovanion));
 
-		Advancement watery_grave = build(data(LOTRItems.YELLOW_IRIS.get(), "watery_grave", false, FrameType.TASK, true, true, false)
+		Advancement watery_grave = build(true, data(LOTRItems.YELLOW_IRIS.get(), "watery_grave", false, FrameType.TASK, true, true, false)
 		.setTitle("Watery Grave").setDescription("Enter the Gladden Fields.").setTitleStype(TextFormatting.GREEN), 
 		addBiomeTrigger(make(), LOTRBiomes.GLADDEN_FIELDS).parent(rhovanion));
 	}

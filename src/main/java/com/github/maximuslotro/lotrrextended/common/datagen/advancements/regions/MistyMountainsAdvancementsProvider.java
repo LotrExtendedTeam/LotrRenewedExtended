@@ -21,7 +21,7 @@ public class MistyMountainsAdvancementsProvider extends BaseAdvancementType{
 	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
-		Advancement mm = build(data(Items.SNOW_BLOCK, "the_misty_mountains_cold", true, FrameType.TASK, true, true, false)
+		Advancement mm = build(true, data(Items.SNOW_BLOCK, "the_misty_mountains_cold", true, FrameType.TASK, true, true, false)
 				.setTitle("The Mountains Cold").setDescription("Enter the Misty Mountains.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTriggers(make(), MISTY_MOUNTAIN_BIOMES).requirements(IRequirementsStrategy.OR));
 	}
