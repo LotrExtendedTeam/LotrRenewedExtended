@@ -167,6 +167,10 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 		Advancement orc_2000 = build(data(LOTRItems.GOLD_RING.get(), "orc_chieftain", false, FrameType.CHALLENGE, true, true, false)
 				.setTitle("Gundabad Chieftain").setDescription("Reach +2000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 2000).parent(orc_1000));
+
+		Advancement riven_elf_trader = build(data(ExtendedItems.SILVER_COIN_ONE.get(), "treasures_of_imladris", false, FrameType.TASK, true, true, false)
+				.setTitle("Treasures of Imladris").setDescription("Trade with a Rivendell Wanderer.").setTitleStype(TextFormatting.GREEN), 
+				addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_WANDERER.get()).parent(eriadorBase));
 	}
 
 	@Override

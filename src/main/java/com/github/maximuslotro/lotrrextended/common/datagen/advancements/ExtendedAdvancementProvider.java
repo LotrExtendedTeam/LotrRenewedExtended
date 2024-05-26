@@ -31,7 +31,7 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new LindonAdvancementsProvider().accept(consumer);
 		new ShireAdvancementsProvider().accept(consumer);
 		new RhovanionAdvancementsProvider().accept(consumer);
-		ExtendedLog.info("Built "+advancementsNum+" advancements");
+		ExtendedLog.info("Built "+advancementsNum+" advancements of 666. Which is "+((advancementsNum/666.0F)*100.0F)+"%");
 	}
 
 	@Override
