@@ -16,7 +16,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/hideout/ranger_hideout_1_chestnut",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_1_chestnut_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -25,7 +25,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/hideout/ranger_hideout_1_fir",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_1_fir_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -43,7 +43,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/hideout/ranger_hideout_1_pine",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_1_pine_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -53,6 +53,60 @@
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/hideout/ranger_hideout_1_spruce",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_2_beech_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_2_chestnut_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_2_fir_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_2_oak_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_2_pine_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_2_spruce_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		}
