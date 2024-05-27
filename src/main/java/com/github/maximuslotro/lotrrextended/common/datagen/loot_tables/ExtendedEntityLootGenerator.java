@@ -79,6 +79,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation orcUruk;
 	ResourceLocation orcMordor;
 	ResourceLocation orcIsengard;
+	ResourceLocation rareDunedainRangerDrops;
 	
 	@Override
 	protected void addTables() {
@@ -112,6 +113,11 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.apply(SetPouchColorFromEntityFaction.setPouchColorFromEntityFactionBuilder(0.5F))
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.016666F))));
+		rareDunedainRangerDrops = makeQuickyBasePart("dunedain_ranger_rare_drops", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
+				.add(genQuickyItemBuilder(ExtendedItems.BARROW_BLADE.get()).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).setWeight(5))
+				.when(KilledByPlayer.killedByPlayer())
+				.when(RandomChance.randomChance(0.015F))));
 	}
 
 	private void makeBaseTables() {
@@ -248,7 +254,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit);
 		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit);
 		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase); // TODO: Update this to their own
-		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase); // TODO: Update this to their own
+		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfRivendell); // TODO: Update this to their own
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfGaladhrim); // TODO: Update this to their own
 	}
