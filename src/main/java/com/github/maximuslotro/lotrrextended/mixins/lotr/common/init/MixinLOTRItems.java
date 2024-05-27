@@ -631,6 +631,7 @@ public class MixinLOTRItems {
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
+		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", () -> new ExtendedDaggerItem(LOTRMaterial.ARNOR));
 
 		//########################################################################UTIL##########################################################
 		//Crafting Tables
