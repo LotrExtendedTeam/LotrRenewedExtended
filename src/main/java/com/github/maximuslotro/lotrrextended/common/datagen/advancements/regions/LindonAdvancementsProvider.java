@@ -41,7 +41,7 @@ public class LindonAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Elven Smith").setDescription("Acquire an Elven Steel Ingot.").setTitleStype(TextFormatting.GREEN), 
 				addItemTrigger(make(), LOTRItems.ELVEN_STEEL_INGOT.get()).parent(lindon));
 
-		Advancement lindon_armor = build(true, data(LOTRItems.LINDON_CHESTPLATE.get(), "a_shining_helm", false, FrameType.GOAL, true, true, false)
+		Advancement lindon_armor = build(true, data(LOTRItems.LINDON_CHESTPLATE.get(), "a_shining_helm", false, FrameType.TASK, true, true, false)
 		.setTitle("A Shining Helm").setDescription("Acquire a full set of Lindon armor.").setTitleStype(TextFormatting.GREEN), 
 		addArmorTrigger(make(), "lindon", LOTRItems.LINDON_HELMET.get(), LOTRItems.LINDON_CHESTPLATE.get(), 
 				LOTRItems.LINDON_LEGGINGS.get(), LOTRItems.LINDON_BOOTS.get()).parent(elven_ingot));
