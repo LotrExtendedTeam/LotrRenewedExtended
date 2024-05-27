@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:shire/a_simple_land",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.treasures_of_imladris.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.treasures_of_imladris.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_rivendell_wanderer_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:rivendell_wanderer",
+        "istraderselling": "false"
+      }
+    },
+    "trade_rivendell_wanderer_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:rivendell_wanderer",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_rivendell_wanderer_buy",
+      "trade_rivendell_wanderer_sell"
+    ]
+  ]
+}
