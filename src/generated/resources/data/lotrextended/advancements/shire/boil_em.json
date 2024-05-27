@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:shire/a_simple_land",
+  "display": {
+    "icon": {
+      "item": "minecraft:potato"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.boil_em.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.boil_em.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_hobbit_farmer_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:hobbit_farmer",
+        "istraderselling": "true",
+        "item": {
+          "item": "minecraft:potato"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_hobbit_farmer_sell"
+    ]
+  ]
+}

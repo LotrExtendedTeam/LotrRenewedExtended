@@ -84,8 +84,13 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", TraderTradedTrigger.Instance.tradedWith(entityType, false));
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", TraderTradedTrigger.Instance.tradedWith(entityType, true));
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", TraderTradedTrigger.Instance.tradedWithALLItem(entityType, false));
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", TraderTradedTrigger.Instance.tradedWithALLItem(entityType, true));
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item) {
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), TraderTradedTrigger.Instance.tradedWithAndItem(entityType, isPlayerBuyingItem, item));
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 

@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:shire/a_simple_land",
+  "display": {
+    "icon": {
+      "item": "lotr:pipeweed_leaf"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.street_credit.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.street_credit.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_hobbit_bartender_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:hobbit_bartender",
+        "istraderselling": "false",
+        "item": {
+          "item": "lotr:pipeweed_leaf"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_hobbit_bartender_buy"
+    ]
+  ]
+}

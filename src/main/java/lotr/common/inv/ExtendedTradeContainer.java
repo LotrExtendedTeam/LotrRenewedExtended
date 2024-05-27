@@ -248,8 +248,9 @@ public class ExtendedTradeContainer extends Container {
             if (canPerformTrade && stackHasSpace) {
                 CoinUtils.removeCoins(player, player.inventory, soldPrices[index]);
                 trader.playTradeSound();
+                ItemStack itemForTrade = soldItems[index].copy();
                 if (player.inventory.getCarried().equals(ItemStack.EMPTY)) {
-                    player.inventory.setCarried(soldItems[index].copy());
+                    player.inventory.setCarried(itemForTrade);
                 } else {
                     player.inventory.setCarried(new ItemStack(soldItems[index].getItem(),
                             player.inventory.getCarried().getCount() + soldItems[index].getCount()));
@@ -263,7 +264,7 @@ public class ExtendedTradeContainer extends Container {
                 if (!tradedYet) {
                     player.awardStat(ExtendedStats.TRADERS_TRADED);
                     if (!player.level.isClientSide()) {
-                    	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true);
+                    	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade);
                     }
                     tradedYet = true;
                 }
@@ -358,6 +359,7 @@ public class ExtendedTradeContainer extends Container {
 
         int coinsGiven = 0;
 
+        List<ItemStack> soldItems = new ArrayList<>();
         // loop through all trade deals and determine value
         for (ExtendedTrade trade : trader.getBuys()) {
             if (counts.containsKey(trade.getItem().getItem())) {
@@ -365,6 +367,7 @@ public class ExtendedTradeContainer extends Container {
                 int totalTrades = count / trade.getItem().getCount();
                 if (totalTrades > trade.getQuantityLeft()) totalTrades = trade.getQuantityLeft();
 
+                soldItems.add(new ItemStack(trade.getItem().getItem()));
                 sellInventory.removeItemType(trade.getItem().getItem(), totalTrades * trade.getItem().getCount());
                 coinsGiven += totalTrades * trade.getAmount();
                 trade.setQuantityLeft(trade.getQuantityLeft() - totalTrades);
@@ -400,7 +403,9 @@ public class ExtendedTradeContainer extends Container {
 
         // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
-        	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false);
+        	for(ItemStack itemSold : soldItems) {
+        		ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false, itemSold);
+        	}
         	ExtendedPacketHandler.sendTo(new ExtendedCPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }

@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:shire/a_simple_land",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.welcome_customer.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.shire.welcome_customer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_hobbit_bartender_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:hobbit_bartender",
+        "istraderselling": "false"
+      }
+    },
+    "trade_hobbit_bartender_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:hobbit_bartender",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_hobbit_bartender_buy",
+      "trade_hobbit_bartender_sell"
+    ]
+  ]
+}
