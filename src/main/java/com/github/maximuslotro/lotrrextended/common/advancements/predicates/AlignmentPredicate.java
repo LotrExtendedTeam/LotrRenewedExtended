@@ -25,7 +25,7 @@ public class AlignmentPredicate {
 	   public boolean matches(PlayerEntity player, Faction faction, Float level) {
 	      if (this == ERROR || !(player instanceof ServerPlayerEntity)) {
 	         return false;
-	      }else if(factionDString.equals(faction.getName().toString())){
+	      }else if(!factionDString.equals(faction.getName().toString())){
 	    	  return false;
 	      }
 	      return alignment.matches(level);
@@ -36,12 +36,7 @@ public class AlignmentPredicate {
 	         return JsonNull.INSTANCE;
 	      } else {
 	         JsonObject jsonobject = new JsonObject();
-	         if(factionDString!=null) {
-	        	 jsonobject.addProperty("faction", this.factionDString);
-	         }
-	         else if (factionDString!=null){
-	        	 jsonobject.addProperty("faction", factionDString);
-	         }
+	         jsonobject.addProperty("faction", this.factionDString);
 	         jsonobject.add("level", this.alignment.serializeToJson());
 	         return jsonobject;
 	      }
