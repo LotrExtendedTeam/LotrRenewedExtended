@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialS
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -29,7 +30,6 @@ import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedBundleBlock;
-import lotr.common.block.ExtendedStoneBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -268,10 +268,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), noDrop());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedHangingBlock) {
-				add(block.getValue().get(), noDrop());
-				continue;
-			}
 			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
 				dropSelf(block.getValue().get());
 				continue;
@@ -341,6 +337,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		add(ExtendedBlocks.BANANA_LEAVES.get(), (p_241170_0_) -> {
 	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
 	         });
+		add(ExtendedBlocks.HANGING_BANANA.get(), (block) -> {
+			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedItems.BANANA.get())
+							.apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))));});
 		add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {
 	         return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
 		add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> {
