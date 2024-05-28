@@ -1,0 +1,36 @@
+{
+	"parent": "block/block",
+	"ambientocclusion": false,
+	"elements": [
+		{
+			"name": "cross1",
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 16, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"}
+			}
+		},
+		{
+			"name": "cross2",
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"shade": false,
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 16, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#hanging", "cullface": "down"}
+			}
+		}
+	]
+}

@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -278,7 +279,8 @@ public class MixinLOTRBlocks {
 		//ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS = registerB("stripped_banana_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.FALLEN_BANANA_LEAVES = registerB("fallen_banana_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.BANANA_LEAVES));
-
+		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", () -> new ExtendedHangingBlock(Properties.of(Material.PLANT)));
+		
 		//Packed Fur
 		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedBundleBlock(MaterialColor.WOOL));
 		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));

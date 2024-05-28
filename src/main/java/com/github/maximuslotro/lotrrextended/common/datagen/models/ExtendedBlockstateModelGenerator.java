@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -206,6 +207,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRSaplingBlock) {
 					genSapplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedHangingBlock) {
+					genHangingBlock((ExtendedHangingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
@@ -431,7 +436,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
 									mcLoc("block/grass_block_top"),
 									mcLoc("block/grass_block_top"),
-									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/cube_all_tinted"), "all", mcLoc("block/grass_block_top")), true, true);
+									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")), true, true);
 							continue;
 						}
 						if(block.getKey().equals("barren_dirt_slab")) {
@@ -741,7 +746,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile slabModel;
 		ModelFile slabModelTop;
 		if(tint) {
-			slabModel = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath(), lotrExtendedLoc("block/slab_tinted"))
+			slabModel = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath(), lotrExtendedLoc("block/tinted_slab"))
 					.texture("side", side)
 	                .texture("bottom", bottom)
 	                .texture("top", top);
@@ -750,7 +755,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), side, bottom, top);
 		}
 		if(tint) {
-			slabModelTop = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/slab_top_tinted"))
+			slabModelTop = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/tinted_slab_top"))
 					.texture("side", side)
 	                .texture("bottom", bottom)
 	                .texture("top", top);
@@ -891,6 +896,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(mcLoc("item/template_bed")));
 	}
 
+	private void genHangingBlock(ExtendedHangingBlock bed, ResourceLocation texture) {
+		registeredBlocks.add(bed);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrExtendedLoc("block/template_hanging_block"))
+				.texture("particle", texture).texture("hanging", texture);
+		simpleBlock(bed, modelFile);
+	}
+
 	private void genFallenLeavesBlock(FallenLeavesBlock bed, String name) {
 		registeredBlocks.add(bed);
 		try {
@@ -904,8 +916,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genReedBarrelBlockItem(ExtendedReedBasketBlock extendedReedBasketBlock, String name) {
 		registeredBlocks.add(extendedReedBasketBlock);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("block/reed_basket_template")).texture("1", lotrExtendedLoc("entity/chest/"+name)).texture("particle", lotrExtendedLoc("entity/chest/"+name));
-		ModelFile modelFile_open = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/reed_basket_template")).texture("1", lotrExtendedLoc("entity/chest/"+name+"_open")).texture("particle", lotrExtendedLoc("entity/chest/"+name+"_open"));
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name)).texture("particle", lotrExtendedLoc("entity/chest/"+name));
+		ModelFile modelFile_open = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name+"_open")).texture("particle", lotrExtendedLoc("entity/chest/"+name+"_open"));
 		getVariantBuilder(extendedReedBasketBlock).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedReedBasketBlock.FACING);
 			Boolean open = state.getValue(ExtendedReedBasketBlock.OPEN);

@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:block/slab_tinted",
+  "parent": "lotrextended:block/tinted_slab",
   "textures": {
     "side": "minecraft:block/grass_block_top",
     "bottom": "minecraft:block/grass_block_top",

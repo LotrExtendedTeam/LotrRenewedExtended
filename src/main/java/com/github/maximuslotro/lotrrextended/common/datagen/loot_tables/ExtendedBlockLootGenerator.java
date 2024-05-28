@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
@@ -264,6 +265,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedCakeBlock) {
+				add(block.getValue().get(), noDrop());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedHangingBlock) {
 				add(block.getValue().get(), noDrop());
 				continue;
 			}
