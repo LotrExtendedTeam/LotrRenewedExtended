@@ -326,5 +326,5 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> WEAPON_RACK;
 
 	public static RegistryObject<Block> DUNEDAIN_BANNER;
-	public static RegistryObject<Block> DUNEDAIN_BANNER_WALL;
+	public static RegistryObject<Block> DUNEDAIN_WALL_BANNER;
 }

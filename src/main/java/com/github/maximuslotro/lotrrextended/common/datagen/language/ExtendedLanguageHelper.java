@@ -87,7 +87,9 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 			if (!newStrings.containsKey(key)) {
 				newStrings.put(key, value);
 			} else {
-				System.out.println("Discarding Duplicate Key Found in Language Map: " + key);
+				if(!value.equals("")) {
+					System.out.println("Discarding Duplicate Key Found in Language Map With Initialised text: " + key);
+				}
 			}
 		}
 	}

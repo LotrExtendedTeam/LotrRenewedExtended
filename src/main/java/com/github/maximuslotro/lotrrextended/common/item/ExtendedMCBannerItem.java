@@ -46,7 +46,7 @@ public class ExtendedMCBannerItem extends WallOrFloorItem {
 //	      }
 //	   }
 
-	public BannerTypes getColor() {
+	public BannerTypes getBanner() {
 		return ((ExtendedMEBannerBlock)this.getBlock()).getBanner();
 	}
 

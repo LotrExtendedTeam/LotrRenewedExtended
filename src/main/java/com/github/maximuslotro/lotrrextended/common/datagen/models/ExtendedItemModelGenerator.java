@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemMode
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
 import lotr.common.block.LOTRDoorBlock;
@@ -125,6 +126,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem ) {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
+			if(item.getValue().get() instanceof ExtendedMCBannerItem ) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/banner/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedSilverCoin ) {

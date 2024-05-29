@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:ranger",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:dunedain_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:dunedain_banner_pattern"
+  }
+}
