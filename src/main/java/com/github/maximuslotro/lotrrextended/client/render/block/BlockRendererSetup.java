@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedBedTileEneityRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedChestTileEntityRenderer;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -86,6 +87,9 @@ public class BlockRendererSetup {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedHangingBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedMEBannerBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}
