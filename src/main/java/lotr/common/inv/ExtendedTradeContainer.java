@@ -1,6 +1,5 @@
 package lotr.common.inv;
 
-import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
@@ -34,6 +33,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketUpdateTradeQuantities;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 /**
  * @author RichardB122

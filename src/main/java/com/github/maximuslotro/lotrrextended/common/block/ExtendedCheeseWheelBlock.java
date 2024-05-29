@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
-import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.item.DaggerItem;
 import net.minecraft.block.BlockState;

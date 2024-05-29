@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 
 import lotr.common.block.AxialSlabBlock;
 import net.minecraft.block.Block;

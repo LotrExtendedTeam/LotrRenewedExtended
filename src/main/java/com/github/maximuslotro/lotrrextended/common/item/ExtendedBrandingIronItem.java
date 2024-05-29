@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.init.LOTRItemGroups;
 import net.minecraft.block.BlockState;

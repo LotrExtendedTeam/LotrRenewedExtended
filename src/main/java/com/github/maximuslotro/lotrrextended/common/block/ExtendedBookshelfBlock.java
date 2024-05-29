@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
-import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockRenderType;
