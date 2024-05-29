@@ -76,6 +76,14 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 		Advancement hobbit_bartender_trade = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "welcome_customer", false, FrameType.TASK, true, true, false)
 				.setTitle("Welcome Customer").setDescription("Trade with a Hobbit Bartender.").setTitleStype(TextFormatting.GREEN), 
 				addTradeEntityTrigger(make(), ExtendedEntities.HOBBIT_BARTENDER.get()).parent(shire));
+
+		Advancement hobbit_bartender_pipeweed = build(true, data(LOTRItems.PIPEWEED_LEAF.get(), "street_credit", false, FrameType.TASK, true, true, false)
+				.setTitle("Street Credit").setDescription("Sell some Pipe-weed leaf to a Hobbit Bartender.").setTitleStype(TextFormatting.GREEN), 
+				addTradeTrigger(make(), ExtendedEntities.HOBBIT_BARTENDER.get(), false, LOTRItems.PIPEWEED_LEAF.get()).parent(shire));
+
+		Advancement hobbit_farmer_potato = build(true, data(Items.POTATO, "boil_em", false, FrameType.TASK, true, true, false)
+				.setTitle("Boil 'Em, Mash 'Em...").setDescription("Buy potatoes from a Hobbit Farmer.").setTitleStype(TextFormatting.GREEN), 
+				addTradeTrigger(make(), ExtendedEntities.HOBBIT_FARMER.get(), true, Items.POTATO).parent(shire));
 	}
 
 	@Override

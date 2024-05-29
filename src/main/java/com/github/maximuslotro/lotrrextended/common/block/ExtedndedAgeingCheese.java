@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
-import com.github.maximuslotro.lotrrextended.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;

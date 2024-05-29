@@ -7,7 +7,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/hideout/ranger_hideout_1_beech",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_1_beech_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -34,7 +34,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/hideout/ranger_hideout_1_oak",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_1_oak_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -52,7 +52,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/hideout/ranger_hideout_1_spruce",
+				"location": "lotrextended:ranger/hideout/ranger_hideout_1_spruce_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},

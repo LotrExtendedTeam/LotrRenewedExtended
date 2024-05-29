@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_hanging_block",
+  "textures": {
+    "particle": "lotrextended:block/hanging_banana",
+    "hanging": "lotrextended:block/hanging_banana"
+  }
+}

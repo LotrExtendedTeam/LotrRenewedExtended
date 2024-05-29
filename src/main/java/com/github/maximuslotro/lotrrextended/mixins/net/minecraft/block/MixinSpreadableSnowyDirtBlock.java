@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
-import com.github.maximuslotro.lotrrextended.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;

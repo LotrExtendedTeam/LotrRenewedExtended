@@ -34,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -41,7 +42,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcB
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
-import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
 import com.google.common.base.Function;
 
 import net.minecraft.block.Block;

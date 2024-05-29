@@ -51,11 +51,11 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 				addArmorTrigger(make(), "arnor", LOTRItems.ARNOR_HELMET.get(), LOTRItems.ARNOR_CHESTPLATE.get(), 
 						LOTRItems.ARNOR_LEGGINGS.get(), LOTRItems.ARNOR_BOOTS.get()).parent(eriadorBase));
 
-		Advancement dunedain_slayer = build(true, data(Items.BONE, "dunedain_slayer", false, FrameType.TASK, true, true, false)
-				.setTitle("Dúnedain Slayer").setDescription("Kill a Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
-				addKillEntityTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER.get()).parent(eriadorBase));
+//		Advancement dunedain_slayer = build(true, data(Items.BONE, "dunedain_slayer", false, FrameType.TASK, true, true, false)
+//				.setTitle("Dúnedain Slayer").setDescription("Kill a Dúnedain of the North.").setTitleStype(TextFormatting.GREEN), 
+//				addKillEntityTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER.get()).parent(eriadorBase));
 		Advancement ranger_slayer = build(true, data(ExtendedItems.DUNEDAIN_BOW.get(), "ranger_slayer", false, FrameType.TASK, true, true, false)
-				.setTitle("Outlaw").setDescription("Kill a Ranger of the North.").setTitleStype(TextFormatting.GREEN), 
+				.setTitle("Outlaw").setDescription("Kill a Dúnedain Ranger of the North.").setTitleStype(TextFormatting.GREEN), 
 				addKillEntityTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER.get()).parent(eriadorBase));
 
 //		Advancement gundabad_orc_slayer = build(data(lotrextended:gundabad_uruk_helmet, "bigger_stronger_meaner", false, FrameType.TASK, true, true, false)

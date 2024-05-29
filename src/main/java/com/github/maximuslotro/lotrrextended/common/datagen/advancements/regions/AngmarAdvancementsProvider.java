@@ -9,7 +9,6 @@ import com.google.common.collect.ImmutableList;
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
-import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
@@ -28,10 +27,10 @@ public class AngmarAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("The Ruin of Arnor").setDescription("Enter the Region of Angmar.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTriggers(make(), ANGMAR_BIOMES).requirements(IRequirementsStrategy.OR));
 
-		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "angmar_orc_slayer", false, FrameType.TASK, true, true, false)
-				.setTitle("Angmar Orc Slayer").setDescription("Kill an Angmar Orc.").setTitleStype(TextFormatting.GREEN), 
-				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.GUNDABAD_ORC.get()), LOTREntities.GUNDABAD_ORC_ARCHER.get())
-				.requirements(IRequirementsStrategy.OR).parent(angmar));
+//		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "angmar_orc_slayer", false, FrameType.TASK, true, true, false)
+//				.setTitle("Angmar Orc Slayer").setDescription("Kill an Angmar Orc.").setTitleStype(TextFormatting.GREEN), 
+//				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.GUNDABAD_ORC.get()), LOTREntities.GUNDABAD_ORC_ARCHER.get())
+//				.requirements(IRequirementsStrategy.OR).parent(angmar));
 
 		Advancement angmar_armor = build(true, data(ExtendedItems.ANGMAR_CHESTPLATE.get(), "forth_to_ruin", false, FrameType.TASK, true, true, false)
 				.setTitle("Forth to Ruin").setDescription("Acquire a full set of Angmar armor.").setTitleStype(TextFormatting.GREEN), 

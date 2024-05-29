@@ -16,10 +16,10 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProces
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.stats.ExtendedStats;
-import com.github.maximuslotro.lotrrextended.world.gen.structureV5.BiomeStructureAdder;
-import com.github.maximuslotro.lotrrextended.world.gen.structureV5.ExtendedConfiguredStructuresV5;
-import com.github.maximuslotro.lotrrextended.world.gen.structureV5.ExtendedStructuresV5;
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;

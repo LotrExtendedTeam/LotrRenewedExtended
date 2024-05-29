@@ -1,10 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.world.gen.structure.processor.ArnorBrickWeathererProcessor;
-import com.github.maximuslotro.lotrrextended.world.gen.structure.processor.GraniteWhiteWoolBeehiveThatchRemoverProcessor;
-import com.github.maximuslotro.lotrrextended.world.gen.structure.processor.SinglePieceFoundationProcessor;
-import com.github.maximuslotro.lotrrextended.world.gen.structure.processor.WoodPaletteProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ArnorBrickWeathererProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.GraniteWhiteWoolBeehiveThatchRemoverProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.SinglePieceFoundationProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.WoodPaletteProcessor;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.util.registry.Registry;
