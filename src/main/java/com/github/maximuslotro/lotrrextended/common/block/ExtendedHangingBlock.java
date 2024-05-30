@@ -13,14 +13,14 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
 public class ExtendedHangingBlock extends Block {
-	private static final VoxelShape SHAPE = Block.box(1.0D, 1.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+	private static final VoxelShape SHAPE = Block.box(4.0D, 1.0D, 4.0D, 11.0D, 16.0D, 11.0D);
 
 	public ExtendedHangingBlock(Properties properties) {
 		super(properties);
 	}
 
 	public ExtendedHangingBlock() {
-		super(Properties.of(Material.PLANT).noOcclusion());
+		super(Properties.of(Material.PLANT).noOcclusion().noCollission());
 	}
 
 	@Override
