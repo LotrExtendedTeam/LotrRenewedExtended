@@ -7,6 +7,7 @@ import com.google.common.collect.Maps;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ContainerBlock;
@@ -25,7 +26,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-//AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD)
+
 public class ExtendedMEBannerBlock extends ContainerBlock {
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 	private static final Map<BannerTypes, Block> BY_BANNER = Maps.newHashMap();
@@ -37,6 +38,11 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 		this.banner = bannerType;
 		BY_BANNER.put(bannerType, this);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, Integer.valueOf(0)));
+	}
+
+	@Override
+	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
+		return BlockRenderType.MODEL;
 	}
 
 	@Override

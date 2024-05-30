@@ -16,10 +16,12 @@ public class ExtendedFullBedBlock extends BedBlock {
 		super(DyeColor.WHITE, p_i48442_2_);
 	}
 
+	@Override
 	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
 		return BlockRenderType.MODEL;
 	}
 
+	@Override
 	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
 		return new ExtendedNoRenderTileEntity();
 	}

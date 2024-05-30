@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_banner",
+  "textures": {
+    "particle": "lotrextended:block/banner/dunedain_banner",
+    "banner": "lotrextended:block/banner/dunedain_banner"
+  }
+}
