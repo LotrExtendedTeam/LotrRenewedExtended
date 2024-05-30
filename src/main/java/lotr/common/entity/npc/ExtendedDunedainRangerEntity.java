@@ -30,6 +30,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -65,6 +66,13 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeRangedSwitching());
         this.spawnRequiresSurfaceBlock = true;
+
+        // chance of the ranger being female
+        if (this.random.nextInt(100) < 4) {
+            personalInfo.setMale(false);
+        } else {
+            personalInfo.setMale(true);
+        }
     }
 
     public void tick() {
@@ -291,6 +299,10 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
         this.npcItemsInv.setIdleItemsFromRangedWeapons();
 
+        if (this.random.nextFloat() < 0.5F) {
+            this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()));
+        }
+
         // setup armor
         this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()));
         this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()));
@@ -305,7 +317,6 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     }
 
     static {
-        // TODO: Once the Barrow Dagger is an item add a chance of them spawning with it
         WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_SPEAR, LOTRItems.ARNOR_SPEAR, LOTRItems.ARNOR_SWORD, Items.IRON_SWORD);
     }
 

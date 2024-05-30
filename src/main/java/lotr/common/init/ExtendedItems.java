@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
+import org.lwjgl.system.CallbackI;
 
 public class ExtendedItems {
 	public static Map<String, RegistryObject<Item>> REGISTEREDITEMS = new HashMap<>();
@@ -417,6 +418,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
+
+	public static RegistryObject<Item> BARROW_BLADE;
 	
 	public static RegistryObject<Item> DURIN_BANNER_PATTERN;
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
