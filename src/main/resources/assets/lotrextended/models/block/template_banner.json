@@ -31,8 +31,8 @@
 		},
 		{
 			"name": "Base",
-			"from": [0.5, 0, 0.5],
-			"to": [15.5, 2, 15.5],
+			"from": [1.5, 0, 1.5],
+			"to": [14.5, 2, 14.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 9]},
 			"faces": {
 				"north": {"uv": [2, 2, 4, 2.25], "texture": "#banner"},
@@ -47,7 +47,7 @@
 			"name": "banner",
 			"from": [1.5, 2.5, 6.3141],
 			"to": [14.5, 29.5, 6.3141],
-			"rotation": {"angle": 0, "axis": "x", "origin": [12, 7, 7]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [12, 7, 7]},
 			"faces": {
 				"north": {"uv": [5, 2.25, 7.5, 6.875], "texture": "#banner"},
 				"south": {"uv": [5, 2.25, 7.5, 6.875], "texture": "#banner"}

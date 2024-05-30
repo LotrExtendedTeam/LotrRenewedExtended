@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "lotrextended:block/dunedain_banner"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/dunedain_banner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/dunedain_banner",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/dunedain_banner",
+      "y": 90
     }
   }
 }

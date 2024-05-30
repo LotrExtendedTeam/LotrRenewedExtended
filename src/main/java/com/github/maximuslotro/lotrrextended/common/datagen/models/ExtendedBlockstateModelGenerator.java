@@ -917,7 +917,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(extendedMEBannerBlock);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath(), lotrExtendedLoc("block/template_banner"))
 				.texture("particle", texture).texture("banner", texture);
-		simpleBlock(extendedMEBannerBlock, modelFile);
+		getVariantBuilder(extendedMEBannerBlock).forAllStates(state -> {
+			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
+                    .build();
+		});
 	}
 
 	private void genBannerWallBlock(ExtendedMEBannerWallBlock banner, ResourceLocation texture) {
