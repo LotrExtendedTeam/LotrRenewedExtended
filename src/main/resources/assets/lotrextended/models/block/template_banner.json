@@ -31,9 +31,9 @@
 		},
 		{
 			"name": "Base",
-			"from": [1.5, 0, 1.5],
-			"to": [14.5, 2, 14.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 9]},
+			"from": [2, 0, 2],
+			"to": [14, 2, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 0, 10]},
 			"faces": {
 				"north": {"uv": [2, 2, 4, 2.25], "texture": "#banner"},
 				"east": {"uv": [0, 2, 2, 2.25], "texture": "#banner"},
