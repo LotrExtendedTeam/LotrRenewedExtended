@@ -12,21 +12,29 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 
 public class ExtendedMEBannerBlock extends ContainerBlock {
+	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private static final Map<BannerTypes, Block> BY_BANNER = Maps.newHashMap();
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
@@ -36,7 +44,7 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 		super(p_i48453_2_);
 		this.banner = bannerType;
 		BY_BANNER.put(bannerType, this);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
 	@Override
@@ -45,8 +53,24 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
-		return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
+	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
+		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			boolean isPresent = state.getBlock() == this;
+			if (!isPresent) {
+				return true;
+			} else {
+				BlockState belowState = world.getBlockState(pos.below());
+				return belowState.getBlock() == this && belowState.getValue(HALF) == DoubleBlockHalf.LOWER;
+			}
+		} else {
+			return canSupportCenter(world, pos.below(), Direction.UP);
+		}
+		//return world.getBlockState(pos.below()).getMaterial().isSolid();
+	}
+
+	@Override
+	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
 	}
 
 	@Override
@@ -55,17 +79,19 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState blockstate = this.defaultBlockState();
-		IWorldReader iworldreader = p_196258_1_.getLevel();
-		BlockPos blockpos = p_196258_1_.getClickedPos();
-		Direction[] adirection = p_196258_1_.getNearestLookingDirections();
+		IWorldReader iworldreader = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
+		Direction[] adirection = context.getNearestLookingDirections();
 		for (Direction direction : adirection) {
 			if (direction.getAxis().isHorizontal()) {
 				Direction direction1 = direction.getOpposite();
 				blockstate = blockstate.setValue(FACING, direction1);
 				if (blockstate.canSurvive(iworldreader, blockpos)) {
-					return blockstate;
+					if(blockpos.getY() < context.getLevel().dimensionType().logicalHeight() - 1 && context.getLevel().getBlockState(blockpos.above()).canBeReplaced(context)) {
+						return blockstate;
+					}
 				}
 			}
 		}
@@ -74,8 +100,18 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
-		return p_196271_2_ == Direction.DOWN && !p_196271_1_.canSurvive(p_196271_4_, p_196271_5_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+		DoubleBlockHalf half = state.getValue(HALF);
+		if (facing.getAxis() != Axis.Y || half == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.getBlock() == this && facingState.getValue(HALF) != half) {
+			if (half == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.canSurvive(world, currentPos)) {
+				return Blocks.AIR.defaultBlockState();
+			}
+
+			if (state.canSurvive(world, currentPos)) {
+				return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+			}
+		}
+		return Blocks.AIR.defaultBlockState();
 	}
 
 	@Override
@@ -91,7 +127,7 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING);
+		p_206840_1_.add(FACING).add(HALF);
 	}
 
 	public static Block byBanner(BannerTypes banner) {
