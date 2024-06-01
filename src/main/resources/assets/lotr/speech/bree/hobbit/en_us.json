@@ -1,0 +1,139 @@
+{
+    "parent": "lotr:bree/common",
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+            "Don't let those Shirefolk tell you they invented smoking pipe-weed. Bree-folk did it before Old Toby did.",
+            "The Underhill family has been acting weird lately.",
+            "Have you heard any news from the Shire?",
+            "Most Hobbits here live either in Staddle or higher up Bree-hill.",
+            "Our family has lived in Bree-land since before the Shire was founded!",
+            "Us Hobbits came to Bree before the colonists founded Buckland and the Shire!",
+            "I have some colonists in my distant family, I wonder how they're doing!",
+            "The Big Folk may have been the ones who founded this town, but this is also the oldest permanent settlement of Hobbits! We've been here since before Hobbits settled the shire!",
+            "The Shire's pretty and all but I prefer the townlife over country living.",
+            "A group of hobbit Colonists from Bree got charters to form the Shire from the King back in the days of the old North-Kingdom.",
+            "Old Toby is some fine pipe-weed, but our Southlinch is older!",
+            "Most of us Hobbits live in Staddle, I have a lot of kin there!",
+            "I like Bree, we get a lot more business and travelers than the hobbits in The Shire!",
+            "Have you ever been to Buckland? I hear its a nice place, but I'm not well traveled.",
+            "Us hobbits came into Bree as refugees and nomads long ago, but the Big Folk welcomed us despite our differences!",
+            "I plan on visiting some relatives in Staddle soon."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home"
+        },
+        "lines": [
+            "It's nice having the Big Folk around. They are more intimidating against Outsiders.",
+            "The Big Folk may not seem as much, but Bree would not be the same without them."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "day"
+        },
+        "lines": [
+          "Good day, #p.",
+          "Good day.",
+          "Good day!",
+          "Good day to you, #p! How are you doing?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dawn | dusk",
+          "weather": "clear"
+        },
+        "lines": [
+          "What a pretty sky up there!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dawn",
+          "sun_admiring": "true",
+          "rank": ">=guest"
+        },
+        "lines": [
+          "Isn't it a beautiful sunrise, #p?",
+          "Oh, good morning, #p. I was just watching the sun come up. Isn't it nice?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dusk",
+          "sun_admiring": "true",
+          "rank": ">=guest"
+        },
+        "lines": [
+          "Isn't it a beautiful sunset, #p?",
+          "Oh, good evening, #p. I was just watching the sun go down. Isn't it nice?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night"
+        },
+        "lines": [
+          "Well, I'd best be off to bed!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:shire | lotr:shire_moors | lotr:shire_forest"
+        },
+        "lines": [
+          "I'm here visiting kin, but I'm from Bree myself.",
+          "Hope I can get some more of that Old Toby, best pipeweed in all the land!",
+          "The Colonies are quite pretty, but I can't wait to go back to Bree!",
+          "This is my first time in the Shire!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "drunk": "true"
+        },
+        "lines": [
+            "Where is my Hobbit-hole?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#foreign"
+        },
+        "lines": [
+          "I should never have left Bree!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+            "How did you slip past the gatekeeper?",
+            "Call for the guards, we're under attack!",
+            "Your first mistake was thinking I never fought Big Folk before!",
+            "For Big Folk, you don't hit that hard.",
+            "You'd better leave the Bree, #p, or I'll call the guards!",
+            "Get off my land!",
+            "Get off my land, #p!",
+            "Stay away from my potatoes!",
+            "The Guards will see to you, #p!"
+        ]
+      }
+    ]
+  }

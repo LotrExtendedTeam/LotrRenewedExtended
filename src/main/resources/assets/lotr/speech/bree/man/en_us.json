@@ -1,0 +1,49 @@
+{
+  "parent": "lotr:bree/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Don't let them Shirefolk tell you they invented smoking pipe-weed. Bree-folk did it before Old Toby did.",
+        "Bree-hill has been our home since the first Men came here.",
+        "I like having the Little Folk around, they do well tending the crops.",
+        "The Little Folk may not seem as much, but Bree-folk would not be the same without them.",
+        "I miss the days the Little Folk from the Shire came over to party. Those were good times.",
+        "They say Hobbits have an unnatural talent of throwing things, but I don't want to risk asking.",
+        "Bree has long survived on the patronage of Dwarves and Men, and of course the Little Folk.",
+        "We've lived here since long before the Little Folk.",
+        "How are the western colonies of Little Folk doing?",
+        "This is the oldest permanent settlement of men anywhere around!",
+        "Most of them Little Folk live in Staddle or higher up Bree-Hill",
+        "I plan on visiting some relatives in Combe soon."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I don't want any trouble, #p!",
+        "Now, now, let's not be having no trouble!",
+        "I don't want any trouble with you, #p.",
+        "I have fought Little Folk tougher than you!",
+        "You fight like one of them Little Folk."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+      "How did you slip past the gatekeeper?",
+      "You'd better leave the Bree, #p, or I'll call the guards!",
+      "The Guards will see to you, #p!",
+      "Call for the guards, we're under attack!"
+      ]
+    }
+  ]
+}

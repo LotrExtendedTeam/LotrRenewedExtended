@@ -1,0 +1,167 @@
+{
+    "parent": "lotr:bree/common",
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+            "Some say the Rangers are the real defenders of Bree, but why don't we ever see them defend us then?",
+            "I've heard rumours of a great evil that has returned in the East. I hope it stays away from Bree.",
+            "We've been getting more reports of Orcs in the Lone-lands.",
+            "Last week I had the gatekeeper shift. I hope I never have to do that again.",
+            "My brother is a gatekeeper, my father was a proud guard too. We are all guards in my family.",
+            "I don't think there is any town as great as Bree.",
+            "Do you plan to visit the Colonies? I heard they have good food there.",
+            "Our men are strong and stalwart - but if them Black Riders come into Bree again I don't know what we'll do! They came with an unnatural chill that shook the hearts of even the bravest men!",
+            "I'm worried about these ruffians that keep coming into Bree, if you ask me, we ought to chase them out before they take over!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Nothing to see here, just go about your business.",
+          "Stay on the roads. Things lurk in the dark."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Stay on the roads, friend. Things lurk in the dark."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "this"
+        },
+        "lines": [
+          "Them Black Riders will know better than to mess with us now that you're here, #p!",
+          "Glad to have you among us, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "in_combat": "true"
+        },
+        "lines": [
+          "Can't you see I'm busy!",
+          "Die! Die! Die!",
+          "For Bree!",
+          "Why don't you give me a hand?",
+          "We fight! For Bree!",
+          "Been a while since I've had a good brawl!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "neutral"
+        },
+        "lines": [
+          "We don't mind foreigners so long as you don't get into any trouble.",
+          "Don't let me see you with one of them Ruffians.",
+          "I hear war is brewing in the south, it better stay down there.",
+          "Are you a merchant?",
+          "Have you heard any news of Black Riders?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "good",
+          "biome": "#home"
+        },
+        "lines": [
+          "Welcome to Bree! Are you a merchant?",
+          "What business do you bring to Bree?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Nothing gets past me unseen or unheard, #p. Just so you know.",
+          "You'll be safe in Bree, #p.",
+          "Any news from the Greenway, #p?",
+          "We'll keep you safe, #p.",
+          "Stay away from them Ruffians #p, for both of our sakes."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "own"
+        },
+        "lines": [
+            "Glad to have you in command, #p.",
+            "Together, we can make sure Bree stays proper!",
+            "We don't need Rangers to protect us, do we? No, we got this all covered. Just you and me.",
+            "I'm happy we still have decent folk like you leading the people of Bree, #p.",
+            "What is it? Ruffians? Rangers? Orcs?",
+            "You give the order, #p, we'll take care of the rest.",
+            "I'm keeping an eye out for any suspicious behaviour. You'll hear from me if I find anything.",
+            "If I could choose between following you and gate duty, well, here I am!",
+            "Proud to be at your service, sir!",
+            "Nothing to report, or are you here to report something, #p?",
+            "I will follow your orders, #p!",
+            "Are we going to tumble with them Ruffians again?",
+            "Things have been better since you've been in command, sir.",
+            "Just wondering, do we get paid by arrest, or the hour?",
+            "We ought to chase the Ruffians out of Bree!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "own",
+          "biome": "#foreign"
+        },
+        "lines": [
+            "I'll follow you to the ends of the earth, #p!",
+            "When will we return to Bree, #p? I didn't know we'd be gone for so long.",
+            "Didn't know a part of this job would be leaving Bree.",
+            "Why don't we find where those Ruffians are coming from?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "own",
+          "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+        },
+        "lines": [
+          "I said I'd fall you until the end, but I think we're approaching that end #p.",
+          "When will we turn back, #p?",
+          "We can't keep walking through this, the air is choking!",
+          "There are foul creatures behind every corner.",
+          "We need to return to Bree!",
+          "It's hard to hold onto our hope in a place like this."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+            "We've dealt with Ruffians like you before, #p!",
+            "A chance for the Men of Bree to show our quality!",
+            "We have been here far longer than you have, and will remain here for far longer than you will be remembered!",
+            "I knew them Rangers were worthless! No matter, I will stop you!",
+            "No need to call the guards, I am the guard!",
+            "You'd better leave these peaceful lands, Ruffian!",
+            "The barrows will soon see a new grave!"
+        ]
+      }
+    ]
+  }

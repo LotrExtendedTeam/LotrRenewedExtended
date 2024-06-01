@@ -1,0 +1,621 @@
+{
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+            "Be careful around them Rangers in the wild, they're uncanny.",
+            "As long as them Southerners don't come looking for a place to stay in Bree, we'll be fine.",
+            "Keep your voice down! Them Rangers have unnatural hearing, I tell you.",
+            "I heard a lot of robbers have been going up to Deadmen's Dike lately.",
+            "There have been some strange folk coming up the Greenway.",
+            "Not a lot of people know this, but Bree was the first to discover pipe-weed.",
+            "We aren't getting a lot of travellers from the West anymore.",
+            "You don't happen to have some Southfarthing pipe-weed on you, do you?",
+            "I'm originally from Archet, a smaller community in Chetwood.",
+            "Combe is all right, but I prefer Bree-hill myself.",
+            "I love listening to tales and songs from the Outsiders.",
+            "Everytime the Dwarves come by, our coffers are filled with gold and our casks are empty of ale.",
+            "I never see them Rangers do anything useful, I can't tell if that means they are that good or that lazy.",
+            "News came that something is stirring in the East. I hope it doesn't reach Bree.",
+            "Any news from the Colonists?",
+            "It rained so much last year, I almost learned how to swim!",
+            "I don't like the amount of Outsiders coming up the Greenway these days.",
+            "Strange thing all these southerners coming into Bree. It's like they say - when it rains it pours...",
+            "If you head north up the Greenway you'll come across Deadman's Dike, was once the capital of the old North-kingdom, but there's only robbers and thieves there now.",
+            "There is an inn, a merry old inn - beneath an old grey hill! And there they brew a beer so brown that the Man in the Moon himself came down One night to drink his fill!",
+            "The Rangers talk of Orcs and foul creatures growing in numbers in the wild! But us Bree-folk have been around since before the Rangers came and we'll still be here when they're gone!",
+            "I hear the hobbits of The Shire have stunning parlor tricks! One vanished in thin air at The Prancing Pony!",
+            "Rumor has it that there's war brewing in the south! Glad such news is far from Bree, we've got our own problems to worry about with these robbers and Ruffians abroad!",
+            "Whenever the dwarves come by, it's good business for everyone! Almost too good, the inns can hardly cook enough to feed them!",
+            "We've been seeing a lot of Elves heading west, I wonder where they're going?",
+            "If them rangers are really friends with us Bree-folk, then why do they fancy lurking about our borders?",
+            "I'm not too fond of Rangers, but they're better than the Ruffians!",
+            "Did you hear? The same Black Riders which came through Bree attacked them Rangers down at Sarn Ford a while back! These are dark times indeed."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home"
+        },
+        "lines": [
+          "There's talk of strange folk abroad.",
+          "We've been getting more Southerners coming up the Greenway lately.",
+          "I heard a grey wanderer came by recently, left in a hurry too.",
+          "If you are in need of a supply of Southlinch, you should try the markets.",
+          "Have you been close to them barrows West of here? The place gives me the creeps.",
+          "If you plan on heading further East, stay clear of the Forsaken Inn! Rumor says its abandoned, but I swear I've seen som suspicious folk gathering around there!",
+          "Be sure you don't wander into the Barrow-downs West from here. They're bad luck, I tell you.",
+          "We used to get more Colonists coming over, I wonder what stops them?",
+          "Be careful going near them barrows west of here! There have been stories of townsfolk going missing because they strayed to close!",
+          "I would never leave Bree. Not even to visit the Shire.",
+          "Our town is the oldest city of men west of the Misty Mountains! We were here even before before the old North-kingdom was founded!",
+          "If you are here for our excellent pipe-weed, we grow them on the southern slopes.",
+          "I don't trust them Southerners, where do they plan on going? I hope not here."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "What business do you have?",
+          "What are you doing in Bree?",
+          "Welcome to the land of Bree, Outsider.",
+          "First them Black Riders, now you. What a strange time.",
+          "Welcome Outsider! Bree is a nice place, just make sure you don't fall into the wrong crowd.",
+          "Is this your first time in Bree? You look new.",
+          "You aren't one of them Southerners are you?",
+          "If you seek for a place to stay, there is no better place than the Prancing Pony!",
+          "An Outsider? My, where did you come from then?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "none",
+          "biome": "#home",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "I'm not sure about you, we've had some strange folk abroad.",
+          "What's an outsider like you doing in Bree, not snooping about are you?",
+          "I better not see you hanging around any unsavory characters, you ought to stay far away from those brigands and robbers!",
+          "I don't know about you, #p. There's been a lot of strange folk around here recenly.",
+          "You aren't one of them folk creeping around in the dark are you?",
+          "The guards say they've seen a fellow like you creeping into peoples houses. I've got my eyes on you.",
+          "You aren't one of them sorcerers, are you?",
+          "You're not one of them Rangers, are you?",
+          "You better not be bringing any trouble into Bree!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Hello #p! How are you today?",
+          "Bear any news from you travels, #p?",
+          "Be careful #p, there's been robbers around the outskirts of town!",
+          "#p! Any news from your travels?",
+          "I hear there's a war growing down south! What do you know about it, #p?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=townsman"
+        },
+        "lines": [
+          "Good to see a friendly face!",
+          "I knew you always had a good heart #p!",
+          "You're always welcome in Bree, #p!",
+          "I never should have doubted you, #p!",
+          "Have you checked out the markets lately? Was hoping to get some more Southlinch.",
+          "Always a pleasure, #p!",
+          "Oh, it's you, #p! I didn't recognise you at first, see."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "You've made quite a name for yourself among the Bree-folk.",
+          "You're always welcome at my home, #p!",
+          "Hello, #p! I ought to invite you in for lunch one of these days.",
+          "Hello, #p! I ought to invite you in for pipe-weed one of these days.",
+          "Glad to have you among the Bree-folk!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion"
+        },
+        "lines": [
+          "All's well in Bree, thanks to you!",
+          "All's well in Bree, thanks to you, #p!",
+          "Your deeds won't go unsung, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=captain"
+        },
+        "lines": [
+          "I think I've been seeing a lot less of those robbers around - no doubt thanks to your help!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=trustee",
+          "day_or_night": "day"
+        },
+        "lines": [
+          "Well, if it isn't #p! How are you today?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion",
+          "day_or_night": "night"
+        },
+        "lines": [
+          "Well, if it isn't #p! How are you tonight?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion",
+          "day_or_night": "day",
+          "player_gender_pref": "m"
+        },
+        "lines": [
+          "Good day, sir!",
+          "Good day, sir #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion",
+          "day_or_night": "day",
+          "player_gender_pref": "f"
+        },
+        "lines": [
+          "Good day, miss!",
+          "Good day, miss #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "morning",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Good morning!",
+          "Good morning to you!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "morning",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Good morning, #p!",
+          "Good morning to you, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "afternoon",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Good afternoon!",
+          "Good afternoon to you!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "afternoon",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Good afternoon, #p!",
+          "Good afternoon to you, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "evening",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Good evening!",
+          "Good evening to you!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "evening",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Good evening, #p!",
+          "Good evening to you, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dawn | dusk",
+          "weather": "clear"
+        },
+        "lines": [
+          "What a pretty sky up there!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "lunar_eclipse": "true"
+        },
+        "lines": [
+          "First the Ruffians come into Bree, then the Black Riders, and now the moon is blood red! These truly are dark times..."
+        ]
+      }, 
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "this"
+        },
+        "lines": [
+          "Glad to have you with us, #p!",
+          "Can you chase the Ruffians out of Bree, #p?",
+          "I'm glad to have you on our side!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:dunedain_north"
+        },
+        "lines": [
+          "If you're truly a friend of us Bree-folk then why do you lurk about our borders?",
+          "Want to really do some good? Keep them robbers off the Greenway!",
+          "Heard you Rangers are the remenants of the fallen North-kingdom, I think it's a waste to spend your life guarding some old ruins and lurking about the wilds.",
+          "You'll be the death of us. The wars of your people have no business in Bree.",
+          "Are you Rangers the ones who lead those Black Riders here?",
+          "You ought to get your Ranger friends and chase those Ruffians out of Bree!",
+          "What is it, Ranger?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:dunland | lotr:isengard"
+        },
+        "lines": [
+          "You better head back down the Greenway because folk like you aren't welcome in Bree!",
+          "What is it, Ruffian?",
+          "You ought to tell your folk to stop going to Bree!",
+          "Our town was a nice place before you people started coming along!",
+          "I don't know about you, #p. You look like a Ruffian!",
+          "I don't deal with the likes of you.",
+          "We care not for your wars, Southerner.",
+          "Stop spying on our people!",
+          "Your folk ought to leave Bree!",
+          "What business do you have with Bree-folk foreigner?",
+          "I'm not sure about you, we've had some strange folk abroad.",
+          "What's an outsider like you doing in Bree, not snooping about are you?",
+          "I better not see you hanging around any unsavory characters, you ought to stay far away from those brigands and robbers!",
+          "What business do you have?",
+          "I don't know about you, #p. There's been a lot of strange folk around here recenly.",
+          "You aren't one of them folk creeping around in the dark are you?",
+          "What are you doing in Bree?",
+          "The guards say they've seen a fellow like you creeping into peoples houses. I've got my eyes on you.",
+          "You aren't one of them Ruffians, are you?",
+          "First them Black Riders, now you. What a strange time.",
+          "Is this your first time in Bree? You look new.",
+          "You aren't one of them Southerners are you?",
+          "You better not be bringing any trouble into Bree!",
+          "An Outsider? My, where did you come from then?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home",
+          "pledge": "lotr:blue_mountains | lotr:durins_folk"
+        },
+        "lines": [
+          "Do you bring riches or goods from the halls of the dwarves?",
+          "I hear there aren't any dwarf women, but how do you have children?",
+          "You must have traveled a long way to reach Bree, where are you heading next?",
+          "Welcome! What business do the dwarves bring to Bree?",
+          "Why do Dwarves all live underground?",
+          "Are you here to fill our coffers with gold?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "drunk": "true"
+        },
+        "lines": [
+            "There is an inn, a merry old inn... beneath an old grey hill...",
+            "The road goes ever on and on...",
+            "Get off my ale!",
+            "Ring ding diddle diddle I de oh ring di diddly I oh!",
+            "Roll roll roll roll, roll-roll-rolling down the hole!",
+            "Heave ho! Splash plump! Down they go, down they bump!",
+            "But the only brew for the brave and true...",
+            "Hey ho! To the bottle I go!",
+            "I drink, therefore I am.",
+            "Tippity tippity tap! Splish splash splosh!",
+            "Fear! Fire! Foes!",
+            "My ale! Mine!",
+            "Do not turn me about so, #p. My stomach is not constant.",
+            "Stop walking on the wall, #p! Ho! Ho!",
+            "Here and there, ale is everywhere!",
+            "I couldn't live without my ale!",
+            "The ale is mine!",
+            "Up and down and left and right, I will drink until the end of night!",
+            "Teh to ti ti tum!",
+            "Trolls have layers!",
+            "More ale in my pail!",
+            "These Orcs are crazy!",
+            "Mushroom! Mushroom! Mushroom!",
+            "Never fear quarrels, but seek hazardous adventure!",
+            "He can be found in marsh, over hill, under tree, and where the water licks the land!",
+            "I used to be an adventurer, just like you. Then I discovered ale!",
+            "*hic*",
+            "Help! Everything is square! How long have I been here? Am I going mad? Please help me, #p!",
+            "Yo ho ho and a bottle of your finest ale!",
+            "They see me! They see you! They see everything!",
+            "Spring is coming, at least I think it is! What am I saying? More ale all round!",
+            "A fine pail of ale is finer than a fresh quail of nail!",
+            "A song! A song!",
+            "Sing, #p! Sing!",
+            "My singing talent eclipses even that of the Elves!",
+            "Give me a reason to fight and I shall drink ale!",
+            "Hill. Tree. Lake. Another hill. Yellow!",
+            "Praise be to the Great Lion!",
+            "Not all those who wander are lost, #p!",
+            "You're a little small for an Oliphaunt!",
+            "Well, well, haven't you come a long way! I haven't seen you in years, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "in_conversation": "other",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "How rude of you to interupt someone in conversation!",
+          "Why do you have prying ears? Are you a ruffian? Or maybe a ranger?",
+          "You ought to know better - prying on someone elses conversation!",
+          "Can't you see I'm busy?",
+          "Do you mind? I was in the middle of a conversation here!",
+          "#p! I was just in the middle of a conversation.",
+          "Bit rude to interrupt, isn't it?",
+          "There's no need to interrupt, is there?",
+          "I was just speaking! Wait your turn!",
+          "Mind your own business. Can't you see we were talking?",
+          "Mind your own business, please! Now leave us alone.",
+          "...and I turned to him and said - excuse me? Do you mind interrupting us, #p?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "weather": "rain"
+        },
+        "lines": [
+          "It's been raining a lot lately, have you noticed?",
+          "Rain, rain, rain. Nothing but rain here in Bree. What I would not do for some snow, instead.",
+          "It has been raining an awful lot here lately...",
+          "There's an old saying here in Bree: when the rain comes, strange folk follow.",
+          "They say when it rains the best tales are told over a flagon of ale.",
+          "I'm worried the rain will make the Greenway too hard to traverse.",
+          "When it rains, it pours!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "weather": "clear"
+        },
+        "lines": [
+          "I'm glad it's not raining!",
+          "The skies are looking clear now, but just you wait - before you know it, it'll be pouring!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "sun_admiring": "true"
+        },
+        "lines": [
+          "Watching the sun rise over top of Bree-Hill is quite a sight!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night"
+        },
+        "lines": [
+          "Be careful wandering around at night, there's talk of strange folk abroad.",
+          "Watch yourself, can't be too careful.",
+          "What are you doing wandering around this late at night?",
+          "Don't go too far south near them barrows! People end up going missing when they wander in the night."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Be careful wandering around at night, there's talk of strange folk abroad.",
+          "Watch yourself, can't be too careful.",
+          "What are you doing wandering around this late at night?",
+          "Don't go too far south near them barrows! People end up going missing when they wander in the night."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Watch yourself #p, there's talk of strange folk abroad.",
+          "Be careful around them Ruffians #p!",
+          "You should find a place to stay quickly #p! There's been strange folk in the night lately.",
+          "Watch yourself #p, can't be too careful.",
+          "Be careful wandering around at night #p, there's talk of strange folk abroad."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Welcome to Bree, #p!",
+          "I wonder if them Ruffians lead those Black Riders here?",
+          "How are you liking our town, #p?",
+          "Have you stayed at the Prancing Pony #p? It's the best Inn throughout all the Bree-Lands I'd say!"
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "#foreign"
+        },
+        "lines": [
+          "I sure do miss Bree.",
+          "Hope we don't come across any bandits",
+          "If I take one more step I'll be the furthest from home I've ever been."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "lotr:rivendell | lotr:lothlorien"
+        },
+        "lines": [
+          "The beauty of this place is truly unmatched! It's almost unnatural!",
+          "Why if the Elves live in a place as beautiful as this, why would they ever want to go west?",
+          "I sure do miss Bree, but I think I could stay here for a little while.",
+          "What strange enchantment makes these lands so breathtaking?",
+          "I've never seen so many Elves!",
+          "There's truly more sights to see than what lies beyong the borders of the Bree-lands",
+          "The food, songs, and beauty of this place are truly enchanting."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+        },
+        "lines": [
+          "We're in ranger territory.",
+          "Hope I don't come across a ranger in the wild.",
+          "Foul creatures lurk at night",
+          "I hear goblins have been seen coming down from the mountains!",
+          "Watch yourself around these parts...",
+          "Hope we don't run into any of them strange folk going up north to Bree!",
+          "These lands were once part of the old North-kingdom!",
+          "Sad to see all them ruins around, wonder if there's any treasure still inside them?",
+          "I ought to head back to Bree before a Robber gets me.",
+          "Wish the roads were as safe as Bree, don't know how merchants get through this!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+        },
+        "lines": [
+          "What a dreadful place! Let's return to Bree at once!",
+          "Why have we come to such a dreadful place?",
+          "What an awful land this is, #p!",
+          "What a frightful land! We must find our way back to Bree!",
+          "I declare I've seen quite enough of this place! Let's go back to the Bree, and quickly!",
+          "Well, #p, this is a nasty place if I ever saw one!",
+          "I feel all ill at ease here. Say, #p, do you know the road back to the Bree?",
+          "I don't know how we ever came to find ourselves in such a place as this, #p.",
+          "Even the air here is foul!",
+          "If I'd known this was what lay beyond the Bree-Lands, I would've never wandered off!",
+          "There's a foul chill in the air.",
+          "We ought to leave this place, #p!",
+          "Why are the clouds so dark, and why is the air so choking?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+          "Flee to the hills, to the rest of your kind!",
+          "We've dealt with Ruffians like you before, #p!",
+          "To the midges with you!",
+          "Mind your own business, Ruffian.",
+          "I have been in barfights more intimidating than you!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#foreign"
+        },
+        "lines": [
+          "Stay away from Bree!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#home"
+        },
+        "lines": [
+            "Don't come bringing trouble to our peaceful village, why you.",
+            "We have no room for the likes of you in Bree!",
+            "Begone, before we send the hounds after you!",
+            "I knew them Ruffians coming up the Greenway were up to no good!",
+            "What is the matter with you, acting like that!",
+            "There is no room for ill-folk such as you in Bree!",
+            "I've tossed with Dwarves before, this is nothing!",
+            "I know what you're up to #p.",
+            "Did somebody do your head in?",
+            "A troublemaker I see? Bree doesn't welcome Ruffians! Begone!",
+            "Your kind aren't welcome here.",
+            "Go back over the hedge!",
+            "Go back over the hedge, #p!",
+            "Bree is no place for troublemakers like you!"
+        ]
+      }
+    ]
+  }
