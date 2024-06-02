@@ -1,5 +1,5 @@
 {
   "faction": "lotr:high_elves",
-  "speechbank": "lotr:high_elves/rivendell_wanderer",
+  "speechbank": "lotr:high_elves/rivendell/rivendell_wanderer",
   "kill_bonus": 1
 }
