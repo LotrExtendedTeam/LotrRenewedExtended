@@ -1,0 +1,5 @@
+{
+  "faction": "lotr:blue_mountains",
+  "speechbank": "lotr:blue_mountains/warrior",
+  "kill_bonus": 2
+}
