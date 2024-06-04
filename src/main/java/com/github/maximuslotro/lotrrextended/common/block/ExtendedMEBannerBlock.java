@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 import net.minecraft.block.AbstractBlock;
@@ -15,6 +16,7 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -35,16 +37,22 @@ import net.minecraft.world.World;
 
 public class ExtendedMEBannerBlock extends ContainerBlock {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private static final Map<BannerTypes, Block> BY_BANNER = Maps.newHashMap();
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
+			Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
+			Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
+			Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D), 
+			Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
 	private final BannerTypes banner;
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
 		this.banner = bannerType;
 		BY_BANNER.put(bannerType, this);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
+		this.registerDefaultState(this.stateDefinition.any().setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
 	@Override
@@ -70,12 +78,14 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 
 	@Override
 	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
+		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER)
+				.setValue(SMALL, state.getValue(SMALL))
+				.setValue(FACING, state.getValue(FACING)), 3);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-		return SHAPE;
+	public VoxelShape getShape(BlockState state, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
+		return SHAPES.get(state.getValue(FACING));
 	}
 
 	@Override
@@ -127,7 +137,7 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING).add(HALF);
+		p_206840_1_.add(FACING).add(HALF).add(SMALL);
 	}
 
 	public static Block byBanner(BannerTypes banner) {
