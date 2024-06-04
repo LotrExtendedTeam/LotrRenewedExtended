@@ -106,10 +106,10 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		wargBones = makeQuickyBasePart("warg_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.WARG_BONE.get(), 0, 3)));
 		arrows = makeQuickyBasePart("arrows", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.ARROW, 1, 2)));
 		lembas = makeQuickyBasePart("elf_lembas", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.LEMBAS.get())));
-		shireHeather = makeQuickyBasePart("shireHeather", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.SHIRE_HEATHER.get())
+		shireHeather = makeQuickyBasePart("shire_heather", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.SHIRE_HEATHER.get())
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.10F))));
-		leatherHat = makeQuickyBasePart("leatherHat", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.LEATHER_HAT.get())
+		leatherHat = makeQuickyBasePart("leather_hat", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.LEATHER_HAT.get())
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.10F))));
 		rareDwarfDrops = makeQuickyBasePart("dwarf_rare_drops", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.IRON_INGOT)
@@ -192,7 +192,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.withPool(createQuickyDrinkBuilder(LOTRItems.MIRUVOR.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
-				.withPool(createQuickyDrinkBuilder(LOTRItems.LEMBAS.get())
+				.withPool(genSingleQuickyBuilder(LOTRItems.LEMBAS.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
 		);

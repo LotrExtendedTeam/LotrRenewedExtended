@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "lotrextended:entities/common/faction_bases/galadhrim"
+          "name": "lotrextended:entities/common/parts/elf_with_miruvor_lembas"
         }
       ]
     }

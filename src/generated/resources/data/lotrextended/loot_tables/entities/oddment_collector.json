@@ -9,6 +9,24 @@
           "name": "lotrextended:entities/common/parts/man"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/shire_heather"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/leather_hat"
+        }
+      ]
     }
   ]
 }
