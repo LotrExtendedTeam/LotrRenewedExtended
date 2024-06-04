@@ -36,6 +36,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	//Parts
 	ResourceLocation coins;
+	ResourceLocation coinsRare;
 	ResourceLocation wargFur;
 	ResourceLocation orcBones;
 	ResourceLocation manBones;
@@ -44,6 +45,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation dwarfBones;
 	ResourceLocation wargBones;
 	ResourceLocation arrows;
+	ResourceLocation shireHeather;
+	ResourceLocation leatherHat;
 	ResourceLocation lembas;
 	ResourceLocation rareDwarfDrops;
 	ResourceLocation pouch;
@@ -58,6 +61,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation orcBaseSteel;
 	ResourceLocation orcBaseUrukSteel;
 	ResourceLocation elfBaseMiruvor;
+	ResourceLocation elfBaseMiruvorLembas;
 	//Faction tables
 	ResourceLocation hobbit;
 	ResourceLocation hobbitBree;
@@ -102,6 +106,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		wargBones = makeQuickyBasePart("warg_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.WARG_BONE.get(), 0, 3)));
 		arrows = makeQuickyBasePart("arrows", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.ARROW, 1, 2)));
 		lembas = makeQuickyBasePart("elf_lembas", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.LEMBAS.get())));
+		shireHeather = makeQuickyBasePart("shireHeather", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.SHIRE_HEATHER.get())
+				.when(KilledByPlayer.killedByPlayer())
+				.when(RandomChance.randomChance(0.10F))));
+		leatherHat = makeQuickyBasePart("leatherHat", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.LEATHER_HAT.get())
+				.when(KilledByPlayer.killedByPlayer())
+				.when(RandomChance.randomChance(0.10F))));
 		rareDwarfDrops = makeQuickyBasePart("dwarf_rare_drops", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.IRON_INGOT)
 				.add(genQuickyItemBuilder(LOTRItems.DWARVEN_STEEL_INGOT.get()))
 				.add(genQuickyItemBuilder(Items.GOLD_NUGGET, 1, 3))
@@ -118,6 +128,9 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).setWeight(5))
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.015F))));
+		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
+				.add(genQuickyItemBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 1, 4).setWeight(5))
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.12F, 0.025F))));
 	}
 
 	private void makeBaseTables() {
@@ -174,6 +187,15 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.withPool(createQuickyDrinkBuilder(LOTRItems.MIRUVOR.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))));
+		elfBaseMiruvorLembas = makeQuickyBasePart("elf_with_miruvor_lembas", LootTable.lootTable()
+				.withPool(addAnotherQuickyPoolRefrence(elfBase))
+				.withPool(createQuickyDrinkBuilder(LOTRItems.MIRUVOR.get())
+						.when(KilledByPlayer.killedByPlayer())
+						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
+				.withPool(createQuickyDrinkBuilder(LOTRItems.LEMBAS.get())
+						.when(KilledByPlayer.killedByPlayer())
+						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
+		);
 	}
 
 	private void makeFactionTables() {
@@ -251,12 +273,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(LOTREntities.ISENGARD_SNAGA, orcIsengard);
 		makeEntity(LOTREntities.ISENGARD_SNAGA_ARCHER, orcIsengard, arrows);
 		add(LOTREntities.CARACAL.get(), LootTable.lootTable());
-		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit);
-		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit);
-		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase); // TODO: Update this to their own
+		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit, coinsRare);
+		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit, coinsRare);
+		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase, shireHeather, leatherHat);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
-		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfRivendell); // TODO: Update this to their own
-		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfGaladhrim); // TODO: Update this to their own
+		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
+		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
 	}
 
 	public ResourceLocation makeQuickyBasePart(String name, Builder builder) {
