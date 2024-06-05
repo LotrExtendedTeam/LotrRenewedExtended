@@ -3,13 +3,12 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.LootContext;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -26,8 +25,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import lotr.common.init.LOTRBlocks;
@@ -50,7 +47,7 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
     			.isViewBlocking(LOTRBlocks::posPredicateFalse));
         this.berryItem = berryItem;
         this.berryBlock = berryBlock;
-        registerDefaultState(stateDefinition.any().setValue(AGE, 3));
+        registerDefaultState(stateDefinition.any().setValue(AGE, 0));
     }
 
 	@Override
@@ -62,6 +59,15 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
 	      }
 
 	   }
+
+	@Override
+	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+		if(placer instanceof PlayerEntity) {
+			if(((PlayerEntity)placer).isCreative() && !placer.isCrouching()) {
+				world.setBlock(pos, state.setValue(AGE, 3), 3);
+			}
+		}
+	}
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
@@ -75,7 +81,7 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
         if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
            return ActionResultType.PASS;
         } else if (i > 2) {
-        	popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? 1+p_225533_2_.random.nextInt(6) : 0));
+        	popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(6) + 1: 0));
            p_225533_2_.playSound((PlayerEntity)null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
            p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, Integer.valueOf(1)), 2);
            return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
@@ -84,30 +90,11 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
         }
      }
 
-
-    @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        int age = state.getValue(AGE);
-        List<ItemStack> drops = new ArrayList<>();
-        drops.add(new ItemStack(berryBlock.get()));
-        if (age == 3) {
-            drops.add(new ItemStack(berryItem.get(), builder.getLevel().getRandom().nextInt(6) + 1));
-        }
-        return drops;
-    }
-
-
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 
-    private void spawnBerriesAsEntity(World world, BlockPos pos, ItemStack stack) {
-        if (!world.isClientSide) {
-            ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-            world.addFreshEntity(itemEntity);
-        }
-    }
     @Override
 	public boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState) {
 		return true;
@@ -128,5 +115,13 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
 	public void performBonemeal(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
 		int i = Math.min(3, p_225535_4_.getValue(AGE) + 1);
 	      p_225535_1_.setBlock(p_225535_3_, p_225535_4_.setValue(AGE, Integer.valueOf(i)), 2);
+	}
+
+	public Item getBerryItem() {
+		return berryItem.get();
+	}
+
+	public Item getBerryBlock() {
+		return berryBlock.get();
 	}
 }

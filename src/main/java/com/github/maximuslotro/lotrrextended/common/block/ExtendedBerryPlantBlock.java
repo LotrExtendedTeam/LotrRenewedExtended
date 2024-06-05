@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.LootContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -19,9 +18,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import lotr.common.init.LOTRBlocks;
 
@@ -64,7 +60,7 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
         if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
            return ActionResultType.PASS;
         } else if (i > 2) {
-           popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? 1+p_225533_2_.random.nextInt(3) : 0));
+           popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(3) + 1 : 0));
            p_225533_2_.playSound((PlayerEntity)null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
            p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, Integer.valueOf(1)), 2);
            return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
@@ -72,13 +68,6 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
            return ActionResultType.PASS;
         }
      }
-
-    @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> drops = new ArrayList<>();
-        drops.add(new ItemStack(berryItem.get(), state.getValue(AGE)==3 ? builder.getLevel().getRandom().nextInt(3) + 1 : 1));
-        return drops;
-    }
 
     public Item getBerryItem() {
 		return berryItem.get();

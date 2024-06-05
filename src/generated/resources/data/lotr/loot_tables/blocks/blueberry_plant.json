@@ -22,8 +22,8 @@
         {
           "function": "minecraft:set_count",
           "count": {
-            "min": 2.0,
-            "max": 3.0,
+            "min": 1.0,
+            "max": 4.0,
             "type": "minecraft:uniform"
           }
         },
@@ -34,6 +34,9 @@
           "parameters": {
             "bonusMultiplier": 1
           }
+        },
+        {
+          "function": "minecraft:explosion_decay"
         }
       ]
     },
@@ -57,26 +60,66 @@
       "functions": [
         {
           "function": "minecraft:set_count",
-          "count": {
-            "min": 1.0,
-            "max": 2.0,
-            "type": "minecraft:uniform"
-          }
+          "count": 1
         },
         {
-          "function": "minecraft:apply_bonus",
-          "enchantment": "minecraft:fortune",
-          "formula": "minecraft:uniform_bonus_count",
-          "parameters": {
-            "bonusMultiplier": 1
-          }
+          "function": "minecraft:explosion_decay"
         }
       ]
-    }
-  ],
-  "functions": [
+    },
     {
-      "function": "minecraft:explosion_decay"
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lotr:blueberry"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "lotr:blueberry_plant",
+          "properties": {
+            "age": "1"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 1
+        },
+        {
+          "function": "minecraft:explosion_decay"
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lotr:blueberry"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "lotr:blueberry_plant",
+          "properties": {
+            "age": "0"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 1
+        },
+        {
+          "function": "minecraft:explosion_decay"
+        }
+      ]
     }
   ]
 }

@@ -29,7 +29,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.Direction.Axis;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -114,18 +115,21 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-		DoubleBlockHalf half = state.getValue(HALF);
-		if (facing.getAxis() != Axis.Y || half == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.getBlock() == this && facingState.getValue(HALF) != half) {
-			if (half == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.canSurvive(world, currentPos)) {
+	public BlockState updateShape(BlockState thisState, Direction updateDirection, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
+		DoubleBlockHalf half = thisState.getValue(HALF);
+		if (updateDirection.getAxis() == Direction.Axis.Y && half == DoubleBlockHalf.LOWER == (updateDirection == Direction.UP)) {
+			if(p_196271_3_.is(this) && p_196271_3_.getValue(HALF) != half) {
+				return thisState.setValue(FACING, p_196271_3_.getValue(FACING)).setValue(SMALL, p_196271_3_.getValue(SMALL));
+			}else {
 				return Blocks.AIR.defaultBlockState();
 			}
-
-			if (state.canSurvive(world, currentPos)) {
-				return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+		} else {
+			if(half == DoubleBlockHalf.LOWER && updateDirection == Direction.DOWN && !thisState.canSurvive(p_196271_4_, p_196271_5_)) {
+				return Blocks.AIR.defaultBlockState();
+			}else {
+				return super.updateShape(thisState, updateDirection, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
 			}
 		}
-		return Blocks.AIR.defaultBlockState();
 	}
 
 	@Override
@@ -178,16 +182,14 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 //		return tileentity instanceof BannerTileEntity ? ((BannerTileEntity) tileentity).getItem(p_185473_3_) : super.getCloneItemStack(p_185473_1_, p_185473_2_, p_185473_3_);
 //	}
 
-//	@Override
-//	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-//        Boolean isSmall = state.getValue(SMALL);
-//        DoubleBlockHalf half = state.getValue(HALF);
-//        world.setBlock(blockPos, state.setValue(SMALL, !isSmall), 2);
-//        if(half==DoubleBlockHalf.LOWER && world.getBlockState(blockPos.above()).hasProperty(SMALL)) {
-//        	world.setBlock(blockPos.above(), state.setValue(SMALL, !isSmall), 2);
-//        }else if(half==DoubleBlockHalf.UPPER && world.getBlockState(blockPos.below()).hasProperty(SMALL)){
-//        	world.setBlock(blockPos.below(), state.setValue(SMALL, !isSmall), 2);
-//        }
-//        return ActionResultType.sidedSuccess(world.isClientSide);
-//     }
+	@Override
+	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+        if(player.isCrouching()) {
+        	state = state.cycle(SMALL);
+            world.setBlock(blockPos, state, 10);
+            world.playSound((PlayerEntity)null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+            return ActionResultType.sidedSuccess(world.isClientSide);
+        }
+        return ActionResultType.PASS;
+     }
 }
