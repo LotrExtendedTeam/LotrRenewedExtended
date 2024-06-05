@@ -922,7 +922,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.texture("particle", texture).texture("1", texture);
 		ModelFile modelFileTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_banner_top"))
 				.texture("particle", texture).texture("1", texture);
-		ModelFile block = models().getExistingFile(mcLoc("block/block"));
+		ModelFile block = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top_blank", mcLoc("block/block"))
+				.texture("particle", texture);
 		getVariantBuilder(extendedMEBannerBlock).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
 			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);

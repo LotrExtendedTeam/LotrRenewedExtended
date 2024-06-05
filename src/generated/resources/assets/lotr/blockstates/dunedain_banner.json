@@ -31,18 +31,18 @@
       "y": 90
     },
     "facing=north,half=upper,short=true": {
-      "model": "minecraft:block/block"
+      "model": "lotrextended:block/dunedain_banner_top_blank"
     },
     "facing=south,half=upper,short=true": {
-      "model": "minecraft:block/block",
+      "model": "lotrextended:block/dunedain_banner_top_blank",
       "y": 180
     },
     "facing=west,half=upper,short=true": {
-      "model": "minecraft:block/block",
+      "model": "lotrextended:block/dunedain_banner_top_blank",
       "y": 270
     },
     "facing=east,half=upper,short=true": {
-      "model": "minecraft:block/block",
+      "model": "lotrextended:block/dunedain_banner_top_blank",
       "y": 90
     },
     "facing=north,half=lower,short=true": {

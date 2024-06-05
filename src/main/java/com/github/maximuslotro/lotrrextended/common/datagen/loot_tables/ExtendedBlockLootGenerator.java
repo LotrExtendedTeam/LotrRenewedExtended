@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlo
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
@@ -80,10 +81,10 @@ import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
-import net.minecraft.loot.functions.CopyNbt;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.state.properties.BedPart;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -305,6 +306,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedMEBannerBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createBannerDrop);
 			}
+			if(block.getValue().get() instanceof ExtendedMEBannerWallBlock) {
+				add(block.getValue().get(), ExtendedBlockLootGenerator::createWallBannerDrop);
+			}
 			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
@@ -416,8 +420,22 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		return LootTable.lootTable().withPool(applyExplosionCondition(p_218481_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));
 	}
 
-	protected static LootTable.Builder createBannerDrop(Block p_218559_0_) {
-		return LootTable.lootTable().withPool(applyExplosionCondition(p_218559_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218559_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)).apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("Patterns", "BlockEntityTag.Patterns")))));
+	protected static LootTable.Builder createBannerDrop(Block banner) {
+		return LootTable.lootTable().withPool(applyExplosionCondition(banner, 
+				LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.when(BlockStateProperty.hasBlockStateProperties(banner).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedMEBannerBlock.HALF, DoubleBlockHalf.LOWER)))
+				.add(ItemLootEntry.lootTableItem(banner)
+//						.apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
+//						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("Patterns", "BlockEntityTag.Patterns"))
+						)));
+	}
+
+	protected static LootTable.Builder createWallBannerDrop(Block banner) {
+		return LootTable.lootTable().withPool(applyExplosionCondition(banner, 
+				LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(banner)
+//						.apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
+//						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("Patterns", "BlockEntityTag.Patterns"))
+						)));
 	}
 
 	protected static LootTable.Builder createFruitLeavesDrops(Block p_218526_0_, Block p_218526_1_, IItemProvider item, float... p_218526_2_) {
