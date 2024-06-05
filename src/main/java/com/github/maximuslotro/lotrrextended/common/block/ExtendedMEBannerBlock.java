@@ -14,6 +14,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -23,11 +24,14 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -173,4 +177,17 @@ public class ExtendedMEBannerBlock extends ContainerBlock {
 //		TileEntity tileentity = p_185473_1_.getBlockEntity(p_185473_2_);
 //		return tileentity instanceof BannerTileEntity ? ((BannerTileEntity) tileentity).getItem(p_185473_3_) : super.getCloneItemStack(p_185473_1_, p_185473_2_, p_185473_3_);
 //	}
+
+//	@Override
+//	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+//        Boolean isSmall = state.getValue(SMALL);
+//        DoubleBlockHalf half = state.getValue(HALF);
+//        world.setBlock(blockPos, state.setValue(SMALL, !isSmall), 2);
+//        if(half==DoubleBlockHalf.LOWER && world.getBlockState(blockPos.above()).hasProperty(SMALL)) {
+//        	world.setBlock(blockPos.above(), state.setValue(SMALL, !isSmall), 2);
+//        }else if(half==DoubleBlockHalf.UPPER && world.getBlockState(blockPos.below()).hasProperty(SMALL)){
+//        	world.setBlock(blockPos.below(), state.setValue(SMALL, !isSmall), 2);
+//        }
+//        return ActionResultType.sidedSuccess(world.isClientSide);
+//     }
 }
