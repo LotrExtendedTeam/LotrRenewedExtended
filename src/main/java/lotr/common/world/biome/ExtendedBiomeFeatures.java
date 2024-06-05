@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
+import lotr.common.world.gen.tree.EmptyFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,6 @@ import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.RegistryEvent;
 
 public class ExtendedBiomeFeatures {
@@ -46,13 +46,19 @@ public class ExtendedBiomeFeatures {
 	private static BlockState EMERALD_ORE;
 	private static BlockState DIAMOND_ORE;
 
+	private static BlockState BANANA_LOG;
+	private static BlockState BANANA_LEAVES;
+	private static BlockState BANANA_FRUIT;
+
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
-	private static IPlantable CHESTNUT_SAPLING;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE_BEES;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
 	public static BaseTreeFeatureConfig CHESTNUT_PARTY;
+
+	private static BlockStateProvider BANANA_LEAVES_POOL;
+	public static BaseTreeFeatureConfig BANANA_TREE;
 
 	//Chestnut
 	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
@@ -76,6 +82,11 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(CHESTNUT_PARTY);
 	}
 
+	//TODO add to biomes
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> banana() {
+		return Feature.TREE.configured(BANANA_TREE);
+	}
+
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
@@ -83,6 +94,10 @@ public class ExtendedBiomeFeatures {
 		CHESTNUT_BRANCH = ExtendedBlocks.CHESTNUT_BRANCH.get().defaultBlockState();
 		CHESTNUT_LEAVES = ExtendedBlocks.CHESTNUT_LEAVES.get().defaultBlockState();
 		CHESTNUT_LEAVES_FRUIT = ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get().defaultBlockState();
+
+		BANANA_LOG = ExtendedBlocks.BANANA_LOG.get().defaultBlockState();
+		BANANA_LEAVES = ExtendedBlocks.BANANA_LEAVES.get().defaultBlockState();
+		BANANA_FRUIT = ExtendedBlocks.HANGING_BANANA.get().defaultBlockState();
 
 		// gem block states
 		AMETHYST_ORE = ExtendedBlocks.AMETHYST_ORE.get().defaultBlockState();
@@ -96,12 +111,14 @@ public class ExtendedBiomeFeatures {
 
 		// tree setup
 		CHESTNUT_LEAVES_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 28).add(CHESTNUT_LEAVES_FRUIT, 3);
-		CHESTNUT_SAPLING = (IPlantable) ExtendedBlocks.CHESTNUT_SAPLING.get();
 		CHESTNUT_TREE = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
 		CHESTNUT_TREE_BEES = buildClassicTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
 		CHESTNUT_TREE_FANCY = buildFancyTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL);
 		CHESTNUT_TREE_FANCY_BEES = buildFancyTreeWithBees(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL);
 		CHESTNUT_PARTY = buildNormalPartyTree(CHESTNUT_LOG, CHESTNUT_WOOD, CHESTNUT_BRANCH, CHESTNUT_LEAVES_POOL);
+
+		BANANA_LEAVES_POOL = new SimpleBlockStateProvider(BANANA_LEAVES);
+		BANANA_TREE = buildTreeWithSpecifiedFoliageGivenTrunk(BANANA_LOG, BANANA_LEAVES_POOL, 4, 2, new EmptyFoliagePlacer(), false, false);
 	}
 
 
@@ -122,24 +139,22 @@ public class ExtendedBiomeFeatures {
 	}
 
 	private static BaseTreeFeatureConfig buildClassicTree(BlockState log, BlockStateProvider leavesPool, int baseHeight, int heightRandA, boolean bees, boolean vines) {
-		return buildClassicTreeWithSpecifiedFoliage(log, leavesPool, baseHeight, heightRandA, new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3), bees, vines);
+		return buildTreeWithSpecifiedFoliageGivenTrunk(log, leavesPool, baseHeight, heightRandA, new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3), bees, vines);
 	}
 
 	private static BaseTreeFeatureConfig buildClassicTreeWithBees(BlockState log, BlockStateProvider leavesPool, int baseHeight, int heightRandA) {
 		return buildClassicTree(log, leavesPool, baseHeight, heightRandA, true, false);
 	}
 
-	private static BaseTreeFeatureConfig buildClassicTreeWithSpecifiedFoliage(BlockState log, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, boolean bees, boolean vines) {
+	private static BaseTreeFeatureConfig buildTreeWithSpecifiedFoliageGivenTrunk(BlockState log, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, boolean bees, boolean vines) {
 		List<TreeDecorator> decorators = new ArrayList<>();
 		if (bees) {
 			decorators.add(Placements.BEEHIVE_005);
 		}
-
 		if (vines) {
 			decorators.add(TrunkVineTreeDecorator.INSTANCE);
 			decorators.add(LeaveVineTreeDecorator.INSTANCE);
 		}
-
 		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new StraightTrunkPlacer(baseHeight, heightRandA, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
 	}
 

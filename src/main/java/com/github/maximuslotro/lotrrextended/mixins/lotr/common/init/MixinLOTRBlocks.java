@@ -88,6 +88,7 @@ import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableLogStairsBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.WoodBeamBlock;
+import lotr.common.block.trees.BananaTree;
 import lotr.common.block.trees.ChestnutTree;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
@@ -259,7 +260,7 @@ public class MixinLOTRBlocks {
 		//ExtendedBlocks.BANANA_WOOD = registerB("banana_wood", () -> new StrippableWoodBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD.get()));
 		ExtendedBlocks.BANANA_PLANKS = registerB("banana_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 		ExtendedBlocks.BANANA_LEAVES = registerB("banana_leaves", LOTRLeavesBlock::new);
-		ExtendedBlocks.BANANA_SAPLING = registerB("banana_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
+		ExtendedBlocks.BANANA_SAPLING = registerB("banana_sapling", () -> new LOTRSaplingBlock(new BananaTree()));
 		ExtendedBlocks.POTTED_BANANA_SAPLING = registerB("potted_banana_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.BANANA_SAPLING));
 		ExtendedBlocks.BANANA_SLAB = registerB("banana_slab", () -> new AxialSlabBlock(ExtendedBlocks.BANANA_PLANKS));
 		ExtendedBlocks.BANANA_STAIRS = registerB("banana_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.BANANA_PLANKS));
