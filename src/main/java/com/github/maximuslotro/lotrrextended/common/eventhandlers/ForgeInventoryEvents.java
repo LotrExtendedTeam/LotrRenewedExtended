@@ -64,21 +64,4 @@ public class ForgeInventoryEvents {
         }
     }
 
-    @SubscribeEvent
-    public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
-        if (event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof SpawnEggItem) {
-           if (event.getTarget() instanceof ExtendedTraderEntity) {
-               ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getTarget();
-
-               if (trader.canTradeWith(event.getPlayer())) {
-                   ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
-               } else {
-                   if (!event.getPlayer().level.isClientSide)
-                       event.getPlayer().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), event.getPlayer().getUUID());
-               }
-               event.setCanceled(true);
-           }
-        }
-    }
-
 }

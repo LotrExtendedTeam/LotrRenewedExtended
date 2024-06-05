@@ -165,17 +165,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem
-                || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
-            return ActionResultType.SUCCESS;
-        }
-        if (canTradeWith(player)) {
-            return ExtendedTraderHelper.openTraderGui(this, player, this);
-        } else {
-            if (!player.level.isClientSide)
-                player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
-            return ActionResultType.FAIL;
-        }
+        return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }
 
     @Override
