@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "lotrextended:entity/bed/bedroll",
