@@ -8,6 +8,7 @@ import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
@@ -25,6 +26,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -216,14 +218,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        if (canTradeWith(player)) {
-            return ExtendedTraderHelper.openTraderGui(this, player, this);
-        } else {
-            if (!player.level.isClientSide)
-                player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
-        }
-
-        return super.mobInteract(player, hand);
+        return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }
 
     @Override

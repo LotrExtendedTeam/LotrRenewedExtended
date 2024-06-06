@@ -3,10 +3,13 @@ package lotr.common.util;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 
+import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.client.ExtendedTraderHelperClientside;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -116,4 +119,19 @@ public class ExtendedTraderHelper {
         }
         return boughtOriginalQuantity;
     }
+
+    public static ActionResultType mobInteract(NPCEntity npc, ExtendedTraderEntity trader, PlayerEntity player, Hand hand) {
+        if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem
+                || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
+            return ActionResultType.SUCCESS;
+        }
+        if (trader.canTradeWith(player)) {
+            return openTraderGui(npc, player, trader);
+        } else {
+            if (!player.level.isClientSide)
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), player.getUUID());
+            return ActionResultType.FAIL;
+        }
+    }
+
 }
