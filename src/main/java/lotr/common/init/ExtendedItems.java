@@ -5,7 +5,6 @@ import java.util.Map;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
-import org.lwjgl.system.CallbackI;
 
 public class ExtendedItems {
 	public static Map<String, RegistryObject<Item>> REGISTEREDITEMS = new HashMap<>();

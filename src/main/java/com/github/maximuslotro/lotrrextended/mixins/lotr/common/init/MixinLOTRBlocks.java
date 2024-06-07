@@ -37,6 +37,8 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedB
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
+import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
@@ -88,8 +90,6 @@ import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableLogStairsBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.WoodBeamBlock;
-import lotr.common.block.trees.BananaTree;
-import lotr.common.block.trees.ChestnutTree;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRParticles;

@@ -4,7 +4,6 @@ import lotr.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.LOTRItems;
-import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
@@ -20,7 +19,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -29,7 +27,6 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import static lotr.common.item.VesselDrinkItem.Potency;

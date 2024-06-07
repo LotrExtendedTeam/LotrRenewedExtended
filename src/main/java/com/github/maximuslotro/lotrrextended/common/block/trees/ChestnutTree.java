@@ -1,7 +1,8 @@
-package lotr.common.block.trees;
+package com.github.maximuslotro.lotrrextended.common.block.trees;
 
 import java.util.Random;
 
+import lotr.common.block.trees.PartyableTree;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;

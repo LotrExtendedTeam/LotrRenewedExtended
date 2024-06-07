@@ -1,4 +1,4 @@
-package lotr.common.block.trees;
+package com.github.maximuslotro.lotrrextended.common.block.trees;
 
 import java.util.Random;
 
