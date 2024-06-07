@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
+import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
+import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
-import lotr.common.world.gen.tree.EmptyFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -32,6 +33,7 @@ import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 
 public class ExtendedBiomeFeatures {
+	private static boolean created = false;
 	private static BlockState CHESTNUT_LOG;
 	private static BlockState CHESTNUT_WOOD;
 	private static BlockState CHESTNUT_BRANCH;
@@ -48,7 +50,7 @@ public class ExtendedBiomeFeatures {
 
 	private static BlockState BANANA_LOG;
 	private static BlockState BANANA_LEAVES;
-	private static BlockState BANANA_FRUIT;
+	public static BlockState BANANA_FRUIT;
 
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE;
@@ -109,6 +111,12 @@ public class ExtendedBiomeFeatures {
 		EMERALD_ORE = ExtendedBlocks.EMERALD_ORE.get().defaultBlockState();
 		DIAMOND_ORE = ExtendedBlocks.DIAMOND_ORE.get().defaultBlockState();
 
+		//Use flag to catch re-initialization of block that causes doubling of registry items causing crashing
+		if(!created) {
+			created = true;
+			ExtendedFoilagePlacers.registerLeafBuilders();
+		}
+
 		// tree setup
 		CHESTNUT_LEAVES_POOL = new WeightedBlockStateProvider().add(CHESTNUT_LEAVES, 28).add(CHESTNUT_LEAVES_FRUIT, 3);
 		CHESTNUT_TREE = buildClassicTree(CHESTNUT_LOG, CHESTNUT_LEAVES_POOL, 4, 3);
@@ -118,7 +126,7 @@ public class ExtendedBiomeFeatures {
 		CHESTNUT_PARTY = buildNormalPartyTree(CHESTNUT_LOG, CHESTNUT_WOOD, CHESTNUT_BRANCH, CHESTNUT_LEAVES_POOL);
 
 		BANANA_LEAVES_POOL = new SimpleBlockStateProvider(BANANA_LEAVES);
-		BANANA_TREE = buildTreeWithSpecifiedFoliageGivenTrunk(BANANA_LOG, BANANA_LEAVES_POOL, 4, 2, new EmptyFoliagePlacer(), false, false);
+		BANANA_TREE = buildTreeWithSpecifiedFoliageGivenTrunk(BANANA_LOG, BANANA_LEAVES_POOL, 4, 2, new BananaFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0), FeatureSpread.of(2, 2)), false, false);
 	}
 
 

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,7 @@ public class ExtendedHangingBlock extends Block {
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
-		return canSupportCenter(world, pos.above(), Direction.DOWN);
+		return canSupportCenter(world, pos.above(), Direction.DOWN) || world.getBlockState(pos.above()).getBlock() instanceof LeavesBlock;
 	}
 
 	@SuppressWarnings("deprecation")
