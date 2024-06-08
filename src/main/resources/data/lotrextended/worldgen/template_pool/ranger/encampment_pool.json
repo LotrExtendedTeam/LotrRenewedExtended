@@ -3,7 +3,7 @@
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
-			"weight": 1,
+			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
@@ -12,7 +12,7 @@
 			}
 		},
 		{
-			"weight": 1,
+			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
@@ -21,7 +21,7 @@
 			}
 		},
 		{
-			"weight": 1,
+			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
@@ -30,7 +30,7 @@
 			}
 		},
 		{
-			"weight": 1,
+			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
@@ -39,7 +39,7 @@
 			}
 		},
 		{
-			"weight": 1,
+			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
@@ -48,11 +48,65 @@
 			}
 		},
 		{
-			"weight": 1,
+			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/encampment/ranger_encampment_spruce",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_beech_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_chestnut_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_fir_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_oak_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_pine_top",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_spruce_top",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		}
