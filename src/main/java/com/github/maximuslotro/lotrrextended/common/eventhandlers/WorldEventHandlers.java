@@ -1,6 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
+
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -10,6 +12,7 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class WorldEventHandlers {
@@ -46,4 +49,10 @@ public class WorldEventHandlers {
 		}
 	}
 
+	@SubscribeEvent
+	public static void handleBedRollCancelSpawn(PlayerSetSpawnEvent event) {
+		if(event.getPlayer().level.getBlockState(event.getNewSpawn()).getBlock() instanceof ExtendedBedrollBlock) {
+			event.setCanceled(true);
+		}
+	}
 }
