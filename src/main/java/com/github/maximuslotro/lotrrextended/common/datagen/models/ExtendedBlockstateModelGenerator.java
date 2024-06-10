@@ -305,11 +305,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRLeavesBlock) {
 					if(block.getKey().equals("chestnut_leaves")) {
-						numberTexturedBlockItem(block.getValue().get(), 5);
+						numberTexturedBlockItem(block.getValue().get(), new int[] {5,5,1,1,1});
 						continue;
 					}
 					if(block.getKey().equals("chestnut_leaves_fruit")) {
-						numberTexturedBlockItem(block.getValue().get(), 1);
+						numberTexturedBlockItem(block.getValue().get(), new int[] {1});
 						continue;
 					}
 					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
@@ -1281,12 +1281,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		}
 	}
 
-	private void numberTexturedBlockItem(Block block, int numVariants) {
+	private void numberTexturedBlockItem(Block block, int[] ints) {
 		registeredBlocks.add(block);
 		String name = block.getRegistryName().getPath();
 		List<ConfiguredModel> variants = new ArrayList<>();
 		ModelFile intModel = null;
-		for(int i=0; i<numVariants; i++) {
+		for(int i=0; i<ints.length; i++) {
 			ModelFile model = null;
 			if(name.contains("leaves_fruit")) {
 				String[] parts = name.split("_");
@@ -1308,7 +1308,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			if(intModel==null) {
 				intModel = model;
 			}
-			variants.add(new ConfiguredModel(model));
+			variants.add(new ConfiguredModel(model, 0, 0, false, ints[i]));
 		}
 		getVariantBuilder(block).partialState().addModels(variants.toArray(new ConfiguredModel[0]));
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(intModel);
