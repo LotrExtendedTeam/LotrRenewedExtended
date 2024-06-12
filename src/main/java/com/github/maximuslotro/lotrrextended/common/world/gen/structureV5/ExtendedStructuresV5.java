@@ -44,7 +44,7 @@ public class ExtendedStructuresV5 {
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
 		register(HOBBIT_BARN.get(), true,              32, 12, 795386759);
-		register(HOBBIT_HOLE_SMALL.get(), true,        24, 10,  212561518);
+		register(HOBBIT_HOLE_SMALL.get(), true,        24, 10, 212561518);
 		register(HOBBIT_HOLE_LARGE.get(), false,       40, 25, 445436264);
 		register(HOBBIT_HOUSE.get(), true,             24, 5,  764008750);
 		register(HOBBIT_PICNIC_BLANKET.get(), false,   14, 8,  639354136);
@@ -58,7 +58,7 @@ public class ExtendedStructuresV5 {
 		register(RANGER_HIDEOUT.get(), true,           52, 48, 752122251);
 		register(RANGER_WATCHTOWER.get(), true,        48, 41, 002406043);
 		register(RANGER_HOUSE_RUIN.get(), true,        37, 37, 340638920);
-		register(ARNOR_RUINS.get(), true,              30, 25, 340638920);
+		register(ARNOR_RUINS.get(), true,              30, 25, 365876386);
 	}
 	
 	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

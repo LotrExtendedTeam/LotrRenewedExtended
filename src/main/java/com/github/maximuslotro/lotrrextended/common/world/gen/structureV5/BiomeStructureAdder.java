@@ -31,7 +31,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HIDEOUT.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_RUIN.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_WATCHTOWER.get());
-		
+		addStructureToMap(tempMap, ExtendedStructuresV5.ARNOR_RUINS.get());
 
 		provider.generator.getSettings().structureConfig = tempMap;
 	}

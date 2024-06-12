@@ -665,6 +665,7 @@
   "command.lotrextended.structureSummon.success": "Structure Loaded Successfully",
   "config.lotrextended.enableDevMode": "Never enable this unless you are on the Extended Dev Team or developing the mod!",
   "config.lotrextended.enableDevModeClient": "Never enable this unless you are on the Extended Dev Team or developing the mod!",
+  "config.lotrextended.enableExtendedLogging": "Toggle to show additional log information if stuff is not working properly",
   "config.lotrextended.enableFellowshipCreation": "Enable or disable fellowship creation",
   "config.lotrextended.enableLegacyWaypointCreation": "Enable or disable legacy based waypoint creation",
   "config.lotrextended.enableRenewedWaypointCreation": "Enable or disable renewed based waypoint creation",
