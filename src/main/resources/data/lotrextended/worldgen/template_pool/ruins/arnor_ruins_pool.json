@@ -1,0 +1,114 @@
+{
+	"name": "lotrextended:ruins/arnor_ruins_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_1",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_2",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_3",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_4",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_5",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_6",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_7",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_8",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_9",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_10",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_11",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:arnor/ruins/arnor_pillar_ruins_12",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		}
+	]
+}
