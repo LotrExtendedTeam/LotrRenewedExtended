@@ -53,8 +53,7 @@
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
 		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket",
-		"net.minecraft.tileentity.MixinStructureBlockTileEntity",
-		"net.minecraft.world.chunk.storage.MixinChunkSerializer"
+		"net.minecraft.tileentity.MixinStructureBlockTileEntity"
 	],
 	
 	"client": [
