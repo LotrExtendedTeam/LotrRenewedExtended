@@ -21,6 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeS
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 
+import lotr.common.data.ExtendedLevelData;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -66,6 +67,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		forgeBus.register(ExtendedLevelData.class);
 		ExtendedCriteriaTriggers.generate();
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
