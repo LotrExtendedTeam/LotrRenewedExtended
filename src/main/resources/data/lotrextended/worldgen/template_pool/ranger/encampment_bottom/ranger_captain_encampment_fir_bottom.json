@@ -1,5 +1,5 @@
 {
-	"name": "lotrextended:ranger/encampment_bottom/ranger_caprain_encampment_fir_bottom",
+	"name": "lotrextended:ranger/encampment_bottom/ranger_captain_encampment_fir_bottom",
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
@@ -7,7 +7,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:ranger/captain_encampment/ranger_caprain_encampment_fir_bottom",
+				"location": "lotrextended:ranger/captain_encampment/ranger_captain_encampment_fir_bottom",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		}
