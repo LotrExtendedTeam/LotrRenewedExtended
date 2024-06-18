@@ -35,6 +35,7 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new RangerHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new RangerRuinsStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new ArnorRuinsStructure());
 
@@ -58,6 +59,7 @@ public class ExtendedStructuresV5 {
 		register(RANGER_HIDEOUT.get(), true,           52, 48, 752122251);
 		register(RANGER_WATCHTOWER.get(), true,        48, 41, 002406043);
 		register(RANGER_HOUSE_RUIN.get(), true,        37, 37, 340638920);
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     42, 37, 358719680);
 		register(ARNOR_RUINS.get(), true,              30, 25, 365876386);
 	}
 	
