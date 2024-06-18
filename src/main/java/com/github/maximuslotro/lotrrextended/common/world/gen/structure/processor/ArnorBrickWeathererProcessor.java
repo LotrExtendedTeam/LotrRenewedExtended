@@ -19,11 +19,11 @@ import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
 
-public class LotrBrickWeathererProcessor extends StructureProcessor {
-	public static final LotrBrickWeathererProcessor INSTANCE = new LotrBrickWeathererProcessor();
-	public static final Codec<LotrBrickWeathererProcessor> CODEC = Codec.unit(() -> INSTANCE);
+public class ArnorBrickWeathererProcessor extends StructureProcessor {
+	public static final ArnorBrickWeathererProcessor INSTANCE = new ArnorBrickWeathererProcessor();
+	public static final Codec<ArnorBrickWeathererProcessor> CODEC = Codec.unit(() -> INSTANCE);
 
-	private LotrBrickWeathererProcessor() {}
+	private ArnorBrickWeathererProcessor() {}
 
 	@Nullable
 	public Template.BlockInfo processBlock(IWorldReader p_230386_1_, BlockPos p_230386_2_, BlockPos p_230386_3_, Template.BlockInfo p_230386_4_, Template.BlockInfo p_230386_5_, PlacementSettings p_230386_6_) {

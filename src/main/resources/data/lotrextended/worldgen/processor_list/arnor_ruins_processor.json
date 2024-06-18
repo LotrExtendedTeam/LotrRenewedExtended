@@ -1,7 +1,7 @@
 {
   "processors": [
     {
-      "processor_type": "lotrextended:lotr_brick_weatherer_processor"
+      "processor_type": "lotrextended:arnor_weatherer_processor"
     }
   ]
 }
