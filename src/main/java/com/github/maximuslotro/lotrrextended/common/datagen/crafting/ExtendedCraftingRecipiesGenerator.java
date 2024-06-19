@@ -670,6 +670,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_wool", has(WOOL))
 		.unlockedBy("has_"+ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.DUNEDAIN_BANNER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_BANNER.get(), LOTRRecipes.HOBBIT_CRAFTING)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(WOOL))
+		.define('S', Ingredient.of(STICKS))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_wool", has(WOOL))
+		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath());
 		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get(), LOTRRecipes.RANGER_CRAFTING)
 		.requires(Items.PAPER)
@@ -1256,6 +1267,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BOW.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.DUNEDAIN_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.BARROW_BLADE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.HOBBIT_WALL_BANNER.get().getRegistryName().getPath());
 	}
 
 	@Override

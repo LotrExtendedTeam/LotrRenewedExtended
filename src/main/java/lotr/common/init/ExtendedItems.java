@@ -424,5 +424,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNEDAIN_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNEDAIN_BANNER;
+	public static RegistryObject<Item> HOBBIT_BANNER;
 }
 
