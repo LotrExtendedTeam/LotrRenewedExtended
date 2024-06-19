@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CUpdateStructureBlockPacket;
@@ -60,13 +60,13 @@ public class MixinCUpdateStructureBlockPacket {
 		mode = p_148837_1_.readEnum(StructureMode.class);
 		name = p_148837_1_.readUtf(32767);
 		offset = new BlockPos(
-				MathHelper.clamp(p_148837_1_.readVarInt(), MixinHooks.StructureLimitNegBounds, MixinHooks.StructureLimitPosBounds),
-				MathHelper.clamp(p_148837_1_.readVarInt(), MixinHooks.StructureLimitNegBounds, MixinHooks.StructureLimitPosBounds),
-				MathHelper.clamp(p_148837_1_.readVarInt(), MixinHooks.StructureLimitNegBounds, MixinHooks.StructureLimitPosBounds));
+				MathHelper.clamp(p_148837_1_.readVarInt(), MixinConstants.StructureLimitNegBounds, MixinConstants.StructureLimitPosBounds),
+				MathHelper.clamp(p_148837_1_.readVarInt(), MixinConstants.StructureLimitNegBounds, MixinConstants.StructureLimitPosBounds),
+				MathHelper.clamp(p_148837_1_.readVarInt(), MixinConstants.StructureLimitNegBounds, MixinConstants.StructureLimitPosBounds));
 		size = new BlockPos(
-				MathHelper.clamp(p_148837_1_.readVarInt(), 0, MixinHooks.StructureLimitPosBounds),
-				MathHelper.clamp(p_148837_1_.readVarInt(), 0, MixinHooks.StructureLimitPosBounds),
-				MathHelper.clamp(p_148837_1_.readVarInt(), 0, MixinHooks.StructureLimitPosBounds));
+				MathHelper.clamp(p_148837_1_.readVarInt(), 0, MixinConstants.StructureLimitPosBounds),
+				MathHelper.clamp(p_148837_1_.readVarInt(), 0, MixinConstants.StructureLimitPosBounds),
+				MathHelper.clamp(p_148837_1_.readVarInt(), 0, MixinConstants.StructureLimitPosBounds));
 		mirror = p_148837_1_.readEnum(Mirror.class);
 		rotation = p_148837_1_.readEnum(Rotation.class);
 		data = p_148837_1_.readUtf(12);

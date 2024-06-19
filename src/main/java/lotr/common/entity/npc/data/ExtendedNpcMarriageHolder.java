@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketNpcMarriageInfo;
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
@@ -88,23 +88,35 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	@Override
 	public PacketBuffer createDataPacketToClient(PacketBuffer buf) {
 		buf.writeVarInt(thisEntity.getId());
-		buf.writeVarInt(numberOfCurrentChildren);
-		buf.writeVarInt(maxNumberOfCurrentChildren);
+		
+		buf.writeBoolean(numberOfCurrentChildren!=0);
+		if (numberOfCurrentChildren!=0) {
+			buf.writeVarInt(numberOfCurrentChildren);
+		}
+		
+		buf.writeBoolean(maxNumberOfCurrentChildren!=0);
+		if (maxNumberOfCurrentChildren!=0) {
+			buf.writeVarInt(maxNumberOfCurrentChildren);
+		}
+		
 		buf.writeBoolean(spouseID!=null);
 		if (spouseID!=null) {
 			buf.writeLong(spouseID.getMostSignificantBits());
 			buf.writeLong(spouseID.getLeastSignificantBits());
 		}
+		
 		buf.writeBoolean(maleID!=null);
 		if (maleID!=null) {
 			buf.writeLong(maleID.getMostSignificantBits());
 			buf.writeLong(maleID.getLeastSignificantBits());
 		}
+		
 		buf.writeBoolean(femaleID!=null);
 		if (femaleID!=null) {
 			buf.writeLong(femaleID.getMostSignificantBits());
 			buf.writeLong(femaleID.getLeastSignificantBits());
 		}
+		
 		buf.writeBoolean(playerID!=null);
 		if (playerID!=null) {
 			buf.writeLong(playerID.getMostSignificantBits());
@@ -118,10 +130,10 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 		Entity entity = world.getEntity(entityId);
 		if (entity instanceof NPCEntity) {
 			NPCEntity npc = (NPCEntity) entity;
-			ExtendedNpcMarriageHolder marriageInfo = MixinHooks.getMarriageData(npc);
+			ExtendedNpcMarriageHolder marriageInfo = ExtendedReflectionHelper.getMarriageData(npc);
 			if(marriageInfo!=null) {
-				marriageInfo.numberOfCurrentChildren = buf.readInt();
-				marriageInfo.maxNumberOfCurrentChildren = buf.readInt();
+				marriageInfo.numberOfCurrentChildren = buf.readBoolean() ? buf.readInt() : 0;
+				marriageInfo.maxNumberOfCurrentChildren= buf.readBoolean() ? buf.readInt() : 0;
 				marriageInfo.spouseID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
 				marriageInfo.maleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
 				marriageInfo.femaleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;

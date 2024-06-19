@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.mixinhooks;
+package com.github.maximuslotro.lotrrextended.mixinhelpers;
 
 public final class ExtendedAlignmentKeyAction {
 	public final int factionShift;

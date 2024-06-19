@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -55,7 +55,7 @@ public class MixinLOTRLevelData {
 		boolean isOp = server.getPlayerList().isOp(targetPlayer.getGameProfile());
 		boolean creative = targetPlayer.abilities.instabuild;
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<ExtendedFellowship>();
-		ExtendedFellowshipDataModule data = MixinHooks.getFellowshipData(getData(targetPlayer));
+		ExtendedFellowshipDataModule data = ExtendedReflectionHelper.getFellowshipData(getData(targetPlayer));
 		for (UUID fsID : data.getFellowshipIDs()) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(world, fsID);
 			if (fs != null && fs.isHideMapLocation())

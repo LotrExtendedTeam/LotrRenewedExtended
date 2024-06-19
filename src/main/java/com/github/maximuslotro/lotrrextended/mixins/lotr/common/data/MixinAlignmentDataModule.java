@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 import com.google.common.math.IntMath;
 
 import lotr.common.LOTRMod;
@@ -63,7 +63,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 		if(ServerLifecycleHooks.getCurrentServer() == null && LOTRMod.PROXY.isClient()) {
 			return;
 		}
-		UUID uuid = MixinHooks.getAlignmentData(((AlignmentDataModule)(Object)this));
+		UUID uuid = ExtendedReflectionHelper.getAlignmentData(((AlignmentDataModule)(Object)this));
 		ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
 		ExtendedCriteriaTriggers.ALIGNMENT_TRIGGER.trigger(player, faction, alignment);
 	}
