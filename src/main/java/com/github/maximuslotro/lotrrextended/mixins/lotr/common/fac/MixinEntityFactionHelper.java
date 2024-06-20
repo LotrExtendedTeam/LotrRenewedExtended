@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.LOTRLevelData;
@@ -25,7 +25,7 @@ public class MixinEntityFactionHelper {
 			cancellable = true)
 	private static void checkFellowshipPvp(PlayerEntity attacker, Entity target, boolean warnFriendlyFire, CallbackInfoReturnable<Boolean> cir) {
 		if (target instanceof PlayerEntity && ((PlayerEntity) target) != attacker) {
-			ExtendedFellowshipDataModule fellowshipModule = MixinHooks.getFellowshipData(LOTRLevelData.getSidedData(attacker));
+			ExtendedFellowshipDataModule fellowshipModule = ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.getSidedData(attacker));
 			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships();
 	        for (ExtendedFellowship fs : fellowships) {
 	          if (fs.isPreventPVP() && fs.isFellowshipMember(((PlayerEntity) target).getUUID()))

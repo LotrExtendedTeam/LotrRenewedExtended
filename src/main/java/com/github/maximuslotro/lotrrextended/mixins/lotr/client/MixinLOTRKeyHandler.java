@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.ExtendedAlignmentKeyAction;
+import com.github.maximuslotro.lotrrextended.mixinhelpers.ExtendedAlignmentKeyAction;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.math.IntMath;
 

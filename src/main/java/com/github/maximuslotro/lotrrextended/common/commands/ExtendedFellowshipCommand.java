@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.commands;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -185,25 +185,25 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	}
 	
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_USER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(
 				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
     
 	public static final SuggestionProvider<CommandSource> SUGGEST_INVITES_USER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(
 				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID()));
 		return ISuggestionProvider.suggest(fellowshipData.listAllInviteNames(), builder);
 	};
     
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_PLAYER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(
 				EntityArgument.getPlayer(ctx, "player").level, EntityArgument.getPlayer(ctx, "player").getUUID()));
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
 
 	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
         	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
@@ -215,7 +215,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.renameFellowship(fellowship, fellowshipNewName);
@@ -226,7 +226,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int pvp(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventPVP(fellowship, toggle);
@@ -237,7 +237,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int hiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventHiredFF(fellowship, toggle);
@@ -248,7 +248,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int mapLoc(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipShowMapLocations(fellowship, toggle);
@@ -259,7 +259,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int removePlayer(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity playerToRemove) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.removePlayer(fellowship, playerToRemove.getUUID());
@@ -270,7 +270,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int setOwner(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newOwner) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.setOwner(fellowship, newOwner.getUUID());
@@ -281,10 +281,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int invite(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	ExtendedFellowshipDataModule fellowshipData2 = MixinHooks.getFellowshipData(getLevelData().getData(newMember.level, newMember.getUUID()));
+        	ExtendedFellowshipDataModule fellowshipData2 = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(newMember.level, newMember.getUUID()));
         	fellowshipData2.addInvitePlayer(fellowship, player.getUUID());
         	source.sendSuccess(new StringTextComponent("Invited "+newMember.getDisplayName().getString()+" to the fellowship"), true);
         	return 0;
@@ -293,7 +293,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int add(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.addPlayer(fellowship, newMember.getUUID());
@@ -304,7 +304,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int admin(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity changing, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(toggle) {
@@ -320,7 +320,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int leave(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipMember(player.getUUID())) {
         	fellowshipData.leaveFellowship(fellowship);
@@ -331,7 +331,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int icon(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	if(player.getMainHandItem()!=ItemStack.EMPTY) {
@@ -346,7 +346,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(fellowshipData.disbandFellowship(fellowship)) {
@@ -361,7 +361,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByInviteName(fellowshipname);
 		if (fellowship != null) {
 			if(accept) {
@@ -375,7 +375,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         return 0;
 	}
 	private static int displayInfo(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = MixinHooks.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
+		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
 		if (fellowship != null) {
 			source.sendSuccess(new StringTextComponent("FellowshipName: ").withStyle(TextFormatting.GREEN)

@@ -12,6 +12,7 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 public class ExtendedServerConfig {
 	public static final ForgeConfigSpec SERVER_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
+	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 	public static ForgeConfigSpec.BooleanValue enableFellowshipCreation;
 	public static ForgeConfigSpec.BooleanValue enableRenewedWaypointCreation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyWaypointCreation;
@@ -29,6 +30,7 @@ public class ExtendedServerConfig {
 
 		builder.push("Special settings");
 		enableDevMode = createBooleanValue(builder,"enableDevMode", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
+		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, false, "Toggle to show additional log information if stuff is not working properly");
 		builder.pop();
 		return builder;
 	}

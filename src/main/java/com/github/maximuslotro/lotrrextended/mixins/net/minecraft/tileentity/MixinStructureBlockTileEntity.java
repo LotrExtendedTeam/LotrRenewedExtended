@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 
 import net.minecraft.tileentity.StructureBlockTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -17,6 +17,6 @@ public abstract class MixinStructureBlockTileEntity extends TileEntity {
 
 	@Override
 	public double getViewDistance() {
-		return MixinHooks.StructureLimit;
+		return MixinConstants.StructureLimit;
 	   }
 }

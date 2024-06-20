@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_banner_small",
+  "textures": {
+    "particle": "lotrextended:block/banner/hobbit_banner",
+    "1": "lotrextended:block/banner/hobbit_banner"
+  }
+}

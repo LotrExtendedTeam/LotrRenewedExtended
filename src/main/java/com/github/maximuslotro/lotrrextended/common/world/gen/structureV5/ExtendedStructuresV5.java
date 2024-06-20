@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.arnor.ArnorRuinsStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.*;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.rangers.*;
 import com.google.common.collect.ImmutableList;
@@ -34,28 +35,32 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new RangerHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new RangerRuinsStructure());
-   
+    public static final RegistryObject<Structure<NoFeatureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new ArnorRuinsStructure());
+
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
 		register(HOBBIT_BARN.get(), true,              32, 12, 795386759);
-		register(HOBBIT_HOLE_SMALL.get(), true,        24, 5,  212561518);
-		register(HOBBIT_HOLE_LARGE.get(), false,       30, 10, 445436264);
+		register(HOBBIT_HOLE_SMALL.get(), true,        24, 10, 212561518);
+		register(HOBBIT_HOLE_LARGE.get(), false,       40, 25, 445436264);
 		register(HOBBIT_HOUSE.get(), true,             24, 5,  764008750);
 		register(HOBBIT_PICNIC_BLANKET.get(), false,   14, 8,  639354136);
 		register(HOBBIT_PICNIC_TABLE.get(), true,      14, 8,  852604573);
 		register(HOBBIT_TAVERN_SMALL.get(), true,      25, 15, 489984587);
 		register(HOBBIT_TAVERN_LARGE.get(), false,     43, 30, 230050245);
 		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
-		register(RANGER_CAMP.get(), true,              28, 24, 663198446);
-		register(RANGER_ENCAMPMENT.get(), true,        45, 38, 232963172);
-		register(RANGER_FORT.get(), true,              41, 36, 213435145);
-		register(RANGER_HIDEOUT.get(), true,           42, 38, 752122251);
-		register(RANGER_WATCHTOWER.get(), true,        38, 31, 002406043);
-		register(RANGER_HOUSE_RUIN.get(), true,        35, 26, 340638920);
+		register(RANGER_CAMP.get(), true,              36, 21, 663198446);
+		register(RANGER_ENCAMPMENT.get(), true,        50, 38, 232963172);
+		register(RANGER_FORT.get(), true,              56, 36, 213435145);
+		register(RANGER_HIDEOUT.get(), true,           44, 32, 752122251);
+		register(RANGER_WATCHTOWER.get(), true,        42, 31, 002406043);
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 35, 358719680);
+		register(RANGER_HOUSE_RUIN.get(), true,        32, 18, 340638920);
+		register(ARNOR_RUINS.get(), true,              29, 23, 365876386);
 	}
 	
 	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

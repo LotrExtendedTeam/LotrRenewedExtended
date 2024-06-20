@@ -1,0 +1,15 @@
+{
+	"name": "lotrextended:ranger/encampment_bottom/ranger_captain_encampment_pine_bottom",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:ranger/captain_encampment/ranger_captain_encampment_pine_bottom",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		}
+	]
+}
