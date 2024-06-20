@@ -10,6 +10,7 @@
 		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinLOTRLevelData",
+		"lotr.common.data.MixinFastTravelDataModule",
 		"lotr.common.entity.item.MixinModBoatType",
 		"lotr.common.entity.npc.MixinNPCEntity",
 		"lotr.common.fac.MixinEntityFactionHelper",

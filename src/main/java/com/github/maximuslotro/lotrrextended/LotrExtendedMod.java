@@ -21,6 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeS
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 
+import com.github.maximuslotro.lotrrextended.common.eventhandlers.LOTRFastTravelEventHandler;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -45,7 +46,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 public class LotrExtendedMod{
 
 	public static final String MODID = "lotrextended";
-	IEventBus modBus;
+	private IEventBus modBus;
 	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
 	public LotrExtendedMod() {
@@ -57,6 +58,7 @@ public class LotrExtendedMod{
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::setup);
+		modBus.register(LOTRFastTravelEventHandler.class);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
 		forgeBus.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
@@ -83,6 +85,10 @@ public class LotrExtendedMod{
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
         });
     }
+
+	public IEventBus getModBus() {
+		return modBus;
+	}
 
 	public void registerCommands(RegisterCommandsEvent event) {
 		ExtendedCommands.registerCommands(event.getDispatcher(), event.getEnvironment());
