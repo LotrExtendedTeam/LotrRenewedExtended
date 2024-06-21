@@ -5,6 +5,8 @@
  * Made Bedrolls not set the players spawnpoint
  * Made banner size toggleable by shift clicking
  * Merged Chestnut Flowery Leaves with Chestnut Leaves
+ * Ported Cracked Arnor Pillar
+ * Ported Cracked Arnor Pillar Slab
  * Ported Dunedain Banner
  * Ported Hobbit Banner
 * Entities
@@ -187,7 +189,7 @@ Structures
 * Trading
  * Fixed a server crash when trading with traders
  * Made Coins with custom NBT data not tradable
- 
+
 (Beta 1.4.3)
 * Blocks
  * Allowed for plants to be placed on barren dirt
@@ -503,7 +505,7 @@ Structures
 * GUIs
  * Temporarily disabled the Coin Exchange GUI
 * Misc
- * Add Localization for all items and block and most gui elements
+ * Add Localization for all items and block and most GUI elements
  * Added Automatic DataGen for Block and Item Models, Blockstate definitions, Crafting Recipes, Block and Items Tags, Loot-tables
  * Added an Update Checker!
 * Textures
@@ -748,7 +750,7 @@ Structures
 * Entities
  * Ported Hobbit Bartender NPC
 * Features
- * Ported Fellowships -no gui yet. Fully usable via command
+ * Ported Fellowships -no GUI yet. Fully usable via command
  * Ported Hobbit Barn Spawns in Shire
  * Ported Hobbit Tavern Spawns in Shire
  * Ported Hobbit Windmill Spawns in Shire
@@ -756,7 +758,7 @@ Structures
  * Ported Hobbit Hole Small Spawns in Shire
  * Made wargs drop different fur depending on the warg's color
 * GUIs
- * Ported Horn of Command Gui
+ * Ported Horn of Command GUI
  * Ported Settings Menu
 * Items
  * Added Black Fur
@@ -849,7 +851,7 @@ Structures
  * Remastered Dol Guldur Brick Wall
  * Remastered Dol Guldur Pillar
  * Remastered Dol Guldur Pillar Slab
- * Remastered Dol Gudur Crafting Table texture
+ * Remastered Dol Guldur Crafting Table texture
  * Remastered Dol Guldur Helmet texture
  * Remastered Dol Guldur Chestplate texture
  * Remastered Dol Guldur Leggings texture
