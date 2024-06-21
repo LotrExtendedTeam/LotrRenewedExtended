@@ -649,6 +649,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.MITHRIL_NUGGET.get().getRegistryName().getPath(), has(LOTRItems.MITHRIL_NUGGET.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ITHILDIN.get().getRegistryName().getPath()));
 		//MISC BLOCKS
+		makePillarSlabRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, 
+				ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB, 
+				LOTRItems.CRACKED_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)
 		.pattern("PIP")
@@ -1178,6 +1181,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
 	}
 
 	private void addOverrides() {

@@ -318,6 +318,9 @@ public class MixinLOTRItems {
 		ExtendedItems.SCORCHED_BRICK_SLAB = regBlockItemB(ExtendedBlocks.SCORCHED_BRICK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SCORCHED_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.SCORCHED_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SCORCHED_BRICK_WALL = regBlockItemB(ExtendedBlocks.SCORCHED_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		//Arnor
+		ExtendedItems.CRACKED_ARNOR_PILLAR = regBlockItemB(ExtendedBlocks.CRACKED_ARNOR_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_ARNOR_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		//Mud
 		ExtendedItems.MUD = regBlockItemB(ExtendedBlocks.MUD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MUD_SLAB = regBlockItemB(ExtendedBlocks.MUD_SLAB, LOTRItemGroups.BLOCKS);

@@ -366,6 +366,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SCORCHED_BRICK_SLAB = registerB("scorched_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.SCORCHED_BRICK));
 		ExtendedBlocks.SCORCHED_BRICK_STAIRS = registerB("scorched_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SCORCHED_BRICK));
 		ExtendedBlocks.SCORCHED_BRICK_WALL = registerB("scorched_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.SCORCHED_BRICK));
+		//Arnor
+		ExtendedBlocks.CRACKED_ARNOR_PILLAR = registerB("cracked_arnor_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
+		ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB = registerB("cracked_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR));
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
 		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD));

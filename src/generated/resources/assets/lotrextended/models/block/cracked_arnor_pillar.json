@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/cracked_arnor_pillar",
+    "end": "lotrextended:block/cracked_arnor_pillar_face"
+  }
+}

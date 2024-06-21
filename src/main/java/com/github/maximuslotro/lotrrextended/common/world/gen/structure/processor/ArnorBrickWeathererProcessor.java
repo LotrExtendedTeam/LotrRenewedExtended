@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProces
 import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.mojang.serialization.Codec;
 
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -108,26 +109,28 @@ public class ArnorBrickWeathererProcessor extends StructureProcessor {
 				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_WALL, blockstate), (CompoundNBT)null);
 			}
 		}
-//		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR.get())) {
-//			Random rand = new Random();
-//			int num = rand.nextInt(8);
-//			if(num==0) {
-//				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
-//			}
+		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR.get())) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
+			}
+			return p_230386_5_;
 //			else if (num==1) {
 //				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
 //			}
-//		}
-//		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR_SLAB.get())) {
-//			Random rand = new Random();
-//			int num = rand.nextInt(8);
-//			if(num==0) {
-//				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
-//			}
+		}
+		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR_SLAB.get())) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+			}
+			return p_230386_5_;
 //			else if (num<=2) {
 //				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
 //			}
-//		}
+		}
 		return p_230386_5_;
 	}
 
