@@ -27,10 +27,5 @@ public class RangerHideoutStructure extends ExtendedSurfaceStructuresV5<NoFeatur
 		public String getLocation() {
 			return "ranger/hideout_pool";
 		}
-
-		@Override
-		public int yShift() {
-			return -1;
-		}
     }
 }
