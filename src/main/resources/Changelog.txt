@@ -1,3 +1,69 @@
+(Beta 1.5.1)
+* Blocks
+ * Added Hanging Bananas
+ * Fixed an infinite berry glitch with bushes
+ * Made Bedrolls not set the players spawnpoint
+ * Made banner size toggleable by shift clicking
+ * Merged Chestnut Flowery Leaves with Chestnut Leaves
+ * Ported Dunedain Banner
+ * Ported Hobbit Banner
+* Entities
+ * Added more unique death loot-tables to traders
+ * Fixed Dunedain Rangers not spawning with Iron Swords and having a double rate to spawn with an Arnor Spear
+ * Fixed Elven Wanderers hair still showing despite them having hoods
+* Items
+ * Added Banana Tree Gen to Banana Saplings
+ * Fixed Dunedain Bow and Longbow not having drawing animations
+ * Ported barrow blades
+* Language
+ * Added Chinese translation
+ * Added Russian Translation
+ * Added Speechbanks for Blue Mountains Dwarf Archers
+ * Added Speechbanks for Bree
+ * Fixed Galadhrim Wanderer not having speachbanks
+* Misc
+ * Added 4 new (non-legacy) advancements
+ * Added 52 advancements from Legacy (7.8%) (Includes Assorted General, Eriador and Shire categories)
+ * Added Dunedain Banner Pattern recipe using the Dunedain Banner
+ * Added Trader (entity) buy/sell advancement triggers
+ * Added Trader item specific buy/sell advancement triggers
+ * Adjusted Berry Nutrition and Saturation values
+ * Adjusted Cheese Slice, Banana, Banana Bread, and Roasted Chestnut saturation values
+ * Fixed a bug that made it impossible to make custom waypoints
+ * Adjusted ranger structure chest loot-table weights
+* Structures
+ * Added Arnor Ruins (3 variants)
+ * Added Ranger Forts, Encampments (with captain variant)
+ * Added ranger Structures to the Enedwaith biome
+ * Tweaked ranger structure spawn distances
+ * Updated ranger structures to have banners on both sides
+* Textures
+ * Added More Variations to Chestnut Flower Leaves texture
+ * Added More Variations to Chestnut Leaves texture
+ * Remastered Wood-Elven Armor Item textures (Renewed Pack)
+ * Changed Chestnut Leaves texture weights
+ * Fixed Jungle Mud Grass Snowy texture being gone (since beta 1.3ish)
+ * Updated Amber Block texture
+ * Updated Amber Ore texture
+ * Updated Amber texture
+ * Updated Banana texture
+ * Updated Black Uruk Ingot texture
+ * Updated Blackberry Bush texture
+ * Updated Blackberry Plant texture
+ * Updated Blackberry texture
+ * Updated Bowstring texture
+ * Updated Gilded Iron texture
+ * Updated Morwaith Crafting Table texture
+ * Updated Obsidian Shard texture
+ * Updated Pearl texture
+ * Updated Silver Coin (1) texture
+ * Updated Silver Coin (10) texture
+ * Updated Silver Coin (100) texture
+ * Updated Warg Bone texture (Renewed Pack)
+* Trading
+ * Fixed a few trader issues
+ * Restricted trading with traders to a set alignment threshold (trader specific value)
+
 (Beta 1.5.0)
 * Blocks
  * Added Ability for Weapon Racks to have loot-tables
