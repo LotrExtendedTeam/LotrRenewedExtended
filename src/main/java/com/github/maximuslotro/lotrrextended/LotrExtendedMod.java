@@ -21,7 +21,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeS
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.LOTRFastTravelEventHandler;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -58,7 +57,6 @@ public class LotrExtendedMod{
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::setup);
-		modBus.register(LOTRFastTravelEventHandler.class);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
 		forgeBus.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
