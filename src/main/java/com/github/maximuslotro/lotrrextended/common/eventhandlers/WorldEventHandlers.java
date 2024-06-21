@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBl
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.event.LOTRFastTravelWaypointEvent;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.item.SpawnEggItem;

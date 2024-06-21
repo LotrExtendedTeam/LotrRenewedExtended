@@ -45,7 +45,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 public class LotrExtendedMod{
 
 	public static final String MODID = "lotrextended";
-	IEventBus modBus;
+	private IEventBus modBus;
 	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
 	public LotrExtendedMod() {
@@ -83,6 +83,10 @@ public class LotrExtendedMod{
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
         });
     }
+
+	public IEventBus getModBus() {
+		return modBus;
+	}
 
 	public void registerCommands(RegisterCommandsEvent event) {
 		ExtendedCommands.registerCommands(event.getDispatcher(), event.getEnvironment());
