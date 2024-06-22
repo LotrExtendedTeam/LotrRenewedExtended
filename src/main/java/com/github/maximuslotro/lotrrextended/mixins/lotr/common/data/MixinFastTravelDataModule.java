@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.data;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import lotr.common.event.LOTRFastTravelWaypointEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.Mixin;
 
 import lotr.common.data.FastTravelDataModule;
@@ -27,7 +27,7 @@ public abstract class MixinFastTravelDataModule {
 		BlockPos travelPos = waypoint.getTravelPosition(world, player);
 		if (travelPos != null) {
 			LOTRFastTravelWaypointEvent event = new LOTRFastTravelWaypointEvent(player, world, orig, travelPos);
-			LotrExtendedMod.INSTANCE.getModBus().post(event);
+			MinecraftForge.EVENT_BUS.post(event);
 		}
 	}
 }
