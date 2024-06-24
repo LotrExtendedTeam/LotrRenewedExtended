@@ -589,9 +589,9 @@ public class MixinLOTRBlocks {
 
 		//Banners
 		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion().lootFrom(ExtendedBlocks.DUNEDAIN_BANNER)));
+		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
 		ExtendedBlocks.HOBBIT_BANNER = registerB("hobbit_banner", () -> new ExtendedMEBannerBlock(BannerTypes.SHIRE, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.HOBBIT_WALL_BANNER = registerB("hobbit_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.SHIRE, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion().lootFrom(ExtendedBlocks.HOBBIT_BANNER)));
+		ExtendedBlocks.HOBBIT_WALL_BANNER = registerB("hobbit_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.SHIRE, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
