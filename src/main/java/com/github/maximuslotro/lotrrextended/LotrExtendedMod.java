@@ -14,7 +14,8 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
@@ -72,7 +73,8 @@ public class LotrExtendedMod{
 		ExtendedStats.init();
 		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
-		ExtendedLootModifiers.register(modBus);
+		ExtendedGlobalLootModifiers.register(modBus);
+		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
 	}
 

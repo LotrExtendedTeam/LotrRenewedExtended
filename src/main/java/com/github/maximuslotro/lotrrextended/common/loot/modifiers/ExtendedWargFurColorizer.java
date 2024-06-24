@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.loot;
+package com.github.maximuslotro.lotrrextended.common.loot.modifiers;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
-public class WargFurColorizer extends LootModifier {
+public class ExtendedWargFurColorizer extends LootModifier {
 
-	public WargFurColorizer(ILootCondition[] conds) {
+	public ExtendedWargFurColorizer(ILootCondition[] conds) {
 		super(conds);
 	}
 
@@ -49,14 +49,14 @@ public class WargFurColorizer extends LootModifier {
 		return generatedLoot;
 	}
 
-	public static class Serializer extends GlobalLootModifierSerializer<WargFurColorizer> {
+	public static class Serializer extends GlobalLootModifierSerializer<ExtendedWargFurColorizer> {
 		@Override
-		public WargFurColorizer read(ResourceLocation name, JsonObject obj, ILootCondition[] conditions) {
-			return new WargFurColorizer(conditions);
+		public ExtendedWargFurColorizer read(ResourceLocation name, JsonObject obj, ILootCondition[] conditions) {
+			return new ExtendedWargFurColorizer(conditions);
 		}
 
 		@Override
-		public JsonObject write(WargFurColorizer instance) {
+		public JsonObject write(ExtendedWargFurColorizer instance) {
 			return this.makeConditions(new ILootCondition[0]);
 		}
 	}

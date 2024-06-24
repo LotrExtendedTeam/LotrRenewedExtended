@@ -28,7 +28,7 @@
       ],
       "functions": [
         {
-          "function": "lotr:warg_fur_type"
+          "function": "lotrextended:warg_fur_type"
         }
       ]
     }

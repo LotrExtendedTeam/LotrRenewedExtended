@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
-import lotr.common.loot.functions.ExtendedSetWargFurType;
 import lotr.common.loot.functions.SetNPCDrinkPotency;
 import lotr.common.loot.functions.SetPouchColorFromEntityFaction;
 import net.minecraft.data.loot.EntityLootTables;

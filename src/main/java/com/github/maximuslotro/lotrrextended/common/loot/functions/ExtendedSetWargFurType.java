@@ -1,4 +1,4 @@
-package lotr.common.loot.functions;
+package com.github.maximuslotro.lotrrextended.common.loot.functions;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
