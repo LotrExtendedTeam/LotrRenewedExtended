@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:angmar_brick"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.angmar.the_ruin_of_arnor.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.angmar.the_ruin_of_arnor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/angmar.png"
+  },
+  "criteria": {
+    "enter_angmar": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:angmar"
+        }
+      }
+    },
+    "enter_angmar_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:angmar_mountains"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_angmar",
+      "enter_angmar_mountains"
+    ]
+  ]
+}

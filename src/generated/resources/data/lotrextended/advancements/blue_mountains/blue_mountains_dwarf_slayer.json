@@ -1,0 +1,70 @@
+{
+  "parent": "lotrextended:blue_mountains/firebeards_and_broadbeams",
+  "display": {
+    "icon": {
+      "item": "lotr:dwarf_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.blue_mountains.blue_mountains_dwarf_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.blue_mountains.blue_mountains_dwarf_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_blue_mountains_archer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_archer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_dwarf": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_dwarf"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_warrior": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_warrior"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_blue_mountains_archer",
+      "kill_blue_mountains_dwarf",
+      "kill_blue_mountains_warrior"
+    ]
+  ]
+}

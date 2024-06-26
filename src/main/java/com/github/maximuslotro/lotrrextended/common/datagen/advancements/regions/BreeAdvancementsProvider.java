@@ -21,7 +21,6 @@ import net.minecraft.util.text.TextFormatting;
 public class BreeAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> BREE_BIOMES = ImmutableList.of(LOTRBiomes.BREELAND, LOTRBiomes.CHETWOOD);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement bree = build(true, data(LOTRItems.DRYSTONE.get(), "of_hobbits_and_men", true, FrameType.TASK, true, true, false)

@@ -21,7 +21,6 @@ import net.minecraft.util.text.TextFormatting;
 public class DunlandAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> DUNLAND_BIOMES = ImmutableList.of(LOTRBiomes.DUNLAND);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement dunland = build(true, data(Items.STONE_SWORD, "land_of_the_wild_men", true, FrameType.TASK, true, true, false)

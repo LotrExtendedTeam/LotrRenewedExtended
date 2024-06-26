@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_sapling"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rhovanion.the_great_river.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.rhovanion.the_great_river.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/rhovanion.png"
+  },
+  "criteria": {
+    "enter_anduin_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:anduin_hills"
+        }
+      }
+    },
+    "enter_vales_of_anduin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:vales_of_anduin"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_anduin_hills",
+      "enter_vales_of_anduin"
+    ]
+  ]
+}

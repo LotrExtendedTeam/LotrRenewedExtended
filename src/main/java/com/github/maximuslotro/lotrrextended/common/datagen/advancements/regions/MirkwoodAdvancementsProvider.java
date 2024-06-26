@@ -23,7 +23,6 @@ public class MirkwoodAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> MIRKWOOD_BIOMES = ImmutableList.of(LOTRBiomes.MIRKWOOD, LOTRBiomes.MIRKWOOD_MOUNTAINS, 
 			LOTRBiomes.NORTHERN_MIRKWOOD, LOTRBiomes.WOODLAND_REALM);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement mirkwoodBase = build(true, data(LOTRItems.HANGING_WEB.get(), "stay_on_the_path", true, FrameType.TASK, true, true, false)

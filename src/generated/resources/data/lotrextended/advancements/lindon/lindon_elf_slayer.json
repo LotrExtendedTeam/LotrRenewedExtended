@@ -1,0 +1,55 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "icon": {
+      "item": "lotr:elf_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lindon.lindon_elf_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.lindon.lindon_elf_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_lindon_warrior": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:lindon_warrior"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_lindon_elf": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:lindon_elf"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_lindon_warrior",
+      "kill_lindon_elf"
+    ]
+  ]
+}

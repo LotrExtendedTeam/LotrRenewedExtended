@@ -1,0 +1,55 @@
+{
+  "parent": "lotrextended:mirkwood/guest_of_the_elvenking",
+  "display": {
+    "icon": {
+      "item": "lotr:elf_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mirkwood.wood_elf_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.mirkwood.wood_elf_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_wood_elf": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:wood_elf"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_wood_elf_warrior": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:wood_elf_warrior"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_wood_elf",
+      "kill_wood_elf_warrior"
+    ]
+  ]
+}

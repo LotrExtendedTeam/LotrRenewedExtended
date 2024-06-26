@@ -12,7 +12,6 @@ import net.minecraft.util.text.TextFormatting;
 
 public class EnedwaithAdvancementsProvider extends BaseAdvancementType{
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement enedwaith = build(true, data(Items.GRASS_BLOCK, "forsaken_country", true, FrameType.TASK, true, true, false)

@@ -18,7 +18,6 @@ public class MistyMountainsAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> MISTY_MOUNTAIN_BIOMES = ImmutableList.of(LOTRBiomes.MISTY_MOUNTAINS, 
 			LOTRBiomes.MISTY_MOUNTAINS_FOOTHILLS);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement mm = build(true, data(Items.SNOW_BLOCK, "the_misty_mountains_cold", true, FrameType.TASK, true, true, false)

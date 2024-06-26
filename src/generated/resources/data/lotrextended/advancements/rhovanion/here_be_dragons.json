@@ -1,0 +1,43 @@
+{
+  "parent": "lotrextended:rhovanion/the_great_river",
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rhovanion.here_be_dragons.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.rhovanion.here_be_dragons.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_grey_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:grey_mountains"
+        }
+      }
+    },
+    "enter_grey_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:grey_mountains_foothills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_grey_mountains",
+      "enter_grey_mountains_foothills"
+    ]
+  ]
+}

@@ -11,7 +11,6 @@ import net.minecraft.util.text.TextFormatting;
 
 public class EregionAdvancementsProvider extends BaseAdvancementType{
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement eregion = build(true, data(LOTRItems.HOLLY_SAPLING.get(), "faded_splendor", true, FrameType.TASK, true, true, false)

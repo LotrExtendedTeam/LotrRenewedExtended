@@ -35,7 +35,6 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 		}
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement base = build(true, data(LOTRItems.RED_BOOK.get(), "first_steps", true, FrameType.TASK, true, true, false)

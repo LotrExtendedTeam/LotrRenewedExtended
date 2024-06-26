@@ -20,7 +20,6 @@ import net.minecraft.util.text.TextFormatting;
 public class BlueMountainsAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> BLUEMTS_BIOMES = ImmutableList.of(LOTRBiomes.BLUE_MOUNTAINS, LOTRBiomes.BLUE_MOUNTAINS_FOOTHILLS);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement blue_mountains = build(true, data(LOTRItems.BLUE_ROCK.get(), "firebeards_and_broadbeams", true, FrameType.TASK, true, true, false)

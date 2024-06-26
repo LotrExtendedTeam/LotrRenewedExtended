@@ -19,7 +19,6 @@ import net.minecraft.util.text.TextFormatting;
 public class RhovanionAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> Rhovanion_BIOMES = ImmutableList.of(LOTRBiomes.ANDUIN_HILLS, LOTRBiomes.VALES_OF_ANDUIN);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement rhovanion = build(true, data(Items.OAK_SAPLING, "the_great_river", true, FrameType.TASK, true, true, false)

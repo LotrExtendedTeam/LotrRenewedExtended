@@ -20,7 +20,6 @@ import net.minecraft.util.text.TextFormatting;
 public class AngmarAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> ANGMAR_BIOMES = ImmutableList.of(LOTRBiomes.ANGMAR, LOTRBiomes.ANGMAR_MOUNTAINS);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement angmar = build(true, data(LOTRItems.ANGMAR_BRICK.get(), "the_ruin_of_arnor", true, FrameType.TASK, true, true, false)

@@ -10,6 +10,7 @@ import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
@@ -35,10 +36,10 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("A Lonely Land").setDescription("Enter the Lone Lands.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.LONE_LANDS), LOTRBiomes.LONE_LANDS_HILLS).requirements(IRequirementsStrategy.OR)
 				.parent(eriadorBase));
-//		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_orc_slayer", false, FrameType.TASK, true, true, false)
-//				.setTitle("Gundabad Orc Slayer").setDescription("Kill a Gundabad Orc.").setTitleStype(TextFormatting.GREEN), 
-//				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.GUNDABAD_ORC.get()), LOTREntities.GUNDABAD_ORC_ARCHER.get())
-//				.requirements(IRequirementsStrategy.OR).parent(lone_lands));
+		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_orc_slayer", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Orc Slayer").setDescription("Kill a Gundabad Orc.").setTitleStype(TextFormatting.GREEN), 
+				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.GUNDABAD_ORC.get()), LOTREntities.GUNDABAD_ORC_ARCHER.get())
+				.requirements(IRequirementsStrategy.OR).parent(lone_lands));
 
 		Advancement ranger_armor = build(true, data(LOTRItems.RANGER_NORTH_CHESTPLATE.get(), "watcher", false, FrameType.TASK, true, true, false)
 				.setTitle("Watcher").setDescription("Acquire a full set of Ranger armor.").setTitleStype(TextFormatting.GREEN), 
@@ -85,18 +86,18 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Roast Mutton").setDescription("Enter the Trollshaws.").setTitleStype(TextFormatting.GREEN), 
 				addBiomeTrigger(make(), LOTRBiomes.TROLLSHAWS).parent(eriadorBase));
 
-//		Advancement rivendell = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_hidden_valley", false, FrameType.TASK, true, true, false)
-//				.setTitle("The Hidden Valley").setDescription("Enter the realm of Rivendell.").setTitleStype(TextFormatting.GREEN), 
-//				addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.RIVENDELL), LOTRBiomes.RIVENDELL_HILLS).requirements(IRequirementsStrategy.OR)
-//				.parent(eriadorBase));
-//		Advancement rivendell_armor = build(true, data(LOTRItems.RIVENDELL_CHESTPLATE.get(), "livery_of_lord_elrond", false, FrameType.TASK, true, true, false)
-//				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor.").setTitleStype(TextFormatting.GREEN), 
-//				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(), 
-//						LOTRItems.RIVENDELL_LEGGINGS.get(), LOTRItems.RIVENDELL_BOOTS.get()).parent(rivendell));
-//		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", false, FrameType.TASK, true, true, false)
-//				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf.").setTitleStype(TextFormatting.GREEN), 
-//				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.RIVENDELL_ELF.get()), LOTREntities.RIVENDELL_WARRIOR.get())
-//				.requirements(IRequirementsStrategy.OR).parent(rivendell));
+		Advancement rivendell = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_hidden_valley", false, FrameType.TASK, true, true, false)
+				.setTitle("The Hidden Valley").setDescription("Enter the realm of Rivendell.").setTitleStype(TextFormatting.GREEN), 
+				addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.RIVENDELL), LOTRBiomes.RIVENDELL_HILLS).requirements(IRequirementsStrategy.OR)
+				.parent(eriadorBase));
+		Advancement rivendell_armor = build(true, data(LOTRItems.RIVENDELL_CHESTPLATE.get(), "livery_of_lord_elrond", false, FrameType.TASK, true, true, false)
+				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor.").setTitleStype(TextFormatting.GREEN), 
+				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(), 
+						LOTRItems.RIVENDELL_LEGGINGS.get(), LOTRItems.RIVENDELL_BOOTS.get()).parent(rivendell));
+		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", false, FrameType.TASK, true, true, false)
+				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf.").setTitleStype(TextFormatting.GREEN), 
+				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.RIVENDELL_ELF.get()), LOTREntities.RIVENDELL_WARRIOR.get())
+				.requirements(IRequirementsStrategy.OR).parent(rivendell));
 
 		Advancement coldfells = build(true, data(Items.OAK_SAPLING, "the_wild_north", false, FrameType.TASK, true, true, false)
 				.setTitle("The Wild North").setDescription("Enter the Coldfells.").setTitleStype(TextFormatting.GREEN), 
@@ -138,33 +139,33 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Captain of the North").setDescription("Reach +2000.0 alignment with the Dúnedain of the North.").setTitleStype(TextFormatting.DARK_PURPLE), 
 				addAlignmentTrigger(make(), FactionPointers.DUNEDAIN_NORTH, 2000).parent(ranger_1000));
 
-//		Advancement orc_10 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_thrall", false, FrameType.TASK, true, true, false)
-//				.setTitle("Mountain-thrall").setDescription("Reach +10.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 10).parent(eriadorBase));
-//
-//		Advancement orc_50 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_snaga", false, FrameType.TASK, true, true, false)
-//				.setTitle("Mountain-snaga").setDescription("Reach +50.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 50).parent(orc_10));
-//
-//		Advancement orc_100 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_raider", false, FrameType.TASK, true, true, false)
-//				.setTitle("Gundabad Raider").setDescription("Reach +100.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 100).parent(orc_50));
-//
-//		Advancement orc_200 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_ravager", false, FrameType.TASK, true, true, false)
-//				.setTitle("Gundabad Ravager").setDescription("Reach +200.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 200).parent(orc_100));
-//
-//		Advancement orc_500 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_scourge", false, FrameType.TASK, true, true, false)
-//				.setTitle("Gundabad Scourge").setDescription("Reach +500.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 500).parent(orc_200));
-//
-//		Advancement orc_1000 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_warlord", false, FrameType.GOAL, true, true, false)
-//				.setTitle("Gundabad Warlord").setDescription("Reach +1000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GOLD), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 1000).parent(orc_500));
-//
-//		Advancement orc_2000 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_chieftain", false, FrameType.CHALLENGE, true, true, false)
-//				.setTitle("Gundabad Chieftain").setDescription("Reach +2000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.DARK_PURPLE), 
-//				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 2000).parent(orc_1000));
+		Advancement orc_10 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_thrall", false, FrameType.TASK, true, true, false)
+				.setTitle("Mountain-thrall").setDescription("Reach +10.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 10).parent(eriadorBase));
+
+		Advancement orc_50 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_snaga", false, FrameType.TASK, true, true, false)
+				.setTitle("Mountain-snaga").setDescription("Reach +50.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 50).parent(orc_10));
+
+		Advancement orc_100 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_raider", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Raider").setDescription("Reach +100.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 100).parent(orc_50));
+
+		Advancement orc_200 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_ravager", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Ravager").setDescription("Reach +200.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 200).parent(orc_100));
+
+		Advancement orc_500 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_scourge", false, FrameType.TASK, true, true, false)
+				.setTitle("Gundabad Scourge").setDescription("Reach +500.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GREEN), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 500).parent(orc_200));
+
+		Advancement orc_1000 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_warlord", false, FrameType.GOAL, true, true, false)
+				.setTitle("Gundabad Warlord").setDescription("Reach +1000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.GOLD), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 1000).parent(orc_500));
+
+		Advancement orc_2000 = build(true, data(LOTRItems.GOLD_RING.get(), "orc_chieftain", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("Gundabad Chieftain").setDescription("Reach +2000.0 alignment with the Orcs of the North.").setTitleStype(TextFormatting.DARK_PURPLE), 
+				addAlignmentTrigger(make(), FactionPointers.NORTHERN_ORCS, 2000).parent(orc_1000));
 
 		Advancement riven_elf_trader = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "treasures_of_imladris", false, FrameType.TASK, true, true, false)
 				.setTitle("Treasures of Imladris").setDescription("Trade with a Rivendell Wanderer.").setTitleStype(TextFormatting.GREEN), 

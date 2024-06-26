@@ -21,7 +21,6 @@ import net.minecraft.util.text.TextFormatting;
 public class LindonAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> LINDON_BIOMES = ImmutableList.of(LOTRBiomes.LINDON, LOTRBiomes.LINDON_WOODLANDS);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement tower_hills = build(true, data(LOTRItems.CHALK_BRICK.get(), "emyn_beraid", true, FrameType.TASK, true, true, false)

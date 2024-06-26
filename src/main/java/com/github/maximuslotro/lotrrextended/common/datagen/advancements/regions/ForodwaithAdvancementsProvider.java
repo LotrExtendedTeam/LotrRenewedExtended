@@ -21,7 +21,6 @@ public class ForodwaithAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> FORODWAITH_BIOMES = ImmutableList.of(LOTRBiomes.FORODWAITH, 
 			LOTRBiomes.FORODWAITH_MOUNTAINS, LOTRBiomes.FOROCHEL);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement everlasting_chill = build(true, data(Items.SNOW_BLOCK, "everlasting_chill", true, FrameType.TASK, true, true, false)

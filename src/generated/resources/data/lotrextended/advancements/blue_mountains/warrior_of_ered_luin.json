@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:blue_mountains/firebeards_and_broadbeams",
+  "display": {
+    "icon": {
+      "item": "lotr:blue_dwarven_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.blue_mountains.warrior_of_ered_luin.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.blue_mountains.warrior_of_ered_luin.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "blue_dwarven_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:blue_dwarven_helmet"
+          },
+          {
+            "item": "lotr:blue_dwarven_chestplate"
+          },
+          {
+            "item": "lotr:blue_dwarven_leggings"
+          },
+          {
+            "item": "lotr:blue_dwarven_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "blue_dwarven_armor"
+    ]
+  ]
+}

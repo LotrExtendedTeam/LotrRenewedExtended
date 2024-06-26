@@ -24,7 +24,6 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> SHIRE_BIOMES = ImmutableList.of(LOTRBiomes.SHIRE, LOTRBiomes.SHIRE_MARSHES, 
 			LOTRBiomes.SHIRE_MOORS, LOTRBiomes.SHIRE_WOODLANDS, LOTRBiomes.WHITE_DOWNS);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement shire = build(true, data(LOTRItems.SHIRE_HEATHER.get(), "a_simple_land", true, FrameType.TASK, true, true, false)

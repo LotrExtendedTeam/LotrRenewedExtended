@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:forodwaith/lossoth_kinsman",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.forodwaith.lossoth_warrior.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.forodwaith.lossoth_warrior.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dunland_level_100": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:dunland",
+          "level": {
+            "min": 100.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dunland_level_100"
+    ]
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:snow_block"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.misty_mountains.the_misty_mountains_cold.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.misty_mountains.the_misty_mountains_cold.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/misty_mountains.png"
+  },
+  "criteria": {
+    "enter_misty_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:misty_mountains"
+        }
+      }
+    },
+    "enter_misty_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:misty_mountains_foothills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_misty_mountains",
+      "enter_misty_mountains_foothills"
+    ]
+  ]
+}

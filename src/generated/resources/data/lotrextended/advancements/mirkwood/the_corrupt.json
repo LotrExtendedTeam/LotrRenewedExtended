@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:mirkwood/stay_on_the_path",
+  "display": {
+    "icon": {
+      "item": "lotr:dol_guldur_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mirkwood.the_corrupt.title"
+    },
+    "description": {
+      "translate": "advancements.lotrextended.mirkwood.the_corrupt.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "arnor_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_guldur_helmet"
+          },
+          {
+            "item": "lotr:dol_guldur_chestplate"
+          },
+          {
+            "item": "lotr:dol_guldur_leggings"
+          },
+          {
+            "item": "lotr:dol_guldur_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "arnor_armor"
+    ]
+  ]
+}
