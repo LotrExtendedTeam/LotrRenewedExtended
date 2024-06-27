@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -210,8 +211,8 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
     			player.awardStat(ExtendedStats.FELLOWSHIP_CREATE);
         	}
         	return 0;
-        } 
-		source.sendSuccess(new StringTextComponent("Fellowship by the name ["+fellowshipname + "] already exists!").withStyle(TextFormatting.RED), true);
+        }
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.exists", fellowshipname).withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
@@ -219,10 +220,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.renameFellowship(fellowship, fellowshipNewName);
-        	source.sendSuccess(new StringTextComponent("Successfully renamed fellowship: "+fellowshipname+ " to "+fellowshipNewName), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.renamed", fellowshipname, fellowshipNewName), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int pvp(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -230,10 +231,11 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventPVP(fellowship, toggle);
-        	source.sendSuccess(new StringTextComponent((toggle ? "Disabled":"Allowed")+" pvp"), true);
+        	TextComponent text = toggle ? new TranslationTextComponent("gui.lotrextended.base.disabled") : new TranslationTextComponent("gui.lotrextended.base.enabled");
+        	source.sendSuccess(text.append(" ").append(new TranslationTextComponent("command.lotrextended.fellowship.pvp")), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int hiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -241,10 +243,11 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventHiredFF(fellowship, toggle);
-        	source.sendSuccess(new StringTextComponent((toggle ? "Disabled":"Allowed")+" hired unit friendly fire").withStyle(TextFormatting.RED), true);
+        	TextComponent text = toggle ? new TranslationTextComponent("gui.lotrextended.base.disabled") : new TranslationTextComponent("gui.lotrextended.base.enabled");
+        	source.sendSuccess(text.append(" ").append(new TranslationTextComponent("command.lotrextended.fellowship.hiredunitff")).withStyle(TextFormatting.RED), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int mapLoc(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -252,10 +255,11 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipShowMapLocations(fellowship, toggle);
-        	source.sendSuccess(new StringTextComponent("Fellowship map location is now "+(toggle ? "shown":"hidden")), true);
+        	TextComponent text = toggle ? new TranslationTextComponent("gui.lotrextended.base.shown") : new TranslationTextComponent("gui.lotrextended.base.hidden");
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.maplocation").append(" ").append(text), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int removePlayer(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity playerToRemove) {
@@ -263,10 +267,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.removePlayer(fellowship, playerToRemove.getUUID());
-        	source.sendSuccess(new StringTextComponent("Removed "+playerToRemove.getDisplayName().getString()+" from the fellowship"), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.removed", playerToRemove.getDisplayName().getString()), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int setOwner(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newOwner) {
@@ -274,10 +278,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.setOwner(fellowship, newOwner.getUUID());
-        	source.sendSuccess(new StringTextComponent("Made "+newOwner.getDisplayName().getString()+" the new owner of the fellowship"), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.setowner", newOwner.getDisplayName().getString()), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int invite(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
@@ -286,10 +290,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	ExtendedFellowshipDataModule fellowshipData2 = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(newMember.level, newMember.getUUID()));
         	fellowshipData2.addInvitePlayer(fellowship, player.getUUID());
-        	source.sendSuccess(new StringTextComponent("Invited "+newMember.getDisplayName().getString()+" to the fellowship"), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.invited", newMember.getDisplayName().getString()), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int add(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
@@ -297,10 +301,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.addPlayer(fellowship, newMember.getUUID());
-        	source.sendSuccess(new StringTextComponent("Added "+newMember.getDisplayName().getString()+" to the fellowship"), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.added", newMember.getDisplayName().getString()), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int admin(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity changing, boolean toggle) {
@@ -309,14 +313,14 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(toggle) {
         		fellowshipData.addFellowshipAdmin(fellowship, changing.getUUID());
-        		source.sendSuccess(new StringTextComponent("Added fellowship admin: "+changing.getName().getString()), true);
+        		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.admin.added", changing.getName().getString()), true);
             	return 0;
         	}
         	fellowshipData.removeFellowshipAdmin(fellowship, changing.getUUID());
-        	source.sendSuccess(new StringTextComponent("Removed fellowship admin: "+changing.getName().getString()), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.admin.removed", changing.getName().getString()), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int leave(CommandSource source, PlayerEntity player, String fellowshipname) {
@@ -324,10 +328,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipMember(player.getUUID())) {
         	fellowshipData.leaveFellowship(fellowship);
-        	source.sendSuccess(new StringTextComponent("You have left "+fellowshipname), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.left", fellowshipname), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are not a member!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int icon(CommandSource source, PlayerEntity player, String fellowshipname) {
@@ -336,13 +340,13 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	if(player.getMainHandItem()!=ItemStack.EMPTY) {
         		fellowshipData.setIcon(fellowship, player.getUUID(), player.getMainHandItem());
-        		source.sendSuccess(new StringTextComponent("set fellowship Icon"), true);
+        		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.icon.set"), true);
         		return 0;
         	}
-        	source.sendSuccess(new StringTextComponent("You must hold an item in your hand"), true);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.icon.handerror"), true);
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
@@ -351,13 +355,13 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(fellowshipData.disbandFellowship(fellowship)) {
         		player.awardStat(ExtendedStats.FELLOWSHIP_DISBAND);
-            	source.sendSuccess(new StringTextComponent("Disbanded the fellowship"), true);
+            	source.sendSuccess(new TranslationTextComponent("command.lotrextended.disband"), true);
             	return 0;
         	}
-        	source.sendFailure(new StringTextComponent("Failed to Disbanded the fellowship"));
+        	source.sendFailure(new TranslationTextComponent("command.lotrextended.disband.error"));
         	return 0;
         }
-        source.sendSuccess(new StringTextComponent("Fellowship does not exist or you are missing permissions!").withStyle(TextFormatting.RED), true);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
@@ -371,34 +375,34 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 			fellowshipData.removeInvitePlayer(fellowship, true);
         	return 0;
         }
-		source.sendSuccess(new StringTextComponent("Invalid invite!").withStyle(TextFormatting.RED), true);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.acceptinvite.error").withStyle(TextFormatting.RED), true);
         return 0;
 	}
 	private static int displayInfo(CommandSource source, PlayerEntity player, String fellowshipname) {
 		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
 		if (fellowship != null) {
-			source.sendSuccess(new StringTextComponent("FellowshipName: ").withStyle(TextFormatting.GREEN)
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.name").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(TextFormatting.GOLD)), true);
-			source.sendSuccess(new StringTextComponent("PVP: ").withStyle(TextFormatting.GREEN)
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.pvp").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))
 					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
-					.append(new StringTextComponent("HUPVP: ").withStyle(TextFormatting.GREEN))
+					.append(new TranslationTextComponent("command.lotrextended.fellowship.data.hupvp").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(String.valueOf(fellowship.isPreventHiredFF())).withStyle(TextFormatting.GOLD)), true);
-			source.sendSuccess(new StringTextComponent("MapLoc: ").withStyle(TextFormatting.GREEN)
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.maploc").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(fellowship.isHideMapLocation())).withStyle(TextFormatting.GOLD))
 					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
-					.append(new StringTextComponent("Icon: ").withStyle(TextFormatting.GREEN))
+					.append(new TranslationTextComponent("command.lotrextended.fellowship.data.icon").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(fellowship.getIcon().getItem().getRegistryName().getPath()).withStyle(TextFormatting.GOLD)), true);
-			source.sendSuccess(new StringTextComponent("Owner: ").withStyle(TextFormatting.GREEN)
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.owner").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(fellowship.getOwnerUUID())).withStyle(TextFormatting.GOLD)), true);
-			TextComponent admins = new StringTextComponent("Admins: ");
+			TextComponent admins = new TranslationTextComponent("command.lotrextended.fellowship.data.admins");
 			admins.withStyle(TextFormatting.GREEN);
 			for(UUID admin :fellowship.getFellowshipAdmins()) {
 				admins.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(admin)+", ").withStyle(TextFormatting.GOLD));
 			}
 			source.sendSuccess(admins, true);
-			TextComponent members = new StringTextComponent("Members: ");
+			TextComponent members = new TranslationTextComponent("command.lotrextended.fellowship.data.members");
 			members.withStyle(TextFormatting.GREEN);
 			for(UUID member :fellowship.getFellowshipAdmins()) {
 				if(!fellowship.isFellowshipAdmin(member))
@@ -407,7 +411,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 			source.sendSuccess(members, true);
         	return 0;
         }
-		source.sendSuccess(new StringTextComponent("No fellowship by that name exists!").withStyle(TextFormatting.RED), true);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.noexists").withStyle(TextFormatting.RED), true);
         return 0;
 	}
 }

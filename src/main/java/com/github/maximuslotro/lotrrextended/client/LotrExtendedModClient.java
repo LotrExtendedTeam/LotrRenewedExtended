@@ -115,7 +115,14 @@ public class LotrExtendedModClient {
             VersionChecker.CheckResult result = VersionChecker.getResult(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo());
             if (result != null && (result.status == VersionChecker.Status.OUTDATED || result.status == VersionChecker.Status.BETA_OUTDATED))
             {
-                event.getEntity().sendMessage(new StringTextComponent("\u00A72[LotrRenewed Extended]:\u00A7r A new version (\u00A73" + result.target.toString () + "\u00A7r) was found"), event.getEntity().getUUID());
+            	TextComponent base = new StringTextComponent("[LotrRenewed Extended]:");
+            	base.withStyle(TextFormatting.DARK_GREEN);
+            	base.append(new TranslationTextComponent("command.lotrextended.version.left")).withStyle(TextFormatting.RESET);
+            	base.append(new StringTextComponent(" (")).withStyle(TextFormatting.RESET);
+            	base.append(new StringTextComponent(result.target.toString())).withStyle(TextFormatting.DARK_AQUA);
+            	base.append(new StringTextComponent(") ")).withStyle(TextFormatting.RESET);
+            	base.append(new TranslationTextComponent("command.lotrextended.version.right")).withStyle(TextFormatting.RESET);
+                event.getEntity().sendMessage(base, event.getEntity().getUUID());
             }
         }
     }

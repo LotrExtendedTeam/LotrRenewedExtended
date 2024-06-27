@@ -31,7 +31,7 @@ public class ExtendedBookshelfTileEntity extends LockableLootTileEntity{
 
 	   @Override
 	   protected ITextComponent getDefaultName() {
-	      return new TranslationTextComponent("gui.lotrextended.bookshelf.title");
+	      return new TranslationTextComponent("container.lotrextended.bookshelf");
 	   }
 
 	   @Override

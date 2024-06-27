@@ -28,12 +28,12 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		super.init();
 		int x=guiLeft;
 		int y=guiTop+40;
-		addButton(buttonFriendlyFire = new ExtendedGuiOptionsButton(0, x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire"), button -> toggleFF()));
+		addButton(buttonFriendlyFire = new ExtendedGuiOptionsButton(0, x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.title"), button -> toggleFF()));
 		//addButton(buttonHiredDeathMessages = new ExtendedGuiOptionsButton(1, x, y+24, 200, 20, new StringTextComponent("Hired Death Messages"), button -> toggleHDM()));
 		//addButton(buttonAlignment = new ExtendedGuiOptionsButton(2, x, y+48, 200, 20, new StringTextComponent("Show Alignment"), button -> toggleA()));
-		addButton(buttonMapLocation = new ExtendedGuiOptionsButton(3, x, y+72, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation"), button -> toggleML()));
+		addButton(buttonMapLocation = new ExtendedGuiOptionsButton(3, x, y+72, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.title"), button -> toggleML()));
 		//addButton(buttonConquest = new ExtendedGuiOptionsButton(5, x, y+96, 200, 20, new StringTextComponent("Conquest Kills"), button -> toggleCK()));
-		addButton(buttonFeminineRank = new ExtendedGuiOptionsButton(4, x, y+120, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender"), button -> toggleFRO()));
+		addButton(buttonFeminineRank = new ExtendedGuiOptionsButton(4, x, y+120, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.title"), button -> toggleFRO()));
 	}
 
 	@Override
@@ -53,9 +53,12 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 //		}
 		Minecraft mc = Minecraft.getInstance();
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);
-		buttonFriendlyFire.setMessage(new TranslationTextComponent(pd.getAlignmentData().isFriendlyFireEnabled()? "gui.lotrextended.settings.friendlyFire.enabled" : "gui.lotrextended.settings.friendlyFire.disabled"));
-		buttonMapLocation.setMessage(new TranslationTextComponent(pd.getMiscData().getShowMapLocation()? "gui.lotrextended.settings.mapLocation.enabled" : "gui.lotrextended.settings.mapLocation.disabled"));
-		buttonFeminineRank.setMessage(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.settings.rankGender.enabled" : "gui.lotrextended.settings.rankGender.disabled"));
+		TextComponent ff = new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.setting");
+		buttonFriendlyFire.setMessage(ff.append(new TranslationTextComponent(pd.getAlignmentData().isFriendlyFireEnabled()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+		TextComponent map = new TranslationTextComponent("gui.lotrextended.settings.mapLocation.setting");
+		buttonMapLocation.setMessage(map.append(new TranslationTextComponent(pd.getMiscData().getShowMapLocation()? "gui.lotrextended.base.shown" : "gui.lotrextended.base.hidden")));
+		TextComponent rank = new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting");
+		buttonFeminineRank.setMessage(rank.append(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 	}
 	
 	public void toggleFF() {
