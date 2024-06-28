@@ -698,7 +698,7 @@ de2143fcd1b6243ea9ae7580e2d2485f9545394c assets/lotr/models/item/white_fur_bundl
 c15dd7a9c16bf8723744647411285a608a28a06c assets/lotr/models/item/white_packed_fur_wall.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-cc59620c21a49e152042327fe55617bb356f0834 assets/lotrextended/lang/en_us.json
+0416c8eb2a1089f13d164c1af5743e20cb1944c9 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -1338,9 +1338,9 @@ bf1a882ece13555b518e5876c048988d181e232c assets/lotrextended/models/block/wildbe
 b528b2f2f66cde5ed4f2bc0aad545a179015c0b6 assets/lotrextended/models/block/wildberry_plant_age3.json
 fab7f084c36033ecbc4ddf6a09f65a5bc8a6947a assets/lotrextended/sounds.json
 c70c45e3c5816d26d3cb61a908e5f1ee454d9e12 data/forge/loot_modifiers/global_loot_modifiers.json
-b8001c1f7b46c41e341003dca0158a7ee2d9fcc5 data/forge/tags/blocks/barrels.json
-b8001c1f7b46c41e341003dca0158a7ee2d9fcc5 data/forge/tags/blocks/barrels/wooden.json
-9daa9e406d947902f71109d610505ed41725c79e data/forge/tags/blocks/chests.json
+9701859ce96683e5c72c1146178fb71fb883c789 data/forge/tags/blocks/barrels.json
+9701859ce96683e5c72c1146178fb71fb883c789 data/forge/tags/blocks/barrels/wooden.json
+0fa07fc7da64342829214b580c533a6513146b82 data/forge/tags/blocks/chests.json
 df965f1823a3df2ed4ee2399b036a0b292ba8ef0 data/forge/tags/blocks/dirt.json
 919080692623d1aebcebf4a7f023a5cab2469200 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
@@ -1385,9 +1385,9 @@ bce6ec2b6bd1070454ed491f4008e22739229177 data/forge/tags/blocks/storage_blocks/l
 21c13c70e814e5cb13919c9e27c6d745877cdcf8 data/forge/tags/blocks/storage_blocks/mithril.json
 21615d52a32af64954fb12ffbcf3acdd8435a917 data/forge/tags/blocks/storage_blocks/morgul_steel.json
 faba158e95eb1657617ce647b0d80c48ebc3e166 data/forge/tags/blocks/storage_blocks/uruk_steel.json
-b8001c1f7b46c41e341003dca0158a7ee2d9fcc5 data/forge/tags/items/barrels.json
-b8001c1f7b46c41e341003dca0158a7ee2d9fcc5 data/forge/tags/items/barrels/wooden.json
-9daa9e406d947902f71109d610505ed41725c79e data/forge/tags/items/chests.json
+9701859ce96683e5c72c1146178fb71fb883c789 data/forge/tags/items/barrels.json
+9701859ce96683e5c72c1146178fb71fb883c789 data/forge/tags/items/barrels/wooden.json
+0fa07fc7da64342829214b580c533a6513146b82 data/forge/tags/items/chests.json
 1c6850c6fb824b0bd6f78e58ca202e91a3d2bc8b data/forge/tags/items/furs.json
 9bb9f596563a04bfcd16c28994707e5e5bab30ed data/forge/tags/items/gems.json
 13c6deb729e1204e6dbc8173a14ccb1ddfaf242e data/forge/tags/items/gems/lotr_amber.json
