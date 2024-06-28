@@ -16,12 +16,12 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBarrelBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
@@ -322,7 +322,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
-			if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
+			if(block.getValue().get() instanceof ExtendedBarrelBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {

@@ -25,7 +25,6 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialS
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
@@ -35,11 +34,13 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlo
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedOrcBarrelBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
@@ -580,6 +581,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedSingleChestBlock(()-> new ExtendedStoneChestTileEntity()));
 		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(AbstractBlock.Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));
+		ExtendedBlocks.ORC_BARREL = registerB("orc_barrel", () -> new ExtendedOrcBarrelBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.WEAPON_RACK = registerB("weapon_rack", () -> new ExtendedWeaponRackBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));
 
 		ExtendedBlocks.STRAW_BED = registerB("straw_bed", () -> new ExtendedStrawBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));

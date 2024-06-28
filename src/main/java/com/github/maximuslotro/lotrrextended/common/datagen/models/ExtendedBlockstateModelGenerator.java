@@ -16,14 +16,15 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBarrelBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 
 import lotr.common.block.AxialSlabBlock;
@@ -144,6 +145,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
 					genReedBarrelBlockItem((ExtendedReedBasketBlock) block.getValue().get(), block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedBarrelBlock) {
+					genBarrelBlockItem((ExtendedBarrelBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedFullBedBlock) {
@@ -976,8 +981,24 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name)).texture("particle", lotrExtendedLoc("entity/chest/"+name));
 		ModelFile modelFile_open = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name+"_open")).texture("particle", lotrExtendedLoc("entity/chest/"+name+"_open"));
 		getVariantBuilder(extendedReedBasketBlock).forAllStates(state -> {
-			Direction direction = state.getValue(ExtendedReedBasketBlock.FACING);
-			Boolean open = state.getValue(ExtendedReedBasketBlock.OPEN);
+			Direction direction = state.getValue(ExtendedBarrelBlock.FACING);
+			Boolean open = state.getValue(ExtendedBarrelBlock.OPEN);
+			return ConfiguredModel.builder()
+                    .modelFile(open ? modelFile_open : modelFile)
+                    .rotationX(direction==Direction.DOWN ? 180 : direction==Direction.UP ? 0 : 90)
+                    .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
+                    .build();
+		});
+		itemModels().getBuilder("lotr:"+extendedReedBasketBlock.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genBarrelBlockItem(ExtendedBarrelBlock extendedReedBasketBlock, String name) {
+		registeredBlocks.add(extendedReedBasketBlock);
+		ModelFile modelFile = models().cubeBottomTop("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("entity/chest/"+name+"_side"), lotrExtendedLoc("entity/chest/"+name+"_bottom"), lotrExtendedLoc("entity/chest/"+name+"_top"));
+		ModelFile modelFile_open = models().cubeBottomTop("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath()+"_open", lotrExtendedLoc("entity/chest/"+name+"_side"), lotrExtendedLoc("entity/chest/"+name+"_bottom"), lotrExtendedLoc("entity/chest/"+name+"_open_top"));
+		getVariantBuilder(extendedReedBasketBlock).forAllStates(state -> {
+			Direction direction = state.getValue(ExtendedBarrelBlock.FACING);
+			Boolean open = state.getValue(ExtendedBarrelBlock.OPEN);
 			return ConfiguredModel.builder()
                     .modelFile(open ? modelFile_open : modelFile)
                     .rotationX(direction==Direction.DOWN ? 180 : direction==Direction.UP ? 0 : 90)

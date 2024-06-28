@@ -702,6 +702,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.DRIED_REEDS.get().getRegistryName().getPath(), has(LOTRItems.DRIED_REEDS.get()))
 		.unlockedBy("has_"+ExtendedItems.REED_BASKET.get().getRegistryName().getPath(), has(ExtendedItems.REED_BASKET.get()))
 		.save(consumer, lotrLoc(ExtendedItems.REED_BASKET.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.ORC_BARREL.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ORC_BARREL.get(), LOTRRecipes.ANY_ORC)
+		.pattern("PLP")
+		.pattern("P P")
+		.pattern("PLP")
+		.define('L', Ingredient.of(Tags.Items.LEATHER))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_leather", has(Tags.Items.LEATHER))
+		.unlockedBy("has_planks", has(PLANKS))
+		.unlockedBy("has_"+ExtendedItems.ORC_BARREL.get().getRegistryName().getPath(), has(ExtendedItems.ORC_BARREL.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ORC_BARREL.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedBlocks.WEAPON_RACK.get())
 		.pattern("X X")

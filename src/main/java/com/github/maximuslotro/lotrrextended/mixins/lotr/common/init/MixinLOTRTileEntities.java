@@ -20,6 +20,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcB
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedOrcBarrelTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedReedBasketTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
@@ -63,7 +64,7 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.NORENDER = register("no_render_tileentity", () -> Builder.of(ExtendedNoRenderTileEntity::new, ExtendedBlocks.BEDROLL.get()));
     	ExtendedTileEntities.BOOKSHELF = register("bookshelf_tileentity", () -> Builder.of(ExtendedBookshelfTileEntity::new, Blocks.BOOKSHELF));
     	ExtendedTileEntities.WEAPON_RACK = register("weapon_rack_tileentity", () -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK.get()));
-    	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));	
-
+    	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));
+    	ExtendedTileEntities.ORC_BARREL = register("orc_barrel_tileentity", () -> Builder.of(ExtendedOrcBarrelTileEntity::new, ExtendedBlocks.ORC_BARREL.get()));
     }
 }

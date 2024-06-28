@@ -406,6 +406,7 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> STONE_CHEST;
 	public static RegistryObject<Item> REED_BASKET;
+	public static RegistryObject<Item> ORC_BARREL;
 
 	public static RegistryObject<Item> STRAW_BED;
 	public static RegistryObject<Item> ORC_BED;

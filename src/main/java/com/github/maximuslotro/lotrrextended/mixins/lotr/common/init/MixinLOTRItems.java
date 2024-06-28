@@ -388,9 +388,9 @@ public class MixinLOTRItems {
 		ExtendedItems.MUD_PATH_STAIRS = regBlockItemB(ExtendedBlocks.MUD_PATH_STAIRS, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_FARMLAND = regBlockItemB(ExtendedBlocks.MUD_FARMLAND, LOTRItemGroups.DECO);
 
-		//ExtendedItems.STONE_CHEST = regBlockItemStackRenderer(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO, ()-> BlockRendererSetup.createStoneChestRenderer());
 		ExtendedItems.STONE_CHEST = regBlockItemB(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO);
 		ExtendedItems.REED_BASKET = regBlockItemB(ExtendedBlocks.REED_BASKET, LOTRItemGroups.DECO);
+		ExtendedItems.ORC_BARREL = regBlockItemB(ExtendedBlocks.ORC_BARREL, LOTRItemGroups.DECO);
 		ExtendedItems.WEAPON_RACK = regBlockItemB(ExtendedBlocks.WEAPON_RACK, LOTRItemGroups.DECO);
 		//BANNERS
 		ExtendedItems.DUNEDAIN_BANNER = regItemB("dunedain_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.DUNEDAIN_BANNER.get(), ExtendedBlocks.DUNEDAIN_WALL_BANNER.get(), new Item.Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));

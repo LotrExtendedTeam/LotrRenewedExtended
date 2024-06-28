@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.block;
+package com.github.maximuslotro.lotrrextended.common.block.containers;
 
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
