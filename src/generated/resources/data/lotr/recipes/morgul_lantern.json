@@ -2,8 +2,8 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:any_morgul",
   "pattern": [
-    " Y ",
-    " # ",
+    "YYY",
+    "Y#Y",
     "YYY"
   ],
   "key": {
@@ -11,7 +11,7 @@
       "item": "lotr:morgul_torch"
     },
     "Y": {
-      "tag": "forge:ingots/morgul_ingots"
+      "tag": "forge:nuggets/orc_steel"
     }
   },
   "result": {

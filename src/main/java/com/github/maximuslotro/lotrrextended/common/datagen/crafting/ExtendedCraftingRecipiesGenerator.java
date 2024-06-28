@@ -53,13 +53,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBedRecipe(consumer, ExtendedBlocks.SILVER_FUR_BED, ExtendedItems.SILVER_FUR.get(), null);
 		makeBedRecipe(consumer, ExtendedBlocks.WHITE_FUR_BED, ExtendedItems.WHITE_FUR.get(), null);
 		GENERATEDRECIPES.add(ExtendedItems.BEDROLL.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BEDROLL.get())
+		ShapedRecipeBuilder.shaped(ExtendedItems.BEDROLL.get())
 		.pattern("LLF")
-		.define('L', Ingredient.of(Items.LEATHER))
+		.define('L', Ingredient.of(Tags.Items.LEATHER))
 		.define('F', Ingredient.of(ExtendedItemTagGenerator.FURS))
 		.unlockedBy("has_"+LOTRItems.FUR.get().getRegistryName().getPath(), has(ExtendedItemTagGenerator.FURS))
 		.unlockedBy("has_"+ExtendedItems.BEDROLL.get().getRegistryName().getPath(), has(ExtendedItems.BEDROLL.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.BEDROLL.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedItems.BEDROLL.get().getRegistryName().getPath()));
 		/////////////////WOOD
 		//CHESTNUT
 		makePillarSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_BEAM, 
@@ -239,14 +239,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeDaggerRecipe(consumer, ExtendedItems.MORGUL_DAGGER, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_LANTERN.get(), LOTRRecipes.ANY_MORGUL)
-		.pattern(" Y ")
-		.pattern(" # ")
+		.pattern("YYY")
+		.pattern("Y#Y")
 		.pattern("YYY")
 		.define('#', Ingredient.of(ExtendedBlocks.MORGUL_TORCH.get()))
-		.define('Y', Ingredient.of(ExtendedTags.Items.MORGUL_INGOTS))
+		.define('Y', Ingredient.of(ExtendedTags.Items.ORC_STEEL_NUGGET))
 		.unlockedBy("has_"+ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_LANTERN.get()))
 		.unlockedBy("has_"+ExtendedBlocks.MORGUL_TORCH.get().getRegistryName().getPath(), has(ExtendedBlocks.MORGUL_TORCH.get()))
-		.unlockedBy("has_morgul_ingots", has(ExtendedTags.Items.MORGUL_INGOTS))
+		.unlockedBy("has_orc_steel_nugget", has(ExtendedTags.Items.ORC_STEEL_NUGGET))
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath()));
 		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
 		makeDoorRecipe(consumer, ExtendedItems.ORC_STEEL_DOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
@@ -496,7 +496,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern(" X ")
 		.pattern("#  ")
 		.define('#', Ingredient.of(IRON_INGOT))
-		.define('X', Ingredient.of(Items.LEATHER))
+		.define('X', Ingredient.of(Tags.Items.LEATHER))
 		.unlockedBy("has_"+ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath(), has(ExtendedItems.BRANDING_IRON.get()))
 		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
@@ -694,7 +694,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.REED_BASKET.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
+		ShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
 		.pattern("LLL")
 		.pattern("L L")
 		.pattern("LLL")

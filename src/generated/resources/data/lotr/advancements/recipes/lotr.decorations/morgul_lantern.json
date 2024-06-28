@@ -26,12 +26,12 @@
         ]
       }
     },
-    "has_morgul_ingots": {
+    "has_orc_steel_nugget": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/morgul_ingots"
+            "tag": "forge:nuggets/orc_steel"
           }
         ]
       }
@@ -47,7 +47,7 @@
     [
       "has_morgul_lantern",
       "has_morgul_torch",
-      "has_morgul_ingots",
+      "has_orc_steel_nugget",
       "has_the_recipe"
     ]
   ]
