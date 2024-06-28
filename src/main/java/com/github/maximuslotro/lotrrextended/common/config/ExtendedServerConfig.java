@@ -15,6 +15,7 @@ public class ExtendedServerConfig {
 	public static ForgeConfigSpec.BooleanValue enableFellowshipCreation;
 	public static ForgeConfigSpec.BooleanValue enableRenewedWaypointCreation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyWaypointCreation;
+	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
 
 	public static ForgeConfigSpec.BooleanValue enableFishingEnchantedItems;
 	public static ForgeConfigSpec.BooleanValue enableEnchantedLootDrops;
@@ -31,6 +32,7 @@ public class ExtendedServerConfig {
 		enableFellowshipCreation = createBooleanValue(builder, "enableFellowshipCreation", true, false, "Enable or disable fellowship creation");
 		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable or disable renewed based waypoint creation");
 		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable or disable legacy based waypoint creation");
+		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		builder.pop();
 
 		builder.push("Vanilla Patches");
