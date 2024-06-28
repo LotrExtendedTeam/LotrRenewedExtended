@@ -248,8 +248,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedBlocks.MORGUL_TORCH.get().getRegistryName().getPath(), has(ExtendedBlocks.MORGUL_TORCH.get()))
 		.unlockedBy("has_morgul_ingots", has(ExtendedTags.Items.MORGUL_INGOTS))
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath()));
-		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, 
-				LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
+		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
+		makeDoorRecipe(consumer, ExtendedItems.ORC_STEEL_DOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
+		makeTrapdoorRecipe(consumer, ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
 		//DOL GULDUR
 		makeArmorRecipe(consumer, ExtendedItems.DOL_GULDUR_HELMET, 
 				ExtendedItems.DOL_GULDUR_CHESTPLATE, 

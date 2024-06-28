@@ -67,7 +67,9 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -217,6 +219,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
+			if(block.getValue().get() instanceof TrapDoorBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
 			if(block.getValue().get() instanceof StrippableBranchBlock) {
 				dropSelf(block.getValue().get());
 				continue;
@@ -242,6 +248,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
+				add(block.getValue().get(), BlockLootTables::createDoorTable);
+				continue;
+			}
+			if(block.getValue().get() instanceof DoorBlock) {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
 				continue;
 			}

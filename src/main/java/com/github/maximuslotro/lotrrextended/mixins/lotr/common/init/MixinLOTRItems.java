@@ -511,7 +511,9 @@ public class MixinLOTRItems {
 		ExtendedItems.CARVED_UMBAR_BRICK = regBlockItemB(ExtendedBlocks.CARVED_UMBAR_BRICK, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItemB(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
-		
+		ExtendedItems.ORC_STEEL_DOOR = regTallBlockItemB(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.ORC_STEEL_TRAPDOOR = regBlockItemB(ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItemGroups.UTIL);
+
 		ExtendedItems.SMOOTH_MORDOR_STAIRS = regBlockItemB(ExtendedBlocks.SMOOTH_MORDOR_ROCK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SMOOTH_ROHAN_STAIRS = regBlockItemB(ExtendedBlocks.SMOOTH_ROHAN_ROCK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SMOOTH_BLUE_STAIRS = regBlockItemB(ExtendedBlocks.SMOOTH_BLUE_ROCK_STAIRS, LOTRItemGroups.BLOCKS);

@@ -68,8 +68,10 @@ import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.CakeBlock;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
@@ -216,6 +218,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genTrapdoorBlockItem((LOTRTrapdoorBlock)block.getValue().get(),"block/"+block.getKey());
 					continue;
 				}
+				if(block.getValue().get() instanceof TrapDoorBlock) {
+					genTrapdoorBlockItem((TrapDoorBlock)block.getValue().get(),"block/"+block.getKey());
+					continue;
+				}
 				if(block.getValue().get() instanceof LOTRSaplingBlock) {
 					genSapplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
 					continue;
@@ -238,6 +244,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRDoorBlock) {
 					genDoorBlock((LOTRDoorBlock)block.getValue().get(),"block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof DoorBlock) {
+					genDoorBlock((DoorBlock)block.getValue().get(),"block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRFenceBlock) {
@@ -646,7 +656,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + button.getRegistryName().getPath()).parent(inventory);
 	}
 
-	private void genDoorBlock(LOTRDoorBlock door, String texture) {
+	private void genDoorBlock(DoorBlock door, String texture) {
 		registeredBlocks.add(door);
 		ResourceLocation bottom = lotrExtendedLoc(texture+"_bottom");
 		ResourceLocation top = lotrExtendedLoc(texture+"_top");
@@ -688,7 +698,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + gateBlock.getRegistryName().getPath()).parent(gate);
 	}
 
-	private void genTrapdoorBlockItem(LOTRTrapdoorBlock trapdoor, String location) {
+	private void genTrapdoorBlockItem(TrapDoorBlock trapdoor, String location) {
 		registeredBlocks.add(trapdoor);
 		ResourceLocation texture = lotrExtendedLoc(location);
 		ModelFile bottom = models().trapdoorOrientableBottom("lotrextended:"+trapdoor.getRegistryName().getPath()+"_bottom", texture);

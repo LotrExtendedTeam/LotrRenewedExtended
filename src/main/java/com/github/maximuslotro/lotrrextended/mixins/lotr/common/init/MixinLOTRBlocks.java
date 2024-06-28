@@ -98,7 +98,9 @@ import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.particles.ParticleTypes;
@@ -556,6 +558,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
+		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new DoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
+		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new TrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());

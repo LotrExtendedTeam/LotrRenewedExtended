@@ -15,6 +15,7 @@ import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.*;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
@@ -45,6 +46,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genGenerated(ExtendedItems.WEAPON_RACK.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.getId().getPath()));
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
