@@ -426,10 +426,12 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BARROW_BLADE;
 	
-	public static RegistryObject<Item> DURIN_BANNER_PATTERN;
-	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
+	public static RegistryObject<Item> DURINS_FOLK_BANNER_PATTERN;
+	public static RegistryObject<Item> DURINS_FOLK_BANNER;
 	public static RegistryObject<Item> DUNEDAIN_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNEDAIN_BANNER;
+	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
+	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER;
 	public static RegistryObject<Item> HOBBIT_BANNER;
 }
 

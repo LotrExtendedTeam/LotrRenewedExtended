@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:durin_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_durins_folk_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:durins_folk_banner"
+          }
+        ]
+      }
+    },
+    "has_durin_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:durin_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:durin_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_durins_folk_banner",
+      "has_durin_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}
