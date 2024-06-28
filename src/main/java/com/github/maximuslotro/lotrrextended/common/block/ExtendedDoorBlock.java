@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientServerValues;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import net.minecraft.block.BlockState;
@@ -19,14 +20,14 @@ public class ExtendedDoorBlock extends DoorBlock {
 	}
 
 	@Override
-	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (this.material == Material.METAL && ExtendedServerConfig.makeMetalDoorsRequirePower.get()) {
+	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+		if (this.material == Material.METAL && (world.isClientSide ? ExtendedClientServerValues.INSTANCE.forcePoweredMetalDoors : ExtendedServerConfig.makeMetalDoorsRequirePower.get())) {
 			return ActionResultType.PASS;
 		} else {
-			p_225533_1_ = p_225533_1_.cycle(OPEN);
-			p_225533_2_.setBlock(p_225533_3_, p_225533_1_, 10);
-			p_225533_2_.levelEvent(p_225533_4_, p_225533_1_.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), p_225533_3_, 0);
-			return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
+			blockState = blockState.cycle(OPEN);
+			world.setBlock(blockPos, blockState, 10);
+			world.levelEvent(player, blockState.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), blockPos, 0);
+			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 	}
 

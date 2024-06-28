@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientServerValues;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import net.minecraft.block.BlockState;
@@ -20,17 +21,17 @@ public class ExtendedTrapDoorBlock extends TrapDoorBlock {
 	}
 
 	@Override
-	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (this.material == Material.METAL && ExtendedServerConfig.makeMetalDoorsRequirePower.get()) {
+	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+		if (this.material == Material.METAL && (world.isClientSide ? ExtendedClientServerValues.INSTANCE.forcePoweredMetalDoors : ExtendedServerConfig.makeMetalDoorsRequirePower.get())) {
 			return ActionResultType.PASS;
 		} else {
-			p_225533_1_ = p_225533_1_.cycle(OPEN);
-			p_225533_2_.setBlock(p_225533_3_, p_225533_1_, 2);
-			if (p_225533_1_.getValue(WATERLOGGED)) {
-				p_225533_2_.getLiquidTicks().scheduleTick(p_225533_3_, Fluids.WATER, Fluids.WATER.getTickDelay(p_225533_2_));
+			blockState = blockState.cycle(OPEN);
+			world.setBlock(blockPos, blockState, 2);
+			if (blockState.getValue(WATERLOGGED)) {
+				world.getLiquidTicks().scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
 			}
-			this.playSound(p_225533_4_, p_225533_2_, p_225533_3_, p_225533_1_.getValue(OPEN));
-			return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
+			this.playSound(player, world, blockPos, blockState.getValue(OPEN));
+			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 	}
 }

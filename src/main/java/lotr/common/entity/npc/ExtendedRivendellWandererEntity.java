@@ -86,7 +86,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         return NPCNameGenerators.SINDARIN;
     }
 
-    public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
+    @SuppressWarnings("unchecked")
+	public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());

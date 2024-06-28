@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketSendServerSettings;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import org.spongepowered.asm.mixin.injection.At;
@@ -43,6 +46,14 @@ public class MixinLOTRLevelData {
 
 	@Shadow(remap=false)
 	public LOTRPlayerData getData(PlayerEntity player) {return null;}
+
+	
+	@Inject(method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
+	public void sendLoginPacket(ServerPlayerEntity player, CallbackInfo ci) {
+		ExtendedSPacketSendServerSettings packet = new ExtendedSPacketSendServerSettings();
+		packet.setMakeMetalDoorsRequirePower(ExtendedServerConfig.makeMetalDoorsRequirePower.get());
+		ExtendedPacketHandler.sendToClient(packet, player);
+	}
 
 	/**
 	 * @reason Needed to inject into an if statement tree
