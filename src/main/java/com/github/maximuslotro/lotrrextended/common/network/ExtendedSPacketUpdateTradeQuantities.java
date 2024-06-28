@@ -9,34 +9,34 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
 
-public class ExtendedCPacketUpdateTradeQuantities {
+public class ExtendedSPacketUpdateTradeQuantities {
 
 	private int[] soldQuantities = new int[9];
 	private int[] boughtQuantities = new int[9];
 
-	public ExtendedCPacketUpdateTradeQuantities() {}
+	public ExtendedSPacketUpdateTradeQuantities() {}
 
-	public ExtendedCPacketUpdateTradeQuantities(int[] soldQuantities, int[] boughtQuantities) {
+	public ExtendedSPacketUpdateTradeQuantities(int[] soldQuantities, int[] boughtQuantities) {
 		this.boughtQuantities = boughtQuantities;
 		this.soldQuantities = soldQuantities;
 	}
 
-	public static void encode(ExtendedCPacketUpdateTradeQuantities packet, PacketBuffer buf) {
+	public static void encode(ExtendedSPacketUpdateTradeQuantities packet, PacketBuffer buf) {
 		CompoundNBT nbt = new CompoundNBT();
 		nbt.putIntArray("bq", packet.boughtQuantities);
 		nbt.putIntArray("sq", packet.soldQuantities);
 		buf.writeNbt(nbt);
 	}
 
-	public static ExtendedCPacketUpdateTradeQuantities decode(PacketBuffer buf) {
-		ExtendedCPacketUpdateTradeQuantities packet = new ExtendedCPacketUpdateTradeQuantities();
+	public static ExtendedSPacketUpdateTradeQuantities decode(PacketBuffer buf) {
+		ExtendedSPacketUpdateTradeQuantities packet = new ExtendedSPacketUpdateTradeQuantities();
 		CompoundNBT nbt = buf.readAnySizeNbt();
 		packet.boughtQuantities = nbt.getIntArray("bq");
 		packet.soldQuantities = nbt.getIntArray("sq");
 		return packet;
 	}
 
-	public static void handle(ExtendedCPacketUpdateTradeQuantities packet, Supplier<Context> context) {
+	public static void handle(ExtendedSPacketUpdateTradeQuantities packet, Supplier<Context> context) {
 		Minecraft mc = Minecraft.getInstance();
 		ClientPlayerEntity player = mc.player;
 		assert player != null;

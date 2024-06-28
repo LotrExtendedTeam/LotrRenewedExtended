@@ -16,27 +16,27 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class ExtendedSPacketOpenTradeMenu {
+public class ExtendedCPacketOpenTradeMenu {
 
     private int traderId;
 
-    public ExtendedSPacketOpenTradeMenu() {}
+    public ExtendedCPacketOpenTradeMenu() {}
 
-    public ExtendedSPacketOpenTradeMenu(int traderId) {
+    public ExtendedCPacketOpenTradeMenu(int traderId) {
         this.traderId = traderId;
     }
 
-    public static void encode(ExtendedSPacketOpenTradeMenu packet, PacketBuffer buf) {
+    public static void encode(ExtendedCPacketOpenTradeMenu packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
     }
 
-    public static ExtendedSPacketOpenTradeMenu decode(PacketBuffer buf) {
-        ExtendedSPacketOpenTradeMenu packet = new ExtendedSPacketOpenTradeMenu();
+    public static ExtendedCPacketOpenTradeMenu decode(PacketBuffer buf) {
+        ExtendedCPacketOpenTradeMenu packet = new ExtendedCPacketOpenTradeMenu();
         packet.traderId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedSPacketOpenTradeMenu packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCPacketOpenTradeMenu packet, Supplier<NetworkEvent.Context> context) {
         ContainerType<ExtendedTradeContainer> containerType = ExtendedContainers.TRADING.get();
         PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
 

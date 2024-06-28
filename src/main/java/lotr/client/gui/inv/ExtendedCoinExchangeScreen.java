@@ -1,8 +1,8 @@
 package lotr.client.gui.inv;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketExchangeCoins;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketExchangeCoins;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -115,14 +115,14 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
                 this.menu.exchanged = true;
                 this.menu.sideExchanged = mode;
-                ExtendedPacketHandler.sendToServer(new ExtendedSPacketExchangeCoins(mode));
+                ExtendedPacketHandler.sendToServer(new ExtendedCPacketExchangeCoins(mode));
             }
         } else if(mode == 1 && !this.menu.rightSlot.getItem().equals(ItemStack.EMPTY)) {
             // attempt to exchange right
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
                 this.menu.exchanged = true;
                 this.menu.sideExchanged = mode;
-                ExtendedPacketHandler.sendToServer(new ExtendedSPacketExchangeCoins(mode));
+                ExtendedPacketHandler.sendToServer(new ExtendedCPacketExchangeCoins(mode));
             }
         }
     }
@@ -131,7 +131,7 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
     public void onClose() {
         super.onClose();
         // notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(container.traderNPC.getId(), false));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenCoinExchange(container.traderNPC.getId(), false));
         container.trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
 

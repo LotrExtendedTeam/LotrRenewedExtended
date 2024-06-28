@@ -7,26 +7,26 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
 
-public class ExtendedSPacketExchangeCoins {
+public class ExtendedCPacketExchangeCoins {
 	private int side; // 0 is left, 1 is right
 
-	public ExtendedSPacketExchangeCoins() {}
+	public ExtendedCPacketExchangeCoins() {}
 
-	public ExtendedSPacketExchangeCoins(int side) {
+	public ExtendedCPacketExchangeCoins(int side) {
 		this.side = side;
 	}
 
-	public static void encode(ExtendedSPacketExchangeCoins packet, PacketBuffer buf) {
+	public static void encode(ExtendedCPacketExchangeCoins packet, PacketBuffer buf) {
 		buf.writeInt(packet.side);
 	}
 
-	public static ExtendedSPacketExchangeCoins decode(PacketBuffer buf) {
-		ExtendedSPacketExchangeCoins packet = new ExtendedSPacketExchangeCoins();
+	public static ExtendedCPacketExchangeCoins decode(PacketBuffer buf) {
+		ExtendedCPacketExchangeCoins packet = new ExtendedCPacketExchangeCoins();
 		packet.side = buf.readInt();
 		return packet;
 	}
 
-	public static void handle(ExtendedSPacketExchangeCoins packet, Supplier<Context> context) {
+	public static void handle(ExtendedCPacketExchangeCoins packet, Supplier<Context> context) {
 		ServerPlayerEntity player = ((Context) context.get()).getSender();
 	    if (player.containerMenu instanceof ExtendedCoinExchangeContainer) {
 			ExtendedCoinExchangeContainer container = (ExtendedCoinExchangeContainer) player.containerMenu;

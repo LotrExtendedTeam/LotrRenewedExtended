@@ -20,34 +20,34 @@ import java.util.function.Supplier;
  *
  * This is a dual-use packet for both handling opening the Coin Exchange menu and for telling the
  * server that the trading main menu has been closed so that the trader can move again. The boolean
- * shouldOpen is used to dinstingush this.
+ * shouldOpen is used to distinguish this.
  */
-public class ExtendedSPacketOpenCoinExchange {
+public class ExtendedCPacketOpenCoinExchange {
 
     private int traderId;
 
     private boolean shouldOpen;
 
-    public ExtendedSPacketOpenCoinExchange() {}
+    public ExtendedCPacketOpenCoinExchange() {}
 
-    public ExtendedSPacketOpenCoinExchange(int traderId, boolean shouldOpen) {
+    public ExtendedCPacketOpenCoinExchange(int traderId, boolean shouldOpen) {
         this.traderId = traderId;
         this.shouldOpen = shouldOpen;
     }
 
-    public static void encode(ExtendedSPacketOpenCoinExchange packet, PacketBuffer buf) {
+    public static void encode(ExtendedCPacketOpenCoinExchange packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
         buf.writeBoolean(packet.shouldOpen);
     }
 
-    public static ExtendedSPacketOpenCoinExchange decode(PacketBuffer buf) {
-        ExtendedSPacketOpenCoinExchange packet = new ExtendedSPacketOpenCoinExchange();
+    public static ExtendedCPacketOpenCoinExchange decode(PacketBuffer buf) {
+        ExtendedCPacketOpenCoinExchange packet = new ExtendedCPacketOpenCoinExchange();
         packet.traderId = buf.readInt();
         packet.shouldOpen = buf.readBoolean();
         return packet;
     }
 
-    public static void handle(ExtendedSPacketOpenCoinExchange packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCPacketOpenCoinExchange packet, Supplier<NetworkEvent.Context> context) {
         if (packet.shouldOpen) {
             ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());

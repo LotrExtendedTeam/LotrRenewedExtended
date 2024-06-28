@@ -145,7 +145,7 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	@Override
 	public void sendDataToPlayer(ServerPlayerEntity player) {
 		ExtendedSPacketNpcMarriageInfo packet = new ExtendedSPacketNpcMarriageInfo(this);
-		ExtendedPacketHandler.sendTo(packet, player);
+		ExtendedPacketHandler.sendToClient(packet, player);
 		
 	}
 

@@ -16,27 +16,27 @@ import java.util.function.Supplier;
 /**
  * @author RichardB122
  */
-public class ExtendedSPacketTalkWithTrader {
+public class ExtendedCPacketTalkWithTrader {
 
     private int traderId;
 
-    public ExtendedSPacketTalkWithTrader() {}
+    public ExtendedCPacketTalkWithTrader() {}
 
-    public ExtendedSPacketTalkWithTrader(int traderId) {
+    public ExtendedCPacketTalkWithTrader(int traderId) {
         this.traderId = traderId;
     }
 
-    public static void encode(ExtendedSPacketTalkWithTrader packet, PacketBuffer buf) {
+    public static void encode(ExtendedCPacketTalkWithTrader packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
     }
 
-    public static ExtendedSPacketTalkWithTrader decode(PacketBuffer buf) {
-        ExtendedSPacketTalkWithTrader packet = new ExtendedSPacketTalkWithTrader();
+    public static ExtendedCPacketTalkWithTrader decode(PacketBuffer buf) {
+        ExtendedCPacketTalkWithTrader packet = new ExtendedCPacketTalkWithTrader();
         packet.traderId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedSPacketTalkWithTrader packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCPacketTalkWithTrader packet, Supplier<NetworkEvent.Context> context) {
         World level = Objects.requireNonNull(context.get().getSender()).level;
         Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
         if (!(entity instanceof NPCEntity)) {
