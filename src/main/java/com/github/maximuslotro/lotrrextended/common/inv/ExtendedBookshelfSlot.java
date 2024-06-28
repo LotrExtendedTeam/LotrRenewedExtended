@@ -1,4 +1,4 @@
-package lotr.common.inv;
+package com.github.maximuslotro.lotrrextended.common.inv;
 
 import lotr.common.item.CustomColoredNameItem;
 import lotr.common.item.RedBookItem;

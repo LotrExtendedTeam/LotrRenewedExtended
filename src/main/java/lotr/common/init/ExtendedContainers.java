@@ -1,6 +1,7 @@
 package lotr.common.init;
 
-import lotr.common.inv.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inv.ExtendedBookshelfContainer;
+
 import lotr.common.inv.ExtendedCoinExchangeContainer;
 import lotr.common.inv.ExtendedTradeContainer;
 import net.minecraft.inventory.container.ContainerType;
