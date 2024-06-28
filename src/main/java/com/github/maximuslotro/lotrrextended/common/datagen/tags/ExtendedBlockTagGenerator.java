@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
+import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
@@ -32,6 +33,8 @@ import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
@@ -65,6 +68,8 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
     public static final ITag.INamedTag<Block> WOODEN_TRAPDOORS = BlockTags.bind(BlockTags.WOODEN_TRAPDOORS.getName().toString());
     public static final ITag.INamedTag<Block> WOODEN_PRESSURE_PLATES = BlockTags.bind(BlockTags.WOODEN_PRESSURE_PLATES.getName().toString());
 	public static final ITag.INamedTag<Block> WOODEN_DOORS = BlockTags.bind(BlockTags.WOODEN_DOORS.getName().toString());
+	public static final ITag.INamedTag<Block> DOORS = BlockTags.bind(BlockTags.DOORS.getName().toString());
+	public static final ITag.INamedTag<Block> TRAPDOORS = BlockTags.bind(BlockTags.TRAPDOORS.getName().toString());
 	public static final ITag.INamedTag<Block> WALL_SIGNS = BlockTags.bind(BlockTags.WALL_SIGNS.getName().toString());
 	public static final ITag.INamedTag<Block> STANDING_SIGNS = BlockTags.bind(BlockTags.STANDING_SIGNS.getName().toString());
 	public static final ITag.INamedTag<Block> SAPLINGS = BlockTags.bind(BlockTags.SAPLINGS.getName().toString());
@@ -72,6 +77,9 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	public static final ITag.INamedTag<Block> LOGS_THAT_BURN = BlockTags.bind(BlockTags.LOGS_THAT_BURN.getName().toString());
 	public static final ITag.INamedTag<Block> LEAVES = BlockTags.bind(BlockTags.LEAVES.getName().toString());
 	public static final ITag.INamedTag<Block> FLOWER_POTS = BlockTags.bind(BlockTags.FLOWER_POTS.getName().toString());
+	public static final ITag.INamedTag<Block> CHESTS = BlockTags.bind(Tags.Blocks.CHESTS.getName().toString());
+	public static final ITag.INamedTag<Block> BARRELS = BlockTags.bind(Tags.Blocks.BARRELS.getName().toString());
+	public static final ITag.INamedTag<Block> BARRELS_WOODEN = BlockTags.bind(Tags.Blocks.BARRELS_WOODEN.getName().toString());
 	public ExtendedBlockTagGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
 		super(generator, modid, existingFileHelper);
 	}
@@ -109,11 +117,17 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 			if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
 				tag(WOODEN_TRAPDOORS).add(block.getValue().get());
 			}
+			if(block.getValue().get() instanceof TrapDoorBlock && !(block.getValue().get() instanceof LOTRTrapdoorBlock)) {
+				tag(TRAPDOORS).add(block.getValue().get());
+			}
 			if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
 				tag(WOODEN_PRESSURE_PLATES).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
 				tag(WOODEN_DOORS).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof DoorBlock && !(block.getValue().get() instanceof LOTRDoorBlock)) {
+				tag(DOORS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {
 				tag(SLABS).add(block.getValue().get());
@@ -150,6 +164,9 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 				}
 			}
 			if(block.getValue().get() instanceof LOTRTorchBlock) {
+				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof ExtendedLanternBlock) {
 				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof WoodBeamBlock) {
@@ -255,9 +272,9 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	    .addTag(ExtendedTags.Blocks.SILVER_ORE).addTag(ExtendedTags.Blocks.SULFUR_ORE)
 	    .addTag(ExtendedTags.Blocks.TIN_ORE);
 
-	    tag(Tags.Blocks.CHESTS).add(ExtendedBlocks.STONE_CHEST.get()).add(ExtendedBlocks.REED_BASKET.get());
-	    tag(Tags.Blocks.BARRELS).add(ExtendedBlocks.REED_BASKET.get());
-	    tag(Tags.Blocks.BARRELS_WOODEN).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(CHESTS).add(ExtendedBlocks.STONE_CHEST.get()).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(BARRELS).add(ExtendedBlocks.REED_BASKET.get());
+	    tag(BARRELS_WOODEN).add(ExtendedBlocks.REED_BASKET.get());
 
 	    tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
 	    .add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());

@@ -1381,7 +1381,9 @@ bce6ec2b6bd1070454ed491f4008e22739229177 data/forge/tags/blocks/storage_blocks/l
 21c13c70e814e5cb13919c9e27c6d745877cdcf8 data/forge/tags/blocks/storage_blocks/mithril.json
 21615d52a32af64954fb12ffbcf3acdd8435a917 data/forge/tags/blocks/storage_blocks/morgul_steel.json
 faba158e95eb1657617ce647b0d80c48ebc3e166 data/forge/tags/blocks/storage_blocks/uruk_steel.json
-0fa07fc7da64342829214b580c533a6513146b82 data/forge/tags/items/chests.json
+b8001c1f7b46c41e341003dca0158a7ee2d9fcc5 data/forge/tags/items/barrels.json
+b8001c1f7b46c41e341003dca0158a7ee2d9fcc5 data/forge/tags/items/barrels/wooden.json
+9daa9e406d947902f71109d610505ed41725c79e data/forge/tags/items/chests.json
 1c6850c6fb824b0bd6f78e58ca202e91a3d2bc8b data/forge/tags/items/furs.json
 9bb9f596563a04bfcd16c28994707e5e5bab30ed data/forge/tags/items/gems.json
 13c6deb729e1204e6dbc8173a14ccb1ddfaf242e data/forge/tags/items/gems/lotr_amber.json
@@ -3411,6 +3413,7 @@ dc011db29d0975c098322da30552511c4d6a6b44 data/minecraft/recipes/wood_elven_brick
 6b7f121cdb6b936184d1ac380e2e45a4742dc01d data/minecraft/recipes/wood_elven_pillar_slab_from_wood_elven_pillar.json
 90875908bbe2ba442abd9da94b11b17616445b64 data/minecraft/tags/blocks/beacon_base_blocks.json
 8074a0173619a12b16e7e65000586bf78ee41d33 data/minecraft/tags/blocks/beds.json
+ebd9387a672222819c5f7a9c25cd0646b2ac5654 data/minecraft/tags/blocks/doors.json
 1d09fa0c1397470e527d12492612740c4772aa34 data/minecraft/tags/blocks/fire.json
 d3ce951623ceaa3989b6d2a870c0efc8f7003506 data/minecraft/tags/blocks/flower_pots.json
 07a9ef6d9ec33259ab9fa79e8db7cbb4c4036f67 data/minecraft/tags/blocks/leaves.json
@@ -3420,7 +3423,8 @@ c09d318d32e26cf1e2e1cab4700899ec9182a47c data/minecraft/tags/blocks/planks.json
 a29128edddc9385934f7e44b521d05967ce069ed data/minecraft/tags/blocks/slabs.json
 b03c1981746e3c70826d02d322ed9099852f328d data/minecraft/tags/blocks/stairs.json
 44a88f1ff32cb255cb1d73125d71fdde15c997c5 data/minecraft/tags/blocks/standing_signs.json
-ba5b179bd2ce5434f55bf97016a690056d7b3d25 data/minecraft/tags/blocks/wall_post_override.json
+2c4fef8118198a0dd67060f207a3fa1a7ea385d8 data/minecraft/tags/blocks/trapdoors.json
+4a29db1307d30eef3b7f803c7c3484c3bb10cd38 data/minecraft/tags/blocks/wall_post_override.json
 616bd6d1593653cba0491053dedca21d5b9a7ec1 data/minecraft/tags/blocks/wall_signs.json
 bb1abf9d5b8f08161aadf88311f8f84dfa6b87d6 data/minecraft/tags/blocks/walls.json
 087b4eb8784f9273376b0ae8bce08f3539b07f1e data/minecraft/tags/blocks/wooden_buttons.json
@@ -3430,6 +3434,7 @@ fbd13e99ea1b02b687d40a89fecc80e787760877 data/minecraft/tags/blocks/wooden_press
 caeb889b34f138233842a46bc6beb386ed6de047 data/minecraft/tags/blocks/wooden_stairs.json
 6b78a246a3a5548da20bdeda6035250ca2177f8e data/minecraft/tags/blocks/wooden_trapdoors.json
 e24616bb67a73bc4ed1ee7be90c5b306f82b040c data/minecraft/tags/items/boats.json
+ebd9387a672222819c5f7a9c25cd0646b2ac5654 data/minecraft/tags/items/doors.json
 07a9ef6d9ec33259ab9fa79e8db7cbb4c4036f67 data/minecraft/tags/items/leaves.json
 b0cabd74bd5b5f20dcf978683b16542ac82a493a data/minecraft/tags/items/logs_that_burn.json
 c09d318d32e26cf1e2e1cab4700899ec9182a47c data/minecraft/tags/items/planks.json
@@ -3437,6 +3442,7 @@ c09d318d32e26cf1e2e1cab4700899ec9182a47c data/minecraft/tags/items/planks.json
 44a88f1ff32cb255cb1d73125d71fdde15c997c5 data/minecraft/tags/items/signs.json
 a29128edddc9385934f7e44b521d05967ce069ed data/minecraft/tags/items/slabs.json
 b03c1981746e3c70826d02d322ed9099852f328d data/minecraft/tags/items/stairs.json
+2c4fef8118198a0dd67060f207a3fa1a7ea385d8 data/minecraft/tags/items/trapdoors.json
 bb1abf9d5b8f08161aadf88311f8f84dfa6b87d6 data/minecraft/tags/items/walls.json
 087b4eb8784f9273376b0ae8bce08f3539b07f1e data/minecraft/tags/items/wooden_buttons.json
 b6ef049b198b36a21eba1d3b4e0936a96067f932 data/minecraft/tags/items/wooden_doors.json
