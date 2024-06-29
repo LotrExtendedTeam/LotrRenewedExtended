@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotrextended:item/black_warg_fur_chestplate"
+  }
+}

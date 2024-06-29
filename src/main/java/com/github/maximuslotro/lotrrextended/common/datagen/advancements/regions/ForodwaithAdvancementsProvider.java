@@ -30,6 +30,11 @@ public class ForodwaithAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("A small Respite").setDescription("Enter the icebay of Forochel."), 
 				addBiomeTrigger(make(), LOTRBiomes.FOROCHEL).parent(everlasting_chill));
 
+		Advancement warg_armor = build(false, data(LOTRItems.FUR_CHESTPLATE.get(), "wrapped_warmly", false, FrameType.TASK, true, true, false)
+				.setTitle("Wrapped Warmly").setDescription("Acquire a full set of Fur armor."), 
+				addArmorTrigger(make(), "fur", LOTRItems.FUR_HELMET.get(), LOTRItems.FUR_CHESTPLATE.get(), 
+					LOTRItems.FUR_LEGGINGS.get(), LOTRItems.FUR_BOOTS.get()).parent(everlasting_chill));
+
 		Advancement lossoth_10 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_guest", false, FrameType.TASK, true, true, false)
 				.setTitle("Lossoth Guest").setDescription("Reach +10.0 alignment with the Men of Lossoth."), 
 				addAlignmentTrigger(make(), FactionPointers.LOSSOTH, 10).parent(everlasting_chill));

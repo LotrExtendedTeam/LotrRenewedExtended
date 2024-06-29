@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/first_steps",
   "display": {
     "icon": {
-      "item": "lotr:fur_chestplate",
+      "item": "lotr:warg_fur_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -18,21 +18,97 @@
     "hidden": false
   },
   "criteria": {
+    "white_warg_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:white_warg_fur_helmet"
+          },
+          {
+            "item": "lotr:white_warg_fur_chestplate"
+          },
+          {
+            "item": "lotr:white_warg_fur_leggings"
+          },
+          {
+            "item": "lotr:white_warg_fur_boots"
+          }
+        ]
+      }
+    },
+    "silver_warg_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_warg_fur_helmet"
+          },
+          {
+            "item": "lotr:silver_warg_fur_chestplate"
+          },
+          {
+            "item": "lotr:silver_warg_fur_leggings"
+          },
+          {
+            "item": "lotr:silver_warg_fur_boots"
+          }
+        ]
+      }
+    },
+    "gray_warg_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gray_warg_fur_helmet"
+          },
+          {
+            "item": "lotr:gray_warg_fur_chestplate"
+          },
+          {
+            "item": "lotr:gray_warg_fur_leggings"
+          },
+          {
+            "item": "lotr:gray_warg_fur_boots"
+          }
+        ]
+      }
+    },
     "warg_armor": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:fur_helmet"
+            "item": "lotr:warg_fur_helmet"
           },
           {
-            "item": "lotr:fur_chestplate"
+            "item": "lotr:warg_fur_chestplate"
           },
           {
-            "item": "lotr:fur_leggings"
+            "item": "lotr:warg_fur_leggings"
           },
           {
-            "item": "lotr:fur_boots"
+            "item": "lotr:warg_fur_boots"
+          }
+        ]
+      }
+    },
+    "black_warg_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:black_warg_fur_helmet"
+          },
+          {
+            "item": "lotr:black_warg_fur_chestplate"
+          },
+          {
+            "item": "lotr:black_warg_fur_leggings"
+          },
+          {
+            "item": "lotr:black_warg_fur_boots"
           }
         ]
       }
@@ -40,7 +116,11 @@
   },
   "requirements": [
     [
-      "warg_armor"
+      "white_warg_armor",
+      "silver_warg_armor",
+      "gray_warg_armor",
+      "warg_armor",
+      "black_warg_armor"
     ]
   ]
 }

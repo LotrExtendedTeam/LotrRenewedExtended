@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:warg_fur_boots"
+    ]
+  },
+  "criteria": {
+    "has_warg_fur_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:warg_fur_boots"
+          }
+        ]
+      }
+    },
+    "has_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:warg_fur_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_warg_fur_boots",
+      "has_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

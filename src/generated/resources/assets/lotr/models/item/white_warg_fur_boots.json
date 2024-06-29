@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotrextended:item/white_warg_fur_boots"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:black_fur"
+    }
+  },
+  "result": {
+    "item": "lotr:black_warg_fur_leggings"
+  }
+}

@@ -370,6 +370,27 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Item> BLACK_FUR_BUNDLE;
 	
+	public static RegistryObject<Item> BLACK_WARG_HELMET;
+	public static RegistryObject<Item> BLACK_WARG_CHESTPLATE;
+	public static RegistryObject<Item> BLACK_WARG_LEGGINGS;
+	public static RegistryObject<Item> BLACK_WARG_BOOTS;
+	public static RegistryObject<Item> BROWN_WARG_HELMET;
+	public static RegistryObject<Item> BROWN_WARG_CHESTPLATE;
+	public static RegistryObject<Item> BROWN_WARG_LEGGINGS;
+	public static RegistryObject<Item> BROWN_WARG_BOOTS;
+	public static RegistryObject<Item> GRAY_WARG_HELMET;
+	public static RegistryObject<Item> GRAY_WARG_CHESTPLATE;
+	public static RegistryObject<Item> GRAY_WARG_LEGGINGS;
+	public static RegistryObject<Item> GRAY_WARG_BOOTS;
+	public static RegistryObject<Item> SILVER_WARG_HELMET;
+	public static RegistryObject<Item> SILVER_WARG_CHESTPLATE;
+	public static RegistryObject<Item> SILVER_WARG_LEGGINGS;
+	public static RegistryObject<Item> SILVER_WARG_BOOTS;
+	public static RegistryObject<Item> WHITE_WARG_HELMET;
+	public static RegistryObject<Item> WHITE_WARG_CHESTPLATE;
+	public static RegistryObject<Item> WHITE_WARG_LEGGINGS;
+	public static RegistryObject<Item> WHITE_WARG_BOOTS;
+
 	public static RegistryObject<Item> MORGUL_LANTERN;
 	public static RegistryObject<Item> ORC_STEEL_DOOR;
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;

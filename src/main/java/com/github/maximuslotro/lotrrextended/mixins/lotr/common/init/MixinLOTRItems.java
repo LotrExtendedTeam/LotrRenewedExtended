@@ -592,8 +592,6 @@ public class MixinLOTRItems {
 
 		ExtendedItems.ROASTED_CHESTNUT = regItemB("roasted_chestnut", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ROASTED_CHESTNUT)));
 		//#######################################################################EQUIPMENT##################################################
-		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
-		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(400, 1.1D));
 
 		//Morgul Equipment
 		ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
@@ -628,6 +626,28 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_SPEAR = regItemB("angmar_spear",() -> new SpearItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("ANGMAR")));
 
+		//Warg Equipment
+		ExtendedItems.BLACK_WARG_HELMET = regItemB("black_warg_fur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("BLACK_WARG"), EquipmentSlotType.HEAD));
+		ExtendedItems.BLACK_WARG_CHESTPLATE = regItemB("black_warg_fur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("BLACK_WARG"), EquipmentSlotType.CHEST));
+		ExtendedItems.BLACK_WARG_LEGGINGS = regItemB("black_warg_fur_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("BLACK_WARG"), EquipmentSlotType.LEGS));
+		ExtendedItems.BLACK_WARG_BOOTS = regItemB("black_warg_fur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("BLACK_WARG"), EquipmentSlotType.FEET));
+		ExtendedItems.BROWN_WARG_HELMET = regItemB("warg_fur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("BROWN_WARG"), EquipmentSlotType.HEAD));
+		ExtendedItems.BROWN_WARG_CHESTPLATE = regItemB("warg_fur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("BROWN_WARG"), EquipmentSlotType.CHEST));
+		ExtendedItems.BROWN_WARG_LEGGINGS = regItemB("warg_fur_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("BROWN_WARG"), EquipmentSlotType.LEGS));
+		ExtendedItems.BROWN_WARG_BOOTS = regItemB("warg_fur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("BROWN_WARG"), EquipmentSlotType.FEET));
+		ExtendedItems.GRAY_WARG_HELMET = regItemB("gray_warg_fur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("GRAY_WARG"), EquipmentSlotType.HEAD));
+		ExtendedItems.GRAY_WARG_CHESTPLATE = regItemB("gray_warg_fur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GRAY_WARG"), EquipmentSlotType.CHEST));
+		ExtendedItems.GRAY_WARG_LEGGINGS = regItemB("gray_warg_fur_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GRAY_WARG"), EquipmentSlotType.LEGS));
+		ExtendedItems.GRAY_WARG_BOOTS = regItemB("gray_warg_fur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GRAY_WARG"), EquipmentSlotType.FEET));
+		ExtendedItems.SILVER_WARG_HELMET = regItemB("silver_warg_fur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("SILVER_WARG"), EquipmentSlotType.HEAD));
+		ExtendedItems.SILVER_WARG_CHESTPLATE = regItemB("silver_warg_fur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("SILVER_WARG"), EquipmentSlotType.CHEST));
+		ExtendedItems.SILVER_WARG_LEGGINGS = regItemB("silver_warg_fur_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("SILVER_WARG"), EquipmentSlotType.LEGS));
+		ExtendedItems.SILVER_WARG_BOOTS = regItemB("silver_warg_fur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("SILVER_WARG"), EquipmentSlotType.FEET));
+		ExtendedItems.WHITE_WARG_HELMET = regItemB("white_warg_fur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("WHITE_WARG"), EquipmentSlotType.HEAD));
+		ExtendedItems.WHITE_WARG_CHESTPLATE = regItemB("white_warg_fur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("WHITE_WARG"), EquipmentSlotType.CHEST));
+		ExtendedItems.WHITE_WARG_LEGGINGS = regItemB("white_warg_fur_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("WHITE_WARG"), EquipmentSlotType.LEGS));
+		ExtendedItems.WHITE_WARG_BOOTS = regItemB("white_warg_fur_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("WHITE_WARG"), EquipmentSlotType.FEET));
+
 		//Dol Guldur Equipment
 		ExtendedItems.DOL_GULDUR_HELMET = regItemB("dol_guldur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.HEAD));
 		ExtendedItems.DOL_GULDUR_CHESTPLATE = regItemB("dol_guldur_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("DOL_GULDUR"), EquipmentSlotType.CHEST));
@@ -638,12 +658,14 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_DAGGER = regItemB("dol_guldur_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
 		//Ranger of the North equipment
+		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(400, 1.1D));
 		ExtendedItems.DUNEDAIN_BOW = regItemB("dunedain_bow",() -> new ExtendedBowItem(LOTRMaterial.RANGER_NORTH, 1.2D));
 		ExtendedItems.DUNEDAIN_SHIELD = regItemB("dunedain_shield", () -> new LOTRShieldItem(LOTRMaterial.RANGER_NORTH));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", () -> new ExtendedDaggerItem(LOTRMaterial.ARNOR));
+		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
 
 		//########################################################################UTIL##########################################################
 		//Crafting Tables

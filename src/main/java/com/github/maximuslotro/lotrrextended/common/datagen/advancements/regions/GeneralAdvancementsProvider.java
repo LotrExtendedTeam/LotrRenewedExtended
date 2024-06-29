@@ -77,10 +77,20 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 						LOTREntities.ISENGARD_WARG.get()), LOTREntities.MORDOR_WARG.get())
 				.requirements(IRequirementsStrategy.OR).parent(base));
 
-		Advancement warg_armor = build(true, data(LOTRItems.FUR_CHESTPLATE.get(), "master_hunter", false, FrameType.TASK, true, true, false)
-				.setTitle("Master Hunter").setDescription("Acquire a full set of Warg Fur armor."), 
-				addArmorTrigger(make(), "warg", LOTRItems.FUR_HELMET.get(), LOTRItems.FUR_CHESTPLATE.get(), 
-						LOTRItems.FUR_LEGGINGS.get(), LOTRItems.FUR_BOOTS.get()).parent(base));
+		Advancement warg_armor = build(true, data(ExtendedItems.BROWN_WARG_CHESTPLATE.get(), "master_hunter", false, FrameType.TASK, true, true, false)
+				.setTitle("Master Hunter").setDescription("Acquire a full set of Warg Fur armor."),
+				addArmorTrigger(addArmorTrigger(addArmorTrigger(addArmorTrigger(addArmorTrigger(make(), "white_warg", 
+												ExtendedItems.WHITE_WARG_HELMET.get(), ExtendedItems.WHITE_WARG_CHESTPLATE.get(), 
+												ExtendedItems.WHITE_WARG_LEGGINGS.get(), ExtendedItems.WHITE_WARG_BOOTS.get()), 
+												"silver_warg", ExtendedItems.SILVER_WARG_HELMET.get(), ExtendedItems.SILVER_WARG_CHESTPLATE.get(), 
+												ExtendedItems.SILVER_WARG_LEGGINGS.get(), ExtendedItems.SILVER_WARG_BOOTS.get()), 
+												"gray_warg", ExtendedItems.GRAY_WARG_HELMET.get(), ExtendedItems.GRAY_WARG_CHESTPLATE.get(), 
+												ExtendedItems.GRAY_WARG_LEGGINGS.get(), ExtendedItems.GRAY_WARG_BOOTS.get())
+												, "warg", ExtendedItems.BROWN_WARG_HELMET.get(), ExtendedItems.BROWN_WARG_CHESTPLATE.get(), 
+												ExtendedItems.BROWN_WARG_LEGGINGS.get(), ExtendedItems.BROWN_WARG_BOOTS.get())
+												, "black_warg", ExtendedItems.BLACK_WARG_HELMET.get(), ExtendedItems.BLACK_WARG_CHESTPLATE.get(), 
+												ExtendedItems.BLACK_WARG_LEGGINGS.get(), ExtendedItems.BLACK_WARG_BOOTS.get())
+				.requirements(IRequirementsStrategy.OR).parent(base));
 
 		Advancement copper_award = build(false, data(LOTRItems.COPPER_INGOT.get(), "copper_award", false, FrameType.TASK, true, true, false)
 				.setTitle("Copper Award").setDescription("Obtain a copper ingot by smelting copper ore."), 

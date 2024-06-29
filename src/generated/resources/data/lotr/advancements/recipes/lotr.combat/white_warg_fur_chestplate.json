@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:white_warg_fur_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_white_warg_fur_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:white_warg_fur_chestplate"
+          }
+        ]
+      }
+    },
+    "has_white_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:white_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:white_warg_fur_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_warg_fur_chestplate",
+      "has_white_fur",
+      "has_the_recipe"
+    ]
+  ]
+}
