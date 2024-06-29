@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_use_suspicious_meat": {
+    "has_consume_suspicious_meat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +30,7 @@
   },
   "requirements": [
     [
-      "has_use_suspicious_meat"
+      "has_consume_suspicious_meat"
     ]
   ]
 }
