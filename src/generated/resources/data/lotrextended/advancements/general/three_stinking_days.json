@@ -17,20 +17,18 @@
     "hidden": false
   },
   "criteria": {
-    "has_consume_maggoty_bread": {
-      "trigger": "minecraft:inventory_changed",
+    "consume_maggoty_bread": {
+      "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:maggoty_bread"
-          }
-        ]
+        "item": {
+          "item": "lotr:maggoty_bread"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_consume_maggoty_bread"
+      "consume_maggoty_bread"
     ]
   ]
 }

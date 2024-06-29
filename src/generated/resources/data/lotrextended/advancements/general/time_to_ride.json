@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_saddle": {
+    "has_saddle": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +30,7 @@
   },
   "requirements": [
     [
-      "has_has_saddle"
+      "has_saddle"
     ]
   ]
 }

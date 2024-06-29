@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_bronze_ingot": {
+    "has_bronze_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +30,7 @@
   },
   "requirements": [
     [
-      "has_has_bronze_ingot"
+      "has_bronze_ingot"
     ]
   ]
 }

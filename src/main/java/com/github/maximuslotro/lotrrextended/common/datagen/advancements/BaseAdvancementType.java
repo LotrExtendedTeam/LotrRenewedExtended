@@ -67,7 +67,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, Item item) {
-		return addItemTrigger(builder, "has_"+item.getRegistryName().getPath(), item);
+		return addItemTrigger(builder, item.getRegistryName().getPath(), item);
 	}
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		return builder.addCriterion("has_"+name, InventoryChangeTrigger.Instance.hasItems(items));
@@ -84,7 +84,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public static Advancement.Builder addConsumeItemTrigger(Advancement.Builder builder, Item item) {
-		return addItemTrigger(builder, "consume_"+item.getRegistryName().getPath(), item);
+		return addConsumeItemTrigger(builder, item.getRegistryName().getPath(), item);
 	}
 	public static Advancement.Builder addConsumeItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		for(IItemProvider item : items) {

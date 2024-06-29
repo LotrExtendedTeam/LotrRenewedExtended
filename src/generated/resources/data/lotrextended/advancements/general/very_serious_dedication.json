@@ -18,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_mithril_hoe": {
+    "has_mithril_hoe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_has_mithril_hoe"
+      "has_mithril_hoe"
     ]
   ]
 }
