@@ -125,7 +125,7 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement exp_fish_ring = build(false, data(Items.FISHING_ROD, "swag_catch", false, FrameType.CHALLENGE, true, true, false)
 				.setTitle("Swaggest Catch Ever").setDescription("Catch a mithril ring with a fishing rod."), 
-				addFishTrigger(make(), LOTRItems.MITHRIL_RING.get()).requirements(IRequirementsStrategy.OR).parent(fish_ring));
+				addFishTrigger(make(), LOTRItems.MITHRIL_RING.get()).parent(fish_ring));
 
 	}
 
