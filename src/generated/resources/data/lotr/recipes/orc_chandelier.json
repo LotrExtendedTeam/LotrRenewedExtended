@@ -1,0 +1,22 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    " N ",
+    "CIC"
+  ],
+  "key": {
+    "N": {
+      "tag": "forge:nuggets/orc_steel"
+    },
+    "C": {
+      "item": "lotr:candle"
+    },
+    "I": {
+      "tag": "forge:ingots/orc_steel"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_chandelier"
+  }
+}

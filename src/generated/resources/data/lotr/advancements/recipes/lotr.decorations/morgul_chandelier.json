@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:morgul_chandelier"
+    ]
+  },
+  "criteria": {
+    "has_morgul_chandelier": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:morgul_chandelier"
+          }
+        ]
+      }
+    },
+    "has_morgul_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:morgul_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:morgul_chandelier"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgul_chandelier",
+      "has_morgul_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

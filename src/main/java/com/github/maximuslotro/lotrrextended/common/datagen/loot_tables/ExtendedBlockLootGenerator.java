@@ -27,6 +27,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
+import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
@@ -136,6 +137,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ChandelierBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

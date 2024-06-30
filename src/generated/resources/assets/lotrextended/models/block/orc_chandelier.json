@@ -1,0 +1,7 @@
+{
+  "parent": "lotr:block/template_chandelier",
+  "textures": {
+    "chandelier": "lotrextended:block/orc_chandelier",
+    "chandelier_chain": "lotrextended:block/chandelier_chain_orc"
+  }
+}

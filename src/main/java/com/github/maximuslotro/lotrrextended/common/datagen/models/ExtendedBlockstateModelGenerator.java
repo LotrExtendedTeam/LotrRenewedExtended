@@ -29,6 +29,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
+import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
@@ -217,6 +218,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRPlanksBlock) {
 					genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ChandelierBlock) {
+					genChandelierBlock((ChandelierBlock)block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
@@ -973,6 +978,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		}catch(IllegalArgumentException e) {
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrLoc("block/template_fallen_leaves")).texture("leaves", lotrExtendedLoc("block/"+name+"_0"));
 			simpleBlock(bed, modelFile);
+		}
+	}
+
+	private void genChandelierBlock(ChandelierBlock chandelier, String name) {
+		registeredBlocks.add(chandelier);
+		try {
+			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name)).texture("chandelier_chain", lotrExtendedLoc("block/chandelier_chain_"+name.substring(0, name.length() - 11)));
+			simpleBlock(chandelier, modelFile);
+		}catch(IllegalArgumentException e) {
+			System.out.println("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found.");
+			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name));
+			simpleBlock(chandelier, modelFile);
 		}
 	}
 

@@ -392,6 +392,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WHITE_WARG_BOOTS;
 
 	public static RegistryObject<Item> MORGUL_LANTERN;
+	public static RegistryObject<Item> MORGUL_CHANDELIER;
+	public static RegistryObject<Item> ORC_CHANDELIER;
+	public static RegistryObject<Item> URUK_CHANDELIER;
 	public static RegistryObject<Item> ORC_STEEL_DOOR;
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;
 

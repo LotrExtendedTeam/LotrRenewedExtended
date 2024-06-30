@@ -53,6 +53,8 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedSt
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
+import lotr.common.block.ChandelierBlock;
+import lotr.common.block.ExtendedChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedDoubleTorchBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
@@ -559,6 +561,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));
 		
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
+		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
+		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", () -> new ChandelierBlock());
+		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", () -> new ChandelierBlock());
+
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));

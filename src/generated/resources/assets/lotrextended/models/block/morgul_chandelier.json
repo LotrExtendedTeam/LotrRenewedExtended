@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:block/template_chandelier",
+  "textures": {
+    "chandelier": "lotrextended:block/morgul_chandelier"
+  }
+}

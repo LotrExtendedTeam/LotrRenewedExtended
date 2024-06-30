@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
+import lotr.common.block.ChandelierBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStandingSignBlock;
@@ -50,6 +51,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}

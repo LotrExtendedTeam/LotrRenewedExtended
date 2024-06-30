@@ -248,6 +248,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedBlocks.MORGUL_TORCH.get().getRegistryName().getPath(), has(ExtendedBlocks.MORGUL_TORCH.get()))
 		.unlockedBy("has_orc_steel_nugget", has(ExtendedTags.Items.ORC_STEEL_NUGGET))
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_CHANDELIER.get(), LOTRRecipes.ANY_MORGUL)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(Items.IRON_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.MORGUL_STEEL))
+		.unlockedBy("has_"+ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_CHANDELIER.get()))
+		.unlockedBy("has_"+ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath()));
 		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
 		makeDoorRecipe(consumer, ExtendedItems.ORC_STEEL_DOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
 		makeTrapdoorRecipe(consumer, ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
@@ -301,6 +311,26 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		makeSpearRecipe(consumer, ExtendedItems.ANGMAR_SPEAR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		makeDaggerRecipe(consumer, ExtendedItems.ANGMAR_DAGGER, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ORC_CHANDELIER.get(), LOTRRecipes.ANY_ORC)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(ExtendedTags.Items.ORC_STEEL_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.ORC_STEEL))
+		.unlockedBy("has_"+ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.ORC_CHANDELIER.get()))
+		.unlockedBy("has_"+LOTRItems.ORC_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.ORC_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.URUK_CHANDELIER.get(), LOTRRecipes.URUK_CRAFTING)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(Items.IRON_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL))
+		.unlockedBy("has_"+ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.URUK_CHANDELIER.get()))
+		.unlockedBy("has_"+LOTRItems.URUK_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.URUK_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath()));
 		//WARG
 		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_WARG_CHESTPLATE, 
 				ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_BOOTS, 
