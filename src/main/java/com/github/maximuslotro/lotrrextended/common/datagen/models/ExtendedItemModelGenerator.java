@@ -226,8 +226,15 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder gen(ItemModelBuilder builder, ResourceLocation... layers) {
-		for (int i = 0; i < layers.length; i++) {
-			builder = builder.texture("layer" + i, layers[i]);
+		try {
+			for (int i = 0; i < layers.length; i++) {
+				builder = builder.texture("layer" + i, layers[i]);
+			}
+		}catch(IllegalArgumentException e) {
+			e.printStackTrace();
+			for (int i = 0; i < layers.length; i++) {
+				System.out.println("Missing texture for: "+layers[i]);
+			}
 		}
 		return builder;
 	}

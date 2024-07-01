@@ -60,25 +60,25 @@ public class MixinLOTRMaterial {
 	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, 
 									() -> Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()));
 
-	
+	//Bone 3eff 2atk
 	@Invoker("<init>")
-	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
+	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		throw new AssertionError();
 	}
 
-	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
+	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair) {
-		return lotrmaterialExpansion$addVariant(internalName, name, lvl, uses, eff, atk, ench, pr, sound, tough, repair, repair, new LOTRMaterial.Specials[0]);
+		return lotrmaterialExpansion$addVariant(internalName, name, toolTeir, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, new LOTRMaterial.Specials[0]);
 	}
-	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
+	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, LOTRMaterial.Specials[] specs) {
-		return lotrmaterialExpansion$addVariant(internalName, name, lvl, uses, eff, atk, ench, pr, sound, tough, repair, repair, specs);
+		return lotrmaterialExpansion$addVariant(internalName, name, toolTeir, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, specs);
 	}
-	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int lvl, int uses, float eff, float atk, int ench, float pr, SoundEvent sound,
+	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		ArrayList<LOTRMaterial> variants = new ArrayList<LOTRMaterial>(Arrays.asList(MixinLOTRMaterial.$VALUES));
-		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, lvl, uses, eff, atk, ench, pr, sound, tough, repair, armorRepair, specs);
+		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, toolTeir, uses, efficiency, atk, ench, pr, sound, tough, repair, armorRepair, specs);
 		variants.add(instrument);
 		MixinLOTRMaterial.$VALUES = variants.toArray(new LOTRMaterial[0]);
 		return instrument;

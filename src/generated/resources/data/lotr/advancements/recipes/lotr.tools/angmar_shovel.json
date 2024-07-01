@@ -16,12 +16,12 @@
         ]
       }
     },
-    "has_orc_steel_ingot": {
+    "has_bone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:orc_steel_ingot"
+            "tag": "forge:bones"
           }
         ]
       }
@@ -36,7 +36,7 @@
   "requirements": [
     [
       "has_angmar_shovel",
-      "has_orc_steel_ingot",
+      "has_bone",
       "has_the_recipe"
     ]
   ]

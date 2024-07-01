@@ -1,0 +1,11 @@
+{
+  "parent": "lotr:item/handheld_spear",
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:pulling": 1.0
+      },
+      "model": "lotr:item/bone_spear_handheld_pulling"
+    }
+  ]
+}

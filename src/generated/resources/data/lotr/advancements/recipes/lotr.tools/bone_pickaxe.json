@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:bone_pickaxe"
+    ]
+  },
+  "criteria": {
+    "has_bone_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bone_pickaxe"
+          }
+        ]
+      }
+    },
+    "has_orc_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:bone_pickaxe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bone_pickaxe",
+      "has_orc_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

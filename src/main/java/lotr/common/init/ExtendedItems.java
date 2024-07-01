@@ -209,6 +209,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_SPEAR;
 	public static RegistryObject<Item> ANGMAR_DAGGER;
 
+	public static RegistryObject<Item> BONE_AXE;
+	public static RegistryObject<Item> BONE_SHOVEL;
+	public static RegistryObject<Item> BONE_PICKAXE;
+	public static RegistryObject<Item> BONE_SWORD;
+	public static RegistryObject<Item> BONE_HOE;
+	public static RegistryObject<Item> BONE_SPEAR;
+	public static RegistryObject<Item> BONE_DAGGER;
+
 	public static RegistryObject<Item> BRANDING_IRON;
 
 	public static RegistryObject<Item> RASPBERRY_BUSH;

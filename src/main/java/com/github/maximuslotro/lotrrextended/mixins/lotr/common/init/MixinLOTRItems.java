@@ -567,6 +567,12 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_AXE = regItemB("angmar_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_HOE = regItemB("angmar_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("ANGMAR")));
 
+		//Bone Tools
+		ExtendedItems.BONE_SHOVEL = regItemB("bone_shovel", () -> new LOTRShovelItem(LOTRMaterial.BONE));
+		ExtendedItems.BONE_PICKAXE = regItemB("bone_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.BONE));
+		ExtendedItems.BONE_AXE = regItemB("bone_axe", () -> new LOTRAxeItem(LOTRMaterial.BONE));
+		ExtendedItems.BONE_HOE = regItemB("bone_hoe", () -> new LOTRHoeItem(LOTRMaterial.BONE));
+
 		//Dol Guldur Tools
 		ExtendedItems.DOL_GULDUR_SHOVEL = regItemB("dol_guldur_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_PICKAXE = regItemB("dol_guldur_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
@@ -629,6 +635,11 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_SWORD = regItemB("angmar_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_SPEAR = regItemB("angmar_spear",() -> new SpearItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("ANGMAR")));
+
+		//Bone Equipment
+		ExtendedItems.BONE_SWORD = regItemB("bone_sword",() -> new LOTRSwordItem(LOTRMaterial.BONE));
+		ExtendedItems.BONE_SPEAR = regItemB("bone_spear",() -> new SpearItem(LOTRMaterial.BONE));
+		ExtendedItems.BONE_DAGGER = regItemB("bone_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.BONE));
 
 		//Warg Equipment
 		ExtendedItems.BLACK_WARG_HELMET = regItemB("black_warg_fur_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("BLACK_WARG"), EquipmentSlotType.HEAD));
