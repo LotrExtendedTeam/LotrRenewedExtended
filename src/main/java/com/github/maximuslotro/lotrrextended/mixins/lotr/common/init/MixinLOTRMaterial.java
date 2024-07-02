@@ -19,6 +19,7 @@ import lotr.common.init.LOTRMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.Tags.Items;
 
 @Mixin(LOTRMaterial.class)
@@ -59,8 +60,9 @@ public class MixinLOTRMaterial {
 
 	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, 
 									() -> Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()));
-
-	//Bone 3eff 2atk
+	
+	private static final LOTRMaterial EXT_BONE = lotrmaterialExpansion$addVariant("EXT_BONE", "ext_bone", 0, 150, 3.0F, 2.0F, 10, 0.3F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 
+									() -> Ingredient.of(Tags.Items.BONES));
 	@Invoker("<init>")
 	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
@@ -78,6 +80,7 @@ public class MixinLOTRMaterial {
 	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		ArrayList<LOTRMaterial> variants = new ArrayList<LOTRMaterial>(Arrays.asList(MixinLOTRMaterial.$VALUES));
+		LOTRMaterial.BONE.ordinal();
 		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, toolTeir, uses, efficiency, atk, ench, pr, sound, tough, repair, armorRepair, specs);
 		variants.add(instrument);
 		MixinLOTRMaterial.$VALUES = variants.toArray(new LOTRMaterial[0]);
