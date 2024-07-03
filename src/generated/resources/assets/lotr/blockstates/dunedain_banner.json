@@ -31,33 +31,33 @@
       "y": 90
     },
     "facing=north,half=upper,short=true": {
-      "model": "lotrextended:block/dunedain_banner_top_blank"
+      "model": "lotrextended:block/dunedain_banner_small_top"
     },
     "facing=south,half=upper,short=true": {
-      "model": "lotrextended:block/dunedain_banner_top_blank",
+      "model": "lotrextended:block/dunedain_banner_small_top",
       "y": 180
     },
     "facing=west,half=upper,short=true": {
-      "model": "lotrextended:block/dunedain_banner_top_blank",
+      "model": "lotrextended:block/dunedain_banner_small_top",
       "y": 270
     },
     "facing=east,half=upper,short=true": {
-      "model": "lotrextended:block/dunedain_banner_top_blank",
+      "model": "lotrextended:block/dunedain_banner_small_top",
       "y": 90
     },
     "facing=north,half=lower,short=true": {
-      "model": "lotrextended:block/dunedain_banner_small"
+      "model": "lotrextended:block/dunedain_banner_small_bottom"
     },
     "facing=south,half=lower,short=true": {
-      "model": "lotrextended:block/dunedain_banner_small",
+      "model": "lotrextended:block/dunedain_banner_small_bottom",
       "y": 180
     },
     "facing=west,half=lower,short=true": {
-      "model": "lotrextended:block/dunedain_banner_small",
+      "model": "lotrextended:block/dunedain_banner_small_bottom",
       "y": 270
     },
     "facing=east,half=lower,short=true": {
-      "model": "lotrextended:block/dunedain_banner_small",
+      "model": "lotrextended:block/dunedain_banner_small_bottom",
       "y": 90
     }
   }

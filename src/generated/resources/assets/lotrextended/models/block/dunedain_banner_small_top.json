@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:block/template_banner_small",
+  "parent": "lotrextended:block/template_banner_small_top",
   "textures": {
     "particle": "lotrextended:block/banner/dunedain_banner",
     "1": "lotrextended:block/banner/dunedain_banner"

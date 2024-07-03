@@ -936,21 +936,21 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {
 		registeredBlocks.add(extendedMEBannerBlock);
-		ModelFile modelFileSmall = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small", lotrExtendedLoc("block/template_banner_small"))
+		ModelFile modelFileSmallBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_bottom", lotrExtendedLoc("block/template_banner_small_bottom"))
+				.texture("particle", texture).texture("1", texture);
+		ModelFile modelFileSmallTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_top", lotrExtendedLoc("block/template_banner_small_top"))
 				.texture("particle", texture).texture("1", texture);
 		ModelFile modelFileBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_banner_bottom"))
 				.texture("particle", texture).texture("1", texture);
 		ModelFile modelFileTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_banner_top"))
 				.texture("particle", texture).texture("1", texture);
-		ModelFile block = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top_blank", mcLoc("block/block"))
-				.texture("particle", texture);
 		getVariantBuilder(extendedMEBannerBlock).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
 			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);
 			Boolean small = state.getValue(ExtendedMEBannerBlock.SMALL);
 			return ConfiguredModel.builder()
-                    .modelFile(small&&half==DoubleBlockHalf.LOWER ? modelFileSmall : 
-                    	(small&&half==DoubleBlockHalf.UPPER ? block : 
+                    .modelFile(small&&half==DoubleBlockHalf.LOWER ? modelFileSmallBottom : 
+                    	(small&&half==DoubleBlockHalf.UPPER ? modelFileSmallTop : 
                     		(!small&&half==DoubleBlockHalf.LOWER ? modelFileBottom : modelFileTop)))
                     .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
                     .build();
