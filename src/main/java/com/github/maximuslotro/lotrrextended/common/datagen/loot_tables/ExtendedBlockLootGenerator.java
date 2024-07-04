@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -31,7 +32,7 @@ import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
-import lotr.common.block.ExtendedPackedBundleBlock;
+import lotr.common.block.ExtendedPackedFurBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -224,6 +225,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedCarpetBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
 			if(block.getValue().get() instanceof TrapDoorBlock) {
 				dropSelf(block.getValue().get());
 				continue;
@@ -276,7 +281,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropPottedContents(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
+			if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

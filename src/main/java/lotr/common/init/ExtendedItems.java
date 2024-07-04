@@ -377,7 +377,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_FUR_BUNDLE;
 	public static RegistryObject<Item> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Item> BLACK_FUR_BUNDLE;
-	
+
+	public static RegistryObject<Item> BLACK_FUR_CARPET;
+	public static RegistryObject<Item> BROWN_FUR_CARPET;
+	public static RegistryObject<Item> GRAY_FUR_CARPET;
+	public static RegistryObject<Item> SILVER_FUR_CARPET;
+	public static RegistryObject<Item> WHITE_FUR_CARPET;
+
 	public static RegistryObject<Item> BLACK_WARG_HELMET;
 	public static RegistryObject<Item> BLACK_WARG_CHESTPLATE;
 	public static RegistryObject<Item> BLACK_WARG_LEGGINGS;

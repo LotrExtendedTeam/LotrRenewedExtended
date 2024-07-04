@@ -354,7 +354,7 @@ public class MixinLOTRItems {
 		ExtendedItems.CRANBERRY_BUSH = regBlockItemB(ExtendedBlocks.CRANBERRY_BUSH, LOTRItemGroups.DECO);
 		ExtendedItems.ELDERBERRY_BUSH = regBlockItemB(ExtendedBlocks.ELDERBERRY_BUSH, LOTRItemGroups.DECO);
 		ExtendedItems.WILDBERRY_BUSH = regBlockItemB(ExtendedBlocks.WILDBERRY_BUSH, LOTRItemGroups.DECO);
-		
+
 		ExtendedItems.WHITE_PACKED_FUR = regBlockItemB(ExtendedBlocks.WHITE_PACKED_FUR, LOTRItemGroups.DECO);
 		ExtendedItems.WHITE_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.WHITE_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
 		ExtendedItems.WHITE_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.WHITE_PACKED_FUR_STAIRS, LOTRItemGroups.DECO);
@@ -375,12 +375,18 @@ public class MixinLOTRItems {
 		ExtendedItems.BLACK_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR_SLAB, LOTRItemGroups.DECO);
 		ExtendedItems.BLACK_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR_STAIRS, LOTRItemGroups.DECO);
 		ExtendedItems.BLACK_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR_WALL, LOTRItemGroups.DECO);
-		
+
 		ExtendedItems.WHITE_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.WHITE_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.SILVER_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.SILVER_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.GRAY_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.GRAY_FUR_BUNDLE, LOTRItemGroups.DECO);
 		ExtendedItems.BLACK_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.BLACK_FUR_BUNDLE, LOTRItemGroups.DECO);
-		
+
+		ExtendedItems.BLACK_FUR_CARPET = regBlockItemB(ExtendedBlocks.BLACK_FUR_CARPET, LOTRItemGroups.DECO);
+		ExtendedItems.BROWN_FUR_CARPET = regBlockItemB(ExtendedBlocks.BROWN_FUR_CARPET, LOTRItemGroups.DECO);
+		ExtendedItems.GRAY_FUR_CARPET = regBlockItemB(ExtendedBlocks.GRAY_FUR_CARPET, LOTRItemGroups.DECO);
+		ExtendedItems.SILVER_FUR_CARPET = regBlockItemB(ExtendedBlocks.SILVER_FUR_CARPET, LOTRItemGroups.DECO);
+		ExtendedItems.WHITE_FUR_CARPET = regBlockItemB(ExtendedBlocks.WHITE_FUR_CARPET, LOTRItemGroups.DECO);
+
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItemB(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 		ExtendedItems.MORGUL_LANTERN = regBlockItemB(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
 		ExtendedItems.MORGUL_CHANDELIER = regBlockItemB(ExtendedBlocks.MORGUL_CHANDELIER, LOTRItemGroups.DECO);

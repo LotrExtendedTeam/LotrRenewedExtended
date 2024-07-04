@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_fur_carpet",
+  "textures": {
+    "0": "lotrextended:block/black_fur_carpet",
+    "particle": "lotrextended:block/black_fur_carpet"
+  }
+}
