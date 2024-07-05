@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.treasures_of_imladris.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.treasures_of_imladris.description"
     },
     "frame": "task",

@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.enedwaith.forsaken_country.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.enedwaith.forsaken_country.description"
     },
     "frame": "task",

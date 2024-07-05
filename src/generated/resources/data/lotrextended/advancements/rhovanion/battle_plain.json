@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.rhovanion.battle_plain.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.rhovanion.battle_plain.description"
     },
     "frame": "task",

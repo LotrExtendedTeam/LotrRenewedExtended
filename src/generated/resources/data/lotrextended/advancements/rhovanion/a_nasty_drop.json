@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.rhovanion.a_nasty_drop.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.rhovanion.a_nasty_drop.description"
     },
     "frame": "task",

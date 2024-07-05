@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.traditional_dish.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.traditional_dish.description"
     },
     "frame": "task",

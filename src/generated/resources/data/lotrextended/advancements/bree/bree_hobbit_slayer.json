@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.bree.bree_hobbit_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.bree.bree_hobbit_slayer.description"
     },
     "frame": "task",

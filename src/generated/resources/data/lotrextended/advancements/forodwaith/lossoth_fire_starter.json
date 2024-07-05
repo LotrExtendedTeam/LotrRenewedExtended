@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_fire_starter.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.lossoth_fire_starter.description"
     },
     "frame": "task",

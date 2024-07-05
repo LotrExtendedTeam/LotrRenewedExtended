@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.orc_ravager.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.orc_ravager.description"
     },
     "frame": "task",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.lindon.elven_smith.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.lindon.elven_smith.description"
     },
     "frame": "task",

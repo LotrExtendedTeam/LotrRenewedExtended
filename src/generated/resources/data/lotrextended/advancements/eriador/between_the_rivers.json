@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.between_the_rivers.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.between_the_rivers.description"
     },
     "frame": "task",

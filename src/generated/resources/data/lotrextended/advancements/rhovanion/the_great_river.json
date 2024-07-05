@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.rhovanion.the_great_river.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.rhovanion.the_great_river.description"
     },
     "frame": "task",

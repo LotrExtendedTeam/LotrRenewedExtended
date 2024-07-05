@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.a_lonely_land.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.a_lonely_land.description"
     },
     "frame": "task",

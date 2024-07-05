@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_chieftain.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.forodwaith.lossoth_chieftain.description"
     },
     "frame": "goal",

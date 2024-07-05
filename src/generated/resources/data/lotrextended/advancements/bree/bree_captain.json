@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.bree.bree_captain.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.bree.bree_captain.description"
     },
     "frame": "goal",

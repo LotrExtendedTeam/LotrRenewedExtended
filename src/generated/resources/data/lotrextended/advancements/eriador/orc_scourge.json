@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.orc_scourge.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.orc_scourge.description"
     },
     "frame": "task",

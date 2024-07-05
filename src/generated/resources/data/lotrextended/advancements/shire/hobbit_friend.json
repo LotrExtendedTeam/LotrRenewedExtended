@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.hobbit_friend.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.hobbit_friend.description"
     },
     "frame": "task",

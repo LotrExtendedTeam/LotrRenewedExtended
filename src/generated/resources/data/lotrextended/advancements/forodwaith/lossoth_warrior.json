@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_warrior.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.lossoth_warrior.description"
     },
     "frame": "task",

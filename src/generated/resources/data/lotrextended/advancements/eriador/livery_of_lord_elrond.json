@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.eriador.livery_of_lord_elrond.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.livery_of_lord_elrond.description"
     },
     "frame": "task",

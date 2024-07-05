@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.rhovanion.eastward_bound.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.rhovanion.eastward_bound.description"
     },
     "frame": "task",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.rhovanion.here_be_dragons.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.rhovanion.here_be_dragons.description"
     },
     "frame": "task",

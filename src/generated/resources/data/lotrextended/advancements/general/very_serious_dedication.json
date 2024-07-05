@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.general.very_serious_dedication.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.general.very_serious_dedication.description"
     },
     "frame": "challenge",

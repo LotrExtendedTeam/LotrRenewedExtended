@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.rivendell_elf_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.rivendell_elf_slayer.description"
     },
     "frame": "task",

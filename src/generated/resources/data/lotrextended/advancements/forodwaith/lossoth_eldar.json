@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_eldar.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.forodwaith.lossoth_eldar.description"
     },
     "frame": "challenge",

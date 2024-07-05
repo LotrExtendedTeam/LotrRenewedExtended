@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.orc_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.orc_slayer.description"
     },
     "frame": "task",

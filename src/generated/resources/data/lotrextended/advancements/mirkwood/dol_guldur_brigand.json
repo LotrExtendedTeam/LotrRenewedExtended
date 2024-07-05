@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_brigand.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_brigand.description"
     },
     "frame": "task",

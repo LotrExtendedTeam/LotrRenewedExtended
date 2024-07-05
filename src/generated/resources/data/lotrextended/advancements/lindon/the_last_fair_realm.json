@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.lindon.the_last_fair_realm.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.lindon.the_last_fair_realm.description"
     },
     "frame": "task",

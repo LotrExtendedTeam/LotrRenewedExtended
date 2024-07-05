@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.very_suspicious.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.general.very_suspicious.description"
     },
     "frame": "goal",

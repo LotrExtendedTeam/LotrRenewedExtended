@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_servant.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_servant.description"
     },
     "frame": "task",

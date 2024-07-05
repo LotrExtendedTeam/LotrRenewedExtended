@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.tin_award.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.tin_award.description"
     },
     "frame": "task",

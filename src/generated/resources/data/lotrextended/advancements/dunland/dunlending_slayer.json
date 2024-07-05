@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.dunland.dunlending_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.dunland.dunlending_slayer.description"
     },
     "frame": "task",

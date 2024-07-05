@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_captain.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_captain.description"
     },
     "frame": "goal",

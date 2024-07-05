@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.general.treasures_of_old.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.general.treasures_of_old.description"
     },
     "frame": "challenge",

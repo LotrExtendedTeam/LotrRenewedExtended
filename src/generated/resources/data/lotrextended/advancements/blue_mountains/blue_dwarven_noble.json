@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.blue_mountains.blue_dwarven_noble.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.blue_mountains.blue_dwarven_noble.description"
     },
     "frame": "goal",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.hobbit_chief_shirriff.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.shire.hobbit_chief_shirriff.description"
     },
     "frame": "goal",

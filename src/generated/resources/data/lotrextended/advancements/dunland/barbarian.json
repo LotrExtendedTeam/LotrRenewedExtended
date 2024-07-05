@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.dunland.barbarian.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.dunland.barbarian.description"
     },
     "frame": "task",

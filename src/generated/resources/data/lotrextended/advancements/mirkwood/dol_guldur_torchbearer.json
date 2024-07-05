@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_torchbearer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_torchbearer.description"
     },
     "frame": "task",

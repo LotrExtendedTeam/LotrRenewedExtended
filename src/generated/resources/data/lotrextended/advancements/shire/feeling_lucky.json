@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.feeling_lucky.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.shire.feeling_lucky.description"
     },
     "frame": "goal",

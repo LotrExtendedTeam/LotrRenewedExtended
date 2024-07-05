@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.true_silver.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.general.true_silver.description"
     },
     "frame": "challenge",

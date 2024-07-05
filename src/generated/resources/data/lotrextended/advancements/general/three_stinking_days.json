@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.three_stinking_days.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.three_stinking_days.description"
     },
     "frame": "task",

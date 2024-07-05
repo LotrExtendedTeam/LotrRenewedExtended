@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.lindon.a_shining_helm.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.lindon.a_shining_helm.description"
     },
     "frame": "task",

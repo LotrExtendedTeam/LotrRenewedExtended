@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.mirkwood.guest_of_the_elvenking.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.guest_of_the_elvenking.description"
     },
     "frame": "task",

@@ -134,10 +134,13 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	public Advancement build(boolean isLegacy, BaseData data, Advancement.Builder builder){
 		if(data.getFrame()==FrameType.CHALLENGE) {
 			data.setTitleStype(TextFormatting.DARK_PURPLE);
+			data.setDescriptionStype(TextFormatting.LIGHT_PURPLE);
 		}else if(data.getFrame()==FrameType.GOAL) {
 			data.setTitleStype(TextFormatting.GOLD);
+			data.setDescriptionStype(TextFormatting.AQUA);
 		}else {
 			data.setTitleStype(TextFormatting.GREEN);
+			data.setDescriptionStype(TextFormatting.WHITE);
 		}
 		builder.display(data.makeInfo());
 		if(isLegacy) {
@@ -172,7 +175,8 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		private final boolean hidden;
 		private float x = 0.34F;
 		private float y = 0.34F;
-		private TextFormatting formatting = null;
+		private TextFormatting titleFormatting = null;
+		private TextFormatting descriptionFormatting = null;
 		
 		public BaseData(ItemStack icon, String name, boolean mainCat, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden) {
 			this.icon = icon;
@@ -187,11 +191,14 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		public DisplayInfo makeInfo() {
 			String titleString = "advancements.lotrextended."+getFolder()+"."+name+".title";
 			TranslationTextComponent titleI = new TranslationTextComponent(titleString);
-			if(formatting!=null) {
-				titleI.withStyle(formatting);
+			if(titleFormatting!=null) {
+				titleI.withStyle(titleFormatting);
 			}
 			String descriptionString = "advancements.lotrextended."+getFolder()+"."+name+".description";
 			TranslationTextComponent descriptionI = new TranslationTextComponent("advancements.lotrextended."+getFolder()+"."+name+".description");
+			if(descriptionFormatting!=null) {
+				descriptionI.withStyle(descriptionFormatting);
+			}
 			ResourceLocation backgroundI = null;
 			if(mainCat) {
 				backgroundI = new ResourceLocation("lotrextended", "textures/gui/advancements/backgrounds/"+getFolder()+".png");
@@ -221,7 +228,12 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		}
 
 		public BaseData setTitleStype(TextFormatting style) {
-			this.formatting = style;
+			this.titleFormatting = style;
+			return this;
+		}
+
+		public BaseData setDescriptionStype(TextFormatting style) {
+			this.descriptionFormatting = style;
 			return this;
 		}
 

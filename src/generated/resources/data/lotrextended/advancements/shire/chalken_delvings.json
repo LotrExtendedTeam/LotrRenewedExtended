@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.chalken_delvings.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.chalken_delvings.description"
     },
     "frame": "task",

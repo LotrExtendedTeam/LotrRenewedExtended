@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.angmar.the_ruin_of_arnor.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.angmar.the_ruin_of_arnor.description"
     },
     "frame": "task",

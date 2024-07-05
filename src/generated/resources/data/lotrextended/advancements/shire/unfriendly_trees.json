@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.unfriendly_trees.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.unfriendly_trees.description"
     },
     "frame": "task",

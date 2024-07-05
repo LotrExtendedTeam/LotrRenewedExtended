@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.general.master_hunter.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.master_hunter.description"
     },
     "frame": "task",

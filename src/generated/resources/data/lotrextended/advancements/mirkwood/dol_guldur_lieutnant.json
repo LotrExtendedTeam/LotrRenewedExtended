@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_lieutnant.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_lieutnant.description"
     },
     "frame": "challenge",

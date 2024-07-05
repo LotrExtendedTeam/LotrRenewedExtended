@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.dunland.dunland_kinsman.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.dunland.dunland_kinsman.description"
     },
     "frame": "task",

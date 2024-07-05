@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.dunedain_friend.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.dunedain_friend.description"
     },
     "frame": "task",

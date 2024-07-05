@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.mirkwood.captain_of_the_guard.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.captain_of_the_guard.description"
     },
     "frame": "task",

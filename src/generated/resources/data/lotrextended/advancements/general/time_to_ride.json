@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.time_to_ride.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.time_to_ride.description"
     },
     "frame": "task",

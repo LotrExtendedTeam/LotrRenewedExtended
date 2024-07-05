@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.wood_elf_hir_hiril_eryn.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.mirkwood.wood_elf_hir_hiril_eryn.description"
     },
     "frame": "challenge",
