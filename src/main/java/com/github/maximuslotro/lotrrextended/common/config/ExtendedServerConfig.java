@@ -1,15 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.Builder;
-import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
-public class ExtendedServerConfig {
+public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec SERVER_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 
 	public static ForgeConfigSpec.BooleanValue enableFellowshipCreation;
@@ -45,13 +40,5 @@ public class ExtendedServerConfig {
 		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, false, "Toggle to show additional log information if stuff is not working properly");
 		builder.pop();
 		return builder;
-	}
-
-	private static ForgeConfigSpec.BooleanValue createBooleanValue(Builder builder, String key, boolean defaultValue, boolean needsWorldRestart, String comment){
-		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
-		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.configCommentHolders.put(transKey, comment);}
-		builder.comment(comment).translation(transKey);
-		if (needsWorldRestart) {builder.worldRestart();}
-		return builder.define(key, defaultValue);
 	}
 }

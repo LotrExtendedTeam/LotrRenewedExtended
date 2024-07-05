@@ -89,14 +89,14 @@ public class LotrExtendedModClient {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":legacy_textures", 
 				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"), 
-				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
+				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
 	public static void createRenewedPack(ResourcePackList packs) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":renewed_textures", 
-				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Remastered Renewed TexturePack"), 
-				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
+				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Extended Renewed Textures"), 
+				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
@@ -106,6 +106,10 @@ public class LotrExtendedModClient {
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		});
 		BlockRendererSetup.regModels();
+
+		if(!ExtendedClientConfig.lastClientBootVersion.get().equals(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString())) {
+			ExtendedClientConfig.lastClientBootVersion.set(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString());
+		}
     }
 
     public void login(EntityJoinWorldEvent event)
