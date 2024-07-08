@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.rhovanion.past_the_rushes_past_the_reeds.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.rhovanion.past_the_rushes_past_the_reeds.description"
     },
     "frame": "task",

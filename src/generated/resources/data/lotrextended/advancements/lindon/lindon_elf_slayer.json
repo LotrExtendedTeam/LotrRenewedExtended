@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.lindon.lindon_elf_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.lindon.lindon_elf_slayer.description"
     },
     "frame": "task",

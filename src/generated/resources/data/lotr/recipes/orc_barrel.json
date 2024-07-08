@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "PLP",
+    "P P",
+    "PLP"
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:leather"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_barrel"
+  }
+}

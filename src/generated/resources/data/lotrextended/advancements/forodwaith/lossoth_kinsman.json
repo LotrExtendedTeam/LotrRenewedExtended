@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_kinsman.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.lossoth_kinsman.description"
     },
     "frame": "task",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.dunland.dunland_chieftain.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.dunland.dunland_chieftain.description"
     },
     "frame": "challenge",

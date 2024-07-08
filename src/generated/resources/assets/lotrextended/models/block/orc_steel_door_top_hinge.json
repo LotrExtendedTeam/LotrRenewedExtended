@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "bottom": "lotrextended:block/orc_steel_door_bottom",
+    "top": "lotrextended:block/orc_steel_door_top"
+  }
+}

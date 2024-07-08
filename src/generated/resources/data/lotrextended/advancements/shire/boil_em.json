@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.boil_em.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.boil_em.description"
     },
     "frame": "task",

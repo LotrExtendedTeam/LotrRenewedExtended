@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:blue_mountains",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:blue_mountains_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:blue_mountains_banner_pattern"
+  }
+}

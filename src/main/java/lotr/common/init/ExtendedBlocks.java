@@ -209,6 +209,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_STAIRS;
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_WALL;
 
+	public static RegistryObject<Block> CRACKED_ARNOR_PILLAR;
+	public static RegistryObject<Block> CRACKED_ARNOR_PILLAR_SLAB;
+
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;
 	public static RegistryObject<Block> BLACKBERRY_BUSH;
@@ -248,7 +251,18 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Block> BLACK_FUR_BUNDLE;
 	
+	public static RegistryObject<Block> BLACK_FUR_CARPET;
+	public static RegistryObject<Block> BROWN_FUR_CARPET;
+	public static RegistryObject<Block> GRAY_FUR_CARPET;
+	public static RegistryObject<Block> SILVER_FUR_CARPET;
+	public static RegistryObject<Block> WHITE_FUR_CARPET;
+
 	public static RegistryObject<Block> MORGUL_LANTERN;
+	public static RegistryObject<Block> MORGUL_CHANDELIER;
+	public static RegistryObject<Block> ORC_CHANDELIER;
+	public static RegistryObject<Block> URUK_CHANDELIER;
+	public static RegistryObject<Block> ORC_STEEL_DOOR;
+	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR;
 	
 	public static RegistryObject<Block> DRYSTONE_SLAB;
 	public static RegistryObject<Block> DRYSTONE_STAIRS;
@@ -312,6 +326,7 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> STONE_CHEST;
 	public static RegistryObject<Block> REED_BASKET;
+	public static RegistryObject<Block> ORC_BARREL;
 
 	public static RegistryObject<Block> STRAW_BED;
 	public static RegistryObject<Block> ORC_BED;
@@ -327,4 +342,10 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> DUNEDAIN_BANNER;
 	public static RegistryObject<Block> DUNEDAIN_WALL_BANNER;
+	public static RegistryObject<Block> HOBBIT_BANNER;
+	public static RegistryObject<Block> HOBBIT_WALL_BANNER;
+	public static RegistryObject<Block> BLUE_MOUNTAINS_BANNER;
+	public static RegistryObject<Block> BLUE_MOUNTAINS_WALL_BANNER;
+	public static RegistryObject<Block> DURINS_FOLK_BANNER;
+	public static RegistryObject<Block> DURINS_FOLK_WALL_BANNER;
 }

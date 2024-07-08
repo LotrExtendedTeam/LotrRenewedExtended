@@ -11,7 +11,6 @@ import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedItemModelsProperties {
 
@@ -44,14 +43,14 @@ public class ExtendedItemModelsProperties {
 			float propNum = (thisItem.getUseDuration()/20.0F)-num;
 			if(ExtendedClientConfig.enableDevMode.get()) {
 				Minecraft instance = Minecraft.getInstance();
-                instance.gui.getChat().addMessage(new TranslationTextComponent("%s %s", (new StringTextComponent("TICK: "))
-                		.withStyle(TextFormatting.GREEN), new StringTextComponent(Integer.toString(thisLivingEntity.getTicksUsingItem()))));
-                instance.gui.getChat().addMessage(new TranslationTextComponent("%s %s", (new StringTextComponent("Pull Norm: "))
-                		.withStyle(TextFormatting.GREEN), new StringTextComponent(Float.toString(num))));
-                instance.gui.getChat().addMessage(new TranslationTextComponent("%s %s", (new StringTextComponent("Pull Prop: "))
-                		.withStyle(TextFormatting.GREEN), new StringTextComponent(Float.toString(propNum))));
-                instance.gui.getChat().addMessage(new TranslationTextComponent("%s %s", (new StringTextComponent("PER of "+thisItem.getUseDuration()+": "))
-                		.withStyle(TextFormatting.GREEN), new StringTextComponent(Float.toString(propNum/(thisItem.getUseDuration()/20.0F)))));
+                instance.gui.getChat().addMessage(new StringTextComponent("TICK: ").withStyle(TextFormatting.GREEN)
+                		.append(new StringTextComponent(Integer.toString(thisLivingEntity.getTicksUsingItem())).withStyle(TextFormatting.WHITE)));
+                instance.gui.getChat().addMessage(new StringTextComponent("Pull Norm: ").withStyle(TextFormatting.GREEN)
+                		.append(new StringTextComponent(Float.toString(num)).withStyle(TextFormatting.WHITE)));
+                instance.gui.getChat().addMessage(new StringTextComponent("Pull Prop: ").withStyle(TextFormatting.GREEN)
+                		.append(new StringTextComponent(Float.toString(propNum)).withStyle(TextFormatting.WHITE)));
+                instance.gui.getChat().addMessage(new StringTextComponent("PER of "+thisItem.getUseDuration()+": ").withStyle(TextFormatting.GREEN)
+                		.append(new StringTextComponent(Float.toString(propNum/(thisItem.getUseDuration()/20.0F))).withStyle(TextFormatting.WHITE)));
 			}
 			return propNum;
 		});

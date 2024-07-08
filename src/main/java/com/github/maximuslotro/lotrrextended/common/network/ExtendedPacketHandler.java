@@ -11,32 +11,36 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class ExtendedPacketHandler {
 
-	private static final String PROTOCOL_VERSION = "3";
+	private static final String PROTOCOL_VERSION = "4";
 
 	private static SimpleChannel CHANNEL;
 
 	public static void register() {
 		CHANNEL = NetworkRegistry.newSimpleChannel(new ResourceLocation("lotr", "extended"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 		int id = 0;
+		// Packets starting with S are sent from the server to the client (originate at the server)
+		// Packets starting with C are sent from the client to the server (originate at the client)
+		// This naming scheme is shown in {@Link net.minecraft.network.ProtocolType}
 		CHANNEL.registerMessage(id++, ExtendedCPacketSelectHorn.class, ExtendedCPacketSelectHorn::encode, ExtendedCPacketSelectHorn::decode, ExtendedCPacketSelectHorn::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketExchangeCoins.class, ExtendedSPacketExchangeCoins::encode, ExtendedSPacketExchangeCoins::decode, ExtendedSPacketExchangeCoins::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateExchangeCoinContainer.class, ExtendedCPacketUpdateExchangeCoinContainer::encode, ExtendedCPacketUpdateExchangeCoinContainer::decode, ExtendedCPacketUpdateExchangeCoinContainer::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketOpenCoinExchange.class, ExtendedSPacketOpenCoinExchange::encode, ExtendedSPacketOpenCoinExchange::decode, ExtendedSPacketOpenCoinExchange::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketTalkWithTrader.class, ExtendedSPacketTalkWithTrader::encode, ExtendedSPacketTalkWithTrader::decode, ExtendedSPacketTalkWithTrader::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketOpenTradeMenu.class, ExtendedSPacketOpenTradeMenu::encode, ExtendedSPacketOpenTradeMenu::decode, ExtendedSPacketOpenTradeMenu::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketTradeSellItems.class, ExtendedSPacketTradeSellItems::encode, ExtendedSPacketTradeSellItems::decode, ExtendedSPacketTradeSellItems::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketUpdateTradeQuantities.class, ExtendedCPacketUpdateTradeQuantities::encode, ExtendedCPacketUpdateTradeQuantities::decode, ExtendedCPacketUpdateTradeQuantities::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketExchangeCoins.class, ExtendedCPacketExchangeCoins::encode, ExtendedCPacketExchangeCoins::decode, ExtendedCPacketExchangeCoins::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketUpdateExchangeCoinContainer.class, ExtendedSPacketUpdateExchangeCoinContainer::encode, ExtendedSPacketUpdateExchangeCoinContainer::decode, ExtendedSPacketUpdateExchangeCoinContainer::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketOpenCoinExchange.class, ExtendedCPacketOpenCoinExchange::encode, ExtendedCPacketOpenCoinExchange::decode, ExtendedCPacketOpenCoinExchange::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketTalkWithTrader.class, ExtendedCPacketTalkWithTrader::encode, ExtendedCPacketTalkWithTrader::decode, ExtendedCPacketTalkWithTrader::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketOpenTradeMenu.class, ExtendedCPacketOpenTradeMenu::encode, ExtendedCPacketOpenTradeMenu::decode, ExtendedCPacketOpenTradeMenu::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketTradeSellItems.class, ExtendedCPacketTradeSellItems::encode, ExtendedCPacketTradeSellItems::decode, ExtendedCPacketTradeSellItems::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketUpdateTradeQuantities.class, ExtendedSPacketUpdateTradeQuantities::encode, ExtendedSPacketUpdateTradeQuantities::decode, ExtendedSPacketUpdateTradeQuantities::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketNpcMarriageInfo.class, ExtendedSPacketNpcMarriageInfo::encode, ExtendedSPacketNpcMarriageInfo::decode, ExtendedSPacketNpcMarriageInfo::handle);
+		CHANNEL.registerMessage(id++, ExtendedSPacketSendServerSettings.class, ExtendedSPacketSendServerSettings::encode, ExtendedSPacketSendServerSettings::decode, ExtendedSPacketSendServerSettings::handle);
 		if (id >= 255) {
 			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
 		}
 	}
 
-	public static void sendTo(Object msg, ServerPlayerEntity player) {
+	public static void sendToClient(Object msg, ServerPlayerEntity player) {
 		CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), msg);
 	}
 
-	public static void sendToAll(Object msg) {
+	public static void sendToAllClients(Object msg) {
 		CHANNEL.send(PacketDistributor.ALL.noArg(), msg);
 	}
 

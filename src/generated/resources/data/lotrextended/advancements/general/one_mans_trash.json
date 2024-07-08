@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.one_mans_trash.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.one_mans_trash.description"
     },
     "frame": "task",

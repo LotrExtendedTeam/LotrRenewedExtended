@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.the_wild_north.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.the_wild_north.description"
     },
     "frame": "task",

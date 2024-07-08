@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -45,7 +45,7 @@ public class ExtendedStructureHelperComamnd {
 		TileEntity tileentity = source.getLevel().getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity) {
 			ResourceLocation loc = new ResourceLocation(location);
-			MixinHooks.setKegloottable((KegTileEntity)tileentity, loc, 0L);
+			ExtendedReflectionHelper.setKegloottable((KegTileEntity)tileentity, loc, 0L);
 			source.sendSuccess(new StringTextComponent("Set Keg Location: "+loc.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}

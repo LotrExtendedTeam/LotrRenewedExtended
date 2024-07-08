@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.dunland.dunland_club_bearer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.dunland.dunland_club_bearer.description"
     },
     "frame": "task",

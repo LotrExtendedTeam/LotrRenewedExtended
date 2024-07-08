@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.three_stinking_days.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.three_stinking_days.description"
     },
     "frame": "task",
@@ -17,20 +18,18 @@
     "hidden": false
   },
   "criteria": {
-    "has_use_maggoty_bread": {
-      "trigger": "minecraft:inventory_changed",
+    "consume_maggoty_bread": {
+      "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:maggoty_bread"
-          }
-        ]
+        "item": {
+          "item": "lotr:maggoty_bread"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_use_maggoty_bread"
+      "consume_maggoty_bread"
     ]
   ]
 }

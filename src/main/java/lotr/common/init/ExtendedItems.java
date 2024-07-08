@@ -209,6 +209,14 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_SPEAR;
 	public static RegistryObject<Item> ANGMAR_DAGGER;
 
+	public static RegistryObject<Item> BONE_AXE;
+	public static RegistryObject<Item> BONE_SHOVEL;
+	public static RegistryObject<Item> BONE_PICKAXE;
+	public static RegistryObject<Item> BONE_SWORD;
+	public static RegistryObject<Item> BONE_HOE;
+	public static RegistryObject<Item> BONE_SPEAR;
+	public static RegistryObject<Item> BONE_DAGGER;
+
 	public static RegistryObject<Item> BRANDING_IRON;
 
 	public static RegistryObject<Item> RASPBERRY_BUSH;
@@ -337,6 +345,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MOSSY_RED_RHUNIC_BRICK_STAIRS;
 	public static RegistryObject<Item> MOSSY_RED_RHUNIC_BRICK_WALL;
 
+	public static RegistryObject<Item> CRACKED_ARNOR_PILLAR;
+	public static RegistryObject<Item> CRACKED_ARNOR_PILLAR_SLAB;
+
 	public static RegistryObject<Item> WHITE_PACKED_FUR;
 	public static RegistryObject<Item> WHITE_PACKED_FUR_SLAB;
 	public static RegistryObject<Item> WHITE_PACKED_FUR_STAIRS;
@@ -366,8 +377,40 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_FUR_BUNDLE;
 	public static RegistryObject<Item> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Item> BLACK_FUR_BUNDLE;
-	
+
+	public static RegistryObject<Item> BLACK_FUR_CARPET;
+	public static RegistryObject<Item> BROWN_FUR_CARPET;
+	public static RegistryObject<Item> GRAY_FUR_CARPET;
+	public static RegistryObject<Item> SILVER_FUR_CARPET;
+	public static RegistryObject<Item> WHITE_FUR_CARPET;
+
+	public static RegistryObject<Item> BLACK_WARG_HELMET;
+	public static RegistryObject<Item> BLACK_WARG_CHESTPLATE;
+	public static RegistryObject<Item> BLACK_WARG_LEGGINGS;
+	public static RegistryObject<Item> BLACK_WARG_BOOTS;
+	public static RegistryObject<Item> BROWN_WARG_HELMET;
+	public static RegistryObject<Item> BROWN_WARG_CHESTPLATE;
+	public static RegistryObject<Item> BROWN_WARG_LEGGINGS;
+	public static RegistryObject<Item> BROWN_WARG_BOOTS;
+	public static RegistryObject<Item> GRAY_WARG_HELMET;
+	public static RegistryObject<Item> GRAY_WARG_CHESTPLATE;
+	public static RegistryObject<Item> GRAY_WARG_LEGGINGS;
+	public static RegistryObject<Item> GRAY_WARG_BOOTS;
+	public static RegistryObject<Item> SILVER_WARG_HELMET;
+	public static RegistryObject<Item> SILVER_WARG_CHESTPLATE;
+	public static RegistryObject<Item> SILVER_WARG_LEGGINGS;
+	public static RegistryObject<Item> SILVER_WARG_BOOTS;
+	public static RegistryObject<Item> WHITE_WARG_HELMET;
+	public static RegistryObject<Item> WHITE_WARG_CHESTPLATE;
+	public static RegistryObject<Item> WHITE_WARG_LEGGINGS;
+	public static RegistryObject<Item> WHITE_WARG_BOOTS;
+
 	public static RegistryObject<Item> MORGUL_LANTERN;
+	public static RegistryObject<Item> MORGUL_CHANDELIER;
+	public static RegistryObject<Item> ORC_CHANDELIER;
+	public static RegistryObject<Item> URUK_CHANDELIER;
+	public static RegistryObject<Item> ORC_STEEL_DOOR;
+	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;
 
 	public static RegistryObject<Item> DRYSTONE_SLAB;
 	public static RegistryObject<Item> DRYSTONE_STAIRS;
@@ -401,6 +444,7 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> STONE_CHEST;
 	public static RegistryObject<Item> REED_BASKET;
+	public static RegistryObject<Item> ORC_BARREL;
 
 	public static RegistryObject<Item> STRAW_BED;
 	public static RegistryObject<Item> ORC_BED;
@@ -420,9 +464,12 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BARROW_BLADE;
 	
-	public static RegistryObject<Item> DURIN_BANNER_PATTERN;
-	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
+	public static RegistryObject<Item> DURINS_FOLK_BANNER_PATTERN;
+	public static RegistryObject<Item> DURINS_FOLK_BANNER;
 	public static RegistryObject<Item> DUNEDAIN_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNEDAIN_BANNER;
+	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
+	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER;
+	public static RegistryObject<Item> HOBBIT_BANNER;
 }
 

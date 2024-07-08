@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.network;
 
-import java.lang.reflect.Field;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import lotr.common.LOTRLog;
 import lotr.common.data.FastTravelDataModule;
@@ -40,21 +40,9 @@ public class MixinCPacketCreateCustomWaypoint {
 		} else if (!ftData.canCreateOrAdoptMoreCustomWaypoints()) {
 			LOTRLog.warn("Player %s tried to create a custom waypoint but has reached their limit", UsernameHelper.getRawUsername(player));
 		} else {
-			String waypointName = "";
-			String waypointLore = "";
-			try {
-				Field field = CPacketCreateCustomWaypoint.class.getField("name");
-				waypointName = (String) field.get(packet);
-			} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-				e.printStackTrace();
-			}
-			try {
-				Field field = CPacketCreateCustomWaypoint.class.getField("lore");
-				waypointLore = (String) field.get(packet);
-			} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-				e.printStackTrace();
-			}
-			if (waypointName.isEmpty()) {
+			String waypointName = ExtendedReflectionHelper.getStringFieldFromClass(CPacketCreateCustomWaypoint.class, packet, "name");
+			String waypointLore = ExtendedReflectionHelper.getStringFieldFromClass(CPacketCreateCustomWaypoint.class, packet, "lore");
+			if (waypointName==null||waypointName.isEmpty()) {
 				LOTRLog.warn("Player %s tried to create a custom waypoint with a blank name", UsernameHelper.getRawUsername(player));
 			} else if (waypointName.length() > 40) {
 				LOTRLog.warn("Player %s tried to create a custom waypoint with a name too long (%s)", UsernameHelper.getRawUsername(player), waypointName);
@@ -62,11 +50,11 @@ public class MixinCPacketCreateCustomWaypoint {
 				LOTRLog.warn("Player %s tried to create a custom waypoint with lore too long (%s)", UsernameHelper.getRawUsername(player), waypointLore);
 			} else {
 				boolean isPublic = false;
-				try {
-					Field field = CPacketCreateCustomWaypoint.class.getField("isPublic");
-					isPublic = (Boolean) field.get(packet);
-				} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-					e.printStackTrace();
+				Boolean retrievedValue = ExtendedReflectionHelper.getBooleanFieldFromClass(CPacketCreateCustomWaypoint.class, packet, "isPublic");
+				if(retrievedValue==null) {
+					ExtendedLog.error("Failed to parse CreateCustomWaypointPacket public modifier! Setting waypoint to private by default!");
+				}else {
+					isPublic = retrievedValue;
 				}
 				BlockPos waypointPos = CustomWaypointStructureHandler.INSTANCE.getPlayerClickedOnBlockToCreate(player);
 				if (waypointPos == null) {

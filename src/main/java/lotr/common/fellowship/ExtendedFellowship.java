@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import lotr.common.data.LOTRLevelData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -46,7 +46,7 @@ public class ExtendedFellowship {
 	}
 	public void createAndRegister() {
 		ExtendedFellowshipHolderServer.addFellowship(this);
-		MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
+		ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
 		markDirty();
 	}
 	public void load(CompoundNBT arg0) {
@@ -142,13 +142,13 @@ public class ExtendedFellowship {
 			FellowshipMembers.remove(ownerUUID);
 		if (FellowshipAdmins.contains(ownerUUID))
 			FellowshipAdmins.remove(ownerUUID);
-		MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, ownerUUID)).addFellowship(this);
+		ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, ownerUUID)).addFellowship(this);
 		markDirty();
 	}
 	public void addFellowshipMember(UUID player) {
 		if (!isFellowshipOwner(player) && !this.FellowshipMembers.contains(player)) {
 			FellowshipMembers.add(player);
-			MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).addFellowship(this);
+			ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).addFellowship(this);
 			markDirty();
 		}
 	}
@@ -157,7 +157,7 @@ public class ExtendedFellowship {
 			FellowshipMembers.remove(player);
 		if (FellowshipAdmins.contains(player))
 			FellowshipAdmins.remove(player);
-		MixinHooks.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).removeFellowship(this);
+		ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).removeFellowship(this);
 		markDirty();
 		}
 	}

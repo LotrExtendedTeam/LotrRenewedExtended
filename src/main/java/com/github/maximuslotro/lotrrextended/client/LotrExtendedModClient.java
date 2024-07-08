@@ -1,11 +1,16 @@
 package com.github.maximuslotro.lotrrextended.client;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
+import com.google.common.collect.ImmutableSet;
 
 import lotr.common.block.ExtendedSignTypes;
 import net.minecraft.client.Minecraft;
@@ -89,14 +94,14 @@ public class LotrExtendedModClient {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":legacy_textures", 
 				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"), 
-				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
+				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
 	public static void createRenewedPack(ResourcePackList packs) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":renewed_textures", 
-				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Remastered Renewed TexturePack"), 
-				iFactory, Priority.TOP, IPackNameDecorator.passThrough())));
+				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Extended Renewed Textures"), 
+				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
@@ -106,6 +111,8 @@ public class LotrExtendedModClient {
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		});
 		BlockRendererSetup.regModels();
+
+		startVersionChecks();
     }
 
     public void login(EntityJoinWorldEvent event)
@@ -115,12 +122,38 @@ public class LotrExtendedModClient {
             VersionChecker.CheckResult result = VersionChecker.getResult(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo());
             if (result != null && (result.status == VersionChecker.Status.OUTDATED || result.status == VersionChecker.Status.BETA_OUTDATED))
             {
-                event.getEntity().sendMessage(new StringTextComponent("\u00A72[LotrRenewed Extended]:\u00A7r A new version (\u00A73" + result.target.toString () + "\u00A7r) was found"), event.getEntity().getUUID());
+            	TextComponent base = new StringTextComponent("[LotrRenewed Extended]:");
+            	base.withStyle(TextFormatting.DARK_GREEN);
+            	base.append(new TranslationTextComponent("command.lotrextended.version.left")).withStyle(TextFormatting.RESET);
+            	base.append(new StringTextComponent(" (")).withStyle(TextFormatting.RESET);
+            	base.append(new StringTextComponent(result.target.toString())).withStyle(TextFormatting.DARK_AQUA);
+            	base.append(new StringTextComponent(") ")).withStyle(TextFormatting.RESET);
+            	base.append(new TranslationTextComponent("command.lotrextended.version.right")).withStyle(TextFormatting.RESET);
+                event.getEntity().sendMessage(base, event.getEntity().getUUID());
             }
         }
     }
 
 	public void onParticleRegistry(ParticleFactoryRegisterEvent event) {
 		ExtendedClientParticles.register(event);
+	}
+
+	public void startVersionChecks() {
+		String lastVersion = ExtendedClientConfig.lastClientBootVersion.get();
+		String currentVersion = ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString();
+		System.out.println("lastVersion: "+lastVersion);
+		System.out.println("currentVersion: "+currentVersion);
+		if(!lastVersion.equals(currentVersion)) {
+			ExtendedClientConfig.lastClientBootVersion.set(currentVersion);
+			//Handle version change resource pack load
+			ResourcePackList rpl = Minecraft.getInstance().getResourcePackRepository();
+			if(!rpl.getSelectedIds().contains("lotrextended:renewed_textures") && rpl.isAvailable("lotrextended:renewed_textures")) {
+				//Catch Minecraft using ImmutableSet!
+				List<String> packs = new ArrayList<>(rpl.getSelectedIds());
+				packs.add("lotrextended:renewed_textures");
+				//Return ImmutableSet!
+				rpl.setSelected(packs.stream().collect(ImmutableSet.toImmutableSet()));
+			}
+		}
 	}
 }

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.the_troll_fells.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.the_troll_fells.description"
     },
     "frame": "task",

@@ -14,7 +14,8 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
@@ -46,7 +47,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 public class LotrExtendedMod{
 
 	public static final String MODID = "lotrextended";
-	IEventBus modBus;
+	private IEventBus modBus;
 	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
 	public LotrExtendedMod() {
@@ -74,7 +75,8 @@ public class LotrExtendedMod{
 		ExtendedStats.init();
 		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
-		ExtendedLootModifiers.register(modBus);
+		ExtendedGlobalLootModifiers.register(modBus);
+		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
 	}
 
@@ -85,6 +87,10 @@ public class LotrExtendedMod{
             ExtendedConfiguredStructuresV5.registerConfiguredStructures();
         });
     }
+
+	public IEventBus getModBus() {
+		return modBus;
+	}
 
 	public void registerCommands(RegisterCommandsEvent event) {
 		ExtendedCommands.registerCommands(event.getDispatcher(), event.getEnvironment());

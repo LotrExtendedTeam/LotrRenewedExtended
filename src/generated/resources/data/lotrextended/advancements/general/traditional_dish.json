@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.traditional_dish.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.traditional_dish.description"
     },
     "frame": "task",
@@ -17,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_use_apple_crumble": {
+    "has_apple_crumble": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_use_apple_crumble"
+      "has_apple_crumble"
     ]
   ]
 }

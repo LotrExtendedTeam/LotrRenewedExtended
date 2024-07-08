@@ -35,6 +35,7 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new RangerFortStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new RangerHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new RangerWatchtowerStructure());
+    public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new RangerHouseHideoutStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new RangerRuinsStructure());
     public static final RegistryObject<Structure<NoFeatureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new ArnorRuinsStructure());
 
@@ -52,13 +53,14 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_TAVERN_SMALL.get(), true,      25, 15, 489984587);
 		register(HOBBIT_TAVERN_LARGE.get(), false,     43, 30, 230050245);
 		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
-		register(RANGER_CAMP.get(), true,              45, 35, 663198446);
-		register(RANGER_ENCAMPMENT.get(), true,        55, 48, 232963172);
-		register(RANGER_FORT.get(), true,              61, 56, 213435145);
-		register(RANGER_HIDEOUT.get(), true,           52, 48, 752122251);
-		register(RANGER_WATCHTOWER.get(), true,        48, 41, 002406043);
-		register(RANGER_HOUSE_RUIN.get(), true,        37, 37, 340638920);
-		register(ARNOR_RUINS.get(), true,              30, 25, 365876386);
+		register(RANGER_CAMP.get(), true,              36, 21, 663198446);
+		register(RANGER_ENCAMPMENT.get(), true,        50, 38, 232963172);
+		register(RANGER_FORT.get(), true,              56, 36, 213435145);
+		register(RANGER_HIDEOUT.get(), true,           44, 32, 752122251);
+		register(RANGER_WATCHTOWER.get(), true,        42, 31, 002406043);
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 35, 358719680);
+		register(RANGER_HOUSE_RUIN.get(), true,        32, 18, 340638920);
+		register(ARNOR_RUINS.get(), true,              29, 23, 365876386);
 	}
 	
 	public static void register(Structure<NoFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

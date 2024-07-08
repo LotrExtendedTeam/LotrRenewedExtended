@@ -1,0 +1,22 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    " N ",
+    "CIC"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "C": {
+      "item": "lotr:candle"
+    },
+    "I": {
+      "tag": "forge:ingots/morgul_steel"
+    }
+  },
+  "result": {
+    "item": "lotr:morgul_chandelier"
+  }
+}

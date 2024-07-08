@@ -1,0 +1,22 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    " N ",
+    "CIC"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "C": {
+      "item": "lotr:candle"
+    },
+    "I": {
+      "tag": "forge:ingots/uruk_steel"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_chandelier"
+  }
+}

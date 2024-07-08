@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.i_smell_man_flesh.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.i_smell_man_flesh.description"
     },
     "frame": "task",
@@ -17,20 +18,18 @@
     "hidden": false
   },
   "criteria": {
-    "has_use_man_flesh": {
-      "trigger": "minecraft:inventory_changed",
+    "consume_man_flesh": {
+      "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:man_flesh"
-          }
-        ]
+        "item": {
+          "item": "lotr:man_flesh"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_use_man_flesh"
+      "consume_man_flesh"
     ]
   ]
 }

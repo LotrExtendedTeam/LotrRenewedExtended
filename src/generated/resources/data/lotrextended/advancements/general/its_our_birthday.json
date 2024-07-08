@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.general.its_our_birthday.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.its_our_birthday.description"
     },
     "frame": "task",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.street_credit.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.street_credit.description"
     },
     "frame": "task",

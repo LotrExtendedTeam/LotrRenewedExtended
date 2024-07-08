@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.forodwaith.everlasting_chill.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.everlasting_chill.description"
     },
     "frame": "task",

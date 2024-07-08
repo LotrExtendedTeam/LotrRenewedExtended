@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcB
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedOrcBarrelTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedReedBasketTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.ExtendedStructureSpawnerTileEntity;
@@ -39,5 +40,6 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedBookshelfTileEntity>> BOOKSHELF;
 	public static RegistryObject<TileEntityType<ExtendedWeaponRackTileEntity>> WEAPON_RACK;
 	public static RegistryObject<TileEntityType<ExtendedReedBasketTileEntity>> REED_BASKET;
+	public static RegistryObject<TileEntityType<ExtendedOrcBarrelTileEntity>> ORC_BARREL;
 }
 

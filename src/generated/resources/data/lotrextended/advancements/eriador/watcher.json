@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.eriador.watcher.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.watcher.description"
     },
     "frame": "task",

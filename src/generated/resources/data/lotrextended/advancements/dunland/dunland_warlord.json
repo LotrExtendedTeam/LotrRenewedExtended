@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.dunland.dunland_warlord.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.dunland.dunland_warlord.description"
     },
     "frame": "goal",

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cracked_arnor_pillar_slab"
+    ]
+  },
+  "criteria": {
+    "has_cracked_arnor_pillar_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_arnor_pillar_slab"
+          }
+        ]
+      }
+    },
+    "has_cracked_arnor_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_arnor_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cracked_arnor_pillar_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_arnor_pillar_slab",
+      "has_cracked_arnor_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

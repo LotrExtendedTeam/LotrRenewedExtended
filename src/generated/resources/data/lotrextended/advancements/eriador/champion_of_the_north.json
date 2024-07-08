@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.champion_of_the_north.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.eriador.champion_of_the_north.description"
     },
     "frame": "goal",

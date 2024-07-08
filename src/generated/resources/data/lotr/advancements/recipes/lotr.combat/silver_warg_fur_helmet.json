@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:silver_warg_fur_helmet"
+    ]
+  },
+  "criteria": {
+    "has_silver_warg_fur_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_warg_fur_helmet"
+          }
+        ]
+      }
+    },
+    "has_silver_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:silver_warg_fur_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_warg_fur_helmet",
+      "has_silver_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

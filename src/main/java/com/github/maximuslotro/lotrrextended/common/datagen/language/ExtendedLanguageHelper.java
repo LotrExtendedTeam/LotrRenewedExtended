@@ -50,7 +50,7 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 	protected abstract void makeTranslations();
 
 	public void addOverride(String key, String name) {
-		existingStrings.put(key, name);
+		overrideStrings.put(key, name);
 	}
 
 	@Override
@@ -107,6 +107,9 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
 		for (Entry<String, String> entry : map.entrySet()) {
+			if(entry.getKey().contains("container.lotr")) {
+				continue;
+			}
 			if(entry.getKey().contains("stat.lotrextended")) {
 				continue;
 			}
@@ -117,6 +120,15 @@ public abstract class ExtendedLanguageHelper extends LanguageProvider {
 				continue;
 			}
 			if(entry.getKey().contains("advancements.lotrextended")) {
+				continue;
+			}
+			if(entry.getKey().contains("command.lotrextended")) {
+				continue;
+			}
+			if(entry.getKey().contains("gui.lotrextended")) {
+				continue;
+			}
+			if(entry.getKey().contains("block.minecraft.banner")) {
 				continue;
 			}
 			existingStrings.put(entry.getKey(), entry.getValue());

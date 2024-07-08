@@ -1,6 +1,5 @@
 {
-  "type": "lotr:faction_shaped",
-  "table": "lotr:angmar",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "#",
     "#",
@@ -11,7 +10,7 @@
       "tag": "forge:rods/wooden"
     },
     "#": {
-      "item": "lotr:orc_steel_ingot"
+      "tag": "forge:bones"
     }
   },
   "result": {

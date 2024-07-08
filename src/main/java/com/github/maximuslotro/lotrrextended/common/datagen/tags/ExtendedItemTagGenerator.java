@@ -59,14 +59,19 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		this.copy(ExtendedBlockTagGenerator.WALLS, ItemTags.WALLS);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+		this.copy(ExtendedBlockTagGenerator.TRAPDOORS, ItemTags.TRAPDOORS);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+		this.copy(ExtendedBlockTagGenerator.DOORS, ItemTags.DOORS);
 		this.copy(ExtendedBlockTagGenerator.STANDING_SIGNS, ItemTags.SIGNS);
 		this.copy(ExtendedBlockTagGenerator.SAPLINGS, ItemTags.SAPLINGS);
 		this.copy(ExtendedBlockTagGenerator.PLANKS, ItemTags.PLANKS);
 		this.copy(ExtendedBlockTagGenerator.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
 		this.copy(ExtendedBlockTagGenerator.LEAVES, ItemTags.LEAVES);
-
+		this.copy(ExtendedBlockTagGenerator.CHESTS, Tags.Items.CHESTS);
+		this.copy(ExtendedBlockTagGenerator.BARRELS, Tags.Items.BARRELS);
+		this.copy(ExtendedBlockTagGenerator.BARRELS_WOODEN, Tags.Items.BARRELS_WOODEN);
+		
 		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCES, ExtendedItemTagGenerator.WOODEN_FENCES);
 		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCE_GATES, ExtendedItemTagGenerator.WOODEN_FENCE_GATES);
 		this.copy(ExtendedBlockTagGenerator.LOG_SLABS, ExtendedItemTagGenerator.LOG_SLABS);
@@ -191,8 +196,6 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 	    .addTag(ExtendedTags.Items.TIN_ORE);
 		
 		tag(FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
-		
-		tag(Tags.Items.CHESTS).add(ExtendedItems.STONE_CHEST.get());
 
 		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get());
 

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.true_silver.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.general.true_silver.description"
     },
     "frame": "challenge",
@@ -17,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_mithril_ore": {
+    "has_mithril_ore": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_has_mithril_ore"
+      "has_mithril_ore"
     ]
   ]
 }

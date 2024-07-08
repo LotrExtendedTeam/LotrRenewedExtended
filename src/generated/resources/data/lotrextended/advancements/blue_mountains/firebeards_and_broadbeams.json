@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.blue_mountains.firebeards_and_broadbeams.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.blue_mountains.firebeards_and_broadbeams.description"
     },
     "frame": "task",

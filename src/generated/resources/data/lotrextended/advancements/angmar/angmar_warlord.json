@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.angmar.angmar_warlord.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.angmar.angmar_warlord.description"
     },
     "frame": "goal",

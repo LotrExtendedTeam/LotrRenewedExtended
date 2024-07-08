@@ -1,0 +1,7 @@
+{
+  "conditions": [],
+  "fishing_rods_affected": [
+    "minecraft:fishing_rod"
+  ],
+  "type": "lotrextended:me_enchantment_disabler"
+}

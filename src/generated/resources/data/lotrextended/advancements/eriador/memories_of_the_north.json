@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.eriador.memories_of_the_north.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.memories_of_the_north.description"
     },
     "frame": "task",

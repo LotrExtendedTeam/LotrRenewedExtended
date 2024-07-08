@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.shire.hobbit_bounder.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.shire.hobbit_bounder.description"
     },
     "frame": "task",

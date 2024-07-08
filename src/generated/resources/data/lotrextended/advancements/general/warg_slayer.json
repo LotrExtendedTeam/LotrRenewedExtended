@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.warg_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.warg_slayer.description"
     },
     "frame": "task",

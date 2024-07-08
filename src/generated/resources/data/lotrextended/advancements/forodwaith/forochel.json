@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.forochel.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.forochel.description"
     },
     "frame": "task",

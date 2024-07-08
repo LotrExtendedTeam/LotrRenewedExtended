@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.models;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
@@ -9,12 +11,14 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
+import lotr.common.block.ChandelierBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.*;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
@@ -22,6 +26,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -48,6 +53,14 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRSaplingBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
 				continue;
@@ -58,7 +71,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(((BlockItem)item.getValue().get()) instanceof FallenLeavesItem) {
 				try {
-					genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey().substring(7)));
+					genGenerated(item.getKey(), true, lotrExtendedLoc("block/"+item.getKey().substring(7)));
 				}catch(IllegalArgumentException e) {
 					genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey().substring(7)+"_0"));
 				}
@@ -157,39 +170,44 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSword(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
-		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genSpear(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
 		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling"))).predicate(mcLoc("pulling"), 1);
-		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genSpearPulling(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
-		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genDagger(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "lotr:item/handheld_dagger");
 		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_sneaking"))).predicate(lotrLoc("sneaking"), 1);
-		return gen(builder, lotrExtendedLoc("item/"+name));
+		return gen(builder, false, lotrExtendedLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genDaggerSneaking(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_sneaking", "lotr:item/handheld_dagger_sneaking");
-		return gen(builder, lotrExtendedLoc("item/"+name));
+		return gen(builder, false, lotrExtendedLoc("item/"+name));
 	}
 
 	private ItemModelBuilder genGenerated(String name, ResourceLocation... layers) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/generated");
-		return gen(builder, layers);
+		return gen(builder, false, layers);
+	}
+
+	private ItemModelBuilder genGenerated(String name, boolean canFail, ResourceLocation... layers) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/generated");
+		return gen(builder, canFail, layers);
 	}
 
 	private ItemModelBuilder genHandheld(String name, ResourceLocation... layers) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/handheld");
-		return gen(builder, layers);
+		return gen(builder, false, layers);
 	}
 
 	private ItemModelBuilder genCommandHorn(String name, String location) {
@@ -215,9 +233,27 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return builder;
 	}
 
-	private ItemModelBuilder gen(ItemModelBuilder builder, ResourceLocation... layers) {
-		for (int i = 0; i < layers.length; i++) {
-			builder = builder.texture("layer" + i, layers[i]);
+	@SuppressWarnings("unchecked")
+	private ItemModelBuilder gen(ItemModelBuilder builder, boolean canFail, ResourceLocation... layers) {
+		try {
+			for (int i = 0; i < layers.length; i++) {
+				builder = builder.texture("layer" + i, layers[i]);
+			}
+		}catch(IllegalArgumentException e) {
+			if(!canFail) {
+				for (int i = 0; i < layers.length; i++) {
+					try {
+						Field f1 = ModelBuilder.class.getDeclaredField("textures");
+						f1.setAccessible(true);
+						((Map<String, String>)f1.get(builder)).put("layer" + i, layers[i].toString());
+						System.out.println("Missing texture for: "+layers[i]);
+					} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}else {
+				throw new IllegalArgumentException(e);
+			}
 		}
 		return builder;
 	}

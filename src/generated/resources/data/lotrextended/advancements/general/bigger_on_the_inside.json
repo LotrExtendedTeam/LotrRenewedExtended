@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.bigger_on_the_inside.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.bigger_on_the_inside.description"
     },
     "frame": "task",
@@ -17,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_small_pouch": {
+    "has_small_pouch": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -27,7 +28,7 @@
         ]
       }
     },
-    "has_has_medium_pouch": {
+    "has_medium_pouch": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -37,7 +38,7 @@
         ]
       }
     },
-    "has_has_large_pouch": {
+    "has_large_pouch": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -50,9 +51,9 @@
   },
   "requirements": [
     [
-      "has_has_small_pouch",
-      "has_has_medium_pouch",
-      "has_has_large_pouch"
+      "has_small_pouch",
+      "has_medium_pouch",
+      "has_large_pouch"
     ]
   ]
 }

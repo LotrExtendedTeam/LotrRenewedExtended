@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_thrall.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_thrall.description"
     },
     "frame": "task",

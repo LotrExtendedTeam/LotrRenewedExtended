@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.command.CommandSource;
@@ -73,12 +73,12 @@ public class DevEventHandlers {
     	if(tileentity==null) {
     		return;
     	}
-		if (tileentity instanceof KegTileEntity&&MixinHooks.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
+		if (tileentity instanceof KegTileEntity&&ExtendedReflectionHelper.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
-			TextComponent comp2 = new StringTextComponent("Location: "+MixinHooks.getKegLootTable((KegTileEntity)tileentity).toString());
+			TextComponent comp2 = new StringTextComponent("Location: "+ExtendedReflectionHelper.getKegLootTable((KegTileEntity)tileentity).toString());
 			comp2.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
 			return;

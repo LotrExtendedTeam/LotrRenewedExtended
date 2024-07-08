@@ -8,6 +8,7 @@
       "translate": "advancements.lotrextended.mirkwood.stay_on_the_path.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.stay_on_the_path.description"
     },
     "frame": "task",

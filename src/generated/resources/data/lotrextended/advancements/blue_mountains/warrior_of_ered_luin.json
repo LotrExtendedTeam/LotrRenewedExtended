@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.blue_mountains.warrior_of_ered_luin.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.blue_mountains.warrior_of_ered_luin.description"
     },
     "frame": "task",

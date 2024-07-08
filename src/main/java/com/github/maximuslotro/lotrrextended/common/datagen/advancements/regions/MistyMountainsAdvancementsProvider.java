@@ -11,18 +11,16 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.item.Items;
-import net.minecraft.util.text.TextFormatting;
 
 
 public class MistyMountainsAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> MISTY_MOUNTAIN_BIOMES = ImmutableList.of(LOTRBiomes.MISTY_MOUNTAINS, 
 			LOTRBiomes.MISTY_MOUNTAINS_FOOTHILLS);
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement mm = build(true, data(Items.SNOW_BLOCK, "the_misty_mountains_cold", true, FrameType.TASK, true, true, false)
-				.setTitle("The Mountains Cold").setDescription("Enter the Misty Mountains.").setTitleStype(TextFormatting.GREEN), 
+				.setTitle("The Mountains Cold").setDescription("Enter the Misty Mountains."), 
 				addBiomeTriggers(make(), MISTY_MOUNTAIN_BIOMES).requirements(IRequirementsStrategy.OR));
 	}
 

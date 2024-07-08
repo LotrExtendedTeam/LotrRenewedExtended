@@ -1,8 +1,8 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenCoinExchange;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketTalkWithTrader;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTalkWithTrader;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -48,10 +48,10 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     }
 
     private void talkWithNPC() {
-        ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenCoinExchange(entity.getId(), false));
         trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
 
-        ExtendedPacketHandler.sendToServer(new ExtendedSPacketTalkWithTrader(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketTalkWithTrader(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
         if(mc.player != null) {
             mc.player.closeContainer();
@@ -72,7 +72,7 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     public void onClose() {
         super.onClose();
         // notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(entity.getId(), false));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenCoinExchange(entity.getId(), false));
         trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
 }

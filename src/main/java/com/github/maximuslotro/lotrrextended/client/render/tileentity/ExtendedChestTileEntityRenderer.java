@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedChestTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;

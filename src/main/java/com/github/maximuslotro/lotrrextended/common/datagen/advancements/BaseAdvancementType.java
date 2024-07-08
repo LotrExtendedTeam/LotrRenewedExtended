@@ -14,6 +14,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.IRequirementsStrategy;
+import net.minecraft.advancements.criterion.ChangeDimensionTrigger;
 import net.minecraft.advancements.criterion.ConsumeItemTrigger;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.FishingRodHookedTrigger;
@@ -32,19 +33,32 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public abstract class BaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
 	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, List<PreRegisteredLOTRBiome> biomes) {
 		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
-			builder.addCriterion("enter_"+lotrBiomeObject.getName(), inBiome(lotrBiomeObject));
+			addBiomeTrigger(builder, lotrBiomeObject);
 		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
-	
+
 	public static Advancement.Builder addBiomeTrigger(Advancement.Builder builder, PreRegisteredLOTRBiome biome) {
 		builder.addCriterion("enter_"+biome.getName(), inBiome(biome));
+		return builder;
+	}
+
+	public static Advancement.Builder addBiomeAltTriggers(Advancement.Builder builder, List<ResourceLocation> biomes) {
+		for(ResourceLocation lotrBiomeObject : biomes) {
+			builder.addCriterion("enter_"+lotrBiomeObject.getPath(), inBiome(lotrBiomeObject));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addDimensionTrigger(Advancement.Builder builder, RegistryKey<World> dim) {
+		builder.addCriterion("entered_"+dim.location().getPath(), ChangeDimensionTrigger.Instance.changedDimensionTo(dim));
 		return builder;
 	}
 
@@ -53,7 +67,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, Item item) {
-		return addItemTrigger(builder, "has_"+item.getRegistryName().getPath(), item);
+		return addItemTrigger(builder, item.getRegistryName().getPath(), item);
 	}
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		return builder.addCriterion("has_"+name, InventoryChangeTrigger.Instance.hasItems(items));
@@ -69,12 +83,12 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		return builder.addCriterion("fished"+item.getRegistryName().getPath(), FishingRodHookedTrigger.Instance.fishedItem(ItemPredicate.ANY, EntityPredicate.ANY, ItemPredicate.Builder.item().of(item).build()));
 	}
 
-	public static Advancement.Builder addUseTrigger(Advancement.Builder builder, Item item) {
-		return addItemTrigger(builder, "use_"+item.getRegistryName().getPath(), item);
+	public static Advancement.Builder addConsumeItemTrigger(Advancement.Builder builder, Item item) {
+		return addConsumeItemTrigger(builder, item.getRegistryName().getPath(), item);
 	}
-	public static Advancement.Builder addUseTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
+	public static Advancement.Builder addConsumeItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		for(IItemProvider item : items) {
-			builder.addCriterion("use_"+name, ConsumeItemTrigger.Instance.usedItem(item));
+			builder.addCriterion("consume_"+name, ConsumeItemTrigger.Instance.usedItem(item));
 		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
@@ -118,6 +132,16 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public Advancement build(boolean isLegacy, BaseData data, Advancement.Builder builder){
+		if(data.getFrame()==FrameType.CHALLENGE) {
+			data.setTitleStype(TextFormatting.DARK_PURPLE);
+			data.setDescriptionStype(TextFormatting.LIGHT_PURPLE);
+		}else if(data.getFrame()==FrameType.GOAL) {
+			data.setTitleStype(TextFormatting.GOLD);
+			data.setDescriptionStype(TextFormatting.AQUA);
+		}else {
+			data.setTitleStype(TextFormatting.GREEN);
+			data.setDescriptionStype(TextFormatting.WHITE);
+		}
 		builder.display(data.makeInfo());
 		if(isLegacy) {
 			ExtendedAdvancementProvider.advancementsLegacyNum +=1;
@@ -135,6 +159,10 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		return PositionTrigger.Instance.located(LocationPredicate.inBiome(biome(biome)));
 	}
 
+	public static PositionTrigger.Instance inBiome(ResourceLocation biome){
+		return PositionTrigger.Instance.located(LocationPredicate.inBiome(RegistryKey.create(Registry.BIOME_REGISTRY, biome)));
+	}
+
 	public class BaseData {
 		private final String name;
 		private String titleMain;
@@ -147,7 +175,8 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		private final boolean hidden;
 		private float x = 0.34F;
 		private float y = 0.34F;
-		private TextFormatting formatting = null;
+		private TextFormatting titleFormatting = null;
+		private TextFormatting descriptionFormatting = null;
 		
 		public BaseData(ItemStack icon, String name, boolean mainCat, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden) {
 			this.icon = icon;
@@ -162,11 +191,14 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		public DisplayInfo makeInfo() {
 			String titleString = "advancements.lotrextended."+getFolder()+"."+name+".title";
 			TranslationTextComponent titleI = new TranslationTextComponent(titleString);
-			if(formatting!=null) {
-				titleI.withStyle(formatting);
+			if(titleFormatting!=null) {
+				titleI.withStyle(titleFormatting);
 			}
 			String descriptionString = "advancements.lotrextended."+getFolder()+"."+name+".description";
 			TranslationTextComponent descriptionI = new TranslationTextComponent("advancements.lotrextended."+getFolder()+"."+name+".description");
+			if(descriptionFormatting!=null) {
+				descriptionI.withStyle(descriptionFormatting);
+			}
 			ResourceLocation backgroundI = null;
 			if(mainCat) {
 				backgroundI = new ResourceLocation("lotrextended", "textures/gui/advancements/backgrounds/"+getFolder()+".png");
@@ -196,13 +228,22 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		}
 
 		public BaseData setTitleStype(TextFormatting style) {
-			this.formatting = style;
+			this.titleFormatting = style;
+			return this;
+		}
+
+		public BaseData setDescriptionStype(TextFormatting style) {
+			this.descriptionFormatting = style;
 			return this;
 		}
 
 		public BaseData setDescription(String description) {
 			this.descriptionMain = description;
 			return this;
+		}
+
+		public FrameType getFrame() {
+			return frame;
 		}
 	}
 }

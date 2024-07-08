@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.orc_warlord.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.eriador.orc_warlord.description"
     },
     "frame": "goal",

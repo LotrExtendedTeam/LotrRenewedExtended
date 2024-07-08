@@ -6,16 +6,14 @@ import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.util.text.TextFormatting;
 
 
 public class EregionAdvancementsProvider extends BaseAdvancementType{
 
-	@SuppressWarnings("unused")
 	@Override
 	public void generateAdvancements() {
 		Advancement eregion = build(true, data(LOTRItems.HOLLY_SAPLING.get(), "faded_splendor", true, FrameType.TASK, true, true, false)
-				.setTitle("Faded Splendor").setDescription("Enter the land of Eregion.").setTitleStype(TextFormatting.GREEN), 
+				.setTitle("Faded Splendor").setDescription("Enter the land of Eregion."), 
 				addBiomeTrigger(make(), LOTRBiomes.EREGION));
 	}
 

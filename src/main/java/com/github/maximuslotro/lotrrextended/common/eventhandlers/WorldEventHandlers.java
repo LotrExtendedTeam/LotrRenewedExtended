@@ -51,8 +51,13 @@ public class WorldEventHandlers {
 
 	@SubscribeEvent
 	public static void handleBedRollCancelSpawn(PlayerSetSpawnEvent event) {
-		if(event.getPlayer().level.getBlockState(event.getNewSpawn()).getBlock() instanceof ExtendedBedrollBlock) {
-			event.setCanceled(true);
+		if(event.isForced() || event.getNewSpawn()==null) {
+			return;
+		}
+		if(event.getPlayer().level.getBlockState(event.getNewSpawn())!=null) {
+			if(event.getPlayer().level.getBlockState(event.getNewSpawn()).getBlock() instanceof ExtendedBedrollBlock) {
+				event.setCanceled(true);
+			}
 		}
 	}
 }

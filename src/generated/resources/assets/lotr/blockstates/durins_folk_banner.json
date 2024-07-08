@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,half=upper,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_top"
+    },
+    "facing=south,half=upper,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_top",
+      "y": 180
+    },
+    "facing=west,half=upper,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_top",
+      "y": 270
+    },
+    "facing=east,half=upper,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_top",
+      "y": 90
+    },
+    "facing=north,half=lower,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_bottom"
+    },
+    "facing=south,half=lower,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_bottom",
+      "y": 180
+    },
+    "facing=west,half=lower,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,short=false": {
+      "model": "lotrextended:block/durins_folk_banner_bottom",
+      "y": 90
+    },
+    "facing=north,half=upper,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_top"
+    },
+    "facing=south,half=upper,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_top",
+      "y": 180
+    },
+    "facing=west,half=upper,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_top",
+      "y": 270
+    },
+    "facing=east,half=upper,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_top",
+      "y": 90
+    },
+    "facing=north,half=lower,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_bottom"
+    },
+    "facing=south,half=lower,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_bottom",
+      "y": 180
+    },
+    "facing=west,half=lower,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,short=true": {
+      "model": "lotrextended:block/durins_folk_banner_small_bottom",
+      "y": 90
+    }
+  }
+}

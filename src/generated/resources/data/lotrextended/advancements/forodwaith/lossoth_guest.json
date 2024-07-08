@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_guest.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.lossoth_guest.description"
     },
     "frame": "task",

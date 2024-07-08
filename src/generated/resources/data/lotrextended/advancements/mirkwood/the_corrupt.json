@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.mirkwood.the_corrupt.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.mirkwood.the_corrupt.description"
     },
     "frame": "task",

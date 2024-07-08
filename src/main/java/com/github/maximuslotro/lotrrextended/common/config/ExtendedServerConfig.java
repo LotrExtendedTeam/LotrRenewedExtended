@@ -1,21 +1,22 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.Builder;
-import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
-public class ExtendedServerConfig {
+public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec SERVER_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
-	public static ForgeConfigSpec.BooleanValue enableDevMode;
-	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
+
 	public static ForgeConfigSpec.BooleanValue enableFellowshipCreation;
 	public static ForgeConfigSpec.BooleanValue enableRenewedWaypointCreation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyWaypointCreation;
+	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
+
+	public static ForgeConfigSpec.BooleanValue enableFishingEnchantedItems;
+	public static ForgeConfigSpec.BooleanValue enableEnchantedLootDrops;
+
+	public static ForgeConfigSpec.BooleanValue enableDevMode;
+	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
@@ -26,6 +27,12 @@ public class ExtendedServerConfig {
 		enableFellowshipCreation = createBooleanValue(builder, "enableFellowshipCreation", true, false, "Enable or disable fellowship creation");
 		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable or disable renewed based waypoint creation");
 		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable or disable legacy based waypoint creation");
+		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
+		builder.pop();
+
+		builder.push("Vanilla Patches");
+		enableFishingEnchantedItems = createBooleanValue(builder, "enableFishingEnchantedItems", false, false, "Enable or disable fishing enchanted items in Middle Earth");
+		enableEnchantedLootDrops = createBooleanValue(builder, "enableEnchantedLootDrops", true, false, "Enable or disable any enchated loot drops in Middle Earth");
 		builder.pop();
 
 		builder.push("Special settings");
@@ -33,13 +40,5 @@ public class ExtendedServerConfig {
 		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, false, "Toggle to show additional log information if stuff is not working properly");
 		builder.pop();
 		return builder;
-	}
-
-	private static ForgeConfigSpec.BooleanValue createBooleanValue(Builder builder, String key, boolean defaultValue, boolean needsWorldRestart, String comment){
-		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
-		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.configCommentHolders.put(transKey, comment);}
-		builder.comment(comment).translation(transKey);
-		if (needsWorldRestart) {builder.worldRestart();}
-		return builder.define(key, defaultValue);
 	}
 }

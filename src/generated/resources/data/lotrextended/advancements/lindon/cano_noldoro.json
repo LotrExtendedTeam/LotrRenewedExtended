@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.lindon.cano_noldoro.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.lindon.cano_noldoro.description"
     },
     "frame": "goal",

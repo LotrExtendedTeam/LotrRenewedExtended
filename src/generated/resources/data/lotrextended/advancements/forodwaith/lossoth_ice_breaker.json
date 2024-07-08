@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.forodwaith.lossoth_ice_breaker.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.forodwaith.lossoth_ice_breaker.description"
     },
     "frame": "task",

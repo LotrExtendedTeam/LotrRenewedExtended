@@ -17,6 +17,7 @@ import net.minecraft.util.registry.Registry;
 @Mixin(Blocks.class)
 public class MixinBlocks {
 
+	@SuppressWarnings("deprecation")
 	@Inject(method = "register(Ljava/lang/String;Lnet/minecraft/block/Block;)Lnet/minecraft/block/Block;", at = @At("HEAD"), cancellable = true)
 	private static void register(String name, Block blockInstance, CallbackInfoReturnable<Block> clr) {
 		if("bookshelf".equals(name)) {

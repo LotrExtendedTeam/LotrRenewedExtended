@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-import com.github.maximuslotro.lotrrextended.mixinhooks.MixinHooks;
+import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 
 import net.minecraft.tileentity.StructureBlockTileEntity;
 
@@ -13,6 +13,6 @@ public class MixinStructureBlockTileEntityClient {
 	
 	@ModifyConstant(method = "load", constant = {@Constant(intValue = 48), @Constant(intValue = -48)})
 	private int getMaxSizePos(int value) {
-		return value > 0 ? MixinHooks.StructureLimitPosBounds : MixinHooks.StructureLimitNegBounds;
+		return value > 0 ? MixinConstants.StructureLimitPosBounds : MixinConstants.StructureLimitNegBounds;
 	}
 }

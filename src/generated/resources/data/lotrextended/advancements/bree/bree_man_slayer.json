@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.bree.bree_man_slayer.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.bree.bree_man_slayer.description"
     },
     "frame": "task",

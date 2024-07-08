@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -16,21 +17,22 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedReedBasketBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBarrelBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
+import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
-import lotr.common.block.ExtendedPackedBundleBlock;
+import lotr.common.block.ExtendedPackedFurBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -67,7 +69,9 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -134,6 +138,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRPillarBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ChandelierBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -217,6 +225,14 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedCarpetBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof TrapDoorBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
 			if(block.getValue().get() instanceof StrippableBranchBlock) {
 				dropSelf(block.getValue().get());
 				continue;
@@ -245,6 +261,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
 				continue;
 			}
+			if(block.getValue().get() instanceof DoorBlock) {
+				add(block.getValue().get(), BlockLootTables::createDoorTable);
+				continue;
+			}
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
 			         return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
@@ -261,7 +281,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropPottedContents(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedPackedBundleBlock) {
+			if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -312,7 +332,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
-			if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
+			if(block.getValue().get() instanceof ExtendedBarrelBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {

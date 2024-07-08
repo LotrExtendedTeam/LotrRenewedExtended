@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketUpdateTradeQuantities;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketUpdateTradeQuantities;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
@@ -406,7 +406,7 @@ public class ExtendedTradeContainer extends Container {
         	for(ItemStack itemSold : soldItems) {
         		ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false, itemSold);
         	}
-        	ExtendedPacketHandler.sendTo(new ExtendedCPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
+        	ExtendedPacketHandler.sendToClient(new ExtendedSPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }
 

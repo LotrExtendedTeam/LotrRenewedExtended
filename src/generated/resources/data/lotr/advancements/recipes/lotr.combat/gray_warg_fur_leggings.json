@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gray_warg_fur_leggings"
+    ]
+  },
+  "criteria": {
+    "has_gray_warg_fur_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gray_warg_fur_leggings"
+          }
+        ]
+      }
+    },
+    "has_gray_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gray_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gray_warg_fur_leggings"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_warg_fur_leggings",
+      "has_gray_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

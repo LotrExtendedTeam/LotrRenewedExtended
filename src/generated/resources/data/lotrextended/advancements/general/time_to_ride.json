@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.time_to_ride.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.time_to_ride.description"
     },
     "frame": "task",
@@ -17,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_use_saddle": {
+    "has_saddle": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_use_saddle"
+      "has_saddle"
     ]
   ]
 }

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.lindon.arquen.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.lindon.arquen.description"
     },
     "frame": "task",

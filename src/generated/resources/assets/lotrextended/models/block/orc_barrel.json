@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "lotrextended:entity/chest/orc_barrel_side",
+    "bottom": "lotrextended:entity/chest/orc_barrel_bottom",
+    "top": "lotrextended:entity/chest/orc_barrel_top"
+  }
+}

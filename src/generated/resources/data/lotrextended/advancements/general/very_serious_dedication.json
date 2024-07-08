@@ -10,6 +10,7 @@
       "translate": "advancements.lotrextended.general.very_serious_dedication.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.general.very_serious_dedication.description"
     },
     "frame": "challenge",
@@ -18,7 +19,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_mithril_hoe": {
+    "has_mithril_hoe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -31,7 +32,7 @@
   },
   "requirements": [
     [
-      "has_has_mithril_hoe"
+      "has_mithril_hoe"
     ]
   ]
 }

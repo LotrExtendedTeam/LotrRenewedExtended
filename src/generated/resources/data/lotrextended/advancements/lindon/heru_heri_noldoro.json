@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.lindon.heru_heri_noldoro.title"
     },
     "description": {
+      "color": "light_purple",
       "translate": "advancements.lotrextended.lindon.heru_heri_noldoro.description"
     },
     "frame": "challenge",

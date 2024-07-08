@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.orc_snaga.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.orc_snaga.description"
     },
     "frame": "task",

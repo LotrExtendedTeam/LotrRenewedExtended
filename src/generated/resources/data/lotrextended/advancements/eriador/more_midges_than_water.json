@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.more_midges_than_water.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.more_midges_than_water.description"
     },
     "frame": "task",

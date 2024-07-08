@@ -88,55 +88,102 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Add Menu strings
-		addD("gui.lotrextended.menu.fellowships");
-		addD("gui.lotrextended.menu.settings");
-		addD("gui.lotrextended.menu.titles");
-		addD("gui.lotrextended.menu.achievements");
+		addD("gui.lotrextended.menu.fellowships", "Fellowships");
+		addD("gui.lotrextended.menu.settings", "Options");
+		addD("gui.lotrextended.menu.titles", "Titles");
+		addD("gui.lotrextended.menu.achievements", "Achievements");
+
+		//Default option strings
+		addD("gui.lotrextended.base.disabled", "Disabled");
+		addD("gui.lotrextended.base.enabled", "Enabled");
+		addD("gui.lotrextended.base.disable", "Disable");
+		addD("gui.lotrextended.base.enable", "Enable");
+		addD("gui.lotrextended.base.shown", "Shown");
+		addD("gui.lotrextended.base.hidden", "Hidden");
+		addD("gui.lotrextended.base.show", "Show");
+		addD("gui.lotrextended.base.hide", "Hide");
 
 		// trade system
-		addD("gui.lotrextended.trading.trade_button");
-		addD("gui.lotrextended.trading.trader_busy");
-		addD("gui.lotrextended.trading.trader_alignment_too_low");
-		addD("gui.lotrextended.trading.talk_button");
-		addD("gui.lotrextended.trading.exchange_button");
-		addD("gui.lotrextended.trading.buy");
-		addD("gui.lotrextended.trading.sell");
-		addD("gui.lotrextended.trading.sell_offers");
+		addD("gui.lotrextended.trading.trade_button", "Trade");
+		addD("gui.lotrextended.trading.trader_busy", "The trader is busy with another player at the moment.");
+		addD("gui.lotrextended.trading.trader_alignment_too_low", "Your alignment is too low.");
+		addD("gui.lotrextended.trading.talk_button", "Talk");
+		addD("gui.lotrextended.trading.exchange_button", "Exchange Coins");
+		addD("gui.lotrextended.trading.buy", "Buy");
+		addD("gui.lotrextended.trading.sell", "Sell");
+		addD("gui.lotrextended.trading.sell_offers", "Sell Offers");
 
 		// Add Fellowship Menu strings
-		addD("gui.lotrextended.fellowships.title");
-		addD("gui.lotrextended.fellowships.creation.disabled");
+		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
+		addD("gui.lotrextended.fellowships.creation.disabled", "Fellowship creation is disabled!");
 
 		// Add Settings Menu strings
-		addD("gui.lotrextended.settings.title");
-		addD("gui.lotrextended.settings.worldsettings");
+		addD("gui.lotrextended.settings.title", "Middle-earth Options");
+		addD("gui.lotrextended.settings.worldsettings", "World Settings");
 		addD("gui.lotrextended.settings.usersettings");
-		addD("gui.lotrextended.settings.friendlyFire");
-		addD("gui.lotrextended.settings.friendlyFire.enabled");
-		addD("gui.lotrextended.settings.friendlyFire.disabled");
-		addD("gui.lotrextended.settings.mapLocation");
-		addD("gui.lotrextended.settings.mapLocation.enabled");
-		addD("gui.lotrextended.settings.mapLocation.disabled");
-		addD("gui.lotrextended.settings.rankGender");
-		addD("gui.lotrextended.settings.rankGender.enabled");
-		addD("gui.lotrextended.settings.rankGender.disabled");
+		addD("gui.lotrextended.settings.friendlyFire.title", "Friendly Fire");
+		addD("gui.lotrextended.settings.friendlyFire.setting", "Friendly Fire: ");
+		addD("gui.lotrextended.settings.mapLocation.title", "Show Map Location");
+		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
+		addD("gui.lotrextended.settings.rankGender.title", "Feminine Rank Override");
+		addD("gui.lotrextended.settings.rankGender.setting", "Feminine Rank Override: ");
 
 		// Horn Select strings
-		addD("gui.lotrextended.horn_select.title");
-		addD("gui.lotrextended.horn_select.option_summon");
-		addD("gui.lotrextended.horn_select.option_halt_reddy");
+		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
+		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
+		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
+
 		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");
 		addD("item.lotr.horn_of_command.reddy");
 		addD("item.lotr.horn_of_command.summon");
 
-		// Command strings
-		addD("command.lotrextended.info.listPatches");
-		addD("command.lotrextended.structureSummon.success");
-		addD("command.lotrextended.structureSummon.failure");
+		//Bow values
+		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
+		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
+		addD("gui.lotrextended.bow.range", "Range: %s");
 
-		// Bookshelf
-		addD("gui.lotrextended.bookshelf.title");
+		// Command strings
+		addD("command.lotrextended.info.listPatches", "Injected patches:");
+		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
+		addD("command.lotrextended.fellowship.error.noexists", "No fellowship by that name exists!");
+		addD("command.lotrextended.fellowship.error.exists", "Fellowship with the name [%s] already exists!");
+		addD("command.lotrextended.fellowship.notexists", "No fellowship by that name exists!");
+		addD("command.lotrextended.fellowship.player.added", "Added %s to the fellowship");
+		addD("command.lotrextended.fellowship.player.removed", "Removed %s from the fellowship");
+		addD("command.lotrextended.fellowship.player.invited", "Invited %s to the fellowship");
+		addD("command.lotrextended.fellowship.player.setowner", "Transfered ownership of the fellowship to %s");
+		addD("command.lotrextended.fellowship.icon.set", "Fellowship icon set");
+		addD("command.lotrextended.fellowship.icon.handerror", "You must hold an item in your hand!");
+		addD("command.lotrextended.fellowship.disband", "Fellowship disbanded");
+		addD("command.lotrextended.fellowship.disband.error", "Failed to disbanded the fellowship!");
+		addD("command.lotrextended.fellowship.acceptinvite.error", "Invalid invite!");
+		addD("command.lotrextended.fellowship.admin.added", "Added fellowship admin: %s");
+		addD("command.lotrextended.fellowship.admin.removed", "Removed fellowship admin: %s");
+		addD("command.lotrextended.fellowship.renamed", "Successfully renamed fellowship: %s to %s");
+		addD("command.lotrextended.fellowship.pvp", "pvp");
+		addD("command.lotrextended.fellowship.hiredunitff", "hired unit friendly fire");
+		addD("command.lotrextended.fellowship.maplocation", "Fellowship map location is now");
+		addD("command.lotrextended.fellowship.left", "You have left %s");
+		addD("command.lotrextended.fellowship.data.name", "Fellowship Name: ");
+		addD("command.lotrextended.fellowship.data.pvp", "PVP: ");
+		addD("command.lotrextended.fellowship.data.hupvp", "Hired Units PVP: ");
+		addD("command.lotrextended.fellowship.data.maploc", "MapLoccation: ");
+		addD("command.lotrextended.fellowship.data.icon", "Icon: ");
+		addD("command.lotrextended.fellowship.data.owner", "Owner: ");
+		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
+		addD("command.lotrextended.fellowship.data.members", "Members: ");
+
+		//Version lang strings
+		addD("command.lotrextended.version.left", "A new version");
+		addD("command.lotrextended.version.right", "was found");
+
+		//Extended containers
+		addD("container.lotrextended.bookshelf", "Bookshelf");
+		addD("container.lotrextended.reed_basket", "Reed Basket");
+		addD("container.lotrextended.stone_chest", "Stone Chest");
+		addD("container.lotrextended.orc_barrel", "Orc Barrel");
+		
 	}
 
 	@Override

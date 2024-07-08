@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:bone_axe"
+    ]
+  },
+  "criteria": {
+    "has_bone_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bone_axe"
+          }
+        ]
+      }
+    },
+    "has_orc_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:bone_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bone_axe",
+      "has_orc_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

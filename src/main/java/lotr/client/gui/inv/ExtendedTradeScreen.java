@@ -1,8 +1,8 @@
 package lotr.client.gui.inv;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketOpenCoinExchange;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketTradeSellItems;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTradeSellItems;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -144,7 +144,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
     private void sellItems() {
         if (container.getSellValue() > 0) {
             container.trader.playTradeSound();
-            ExtendedPacketHandler.sendToServer(new ExtendedSPacketTradeSellItems());
+            ExtendedPacketHandler.sendToServer(new ExtendedCPacketTradeSellItems());
         }
     }
 
@@ -152,7 +152,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
     public void onClose() {
         super.onClose();
         // notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedSPacketOpenCoinExchange(container.traderNPC.getId(), false));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenCoinExchange(container.traderNPC.getId(), false));
         container.trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
 

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.eriador.nin_in_eilph.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.eriador.nin_in_eilph.description"
     },
     "frame": "task",

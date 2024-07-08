@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.suspicious.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.general.suspicious.description"
     },
     "frame": "task",
@@ -17,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_has_suspicious_meat": {
+    "has_suspicious_meat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -30,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_has_suspicious_meat"
+      "has_suspicious_meat"
     ]
   ]
 }

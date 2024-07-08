@@ -12,7 +12,6 @@ import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.TreeFeature;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
-import net.minecraftforge.common.util.Constants.BlockFlags;
 
 public abstract class ExtendedFoliagePlacer extends FoliagePlacer{
 

@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:fur"
+    }
+  },
+  "result": {
+    "item": "lotr:warg_fur_chestplate"
+  }
+}

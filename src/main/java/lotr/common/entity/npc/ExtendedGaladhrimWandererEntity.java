@@ -98,7 +98,8 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         return NPCNameGenerators.SINDARIN;
     }
 
-    public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
+    @SuppressWarnings("unchecked")
+	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());

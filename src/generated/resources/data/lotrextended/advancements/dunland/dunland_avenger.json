@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.dunland.dunland_avenger.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.dunland.dunland_avenger.description"
     },
     "frame": "task",

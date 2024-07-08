@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.mirkwood.wood_elf_arphen_eryn.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.mirkwood.wood_elf_arphen_eryn.description"
     },
     "frame": "goal",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.bree.bree_champion.title"
     },
     "description": {
+      "color": "white",
       "translate": "advancements.lotrextended.bree.bree_champion.description"
     },
     "frame": "task",

@@ -9,6 +9,7 @@
       "translate": "advancements.lotrextended.general.very_suspicious.title"
     },
     "description": {
+      "color": "aqua",
       "translate": "advancements.lotrextended.general.very_suspicious.description"
     },
     "frame": "goal",
@@ -17,20 +18,18 @@
     "hidden": false
   },
   "criteria": {
-    "has_use_suspicious_meat": {
-      "trigger": "minecraft:inventory_changed",
+    "consume_suspicious_meat": {
+      "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:suspicious_meat"
-          }
-        ]
+        "item": {
+          "item": "lotr:suspicious_meat"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_use_suspicious_meat"
+      "consume_suspicious_meat"
     ]
   ]
 }
