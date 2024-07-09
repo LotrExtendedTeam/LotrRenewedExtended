@@ -342,6 +342,8 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> DUNEDAIN_BANNER;
 	public static RegistryObject<Block> DUNEDAIN_WALL_BANNER;
+	public static RegistryObject<Block> GUNDABAD_ORC_BANNER;
+	public static RegistryObject<Block> GUNDABAD_ORC_WALL_BANNER;
 	public static RegistryObject<Block> HOBBIT_BANNER;
 	public static RegistryObject<Block> HOBBIT_WALL_BANNER;
 	public static RegistryObject<Block> BLUE_MOUNTAINS_BANNER;

@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:gray_fur"
+    }
+  },
+  "result": {
+    "item": "lotr:gray_fur_carpet"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:northern_orc",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:gundabad_orc_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:gundabad_orc_banner_pattern"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:brown_fur_carpet"
+    ]
+  },
+  "criteria": {
+    "has_brown_fur_carpet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:brown_fur_carpet"
+          }
+        ]
+      }
+    },
+    "has_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:brown_fur_carpet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brown_fur_carpet",
+      "has_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

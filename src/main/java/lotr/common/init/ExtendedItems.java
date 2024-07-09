@@ -463,7 +463,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> LONGBOW;
 
 	public static RegistryObject<Item> BARROW_BLADE;
-	
+
+	public static RegistryObject<Item> GUNDABAD_ORC_BANNER_PATTERN;
+	public static RegistryObject<Item> GUNDABAD_ORC_BANNER;
 	public static RegistryObject<Item> DURINS_FOLK_BANNER_PATTERN;
 	public static RegistryObject<Item> DURINS_FOLK_BANNER;
 	public static RegistryObject<Item> DUNEDAIN_BANNER_PATTERN;

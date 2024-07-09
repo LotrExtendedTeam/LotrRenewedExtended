@@ -609,14 +609,16 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 
 		//Banners
-		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.HOBBIT_BANNER = registerB("hobbit_banner", () -> new ExtendedMEBannerBlock(BannerTypes.SHIRE, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.HOBBIT_WALL_BANNER = registerB("hobbit_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.SHIRE, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.DURINS_FOLK_BANNER = registerB("durins_folk_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DURINSFOLK, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.DURINS_FOLK_WALL_BANNER = registerB("durins_folk_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DURINSFOLK, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.BLUE_MOUNTAINS_BANNER = registerB("blue_mountains_banner", () -> new ExtendedMEBannerBlock(BannerTypes.BLUEMOUNTIANS, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
-		ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER = registerB("blue_mountains_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BLUEMOUNTIANS, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
+		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN));
+		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN));
+		ExtendedBlocks.HOBBIT_BANNER = registerB("hobbit_banner", () -> new ExtendedMEBannerBlock(BannerTypes.SHIRE));
+		ExtendedBlocks.HOBBIT_WALL_BANNER = registerB("hobbit_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.SHIRE));
+		ExtendedBlocks.DURINS_FOLK_BANNER = registerB("durins_folk_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DURINSFOLK));
+		ExtendedBlocks.DURINS_FOLK_WALL_BANNER = registerB("durins_folk_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DURINSFOLK));
+		ExtendedBlocks.BLUE_MOUNTAINS_BANNER = registerB("blue_mountains_banner", () -> new ExtendedMEBannerBlock(BannerTypes.BLUEMOUNTIANS));
+		ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER = registerB("blue_mountains_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BLUEMOUNTIANS));
+		ExtendedBlocks.GUNDABAD_ORC_BANNER = registerB("gundabad_orc_banner", () -> new ExtendedMEBannerBlock(BannerTypes.GUNDABAD_ORC));
+		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.GUNDABAD_ORC));
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
