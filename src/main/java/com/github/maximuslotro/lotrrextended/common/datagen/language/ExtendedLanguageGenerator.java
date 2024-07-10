@@ -116,6 +116,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
 		addD("gui.lotrextended.fellowships.creation.disabled", "Fellowship creation is disabled!");
+		addD("gui.lotrextended.fellowships.use_command", "Please use the command for now!");
 
 		// Add Settings Menu strings
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
