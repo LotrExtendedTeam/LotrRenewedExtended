@@ -13,6 +13,16 @@ import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 public class BiomeStructureAdder {
+	/**
+     * Will go into the world's ChunkGenerator and manually add our structure spacing.
+     * If the spacing is not added, the structure doesn't spawn.
+     *
+     * Use this for dimension blacklisting a structure.
+     * (Don't forget to attempt to remove your structure too from the map if you are blacklisting a dimension!)
+     * (It might have your structure in it already.)
+     *
+     * Basically use this to make absolutely sure the ChunkGenerator can or cannot spawn our structures.
+     */
 	public static void addDimensionalSpacing(ServerChunkProvider provider) {
 		ExtendedLog.info("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
 		Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(provider.generator.getSettings().structureConfig());
@@ -33,13 +43,21 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_RUIN.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_WATCHTOWER.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ARNOR_RUINS.get());
-
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<NoFeatureConfig> structure) {
 		tempMap.putIfAbsent(structure, DimensionStructuresSettings.DEFAULTS.get(structure));
 	}
 
+	/*
+     * Add our structure to all biomes including other modded biomes if need be.
+     * We can skip or add only to certain biomes based on stuff like biome category,
+     * temperature, scale, precipitation, Mod id, etc. All kinds of options!
+     *
+     * We can even use the BiomeDictionary as well! To use BiomeDictionary, do
+     * RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName()) to get the biome's
+     * RegistryKey. Then that can be fed into the dictionary to get the biome's types.
+     */
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
 		if(event.getName()!=null) {
 			if(event.getName().toString().equals("lotr:shire")) {
