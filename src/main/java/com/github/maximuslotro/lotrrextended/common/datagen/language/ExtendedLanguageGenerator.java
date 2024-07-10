@@ -155,7 +155,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.player.invited", "Invited %s to the fellowship");
 		addD("command.lotrextended.fellowship.player.setowner", "Transfered ownership of the fellowship to %s");
 		addD("command.lotrextended.fellowship.icon.set", "Fellowship icon set");
-		addD("command.lotrextended.fellowship.icon.handerror", "You must hold an item in your hand!");
+		addD("command.lotrextended.fellowship.icon.removed", "Fellowship icon reset!");
 		addD("command.lotrextended.fellowship.disband", "Fellowship disbanded");
 		addD("command.lotrextended.fellowship.disband.error", "Failed to disbanded the fellowship!");
 		addD("command.lotrextended.fellowship.acceptinvite.error", "Invalid invite!");

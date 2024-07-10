@@ -712,7 +712,7 @@
   "command.lotrextended.fellowship.error.exists": "Fellowship with the name [%s] already exists!",
   "command.lotrextended.fellowship.error.noexists": "No fellowship by that name exists!",
   "command.lotrextended.fellowship.hiredunitff": "hired unit friendly fire",
-  "command.lotrextended.fellowship.icon.handerror": "You must hold an item in your hand!",
+  "command.lotrextended.fellowship.icon.removed": "Fellowship icon reset!",
   "command.lotrextended.fellowship.icon.set": "Fellowship icon set",
   "command.lotrextended.fellowship.left": "You have left %s",
   "command.lotrextended.fellowship.maplocation": "Fellowship map location is now",
