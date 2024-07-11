@@ -19,7 +19,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation RANGER_WACHTOWER = register("chests/ranger_watchtower");
 	public static final ResourceLocation RANGER_HOUSE_CHEST = register("chests/ranger_house_chest");
 	public static final ResourceLocation RANGER_HOUSE_BARREL = register("chests/ranger_house_barrel");
-	public static final ResourceLocation ARNOR_RUIN = register("chests/arnor_ruin");
+	public static final ResourceLocation GENERIC_RUIN = register("chests/generic_ruin");
 	public static final ResourceLocation ARNOR_TOWER_RUIN = register("chests/arnor_tower_ruin");
 
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
