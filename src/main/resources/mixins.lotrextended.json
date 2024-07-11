@@ -52,8 +52,7 @@
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
-		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket",
-		"net.minecraft.tileentity.MixinStructureBlockTileEntity"
+		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket"
 	],
 	
 	"client": [
@@ -74,7 +73,7 @@
 		"net.minecraft.client.gui.screen.inventory.MixinCraftingScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
-		"net.minecraft.tileentity.MixinStructureBlockTileEntityClient",
+		"net.minecraft.tileentity.MixinStructureBlockTileEntity",
 		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],
 	"injectors": {
