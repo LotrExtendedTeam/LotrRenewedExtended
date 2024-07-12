@@ -338,12 +338,13 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	if(player.getMainHandItem()!=ItemStack.EMPTY) {
+        	if(!player.getMainHandItem().isEmpty()) {
         		fellowshipData.setIcon(fellowship, player.getUUID(), player.getMainHandItem());
         		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.icon.set"), true);
         		return 0;
         	}
-        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.icon.handerror"), true);
+        	fellowshipData.setIcon(fellowship, player.getUUID(), ItemStack.EMPTY);
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.icon.removed"), true);
         	return 0;
         }
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
@@ -355,10 +356,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(fellowshipData.disbandFellowship(fellowship)) {
         		player.awardStat(ExtendedStats.FELLOWSHIP_DISBAND);
-            	source.sendSuccess(new TranslationTextComponent("command.lotrextended.disband"), true);
+            	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.disband"), true);
             	return 0;
         	}
-        	source.sendFailure(new TranslationTextComponent("command.lotrextended.disband.error"));
+        	source.sendFailure(new TranslationTextComponent("command.lotrextended.fellowship.disband.error"));
         	return 0;
         }
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
@@ -382,31 +383,36 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowshipDataModule fellowshipData = ExtendedReflectionHelper.getFellowshipData(getLevelData().getData(player.level, player.getUUID()));
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
 		if (fellowship != null) {
+			//Send Name
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.name").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(TextFormatting.GOLD)), true);
+			//Send PVP and HYPVP data
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.pvp").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))
 					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
 					.append(new TranslationTextComponent("command.lotrextended.fellowship.data.hupvp").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(String.valueOf(fellowship.isPreventHiredFF())).withStyle(TextFormatting.GOLD)), true);
+			//Send MAPLOC and ICON data
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.maploc").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(fellowship.isHideMapLocation())).withStyle(TextFormatting.GOLD))
 					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
 					.append(new TranslationTextComponent("command.lotrextended.fellowship.data.icon").withStyle(TextFormatting.GREEN))
-					.append(new StringTextComponent(fellowship.getIcon().getItem().getRegistryName().getPath()).withStyle(TextFormatting.GOLD)), true);
+					.append(new StringTextComponent(fellowship.getIcon().isEmpty() ? "NOTSET" : fellowship.getIcon().getItem().getRegistryName().getPath()).withStyle(TextFormatting.GOLD)), true);
+			//Send Owner
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.owner").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(fellowship.getOwnerUUID())).withStyle(TextFormatting.GOLD)), true);
+			//Send Administrators
 			TextComponent admins = new TranslationTextComponent("command.lotrextended.fellowship.data.admins");
 			admins.withStyle(TextFormatting.GREEN);
 			for(UUID admin :fellowship.getFellowshipAdmins()) {
 				admins.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(admin)+", ").withStyle(TextFormatting.GOLD));
 			}
 			source.sendSuccess(admins, true);
+			//Send all players
 			TextComponent members = new TranslationTextComponent("command.lotrextended.fellowship.data.members");
 			members.withStyle(TextFormatting.GREEN);
-			for(UUID member :fellowship.getFellowshipAdmins()) {
-				if(!fellowship.isFellowshipAdmin(member))
-					members.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(member)+", ").withStyle(TextFormatting.GOLD));
+			for(UUID member :fellowship.getAllFellowshipMembers()) {
+				members.append(new StringTextComponent(UsernameHelper.getLastKnownUsernameOrFallback(member)+", ").withStyle(TextFormatting.GOLD));
 			}
 			source.sendSuccess(members, true);
         	return 0;

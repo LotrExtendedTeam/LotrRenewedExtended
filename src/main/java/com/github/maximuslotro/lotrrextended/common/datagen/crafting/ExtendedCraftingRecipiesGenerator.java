@@ -52,6 +52,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBedRecipe(consumer, ExtendedBlocks.GRAY_FUR_BED, ExtendedItems.GRAY_FUR.get(), null);
 		makeBedRecipe(consumer, ExtendedBlocks.SILVER_FUR_BED, ExtendedItems.SILVER_FUR.get(), null);
 		makeBedRecipe(consumer, ExtendedBlocks.WHITE_FUR_BED, ExtendedItems.WHITE_FUR.get(), null);
+		makeCarpetRecipe(consumer, ExtendedBlocks.BLACK_FUR_CARPET, ExtendedItems.BLACK_FUR.get(), LOTRRecipes.ANY_ORC);
+		makeCarpetRecipe(consumer, ExtendedBlocks.BROWN_FUR_CARPET, LOTRItems.FUR.get(), LOTRRecipes.ANY_ORC);
+		makeCarpetRecipe(consumer, ExtendedBlocks.GRAY_FUR_CARPET, ExtendedItems.GRAY_FUR.get(), LOTRRecipes.ANY_ORC);
+		makeCarpetRecipe(consumer, ExtendedBlocks.SILVER_FUR_CARPET, ExtendedItems.SILVER_FUR.get(), LOTRRecipes.ANY_ORC);
+		makeCarpetRecipe(consumer, ExtendedBlocks.WHITE_FUR_CARPET, ExtendedItems.WHITE_FUR.get(), LOTRRecipes.ANY_ORC);
 		GENERATEDRECIPES.add(ExtendedItems.BEDROLL.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.BEDROLL.get())
 		.pattern("LLF")
@@ -762,6 +767,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_wool", has(WOOL))
 		.unlockedBy("has_"+ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_ORC_BANNER.get(), ExtendedRecipes.GUNDABAD_CRAFTING)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(WOOL))
+		.define('S', Ingredient.of(STICKS))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_wool", has(WOOL))
+		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath()));
 		//Banner Patterns
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath());
 		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get(), LOTRRecipes.RANGER_CRAFTING)
@@ -784,6 +800,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.DURINS_FOLK_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.DURINS_FOLK_BANNER.get()))
 		.unlockedBy("has_"+ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get()))
 		.save(consumer, lotrLoc(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath());
+		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get(), ExtendedRecipes.GUNDABAD_CRAFTING)
+		.requires(Items.PAPER)
+		.requires(ExtendedItems.GUNDABAD_ORC_BANNER.get())
+		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
+		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get()))
+		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath()));
 		//Containers
 		GENERATEDRECIPES.add(ExtendedItems.REED_BASKET.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
@@ -1379,6 +1402,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.HOBBIT_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.DURINS_FOLK_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER.get().getRegistryName().getPath());
 	}
 
 	@Override

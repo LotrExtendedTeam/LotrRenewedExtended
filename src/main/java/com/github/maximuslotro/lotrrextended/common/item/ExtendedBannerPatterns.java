@@ -14,6 +14,7 @@ public class ExtendedBannerPatterns {
 	public static final BannerPattern durin = registerNewPattern("durin", "Durin", true);
 	public static final BannerPattern dunedain = registerNewPattern("dunedain", "Dunedain", true);
 	public static final BannerPattern blue_mountains = registerNewPattern("blue_mountains", "Blue Mountains", true);
+	public static final BannerPattern gundabad_orc = registerNewPattern("gundabad_orc", "Gundabad Orc", true);
 
 	public static BannerPattern registerNewPattern(String id, String desc, boolean isItem) {
 		String name = "lotrextended_"+id;

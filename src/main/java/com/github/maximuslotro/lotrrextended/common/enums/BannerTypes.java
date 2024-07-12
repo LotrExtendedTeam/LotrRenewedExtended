@@ -1,5 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
 public enum BannerTypes {
-	DUNEDAIN, SHIRE, BLUEMOUNTIANS, DURINSFOLK;
+	DUNEDAIN, SHIRE, BLUEMOUNTIANS, DURINSFOLK, GUNDABAD_ORC;
 }

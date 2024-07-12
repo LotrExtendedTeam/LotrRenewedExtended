@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_banner_top",
+  "textures": {
+    "particle": "lotrextended:block/banner/gundabad_orc_banner",
+    "1": "lotrextended:block/banner/gundabad_orc_banner"
+  }
+}

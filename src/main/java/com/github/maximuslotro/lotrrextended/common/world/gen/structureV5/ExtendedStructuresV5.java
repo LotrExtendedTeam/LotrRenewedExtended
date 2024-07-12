@@ -68,16 +68,50 @@ public class ExtendedStructuresV5 {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);
 		}
 		StructureSeparationSettings SSsettings = new StructureSeparationSettings(spacing, seperation, salt);
-		
+		/*
+         * We need to add our structures into the map in Structure class
+         * alongside vanilla structures or else it will cause errors.
+         *
+         * If the registration is setup properly for the structure, getRegistryName() should never return null.
+         */
 		Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
 
 		if (editLand) {
+			/*
+	         * Whether surrounding land will be modified automatically to conform to the bottom of the structure.
+	         * Basically, it adds land at the base of the structure like it does for Villages and Outposts.
+	         * Doesn't work well on structure that have pieces stacked vertically or change in heights.
+	         *
+	         * Note: The air space this method will create will be filled with water if the structure is below SeaLevel.
+	         * This means this is best for structure above SeaLevel so keep that in mind.
+	         */
 			Structure.NOISE_AFFECTING_FEATURES = ImmutableList.<Structure<?>>builder().addAll(Structure.NOISE_AFFECTING_FEATURES).add(structure).build();
 		}
+		/*
+         * This is the map that holds the default spacing of all structures.
+         * Always add structures to here so that other Mods can utilize it if needed.
+         *
+         * However, while it does propagate the spacing to some correct dimensions from this map,
+         * it seems it doesn't always work for code made dimensions as they read from this list beforehand.
+         *
+         * Instead, use the WorldEvent.Load event to add the structure spacing from this 
+         * list into that dimension or to do dimension blacklisting properly.
+         */
 		DimensionStructuresSettings.DEFAULTS = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.DEFAULTS).put(structure, SSsettings).build();
 		
+		/*
+         * There are very few Mods that relies on seeing your structure in the noise settings registry before the world is made.
+         *
+         * Some Mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the NOISE_GENERATOR_SETTINGS loop below but
+         * that field only applies for the default overworld and won't add to other WorldTypes or dimensions (like amplified or Nether).
+         * So yeah, don't do DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_GENERATOR_SETTINGS loop below instead if you must.
+         */
 		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.entrySet().forEach(structureSettings -> {
             Map<Structure<?>, StructureSeparationSettings> structureMap = structureSettings.getValue().structureSettings().structureConfig();
+            /*
+             * Pre-caution in case a Mod makes the structure map immutable like Datapacks do.
+             * Take no chances myself. We never know what another mods does...
+             */
             if (structureMap instanceof ImmutableMap) {
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, SSsettings);

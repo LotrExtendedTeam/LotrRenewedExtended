@@ -187,6 +187,28 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.save(consumer, lotrLoc(name));
 		}
 	}
+
+	protected void makeCarpetRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> carpet, Item reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = carpet.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(carpet.get())
+			.pattern("##")
+			.define('#', Ingredient.of(reasource))
+			.unlockedBy("has_"+name, has(carpet.get()))
+			.unlockedBy("has_"+reasource.getRegistryName().getPath(), has(reasource))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(carpet.get(), table)
+			.pattern("##")
+			.define('#', Ingredient.of(reasource))
+			.unlockedBy("has_"+name, has(carpet.get()))
+			.unlockedBy("has_"+reasource.getRegistryName().getPath(), has(reasource))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeBedRecipeTag(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);

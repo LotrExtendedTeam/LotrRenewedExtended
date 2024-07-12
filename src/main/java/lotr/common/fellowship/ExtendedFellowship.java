@@ -27,7 +27,7 @@ public class ExtendedFellowship {
 	private boolean ShowMap = true;
 	private boolean needsSaving = false;
 	private boolean removed;
-	private ItemStack icon;
+	private ItemStack icon = ItemStack.EMPTY;
 	
 	public ExtendedFellowship(String publicName, UUID ownerUUID) {
 		this.FellowshipId = UUID.randomUUID();

@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
@@ -141,8 +140,6 @@ public class LotrExtendedModClient {
 	public void startVersionChecks() {
 		String lastVersion = ExtendedClientConfig.lastClientBootVersion.get();
 		String currentVersion = ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString();
-		System.out.println("lastVersion: "+lastVersion);
-		System.out.println("currentVersion: "+currentVersion);
 		if(!lastVersion.equals(currentVersion)) {
 			ExtendedClientConfig.lastClientBootVersion.set(currentVersion);
 			//Handle version change resource pack load

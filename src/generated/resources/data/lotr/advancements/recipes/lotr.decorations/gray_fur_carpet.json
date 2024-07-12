@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gray_fur_carpet"
+    ]
+  },
+  "criteria": {
+    "has_gray_fur_carpet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gray_fur_carpet"
+          }
+        ]
+      }
+    },
+    "has_gray_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gray_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gray_fur_carpet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_fur_carpet",
+      "has_gray_fur",
+      "has_the_recipe"
+    ]
+  ]
+}
