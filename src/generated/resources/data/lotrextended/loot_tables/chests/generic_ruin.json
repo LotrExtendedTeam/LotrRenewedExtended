@@ -70,50 +70,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:arnor_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:arnor_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:arnor_boots"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:arnor_helmet"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 40,
           "functions": [
             {
@@ -284,7 +240,7 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 4.0,
+                "max": 3.0,
                 "type": "minecraft:uniform"
               }
             }
