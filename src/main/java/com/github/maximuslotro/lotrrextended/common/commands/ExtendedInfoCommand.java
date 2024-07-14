@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
+import lotr.common.data.ExtendedLevelData;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.StringTextComponent;
@@ -28,6 +29,12 @@ public class ExtendedInfoCommand
             TextComponent message = new TranslationTextComponent("%s %s", prefex, patchName);
             source.sendSuccess(message, false);
         }
+
+        // display ExtendedLevelData
+        if (ExtendedLevelData.serverInstance() != null) {
+            source.sendSuccess(new StringTextComponent("timeUntilTrader: " + ExtendedLevelData.serverInstance().getTimeUntilTrader()), false);
+        }
+
         return Command.SINGLE_SUCCESS;
     }
 

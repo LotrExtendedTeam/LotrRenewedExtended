@@ -1,7 +1,12 @@
 package lotr.common.data;
 
 import lotr.common.LOTRLog;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
@@ -23,7 +28,7 @@ public class ExtendedLevelData {
 
     private final LogicalSide side;
 
-    private int ticksSinceSpawnedWanderingTraders = 0;
+    private int timeUntilTrader = 0;
 
     public ExtendedLevelData(LogicalSide side) {
         this.side = side;
@@ -40,14 +45,14 @@ public class ExtendedLevelData {
     public void save(ServerWorld world) {
         try {
             if (this.needsSave) {
-                File LOTR_dat = getLOTRDat(world);
-                if (!LOTR_dat.exists()) {
-                    SaveUtil.saveNBTToFile(LOTR_dat, new CompoundNBT());
+                File lotrDataFile = getLOTRDataFile(world);
+                if (!lotrDataFile.exists()) {
+                    SaveUtil.saveNBTToFile(lotrDataFile, new CompoundNBT());
                 }
 
                 CompoundNBT levelData = new CompoundNBT();
-                levelData.putInt("ticksSinceSpawnedWanderingTraders", this.ticksSinceSpawnedWanderingTraders);
-                SaveUtil.saveNBTToFile(LOTR_dat, levelData);
+                levelData.putInt("timeUntilTrader", this.timeUntilTrader);
+                SaveUtil.saveNBTToFile(lotrDataFile, levelData);
                 this.needsSave = false;
             }
         } catch (Exception exception) {
@@ -59,8 +64,8 @@ public class ExtendedLevelData {
 
     public void load(ServerWorld world) {
         try {
-            CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDat(world));
-            this.ticksSinceSpawnedWanderingTraders = levelData.getInt("ticksSinceSpawnedWanderingTraders");
+            CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
+            this.timeUntilTrader = levelData.getInt("timeUntilTrader");
             this.needsLoad = false;
             this.needsSave = true;
             this.save(world);
@@ -70,7 +75,23 @@ public class ExtendedLevelData {
         }
     }
 
-    private static File getLOTRDat(ServerWorld world) {
+    public int getTimeUntilTrader() {
+        return timeUntilTrader;
+    }
+
+    public void performTravellingTraderSpawns(World world) {
+        if (timeUntilTrader > 0) {
+            timeUntilTrader--;
+        } else {
+            for (PlayerEntity player : world.players()) {
+                player.sendMessage(new StringTextComponent("Triggering wandering trader spawns"), player.getUUID());
+            }
+            timeUntilTrader = 4000;
+        }
+        needsSave = true;
+    }
+
+    private static File getLOTRDataFile(ServerWorld world) {
         String filename = "extended".toUpperCase();
         return new File(SaveUtil.getOrCreateLOTRDir(world), filename + ".dat");
     }
