@@ -36,7 +36,7 @@ public class ExtendedDuckModel<T extends Entity> extends AgeableModel<T> {
 
 		beak = new ModelRenderer(this);
 		beak.setPos(0.0F, 0.0F, 0.0F);
-		head.addChild(beak);
+		//head.addChild(beak);
 		beak.texOffs(9, 18).addBox(-1.5F, -3.0F, -2.0F, 3.0F, 1.0F, 2.0F, 0.0F, false);
 
 		leg0 = new ModelRenderer(this);

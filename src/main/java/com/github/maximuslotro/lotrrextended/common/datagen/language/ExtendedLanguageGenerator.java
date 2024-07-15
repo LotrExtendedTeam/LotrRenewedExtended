@@ -54,7 +54,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add New Entity Names
-		for (String entity : ExtendedEntities.REGISTEREDMOBENTITIES) {
+		for (String entity : ExtendedEntities.REGISTEREDNPCENTITIES) {
+			addD("entity.lotr." + entity);
+			addD("item.lotr." + entity + "_spawn_egg");
+		}
+		for (String entity : ExtendedEntities.REGISTEREDANIMALENTITIES) {
 			addD("entity.lotr." + entity);
 			addD("item.lotr." + entity + "_spawn_egg");
 		}

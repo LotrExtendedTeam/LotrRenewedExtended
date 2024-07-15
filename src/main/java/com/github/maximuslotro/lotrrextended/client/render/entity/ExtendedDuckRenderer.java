@@ -13,9 +13,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedDuckRenderer extends MobRenderer<ExtendedDuckEntity, ExtendedDuckModel<ExtendedDuckEntity>> {
-	private static final ResourceLocation BOB_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/duck/bob_duck.png");
-	private static final ResourceLocation MALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/duck/male/male_duck.png");
-	private static final ResourceLocation FEMALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/duck/female/female_duck.png");
+	private static final ResourceLocation BOB_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/bob_duck.png");
+	private static final ResourceLocation MALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/male/male_duck.png");
+	private static final ResourceLocation FEMALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/female/female_duck.png");
 
 	public ExtendedDuckRenderer(EntityRendererManager p_i4entityRendererManager) {
 		super(p_i4entityRendererManager, new ExtendedDuckModel<>(), 0.3F);
