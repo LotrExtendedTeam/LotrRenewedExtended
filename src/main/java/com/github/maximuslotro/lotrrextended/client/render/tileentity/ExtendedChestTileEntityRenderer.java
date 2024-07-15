@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
-import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
+import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedChestTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
@@ -94,7 +94,7 @@ public class ExtendedChestTileEntityRenderer<T extends TileEntity & IChestLid> e
 
 	protected RenderMaterial getMaterial(T tileEntity) {
 		if(tileEntity instanceof ExtendedStoneChestTileEntity) {
-			return BlockRendererSetup.STONE_CHEST_MATERIAL;
+			return ExtendedBlockRenderer.STONE_CHEST_MATERIAL;
 		}
 		return null;
 	}

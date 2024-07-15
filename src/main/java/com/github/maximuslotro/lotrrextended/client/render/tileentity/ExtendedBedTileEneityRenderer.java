@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
-import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
+import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -116,25 +116,25 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 
 		protected RenderMaterial getMaterial(T tileEntity) {
 			if(tileEntity instanceof ExtendedStrawBedTileEntity) {
-				return BlockRendererSetup.STRAW_BED_MATERIAL;
+				return ExtendedBlockRenderer.STRAW_BED_MATERIAL;
 			}
 			if(tileEntity instanceof ExtendedOrcBedTileEntity) {
-				return BlockRendererSetup.ORC_BED_MATERIAL;
+				return ExtendedBlockRenderer.ORC_BED_MATERIAL;
 			}
 			if(tileEntity instanceof ExtendedBlackFurBedTileEntity) {
-				return BlockRendererSetup.BLACK_FUR_BED_MATERIAL;
+				return ExtendedBlockRenderer.BLACK_FUR_BED_MATERIAL;
 			}
 			if(tileEntity instanceof ExtendedFurBedTileEntity) {
-				return BlockRendererSetup.FUR_BED_MATERIAL;
+				return ExtendedBlockRenderer.FUR_BED_MATERIAL;
 			}
 			if(tileEntity instanceof ExtendedGrayFurBedTileEntity) {
-				return BlockRendererSetup.GRAY_FUR_BED_MATERIAL;
+				return ExtendedBlockRenderer.GRAY_FUR_BED_MATERIAL;
 			}
 			if(tileEntity instanceof ExtendedSilverFurBedTileEntity) {
-				return BlockRendererSetup.SILVER_FUR_BED_MATERIAL;
+				return ExtendedBlockRenderer.SILVER_FUR_BED_MATERIAL;
 			}
 			if(tileEntity instanceof ExtendedWhiteFurBedTileEntity) {
-				return BlockRendererSetup.WHITE_FUR_BED_MATERIAL;
+				return ExtendedBlockRenderer.WHITE_FUR_BED_MATERIAL;
 			}
 			throw new IllegalArgumentException("Recieved invalid Bed Renderign Type!");
 		}

@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.advancements;
 
-import com.github.maximuslotro.lotrrextended.common.advancements.predicates.AlignmentPredicate;
+import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
 import com.google.gson.JsonObject;
 
 import lotr.common.fac.Faction;
@@ -14,16 +14,16 @@ import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.util.ResourceLocation;
 
-public class AlignmentLevelTrigger extends AbstractCriterionTrigger<AlignmentLevelTrigger.Instance> {
+public class ExtendedAlignmentLevelTrigger extends AbstractCriterionTrigger<ExtendedAlignmentLevelTrigger.Instance> {
 	   private static final ResourceLocation ID = new ResourceLocation("lotrextended", "alignment_changed");
 
 	   public ResourceLocation getId() {
 	      return ID;
 	   }
 
-	   public AlignmentLevelTrigger.Instance createInstance(JsonObject json, AndPredicate predicate, ConditionArrayParser p_230241_3_) {
-		  AlignmentPredicate alignmentpredicate = AlignmentPredicate.fromJson(json.get("alignment"));
-	      return new AlignmentLevelTrigger.Instance(predicate, alignmentpredicate);
+	   public ExtendedAlignmentLevelTrigger.Instance createInstance(JsonObject json, AndPredicate predicate, ConditionArrayParser p_230241_3_) {
+		  ExtendedAlignmentPredicate alignmentpredicate = ExtendedAlignmentPredicate.fromJson(json.get("alignment"));
+	      return new ExtendedAlignmentLevelTrigger.Instance(predicate, alignmentpredicate);
 	   }
 
 	   public void trigger(ServerPlayerEntity player, Faction faction, Float level) {
@@ -33,15 +33,15 @@ public class AlignmentLevelTrigger extends AbstractCriterionTrigger<AlignmentLev
 	   }
 
 	   public static class Instance extends CriterionInstance {
-	      private final AlignmentPredicate alignment;
+	      private final ExtendedAlignmentPredicate alignment;
 
-	      public Instance(EntityPredicate.AndPredicate p_i231585_1_, AlignmentPredicate p_i231585_2_) {
-	         super(AlignmentLevelTrigger.ID, p_i231585_1_);
+	      public Instance(EntityPredicate.AndPredicate p_i231585_1_, ExtendedAlignmentPredicate p_i231585_2_) {
+	         super(ExtendedAlignmentLevelTrigger.ID, p_i231585_1_);
 	         this.alignment = p_i231585_2_;
 	      }
 
-	      public static AlignmentLevelTrigger.Instance alignmentLevel(AlignmentPredicate p_204827_0_) {
-	         return new AlignmentLevelTrigger.Instance(EntityPredicate.AndPredicate.ANY, p_204827_0_);
+	      public static ExtendedAlignmentLevelTrigger.Instance alignmentLevel(ExtendedAlignmentPredicate p_204827_0_) {
+	         return new ExtendedAlignmentLevelTrigger.Instance(EntityPredicate.AndPredicate.ANY, p_204827_0_);
 	      }
 
 	      public boolean matches(PlayerEntity player, Faction faction, Float level) {

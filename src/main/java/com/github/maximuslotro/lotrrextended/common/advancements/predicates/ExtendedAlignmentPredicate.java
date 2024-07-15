@@ -12,12 +12,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.JSONUtils;
 
-public class AlignmentPredicate {
-	   public static final AlignmentPredicate ERROR = new AlignmentPredicate(MinMaxBounds.FloatBound.ANY, null);
+public class ExtendedAlignmentPredicate {
+	   public static final ExtendedAlignmentPredicate ERROR = new ExtendedAlignmentPredicate(MinMaxBounds.FloatBound.ANY, null);
 	   private final MinMaxBounds.FloatBound alignment;
 	   private final String factionDString;
 
-	   public AlignmentPredicate(MinMaxBounds.FloatBound p_i225753_1_, String factionDString) {
+	   public ExtendedAlignmentPredicate(MinMaxBounds.FloatBound p_i225753_1_, String factionDString) {
 		      this.alignment = p_i225753_1_;
 		      this.factionDString = factionDString;
 		   }
@@ -42,12 +42,12 @@ public class AlignmentPredicate {
 	      }
 	   }
 
-	   public static AlignmentPredicate fromJson(@Nullable JsonElement p_226857_0_) {
+	   public static ExtendedAlignmentPredicate fromJson(@Nullable JsonElement p_226857_0_) {
 	      if (p_226857_0_ != null && !p_226857_0_.isJsonNull()) {
 	         JsonObject jsonobject = JSONUtils.convertToJsonObject(p_226857_0_, "alignment");
 	         MinMaxBounds.FloatBound minmaxbounds$intbound = MinMaxBounds.FloatBound.fromJson(jsonobject.get("level"));
 	         String faction$make = jsonobject.get("faction").getAsString();
-	         return new AlignmentPredicate(minmaxbounds$intbound, faction$make);
+	         return new ExtendedAlignmentPredicate(minmaxbounds$intbound, faction$make);
 	      } else {
 	         return ERROR;
 	      }

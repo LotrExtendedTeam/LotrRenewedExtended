@@ -14,11 +14,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 @OnlyIn(Dist.CLIENT)
-public class ItemRenderHelper<T extends TileEntity> extends ItemStackTileEntityRenderer {
+public class ExtendedItemRenderHelper<T extends TileEntity> extends ItemStackTileEntityRenderer {
 
   private final Supplier<T> tileentity;
 
-  public ItemRenderHelper(Supplier<T> tileentity) {
+  public ExtendedItemRenderHelper(Supplier<T> tileentity) {
     this.tileentity = tileentity;
   }
 
