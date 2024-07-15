@@ -73,6 +73,7 @@
 		"net.minecraft.client.gui.screen.inventory.MixinCraftingScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
+		"net.minecraft.client.renderer.tileentity.MixinStructureTileEntityRenderer",
 		"net.minecraft.tileentity.MixinStructureBlockTileEntity",
 		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],

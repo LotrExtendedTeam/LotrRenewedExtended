@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
+import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -10,6 +12,14 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
 	public static ConfigValue<String> lastClientBootVersion;
 
+	/**
+	 * Do not set this value itself, set {@Link ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
+	 * to ensure {@Link MixinStructureBlockTileEntity} is updated with the non confg crashable value, since sliders can change values very quickly.
+	 * */
+	public static ForgeConfigSpec.DoubleValue structureBlockOutlineViewDistance;
+
+	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;
+
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.CLIENT, CLIENT_SPEC);
 	}
@@ -17,6 +27,11 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static void registerDataGen() {}
 
 	private static ForgeConfigSpec.Builder setupConfig(ForgeConfigSpec.Builder builder) {
+		builder.push("Technical Settings");
+		structureBlockOutlineViewDistance = createDoubleValue(builder, "structureBlockOutlineViewDistance", 96.0D, 32.0D, MixinConstants.StructureLimit, false, "Change the distance at which structure block outlines render.");
+		forceStructureBlockAirViewing = createBooleanValue(builder, "forceStructureBlockAirViewing", false, false, "Force Structure Voids to render inside of Structure Block Outline Rendering.");
+		builder.pop();
+		
 		builder.push("Special settings");
 		enableDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
 		lastClientBootVersion = createStringValue(builder, "lastClientBootVersion", "null", true, "Last version this mod launched with. Don't touch! Value handled by extended.");

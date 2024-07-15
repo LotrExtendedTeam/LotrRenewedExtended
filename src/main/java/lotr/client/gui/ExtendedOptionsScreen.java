@@ -1,39 +1,67 @@
 package lotr.client.gui;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
+import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.widget.button.ExtendedGuiOptionsButton;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fac.RankGender;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.client.gui.widget.Slider;
+import net.minecraftforge.fml.client.gui.widget.Slider.ISlider;
 
 public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 
 	public ExtendedOptionsScreen() {
 		super(new StringTextComponent("OPTIONS"));
 	}
-	private ExtendedGuiOptionsButton buttonFriendlyFire;
-	//private ExtendedGuiOptionsButton buttonHiredDeathMessages;
-	//private ExtendedGuiOptionsButton buttonAlignment;
-	private ExtendedGuiOptionsButton buttonMapLocation;
-	//private ExtendedGuiOptionsButton buttonConquest;
-	private ExtendedGuiOptionsButton buttonFeminineRank;
+	private Button buttonFriendlyFire;
+	//private Button buttonHiredDeathMessages;
+	//private Button buttonAlignment;
+	private Button buttonMapLocation;
+	//private Button buttonConquest;
+	private Button buttonFeminineRank;
+
+	private Button forceStructureBlockAirViewing;
+	private Slider structureBlockOutlineViewDistance;
+	private Button enableClientDevMode;
+
+	@Override
+	public void onClose() {
+		structureBlockOutlineViewDistance.dragging=false;
+		setConfigStrBlockRenderDistance(structureBlockOutlineViewDistance.getValue());
+		super.onClose();
+	}
 
 	@Override
 	public void init() {
 		super.init();
 		int x=guiLeft;
 		int y=guiTop+40;
-		addButton(buttonFriendlyFire = new ExtendedGuiOptionsButton(0, x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.title"), button -> toggleFF()));
-		//addButton(buttonHiredDeathMessages = new ExtendedGuiOptionsButton(1, x, y+24, 200, 20, new StringTextComponent("Hired Death Messages"), button -> toggleHDM()));
-		//addButton(buttonAlignment = new ExtendedGuiOptionsButton(2, x, y+48, 200, 20, new StringTextComponent("Show Alignment"), button -> toggleA()));
-		addButton(buttonMapLocation = new ExtendedGuiOptionsButton(3, x, y+72, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.title"), button -> toggleML()));
-		//addButton(buttonConquest = new ExtendedGuiOptionsButton(5, x, y+96, 200, 20, new StringTextComponent("Conquest Kills"), button -> toggleCK()));
-		addButton(buttonFeminineRank = new ExtendedGuiOptionsButton(4, x, y+120, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.title"), button -> toggleFRO()));
+		addButton(buttonFriendlyFire = new Button(x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.title"), button -> toggleFF()));
+		addButton(buttonMapLocation = new Button(x, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.title"), button -> toggleML()));
+		addButton(buttonFeminineRank = new Button(x, y+72, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.title"), button -> toggleFRO()));
+
+		//addButton(buttonHiredDeathMessages = new Button(x, y+24, 200, 20, new StringTextComponent("Hired Death Messages"), button -> toggleHDM()));
+		//addButton(buttonAlignment = new Button(x, y+48, 200, 20, new StringTextComponent("Show Alignment"), button -> toggleA()));
+		//addButton(buttonConquest = new Button(x, y+96, 200, 20, new StringTextComponent("Conquest Kills"), button -> toggleCK()));
+
+		addButton(enableClientDevMode = new Button(x+204, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.devtoggle.title"), button -> toggleForgeConfigValue(ExtendedClientConfig.enableDevMode)));
+		addButton(forceStructureBlockAirViewing = new Button(x+204, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.fsbr.title"), button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing)));
+		addButton(structureBlockOutlineViewDistance = new Slider(x+204, y+48, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix"), new TranslationTextComponent("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix"), 32.0D, MixinConstants.StructureLimit, ExtendedClientConfig.structureBlockOutlineViewDistance.get(), false, true , button -> {}, new ExtendedRenderDistanceSliderHandler()));
+		if(ExtendedClientConfig.enableDevMode.get()) {
+			forceStructureBlockAirViewing.visible = true;
+			structureBlockOutlineViewDistance.visible = true;
+		}else {
+			forceStructureBlockAirViewing.visible = false;
+			structureBlockOutlineViewDistance.visible = false;
+		}
 	}
 
 	@Override
@@ -43,6 +71,10 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop - 10), 16777215);
 		title = new TranslationTextComponent("gui.lotrextended.settings.worldsettings");
 		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 30), 16777215);
+		title = new TranslationTextComponent("gui.lotrextended.settings.usersettings");
+		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 102), 16777215);
+		title = new TranslationTextComponent("gui.lotrextended.settings.devsettings");
+		this.font.draw(matStack, title, guiLeft+(304-(this.font.width(title)/2)), (guiTop + 30), 16777215);
 		super.render(matStack, mouseX, mouseY, tick);
 //		for (Widget widget : this.buttons) {
 //			if (widget instanceof ExtendedGuiOptionsButton) {
@@ -59,6 +91,18 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		buttonMapLocation.setMessage(map.append(new TranslationTextComponent(pd.getMiscData().getShowMapLocation()? "gui.lotrextended.base.shown" : "gui.lotrextended.base.hidden")));
 		TextComponent rank = new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting");
 		buttonFeminineRank.setMessage(rank.append(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+		
+		TextComponent ecdm = new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting");
+		enableClientDevMode.setMessage(ecdm.append(new TranslationTextComponent(ExtendedClientConfig.enableDevMode.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+		if(ExtendedClientConfig.enableDevMode.get()) {
+			TextComponent fsbr = new StringTextComponent("Force StrBlock Air Rendering: ");
+			forceStructureBlockAirViewing.setMessage(fsbr.append(new TranslationTextComponent(ExtendedClientConfig.forceStructureBlockAirViewing.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+			forceStructureBlockAirViewing.visible = true;
+			structureBlockOutlineViewDistance.visible = true;
+		}else {
+			forceStructureBlockAirViewing.visible = false;
+			structureBlockOutlineViewDistance.visible = false;
+		}
 	}
 	
 	public void toggleFF() {
@@ -95,4 +139,24 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		}
 	}
 
+	public void toggleForgeConfigValue(ForgeConfigSpec.BooleanValue value) {
+		value.set(!value.get());
+	}
+
+	public class ExtendedRenderDistanceSliderHandler implements ISlider {
+		@Override
+		public void onChangeSliderValue(Slider slider) {
+			if(slider.dragging) {
+				MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = slider.getValue();
+			}
+			if(!slider.dragging) {
+				setConfigStrBlockRenderDistance(slider.getValue());
+			}
+		}
+	}
+
+	public static void setConfigStrBlockRenderDistance(double value) {
+		ExtendedClientConfig.structureBlockOutlineViewDistance.set(value);
+		MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = value;
+	}
 }

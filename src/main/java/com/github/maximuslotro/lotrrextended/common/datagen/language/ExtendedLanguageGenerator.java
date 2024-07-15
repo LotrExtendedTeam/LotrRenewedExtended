@@ -121,13 +121,20 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Add Settings Menu strings
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
-		addD("gui.lotrextended.settings.usersettings");
+		addD("gui.lotrextended.settings.usersettings", "User Settings");
+		addD("gui.lotrextended.settings.devsettings", "Client Dev Settings");
 		addD("gui.lotrextended.settings.friendlyFire.title", "Friendly Fire");
 		addD("gui.lotrextended.settings.friendlyFire.setting", "Friendly Fire: ");
 		addD("gui.lotrextended.settings.mapLocation.title", "Show Map Location");
 		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
 		addD("gui.lotrextended.settings.rankGender.title", "Feminine Rank Override");
 		addD("gui.lotrextended.settings.rankGender.setting", "Feminine Rank Override: ");
+		addD("gui.lotrextended.settings.devtoggle.title", "Dev Mode");
+		addD("gui.lotrextended.settings.devtoggle.setting", "Dev Mode: ");
+		addD("gui.lotrextended.settings.fsbr.title", "Force StrBlock Air Rendering");
+		addD("gui.lotrextended.settings.fsbr.setting", "Force StrBlock Air Rendering: ");
+		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");
+		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix", " blocks");
 
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");

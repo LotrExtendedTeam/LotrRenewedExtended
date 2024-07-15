@@ -31,4 +31,16 @@ public class ExtendedBaseConfigHelper {
 		}
 		return builder.define(key, defaultValue);
 	}
+
+	protected static ForgeConfigSpec.DoubleValue createDoubleValue(Builder builder, String key, Double defaultValue, Double minValue, Double maxValue, boolean needsWorldRestart, String comment){
+		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.configCommentHolders.put(transKey, comment);
+		}
+		builder.comment(comment).translation(transKey);
+		if (needsWorldRestart) {
+			builder.worldRestart();
+		}
+		return builder.defineInRange(key, defaultValue, minValue, maxValue);
+	}
 }
