@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+
 import lotr.common.init.ExtendedEntities;
+import lotr.common.init.LOTRItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
@@ -19,14 +22,15 @@ import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -35,14 +39,14 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedDuckEntity extends AnimalEntity {
-	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuckEntity> {
 	public float flap;
 	public float flapSpeed;
 	public float oFlapSpeed;
 	public float oFlap;
 	public float flapping = 1.0F;
 	public int eggTime = this.random.nextInt(6000) + 6000;
+	private boolean isBob = false;
 
 	public ExtendedDuckEntity(EntityType<? extends ExtendedDuckEntity> p_i50282_1_, World p_i50282_2_) {
 		super(p_i50282_1_, p_i50282_2_);
@@ -54,7 +58,7 @@ public class ExtendedDuckEntity extends AnimalEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, Ingredient.of(ExtendedTags.Items.DUCK_FOOD)));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -97,6 +101,22 @@ public class ExtendedDuckEntity extends AnimalEntity {
 	}
 
 	@Override
+	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
+		ItemStack itemstack = pPlayer.getItemInHand(pHand);
+		if (Ingredient.of(LOTRItems.FISH_AND_CHIPS.get()).test(itemstack)) {
+			this.isBob = true;
+			super.mobInteract(pPlayer, pHand);
+			if (!this.level.isClientSide) {
+				return ActionResultType.SUCCESS;
+			}
+			if (this.level.isClientSide) {
+				return ActionResultType.CONSUME;
+			}
+		}
+		return super.mobInteract(pPlayer, pHand);
+	}
+	  
+	@Override
 	public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
 		return false;
 	}
@@ -122,28 +142,24 @@ public class ExtendedDuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	public ExtendedDuckEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-		return ExtendedEntities.DUCK_ENTITY.get().create(p_241840_1_);
-	}
-
-	@Override
-	public boolean isFood(ItemStack p_70877_1_) {
-		return FOOD_ITEMS.test(p_70877_1_);
-	}
-
-	@Override
-	public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-		super.readAdditionalSaveData(p_70037_1_);
-		if (p_70037_1_.contains("EggLayTime")) {
-			this.eggTime = p_70037_1_.getInt("EggLayTime");
+	public void readAdditionalSaveData(CompoundNBT nbt) {
+		super.readAdditionalSaveData(nbt);
+		if (nbt.contains("EggLayTime")) {
+			this.eggTime = nbt.getInt("EggLayTime");
+		}
+		if (nbt.contains("IsBobModeActivated")) {
+			this.isBob = nbt.getBoolean("IsBobModeActivated");
 		}
 
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-		super.addAdditionalSaveData(p_213281_1_);
-		p_213281_1_.putInt("EggLayTime", this.eggTime);
+	public void addAdditionalSaveData(CompoundNBT nbt) {
+		super.addAdditionalSaveData(nbt);
+		nbt.putInt("EggLayTime", this.eggTime);
+		if(isBob) {
+			nbt.putBoolean("IsBobModeActivated", true);
+		}
 	}
 
 	@Override
@@ -153,9 +169,43 @@ public class ExtendedDuckEntity extends AnimalEntity {
 		float f1 = MathHelper.cos(this.yBodyRot * ((float) Math.PI / 180F));
 		float f2 = 0.1F;
 		float f3 = 0.0F;
-		p_184232_1_.setPos(this.getX() + (double) (0.1F * f), this.getY(0.5D) + p_184232_1_.getMyRidingOffset() + 0.0D, this.getZ() - (double) (0.1F * f1));
+		p_184232_1_.setPos(this.getX() + (double) (f2 * f), this.getY(0.5D) + p_184232_1_.getMyRidingOffset() + f3, this.getZ() - (double) (f2 * f1));
 		if (p_184232_1_ instanceof LivingEntity) {
 			((LivingEntity) p_184232_1_).yBodyRot = this.yBodyRot;
 		}
+	}
+
+	@Override
+	public boolean getBreedableFood(ItemStack stack) {
+		return Ingredient.of(ExtendedTags.Items.DUCK_FOOD).test(stack);
+	}
+
+	public boolean isBob() {
+		return isBob;
+	}
+
+	public void setBob(boolean isBob) {
+		this.isBob = isBob;
+	}
+
+	@Override
+	public boolean isGendered() {
+		return true;
+	}
+
+	@Override
+	public ExtendedDuckEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
+		return ExtendedEntities.DUCK_ENTITY.get().create(pServerLevel);
+	}
+	
+	/**
+	 * Set baby ducks {@Link ExtendedGenderedAnimalEntity.isBob} if parent is bob type
+	 * */
+	@Override
+	public ExtendedDuckEntity modifyBreedingOffspring(ExtendedDuckEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
+		if(isBob || ((ExtendedDuckEntity)pMate).isBob()) {
+			baby.setBob(true);
+		}
+		return baby;
 	}
 }

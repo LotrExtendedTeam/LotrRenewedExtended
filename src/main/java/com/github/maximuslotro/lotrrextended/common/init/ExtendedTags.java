@@ -143,5 +143,7 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_EXCLUDE = ItemTags.bind("lotrextended:weapon_rack_excluded_items");
 	    public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_FULL_SCALE = ItemTags.bind("lotrextended:weapon_rack_items_full_scale");
 	    public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_HALF_SCALING = ItemTags.bind("lotrextended:weapon_rack_items_half_scaling");
+	    
+	    public static final ITag.INamedTag<Item> DUCK_FOOD = ItemTags.bind("lotrextended:foods/duck_feedables");
 	}
 }

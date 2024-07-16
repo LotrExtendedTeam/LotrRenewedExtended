@@ -202,6 +202,12 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
 
+		tag(ExtendedTags.Items.DUCK_FOOD).add(Items.BEETROOT_SEEDS).add(Items.MELON_SEEDS)
+		.add(Items.PUMPKIN_SEEDS).add(Items.WHEAT_SEEDS).add(Items.APPLE).add(LOTRItems.FLAX_SEEDS.get())
+		.add(LOTRItems.PIPEWEED_SEEDS.get()).add(LOTRItems.FISH_AND_CHIPS.get())
+		.add(LOTRItems.LETTUCE.get()).add(LOTRItems.CRAM.get()).add(LOTRItems.GREEN_APPLE.get())
+		.add(LOTRItems.PEAR.get()).add(LOTRItems.CHERRY.get());
+
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
 			if(item.get() instanceof SpearItem) {
