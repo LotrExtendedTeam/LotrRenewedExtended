@@ -29,6 +29,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
@@ -200,7 +201,7 @@ public class MixinLOTRItems {
 		if(name.equals("copper_ingot")) {
 			return regItem(name, () -> new ExtendedCopperIngotItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
 		}
-		return regItem(name, () -> new Item((new Properties()).tab(LOTRItemGroups.MATERIALS)));
+		return regItem(name, () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	}
 
 	@Shadow(remap=false)
@@ -561,6 +562,7 @@ public class MixinLOTRItems {
 		ExtendedItems.PEARL = regMaterialItemB("pearl");
 		ExtendedItems.CORAL = regMaterialItemB("coral");
 
+		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(ItemGroup.TAB_MATERIALS)));
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
 		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));

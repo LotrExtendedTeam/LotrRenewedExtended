@@ -195,6 +195,8 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 	    .addTag(ExtendedTags.Items.SILVER_ORE).addTag(ExtendedTags.Items.SULFUR_ORE)
 	    .addTag(ExtendedTags.Items.TIN_ORE);
 		
+		tag(Tags.Items.EGGS).add(ExtendedItems.DUCK_EGG.get());
+
 		tag(FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 
 		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get());

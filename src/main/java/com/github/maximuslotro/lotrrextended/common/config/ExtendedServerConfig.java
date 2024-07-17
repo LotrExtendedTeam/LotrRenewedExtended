@@ -37,7 +37,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 
 		builder.push("Special settings");
 		enableDevMode = createBooleanValue(builder,"enableDevMode", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
-		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, false, "Toggle to show additional log information if stuff is not working properly");
+		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, true, "Toggle to show additional log information if stuff is not working properly");
 		builder.pop();
 		return builder;
 	}

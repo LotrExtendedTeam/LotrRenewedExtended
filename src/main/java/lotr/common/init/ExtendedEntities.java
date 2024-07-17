@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 
 import lotr.common.entity.projectile.ExtendedConkerEntity;
 import net.minecraft.entity.EntityType;
@@ -24,4 +25,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedConkerEntity>> THROWN_CONKER;
 	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
 	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK_ENTITY;
+	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
 }
