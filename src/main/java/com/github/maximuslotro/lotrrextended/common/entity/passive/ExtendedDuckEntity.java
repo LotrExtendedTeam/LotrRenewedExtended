@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
+import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedEntities;
@@ -27,6 +28,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -46,7 +50,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	public float oFlap;
 	public float flapping = 1.0F;
 	public int eggTime = this.random.nextInt(6000) + 6000;
-	private boolean isBob = false;
+	private static final DataParameter<Boolean> IS_BOB = EntityDataManager.defineId(ExtendedDuckEntity.class, DataSerializers.BOOLEAN);
 
 	public ExtendedDuckEntity(EntityType<? extends ExtendedDuckEntity> p_i50282_1_, World p_i50282_2_) {
 		super(p_i50282_1_, p_i50282_2_);
@@ -63,6 +67,12 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+	}
+
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(IS_BOB, false);
 	}
 
 	@Override
@@ -104,14 +114,11 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
 		if (Ingredient.of(LOTRItems.FISH_AND_CHIPS.get()).test(itemstack)) {
-			this.isBob = true;
+			if(this.getGender() == EntityGender.MALE) {
+				setBob(true);
+			}
 			super.mobInteract(pPlayer, pHand);
-			if (!this.level.isClientSide) {
-				return ActionResultType.SUCCESS;
-			}
-			if (this.level.isClientSide) {
-				return ActionResultType.CONSUME;
-			}
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}
 		return super.mobInteract(pPlayer, pHand);
 	}
@@ -148,7 +155,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 			this.eggTime = nbt.getInt("EggLayTime");
 		}
 		if (nbt.contains("IsBobModeActivated")) {
-			this.isBob = nbt.getBoolean("IsBobModeActivated");
+			setBob(nbt.getBoolean("IsBobModeActivated"));
 		}
 
 	}
@@ -157,7 +164,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	public void addAdditionalSaveData(CompoundNBT nbt) {
 		super.addAdditionalSaveData(nbt);
 		nbt.putInt("EggLayTime", this.eggTime);
-		if(isBob) {
+		if(isBob()) {
 			nbt.putBoolean("IsBobModeActivated", true);
 		}
 	}
@@ -181,11 +188,11 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	}
 
 	public boolean isBob() {
-		return isBob;
+		return this.entityData.get(IS_BOB);
 	}
 
 	public void setBob(boolean isBob) {
-		this.isBob = isBob;
+		this.entityData.set(IS_BOB, isBob);
 	}
 
 	@Override
@@ -203,8 +210,14 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	 * */
 	@Override
 	public ExtendedDuckEntity modifyBreedingOffspring(ExtendedDuckEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
-		if(isBob || ((ExtendedDuckEntity)pMate).isBob()) {
-			baby.setBob(true);
+		if(baby.getGender() == EntityGender.MALE) {
+			if(getGender()==EntityGender.MALE) {
+				if(isBob()) {
+					baby.setBob(true);
+				}
+			} else if(((ExtendedDuckEntity)pMate).getGender()==EntityGender.MALE && ((ExtendedDuckEntity)pMate).isBob()) {
+				baby.setBob(true);
+			}
 		}
 		return baby;
 	}

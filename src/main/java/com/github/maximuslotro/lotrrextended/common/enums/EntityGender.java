@@ -1,24 +1,38 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
 public enum EntityGender {
-	MALE("male"), 
-	FEMALE("female"), 
-	GENDERLESS("genderless"), 
-	UNKNOWN("unknown");
+	MALE("male", 0), 
+	FEMALE("female", 1), 
+	GENDERLESS("genderless", 2), 
+	UNKNOWN("unknown", 3);
 
-	private final String id;
-	
-	EntityGender(String pId) {
-		this.id = pId;
+	private final String name;
+	private final int id;
+	EntityGender(String pName, int pID) {
+		this.name = pName;
+		this.id = pID;
 	}
 
-	public String getId() {
+	public String getGenderName() {
+		return name;
+	}
+
+	public int getGenderId() {
 		return id;
 	}
 
-	public static EntityGender byName(String queryName) {
+	public static EntityGender byGenderName(String queryName) {
 		for (EntityGender gender : values()) {
-			if (gender.id.equals(queryName)) {
+			if (gender.name.equals(queryName)) {
+				return gender;
+			}
+		}
+		return EntityGender.UNKNOWN;
+	}
+
+	public static EntityGender byGenderId(int queryID) {
+		for (EntityGender gender : values()) {
+			if (gender.id == queryID) {
 				return gender;
 			}
 		}

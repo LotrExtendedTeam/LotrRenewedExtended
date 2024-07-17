@@ -7,12 +7,16 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAnimalEntity<?>> extends AnimalEntity {
-	private EntityGender gender;
 
+	private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(ExtendedGenderedAnimalEntity.class, DataSerializers.INT);
+	
 	protected ExtendedGenderedAnimalEntity(EntityType<? extends ExtendedGenderedAnimalEntity<T>> entityType, World world) {
 		super(entityType, world);
 		this.setGenderRandomly(isGendered(), world);
@@ -48,6 +52,12 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 		return baby;
 	}
 
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(GENDER, 3);
+	}
+
 	/**
 	 * Re-set gender based upon parents gender in the case mob can be gendered and genderless at different times
 	 * */
@@ -67,7 +77,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	public void readAdditionalSaveData(CompoundNBT nbt) {
 		super.readAdditionalSaveData(nbt);
 		if (nbt.contains("EntityGender")) {
-			this.gender = EntityGender.byName(nbt.getString("EntityGender"));
+			this.setGender(EntityGender.byGenderName(nbt.getString("EntityGender")));
 		}
 
 	}
@@ -78,7 +88,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	@Override
 	public void addAdditionalSaveData(CompoundNBT nbt) {
 		super.addAdditionalSaveData(nbt);
-		nbt.putString("EntityGender", this.gender.getId());
+		nbt.putString("EntityGender", this.getGender().getGenderName());
 	}
 
 	/**
@@ -97,14 +107,14 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 			if (!canMateGeneric) {
 				return false;
 			}
-			ExtendedGenderedAnimalEntity<?> otherAnimal = ((ExtendedGenderedAnimalEntity<?>) pOtherAnimal);
-			if(otherAnimal.gender == EntityGender.UNKNOWN || gender == EntityGender.UNKNOWN) {
+			EntityGender otherAnimalGender = ((ExtendedGenderedAnimalEntity<?>) pOtherAnimal).getGender();
+			if(otherAnimalGender == EntityGender.UNKNOWN || getGender() == EntityGender.UNKNOWN) {
 				return false;
-			} else if(otherAnimal.gender == EntityGender.FEMALE && gender == EntityGender.MALE) {
+			} else if(otherAnimalGender == EntityGender.FEMALE && getGender() == EntityGender.MALE) {
 				return true;
-			} else if(otherAnimal.gender == EntityGender.MALE && gender == EntityGender.FEMALE) {
+			} else if(otherAnimalGender == EntityGender.MALE && getGender() == EntityGender.FEMALE) {
 				return true;
-			} else if(otherAnimal.gender == EntityGender.GENDERLESS && gender == EntityGender.GENDERLESS) {
+			} else if(otherAnimalGender == EntityGender.GENDERLESS && getGender() == EntityGender.GENDERLESS) {
 				return true;
 			} else {
 				return false;
@@ -116,14 +126,14 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	 * Helper method to get an animal's gender
 	 * */
 	public EntityGender getGender() {
-		return gender;
+		return EntityGender.byGenderId(this.entityData.get(GENDER));
 	}
 
 	/**
 	 * Helper method to set an animal's gender
 	 * */
 	public void setGender(EntityGender gender) {
-		this.gender = gender;
+		this.entityData.set(GENDER, gender.getGenderId());
 	}
 
 	/**
@@ -131,8 +141,8 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	 * */
 	public void setGenderRandomly(boolean gendered, World serverWorld) {
 		if(!gendered) {
-			this.gender = EntityGender.GENDERLESS;
+			this.setGender(EntityGender.GENDERLESS);
 		}
-		this.gender = serverWorld.random.nextBoolean() ? EntityGender.MALE : EntityGender.FEMALE;
+		this.setGender(serverWorld.random.nextBoolean() ? EntityGender.MALE : EntityGender.FEMALE);
 	}
 }
