@@ -46,7 +46,8 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
         this.renderTooltip(p_98418_, p_98419_, p_98420_);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void renderBg(MatrixStack matrix, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bind(GUI_TEXTURE);
