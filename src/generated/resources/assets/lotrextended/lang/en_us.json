@@ -955,6 +955,9 @@
   "stat.lotrextended.sliced_cheese": "Cheese Slices Cut",
   "stat.lotrextended.stone_chest_open": "Stone Chests Opened",
   "stat.lotrextended.traders_traded": "Times Traded With Traders",
+  "subtitles.lotrextended.entity.duck.egg": "Duck plops",
+  "subtitles.lotrextended.entity.duck.hurt": "Duck hurts",
+  "subtitles.lotrextended.entity.duck.idle": "Duck quacks",
   "subtitles.lotrextended.event.trade": "Coins jingle",
-  "subtitles.lotrextended.item.horn_blow": "Horn Blows"
+  "subtitles.lotrextended.item.horn_blow": "Horn blows"
 }

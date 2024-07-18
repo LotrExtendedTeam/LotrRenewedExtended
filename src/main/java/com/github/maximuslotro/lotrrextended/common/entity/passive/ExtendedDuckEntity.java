@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedEntities;
@@ -103,7 +104,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 		this.flap += this.flapping * 2.0F;
 		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0) {
-			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.playSound(ExtendedSounds.DUCK_EGG.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(ExtendedItems.DUCK_EGG.get());
 			this.eggTime = this.random.nextInt(6000) + 6000;
 		}
@@ -130,12 +131,12 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.CHICKEN_AMBIENT;
+		return ExtendedSounds.DUCK_AMBIANT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-		return SoundEvents.CHICKEN_HURT;
+		return ExtendedSounds.DUCK_HURT.get();
 	}
 
 	@Override

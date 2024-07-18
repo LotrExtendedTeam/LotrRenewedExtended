@@ -13,5 +13,23 @@
       "lotrextended:event/trade3",
       "lotrextended:event/trade4"
     ]
+  },
+  "entity.duck.idle": {
+    "subtitle": "subtitles.lotrextended.entity.duck.idle",
+    "sounds": [
+      "lotrextended:entity/duck/idle1"
+    ]
+  },
+  "entity.duck.hurt": {
+    "subtitle": "subtitles.lotrextended.entity.duck.hurt",
+    "sounds": [
+      "lotrextended:entity/duck/hurt1"
+    ]
+  },
+  "entity.duck.egg": {
+    "subtitle": "subtitles.lotrextended.entity.duck.egg",
+    "sounds": [
+      "mob/chicken/plop"
+    ]
   }
 }

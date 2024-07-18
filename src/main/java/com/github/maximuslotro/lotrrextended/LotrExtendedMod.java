@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtende
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
@@ -76,6 +77,7 @@ public class LotrExtendedMod{
 		ExtendedGlobalLootModifiers.register(modBus);
 		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
+		ExtendedEffects.register();
 	}
 
 	public void setup(FMLCommonSetupEvent event) {

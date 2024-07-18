@@ -1,6 +1,7 @@
 package lotr.common.item;
 
-import lotr.common.init.ExtendedEffects;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 
