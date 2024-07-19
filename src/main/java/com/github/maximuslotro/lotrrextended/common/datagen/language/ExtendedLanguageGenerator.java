@@ -116,6 +116,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.buy", "Buy");
 		addD("gui.lotrextended.trading.sell", "Sell");
 		addD("gui.lotrextended.trading.sell_offers", "Sell Offers");
+		addD("gui.lotrextended.trading.tooltip.cooldown", "On Cooldown");
+		addD("gui.lotrextended.trading.tooltip.new_trade_freq", "A trade comes back every minute.");
+		addD("gui.lotrextended.trading.tooltip.trades_used", "%1$s/%2$s Used");
 
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");

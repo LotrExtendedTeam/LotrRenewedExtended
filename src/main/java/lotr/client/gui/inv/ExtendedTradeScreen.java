@@ -15,7 +15,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author RichardB122
@@ -56,6 +61,57 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         int i = (this.width - this.imageWidth) / 2;
         int j = ((this.height - this.imageHeight) / 2);
         blit(matrix, i, j, 0, 0, this.imageWidth, this.imageHeight, 280, 280);
+    }
+
+    @Override
+    protected void renderTooltip(MatrixStack matrix, int p_230459_2_, int p_230459_3_) {
+        super.renderTooltip(matrix, p_230459_2_, p_230459_3_);
+
+        // render a tooltip over all prices
+        for (int i = 0; i < container.getSoldPrices().length; i++) {
+            if (isMouseOverElement(p_230459_2_, p_230459_3_, 8 + (18 * i), 43 + 18, 18, 18)) {
+                List<ITextComponent> tooltip = new ArrayList<>();
+                if (container.getSoldQuantities()[i] == 0) {
+                    tooltip.add(new TranslationTextComponent("gui.lotrextended.trading.tooltip.cooldown").withStyle(TextFormatting.ITALIC));
+                } else {
+                    int tradesUsed = container.getSoldOriginalQuantities()[i] - container.getSoldQuantities()[i];
+                    tooltip.add(new TranslationTextComponent(
+                            "gui.lotrextended.trading.tooltip.trades_used",
+                            new StringTextComponent(String.valueOf(tradesUsed)),
+                            new StringTextComponent(String.valueOf(container.getSoldOriginalQuantities()[i]))
+                    ));
+
+                }
+                tooltip.add(new TranslationTextComponent("gui.lotrextended.trading.tooltip.new_trade_freq"));
+                this.renderComponentTooltip(matrix, tooltip, p_230459_2_, p_230459_3_);
+            }
+        }
+
+        for (int i = 0; i < container.getBoughtPrices().length; i++) {
+            if (isMouseOverElement(p_230459_2_, p_230459_3_, 8 + (18 * i), 94 + 18, 18, 18)) {
+               List<ITextComponent> tooltip = new ArrayList<>();
+               if (container.getBoughtQuantities()[i] == 0) {
+                   tooltip.add(new TranslationTextComponent("gui.lotrextended.trading.tooltip.cooldown").withStyle(TextFormatting.ITALIC));
+               } else {
+                   int tradesUsed = container.getBoughtOriginalQuantities()[i] - container.getBoughtQuantities()[i];
+                   tooltip.add(new TranslationTextComponent(
+                 "gui.lotrextended.trading.tooltip.trades_used",
+                           new StringTextComponent(String.valueOf(tradesUsed)),
+                           new StringTextComponent(String.valueOf(container.getBoughtOriginalQuantities()[i]))
+                   ));
+
+               }
+                tooltip.add(new TranslationTextComponent("gui.lotrextended.trading.tooltip.new_trade_freq"));
+                this.renderComponentTooltip(matrix, tooltip, p_230459_2_, p_230459_3_);
+            }
+        }
+
+
+    }
+
+    private boolean isMouseOverElement(int mouseX, int mouseY, int x, int y, int width, int height) {
+        return mouseX >= x + this.guiLeft && mouseX <= x + width + this.guiLeft
+                && mouseY >= y + this.guiTop && mouseY <= y + height + this.guiTop;
     }
 
     @Override
