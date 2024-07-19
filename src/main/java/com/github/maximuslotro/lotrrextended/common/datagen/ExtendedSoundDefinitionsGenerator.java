@@ -26,11 +26,19 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.HORN_BLOW, createSimple(ExtendedSounds.HORN_BLOW));
 
 		add(ExtendedSounds.TRADE, createMultipleSameWeight(ExtendedSounds.TRADE, 4));
+		
+		add(ExtendedSounds.DUCK_AMBIANT, createMultipleSameWeight(ExtendedSounds.DUCK_AMBIANT, 1));
+		add(ExtendedSounds.DUCK_HURT, createMultipleSameWeight(ExtendedSounds.DUCK_HURT, 1));
+		add(ExtendedSounds.DUCK_EGG, createCustomPathSound(ExtendedSounds.DUCK_EGG, new ResourceLocation("mob/chicken/plop")));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
 		  .with(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/'))));
+	}
+
+	public static SoundDefinition createCustomPathSound(RegistryObject<SoundEvent> sound, ResourceLocation location) {
+		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sound(location));
 	}
 
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants) {

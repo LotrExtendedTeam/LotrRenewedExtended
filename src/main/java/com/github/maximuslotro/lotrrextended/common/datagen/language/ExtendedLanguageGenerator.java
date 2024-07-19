@@ -54,7 +54,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add New Entity Names
-		for (String entity : ExtendedEntities.REGISTEREDMOBENTITIES) {
+		for (String entity : ExtendedEntities.REGISTEREDNPCENTITIES) {
+			addD("entity.lotr." + entity);
+			addD("item.lotr." + entity + "_spawn_egg");
+		}
+		for (String entity : ExtendedEntities.REGISTEREDANIMALENTITIES) {
 			addD("entity.lotr." + entity);
 			addD("item.lotr." + entity + "_spawn_egg");
 		}
@@ -112,6 +116,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.buy", "Buy");
 		addD("gui.lotrextended.trading.sell", "Sell");
 		addD("gui.lotrextended.trading.sell_offers", "Sell Offers");
+		addD("gui.lotrextended.trading.tooltip.cooldown", "On Cooldown");
+		addD("gui.lotrextended.trading.tooltip.new_trade_freq", "A trade comes back every minute.");
+		addD("gui.lotrextended.trading.tooltip.trades_used", "%1$s/%2$s Used");
 
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
@@ -121,13 +128,20 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Add Settings Menu strings
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
-		addD("gui.lotrextended.settings.usersettings");
+		addD("gui.lotrextended.settings.usersettings", "User Settings");
+		addD("gui.lotrextended.settings.devsettings", "Client Dev Settings");
 		addD("gui.lotrextended.settings.friendlyFire.title", "Friendly Fire");
 		addD("gui.lotrextended.settings.friendlyFire.setting", "Friendly Fire: ");
 		addD("gui.lotrextended.settings.mapLocation.title", "Show Map Location");
 		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
 		addD("gui.lotrextended.settings.rankGender.title", "Feminine Rank Override");
 		addD("gui.lotrextended.settings.rankGender.setting", "Feminine Rank Override: ");
+		addD("gui.lotrextended.settings.devtoggle.title", "Dev Mode");
+		addD("gui.lotrextended.settings.devtoggle.setting", "Dev Mode: ");
+		addD("gui.lotrextended.settings.fsbr.title", "Force StrBlock Air Rendering");
+		addD("gui.lotrextended.settings.fsbr.setting", "Force StrBlock Air Rendering: ");
+		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");
+		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix", " blocks");
 
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");

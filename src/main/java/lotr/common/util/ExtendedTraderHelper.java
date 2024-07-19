@@ -30,7 +30,7 @@ public class ExtendedTraderHelper {
     private ExtendedTraderHelper() {}
 
     public static void playTraderSound(World level, BlockPos pos) {
-        level.playSound(null, pos, ExtendedSounds.TRADE.get(), SoundCategory.MASTER, 1, 1);
+        level.playSound(null, pos, ExtendedSounds.TRADE.get(), SoundCategory.PLAYERS, 1, 1);
     }
 
     public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {

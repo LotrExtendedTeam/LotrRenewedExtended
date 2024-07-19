@@ -158,7 +158,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			System.out.println("Didn't make ItemModel for: "+item.getKey());
 		}
-		for(String entity : ExtendedEntities.REGISTEREDMOBENTITIES) {
+		for(String entity : ExtendedEntities.REGISTEREDNPCENTITIES) {
+			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");
+		}
+		for(String entity : ExtendedEntities.REGISTEREDANIMALENTITIES) {
 			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");
 		}
 	}

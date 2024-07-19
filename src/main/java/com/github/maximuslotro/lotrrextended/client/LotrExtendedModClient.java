@@ -5,8 +5,10 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
-import com.github.maximuslotro.lotrrextended.client.render.block.BlockRendererSetup;
+import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
+import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedTileEntityRenderers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 import com.google.common.collect.ImmutableSet;
@@ -59,7 +61,7 @@ public class LotrExtendedModClient {
 		forgeBus.addListener(this::commandevent);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
-		modBus.addListener(BlockRendererSetup::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
+		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 		modBus.addListener(ExtendedColorHelper::makeBlockColors);
 		modBus.addListener(ExtendedColorHelper::makeItemsColors);
 		ExtendedClientConfig.register();
@@ -104,12 +106,13 @@ public class LotrExtendedModClient {
 	}
 
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
-		BlockRendererSetup.setupBlockRenderers();
+		ExtendedBlockRenderer.setupBlockRenderers();
 		event.enqueueWork(()->{
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		});
-		BlockRendererSetup.regModels();
+		ExtendedEntityRenderers.registerEntityRenderers();
+		ExtendedTileEntityRenderers.registerTileEntityRenderers();
 
 		startVersionChecks();
     }

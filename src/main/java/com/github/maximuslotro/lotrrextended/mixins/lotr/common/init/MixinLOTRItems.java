@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.client.render.item.ItemRenderHelper;
+import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRenderHelper;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
@@ -29,6 +29,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
@@ -200,7 +201,7 @@ public class MixinLOTRItems {
 		if(name.equals("copper_ingot")) {
 			return regItem(name, () -> new ExtendedCopperIngotItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
 		}
-		return regItem(name, () -> new Item((new Properties()).tab(LOTRItemGroups.MATERIALS)));
+		return regItem(name, () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	}
 
 	@Shadow(remap=false)
@@ -561,6 +562,7 @@ public class MixinLOTRItems {
 		ExtendedItems.PEARL = regMaterialItemB("pearl");
 		ExtendedItems.CORAL = regMaterialItemB("coral");
 
+		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(ItemGroup.TAB_MATERIALS)));
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
 		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));
@@ -720,36 +722,36 @@ public class MixinLOTRItems {
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> blackFurBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedBlackFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedBlackFurBedTileEntity::new);
 	}
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> furBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedFurBedTileEntity::new);
 	}
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> grayFurBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedGrayFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedGrayFurBedTileEntity::new);
 	}
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> silverFurBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedSilverFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedSilverFurBedTileEntity::new);
 	}
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedWhiteFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedWhiteFurBedTileEntity::new);
 	}
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> orcBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedOrcBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedOrcBedTileEntity::new);
 	}
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> strawBedRenderer() {
-		return () -> new ItemRenderHelper(ExtendedStrawBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper(ExtendedStrawBedTileEntity::new);
 	}
 }

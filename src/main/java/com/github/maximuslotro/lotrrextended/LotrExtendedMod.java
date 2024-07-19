@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandle
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
@@ -77,6 +78,7 @@ public class LotrExtendedMod{
 		ExtendedGlobalLootModifiers.register(modBus);
 		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
+		ExtendedEffects.register();
 		serverTickEventHandler = new ExtendedTickHandlerServer();
 	}
 

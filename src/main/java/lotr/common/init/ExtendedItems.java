@@ -473,5 +473,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER;
 	public static RegistryObject<Item> HOBBIT_BANNER;
+
+	public static RegistryObject<Item> DUCK_EGG;
 }
 

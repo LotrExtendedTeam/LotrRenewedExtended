@@ -11,8 +11,12 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
 import org.spongepowered.asm.mixin.Mixin;
 
+@OnlyIn(Dist.CLIENT)
 @Mixin(ChestScreen.class)
 public abstract class MixinChestScreen extends ContainerScreen<ChestContainer> implements IHasContainer<ChestContainer> {
 

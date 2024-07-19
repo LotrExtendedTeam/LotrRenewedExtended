@@ -5,7 +5,6 @@
 	"refmap": "mixins.lotrextended.refmap.json",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"lotr.common.MixinLOTRMod",
 		"lotr.common.MixinLOTRGameRules",
 		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinLOTRPlayerData",
@@ -63,8 +62,6 @@
 		"lotr.client.gui.inv.MixinContainerScreenHelper",
 		"lotr.client.gui.inv.MixinFactionCraftingScreen",
 		"lotr.client.gui.inv.MixinPouchScreen",
-		"lotr.client.render.MixinBlockRenderHelper",
-		"lotr.client.render.entity.MixinLOTREntityRenderers",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
 		"lotr.client.render.model.MixinHandheldWrapperModel",
 		"net.minecraft.client.gui.screen.inventory.MixinBlastFurnaceScreen",
@@ -73,6 +70,7 @@
 		"net.minecraft.client.gui.screen.inventory.MixinCraftingScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
+		"net.minecraft.client.renderer.tileentity.MixinStructureTileEntityRenderer",
 		"net.minecraft.tileentity.MixinStructureBlockTileEntity",
 		"net.minecraftforge.fml.packs.MixinResourcePackLoader"
 	],

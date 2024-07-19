@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.advancements;
 import net.minecraft.advancements.CriteriaTriggers;
 
 public class ExtendedCriteriaTriggers {
-	public static final AlignmentLevelTrigger ALIGNMENT_TRIGGER = CriteriaTriggers.register(new AlignmentLevelTrigger());
-	public static final TraderTradedTrigger TRAGER_TRADED_TRIGGER = CriteriaTriggers.register(new TraderTradedTrigger());
+	public static final ExtendedAlignmentLevelTrigger ALIGNMENT_TRIGGER = CriteriaTriggers.register(new ExtendedAlignmentLevelTrigger());
+	public static final ExtendedTraderTradedTrigger TRAGER_TRADED_TRIGGER = CriteriaTriggers.register(new ExtendedTraderTradedTrigger());
 	public static void generate() {}
 }

@@ -1,0 +1,78 @@
+{
+	"name": "lotrextended:ruins/general/bottom/altar_ruin_small_bottom",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_1",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_2",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_3",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_5",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_6",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_7",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_9",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:general/ruins/bottom/well_ruins_bottom_10",
+				"processors": "lotrextended:arnor_ruins_processor"
+			}
+		}
+	]
+}

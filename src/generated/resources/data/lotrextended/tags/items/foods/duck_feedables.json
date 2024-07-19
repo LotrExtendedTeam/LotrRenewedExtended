@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:beetroot_seeds",
+    "minecraft:melon_seeds",
+    "minecraft:pumpkin_seeds",
+    "minecraft:wheat_seeds",
+    "minecraft:apple",
+    "lotr:flax_seeds",
+    "lotr:pipeweed_seeds",
+    "lotr:fish_and_chips",
+    "lotr:lettuce",
+    "lotr:cram",
+    "lotr:green_apple",
+    "lotr:pear",
+    "lotr:cherry"
+  ]
+}
