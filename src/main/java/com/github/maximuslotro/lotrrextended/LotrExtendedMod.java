@@ -23,7 +23,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeS
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 
-import lotr.common.data.ExtendedLevelData;
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -46,17 +45,17 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 @Mod(value = LotrExtendedMod.MODID)
 public class LotrExtendedMod{
-
 	public static final String MODID = "lotrextended";
 	private IEventBus modBus;
-	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
+	public static ExtendedTickHandlerServer serverTickEventHandler;
+
 	public LotrExtendedMod() {
 		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
-		forgeBus = MinecraftForge.EVENT_BUS;
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::setup);
@@ -69,7 +68,6 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
-		forgeBus.register(ExtendedTickHandlerServer.class);
 		ExtendedCriteriaTriggers.generate();
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
@@ -79,6 +77,7 @@ public class LotrExtendedMod{
 		ExtendedGlobalLootModifiers.register(modBus);
 		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
+		serverTickEventHandler = new ExtendedTickHandlerServer();
 	}
 
 	public void setup(FMLCommonSetupEvent event) {

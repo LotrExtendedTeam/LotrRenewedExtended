@@ -3,9 +3,7 @@ package lotr.common.data;
 import lotr.common.LOTRLog;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
@@ -21,7 +19,7 @@ import java.io.File;
  */
 public class ExtendedLevelData {
 
-    private static final ExtendedLevelData SERVER_INSTANCE;
+    private static final ExtendedLevelData SERVER_INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
 
     private boolean needsSave = false;
     private boolean needsLoad = true;
@@ -55,9 +53,9 @@ public class ExtendedLevelData {
                 SaveUtil.saveNBTToFile(lotrDataFile, levelData);
                 this.needsSave = false;
             }
-        } catch (Exception exception) {
-            LOTRLog.error("Error saving mod data");
-            exception.printStackTrace();
+        } catch (Exception e) {
+            LOTRLog.error("Error saving Extended mod data!");
+            e.printStackTrace();
         }
 
     }
@@ -69,9 +67,9 @@ public class ExtendedLevelData {
             this.needsLoad = false;
             this.needsSave = true;
             this.save(world);
-        } catch (Exception exception) {
-            LOTRLog.error("Error loading mod data");
-            exception.printStackTrace();
+        } catch (Exception e) {
+            LOTRLog.error("Error loading Extended mod data!");
+            e.printStackTrace();
         }
     }
 
@@ -86,9 +84,15 @@ public class ExtendedLevelData {
             for (PlayerEntity player : world.players()) {
                 player.sendMessage(new StringTextComponent("Triggering wandering trader spawns"), player.getUUID());
             }
-            timeUntilTrader = 4000;
+            timeUntilTrader = 4000; // Attempts to spawn trader every 200 seconds
         }
-        needsSave = true;
+        // Only request saving file every 50 seconds to ensure the server does not lag from saving trader time every tick
+        if(timeUntilTrader % 1000L == 0L) {
+        	//Handle when tick just hit 0, and on next tick traders will be spawned and save function will be called since 4000%1000=0
+        	if(timeUntilTrader!=0) {
+        		needsSave = true;
+        	}
+        }
     }
 
     private static File getLOTRDataFile(ServerWorld world) {
@@ -96,7 +100,7 @@ public class ExtendedLevelData {
         return new File(SaveUtil.getOrCreateLOTRDir(world), filename + ".dat");
     }
 
-    static {
-        SERVER_INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
-    }
+	public boolean doesNeedSaving() {
+		return needsSave;
+	}
 }
