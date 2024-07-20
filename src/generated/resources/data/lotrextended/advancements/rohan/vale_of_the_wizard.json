@@ -1,5 +1,4 @@
 {
-  "parent": "lotrextended:enedwaith/forsaken_country",
   "display": {
     "icon": {
       "item": "lotr:uruk_berserker_cleaver",
@@ -7,17 +6,17 @@
     },
     "title": {
       "color": "green",
-      "translate": "advancements.lotrextended.enedwaith.vale_of_the_wizard.title"
+      "translate": "advancements.lotrextended.rohan.vale_of_the_wizard.title"
     },
     "description": {
       "color": "white",
-      "translate": "advancements.lotrextended.enedwaith.vale_of_the_wizard.description"
+      "translate": "advancements.lotrextended.rohan.vale_of_the_wizard.description"
     },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false,
-    "background": "lotrextended:textures/gui/advancements/backgrounds/enedwaith.png"
+    "background": "lotrextended:textures/gui/advancements/backgrounds/rohan.png"
   },
   "criteria": {
     "enter_nan_curunir": {

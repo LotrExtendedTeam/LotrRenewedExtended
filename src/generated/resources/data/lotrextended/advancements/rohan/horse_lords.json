@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:rohan_brick"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.horse_lords.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.rohan.horse_lords.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/rohan.png"
+  },
+  "criteria": {
+    "enter_rohan": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rohan"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_rohan"
+    ]
+  ]
+}

@@ -15,8 +15,7 @@
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false,
-    "background": "lotrextended:textures/gui/advancements/backgrounds/enedwaith.png"
+    "hidden": false
   },
   "criteria": {
     "enter_druwaith_iaur": {

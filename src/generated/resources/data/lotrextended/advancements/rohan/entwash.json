@@ -1,0 +1,35 @@
+{
+  "parent": "lotrextended:rohan/horse_lords",
+  "display": {
+    "icon": {
+      "item": "minecraft:dirt"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.entwash.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.rohan.entwash.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_mouths_of_entwash": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mouths_of_entwash"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_mouths_of_entwash"
+    ]
+  ]
+}

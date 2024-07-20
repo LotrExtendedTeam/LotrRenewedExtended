@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:rohan/isengard_100",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.isengard_200.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.rohan.isengard_200.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_isengard_level_200": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:isengard",
+          "level": {
+            "min": 200.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_isengard_level_200"
+    ]
+  ]
+}

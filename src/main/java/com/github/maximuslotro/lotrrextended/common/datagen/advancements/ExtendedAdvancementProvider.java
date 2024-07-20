@@ -13,6 +13,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class ExtendedAdvancementProvider extends AdvancementProvider{
 	public static int advancementsLegacyNum = 0;
 	public static int advancementsExtendedNum = 0;
+	public static int secrets = 0;
 	public ExtendedAdvancementProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 		super(generator, existingFileHelper);
 	}
@@ -36,8 +37,12 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new IronHillsAdvancementsProvider().accept(consumer);
 		new LothlorienAdvancementsProvider().accept(consumer);
 		new FangornAdvancementsProvider().accept(consumer);
+		new RohanAdvancementsProvider().accept(consumer);
+		ExtendedLog.info("###############EXTENDED###ADVANCEMENTS#############");
 		ExtendedLog.info("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).");
 		ExtendedLog.info("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
+		ExtendedLog.info("In addition built "+secrets+" secret advancements!");
+		ExtendedLog.info("###################################################");
 	}
 
 	@Override

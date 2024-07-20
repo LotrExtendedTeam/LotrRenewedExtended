@@ -172,6 +172,9 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		}else {
 			ExtendedAdvancementProvider.advancementsExtendedNum +=1;
 		}
+		if(data.isHidden()) {
+			ExtendedAdvancementProvider.secrets +=1;
+		}
 		return builder.save(con, "lotrextended:"+getFolder()+"/"+data.name);
 	}
 
@@ -268,6 +271,10 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 
 		public FrameType getFrame() {
 			return frame;
+		}
+
+		public boolean isHidden() {
+			return hidden;
 		}
 	}
 }
