@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:iron_hills/iron_hills",
+  "display": {
+    "icon": {
+      "item": "lotr:glowstone_ore"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.iron_hills.glowstone_ore.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.iron_hills.glowstone_ore.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "broke_glowstone_ore": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:glowstone_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broke_glowstone_ore"
+    ]
+  ]
+}

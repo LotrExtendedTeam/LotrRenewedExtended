@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:iron_hills/dwarf_commander",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_lord.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_lord.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_durins_folk_level_1500": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:durins_folk",
+          "level": {
+            "min": 1500.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_durins_folk_level_1500"
+    ]
+  ]
+}

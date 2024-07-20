@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.iron_hills.iron_hills.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.iron_hills.iron_hills.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/iron_hills.png"
+  },
+  "criteria": {
+    "enter_iron_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:iron_hills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_iron_hills"
+    ]
+  ]
+}
