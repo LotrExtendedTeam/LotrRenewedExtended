@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:fangorn/ent_10",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.fangorn.ent_50.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.fangorn.ent_50.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fangorn_level_50": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:fangorn",
+          "level": {
+            "min": 50.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fangorn_level_50"
+    ]
+  ]
+}

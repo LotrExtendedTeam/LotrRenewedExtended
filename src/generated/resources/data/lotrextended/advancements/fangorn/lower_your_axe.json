@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_log"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.fangorn.lower_your_axe.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.fangorn.lower_your_axe.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/fangorn.png"
+  },
+  "criteria": {
+    "enter_fangorn": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:fangorn"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_fangorn"
+    ]
+  ]
+}
