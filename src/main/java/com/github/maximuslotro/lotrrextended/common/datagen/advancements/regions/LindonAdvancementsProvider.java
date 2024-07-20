@@ -21,13 +21,14 @@ public class LindonAdvancementsProvider extends BaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement tower_hills = build(true, data(LOTRItems.CHALK_BRICK.get(), "emyn_beraid", true, FrameType.TASK, true, true, false)
-				.setTitle("Emyn Beraid").setDescription("Enter the Tower Hills."), 
-				addBiomeTrigger(make(), LOTRBiomes.TOWER_HILLS));
 
 		Advancement lindon = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_last_fair_realm", true, FrameType.TASK, true, true, false)
 				.setTitle("The Last Fair Realm").setDescription("Enter the Land of Lindon."), 
 				addBiomeTriggers(make(), LINDON_BIOMES));
+
+		Advancement tower_hills = build(true, data(LOTRItems.CHALK_BRICK.get(), "emyn_beraid", false, FrameType.TASK, true, true, false)
+				.setTitle("Emyn Beraid").setDescription("Enter the Tower Hills."), 
+				addBiomeTrigger(make(), LOTRBiomes.TOWER_HILLS).parent(lindon));
 
 		Advancement lindon_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "lindon_elf_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Lindon Elf Slayer").setDescription("Kill a Lindon Elf."), 

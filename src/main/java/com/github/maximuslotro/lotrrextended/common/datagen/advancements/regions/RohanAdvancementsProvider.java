@@ -19,9 +19,9 @@ public class RohanAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Home of the Horse-lords").setDescription("Enter the land of Rohan."), 
 				addBiomeTriggers(make(), LOTRBiomes.ROHAN, LOTRBiomes.WOLD));
 
-		Advancement vale_of_the_wizard = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "vale_of_the_wizard", true, FrameType.TASK, true, true, false)
+		Advancement vale_of_the_wizard = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "vale_of_the_wizard", false, FrameType.TASK, true, true, false)
 				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."), 
-				addBiomeTrigger(make(), LOTRBiomes.NAN_CURUNIR));
+				addBiomeTrigger(make(), LOTRBiomes.NAN_CURUNIR).parent(horse_lords));
 
 		Advancement entwash = build(true, data(Items.DIRT, "entwash", false, FrameType.TASK, true, true, false)
 		.setTitle("Last Marsh of the Ents").setDescription("Enter the Mouths of Entwash."), 

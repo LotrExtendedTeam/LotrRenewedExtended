@@ -21,7 +21,7 @@ public class DaleAdvancementsProvider extends BaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement dale = build(true, data(LOTRItems.SHIRE_HEATHER.get(), "kingdom_of_the_northmen", true, FrameType.TASK, true, true, false)
+		Advancement dale = build(true, data(LOTRItems.DALE_PAVING.get(), "kingdom_of_the_northmen", true, FrameType.TASK, true, true, false)
 				.setTitle("Kingdom of the Northmen").setDescription("Enter the land of Dale."), 
 				addBiomeTriggers(make(), DALE_BIOMES));
 
