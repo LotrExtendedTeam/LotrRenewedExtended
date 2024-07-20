@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:dale/dale_soldier",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dale.dale_herald.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.dale.dale_herald.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dale_level_200": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:dale",
+          "level": {
+            "min": 200.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dale_level_200"
+    ]
+  ]
+}

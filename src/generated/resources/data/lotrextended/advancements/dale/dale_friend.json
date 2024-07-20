@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:dale/dale_guest",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dale.dale_friend.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.dale.dale_friend.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dale_level_50": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:dale",
+          "level": {
+            "min": 50.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dale_level_50"
+    ]
+  ]
+}
