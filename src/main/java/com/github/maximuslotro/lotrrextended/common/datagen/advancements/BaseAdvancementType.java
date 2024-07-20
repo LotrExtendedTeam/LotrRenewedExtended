@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
@@ -24,6 +25,7 @@ import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
 import net.minecraft.advancements.criterion.PositionTrigger;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -77,6 +79,10 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		return builder.addCriterion("has_"+name, InventoryChangeTrigger.Instance.hasItems(items));
+	}
+
+	public static Advancement.Builder addBreakBlockTrigger(Advancement.Builder builder, Block block) {
+		return builder.addCriterion("broke_"+block.getRegistryName().getPath(), ExtendedBlockBreakTrigger.Instance.brokenBlock(block));
 	}
 
 	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {

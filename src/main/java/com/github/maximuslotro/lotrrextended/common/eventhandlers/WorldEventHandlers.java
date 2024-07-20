@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -8,11 +9,14 @@ import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class WorldEventHandlers {
@@ -58,6 +62,14 @@ public class WorldEventHandlers {
 			if(event.getPlayer().level.getBlockState(event.getNewSpawn()).getBlock() instanceof ExtendedBedrollBlock) {
 				event.setCanceled(true);
 			}
+		}
+	}
+
+	@SubscribeEvent(priority=EventPriority.LOWEST)
+	public static void handleBlockBreakAdvancement(BlockEvent.BreakEvent event) {
+		if(event.getPlayer() instanceof ServerPlayerEntity) {
+			ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
+			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
 		}
 	}
 }
