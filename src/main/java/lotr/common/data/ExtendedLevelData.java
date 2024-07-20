@@ -9,6 +9,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
 import java.io.File;
+import java.util.*;
 
 /**
  * @author Richardb122
@@ -36,6 +37,8 @@ public class ExtendedLevelData {
         return SERVER_INSTANCE;
     }
 
+    private Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
+
     public boolean needsLoad() {
         return needsLoad;
     }
@@ -50,6 +53,8 @@ public class ExtendedLevelData {
 
                 CompoundNBT levelData = new CompoundNBT();
                 levelData.putInt("timeUntilTrader", this.timeUntilTrader);
+                // TODO: save the playerTraderSpawnCooldowns map
+
                 SaveUtil.saveNBTToFile(lotrDataFile, levelData);
                 this.needsSave = false;
             }
@@ -64,6 +69,8 @@ public class ExtendedLevelData {
         try {
             CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
             this.timeUntilTrader = levelData.getInt("timeUntilTrader");
+            // TODO: load the playerTraderSpawnCooldowns map
+
             this.needsLoad = false;
             this.needsSave = true;
             this.save(world);
@@ -81,11 +88,34 @@ public class ExtendedLevelData {
         if (timeUntilTrader > 0) {
             timeUntilTrader--;
         } else {
-            for (PlayerEntity player : world.players()) {
-                player.sendMessage(new StringTextComponent("Triggering wandering trader spawns"), player.getUUID());
+            // pick a random player and spawn a trader near them
+            if (world.players().size() > 0) {
+                List<PlayerEntity> shuffledPlayers = new ArrayList<>(world.players());
+                Collections.shuffle(shuffledPlayers);
+
+                boolean traderWasSpawned = false;
+
+                for (PlayerEntity player : shuffledPlayers) {
+                    int cooldownLeft = 0;
+                    if (playerTraderSpawnCooldowns.containsKey(player.getUUID())) {
+                        cooldownLeft = playerTraderSpawnCooldowns.get(player.getUUID());
+                    }
+
+                    if (cooldownLeft == 0) {
+                        timeUntilTrader = 1200 * 5; // reset to 5 minute cooldown
+                        traderWasSpawned = true;
+                        player.sendMessage(new StringTextComponent("You were chosen for wandering trader spawn"), player.getUUID());
+                    }
+                }
+
+                if (!traderWasSpawned) {
+                    timeUntilTrader = 1200; // if no trader was spawned wait another minute before trying again
+                }
+            } else {
+                timeUntilTrader = 1200; // if no trader was spawned wait another minute before trying again
             }
-            timeUntilTrader = 4000; // Attempts to spawn trader every 200 seconds
         }
+
         // Only request saving file every 50 seconds to ensure the server does not lag from saving trader time every tick
         if(timeUntilTrader % 1000L == 0L) {
         	//Handle when tick just hit 0, and on next tick traders will be spawned and save function will be called since 4000%1000=0
