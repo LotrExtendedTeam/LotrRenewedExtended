@@ -84,6 +84,12 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	public static Advancement.Builder addBreakBlockTrigger(Advancement.Builder builder, Block block) {
 		return builder.addCriterion("broke_"+block.getRegistryName().getPath(), ExtendedBlockBreakTrigger.Instance.brokenBlock(block));
 	}
+	public static Advancement.Builder addBreakBlockTriggers(Advancement.Builder builder, Block... blocks) {
+		for(Block block : blocks) {
+			builder.addCriterion("broke_"+block.getRegistryName().getPath(), ExtendedBlockBreakTrigger.Instance.brokenBlock(block));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
 
 	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {
 		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), factionPointer.getNameString());

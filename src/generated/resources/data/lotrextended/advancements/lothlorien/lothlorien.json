@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:mallorn_log"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lothlorien.lothlorien.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.lothlorien.lothlorien.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/lothlorien.png"
+  },
+  "criteria": {
+    "enter_lothlorien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lothlorien"
+        }
+      }
+    },
+    "enter_lothlorien_eaves": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lothlorien_eaves"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_lothlorien",
+      "enter_lothlorien_eaves"
+    ]
+  ]
+}

@@ -1,24 +1,18 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
-import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
 
 
 public class IronHillsAdvancementsProvider extends BaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> DALE_BIOMES = ImmutableList.of(LOTRBiomes.DALE, LOTRBiomes.NORTHERN_DALE);
 
 	@Override
 	public void generateAdvancements() {
@@ -38,7 +32,7 @@ public class IronHillsAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement glowstone_ore = build(true, data(LOTRItems.GLOWSTONE_ORE.get(), "glowstone_ore", false, FrameType.GOAL, true, true, false)
 				.setTitle("In Dark Places").setDescription("Mine some glowstone ore."), 
-				addBreakBlockTrigger(make(), LOTRBlocks.GLOWSTONE_ORE.get()).parent(iron_hills));
+				addBreakBlockTriggers(make(), LOTRBlocks.GLOWSTONE_ORE.get(), LOTRBlocks.GLOWSTONE_CRYSTAL.get()).parent(iron_hills));
 
 		Advancement dwarf_10 = build(true, data(LOTRItems.GOLD_RING.get(), "dwarf_guest", false, FrameType.TASK, true, true, false)
 				.setTitle("Longbeard Guest").setDescription("Reach +10.0 alignment with Durin's Folk."), 

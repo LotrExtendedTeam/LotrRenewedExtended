@@ -1,0 +1,47 @@
+{
+  "parent": "lotrextended:lothlorien/lothlorien",
+  "display": {
+    "icon": {
+      "item": "lotr:dwarven_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lothlorien.galadhrim_armor.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.lothlorien.galadhrim_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "galadhrim_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:galadhrim_helmet"
+          },
+          {
+            "item": "lotr:galadhrim_chestplate"
+          },
+          {
+            "item": "lotr:galadhrim_leggings"
+          },
+          {
+            "item": "lotr:galadhrim_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "galadhrim_armor"
+    ]
+  ]
+}

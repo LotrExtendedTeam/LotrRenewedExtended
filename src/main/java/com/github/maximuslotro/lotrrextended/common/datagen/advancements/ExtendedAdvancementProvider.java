@@ -34,6 +34,7 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new RhovanionAdvancementsProvider().accept(consumer);
 		new DaleAdvancementsProvider().accept(consumer);
 		new IronHillsAdvancementsProvider().accept(consumer);
+		new LothlorienAdvancementsProvider().accept(consumer);
 		ExtendedLog.info("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).");
 		ExtendedLog.info("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
 	}

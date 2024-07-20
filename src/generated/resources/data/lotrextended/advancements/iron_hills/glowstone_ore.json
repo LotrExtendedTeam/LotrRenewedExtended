@@ -23,11 +23,18 @@
       "conditions": {
         "block": "lotr:glowstone_ore"
       }
+    },
+    "broke_glowstone_crystal": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:glowstone_crystal"
+      }
     }
   },
   "requirements": [
     [
-      "broke_glowstone_ore"
+      "broke_glowstone_ore",
+      "broke_glowstone_crystal"
     ]
   ]
 }
