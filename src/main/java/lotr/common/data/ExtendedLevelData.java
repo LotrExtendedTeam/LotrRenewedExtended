@@ -3,8 +3,10 @@ package lotr.common.data;
 import lotr.common.LOTRLog;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
@@ -87,6 +89,14 @@ public class ExtendedLevelData {
     public void performTravellingTraderSpawns(World world) {
         if (timeUntilTrader > 0) {
             timeUntilTrader--;
+
+            // TODO: temporarily print biome so that I can build the WanderingTradersList
+            if (world.players().size() > 0) {
+                PlayerEntity player = world.players().get(0);
+                BlockPos pos = new BlockPos(player.position().x, player.position().y, player.position().z);
+                Biome biome = world.getBiome(pos);
+                System.out.println("Player in Biome: " + biome + " named " + world.getBiomeName(pos));
+            }
         } else {
             // pick a random player and spawn a trader near them
             if (world.players().size() > 0) {
