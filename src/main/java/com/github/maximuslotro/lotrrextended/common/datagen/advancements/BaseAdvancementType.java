@@ -49,6 +49,12 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		builder.addCriterion("enter_"+biome.getName(), inBiome(biome));
 		return builder;
 	}
+	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, PreRegisteredLOTRBiome... biomes) {
+		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
+			addBiomeTrigger(builder, lotrBiomeObject);
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
 
 	public static Advancement.Builder addBiomeAltTriggers(Advancement.Builder builder, List<ResourceLocation> biomes) {
 		for(ResourceLocation lotrBiomeObject : biomes) {
@@ -96,7 +102,13 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	public static Advancement.Builder addKillEntityTrigger(Advancement.Builder builder, EntityType<?> entity) {
 		return builder.addCriterion("kill_"+entity.getRegistryName().getPath(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.entity().of(entity)));
 	}
-
+	public static Advancement.Builder addKillEntityTriggers(Advancement.Builder builder, EntityType<?>... entitys) {
+		for(EntityType<?> entity : entitys) {
+			builder.addCriterion("kill_"+entity.getRegistryName().getPath(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.entity().of(entity)));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+	
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(entityType, false));
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(entityType, true));

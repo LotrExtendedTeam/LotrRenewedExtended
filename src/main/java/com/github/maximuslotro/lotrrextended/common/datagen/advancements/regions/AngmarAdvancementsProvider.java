@@ -13,7 +13,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 
 
 public class AngmarAdvancementsProvider extends BaseAdvancementType{
@@ -23,7 +22,7 @@ public class AngmarAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement angmar = build(true, data(LOTRItems.ANGMAR_BRICK.get(), "the_ruin_of_arnor", true, FrameType.TASK, true, true, false)
 				.setTitle("The Ruin of Arnor").setDescription("Enter the Region of Angmar."), 
-				addBiomeTriggers(make(), ANGMAR_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), ANGMAR_BIOMES));
 
 //		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "angmar_orc_slayer", false, FrameType.TASK, true, true, false)
 //				.setTitle("Angmar Orc Slayer").setDescription("Kill an Angmar Orc."), 

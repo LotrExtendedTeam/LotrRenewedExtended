@@ -13,7 +13,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.item.Items;
 
 
@@ -24,7 +23,7 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement bree = build(true, data(LOTRItems.DRYSTONE.get(), "of_hobbits_and_men", true, FrameType.TASK, true, true, false)
 				.setTitle("Of Hobbits and Men").setDescription("Enter the Region of Bree-land."), 
-				addBiomeTriggers(make(), BREE_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), BREE_BIOMES));
 
 		Advancement chetwood = build(true, data(Items.OAK_SAPLING, "ruffians_haunt", false, FrameType.TASK, true, true, false)
 		.setTitle("Ruffians' Haunt").setDescription("Enter the forest of Chetwood."), 
@@ -32,12 +31,11 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement bree_man_slayer = build(true, data(Items.BONE, "bree_man_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-Man Slayer").setDescription("Kill a Bree-Man."), 
-				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.BREE_GUARD.get()), LOTREntities.BREE_MAN.get())
-				.requirements(IRequirementsStrategy.OR).parent(bree));
+				addKillEntityTriggers(make(), LOTREntities.BREE_GUARD.get(), LOTREntities.BREE_MAN.get()).parent(bree));
 
 		Advancement bree_hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "bree_hobbit_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-Hobbit Slayer").setDescription("Kill a Bree-Hobbit."), 
-				addKillEntityTrigger(make(), LOTREntities.BREE_HOBBIT.get()).requirements(IRequirementsStrategy.OR).parent(bree));
+				addKillEntityTrigger(make(), LOTREntities.BREE_HOBBIT.get()).parent(bree));
 
 		Advancement bree_10 = build(true, data(LOTRItems.GOLD_RING.get(), "bree_guest", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-land Guest").setDescription("Reach +10.0 alignment with Bree-land."), 

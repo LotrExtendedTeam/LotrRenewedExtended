@@ -13,7 +13,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 
 
 public class DaleAdvancementsProvider extends BaseAdvancementType{
@@ -23,11 +22,12 @@ public class DaleAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement dale = build(true, data(LOTRItems.SHIRE_HEATHER.get(), "kingdom_of_the_northmen", true, FrameType.TASK, true, true, false)
 				.setTitle("Kingdom of the Northmen").setDescription("Enter the land of Dale."), 
-				addBiomeTriggers(make(), DALE_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), DALE_BIOMES));
 
 		Advancement hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "dale_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Dalishman Slayer").setDescription("Kill a Man of Dale."), 
-				addKillEntityTrigger(make(), LOTREntities.DALE_MAN.get()).requirements(IRequirementsStrategy.OR).parent(dale));
+				addKillEntityTriggers(make(), LOTREntities.DALE_MAN.get(), LOTREntities.DALE_BOWMAN.get(), LOTREntities.DALE_SOLDIER.get())
+				.parent(dale));
 
 		Advancement dale_10 = build(true, data(LOTRItems.GOLD_RING.get(), "dale_guest", false, FrameType.TASK, true, true, false)
 				.setTitle("Barding Guest").setDescription("Reach +10.0 alignment with Dale."), 

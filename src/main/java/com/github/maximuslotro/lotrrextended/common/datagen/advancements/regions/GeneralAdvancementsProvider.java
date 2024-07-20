@@ -41,11 +41,9 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "orc_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Orc Slayer").setDescription("Kill an Orc."), 
-				addKillEntityTrigger(addKillEntityTrigger(addKillEntityTrigger(addKillEntityTrigger(addKillEntityTrigger(addKillEntityTrigger(
-						make(), LOTREntities.GUNDABAD_ORC.get()), LOTREntities.GUNDABAD_ORC_ARCHER.get()), 
-						LOTREntities.MORDOR_ORC.get()), LOTREntities.MORDOR_ORC_ARCHER.get()), 
-						LOTREntities.ISENGARD_SNAGA.get()), LOTREntities.ISENGARD_SNAGA_ARCHER.get())
-				.requirements(IRequirementsStrategy.OR).parent(base));
+				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get(), 
+						LOTREntities.MORDOR_ORC.get(), LOTREntities.MORDOR_ORC_ARCHER.get(), 
+						LOTREntities.ISENGARD_SNAGA.get(), LOTREntities.ISENGARD_SNAGA_ARCHER.get()).parent(base));
 
 		Advancement athelas = build(true, data(LOTRItems.ATHELAS.get(), "kingsfoil", false, FrameType.TASK, true, true, false)
 				.setTitle("Kingsfoil").setDescription("Find the Athelas herb."), 
@@ -73,9 +71,8 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement warg_slayer = build(true, data(LOTRItems.WARG_BONE.get(), "warg_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Warg Slayer").setDescription("Kill a Warg."), 
-				addKillEntityTrigger(addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.GUNDABAD_WARG.get()), 
-						LOTREntities.ISENGARD_WARG.get()), LOTREntities.MORDOR_WARG.get())
-				.requirements(IRequirementsStrategy.OR).parent(base));
+				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_WARG.get(), LOTREntities.ISENGARD_WARG.get(), 
+				LOTREntities.MORDOR_WARG.get()).parent(base));
 
 		Advancement warg_armor = build(true, data(ExtendedItems.BROWN_WARG_CHESTPLATE.get(), "master_hunter", false, FrameType.TASK, true, true, false)
 				.setTitle("Master Hunter").setDescription("Acquire a full set of Warg Fur armor."),

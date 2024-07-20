@@ -15,7 +15,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.item.Items;
 
 
@@ -27,7 +26,7 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement shire = build(true, data(LOTRItems.SHIRE_HEATHER.get(), "a_simple_land", true, FrameType.TASK, true, true, false)
 				.setTitle("A Simple Land").setDescription("Enter the Shire."), 
-				addBiomeTriggers(make(), SHIRE_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), SHIRE_BIOMES));
 
 		Advancement white_downs = build(true, data(LOTRItems.CHALK.get(), "chalken_delvings", false, FrameType.TASK, true, true, false)
 		.setTitle("Chalken Delvings").setDescription("Enter the White Downs."), 
@@ -39,7 +38,7 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "hobbit_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Hobbit Slayer").setDescription("Kill a Hobbit."), 
-				addKillEntityTrigger(make(), LOTREntities.HOBBIT.get()).requirements(IRequirementsStrategy.OR).parent(shire));
+				addKillEntityTrigger(make(), LOTREntities.HOBBIT.get()).parent(shire));
 
 		Advancement clover = build(true, data(LOTRItems.FOUR_LEAF_CLOVER.get(), "feeling_lucky", false, FrameType.GOAL, true, true, false)
 				.setTitle("Feeling Lucky?").setDescription("Find a rare Four-Leaf Clover."), 

@@ -31,11 +31,41 @@
           }
         ]
       }
+    },
+    "kill_dale_bowman": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dale_bowman"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_dale_soldier": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dale_soldier"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "kill_dale_man"
+      "kill_dale_man",
+      "kill_dale_bowman",
+      "kill_dale_soldier"
     ]
   ]
 }
