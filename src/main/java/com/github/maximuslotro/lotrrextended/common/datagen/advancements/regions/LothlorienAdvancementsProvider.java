@@ -27,7 +27,7 @@ public class LothlorienAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("The Golden Wood").setDescription("Enter the woods of Lothlórien."), 
 				addBiomeTriggers(make(), LOTHLORIEN_BIOMES));
 
-		Advancement elf_slayer = build(true, data(LOTRItems.DWARF_BONE.get(), "elf_slayer", false, FrameType.TASK, true, true, false)
+		Advancement elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "elf_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Elf Slayer").setDescription("Kill a Galadhrim elf."), 
 				addKillEntityTriggers(make(), LOTREntities.GALADHRIM_ELF.get(), LOTREntities.GALADHRIM_WARRIOR.get()).parent(lothlorien));
 

@@ -17,7 +17,7 @@ public class RohanAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement horse_lords = build(true, data(LOTRItems.ROHAN_BRICK.get(), "horse_lords", true, FrameType.TASK, true, true, false)
 				.setTitle("Home of the Horse-lords").setDescription("Enter the land of Rohan."), 
-				addBiomeTrigger(make(), LOTRBiomes.ROHAN));
+				addBiomeTriggers(make(), LOTRBiomes.ROHAN, LOTRBiomes.WOLD));
 
 		Advancement vale_of_the_wizard = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "vale_of_the_wizard", true, FrameType.TASK, true, true, false)
 				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."), 

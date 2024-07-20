@@ -13,6 +13,7 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.item.Items;
 
 
 public class DaleAdvancementsProvider extends BaseAdvancementType{
@@ -24,7 +25,7 @@ public class DaleAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Kingdom of the Northmen").setDescription("Enter the land of Dale."), 
 				addBiomeTriggers(make(), DALE_BIOMES));
 
-		Advancement hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "dale_slayer", false, FrameType.TASK, true, true, false)
+		Advancement hobbit_slayer = build(true, data(Items.BONE, "dale_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Dalishman Slayer").setDescription("Kill a Man of Dale."), 
 				addKillEntityTriggers(make(), LOTREntities.DALE_MAN.get(), LOTREntities.DALE_BOWMAN.get(), LOTREntities.DALE_SOLDIER.get())
 				.parent(dale));

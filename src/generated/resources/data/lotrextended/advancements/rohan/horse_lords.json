@@ -25,11 +25,20 @@
           "biome": "lotr:rohan"
         }
       }
+    },
+    "enter_wold": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:wold"
+        }
+      }
     }
   },
   "requirements": [
     [
-      "enter_rohan"
+      "enter_rohan",
+      "enter_wold"
     ]
   ]
 }

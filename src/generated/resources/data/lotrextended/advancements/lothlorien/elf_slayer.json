@@ -2,7 +2,7 @@
   "parent": "lotrextended:lothlorien/lothlorien",
   "display": {
     "icon": {
-      "item": "lotr:dwarf_bone"
+      "item": "lotr:elf_bone"
     },
     "title": {
       "color": "green",

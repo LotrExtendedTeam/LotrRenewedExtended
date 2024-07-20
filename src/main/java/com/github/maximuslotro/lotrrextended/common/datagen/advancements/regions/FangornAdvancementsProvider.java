@@ -43,7 +43,7 @@ public class FangornAdvancementsProvider extends BaseAdvancementType{
 		Advancement ent_500 = build(true, data(LOTRItems.GOLD_RING.get(), "ent_500", false, FrameType.GOAL, true, true, false)
 				.setTitle("Fangorn Elder").setDescription("Reach +500.0 alignment with the Ents."), 
 				addAlignmentTrigger(make(), FactionPointers.FANGORN, 500).parent(ent_250));
-		Advancement ent_10000 = build(false, data(LOTRItems.GOLD_RING.get(), "ent_1000", false, FrameType.CHALLENGE, true, true, false)
+		Advancement ent_10000 = build(false, data(LOTRItems.GOLD_RING.get(), "ent_1000", false, FrameType.CHALLENGE, true, true, true)
 				.setTitle("True Ent").setDescription("Reach +10000.0 alignment with the Ents and become a true Ent!"), 
 				addAlignmentTrigger(make(), FactionPointers.FANGORN, 1000).parent(ent_500));
 	}

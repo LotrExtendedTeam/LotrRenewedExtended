@@ -2,7 +2,7 @@
   "parent": "lotrextended:dale/kingdom_of_the_northmen",
   "display": {
     "icon": {
-      "item": "lotr:hobbit_bone"
+      "item": "minecraft:bone"
     },
     "title": {
       "color": "green",
