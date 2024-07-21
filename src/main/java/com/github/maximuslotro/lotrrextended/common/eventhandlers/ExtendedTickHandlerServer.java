@@ -54,7 +54,7 @@ public class ExtendedTickHandlerServer {
 					}
                 } else if (LOTRDimensions.isDimension(world, LOTRDimensions.MIDDLE_EARTH_WORLD_KEY)) {
                 	// Ensure we run these functions only when Middle Earth ticks
-                	levelData.performTravellingTraderSpawns(world);
+                	levelData.checkForWanderingTraderSpawns(world);
 				}
             }
         }

@@ -1,28 +1,100 @@
 package lotr.common.world.spawning;
 
-import lotr.common.init.ExtendedEntities;
-import net.minecraft.entity.EntityType;
+import lotr.common.util.MapUtil;
+import net.minecraft.world.World;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WanderingTradersList {
 
-    public static Map<String, List<EntityType>> traders;
+    public static Map<String, List<String>> traders = MapUtil.mapOf(
+            // Shire
+            MapUtil.entry("lotr:shire", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:shire_moors", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:shire_marshes", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:shire_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:white_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
 
-    private static final List<EntityType> ALL_WANDERERS = Arrays.asList(ExtendedEntities.RIVENDELL_WANDERER.get(), ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedEntities.GALADHRIM_WANDERER.get());
+            // Eriador
+            MapUtil.entry("lotr:eriador", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:eriador_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:swanfleet", Collections.emptyList()), // Swanfleet has no wandering traders according to the wiki
 
-    public static void initialize() {
-        // Shire
-        traders.put("lotr:shire", ALL_WANDERERS );
-        traders.put("lotr:shire_moors", ALL_WANDERERS );
-        traders.put("lotr:shire_marshes", ALL_WANDERERS);
-        traders.put("lotr:shire_woodlands", ALL_WANDERERS);
-        traders.put("lotr:white_downs", ALL_WANDERERS);
+            MapUtil.entry("lotr:trollshaws", Collections.emptyList()), // Trollshaws has no wandering traders according to the wiki
 
-        // Eriador
+            // Rivendell only gets Galadhrim traders
+            MapUtil.entry("lotr:rivendell", Collections.singletonList("lotr:galadhrim_wanderer")),
+            MapUtil.entry("lotr:rivendell_hills", Collections.singletonList("lotr:galadhrim_wanderer")),
+
+            // TODO: finish Gondor
+            MapUtil.entry("lotr:gondor", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:pelargir", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:ithilien", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:lebennin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:emyn_en_ernil", Collections.emptyList()), // Emyn-En-Ernil has no traders in Legacy code
+            MapUtil.entry("lotr:dor_en_ernil", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+
+            MapUtil.entry("lotr:harondor", Collections.emptyList()), // Harondor has no traders according to Legacy code
+
+            // Older elven regions
+            MapUtil.entry("lotr:lindon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer")),
+            MapUtil.entry("lotr:eregion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+
+            // Lothlorien only gets Rivendell traders
+            MapUtil.entry("lotr:lothlorien_eaves", Collections.singletonList("lotr:rivendell_wanderer")),
+            MapUtil.entry("lotr:lothlorien", Collections.singletonList("lotr:rivendell_wanderer")),
+
+            // Bree-land
+            MapUtil.entry("lotr:breeland", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:chetwood", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+
+            // TODO: Add Rohan
+            // TODO: add Lone-lands
+
+            // Mirkwood
+            MapUtil.entry("lotr:woodland_realm", Collections.singletonList("lotr:galadhrim_wanderer")),
+            // in Legacy no travelling traders come to Northern Mirkwood, but I am adding them here because I feel like it fits the theme
+            MapUtil.entry("lotr:northern_mirkwood", Collections.singletonList("lotr:galadhrim_wanderer")),
+            MapUtil.entry("lotr:mirkwood", Collections.emptyList()), // no traders visit Southern Mirkwood (too corrupted)
+
+            MapUtil.entry("lotr:forochel", Collections.emptyList()) // no traders visit Forochel (too cold)
+
+            // TODO: Make sure areas west of Lindon and the shire have wandering traders
+    );
+
+    /**
+     * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
+     * and if it is pick a random wandering trader from it's list and return the entity name. If no wandering traders
+     * spawn in that biome it returns null. If it is not a valid biome it throws an IllegalArgumentException
+     *
+     * @param biomeName
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public static String pickTraderFromBiomeName(World world, String biomeName) throws IllegalArgumentException {
+        // determine the LOTR biome
+        String lotrBiome;
+        int index = biomeName.indexOf("lotr");
+        if (index != -1) {
+            lotrBiome = biomeName.substring(index);
+        } else {
+            throw new IllegalArgumentException(biomeName + " is not a LOTR Mod biome");
+        }
+
+        if (traders.containsKey(lotrBiome)) {
+           List<String> possibleTraders = traders.get(lotrBiome);
+
+           if (possibleTraders.isEmpty()) {
+               return null;
+           } else {
+               return possibleTraders.get(world.random.nextInt(possibleTraders.size()));
+           }
+        } else {
+            return null;
+        }
     }
-
 
 }

@@ -81,8 +81,6 @@ public class LotrExtendedMod{
 		ExtendedTags.init();
 		ExtendedEffects.register();
 		serverTickEventHandler = new ExtendedTickHandlerServer();
-
-		WanderingTradersList.initialize();
 	}
 
 	public void setup(FMLCommonSetupEvent event) {

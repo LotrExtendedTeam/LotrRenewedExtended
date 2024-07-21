@@ -1,6 +1,8 @@
 package lotr.common.data;
 
 import lotr.common.LOTRLog;
+import lotr.common.world.spawning.WanderingTradersList;
+import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
@@ -55,6 +57,7 @@ public class ExtendedLevelData {
 
                 CompoundNBT levelData = new CompoundNBT();
                 levelData.putInt("timeUntilTrader", this.timeUntilTrader);
+
                 // TODO: save the playerTraderSpawnCooldowns map
 
                 SaveUtil.saveNBTToFile(lotrDataFile, levelData);
@@ -71,6 +74,7 @@ public class ExtendedLevelData {
         try {
             CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
             this.timeUntilTrader = levelData.getInt("timeUntilTrader");
+
             // TODO: load the playerTraderSpawnCooldowns map
 
             this.needsLoad = false;
@@ -86,42 +90,44 @@ public class ExtendedLevelData {
         return timeUntilTrader;
     }
 
-    public void performTravellingTraderSpawns(World world) {
+    public int getPlayersTraderCooldown(UUID uuid) {
+       if (playerTraderSpawnCooldowns.containsKey(uuid)) {
+           return playerTraderSpawnCooldowns.get(uuid);
+       } else {
+           return -1;
+       }
+    }
+
+    public void checkForWanderingTraderSpawns(World world) {
         if (timeUntilTrader > 0) {
             timeUntilTrader--;
-
-            // TODO: temporarily print biome so that I can build the WanderingTradersList
-            if (world.players().size() > 0) {
-                PlayerEntity player = world.players().get(0);
-                BlockPos pos = new BlockPos(player.position().x, player.position().y, player.position().z);
-                Biome biome = world.getBiome(pos);
-                System.out.println("Player in Biome: " + biome + " named " + world.getBiomeName(pos));
-            }
         } else {
+            // if no players online try again in another minute
+            if (world.players().isEmpty()) {
+                timeUntilTrader = 1200;
+            }
+
             // pick a random player and spawn a trader near them
-            if (world.players().size() > 0) {
-                List<PlayerEntity> shuffledPlayers = new ArrayList<>(world.players());
-                Collections.shuffle(shuffledPlayers);
+            List<PlayerEntity> shuffledPlayers = new ArrayList<>(world.players());
+            Collections.shuffle(shuffledPlayers);
 
-                boolean traderWasSpawned = false;
-
-                for (PlayerEntity player : shuffledPlayers) {
-                    int cooldownLeft = 0;
-                    if (playerTraderSpawnCooldowns.containsKey(player.getUUID())) {
-                        cooldownLeft = playerTraderSpawnCooldowns.get(player.getUUID());
-                    }
-
-                    if (cooldownLeft == 0) {
-                        timeUntilTrader = 1200 * 5; // reset to 5 minute cooldown
-                        traderWasSpawned = true;
-                        player.sendMessage(new StringTextComponent("You were chosen for wandering trader spawn"), player.getUUID());
-                    }
+            boolean attemptedTraderSpawn = false;
+            for (PlayerEntity player : shuffledPlayers) {
+                int cooldownLeft = 0;
+                if (playerTraderSpawnCooldowns.containsKey(player.getUUID())) {
+                    cooldownLeft = playerTraderSpawnCooldowns.get(player.getUUID());
                 }
 
-                if (!traderWasSpawned) {
-                    timeUntilTrader = 1200; // if no trader was spawned wait another minute before trying again
+                if (cooldownLeft == 0) {
+                    // this may not actually spawn if they are in a biome with no traders, but we'll still count it and reset their clock
+                    WanderingTradersSpawner.spawn(world, player);
+                    timeUntilTrader = 1200 * 5; // reset to 5 minute cooldown
+                    attemptedTraderSpawn = true;
+                    break;
                 }
-            } else {
+            }
+
+            if (!attemptedTraderSpawn) {
                 timeUntilTrader = 1200; // if no trader was spawned wait another minute before trying again
             }
         }

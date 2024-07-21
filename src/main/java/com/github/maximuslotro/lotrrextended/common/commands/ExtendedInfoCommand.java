@@ -32,7 +32,10 @@ public class ExtendedInfoCommand
 
         // display ExtendedLevelData
         if (ExtendedLevelData.serverInstance() != null) {
-            source.sendSuccess(new StringTextComponent("timeUntilTrader: " + ExtendedLevelData.serverInstance().getTimeUntilTrader()), false);
+            source.sendSuccess(new StringTextComponent("Server timeUntilTrader: " + ExtendedLevelData.serverInstance().getTimeUntilTrader()), false);
+            if (source.getEntity() != null) {
+                source.sendSuccess(new StringTextComponent("Your trader cooldown: " + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID())), false);
+            }
         }
 
         return Command.SINGLE_SUCCESS;
