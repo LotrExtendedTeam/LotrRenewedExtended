@@ -6,7 +6,6 @@ import lotr.common.stat.LOTRStats;
 import lotr.common.util.LOTRUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.Objects;
@@ -37,19 +36,16 @@ public class ExtendedCPacketTalkWithTrader {
     }
 
     public static void handle(ExtendedCPacketTalkWithTrader packet, Supplier<NetworkEvent.Context> context) {
-        World level = Objects.requireNonNull(context.get().getSender()).level;
         Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
         if (!(entity instanceof NPCEntity)) {
             return;
         }
 
         NPCEntity npc = (NPCEntity) entity;
-        if (!level.isClientSide) {
-            if (npc.sendNormalSpeechTo(context.get().getSender())) {
-                int talkingToTime = LOTRUtil.secondsToTicks(LOTRConfig.COMMON.getRandomNPCTalkToPlayerDuration(new Random()));
-                npc.setTalkingToEntity(context.get().getSender(), talkingToTime);
-                Objects.requireNonNull(context.get().getSender()).awardStat(LOTRStats.TALK_TO_NPC);
-            }
+        if (npc.sendNormalSpeechTo(context.get().getSender())) {
+            int talkingToTime = LOTRUtil.secondsToTicks(LOTRConfig.COMMON.getRandomNPCTalkToPlayerDuration(new Random()));
+            npc.setTalkingToEntity(context.get().getSender(), talkingToTime);
+            Objects.requireNonNull(context.get().getSender()).awardStat(LOTRStats.TALK_TO_NPC);
         }
 
         context.get().setPacketHandled(true);
