@@ -202,9 +202,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     @Override
     public void removePlayerFromTrading(PlayerEntity player) {
-        if (this.entityData.get(PLAYER_TRADING_WITH).isPresent() && this.entityData.get(PLAYER_TRADING_WITH).get().equals(player.getUUID())) {
-            this.entityData.set(PLAYER_TRADING_WITH, Optional.empty());
-        }
+    	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
     }
 
     // TODO: Maybe some sort of negative reputation limit should prevent a player from trading but for now I don't want killing
