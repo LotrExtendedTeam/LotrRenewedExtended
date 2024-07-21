@@ -9,6 +9,7 @@ import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -47,9 +48,7 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     }
 
     private void talkWithNPC() {
-    	// notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopTradingWithTrader(entity.getId()));
-        trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
+    	stopTradingClientServer();
 
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketTalkWithTrader(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
@@ -58,19 +57,25 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
         }
     }
 
-    private void tradeWithNPC() {
-    	// Ensure the client does not disturb the server when traders can't be traded with
-    	if (trader.canTradeWith(player)) {
-    		trader.openTradeMenu(player);
-        }
-    }
+	private void tradeWithNPC() {
+		// Ensure the client does not disturb the server when traders can't be traded with
+		if (trader.canTradeWith(player)) {
+			trader.openTradeMenu(player);
+		} else {
+			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+			stopTradingClientServer();
+		}
+	}
 
-    private void tradeCoinsWithNPC() {
-    	// Ensure the client does not disturb the server when traders can't be traded with
-    	if (trader.canTradeWith(player)) {
-    		trader.openCoinExchange(player);
-        }
-    }
+	private void tradeCoinsWithNPC() {
+		// Ensure the client does not disturb the server when traders can't be traded  with
+		if (trader.canTradeWith(player)) {
+			trader.openCoinExchange(player);
+		} else {
+			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+			stopTradingClientServer();
+		}
+	}
 
     @Override
     public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
@@ -85,7 +90,11 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
     @Override
     public void onClose() {
         super.onClose();
-        // notify the server that player is no longer interacting with this trader
+        stopTradingClientServer();
+    }
+
+    public void stopTradingClientServer() {
+    	// notify the server that player is no longer interacting with this trader
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopTradingWithTrader(entity.getId()));
         trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
     }
