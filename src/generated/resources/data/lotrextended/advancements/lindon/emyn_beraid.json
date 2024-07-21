@@ -1,4 +1,5 @@
 {
+  "parent": "lotrextended:lindon/the_last_fair_realm",
   "display": {
     "icon": {
       "item": "lotr:chalk_brick"
@@ -14,8 +15,7 @@
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false,
-    "background": "lotrextended:textures/gui/advancements/backgrounds/lindon.png"
+    "hidden": false
   },
   "criteria": {
     "enter_tower_hills": {

@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:iron_hills/dwarf_lord",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_sigin_taragu.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_sigin_taragu.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_durins_folk_level_3000": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:durins_folk",
+          "level": {
+            "min": 3000.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_durins_folk_level_3000"
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:dale/dale_marchal",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.dale.dale_noble.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.dale.dale_noble.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dale_level_2000": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:dale",
+          "level": {
+            "min": 2000.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dale_level_2000"
+    ]
+  ]
+}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
@@ -24,6 +25,7 @@ import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
 import net.minecraft.advancements.criterion.PositionTrigger;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,6 +51,12 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		builder.addCriterion("enter_"+biome.getName(), inBiome(biome));
 		return builder;
 	}
+	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, PreRegisteredLOTRBiome... biomes) {
+		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
+			addBiomeTrigger(builder, lotrBiomeObject);
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
 
 	public static Advancement.Builder addBiomeAltTriggers(Advancement.Builder builder, List<ResourceLocation> biomes) {
 		for(ResourceLocation lotrBiomeObject : biomes) {
@@ -71,6 +79,16 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 	public static Advancement.Builder addItemTrigger(Advancement.Builder builder, String name, IItemProvider... items) {
 		return builder.addCriterion("has_"+name, InventoryChangeTrigger.Instance.hasItems(items));
+	}
+
+	public static Advancement.Builder addBreakBlockTrigger(Advancement.Builder builder, Block block) {
+		return builder.addCriterion("broke_"+block.getRegistryName().getPath(), ExtendedBlockBreakTrigger.Instance.brokenBlock(block));
+	}
+	public static Advancement.Builder addBreakBlockTriggers(Advancement.Builder builder, Block... blocks) {
+		for(Block block : blocks) {
+			builder.addCriterion("broke_"+block.getRegistryName().getPath(), ExtendedBlockBreakTrigger.Instance.brokenBlock(block));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
 	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {
@@ -96,7 +114,13 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	public static Advancement.Builder addKillEntityTrigger(Advancement.Builder builder, EntityType<?> entity) {
 		return builder.addCriterion("kill_"+entity.getRegistryName().getPath(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.entity().of(entity)));
 	}
-
+	public static Advancement.Builder addKillEntityTriggers(Advancement.Builder builder, EntityType<?>... entitys) {
+		for(EntityType<?> entity : entitys) {
+			builder.addCriterion("kill_"+entity.getRegistryName().getPath(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.entity().of(entity)));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+	
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(entityType, false));
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(entityType, true));
@@ -147,6 +171,9 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 			ExtendedAdvancementProvider.advancementsLegacyNum +=1;
 		}else {
 			ExtendedAdvancementProvider.advancementsExtendedNum +=1;
+		}
+		if(data.isHidden()) {
+			ExtendedAdvancementProvider.secrets +=1;
 		}
 		return builder.save(con, "lotrextended:"+getFolder()+"/"+data.name);
 	}
@@ -244,6 +271,10 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 
 		public FrameType getFrame() {
 			return frame;
+		}
+
+		public boolean isHidden() {
+			return hidden;
 		}
 	}
 }

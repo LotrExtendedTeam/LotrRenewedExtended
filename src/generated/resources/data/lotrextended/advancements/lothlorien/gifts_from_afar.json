@@ -1,0 +1,42 @@
+{
+  "parent": "lotrextended:lothlorien/lothlorien",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lothlorien.gifts_from_afar.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.lothlorien.gifts_from_afar.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_galadhrim_wanderer_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:galadhrim_wanderer",
+        "istraderselling": "false"
+      }
+    },
+    "trade_galadhrim_wanderer_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:galadhrim_wanderer",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_galadhrim_wanderer_buy",
+      "trade_galadhrim_wanderer_sell"
+    ]
+  ]
+}

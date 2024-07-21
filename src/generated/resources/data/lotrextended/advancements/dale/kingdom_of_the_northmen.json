@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:dale_paving"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dale.kingdom_of_the_northmen.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.dale.kingdom_of_the_northmen.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/dale.png"
+  },
+  "criteria": {
+    "enter_dale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dale"
+        }
+      }
+    },
+    "enter_northern_dale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northern_dale"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_dale",
+      "enter_northern_dale"
+    ]
+  ]
+}

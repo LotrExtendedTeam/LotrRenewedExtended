@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:lothlorien/elf_200",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lothlorien.elf_500.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.lothlorien.elf_500.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_lothlorien_level_500": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:lothlorien",
+          "level": {
+            "min": 500.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lothlorien_level_500"
+    ]
+  ]
+}

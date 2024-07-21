@@ -13,7 +13,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 
 
 public class BlueMountainsAdvancementsProvider extends BaseAdvancementType{
@@ -23,13 +22,12 @@ public class BlueMountainsAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement blue_mountains = build(true, data(LOTRItems.BLUE_ROCK.get(), "firebeards_and_broadbeams", true, FrameType.TASK, true, true, false)
 				.setTitle("Firebeards and Broadbeams").setDescription("Enter the Blue Mountains."), 
-				addBiomeTriggers(make(), BLUEMTS_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), BLUEMTS_BIOMES));
 
 		Advancement blue_dwarf_slayer = build(true, data(LOTRItems.DWARF_BONE.get(), "blue_mountains_dwarf_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Blue Dwarf Slayer").setDescription("Kill a Blue Mountains Dwarf."), 
-				addKillEntityTrigger(addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.BLUE_MOUNTAINS_ARCHER.get()), 
-						LOTREntities.BLUE_MOUNTAINS_DWARF.get()), LOTREntities.BLUE_MOUNTAINS_WARRIOR.get())
-				.requirements(IRequirementsStrategy.OR).parent(blue_mountains));
+				addKillEntityTriggers(make(), LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 
+						LOTREntities.BLUE_MOUNTAINS_WARRIOR.get()).parent(blue_mountains));
 
 		Advancement blue_dwarf_armor = build(true, data(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get(), "warrior_of_ered_luin", false, FrameType.TASK, true, true, false)
 				.setTitle("Warrior of Ered Luin").setDescription("Acquire a full set of Blue Dwarven armor."), 

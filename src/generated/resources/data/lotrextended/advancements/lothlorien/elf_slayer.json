@@ -1,0 +1,56 @@
+{
+  "parent": "lotrextended:lothlorien/lothlorien",
+  "display": {
+    "icon": {
+      "item": "lotr:elf_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lothlorien.elf_slayer.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.lothlorien.elf_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_galadhrim_elf": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:galadhrim_elf"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_galadhrim_warrior": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:galadhrim_warrior"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_galadhrim_elf",
+      "kill_galadhrim_warrior"
+    ]
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "lotrextended:lothlorien/lothlorien",
+  "display": {
+    "icon": {
+      "item": "lotr:edhelvir_ore"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.lothlorien.edhelmir_ore.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.lothlorien.edhelmir_ore.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "broke_edhelvir_ore": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:edhelvir_ore"
+      }
+    },
+    "broke_edhelvir_crystal": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:edhelvir_crystal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broke_edhelvir_ore",
+      "broke_edhelvir_crystal"
+    ]
+  ]
+}

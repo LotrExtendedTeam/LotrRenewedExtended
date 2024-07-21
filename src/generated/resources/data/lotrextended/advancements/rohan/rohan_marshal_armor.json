@@ -1,0 +1,47 @@
+{
+  "parent": "lotrextended:rohan/rohan_armor",
+  "display": {
+    "icon": {
+      "item": "lotr:rohan_marshal_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.rohan_marshal_armor.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.rohan.rohan_marshal_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rohan_marshal_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rohan_marshal_helmet"
+          },
+          {
+            "item": "lotr:rohan_marshal_chestplate"
+          },
+          {
+            "item": "lotr:rohan_marshal_leggings"
+          },
+          {
+            "item": "lotr:rohan_marshal_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rohan_marshal_armor"
+    ]
+  ]
+}

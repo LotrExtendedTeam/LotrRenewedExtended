@@ -1,0 +1,71 @@
+{
+  "parent": "lotrextended:iron_hills/iron_hills",
+  "display": {
+    "icon": {
+      "item": "lotr:dwarf_bone"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_slayer.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_dwarf": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dwarf"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_dwarf_archer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dwarf_archer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_dwarf_warrior": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dwarf_warrior"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_dwarf",
+      "kill_dwarf_archer",
+      "kill_dwarf_warrior"
+    ]
+  ]
+}

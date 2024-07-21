@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
 
 import lotr.common.init.LOTRBiomes;
-import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
@@ -17,13 +16,9 @@ public class EnedwaithAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Forsaken Country").setDescription("Enter the Region of Enedwaith."), 
 				addBiomeTrigger(make(), LOTRBiomes.ENEDWAITH));
 
-		Advancement old_pukel_land = build(true, data(Items.DARK_OAK_SAPLING, "old_pukel_land", true, FrameType.TASK, true, true, false)
+		Advancement old_pukel_land = build(true, data(Items.DARK_OAK_SAPLING, "old_pukel_land", false, FrameType.TASK, true, true, false)
 				.setTitle("Old Púkel Land").setDescription("Enter the region of Drúwaith Iaur."), 
 				addBiomeTrigger(make(), LOTRBiomes.DRUWAITH_IAUR).parent(enedwaith));
-
-		Advancement everlasting_chill = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "vale_of_the_wizard", true, FrameType.TASK, true, true, false)
-				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."), 
-				addBiomeTrigger(make(), LOTRBiomes.NAN_CURUNIR).parent(enedwaith));
 	}
 
 	@Override

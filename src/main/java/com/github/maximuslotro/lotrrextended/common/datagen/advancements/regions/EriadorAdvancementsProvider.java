@@ -15,7 +15,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.item.Items;
 
 
@@ -29,16 +28,14 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement eriadorBase = build(true, data(LOTRItems.ARNOR_BRICK.get(), "the_kindly_west", true, FrameType.TASK, true, true, false)
 				.setTitle("The Kindly West").setDescription("Enter Eriador."), 
-				addBiomeTriggers(make(), ERIADOR_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), ERIADOR_BIOMES));
 
 		Advancement lone_lands = build(true, data(LOTRItems.CRACKED_ARNOR_BRICK.get(), "a_lonely_land", false, FrameType.TASK, true, true, false)
 				.setTitle("A Lonely Land").setDescription("Enter the Lone Lands."), 
-				addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.LONE_LANDS), LOTRBiomes.LONE_LANDS_HILLS).requirements(IRequirementsStrategy.OR)
-				.parent(eriadorBase));
+				addBiomeTriggers(make(), LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS).parent(eriadorBase));
 		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_orc_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Gundabad Orc Slayer").setDescription("Kill a Gundabad Orc."), 
-				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.GUNDABAD_ORC.get()), LOTREntities.GUNDABAD_ORC_ARCHER.get())
-				.requirements(IRequirementsStrategy.OR).parent(lone_lands));
+				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get()).parent(lone_lands));
 
 		Advancement ranger_armor = build(true, data(LOTRItems.RANGER_NORTH_CHESTPLATE.get(), "watcher", false, FrameType.TASK, true, true, false)
 				.setTitle("Watcher").setDescription("Acquire a full set of Ranger armor."), 
@@ -87,16 +84,14 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement rivendell = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_hidden_valley", false, FrameType.TASK, true, true, false)
 				.setTitle("The Hidden Valley").setDescription("Enter the realm of Rivendell."), 
-				addBiomeTrigger(addBiomeTrigger(make(), LOTRBiomes.RIVENDELL), LOTRBiomes.RIVENDELL_HILLS).requirements(IRequirementsStrategy.OR)
-				.parent(eriadorBase));
+				addBiomeTriggers(make(), LOTRBiomes.RIVENDELL, LOTRBiomes.RIVENDELL_HILLS).parent(eriadorBase));
 		Advancement rivendell_armor = build(true, data(LOTRItems.RIVENDELL_CHESTPLATE.get(), "livery_of_lord_elrond", false, FrameType.TASK, true, true, false)
 				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor."), 
 				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(), 
 						LOTRItems.RIVENDELL_LEGGINGS.get(), LOTRItems.RIVENDELL_BOOTS.get()).parent(rivendell));
 		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf."), 
-				addKillEntityTrigger(addKillEntityTrigger(make(), LOTREntities.RIVENDELL_ELF.get()), LOTREntities.RIVENDELL_WARRIOR.get())
-				.requirements(IRequirementsStrategy.OR).parent(rivendell));
+				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get()).parent(rivendell));
 
 		Advancement coldfells = build(true, data(Items.OAK_SAPLING, "the_wild_north", false, FrameType.TASK, true, true, false)
 				.setTitle("The Wild North").setDescription("Enter the Coldfells."), 

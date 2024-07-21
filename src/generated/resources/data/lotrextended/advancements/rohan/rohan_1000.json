@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:rohan/rohan_500",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.rohan.rohan_1000.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.rohan.rohan_1000.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_rohan_level_1000": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:rohan",
+          "level": {
+            "min": 1000.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rohan_level_1000"
+    ]
+  ]
+}

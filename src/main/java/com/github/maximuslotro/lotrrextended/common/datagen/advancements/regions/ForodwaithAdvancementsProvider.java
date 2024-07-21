@@ -12,7 +12,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.item.Items;
 
 
@@ -24,7 +23,7 @@ public class ForodwaithAdvancementsProvider extends BaseAdvancementType{
 	public void generateAdvancements() {
 		Advancement everlasting_chill = build(true, data(Items.SNOW_BLOCK, "everlasting_chill", true, FrameType.TASK, true, true, false)
 				.setTitle("Everlasting Chill").setDescription("Enter the region of Forodwaith."), 
-				addBiomeTriggers(make(), FORODWAITH_BIOMES).requirements(IRequirementsStrategy.OR));
+				addBiomeTriggers(make(), FORODWAITH_BIOMES));
 
 		Advancement forochel = build(false, data(Items.ICE, "forochel", true, FrameType.TASK, false, true, false)
 				.setTitle("A small Respite").setDescription("Enter the icebay of Forochel."), 
