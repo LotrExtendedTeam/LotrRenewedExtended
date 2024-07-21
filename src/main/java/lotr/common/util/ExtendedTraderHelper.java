@@ -11,6 +11,7 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -47,7 +48,9 @@ public class ExtendedTraderHelper {
 
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         if (trader.getPlayerTradingWith().isPresent()) {
-            if (!entity.level.isClientSide) player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), player.getUUID());
+            if (!entity.level.isClientSide) {
+            	player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), Util.NIL_UUID);
+            }
             return ActionResultType.sidedSuccess(entity.level.isClientSide());
         }
 

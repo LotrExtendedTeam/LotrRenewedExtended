@@ -21,6 +21,7 @@ import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackInfo.Priority;
 import net.minecraft.resources.ResourcePackList;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -131,7 +132,7 @@ public class LotrExtendedModClient {
             	base.append(new StringTextComponent(result.target.toString())).withStyle(TextFormatting.DARK_AQUA);
             	base.append(new StringTextComponent(") ")).withStyle(TextFormatting.RESET);
             	base.append(new TranslationTextComponent("command.lotrextended.version.right")).withStyle(TextFormatting.RESET);
-                event.getEntity().sendMessage(base, event.getEntity().getUUID());
+                event.getEntity().sendMessage(base, Util.NIL_UUID);
             }
         }
     }
