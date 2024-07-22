@@ -15,6 +15,11 @@
     "lotr:green_apple",
     "lotr:pear",
     "lotr:cherry",
-    "lotr:banana_bread"
+    "lotr:banana_bread",
+    "lotr:blackberry",
+    "lotr:blueberry",
+    "lotr:cranberry",
+    "lotr:elderberry",
+    "lotr:raspberry"
   ]
 }

@@ -208,7 +208,9 @@ public class ExtendedItemTagGenerator extends ItemTagsProvider {
 		.add(Items.PUMPKIN_SEEDS).add(Items.WHEAT_SEEDS).add(Items.APPLE).add(Items.BREAD)
 		.add(LOTRItems.FLAX_SEEDS.get()).add(LOTRItems.PIPEWEED_SEEDS.get()).add(LOTRItems.FISH_AND_CHIPS.get())
 		.add(LOTRItems.LETTUCE.get()).add(LOTRItems.CRAM.get()).add(LOTRItems.GREEN_APPLE.get())
-		.add(LOTRItems.PEAR.get()).add(LOTRItems.CHERRY.get()).add(ExtendedItems.BANANA_BREAD.get());
+		.add(LOTRItems.PEAR.get()).add(LOTRItems.CHERRY.get()).add(ExtendedItems.BANANA_BREAD.get()).add(ExtendedItems.BLACKBERRY.get())
+		.add(ExtendedItems.BLUEBERRY.get()).add(ExtendedItems.CRANBERRY.get()).add(ExtendedItems.ELDERBERRY.get())
+		.add(ExtendedItems.RASPBERRY.get());
 
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
