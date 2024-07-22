@@ -1,14 +1,11 @@
 package lotr.common.data;
 
 import lotr.common.LOTRLog;
-import lotr.common.world.spawning.WanderingTradersList;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
@@ -57,8 +54,7 @@ public class ExtendedLevelData {
 
                 CompoundNBT levelData = new CompoundNBT();
                 levelData.putInt("timeUntilTrader", this.timeUntilTrader);
-
-                // TODO: save the playerTraderSpawnCooldowns map
+                savePlayerTraderCooldowns(levelData);
 
                 SaveUtil.saveNBTToFile(lotrDataFile, levelData);
                 this.needsSave = false;
@@ -74,8 +70,7 @@ public class ExtendedLevelData {
         try {
             CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
             this.timeUntilTrader = levelData.getInt("timeUntilTrader");
-
-            // TODO: load the playerTraderSpawnCooldowns map
+            loadPlayerTraderCooldownTimes(levelData);
 
             this.needsLoad = false;
             this.needsSave = true;
@@ -96,6 +91,48 @@ public class ExtendedLevelData {
        } else {
            return -1;
        }
+    }
+
+    public void decrementPlayerTraderCooldowns(World world) {
+        for (PlayerEntity player : world.players()) {
+            UUID playerUUID = player.getUUID();
+            if (playerTraderSpawnCooldowns.containsKey(playerUUID)) {
+                int secondsLeft = playerTraderSpawnCooldowns.get(playerUUID);
+                if (secondsLeft > 0) {
+                    secondsLeft--;
+                }
+                playerTraderSpawnCooldowns.put(playerUUID, secondsLeft);
+            } else {
+                // start their initial cooldown at 3m (180 seconds)
+                // so they don't get a wandering trader immediately after spawning
+                playerTraderSpawnCooldowns.put(playerUUID, 180);
+            }
+        }
+    }
+
+    private void loadPlayerTraderCooldownTimes(CompoundNBT tag) {
+        ListNBT listnbt = tag.getList("playerCooldowns", 10);
+        if (listnbt.isEmpty()) {
+            playerTraderSpawnCooldowns = new HashMap<>();
+        }
+
+        for (int i = 0; i < listnbt.size(); ++i) {
+            CompoundNBT compoundnbt = listnbt.getCompound(i);
+            UUID playerUUID = compoundnbt.getUUID("player");
+            int cooldown = compoundnbt.getInt("cooldown");
+            playerTraderSpawnCooldowns.put(playerUUID, cooldown);
+        }
+    }
+
+    private void savePlayerTraderCooldowns(CompoundNBT tag) {
+        ListNBT list = new ListNBT();
+        for (UUID uuid : playerTraderSpawnCooldowns.keySet()) {
+            CompoundNBT entry = new CompoundNBT();
+            entry.putUUID("player", uuid);
+            entry.putInt("cooldown", playerTraderSpawnCooldowns.get(uuid));
+            list.add(entry);
+        }
+        tag.put("playerCooldowns", list);
     }
 
     public void checkForWanderingTraderSpawns(World world) {
@@ -123,6 +160,7 @@ public class ExtendedLevelData {
                     WanderingTradersSpawner.spawn(world, player);
                     timeUntilTrader = 1200 * 5; // reset to 5 minute cooldown
                     attemptedTraderSpawn = true;
+                    playerTraderSpawnCooldowns.put(player.getUUID(), 60 * 30); // reset player's cooldown 30 minutes
                     break;
                 }
             }

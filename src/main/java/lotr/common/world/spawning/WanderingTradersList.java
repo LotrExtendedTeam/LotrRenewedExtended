@@ -80,6 +80,7 @@ public class WanderingTradersList {
         int index = biomeName.indexOf("lotr");
         if (index != -1) {
             lotrBiome = biomeName.substring(index);
+            lotrBiome = lotrBiome.replace("]", "");
         } else {
             throw new IllegalArgumentException(biomeName + " is not a LOTR Mod biome");
         }

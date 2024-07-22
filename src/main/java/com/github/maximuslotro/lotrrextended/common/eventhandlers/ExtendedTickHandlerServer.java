@@ -54,6 +54,13 @@ public class ExtendedTickHandlerServer {
 					}
                 } else if (LOTRDimensions.isDimension(world, LOTRDimensions.MIDDLE_EARTH_WORLD_KEY)) {
                 	// Ensure we run these functions only when Middle Earth ticks
+
+					// only decrement player cooldowns once a second (stored in seconds not ticks)
+					if (world.getGameTime() % 20L == 0L) {
+						levelData.decrementPlayerTraderCooldowns(world);
+					}
+
+					// wandering trader spawns should be done every tick
                 	levelData.checkForWanderingTraderSpawns(world);
 				}
             }
