@@ -10,6 +10,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -77,30 +78,30 @@ public class DevEventHandlers {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
-			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
 			TextComponent comp2 = new StringTextComponent("Location: "+ExtendedReflectionHelper.getKegLootTable((KegTileEntity)tileentity).toString());
 			comp2.withStyle(TextFormatting.YELLOW);
-			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
 		if (tileentity instanceof ExtendedWeaponRackTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Weapon rack item setting is disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
-			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
 			TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
 			comp2.withStyle(TextFormatting.YELLOW);
-			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
 		if (tileentity instanceof LockableLootTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Chest/Barrel opening disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
-			event.getPlayer().sendMessage(comp, event.getPlayer().getUUID());
+			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
 			TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
 			comp2.withStyle(TextFormatting.YELLOW);
-			event.getPlayer().sendMessage(comp2, event.getPlayer().getUUID());
+			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
     }

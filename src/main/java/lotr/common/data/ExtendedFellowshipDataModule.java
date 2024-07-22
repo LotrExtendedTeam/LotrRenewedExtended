@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -243,7 +244,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			TextComponent comp = new TranslationTextComponent("gui.lotrextended.fellowships.creation.disabled");
 			comp.withStyle(TextFormatting.YELLOW);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
-			owner.sendMessage(comp, owner.getUUID());
+			owner.sendMessage(comp, Util.NIL_UUID);
 			return false;
 		}
 

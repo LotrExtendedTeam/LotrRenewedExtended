@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -231,6 +232,6 @@ public class ExtendedFellowship {
 	public void createNotification(String message, PlayerEntity reciever) {
 		TextComponent comp = new StringTextComponent(message);
 		comp.withStyle(TextFormatting.YELLOW);
-		reciever.sendMessage(comp, reciever.getUUID());
+		reciever.sendMessage(comp, Util.NIL_UUID);
 	}
 }

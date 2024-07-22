@@ -213,12 +213,9 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         return ExtendedTraderHelper.isInteractingWithPlayer(getPlayerTradingWith());
     }
 
-    // TODO: move this to ExtendedTraderHelper eventually
     @Override
     public void removePlayerFromTrading(PlayerEntity player) {
-        if (this.entityData.get(PLAYER_TRADING_WITH).isPresent() && this.entityData.get(PLAYER_TRADING_WITH).get().equals(player.getUUID())) {
-            this.entityData.set(PLAYER_TRADING_WITH, Optional.empty());
-        }
+    	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
     }
 
     @Override

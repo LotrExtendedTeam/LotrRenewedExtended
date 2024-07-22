@@ -9,12 +9,16 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 public class ExtendedCPacketOpenTradeMenu {
 
@@ -37,49 +41,61 @@ public class ExtendedCPacketOpenTradeMenu {
     }
 
     public static void handle(ExtendedCPacketOpenTradeMenu packet, Supplier<NetworkEvent.Context> context) {
-        ContainerType<ExtendedTradeContainer> containerType = ExtendedContainers.TRADING.get();
-        PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
+    	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
+    	if (!(entity instanceof ExtendedTraderEntity)) {
+    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
+    		context.get().setPacketHandled(true);
+    		return;
+    	}
 
-        int[] boughtPrices = new int[9];
-        int[] boughtQuantities = new int[9];
-        int[] boughtOriginalQuantities = new int[9];
-        int[] soldPrices = new int[9];
-        int[] soldQuantities = new int[9];
-        int[] soldOriginalQuantities = new int[9];
-        ArrayList<ItemStack> soldItems = new ArrayList<ItemStack>();
+    	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
 
-        Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
-        if (entity instanceof ExtendedTraderEntity) {
-            ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
-            boughtPrices = trader.getBoughtPrices();
-            boughtQuantities = trader.getBoughtQuantities();
-            boughtOriginalQuantities = trader.getBoughtOriginalQuantities();
-            soldPrices = trader.getSoldPrices();
-            soldQuantities = trader.getSoldQuantities();
-            soldOriginalQuantities = trader.getSoldOriginalQuantities();
+    	// Ensure a modified client does not send trade request, bypassing client trade request check
+    	if (!trader.canTradeWith(context.get().getSender())) {
+    		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+    		context.get().setPacketHandled(true);
+    		return;
+    	}
 
-            for (int i = 0; i < 9; i++) {
-                ItemStack stack = trader.getDisplayInventory().getItem(i);
-                soldItems.add(stack);
-            }
-        }
+    	ContainerType<ExtendedTradeContainer> containerType = ExtendedContainers.TRADING.get();
+    	PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
 
-        ExtendedTradeContainer.writeContainerInitData(initData, packet.traderId, boughtPrices, boughtQuantities,
-                boughtOriginalQuantities, soldPrices, soldQuantities, soldOriginalQuantities, soldItems);
-        int[] finalBoughtPrices = boughtPrices;
-        int[] finalBoughtQuantities = boughtQuantities;
-        int[] finalSoldPrices = soldPrices;
-        int[] finalSoldQuantities = soldQuantities;
-        int[] finalBoughtOriginalQuantities = boughtOriginalQuantities;
-        int[] finalSoldOriginalQuantities = soldOriginalQuantities;
+    	int[] boughtPrices = new int[9];
+    	int[] boughtQuantities = new int[9];
+    	int[] boughtOriginalQuantities = new int[9];
+    	int[] soldPrices = new int[9];
+    	int[] soldQuantities = new int[9];
+    	int[] soldOriginalQuantities = new int[9];
+    	ArrayList<ItemStack> soldItems = new ArrayList<ItemStack>();
 
-        NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> {
-            ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
-                    finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
-                    soldItems);
-        });
+    	boughtPrices = trader.getBoughtPrices();
+    	boughtQuantities = trader.getBoughtQuantities();
+    	boughtOriginalQuantities = trader.getBoughtOriginalQuantities();
+    	soldPrices = trader.getSoldPrices();
+    	soldQuantities = trader.getSoldQuantities();
+    	soldOriginalQuantities = trader.getSoldOriginalQuantities();
 
-        context.get().setPacketHandled(true);
+    	for (int i = 0; i < 9; i++) {
+    		ItemStack stack = trader.getDisplayInventory().getItem(i);
+    		soldItems.add(stack);
+    	}
+
+    	ExtendedTradeContainer.writeContainerInitData(initData, packet.traderId, boughtPrices, boughtQuantities,
+    			boughtOriginalQuantities, soldPrices, soldQuantities, soldOriginalQuantities, soldItems);
+    	int[] finalBoughtPrices = boughtPrices;
+    	int[] finalBoughtQuantities = boughtQuantities;
+    	int[] finalSoldPrices = soldPrices;
+    	int[] finalSoldQuantities = soldQuantities;
+    	int[] finalBoughtOriginalQuantities = boughtOriginalQuantities;
+    	int[] finalSoldOriginalQuantities = soldOriginalQuantities;
+
+    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> {
+    		ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
+    				finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
+    				soldItems);
+    	});
+
+    	context.get().setPacketHandled(true);
     }
 
 }
