@@ -2,18 +2,21 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.inv.ExtendedCoinExchangeContainer;
+import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 /**
  * @author RichardB122
@@ -26,50 +29,46 @@ public class ExtendedCPacketOpenCoinExchange {
 
     private int traderId;
 
-    private boolean shouldOpen;
-
     public ExtendedCPacketOpenCoinExchange() {}
 
-    public ExtendedCPacketOpenCoinExchange(int traderId, boolean shouldOpen) {
+    public ExtendedCPacketOpenCoinExchange(int traderId) {
         this.traderId = traderId;
-        this.shouldOpen = shouldOpen;
     }
 
     public static void encode(ExtendedCPacketOpenCoinExchange packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
-        buf.writeBoolean(packet.shouldOpen);
     }
 
     public static ExtendedCPacketOpenCoinExchange decode(PacketBuffer buf) {
         ExtendedCPacketOpenCoinExchange packet = new ExtendedCPacketOpenCoinExchange();
         packet.traderId = buf.readInt();
-        packet.shouldOpen = buf.readBoolean();
         return packet;
     }
 
     public static void handle(ExtendedCPacketOpenCoinExchange packet, Supplier<NetworkEvent.Context> context) {
-        if (packet.shouldOpen) {
-            ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
-            PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-            ExtendedCoinExchangeContainer.writeContainerInitData(initData, packet.traderId);
-            NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> {
-                ExtendedCoinExchangeContainer.writeContainerInitData(buf, packet.traderId);
-            });
-        } else {
-            World level = Objects.requireNonNull(context.get().getSender()).level;
-            if (level.getEntity(packet.traderId) != null && level.getEntity(packet.traderId) instanceof NPCEntity) {
-                NPCEntity entity = (NPCEntity) level.getEntity(packet.traderId);
-                if (!(entity instanceof ExtendedTraderEntity)) {
-                    return;
-                }
+    	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
+    	if (!(entity instanceof ExtendedTraderEntity)) {
+    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
+    		context.get().setPacketHandled(true);
+    		return;
+    	}
 
-                ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
-                trader.removePlayerFromTrading(context.get().getSender());
-            }
-        }
+    	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
 
+    	// Ensure a modified client does not send trade request, bypassing client trade request check
+    	if (!trader.canTradeWith(context.get().getSender())) {
+    		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+    		context.get().setPacketHandled(true);
+    		return;
+    	}
 
-        context.get().setPacketHandled(true);
+    	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
+    	PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
+    	ExtendedCoinExchangeContainer.writeContainerInitData(initData, packet.traderId);
+    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> {
+    		ExtendedCoinExchangeContainer.writeContainerInitData(buf, packet.traderId);
+    	});
+    	context.get().setPacketHandled(true);
     }
 
 }

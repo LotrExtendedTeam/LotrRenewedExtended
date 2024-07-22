@@ -11,7 +11,6 @@ import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
@@ -28,12 +27,7 @@ public class WorldEventHandlers {
 			if (event.getTarget() instanceof ExtendedTraderEntity) {
 				ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getTarget();
 
-				if (trader.canTradeWith(event.getPlayer())) {
-					ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
-				} else {
-					if (!event.getPlayer().level.isClientSide)
-						event.getPlayer().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), event.getPlayer().getUUID());
-				}
+				ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
 				event.setCanceled(true);
 			}
 		}
