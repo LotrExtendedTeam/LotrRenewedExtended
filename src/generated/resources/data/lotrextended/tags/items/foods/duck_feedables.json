@@ -6,6 +6,7 @@
     "minecraft:pumpkin_seeds",
     "minecraft:wheat_seeds",
     "minecraft:apple",
+    "minecraft:bread",
     "lotr:flax_seeds",
     "lotr:pipeweed_seeds",
     "lotr:fish_and_chips",
@@ -13,6 +14,12 @@
     "lotr:cram",
     "lotr:green_apple",
     "lotr:pear",
-    "lotr:cherry"
+    "lotr:cherry",
+    "lotr:banana_bread",
+    "lotr:blackberry",
+    "lotr:blueberry",
+    "lotr:cranberry",
+    "lotr:elderberry",
+    "lotr:raspberry"
   ]
 }

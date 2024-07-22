@@ -64,6 +64,10 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
 		} else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
 			stopTradingClientServer();
+			Minecraft mc = Minecraft.getInstance();
+			if(mc.player != null) {
+				mc.player.closeContainer();
+			}
 		}
 	}
 
@@ -74,6 +78,10 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
 		} else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
 			stopTradingClientServer();
+			Minecraft mc = Minecraft.getInstance();
+			if(mc.player != null) {
+				mc.player.closeContainer();
+			}
 		}
 	}
 
