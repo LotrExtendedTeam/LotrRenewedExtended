@@ -352,6 +352,8 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         } else {
             lastTickCooldownReduced++;
         }
+
+        ExtendedTraderHelper.tickTrader(this, this);
     }
 
     @Override
