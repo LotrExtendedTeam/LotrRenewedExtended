@@ -8,15 +8,19 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
-public class MIXINConfig implements IMixinConfigPlugin
-{
+public class MIXINConfig implements IMixinConfigPlugin {
 
     protected static TreeSet<String> injectedPatches = new TreeSet<String>();
+    protected static boolean isBrokenJavaFutureVersions = false;
 
     @Override
     public void onLoad(String mixinPackage)
     {
-        /* do nothing */
+    	ExtendedMixinLog.info("Running Java "+getJavaVersion());
+    	if(getJavaVersion()>=9) {
+    		ExtendedMixinLog.info("Applying Java 9+ Patches to Renewed");
+    		isBrokenJavaFutureVersions=true;
+    	}
     }
 
     @Override
@@ -40,12 +44,15 @@ public class MIXINConfig implements IMixinConfigPlugin
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
     {
+    	if(!isBrokenJavaFutureVersions) {
+    		
+    	}
 //    	if(targetClassName.equals("craftedMods.jeiLotr.JEIPlugin")){
 //    		if(!classExists("craftedMods.jeiLotr.JEIPlugin")) {
 //    			System.out.println("NOT ADDING MIXIN: "+targetClassName+", "+mixinClassName);
 //    		}
 //    	}
-//    	System.out.println("ADDING MIXIN: "+targetClassName+", "+mixinClassName);
+    	System.out.println("ADDING MIXIN: "+targetClassName+", "+mixinClassName);
         return true;
     }
 
@@ -75,5 +82,15 @@ public class MIXINConfig implements IMixinConfigPlugin
 			e.printStackTrace();
 		}
     	return false;
+    }
+
+    private static int getJavaVersion() {
+        String version = System.getProperty("java.version");
+        if(version.startsWith("1.")) {
+            version = version.substring(2, 3);
+        } else {
+            int dot = version.indexOf(".");
+            if(dot != -1) { version = version.substring(0, dot); }
+        } return Integer.parseInt(version);
     }
 }
