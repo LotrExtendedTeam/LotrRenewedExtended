@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.common.LOTRLog;
@@ -25,6 +26,7 @@ public class MixinSignSetupHelperJavaPatch {
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
 	 */
+	@Overwrite(remap=false)
 	public static void register(RegistryEvent.Register<Block> event) {
 		if (event.getRegistry() == ForgeRegistries.BLOCKS) {
 			TileEntityType<SignTileEntity> signType = TileEntityType.SIGN;

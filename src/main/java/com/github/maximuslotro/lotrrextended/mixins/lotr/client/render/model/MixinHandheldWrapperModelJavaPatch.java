@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 @Mixin(targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
-public class MixinHandheldWrapperModeljavaPatch {
+public class MixinHandheldWrapperModelJavaPatch {
 	 
 	/**
 	 * @author Maximuslotro

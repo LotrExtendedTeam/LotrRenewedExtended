@@ -16,6 +16,7 @@ public class MIXINConfig implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage)
     {
+    	ExtendedMixinLog.make();
     	ExtendedMixinLog.info("Running Java "+getJavaVersion());
     	if(getJavaVersion()>=9) {
     		ExtendedMixinLog.info("Applying Java 9+ Patches to Renewed");
@@ -32,12 +33,12 @@ public class MIXINConfig implements IMixinConfigPlugin {
     @Override
     public List<String> getMixins()
     {
-    	if(!isBrokenJavaFutureVersions) {
+    	if(isBrokenJavaFutureVersions) {
     		ExtendedMixinLog.info("Added Java 9+ Patches to Renewed");
 //    		List<String> mixins = new ArrayList<>();
 //    		mixins.add("lotr.client.event.MixinClientWorldDimensionTypeHelperJavaPatch");
 //    		mixins.add("lotr.client.event.MixinLOTRTickHandlerClientJavaPatch");
-//    		mixins.add("lotr.client.render.model.MixinHandheldWrapperModeljavaPatch");
+//    		mixins.add("lotr.client.render.model.MixinHandheldWrapperModelJavaPatch");
 //    		mixins.add("lotr.common.block.MixinSignSetupHelperJavaPatch");
 //    		mixins.add("lotr.common.event.MixinLOTREventHandlerJavaPatch");
 //    		mixins.add("lotr.common.init.MixinLOTRDimensionsJavaPatch");

@@ -70,7 +70,7 @@
 		"lotr.client.gui.inv.MixinPouchScreen",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
 		"lotr.client.render.model.MixinHandheldWrapperModel",
-		"lotr.client.render.model.MixinHandheldWrapperModeljavaPatch",
+		"lotr.client.render.model.MixinHandheldWrapperModelJavaPatch",
 		"net.minecraft.client.gui.screen.inventory.MixinBlastFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinCreativeScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",
