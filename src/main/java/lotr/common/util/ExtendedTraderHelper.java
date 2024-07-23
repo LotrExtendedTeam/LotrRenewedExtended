@@ -139,4 +139,14 @@ public class ExtendedTraderHelper {
         return openTraderGui(npc, player, trader);
     }
 
+    public static void tickTrader(NPCEntity npc, ExtendedTraderEntity trader) {
+        if (trader.isWanderingTrader()) {
+            if (trader.getWanderingTraderTicksLeft() < 1) {
+                npc.remove();
+            } else {
+                trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
+            }
+        }
+    }
+
 }

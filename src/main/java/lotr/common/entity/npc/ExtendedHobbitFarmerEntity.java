@@ -40,6 +40,8 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitFarmerEntity.class, DataSerializers.OPTIONAL_UUID);
+    private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedHobbitFarmerEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedHobbitFarmerEntity.class, DataSerializers.INT);
 
     private final ExtendedTradeEntries HOBBIT_FARMER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(Items.BONE_MEAL, 6), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HOE.get()), 5, 8, 16),
@@ -97,6 +99,9 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
+        this.entityData.define(IS_WANDERING_TRADER, false);
+        // start at 1000 ticks just to make sure there's no chance they immediately despawn
+        this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
     @Override
@@ -105,6 +110,8 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
 
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
+        tag.putInt("wanderingTraderTimeLeft", entityData.get(WANDERING_TRADER_TIME_LEFT));
+        tag.putBoolean("isWanderingTrader", entityData.get(IS_WANDERING_TRADER));
     }
 
     @Override
@@ -117,6 +124,13 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
         if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag) != null) {
             itemsSoldByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag);
         }
+
+        // load values related to wandering traders
+        int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
+        entityData.set(WANDERING_TRADER_TIME_LEFT, wanderingTraderTimeLeft);
+
+        boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
+        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
     }
 
     public void updatePlayerTradingWith(UUID uuid) {
@@ -130,6 +144,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
     }
+
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return HobbitEntity.regAttrs();
     }
@@ -154,6 +169,25 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
     }
 
+    @Override
+    public boolean isWanderingTrader() {
+        return entityData.get(IS_WANDERING_TRADER);
+    }
+
+    @Override
+    public void setWanderingTrader(boolean isWanderingTrader) {
+        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+    }
+
+    @Override
+    public int getWanderingTraderTicksLeft() {
+        return entityData.get(WANDERING_TRADER_TIME_LEFT);
+    }
+
+    @Override
+    public void setWanderingTraderTicksLeft(int ticksLeft) {
+        entityData.set(WANDERING_TRADER_TIME_LEFT, ticksLeft);
+    }
 
     @Override
     public void openCoinExchange(PlayerEntity player) {
@@ -263,7 +297,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
             lastTickCooldownReduced++;
         }
 
-        super.tick();
+        ExtendedTraderHelper.tickTrader(this, this);
     }
 
 }

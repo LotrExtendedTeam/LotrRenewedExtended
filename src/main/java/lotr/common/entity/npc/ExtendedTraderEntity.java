@@ -47,6 +47,14 @@ public interface ExtendedTraderEntity {
 
 	boolean canTradeWith(PlayerEntity player);
 
+	boolean isWanderingTrader();
+
+	void setWanderingTrader(boolean isWanderingTrader);
+
+	int getWanderingTraderTicksLeft();
+
+	void setWanderingTraderTicksLeft(int ticksLeft);
+
 	default public boolean isFriendlyAndAlignedWithLevel(PlayerEntity player, NPCEntity entity, float level) {
 		return entity.isNotFighting(player) && LOTRLevelData.getSidedData(player).getAlignmentData()
 				.hasAlignment(entity.getFaction(), AlignmentPredicates.greaterThanOrEqual(level));

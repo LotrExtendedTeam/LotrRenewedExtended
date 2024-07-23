@@ -150,9 +150,12 @@ public class ExtendedLevelData {
 
             boolean attemptedTraderSpawn = false;
             for (PlayerEntity player : shuffledPlayers) {
-                int cooldownLeft = 0;
-                if (playerTraderSpawnCooldowns.containsKey(player.getUUID())) {
-                    cooldownLeft = playerTraderSpawnCooldowns.get(player.getUUID());
+                int cooldownLeft = getPlayersTraderCooldown(player.getUUID());
+
+                // set them to 3 minutes if they just joined and look for another player
+                if (cooldownLeft == -1) {
+                    playerTraderSpawnCooldowns.put(player.getUUID(), 60 * 3);
+                    continue;
                 }
 
                 if (cooldownLeft == 0) {

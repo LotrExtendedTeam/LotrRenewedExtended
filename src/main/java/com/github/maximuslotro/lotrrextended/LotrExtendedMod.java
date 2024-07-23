@@ -25,7 +25,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
-import lotr.common.world.spawning.WanderingTradersList;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.world.server.ServerChunkProvider;
