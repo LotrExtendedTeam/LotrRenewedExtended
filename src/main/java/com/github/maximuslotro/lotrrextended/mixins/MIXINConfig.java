@@ -32,6 +32,18 @@ public class MIXINConfig implements IMixinConfigPlugin {
     @Override
     public List<String> getMixins()
     {
+    	if(!isBrokenJavaFutureVersions) {
+    		ExtendedMixinLog.info("Added Java 9+ Patches to Renewed");
+//    		List<String> mixins = new ArrayList<>();
+//    		mixins.add("lotr.client.event.MixinClientWorldDimensionTypeHelperJavaPatch");
+//    		mixins.add("lotr.client.event.MixinLOTRTickHandlerClientJavaPatch");
+//    		mixins.add("lotr.client.render.model.MixinHandheldWrapperModeljavaPatch");
+//    		mixins.add("lotr.common.block.MixinSignSetupHelperJavaPatch");
+//    		mixins.add("lotr.common.event.MixinLOTREventHandlerJavaPatch");
+//    		mixins.add("lotr.common.init.MixinLOTRDimensionsJavaPatch");
+//    		mixins.add("lotr.common.world.gen.tree.MixinLOTRTrunkPlacersJavaPatch");
+//    		return mixins;
+    	}
         return null;
     }
 
@@ -44,9 +56,6 @@ public class MIXINConfig implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
     {
-    	if(!isBrokenJavaFutureVersions) {
-    		
-    	}
 //    	if(targetClassName.equals("craftedMods.jeiLotr.JEIPlugin")){
 //    		if(!classExists("craftedMods.jeiLotr.JEIPlugin")) {
 //    			System.out.println("NOT ADDING MIXIN: "+targetClassName+", "+mixinClassName);
