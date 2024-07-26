@@ -10,6 +10,8 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 
@@ -33,12 +35,19 @@ import net.minecraft.world.gen.feature.jigsaw.JigsawJunction;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPatternRegistry;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
+import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
+import net.minecraft.world.gen.feature.template.StructureProcessor;
+import net.minecraft.world.gen.feature.template.StructureProcessorList;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
+/**
+ * Copied from {@Link JigsawManager}
+ * @version 1.16.5
+ * */
 public class ExtendedJigsawManager {
 	   private static final Logger LOGGER = LogManager.getLogger();
 
@@ -48,6 +57,18 @@ public class ExtendedJigsawManager {
 	      Rotation rotation = Rotation.getRandom(random);
 	      JigsawPattern jigsawpattern = structureConfig.startPool().get();
 	      JigsawPiece jigsawpiece = jigsawpattern.getRandomTemplate(random);
+	      // Extended start add 
+	      Optional<WoodPaletteProcessor> carryOverProcessor = Optional.empty();
+	      if(jigsawpiece instanceof SingleJigsawPiece) {
+	    	  List<StructureProcessor> processors = ((SingleJigsawPiece)jigsawpiece).processors.get().list();
+	    	  for (StructureProcessor processor : processors) {
+	    		  if (processor instanceof WoodPaletteProcessor) {
+	    			  carryOverProcessor = Optional.of((WoodPaletteProcessor)processor);
+	    			  ExtendedLog.info("Adding wood processor present in "+jigsawpattern.getName().toString()+" to parent stack");
+	    		  }
+	    	  }
+	      }
+	      // Extended end
 	      AbstractVillagePiece abstractvillagepiece = villagePieceBuilder.create(templateManager, jigsawpiece, blockpos, jigsawpiece.getGroundLevelDelta(), rotation, jigsawpiece.getBoundingBox(templateManager, blockpos, rotation));
 	      MutableBoundingBox mutableboundingbox = abstractvillagepiece.getBoundingBox();
 	      int structureBBAverageX = (mutableboundingbox.x1 + mutableboundingbox.x0) / 2;
@@ -65,7 +86,7 @@ public class ExtendedJigsawManager {
 	      if (structureConfig.maxDepth() > 0) {
 	         int maxPlaceDistance = 80; // Max generation distance
 	         AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)(structureBBAverageX - maxPlaceDistance), (double)(structureStartHeight - maxPlaceDistance), (double)(structureBBAverageZ - maxPlaceDistance), (double)(structureBBAverageX + maxPlaceDistance + 1), (double)(structureStartHeight + maxPlaceDistance + 1), (double)(structureBBAverageZ + maxPlaceDistance + 1));
-	         ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, structureConfig.maxDepth(), villagePieceBuilder, chunkGenerator, templateManager, pieces, random);
+	         ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, structureConfig.maxDepth(), villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
 	         jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
 	         while(!jigsawmanager$assembler.placing.isEmpty()) {
@@ -79,7 +100,7 @@ public class ExtendedJigsawManager {
 	   //Half rebuilt kind function
 	   public static void addPieces(DynamicRegistries registry, AbstractVillagePiece preBuiltAbstractVillagePiece, int buildLevels, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> listBuildablePieces, Random random) {
 	      MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
-	      ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random);
+	      ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random, Optional.empty());
 	      jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(preBuiltAbstractVillagePiece, new MutableObject<>(VoxelShapes.INFINITY), 0, 0));
 
 	      while(!jigsawmanager$assembler.placing.isEmpty()) {
@@ -98,8 +119,11 @@ public class ExtendedJigsawManager {
 	      private final List<? super AbstractVillagePiece> pieces;
 	      private final Random random;
 	      private final Deque<ExtendedJigsawManager.Entry> placing = Queues.newArrayDeque();
+	      // Extended add optional carry over processors
+	      private final Optional<WoodPaletteProcessor> carryOverProcessor;
 
-	      private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom) {
+	      // Extended added optional carry over processors
+	      private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor) {
 	         this.pools = pPools;
 	         this.maxDepth = pMaxDepth;
 	         this.factory = pFactory;
@@ -107,6 +131,7 @@ public class ExtendedJigsawManager {
 	         this.structureManager = pStructureManager;
 	         this.pieces = pPieces;
 	         this.random = pRandom;
+	         this.carryOverProcessor = pCarryOverProcessor;
 	      }
 
 	      private void tryPlacingChildren(AbstractVillagePiece villagePiece, MutableObject<VoxelShape> freeVoxelShapes, int boundsTop, int depth, boolean doExpansionHack) {
@@ -223,7 +248,23 @@ public class ExtendedJigsawManager {
 	                                 } else {
 	                                    connectingPoolJigsawPieceGroundLevelData = connectingPoolJigsawPiece.getGroundLevelDelta();
 	                                 }
-
+	                                 // Extended start
+	                                 if(carryOverProcessor.isPresent() && connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
+	                                	 List<StructureProcessor> processors = ((SingleJigsawPiece)connectingPoolJigsawPiece).processors.get().list();
+	                                	 boolean woodprocessorflag = true;
+	                                	 for (StructureProcessor processor : processors) {
+	                                		 if (processor instanceof WoodPaletteProcessor) {
+	                                			 woodprocessorflag=false;
+	                                		 }
+	                                		 if(woodprocessorflag) {
+	                                			 processors.add(carryOverProcessor.get());
+	    	                                	 StructureProcessorList list = new StructureProcessorList(processors);
+	    	                                	 ((SingleJigsawPiece)connectingPoolJigsawPiece).processors = () -> list;
+	    	                                	 ExtendedLog.info("Added wood processor to structure piece from parent");
+	                                		 }
+	                                	 }
+	                                 }
+	                                 // Extended end
 	                                 AbstractVillagePiece abstractvillagepiece = this.factory.create(this.structureManager, connectingPoolJigsawPiece, blockpos5, connectingPoolJigsawPieceGroundLevelData, rotation1, mutableboundingbox3);
 	                                 int connectingPoolJigsawPieceSpawnHeight;
 	                                 if (isParentPlacementRidged) {
