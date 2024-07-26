@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedStructureEntitySpawnManager extends JsonReloadListener {
 	private static final Logger LOGGER = LogManager.getLogger();
-	private static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().create();
+	private static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> tables = ImmutableMap.of();
 
 	public ExtendedStructureEntitySpawnManager() {
@@ -64,4 +64,5 @@ public class ExtendedStructureEntitySpawnManager extends JsonReloadListener {
 	public Set<ResourceLocation> getIds() {
 		return this.tables.keySet();
 	}
+
 }

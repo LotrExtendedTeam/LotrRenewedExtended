@@ -2,8 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.spawners.types;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntityTypeInterface;
-
 import net.minecraft.entity.EntityType;
 
 public class SingleSpawnType implements ExtendedStructureEntityTypeInterface {

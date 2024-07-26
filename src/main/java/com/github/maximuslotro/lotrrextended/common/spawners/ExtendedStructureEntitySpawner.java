@@ -4,6 +4,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
+import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -13,6 +15,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.JSONUtils;
 
 public class ExtendedStructureEntitySpawner {
@@ -23,9 +26,22 @@ public class ExtendedStructureEntitySpawner {
 	private boolean setHomeRandom = false;
 	private int homeRadius = 16;
 
-	private ExtendedStructureEntitySpawner(ExtendedStructureEntitySpawnerEntity[] entries, boolean isSingleUse) {
-		this.entries = Lists.newArrayList(entries);
+	public ExtendedStructureEntitySpawner(ExtendedStructureEntitySpawnerEntity[] entries, boolean isSingleUse) {
+		this(Lists.newArrayList(entries), isSingleUse);
+	}
+
+	public ExtendedStructureEntitySpawner(List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse) {
+		this.entries = entries;
 		this.isSingleUse = isSingleUse;
+	}
+
+	public ExtendedStructureEntitySpawner(List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse, boolean setHomePositionOnSpawn,
+			boolean setHomeRandom, int homeRadius) {
+		this.entries = entries;
+		this.isSingleUse = isSingleUse;
+		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
+		this.setHomeRandom = setHomeRandom;
+		this.homeRadius = homeRadius;
 	}
 
 	public List<ExtendedStructureEntitySpawnerEntity> getEntries() {
@@ -80,9 +96,6 @@ public class ExtendedStructureEntitySpawner {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("isSingleUse", entitySpawner.doesRemoveAfterUse());
 
-			if (!entitySpawner.entries.isEmpty()) {
-				jsonobject.add("pools", context.serialize(entitySpawner.entries));
-			}
 			if(entitySpawner.isSetHomePositionOnSpawn()) {
 				jsonobject.addProperty("setHomeOnSpawn", entitySpawner.isSetHomePositionOnSpawn());
 				if(entitySpawner.isSetHomeRandom()) {
@@ -90,7 +103,85 @@ public class ExtendedStructureEntitySpawner {
 				}
 				jsonobject.addProperty("defaultHomeRadius", entitySpawner.getHomeRadius());
 			}
+			if (!entitySpawner.entries.isEmpty()) {
+				jsonobject.add("pools", context.serialize(entitySpawner.entries));
+			}
 			return jsonobject;
+		}
+	}
+
+	public static class Builder {
+		private List<ExtendedStructureEntitySpawnerEntity> entries = new ArrayList<>();
+		private boolean isSingleUse;
+		private boolean setHomePositionOnSpawn = false;
+		private boolean setHomeRandom = false;
+		private int homeRadius = 16;
+
+		public Builder(ExtendedStructureEntitySpawnerEntity[] entries, boolean isSingleUse, boolean setHomePositionOnSpawn, boolean setHomeRandom, int homeRadius) {
+			this(Lists.newArrayList(entries), isSingleUse, setHomePositionOnSpawn, setHomeRandom,homeRadius);
+		}
+
+		public Builder(List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse, boolean setHomePositionOnSpawn, boolean setHomeRandom, int homeRadius) {
+			this.entries = entries;
+			this.isSingleUse = isSingleUse;
+			this.setHomePositionOnSpawn = setHomePositionOnSpawn;
+			this.setHomeRandom = setHomeRandom;
+			this.homeRadius = homeRadius;
+		}
+
+		private Builder(boolean isSingleUse) {
+			this.isSingleUse = isSingleUse;
+		}
+
+		private Builder(boolean isSingleUse, boolean setHomePositionOnSpawn, int homeRadius) {
+			this.isSingleUse = isSingleUse;
+			this.setHomePositionOnSpawn = setHomePositionOnSpawn;
+			this.homeRadius = homeRadius;
+		}
+
+		public ExtendedStructureEntitySpawner.Builder setHomeInfo(boolean setHomeRandom, int homeRadius) {
+			this.setHomePositionOnSpawn = true;
+			this.setHomeRandom = setHomeRandom;
+			this.homeRadius = homeRadius;
+			return this;
+		}
+
+		public static ExtendedStructureEntitySpawner.Builder spawner(boolean isSingleUse) {
+			return new ExtendedStructureEntitySpawner.Builder(isSingleUse);
+		}
+
+		public static ExtendedStructureEntitySpawner.Builder spawner(boolean isSingleUse, boolean setHomePositionOnSpawn, int homeRadius) {
+			return new ExtendedStructureEntitySpawner.Builder(isSingleUse);
+		}
+		
+		public ExtendedStructureEntitySpawner.Builder addSinglePool(EntityType<?> type, int weight, int minSpawnCount, int maxSpawnCount) {
+			entries.add(new ExtendedStructureEntitySpawnerEntity(new SingleSpawnType(type), weight, minSpawnCount, maxSpawnCount));
+			return this;
+		}
+
+		public ExtendedStructureEntitySpawner.Builder addMultiPool(MultiSpawnType multiPool, int weight, int minSpawnCount, int maxSpawnCount) {
+			entries.add(new ExtendedStructureEntitySpawnerEntity(multiPool, weight, minSpawnCount, maxSpawnCount));
+			return this;
+		}
+
+		public ExtendedStructureEntitySpawner build() {
+			return new ExtendedStructureEntitySpawner(entries, isSingleUse, setHomePositionOnSpawn, setHomeRandom, homeRadius);
+		}
+
+		public boolean isSetHomePositionOnSpawn() {
+			return setHomePositionOnSpawn;
+		}
+
+		public boolean isSetHomeRandom() {
+			return setHomeRandom;
+		}
+
+		public int getHomeRadius() {
+			return homeRadius;
+		}
+
+		public void setSingleUse(boolean isSingleUse) {
+			this.isSingleUse = isSingleUse;
 		}
 	}
 }

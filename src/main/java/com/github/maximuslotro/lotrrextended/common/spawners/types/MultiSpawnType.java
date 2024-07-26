@@ -1,9 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.spawners.types;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntityTypeInterface;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.WeightedRandom;
@@ -35,5 +34,28 @@ public class MultiSpawnType implements ExtendedStructureEntityTypeInterface {
 
 	public List<MultiSpawnEntry> getEntities() {
 		return entities;
+	}
+
+	public static class Builder {
+		private List<MultiSpawnEntry> entries = new ArrayList<>();
+
+		public Builder(List<MultiSpawnEntry> entries) {
+			this.entries = entries;
+		}
+
+		private Builder() {}
+
+		public static MultiSpawnType.Builder multi() {
+			return new MultiSpawnType.Builder();
+		}
+		
+		public MultiSpawnType.Builder addPool(EntityType<?> type, int weight) {
+			entries.add(new MultiSpawnEntry(weight, type));
+			return this;
+		}
+
+		public MultiSpawnType build() {
+			return new MultiSpawnType(entries);
+		}
 	}
 }

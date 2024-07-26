@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.spawners;
+package com.github.maximuslotro.lotrrextended.common.spawners.types;
 
 import java.util.Random;
 

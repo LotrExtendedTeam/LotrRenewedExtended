@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.spawners.types.ExtendedStructureEntityTypeInterface;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType.MultiSpawnEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
@@ -29,17 +30,12 @@ public class ExtendedStructureEntitySpawnerEntity extends WeightedRandom.Item {
 	private final ExtendedStructureEntityTypeInterface entityProvider;
 	private final int minSpawn;
 	private final int maxSpawn;
-	public ExtendedStructureEntitySpawnerEntity(int weight, ExtendedStructureEntityTypeInterface entityProvider, int minSpawn, int maxSpawn) {
+	public ExtendedStructureEntitySpawnerEntity(ExtendedStructureEntityTypeInterface entityProvider, int weight, int minSpawn, int maxSpawn) {
 		super(weight);
 		this.entityProvider = entityProvider;
 		this.minSpawn = minSpawn;
 		this.maxSpawn = maxSpawn;
 		
-	}
-
-	public static ExtendedStructureEntitySpawnerEntity read(JsonObject json, ResourceLocation LocationName) {
-
-		return null;
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawnerEntity>, JsonSerializer<ExtendedStructureEntitySpawnerEntity> {
@@ -76,7 +72,7 @@ public class ExtendedStructureEntitySpawnerEntity extends WeightedRandom.Item {
 				ExtendedLog.error(jsonobject.getAsString());
 				return null;
 			}
-			return new ExtendedStructureEntitySpawnerEntity(weight, entityProvider, minSpawn, maxSpawn);
+			return new ExtendedStructureEntitySpawnerEntity(entityProvider, weight, minSpawn, maxSpawn);
 		}
 
 		public JsonElement serialize(ExtendedStructureEntitySpawnerEntity entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
