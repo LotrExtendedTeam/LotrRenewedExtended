@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.exten
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedJigsawManager;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,7 +17,6 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawManager;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -26,6 +26,7 @@ import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
+
 	public abstract String getLocation();
 	
 	public ExtendedStructureStartV5(Structure<C> feature, int chunkX, int chunkZ, MutableBoundingBox boundingBox, int references, long seed) {
@@ -39,10 +40,10 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         int z = (chunkZ << 4) + 7;
         BlockPos blockpos = new BlockPos(x, 0, z);
 
-        JigsawManager.addPieces(dynamicRegistryManager,
+        ExtendedJigsawManager.addPieces(dynamicRegistryManager,
                 new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
                 		.get(new ResourceLocation(LotrExtendedMod.MODID, getLocation())), maxDepth()), AbstractVillagePiece::new, 
-                chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false,true);
+                chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 
         this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
         
@@ -63,6 +64,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return 7;
 	}
 
+	// ############################################ FOUNDATION LAYING LOGIC ###########################################
 	public boolean usesFullStructureFoundations() {
 		return false;
 	}

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -45,7 +45,8 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.ARNOR_RUINS.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
-	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<NoFeatureConfig> structure) {
+
+	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<? extends IFeatureConfig> structure) {
 		tempMap.putIfAbsent(structure, DimensionStructuresSettings.DEFAULTS.get(structure));
 	}
 
