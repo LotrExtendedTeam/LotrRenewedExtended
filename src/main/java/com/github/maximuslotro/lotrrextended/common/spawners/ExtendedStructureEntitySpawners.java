@@ -16,6 +16,9 @@ public class ExtendedStructureEntitySpawners {
    private static final Set<ResourceLocation> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
    public static final ResourceLocation EMPTY = new ResourceLocation("empty");
    public static final ResourceLocation HOBBIT_BARTENDER = register("hobbit_bartender_spawner");
+   public static final ResourceLocation HOBBIT_FARMER = register("hobbit_farmer_spawner");
+   public static final ResourceLocation DUNEDAIN_RANGER_CAMP_SPAWNER = register("dunedain_ranger_camp_spawner");
+
 
    private static ResourceLocation register(String pId) {
       return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

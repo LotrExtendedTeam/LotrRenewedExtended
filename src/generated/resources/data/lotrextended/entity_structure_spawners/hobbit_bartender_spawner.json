@@ -1,7 +1,6 @@
 {
   "isSingleUse": true,
   "setHomeOnSpawn": true,
-  "defaultHomeRadius": 10,
   "pools": [
     {
       "weight": 100,

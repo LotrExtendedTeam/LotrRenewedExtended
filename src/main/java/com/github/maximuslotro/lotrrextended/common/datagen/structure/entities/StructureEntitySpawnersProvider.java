@@ -15,6 +15,7 @@ import java.util.TreeMap;
 
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
+import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
@@ -78,8 +79,20 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addSinglePool(type, 100, spawnMin, spawnMax));
 	}
 
-	public void buildSingleSpawner(ResourceLocation location, EntityType<?> type, int spawnMin, int spawnMax, boolean randomly, int radius) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomly, radius));
+	public void buildSingleSpawner(ResourceLocation location, EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
+		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius));
+	}
+
+	public void buildMultiSpawner(ResourceLocation location, MultiSpawnType multiPool) {
+		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addMultiPool(multiPool, 100, 1, 1));
+	}
+
+	public void buildMultiSpawner(ResourceLocation location, MultiSpawnType multiPool, int spawnMin, int spawnMax) {
+		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addMultiPool(multiPool, 100, spawnMin, spawnMax));
+	}
+
+	public void buildMultiSpawner(ResourceLocation location, MultiSpawnType multiPool, int spawnMin, int spawnMax, boolean randomHome, int radius) {
+		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addMultiPool(multiPool, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius));
 	}
 
 	public void buildSpawner(ResourceLocation location, ExtendedStructureEntitySpawner.Builder builder) {

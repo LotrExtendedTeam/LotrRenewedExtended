@@ -1,0 +1,12 @@
+{
+  "isSingleUse": true,
+  "setHomeOnSpawn": true,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:hobbit_farmer"
+    }
+  ]
+}
