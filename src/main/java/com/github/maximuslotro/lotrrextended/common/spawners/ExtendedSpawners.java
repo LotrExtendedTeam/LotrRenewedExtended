@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Stores IDs for built in entity spawners.
  */
-public class ExtendedStructureEntitySpawners {
+public class ExtendedSpawners {
    private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
    private static final Set<ResourceLocation> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
    public static final ResourceLocation EMPTY = new ResourceLocation("empty");

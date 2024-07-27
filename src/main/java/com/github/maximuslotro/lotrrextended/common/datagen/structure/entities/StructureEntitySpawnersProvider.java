@@ -6,13 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.TreeMap;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
@@ -37,15 +38,27 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 
 	}
 
-	public abstract void makeStructureSpawnPools();
+	public abstract void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer);
 
 	@Override
 	public void run(DirectoryCache pCache) throws IOException {
-		makeStructureSpawnPools();
 		Path path = this.dataGenerator.getOutputFolder();
-		for (Entry<ResourceLocation, ExtendedStructureEntitySpawner> spawner : dataHere.entrySet()) {
-			save(GSON, pCache, spawner.getValue(), path.resolve("data/" + modId + "/entity_structure_spawners/" + spawner.getKey().getPath() + ".json"));
-		}
+		Consumer<ExtendedStructureEntitySpawner> consumer = (spawner) -> {
+	         if (dataHere.put(spawner.getId(), spawner)!=null) {
+	            throw new IllegalStateException("Duplicate structure spawner type " + spawner.getId().toString());
+	         } else {
+	            Path path1 = createPath(path, spawner);
+
+	            try {
+	               save(GSON, pCache, spawner, path1);
+	            } catch (IOException ioexception) {
+	               LOGGER.error("Couldn't save advancement {}", path1, ioexception);
+	            }
+
+	         }
+	      };
+		makeStructureSpawnPools(consumer);
+		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.");
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, Object object, Path pPath) throws IOException {
@@ -66,36 +79,40 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		}
 	}
 
+	private static Path createPath(Path pPath, ExtendedStructureEntitySpawner spawner) {
+		return pPath.resolve("data/" + spawner.getId().getNamespace()+ "/entity_structure_spawners/" + spawner.getId().getPath() + ".json");
+	}
+
 	@Override
 	public String getName() {
 		return "Extended Structure Entity Spawner Provider";
 	}
 
-	public void buildSingleSpawner(ResourceLocation location, EntityType<?> type) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addSinglePool(type, 100, 1, 1));
+	public ExtendedStructureEntitySpawner.Builder make(boolean inSingleUse) {
+		return ExtendedStructureEntitySpawner.Builder.spawner(inSingleUse);
 	}
 
-	public void buildSingleSpawner(ResourceLocation location, EntityType<?> type, int spawnMin, int spawnMax) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addSinglePool(type, 100, spawnMin, spawnMax));
+	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type) {
+		return single(type, 1, 1);
 	}
 
-	public void buildSingleSpawner(ResourceLocation location, EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius));
+	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax) {
+		return make(true).addSinglePool(type, 100, spawnMin, spawnMax);
 	}
 
-	public void buildMultiSpawner(ResourceLocation location, MultiSpawnType multiPool) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addMultiPool(multiPool, 100, 1, 1));
+	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
+		return make(true).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
 	}
 
-	public void buildMultiSpawner(ResourceLocation location, MultiSpawnType multiPool, int spawnMin, int spawnMax) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addMultiPool(multiPool, 100, spawnMin, spawnMax));
+	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool) {
+		return multi(multiPool, 1, 1);
 	}
 
-	public void buildMultiSpawner(ResourceLocation location, MultiSpawnType multiPool, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		buildSpawner(location, ExtendedStructureEntitySpawner.Builder.spawner(true).addMultiPool(multiPool, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius));
+	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool, int spawnMin, int spawnMax) {
+		return make(true).addMultiPool(multiPool, 100, spawnMin, spawnMax);
 	}
 
-	public void buildSpawner(ResourceLocation location, ExtendedStructureEntitySpawner.Builder builder) {
-		dataHere.put(location, builder.build());
+	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool, int spawnMin, int spawnMax, boolean randomHome, int radius) {
+		return make(true).addMultiPool(multiPool, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
 	}
 }

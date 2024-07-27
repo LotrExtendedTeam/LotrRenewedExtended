@@ -1,4 +1,5 @@
 {
+  "id": "lotrextended:dunedain_ranger_camp_spawner",
   "isSingleUse": true,
   "setHomeOnSpawn": true,
   "defaultHomeRadius": 30,

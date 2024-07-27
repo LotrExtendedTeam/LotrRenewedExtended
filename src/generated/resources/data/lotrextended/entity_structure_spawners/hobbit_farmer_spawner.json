@@ -1,4 +1,5 @@
 {
+  "id": "lotrextended:hobbit_farmer_spawner",
   "isSingleUse": true,
   "setHomeOnSpawn": true,
   "pools": [

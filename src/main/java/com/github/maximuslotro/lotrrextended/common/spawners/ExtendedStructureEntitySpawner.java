@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.spawners;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
@@ -17,9 +18,12 @@ import com.google.gson.JsonSerializer;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedStructureEntitySpawner {
-	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(new ExtendedStructureEntitySpawnerEntity[0], true);
+	private final ResourceLocation id;
+	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(new ResourceLocation("empty"), new ExtendedStructureEntitySpawnerEntity[0], true);
 	private final List<ExtendedStructureEntitySpawnerEntity> entries;
 	public static final int defultEntitySpawnTickRate = 3600;
 	public static final int defultPlayerMinSpawnDistance = 10;
@@ -33,17 +37,19 @@ public class ExtendedStructureEntitySpawner {
 	private int playerMinSpawnDistance = defultPlayerMinSpawnDistance;
 	private int playerMaxSpawnDistance = defultPlayerMaxSpawnDistance;
 
-	public ExtendedStructureEntitySpawner(ExtendedStructureEntitySpawnerEntity[] entries, boolean isSingleUse) {
-		this(Lists.newArrayList(entries), isSingleUse);
+	public ExtendedStructureEntitySpawner(ResourceLocation id, ExtendedStructureEntitySpawnerEntity[] entries, boolean isSingleUse) {
+		this(id, Lists.newArrayList(entries), isSingleUse);
 	}
 
-	public ExtendedStructureEntitySpawner(List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse) {
+	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse) {
+		this.id = id;
 		this.entries = entries;
 		this.isSingleUse = isSingleUse;
 	}
 
-	public ExtendedStructureEntitySpawner(List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse, boolean setHomePositionOnSpawn,
+	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntity> entries, boolean isSingleUse, boolean setHomePositionOnSpawn,
 			boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance) {
+		this.id = id;
 		this.entries = entries;
 		this.isSingleUse = isSingleUse;
 		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
@@ -52,6 +58,10 @@ public class ExtendedStructureEntitySpawner {
 		this.entitySpawnTickRate = entitySpawnTickRate;
 		this.playerMinSpawnDistance = playerMinSpawnDistance;
 		this.playerMaxSpawnDistance = playerMaxSpawnDistance;
+	}
+
+	public ResourceLocation getId() {
+		return id;
 	}
 
 	public List<ExtendedStructureEntitySpawnerEntity> getEntries() {
@@ -120,7 +130,8 @@ public class ExtendedStructureEntitySpawner {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawner");
 			ExtendedStructureEntitySpawnerEntity[] alootpool = JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntity[0], context, ExtendedStructureEntitySpawnerEntity[].class);
 			boolean isSingleUse = jsonobject.get("isSingleUse").getAsBoolean();
-			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(alootpool, isSingleUse);
+			String id = jsonobject.get("id").getAsString();
+			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(new ResourceLocation(id), alootpool, isSingleUse);
 			if(jsonobject.has("setHomeOnSpawn")) {
 				spawner.setSetHomePositionOnSpawn(jsonobject.get("setHomeOnSpawn").getAsBoolean());
 				spawner.setHomeRadius(jsonobject.get("defaultHomeRadius").getAsInt());
@@ -142,8 +153,8 @@ public class ExtendedStructureEntitySpawner {
 
 		public JsonElement serialize(ExtendedStructureEntitySpawner entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
+			jsonobject.addProperty("id", entitySpawner.getId().toString());
 			jsonobject.addProperty("isSingleUse", entitySpawner.doesRemoveAfterUse());
-
 			if(entitySpawner.isSetHomePositionOnSpawn()) {
 				jsonobject.addProperty("setHomeOnSpawn", entitySpawner.isSetHomePositionOnSpawn());
 				if(entitySpawner.isSetHomeRandom()) {
@@ -235,9 +246,21 @@ public class ExtendedStructureEntitySpawner {
 			return this;
 		}
 
-		public ExtendedStructureEntitySpawner build() {
-			return new ExtendedStructureEntitySpawner(entries, isSingleUse, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
+		public ExtendedStructureEntitySpawner build(ResourceLocation id) {
+			return new ExtendedStructureEntitySpawner(id, entries, isSingleUse, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
 					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance);
+		}
+
+		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, String pId) {
+			ExtendedStructureEntitySpawner spawner = this.build(new ResourceLocation(pId));
+			pConsumer.accept(spawner);
+			return spawner;
+		}
+
+		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, ResourceLocation pId) {
+			ExtendedStructureEntitySpawner spawner = this.build(pId);
+			pConsumer.accept(spawner);
+			return spawner;
 		}
 
 		public static ExtendedStructureEntitySpawner.Builder spawner(boolean isSingleUse) {

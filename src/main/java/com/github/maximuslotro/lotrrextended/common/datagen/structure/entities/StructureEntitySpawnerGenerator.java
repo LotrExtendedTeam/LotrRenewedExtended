@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.structure.entities;
 
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawners;
+import java.util.function.Consumer;
+
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.data.DataGenerator;
@@ -12,9 +15,9 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 	}
 
 	@Override
-	public void makeStructureSpawnPools() {
-		buildSingleSpawner(ExtendedStructureEntitySpawners.HOBBIT_BARTENDER, ExtendedEntities.HOBBIT_BARTENDER.get(), 1, 1, false, 16);
-		buildSingleSpawner(ExtendedStructureEntitySpawners.HOBBIT_FARMER, ExtendedEntities.HOBBIT_FARMER.get(), 1, 1, false, 16);
-		buildSingleSpawner(ExtendedStructureEntitySpawners.DUNEDAIN_RANGER_CAMP_SPAWNER, ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 30);
+	public void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer) {
+		single(ExtendedEntities.HOBBIT_BARTENDER.get()).setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARTENDER);
+		single(ExtendedEntities.HOBBIT_FARMER.get()).setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_FARMER);
+		single(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 30).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_SPAWNER);
 	}
 }

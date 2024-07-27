@@ -34,7 +34,7 @@ public class ExtendedStructureEntitySpawnManager extends JsonReloadListener {
 
 	protected void apply(Map<ResourceLocation, JsonElement> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
 		Builder<ResourceLocation, ExtendedStructureEntitySpawner> builder = ImmutableMap.builder();
-		JsonElement jsonelement = json.remove(ExtendedStructureEntitySpawners.EMPTY);
+		JsonElement jsonelement = json.remove(ExtendedSpawners.EMPTY);
 		if (jsonelement != null) {
 			LOGGER.warn("Datapack tried to redefine {} loot table, ignoring", (Object) LootTables.EMPTY);
 		}
@@ -51,7 +51,7 @@ public class ExtendedStructureEntitySpawnManager extends JsonReloadListener {
 			}
 
 		});
-		builder.put(ExtendedStructureEntitySpawners.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
+		builder.put(ExtendedSpawners.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
 		ImmutableMap<ResourceLocation, ExtendedStructureEntitySpawner> immutablemap = builder.build();
 		// TODO validate loaded data if applicable
 		this.tables = immutablemap;
