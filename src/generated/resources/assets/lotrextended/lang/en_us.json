@@ -1115,6 +1115,8 @@
   "speechbank.rivendell_wanderer.departure.7": "%1$s: If you wish to trade with me, you should hurry. I will be leaving soon.",
   "speechbank.rivendell_wanderer.departure.8": "%1$s: I will have to depart soon.",
   "speechbank.rivendell_wanderer.departure.9": "%1$s: Do you hear the sea calling? I shall soon leave these lands.",
+  "chat.wandering_trader.arrive_near_you": "%1$s has arrived near by at %2$s",
+  "chat.wandering_trader.arrive_near_player": "%1$s has arrived near by %2$s",
   "stat.lotrextended.animals_branded": "Animals Branded",
   "stat.lotrextended.bookshelves_opened": "Bookshelves Interacted",
   "stat.lotrextended.eat_cheese_slice": "Cheese Slices Eaten",

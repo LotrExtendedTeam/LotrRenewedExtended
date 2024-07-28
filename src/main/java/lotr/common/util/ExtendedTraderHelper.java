@@ -147,10 +147,10 @@ public class ExtendedTraderHelper {
                 npc.remove();
             } else {
                 trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
-                // TODO: Temp tick at 20 seconds left for testing (will really be at 3 minutes left)
-                if (trader.getWanderingTraderTicksLeft() == 20 * 20) {
+                // warn players nearby at 4 minutes left
+                if (trader.getWanderingTraderTicksLeft() == 4800) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
-                    List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(50));
+                    List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
 
                     for (PlayerEntity player : playersInRange) {
                         player.sendMessage(trader.getDepartureLine(player), Util.NIL_UUID);

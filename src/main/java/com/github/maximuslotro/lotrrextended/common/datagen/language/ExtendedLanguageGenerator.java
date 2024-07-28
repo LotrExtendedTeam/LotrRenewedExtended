@@ -194,6 +194,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
 		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
 
+		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived near by at %2$s");
+		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived near by %2$s");
+
 		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");
 		addD("item.lotr.horn_of_command.reddy");
