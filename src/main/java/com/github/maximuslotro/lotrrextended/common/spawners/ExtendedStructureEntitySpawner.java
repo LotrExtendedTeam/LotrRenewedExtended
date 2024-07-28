@@ -28,7 +28,6 @@ public class ExtendedStructureEntitySpawner {
 	public static final int defultHomeRadius = 16;
 	public static final ExtendedSpawnerBoundsEntry defultBoundary = new ExtendedSpawnerBoundsEntry(0, 0, 0);
 	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(new ResourceLocation("empty"), new ExtendedStructureEntitySpawnerEntity[0], SpawnerType.UNKNOWN, defultBoundary, defultBoundary);
-	private final List<ExtendedStructureEntitySpawnerEntity> entries;
 	private final ResourceLocation id;
 	private final SpawnerType spawnType;
 	private boolean setHomePositionOnSpawn = false;
@@ -39,6 +38,8 @@ public class ExtendedStructureEntitySpawner {
 	private int playerMaxSpawnDistance = defultPlayerMaxSpawnDistance;
 	private ExtendedSpawnerBoundsEntry checkBoundaries = defultBoundary;
 	private ExtendedSpawnerBoundsEntry spawnRegion = defultBoundary;
+	private int poolRolls = 1;
+	private final List<ExtendedStructureEntitySpawnerEntity> entries;
 
 	public ExtendedStructureEntitySpawner(ResourceLocation id, ExtendedStructureEntitySpawnerEntity[] entries, SpawnerType spawnType,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
@@ -56,7 +57,7 @@ public class ExtendedStructureEntitySpawner {
 
 	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntity> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 			boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
-			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
+			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls) {
 		this(id, entries, spawnType, checkBoundaries, spawnRegion);
 		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
 		this.setHomeRandom = setHomeRandom;
@@ -64,6 +65,7 @@ public class ExtendedStructureEntitySpawner {
 		this.entitySpawnTickRate = entitySpawnTickRate;
 		this.playerMinSpawnDistance = playerMinSpawnDistance;
 		this.playerMaxSpawnDistance = playerMaxSpawnDistance;
+		this.poolRolls = poolRolls;
 	}
 
 	public ResourceLocation getId() {
@@ -108,6 +110,14 @@ public class ExtendedStructureEntitySpawner {
 
 	public void setEntitySpawnTickRate(int entitySpawnTickRate) {
 		this.entitySpawnTickRate = entitySpawnTickRate;
+	}
+
+	public int getPoolRolls() {
+		return poolRolls;
+	}
+
+	public void setPoolRolls(int poolRolls) {
+		this.poolRolls = poolRolls;
 	}
 
 	// ##################################### Player Distance Methods ###########################
@@ -195,6 +205,9 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("playerMaxSpawnDistance")) {
 				spawner.setPlayerMaxSpawnDistance(jsonobject.get("playerMaxSpawnDistance").getAsInt());
 			}
+			if(jsonobject.has("poolRolls")) {
+				spawner.setPoolRolls(jsonobject.get("poolRolls").getAsInt());
+			}
 			return spawner;
 		}
 
@@ -226,6 +239,9 @@ public class ExtendedStructureEntitySpawner {
 			if(entitySpawner.getPlayerMaxSpawnDistance() != defultPlayerMaxSpawnDistance) {
 				jsonobject.addProperty("playerMaxSpawnDistance", entitySpawner.getPlayerMaxSpawnDistance());
 			}
+			if(entitySpawner.getPoolRolls() != 1) {
+				jsonobject.addProperty("poolRolls", entitySpawner.getPoolRolls());
+			}
 			if (!entitySpawner.entries.isEmpty()) {
 				jsonobject.add("pools", context.serialize(entitySpawner.entries));
 			}
@@ -244,10 +260,11 @@ public class ExtendedStructureEntitySpawner {
 		private int playerMaxSpawnDistance = defultPlayerMaxSpawnDistance;
 		private ExtendedSpawnerBoundsEntry checkBoundaries = defultBoundary;
 		private ExtendedSpawnerBoundsEntry spawnRegion = defultBoundary;
+		private int poolRolls = 1;
 
 		public Builder(List<ExtendedStructureEntitySpawnerEntity> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn, 
 				boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
-				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
+				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls) {
 			this.entries = entries;
 			this.spawnType = spawnType;
 			this.setHomePositionOnSpawn = setHomePositionOnSpawn;
@@ -258,6 +275,7 @@ public class ExtendedStructureEntitySpawner {
 			this.playerMaxSpawnDistance = playerMaxSpawnDistance;
 			this.checkBoundaries = checkBoundaries;
 			this.spawnRegion = spawnRegion;
+			this.poolRolls = poolRolls;
 		}
 
 		private Builder(SpawnerType spawnType) {
@@ -303,10 +321,15 @@ public class ExtendedStructureEntitySpawner {
 			this.entitySpawnTickRate = minutes * 60 * 20;
 			return this;
 		}
+	
+		public ExtendedStructureEntitySpawner.Builder setPoolRolls(int rolls) {
+			this.poolRolls = rolls;
+			return this;
+		}
 
 		public ExtendedStructureEntitySpawner build(ResourceLocation id) {
 			return new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
-					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion);
+					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls);
 		}
 
 		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, String pId) {
