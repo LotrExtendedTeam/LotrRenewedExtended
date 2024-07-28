@@ -105,6 +105,10 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		return make(SpawnerType.SINGLE).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
 	}
 
+	public ExtendedStructureEntitySpawner.Builder couple(EntityType<?> type, int radius) {
+		return make(SpawnerType.SINGLE_FAMILY).addSinglePool(type, 100, 1, 1).setHomeInfo(false, radius);
+	}
+
 	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type) {
 		return persisted(type, 1, 1);
 	}

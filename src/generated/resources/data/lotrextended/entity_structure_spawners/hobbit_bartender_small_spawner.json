@@ -1,5 +1,5 @@
 {
-  "id": "lotrextended:hobbit_bartender_spawner",
+  "id": "lotrextended:hobbit_bartender_small_spawner",
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
   "pools": [

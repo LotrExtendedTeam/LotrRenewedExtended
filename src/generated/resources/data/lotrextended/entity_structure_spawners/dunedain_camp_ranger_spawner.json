@@ -1,18 +1,18 @@
 {
-  "id": "lotrextended:dunedain_ranger_camp_spawner",
+  "id": "lotrextended:dunedain_camp_ranger_spawner",
   "spawner_type": "persisted_use_spawner",
   "check_boundaries": {
-    "topYvalue": 24,
-    "lowerYvalue": 12,
-    "horizontal_bounds": -12
+    "topYvalue": 12,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 24
   },
   "spawn_area": {
-    "topYvalue": 8,
-    "lowerYvalue": 4,
-    "horizontal_bounds": -4
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 8
   },
   "setHomeOnSpawn": true,
-  "defaultHomeRadius": 30,
+  "defaultHomeRadius": 18,
   "pools": [
     {
       "weight": 100,

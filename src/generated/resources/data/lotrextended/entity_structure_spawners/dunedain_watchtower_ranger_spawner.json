@@ -1,0 +1,24 @@
+{
+  "id": "lotrextended:dunedain_watchtower_ranger_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 20,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 24
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 8
+  },
+  "setHomeOnSpawn": true,
+  "defaultHomeRadius": 18,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 4,
+      "entity_type": "lotr:dunedain_ranger"
+    }
+  ]
+}
