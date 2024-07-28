@@ -16,6 +16,7 @@ import java.util.TreeMap;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
+import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.google.gson.Gson;
 
@@ -88,8 +89,8 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		return "Extended Structure Entity Spawner Provider";
 	}
 
-	public ExtendedStructureEntitySpawner.Builder make(boolean inSingleUse) {
-		return ExtendedStructureEntitySpawner.Builder.spawner(inSingleUse);
+	public ExtendedStructureEntitySpawner.Builder make(SpawnerType spawnType) {
+		return ExtendedStructureEntitySpawner.Builder.spawner(spawnType);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type) {
@@ -97,11 +98,23 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	}
 
 	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax) {
-		return make(true).addSinglePool(type, 100, spawnMin, spawnMax);
+		return make(SpawnerType.SINGLE).addSinglePool(type, 100, spawnMin, spawnMax);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		return make(true).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
+		return make(SpawnerType.SINGLE).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type) {
+		return persisted(type, 1, 1);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax) {
+		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
+		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool) {
@@ -109,10 +122,10 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	}
 
 	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool, int spawnMin, int spawnMax) {
-		return make(true).addMultiPool(multiPool, 100, spawnMin, spawnMax);
+		return make(SpawnerType.SINGLE).addMultiPool(multiPool, 100, spawnMin, spawnMax);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		return make(true).addMultiPool(multiPool, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
+		return make(SpawnerType.SINGLE).addMultiPool(multiPool, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
 	}
 }
