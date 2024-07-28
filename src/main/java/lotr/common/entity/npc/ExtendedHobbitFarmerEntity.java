@@ -28,6 +28,7 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -187,6 +188,11 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     @Override
     public void setWanderingTraderTicksLeft(int ticksLeft) {
         entityData.set(WANDERING_TRADER_TIME_LEFT, ticksLeft);
+    }
+
+    @Override
+    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
+        return null;
     }
 
     @Override

@@ -37,6 +37,7 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -359,6 +360,11 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     @Override
     public ResourceLocation getCloakTextureLocation() {
         return new ResourceLocation("lotr", "textures/cape/galadhrim_trader.png");
+    }
+
+    @Override
+    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
+        return new TranslationTextComponent("speechbank.galadhrim_wanderer.departure." + (random.nextInt(8) + 1), getName(), player.getName());
     }
 
 }

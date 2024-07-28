@@ -14,12 +14,14 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -145,6 +147,15 @@ public class ExtendedTraderHelper {
                 npc.remove();
             } else {
                 trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
+                // TODO: Temp tick at 20 seconds left for testing (will really be at 3 minutes left)
+                if (trader.getWanderingTraderTicksLeft() == 20 * 20) {
+                    AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
+                    List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(50));
+
+                    for (PlayerEntity player : playersInRange) {
+                        player.sendMessage(trader.getDepartureLine(player), Util.NIL_UUID);
+                    }
+                }
             }
         }
     }

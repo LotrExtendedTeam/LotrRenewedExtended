@@ -124,47 +124,47 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// wandering trader departure lines
 		// TODO: Eventually these should properly be moved to the speechbanks files but that is pretty complex to do
 		//  and in order to get 1.6 out quicker I have decided that it can wait until 1.7
-		addD("speechbank.oddment_collector.departure.1", "Come now, %1$s. Or you shall forever hold your scrap!");
-		addD("speechbank.oddment_collector.departure.2", "%1$s, are you sure you have no scrap to spare? For I shall have to leave soon! I accept firstborns for coin too...");
-		addD("speechbank.oddment_collector.departure.3", "It is almost time for me to leave, %1$s. So hurry if you want me to take your oddments off your hands!");
-		addD("speechbank.oddment_collector.departure.4", "I'm sure we can strike one last deal, %1$s.");
-		addD("speechbank.oddment_collector.departure.5", "Can you spare just a little more scrap before I depart these forsaken lands?");
-		addD("speechbank.oddment_collector.departure.6", "It's the scrap that's never collected that takes longest to sell, %1$s. So before I leave, can you not spare a little more scrap for a poor old oddment collector?");
-		addD("speechbank.oddment_collector.departure.7", "I shall soon be taking a well-earned break. So, quickly, %1$s, bring me your last scrap!");
-		addD("speechbank.oddment_collector.departure.8", "I fear this place has little else to offer me in the scrap market. I shall soon depart to richer lands.");
-		addD("speechbank.oddment_collector.departure.9", "The scrap that one hoards is worth little more than pebbles, %$1s. So come now and sell that rubbish of yours before I go far away!");
-		addD("speechbank.oddment_collector.departure.10", "The road must go on, %$1s! Who am I but a humble scrap collector to stop it. So before I hasten over the hills, let me rid you of any unwanted odds and ends.");
-		addD("speechbank.oddment_collector.departure.12", "Come trade with me quickly, %$1s! For I shall soon be leaving these lands to seek the wealth of the Gundabad Orcs.");
-		addD("speechbank.oddment_collector.departure.14", "I'm feeling thirsty, %$1s. A stay at a good inn would do me well! Luckily I know one near the mountains blue, so come quick or you shall miss me.");
-		addD("speechbank.oddment_collector.departure.15", "My deals don't last forever, %1$s.");
-		addD("speechbank.oddment_collector.departure.16", "A rest in a comfortable bed beckons, %1$s. Oddment collectors have to sleep too!");
-		addD("speechbank.oddment_collector.departure.17", "Roll up, roll up! Last scrap deals for many weeks!");
-		addD("speechbank.oddment_collector.departure.18", "Do you have no more scrap, %1$s? Then I shall have to leave.");
-		addD("speechbank.oddment_collector.departure.19", "We scrap collectors move often to find the best sources of oddments. I am no exception, %$1s.");
-		addD("speechbank.oddment_collector.departure.20", "Business is slow here. Perhaps it is time to seek my fortunes elsewhere.");
-		addD("speechbank.oddment_collector.departure.21", "I hear the Mango-Men of Harad have plenty of scrap iron. Perhaps I should seek them instead of waiting for you to empty your pockets, %1$s.");
+		addD("speechbank.oddment_collector.departure.1", "%1$s: Come now, %2$s. Or you shall forever hold your scrap!");
+		addD("speechbank.oddment_collector.departure.2", "%1$s: %2$s, are you sure you have no scrap to spare? For I shall have to leave soon! I accept firstborns for coin too...");
+		addD("speechbank.oddment_collector.departure.3", "%1$s: It is almost time for me to leave, %2$s. So hurry if you want me to take your oddments off your hands!");
+		addD("speechbank.oddment_collector.departure.4", "%1$s: I'm sure we can strike one last deal, %2$s.");
+		addD("speechbank.oddment_collector.departure.5", "%1$s: Can you spare just a little more scrap before I depart these forsaken lands?");
+		addD("speechbank.oddment_collector.departure.6", "%1$s: It's the scrap that's never collected that takes longest to sell, %2$s. So before I leave, can you not spare a little more scrap for a poor old oddment collector?");
+		addD("speechbank.oddment_collector.departure.7", "%1$s: I shall soon be taking a well-earned break. So, quickly, %2$s, bring me your last scrap!");
+		addD("speechbank.oddment_collector.departure.8", "%1$s: I fear this place has little else to offer me in the scrap market. I shall soon depart to richer lands.");
+		addD("speechbank.oddment_collector.departure.9", "%1$s: The scrap that one hoards is worth little more than pebbles, %2$s. So come now and sell that rubbish of yours before I go far away!");
+		addD("speechbank.oddment_collector.departure.10", "%1$s: The road must go on, %2$s! Who am I but a humble scrap collector to stop it. So before I hasten over the hills, let me rid you of any unwanted odds and ends.");
+		addD("speechbank.oddment_collector.departure.12", "%1$s: Come trade with me quickly, %2$s! For I shall soon be leaving these lands to seek the wealth of the Gundabad Orcs.");
+		addD("speechbank.oddment_collector.departure.14", "%1$s: I'm feeling thirsty, %2$s. A stay at a good inn would do me well! Luckily I know one near the mountains blue, so come quick or you shall miss me.");
+		addD("speechbank.oddment_collector.departure.15", "%1$s: My deals don't last forever, %2$s.");
+		addD("speechbank.oddment_collector.departure.16", "%1$s: A rest in a comfortable bed beckons, %2$s. Oddment collectors have to sleep too!");
+		addD("speechbank.oddment_collector.departure.17", "%1$s: Roll up, roll up! Last scrap deals for many weeks!");
+		addD("speechbank.oddment_collector.departure.18", "%1$s: Do you have no more scrap, %2$s? Then I shall have to leave.");
+		addD("speechbank.oddment_collector.departure.19", "%1$s: We scrap collectors move often to find the best sources of oddments. I am no exception, %2$s.");
+		addD("speechbank.oddment_collector.departure.20", "%1$s: Business is slow here. Perhaps it is time to seek my fortunes elsewhere.");
+		addD("speechbank.oddment_collector.departure.21", "%1$s: I hear the Mango-Men of Harad have plenty of scrap iron. Perhaps I should seek them instead of waiting for you to empty your pockets, %2$s.");
 
 		// Galadhrim Wanderer departure lines
-		addD("speechbank.galadhrim_wanderer.departure.1", "My longing for the sea grows ever deeper. I think I shall be leaving soon.");
-		addD("speechbank.galadhrim_wanderer.departure.2", "My time here is almost at an end.");
-		addD("speechbank.galadhrim_wanderer.departure.3", "I shall not stay in these lands much longer.");
-		addD("speechbank.galadhrim_wanderer.departure.4", "The time has almost come to move on.");
-		addD("speechbank.galadhrim_wanderer.departure.5", "I will not tarry here forever.");
-		addD("speechbank.galadhrim_wanderer.departure.6", "The wind is calling. I must away soon.");
-		addD("speechbank.galadhrim_wanderer.departure.7", "If you wish to trade with me, you should hurry. I will be leaving soon.");
-		addD("speechbank.galadhrim_wanderer.departure.8", "I will have to depart soon.");
-		addD("speechbank.galadhrim_wanderer.departure.9", "Do you hear the sea calling? I shall soon leave these lands.");
+		addD("speechbank.galadhrim_wanderer.departure.1", "%1$s: My longing for the sea grows ever deeper. I think I shall be leaving soon.");
+		addD("speechbank.galadhrim_wanderer.departure.2", "%1$s: My time here is almost at an end.");
+		addD("speechbank.galadhrim_wanderer.departure.3", "%1$s: I shall not stay in these lands much longer.");
+		addD("speechbank.galadhrim_wanderer.departure.4", "%1$s: The time has almost come to move on.");
+		addD("speechbank.galadhrim_wanderer.departure.5", "%1$s: I will not tarry here forever.");
+		addD("speechbank.galadhrim_wanderer.departure.6", "%1$s: The wind is calling. I must away soon.");
+		addD("speechbank.galadhrim_wanderer.departure.7", "%1$s: If you wish to trade with me, you should hurry. I will be leaving soon.");
+		addD("speechbank.galadhrim_wanderer.departure.8", "%1$s: I will have to depart soon.");
+		addD("speechbank.galadhrim_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
 
 		// Rivendell Wanderer departure lines
-		addD("speechbank.rivendell_wanderer.departure.1", "My longing for the sea grows ever deeper. I think I shall be leaving soon.");
-		addD("speechbank.rivendell_wanderer.departure.2", "My time here is almost at an end.");
-		addD("speechbank.rivendell_wanderer.departure.3", "I shall not stay in these lands much longer.");
-		addD("speechbank.rivendell_wanderer.departure.4", "The time has almost come to move on.");
-		addD("speechbank.rivendell_wanderer.departure.5", "I will not tarry here forever.");
-		addD("speechbank.rivendell_wanderer.departure.6", "The wind is calling. I must away soon.");
-		addD("speechbank.rivendell_wanderer.departure.7", "If you wish to trade with me, you should hurry. I will be leaving soon.");
-		addD("speechbank.rivendell_wanderer.departure.8", "I will have to depart soon.");
-		addD("speechbank.rivendell_wanderer.departure.9", "Do you hear the sea calling? I shall soon leave these lands.");
+		addD("speechbank.rivendell_wanderer.departure.1", "%1$s: My longing for the sea grows ever deeper. I think I shall be leaving soon.");
+		addD("speechbank.rivendell_wanderer.departure.2", "%1$s: My time here is almost at an end.");
+		addD("speechbank.rivendell_wanderer.departure.3", "%1$s: I shall not stay in these lands much longer.");
+		addD("speechbank.rivendell_wanderer.departure.4", "%1$s: The time has almost come to move on.");
+		addD("speechbank.rivendell_wanderer.departure.5", "%1$s: I will not tarry here forever.");
+		addD("speechbank.rivendell_wanderer.departure.6", "%1$s: The wind is calling. I must away soon.");
+		addD("speechbank.rivendell_wanderer.departure.7", "%1$s: If you wish to trade with me, you should hurry. I will be leaving soon.");
+		addD("speechbank.rivendell_wanderer.departure.8", "%1$s: I will have to depart soon.");
+		addD("speechbank.rivendell_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
 
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");

@@ -2,6 +2,7 @@ package lotr.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.Entity;
@@ -23,7 +24,7 @@ public class WanderingTradersSpawner {
             String biomeName = world.getBiomeName(pos).toString();
             entityName = WanderingTradersList.pickTraderFromBiomeName(world, biomeName);
         } catch (IllegalArgumentException ex) {
-            ExtendedLog.error("Issue while determing LOTR when spawning a wandering trader", ex);
+            ExtendedLog.error("Issue while determining LOTR when spawning a wandering trader", ex);
         }
 
         if (entityName != null) {
@@ -40,6 +41,7 @@ public class WanderingTradersSpawner {
                 System.out.println("Setting wandering trader status and they should be removed in a minute");
                 ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(1200);
                 ((ExtendedTraderEntity) trader).setWanderingTrader(true);
+                ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 2 blocks of spawn point
             } else {
                 ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity?");
             }

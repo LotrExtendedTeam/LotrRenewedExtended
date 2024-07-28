@@ -5,6 +5,7 @@ import lotr.common.fac.AlignmentPredicates;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 import java.util.Optional;
@@ -59,4 +60,6 @@ public interface ExtendedTraderEntity {
 		return entity.isNotFighting(player) && LOTRLevelData.getSidedData(player).getAlignmentData()
 				.hasAlignment(entity.getFaction(), AlignmentPredicates.greaterThanOrEqual(level));
 	}
+
+	TranslationTextComponent getDepartureLine(PlayerEntity player);
 }
