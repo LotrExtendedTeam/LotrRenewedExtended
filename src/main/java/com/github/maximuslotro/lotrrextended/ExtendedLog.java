@@ -7,19 +7,19 @@ public class ExtendedLog {
 	private static Logger LOGGER;
 
 	public static void debug(String s) {
-		LOGGER.debug("lotrExtended: " + s);
+		LOGGER.debug("LotrExtended: " + s);
 	}
 
 	public static void debug(String s, Object... params) {
-		LOGGER.debug(String.format("lotrExtended: " + s, params));
+		LOGGER.debug(String.format("LotrExtended: " + s, params));
 	}
 
 	public static void error(String s) {
-		LOGGER.error("lotrExtended: " + s);
+		LOGGER.error("LotrExtended: " + s);
 	}
 
 	public static void error(String s, Object... params) {
-		LOGGER.error(String.format("lotrExtended: " + s, params));
+		LOGGER.error(String.format("LotrExtended: " + s, params));
 	}
 
 	public static void make() {
@@ -27,18 +27,18 @@ public class ExtendedLog {
 	}
 
 	public static void info(String s) {
-		LOGGER.info("lotrExtended: " + s);
+		LOGGER.info("LotrExtended: " + s);
 	}
 
 	public static void info(String s, Object... params) {
-		LOGGER.info(String.format("lotrExtended: " + s, params));
+		LOGGER.info(String.format("LotrExtended: " + s, params));
 	}
 
 	public static void warn(String s) {
-		LOGGER.warn("lotrExtended: " + s);
+		LOGGER.warn("LotrExtended: " + s);
 	}
 
 	public static void warn(String s, Object... params) {
-		LOGGER.warn(String.format("lotrExtended: " + s, params));
+		LOGGER.warn(String.format("LotrExtended: " + s, params));
 	}
 }
