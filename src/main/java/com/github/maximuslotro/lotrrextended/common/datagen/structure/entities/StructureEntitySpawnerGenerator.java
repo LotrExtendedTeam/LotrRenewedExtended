@@ -18,6 +18,6 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 	public void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer) {
 		single(ExtendedEntities.HOBBIT_BARTENDER.get()).setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARTENDER);
 		single(ExtendedEntities.HOBBIT_FARMER.get()).setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_FARMER);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 30).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_SPAWNER);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 30).setBoundaries(24, 12, -12, 8, 4, -4).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_SPAWNER);
 	}
 }
