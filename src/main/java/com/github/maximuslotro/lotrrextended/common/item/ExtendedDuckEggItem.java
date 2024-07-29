@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserConker;
 import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserDuckEgg;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 
@@ -19,7 +18,6 @@ public class ExtendedDuckEggItem extends Item {
    public ExtendedDuckEggItem(Item.Properties properties) {
       super(properties);
       DispenserBlock.registerBehavior(this, new ExtendedDispenserDuckEgg());
-
    }
 
    /**

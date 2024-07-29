@@ -29,11 +29,6 @@ public class ExtendedConkerEntity extends ProjectileItemEntity{
 	}
 
 	@Override
-	public void defineSynchedData() {
-		super.defineSynchedData();
-	}
-
-	@Override
 	protected float getGravity() {
 		return 0.04F;
 	}
