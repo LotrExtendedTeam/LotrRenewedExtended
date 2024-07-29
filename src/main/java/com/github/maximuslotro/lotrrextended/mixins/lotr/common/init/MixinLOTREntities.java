@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
 import lotr.common.entity.npc.*;
-import lotr.common.entity.projectile.ExtendedConkerEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
 import net.minecraft.entity.Entity;
@@ -21,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 
 import java.util.function.Supplier;

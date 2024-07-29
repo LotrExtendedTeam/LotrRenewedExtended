@@ -1,4 +1,4 @@
-package lotr.common.entity.projectile;
+package com.github.maximuslotro.lotrrextended.common.entity.projectile;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
