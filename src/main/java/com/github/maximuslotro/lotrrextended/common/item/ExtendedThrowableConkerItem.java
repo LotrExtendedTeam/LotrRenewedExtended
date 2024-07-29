@@ -1,7 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import lotr.common.dispenser.ExtendedDispenserConker;
-import lotr.common.entity.projectile.ExtendedConkerEntity;
+import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserConker;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
+
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

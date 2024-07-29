@@ -33,7 +33,7 @@ public abstract class ExtendedSurfaceStructuresV5 <C extends IFeatureConfig> ext
 
 	public abstract IStartFactory<C> getStructureStartFactory();
 
-	//TODO add checking for roads and stuff
+	//TODO add checking for stuff
 	@Override
     protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
         BlockPos centerOfChunk = new BlockPos(chunkX * 16, 0, chunkZ * 16);
@@ -53,7 +53,9 @@ public abstract class ExtendedSurfaceStructuresV5 <C extends IFeatureConfig> ext
         // You can do height check instead too to make it spawn at high elevations.
         boolean noWater = topBlock.getFluidState().isEmpty(); //landHeight > 100;
         
+        // Check if structure intersects a road
         boolean road = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(centerOfChunk.getX(), centerOfChunk.getZ(), 16) >= 0.0F);
+
         return noWater && !road;
     }
 }

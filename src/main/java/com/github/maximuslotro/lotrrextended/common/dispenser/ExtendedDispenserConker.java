@@ -1,6 +1,7 @@
-package lotr.common.dispenser;
+package com.github.maximuslotro.lotrrextended.common.dispenser;
 
-import lotr.common.entity.projectile.ExtendedConkerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
+
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.projectile.ProjectileEntity;
