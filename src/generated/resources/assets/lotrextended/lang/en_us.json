@@ -887,6 +887,7 @@
   "entity.lotr.hobbit_farmer": "Hobbit Farmer",
   "entity.lotr.oddment_collector": "Oddment Collector",
   "entity.lotr.rivendell_wanderer": "Rivendell Wanderer",
+  "entity.lotr.structure_spawner": "Structure Entity Spawner",
   "entity.lotr.thrown_conker": "Magical Conker",
   "gui.lotrextended.base.disable": "Disable",
   "gui.lotrextended.base.disabled": "Disabled",
