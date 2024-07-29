@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotrextended:item/structure_entity_spawner"
+  }
+}

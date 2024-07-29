@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.client.Minecraft;
@@ -25,8 +26,12 @@ import net.minecraftforge.fml.network.NetworkHooks;
 )
 public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAsItem{
 
-	public ExtendedStructureSpawnerEntity(EntityType<?> pType, World pLevel) {
+	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
+	}
+
+	public ExtendedStructureSpawnerEntity(World pLevel) {
+		this(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), pLevel);
 	}
 
 	@Override
