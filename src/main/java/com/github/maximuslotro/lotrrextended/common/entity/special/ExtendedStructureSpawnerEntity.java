@@ -3,29 +3,29 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-@OnlyIn(
-		value = Dist.CLIENT,
-		_interface = IRendersAsItem.class
-)
-public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAsItem{
-
+public class ExtendedStructureSpawnerEntity extends Entity{
+	private ResourceLocation spawnerType;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
@@ -36,16 +36,40 @@ public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAs
 
 	@Override
 	public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
-		if(!this.level.isClientSide()) {
+		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
+			if(pPlayer.isCrouching() && pPlayer.getMainHandItem().isEmpty()) {
+				ItemStack stack = new ItemStack(ExtendedItems.ENTITY_SPAWNER.get());
+				if(spawnerType!=null) {
+					if(stack.hasTag()) {
+						CompoundNBT nbt = stack.getTag();
+						nbt.putString("setSpawnerType", spawnerType.toString());
+						stack.setTag(nbt);
+					} else {
+						CompoundNBT nbt = new CompoundNBT();
+						nbt.putString("setSpawnerType", spawnerType.toString());
+						stack.setTag(nbt);
+					}
+				}
+				pPlayer.setItemInHand(Hand.MAIN_HAND, stack);
+			}
 			pPlayer.sendMessage(new StringTextComponent("Entity Clicked"), Util.NIL_UUID);
+			this.remove();
 		}
-		return ActionResultType.sidedSuccess(this.level.isClientSide());
+		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	@Override
-	public ItemStack getItem() {
-		return new ItemStack(ExtendedItems.HOBBIT_BANNER.get());
+	public ITextComponent getDisplayName() {
+		if(spawnerType!=null) {
+			return new StringTextComponent("Spawner type: "+spawnerType.toString());
+		}
+		return this.getName();
+	}
+
+	@Override
+	public void remove() {
+		this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+		super.remove();
 	}
 
 	@Override
@@ -54,22 +78,21 @@ public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAs
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
-		// TODO Auto-generated method stub
+		if(pCompound.contains("setSpawnerType")) {
+			spawnerType = new ResourceLocation(pCompound.getString("setSpawnerType"));
+		}
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
-		// TODO Auto-generated method stub
+		if(spawnerType!=null) {
+			pCompound.putString("setSpawnerType", spawnerType.toString());
+		}
 	}
 
 	@Override
 	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
-	}
-
-	@Override
-	protected boolean isMovementNoisy() {
-		return false;
 	}
 	  
 	@Override
@@ -89,10 +112,22 @@ public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAs
 
 	@Override
 	public void tick() {
-	      this.noPhysics = true;
-	      super.tick();
-	      this.noPhysics = false;
-	      this.setNoGravity(true);
+		this.noPhysics = true;
+		super.tick();
+		this.noPhysics = false;
+		this.setNoGravity(true);
+		this.yRotO = this.yRot;
+		this.yRot += 0.8F;
+		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
+		this.yRot = MathHelper.wrapDegrees(this.yRot);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public boolean isInvisibleTo(PlayerEntity pPlayer) {
+		if (pPlayer.isSpectator() || pPlayer.isCreative()) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -100,12 +135,22 @@ public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAs
 		return true;
 	}
 
+	@Override
+	public boolean isOnFire() {
+		return false;
+	}
+
+	@Override
+	public boolean hurt(DamageSource pSource, float pAmount) {
+		return false;
+	}
+
 	/**
 	 * Return true if other Entities should be prevented from moving through this Entity.
 	 */
 	@Override
 	public boolean isPickable() {
-		return false;
+		return true;
 	}
 
 	/**
@@ -126,17 +171,17 @@ public class ExtendedStructureSpawnerEntity extends Entity implements IRendersAs
 		return false;
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public boolean shouldRender(double pX, double pY, double pZ) {
-		if(this.level.isClientSide()) {
-			Minecraft mc = Minecraft.getInstance();
-			if(mc.player.isCreative()) {
-				super.shouldRender(pX, pY, pZ);
-			}
-		}
-		return false;
-	}
+//	@OnlyIn(Dist.CLIENT)
+//	@Override
+//	public boolean shouldRender(double pX, double pY, double pZ) {
+//		if(this.level.isClientSide()) {
+//			Minecraft mc = Minecraft.getInstance();
+//			if(mc.player != null && mc.player.isCreative()) {
+//				super.shouldRender(pX, pY, pZ);
+//			}
+//		}
+//		return false;
+//	}
 
 //	@Override
 //	public boolean isInvisible() {
