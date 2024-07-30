@@ -46,6 +46,8 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.INT);
 
+    private List<UUID> escorts = new ArrayList<>();
+
     // trading pools that bartenders will buy from players
     private final ExtendedTradeEntries HOBBIT_BARTENDER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_PLATE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_MUG.get()), 1, 1),
@@ -147,8 +149,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
-        tag.putInt("wanderingTraderTimeLeft", entityData.get(WANDERING_TRADER_TIME_LEFT));
-        tag.putBoolean("isWanderingTrader", entityData.get(IS_WANDERING_TRADER));
+        ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
     @Override
@@ -168,6 +169,8 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
         boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
         entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+
+        escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
     @Override
@@ -310,6 +313,16 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         }
 
         ExtendedTraderHelper.tickTrader(this, this);
+    }
+
+    @Override
+    public List<UUID> getEscortUUIDs() {
+       return escorts;
+    }
+
+    @Override
+    public void addEscort(UUID uuid) {
+        escorts.add(uuid);
     }
 
 }

@@ -1,13 +1,18 @@
 package lotr.common.util;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.client.ExtendedTraderHelperClientside;
 import lotr.common.util.representation.ExtendedTrade;
+import lotr.common.util.representation.ExtendedTradeEntries;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
@@ -158,6 +163,45 @@ public class ExtendedTraderHelper {
                 }
             }
         }
+    }
+
+    public static void saveWanderingTraderData(ExtendedTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
+        tag.putInt("wanderingTraderTimeLeft", trader.getWanderingTraderTicksLeft());
+        tag.putBoolean("isWanderingTrader", trader.isWanderingTrader());
+
+        ListNBT listnbt = new ListNBT();
+        for (UUID escort : escorts) {
+            CompoundNBT compoundnbt = new CompoundNBT();
+            compoundnbt.putString("UUID", escort.toString());
+            listnbt.add(compoundnbt);
+        }
+
+        tag.put("escorts", listnbt);
+    }
+
+    public static List<UUID> loadEscortUUIDs(CompoundNBT tag) {
+        ListNBT listnbt = tag.getList("escorts", 10);
+        if (listnbt.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<UUID> result = new ArrayList<>();
+
+        for (int i = 0; i < listnbt.size(); ++i) {
+            CompoundNBT compoundnbt = listnbt.getCompound(i);
+            String strUUID = compoundnbt.getString("UUID");
+            UUID uuid = null;
+            try {
+               uuid = UUID.fromString(strUUID);
+            } catch (Exception ex) {
+                ExtendedLog.error(strUUID + " could not be parsed as a UUID - ignoring");
+                continue;
+            }
+
+            result.add(uuid);
+        }
+
+        return result;
     }
 
 }

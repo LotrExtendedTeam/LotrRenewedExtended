@@ -53,6 +53,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.INT);
 
+    private List<UUID> escorts = new ArrayList<>();
+
     // items Rivendell Wanderers sell to a player
     // TODO: Add Bows, Longspears, and and Battlestaffs when they are added
     private final ExtendedTradeEntries RIVENDELL_WANDERER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
@@ -178,8 +180,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
-        tag.putInt("wanderingTraderTimeLeft", entityData.get(WANDERING_TRADER_TIME_LEFT));
-        tag.putBoolean("isWanderingTrader", entityData.get(IS_WANDERING_TRADER));
+        ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
     @Override
@@ -199,6 +200,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
         boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
         entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+
+        escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
     @Override
@@ -353,6 +356,16 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     @Override
     public TranslationTextComponent getDepartureLine(PlayerEntity player) {
         return new TranslationTextComponent("speechbank.rivendell_wanderer.departure." + (random.nextInt(8) + 1), getName(), player.getName());
+    }
+
+    @Override
+    public List<UUID> getEscortUUIDs() {
+        return escorts;
+    }
+
+    @Override
+    public void addEscort(UUID uuid) {
+        escorts.add(uuid);
     }
 
 }

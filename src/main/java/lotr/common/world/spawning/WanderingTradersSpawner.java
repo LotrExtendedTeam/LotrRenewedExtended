@@ -23,13 +23,14 @@ public class WanderingTradersSpawner {
     public static void spawn(World world, PlayerEntity player) {
         // only make a max of 16 attempts to spawn the traveling trader
         for (int attempts = 0; attempts < 16; attempts++) {
-
+            // pick a random angle and distance from the player
             float angle = world.random.nextFloat() * 360.0F;
             int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
             int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
             int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
             BlockPos pos = new BlockPos(x, y, z);
 
+            // get the biome and pick a wandering trader for the location that was selected
             String biomeName = world.getBiomeName(pos).toString();
             String entityName = null;
             try {
@@ -38,47 +39,51 @@ public class WanderingTradersSpawner {
                 ExtendedLog.error("Issue while determining LOTR when spawning a wandering trader", ex);
             }
 
-            if (entityName != null) {
-                EntityType type = getTraderFromName(entityName);
-                if (type == null) {
-                    ExtendedLog.error("Got null EntityType when attempting to parse " + entityName);
-                    continue;
-                }
+            // if entity is null skip some attempts as they are probably in a biome that just doesn't
+            // support wandering traders, and we should not try all 16 attempts
+            if (entityName == null) {
+                ExtendedLog.info("Got null entity when determining if a wandering trader could spawn at " + pos + ". This biome likely doesn't support wandering traders.");
+                attempts += 2;
+                continue;
+            }
 
-                BlockPos plusOneY = new BlockPos(x, y + 1, z);
-                if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
-                    BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
-                    Entity trader = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.SPAWN_EGG, true, true);
-                    if (trader instanceof ExtendedTraderEntity) {
-                        // set look angle
-                        float yaw = world.random.nextFloat() * 360.0F;
-                        trader.setYBodyRot(yaw);
-                        trader.setYHeadRot(yaw);
+            // if the type is invalid try again but add a few attempts
+            EntityType type = getTraderFromName(entityName);
+            if (type == null) {
+                ExtendedLog.error("Got null EntityType when attempting to parse " + entityName);
+                break;
+            }
 
-                        // TODO: Set to actual time when done with testing
-                        System.out.println("Setting wandering trader status and they should be removed in a minute");
-                        ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(18000);
-                        ((ExtendedTraderEntity) trader).setWanderingTrader(true);
-                        ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
+            BlockPos plusOneY = new BlockPos(x, y + 1, z);
+            if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
+                BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
+                Entity trader = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.SPAWN_EGG, true, true);
+                if (trader instanceof ExtendedTraderEntity) {
+                    // set look angle
+                    float yaw = world.random.nextFloat() * 360.0F;
+                    trader.setYBodyRot(yaw);
+                    trader.setYHeadRot(yaw);
 
-                        // TODO: Add support for spawning guards
+                    ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(18000);
+                    ((ExtendedTraderEntity) trader).setWanderingTrader(true);
+                    ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
 
-                        // send message to the original player
-                        player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you",((NPCEntity) trader).getName(), new StringTextComponent("X: " + pos.getX() + " Z: " + pos.getZ())), Util.NIL_UUID);
-                        for (PlayerEntity otherPlayer : world.players()) {
-                            if (otherPlayer.getUUID().equals(player.getUUID())) continue;
+                    // TODO: Update warning message to 2 minutes and update visiting time to 20 minutes
+                    // TODO: Add support for spawning guards
+                    // TODO: Make sure escorts are removed on despawn and death
+                    // TODO: Add a 1 in 10 random roll to reduce the frequency they spawn
 
-                            otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player",((NPCEntity) trader).getName(), player.getName()), Util.NIL_UUID);
-                        }
-                        break;
-                    } else {
-                        ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity?");
-                        break;
+                    // send message to the original player
+                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you",((NPCEntity) trader).getName(), new StringTextComponent("X: " + pos.getX() + " Z: " + pos.getZ())), Util.NIL_UUID);
+                    for (PlayerEntity otherPlayer : world.players()) {
+                        if (otherPlayer.getUUID().equals(player.getUUID())) continue;
+                        otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player",((NPCEntity) trader).getName(), player.getName()), Util.NIL_UUID);
                     }
-
+                    break;
+                } else {
+                    ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity?");
+                    break;
                 }
-            } else {
-                player.sendMessage(new StringTextComponent("The picked trader was null"), player.getUUID());
             }
         }
     }

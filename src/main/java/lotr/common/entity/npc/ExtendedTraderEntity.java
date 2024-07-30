@@ -62,4 +62,8 @@ public interface ExtendedTraderEntity {
 	}
 
 	TranslationTextComponent getDepartureLine(PlayerEntity player);
+
+	List<UUID> getEscortUUIDs();
+
+	void addEscort(UUID uuid);
 }

@@ -54,6 +54,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedOddmentCollectorEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedOddmentCollectorEntity.class, DataSerializers.INT);
 
+    private List<UUID> escorts = new ArrayList<>();
+
     // items Oddment Collectors can buy from players
     // TODO: Following Items missing from Renewed Extended:
     //  Party Hat, Blue Dwarven Steel Ingot
@@ -157,8 +159,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
-        tag.putInt("wanderingTraderTimeLeft", entityData.get(WANDERING_TRADER_TIME_LEFT));
-        tag.putBoolean("isWanderingTrader", entityData.get(IS_WANDERING_TRADER));
+        ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
     @Override
@@ -183,6 +184,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
         boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
         entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+
+        escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
     // in Legacy the eat and drink pools for Oddment Collectors are based off Dunland
@@ -373,6 +376,16 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     protected NPCGenderProvider getGenderProvider() {
         return NPCGenderProvider.MALE;
+    }
+
+    @Override
+    public List<UUID> getEscortUUIDs() {
+        return escorts;
+    }
+
+    @Override
+    public void addEscort(UUID uuid) {
+        escorts.add(uuid);
     }
 
 }
