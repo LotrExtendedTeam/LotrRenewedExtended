@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
+import java.nio.file.Path;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -35,15 +36,16 @@ import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedBlockTagGenerator extends BlockTagsProvider {
+public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	//LOTR
     public static final ITag.INamedTag<Block> PILLARS = BlockTags.bind("lotr:pillars");
 	public static final ITag.INamedTag<Block> WOODEN_FENCES = BlockTags.bind("lotr:wooden_fences");
@@ -80,8 +82,10 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	public static final ITag.INamedTag<Block> CHESTS = BlockTags.bind(Tags.Blocks.CHESTS.getName().toString());
 	public static final ITag.INamedTag<Block> BARRELS = BlockTags.bind(Tags.Blocks.BARRELS.getName().toString());
 	public static final ITag.INamedTag<Block> BARRELS_WOODEN = BlockTags.bind(Tags.Blocks.BARRELS_WOODEN.getName().toString());
-	public ExtendedBlockTagGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
-		super(generator, modid, existingFileHelper);
+
+	@SuppressWarnings("deprecation")
+	public ExtendedBlockTagProvider(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
+		super(generator, Registry.BLOCK, modid, existingFileHelper);
 	}
 
 	@Override
@@ -284,5 +288,10 @@ public class ExtendedBlockTagGenerator extends BlockTagsProvider {
 	@Override
 	public String getName() {
 		return "Extended Renewed Block Tags Generator";
+	}
+
+	@Override
+	protected Path getPath(ResourceLocation pId) {
+		return this.generator.getOutputFolder().resolve("data/" + pId.getNamespace() + "/tags/blocks/" + pId.getPath() + ".json");
 	}
 }

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:chestnut_beam_slab",
-    "lotr:banana_beam_slab"
+    "lotr:banana_beam_slab",
+    "lotr:chestnut_beam_slab"
   ]
 }

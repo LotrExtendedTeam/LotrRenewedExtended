@@ -7,7 +7,6 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
-import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedItemTagGenerator;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedBlocks;
@@ -61,8 +60,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		ShapedRecipeBuilder.shaped(ExtendedItems.BEDROLL.get())
 		.pattern("LLF")
 		.define('L', Ingredient.of(Tags.Items.LEATHER))
-		.define('F', Ingredient.of(ExtendedItemTagGenerator.FURS))
-		.unlockedBy("has_"+LOTRItems.FUR.get().getRegistryName().getPath(), has(ExtendedItemTagGenerator.FURS))
+		.define('F', Ingredient.of(ExtendedTags.Items.FURS))
+		.unlockedBy("has_"+LOTRItems.FUR.get().getRegistryName().getPath(), has(ExtendedTags.Items.FURS))
 		.unlockedBy("has_"+ExtendedItems.BEDROLL.get().getRegistryName().getPath(), has(ExtendedItems.BEDROLL.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BEDROLL.get().getRegistryName().getPath()));
 		/////////////////WOOD

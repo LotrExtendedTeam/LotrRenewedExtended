@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:chestnut_trapdoor",
-    "lotr:banana_trapdoor"
+    "lotr:banana_trapdoor",
+    "lotr:chestnut_trapdoor"
   ]
 }
