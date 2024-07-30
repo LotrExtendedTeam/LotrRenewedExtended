@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:reed_basket",
-    "lotr:orc_barrel"
+    "lotr:orc_barrel",
+    "lotr:reed_basket"
   ]
 }

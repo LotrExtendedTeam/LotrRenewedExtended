@@ -1,7 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserDuckEgg;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +17,7 @@ import net.minecraft.world.World;
 public class ExtendedDuckEggItem extends Item {
    public ExtendedDuckEggItem(Item.Properties properties) {
       super(properties);
+      DispenserBlock.registerBehavior(this, new ExtendedDispenserDuckEgg());
    }
 
    /**

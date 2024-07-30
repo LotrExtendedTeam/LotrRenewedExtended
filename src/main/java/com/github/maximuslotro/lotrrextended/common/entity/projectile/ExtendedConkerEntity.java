@@ -1,4 +1,4 @@
-package lotr.common.entity.projectile;
+package com.github.maximuslotro.lotrrextended.common.entity.projectile;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
@@ -26,11 +26,6 @@ public class ExtendedConkerEntity extends ProjectileItemEntity{
 
 	public ExtendedConkerEntity(EntityType<? extends ProjectileItemEntity> entityType, World p_i48540_2_) {
 		super(entityType, p_i48540_2_);
-	}
-
-	@Override
-	public void defineSynchedData() {
-		super.defineSynchedData();
 	}
 
 	@Override

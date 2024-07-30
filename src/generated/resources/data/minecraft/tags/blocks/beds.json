@@ -1,13 +1,13 @@
 {
   "replace": false,
   "values": [
-    "lotr:silver_fur_bed",
-    "lotr:fur_bed",
-    "lotr:white_fur_bed",
     "lotr:bedroll",
     "lotr:black_fur_bed",
+    "lotr:fur_bed",
     "lotr:gray_fur_bed",
     "lotr:orc_bed",
-    "lotr:straw_bed"
+    "lotr:silver_fur_bed",
+    "lotr:straw_bed",
+    "lotr:white_fur_bed"
   ]
 }
