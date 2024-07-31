@@ -125,27 +125,28 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
 		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
-			if(pPlayer.isCrouching() && pPlayer.getMainHandItem().isEmpty()) {
-				ItemStack stack = new ItemStack(ExtendedItems.ENTITY_SPAWNER.get());
-				if(spawnerType!=null) {
-					if(stack.hasTag()) {
-						CompoundNBT nbt = stack.getTag();
-						nbt.putString("setSpawnerType", spawnerType.toString());
-						stack.setTag(nbt);
-					} else {
-						CompoundNBT nbt = new CompoundNBT();
-						nbt.putString("setSpawnerType", spawnerType.toString());
-						stack.setTag(nbt);
-					}
-				}
-				pPlayer.setItemInHand(Hand.MAIN_HAND, stack);
-			}else {
-				pPlayer.sendMessage(new StringTextComponent("Spawner Type: " +(spawnerType!=null ? spawnerType.toString() : "Unset")), Util.NIL_UUID);
-			}
+			pPlayer.sendMessage(new StringTextComponent("Spawner Type: " +(spawnerType!=null ? spawnerType.toString() : "Unset")), Util.NIL_UUID);
+			pPlayer.sendMessage(new StringTextComponent("In future will open GUI"), Util.NIL_UUID);
 		}
 		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 
+	@Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		ItemStack stack = new ItemStack(ExtendedItems.ENTITY_SPAWNER.get());
+		if(spawnerType!=null) {
+			if(stack.hasTag()) {
+				CompoundNBT nbt = stack.getTag();
+				nbt.putString("setSpawnerType", spawnerType.toString());
+				stack.setTag(nbt);
+			} else {
+				CompoundNBT nbt = new CompoundNBT();
+				nbt.putString("setSpawnerType", spawnerType.toString());
+				stack.setTag(nbt);
+			}
+		}
+		return stack;
+	}
 	@Override
 	public void setInvisible(boolean pInvisible) {
 		if(!this.level.isClientSide()) {
