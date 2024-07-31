@@ -16,11 +16,13 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -34,10 +36,14 @@ public class ExtendedEntitySpawnerItem extends Item{
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		if (!world.isClientSide() && player.isCreative()) {
-			ExtendedStructureSpawnerEntity conker = new ExtendedStructureSpawnerEntity(world);
+			ExtendedStructureSpawnerEntity spawnerEntity = new ExtendedStructureSpawnerEntity(world);
+			ItemStack pStack = player.getItemInHand(hand);
+			if (!pStack.isEmpty() && pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
+				spawnerEntity.setSpawnerToDefaultPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")), true);
+			}
 			BlockPos setPos = new BlockPos(player.getX(), player.getEyeY(), player.getZ());
-			conker.moveTo(setPos.relative(player.getDirection(), 1), 0.0F, 0.0F);
-			world.addFreshEntity(conker);
+			spawnerEntity.moveTo(setPos.relative(player.getDirection(), 1), 0.0F, 0.0F);
+			world.addFreshEntity(spawnerEntity);
 		}
 		ItemStack heldItem = player.getItemInHand(hand);
 		world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.GLASS_PLACE, SoundCategory.NEUTRAL, 0.7F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
@@ -59,10 +65,15 @@ public class ExtendedEntitySpawnerItem extends Item{
 			BlockPos blockpos = pContext.getClickedPos();
 			World world = pContext.getLevel();
 			PlayerEntity playerentity = pContext.getPlayer();
-			if (!pContext.getLevel().isClientSide() && playerentity.isCreative()) {
-				ExtendedStructureSpawnerEntity conker = new ExtendedStructureSpawnerEntity(world);
-				conker.moveTo(blockpos.getX()+0.5D, blockpos.getY(), blockpos.getZ()+0.5D, 0.0F, 0.0F);
-				world.addFreshEntity(conker);
+			if (!world.isClientSide() && playerentity.isCreative()) {
+				Hand hand = pContext.getHand();
+				ExtendedStructureSpawnerEntity spawnerEntity = new ExtendedStructureSpawnerEntity(world);
+				ItemStack pStack = playerentity.getItemInHand(hand);
+				if (!pStack.isEmpty() && pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
+					spawnerEntity.setSpawnerToDefaultPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")), true);
+				}
+				spawnerEntity.moveTo(blockpos.getX()+0.5D, blockpos.getY(), blockpos.getZ()+0.5D, 0.0F, 0.0F);
+				world.addFreshEntity(spawnerEntity);
 			}
 			world.playSound(playerentity, blockpos, SoundEvents.GLASS_PLACE, SoundCategory.NEUTRAL, 0.7F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 			playerentity.awardStat(Stats.ITEM_USED.get(this));
@@ -74,11 +85,13 @@ public class ExtendedEntitySpawnerItem extends Item{
 		}
 	}
 
-	   @OnlyIn(Dist.CLIENT)
-	   public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
-		   super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
-		   if (pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
-			   pTooltip.add(new StringTextComponent("Spawner Type: "+pStack.getTag().getString("setSpawnerType")));
-		   }
-	   }
+	@OnlyIn(Dist.CLIENT)
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
+		if (pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
+			StringTextComponent text = new StringTextComponent("Spawner Type: "+pStack.getTag().getString("setSpawnerType"));
+			text.withStyle(TextFormatting.GREEN);
+			pTooltip.add(text);
+		}
+	}
 }

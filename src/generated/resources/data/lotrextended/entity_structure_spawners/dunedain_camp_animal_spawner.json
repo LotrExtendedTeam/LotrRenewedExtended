@@ -1,7 +1,7 @@
 {
   "id": "lotrextended:dunedain_camp_animal_spawner",
   "spawner_type": "single_use_spawner",
-  "poolRolls": 3,
+  "numRolls": 3,
   "pools": [
     {
       "weight": 90,

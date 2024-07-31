@@ -26,11 +26,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ExtendedStructureEntitySpawnerEntity extends WeightedRandom.Item {
+public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 	private final ExtendedStructureEntityTypeInterface entityProvider;
 	private final int minSpawn;
 	private final int maxSpawn;
-	public ExtendedStructureEntitySpawnerEntity(ExtendedStructureEntityTypeInterface entityProvider, int weight, int minSpawn, int maxSpawn) {
+	public ExtendedStructureEntitySpawnerEntry(ExtendedStructureEntityTypeInterface entityProvider, int weight, int minSpawn, int maxSpawn) {
 		super(weight);
 		this.entityProvider = entityProvider;
 		this.minSpawn = minSpawn;
@@ -38,8 +38,8 @@ public class ExtendedStructureEntitySpawnerEntity extends WeightedRandom.Item {
 		
 	}
 
-	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawnerEntity>, JsonSerializer<ExtendedStructureEntitySpawnerEntity> {
-		public ExtendedStructureEntitySpawnerEntity deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
+	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawnerEntry>, JsonSerializer<ExtendedStructureEntitySpawnerEntry> {
+		public ExtendedStructureEntitySpawnerEntry deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawnerEntry");
 			int weight = jsonobject.get("weight").getAsInt();
 			int minSpawn = jsonobject.get("minSpawnCount").getAsInt();
@@ -72,10 +72,10 @@ public class ExtendedStructureEntitySpawnerEntity extends WeightedRandom.Item {
 				ExtendedLog.error(jsonobject.getAsString());
 				return null;
 			}
-			return new ExtendedStructureEntitySpawnerEntity(entityProvider, weight, minSpawn, maxSpawn);
+			return new ExtendedStructureEntitySpawnerEntry(entityProvider, weight, minSpawn, maxSpawn);
 		}
 
-		public JsonElement serialize(ExtendedStructureEntitySpawnerEntity entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
+		public JsonElement serialize(ExtendedStructureEntitySpawnerEntry entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("weight", entitySpawner.weight);
 			jsonobject.addProperty("minSpawnCount", entitySpawner.minSpawn);

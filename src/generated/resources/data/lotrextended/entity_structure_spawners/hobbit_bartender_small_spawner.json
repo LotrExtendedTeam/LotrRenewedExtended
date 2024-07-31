@@ -2,6 +2,7 @@
   "id": "lotrextended:hobbit_bartender_small_spawner",
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
+  "homeRadius": 16,
   "pools": [
     {
       "weight": 100,

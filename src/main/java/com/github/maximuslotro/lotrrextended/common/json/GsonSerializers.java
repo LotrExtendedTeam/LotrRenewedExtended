@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.json;
 
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
 import com.google.gson.GsonBuilder;
 
 import net.minecraft.loot.BinomialRange;
@@ -21,7 +21,7 @@ public class GsonSerializers {
 
 	public static GsonBuilder createStructureSpawnerSerializer() {
 		return createConditionSerializer()
-			.registerTypeAdapter(ExtendedStructureEntitySpawnerEntity.class, new ExtendedStructureEntitySpawnerEntity.Serializer())
+			.registerTypeAdapter(ExtendedStructureEntitySpawnerEntry.class, new ExtendedStructureEntitySpawnerEntry.Serializer())
 			.registerTypeAdapter(ExtendedStructureEntitySpawner.class, new ExtendedStructureEntitySpawner.Serializer())
 			.registerTypeAdapter(ExtendedSpawnerBoundsEntry.class, new ExtendedSpawnerBoundsEntry.Serializer());
 	}

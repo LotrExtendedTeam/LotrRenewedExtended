@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.TreeMap;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
@@ -28,7 +28,6 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	private static final Logger LOGGER = LogManager.getLogger();
-	private static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private final Map<ResourceLocation, ExtendedStructureEntitySpawner> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
 	protected final String modId;
@@ -51,7 +50,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	            Path path1 = createPath(path, spawner);
 
 	            try {
-	               save(GSON, pCache, spawner, path1);
+	               save(ExtendedStructureEntitySpawnManager.GSON_PRETTY_WRITER, pCache, spawner, path1);
 	            } catch (IOException ioexception) {
 	               LOGGER.error("Couldn't save advancement {}", path1, ioexception);
 	            }
@@ -62,9 +61,9 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.");
 	}
 
-	private static void save(Gson pGson, DirectoryCache pCache, Object object, Path pPath) throws IOException {
+	private static void save(Gson pGson, DirectoryCache pCache, ExtendedStructureEntitySpawner spawner, Path pPath) throws IOException {
 		try {
-			String s = pGson.toJson(object);
+			String s = ExtendedStructureEntitySpawnManager.serialize(pGson, spawner);
 			String s1 = SHA1.hashUnencodedChars(s).toString();
 			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
 				Files.createDirectories(pPath.getParent());

@@ -2,7 +2,7 @@
   "id": "lotrextended:hobbit_family_house_spawner",
   "spawner_type": "single_family_spawner",
   "setHomeOnSpawn": true,
-  "defaultHomeRadius": 12,
+  "homeRadius": 12,
   "pools": [
     {
       "weight": 100,

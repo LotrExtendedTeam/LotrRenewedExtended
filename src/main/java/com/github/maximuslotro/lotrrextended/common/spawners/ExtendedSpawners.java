@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedSpawners {
    private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
    private static final Set<ResourceLocation> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
-   public static final ResourceLocation EMPTY = new ResourceLocation("empty");
+   public static final ResourceLocation EMPTY = register("empty");
    // HOBBITS
    public static final ResourceLocation HOBBIT_BARTENDER_SMALL = register("hobbit_bartender_small_spawner");
    public static final ResourceLocation HOBBIT_BARTENDER_LARGE = register("hobbit_bartender_large_spawner");

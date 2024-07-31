@@ -27,7 +27,7 @@ public class ExtendedStructureEntitySpawner {
 	public static final int defultPlayerMaxSpawnDistance = 50;
 	public static final int defultHomeRadius = 16;
 	public static final ExtendedSpawnerBoundsEntry defultBoundary = new ExtendedSpawnerBoundsEntry(0, 0, 0);
-	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(new ResourceLocation("empty"), new ExtendedStructureEntitySpawnerEntity[0], SpawnerType.UNKNOWN, defultBoundary, defultBoundary);
+	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(ExtendedSpawners.EMPTY, new ExtendedStructureEntitySpawnerEntry[0], SpawnerType.UNKNOWN, defultBoundary, defultBoundary);
 	private final ResourceLocation id;
 	private final SpawnerType spawnType;
 	private boolean setHomePositionOnSpawn = false;
@@ -39,14 +39,14 @@ public class ExtendedStructureEntitySpawner {
 	private ExtendedSpawnerBoundsEntry checkBoundaries = defultBoundary;
 	private ExtendedSpawnerBoundsEntry spawnRegion = defultBoundary;
 	private int poolRolls = 1;
-	private final List<ExtendedStructureEntitySpawnerEntity> entries;
+	private final List<ExtendedStructureEntitySpawnerEntry> entries;
 
-	public ExtendedStructureEntitySpawner(ResourceLocation id, ExtendedStructureEntitySpawnerEntity[] entries, SpawnerType spawnType,
+	public ExtendedStructureEntitySpawner(ResourceLocation id, ExtendedStructureEntitySpawnerEntry[] entries, SpawnerType spawnType,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
 		this(id, Lists.newArrayList(entries), spawnType, checkBoundaries, spawnRegion);
 	}
 
-	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntity> entries, SpawnerType spawnType,
+	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
 		this.id = id;
 		this.entries = entries;
@@ -55,7 +55,7 @@ public class ExtendedStructureEntitySpawner {
 		this.spawnRegion = spawnRegion;
 	}
 
-	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntity> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
+	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 			boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls) {
 		this(id, entries, spawnType, checkBoundaries, spawnRegion);
@@ -72,7 +72,7 @@ public class ExtendedStructureEntitySpawner {
 		return id;
 	}
 
-	public List<ExtendedStructureEntitySpawnerEntity> getEntries() {
+	public List<ExtendedStructureEntitySpawnerEntry> getEntries() {
 		return new ArrayList<>(entries);
 	}
 
@@ -117,7 +117,9 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public void setPoolRolls(int poolRolls) {
-		this.poolRolls = poolRolls;
+		if(!(poolRolls<0)) {
+			this.poolRolls = poolRolls;
+		}
 	}
 
 	// ##################################### Player Distance Methods ###########################
@@ -175,7 +177,7 @@ public class ExtendedStructureEntitySpawner {
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawner>, JsonSerializer<ExtendedStructureEntitySpawner> {
 		public ExtendedStructureEntitySpawner deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawner");
-			ExtendedStructureEntitySpawnerEntity[] alootpool = JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntity[0], context, ExtendedStructureEntitySpawnerEntity[].class);
+			ExtendedStructureEntitySpawnerEntry[] alootpool = JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntry[0], context, ExtendedStructureEntitySpawnerEntry[].class);
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
 				ExtendedLog.warn("Failed to load structure spawner due to invalid id: %s!", id);
@@ -191,7 +193,7 @@ public class ExtendedStructureEntitySpawner {
 			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(new ResourceLocation(id), alootpool, type, check, spawn);
 			if(jsonobject.has("setHomeOnSpawn")) {
 				spawner.setSetHomePositionOnSpawn(jsonobject.get("setHomeOnSpawn").getAsBoolean());
-				spawner.setHomeRadius(jsonobject.get("defaultHomeRadius").getAsInt());
+				spawner.setHomeRadius(jsonobject.get("homeRadius").getAsInt());
 			}
 			if(jsonobject.has("setHomeRandomly")) {
 				spawner.setSetHomeRandom(jsonobject.get("setHomeRandomly").getAsBoolean());
@@ -199,14 +201,12 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("entitySpawnTickRate")) {
 				spawner.setEntitySpawnTickRate(jsonobject.get("entitySpawnTickRate").getAsInt());
 			}
-			if(jsonobject.has("playerMinSpawnDistance")) {
+			if(jsonobject.has("playerMinSpawnDistance") || jsonobject.has("playerMaxSpawnDistance")) {
 				spawner.setPlayerMinSpawnDistance(jsonobject.get("playerMinSpawnDistance").getAsInt());
-			}
-			if(jsonobject.has("playerMaxSpawnDistance")) {
 				spawner.setPlayerMaxSpawnDistance(jsonobject.get("playerMaxSpawnDistance").getAsInt());
 			}
-			if(jsonobject.has("poolRolls")) {
-				spawner.setPoolRolls(jsonobject.get("poolRolls").getAsInt());
+			if(jsonobject.has("numRolls")) {
+				spawner.setPoolRolls(jsonobject.get("numRolls").getAsInt());
 			}
 			return spawner;
 		}
@@ -226,21 +226,17 @@ public class ExtendedStructureEntitySpawner {
 				if(entitySpawner.isSetHomeRandom()) {
 					jsonobject.addProperty("setHomeRandomly", entitySpawner.isSetHomeRandom());
 				}
-				if(entitySpawner.getHomeRadius() != defultHomeRadius) {
-					jsonobject.addProperty("defaultHomeRadius", entitySpawner.getHomeRadius());
-				}
+				jsonobject.addProperty("homeRadius", entitySpawner.getHomeRadius());
 			}
 			if(entitySpawner.getEntitySpawnTickRate() != defultEntitySpawnTickRate) {
 				jsonobject.addProperty("entitySpawnTickRate", entitySpawner.getEntitySpawnTickRate());
 			}
-			if(entitySpawner.getPlayerMinSpawnDistance() != defultPlayerMinSpawnDistance) {
+			if(entitySpawner.getPlayerMinSpawnDistance() != defultPlayerMinSpawnDistance || entitySpawner.getPlayerMaxSpawnDistance() != defultPlayerMaxSpawnDistance) {
 				jsonobject.addProperty("playerMinSpawnDistance", entitySpawner.getPlayerMinSpawnDistance());
-			}
-			if(entitySpawner.getPlayerMaxSpawnDistance() != defultPlayerMaxSpawnDistance) {
 				jsonobject.addProperty("playerMaxSpawnDistance", entitySpawner.getPlayerMaxSpawnDistance());
 			}
 			if(entitySpawner.getPoolRolls() != 1) {
-				jsonobject.addProperty("poolRolls", entitySpawner.getPoolRolls());
+				jsonobject.addProperty("numRolls", entitySpawner.getPoolRolls());
 			}
 			if (!entitySpawner.entries.isEmpty()) {
 				jsonobject.add("pools", context.serialize(entitySpawner.entries));
@@ -250,7 +246,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public static class Builder {
-		private List<ExtendedStructureEntitySpawnerEntity> entries = new ArrayList<>();
+		private List<ExtendedStructureEntitySpawnerEntry> entries = new ArrayList<>();
 		private final SpawnerType spawnType;
 		private boolean setHomePositionOnSpawn = false;
 		private boolean setHomeRandom = false;
@@ -262,7 +258,7 @@ public class ExtendedStructureEntitySpawner {
 		private ExtendedSpawnerBoundsEntry spawnRegion = defultBoundary;
 		private int poolRolls = 1;
 
-		public Builder(List<ExtendedStructureEntitySpawnerEntity> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn, 
+		public Builder(List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn, 
 				boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls) {
 			this.entries = entries;
@@ -353,12 +349,12 @@ public class ExtendedStructureEntitySpawner {
 		}
 		
 		public ExtendedStructureEntitySpawner.Builder addSinglePool(EntityType<?> type, int weight, int minSpawnCount, int maxSpawnCount) {
-			entries.add(new ExtendedStructureEntitySpawnerEntity(new SingleSpawnType(type), weight, minSpawnCount, maxSpawnCount));
+			entries.add(new ExtendedStructureEntitySpawnerEntry(new SingleSpawnType(type), weight, minSpawnCount, maxSpawnCount));
 			return this;
 		}
 
 		public ExtendedStructureEntitySpawner.Builder addMultiPool(MultiSpawnType multiPool, int weight, int minSpawnCount, int maxSpawnCount) {
-			entries.add(new ExtendedStructureEntitySpawnerEntity(multiPool, weight, minSpawnCount, maxSpawnCount));
+			entries.add(new ExtendedStructureEntitySpawnerEntry(multiPool, weight, minSpawnCount, maxSpawnCount));
 			return this;
 		}
 	}

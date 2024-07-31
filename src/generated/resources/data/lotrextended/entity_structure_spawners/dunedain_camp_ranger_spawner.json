@@ -12,7 +12,7 @@
     "horizontal_bounds": 8
   },
   "setHomeOnSpawn": true,
-  "defaultHomeRadius": 18,
+  "homeRadius": 18,
   "pools": [
     {
       "weight": 100,
