@@ -1,0 +1,113 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Hello there, #p! Do you want to buy any crops?",
+        "You after some fine crops, #p?",
+        "I have some fine farmhands ready for hire.",
+        "Want to hire some farm workers? Just bring me some silver coins.",
+        "The harvest is plentiful this time of year!",
+        "And how are you today, #p?",
+        "Got any farming equipment? I'll offer you a good price.",
+        "Welcome to the farm, #p!",
+        "You're a little tall for a Hobbit, aren't you?",
+        "I hope you've not been stealing any crops!",
+        "Looking for some good crops, #p? Well then, you've come to the right place!",
+        "This is the best here farm in all the Shire!",
+        "I have some fresh crops that you'll like!",
+        "I offer you the best crops in all the Shire!",
+        "I'm always in need of new farming tools! Get me some and we can trade!",
+        "My farmhands are the hardest-working in this entire farthing! Bring me some silver coins and you can hire some!",
+        "Don't forget to not step on my crops!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "I do so miss the Shire.",
+        "I do so miss my tavern.",
+        "I've never been so far from the Shire before.",
+        "If I take one more step, it'll be the farthest from home I've ever been.",
+        "Perhaps it's time to return home. I miss the Shire.",
+        "Adventures? Nasty things, they are. I think it's about time I returned to my tavern.",
+        "The road goes ever on and on, under trees and over streams, and I must follow, so it seems! But I shall be turning home soon.",
+        "Is this the land of your folk, #p? A strange place it is, and that's for sure!",
+        "Now we ought to find the way back home, #p.",
+        "Hobbit holes! Warmth, good food, and comfort. I do miss mine...",
+        "I've had my fill of foreign lands for now, #p. Shall we be a-wandering home soon?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "What a dreadful place! Let us return to the Shire at once!",
+        "How have we come to such a dreadful place?",
+        "What an awful land this is, #p!",
+        "What a frightful land! We must find our way back to the Shire!",
+        "This country is enough to fill even the stoutest hearts with dread!",
+        "I declare I've seen quite enough of this place! Let's go back to the Shire, and quickly!",
+        "Well, #p, this is a nasty place if I ever saw one!",
+        "I feel all ill at ease here. Say, #p, do you know the road back to the Shire?",
+        "I don't know how we ever came to find ourselves in such a place as this, #p.",
+        "Even the air here is nasty stuff!",
+        "They always warned me against following those roads out of the Shire!",
+        "I wish I'd paid more attention to my old Gaffer! Never should've left the Shire, no no!",
+        "If I'd known this was what lay beyond our Shire-borders, I never would've gone a-wandering!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Do you mind? I was in the middle of a conversation here!",
+        "#p! I was just in the middle of a conversation.",
+        "A bit rude to interrupt, isn't it?",
+        "There's no need to interrupt, is there?",
+        "I was just speaking! Wait your turn!",
+        "How rude! We were having a good chatter there, if you please.",
+        "Mind your own business. Can't you see we were talking?",
+        "Mind your own business, please! Now leave us alone.",
+        "I see you have no qualms about interrupting some good Hobbit chatter!",
+        "If you please, #p, I was in the middle of a conversation.",
+        "...and I turned to him and said - excuse me? Do you mind interrupting us, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Strange folk have been seen in these parts, and you look like one of them.",
+        "I hear you've been causing trouble round here.",
+        "You look like a troublemaker!",
+        "You look like a troublemaker, #p.",
+        "Aren't you one of those strange folk I've heard talk of?",
+        "Stay away from the Shire, #p.",
+        "Stay out of the Shire!",
+        "I shan't be lending you any of my pipeweed!",
+        "We don't take kindly to folk like you.",
+        "You're not a nice fellow, #p.",
+        "There's talk of strange folk round here. Might you be one of them?",
+        "If you'll be begging my pardon, you make me feel uncomfortable.",
+        "You're one for the Mewlips, #p!",
+        "I knew you queer old Big Folk were trouble!",
+        "We don't appreciate folk like you in the Shire.",
+        "The Shire is no place for troublemakers like you!",
+        "You'd better leave the Shire, #p, or I'll call the Bounders!",
+        "I've seen strange folk lurking around these parts, and you remind me of one of them. I don't trust you."
+      ]
+    }
+  ]
+}
