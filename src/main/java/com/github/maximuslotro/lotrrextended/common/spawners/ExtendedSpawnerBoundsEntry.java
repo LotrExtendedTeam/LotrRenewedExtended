@@ -11,6 +11,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.math.BlockPos;
 
 public class ExtendedSpawnerBoundsEntry {
 	public int topYvalue;
@@ -21,6 +22,22 @@ public class ExtendedSpawnerBoundsEntry {
 		this.topYvalue = topY;
 		this.lowerYvalue = bottomY;
 		this.horizontalBounds = horizontal;
+	}
+
+	public BlockPos getMinPos(int x, int y, int z) {
+		return new BlockPos(x - horizontalBounds, y + lowerYvalue, z - horizontalBounds);
+	}
+
+	public BlockPos getMaxPos(int x, int y, int z) {
+		return new BlockPos(x + horizontalBounds, y + topYvalue, z + horizontalBounds);
+	}
+
+	public BlockPos getMinPos(double x, double y, double z) {
+		return new BlockPos(x - horizontalBounds, y + lowerYvalue, z - horizontalBounds);
+	}
+
+	public BlockPos getMaxPos(double x, double y, double z) {
+		return new BlockPos(x + horizontalBounds, y + topYvalue, z + horizontalBounds);
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedSpawnerBoundsEntry>, JsonSerializer<ExtendedSpawnerBoundsEntry> {

@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
@@ -12,6 +15,7 @@ import lotr.common.init.ExtendedItems;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -26,6 +30,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -71,9 +77,37 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			}
 			if(spawnerInstance !=null && spawnerInstance.shouldTick()) {
 				if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0) {
-					
+					trySpawningEntities();
 				}
 			}
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	private void trySpawningEntities() {
+		// Check if spawner bounds exist
+		BlockPos minPos = spawnerInstance.getCheckBoundaries().getMinPos(getX(), this.getY(), getZ());
+		BlockPos maxPos = spawnerInstance.getCheckBoundaries().getMaxPos(getX(), getY(), getZ());
+		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+			if(!this.level.hasChunksAt(minPos, maxPos)) {
+				return;
+			}
+		}
+		// Check if player has a proper distance from the spawner
+		if(this.level.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
+			return;
+		} else if (!this.level.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
+			return;
+		}
+		AxisAlignedBB checkBox = new AxisAlignedBB(minPos, maxPos);
+		Predicate<LivingEntity> pred = (entity) ->{
+			// Check from new list in spawner of all available spawnable entities
+			return true;
+		};
+		List<LivingEntity> entityTypes = this.level.getEntitiesOfClass(LivingEntity.class, getBoundingBox(), pred);
+		// Add new parameter to spawner to set local spawn cap for entities
+		if(entityTypes.size() < 1) {
+			
 		}
 	}
 
