@@ -27,6 +27,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -60,10 +62,16 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		this.yRot += 0.8F;
 		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
 		this.yRot = MathHelper.wrapDegrees(this.yRot);
+		this.setDeltaMovement(Vector3d.ZERO);
 		if(!level.isClientSide()) {
 			if (!hasLoaded) {
 				if (spawnerType!=null && !isUsingCustomSpawner) {
 					setSpawnerFromResourceLocation();
+				}
+			}
+			if(spawnerInstance !=null && spawnerInstance.shouldTick()) {
+				if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0) {
+					
 				}
 			}
 		}
@@ -99,11 +107,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
-		if(pCompound.contains("isUsingCustomSpawner")) {
-			isUsingCustomSpawner = pCompound.getBoolean("usingCustomSpawner");
-		}
 		if(pCompound.contains("spawnerData")) {
 			spawnerInstance = ExtendedStructureEntitySpawnManager.deserialize(ExtendedStructureEntitySpawnManager.GSON, pCompound.getString("spawnerData"), ExtendedStructureEntitySpawner.class);
+			isUsingCustomSpawner = true;
 			this.getEntityData().set(DATA_SPAWNER_TYPE, spawnerInstance.getId().toString());
 		}
 		if(!isUsingCustomSpawner && pCompound.contains("setSpawnerType")) {
@@ -114,7 +120,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
-		if( !isUsingCustomSpawner && spawnerType!=null) {
+		if(!isUsingCustomSpawner && spawnerType!=null) {
 			pCompound.putString("setSpawnerType", spawnerType.toString());
 		} 
 		if(isUsingCustomSpawner && spawnerInstance!=null) {

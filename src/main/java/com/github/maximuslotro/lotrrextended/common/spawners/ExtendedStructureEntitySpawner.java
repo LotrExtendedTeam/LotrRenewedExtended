@@ -72,6 +72,10 @@ public class ExtendedStructureEntitySpawner {
 		return id;
 	}
 
+	public boolean shouldTick() {
+		return !id.equals(ExtendedSpawners.EMPTY);
+	}
+
 	public List<ExtendedStructureEntitySpawnerEntry> getEntries() {
 		return new ArrayList<>(entries);
 	}
