@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
 import com.google.common.collect.Lists;
@@ -71,8 +72,12 @@ public class ExtendedStructureEntitySpawner {
 		return id;
 	}
 
+	public boolean isEmptySpawner() {
+		return this.equals(ExtendedStructureEntitySpawner.EMPTY) || id.equals(ExtendedSpawners.EMPTY);
+	}
+
 	public boolean shouldTick() {
-		return !id.equals(ExtendedSpawners.EMPTY);
+		return !isEmptySpawner() && !ExtendedServerConfig.enableDevMode.get();
 	}
 
 	public boolean isCustom() {
