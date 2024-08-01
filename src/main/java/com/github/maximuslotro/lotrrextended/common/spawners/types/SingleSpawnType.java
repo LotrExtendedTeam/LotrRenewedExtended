@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.spawners.types;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.EntityType;
@@ -18,5 +20,10 @@ public class SingleSpawnType implements ExtendedStructureEntityTypeInterface {
 
 	public EntityType<?> getEntity() {
 		return entity;
+	}
+
+	@Override
+	public List<EntityType<?>> getAllPossableEntities() {
+		return Collections.singletonList(entity);
 	}
 }

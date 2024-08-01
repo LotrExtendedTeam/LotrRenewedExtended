@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,11 +35,29 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "entity_structure_spawners";
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
+	private HashMap<String, List<String>> cachedSpawnLists = new HashMap<>();
 	
-	public ExtendedStructureEntitySpawnManager() {}
+	// Don't allow more than one instance than {@Link ExtendedStructureEntitySpawnManager#INSTANCE }
+	private ExtendedStructureEntitySpawnManager() {}
 
 	public ExtendedStructureEntitySpawner get(ResourceLocation p_186521_1_) {
 		return this.spawners.getOrDefault(p_186521_1_, ExtendedStructureEntitySpawner.EMPTY);
+	}
+
+	public List<String> getEntities(String location, List<ExtendedStructureEntitySpawnerEntry> defaultEntrys){
+		if(cachedSpawnLists.containsKey(location)) {
+			return cachedSpawnLists.get(location);
+		}
+		List<String> returnList = new ArrayList<>();
+		for(ExtendedStructureEntitySpawnerEntry entry : defaultEntrys) {
+			entry.getAllEntities().forEach(stringEntity -> {
+				if(!returnList.contains(stringEntity)) {
+					returnList.add(stringEntity);
+				}
+			});
+		}
+		cachedSpawnLists.put(location, returnList);
+		return returnList;
 	}
 
 	@Override

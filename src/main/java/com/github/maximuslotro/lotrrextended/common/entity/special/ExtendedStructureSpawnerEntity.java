@@ -103,8 +103,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		}
 		AxisAlignedBB checkBox = new AxisAlignedBB(minPos, maxPos);
 		Predicate<LivingEntity> pred = (entity) ->{
-			// Check from new list in spawner of all available spawnable entities
-			return true;
+			return ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
+					.contains(entity.getType().getRegistryName().toString());
 		};
 		List<LivingEntity> entityTypes = this.level.getEntitiesOfClass(LivingEntity.class, getBoundingBox(), pred);
 		// Add new parameter to spawner to set local spawn cap for entities

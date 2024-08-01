@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.spawners.types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.WeightedRandom;
@@ -17,6 +18,11 @@ public class MultiSpawnType implements ExtendedStructureEntityTypeInterface {
 	@Override
 	public EntityType<?> getSpawn(Random random) {
 		return WeightedRandom.getRandomItem(random, entities).getEntity();
+	}
+
+	@Override
+	public List<EntityType<?>> getAllPossableEntities() {
+		return entities.stream().map(MultiSpawnEntry::getEntity).collect(Collectors.toList());
 	}
 
 	public static class MultiSpawnEntry extends WeightedRandom.Item {

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.spawners;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -36,6 +37,10 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 		this.minSpawn = minSpawn;
 		this.maxSpawn = maxSpawn;
 		
+	}
+
+	public List<String> getAllEntities(){
+		return entityProvider.getAllPossableEntities().stream().map(EntityType::getRegistryName).map(ResourceLocation::toString).collect(Collectors.toList());
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawnerEntry>, JsonSerializer<ExtendedStructureEntitySpawnerEntry> {
