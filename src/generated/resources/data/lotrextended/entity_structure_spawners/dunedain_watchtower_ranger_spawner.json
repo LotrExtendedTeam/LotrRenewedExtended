@@ -13,6 +13,7 @@
   },
   "setHomeOnSpawn": true,
   "homeRadius": 18,
+  "spawnCap": 4,
   "pools": [
     {
       "weight": 100,

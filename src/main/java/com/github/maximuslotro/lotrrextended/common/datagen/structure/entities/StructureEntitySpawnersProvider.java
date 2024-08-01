@@ -93,31 +93,42 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	}
 
 	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type) {
-		return single(type, 1, 1);
+		return singleWeighted(type, 100, 1, 1, 0);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax) {
-		return make(SpawnerType.SINGLE).addSinglePool(type, 100, spawnMin, spawnMax);
+	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax, int spawnCap) {
+		return singleWeighted(type, 100, spawnMin, spawnMax, spawnCap);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		return make(SpawnerType.SINGLE).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
+	public ExtendedStructureEntitySpawner.Builder single(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius, int spawnCap) {
+		return singleWeighted(type, 100, spawnMin, spawnMax, spawnCap).setHomeInfo(randomHome, radius);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder couple(EntityType<?> type, int radius) {
-		return make(SpawnerType.SINGLE_FAMILY).addSinglePool(type, 100, 1, 1).setHomeInfo(false, radius);
+		return multiWeighted(SpawnerType.SINGLE_FAMILY, type, 100, 1, 1, 0).setHomeInfo(false, radius);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder singleWeighted(EntityType<?> type, int weight, int spawnMin, int spawnMax) {
+		return multiWeighted(SpawnerType.SINGLE, type, weight, spawnMin, spawnMax, 0);
+	}
+	public ExtendedStructureEntitySpawner.Builder singleWeighted(EntityType<?> type, int weight, int spawnMin, int spawnMax, int spawnCap) {
+		return multiWeighted(SpawnerType.SINGLE, type, weight, spawnMin, spawnMax, spawnCap);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder multiWeighted(SpawnerType spawnerType, EntityType<?> type, int weight, int spawnMin, int spawnMax, int spawnCap) {
+		return make(spawnerType).addSinglePool(type, weight, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type) {
-		return persisted(type, 1, 1);
+		return persisted(type, 1, 1, 4);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax) {
-		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax);
+	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax, int spawnCap) {
+		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
+	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius, int spawnCap) {
+		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius).setlocalSpawnCap(spawnCap);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool) {

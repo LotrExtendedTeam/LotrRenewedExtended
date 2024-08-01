@@ -1,19 +1,20 @@
 package com.github.maximuslotro.lotrrextended.common.spawners;
 
 public enum SpawnerType {
-	SINGLE("single_use_spawner", 0, false),
-	SINGLE_FAMILY("single_family_spawner", 1, false),
-	PERSISTED("persisted_use_spawner", 2, true),
-	UNKNOWN("unknown", 66, false);
+	SINGLE("single_use_spawner", 0, false, true),
+	SINGLE_FAMILY("single_family_spawner", 1, false, true),
+	PERSISTED("persisted_use_spawner", 2, true, false),
+	UNKNOWN("unknown", 66, false, true);
 
 	private final String name;
 	private final int id;
 	private final boolean shoudlCheckBoundries;
-
-	SpawnerType(String pName, int pID, boolean shoudlCheckBoundries) {
+	private final boolean singleSpawnType;
+	SpawnerType(String pName, int pID, boolean shoudlCheckBoundries, boolean singleSpawnType) {
 		this.name = pName;
 		this.id = pID;
 		this.shoudlCheckBoundries = shoudlCheckBoundries;
+		this.singleSpawnType = singleSpawnType;
 	}
 
 	public String getString() {
@@ -29,6 +30,10 @@ public enum SpawnerType {
 
 	public boolean isShouldCheckBoundries() {
 		return shoudlCheckBoundries;
+	}
+
+	public boolean isSingleSpawnType() {
+		return singleSpawnType;
 	}
 
 	public static SpawnerType bySpawnerName(String queryName) {

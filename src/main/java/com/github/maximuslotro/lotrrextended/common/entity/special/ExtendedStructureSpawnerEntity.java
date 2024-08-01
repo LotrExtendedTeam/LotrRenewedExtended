@@ -106,7 +106,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		};
 		List<LivingEntity> entityTypes = this.level.getEntitiesOfClass(LivingEntity.class, getBoundingBox(), pred);
 		// Add new parameter to spawner to set local spawn cap for entities
-		if(entityTypes.size() < 1) {
+		if(entityTypes.size() < spawnerInstance.getLocalSpawnCap()) {
 			
 		}
 	}
