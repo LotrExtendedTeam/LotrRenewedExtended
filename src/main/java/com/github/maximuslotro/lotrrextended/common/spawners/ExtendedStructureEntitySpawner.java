@@ -28,7 +28,7 @@ public class ExtendedStructureEntitySpawner {
 	public static final int defultHomeRadius = 16;
 	public static final int defaultLocalSpawnCap = 4;
 	public static final ExtendedSpawnerBoundsEntry defaultBoundary = new ExtendedSpawnerBoundsEntry(0, 0, 0);
-	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(ExtendedSpawners.EMPTY, new ExtendedStructureEntitySpawnerEntry[0], SpawnerType.UNKNOWN, defaultBoundary, defaultBoundary);
+	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(ExtendedSpawners.EMPTY, new ArrayList<>(), SpawnerType.UNKNOWN, defaultBoundary, defaultBoundary);
 	private final List<ExtendedStructureEntitySpawnerEntry> entries;
 	private final ResourceLocation id;
 	private final SpawnerType spawnType;
@@ -42,13 +42,9 @@ public class ExtendedStructureEntitySpawner {
 	private ExtendedSpawnerBoundsEntry spawnRegion = defaultBoundary;
 	private int poolRolls = 1;
 	private int localSpawnCap = defaultLocalSpawnCap;
+	protected boolean isCustom = false;
 
-	public ExtendedStructureEntitySpawner(ResourceLocation id, ExtendedStructureEntitySpawnerEntry[] entries, SpawnerType spawnType,
-			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
-		this(id, Lists.newArrayList(entries), spawnType, checkBoundaries, spawnRegion);
-	}
-
-	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType,
+	private ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
 		this.id = id;
 		this.entries = entries;
@@ -79,6 +75,10 @@ public class ExtendedStructureEntitySpawner {
 		return !id.equals(ExtendedSpawners.EMPTY);
 	}
 
+	public boolean isCustom() {
+		return isCustom;
+	}
+
 	public List<ExtendedStructureEntitySpawnerEntry> getEntries() {
 		return new ArrayList<>(entries);
 	}
@@ -92,6 +92,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public void setSetHomePositionOnSpawn(boolean setHomePositionOnSpawn) {
+		isCustom = true;
 		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
 	}
 
@@ -100,6 +101,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public void setSetHomeRandom(boolean setHomeRandom) {
+		isCustom = true;
 		this.setHomeRandom = setHomeRandom;
 	}
 
@@ -108,6 +110,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setHomeRadius(int homeRadius) {
+		isCustom = true;
 		if(homeRadius<1) {
 			this.homeRadius = defultHomeRadius;
 			return false;
@@ -122,6 +125,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setEntitySpawnTickRate(int entitySpawnTickRate) {
+		isCustom = true;
 		if(entitySpawnTickRate<1) {
 			this.entitySpawnTickRate = defaultEntitySpawnTickRate;
 			return false;
@@ -136,6 +140,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setPoolRolls(int poolRolls) {
+		isCustom = true;
 		if(poolRolls<1) {
 			this.poolRolls = 1;
 			return false;
@@ -150,6 +155,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setLocalSpawnCap(int localSpawnCap) {
+		isCustom = true;
 		if(localSpawnCap<0) {
 			this.localSpawnCap = defaultLocalSpawnCap;
 			return false;
@@ -165,6 +171,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setPlayerMinSpawnDistance(int playerMinSpawnDistance) {
+		isCustom = true;
 		if(playerMinSpawnDistance<0) {
 			this.playerMinSpawnDistance = defaultPlayerMinSpawnDistance;
 			return false;
@@ -179,6 +186,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setPlayerMaxSpawnDistance(int playerMaxSpawnDistance) {
+		isCustom = true;
 		if(playerMaxSpawnDistance<0) {
 			this.playerMaxSpawnDistance = defaultPlayerMaxSpawnDistance;
 			return false;
@@ -189,6 +197,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean setPlayerSpawnDistance(int playerMinSpawnDistance, int playerMaxSpawnDistance) {
+		isCustom = true;
 		if(!setPlayerMinSpawnDistance(playerMinSpawnDistance) || !setPlayerMaxSpawnDistance(playerMaxSpawnDistance)) {
 			return false;
 		}
@@ -201,10 +210,12 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public void setCBoundaries(int topY, int bottomY, int horizontal) {
+		isCustom = true;
 		setCheckBoundaries(new ExtendedSpawnerBoundsEntry(topY, bottomY, horizontal));
 	}
 
 	public void setCheckBoundaries(ExtendedSpawnerBoundsEntry checkBoundaries) {
+		isCustom = true;
 		this.checkBoundaries = checkBoundaries;
 	}
 
@@ -213,14 +224,17 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public void setSpawnArea(int topY, int bottomY, int horizontal) {
+		isCustom = true;
 		setSpawnArea(new ExtendedSpawnerBoundsEntry(topY, bottomY, horizontal));
 	}
 
 	public void setSpawnArea(ExtendedSpawnerBoundsEntry spawnBoundaries) {
+		isCustom = true;
 		this.spawnRegion = spawnBoundaries;
 	}
 
 	public void setAreas(int topYC, int bottomYC, int horizontalC, int topYS, int bottomYS, int horizontalS) {
+		isCustom = true;
 		setCheckBoundaries(new ExtendedSpawnerBoundsEntry(topYC, bottomYC, horizontalC));
 		setSpawnArea(new ExtendedSpawnerBoundsEntry(topYS, bottomYS, horizontalS));
 	}
@@ -241,11 +255,11 @@ public class ExtendedStructureEntitySpawner {
 			}
 			ExtendedSpawnerBoundsEntry check = JSONUtils.getAsObject(jsonobject, "check_boundaries", defaultBoundary, context, ExtendedSpawnerBoundsEntry.class);
 			ExtendedSpawnerBoundsEntry spawn  = JSONUtils.getAsObject(jsonobject, "spawn_area", defaultBoundary, context, ExtendedSpawnerBoundsEntry.class);
-			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(new ResourceLocation(id), alootpool, type, check, spawn);
+			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(new ResourceLocation(id), Lists.newArrayList(alootpool), type, check, spawn);
 			if(jsonobject.has("setHomeOnSpawn") && jsonobject.get("setHomeOnSpawn").getAsBoolean()) {
 				spawner.setSetHomePositionOnSpawn(true);
 				if(!jsonobject.has("homeRadius")) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid settings! homeRadius must be set if setHomeOnSpawn is enabled. Ignoring spawner - %s", id);
+					ExtendedLog.error("Loaded Structure Spawner with invalid settings! homeRadius must be set if setHomeOnSpawn is enabled. Ignoring spawner - %s", id);
 					return null;
 				} else if(!spawner.setHomeRadius(jsonobject.get("homeRadius").getAsInt())) {
 					ExtendedLog.warn("Loaded Structure Spawner with invalid homeRadius set! Resetting to default! - %s", id);
@@ -264,7 +278,7 @@ public class ExtendedStructureEntitySpawner {
 			}
 			if(jsonobject.has("playerMinSpawnDistance") || jsonobject.has("playerMaxSpawnDistance")) {
 				if(!jsonobject.has("playerMinSpawnDistance") || !jsonobject.has("playerMaxSpawnDistance")) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid playerSpawnDistances set! Both must be set if either are set! Ignoring spawner - %s", id);
+					ExtendedLog.error("Loaded Structure Spawner with invalid playerSpawnDistances set! Both must be set if either are set! Ignoring spawner - %s", id);
 					return null;
 				}else {
 					if(!spawner.setPlayerMinSpawnDistance(jsonobject.get("playerMinSpawnDistance").getAsInt())) {
@@ -286,6 +300,13 @@ public class ExtendedStructureEntitySpawner {
 				}else if(!spawner.setLocalSpawnCap(jsonobject.get("spawnCap").getAsInt())) {
 					ExtendedLog.warn("Loaded Structure Spawner with invalid spawnCap set! Resetting to default! - %s", id);
 				}
+			}
+			// Set to false since above operations set it to true and only the below check can properly set it!
+			spawner.isCustom = false;
+			// If this flag is being triggered, the Spawners are loading custom spawner data, else this is the manager loading spawners
+			if(jsonobject.has("customLoad")) {
+				// Use json getter instead of setting directly in the case customLoad is not set to true (This should not happen unless people are doing weird things!)
+				spawner.isCustom = jsonobject.get("customLoad").getAsBoolean();
 			}
 			return spawner;
 		}
@@ -315,8 +336,12 @@ public class ExtendedStructureEntitySpawner {
 				jsonobject.addProperty("playerMaxSpawnDistance", entitySpawner.getPlayerMaxSpawnDistance());
 			}
 			// Don't save spawnCap if not default or if single spawn type and cap is not equal to 0
-			if(!entitySpawner.spawnType.isSingleSpawnType()) {
+			if(!entitySpawner.getSpawnType().isSingleSpawnType()) {
 				jsonobject.addProperty("spawnCap", entitySpawner.getLocalSpawnCap());
+			}
+			// Add flag for Spawners saving custom settings to be treated as custom when loading again, should never be set in Json!
+			if(entitySpawner.isCustom()) {
+				jsonobject.addProperty("customLoad", true);
 			}
 			// Don't save spawnCap if single spawn type
 			if(entitySpawner.getPoolRolls() != 1) {
@@ -414,19 +439,19 @@ public class ExtendedStructureEntitySpawner {
 			return this;
 		}
 
-		public ExtendedStructureEntitySpawner build(ResourceLocation id) {
-			return new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
+		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
+			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
 					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap);
-		}
-
-		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, String pId) {
-			ExtendedStructureEntitySpawner spawner = this.build(new ResourceLocation(pId));
-			pConsumer.accept(spawner);
+			spawner.isCustom = isCustom;
 			return spawner;
 		}
 
+		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, String pId) {
+			return save(pConsumer, new ResourceLocation(pId));
+		}
+
 		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, ResourceLocation pId) {
-			ExtendedStructureEntitySpawner spawner = this.build(pId);
+			ExtendedStructureEntitySpawner spawner = this.build(pId, false);
 			pConsumer.accept(spawner);
 			return spawner;
 		}

@@ -44,10 +44,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedStructureSpawnerEntity extends Entity{
 	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.STRING);
+	private ExtendedStructureEntitySpawner spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
 	private ResourceLocation spawnerType;
-	private ExtendedStructureEntitySpawner spawnerInstance;
-	private boolean hasLoaded = false;
-	private boolean isUsingCustomSpawner = false;
 	private static boolean isVisible = true; // Always true on Servers
 
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
@@ -56,6 +54,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	public ExtendedStructureSpawnerEntity(World pLevel) {
 		this(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), pLevel);
+	}
+
+	private boolean isEmptySpawner() {
+		return !spawnerInstance.equals(ExtendedStructureEntitySpawner.EMPTY);
 	}
 
 	@Override
@@ -70,12 +72,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		this.yRot = MathHelper.wrapDegrees(this.yRot);
 		this.setDeltaMovement(Vector3d.ZERO);
 		if(!level.isClientSide()) {
-			if (!hasLoaded) {
-				if (spawnerType!=null && !isUsingCustomSpawner) {
+			if (isEmptySpawner()) {
+				if (spawnerType!=null && !spawnerType.equals(ExtendedSpawners.EMPTY)) {
 					setSpawnerFromResourceLocation();
 				}
 			}
-			if(spawnerInstance !=null && spawnerInstance.shouldTick()) {
+			if(!isEmptySpawner() && spawnerInstance.shouldTick()) {
 				if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0) {
 					trySpawningEntities();
 				}
@@ -112,7 +114,6 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	}
 
 	private void setSpawnerFromResourceLocation() {
-		hasLoaded=true;
 		spawnerInstance = ExtendedStructureEntitySpawnManager.INSTANCE.get(spawnerType);
 		if(spawnerInstance.equals(ExtendedStructureEntitySpawner.EMPTY) || spawnerInstance.getId().equals(ExtendedSpawners.EMPTY)) {
 			ExtendedLog.warn("Structure Spawner loaded and invalid SpawnerType %s, spawner has been set to default %s preset!", spawnerType.toString(), ExtendedSpawners.EMPTY.toString());
@@ -125,17 +126,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		return spawnerInstance;
 	}
 
-	public boolean isUsingCustomSpawner() {
-		return isUsingCustomSpawner;
-	}
-
 	public void setSpawnerToDefaultPreset(ResourceLocation preset, boolean isCreation) {
-		isUsingCustomSpawner=false;
 		spawnerType = preset;
 		if(!isCreation) {
 			setSpawnerFromResourceLocation();
 		}else {
-			hasLoaded = false;
+			spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
 		}
 	}
 
@@ -143,10 +139,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
 		if(pCompound.contains("spawnerData")) {
 			spawnerInstance = ExtendedStructureEntitySpawnManager.deserialize(ExtendedStructureEntitySpawnManager.GSON, pCompound.getString("spawnerData"), ExtendedStructureEntitySpawner.class);
-			isUsingCustomSpawner = true;
 			this.getEntityData().set(DATA_SPAWNER_TYPE, spawnerInstance.getId().toString());
-		}
-		if(!isUsingCustomSpawner && pCompound.contains("setSpawnerType")) {
+		} else if(pCompound.contains("setSpawnerType")) {
 			spawnerType = new ResourceLocation(pCompound.getString("setSpawnerType"));
 			this.getEntityData().set(DATA_SPAWNER_TYPE, spawnerType.toString());
 		}
@@ -154,11 +148,14 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
-		if(!isUsingCustomSpawner && spawnerType!=null) {
-			pCompound.putString("setSpawnerType", spawnerType.toString());
-		} 
-		if(isUsingCustomSpawner && spawnerInstance!=null) {
+		if(!isEmptySpawner() && spawnerInstance.isCustom()) {
 			pCompound.putString("spawnerData", ExtendedStructureEntitySpawnManager.serialize(ExtendedStructureEntitySpawnManager.GSON, spawnerInstance));
+		} else if(!isEmptySpawner() && !spawnerInstance.isCustom()) {
+			pCompound.putString("setSpawnerType", spawnerInstance.getId().toString());
+		} else if(isEmptySpawner() && spawnerType !=null){
+			pCompound.putString("setSpawnerType", spawnerType.toString());
+		}else {
+			pCompound.putString("setSpawnerType", ExtendedSpawners.EMPTY.toString());
 		}
 	}
 

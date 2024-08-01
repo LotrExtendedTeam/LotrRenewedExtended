@@ -49,11 +49,15 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		json.forEach((spawnName, spawnListJson) -> {
 			try {
 				ExtendedStructureEntitySpawner spawnerData = deserialize(GSON, spawnListJson, ExtendedStructureEntitySpawner.class);
+				if(spawnerData.isCustom) {
+					ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled, THIS SHOULD NOT BE SET IN JSON! Disabling flag!", spawnName);
+					spawnerData.isCustom = false;
+				}
 				if (spawnerData != null) {
 					builder.put(spawnName, spawnerData);
 				}
 			} catch (Exception exception) {
-				ExtendedLog.warn("Failed to load Extended Entity Structure Spawner %s from file", spawnName);
+				ExtendedLog.error("Failed to load Extended Entity Structure Spawner %s from file", spawnName);
 				exception.printStackTrace();
 			}
 
