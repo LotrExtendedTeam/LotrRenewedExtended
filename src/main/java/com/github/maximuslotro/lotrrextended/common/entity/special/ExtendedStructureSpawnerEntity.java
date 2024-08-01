@@ -129,11 +129,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			};
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
-		for(int roll = 0; roll< spawnerInstance.getPoolRolls(); roll++) {
+		for(int roll = 0; roll < spawnerInstance.getPoolRolls(); roll++) {
 			// Try spawning with 16 re-roles in invalid spawn found
 			for(int attempt = 0; attempt <16; attempt++) {
 				// Check spawn cap number if not single type
-				if(nearbyEntitySpawnCount <= spawnerInstance.getLocalSpawnCap() || !spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+				if(nearbyEntitySpawnCount < spawnerInstance.getLocalSpawnCap() || !spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 					int x;
 					int y;
 					int z;
@@ -161,7 +161,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 						}
 						BlockState footBlock = world.getBlockState(footPos);
 						BlockState headBlock = world.getBlockState(new BlockPos(x, y +1, z));
-						if(!footBlock.getBlock().isPossibleToRespawnInThis() || !floorBlock.getBlock().isPossibleToRespawnInThis()) {
+						if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
 							continue; // Try spawning again
 						}
 					}
@@ -252,13 +252,19 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
 						}
-						if(nearbyEntitySpawnCount > spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+						if(nearbyEntitySpawnCount >= spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 							attempt = 100;
 							roll = 100;
 							break;
 						}
 					}
+				}else {
+					attempt = 100;
+					roll = 100;
+					break;
 				}
+				// Use up attempts because we have successfully spawned
+				attempt = 100;
 			}
 		}
 		if(spawnerInstance.getSpawnType().isSingleSpawnType()) {
