@@ -10,8 +10,8 @@ import lotr.common.entity.npc.data.name.NPCNameGenerator;
 @Mixin(NPCEntity.class)
 public interface MixinNPCEntityInvoker {
 	@Invoker(remap = false, value = "getNameGenerator")
-	NPCNameGenerator getNameGenerator();
+	NPCNameGenerator invokeNameGenerator();
 
 	@Invoker(remap = false, value = "getGenderProvider")
-	NPCGenderProvider getGenderProvider();
+	NPCGenderProvider invokeGenderProvider();
 }

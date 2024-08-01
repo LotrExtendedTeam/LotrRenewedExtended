@@ -175,20 +175,20 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 							NPCEntity entityMaleNpc = (NPCEntity) entityMale;
 							NPCEntity entityFemaleNpc = (NPCEntity) entityFemale;
-							if(((MixinNPCEntityInvoker)entityMaleNpc).getGenderProvider().equals(NPCGenderProvider.MALE)
-									||((MixinNPCEntityInvoker)entityMaleNpc).getGenderProvider().equals(NPCGenderProvider.FEMALE)) {
-								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", entityMaleNpc, spawnerInstance.getId().toString());
+							if(((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
+									||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
+								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return;
 							}
-							if(((MixinNPCEntityInvoker)entityFemaleNpc).getGenderProvider().equals(NPCGenderProvider.MALE)
-									||((MixinNPCEntityInvoker)entityFemaleNpc).getGenderProvider().equals(NPCGenderProvider.FEMALE)) {
-								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", entityFemaleNpc, spawnerInstance.getId().toString());
+							if(((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
+									||((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
+								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return;
 							}
 							entityMaleNpc.getPersonalInfo().setMale(true);
-							entityMaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityMaleNpc).getNameGenerator().generateName(random, true));
+							entityMaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityMaleNpc).invokeNameGenerator().generateName(random, true));
 							entityFemaleNpc.getPersonalInfo().setMale(false);
-							entityFemaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityFemaleNpc).getNameGenerator().generateName(random, false));
+							entityFemaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityFemaleNpc).invokeNameGenerator().generateName(random, false));
 							entityMaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
 							entityFemaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
 							entityMaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
@@ -245,6 +245,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 										((MobEntity)entity).restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 									}
 								}
+							}else {
+								ExtendedLog.error("Failed spawning %s because it is not a supported Entity Class - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
+								return;
 							}
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;

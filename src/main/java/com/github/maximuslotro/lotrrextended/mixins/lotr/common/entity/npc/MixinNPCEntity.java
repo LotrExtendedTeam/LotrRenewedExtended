@@ -15,7 +15,6 @@ import net.minecraft.nbt.CompoundNBT;
 public class MixinNPCEntity implements ExtendedNPCEntity{
 	private ExtendedNpcMarriageHolder marriageInfo = new ExtendedNpcMarriageHolder((NPCEntity)(Object)this);
 
-
 	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void addAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.writeToNbt(nbt);
