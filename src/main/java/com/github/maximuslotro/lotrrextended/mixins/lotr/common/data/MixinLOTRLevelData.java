@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketSendServerSettings;
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import org.spongepowered.asm.mixin.injection.At;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedFellowshipDataModule;
+import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fellowship.ExtendedFellowship;
@@ -66,7 +66,7 @@ public class MixinLOTRLevelData {
 		boolean isOp = server.getPlayerList().isOp(targetPlayer.getGameProfile());
 		boolean creative = targetPlayer.abilities.instabuild;
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<ExtendedFellowship>();
-		ExtendedFellowshipDataModule data = ExtendedReflectionHelper.getFellowshipData(getData(targetPlayer));
+		ExtendedFellowshipDataModule data = ((ExtendedLOTRPlayerData)getData(targetPlayer)).getFellowshipData();
 		for (UUID fsID : data.getFellowshipIDs()) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(world, fsID);
 			if (fs != null && fs.isHideMapLocation())

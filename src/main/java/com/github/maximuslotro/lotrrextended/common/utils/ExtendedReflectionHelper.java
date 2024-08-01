@@ -9,26 +9,11 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallTorchBlock;
-import lotr.common.data.ExtendedFellowshipDataModule;
-import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
-import lotr.common.entity.npc.NPCEntity;
-import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.tileentity.KegTileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedReflectionHelper {
-	public static ExtendedFellowshipDataModule getFellowshipData(LOTRPlayerData data) {
-		ExtendedFellowshipDataModule fellowData = null;
-		try {
-			Method fooMethod = LOTRPlayerData.class.getMethod("getFellowshipData");
-			fellowData = (ExtendedFellowshipDataModule) fooMethod.invoke(data);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to get LOTRPlayerData ExtendedFellowshipDataModule");
-		}
-		return fellowData;
-	}
 
 	public static UUID getAlignmentData(PlayerDataModule data) {
 		UUID fellowData = null;
@@ -63,20 +48,6 @@ public class ExtendedReflectionHelper {
 			e.printStackTrace();
 			ExtendedLog.error("Reflection failed to set keg LootTable");
 		}
-	}
-
-	public static ExtendedNpcMarriageHolder getMarriageData(NPCEntity data) {
-		ExtendedNpcMarriageHolder fellowData = null;
-		try {
-			Field field = NPCEntity.class.getDeclaredField("marriageInfo");
-			field.setAccessible(true);
-			fellowData = (ExtendedNpcMarriageHolder) field.get(data);
-			field.setAccessible(false);
-		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to get ExtendedNpcMarriageHolder");
-		}
-		return fellowData;
 	}
 
 	public static void setTorchValues(Object obj, LOTRTorchBlock copyFromBlock) {

@@ -5,21 +5,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.world.World;
 
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity {
+public class MixinNPCEntity implements ExtendedNPCEntity{
 	private ExtendedNpcMarriageHolder marriageInfo = new ExtendedNpcMarriageHolder((NPCEntity)(Object)this);
 
-	protected MixinNPCEntity(EntityType<? extends CreatureEntity> p_i48575_1_, World p_i48575_2_) {
-		super(p_i48575_1_, p_i48575_2_);
-	}
 
 	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void addAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
@@ -42,9 +37,8 @@ public abstract class MixinNPCEntity extends CreatureEntity {
 		marriageInfo.tick();
 	}
 
-	@Inject(method = "setupNPCInfo()V", at = @At("TAIL"), remap = false)
-	private void setupNPCInfo(CallbackInfo ci) {
-		if (!level.isClientSide) {
-		}
+	@Override
+	public ExtendedNpcMarriageHolder getMarriageInfo() {
+		return marriageInfo;
 	}
 }
