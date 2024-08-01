@@ -115,13 +115,16 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		}
 		// Check if player has a proper distance from the spawner
 		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
+			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to close"), Util.NIL_UUID));
 			return;
 		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
+			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to far away"), Util.NIL_UUID));
 			return;
 		}
 		// Get spawn cap if not single type
 		int nearbyEntitySpawnCount = 0;
 		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+			//System.out.println("Running Area Checks");
 			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos(), getCMaxBlockPos());
 			Predicate<LivingEntity> pred = (entity) ->{
 				return ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
@@ -129,10 +132,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			};
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
+		//System.out.println("Suscessfully Ran Area Checks: "+nearbyEntitySpawnCount);
 		for(int roll = 0; roll < spawnerInstance.getPoolRolls(); roll++) {
 			// Try spawning with 16 re-roles in invalid spawn found
 			for(int attempt = 0; attempt <16; attempt++) {
 				// Check spawn cap number if not single type
+				//System.out.println("Main Loop, roll:"+roll+", attempt:"+attempt);
 				if(nearbyEntitySpawnCount < spawnerInstance.getLocalSpawnCap() || !spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 					int x;
 					int y;
@@ -143,6 +148,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 						z = MathHelper.floor(getZ()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
 						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 						if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, MathHelper.floor(getY()))) {
+							//System.out.println("Failed Y bounds check");
 							continue; // Try spawning again
 						}
 					}else {
@@ -157,16 +163,20 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 						BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
 						if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP) 
 								|| !floorBlock.getMaterial().isSolid()) {
+							//System.out.println("Failed spawn check fullface+solid");
 							continue; // Try spawning again
 						}
 						BlockState footBlock = world.getBlockState(footPos);
 						BlockState headBlock = world.getBlockState(new BlockPos(x, y +1, z));
 						if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
+							//System.out.println("Failed spawn check isPossibleToRespawnInThis");
 							continue; // Try spawning again
 						}
 					}
+					//System.out.println("Suscessfully ran Spawn checks");
 					List<EntityType<?>> generatedSpawns = spawnerInstance.getSpawns(random);
 					for(EntityType<?> generatedSpawn : generatedSpawns) {
+						//System.out.println("Attempting to Spawn Entity");
 						if(spawnerInstance.getSpawnType().equals(SpawnerType.SINGLE_FAMILY)) {
 							Entity entityMale = generatedSpawn.create(world);
 							Entity entityFemale = generatedSpawn.create(world);
@@ -215,6 +225,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							// Break out of entire loop
 							attempt = 100;
 							roll = 100;
+							//System.out.println("Spawned couple suscessfully");
 							break;
 						}else {
 							// Moved code from ExtendedStructureSpawnerTileEntity
@@ -252,22 +263,29 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
 						}
+						//System.out.println("Spawned entity suscessfully: "+nearbyEntitySpawnCount);
 						if(nearbyEntitySpawnCount >= spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+							//System.out.println("Spawning surpasses cap, exiting!");
 							attempt = 100;
 							roll = 100;
 							break;
 						}
 					}
 				}else {
+					//System.out.println("Main Loop failed check, exiting!");
 					attempt = 100;
 					roll = 100;
 					break;
 				}
+				//System.out.println("Spawned entity ");
 				// Use up attempts because we have successfully spawned
 				attempt = 100;
 			}
+			//System.out.println("Closing Attempt loop");
 		}
+		//System.out.println("Closing Attempt roll");
 		if(spawnerInstance.getSpawnType().isSingleSpawnType()) {
+			//System.out.println("Removing spawner because of single type affiliations!");
 			queueToRemove=true;
 		}
 	}
