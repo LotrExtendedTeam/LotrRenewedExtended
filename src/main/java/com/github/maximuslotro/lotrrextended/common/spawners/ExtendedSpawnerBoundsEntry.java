@@ -32,12 +32,8 @@ public class ExtendedSpawnerBoundsEntry {
 		return new BlockPos(x + horizontalBounds, y + topYvalue, z + horizontalBounds);
 	}
 
-	public BlockPos getMinPos(double x, double y, double z) {
-		return new BlockPos(x - horizontalBounds, y + lowerYvalue, z - horizontalBounds);
-	}
-
-	public BlockPos getMaxPos(double x, double y, double z) {
-		return new BlockPos(x + horizontalBounds, y + topYvalue, z + horizontalBounds);
+	public boolean isInYRange(int blockHeight, int entityHeight) {
+		return entityHeight + lowerYvalue < blockHeight && blockHeight < entityHeight + topYvalue;
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedSpawnerBoundsEntry>, JsonSerializer<ExtendedSpawnerBoundsEntry> {

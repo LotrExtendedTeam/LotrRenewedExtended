@@ -21,6 +21,9 @@ public enum SpawnerType {
 		return name;
 	}
 
+	public boolean isUnknown() {
+		return this.equals(UNKNOWN) || this.id == UNKNOWN.id;
+	}
 	/**
 	 * Please don't use for saved data, as value is subject to change over updates!
 	 * */

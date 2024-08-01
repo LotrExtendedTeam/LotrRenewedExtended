@@ -6,16 +6,27 @@ import java.util.function.Predicate;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
+import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
+import com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
+import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -25,6 +36,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -34,11 +46,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.Heightmap.Type;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -54,7 +69,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	private ExtendedStructureEntitySpawner spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
 	private ResourceLocation spawnerType;
 	private static boolean isVisible = true; // Always true on Servers
-
+	private boolean queueToRemove = false;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
@@ -75,42 +90,176 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		this.yRot = MathHelper.wrapDegrees(this.yRot);
 		this.setDeltaMovement(Vector3d.ZERO);
 		if(!level.isClientSide()) {
-			if (spawnerInstance.isEmptySpawner()) {
-				if (spawnerType!=null && !spawnerType.equals(ExtendedSpawners.EMPTY)) {
-					setSpawnerFromResourceLocation();
+			if(queueToRemove) {
+				this.remove();
+			}else {
+				if (spawnerInstance.isEmptySpawner()) {
+					if (spawnerType!=null && !spawnerType.equals(ExtendedSpawners.EMPTY) && !ExtendedServerConfig.enableDevMode.get()) {
+						setSpawnerFromResourceLocation();
+					}
 				}
-			}
-			if(!spawnerInstance.isEmptySpawner() && spawnerInstance.shouldTick()) {
-				if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0) {
-					trySpawningEntities();
+				if(!spawnerInstance.isEmptySpawner() && spawnerInstance.shouldTick() && !spawnerInstance.getSpawnType().isUnknown()) {
+					if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0) {
+						trySpawningEntities((ServerWorld) this.level);
+					}
 				}
 			}
 		}
 	}
 
 	@SuppressWarnings("deprecation")
-	private void trySpawningEntities() {
+	private void trySpawningEntities(ServerWorld world) {
 		// Check if spawner bounds exist
-		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
-			if(!this.level.hasChunksAt(getCMinBlockPos(), getCMaxBlockPos())) {
-				return;
-			}
+		if(!world.hasChunksAt(getCMinBlockPos(), getCMaxBlockPos())) {
+			return;
 		}
 		// Check if player has a proper distance from the spawner
-		if(this.level.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
+		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
 			return;
-		} else if (!this.level.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
+		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
 			return;
 		}
-		AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos(), getCMaxBlockPos());
-		Predicate<LivingEntity> pred = (entity) ->{
-			return ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
-					.contains(entity.getType().getRegistryName().toString());
-		};
-		List<LivingEntity> entityTypes = this.level.getEntitiesOfClass(LivingEntity.class, checkBox, pred);
-		// Add new parameter to spawner to set local spawn cap for entities
-		if(entityTypes.size() < spawnerInstance.getLocalSpawnCap()) {
-			
+		// Get spawn cap if not single type
+		int nearbyEntitySpawnCount = 0;
+		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos(), getCMaxBlockPos());
+			Predicate<LivingEntity> pred = (entity) ->{
+				return ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
+						.contains(entity.getType().getRegistryName().toString());
+			};
+			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
+		}
+		for(int roll = 0; roll< spawnerInstance.getPoolRolls(); roll++) {
+			// Try spawning with 16 re-roles in invalid spawn found
+			for(int attempt = 0; attempt <16; attempt++) {
+				// Check spawn cap number if not single type
+				if(nearbyEntitySpawnCount <= spawnerInstance.getLocalSpawnCap() || !spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+					int x;
+					int y;
+					int z;
+					// Set spawn cords based upon spawner type
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+						x = MathHelper.floor(getX()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
+						z = MathHelper.floor(getZ()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
+						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, x, z);
+						if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, MathHelper.floor(getY()))) {
+							continue; // Try spawning again
+						}
+					}else {
+						x = MathHelper.floor(getX());
+						y = MathHelper.floor(getY());
+						z = MathHelper.floor(getZ());
+					}
+					// Set spawn position
+					BlockPos footPos = new BlockPos(x, y, z);
+					// Check if spawn position is valid for boundary check spawns
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+						BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
+						if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP) 
+								|| !floorBlock.getMaterial().isSolid()) {
+							continue; // Try spawning again
+						}
+						BlockState footBlock = world.getBlockState(footPos);
+						BlockState headBlock = world.getBlockState(new BlockPos(x, y +1, z));
+						if(!footBlock.getBlock().isPossibleToRespawnInThis() || !floorBlock.getBlock().isPossibleToRespawnInThis()) {
+							continue; // Try spawning again
+						}
+					}
+					List<EntityType<?>> generatedSpawns = spawnerInstance.getSpawns(random);
+					for(EntityType<?> generatedSpawn : generatedSpawns) {
+						if(spawnerInstance.getSpawnType().equals(SpawnerType.SINGLE_FAMILY)) {
+							Entity entityMale = generatedSpawn.create(world);
+							Entity entityFemale = generatedSpawn.create(world);
+							if(!(entityMale instanceof NPCEntity)||!(entityFemale instanceof NPCEntity)) {
+								
+							}
+							NPCEntity entityMaleNpc = (NPCEntity) entityMale;
+							NPCEntity entityFemaleNpc = (NPCEntity) entityFemale;
+							if(((MixinNPCEntityInvoker)entityMaleNpc).getGenderProvider().equals(NPCGenderProvider.MALE)
+									||((MixinNPCEntityInvoker)entityMaleNpc).getGenderProvider().equals(NPCGenderProvider.FEMALE)) {
+								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", entityMaleNpc, spawnerInstance.getId().toString());
+								return;
+							}
+							if(((MixinNPCEntityInvoker)entityFemaleNpc).getGenderProvider().equals(NPCGenderProvider.MALE)
+									||((MixinNPCEntityInvoker)entityFemaleNpc).getGenderProvider().equals(NPCGenderProvider.FEMALE)) {
+								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", entityFemaleNpc, spawnerInstance.getId().toString());
+								return;
+							}
+							entityMaleNpc.getPersonalInfo().setMale(true);
+							entityMaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityMaleNpc).getNameGenerator().generateName(random, true));
+							entityFemaleNpc.getPersonalInfo().setMale(false);
+							entityFemaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityFemaleNpc).getNameGenerator().generateName(random, false));
+							entityMaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
+							entityFemaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
+							entityMaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
+							entityMaleNpc.setPersistenceRequired();
+							entityFemaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
+							entityFemaleNpc.setPersistenceRequired();
+							if(!spawnerInstance.isSetHomePositionOnSpawn()) {
+								entityMaleNpc.clearHomePos();
+								entityFemaleNpc.clearHomePos();
+							}else {
+								entityMaleNpc.restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
+								entityFemaleNpc.restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
+							}
+							ExtendedNpcMarriageHolder marriageInfoMale = ((ExtendedNPCEntity) entityMaleNpc).getMarriageInfo();
+							marriageInfoMale.maleID=entityMaleNpc.getUUID();
+							marriageInfoMale.femaleID=entityFemaleNpc.getUUID();
+							marriageInfoMale.spouseID=entityFemaleNpc.getUUID();
+							ExtendedNpcMarriageHolder marriageInfoFemale = ((ExtendedNPCEntity) entityFemaleNpc).getMarriageInfo();
+							marriageInfoFemale.maleID=entityMaleNpc.getUUID();
+							marriageInfoFemale.femaleID=entityFemaleNpc.getUUID();
+							marriageInfoFemale.spouseID=entityMaleNpc.getUUID();
+							world.addFreshEntityWithPassengers(entityMaleNpc);
+							world.addFreshEntityWithPassengers(entityFemaleNpc);
+							// Break out of entire loop
+							attempt = 100;
+							roll = 100;
+							break;
+						}else {
+							// Moved code from ExtendedStructureSpawnerTileEntity
+							Entity entity = generatedSpawn.create(world);
+							entity.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
+							// Set entity info based upon the superclass
+							if(entity instanceof NPCEntity) {
+								((NPCEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
+								((NPCEntity)entity).setPersistenceRequired();
+								if(!spawnerInstance.isSetHomePositionOnSpawn()) {
+									((NPCEntity)entity).clearHomePos();
+								}else {
+									if(spawnerInstance.isSetHomeRandom()) {
+										((NPCEntity)entity).restrictTo(footPos, spawnerInstance.getHomeRadius());
+									}else {
+										((NPCEntity)entity).restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
+									}
+								}
+							}else if(entity instanceof MobEntity) {
+								((MobEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
+								((MobEntity)entity).setPersistenceRequired();
+								if(!spawnerInstance.isSetHomePositionOnSpawn()) {
+									((MobEntity)entity).restrictTo(BlockPos.ZERO, -1);
+								}else {
+									if(spawnerInstance.isSetHomeRandom()) {
+										((MobEntity)entity).restrictTo(footPos, spawnerInstance.getHomeRadius());
+									}else {
+										((MobEntity)entity).restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
+									}
+								}
+							}
+							world.addFreshEntityWithPassengers(entity);
+							nearbyEntitySpawnCount++;
+						}
+						if(nearbyEntitySpawnCount > spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+							attempt = 100;
+							roll = 100;
+							break;
+						}
+					}
+				}
+			}
+		}
+		if(spawnerInstance.getSpawnType().isSingleSpawnType()) {
+			queueToRemove=true;
 		}
 	}
 
@@ -256,10 +405,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		return this.getEntityData().get(DATA_SPAWNER_TYPE);
 	}
 	public void reCalculateBounds() {
-		this.getEntityData().set(DATA_SPAWNER_CBoundMin, spawnerInstance.getCheckBoundaries().getMinPos(getX(), getY(), getZ()));
-		this.getEntityData().set(DATA_SPAWNER_CBoundMax, spawnerInstance.getCheckBoundaries().getMaxPos(getX(), getY(), getZ()));
-		this.getEntityData().set(DATA_SPAWNER_SBoundMin, spawnerInstance.getSpawnBoundaries().getMinPos(getX(), getY(), getZ()));
-		this.getEntityData().set(DATA_SPAWNER_SBoundMax, spawnerInstance.getSpawnBoundaries().getMaxPos(getX(), getY(), getZ()));
+		this.getEntityData().set(DATA_SPAWNER_CBoundMin, spawnerInstance.getCheckBoundaries().getMinPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
+		this.getEntityData().set(DATA_SPAWNER_CBoundMax, spawnerInstance.getCheckBoundaries().getMaxPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
+		this.getEntityData().set(DATA_SPAWNER_SBoundMin, spawnerInstance.getSpawnBoundaries().getMinPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
+		this.getEntityData().set(DATA_SPAWNER_SBoundMax, spawnerInstance.getSpawnBoundaries().getMaxPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
 	}
 
 	@Override
@@ -272,7 +421,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@Override
 	public void remove() {
-		this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+		if(!queueToRemove) {
+			this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+		}
 		super.remove();
 	}
 

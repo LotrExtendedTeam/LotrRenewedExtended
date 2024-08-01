@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.spawners;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
@@ -21,6 +22,7 @@ import com.google.gson.JsonSerializer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.WeightedRandom;
 
 public class ExtendedStructureEntitySpawner {
 	public static final int defaultEntitySpawnTickRate = 3600;
@@ -86,6 +88,10 @@ public class ExtendedStructureEntitySpawner {
 
 	public List<ExtendedStructureEntitySpawnerEntry> getEntries() {
 		return new ArrayList<>(entries);
+	}
+
+	public List<EntityType<?>> getSpawns(Random random) {
+		return WeightedRandom.getRandomItem(random, entries).getSpawns(random);
 	}
 
 	public SpawnerType getSpawnType() {
@@ -247,10 +253,14 @@ public class ExtendedStructureEntitySpawner {
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawner>, JsonSerializer<ExtendedStructureEntitySpawner> {
 		public ExtendedStructureEntitySpawner deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawner");
-			ExtendedStructureEntitySpawnerEntry[] alootpool = JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntry[0], context, ExtendedStructureEntitySpawnerEntry[].class);
+			List<ExtendedStructureEntitySpawnerEntry> alootpool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntry[0], context, ExtendedStructureEntitySpawnerEntry[].class));
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
 				ExtendedLog.warn("Failed to load structure spawner due to invalid id: %s!", id);
+				return null;
+			}
+			if(alootpool.size()<1) {
+				ExtendedLog.warn("Failed to load structure spawner due to spawner pool size less than 1: %s!", id);
 				return null;
 			}
 			SpawnerType type = SpawnerType.bySpawnerName(jsonobject.get("spawner_type").getAsString());
@@ -258,9 +268,17 @@ public class ExtendedStructureEntitySpawner {
 				ExtendedLog.warn("Failed to load structure spawner %s due to invalid spawn type!", id);
 				return null;
 			}
+			if(type==SpawnerType.SINGLE_FAMILY && alootpool.size()>1) {
+				ExtendedLog.warn("Failed to load structure spawner %s due to single_family_spawner type spawners not allowing more than one entity pool!", id);
+				return null;
+			}
+			if(type==SpawnerType.SINGLE_FAMILY && alootpool.size()==1 && alootpool.get(0).getSpawnerForTypeArguments() instanceof MultiSpawnType) {
+				ExtendedLog.warn("Failed to load structure spawner %s due to single_family_spawner type not supporting multiSpawnTypes (entity_types), should only contain an (entity_type)!", id);
+				return null;
+			}
 			ExtendedSpawnerBoundsEntry check = JSONUtils.getAsObject(jsonobject, "check_boundaries", defaultBoundary, context, ExtendedSpawnerBoundsEntry.class);
 			ExtendedSpawnerBoundsEntry spawn  = JSONUtils.getAsObject(jsonobject, "spawn_area", defaultBoundary, context, ExtendedSpawnerBoundsEntry.class);
-			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(new ResourceLocation(id), Lists.newArrayList(alootpool), type, check, spawn);
+			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(new ResourceLocation(id), alootpool, type, check, spawn);
 			if(jsonobject.has("setHomeOnSpawn") && jsonobject.get("setHomeOnSpawn").getAsBoolean()) {
 				spawner.setSetHomePositionOnSpawn(true);
 				if(!jsonobject.has("homeRadius")) {
@@ -271,9 +289,15 @@ public class ExtendedStructureEntitySpawner {
 				}
 			}
 			if(jsonobject.has("setHomeRandomly")) {
-				spawner.setSetHomeRandom(jsonobject.get("setHomeRandomly").getAsBoolean());
-				if(!spawner.isSetHomePositionOnSpawn()) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if setHomeOnSpawn is not set! - %s", id);
+				if(!spawner.isSetHomePositionOnSpawn() || type==SpawnerType.SINGLE_FAMILY) {
+					if(type==SpawnerType.SINGLE_FAMILY) {
+						ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if single_family_spawner type! - %s", id);
+					}
+					if(!spawner.isSetHomePositionOnSpawn()) {
+						ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if setHomeOnSpawn is not set! - %s", id);
+					}
+				}else {
+					spawner.setSetHomeRandom(jsonobject.get("setHomeRandomly").getAsBoolean());
 				}
 			}
 			if(jsonobject.has("entitySpawnTickRate")) {

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.spawners;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -39,10 +40,21 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 		
 	}
 
+	public List<EntityType<?>> getSpawns(Random random){
+		List<EntityType<?>> spawns = new ArrayList<>();
+		for(int i = minSpawn; i <=maxSpawn; i++) {
+			spawns.add(entityProvider.getSpawn(random));
+		}
+		return spawns;
+	}
+
 	public List<String> getAllEntities(){
 		return entityProvider.getAllPossableEntities().stream().map(EntityType::getRegistryName).map(ResourceLocation::toString).collect(Collectors.toList());
 	}
 
+	public ExtendedStructureEntityTypeInterface getSpawnerForTypeArguments() {
+		return entityProvider;
+	}
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawnerEntry>, JsonSerializer<ExtendedStructureEntitySpawnerEntry> {
 		public ExtendedStructureEntitySpawnerEntry deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawnerEntry");
