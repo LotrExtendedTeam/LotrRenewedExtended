@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 
 import lotr.common.init.ExtendedItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
@@ -41,16 +42,19 @@ public class ExtendedItemModelsProperties {
 			}
 			float num = (float)(thisItem.getUseDuration() - thisLivingEntity.getTicksUsingItem()) / 20.0F;
 			float propNum = (thisItem.getUseDuration()/20.0F)-num;
-			if(ExtendedClientConfig.enableDevMode.get()) {
-				Minecraft instance = Minecraft.getInstance();
-                instance.gui.getChat().addMessage(new StringTextComponent("TICK: ").withStyle(TextFormatting.GREEN)
-                		.append(new StringTextComponent(Integer.toString(thisLivingEntity.getTicksUsingItem())).withStyle(TextFormatting.WHITE)));
-                instance.gui.getChat().addMessage(new StringTextComponent("Pull Norm: ").withStyle(TextFormatting.GREEN)
-                		.append(new StringTextComponent(Float.toString(num)).withStyle(TextFormatting.WHITE)));
-                instance.gui.getChat().addMessage(new StringTextComponent("Pull Prop: ").withStyle(TextFormatting.GREEN)
-                		.append(new StringTextComponent(Float.toString(propNum)).withStyle(TextFormatting.WHITE)));
-                instance.gui.getChat().addMessage(new StringTextComponent("PER of "+thisItem.getUseDuration()+": ").withStyle(TextFormatting.GREEN)
-                		.append(new StringTextComponent(Float.toString(propNum/(thisItem.getUseDuration()/20.0F))).withStyle(TextFormatting.WHITE)));
+			if(ExtendedClientConfig.enableDevMode.get() && thisLivingEntity instanceof PlayerEntity) {
+				PlayerEntity player = ((PlayerEntity)thisLivingEntity);
+				Minecraft mc = Minecraft.getInstance();
+				if(mc.player !=null && mc.player.equals(player)) {
+					mc.gui.getChat().addMessage(new StringTextComponent("TICK: ").withStyle(TextFormatting.GREEN)
+	                		.append(new StringTextComponent(Integer.toString(thisLivingEntity.getTicksUsingItem())).withStyle(TextFormatting.WHITE)));
+					mc.gui.getChat().addMessage(new StringTextComponent("Pull Norm: ").withStyle(TextFormatting.GREEN)
+	                		.append(new StringTextComponent(Float.toString(num)).withStyle(TextFormatting.WHITE)));
+					mc.gui.getChat().addMessage(new StringTextComponent("Pull Prop: ").withStyle(TextFormatting.GREEN)
+	                		.append(new StringTextComponent(Float.toString(propNum)).withStyle(TextFormatting.WHITE)));
+					mc.gui.getChat().addMessage(new StringTextComponent("PER of "+thisItem.getUseDuration()+": ").withStyle(TextFormatting.GREEN)
+	                		.append(new StringTextComponent(Float.toString(propNum/(thisItem.getUseDuration()/20.0F))).withStyle(TextFormatting.WHITE)));
+				}
 			}
 			return propNum;
 		});
