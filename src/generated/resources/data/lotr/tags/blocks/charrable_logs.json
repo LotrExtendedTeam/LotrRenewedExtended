@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:chestnut_log",
-    "lotr:banana_log"
+    "lotr:banana_log",
+    "lotr:chestnut_log"
   ]
 }

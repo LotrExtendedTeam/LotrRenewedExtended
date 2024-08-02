@@ -9,9 +9,9 @@ import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.Extended
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedItemModelGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.structure.entities.StructureEntitySpawnerGenerator;
-import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedBlockTagGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedBlockTagProvider;
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedFluidTagGenerator;
-import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedItemTagGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedItemTagProvider;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
 import net.minecraft.data.BlockTagsProvider;
@@ -25,9 +25,9 @@ public class DataGeneratorExtended {
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 		if (event.includeServer()) {
 			ExtendedLootTables.init();
-			BlockTagsProvider blocktags = new ExtendedBlockTagGenerator(generator, LotrExtendedMod.MODID, existingFileHelper);
+			ExtendedBlockTagProvider blocktags = new ExtendedBlockTagProvider(generator, LotrExtendedMod.MODID, existingFileHelper);
 			generator.addProvider(blocktags);
-			generator.addProvider(new ExtendedItemTagGenerator(generator, blocktags, LotrExtendedMod.MODID, existingFileHelper));
+			generator.addProvider(new ExtendedItemTagProvider(generator, blocktags, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedFluidTagGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedLootTableGenerator(generator));
 			generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));

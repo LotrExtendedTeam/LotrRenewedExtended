@@ -18,7 +18,6 @@ public class ExtendedDuckEggItem extends Item {
    public ExtendedDuckEggItem(Item.Properties properties) {
       super(properties);
       DispenserBlock.registerBehavior(this, new ExtendedDispenserDuckEgg());
-
    }
 
    /**
