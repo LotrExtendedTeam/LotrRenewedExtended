@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStructureSpawnerEntity> {
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/block/spawner_block.png");
+	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/imgnazgulscreamman.png");
 	private ExtendedStructureSpawnerModel model =  new ExtendedStructureSpawnerModel();
 	public ExtendedStructureSpawnerRenderer(EntityRendererManager entityRenderDispatcher) {
 		super(entityRenderDispatcher);

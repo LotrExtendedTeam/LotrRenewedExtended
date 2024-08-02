@@ -14,10 +14,10 @@ public class ExtendedStructureSpawnerModel extends EntityModel<ExtendedStructure
 	private final ModelRenderer spawner;
 
 	public ExtendedStructureSpawnerModel() {
-		texWidth = 32;
-		texHeight = 32;
+		texWidth = 20;
+		texHeight = 26;
 
-		spawner = new ModelRenderer(this, 6, 3);
+		spawner = new ModelRenderer(this, 0, 0);
 		spawner.setPos(0.0F, 0.0F, 0.0F);
 		spawner.addBox(-5.0F, 0.0F, 0.0F, 10.0F, 26.0F, 0.0F, 0.0F, true);
 	}
