@@ -12,6 +12,7 @@
 		"lotr.common.data.MixinFastTravelDataModule",
 		"lotr.common.entity.item.MixinModBoatType",
 		"lotr.common.entity.npc.MixinNPCEntity",
+		"lotr.common.entity.npc.MixinNPCEntityInvoker",
 		"lotr.common.fac.MixinEntityFactionHelper",
 		"lotr.common.init.MixinLOTRBlocks",
 		"lotr.common.init.MixinLOTRContainers",

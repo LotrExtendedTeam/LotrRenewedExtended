@@ -44,10 +44,13 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
         return new ResourceLocation("lotr", name);
     }
 
-	@Override
-	protected void registerModels() {
+	public void registerOverrides() {
 		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
 		genGenerated(ExtendedItems.WEAPON_RACK.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.getId().getPath()));
+		genGenerated(ExtendedItems.ENTITY_SPAWNER.getId().getPath(), lotrExtendedLoc("block/spawner_block"));
+	}
+	@Override
+	protected void registerModels() {
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
@@ -164,6 +167,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		for(String entity : ExtendedEntities.REGISTEREDANIMALENTITIES) {
 			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");
 		}
+		registerOverrides();
 	}
 
 	@Override

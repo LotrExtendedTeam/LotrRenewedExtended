@@ -1414,6 +1414,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.DUCK_EGG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ENTITY_SPAWNER.get().getRegistryName().getPath());
 	}
 
 	@Override

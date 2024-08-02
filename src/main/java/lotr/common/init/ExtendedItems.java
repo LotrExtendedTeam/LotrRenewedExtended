@@ -476,5 +476,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> HOBBIT_BANNER;
 
 	public static RegistryObject<Item> DUCK_EGG;
+
+	public static RegistryObject<Item> ENTITY_SPAWNER;
 }
 
