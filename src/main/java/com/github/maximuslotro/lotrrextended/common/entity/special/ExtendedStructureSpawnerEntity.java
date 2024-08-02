@@ -493,7 +493,18 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if (this.isInvulnerableTo(pSource)) {
 			return false;
 		} else {
-			this.remove();
+			if(ExtendedServerConfig.enableDevMode.get()) {
+				Entity entity = pSource.getEntity();
+				if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
+					if(((PlayerEntity)entity).isCrouching()) {
+						this.remove();
+					}
+				}else {
+					this.remove();
+				}
+			}else {
+				this.remove();
+			}
 			return false;
 		}
 	}

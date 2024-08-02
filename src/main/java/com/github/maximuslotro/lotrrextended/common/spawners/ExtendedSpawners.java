@@ -23,7 +23,8 @@ public class ExtendedSpawners {
    public static final ResourceLocation HOBBIT_TAVERN_SMALL = register("hobbit_tavern_small_spawner");
    public static final ResourceLocation HOBBIT_TAVERN_LARGE = register("hobbit_tavern_large_spawner");
    public static final ResourceLocation HOBBIT_TAVERN_LARGE_SHERIFF = register("hobbit_tavern_large_sheriff_spawner");
-   public static final ResourceLocation HOBBIT_FARMER = register("hobbit_farmer_spawner");
+   public static final ResourceLocation HOBBIT_BARN_FARMER = register("hobbit_barn_farmer_spawner");
+   public static final ResourceLocation HOBBIT_BARN_ANIMALS = register("hobbit_barn_animals_spawner");
    public static final ResourceLocation HOBBIT_WINDMILL = register("hobbit_windmill_spawner");
    public static final ResourceLocation HOBBIT_FAMILY_HOUSE = register("hobbit_family_house_spawner");
    public static final ResourceLocation HOBBIT_FAMILY_HOLE_SMALL = register("hobbit_family_hole_small_spawner");

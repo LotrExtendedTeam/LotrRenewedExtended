@@ -19,7 +19,9 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer) {
 		//HOBBITS
-		single(ExtendedEntities.HOBBIT_FARMER.get()).setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_FARMER);
+		single(ExtendedEntities.HOBBIT_FARMER.get()).setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMER);
+		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_ANIMALS);
 		// un-disable when windmill hobbit is added
 		single(LOTREntities.HOBBIT.get()).setHomeInfo(false, 8).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_WINDMILL);
 		couple(LOTREntities.HOBBIT.get(), 8).save(pConsumer, ExtendedSpawners.HOBBIT_FAMILY_HOLE_SMALL);
