@@ -1,0 +1,25 @@
+{
+  "id": "lotrextended:dunedain_house_ranger_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 10
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 6
+  },
+  "setHomeOnSpawn": true,
+  "homeRadius": 18,
+  "spawnCap": 3,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "lotr:dunedain_ranger"
+    }
+  ]
+}

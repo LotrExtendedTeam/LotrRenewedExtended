@@ -4,7 +4,7 @@
   "check_boundaries": {
     "topYvalue": 20,
     "lowerYvalue": -12,
-    "horizontal_bounds": 24
+    "horizontal_bounds": 20
   },
   "spawn_area": {
     "topYvalue": 4,
@@ -12,7 +12,7 @@
     "horizontal_bounds": 8
   },
   "setHomeOnSpawn": true,
-  "homeRadius": 18,
+  "homeRadius": 16,
   "spawnCap": 4,
   "pools": [
     {

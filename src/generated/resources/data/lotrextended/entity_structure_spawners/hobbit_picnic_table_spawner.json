@@ -1,0 +1,25 @@
+{
+  "id": "lotrextended:hobbit_picnic_table_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 12
+  },
+  "spawn_area": {
+    "topYvalue": 6,
+    "lowerYvalue": -2,
+    "horizontal_bounds": 8
+  },
+  "setHomeOnSpawn": true,
+  "homeRadius": 10,
+  "spawnCap": 8,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 4,
+      "entity_type": "lotr:hobbit"
+    }
+  ]
+}

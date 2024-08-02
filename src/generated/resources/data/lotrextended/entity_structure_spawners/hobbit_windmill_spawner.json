@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:hobbit_windmill_spawner",
+  "disable_for_use_in_future": true,
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
   "homeRadius": 8,
