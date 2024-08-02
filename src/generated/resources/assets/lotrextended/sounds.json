@@ -17,13 +17,22 @@
   "entity.duck.idle": {
     "subtitle": "subtitles.lotrextended.entity.duck.idle",
     "sounds": [
-      "lotrextended:entity/duck/idle1"
+      "lotrextended:entity/duck/idle1",
+      "lotrextended:entity/duck/idle2",
+      "lotrextended:entity/duck/idle3",
+      "lotrextended:entity/duck/idle4"
     ]
   },
   "entity.duck.hurt": {
     "subtitle": "subtitles.lotrextended.entity.duck.hurt",
     "sounds": [
       "lotrextended:entity/duck/hurt1"
+    ]
+  },
+  "entity.duck.death": {
+    "subtitle": "subtitles.lotrextended.entity.duck.death",
+    "sounds": [
+      "lotrextended:entity/duck/death1"
     ]
   },
   "entity.duck.egg": {

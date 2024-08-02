@@ -15,6 +15,7 @@ public class ExtendedSounds {
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, LotrExtendedMod.MODID);
 	public static final RegistryObject<SoundEvent> HORN_BLOW = register("item.horn_blow", "Horn blows");
 	public static final RegistryObject<SoundEvent> TRADE = register("event.trade", "Coins jingle");
+	public static final RegistryObject<SoundEvent> DUCK_DEATH = register("entity.duck.death", "Duck dies");
 	public static final RegistryObject<SoundEvent> DUCK_HURT = register("entity.duck.hurt", "Duck hurts");
 	public static final RegistryObject<SoundEvent> DUCK_AMBIANT = register("entity.duck.idle", "Duck quacks");
 	public static final RegistryObject<SoundEvent> DUCK_EGG = register("entity.duck.egg", "Duck plops");

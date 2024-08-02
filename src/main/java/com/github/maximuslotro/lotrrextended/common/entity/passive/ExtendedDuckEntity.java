@@ -141,7 +141,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.CHICKEN_DEATH;
+		return ExtendedSounds.DUCK_DEATH.get();
 	}
 
 	@Override
