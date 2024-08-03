@@ -115,31 +115,55 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		return multiWeighted(SpawnerType.SINGLE, type, weight, spawnMin, spawnMax, spawnCap);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder multiWeighted(SpawnerType spawnerType, EntityType<?> type, int weight, int spawnMin, int spawnMax, int spawnCap) {
-		return make(spawnerType).addSinglePool(type, weight, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
-	}
-
 	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type) {
 		return persisted(type, 1, 1, 4);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax, int spawnCap) {
-		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
+		return multiWeighted(SpawnerType.PERSISTED, type, 100, spawnMin, spawnMax, spawnCap);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder persisted(EntityType<?> type, int spawnMin, int spawnMax, boolean randomHome, int radius, int spawnCap) {
-		return make(SpawnerType.PERSISTED).addSinglePool(type, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius).setlocalSpawnCap(spawnCap);
+		return multiWeighted(SpawnerType.PERSISTED, type, 100, spawnMin, spawnMax, spawnCap).setHomeInfo(randomHome, radius);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool) {
-		return multi(multiPool, 1, 1);
+	public ExtendedStructureEntitySpawner.Builder single(MultiSpawnType type) {
+		return singleWeighted(type, 100, 1, 1, 0);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool, int spawnMin, int spawnMax) {
-		return make(SpawnerType.SINGLE).addMultiPool(multiPool, 100, spawnMin, spawnMax);
+	public ExtendedStructureEntitySpawner.Builder single(MultiSpawnType type, int spawnMin, int spawnMax, int spawnCap) {
+		return singleWeighted(type, 100, spawnMin, spawnMax, spawnCap);
 	}
 
-	public ExtendedStructureEntitySpawner.Builder multi(MultiSpawnType multiPool, int spawnMin, int spawnMax, boolean randomHome, int radius) {
-		return make(SpawnerType.SINGLE).addMultiPool(multiPool, 100, spawnMin, spawnMax).setHomeInfo(randomHome, radius);
+	public ExtendedStructureEntitySpawner.Builder single(MultiSpawnType type, int spawnMin, int spawnMax, boolean randomHome, int radius, int spawnCap) {
+		return singleWeighted(type, 100, spawnMin, spawnMax, spawnCap).setHomeInfo(randomHome, radius);
 	}
+
+	public ExtendedStructureEntitySpawner.Builder singleWeighted(MultiSpawnType type, int weight, int spawnMin, int spawnMax) {
+		return multiWeighted(SpawnerType.SINGLE, type, weight, spawnMin, spawnMax, 0);
+	}
+	public ExtendedStructureEntitySpawner.Builder singleWeighted(MultiSpawnType type, int weight, int spawnMin, int spawnMax, int spawnCap) {
+		return multiWeighted(SpawnerType.SINGLE, type, weight, spawnMin, spawnMax, spawnCap);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder persisted(MultiSpawnType type) {
+		return persisted(type, 1, 1, 4);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder persisted(MultiSpawnType type, int spawnMin, int spawnMax, int spawnCap) {
+		return multiWeighted(SpawnerType.PERSISTED, type, 100, spawnMin, spawnMax, spawnCap);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder persisted(MultiSpawnType type, int spawnMin, int spawnMax, boolean randomHome, int radius, int spawnCap) {
+		return multiWeighted(SpawnerType.PERSISTED, type, 100, spawnMin, spawnMax, spawnCap).setHomeInfo(randomHome, radius);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder multiWeighted(SpawnerType spawnerType, MultiSpawnType type, int weight, int spawnMin, int spawnMax, int spawnCap) {
+		return make(spawnerType).addMultiPool(type, weight, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
+	}
+
+	public ExtendedStructureEntitySpawner.Builder multiWeighted(SpawnerType spawnerType, EntityType<?> type, int weight, int spawnMin, int spawnMax, int spawnCap) {
+		return make(spawnerType).addSinglePool(type, weight, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
+	}
+
 }

@@ -41,7 +41,14 @@ public class ExtendedSpawners {
    public static final ResourceLocation DUNEDAIN_RANGER_CAMP = register("dunedain_camp_ranger_spawner");
    public static final ResourceLocation DUNEDAIN_RANGER_CAMP_CAPTAIN = register("dunedain_camp_captain_spawner");
    public static final ResourceLocation DUNEDAIN_RANGER_CAMP_ANIMALS = register("dunedain_camp_animal_spawner");
-
+   // GUNDABAD ORCS
+   public static final ResourceLocation GUNDABAD_CAMP_ORC = register("gundabad_camp_orc_spawner");
+   public static final ResourceLocation GUNDABAD_CAMP_CAPTAIN = register("gundabad_camp_captain_spawner");
+   public static final ResourceLocation GUNDABAD_CAMP_PRISONERS = register("gundabad_camp_prisoners_spawner");
+   public static final ResourceLocation GUNDABAD_ENCAMPMENT_ORC = register("gundabad_encampment_orc_spawner");
+   public static final ResourceLocation GUNDABAD_ENCAMPMENT_TRADER = register("gundabad_encampment_trader_spawner");
+   public static final ResourceLocation GUNDABAD_ENCAMPMENT_CAPTAIN = register("gundabad_encampment_captain_spawner");
+   public static final ResourceLocation GUNDABAD_ENCAMPMENT_PRISONERS = register("gundabad_encampment_prisoners_spawner");
 
 
    private static ResourceLocation register(String pId) {

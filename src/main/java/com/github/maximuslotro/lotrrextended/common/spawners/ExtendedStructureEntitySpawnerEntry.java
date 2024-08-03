@@ -104,8 +104,8 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 				JsonArray elements = new JsonArray();
 				for (MultiSpawnEntry entry : entities) {
 					JsonObject subObject = new JsonObject();
-					jsonobject.addProperty("weight", entry.weight);
-					jsonobject.addProperty("entity_type", entry.getEntity().getRegistryName().toString());
+					subObject.addProperty("weight", entry.weight);
+					subObject.addProperty("entity_type", entry.getEntity().getRegistryName().toString());
 					elements.add(subObject);
 				}
 				jsonobject.add("entity_types", elements);

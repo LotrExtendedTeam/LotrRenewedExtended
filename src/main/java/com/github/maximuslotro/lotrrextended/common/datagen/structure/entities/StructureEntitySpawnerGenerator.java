@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.structure.entities;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
+import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 
 import lotr.common.init.ExtendedEntities;
@@ -51,5 +52,30 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).addSinglePool(EntityType.HORSE, 100, 1, 2).setPoolRolls(3).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_ANIMALS);
+		//GUNDABAD ORCS
+		persisted(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
+				.build(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_ORC);
+		// un-disable when gundabad captain is added
+		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
+		single(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
+				.addPool(LOTREntities.BREE_MAN.get(), 90).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 50)
+				.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 30).addPool(LOTREntities.LINDON_ELF.get(), 1)
+				.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.GUNDABAD_ORC.get(), 5)
+				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_PRISONERS);
+		persisted(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
+				.build(), 4, 7, false, 26, 15).setBoundaries(12, -12, 24, 4, -4, 16).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
+		// un-disable when gundabad captain is added
+		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
+		// un-disable when gundabad trader is added
+		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 5).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_TRADER);
+		single(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
+				.addPool(LOTREntities.BREE_MAN.get(), 90).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 50)
+				.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 30).addPool(LOTREntities.LINDON_ELF.get(), 1)
+				.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.GUNDABAD_ORC.get(), 5)
+				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_PRISONERS);
 	}
 }

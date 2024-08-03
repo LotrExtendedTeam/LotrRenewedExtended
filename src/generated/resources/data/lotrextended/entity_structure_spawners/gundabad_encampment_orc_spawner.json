@@ -1,0 +1,34 @@
+{
+  "id": "lotrextended:gundabad_encampment_orc_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 24
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 16
+  },
+  "setHomeOnSpawn": true,
+  "homeRadius": 26,
+  "spawnCap": 15,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 4,
+      "maxSpawnCount": 7,
+      "entity_types": [
+        {
+          "weight": 100,
+          "entity_type": "lotr:gundabad_orc"
+        },
+        {
+          "weight": 80,
+          "entity_type": "lotr:gundabad_orc_archer"
+        }
+      ]
+    }
+  ]
+}
