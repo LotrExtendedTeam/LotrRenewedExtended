@@ -203,7 +203,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 	@Override
 	public ExtendedDuckEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
-		return ExtendedEntities.DUCK_ENTITY.get().create(pServerLevel);
+		return ExtendedEntities.DUCK.get().create(pServerLevel);
 	}
 	
 	/**

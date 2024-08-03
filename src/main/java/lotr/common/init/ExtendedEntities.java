@@ -25,7 +25,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;
 	public static RegistryObject<EntityType<ExtendedConkerEntity>> THROWN_CONKER;
 	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
-	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK_ENTITY;
+	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK;
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 }

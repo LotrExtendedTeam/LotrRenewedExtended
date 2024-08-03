@@ -73,7 +73,7 @@ public class ExtendedDuckEggEntity extends ProjectileItemEntity {
 				}
 
 				for (int j = 0; j < i; ++j) {
-					ExtendedDuckEntity duckentity = ExtendedEntities.DUCK_ENTITY.get().create(this.level);
+					ExtendedDuckEntity duckentity = ExtendedEntities.DUCK.get().create(this.level);
 					duckentity.setAge(-24000);
 					duckentity.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
 					this.level.addFreshEntity(duckentity);

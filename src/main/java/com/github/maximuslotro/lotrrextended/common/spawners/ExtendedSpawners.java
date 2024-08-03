@@ -15,6 +15,8 @@ public class ExtendedSpawners {
    private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
    private static final Set<ResourceLocation> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
    public static final ResourceLocation EMPTY = register("empty");
+   // ANIMALS
+   public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
    // HOBBITS
    public static final ResourceLocation HOBBIT_PICNIC_TABLE = register("hobbit_picnic_table_spawner");
    public static final ResourceLocation HOBBIT_PICNIC_BLANKET = register("hobbit_picnic_blanket_spawner");
@@ -24,6 +26,7 @@ public class ExtendedSpawners {
    public static final ResourceLocation HOBBIT_TAVERN_LARGE = register("hobbit_tavern_large_spawner");
    public static final ResourceLocation HOBBIT_TAVERN_LARGE_SHERIFF = register("hobbit_tavern_large_sheriff_spawner");
    public static final ResourceLocation HOBBIT_BARN_FARMER = register("hobbit_barn_farmer_spawner");
+   public static final ResourceLocation HOBBIT_BARN_FARMHAND = register("hobbit_barn_farmhand_spawner");
    public static final ResourceLocation HOBBIT_BARN_ANIMALS = register("hobbit_barn_animals_spawner");
    public static final ResourceLocation HOBBIT_WINDMILL = register("hobbit_windmill_spawner");
    public static final ResourceLocation HOBBIT_FAMILY_HOUSE = register("hobbit_family_house_spawner");

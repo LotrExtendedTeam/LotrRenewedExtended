@@ -279,7 +279,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
-		add(ExtendedEntities.DUCK_ENTITY.get(), LootTable.lootTable()); //TODO add duck meat, feathers, etc
+		add(ExtendedEntities.DUCK.get(), LootTable.lootTable()); //TODO add duck meat, feathers, etc
 	}
 
 	public ResourceLocation makeQuickyBasePart(String name, Builder builder) {
