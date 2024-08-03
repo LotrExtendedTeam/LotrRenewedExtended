@@ -28,11 +28,11 @@ public class ExtendedConfiguredStructuresV5 {
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_ENCAMPMENT = register(ExtendedStructuresV5.RANGER_ENCAMPMENT.get().configured(new SinglePoolConfig("ranger/encampment_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_FORT = register(ExtendedStructuresV5.RANGER_FORT.get().configured(new SinglePoolConfig("ranger/fort_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_HIDEOUT = register(ExtendedStructuresV5.RANGER_HIDEOUT.get().configured(new SinglePoolConfig("ranger/hideout_pool")));
-	public static StructureFeature<?, ?> CONFIGURED_RANGER_WATCHTOWER = register(ExtendedStructuresV5.RANGER_WATCHTOWER.get().configured(new SinglePoolConfig("ranger/ruins_pool")));
+	public static StructureFeature<?, ?> CONFIGURED_RANGER_WATCHTOWER = register(ExtendedStructuresV5.RANGER_WATCHTOWER.get().configured(new SinglePoolConfig("ranger/watchtower_pool")));
 	public static WeightedStructureConfig rangerHouseHideoutConfig = new WeightedStructureConfig()
-			.addStructureToPool("ranger/hideout_house_pool", 50).addStructureToPool("ranger/hideout_house_pool2", 50);
+			.addStructureToPool("ranger/hideout_house_pool", 50).addStructureToPool("ranger/ruins_pool", 70).addStructureToPool("ranger/hideout_house_pool2", 50);
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_HOUSE_HIDEOUT = register(ExtendedStructuresV5.RANGER_HOUSE_HIDEOUT.get().configured(rangerHouseHideoutConfig));
-	public static StructureFeature<?, ?> CONFIGURED_RANGER_HOUSE_RUIN = register(ExtendedStructuresV5.RANGER_HOUSE_RUIN.get().configured(new SinglePoolConfig("ranger/watchtower_pool")));
+	//public static StructureFeature<?, ?> CONFIGURED_RANGER_HOUSE_RUIN = register(ExtendedStructuresV5.RANGER_HOUSE_RUIN.get().configured(new SinglePoolConfig("ranger/ruins_pool")));
 	public static WeightedStructureConfig arnorRuinsConfig = new WeightedStructureConfig()
 			.addStructureToPool("ruins/arnor_ruins_pool", 50).addStructureToPool("ruins/general_ruins_pool", 50);
 	public static StructureFeature<?, ?> CONFIGURED_ARNOR_RUINS = register(ExtendedStructuresV5.ARNOR_RUINS.get().configured(arnorRuinsConfig));
