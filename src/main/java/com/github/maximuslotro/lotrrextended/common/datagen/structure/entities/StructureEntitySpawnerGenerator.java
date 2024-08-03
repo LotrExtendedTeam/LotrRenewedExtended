@@ -40,6 +40,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(LOTREntities.HOBBIT.get(), 1, 1, false, 12, 1).setBoundaries(12, -9, 20, 1, -1, 2).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE_SHERIFF);
 
 		// RANGERS
+		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 3).setRandomDiscardChance(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_SINGLE_CHANCE);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);

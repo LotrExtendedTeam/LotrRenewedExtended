@@ -33,6 +33,7 @@ public class ExtendedSpawners {
    public static final ResourceLocation HOBBIT_FAMILY_HOLE_SMALL = register("hobbit_family_hole_small_spawner");
    public static final ResourceLocation HOBBIT_FAMILY_HOLE_LARGE = register("hobbit_family_hole_large_spawner");
    // RANGERS
+   public static final ResourceLocation DUNEDAIN_RANGER_SINGLE_CHANCE = register("dunedain_ranger_single_chance_spawner");
    public static final ResourceLocation DUNEDAIN_RANGER_WATCHTOWER = register("dunedain_watchtower_ranger_spawner");
    public static final ResourceLocation DUNEDAIN_RANGER_HOUSE_CAMP = register("dunedain_house_ranger_spawner");
    public static final ResourceLocation DUNEDAIN_RANGER_ENCAMPMENT = register("dunedain_encampment_ranger_spawner");

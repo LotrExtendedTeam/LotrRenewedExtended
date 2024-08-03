@@ -134,6 +134,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		}
 		//System.out.println("Suscessfully Ran Area Checks: "+nearbyEntitySpawnCount);
 		for(int roll = 0; roll < spawnerInstance.getPoolRolls(); roll++) {
+			if(spawnerInstance.shouldCheckRandomDiscardChance() && random.nextInt(100)+1 <= spawnerInstance.getRandomDiscardChance()) {
+				continue;
+			}
 			// Try spawning with 16 re-roles in invalid spawn found
 			for(int attempt = 0; attempt <16; attempt++) {
 				// Check spawn cap number if not single type

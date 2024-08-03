@@ -14,6 +14,8 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.math.BlockPos;
 
 public class ExtendedSpawnerBoundsEntry {
+	public static final ExtendedSpawnerBoundsEntry DEFAULT = new ExtendedSpawnerBoundsEntry(0, 0, 0);
+	
 	public int topYvalue;
 	public int lowerYvalue;
 	public int horizontalBounds;

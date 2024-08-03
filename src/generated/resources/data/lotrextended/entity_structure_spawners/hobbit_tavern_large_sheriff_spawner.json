@@ -1,7 +1,7 @@
 {
   "id": "lotrextended:hobbit_tavern_large_sheriff_spawner",
-  "disable_for_use_in_future": true,
   "spawner_type": "persisted_use_spawner",
+  "disable_for_use_in_future": true,
   "check_boundaries": {
     "topYvalue": 12,
     "lowerYvalue": -9,

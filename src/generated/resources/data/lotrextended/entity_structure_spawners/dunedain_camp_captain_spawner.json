@@ -1,7 +1,7 @@
 {
   "id": "lotrextended:dunedain_camp_captain_spawner",
-  "disable_for_use_in_future": true,
   "spawner_type": "single_use_spawner",
+  "disable_for_use_in_future": true,
   "setHomeOnSpawn": true,
   "homeRadius": 10,
   "pools": [
