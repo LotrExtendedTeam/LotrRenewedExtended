@@ -150,6 +150,18 @@ public class ExtendedTraderHelper {
         if (trader.isWanderingTrader()) {
             if (trader.getWanderingTraderTicksLeft() < 1) {
                 npc.remove();
+
+                if (trader.getEscortUUIDs() != null && !trader.getEscortUUIDs().isEmpty()) {
+                    AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(),
+                            npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
+                    List<NPCEntity> potentialEscorts = npc.level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
+
+                    for (NPCEntity entity : potentialEscorts) {
+                        if (trader.getEscortUUIDs().contains(entity.getUUID())) {
+                            entity.remove();
+                        }
+                    }
+                }
             } else {
                 trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
                 // warn players nearby at 4 minutes left

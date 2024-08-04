@@ -81,7 +81,6 @@ public class WanderingTradersSpawner {
                     }
 
                     // TODO: Update warning message to 2 minutes and update visiting time to 20 minutes
-                    // TODO: Make sure escorts are removed on despawn and death
                     // TODO: Add a 1 in 10 random roll to reduce the frequency they spawn
 
                     // send message to the original player
