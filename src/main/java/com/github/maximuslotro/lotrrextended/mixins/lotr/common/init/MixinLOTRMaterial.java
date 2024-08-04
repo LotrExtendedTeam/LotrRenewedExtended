@@ -44,15 +44,15 @@ public class MixinLOTRMaterial {
 	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, 
 									() -> Ingredient.of(Items.INGOTS_GOLD));
 
-	private static final LOTRMaterial BLACK_WARG = lotrmaterialExpansion$addVariant("BLACK_WARG", "black_warg", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, 
+	private static final LOTRMaterial BLACK_WARG = lotrmaterialExpansion$addVariant("BLACK_WARG", "black_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 
 									() -> Ingredient.of(ExtendedItems.BLACK_FUR.get()));
-	private static final LOTRMaterial BROWN_WARG = lotrmaterialExpansion$addVariant("BROWN_WARG", "brown_warg", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, 
+	private static final LOTRMaterial BROWN_WARG = lotrmaterialExpansion$addVariant("BROWN_WARG", "brown_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 
 									() -> Ingredient.of(LOTRItems.FUR.get()));
-	private static final LOTRMaterial GRAY_WARG = lotrmaterialExpansion$addVariant("GRAY_WARG", "gray_warg", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, 
+	private static final LOTRMaterial GRAY_WARG = lotrmaterialExpansion$addVariant("GRAY_WARG", "gray_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 
 									() -> Ingredient.of(ExtendedItems.GRAY_FUR.get()));
-	private static final LOTRMaterial SILVER_WARG = lotrmaterialExpansion$addVariant("SILVER_WARG", "silver_warg", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, 
+	private static final LOTRMaterial SILVER_WARG = lotrmaterialExpansion$addVariant("SILVER_WARG", "silver_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 
 									() -> Ingredient.of(ExtendedItems.SILVER_FUR.get()));
-	private static final LOTRMaterial WHITE_WARG = lotrmaterialExpansion$addVariant("WHITE_WARG", "white_warg", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0, 
+	private static final LOTRMaterial WHITE_WARG = lotrmaterialExpansion$addVariant("WHITE_WARG", "white_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 
 									() -> Ingredient.of(ExtendedItems.WHITE_FUR.get()));
 
 	private static final LOTRMaterial ANGMAR = lotrmaterialExpansion$addVariant("ANGMAR", "angmar", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, 
