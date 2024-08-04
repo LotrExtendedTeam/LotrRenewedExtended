@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemMode
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 
@@ -82,6 +83,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 		}
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
+			if(item.getValue().get() instanceof ExtendedEntitySpawnerItem) {
+				continue;
+			}
 			if(item.getKey().contains("torch")) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
 				continue;
