@@ -63,7 +63,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 				.addPool(LOTREntities.BREE_MAN.get(), 90).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 50)
 				.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 30).addPool(LOTREntities.LINDON_ELF.get(), 1)
 				.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.GUNDABAD_ORC.get(), 5)
-				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_PRISONERS);
+				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).setRandomDiscardChance(40).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_PRISONERS);
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
 				.build(), 4, 7, false, 26, 15).setBoundaries(12, -12, 24, 4, -4, 16).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
@@ -76,6 +76,6 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 				.addPool(LOTREntities.BREE_MAN.get(), 90).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 50)
 				.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 30).addPool(LOTREntities.LINDON_ELF.get(), 1)
 				.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.GUNDABAD_ORC.get(), 5)
-				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_PRISONERS);
+				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).setRandomDiscardChance(30).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_PRISONERS);
 	}
 }
