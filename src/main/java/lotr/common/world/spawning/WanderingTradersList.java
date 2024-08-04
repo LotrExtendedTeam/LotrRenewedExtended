@@ -29,8 +29,11 @@ public class WanderingTradersList {
             MapUtil.entry("lotr:rivendell", Collections.singletonList("lotr:galadhrim_wanderer")),
             MapUtil.entry("lotr:rivendell_hills", Collections.singletonList("lotr:galadhrim_wanderer")),
 
-            // TODO: finish Gondor
+            // TODO: unsure if this includes all Gondor fiefdoms
             MapUtil.entry("lotr:gondor", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:blackroot_vale", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:lamedon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:lamedon_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
             MapUtil.entry("lotr:pelargir", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
             MapUtil.entry("lotr:ithilien", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
             MapUtil.entry("lotr:lebennin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
@@ -41,6 +44,7 @@ public class WanderingTradersList {
 
             // Older elven regions
             MapUtil.entry("lotr:lindon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer")),
+            MapUtil.entry("lotr:lindon_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer")),
             MapUtil.entry("lotr:eregion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
 
             // Lothlorien only gets Rivendell traders
@@ -50,9 +54,22 @@ public class WanderingTradersList {
             // Bree-land
             MapUtil.entry("lotr:breeland", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
             MapUtil.entry("lotr:chetwood", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:midgewater", Collections.emptyList()),
 
-            // TODO: Add Rohan
-            // TODO: add Lone-lands
+            // TODO: make sure rest of Rohan is added?
+            MapUtil.entry("lotr:rohan", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+            MapUtil.entry("lotr:wold", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector")),
+
+            MapUtil.entry("lotr:fangorn", Collections.singletonList("lotr:galadhrim_wanderer")),
+
+            MapUtil.entry("lotr:enedwaith", Collections.singletonList("lotr:oddment_collector")),
+
+            MapUtil.entry("lotr:northern_dale", Collections.singletonList("lotr:oddment_collector")),
+            MapUtil.entry("lotr:dale", Collections.singletonList("lotr:oddment_collector")),
+
+            // Lone-lands
+            MapUtil.entry("lotr:lone_lands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer")),
+            MapUtil.entry("lotr:lone_lands_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer")),
 
             // Mirkwood
             MapUtil.entry("lotr:woodland_realm", Collections.singletonList("lotr:galadhrim_wanderer")),
@@ -60,7 +77,9 @@ public class WanderingTradersList {
             MapUtil.entry("lotr:northern_mirkwood", Collections.singletonList("lotr:galadhrim_wanderer")),
             MapUtil.entry("lotr:mirkwood", Collections.emptyList()), // no traders visit Southern Mirkwood (too corrupted)
 
-            MapUtil.entry("lotr:forochel", Collections.emptyList()) // no traders visit Forochel (too cold)
+            MapUtil.entry("lotr:forochel", Collections.emptyList()), // no traders visit Forochel (too cold)
+            MapUtil.entry("lotr:white_mountains", Collections.emptyList()), // no traders
+            MapUtil.entry("lotr:white_mountains_foothills", Collections.emptyList()) // no traders
 
             // TODO: Make sure areas west of Lindon and the shire have wandering traders
     );
