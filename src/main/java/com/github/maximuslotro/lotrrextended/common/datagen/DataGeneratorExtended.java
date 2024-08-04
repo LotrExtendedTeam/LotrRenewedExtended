@@ -14,7 +14,6 @@ import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedFluidTa
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedItemTagProvider;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
-import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
