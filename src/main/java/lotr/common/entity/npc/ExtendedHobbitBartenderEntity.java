@@ -325,4 +325,9 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         escorts.add(uuid);
     }
 
+    @Override
+    public NPCEntity createEscort() {
+        return null;
+    }
+
 }

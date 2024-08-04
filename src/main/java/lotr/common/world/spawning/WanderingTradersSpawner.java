@@ -68,8 +68,19 @@ public class WanderingTradersSpawner {
                     ((ExtendedTraderEntity) trader).setWanderingTrader(true);
                     ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
 
+                    int escortCount = world.random.nextInt(3) + 2;
+                    for (int i = 0; i < escortCount; i++) {
+                        NPCEntity escort = ((ExtendedTraderEntity) trader).createEscort();
+                        if (escort != null) {
+                            escort.setPersistenceRequired();
+                            escort.setPos(trader.getX(), trader.getY(), trader.getZ());
+                            world.addFreshEntity(escort);
+                            escort.restrictTo(pos, 5);
+                            ((ExtendedTraderEntity) trader).addEscort(escort.getUUID());
+                        }
+                    }
+
                     // TODO: Update warning message to 2 minutes and update visiting time to 20 minutes
-                    // TODO: Add support for spawning guards
                     // TODO: Make sure escorts are removed on despawn and death
                     // TODO: Add a 1 in 10 random roll to reduce the frequency they spawn
 

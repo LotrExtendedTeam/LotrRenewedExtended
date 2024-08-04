@@ -66,4 +66,6 @@ public interface ExtendedTraderEntity {
 	List<UUID> getEscortUUIDs();
 
 	void addEscort(UUID uuid);
+
+	NPCEntity createEscort();
 }

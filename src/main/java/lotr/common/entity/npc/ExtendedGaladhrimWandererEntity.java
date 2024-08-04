@@ -6,6 +6,7 @@ import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
@@ -378,6 +379,11 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     @Override
     public void addEscort(UUID uuid) {
         escorts.add(uuid);
+    }
+
+    @Override
+    public NPCEntity createEscort() {
+        return LOTREntities.GALADHRIM_ELF.get().create(level);
     }
 
 }

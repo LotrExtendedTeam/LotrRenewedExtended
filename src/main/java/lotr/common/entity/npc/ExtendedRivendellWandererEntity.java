@@ -5,7 +5,9 @@ import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
@@ -366,6 +368,11 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     @Override
     public void addEscort(UUID uuid) {
         escorts.add(uuid);
+    }
+
+    @Override
+    public NPCEntity createEscort() {
+        return LOTREntities.RIVENDELL_ELF.get().create(level);
     }
 
 }

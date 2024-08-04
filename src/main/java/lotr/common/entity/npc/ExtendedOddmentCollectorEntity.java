@@ -388,5 +388,10 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         escorts.add(uuid);
     }
 
+    @Override
+    public NPCEntity createEscort() {
+        return null;
+    }
+
 }
 

@@ -318,4 +318,9 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     public void addEscort(UUID uuid) {
         escorts.add(uuid);
     }
+
+    @Override
+    public NPCEntity createEscort() {
+        return null;
+    }
 }
