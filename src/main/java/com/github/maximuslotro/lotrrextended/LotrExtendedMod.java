@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
@@ -31,6 +32,7 @@ import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -62,6 +64,7 @@ public class LotrExtendedMod{
 		modBus.addListener(this::setup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
+		forgeBus.addListener(this::registerDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
 		forgeBus.addListener(this::addDimensionalSpacing);
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
@@ -92,6 +95,10 @@ public class LotrExtendedMod{
 
 	public IEventBus getModBus() {
 		return modBus;
+	}
+
+	public void registerDataPackListeners(AddReloadListenerEvent event) {
+		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
 	}
 
 	public void registerCommands(RegisterCommandsEvent event) {

@@ -1,0 +1,14 @@
+{
+  "id": "lotrextended:hobbit_barn_farmer_spawner",
+  "spawner_type": "single_use_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 16,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:hobbit_farmer"
+    }
+  ]
+}

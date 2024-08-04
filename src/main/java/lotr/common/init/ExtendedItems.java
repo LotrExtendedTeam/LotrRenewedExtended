@@ -458,6 +458,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
 
+	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
@@ -475,5 +476,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> HOBBIT_BANNER;
 
 	public static RegistryObject<Item> DUCK_EGG;
+
+	public static RegistryObject<Item> ENTITY_SPAWNER;
 }
 
