@@ -142,6 +142,13 @@ public class ExtendedLevelData {
             // if no players online try again in another minute
             if (world.players().isEmpty()) {
                 timeUntilTrader = 1200;
+                return;
+            }
+
+            // 1/5th of the time we will actually attempt to spawn otherwise just wait another minute
+            if (world.random.nextInt(4) > 0) {
+                timeUntilTrader = 1200;
+                return;
             }
 
             // pick a random player and spawn a trader near them

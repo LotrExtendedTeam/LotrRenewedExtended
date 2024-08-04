@@ -64,7 +64,7 @@ public class WanderingTradersSpawner {
                     trader.setYBodyRot(yaw);
                     trader.setYHeadRot(yaw);
 
-                    ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(18000);
+                    ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(24000);
                     ((ExtendedTraderEntity) trader).setWanderingTrader(true);
                     ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
 
@@ -79,9 +79,6 @@ public class WanderingTradersSpawner {
                             ((ExtendedTraderEntity) trader).addEscort(escort.getUUID());
                         }
                     }
-
-                    // TODO: Update warning message to 2 minutes and update visiting time to 20 minutes
-                    // TODO: Add a 1 in 10 random roll to reduce the frequency they spawn
 
                     // send message to the original player
                     player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you",((NPCEntity) trader).getName(), new StringTextComponent("X: " + pos.getX() + " Z: " + pos.getZ())), Util.NIL_UUID);

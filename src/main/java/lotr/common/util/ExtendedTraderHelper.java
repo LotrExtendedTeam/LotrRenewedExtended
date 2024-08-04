@@ -165,7 +165,7 @@ public class ExtendedTraderHelper {
             } else {
                 trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
                 // warn players nearby at 4 minutes left
-                if (trader.getWanderingTraderTicksLeft() == 4800) {
+                if (trader.getWanderingTraderTicksLeft() == 2400) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
                     List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
 
