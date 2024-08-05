@@ -6,6 +6,11 @@ import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedTileEntities;
 
+/**
+ * Replaced by the new Entity Spawner system for Structures
+ * @deprecated
+ * @since beta-1.6
+ * */
 public class ExtendedHobbitFarmerSpawnerTileEntity extends ExtendedStructureSpawnerTileEntity<ExtendedHobbitFarmerSpawnerTileEntity, ExtendedHobbitFarmerEntity>{
 
 	public ExtendedHobbitFarmerSpawnerTileEntity() {

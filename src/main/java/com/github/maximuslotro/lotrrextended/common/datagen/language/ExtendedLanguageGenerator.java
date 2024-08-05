@@ -3,8 +3,6 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
@@ -14,7 +12,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.BannerPattern;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
@@ -27,10 +24,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 	protected void makeTranslations() {
 		//Add default made Spawner Names
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.entrySet()) {
-			addOverride(block.getValue().get().getDescriptionId(), ((ExtendedGroupSpawnerBlock)block.getValue().get()).getEntitySpawn().getSerializedName() + " Spawner");
+			addOverrideRemove(block.getValue().get().getDescriptionId());
 		}
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYSPAWNERBLOCKS.entrySet()) {
-			addOverride(block.getValue().get().getDescriptionId(), ((ExtendedSpawnerBlock)block.getValue().get()).getEntitySpawn().getSerializedName() + " Spawner");
+			addOverrideRemove(block.getValue().get().getDescriptionId());
 		}
 
 		// Try Add New Block Names
