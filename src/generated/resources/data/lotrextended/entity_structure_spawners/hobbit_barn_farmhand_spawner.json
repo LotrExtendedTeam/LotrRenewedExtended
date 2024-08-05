@@ -1,6 +1,7 @@
 {
   "id": "lotrextended:hobbit_barn_farmhand_spawner",
   "spawner_type": "single_use_spawner",
+  "disable_for_use_in_future": true,
   "setHomeOnSpawn": true,
   "homeRadius": 12,
   "pools": [

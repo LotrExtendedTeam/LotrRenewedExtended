@@ -149,7 +149,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					int y;
 					int z;
 					// Set spawn cords based upon spawner type
-					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !spawnerInstance.insideSpawning()) {
 						x = MathHelper.floor(getX()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
 						z = MathHelper.floor(getZ()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
 						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, x, z);
@@ -165,7 +165,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					// Set spawn position
 					BlockPos footPos = new BlockPos(x, y, z);
 					// Check if spawn position is valid for boundary check spawns
-					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !spawnerInstance.insideSpawning()) {
 						BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
 						if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP) 
 								|| !floorBlock.getMaterial().isSolid()) {
@@ -359,7 +359,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					.append(new StringTextComponent(", Is Ticking: ").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(Boolean.toString(spawnerInstance.shouldTick())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("Local Spawn Cap: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(Integer.toString(spawnerInstance.getLocalSpawnCap())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(Integer.toString(spawnerInstance.getLocalSpawnCap())).withStyle(TextFormatting.WHITE))
+					.append(new StringTextComponent(", Inside Spawning: ").withStyle(TextFormatting.GREEN))
+					.append(new StringTextComponent(Boolean.toString(spawnerInstance.insideSpawning())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			String str = "";
 			for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
 				if(str.equals("")) {

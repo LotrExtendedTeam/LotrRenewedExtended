@@ -12,6 +12,7 @@
     "lowerYvalue": -1,
     "horizontal_bounds": 2
   },
+  "inside_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 12,
   "spawnCap": 1,
