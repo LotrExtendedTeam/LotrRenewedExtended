@@ -121,6 +121,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 			// ignore bows as they have their own custom models
 			if(item.getValue().get() instanceof ExtendedBowItem) {
+				genBow(item.getKey());
 				continue;
 			}
 
@@ -177,6 +178,27 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	@Override
 	public String getName() {
 		return "Renewed Extended Item Model Provider";
+	}
+
+	private void genBow(String name) {
+		ItemModelBuilder builder_bow_handleld = gen(withExistingParent("lotr:"+name+"_handheld", "lotrextended:item/template_bow_handheld"), false, 
+				lotrExtendedLoc("item/"+name+"_handheld"));
+		ItemModelBuilder builder_bow_handleld_p0 = gen(withExistingParent("lotr:"+name+"_handheld_pulling_0", "lotr:"+name+"_handheld"), false, 
+				lotrExtendedLoc("item/"+name+"_handheld_pulling_0"));
+		ItemModelBuilder builder_bow_handleld_p1 = gen(withExistingParent("lotr:"+name+"_handheld_pulling_1", "lotr:"+name+"_handheld"), false, 
+				lotrExtendedLoc("item/"+name+"_handheld_pulling_1"));
+		ItemModelBuilder builder_bow_handleld_2 = gen(withExistingParent("lotr:"+name+"_handheld_pulling_2", "lotr:"+name+"_handheld"), false, 
+				lotrExtendedLoc("item/"+name+"_handheld_pulling_2"));
+		ItemModelBuilder builder_bow = gen(withExistingParent("lotr:"+name, "lotrextended:item/template_bow"), false, lotrExtendedLoc("item/"+name));
+		ItemModelBuilder builder_bow_p0 = gen(withExistingParent("lotr:"+name+"_pulling_0", "lotr:"+name), false, lotrExtendedLoc("item/"+name+"_pulling_0"));
+		ItemModelBuilder builder_bow_p1 = gen(withExistingParent("lotr:"+name+"_pulling_1", "lotr:"+name), false, lotrExtendedLoc("item/"+name+"_pulling_1"));
+		ItemModelBuilder builder_bow_p2 = gen(withExistingParent("lotr:"+name+"_pulling_2", "lotr:"+name), false, lotrExtendedLoc("item/"+name+"_pulling_2"));
+		builder_bow_handleld.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling_0"))).predicate(ExtendedItemModelsProperties.pulling, 1);
+		builder_bow_handleld.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling_1"))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
+		builder_bow_handleld.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling_2"))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+		builder_bow.override().model(getExistingFile(lotrLoc("item/"+name+"_pulling_0"))).predicate(ExtendedItemModelsProperties.pulling, 1);
+		builder_bow.override().model(getExistingFile(lotrLoc("item/"+name+"_pulling_1"))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
+		builder_bow.override().model(getExistingFile(lotrLoc("item/"+name+"_pulling_2"))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
 	}
 
 	private ItemModelBuilder genSword(String name) {
