@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
@@ -47,17 +48,17 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 @Mod(value = LotrExtendedMod.MODID)
 public class LotrExtendedMod{
-
 	public static final String MODID = "lotrextended";
 	private IEventBus modBus;
-	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
+	public static ExtendedTickHandlerServer serverTickEventHandler;
+
 	public LotrExtendedMod() {
 		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
-		forgeBus = MinecraftForge.EVENT_BUS;
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::setup);
@@ -81,6 +82,7 @@ public class LotrExtendedMod{
 		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
 		ExtendedEffects.register();
+		serverTickEventHandler = new ExtendedTickHandlerServer();
 	}
 
 	public void setup(FMLCommonSetupEvent event) {

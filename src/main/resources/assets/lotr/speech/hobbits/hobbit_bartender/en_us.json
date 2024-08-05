@@ -1,0 +1,255 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Welcome to my tavern",
+        "Welcome to my tavern, #p!",
+        "Another customer! How are you?",
+        "Do you like ale? We have plenty here.",
+        "This tavern is as fine a place to get drunk as you've ever seen.",
+        "And what'll it be today, #p?",
+        "Looking for a drink?",
+        "Looking for a drink, #p?",
+        "Don't you have any silver coins?",
+        "Silver coins for your dinner?",
+        "Here in this fine establishment, we trade in silver coins!",
+        "If you have the coins, I have the goods!",
+        "Welcome to the finest tavern west of Bree!",
+        "What can I get you, #p?",
+        "You'll find the finest ale here, #p!",
+        "For a few silver coins, I can get you anything your stomach desires!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Good day, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Good morning!",
+        "Good morning to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Good morning, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Good afternoon!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Good afternoon, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Good evening!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Good evening, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "Oh, it's you, #p! I didn't recognise you at first, see.",
+        "See? I always said there was good Big Folk, like you, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Well, if it isn't #p! How are you today?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Well, if it isn't #p! How are you tonight?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Good day, sir!",
+        "Good day, sir #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Good day, miss!",
+        "Good day, miss #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "Always nice to have patrons like you, #p, in my tavern!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "I do so miss the Shire.",
+        "I do so miss my tavern.",
+        "I've never been so far from the Shire before.",
+        "If I take one more step, it'll be the farthest from home I've ever been.",
+        "Perhaps it's time to return home. I miss the Shire.",
+        "Adventures? Nasty things, they are. I think it's about time I returned to my tavern.",
+        "The road goes ever on and on, under trees and over streams, and I must follow, so it seems! But I shall be turning home soon.",
+        "Is this the land of your folk, #p? A strange place it is, and that's for sure!",
+        "Now we ought to find the way back home, #p.",
+        "Hobbit holes! Warmth, good food, and comfort. I do miss mine...",
+        "I've had my fill of foreign lands for now, #p. Shall we be a-wandering home soon?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "What a dreadful place! Let us return to the Shire at once!",
+        "How have we come to such a dreadful place?",
+        "What an awful land this is, #p!",
+        "What a frightful land! We must find our way back to the Shire!",
+        "This country is enough to fill even the stoutest hearts with dread!",
+        "I declare I've seen quite enough of this place! Let's go back to the Shire, and quickly!",
+        "Well, #p, this is a nasty place if I ever saw one!",
+        "I feel all ill at ease here. Say, #p, do you know the road back to the Shire?",
+        "I don't know how we ever came to find ourselves in such a place as this, #p.",
+        "Even the air here is nasty stuff!",
+        "They always warned me against following those roads out of the Shire!",
+        "I wish I'd paid more attention to my old Gaffer! Never should've left the Shire, no no!",
+        "If I'd known this was what lay beyond our Shire-borders, I never would've gone a-wandering!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "And how are you today, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Do you mind? I was in the middle of a conversation here!",
+        "#p! I was just in the middle of a conversation.",
+        "A bit rude to interrupt, isn't it?",
+        "There's no need to interrupt, is there?",
+        "I was just speaking! Wait your turn!",
+        "How rude! We were having a good chatter there, if you please.",
+        "Mind your own business. Can't you see we were talking?",
+        "Mind your own business, please! Now leave us alone.",
+        "I see you have no qualms about interrupting some good Hobbit chatter!",
+        "If you please, #p, I was in the middle of a conversation.",
+        "...and I turned to him and said - excuse me? Do you mind interrupting us, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I hear you've been causing trouble round here.",
+        "Get out!",
+        "I won't have you causing trouble in my tavern, #p. Get out!",
+        "You're not welcome in my tavern.",
+        "No ale for you!",
+        "No ale for you, #p.",
+        "We don't take kindly to folk like you round here.",
+        "I shan't be serving you anything!",
+        "No troublemakers like you in my tavern.",
+        "Nasty folk like you aren't welcome in my tavern",
+        "Hey, #p! Get out of my tavern!",
+        "Get out before I call the Bounders!",
+        "I don't serve troublemakers in my tavern",
+        "I will give you nothing for dinner tonight, #p!",
+        "You won't be getting anything from me, #p!",
+        "Get out of here, you dirty blighter!",
+        "I don't want no trouble in here, #p.",
+        "Let's not be having no trouble, now.",
+        "I shan't be thinking I'll be serving you anything.",
+        "No thank-you, #p!",
+        "No thank-you! We don't want any of your sort in here."
+      ]
+    }
+  ]
+}

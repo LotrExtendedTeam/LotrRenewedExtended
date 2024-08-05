@@ -5,7 +5,9 @@ import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
@@ -34,6 +36,7 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -49,6 +52,10 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.OPTIONAL_UUID);
+    private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.INT);
+
+    private List<UUID> escorts = new ArrayList<>();
 
     // items Rivendell Wanderers sell to a player
     // TODO: Add Bows, Longspears, and and Battlestaffs when they are added
@@ -152,6 +159,9 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
+        this.entityData.define(IS_WANDERING_TRADER, false);
+        // start at 1000 ticks just to make sure there's no chance they immediately despawn
+        this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
     public boolean canTradeWith(PlayerEntity player) {
@@ -172,6 +182,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
         TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
+        ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
     @Override
@@ -184,6 +195,15 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag) != null) {
             itemsSoldByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag);
         }
+
+        // load values related to wandering traders
+        int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
+        entityData.set(WANDERING_TRADER_TIME_LEFT, wanderingTraderTimeLeft);
+
+        boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
+        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+
+        escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
     @Override
@@ -262,6 +282,26 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
+    public boolean isWanderingTrader() {
+        return entityData.get(IS_WANDERING_TRADER);
+    }
+
+    @Override
+    public void setWanderingTrader(boolean isWanderingTrader) {
+        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+    }
+
+    @Override
+    public int getWanderingTraderTicksLeft() {
+        return entityData.get(WANDERING_TRADER_TIME_LEFT);
+    }
+
+    @Override
+    public void setWanderingTraderTicksLeft(int ticksLeft) {
+        entityData.set(WANDERING_TRADER_TIME_LEFT, ticksLeft);
+    }
+
+    @Override
     public List<ExtendedTrade> getSells() {
         return itemsSoldByTrader;
     }
@@ -306,11 +346,33 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         } else {
             lastTickCooldownReduced++;
         }
+
+        ExtendedTraderHelper.tickTrader(this, this);
     }
 
     @Override
     public ResourceLocation getCloakTextureLocation() {
         return new ResourceLocation("lotr", "textures/cape/rivendell_trader.png");
+    }
+
+    @Override
+    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
+        return new TranslationTextComponent("speechbank.rivendell_wanderer.departure." + (random.nextInt(8) + 1), getName(), player.getName());
+    }
+
+    @Override
+    public List<UUID> getEscortUUIDs() {
+        return escorts;
+    }
+
+    @Override
+    public void addEscort(UUID uuid) {
+        escorts.add(uuid);
+    }
+
+    @Override
+    public NPCEntity createEscort() {
+        return LOTREntities.RIVENDELL_ELF.get().create(level);
     }
 
 }

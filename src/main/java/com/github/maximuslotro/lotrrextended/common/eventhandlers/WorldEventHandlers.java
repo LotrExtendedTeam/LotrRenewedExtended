@@ -11,12 +11,19 @@ import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.List;
+import java.util.UUID;
 
 public class WorldEventHandlers {
 
@@ -64,6 +71,28 @@ public class WorldEventHandlers {
 		if(event.getPlayer() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
+		}
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public static void handleWanderingTraderDeath(LivingDeathEvent event) {
+		if (!(event.getEntity() instanceof ExtendedTraderEntity)) {
+			return;
+		}
+
+		ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
+		if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
+			return;
+		}
+
+		AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
+				event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
+		List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
+
+		for (NPCEntity entity : potentialEscorts) {
+			if (trader.getEscortUUIDs().contains(entity.getUUID())) {
+				entity.remove();
+			}
 		}
 	}
 }
