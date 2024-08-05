@@ -70,6 +70,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	private ResourceLocation spawnerType;
 	private static boolean isVisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
+	private boolean firstTick = true;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
@@ -99,8 +100,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					}
 				}
 				if(!spawnerInstance.isEmptySpawner() && spawnerInstance.shouldTick() && !spawnerInstance.getSpawnType().isUnknown()) {
-					if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0) {
-						trySpawningEntities((ServerWorld) this.level);
+					if(this.tickCount % spawnerInstance.getEntitySpawnTickRate() == 0 || firstTick) {
+						if(trySpawningEntities((ServerWorld) this.level)) {
+							firstTick = false;
+						}
 					}
 				}
 			}
@@ -108,18 +111,18 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	}
 
 	@SuppressWarnings("deprecation")
-	private void trySpawningEntities(ServerWorld world) {
+	private boolean trySpawningEntities(ServerWorld world) {
 		// Check if spawner bounds exist
 		if(!world.hasChunksAt(getCMinBlockPos(), getCMaxBlockPos())) {
-			return;
+			return false;
 		}
 		// Check if player has a proper distance from the spawner
 		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
 			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to close"), Util.NIL_UUID));
-			return;
+			return false;
 		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
 			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to far away"), Util.NIL_UUID));
-			return;
+			return false;
 		}
 		// Get spawn cap if not single type
 		int nearbyEntitySpawnCount = 0;
@@ -191,12 +194,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							if(((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
 									||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
 								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
-								return;
+								return false;
 							}
 							if(((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
 									||((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
 								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
-								return;
+								return false;
 							}
 							entityMaleNpc.getPersonalInfo().setMale(true);
 							entityMaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityMaleNpc).invokeNameGenerator().generateName(random, true));
@@ -261,7 +264,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 								}
 							}else {
 								ExtendedLog.error("Failed spawning %s because it is not a supported Entity Class - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
-								return;
+								return false;
 							}
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
@@ -291,6 +294,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			//System.out.println("Removing spawner because of single type affiliations!");
 			queueToRemove=true;
 		}
+		return true;
 	}
 
 	private void setSpawnerFromResourceLocation() {
@@ -322,6 +326,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			this.getEntityData().set(DATA_SPAWNER_TYPE, spawnerType.toString());
 			reCalculateBounds();
 		}
+		if(pCompound.contains("firstTick")) {
+			this.firstTick = pCompound.getBoolean("firstTick");
+		}
 	}
 
 	@Override
@@ -334,6 +341,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			pCompound.putString("setSpawnerType", spawnerType.toString());
 		}else {
 			pCompound.putString("setSpawnerType", ExtendedSpawners.EMPTY.toString());
+		}
+		if(!this.firstTick) {
+			pCompound.putBoolean("firstTick", false);
 		}
 	}
 
@@ -496,13 +506,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if (this.isInvulnerableTo(pSource)) {
 			return false;
 		} else {
-			if(ExtendedServerConfig.enableDevMode.get()) {
-				Entity entity = pSource.getEntity();
-				if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
-					if(((PlayerEntity)entity).isCrouching()) {
-						this.remove();
-					}
-				}else {
+			Entity entity = pSource.getEntity();
+			if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
+				if(((PlayerEntity)entity).isCrouching()) {
 					this.remove();
 				}
 			}else {
