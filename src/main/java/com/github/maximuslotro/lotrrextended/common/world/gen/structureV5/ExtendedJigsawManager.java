@@ -255,14 +255,15 @@ public class ExtendedJigsawManager {
 	                                	 for (StructureProcessor processor : processors) {
 	                                		 if (processor instanceof WoodPaletteProcessor) {
 	                                			 woodprocessorflag=false;
-	                                		 }
-	                                		 if(woodprocessorflag) {
-	                                			 processors.add(carryOverProcessor.get());
-	    	                                	 StructureProcessorList list = new StructureProcessorList(processors);
-	    	                                	 ((SingleJigsawPiece)connectingPoolJigsawPiece).processors = () -> list;
-	    	                                	 ExtendedLog.info("Added wood processor to structure piece from parent");
+	                                			 break;
 	                                		 }
 	                                	 }
+	                                	 if(woodprocessorflag) {
+                                			 processors.add(carryOverProcessor.get());
+    	                                	 StructureProcessorList list = new StructureProcessorList(processors);
+    	                                	 ((SingleJigsawPiece)connectingPoolJigsawPiece).processors = () -> list;
+    	                                	 ExtendedLog.info("Added wood processor to structure piece from parent");
+                                		 }
 	                                 }
 	                                 // Extended end
 	                                 AbstractVillagePiece abstractvillagepiece = this.factory.create(this.structureManager, connectingPoolJigsawPiece, blockpos5, connectingPoolJigsawPieceGroundLevelData, rotation1, mutableboundingbox3);

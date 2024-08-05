@@ -3,6 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structure.process
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPallet;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPallets;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.util.math.BlockPos;
@@ -13,13 +15,11 @@ import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
 
 public class WoodPaletteProcessor extends StructureProcessor{
-	public static final Codec<WoodPaletteProcessor> CODEC = Codec.STRING.fieldOf("location")
-			.orElse("minecraft:empty")
-			.xmap(WoodPaletteProcessor::new, (p_237078_0_) -> {return p_237078_0_.location;})
-			.codec();
+	public static final Codec<WoodPaletteProcessor> CODEC = Codec.STRING.fieldOf("location").orElse("minecraft:empty")
+			.xmap(WoodPaletteProcessor::new, (p_237078_0_) -> {return p_237078_0_.location;}).codec();
 
 	private final String location;
-	private String picked;
+	private WoodPallet picked;
 
 	public WoodPaletteProcessor(String palette) {
 		this.location = palette;
@@ -27,6 +27,12 @@ public class WoodPaletteProcessor extends StructureProcessor{
 
 	@Override
 	public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData, @Nullable Template template) {
+		if(picked==null) {
+			WoodPallets.getPalletForname(location);
+		}
+		if(picked.isEmpty()) {
+			return blockInfoWorld;
+		}
 		return blockInfoWorld;
 	}
 
