@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "sepia=false": {
       "model": "lotrextended:block/conquest_table"
+    },
+    "sepia=true": {
+      "model": "lotrextended:block/conquest_table_sepia"
     }
   }
 }

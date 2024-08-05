@@ -1,0 +1,9 @@
+{
+  "parent": "lotrextended:block/template_conquest_table",
+  "textures": {
+    "table_top": "lotrextended:block/conquest_table_map_sepia",
+    "block": "lotrextended:block/conquest_table_block",
+    "table_bottom": "lotrextended:block/conquest_table_bottom",
+    "particle": "lotrextended:block/conquest_table_map_sepia"
+  }
+}
