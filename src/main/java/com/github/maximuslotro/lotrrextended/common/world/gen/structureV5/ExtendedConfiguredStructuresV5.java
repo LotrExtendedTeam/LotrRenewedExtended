@@ -36,6 +36,8 @@ public class ExtendedConfiguredStructuresV5 {
 	public static WeightedStructureConfig arnorRuinsConfig = new WeightedStructureConfig()
 			.addStructureToPool("ruins/arnor_ruins_pool", 50).addStructureToPool("ruins/general_ruins_pool", 50);
 	public static StructureFeature<?, ?> CONFIGURED_ARNOR_RUINS = register(ExtendedStructuresV5.ARNOR_RUINS.get().configured(arnorRuinsConfig));
+	public static StructureFeature<?, ?> CONFIGURED_RUINED_HOUSE = register(ExtendedStructuresV5.RANGER_HOUSE_RUIN.get().configured(new SinglePoolConfig("ranger/ruins_pool")));
+	public static StructureFeature<?, ?> CONFIGURED_GUNDABAD_CAMP = register(ExtendedStructuresV5.GUNDABAD_CAMP.get().configured(new SinglePoolConfig("gundabad/camp_parts/firepit_pool")));
 
 	public static void registerConfiguredStructures(){}
 

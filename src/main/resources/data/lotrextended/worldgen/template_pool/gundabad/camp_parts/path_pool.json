@@ -1,0 +1,123 @@
+{
+	"name": "lotrextended:gundabad/camp_parts/path_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_l_1",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_l_2",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_l_3",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_1",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_2",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_3",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+				{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_4",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+				{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_5",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+				{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_6",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_t_1",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_t_2",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_t_3",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_t_4",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		}
+	]
+}

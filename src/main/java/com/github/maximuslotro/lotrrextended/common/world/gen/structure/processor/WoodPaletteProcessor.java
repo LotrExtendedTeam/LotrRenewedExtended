@@ -1,12 +1,27 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
+import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPallet;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPallets;
+import com.google.common.collect.Lists;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
@@ -15,23 +30,62 @@ import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
 
 public class WoodPaletteProcessor extends StructureProcessor{
-	public static final Codec<WoodPaletteProcessor> CODEC = Codec.STRING.fieldOf("location").orElse("minecraft:empty")
-			.xmap(WoodPaletteProcessor::new, (p_237078_0_) -> {return p_237078_0_.location;}).codec();
+	public static final Codec<WoodPaletteProcessor> CODEC = RecordCodecBuilder.create((processorInstance) -> {
+		return processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getReplacingPalletName), Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error)).fieldOf("woodTypes").forGetter((processor) -> {
+			return processor.rawPallets;
+		})).apply(processorInstance, WoodPaletteProcessor::new);
+	});
+	private WoodPallet pickedPallet;
+	private final WoodPallet basePallet;
+	private final List<Pair<String, Integer>> rawPallets;
+	public final List<String> pallets;
 
-	private final String location;
-	private WoodPallet picked;
+	public WoodPaletteProcessor(String defaultName, List<Pair<String, Integer>> rawPallets) {
+		this.rawPallets = rawPallets;
+		this.pallets = Lists.newArrayList();
 
-	public WoodPaletteProcessor(String palette) {
-		this.location = palette;
+		for(Pair<String, Integer> pair : rawPallets) {
+			String pallet = pair.getFirst();
+
+			for(int i = 0; i < pair.getSecond(); ++i) {
+				this.pallets.add(pallet);
+			}
+		}
+		basePallet = WoodPallets.getPalletForname(defaultName);
 	}
 
+	private WoodPallet getRandomTemplate(Random pRandom) {
+		return WoodPallets.getPalletForname(this.pallets.get(pRandom.nextInt(this.pallets.size())));
+	}
+
+	public void generateAndSetPallet(Random random) {
+		pickedPallet = this.getRandomTemplate(random);
+	}
 	@Override
 	public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData, @Nullable Template template) {
-		if(picked==null) {
-			WoodPallets.getPalletForname(location);
+		if(pickedPallet==null) {
+			ExtendedLog.warn("Needed to set WoodPallet on BlockProcess, this should not happen! Please report this and what you did!");
+			generateAndSetPallet(placmentData.getRandom(blockInfoWorld.pos));
 		}
-		if(picked.isEmpty()) {
+		if(pickedPallet.isEmpty()) {
 			return blockInfoWorld;
+		}
+		if(pickedPallet.equals(basePallet)) {
+			ExtendedLog.info("pallets match");
+			return blockInfoWorld;
+		}
+		BlockState blockstate = blockInfoWorld.state;
+		if(blockstate.getBlock().equals(Blocks.AIR)) {
+			return blockInfoWorld;
+		}
+		if(basePallet.getBlockMap().containsValue(blockstate.getBlock())) {
+			String key = getKey(basePallet.getBlockMap(), blockInfoWorld.state.getBlock());
+			Block pickedBlock = pickedPallet.getBlockMap().get(key);
+			if(blockstate.getBlock().equals(Blocks.AIR)) {
+				return blockInfoWorld;
+			}
+			ExtendedLog.info("Replaced "+blockstate.getBlock().getRegistryName().toString() +" with"+ pickedBlock.getRegistryName().toString());
+			return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(pickedBlock, blockstate), (CompoundNBT)null);
 		}
 		return blockInfoWorld;
 	}
@@ -39,5 +93,27 @@ public class WoodPaletteProcessor extends StructureProcessor{
 	@Override
 	protected IStructureProcessorType<?> getType() {
 		return ExtendedStructureProcessors.WOOD_PALETTE_PROCESSOR;
+	}
+
+	@Nullable
+	public WoodPallet getPickedPallet() {
+		return pickedPallet;
+	}
+
+	public WoodPallet getReplacingPallet() {
+		return basePallet;
+	}
+
+	public String getReplacingPalletName() {
+		return basePallet.getName();
+	}
+
+	private <K, V> K getKey(Map<K, V> map, V value) {
+	    for (Entry<K, V> entry : map.entrySet()) {
+	        if (entry.getValue().equals(value)) {
+	            return entry.getKey();
+	        }
+	    }
+	    return null;
 	}
 }

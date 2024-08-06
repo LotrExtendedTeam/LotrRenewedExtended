@@ -40,13 +40,12 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure());
     public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure());
     public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure());
-    @Deprecated
-    /**
-     * Combined with RANGER_HOUSE_HIDEOUT and removed from structure spawns map, kept so pre-existing chunks do not experience crashes
-     * */
     public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure());
     public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure());
 
+    public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure());
+
+    
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
@@ -67,8 +66,9 @@ public class ExtendedStructuresV5 {
 		register(RANGER_HIDEOUT.get(), true,           44, 32, 752122251);
 		register(RANGER_WATCHTOWER.get(), true,        42, 31, 002406043);
 		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 35, 358719680);
-		register(RANGER_HOUSE_RUIN.get(), true,        32, 18, 340638920);
+		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 340638920);
 		register(ARNOR_RUINS.get(), true,              29, 18, 365876386);
+		register(GUNDABAD_CAMP.get(), true,            42, 25, 976890477);
 	}
 	
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

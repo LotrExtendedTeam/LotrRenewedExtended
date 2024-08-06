@@ -1,0 +1,60 @@
+{
+	"name": "lotrextended:gundabad/camp_parts/firepit_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/fire/gundabad_camp_firepit_1",
+				"processors": "lotrextended:gundabad_camp_firepit_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/fire/gundabad_camp_firepit_2",
+				"processors": "lotrextended:gundabad_camp_firepit_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/fire/gundabad_camp_firepit_3",
+				"processors": "lotrextended:gundabad_camp_firepit_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/fire/gundabad_camp_firepit_4",
+				"processors": "lotrextended:gundabad_camp_firepit_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/fire/gundabad_camp_firepit_5",
+				"processors": "lotrextended:gundabad_camp_firepit_processor"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/fire/gundabad_camp_firepit_6",
+				"processors": "lotrextended:gundabad_camp_firepit_processor"
+			}
+		}
+	]
+}

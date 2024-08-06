@@ -1,0 +1,12 @@
+{
+  "name": "lotrextended:gundabad/camp_parts/feature_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:empty_pool_element"
+      }
+    }
+  ]
+}

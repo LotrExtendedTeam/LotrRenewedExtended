@@ -1,0 +1,15 @@
+{
+	"name": "lotrextended:gundabad/camp_parts/path_farm_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/path/gundabad_camp_road_straight_3",
+				"processors": "lotrextended:gundabad_camp_roads_processor"
+			}
+		}
+	]
+}
