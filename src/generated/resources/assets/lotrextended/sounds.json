@@ -35,6 +35,18 @@
       "lotrextended:entity/duck/death1"
     ]
   },
+  "block.reed_basket.open": {
+    "subtitle": "subtitles.lotrextended.block.reed_basket.open",
+    "sounds": [
+      "lotrextended:block/reed_basket/open1"
+    ]
+  },
+  "block.reed_basket.close": {
+    "subtitle": "subtitles.lotrextended.block.reed_basket.close",
+    "sounds": [
+      "lotrextended:block/reed_basket/close1"
+    ]
+  },
   "entity.duck.egg": {
     "subtitle": "subtitles.lotrextended.entity.duck.egg",
     "sounds": [

@@ -1127,6 +1127,8 @@
   "stat.lotrextended.sliced_cheese": "Cheese Slices Cut",
   "stat.lotrextended.stone_chest_open": "Stone Chests Opened",
   "stat.lotrextended.traders_traded": "Times Traded With Traders",
+  "subtitles.lotrextended.block.reed_basket.close": "Reed Basket Closes",
+  "subtitles.lotrextended.block.reed_basket.open": "Reed Basket Opens",
   "subtitles.lotrextended.entity.duck.death": "Duck dies",
   "subtitles.lotrextended.entity.duck.egg": "Duck plops",
   "subtitles.lotrextended.entity.duck.hurt": "Duck hurts",
