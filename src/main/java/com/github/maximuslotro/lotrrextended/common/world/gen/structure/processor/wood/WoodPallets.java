@@ -72,7 +72,7 @@ public class WoodPallets {
 				ExtendedBlocks.BANANA_BEAM_SLAB.get(), ExtendedBlocks.BANANA_FENCE.get(), ExtendedBlocks.BANANA_FENCE_GATE.get(), ExtendedBlocks.BANANA_DOOR.get(), 
 				ExtendedBlocks.BANANA_TRAPDOOR.get(), ExtendedBlocks.BANANA_PRESSURE_PLATE.get(), ExtendedBlocks.BANANA_BUTTON.get(), 
 				ExtendedBlocks.BANANA_SIGN.get(), ExtendedBlocks.BANANA_WALL_SIGN.get(), ExtendedBlocks.BANANA_LEAVES.get()));
-		pallets.put("lotrextended:chestnut", () -> new WoodPallet("lotrextended:banana", ExtendedBlocks.CHESTNUT_LOG.get(), ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get(), ExtendedBlocks.CHESTNUT_LOG_SLAB.get(), 
+		pallets.put("lotrextended:chestnut", () -> new WoodPallet("lotrextended:chestnut", ExtendedBlocks.CHESTNUT_LOG.get(), ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get(), ExtendedBlocks.CHESTNUT_LOG_SLAB.get(), 
 				ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB.get(), ExtendedBlocks.CHESTNUT_WOOD.get(), ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get(), 
 				ExtendedBlocks.CHESTNUT_WOOD_SLAB.get(), ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB.get(), ExtendedBlocks.CHESTNUT_WOOD_STAIRS.get(), 
 				ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS.get(), ExtendedBlocks.CHESTNUT_BRANCH.get(), ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH.get(), 

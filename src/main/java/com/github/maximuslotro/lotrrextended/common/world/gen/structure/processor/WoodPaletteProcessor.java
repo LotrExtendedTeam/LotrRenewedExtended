@@ -46,7 +46,9 @@ public class WoodPaletteProcessor extends StructureProcessor{
 
 		for(Pair<String, Integer> pair : rawPallets) {
 			String pallet = pair.getFirst();
-
+			if(defaultName.equals(pallet)) {
+				continue;
+			}
 			for(int i = 0; i < pair.getSecond(); ++i) {
 				this.pallets.add(pallet);
 			}
@@ -61,6 +63,7 @@ public class WoodPaletteProcessor extends StructureProcessor{
 	public void generateAndSetPallet(Random random) {
 		pickedPallet = this.getRandomTemplate(random);
 	}
+
 	@Override
 	public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData, @Nullable Template template) {
 		if(pickedPallet==null) {
