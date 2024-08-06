@@ -311,10 +311,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.ANGMAR_SHOVEL, 
 				ExtendedItems.ANGMAR_AXE, 
 				ExtendedItems.ANGMAR_HOE, 
-				Tags.Items.BONES, "bone", null);
-		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, Tags.Items.BONES, "bone", null);
-		makeSpearRecipe(consumer, ExtendedItems.ANGMAR_SPEAR, Tags.Items.BONES, "bone", null);
-		makeDaggerRecipe(consumer, ExtendedItems.ANGMAR_DAGGER, Tags.Items.BONES, "bone", null);
+				LOTRItems.ORC_STEEL_INGOT, null);
+		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, null);
+		makeSpearRecipe(consumer, ExtendedItems.ANGMAR_SPEAR, LOTRItems.ORC_STEEL_INGOT, null);
+		makeDaggerRecipe(consumer, ExtendedItems.ANGMAR_DAGGER, LOTRItems.ORC_STEEL_INGOT, null);
 		GENERATEDRECIPES.add(ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ORC_CHANDELIER.get(), LOTRRecipes.ANY_ORC)
 		.pattern(" N ")
@@ -339,10 +339,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 										ExtendedItems.BONE_SHOVEL, 
 										ExtendedItems.BONE_AXE, 
 										ExtendedItems.BONE_HOE, 
-										LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
-		makeSwordRecipe(consumer, ExtendedItems.BONE_SWORD, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
-		makeSpearRecipe(consumer, ExtendedItems.BONE_SPEAR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
-		makeDaggerRecipe(consumer, ExtendedItems.BONE_DAGGER, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+										Tags.Items.BONES, "bone", null);
+		makeSwordRecipe(consumer, ExtendedItems.BONE_SWORD, Tags.Items.BONES, "bone", null);
+		makeSpearRecipe(consumer, ExtendedItems.BONE_SPEAR, Tags.Items.BONES, "bone", null);
+		makeDaggerRecipe(consumer, ExtendedItems.BONE_DAGGER, Tags.Items.BONES, "bone", null);
 		//WARG
 		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_WARG_CHESTPLATE, 
 				ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_BOOTS, 
