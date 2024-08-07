@@ -52,23 +52,23 @@ public class ExtendedStructuresV5 {
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
 		register(HOBBIT_BARN.get(), true,              32, 12, 795386759);
-		register(HOBBIT_HOLE_SMALL.get(), true,        24, 10, 212561518);
+		register(HOBBIT_HOLE_SMALL.get(), true,        24, 9, 212561518);
 		register(HOBBIT_HOLE_LARGE.get(), false,       40, 25, 445436264);
 		register(HOBBIT_HOUSE.get(), true,             24, 5,  764008750);
-		register(HOBBIT_PICNIC_BLANKET.get(), false,   14, 8,  639354136);
-		register(HOBBIT_PICNIC_TABLE.get(), true,      14, 8,  852604573);
-		register(HOBBIT_TAVERN_SMALL.get(), true,      25, 15, 489984587);
-		register(HOBBIT_TAVERN_LARGE.get(), false,     43, 30, 230050245);
+		register(HOBBIT_PICNIC_BLANKET.get(), false,   20, 8,  639354136);
+		register(HOBBIT_PICNIC_TABLE.get(), true,      30, 10,  852604573);
+		register(HOBBIT_TAVERN_SMALL.get(), true,      30, 15, 489984587);
+		register(HOBBIT_TAVERN_LARGE.get(), false,     50, 40, 230050245);
 		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
-		register(RANGER_CAMP.get(), true,              42, 25, 663198446);
-		register(RANGER_ENCAMPMENT.get(), true,        50, 38, 232963172);
+		register(RANGER_CAMP.get(), true,              55, 35, 6678446);
+		register(RANGER_ENCAMPMENT.get(), true,        60, 40, 232963172);
 		register(RANGER_FORT.get(), true,              56, 36, 213435145);
-		register(RANGER_HIDEOUT.get(), true,           44, 32, 752122251);
-		register(RANGER_WATCHTOWER.get(), true,        42, 31, 002406043);
+		register(RANGER_HIDEOUT.get(), true,           50, 38, 75222251);
+		register(RANGER_WATCHTOWER.get(), true,        60, 38, 00246043);
 		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 35, 358719680);
-		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 340638920);
+		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 34063920);
 		register(ARNOR_RUINS.get(), true,              29, 18, 365876386);
-		register(GUNDABAD_CAMP.get(), true,            42, 25, 976890477);
+		register(GUNDABAD_CAMP.get(), true,            50, 30, 967990477);
 	}
 	
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
