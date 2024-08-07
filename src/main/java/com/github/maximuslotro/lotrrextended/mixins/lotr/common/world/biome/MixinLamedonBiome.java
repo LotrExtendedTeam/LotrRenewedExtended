@@ -31,7 +31,8 @@ public class MixinLamedonBiome {
 				ExtendedBiomeFeatures.chestnutBees(), 20, ExtendedBiomeFeatures.chestnutFancyBees(), 5,
 				LOTRBiomeFeatures.larch(), 3000, LOTRBiomeFeatures.aspen(), 3000, 
 				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1);
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1, 
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((LamedonBiome)(Object)this, builder, 8, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 3);

@@ -27,7 +27,8 @@ public class MixinDaleNorthernBiome {
 				LOTRBiomeFeatures.mapleBees(), 5, LOTRBiomeFeatures.pine(), 2000, 
 				LOTRBiomeFeatures.pineDead(), 200, LOTRBiomeFeatures.fir(), 2000, 
 				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1 };
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1, 
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1 };
 		LOTRBiomeFeatures.addTreesWithClusters((Northern)(Object)this, builder, 0, 0.05F, TreeCluster.of(8, 40), weightedTrees);
 		LOTRBiomeFeatures.addTreesAboveTreelineIncrease((Northern)(Object)this, builder, 2, 0.3F, 2, 82, weightedTrees);
 		LOTRBiomeFeatures.addGrass((Northern)(Object)this, builder, 6, GrassBlends.STANDARD);

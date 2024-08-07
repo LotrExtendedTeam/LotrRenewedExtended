@@ -29,7 +29,8 @@ public class MixinBlackrootValeBiome {
 				ExtendedBiomeFeatures.chestnut(), 2000, ExtendedBiomeFeatures.chestnutFancy(), 500, 
 				ExtendedBiomeFeatures.chestnutBees(), 20, ExtendedBiomeFeatures.chestnutFancyBees(), 5,
 				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1);
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1, 
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((BlackrootValeBiome)(Object)this, builder, 12, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 8, LOTRBlocks.BLACKROOT.get(), 60);

@@ -43,6 +43,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroup
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
+import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedTrapDoorBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
@@ -299,7 +300,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PLUM_PLANKS = registerB("plum_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 		ExtendedBlocks.PLUM_LEAVES = registerB("plum_leaves", LOTRLeavesBlock::new);
 		ExtendedBlocks.PLUM_LEAVES_FRUIT = registerB("plum_leaves_fruit", LOTRLeavesBlock::new);
-		ExtendedBlocks.PLUM_SAPLING = registerB("plum_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
+		ExtendedBlocks.PLUM_SAPLING = registerB("plum_sapling", () -> new LOTRSaplingBlock(new PlumTree()));
 		ExtendedBlocks.POTTED_PLUM_SAPLING = registerB("potted_plum_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.PLUM_SAPLING));
 		ExtendedBlocks.PLUM_SLAB = registerB("plum_slab", () -> new AxialSlabBlock(ExtendedBlocks.PLUM_PLANKS));
 		ExtendedBlocks.PLUM_STAIRS = registerB("plum_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.PLUM_PLANKS));

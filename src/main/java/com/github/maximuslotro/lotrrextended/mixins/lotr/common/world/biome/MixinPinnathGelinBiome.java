@@ -27,7 +27,8 @@ public class MixinPinnathGelinBiome {
 				ExtendedBiomeFeatures.chestnutFancy(), 500, ExtendedBiomeFeatures.chestnutBees(), 10, 
 				ExtendedBiomeFeatures.chestnutFancyBees(), 5, LOTRBiomeFeatures.apple(), 50, 
 				LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1, 
-				LOTRBiomeFeatures.pearBees(), 1);
+				LOTRBiomeFeatures.pearBees(), 1, 
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((PinnathGelinBiome)(Object)this, builder, 10, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 2);

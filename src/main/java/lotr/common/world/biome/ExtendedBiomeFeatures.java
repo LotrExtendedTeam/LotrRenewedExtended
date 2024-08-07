@@ -34,11 +34,24 @@ import net.minecraftforge.event.RegistryEvent;
 
 public class ExtendedBiomeFeatures {
 	private static boolean created = false;
+	// Trees
 	private static BlockState CHESTNUT_LOG;
 	private static BlockState CHESTNUT_WOOD;
 	private static BlockState CHESTNUT_BRANCH;
 	private static BlockState CHESTNUT_LEAVES;
 	private static BlockState CHESTNUT_LEAVES_FRUIT;
+	
+	private static BlockState BANANA_LOG;
+	private static BlockState BANANA_LEAVES;
+	public static BlockState BANANA_FRUIT;
+	
+	private static BlockState PLUM_LOG;
+	private static BlockState PLUM_WOOD;
+	private static BlockState PLUM_BRANCH;
+	private static BlockState PLUM_LEAVES;
+	private static BlockState PLUM_LEAVES_FRUIT;
+
+	// Ores
 	private static BlockState AMETHYST_ORE;
 	private static BlockState TOPAZ_ORE;
 	private static BlockState AMBER_ORE;
@@ -47,10 +60,6 @@ public class ExtendedBiomeFeatures {
 	private static BlockState RUBY_ORE;
 	private static BlockState EMERALD_ORE;
 	private static BlockState DIAMOND_ORE;
-
-	private static BlockState BANANA_LOG;
-	private static BlockState BANANA_LEAVES;
-	public static BlockState BANANA_FRUIT;
 
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE;
@@ -61,6 +70,13 @@ public class ExtendedBiomeFeatures {
 
 	private static BlockStateProvider BANANA_LEAVES_POOL;
 	public static BaseTreeFeatureConfig BANANA_TREE;
+
+	private static BlockStateProvider PLUM_LEAVES_POOL;
+	public static BaseTreeFeatureConfig PLUM_TREE;
+	public static BaseTreeFeatureConfig PLUM_TREE_FANCY;
+	public static BaseTreeFeatureConfig PLUM_TREE_BEES;
+	public static BaseTreeFeatureConfig PLUM_TREE_FANCY_BEES;
+	public static BaseTreeFeatureConfig PLUM_PARTY;
 
 	//Chestnut
 	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
@@ -89,6 +105,28 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(BANANA_TREE);
 	}
 
+	//Plum
+	//TODO add to GulfOfHarad, nearHaradFertile, Pukel, Rhun when biomes are added
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> plum() {
+		return Feature.TREE.configured(PLUM_TREE);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> plumFancy() {
+		return Feature.TREE.configured(PLUM_TREE_FANCY);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> plumBees() {
+		return Feature.TREE.configured(PLUM_TREE_BEES);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> plumFancyBees() {
+		return Feature.TREE.configured(PLUM_TREE_FANCY_BEES);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> plumParty() {
+		return Feature.TREE.configured(PLUM_PARTY);
+	}
+
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
@@ -100,6 +138,12 @@ public class ExtendedBiomeFeatures {
 		BANANA_LOG = ExtendedBlocks.BANANA_LOG.get().defaultBlockState();
 		BANANA_LEAVES = ExtendedBlocks.BANANA_LEAVES.get().defaultBlockState();
 		BANANA_FRUIT = ExtendedBlocks.HANGING_BANANA.get().defaultBlockState();
+
+		PLUM_LOG = ExtendedBlocks.PLUM_LOG.get().defaultBlockState();
+		PLUM_WOOD = ExtendedBlocks.PLUM_WOOD.get().defaultBlockState();
+		PLUM_BRANCH = ExtendedBlocks.PLUM_BRANCH.get().defaultBlockState();
+		PLUM_LEAVES = ExtendedBlocks.PLUM_LEAVES.get().defaultBlockState();
+		PLUM_LEAVES_FRUIT = ExtendedBlocks.PLUM_LEAVES_FRUIT.get().defaultBlockState();
 
 		// gem block states
 		AMETHYST_ORE = ExtendedBlocks.AMETHYST_ORE.get().defaultBlockState();
@@ -127,6 +171,13 @@ public class ExtendedBiomeFeatures {
 
 		BANANA_LEAVES_POOL = new SimpleBlockStateProvider(BANANA_LEAVES);
 		BANANA_TREE = buildTreeWithSpecifiedFoliageGivenTrunk(BANANA_LOG, BANANA_LEAVES_POOL, 4, 2, new BananaFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0), FeatureSpread.of(2, 2)), false, false);
+
+		PLUM_LEAVES_POOL = new WeightedBlockStateProvider().add(PLUM_LEAVES, 28).add(PLUM_LEAVES_FRUIT, 4);
+		PLUM_TREE = buildClassicTree(PLUM_LOG, PLUM_LEAVES_POOL, 4, 3);
+		PLUM_TREE_BEES = buildClassicTreeWithBees(PLUM_LOG, PLUM_LEAVES_POOL, 4, 3);
+		PLUM_TREE_FANCY = buildFancyTree(PLUM_LOG, PLUM_LEAVES_POOL);
+		PLUM_TREE_FANCY_BEES = buildFancyTreeWithBees(PLUM_LOG, PLUM_LEAVES_POOL);
+		PLUM_PARTY = buildNormalPartyTree(PLUM_LOG, PLUM_WOOD, PLUM_BRANCH, PLUM_LEAVES_POOL);
 	}
 
 
