@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.WoodPaletteProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 
@@ -73,13 +73,11 @@ public class ExtendedJigsawManager {
 		    		  }
 	    			  foundProcessor = true;
 	    			  WoodPaletteProcessor processorWood = (WoodPaletteProcessor)processor;
-	    			  if(!processorWood.isInitialized()) {
-	    				  processors.removeIf(pro -> pro instanceof WoodPaletteProcessor);
-	    				  processorWood.generateAndSetPallet(random);
-	    				  processors.add(processorWood);
-	    				  StructureProcessorList list = new StructureProcessorList(processors);
-	                  	 ((SingleJigsawPiece)jigsawpiece).processors = () -> list;
-	    			  }
+	    			  processors.removeIf(pro -> pro instanceof WoodPaletteProcessor);
+    				  processorWood.generateAndSetPallet(random);
+    				  processors.add(processorWood);
+    				  StructureProcessorList list = new StructureProcessorList(processors);
+    				  ((SingleJigsawPiece)jigsawpiece).processors = () -> list;
 	    			  carryOverProcessor = Optional.of(processorWood);
 	    			  //ExtendedLog.info("Adding wood processor present in "+jigsawpattern.getName().toString()+" to parent stack: "+processorWood.getPickedPalletName());
 	    		  }
