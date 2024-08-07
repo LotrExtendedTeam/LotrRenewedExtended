@@ -28,32 +28,39 @@ import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class WoodPaletteProcessor extends StructureProcessor{
 	public static final Codec<WoodPaletteProcessor> CODEC = RecordCodecBuilder.create((processorInstance) -> {
-		return processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getReplacingPalletName), Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error)).fieldOf("woodTypes").forGetter((processor) -> {
-			return processor.rawPallets;
-		})).apply(processorInstance, WoodPaletteProcessor::new);
+		return processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getBasePalletName),
+				Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName), 
+				Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error))
+				.fieldOf("woodTypes").forGetter(WoodPaletteProcessor::getRawPallets)).apply(processorInstance, WoodPaletteProcessor::new);
 	});
 	private WoodPallet pickedPallet;
 	private final WoodPallet basePallet;
 	private final List<Pair<String, Integer>> rawPallets;
 	public final List<String> pallets;
-
-	public WoodPaletteProcessor(String defaultName, List<Pair<String, Integer>> rawPallets) {
+	private boolean flaged = false;
+	private boolean applied = false;
+	public WoodPaletteProcessor(String defaultName, String selectedpallet, List<Pair<String, Integer>> rawPallets) {
 		this.rawPallets = rawPallets;
 		this.pallets = Lists.newArrayList();
 
 		for(Pair<String, Integer> pair : rawPallets) {
 			String pallet = pair.getFirst();
-			if(defaultName.equals(pallet)) {
-				continue;
-			}
 			for(int i = 0; i < pair.getSecond(); ++i) {
 				this.pallets.add(pallet);
 			}
 		}
+		if(!selectedpallet.equals("null")) {
+			pickedPallet = WoodPallets.getPalletForname(selectedpallet);
+		}
 		basePallet = WoodPallets.getPalletForname(defaultName);
+	}
+
+	public boolean isInitialized() {
+		return pickedPallet!=null;
 	}
 
 	private WoodPallet getRandomTemplate(Random pRandom) {
@@ -66,25 +73,33 @@ public class WoodPaletteProcessor extends StructureProcessor{
 
 	@Override
 	public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData, @Nullable Template template) {
-		if(pickedPallet==null) {
+		if(!isInitialized()) {
 			ExtendedLog.warn("Needed to set WoodPallet on BlockProcess, this should not happen! Please report this and what you did!");
 			generateAndSetPallet(placmentData.getRandom(blockInfoWorld.pos));
+			if(!flaged) {
+				IllegalStateException e =  new IllegalStateException("WoodPaller set on runTime!");
+				e.printStackTrace();
+				flaged = true;
+			}
+		}
+		if(!applied) {
+			ExtendedLog.info("Replaceing "+basePallet.getName()+" pallet with "+pickedPallet.getName());
+			applied = true;
 		}
 		if(pickedPallet.isEmpty()) {
 			return blockInfoWorld;
 		}
 		if(pickedPallet.equals(basePallet)) {
-			ExtendedLog.info("pallets match");
 			return blockInfoWorld;
 		}
 		BlockState blockstate = blockInfoWorld.state;
 		if(blockstate.getBlock().equals(Blocks.AIR)) {
 			return blockInfoWorld;
 		}
-		if(basePallet.getBlockMap().containsValue(blockstate.getBlock())) {
-			String key = getKey(basePallet.getBlockMap(), blockInfoWorld.state.getBlock());
-			Block pickedBlock = pickedPallet.getBlockMap().get(key);
-			if(blockstate.getBlock().equals(Blocks.AIR)) {
+		if(basePallet.getBlockMap().containsValue(blockstate.getBlock().getRegistryName())) {
+			String key = getKey(basePallet.getBlockMap(), blockstate.getBlock().getRegistryName());
+			Block pickedBlock = ForgeRegistries.BLOCKS.getValue(pickedPallet.getBlockMap().get(key));
+			if(pickedBlock==null || pickedBlock.equals(Blocks.AIR)) {
 				return blockInfoWorld;
 			}
 			ExtendedLog.info("Replaced "+blockstate.getBlock().getRegistryName().toString() +" with"+ pickedBlock.getRegistryName().toString());
@@ -103,11 +118,18 @@ public class WoodPaletteProcessor extends StructureProcessor{
 		return pickedPallet;
 	}
 
-	public WoodPallet getReplacingPallet() {
+	public String getPickedPalletName() {
+		if(!isInitialized()) {
+			return "null";
+		}
+		return pickedPallet.getName();
+	}
+
+	public WoodPallet getBasePallet() {
 		return basePallet;
 	}
 
-	public String getReplacingPalletName() {
+	public String getBasePalletName() {
 		return basePallet.getName();
 	}
 
@@ -118,5 +140,9 @@ public class WoodPaletteProcessor extends StructureProcessor{
 	        }
 	    }
 	    return null;
+	}
+
+	public List<Pair<String, Integer>> getRawPallets() {
+		return rawPallets;
 	}
 }

@@ -5,20 +5,20 @@
 			"built_pallet" : "lotr:fir",
 			"woodTypes": [
 				{
+					"wood_type": "lotrextended:chestnut",
+					"weight": 3
+				},
+				{
 					"wood_type": "lotr:fir",
 					"weight": 1
 				},
 				{
 					"wood_type": "lotr:aspen",
-					"weight": 1
+					"weight": 3
 				},
 				{
 					"wood_type": "minecraft:oak",
-					"weight": 1
-				},
-				{
-					"wood_type": "lotrextended:chestnut",
-					"weight": 1
+					"weight": 4
 				}
 			]
 		},

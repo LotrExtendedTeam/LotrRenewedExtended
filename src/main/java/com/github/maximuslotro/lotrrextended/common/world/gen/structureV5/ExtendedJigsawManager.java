@@ -72,10 +72,8 @@ public class ExtendedJigsawManager {
 		    			  return;
 		    		  }
 	    			  foundProcessor = true;
-		    		  ExtendedLog.info("Found Processor WOOD");
 	    			  WoodPaletteProcessor processorWood = (WoodPaletteProcessor)processor;
-	    			  if(processorWood.getPickedPallet()==null) {
-	    	    		  ExtendedLog.info("Setting type");
+	    			  if(!processorWood.isInitialized()) {
 	    				  processors.removeIf(pro -> pro instanceof WoodPaletteProcessor);
 	    				  processorWood.generateAndSetPallet(random);
 	    				  processors.add(processorWood);
@@ -83,10 +81,7 @@ public class ExtendedJigsawManager {
 	                  	 ((SingleJigsawPiece)jigsawpiece).processors = () -> list;
 	    			  }
 	    			  carryOverProcessor = Optional.of(processorWood);
-	    			  for(String str : processorWood.pallets) {
-	    				  System.out.println(str);
-	    			  }
-	    			  ExtendedLog.info("Adding wood processor present in "+jigsawpattern.getName().toString()+" to parent stack: "+processorWood.getPickedPallet().getName());
+	    			  //ExtendedLog.info("Adding wood processor present in "+jigsawpattern.getName().toString()+" to parent stack: "+processorWood.getPickedPalletName());
 	    		  }
 	    	  }
 	      }
@@ -272,13 +267,12 @@ public class ExtendedJigsawManager {
 	                                 }
 	                                 // Extended start
 	                                 if(carryOverProcessor.isPresent() && connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
-	                                	 ExtendedLog.info("Valid carryover type");
 	                                	 List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)connectingPoolJigsawPiece).processors.get().list());
 	                                	 processors.removeIf(pro -> pro instanceof WoodPaletteProcessor);
 	                                	 processors.add(carryOverProcessor.get());
 	                                	 StructureProcessorList list = new StructureProcessorList(processors);
 	                                	 ((SingleJigsawPiece)connectingPoolJigsawPiece).processors = () -> list;
-	                                	 ExtendedLog.info("Added wood processor to structure piece from parent: "+carryOverProcessor.get().getPickedPallet().getName());
+	                                	 //ExtendedLog.info("Added wood processor to structure piece from parent: "+carryOverProcessor.get().getPickedPalletName());
 	                                 }
 	                                 // Extended end
 	                                 AbstractVillagePiece abstractvillagepiece = this.factory.create(this.structureManager, connectingPoolJigsawPiece, blockpos5, connectingPoolJigsawPieceGroundLevelData, rotation1, mutableboundingbox3);

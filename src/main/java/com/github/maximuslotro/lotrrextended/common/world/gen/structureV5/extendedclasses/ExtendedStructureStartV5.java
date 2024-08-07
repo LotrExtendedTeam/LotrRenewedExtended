@@ -82,7 +82,6 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
 		if(usesFullStructureFoundations()) {
 			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
-
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
 				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
 					BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);

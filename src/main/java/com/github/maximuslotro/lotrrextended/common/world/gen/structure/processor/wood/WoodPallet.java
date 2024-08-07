@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
 
 public class WoodPallet {
 	public static WoodPallet EMPTY = new WoodPallet();
@@ -35,7 +36,7 @@ public class WoodPallet {
 //	private Block LEAVES;
 	private boolean isEmpty = false;
 	private String name;
-	Map<String, Block> blockMap = new HashMap<>();
+	Map<String, ResourceLocation> blockMap = new HashMap<>();
 	private WoodPallet() {
 		isEmpty = true;
 		name = "minecraft:empty";
@@ -46,33 +47,58 @@ public class WoodPallet {
 			Block pLANKS, Block sLAB, Block sTAIRS, Block bEAM, Block bEAM_SLAB,Block fENCE, Block fENCE_GATE, Block dOOR, Block tRAPDOOR,
 			Block pRESSURE_PLATE, Block bUTTON, Block sIGN, Block wALL_SIGN,Block lEAVES) {
 		name = pName;
-		Map<String, Block> blockMap = new HashMap<>();
-        blockMap.put("LOG", lOG);
-        blockMap.put("STRIPPED_LOG", sTRIPPED_LOG);
-        blockMap.put("LOG_SLAB", lOG_SLAB);
-        blockMap.put("STRIPPED_LOG_SLAB", sTRIPPED_LOG_SLAB);
-        blockMap.put("WOOD", wOOD);
-        blockMap.put("STRIPPED_WOOD", sTRIPPED_WOOD);
-        blockMap.put("WOOD_SLAB", wOOD_SLAB);
-        blockMap.put("STRIPPED_WOOD_SLAB", sTRIPPED_WOOD_SLAB);
-        blockMap.put("WOOD_STAIRS", wOOD_STAIRS);
-        blockMap.put("STRIPPED_WOOD_STAIRS", sTRIPPED_WOOD_STAIRS);
-        blockMap.put("BRANCH", bRANCH);
-        blockMap.put("STRIPPED_BRANCH", sTRIPPED_BRANCH);
-        blockMap.put("PLANKS", pLANKS);
-        blockMap.put("SLAB", sLAB);
-        blockMap.put("STAIRS", sTAIRS);
-        blockMap.put("BEAM", bEAM);
-        blockMap.put("BEAM_SLAB", bEAM_SLAB);
-        blockMap.put("FENCE", fENCE);
-        blockMap.put("FENCE_GATE", fENCE_GATE);
-        blockMap.put("DOOR", dOOR);
-        blockMap.put("TRAPDOOR", tRAPDOOR);
-        blockMap.put("PRESSURE_PLATE", pRESSURE_PLATE);
-        blockMap.put("BUTTON", bUTTON);
-        blockMap.put("SIGN", sIGN);
-        blockMap.put("WALL_SIGN", wALL_SIGN);
-        blockMap.put("LEAVES", lEAVES);
+        blockMap.put("LOG", lOG.getRegistryName());
+        blockMap.put("STRIPPED_LOG", sTRIPPED_LOG.getRegistryName());
+        blockMap.put("LOG_SLAB", lOG_SLAB.getRegistryName());
+        blockMap.put("STRIPPED_LOG_SLAB", sTRIPPED_LOG_SLAB.getRegistryName());
+        blockMap.put("WOOD", wOOD.getRegistryName());
+        blockMap.put("STRIPPED_WOOD", sTRIPPED_WOOD.getRegistryName());
+        blockMap.put("WOOD_SLAB", wOOD_SLAB.getRegistryName());
+        blockMap.put("STRIPPED_WOOD_SLAB", sTRIPPED_WOOD_SLAB.getRegistryName());
+        blockMap.put("WOOD_STAIRS", wOOD_STAIRS.getRegistryName());
+        blockMap.put("STRIPPED_WOOD_STAIRS", sTRIPPED_WOOD_STAIRS.getRegistryName());
+        blockMap.put("BRANCH", bRANCH.getRegistryName());
+        blockMap.put("STRIPPED_BRANCH", sTRIPPED_BRANCH.getRegistryName());
+        blockMap.put("PLANKS", pLANKS.getRegistryName());
+        blockMap.put("SLAB", sLAB.getRegistryName());
+        blockMap.put("STAIRS", sTAIRS.getRegistryName());
+        blockMap.put("BEAM", bEAM.getRegistryName());
+        blockMap.put("BEAM_SLAB", bEAM_SLAB.getRegistryName());
+        blockMap.put("FENCE", fENCE.getRegistryName());
+        blockMap.put("FENCE_GATE", fENCE_GATE.getRegistryName());
+        blockMap.put("DOOR", dOOR.getRegistryName());
+        blockMap.put("TRAPDOOR", tRAPDOOR.getRegistryName());
+        blockMap.put("PRESSURE_PLATE", pRESSURE_PLATE.getRegistryName());
+        blockMap.put("BUTTON", bUTTON.getRegistryName());
+        blockMap.put("SIGN", sIGN.getRegistryName());
+        blockMap.put("WALL_SIGN", wALL_SIGN.getRegistryName());
+        blockMap.put("LEAVES", lEAVES.getRegistryName());
+//        blockMap.put("LOG", lOG);
+//        blockMap.put("STRIPPED_LOG", sTRIPPED_LOG);
+//        blockMap.put("LOG_SLAB", lOG_SLAB);
+//        blockMap.put("STRIPPED_LOG_SLAB", sTRIPPED_LOG_SLAB);
+//        blockMap.put("WOOD", wOOD);
+//        blockMap.put("STRIPPED_WOOD", sTRIPPED_WOOD);
+//        blockMap.put("WOOD_SLAB", wOOD_SLAB);
+//        blockMap.put("STRIPPED_WOOD_SLAB", sTRIPPED_WOOD_SLAB);
+//        blockMap.put("WOOD_STAIRS", wOOD_STAIRS);
+//        blockMap.put("STRIPPED_WOOD_STAIRS", sTRIPPED_WOOD_STAIRS);
+//        blockMap.put("BRANCH", bRANCH);
+//        blockMap.put("STRIPPED_BRANCH", sTRIPPED_BRANCH);
+//        blockMap.put("PLANKS", pLANKS);
+//        blockMap.put("SLAB", sLAB);
+//        blockMap.put("STAIRS", sTAIRS);
+//        blockMap.put("BEAM", bEAM);
+//        blockMap.put("BEAM_SLAB", bEAM_SLAB);
+//        blockMap.put("FENCE", fENCE);
+//        blockMap.put("FENCE_GATE", fENCE_GATE);
+//        blockMap.put("DOOR", dOOR);
+//        blockMap.put("TRAPDOOR", tRAPDOOR);
+//        blockMap.put("PRESSURE_PLATE", pRESSURE_PLATE);
+//        blockMap.put("BUTTON", bUTTON);
+//        blockMap.put("SIGN", sIGN);
+//        blockMap.put("WALL_SIGN", wALL_SIGN);
+//        blockMap.put("LEAVES", lEAVES);
 //        this.LOG = blockMap.get("LOG");
 //        this.STRIPPED_LOG = blockMap.get("STRIPPED_LOG");
 //        this.LOG_SLAB = blockMap.get("LOG_SLAB");
@@ -114,7 +140,7 @@ public class WoodPallet {
 		return super.equals(pallet) || (pallet instanceof WoodPallet ? this.name.equals(((WoodPallet)pallet).name) : false);
 	}
 
-	public Map<String, Block> getBlockMap() {
+	public Map<String, ResourceLocation> getBlockMap() {
 		return blockMap;
 	}
 }

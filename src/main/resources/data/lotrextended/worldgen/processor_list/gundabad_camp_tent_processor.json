@@ -1,0 +1,7 @@
+{
+	"processors": [
+		{
+			"processor_type": "lotrextended:lotr_brick_weatherer_processor"
+		}
+	]
+}
