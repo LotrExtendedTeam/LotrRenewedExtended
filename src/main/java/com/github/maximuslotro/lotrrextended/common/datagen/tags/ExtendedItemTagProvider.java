@@ -90,6 +90,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		
 		this.copy(ExtendedTags.Blocks.CHESTNUT_LOGS, ExtendedTags.Items.CHESTNUT_LOGS);
 		this.copy(ExtendedTags.Blocks.BANANA_LOGS, ExtendedTags.Items.BANANA_LOGS);
+		this.copy(ExtendedTags.Blocks.PLUM_LOGS, ExtendedTags.Items.PLUM_LOGS);
 
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN, ExtendedTags.Items.STORAGE_BLOCKS_GALVORN);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL);
@@ -203,7 +204,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 
-		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get());
+		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get()).add(ExtendedItems.PLUM_BOAT.get());
 
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
@@ -211,10 +212,10 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.DUCK_FOOD).add(Items.BEETROOT_SEEDS).add(Items.MELON_SEEDS)
 		.add(Items.PUMPKIN_SEEDS).add(Items.WHEAT_SEEDS).add(Items.APPLE).add(Items.BREAD)
 		.add(LOTRItems.FLAX_SEEDS.get()).add(LOTRItems.PIPEWEED_SEEDS.get()).add(LOTRItems.FISH_AND_CHIPS.get())
-		.add(LOTRItems.LETTUCE.get()).add(LOTRItems.CRAM.get()).add(LOTRItems.GREEN_APPLE.get())
-		.add(LOTRItems.PEAR.get()).add(LOTRItems.CHERRY.get()).add(ExtendedItems.BANANA.get()).add(ExtendedItems.BANANA_BREAD.get()).add(ExtendedItems.BLACKBERRY.get())
+		.add(LOTRItems.LETTUCE.get()).add(LOTRItems.GREEN_APPLE.get()).add(LOTRItems.PEAR.get()).add(LOTRItems.CHERRY.get())
+		.add(ExtendedItems.BANANA.get()).add(ExtendedItems.BANANA_BREAD.get()).add(ExtendedItems.BLACKBERRY.get())
 		.add(ExtendedItems.BLUEBERRY.get()).add(ExtendedItems.CRANBERRY.get()).add(ExtendedItems.ELDERBERRY.get())
-		.add(ExtendedItems.RASPBERRY.get());
+		.add(ExtendedItems.RASPBERRY.get()).add(ExtendedItems.PLUM.get());
 
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {

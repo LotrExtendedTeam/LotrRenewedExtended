@@ -121,6 +121,34 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.STRIPPED_BANANA_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_WOOD, ExtendedItems.STRIPPED_BANANA_LOG, null);
 		makeFallenLeavesRecipe(consumer, ExtendedBlocks.FALLEN_BANANA_LEAVES, ExtendedItems.BANANA_LEAVES, null);
+		//PLUM
+		makePillarSlabRecipe(consumer, ExtendedBlocks.PLUM_BEAM, 
+				ExtendedBlocks.PLUM_BEAM_SLAB, ExtendedItems.PLUM_LOG, null);
+		makeBoatRecipe(consumer, ExtendedItems.PLUM_BOAT, ExtendedItems.PLUM_PLANKS, null);
+		makeWallRecipe(consumer, ExtendedBlocks.PLUM_BRANCH, ExtendedItems.PLUM_WOOD, null);
+		makeButtonRecipe(consumer, ExtendedItems.PLUM_BUTTON, ExtendedItems.PLUM_PLANKS, null);
+		makeDoorRecipe(consumer, ExtendedItems.PLUM_DOOR, ExtendedItems.PLUM_PLANKS, null);
+		makeFenceAndFenceGateRecipe(consumer, ExtendedBlocks.PLUM_FENCE, ExtendedBlocks.PLUM_FENCE_GATE,
+				ExtendedItems.PLUM_PLANKS, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.PLUM_LOG_SLAB, ExtendedItems.PLUM_LOG, null);
+		makePressurePlateRecipe(consumer, ExtendedBlocks.PLUM_PRESSURE_PLATE, ExtendedItems.PLUM_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.PLUM_STAIRS, ExtendedBlocks.PLUM_SLAB, ExtendedItems.PLUM_PLANKS, null);
+		makeTrapdoorRecipe(consumer, ExtendedBlocks.PLUM_TRAPDOOR, ExtendedItems.PLUM_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.PLUM_WOOD_STAIRS, ExtendedBlocks.PLUM_WOOD_SLAB, ExtendedItems.PLUM_WOOD, null);
+		makeSignRecipe(consumer, ExtendedBlocks.PLUM_SIGN, ExtendedBlocks.PLUM_WALL_SIGN, ExtendedItems.PLUM_PLANKS, null);
+		makeWoodRecipe(consumer, ExtendedBlocks.PLUM_WOOD, ExtendedItems.PLUM_LOG, null);
+		makePlanksRecipe(consumer, ExtendedBlocks.PLUM_PLANKS, ExtendedBlocks.PLUM_LOG, 
+				ExtendedTags.Items.PLUM_LOGS, null);
+		makePlanksFromBlocksRecipe(consumer, ExtendedItems.PLUM_PLANKS, ExtendedItems.PLUM_LOG_SLAB, 
+				ExtendedItems.STRIPPED_PLUM_LOG_SLAB, ExtendedItems.PLUM_BRANCH, ExtendedItems.STRIPPED_PLUM_BRANCH, 
+				ExtendedItems.PLUM_WOOD_SLAB, ExtendedItems.STRIPPED_PLUM_WOOD_SLAB, 
+				ExtendedItems.PLUM_WOOD_STAIRS, ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS, null);
+		makeWallRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_BRANCH, ExtendedItems.STRIPPED_PLUM_WOOD, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB, ExtendedItems.STRIPPED_PLUM_LOG, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB, 
+				ExtendedItems.STRIPPED_PLUM_WOOD, null);
+		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_WOOD, ExtendedItems.STRIPPED_PLUM_LOG, null);
+		makeFallenLeavesRecipe(consumer, ExtendedBlocks.FALLEN_PLUM_LEAVES, ExtendedItems.PLUM_LEAVES, null);
 		//ROHAN
 		GENERATEDRECIPES.add(ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ROHAN_BEAM.get(), 3, LOTRRecipes.ROHAN_CRAFTING)
@@ -1424,6 +1452,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.DUCK_EGG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ENTITY_SPAWNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.PLUM.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_PLUM_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_PLUM_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_LEAVES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_SAPLING.get().getRegistryName().getPath());
 	}
 
 	@Override

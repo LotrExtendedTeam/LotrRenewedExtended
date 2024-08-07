@@ -84,6 +84,36 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
 
+	public static RegistryObject<Item> PLUM_LOG;
+	public static RegistryObject<Item> PLUM_WOOD;
+	public static RegistryObject<Item> PLUM_PLANKS;
+	public static RegistryObject<Item> PLUM_LEAVES;
+	public static RegistryObject<Item> PLUM_LEAVES_FRUIT;
+	public static RegistryObject<Item> PLUM_SAPLING;
+	public static RegistryObject<Item> PLUM_SLAB;
+	public static RegistryObject<Item> PLUM_STAIRS;
+	public static RegistryObject<Item> PLUM_FENCE;
+	public static RegistryObject<Item> PLUM_FENCE_GATE;
+	public static RegistryObject<Item> PLUM_DOOR;
+	public static RegistryObject<Item> PLUM_TRAPDOOR;
+	public static RegistryObject<Item> PLUM_PRESSURE_PLATE;
+	public static RegistryObject<Item> PLUM_BUTTON;
+	public static RegistryObject<Item> STRIPPED_PLUM_LOG;
+	public static RegistryObject<Item> STRIPPED_PLUM_WOOD;
+	public static RegistryObject<Item> PLUM_BEAM;
+	public static RegistryObject<Item> PLUM_SIGN;
+	public static RegistryObject<Item> PLUM_BOAT;
+	public static RegistryObject<Item> PLUM_LOG_SLAB;
+	public static RegistryObject<Item> PLUM_WOOD_SLAB;
+	public static RegistryObject<Item> PLUM_WOOD_STAIRS;
+	public static RegistryObject<Item> PLUM_BRANCH;
+	public static RegistryObject<Item> STRIPPED_PLUM_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_PLUM_BRANCH;
+	public static RegistryObject<Item> PLUM_BEAM_SLAB;
+	public static RegistryObject<Item> FALLEN_PLUM_LEAVES;
+
 	public static RegistryObject<Item> BOWSTRING;
 
 	public static RegistryObject<Item> MORGUL_SWORD;
@@ -255,6 +285,7 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> ROASTED_CHESTNUT;
 	public static RegistryObject<Item> CONKER;
+	public static RegistryObject<Item> PLUM;
 
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_STONE_CRAFTING_TABLE;

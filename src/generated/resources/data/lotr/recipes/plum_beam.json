@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:plum_log"
+    }
+  },
+  "result": {
+    "item": "lotr:plum_beam",
+    "count": 3
+  }
+}

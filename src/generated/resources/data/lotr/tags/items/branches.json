@@ -3,7 +3,9 @@
   "values": [
     "lotr:banana_branch",
     "lotr:chestnut_branch",
+    "lotr:plum_branch",
     "lotr:stripped_banana_branch",
     "lotr:stripped_chestnut_branch",
+    "lotr:stripped_plum_branch"
   ]
 }

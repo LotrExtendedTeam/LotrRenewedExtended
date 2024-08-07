@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:plum_planks"
+    },
+    "I": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:plum_fence",
+    "count": 3
+  }
+}

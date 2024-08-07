@@ -293,7 +293,38 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.FALLEN_BANANA_LEAVES = registerB("fallen_banana_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.BANANA_LEAVES));
 		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", () -> new ExtendedHangingBlock());
-		
+
+		ExtendedBlocks.PLUM_LOG = registerB("plum_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_PURPLE, () -> ExtendedBlocks.STRIPPED_PLUM_LOG.get()));
+		ExtendedBlocks.PLUM_WOOD = registerB("plum_wood", () -> new StrippableWoodBlock(ExtendedBlocks.PLUM_LOG, () -> ExtendedBlocks.STRIPPED_PLUM_WOOD.get()));
+		ExtendedBlocks.PLUM_PLANKS = registerB("plum_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
+		ExtendedBlocks.PLUM_LEAVES = registerB("plum_leaves", LOTRLeavesBlock::new);
+		ExtendedBlocks.PLUM_LEAVES_FRUIT = registerB("plum_leaves_fruit", LOTRLeavesBlock::new);
+		ExtendedBlocks.PLUM_SAPLING = registerB("plum_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
+		ExtendedBlocks.POTTED_PLUM_SAPLING = registerB("potted_plum_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.PLUM_SAPLING));
+		ExtendedBlocks.PLUM_SLAB = registerB("plum_slab", () -> new AxialSlabBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_STAIRS = registerB("plum_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_FENCE = registerB("plum_fence", () -> new LOTRFenceBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_FENCE_GATE = registerB("plum_fence_gate", () -> new LOTRFenceGateBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_DOOR = registerB("plum_door", () -> new LOTRDoorBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_TRAPDOOR = registerB("plum_trapdoor", () -> new LOTRTrapdoorBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_PRESSURE_PLATE = registerB("plum_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.PLUM_PLANKS));
+		ExtendedBlocks.PLUM_BUTTON = registerB("plum_button", LOTRWoodButtonBlock::new);
+		ExtendedBlocks.STRIPPED_PLUM_LOG = registerB("stripped_plum_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.PLUM_LOG));
+		ExtendedBlocks.STRIPPED_PLUM_WOOD = registerB("stripped_plum_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_PLUM_LOG));
+		ExtendedBlocks.PLUM_BEAM = registerB("plum_beam", () -> new WoodBeamBlock(ExtendedBlocks.PLUM_LOG));
+		ExtendedBlocks.PLUM_SIGN = registerB("plum_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.PLUM_PLANKS, ExtendedSignTypes.PLUM));
+		ExtendedBlocks.PLUM_WALL_SIGN = registerB("plum_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.PLUM_SIGN));
+		ExtendedBlocks.PLUM_LOG_SLAB = registerB("plum_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.PLUM_LOG, () -> ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB.get()));
+		ExtendedBlocks.PLUM_WOOD_SLAB = registerB("plum_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.PLUM_WOOD, () -> ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB.get()));
+		ExtendedBlocks.PLUM_WOOD_STAIRS = registerB("plum_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.PLUM_WOOD, () -> ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS.get()));
+		ExtendedBlocks.PLUM_BRANCH = registerB("plum_branch", () -> new StrippableBranchBlock(ExtendedBlocks.PLUM_WOOD, () -> ExtendedBlocks.STRIPPED_PLUM_BRANCH.get()));
+		ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB = registerB("stripped_plum_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_PLUM_LOG));
+		ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB = registerB("stripped_plum_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
+		ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS = registerB("stripped_plum_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
+		ExtendedBlocks.STRIPPED_PLUM_BRANCH = registerB("stripped_plum_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
+		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
+		ExtendedBlocks.FALLEN_PLUM_LEAVES = registerB("fallen_plum_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.PLUM_LEAVES));
+
 		//Packed Fur
 		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.WHITE));
 		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new AxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));

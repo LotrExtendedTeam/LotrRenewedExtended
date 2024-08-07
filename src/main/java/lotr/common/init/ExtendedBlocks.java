@@ -96,6 +96,37 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> FALLEN_BANANA_LEAVES;
 	public static RegistryObject<Block> HANGING_BANANA;
 
+	public static RegistryObject<Block> PLUM_LOG;
+	public static RegistryObject<Block> PLUM_WOOD;
+	public static RegistryObject<Block> PLUM_PLANKS;
+	public static RegistryObject<Block> PLUM_LEAVES;
+	public static RegistryObject<Block> PLUM_LEAVES_FRUIT;
+	public static RegistryObject<Block> PLUM_SAPLING;
+	public static RegistryObject<Block> POTTED_PLUM_SAPLING;
+	public static RegistryObject<Block> PLUM_SLAB;
+	public static RegistryObject<Block> PLUM_STAIRS;
+	public static RegistryObject<Block> PLUM_FENCE;
+	public static RegistryObject<Block> PLUM_FENCE_GATE;
+	public static RegistryObject<Block> PLUM_DOOR;
+	public static RegistryObject<Block> PLUM_TRAPDOOR;
+	public static RegistryObject<Block> PLUM_PRESSURE_PLATE;
+	public static RegistryObject<Block> PLUM_BUTTON;
+	public static RegistryObject<Block> STRIPPED_PLUM_LOG;
+	public static RegistryObject<Block> STRIPPED_PLUM_WOOD;
+	public static RegistryObject<Block> PLUM_BEAM;
+	public static RegistryObject<Block> PLUM_SIGN;
+	public static RegistryObject<Block> PLUM_WALL_SIGN;
+	public static RegistryObject<Block> PLUM_LOG_SLAB;
+	public static RegistryObject<Block> PLUM_WOOD_SLAB;
+	public static RegistryObject<Block> PLUM_WOOD_STAIRS;
+	public static RegistryObject<Block> PLUM_BRANCH;
+	public static RegistryObject<Block> STRIPPED_PLUM_LOG_SLAB;
+	public static RegistryObject<Block> STRIPPED_PLUM_WOOD_SLAB;
+	public static RegistryObject<Block> STRIPPED_PLUM_WOOD_STAIRS;
+	public static RegistryObject<Block> STRIPPED_PLUM_BRANCH;
+	public static RegistryObject<Block> PLUM_BEAM_SLAB;
+	public static RegistryObject<Block> FALLEN_PLUM_LEAVES;
+	
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;

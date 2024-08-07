@@ -3,6 +3,8 @@
   "values": [
     "lotr:banana_leaves",
     "lotr:chestnut_leaves",
-    "lotr:chestnut_leaves_fruit"
+    "lotr:chestnut_leaves_fruit",
+    "lotr:plum_leaves",
+    "lotr:plum_leaves_fruit"
   ]
 }

@@ -277,6 +277,36 @@ public class MixinLOTRItems {
 		ExtendedItems.BANANA_BEAM_SLAB = regBlockItem(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_BANANA_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_BANANA_LEAVES, LOTRItemGroups.DECO);
 		
+		ExtendedItems.PLUM_LOG = regBlockItemB(ExtendedBlocks.PLUM_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_WOOD = regBlockItemB(ExtendedBlocks.PLUM_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_PLANKS = regBlockItemB(ExtendedBlocks.PLUM_PLANKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_LEAVES = regBlockItemB(ExtendedBlocks.PLUM_LEAVES, LOTRItemGroups.DECO);
+		ExtendedItems.PLUM_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.PLUM_LEAVES_FRUIT, LOTRItemGroups.DECO);
+		ExtendedItems.PLUM_SAPLING = regBlockItemB(ExtendedBlocks.PLUM_SAPLING, LOTRItemGroups.DECO);
+		ExtendedItems.PLUM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_STAIRS = regBlockItemB(ExtendedBlocks.PLUM_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_FENCE = regBlockItemB(ExtendedBlocks.PLUM_FENCE, LOTRItemGroups.DECO);
+		ExtendedItems.PLUM_FENCE_GATE = regBlockItemB(ExtendedBlocks.PLUM_FENCE_GATE, LOTRItemGroups.UTIL);
+		ExtendedItems.PLUM_DOOR = regTallBlockItemB(ExtendedBlocks.PLUM_DOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.PLUM_TRAPDOOR = regBlockItemB(ExtendedBlocks.PLUM_TRAPDOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.PLUM_PRESSURE_PLATE = regBlockItemB(ExtendedBlocks.PLUM_PRESSURE_PLATE, LOTRItemGroups.UTIL);
+		ExtendedItems.PLUM_BUTTON = regBlockItemB(ExtendedBlocks.PLUM_BUTTON, LOTRItemGroups.UTIL);
+		ExtendedItems.STRIPPED_PLUM_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BEAM = regBlockItemB(ExtendedBlocks.PLUM_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_SIGN = regSignBlockItemB(ExtendedBlocks.PLUM_SIGN, ExtendedBlocks.PLUM_WALL_SIGN);
+		ExtendedItems.PLUM_BOAT = regItemB("plum_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("PLUM")));
+		ExtendedItems.PLUM_LOG_SLAB = regBlockItem(ExtendedBlocks.PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_WOOD_SLAB = regBlockItem(ExtendedBlocks.PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_WOOD_STAIRS = regBlockItem(ExtendedBlocks.PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BRANCH = regBlockItem(ExtendedBlocks.PLUM_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_LOG_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_WOOD_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_BRANCH = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BEAM_SLAB = regBlockItem(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FALLEN_PLUM_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_PLUM_LEAVES, LOTRItemGroups.DECO);
+
 		//ORE/GEM STORAGE
 		ExtendedItems.GALVORN_BLOCK = regBlockItemB(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BLACK_URUK_STEEL_BLOCK = regBlockItemB(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, LOTRItemGroups.BLOCKS);
@@ -619,6 +649,8 @@ public class MixinLOTRItems {
 
 
 		ExtendedItems.ROASTED_CHESTNUT = regItemB("roasted_chestnut", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ROASTED_CHESTNUT)));
+		ExtendedItems.PLUM = regItemB("plum", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.PLUM)));
+
 		//#######################################################################EQUIPMENT##################################################
 
 		//Morgul Equipment

@@ -29,6 +29,8 @@
     "lotr:obsidian_dwarven_brick_stairs",
     "lotr:obsidian_taurethrim_brick_stairs",
     "lotr:packed_fur_stairs",
+    "lotr:plum_stairs",
+    "lotr:plum_wood_stairs",
     "lotr:red_rhunic_brick_stairs",
     "lotr:rhunic_brick_stairs",
     "lotr:scorched_brick_stairs",
@@ -43,6 +45,7 @@
     "lotr:smooth_stone_stairs",
     "lotr:stripped_banana_wood_stairs",
     "lotr:stripped_chestnut_wood_stairs",
+    "lotr:stripped_plum_wood_stairs",
     "lotr:taurethrim_brick_stairs",
     "lotr:white_packed_fur_stairs"
   ]

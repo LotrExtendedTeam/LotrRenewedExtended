@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "lotrextended:block/stripped_plum_log",
+    "bottom": "lotrextended:block/stripped_plum_log",
+    "top": "lotrextended:block/stripped_plum_log"
+  }
+}

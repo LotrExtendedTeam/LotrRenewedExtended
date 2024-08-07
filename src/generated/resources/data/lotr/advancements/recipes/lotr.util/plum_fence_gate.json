@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:plum_fence_gate"
+    ]
+  },
+  "criteria": {
+    "has_plum_fence_gate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_fence_gate"
+          }
+        ]
+      }
+    },
+    "has_plum_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:plum_fence_gate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_fence_gate",
+      "has_plum_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

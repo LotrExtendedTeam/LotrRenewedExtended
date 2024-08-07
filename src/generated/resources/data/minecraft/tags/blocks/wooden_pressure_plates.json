@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "lotr:banana_pressure_plate",
-    "lotr:chestnut_pressure_plate"
+    "lotr:chestnut_pressure_plate",
+    "lotr:plum_pressure_plate"
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:plum_leaves"
+    }
+  },
+  "result": {
+    "item": "lotr:fallen_plum_leaves",
+    "count": 16
+  }
+}

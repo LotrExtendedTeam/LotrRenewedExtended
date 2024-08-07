@@ -5,9 +5,13 @@
     "lotr:banana_wood_slab",
     "lotr:chestnut_log_slab",
     "lotr:chestnut_wood_slab",
+    "lotr:plum_log_slab",
+    "lotr:plum_wood_slab",
     "lotr:stripped_banana_log_slab",
     "lotr:stripped_banana_wood_slab",
     "lotr:stripped_chestnut_log_slab",
-    "lotr:stripped_chestnut_wood_slab"
+    "lotr:stripped_chestnut_wood_slab",
+    "lotr:stripped_plum_log_slab",
+    "lotr:stripped_plum_wood_slab"
   ]
 }

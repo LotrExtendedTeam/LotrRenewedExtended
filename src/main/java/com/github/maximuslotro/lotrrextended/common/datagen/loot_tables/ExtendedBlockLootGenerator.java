@@ -394,6 +394,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		add(ExtendedBlocks.HANGING_BANANA.get(), (block) -> {
 			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedItems.BANANA.get())
 							.apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))));});
+		add(ExtendedBlocks.PLUM_LEAVES.get(), (p_241170_0_) -> {
+	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+	         });
+		add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get(), (p_241170_0_) -> {
+	         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), ExtendedItems.PLUM.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 		add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {
 	         return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
 		add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> {

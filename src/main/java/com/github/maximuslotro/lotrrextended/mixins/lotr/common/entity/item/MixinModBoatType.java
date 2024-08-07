@@ -31,6 +31,7 @@ public class MixinModBoatType {
 
 	private static final ModBoatType CHESTNUT = lotrModBoatType$addVariant("CHESTNUT", ExtendedBlocks.CHESTNUT_PLANKS, ExtendedItems.CHESTNUT_BOAT, "chestnut");
 	private static final ModBoatType BANANA = lotrModBoatType$addVariant("BANANA", ExtendedBlocks.BANANA_PLANKS, ExtendedItems.BANANA_BOAT, "banana");
+	private static final ModBoatType PLUM = lotrModBoatType$addVariant("PLUM", ExtendedBlocks.PLUM_PLANKS, ExtendedItems.PLUM_BOAT, "plum");
 
 	
 	@Invoker("<init>")
