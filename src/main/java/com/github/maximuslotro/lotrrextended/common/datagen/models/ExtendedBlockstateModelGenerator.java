@@ -1214,8 +1214,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.texture("table_bottom", lotrExtendedLoc("block/"+name+"_bottom")).texture("particle", lotrExtendedLoc("block/"+name+"_map_sepia"));
 		getVariantBuilder(block).forAllStates(state -> {
 			Boolean sepia = state.getValue(ExtendedConquestTableBlock.SEPIA);
+			Direction facing = state.getValue(ExtendedConquestTableBlock.FACING);
 			return ConfiguredModel.builder()
                     .modelFile(sepia ? modelSEPTA : modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);

@@ -1,6 +1,7 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -55,10 +56,12 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		addButton(enableClientDevMode = new Button(x+204, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.devtoggle.title"), button -> toggleForgeConfigValue(ExtendedClientConfig.enableDevMode)));
 		addButton(forceStructureBlockAirViewing = new Button(x+204, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.fsbr.title"), button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing)));
 		addButton(structureBlockOutlineViewDistance = new Slider(x+204, y+48, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix"), new TranslationTextComponent("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix"), 32.0D, MixinConstants.StructureLimit, ExtendedClientConfig.structureBlockOutlineViewDistance.get(), false, true , button -> {}, new ExtendedRenderDistanceSliderHandler()));
-		if(ExtendedClientConfig.enableDevMode.get()) {
+		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
+			enableClientDevMode.visible = true;
 			forceStructureBlockAirViewing.visible = true;
 			structureBlockOutlineViewDistance.visible = true;
 		}else {
+			enableClientDevMode.visible = false;
 			forceStructureBlockAirViewing.visible = false;
 			structureBlockOutlineViewDistance.visible = false;
 		}
@@ -73,8 +76,10 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 30), 16777215);
 		title = new TranslationTextComponent("gui.lotrextended.settings.usersettings");
 		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 102), 16777215);
-		title = new TranslationTextComponent("gui.lotrextended.settings.devsettings");
-		this.font.draw(matStack, title, guiLeft+(304-(this.font.width(title)/2)), (guiTop + 30), 16777215);
+		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
+			title = new TranslationTextComponent("gui.lotrextended.settings.devsettings");
+			this.font.draw(matStack, title, guiLeft+(304-(this.font.width(title)/2)), (guiTop + 30), 16777215);
+		}
 		super.render(matStack, mouseX, mouseY, tick);
 //		for (Widget widget : this.buttons) {
 //			if (widget instanceof ExtendedGuiOptionsButton) {
@@ -92,14 +97,16 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		TextComponent rank = new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting");
 		buttonFeminineRank.setMessage(rank.append(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 		
-		TextComponent ecdm = new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting");
-		enableClientDevMode.setMessage(ecdm.append(new TranslationTextComponent(ExtendedClientConfig.enableDevMode.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
-		if(ExtendedClientConfig.enableDevMode.get()) {
+		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
+			TextComponent ecdm = new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting");
+			enableClientDevMode.setMessage(ecdm.append(new TranslationTextComponent(ExtendedClientConfig.enableDevMode.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 			TextComponent fsbr = new StringTextComponent("Force StrBlock Air Rendering: ");
 			forceStructureBlockAirViewing.setMessage(fsbr.append(new TranslationTextComponent(ExtendedClientConfig.forceStructureBlockAirViewing.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+			enableClientDevMode.visible = true;
 			forceStructureBlockAirViewing.visible = true;
 			structureBlockOutlineViewDistance.visible = true;
 		}else {
+			enableClientDevMode.visible = false;
 			forceStructureBlockAirViewing.visible = false;
 			structureBlockOutlineViewDistance.visible = false;
 		}

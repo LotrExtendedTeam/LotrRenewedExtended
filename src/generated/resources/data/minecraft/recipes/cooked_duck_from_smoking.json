@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "lotr:raw_duck"
+  },
+  "result": "lotr:cooked_duck",
+  "experience": 0.35,
+  "cookingtime": 100
+}

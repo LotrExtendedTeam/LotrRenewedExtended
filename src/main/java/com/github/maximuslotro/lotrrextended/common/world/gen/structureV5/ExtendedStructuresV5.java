@@ -25,25 +25,25 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedStructuresV5 {
     public static final DeferredRegister<Structure<?>> STRUCTURE_REGISTRY = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, LotrExtendedMod.MODID);
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new HobbitHoleLargeStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new HobbitTavernLargeStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure());
-    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure());
-    public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure());
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new HobbitHoleLargeStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new HobbitTavernLargeStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(StructureType.HOBBIT));
+    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new SinglePoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new SinglePoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure(StructureType.RANGER));
+    public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure(StructureType.RUIN));
 
-    public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure());
+    public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure(StructureType.GUNDABAD_ORC));
 
     
 	public static void setupStructures() {
@@ -68,7 +68,7 @@ public class ExtendedStructuresV5 {
 		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 35, 358719680);
 		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 34063920);
 		register(ARNOR_RUINS.get(), true,              29, 18, 365876386);
-		register(GUNDABAD_CAMP.get(), true,            50, 30, 967990477);
+		register(GUNDABAD_CAMP.get(), true,            45, 25, 967990477);
 	}
 	
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

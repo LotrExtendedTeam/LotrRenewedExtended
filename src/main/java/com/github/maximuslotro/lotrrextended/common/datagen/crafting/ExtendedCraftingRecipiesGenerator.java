@@ -24,6 +24,8 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.CookingRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
@@ -38,6 +40,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 		buildRecipes(consumer);
 		buildStonecutterRecipes(consumer);
+		buildCookingRecipes(consumer);
 		addOverrides();
 		checkForMissingRecipes();
 	}
@@ -635,18 +638,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_WHEEL.get()))
 		.unlockedBy("has_"+ExtendedItems.CHEESE_SLICE.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_SLICE.get()))
 		.save(consumer, lotrLoc(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath()+"_from_slices"));
-		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
-		CookingRecipeBuilder.smelting(Ingredient.of(Items.MILK_BUCKET), 
-				ExtendedItems.CHEESE_CURDS.get(), 0.15F, 200)
-		.unlockedBy("has_"+Items.MILK_BUCKET.getRegistryName().getPath(), has(Items.MILK_BUCKET))
-		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
-		.save(consumer, lotrLoc(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath());
-		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.CONKER.get()), 
-				ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, 200)
-		.unlockedBy("has_"+ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath(), has(ExtendedItems.ROASTED_CHESTNUT.get()))
-		.unlockedBy("has_"+ExtendedItems.CONKER.get().getRegistryName().getPath(), has(ExtendedItems.CONKER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.BANANA_CAKE.get())
 		.pattern("###")
@@ -992,6 +983,38 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
 	}
 
+	private void buildCookingRecipes(Consumer<IFinishedRecipe> consumer) {
+		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(Items.MILK_BUCKET), 
+				ExtendedItems.CHEESE_CURDS.get(), 0.15F, 200)
+		.unlockedBy("has_"+Items.MILK_BUCKET.getRegistryName().getPath(), has(Items.MILK_BUCKET))
+		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath()));
+		// Conker
+		GENERATEDRECIPES.add(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.CONKER.get()), 
+				ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, 200)
+		.unlockedBy("has_"+ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath(), has(ExtendedItems.ROASTED_CHESTNUT.get()))
+		.unlockedBy("has_"+ExtendedItems.CONKER.get().getRegistryName().getPath(), has(ExtendedItems.CONKER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath()));
+		
+		// Duck
+		GENERATEDRECIPES.add(ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.RAW_DUCK.get()), 
+				ExtendedItems.COOKED_DUCK.get(), 0.35F, 200)
+		.unlockedBy("has_"+ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.COOKED_DUCK.get()))
+		.unlockedBy("has_"+ExtendedItems.RAW_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.CONKER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath()));
+
+		cookRecipes(consumer, "smoking", IRecipeSerializer.SMOKING_RECIPE, 100);
+		cookRecipes(consumer, "campfire_cooking", IRecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600);
+	}
+
+	private static void cookRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, CookingRecipeSerializer<?> pCookingSerializer, int pCookingTime) {
+		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.CONKER.get()), ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, pCookingTime, pCookingSerializer).unlockedBy("has_conker", has(ExtendedItems.CONKER.get())).save(pFinishedRecipeConsumer, "cooked_conker_from_" + pCookingMethod);
+		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.RAW_DUCK.get()), ExtendedItems.COOKED_DUCK.get(), 0.35F, pCookingTime, pCookingSerializer).unlockedBy("has_raw_duck", has(ExtendedItems.RAW_DUCK.get())).save(pFinishedRecipeConsumer, "cooked_duck_from_" + pCookingMethod);
+
+	}
 	private void buildStonecutterRecipes(Consumer<IFinishedRecipe> consumer) {
 		//Add missing recipes for renewed blocks
 		makeStoneCutterRecipe(consumer, () ->Blocks.COBBLESTONE, LOTRBlocks.DRYSTONE);
@@ -1459,6 +1482,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_LEAVES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.RAW_DUCK.get().getRegistryName().getPath());
 	}
 
 	@Override

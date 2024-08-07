@@ -651,6 +651,9 @@ public class MixinLOTRItems {
 		ExtendedItems.ROASTED_CHESTNUT = regItemB("roasted_chestnut", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ROASTED_CHESTNUT)));
 		ExtendedItems.PLUM = regItemB("plum", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.PLUM)));
 
+		ExtendedItems.RAW_DUCK = regItemB("raw_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.DUCK)));
+		ExtendedItems.COOKED_DUCK = regItemB("cooked_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.COOKED_DUCK)));
+
 		//#######################################################################EQUIPMENT##################################################
 
 		//Morgul Equipment

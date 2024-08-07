@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cooked_duck"
+    ]
+  },
+  "criteria": {
+    "has_cooked_duck": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cooked_duck"
+          }
+        ]
+      }
+    },
+    "has_raw_duck": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:conker"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cooked_duck"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cooked_duck",
+      "has_raw_duck",
+      "has_the_recipe"
+    ]
+  ]
+}

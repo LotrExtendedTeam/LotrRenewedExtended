@@ -1,3 +1,14 @@
 {
-  "type": "minecraft:entity"
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/duck"
+        }
+      ]
+    }
+  ]
 }

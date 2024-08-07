@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struc
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedJigsawManager;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
@@ -21,8 +22,8 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public class WeightedPoolStructure extends ExtendedSurfaceStructuresV5<WeightedStructureConfig> {
 
-	public WeightedPoolStructure() {
-		super(WeightedStructureConfig.CODEC);
+	public WeightedPoolStructure(StructureType type) {
+		super(WeightedStructureConfig.CODEC, type);
 	}
 
 	@Override
