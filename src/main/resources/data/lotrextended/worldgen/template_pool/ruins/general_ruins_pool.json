@@ -268,7 +268,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_1_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_1",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -277,7 +277,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_2_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_2",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -286,7 +286,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_3_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_3",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -295,7 +295,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_4_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_4",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -304,7 +304,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_5_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_5",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -313,7 +313,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_6_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_6",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -322,7 +322,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_7_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_7",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -331,7 +331,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_large_8_top",
+				"location": "lotrextended:general/ruins/altar_ruin_large_8",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -340,7 +340,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_grand_1_top",
+				"location": "lotrextended:general/ruins/altar_ruin_grand_1",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -349,7 +349,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_grand_2_top",
+				"location": "lotrextended:general/ruins/altar_ruin_grand_2",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -358,7 +358,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_grand_3_top",
+				"location": "lotrextended:general/ruins/altar_ruin_grand_3",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
@@ -367,7 +367,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:general/ruins/altar_ruin_grand_4_top",
+				"location": "lotrextended:general/ruins/altar_ruin_grand_4",
 				"processors": "lotrextended:arnor_ruins_processor"
 			}
 		},
