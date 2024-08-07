@@ -466,6 +466,22 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).apply(SetCount.setCount(ConstantRange.exactly(1))))
                 		.add(ItemLootEntry.lootTableItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).apply(SetCount.setCount(ConstantRange.exactly(1))))));
 
+		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_WOOL, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                		.setRolls(RandomValueRange.between(1, 3))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.FUR.get()).setWeight(80).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.GRAY_FUR.get()).setWeight(80).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.SILVER_FUR.get()).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.FUR_BUNDLE.get()).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.GRAY_FUR_BUNDLE.get()).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.SILVER_FUR_BUNDLE.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.BROWN_PACKED_FUR.get()).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.GRAY_PACKED_FUR.get()).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+                		.add(ItemLootEntry.lootTableItem(ExtendedItems.SILVER_PACKED_FUR.get()).setWeight(40).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).apply(SetCount.setCount(ConstantRange.exactly(1))))
+                		.add(ItemLootEntry.lootTableItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).apply(SetCount.setCount(ConstantRange.exactly(1))))));
+
 		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_SUPPLIES, LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                 		.setRolls(RandomValueRange.between(2, 5))
