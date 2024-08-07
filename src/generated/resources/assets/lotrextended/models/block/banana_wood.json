@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/banana_log",
+    "end": "lotrextended:block/banana_log"
+  }
+}

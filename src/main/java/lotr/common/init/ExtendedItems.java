@@ -56,6 +56,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Item> BANANA_LOG;
+	public static RegistryObject<Item> BANANA_WOOD;
 	public static RegistryObject<Item> BANANA_PLANKS;
 	public static RegistryObject<Item> BANANA_LEAVES;
 	public static RegistryObject<Item> BANANA_SAPLING;
@@ -68,14 +69,22 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_PRESSURE_PLATE;
 	public static RegistryObject<Item> BANANA_BUTTON;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG;
+	public static RegistryObject<Item> STRIPPED_BANANA_WOOD;
 	public static RegistryObject<Item> BANANA_BEAM;
 	public static RegistryObject<Item> BANANA_SIGN;
 	public static RegistryObject<Item> BANANA_BOAT;
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
-	public static RegistryObject<Item> BOWSTRING;
+	public static RegistryObject<Item> BANANA_WOOD_SLAB;
+	public static RegistryObject<Item> BANANA_WOOD_STAIRS;
+	public static RegistryObject<Item> BANANA_BRANCH;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_BANANA_BRANCH;
 	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
+
+	public static RegistryObject<Item> BOWSTRING;
 
 	public static RegistryObject<Item> MORGUL_SWORD;
 	public static RegistryObject<Item> MORGUL_HELMET;

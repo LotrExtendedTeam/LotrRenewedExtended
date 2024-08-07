@@ -263,8 +263,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 		ExtendedBlocks.FALLEN_CHESTNUT_LEAVES = registerB("fallen_chestnut_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.CHESTNUT_LEAVES));
 		
-		ExtendedBlocks.BANANA_LOG = registerB("banana_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.PODZOL, () -> ExtendedBlocks.STRIPPED_BANANA_LOG.get()));
-		//ExtendedBlocks.BANANA_WOOD = registerB("banana_wood", () -> new StrippableWoodBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD.get()));
+		ExtendedBlocks.BANANA_LOG = registerB("banana_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_YELLOW, () -> ExtendedBlocks.STRIPPED_BANANA_LOG.get()));
+		ExtendedBlocks.BANANA_WOOD = registerB("banana_wood", () -> new StrippableWoodBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD.get()));
 		ExtendedBlocks.BANANA_PLANKS = registerB("banana_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 		ExtendedBlocks.BANANA_LEAVES = registerB("banana_leaves", LOTRLeavesBlock::new);
 		ExtendedBlocks.BANANA_SAPLING = registerB("banana_sapling", () -> new LOTRSaplingBlock(new BananaTree()));
@@ -278,16 +278,18 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BANANA_PRESSURE_PLATE = registerB("banana_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.BANANA_PLANKS));
 		ExtendedBlocks.BANANA_BUTTON = registerB("banana_button", LOTRWoodButtonBlock::new);
 		ExtendedBlocks.STRIPPED_BANANA_LOG = registerB("stripped_banana_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.BANANA_LOG));
-		//ExtendedBlocks.STRIPPED_BANANA_WOOD = registerB("stripped_banana_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
+		ExtendedBlocks.STRIPPED_BANANA_WOOD = registerB("stripped_banana_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
 		ExtendedBlocks.BANANA_BEAM = registerB("banana_beam", () -> new WoodBeamBlock(ExtendedBlocks.BANANA_LOG));
 		ExtendedBlocks.BANANA_SIGN = registerB("banana_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.BANANA_PLANKS, ExtendedSignTypes.BANANA));
 		ExtendedBlocks.BANANA_WALL_SIGN = registerB("banana_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.BANANA_SIGN));
 		ExtendedBlocks.BANANA_LOG_SLAB = registerB("banana_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB.get()));
-		//ExtendedBlocks.BANANA_WOOD_SLAB = registerB("banana_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB.get()));
-		//ExtendedBlocks.BANANA_WOOD_STAIRS = registerB("banana_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS.get()));
+		ExtendedBlocks.BANANA_WOOD_SLAB = registerB("banana_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB.get()));
+		ExtendedBlocks.BANANA_WOOD_STAIRS = registerB("banana_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS.get()));
+		ExtendedBlocks.BANANA_BRANCH = registerB("banana_branch", () -> new StrippableBranchBlock(ExtendedBlocks.BANANA_WOOD, () -> ExtendedBlocks.STRIPPED_BANANA_BRANCH.get()));
 		ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB = registerB("stripped_banana_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
-		//ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB = registerB("stripped_banana_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
-		//ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS = registerB("stripped_banana_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
+		ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB = registerB("stripped_banana_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
+		ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS = registerB("stripped_banana_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
+		ExtendedBlocks.STRIPPED_BANANA_BRANCH = registerB("stripped_banana_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.FALLEN_BANANA_LEAVES = registerB("fallen_banana_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.BANANA_LEAVES));
 		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", () -> new ExtendedHangingBlock());

@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
+    "lotr:banana_wood_stairs",
     "lotr:chestnut_wood_stairs",
-    "lotr:stripped_chestnut_wood_stairs"
+    "lotr:stripped_banana_wood_stairs",
+    "lotr:stripped_chestnut_wood_stairs",
   ]
 }

@@ -282,7 +282,8 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 
 	    tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
 	    .add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());
-	    tag(ExtendedTags.Blocks.BANANA_LOGS).add(ExtendedBlocks.BANANA_LOG.get()).add(ExtendedBlocks.STRIPPED_BANANA_LOG.get());
+	    tag(ExtendedTags.Blocks.BANANA_LOGS).add(ExtendedBlocks.BANANA_LOG.get()).add(ExtendedBlocks.STRIPPED_BANANA_LOG.get())
+	    .add(ExtendedBlocks.BANANA_WOOD.get()).add(ExtendedBlocks.STRIPPED_BANANA_WOOD.get());
 	}
 
 	@Override

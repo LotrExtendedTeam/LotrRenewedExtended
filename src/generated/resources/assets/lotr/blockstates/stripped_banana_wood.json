@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lotrextended:block/stripped_banana_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lotrextended:block/stripped_banana_wood"
+    },
+    "axis=z": {
+      "model": "lotrextended:block/stripped_banana_wood",
+      "x": 90
+    }
+  }
+}

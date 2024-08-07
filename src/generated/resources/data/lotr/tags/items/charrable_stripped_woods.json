@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:stripped_chestnut_wood"
+    "lotr:stripped_banana_wood",
+    "lotr:stripped_chestnut_wood",
   ]
 }

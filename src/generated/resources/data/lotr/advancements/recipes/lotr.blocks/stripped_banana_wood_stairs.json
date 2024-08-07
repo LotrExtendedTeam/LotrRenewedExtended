@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:stripped_banana_wood_stairs"
+    ]
+  },
+  "criteria": {
+    "has_stripped_banana_wood_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:stripped_banana_wood_stairs"
+          }
+        ]
+      }
+    },
+    "has_stripped_banana_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:stripped_banana_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:stripped_banana_wood_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_banana_wood_stairs",
+      "has_stripped_banana_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

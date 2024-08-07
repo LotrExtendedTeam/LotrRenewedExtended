@@ -66,6 +66,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Block> BANANA_LOG;
+	public static RegistryObject<Block> BANANA_WOOD;
 	public static RegistryObject<Block> BANANA_PLANKS;
 	public static RegistryObject<Block> BANANA_LEAVES;
 	public static RegistryObject<Block> BANANA_SAPLING;
@@ -79,11 +80,18 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BANANA_PRESSURE_PLATE;
 	public static RegistryObject<Block> BANANA_BUTTON;
 	public static RegistryObject<Block> STRIPPED_BANANA_LOG;
+	public static RegistryObject<Block> STRIPPED_BANANA_WOOD;
 	public static RegistryObject<Block> BANANA_BEAM;
 	public static RegistryObject<Block> BANANA_SIGN;
 	public static RegistryObject<Block> BANANA_WALL_SIGN;
 	public static RegistryObject<Block> BANANA_LOG_SLAB;
+	public static RegistryObject<Block> BANANA_WOOD_SLAB;
+	public static RegistryObject<Block> BANANA_WOOD_STAIRS;
+	public static RegistryObject<Block> BANANA_BRANCH;
 	public static RegistryObject<Block> STRIPPED_BANANA_LOG_SLAB;
+	public static RegistryObject<Block> STRIPPED_BANANA_WOOD_SLAB;
+	public static RegistryObject<Block> STRIPPED_BANANA_WOOD_STAIRS;
+	public static RegistryObject<Block> STRIPPED_BANANA_BRANCH;
 	public static RegistryObject<Block> BANANA_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_BANANA_LEAVES;
 	public static RegistryObject<Block> HANGING_BANANA;
