@@ -48,7 +48,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
 		// un-disable when ranger captain is added
 		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT_CAPTAIN);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 18, 3).setBoundaries(12, -12, 10, 4, -4, 6).enableInsideSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 1, false, 18, 2).setBoundaries(12, -12, 10, 4, -4, 6).enableInsideSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
 		// un-disable when ranger captain is added
 		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)

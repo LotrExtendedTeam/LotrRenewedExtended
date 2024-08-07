@@ -74,6 +74,7 @@ public class ExtendedJigsawManager {
 	    			  foundProcessor = true;
 	    			  WoodPaletteProcessor processorWood = (WoodPaletteProcessor)processor;
 	    			  processors.removeIf(pro -> pro instanceof WoodPaletteProcessor);
+	    			  // Fix case where server dominated cashed processor keeps past picked wood pallet
     				  processorWood.generateAndSetPallet(random);
     				  processors.add(processorWood);
     				  StructureProcessorList list = new StructureProcessorList(processors);

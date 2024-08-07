@@ -14,12 +14,12 @@
   "inside_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 18,
-  "spawnCap": 3,
+  "spawnCap": 2,
   "pools": [
     {
       "weight": 100,
       "minSpawnCount": 1,
-      "maxSpawnCount": 3,
+      "maxSpawnCount": 1,
       "entity_type": "lotr:dunedain_ranger"
     }
   ]
