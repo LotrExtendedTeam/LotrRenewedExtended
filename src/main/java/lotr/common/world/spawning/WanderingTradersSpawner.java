@@ -48,7 +48,7 @@ public class WanderingTradersSpawner {
             }
 
             // if the type is invalid try again but add a few attempts
-            EntityType type = getTraderFromName(entityName);
+            EntityType<?> type = getTraderFromName(entityName);
             if (type == null) {
                 ExtendedLog.error("Got null EntityType when attempting to parse " + entityName);
                 break;
@@ -95,7 +95,7 @@ public class WanderingTradersSpawner {
         }
     }
 
-    private static EntityType getTraderFromName(String name) {
+    private static EntityType<?> getTraderFromName(String name) {
         if (name.equals("lotr:galadhrim_wanderer")) {
             return ExtendedEntities.GALADHRIM_WANDERER.get();
         } else if (name.equals("lotr:rivendell_wanderer")) {

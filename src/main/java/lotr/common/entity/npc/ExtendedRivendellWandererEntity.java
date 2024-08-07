@@ -5,7 +5,6 @@ import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
-import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;

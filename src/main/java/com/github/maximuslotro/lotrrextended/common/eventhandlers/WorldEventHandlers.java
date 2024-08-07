@@ -12,10 +12,8 @@ import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -23,7 +21,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
-import java.util.UUID;
 
 public class WorldEventHandlers {
 
