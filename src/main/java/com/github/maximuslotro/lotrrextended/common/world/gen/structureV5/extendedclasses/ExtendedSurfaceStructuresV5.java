@@ -63,16 +63,16 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 
         // Now we test to make sure our structure is not spawning on water or other fluids.
         // You can do height check instead too to make it spawn at high elevations.
-        boolean noWaterPresent = topBlock.getFluidState().isEmpty(); //landHeight > 100;
+        boolean waterPresent = !topBlock.getFluidState().isEmpty(); //landHeight > 100;
         
         // Check if can spawn in water
-        if(!canSpawnInWater() && !noWaterPresent) {
+        if(!canSpawnInWater() && waterPresent) {
         	return false;
         }
         // Check if structure intersects a road
-        boolean road = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(centerOfChunk.getX(), centerOfChunk.getZ(), 16) >= 0.0F);
+        boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(centerOfChunk.getX(), centerOfChunk.getZ(), 16) >= 0.0F);
 
-        if(!canSpawnNearRoad() && !road) {
+        if(!canSpawnNearRoad() && roadExistsInRange) {
         	return false;
         }
 
