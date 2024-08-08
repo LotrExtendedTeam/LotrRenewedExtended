@@ -90,6 +90,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
 		this.yRot = MathHelper.wrapDegrees(this.yRot);
 		this.setDeltaMovement(Vector3d.ZERO);
+		setInvulnerable(true);
 		if(!level.isClientSide()) {
 			if(queueToRemove) {
 				this.remove();
