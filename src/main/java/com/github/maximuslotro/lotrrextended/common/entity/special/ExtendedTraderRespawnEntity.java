@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 
 import java.util.Locale;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
@@ -14,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -21,6 +23,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -35,12 +38,19 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedTraderRespawnEntity extends Entity{
-	private String traderType;
 	private boolean queueToRemove = false;
 	private int setEntityTickBackRate = 3600;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
 	public float zRot = 0;
 	public float zRotO = 0;
+
+	// TRADER settings;
+	private CompoundNBT nbt = new CompoundNBT();
+	private String traderType;
+	private BlockPos homePos = BlockPos.ZERO;
+	// if -1 assume no homeIsSet
+	private int homeRadius = -1;
+
 	public ExtendedTraderRespawnEntity(EntityType<? extends ExtendedTraderRespawnEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
@@ -56,6 +66,15 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	public void setTraderType(EntityType<?> type) {
 		traderType = type.getRegistryName().toString();
+	}
+
+	public void setTraderType(CompoundNBT compund) {
+		nbt = compund;
+	}
+
+	public void setHomeInfo(BlockPos homePos, int homeRadius) {
+		this.homeRadius = homeRadius;
+		this.homePos = homePos;
 	}
 
 	@Override
@@ -86,13 +105,20 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(traderEntityType!=null) {
 			Entity traderEntity = traderEntityType.create(world);
 			if(!(traderEntity instanceof ExtendedTraderEntity)) {
-				queueToRemove = true;
+				queueToRemove = false;
+				ExtendedLog.error("Trader Respawner tried spawning entity not of ExtendedTraderEntity! "+traderType +", with data: "+nbt.toString());
 				return;
 			}
 			NPCEntity npcTrader = (NPCEntity) traderEntity;
 			npcTrader.setPersistenceRequired();
-		}else {
+			if(homeRadius != -1.0F) {
+				npcTrader.restrictTo(homePos, homeRadius);
+			}
+			((ExtendedTraderEntity)npcTrader).loadAllTrades(nbt);
 			queueToRemove = true;
+		}else {
+			ExtendedLog.error("Trader Respawner tried spawning unknown entity! "+traderType +", with data: "+nbt.toString());
+			queueToRemove = false;
 			return;
 		}
 	}
@@ -112,6 +138,17 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(pCompound.contains("ticksSet")) {
 			setEntityTickBackRate = pCompound.getInt("ticksSet");
 		}
+		if(pCompound.contains("traderTrades")) {
+			nbt = pCompound.getCompound("traderTrades");
+		}else {
+			new CompoundNBT();
+		}
+		if(pCompound.contains("homeRadius")) {
+			homeRadius = pCompound.getInt("homeRadius");
+		}
+		if(pCompound.contains("homePos")) {
+			homePos = NBTUtil.readBlockPos(pCompound.getCompound("homePos"));
+		}
 	}
 
 	@Override
@@ -123,6 +160,11 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		}
 		pCompound.putInt("ticksRemaining", entityTickBacksRemaining);
 		pCompound.putInt("ticksSet", setEntityTickBackRate);
+		pCompound.put("traderTrades", nbt);
+		if(homeRadius!= -1.0F) {
+			pCompound.putInt("homeRadius", homeRadius);
+			pCompound.put("homePos", NBTUtil.writeBlockPos(homePos));
+		}
 	}
 
 	@Override

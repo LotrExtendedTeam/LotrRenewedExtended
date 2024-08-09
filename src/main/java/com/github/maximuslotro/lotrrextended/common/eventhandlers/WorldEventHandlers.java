@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
@@ -11,6 +12,7 @@ import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -91,8 +93,20 @@ public class WorldEventHandlers {
 				entity.remove();
 			}
 		}
-		if(!trader.isWanderingTrader()) {
-			
+		if(!trader.isWanderingTrader() && trader instanceof NPCEntity) {
+			NPCEntity npc = (NPCEntity)event.getEntity();
+			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
+			//Set entity Type
+			respawnerEntity.setTraderType(npc.getType());
+			//Save trader trades
+			CompoundNBT compound =  new CompoundNBT();
+			trader.saveAllTrades(compound);
+			respawnerEntity.setTraderType(compound);
+			//Save Trader Home info
+			if(npc.hasRestriction()){
+				respawnerEntity.setHomeInfo(npc.getRestrictCenter(), (int)npc.getRestrictRadius());
+			}
+			npc.level.addFreshEntity(respawnerEntity);
 		}
 	}
 }
