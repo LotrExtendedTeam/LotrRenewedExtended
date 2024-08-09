@@ -2,12 +2,17 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 
 import java.util.Locale;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
+
+import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.NPCEntity;
+import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.ActionResultType;
@@ -23,21 +28,35 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedTraderRespawnEntity extends Entity{
 	private String traderType;
 	private boolean queueToRemove = false;
-	private int entityTickBackRate = 3600;
+	private int setEntityTickBackRate = 3600;
+	private int entityTickBacksRemaining = setEntityTickBackRate;
+	public float zRot = 0;
+	public float zRotO = 0;
 	public ExtendedTraderRespawnEntity(EntityType<? extends ExtendedTraderRespawnEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
 
-//	public ExtendedTraderRespawnEntity(World pLevel) {
-//		this(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), pLevel);
-//	}
+	public ExtendedTraderRespawnEntity(World pLevel) {
+		this(ExtendedEntities.TRADER_RESPAWNER_ENTITY.get(), pLevel);
+	}
+
+	public void setTickValues(int tickBackRate) {
+		setEntityTickBackRate = tickBackRate;
+		entityTickBacksRemaining=setEntityTickBackRate;
+	}
+
+	public void setTraderType(EntityType<?> type) {
+		traderType = type.getRegistryName().toString();
+	}
 
 	@Override
 	public void tick() {
@@ -45,31 +64,65 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		super.tick();
 		this.noPhysics = false;
 		this.setNoGravity(true);
-		this.yRotO = this.yRot;
-		this.yRot += 0.8F;
-		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
-		this.yRot = MathHelper.wrapDegrees(this.yRot);
+		this.zRotO = this.zRot;
+		this.zRot += 0.8F;
+		this.zRotO = MathHelper.wrapDegrees(this.zRotO);
+		this.zRot = MathHelper.wrapDegrees(this.zRot);
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
 		if(!level.isClientSide()) {
 			if(queueToRemove) {
 				this.remove();
+			}else if(entityTickBacksRemaining==0) {
+				spawnTrader((ServerWorld) this.level);
+			}else {
+				entityTickBacksRemaining -=1;
 			}
+		}
+	}
+
+	private void spawnTrader(ServerWorld world) {
+		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(traderType);
+		if(traderEntityType!=null) {
+			Entity traderEntity = traderEntityType.create(world);
+			if(!(traderEntity instanceof ExtendedTraderEntity)) {
+				queueToRemove = true;
+				return;
+			}
+			NPCEntity npcTrader = (NPCEntity) traderEntity;
+			npcTrader.setPersistenceRequired();
+		}else {
+			queueToRemove = true;
+			return;
 		}
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
-		if(pCompound.contains("firstTick")) {
-			this.firstTick = pCompound.getBoolean("firstTick");
+		if(pCompound.contains("entityType")) {
+			traderType = pCompound.getString("entityType");
+		}else {
+			queueToRemove=true;
+		}
+		if(pCompound.contains("ticksRemaining")) {
+			entityTickBacksRemaining = pCompound.getInt("ticksRemaining");
+		}else {
+			entityTickBacksRemaining=setEntityTickBackRate;
+		}
+		if(pCompound.contains("ticksSet")) {
+			setEntityTickBackRate = pCompound.getInt("ticksSet");
 		}
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
-		if(!this.firstTick) {
-			pCompound.putBoolean("firstTick", false);
+		if(traderType !=null) {
+			pCompound.putString("entityType", traderType);
+		}else {
+			queueToRemove=true;
 		}
+		pCompound.putInt("ticksRemaining", entityTickBacksRemaining);
+		pCompound.putInt("ticksSet", setEntityTickBackRate);
 	}
 
 	@Override
@@ -77,16 +130,16 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
 			pPlayer.sendMessage(new StringTextComponent("Spawner Entity: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(traderType!=null ? traderType : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			int tickModulus = this.tickCount % entityTickBackRate;
-			double percent = tickModulus/(float)entityTickBackRate ;
-			pPlayer.sendMessage(new StringTextComponent("Current tick times: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(Integer.toString(tickModulus)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			pPlayer.sendMessage(new StringTextComponent("Current spawns percents: ").withStyle(TextFormatting.GREEN)
+			int tickPercentageInverse = entityTickBacksRemaining / setEntityTickBackRate;
+			double percent = (1-tickPercentageInverse);
+			pPlayer.sendMessage(new StringTextComponent("Current spawn percentage: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.format(Locale.US,"%.2f", percent*100)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+			pPlayer.sendMessage(new StringTextComponent("Current spawn ticks till: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(Integer.toString(entityTickBacksRemaining)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("Current spawns sec till: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(String.format(Locale.US,"%.2f", (1-percent) * (entityTickBackRate/20.0F))).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(String.format(Locale.US,"%.2f", entityTickBacksRemaining/20.0F)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("Current spawns min till: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(String.format(Locale.US,"%.2f", (1-percent) * ((entityTickBackRate/20.0F)/60.0F))).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(String.format(Locale.US,"%.2f", (entityTickBacksRemaining/20.0F)/60.0F)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("In future will open GUI"), Util.NIL_UUID);
 		}
 		return ActionResultType.sidedSuccess(this.level.isClientSide);
@@ -94,19 +147,11 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		ItemStack stack = new ItemStack(ExtendedItems.ENTITY_SPAWNER.get());
-//		if(!getSpawnerName().equals(ExtendedSpawners.EMPTY.toString())) {
-//			if(stack.hasTag()) {
-//				CompoundNBT nbt = stack.getTag();
-//				nbt.putString("setSpawnerType", getSpawnerName());
-//				stack.setTag(nbt);
-//			} else {
-//				CompoundNBT nbt = new CompoundNBT();
-//				nbt.putString("setSpawnerType", getSpawnerName());
-//				stack.setTag(nbt);
-//			}
-//		}
-		return stack;
+		SpawnEggItem egg = ForgeSpawnEggItem.fromEntityType(ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(traderType));
+		if(egg== null) {
+			return ItemStack.EMPTY;
+		}
+		return new ItemStack(egg);
 	}
 	@Override
 	public void setInvisible(boolean pInvisible) {

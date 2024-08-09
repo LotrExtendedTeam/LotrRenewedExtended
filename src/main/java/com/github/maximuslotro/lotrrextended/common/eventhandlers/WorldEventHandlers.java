@@ -91,5 +91,8 @@ public class WorldEventHandlers {
 				entity.remove();
 			}
 		}
+		if(!trader.isWanderingTrader()) {
+			
+		}
 	}
 }
