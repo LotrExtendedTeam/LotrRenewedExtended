@@ -68,7 +68,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	private ExtendedStructureEntitySpawner spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
 	private ResourceLocation spawnerType;
-	private static boolean isVisible = true; // Always true on Servers
+	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
 	private boolean firstTick = true;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
@@ -418,17 +418,17 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if(!this.level.isClientSide()) {
 			return super.isInvisible();
 		}
-		return isVisible;
+		return isInvisible;
 	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean isInvisibleTo(PlayerEntity pPlayer) {
 		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableDevMode.get()) {
-			isVisible = false;
+			isInvisible = false;
 			return false;
 		}
-		isVisible = true;
+		isInvisible = true;
 		return true;
 	}
 
