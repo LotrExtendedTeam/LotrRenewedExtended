@@ -104,6 +104,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(traderType);
 		if(traderEntityType!=null) {
 			Entity traderEntity = traderEntityType.create(world);
+			traderEntity.moveTo(getX(), getY(), getZ());
 			if(!(traderEntity instanceof ExtendedTraderEntity)) {
 				queueToRemove = false;
 				ExtendedLog.error("Trader Respawner tried spawning entity not of ExtendedTraderEntity! "+traderType +", with data: "+nbt.toString());

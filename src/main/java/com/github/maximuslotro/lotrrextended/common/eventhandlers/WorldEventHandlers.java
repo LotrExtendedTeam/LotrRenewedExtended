@@ -96,6 +96,7 @@ public class WorldEventHandlers {
 		if(!trader.isWanderingTrader() && trader instanceof NPCEntity) {
 			NPCEntity npc = (NPCEntity)event.getEntity();
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
+			respawnerEntity.moveTo(npc.getX(), npc.getY(), npc.getZ());
 			//Set entity Type
 			respawnerEntity.setTraderType(npc.getType());
 			//Save trader trades
