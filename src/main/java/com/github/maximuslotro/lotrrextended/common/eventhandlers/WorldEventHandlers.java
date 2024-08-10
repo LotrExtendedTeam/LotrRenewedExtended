@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
@@ -78,22 +79,27 @@ public class WorldEventHandlers {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity)) {
 			return;
 		}
-
-		ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
-		if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
+		if (!(event.getEntity() instanceof NPCEntity)) {
 			return;
 		}
 
-		AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-				event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
-		List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
-
-		for (NPCEntity entity : potentialEscorts) {
-			if (trader.getEscortUUIDs().contains(entity.getUUID())) {
-				entity.remove();
+		ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
+		if(trader.isWanderingTrader()) {
+			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
+				return;
 			}
-		}
-		if(!trader.isWanderingTrader() && trader instanceof NPCEntity) {
+
+			AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
+					event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
+			List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
+
+			for (NPCEntity entity : potentialEscorts) {
+				if (trader.getEscortUUIDs().contains(entity.getUUID())) {
+					entity.remove();
+				}
+			}
+		}else {
+			ExtendedLog.info("Spawning Trader Respawn Entity");
 			NPCEntity npc = (NPCEntity)event.getEntity();
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY(), npc.getZ());
