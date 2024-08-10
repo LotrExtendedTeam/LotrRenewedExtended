@@ -102,7 +102,8 @@ public class WorldEventHandlers {
 			ExtendedLog.info("Spawning Trader Respawn Entity");
 			NPCEntity npc = (NPCEntity)event.getEntity();
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
-			respawnerEntity.moveTo(npc.getX(), npc.getY(), npc.getZ());
+			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+			
 			//Set entity Type
 			respawnerEntity.setTraderType(npc.getType());
 			//Save trader trades

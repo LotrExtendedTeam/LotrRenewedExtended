@@ -116,6 +116,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 				npcTrader.restrictTo(homePos, homeRadius);
 			}
 			((ExtendedTraderEntity)npcTrader).loadAllTrades(nbt);
+			world.addFreshEntity(traderEntity);
 			queueToRemove = true;
 		}else {
 			ExtendedLog.error("Trader Respawner tried spawning unknown entity! "+traderType +", with data: "+nbt.toString());
