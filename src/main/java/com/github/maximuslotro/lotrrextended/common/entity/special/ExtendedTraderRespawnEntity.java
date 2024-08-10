@@ -27,7 +27,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
@@ -45,9 +44,9 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	private boolean queueToRemove = false;
 	private int setEntityTickBackRate = 6000;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
-	public float zRot = 0;
-	public float zRotO = 0;
-
+	public double spin = 0;
+	public double spinO = 0;
+	public boolean offTick = false;
 	// TRADER settings;
 	private CompoundNBT nbt = new CompoundNBT();
 	private String traderType;
@@ -88,21 +87,9 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		super.tick();
 		this.noPhysics = false;
 		this.setNoGravity(true);
-		this.zRotO = this.zRot;
-		if(entityTickBacksRemaining<1200) {
-			this.zRot += 0.4F;
-			this.yRot += 0.4F;
-		}else if(entityTickBacksRemaining<2400) {
-			this.zRot += 0.2F;
-			this.yRot += 0.2F;
-		}else if(entityTickBacksRemaining<3600) {
-			this.zRot += 0.05F;
-			this.yRot += 0.05F;
-		}
-		this.zRotO = MathHelper.wrapDegrees(this.zRotO);
-		this.zRot = MathHelper.wrapDegrees(this.zRot);
-		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
-		this.yRot = MathHelper.wrapDegrees(this.yRot);
+		this.yRotO = this.yRot;
+		this.spinO = this.spin;
+        this.spin = (this.spin + (double)(1000.0F / ((float)this.entityTickBacksRemaining + 200.0F))) % 360.0D;
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
 		if(!level.isClientSide()) {
