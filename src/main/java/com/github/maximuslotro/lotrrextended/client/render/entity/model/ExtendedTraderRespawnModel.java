@@ -16,13 +16,14 @@ public class ExtendedTraderRespawnModel extends EntityModel<ExtendedTraderRespaw
 		texHeight = 16;
 
 		spawner = new ModelRenderer(this, 0, 0);
-		spawner.setPos(0.0F, 0.0F, 0.0F);
-		spawner.addBox(-4.0F, 0.0F, 0.0F, 8.0F, 8.0F, 0.0F, 0.0F, false);
+		spawner.setPos(0.0F, 4.0F, 0.0F);
+		spawner.addBox(-4.0F, -4.0F, 0.0F, 8.0F, 8.0F, 0.0F, 0.0F, false);
 	}
 
 	@Override
 	public void setupAnim(ExtendedTraderRespawnEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
 		this.spawner.zRot = ((float) Math.PI / 180F) - MathHelper.rotLerp(ageInTicks, entity.zRotO, entity.zRot);
+		//this.spawner.yRot = ((float) Math.PI / 180F) - MathHelper.rotLerp(ageInTicks, entity.yRotO, entity.yRot);
 	}
 
 	@Override

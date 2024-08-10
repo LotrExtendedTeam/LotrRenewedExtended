@@ -17,6 +17,9 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.IPacket;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -38,8 +41,9 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedTraderRespawnEntity extends Entity{
+	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedTraderRespawnEntity.class, DataSerializers.STRING);
 	private boolean queueToRemove = false;
-	private int setEntityTickBackRate = 3600;
+	private int setEntityTickBackRate = 6000;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
 	public float zRot = 0;
 	public float zRotO = 0;
@@ -66,6 +70,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	public void setTraderType(EntityType<?> type) {
 		traderType = type.getRegistryName().toString();
+		this.getEntityData().set(DATA_SPAWNER_TYPE, traderType);
 	}
 
 	public void setTraderType(CompoundNBT compund) {
@@ -84,9 +89,20 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		this.noPhysics = false;
 		this.setNoGravity(true);
 		this.zRotO = this.zRot;
-		this.zRot += 0.8F;
+		if(entityTickBacksRemaining<1200) {
+			this.zRot += 0.4F;
+			this.yRot += 0.4F;
+		}else if(entityTickBacksRemaining<2400) {
+			this.zRot += 0.2F;
+			this.yRot += 0.2F;
+		}else if(entityTickBacksRemaining<3600) {
+			this.zRot += 0.05F;
+			this.yRot += 0.05F;
+		}
 		this.zRotO = MathHelper.wrapDegrees(this.zRotO);
 		this.zRot = MathHelper.wrapDegrees(this.zRot);
+		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
+		this.yRot = MathHelper.wrapDegrees(this.yRot);
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
 		if(!level.isClientSide()) {
@@ -94,6 +110,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 				this.remove();
 			}else if(entityTickBacksRemaining==0) {
 				spawnTrader((ServerWorld) this.level);
+			}else if(entityTickBacksRemaining==-1) {
 			}else {
 				entityTickBacksRemaining -=1;
 			}
@@ -129,6 +146,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
 		if(pCompound.contains("entityType")) {
 			traderType = pCompound.getString("entityType");
+			this.getEntityData().set(DATA_SPAWNER_TYPE, traderType);
 		}else {
 			queueToRemove=true;
 		}
@@ -174,10 +192,9 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
 			pPlayer.sendMessage(new StringTextComponent("Spawner Entity: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(traderType!=null ? traderType : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			int tickPercentageInverse = entityTickBacksRemaining / setEntityTickBackRate;
-			double percent = (1-tickPercentageInverse);
+			float percent = 1.0F -((float)entityTickBacksRemaining / (float)setEntityTickBackRate);
 			pPlayer.sendMessage(new StringTextComponent("Current spawn percentage: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(String.format(Locale.US,"%.2f", percent*100)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(String.format(Locale.US,"%.2f", percent*100.0F)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("Current spawn ticks till: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(Integer.toString(entityTickBacksRemaining)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("Current spawns sec till: ").withStyle(TextFormatting.GREEN)
@@ -191,11 +208,14 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		SpawnEggItem egg = ForgeSpawnEggItem.fromEntityType(ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(traderType));
-		if(egg== null) {
-			return ItemStack.EMPTY;
+		if(getSpawnerName()!=null) {
+			SpawnEggItem egg = ForgeSpawnEggItem.fromEntityType(ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(getSpawnerName()));
+			if(egg==null) {
+				return ItemStack.EMPTY;
+			}
+			return new ItemStack(egg);
 		}
-		return new ItemStack(egg);
+		return ItemStack.EMPTY;
 	}
 	@Override
 	public void setInvisible(boolean pInvisible) {
@@ -215,7 +235,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	@Override
 	public ITextComponent getDisplayName() {
-		return this.getName();
+		return new StringTextComponent("Trader Respawner: "+getSpawnerName());
 	}
 
 	@Override
@@ -226,8 +246,13 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		super.remove();
 	}
 
+	public String getSpawnerName() {
+		return this.getEntityData().get(DATA_SPAWNER_TYPE);
+	}
+
 	@Override
 	protected void defineSynchedData() {
+		this.getEntityData().define(DATA_SPAWNER_TYPE, "empty");
 	}
 	  
 	@Override

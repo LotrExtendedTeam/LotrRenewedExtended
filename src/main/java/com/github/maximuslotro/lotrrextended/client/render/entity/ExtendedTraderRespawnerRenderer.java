@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedTraderRespawnerRenderer extends EntityRenderer<ExtendedTraderRespawnEntity> {
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/imgnazgulscreamman.png");
+	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/traderrespawner.png");
 	private ExtendedTraderRespawnModel model =  new ExtendedTraderRespawnModel();
 	public ExtendedTraderRespawnerRenderer(EntityRendererManager entityRenderDispatcher) {
 		super(entityRenderDispatcher);

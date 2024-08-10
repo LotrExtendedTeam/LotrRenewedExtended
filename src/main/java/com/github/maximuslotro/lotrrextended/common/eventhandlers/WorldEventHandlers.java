@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
-
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
@@ -99,7 +97,6 @@ public class WorldEventHandlers {
 				}
 			}
 		}else {
-			ExtendedLog.info("Spawning Trader Respawn Entity");
 			NPCEntity npc = (NPCEntity)event.getEntity();
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
