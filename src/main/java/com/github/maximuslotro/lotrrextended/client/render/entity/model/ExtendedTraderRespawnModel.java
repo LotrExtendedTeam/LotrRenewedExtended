@@ -24,10 +24,6 @@ public class ExtendedTraderRespawnModel extends NonLivingModel<ExtendedTraderRes
 		coin.texOffs(16, 3).addBox(-2.5F, -4.5F, -0.5F, 5.0F, 1.0F, 1.0F, 0.0F, false);
 	}
 
-	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-	}
-
 	public void renderExtendedToBuffer(ExtendedTraderRespawnEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.pushPose();
 		if (entity != null) {
@@ -41,9 +37,15 @@ public class ExtendedTraderRespawnModel extends NonLivingModel<ExtendedTraderRes
 			matrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp((double)ageInTicks, entity.spinO, entity.spin) * 10.0F));
 			//matrixStack.translate(0.0D, (double)-0.2F, 0.0D);
 			//matrixStack.mulPose(Vector3f.XP.rotationDegrees(-30.0F));
-			matrixStack.scale(0.9F, 0.9F, 0.9F);
+			float scale = scale(entity.getTickpercentage(), 1.0F, 1200.0F, 0.1F, 0.9F);
+			if(scale >0.9F) {
+				matrixStack.scale(0.9F, 0.9F, 0.9F);
+			}else if(scale <0.1F) {
+				matrixStack.scale(0.1F, 0.1F, 0.1F);
+			}else {
+				matrixStack.scale(scale, scale, scale);
+			}
 		}
-
 		coin.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		matrixStack.popPose();
 	}

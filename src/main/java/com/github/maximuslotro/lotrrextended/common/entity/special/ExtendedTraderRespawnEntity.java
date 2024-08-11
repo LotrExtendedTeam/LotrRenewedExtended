@@ -41,6 +41,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedTraderRespawnEntity extends Entity{
 	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedTraderRespawnEntity.class, DataSerializers.STRING);
+	private static final DataParameter<Integer> TICKPERCENTAGE = EntityDataManager.defineId(ExtendedTraderRespawnEntity.class, DataSerializers.INT);
+
 	private boolean queueToRemove = false;
 	private int setEntityTickBackRate = 6000;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
@@ -65,6 +67,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	public void setTickValues(int tickBackRate) {
 		setEntityTickBackRate = tickBackRate;
 		entityTickBacksRemaining=setEntityTickBackRate;
+		this.getEntityData().set(TICKPERCENTAGE, entityTickBacksRemaining);
 	}
 
 	public void setTraderType(EntityType<?> type) {
@@ -90,10 +93,13 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(this.level.isClientSide()) {
 			this.spinO = this.spin;
 			// Monster Spawner Logic
-			this.spin = (this.spin + (double)(1000.0F / (float)entityTickBacksRemaining)) % 360.0D;
+			this.spin = (this.spin + (double)(1000.0F / (float)getTickpercentage())) % 360.0D;
 		}
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
+		if(this.tickCount % 20 == 0 && !level.isClientSide()) {
+			this.getEntityData().set(TICKPERCENTAGE, entityTickBacksRemaining);
+		}
 		if(!level.isClientSide()) {
 			if(queueToRemove) {
 				this.remove();
@@ -144,6 +150,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		}else {
 			entityTickBacksRemaining=setEntityTickBackRate;
 		}
+		this.getEntityData().set(TICKPERCENTAGE, entityTickBacksRemaining);
 		if(pCompound.contains("ticksSet")) {
 			setEntityTickBackRate = pCompound.getInt("ticksSet");
 		}
@@ -242,6 +249,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	@Override
 	protected void defineSynchedData() {
 		this.getEntityData().define(DATA_SPAWNER_TYPE, "empty");
+		this.getEntityData().define(TICKPERCENTAGE, 3600);
 	}
 	  
 	@Override
@@ -325,5 +333,9 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	@Override
 	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	public int getTickpercentage() {
+		return this.getEntityData().get(TICKPERCENTAGE);
 	}
 }
