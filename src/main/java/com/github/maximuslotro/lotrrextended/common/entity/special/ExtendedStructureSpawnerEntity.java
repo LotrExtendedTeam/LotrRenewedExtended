@@ -71,6 +71,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
 	private boolean firstTick = true;
+	public double spin = 0;
+	public double spinO = 0;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
@@ -85,11 +87,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		super.tick();
 		this.noPhysics = false;
 		this.setNoGravity(true);
-		this.yRotO = this.yRot;
-		this.yRot += 0.8F;
-		this.yRotO = MathHelper.wrapDegrees(this.yRotO);
-		this.yRot = MathHelper.wrapDegrees(this.yRot);
 		this.setDeltaMovement(Vector3d.ZERO);
+		if(this.level.isClientSide()) {
+			this.spinO = this.spin;
+			this.spin = (this.spin + 0.1D) % 360.0D;
+		}
 		setInvulnerable(true);
 		if(!level.isClientSide()) {
 			if(queueToRemove) {

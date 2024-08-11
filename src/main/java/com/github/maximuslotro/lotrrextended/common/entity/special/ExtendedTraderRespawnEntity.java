@@ -87,9 +87,11 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		super.tick();
 		this.noPhysics = false;
 		this.setNoGravity(true);
-		this.yRotO = this.yRot;
-		this.spinO = this.spin;
-        this.spin = (this.spin + (double)(1000.0F / ((float)this.entityTickBacksRemaining + 200.0F))) % 360.0D;
+		if(this.level.isClientSide()) {
+			this.spinO = this.spin;
+			// Monster Spawner Logic
+			this.spin = (this.spin + (double)(1000.0F / (float)entityTickBacksRemaining)) % 360.0D;
+		}
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
 		if(!level.isClientSide()) {

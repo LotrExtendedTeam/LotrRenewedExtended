@@ -26,7 +26,7 @@ public class ExtendedTraderRespawnerRenderer extends EntityRenderer<ExtendedTrad
 	public void render(ExtendedTraderRespawnEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
 		pMatrixStack.pushPose();
 		IVertexBuilder ivertexbuilder = pBuffer.getBuffer(model.renderType(TEXTURE_LOCATION));
-		this.model.render(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 		pMatrixStack.popPose();
 	}
 
