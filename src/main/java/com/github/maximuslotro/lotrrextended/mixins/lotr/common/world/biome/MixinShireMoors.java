@@ -19,7 +19,7 @@ public abstract class MixinShireMoors extends ShireBiome{
 		super(major);
 	}
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

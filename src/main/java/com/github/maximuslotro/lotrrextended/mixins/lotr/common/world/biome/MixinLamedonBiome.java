@@ -15,7 +15,7 @@ public class MixinLamedonBiome {
 	@Shadow(remap = false)
 	protected int getLamedonBaseTreeRate() {return 0;}
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

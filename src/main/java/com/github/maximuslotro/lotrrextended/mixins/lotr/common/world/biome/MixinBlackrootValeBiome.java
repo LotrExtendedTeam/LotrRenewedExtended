@@ -13,7 +13,7 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 @Mixin(BlackrootValeBiome.class)
 public class MixinBlackrootValeBiome {
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

@@ -10,7 +10,7 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 
 @Mixin(FurtherGondorBiome.class)
 public class MixinFurtherGondorBiome {
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

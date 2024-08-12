@@ -11,7 +11,7 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 
 @Mixin(ShireWoodlandsBiome.class)
 public class MixinShireWoodlandsBiome {
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

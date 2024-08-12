@@ -11,7 +11,7 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 @Mixin(Northern.class)
 public class MixinMirkwoodNorthernBiome {
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

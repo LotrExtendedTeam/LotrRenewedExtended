@@ -9,7 +9,7 @@ import lotr.common.world.biome.UmbarBiome;
 
 @Mixin(UmbarBiome.class)
 public class MixinUmbarBiome {
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
