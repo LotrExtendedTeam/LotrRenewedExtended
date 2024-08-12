@@ -11,7 +11,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class ExtendedPacketHandler {
 
-	private static final String PROTOCOL_VERSION = "5";
+	private static final String PROTOCOL_VERSION = "6";
 
 	private static SimpleChannel CHANNEL;
 
