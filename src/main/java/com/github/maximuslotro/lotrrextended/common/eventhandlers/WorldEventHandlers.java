@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
-
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
@@ -11,6 +11,7 @@ import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -76,20 +77,41 @@ public class WorldEventHandlers {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity)) {
 			return;
 		}
-
-		ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
-		if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
+		if (!(event.getEntity() instanceof NPCEntity)) {
 			return;
 		}
 
-		AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-				event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
-		List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
-
-		for (NPCEntity entity : potentialEscorts) {
-			if (trader.getEscortUUIDs().contains(entity.getUUID())) {
-				entity.remove();
+		ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
+		if(trader.isWanderingTrader()) {
+			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
+				return;
 			}
+
+			AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
+					event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
+			List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
+
+			for (NPCEntity entity : potentialEscorts) {
+				if (trader.getEscortUUIDs().contains(entity.getUUID())) {
+					entity.remove();
+				}
+			}
+		}else {
+			NPCEntity npc = (NPCEntity)event.getEntity();
+			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
+			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+			
+			//Set entity Type
+			respawnerEntity.setTraderType(npc.getType());
+			//Save trader trades
+			CompoundNBT compound =  new CompoundNBT();
+			trader.saveAllTrades(compound);
+			respawnerEntity.setTraderType(compound);
+			//Save Trader Home info
+			if(npc.hasRestriction()){
+				respawnerEntity.setHomeInfo(npc.getRestrictCenter(), (int)npc.getRestrictRadius());
+			}
+			npc.level.addFreshEntity(respawnerEntity);
 		}
 	}
 }

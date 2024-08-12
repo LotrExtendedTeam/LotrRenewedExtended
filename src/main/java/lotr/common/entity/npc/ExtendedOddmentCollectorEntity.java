@@ -157,8 +157,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
 
-        TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
-        TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
+        saveAllTrades(tag);
         ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
@@ -171,12 +170,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
-        if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, tag) != null) {
-            itemsBoughtByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, tag);
-        }
-        if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag) != null) {
-            itemsSoldByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag);
-        }
+        loadAllTrades(tag);
 
         // load values related to wandering traders
         int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
@@ -393,5 +387,14 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         return null;
     }
 
+	@Override
+	public void setBuys(ArrayList<ExtendedTrade> trades) {
+		itemsBoughtByTrader = trades;
+	}
+
+	@Override
+	public void setSells(ArrayList<ExtendedTrade> trades) {
+		itemsSoldByTrader = trades;		
+	}
 }
 

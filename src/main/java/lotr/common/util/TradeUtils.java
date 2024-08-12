@@ -41,7 +41,7 @@ public class TradeUtils {
         return result;
     }
 
-    public static void saveAllTrades(ExtendedTradeEntries.TradeType type, ArrayList<ExtendedTrade> trades, CompoundNBT tag) {
+    public static void saveAllTrades(ExtendedTradeEntries.TradeType type, List<ExtendedTrade> trades, CompoundNBT tag) {
         ListNBT listnbt = new ListNBT();
 
         for (ExtendedTrade trade : trades) {

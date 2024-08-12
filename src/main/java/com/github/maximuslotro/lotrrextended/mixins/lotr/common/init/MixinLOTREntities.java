@@ -24,6 +24,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -97,6 +98,8 @@ public class MixinLOTREntities {
         ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685));
         ExtendedEntities.DUCK_EGG_ENTITY = regEntityNOND("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
         ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);
+        ExtendedEntities.TRADER_RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedTraderRespawnEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
+
     }
 
 }

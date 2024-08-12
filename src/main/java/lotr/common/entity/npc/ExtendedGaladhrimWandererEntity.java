@@ -53,6 +53,9 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
+    private ArrayList<ExtendedTrade> itemsSoldByTrader;
+    private ArrayList<ExtendedTrade> itemsBoughtByTrader;
+
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGaladhrimWandererEntity.class, DataSerializers.OPTIONAL_UUID);
     private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedGaladhrimWandererEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedGaladhrimWandererEntity.class, DataSerializers.INT);
@@ -133,9 +136,6 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
-    private ArrayList<ExtendedTrade> itemsSoldByTrader;
-    private ArrayList<ExtendedTrade> itemsBoughtByTrader;
-
     // Remove, drink, smoke and eat AIs
     protected void addNPCAI() {
         ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
@@ -191,8 +191,7 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
 
-        TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
-        TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
+        saveAllTrades(tag);
         ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
@@ -200,12 +199,7 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
-        if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, tag) != null) {
-            itemsBoughtByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, tag);
-        }
-        if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag) != null) {
-            itemsSoldByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag);
-        }
+        loadAllTrades(tag);
 
         // load values related to wandering traders
         int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
@@ -386,4 +380,13 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         return LOTREntities.GALADHRIM_ELF.get().create(level);
     }
 
+	@Override
+	public void setBuys(ArrayList<ExtendedTrade> trades) {
+		itemsBoughtByTrader = trades;
+	}
+
+	@Override
+	public void setSells(ArrayList<ExtendedTrade> trades) {
+		itemsSoldByTrader = trades;		
+	}
 }
