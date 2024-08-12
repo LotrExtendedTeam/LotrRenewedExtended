@@ -23,6 +23,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -41,6 +42,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		buildRecipes(consumer);
 		buildStonecutterRecipes(consumer);
 		buildCookingRecipes(consumer);
+		buildSmeltingRecipes(consumer);
 		addOverrides();
 		checkForMissingRecipes();
 	}
@@ -983,6 +985,26 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
 	}
 
+	private void buildSmeltingRecipes(Consumer<IFinishedRecipe> consumer) {
+		makeSmeltingRecipes(consumer, ExtendedItems.AMBER_ORE.get(), ExtendedItems.AMBER.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.AMETHYST_ORE.get(), ExtendedItems.AMETHYST.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.DIAMOND_ORE.get(), ExtendedItems.DIAMOND.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.EMERALD_ORE.get(), ExtendedItems.EMERALD.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.OPAL_ORE.get(), ExtendedItems.OPAL.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.RUBY_ORE.get(), ExtendedItems.RUBY.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.SAPPHIRE_ORE.get(), ExtendedItems.SAPPHIRE.get());
+		makeSmeltingRecipes(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get());
+	}
+
+	private static void makeSmeltingRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result) {
+		GENERATEDRECIPES.add(result.getRegistryName().getPath());
+	      CookingRecipeBuilder.smelting(Ingredient.of(ore), result, 1.0F, 200)
+	      .unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
+	      .unlockedBy("has_"+result.getRegistryName().getPath(), has(result))
+	      .save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
+
+	}
+
 	private void buildCookingRecipes(Consumer<IFinishedRecipe> consumer) {
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
 		CookingRecipeBuilder.smelting(Ingredient.of(Items.MILK_BUCKET), 
@@ -1006,11 +1028,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.RAW_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.CONKER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath()));
 
-		cookRecipes(consumer, "smoking", IRecipeSerializer.SMOKING_RECIPE, 100);
-		cookRecipes(consumer, "campfire_cooking", IRecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600);
+		makeCookingRecipes(consumer, "smoking", IRecipeSerializer.SMOKING_RECIPE, 100);
+		makeCookingRecipes(consumer, "campfire_cooking", IRecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600);
 	}
 
-	private static void cookRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, CookingRecipeSerializer<?> pCookingSerializer, int pCookingTime) {
+	private static void makeCookingRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, CookingRecipeSerializer<?> pCookingSerializer, int pCookingTime) {
 		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.CONKER.get()), ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, pCookingTime, pCookingSerializer).unlockedBy("has_conker", has(ExtendedItems.CONKER.get())).save(pFinishedRecipeConsumer, "cooked_conker_from_" + pCookingMethod);
 		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.RAW_DUCK.get()), ExtendedItems.COOKED_DUCK.get(), 0.35F, pCookingTime, pCookingSerializer).unlockedBy("has_raw_duck", has(ExtendedItems.RAW_DUCK.get())).save(pFinishedRecipeConsumer, "cooked_duck_from_" + pCookingMethod);
 

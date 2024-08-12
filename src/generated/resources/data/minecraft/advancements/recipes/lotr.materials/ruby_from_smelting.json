@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:ruby_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_ruby_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ruby_ore"
+          }
+        ]
+      }
+    },
+    "has_ruby": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ruby"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ruby_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ruby_ore",
+      "has_ruby",
+      "has_the_recipe"
+    ]
+  ]
+}

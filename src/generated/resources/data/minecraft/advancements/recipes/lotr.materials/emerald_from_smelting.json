@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:emerald_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_emerald_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:emerald_ore"
+          }
+        ]
+      }
+    },
+    "has_emerald": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:emerald"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:emerald_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_emerald_ore",
+      "has_emerald",
+      "has_the_recipe"
+    ]
+  ]
+}
