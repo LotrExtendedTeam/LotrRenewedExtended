@@ -16,29 +16,29 @@ public class WanderingTradersList {
 
 	    // Eriador
 	    put("lotr:eriador", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
+		put("lotr:hills_of_evendim", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
 	    put("lotr:eriador_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
 	    put("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
 	    put("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:swanfleet", Collections.emptyList()); // Swanfleet has no wandering traders according to the wiki
-	    put("lotr:trollshaws", Collections.emptyList()); // Trollshaws has no wandering traders according to the wiki
 
 	    // Rivendell only gets Galadhrim traders
 	    put("lotr:rivendell", Collections.singletonList("lotr:galadhrim_wanderer"));
 	    put("lotr:rivendell_hills", Collections.singletonList("lotr:galadhrim_wanderer"));
 
-	    // TODO: unsure if this includes all Gondor fiefdoms
 	    put("lotr:gondor", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:blackroot_vale", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:lamedon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:lamedon_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:pelargir", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		put("lotr:anfalas", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		put("lotr:lossarnach", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		put("lotr:pinnath_gelin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:ithilien", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:lebennin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:emyn_en_ernil", Collections.emptyList()); // Emyn-En-Ernil has no traders in Legacy code
 	    put("lotr:dor_en_ernil", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-
-	    put("lotr:harondor", Collections.emptyList()); // Harondor has no traders according to Legacy code
 
 	    // Older elven regions
 	    put("lotr:lindon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer"));
@@ -54,7 +54,6 @@ public class WanderingTradersList {
 	    put("lotr:chetwood", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
 	    put("lotr:midgewater", Collections.emptyList());
 
-	    // TODO: make sure rest of Rohan is added?
 	    put("lotr:rohan", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:wold", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
@@ -64,6 +63,10 @@ public class WanderingTradersList {
 
 	    put("lotr:northern_dale", Collections.singletonList("lotr:oddment_collector"));
 	    put("lotr:dale", Collections.singletonList("lotr:oddment_collector"));
+
+		put("lotr:iron_hills", Collections.singletonList("lotr:oddment_collector"));
+
+		put("lotr:dunland", Collections.singletonList("lotr:oddment_collector"));
 
 	    // Lone-lands
 	    put("lotr:lone_lands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer"));
@@ -75,11 +78,18 @@ public class WanderingTradersList {
 	    put("lotr:northern_mirkwood", Collections.singletonList("lotr:galadhrim_wanderer"));
 	    put("lotr:mirkwood", Collections.emptyList()); // no traders visit Southern Mirkwood (too corrupted)
 
-	    put("lotr:forochel", Collections.emptyList()); // no traders visit Forochel (too cold)
-	    put("lotr:white_mountains", Collections.emptyList()); // no traders
-	    put("lotr:white_mountains_foothills", Collections.emptyList()); // no traders
+		// biomes with no traders to make sure it is clear that they were added
+		put("lotr:andrast", Collections.emptyList());
+		put("lotr:trollshaws", Collections.emptyList());
+		put("lotr:harondor", Collections.emptyList());
+		put("lotr:mordor", Collections.emptyList());
+		put("lotr:misty_mountains", Collections.emptyList());
+		put("lotr:misty_mountains_foothills", Collections.emptyList());
+		put("lotr:forochel", Collections.emptyList());
+		put("lotr:white_mountains", Collections.emptyList());
+		put("lotr:white_mountains_foothills", Collections.emptyList());
 
-	    // TODO: Make sure areas west of Lindon and the shire have wandering traders
+		// TODO: Make sure areas west of Lindon and the shire have wandering traders
 	}};
 
     /**
