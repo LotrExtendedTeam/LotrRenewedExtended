@@ -54,7 +54,6 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         this.renderTooltip(matrix, p_98419_, p_98420_);
     }
 
-	@SuppressWarnings("deprecation")
 	@Override
     protected void renderBg(MatrixStack matrix, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

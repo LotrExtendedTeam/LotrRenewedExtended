@@ -30,4 +30,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
+	public static RegistryObject<EntityType<ExtendedGundabadOrcTraderEntity>> GUNDABAD_CAMP_TRADER;
 }
