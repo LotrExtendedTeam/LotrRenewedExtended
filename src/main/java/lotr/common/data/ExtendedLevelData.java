@@ -163,7 +163,8 @@ public class ExtendedLevelData {
             for (PlayerEntity player : shuffledPlayers) {
                 int cooldownLeft = getPlayersTraderCooldown(player.getUUID());
 
-                if (player.isCreative()) continue; // skip creative mode players
+                // skip creative mode players and spectators
+                if (player.isCreative() || player.isSpectator()) continue;
 
                 // set them to 3 minutes if they just joined and look for another player
                 if (cooldownLeft == -1) {
