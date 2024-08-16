@@ -38,7 +38,7 @@ public class WanderingTradersList {
 	    put("lotr:blackroot_vale", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:lamedon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:lamedon_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:pealargir", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    put("lotr:pelargir", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 		put("lotr:anfalas", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 		put("lotr:lossarnach", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 		put("lotr:pinnath_gelin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
