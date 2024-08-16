@@ -30,6 +30,8 @@ public class ExtendedLevelData {
 
     private int timeUntilTrader = 0;
 
+    private boolean requireRandom = true;
+
     public ExtendedLevelData(LogicalSide side) {
         this.side = side;
     }
@@ -55,6 +57,7 @@ public class ExtendedLevelData {
                 CompoundNBT levelData = new CompoundNBT();
                 levelData.putInt("timeUntilTrader", this.timeUntilTrader);
                 savePlayerTraderCooldowns(levelData);
+                levelData.putBoolean("requireRandom", this.requireRandom);
 
                 SaveUtil.saveNBTToFile(lotrDataFile, levelData);
                 this.needsSave = false;
@@ -71,6 +74,7 @@ public class ExtendedLevelData {
             CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
             this.timeUntilTrader = levelData.getInt("timeUntilTrader");
             loadPlayerTraderCooldownTimes(levelData);
+            this.requireRandom = levelData.getBoolean("requireRandom");
 
             this.needsLoad = false;
             this.needsSave = true;
@@ -146,7 +150,7 @@ public class ExtendedLevelData {
             }
 
             // 1/5th of the time we will actually attempt to spawn otherwise just wait another minute
-            if (world.random.nextInt(4) > 0) {
+            if (requireRandom && world.random.nextInt(4) > 0) {
                 timeUntilTrader = 1200;
                 return;
             }
@@ -158,6 +162,9 @@ public class ExtendedLevelData {
             boolean attemptedTraderSpawn = false;
             for (PlayerEntity player : shuffledPlayers) {
                 int cooldownLeft = getPlayersTraderCooldown(player.getUUID());
+
+                // skip creative mode players and spectators
+                if (player.isCreative() || player.isSpectator()) continue;
 
                 // set them to 3 minutes if they just joined and look for another player
                 if (cooldownLeft == -1) {
@@ -171,12 +178,15 @@ public class ExtendedLevelData {
                     timeUntilTrader = 1200 * 5; // reset to 5 minute cooldown
                     attemptedTraderSpawn = true;
                     playerTraderSpawnCooldowns.put(player.getUUID(), 60 * 30); // reset player's cooldown 30 minutes
+                    requireRandom = true;
                     break;
                 }
             }
 
+            // if a trader could not be spawned we will no longer require random
             if (!attemptedTraderSpawn) {
                 timeUntilTrader = 1200; // if no trader was spawned wait another minute before trying again
+                requireRandom = false;
             }
         }
 

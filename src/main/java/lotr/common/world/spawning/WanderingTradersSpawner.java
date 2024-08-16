@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
@@ -81,10 +82,10 @@ public class WanderingTradersSpawner {
                     }
 
                     // send message to the original player
-                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you",((NPCEntity) trader).getName(), new StringTextComponent("X: " + pos.getX() + " Z: " + pos.getZ())), Util.NIL_UUID);
+                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
                     for (PlayerEntity otherPlayer : world.players()) {
                         if (otherPlayer.getUUID().equals(player.getUUID())) continue;
-                        otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player",((NPCEntity) trader).getName(), player.getName()), Util.NIL_UUID);
+                        otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
                     }
                     break;
                 } else {
