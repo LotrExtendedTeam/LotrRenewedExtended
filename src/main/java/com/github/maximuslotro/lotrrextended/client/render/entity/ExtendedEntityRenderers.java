@@ -1,11 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
-import lotr.client.render.entity.ExtendedDunedainRangerRenderer;
-import lotr.client.render.entity.ExtendedGaladhrimWandererRenderer;
-import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
-import lotr.client.render.entity.ExtendedHobbitFarmerRenderer;
-import lotr.client.render.entity.ExtendedOddmentCollectorRenderer;
-import lotr.client.render.entity.ExtendedRivendellWandererRenderer;
+import lotr.client.render.entity.*;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -26,6 +21,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK_EGG_ENTITY.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), ExtendedStructureSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TRADER_RESPAWNER_ENTITY.get(), ExtendedTraderRespawnerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), ExtendedBlueMountainsMerchantRenderer::new);
 
 	}
 }
