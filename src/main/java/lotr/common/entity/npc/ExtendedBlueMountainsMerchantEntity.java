@@ -71,21 +71,19 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     });
 
     // items Blue Mountains Merchants call sell to players
-    // TODO: Change these to Blue Dwarven Items when they are added
     private static final ExtendedTradeEntries BLUE_MOUNTAINS_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 19, 31), new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 27, 45),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 23, 38), new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_BOOTS.get()), 17, 38),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_AXE.get()), 11, 19), new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_DAGGER.get()), 10, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_PICKAXE.get()), 11, 18), new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_SHOVEL.get()), 9, 15),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_SPEAR.get()), 14, 23), new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_SWORD.get()), 12, 20),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 19, 31), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 27, 45),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 23, 38), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_BOOTS.get()), 17, 38),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_AXE.get()), 11, 19), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_DAGGER.get()), 10, 16),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_PICKAXE.get()), 11, 18), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_SHOVEL.get()), 9, 15),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_SPEAR.get()), 14, 23), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get()), 12, 20),
             new ExtendedTradeEntry(new ItemStack(Items.GLOWSTONE_DUST, 4), 2, 3), new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_FORGE.get()), 30, 50),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.DWARF_MARRIAGE_RING.get()), 12, 20), new ExtendedTradeEntry(new ItemStack(LOTRItems.GLOWING_DWARVEN_BRICK.get()), 3, 5),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GLOWING_DWARVEN_BRICK.get()), 3, 5), new ExtendedTradeEntry(new ItemStack(ExtendedItems.EMERALD.get()), 19, 31),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.RUBY.get()), 15, 25), new ExtendedTradeEntry(new ItemStack(ExtendedItems.AMETHYST.get()), 9, 15),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.TOPAZ.get()), 9, 15)
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.TOPAZ.get()), 9, 15), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2, 3)
             // TODO: Add Dwarven Tonics
             // TODO: Add rest of alcohol and barrels
-            // TODO: Add Luigon when it's added
     });
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
@@ -350,8 +348,7 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 
     @Override
     public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        // TODO: Update departure lines
-        return new TranslationTextComponent("speechbank.oddment_collector.departure." + (random.nextInt(20) + 1), getName(), player.getName());
+        return new TranslationTextComponent("speechbank.blue_mountains_merchant.departure." + (random.nextInt(10) + 1), getName(), player.getName());
     }
 
     static {
