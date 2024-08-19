@@ -91,7 +91,6 @@ public class WanderingTradersList {
 	    // Lone-lands
 	    put("lotr:lone_lands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
 	    put("lotr:lone_lands_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-		// TODO: Continue from this area for adding and verifying Blue Mountains Merchant spawns are correct
 	    // Mirkwood
 	    put("lotr:woodland_realm", Collections.singletonList("lotr:galadhrim_wanderer"));
 	    // in Legacy no travelling traders come to Northern Mirkwood, but I am adding them here because I feel like it fits the theme
@@ -156,8 +155,6 @@ public class WanderingTradersList {
 		// TODO: since this is close to Harad it seems like from the wiki it should only have Harad traders
 		//  which means there is nothing that can go here yet
 		put("lotr:wilderland", Collections.emptyList());
-
-		// TODO: Make sure areas west of Lindon and the shire have wandering traders
 	}};
 
     /**
