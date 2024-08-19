@@ -9,6 +9,24 @@
           "name": "lotrextended:entities/common/faction_bases/blue_mountians"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/mugs"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/food_items"
+        }
+      ]
     }
   ]
 }
