@@ -1,6 +1,7 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
+import lotr.client.render.entity.layers.DwarfHeldCoinLayer;
 import lotr.common.entity.npc.DwarfEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -10,6 +11,7 @@ public class ExtendedBlueMountainsMerchantRenderer extends BlueDwarfRenderer {
 
     public ExtendedBlueMountainsMerchantRenderer(EntityRendererManager mgr) {
         super(mgr);
+        this.addLayer(new DwarfHeldCoinLayer(this));
     }
 
     public ResourceLocation getEntityTexture(DwarfEntity dwarf) {

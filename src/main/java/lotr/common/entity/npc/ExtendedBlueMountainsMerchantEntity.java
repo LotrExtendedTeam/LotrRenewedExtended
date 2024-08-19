@@ -9,6 +9,7 @@ import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
@@ -387,7 +388,7 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 
     @Override
     public NPCEntity createEscort() {
-        return null;
+        return LOTREntities.BLUE_MOUNTAINS_DWARF.get().create(level);
     }
 
 	@Override
@@ -399,5 +400,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 	public void setSells(ArrayList<ExtendedTrade> trades) {
 		itemsSoldByTrader = trades;		
 	}
+
 }
 

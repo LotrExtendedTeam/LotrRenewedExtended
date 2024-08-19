@@ -12,7 +12,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -103,6 +102,8 @@ public class WanderingTradersSpawner {
             return ExtendedEntities.RIVENDELL_WANDERER.get();
         } else if (name.equals("lotr:oddment_collector")) {
             return ExtendedEntities.ODDMENT_COLLECTOR.get();
+        } else if (name.equals("lotr:blue_mountains_merchant")) {
+           return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
         } else {
             return null;
         }
