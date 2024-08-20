@@ -118,6 +118,7 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 @Mixin(LOTRBlocks.class)
 public class MixinLOTRBlocks {
 

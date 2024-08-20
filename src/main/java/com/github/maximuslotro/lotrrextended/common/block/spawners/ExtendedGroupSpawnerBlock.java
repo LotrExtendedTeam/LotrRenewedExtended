@@ -9,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
+@SuppressWarnings("deprecation")
 public class ExtendedGroupSpawnerBlock extends Block {
 
 	private final ExtendedEntitySpawnGroupTypes entitySpawn;
