@@ -34,7 +34,7 @@ public class ExtendedBowItem extends BowItem {
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, tooltip, flag);
 		tooltip.add(new StringTextComponent(""));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)(1.0f/(bowMaterial.getDrawSpeed()/20.0F)) * 100).withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(bowMaterial.getDrawSpeed()/20.0F)) * 100)).withStyle(TextFormatting.DARK_GREEN));
 		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", bowMaterial.getAttackDamageBonus() * 100)).withStyle(TextFormatting.DARK_GREEN));
 		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", bowMaterial.getAttackDamageBonus() * 100)).withStyle(TextFormatting.DARK_GREEN));
 	}
