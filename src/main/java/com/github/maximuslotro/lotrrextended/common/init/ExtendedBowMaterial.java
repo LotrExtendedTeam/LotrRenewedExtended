@@ -28,15 +28,15 @@ public enum ExtendedBowMaterial {
 		this.repairIngredient = new LazyValue<>(repairIngredient);
 	}
 
-	public float getAttackDamageBonus() {
+	public float getAttackDamageBonusScale() {
 		return bowDamage;
 	}
 
-	public int getEnchantmentValue() {
+	public int getEnchantabilityValue() {
 		return enchantability;
 	}
 
-	public int getLevel() {
+	public int getMaterialLevel() {
 		return bowLevel;
 	}
 
@@ -44,7 +44,7 @@ public enum ExtendedBowMaterial {
 		return repairIngredient.get();
 	}
 
-	public int getDrawSpeed() {
+	public int getDrawSpeedTicks() {
 		return drawSpeed;
 	}
 

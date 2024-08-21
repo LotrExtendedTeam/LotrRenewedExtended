@@ -34,9 +34,9 @@ public class ExtendedBowItem extends BowItem {
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, tooltip, flag);
 		tooltip.add(new StringTextComponent(""));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(bowMaterial.getDrawSpeed()/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", bowMaterial.getAttackDamageBonus() * 100)).withStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", bowMaterial.getAttackDamageBonus() * 100)).withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(bowMaterial.getDrawSpeedTicks()/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", bowMaterial.getAttackDamageBonusScale() * 100)).withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", bowMaterial.getAttackDamageBonusScale() * 100)).withStyle(TextFormatting.DARK_GREEN));
 	}
 
     @Override
@@ -56,7 +56,7 @@ public class ExtendedBowItem extends BowItem {
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float charge = i / (float)bowMaterial.getDrawSpeed();
+                float charge = i / (float)bowMaterial.getDrawSpeedTicks();
 				charge = (charge * charge + charge * 2.0F) / 3.0F;
 				if (charge > 1.0F) {
 					charge = 1.0F;
@@ -115,7 +115,7 @@ public class ExtendedBowItem extends BowItem {
         float f = 1.0F;
         if (itemstack != null) {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
-                f = (float)(f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonus());
+                f = (float)(f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale());
             }
             // TODO: When we add smithing scrolls back in we can use this code
             //f*= LOTREnchantmentHelper.calcRangedDamageFactor(itemstack);
@@ -134,7 +134,7 @@ public class ExtendedBowItem extends BowItem {
 	 */
 	@Override
 	public int getEnchantmentValue() {
-		return this.bowMaterial.getEnchantmentValue();
+		return this.bowMaterial.getEnchantabilityValue();
 	}
 
 	/**

@@ -43,7 +43,7 @@ public class ExtendedItemModelsProperties {
 			}
 			float num;
 			if(thisItem.getItem() instanceof ExtendedBowItem) {
-				num = thisLivingEntity.getTicksUsingItem() / (float)((ExtendedBowItem)thisItem.getItem()).getMaterial().getDrawSpeed();
+				num = thisLivingEntity.getTicksUsingItem() / (float)((ExtendedBowItem)thisItem.getItem()).getMaterial().getDrawSpeedTicks();
 			}else {
 				num = thisLivingEntity.getTicksUsingItem() / 20.0F;
 			}
