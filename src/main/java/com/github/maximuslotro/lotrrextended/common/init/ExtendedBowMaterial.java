@@ -12,6 +12,7 @@ public enum ExtendedBowMaterial {
 	private final String bowMaterialName;
 	private final int bowLevel;
 	private final int bowDurability;
+	// Number of ticks needed to draw bow to full power, default is 20 ticks (1 second)
 	private final int drawSpeed;
 	private final float bowDamage;
 	private final int enchantability;
