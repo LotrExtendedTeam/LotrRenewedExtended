@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -393,7 +394,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.REMAINS_DWARF = registerB("remains_ore_dwarf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 
 		///////////////////////////////BRICKS
-		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new Block(AbstractBlock.Properties.copy(Blocks.DIRT)));
+		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(AbstractBlock.Properties.copy(Blocks.DIRT)));
 		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new AxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
 		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new AxialSlabBlock(Blocks.COARSE_DIRT));
 		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new AxialSlabBlock(Blocks.DIRT));
