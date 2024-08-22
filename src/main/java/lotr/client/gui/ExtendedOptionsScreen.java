@@ -98,13 +98,17 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		buttonFeminineRank.setMessage(rank.append(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 		
 		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
-			TextComponent ecdm = new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting");
-			enableClientDevMode.setMessage(ecdm.append(new TranslationTextComponent(ExtendedClientConfig.enableDevMode.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
-			TextComponent fsbr = new StringTextComponent("Force StrBlock Air Rendering: ");
-			forceStructureBlockAirViewing.setMessage(fsbr.append(new TranslationTextComponent(ExtendedClientConfig.forceStructureBlockAirViewing.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 			enableClientDevMode.visible = true;
 			forceStructureBlockAirViewing.visible = true;
 			structureBlockOutlineViewDistance.visible = true;
+			if(ExtendedServerConfig.enableDevMode.get()) {
+				enableClientDevMode.setMessage(new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting.forced"));
+			}else {
+				TextComponent ecdm = new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting");
+				enableClientDevMode.setMessage(ecdm.append(new TranslationTextComponent(ExtendedClientConfig.enableDevMode.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+			}
+			TextComponent fsbr = new TranslationTextComponent("gui.lotrextended.settings.fsbr.setting");
+			forceStructureBlockAirViewing.setMessage(fsbr.append(new TranslationTextComponent(ExtendedClientConfig.forceStructureBlockAirViewing.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 		}else {
 			enableClientDevMode.visible = false;
 			forceStructureBlockAirViewing.visible = false;
