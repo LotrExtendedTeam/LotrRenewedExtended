@@ -27,6 +27,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Random;
 
+import lotr.common.event.CompostingHelper;
 import lotr.common.init.LOTRBlocks;
 
 public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
@@ -48,6 +49,7 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
         this.berryItem = berryItem;
         this.berryBlock = berryBlock;
         registerDefaultState(stateDefinition.any().setValue(AGE, 0));
+        CompostingHelper.prepareCompostable(this, 0.65F);
     }
 
 	@Override

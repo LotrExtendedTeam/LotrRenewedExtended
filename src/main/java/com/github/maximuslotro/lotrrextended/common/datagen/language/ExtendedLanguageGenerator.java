@@ -192,8 +192,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
 		addD("gui.lotrextended.settings.rankGender.title", "Feminine Rank Override");
 		addD("gui.lotrextended.settings.rankGender.setting", "Feminine Rank Override: ");
-		addD("gui.lotrextended.settings.devtoggle.title", "Dev Mode");
-		addD("gui.lotrextended.settings.devtoggle.setting", "Dev Mode: ");
+		addD("gui.lotrextended.settings.devtoggle.title", "Client Dev Mode");
+		addD("gui.lotrextended.settings.devtoggle.setting", "Client Dev Mode: ");
+		addD("gui.lotrextended.settings.devtoggle.setting.forced", "Client Dev Mode: Server Forced");
 		addD("gui.lotrextended.settings.fsbr.title", "Force StrBlock Air Rendering");
 		addD("gui.lotrextended.settings.fsbr.setting", "Force StrBlock Air Rendering: ");
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");

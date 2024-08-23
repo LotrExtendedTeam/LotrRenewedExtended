@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 
@@ -40,23 +41,23 @@ public class ExtendedItemModelsProperties {
 			if (thisLivingEntity == null || thisLivingEntity.getUseItem() != thisItem) {
 				return 0.0F;
 			}
-			float num = (float)(thisItem.getUseDuration() - thisLivingEntity.getTicksUsingItem()) / 20.0F;
-			float propNum = (thisItem.getUseDuration()/20.0F)-num;
+			float num;
+			if(thisItem.getItem() instanceof ExtendedBowItem) {
+				num = thisLivingEntity.getTicksUsingItem() / (float)((ExtendedBowItem)thisItem.getItem()).getMaterial().getDrawSpeedTicks();
+			}else {
+				num = thisLivingEntity.getTicksUsingItem() / 20.0F;
+			}
 			if(ExtendedClientConfig.enableDevMode.get() && thisLivingEntity instanceof PlayerEntity) {
 				PlayerEntity player = ((PlayerEntity)thisLivingEntity);
 				Minecraft mc = Minecraft.getInstance();
 				if(mc.player !=null && mc.player.equals(player)) {
 					mc.gui.getChat().addMessage(new StringTextComponent("TICK: ").withStyle(TextFormatting.GREEN)
 	                		.append(new StringTextComponent(Integer.toString(thisLivingEntity.getTicksUsingItem())).withStyle(TextFormatting.WHITE)));
-					mc.gui.getChat().addMessage(new StringTextComponent("Pull Norm: ").withStyle(TextFormatting.GREEN)
+					mc.gui.getChat().addMessage(new StringTextComponent("PULL: ").withStyle(TextFormatting.GREEN)
 	                		.append(new StringTextComponent(Float.toString(num)).withStyle(TextFormatting.WHITE)));
-					mc.gui.getChat().addMessage(new StringTextComponent("Pull Prop: ").withStyle(TextFormatting.GREEN)
-	                		.append(new StringTextComponent(Float.toString(propNum)).withStyle(TextFormatting.WHITE)));
-					mc.gui.getChat().addMessage(new StringTextComponent("PER of "+thisItem.getUseDuration()+": ").withStyle(TextFormatting.GREEN)
-	                		.append(new StringTextComponent(Float.toString(propNum/(thisItem.getUseDuration()/20.0F))).withStyle(TextFormatting.WHITE)));
 				}
 			}
-			return propNum;
+			return num;
 		});
 
         ItemModelsProperties.register(item, pulling, (thisItem, clientWorld, thisLivingEntity) -> {
