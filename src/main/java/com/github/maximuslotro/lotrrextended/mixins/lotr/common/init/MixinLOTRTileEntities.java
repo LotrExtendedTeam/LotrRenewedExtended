@@ -33,6 +33,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraftforge.fml.RegistryObject;
 
+@SuppressWarnings("deprecation")
 @Mixin(LOTRTileEntities.class)
 public class MixinLOTRTileEntities {
 
@@ -41,7 +42,7 @@ public class MixinLOTRTileEntities {
 		return null;
     }
 
-    @Inject(method = "register()V", at = @At("HEAD"), remap=false)
+	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
     	for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
     		ExtendedTileEntities.SPAWNER_TILEENTITYS.put(type.getSerializedName(), 
