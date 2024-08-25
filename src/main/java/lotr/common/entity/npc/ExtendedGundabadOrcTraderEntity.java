@@ -44,49 +44,39 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 
     private List<UUID> escorts = new ArrayList<>();
 
-    // items Galadhrim Wanderers sell to a player
-    private final ExtendedTradeEntries GALADHRIM_WANDERER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_HELMET.get()), 19, 31),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_CHESTPLATE.get()), 27, 45),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_LEGGINGS.get()), 23, 38),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_BOOTS.get()), 17, 28),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_DAGGER.get()), 10, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_SPEAR.get()), 16, 26),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_SWORD.get()), 16, 26),
-            new ExtendedTradeEntry(new ItemStack(Items.ARROW, 4), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.MALLORN_PLANKS.get(), 4), 3, 5),
-            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_MALLORN_TORCH.get(), 4), 6, 10),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.GOLD_MALLORN_TORCH.get(), 4), 6, 10),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.GREEN_MALLORN_TORCH.get(), 4), 6, 10),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.SILVER_MALLORN_TORCH.get(), 4), 6, 10)
-            }),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.LEMBAS.get()), 12, 20),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.ELANOR.get()), 2, 3),
-            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MIRUVOR.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
-                new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MIRUVOR.get(), VesselDrinkItem.Potency.MODERATE), 6, 10),
-                new ExtendedTradeEntry (DrinkUtils.drinkOfPotency(LOTRItems.MIRUVOR.get(), VesselDrinkItem.Potency.STRONG), 8, 13)
-            }),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.NIPHREDIL.get()), 2, 3),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.HITHLAIN.get()), 3, 5),
-            // TODO: Add Mallorn Boxes when they are added
+	// items a Gundabad Orc trader will sell
+    private final ExtendedTradeEntries GUNDABAD_ORC_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
+			// TODO: Add poisoined bronze daggers as trades eventually
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.GUNDABAD_CRAFTING_TABLE.get()), 30, 50),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 15, 25),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_CHESTPLATE.get()), 23, 38),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_LEGGINGS.get()), 20, 33),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_BOOTS.get()), 14, 23),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SWORD.get()), 11, 18),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SPEAR.get()), 11, 19),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 6, 10),
+			new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
+					new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
+					new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.MODERATE), 6, 10),
+					new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.STRONG), 8, 13)}
+			),
+			new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR.get()), 3, 5),
+			// TODO: Finish adding rest of trades
     });
 
-    // items a Galadhrim Wanderer will buy from a player
-    // TODO: Add Coral when it's added
-    private final ExtendedTradeEntries GALADHRIM_WANDERER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-           new ExtendedTradeEntry(new ItemStack(Items.FEATHER), 2, 3), new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4),
-           new ExtendedTradeEntry(new ItemStack(LOTRItems.MITHRIL_NUGGET.get()), 30, 50), new ExtendedTradeEntry(new ItemStack(LOTRItems.WOODEN_MUG.get()), 1, 1),
-           new ExtendedTradeEntry(new ItemStack(LOTRItems.ORC_BONE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.STRING, 2), 1, 1),
-           new ExtendedTradeEntry(new ItemStack(LOTRItems.WARG_BONE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.WHEAT, 3), 1, 1),
-           new ExtendedTradeEntry(new ItemStack(ExtendedItems.EMERALD.get()), 11, 19), new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
-           new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31),
-           new ExtendedTradeEntry(new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31)
+    // items a Gundabad Orc trader will buy from a player
+    private final ExtendedTradeEntries GUNDABAD_ORC_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
+           new ExtendedTradeEntry(new ItemStack(LOTRItems.ORC_STEEL_INGOT.get()), 2, 4), new ExtendedTradeEntry(new ItemStack(LOTRItems.URUK_STEEL_INGOT.get()), 2, 4),
+			// TODO: Finish adding rest of trades
     });
 
 	public ExtendedGundabadOrcTraderEntity(EntityType<? extends GundabadOrcEntity> type, World w) {
 		super(type, w);
+
+		setPersistenceRequired();
+
+		itemsBoughtByTrader = GUNDABAD_ORC_BOUGHT.generateTrades();
+		itemsSoldByTrader = GUNDABAD_ORC_SOLD.generateTrades();
 	}
 
     @Override
@@ -126,7 +116,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	@Override
 	public void openCoinExchange(PlayerEntity player) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -196,7 +185,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 
 	@Override
 	public boolean canTradeWith(PlayerEntity player) {
-		return isFriendlyAndAlignedWithLevel(player, this, 25.0F);
+		return isFriendlyAndAlignedWithLevel(player, this, 50F);
 	}
 
 	@Override
