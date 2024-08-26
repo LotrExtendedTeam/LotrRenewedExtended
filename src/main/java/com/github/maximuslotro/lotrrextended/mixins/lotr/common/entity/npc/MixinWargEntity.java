@@ -6,8 +6,10 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
@@ -69,28 +71,33 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @Mixin(WargEntity.class)
-public abstract class MixinWargEntity extends WargEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
+public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
+	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
+	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
+	private static final DataParameter<Optional<UUID>> DATA_ID_OWNER_UUID = EntityDataManager.defineId(WargEntity.class, DataSerializers.OPTIONAL_UUID);
+	private boolean isJumping;
+	private Inventory inventory;
+	/** The higher this value, the more likely the horse is to be tamed next time a player rides it. */
+	private int temper;
+	private float playerJumpPendingScale;
+
 	protected MixinWargEntity(EntityType<? extends WargEntity> type, World w) {
 		super(type, w);
 	}
 
-	//@Shadow(remap = false)
-	//public boolean getIsLeaping() {return false;}
+	@Shadow(remap = false)
+	public boolean getIsLeaping() {return false;}
 
-	//@Shadow(remap = false)
-	//private void setIsLeaping(boolean flag) {}
-
-	//@Shadow(remap = false)
-	//public void startLeaping() {}
+	@Shadow(remap = false)
+	public void startLeaping() {}
 
 	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
-	public void constructor(EntityType<? extends WargEntity> type, World w) {
+	public void constructor(EntityType<? extends WargEntity> type, World w, CallbackInfo ci) {
 		this.createInventory();
 	}
 
-	//@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap=false)
-	@Override
-	public void addAdditionalSaveData(CompoundNBT pCompound) {
+	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+	public void addAdditionalSaveDataExtended(CompoundNBT pCompound, CallbackInfo ci) {
 		super.addAdditionalSaveData(pCompound);
 		pCompound.putInt("Temper", this.getTemper());
 		pCompound.putBoolean("Tame", this.isTamed());
@@ -104,9 +111,8 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 
 	}
 
-	//@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap=false)
-	@Override
-	public void readAdditionalSaveData(CompoundNBT pCompound) {
+	@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+	public void readAdditionalSaveDataExtended(CompoundNBT pCompound, CallbackInfo ci) {
 		super.readAdditionalSaveData(pCompound);
 		this.setTemper(pCompound.getInt("Temper"));
 		this.setTamed(pCompound.getBoolean("Tame"));
@@ -128,39 +134,28 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 				this.inventory.setItem(0, itemstack);
 			}
 		}
-
 		this.updateContainerEquipment();
 	}
 
-	@Override
+	@Inject(method = "defineSynchedData()V", at = @At("TAIL"))
+	protected void defineSynchedData(CallbackInfo ci) {
+		this.entityData.define(DATA_ID_FLAGS, (byte)0);
+		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
+	}
+
+	@Override()
 	protected void addNPCAI() {
 		super.addNPCAI();
 		goalSelector.addGoal(0, new SwimGoal(this));
 		goalSelector.addGoal(1, new PanicIfBurningGoal(this, 1.6D));
-		goalSelector.addGoal(2, new ExtendedPlayerTypedRunArroundLikeCrazyGoal(this, 1.2D));
-		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal(this, 0.45F));
+		goalSelector.addGoal(2, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
+		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal((WargEntity)(Object)this, 0.45F));
 		addAttackGoal(4);
 		goalSelector.addGoal(7, new ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal(this, 1.0D));
 		goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 12.0F, 0.02F));
 		goalSelector.addGoal(8, new LookAtGoal(this, NPCEntity.class, 8.0F, 0.02F));
 		goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 12.0F, 0.02F));
 		goalSelector.addGoal(10, new LookRandomlyGoal(this));
-	}
-
-	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
-	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
-	private static final DataParameter<Optional<UUID>> DATA_ID_OWNER_UUID = EntityDataManager.defineId(WargEntity.class, DataSerializers.OPTIONAL_UUID);
-	private boolean isJumping;
-	private Inventory inventory;
-	/** The higher this value, the more likely the horse is to be tamed next time a player rides it. */
-	private int temper;
-	private float playerJumpPendingScale;
-
-	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_ID_FLAGS, (byte)0);
-		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
 	}
 
 	private boolean getFlag(int pFlagId) {
@@ -380,7 +375,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 	private void openInventory(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide && (!this.isVehicle() || this.hasPassenger(pPlayer)) && this.isTamed()) {
 			if(pPlayer instanceof ServerPlayerEntity) {
-				openWargInventory((ServerPlayerEntity)pPlayer, this, this.inventory);
+				openWargInventory((ServerPlayerEntity)pPlayer, (WargEntity)(Object)this, this.inventory);
 			}
 		}
 
