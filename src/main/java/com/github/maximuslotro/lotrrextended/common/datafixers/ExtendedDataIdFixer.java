@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent.MissingMappings;
 import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
 
+@SuppressWarnings("deprecation")
 public class ExtendedDataIdFixer {
 	public static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
 	public static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
