@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
+import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.entity.npc.ExtendedRidableWargEntity;
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.inv.ExtendedWargInventoryContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.entity.IEquipable;

@@ -10,15 +10,18 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal;
+import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
+import lotr.common.entity.ai.goal.PanicIfBurningGoal;
 import lotr.common.entity.npc.ExtendedRidableWargEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.inv.ExtendedWargInventoryContainer;
-import net.minecraft.block.BlockState;
+import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -27,8 +30,10 @@ import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -50,6 +55,7 @@ import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -82,14 +88,73 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		this.createInventory();
 	}
 
+	//@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap=false)
+	@Override
+	public void addAdditionalSaveData(CompoundNBT pCompound) {
+		super.addAdditionalSaveData(pCompound);
+		pCompound.putInt("Temper", this.getTemper());
+		pCompound.putBoolean("Tame", this.isTamed());
+		if (this.getOwnerUUID() != null) {
+			pCompound.putUUID("Owner", this.getOwnerUUID());
+		}
+
+		if (!this.inventory.getItem(0).isEmpty()) {
+			pCompound.put("SaddleItem", this.inventory.getItem(0).save(new CompoundNBT()));
+		}
+
+	}
+
+	//@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap=false)
+	@Override
+	public void readAdditionalSaveData(CompoundNBT pCompound) {
+		super.readAdditionalSaveData(pCompound);
+		this.setTemper(pCompound.getInt("Temper"));
+		this.setTamed(pCompound.getBoolean("Tame"));
+		UUID uuid;
+		if (pCompound.hasUUID("Owner")) {
+			uuid = pCompound.getUUID("Owner");
+		} else {
+			String s = pCompound.getString("Owner");
+			uuid = PreYggdrasilConverter.convertMobOwnerIfNecessary(this.getServer(), s);
+		}
+
+		if (uuid != null) {
+			this.setOwnerUUID(uuid);
+		}
+
+		if (pCompound.contains("SaddleItem", 10)) {
+			ItemStack itemstack = ItemStack.of(pCompound.getCompound("SaddleItem"));
+			if (itemstack.getItem() == Items.SADDLE) {
+				this.inventory.setItem(0, itemstack);
+			}
+		}
+
+		this.updateContainerEquipment();
+	}
+
+	@Override
+	protected void addNPCAI() {
+		super.addNPCAI();
+		goalSelector.addGoal(0, new SwimGoal(this));
+		goalSelector.addGoal(1, new PanicIfBurningGoal(this, 1.6D));
+		goalSelector.addGoal(2, new ExtendedPlayerTypedRunArroundLikeCrazyGoal(this, 1.2D));
+		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal(this, 0.45F));
+		addAttackGoal(4);
+		goalSelector.addGoal(7, new ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal(this, 1.0D));
+		goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 12.0F, 0.02F));
+		goalSelector.addGoal(8, new LookAtGoal(this, NPCEntity.class, 8.0F, 0.02F));
+		goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 12.0F, 0.02F));
+		goalSelector.addGoal(10, new LookRandomlyGoal(this));
+	}
+
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Optional<UUID>> DATA_ID_OWNER_UUID = EntityDataManager.defineId(WargEntity.class, DataSerializers.OPTIONAL_UUID);
-	protected boolean isJumping;
-	protected Inventory inventory;
+	private boolean isJumping;
+	private Inventory inventory;
 	/** The higher this value, the more likely the horse is to be tamed next time a player rides it. */
-	protected int temper;
-	protected float playerJumpPendingScale;
+	private int temper;
+	private float playerJumpPendingScale;
 
 	@Override
 	protected void defineSynchedData() {
@@ -98,11 +163,11 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
 	}
 
-	protected boolean getFlag(int pFlagId) {
+	private boolean getFlag(int pFlagId) {
 		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
 	}
 
-	protected void setFlag(int pFlagId, boolean pValue) {
+	private void setFlag(int pFlagId, boolean pValue) {
 		byte b0 = this.entityData.get(DATA_ID_FLAGS);
 		if (pValue) {
 			this.entityData.set(DATA_ID_FLAGS, (byte)(b0 | pFlagId));
@@ -112,6 +177,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 
 	}
 
+	@Override
 	public boolean isTamed() {
 		return this.getFlag(2);
 	}
@@ -129,7 +195,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		return this.isJumping;
 	}
 
-	public void setTamed(boolean pTamed) {
+	private void setTamed(boolean pTamed) {
 		this.setFlag(2, pTamed);
 	}
 
@@ -156,18 +222,60 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		return this.getFlag(4);
 	}
 
+	@Override
 	public int getTemper() {
 		return this.temper;
 	}
 
-	public void setTemper(int pTemper) {
+	private void setTemper(int pTemper) {
 		this.temper = pTemper;
 	}
 
+	@Override
 	public int modifyTemper(int pAddedTemper) {
 		int i = MathHelper.clamp(this.getTemper() + pAddedTemper, 0, this.getMaxTemper());
 		this.setTemper(i);
 		return i;
+	}
+
+	@Override
+	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
+		ItemStack itemstack = pPlayer.getItemInHand(pHand);
+		if (!this.isBaby()) {
+	         if (this.isTamed() && pPlayer.isSecondaryUseActive()) {
+	            this.openInventory(pPlayer);
+	            return ActionResultType.sidedSuccess(this.level.isClientSide);
+	         }
+
+	         if (this.isVehicle()) {
+	            return super.mobInteract(pPlayer, pHand);
+	         }
+	      }
+
+		if (!itemstack.isEmpty()) {
+			if (this.isFood(itemstack)) {
+				return this.fedFood(pPlayer, itemstack);
+			}
+
+			ActionResultType actionresulttype = itemstack.interactLivingEntity(pPlayer, this, pHand);
+			if (actionresulttype.consumesAction()) {
+				return actionresulttype;
+			}
+
+			if (!this.isTamed()) {
+				this.playSound(getAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			}
+
+			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
+			if (this.isArmor(itemstack) || flag) {
+				this.openInventory(pPlayer);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			}
+		}
+
+		this.doPlayerRide(pPlayer);
+		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 
 	/**
@@ -205,11 +313,18 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		return MathHelper.ceil((pDistance * 0.5F - 3.0F) * pDamageMultiplier);
 	}
 
-	protected int getInventorySize() {
+	@Override
+	public void makeMad() {
+		this.playSound(getAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
+
+	}
+	  
+	@Override
+	public int getInventorySize() {
 		return 2;
 	}
 
-	protected void createInventory() {
+	private void createInventory() {
 		Inventory inventory = this.inventory;
 		this.inventory = new Inventory(this.getInventorySize());
 		if (inventory != null) {
@@ -229,7 +344,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this.inventory));
 	}
 
-	protected void updateContainerEquipment() {
+	private void updateContainerEquipment() {
 		if (!this.level.isClientSide) {
 			this.setFlag(4, !this.inventory.getItem(0).isEmpty());
 		}
@@ -253,48 +368,16 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		return this.getAttributeValue(Attributes.JUMP_STRENGTH);
 	}
 
-	protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-		if (!pBlock.getMaterial().isLiquid()) {
-			BlockState blockstate = this.level.getBlockState(pPos.above());
-			SoundType soundtype = pBlock.getSoundType(level, pPos, this);
-			if (blockstate.is(Blocks.SNOW)) {
-				soundtype = blockstate.getSoundType(level, pPos, this);
-			}
+	//public static AttributeModifierMap.MutableAttribute createBaseHorseAttributes() {
+	//	return MobEntity.createMobAttributes().add(Attributes.JUMP_STRENGTH).add(Attributes.MAX_HEALTH, 53.0D).add(Attributes.MOVEMENT_SPEED, (double)0.225F);
+	//}
 
-			if (this.isVehicle()) {
-				this.playSound(SoundEvents.HORSE_STEP_WOOD, soundtype.getVolume() * 0.15F, soundtype.getPitch());
-			} else if (soundtype == SoundType.WOOD) {
-				this.playSound(SoundEvents.HORSE_STEP_WOOD, soundtype.getVolume() * 0.15F, soundtype.getPitch());
-			} else {
-				this.playSound(SoundEvents.HORSE_STEP, soundtype.getVolume() * 0.15F, soundtype.getPitch());
-			}
-
-		}
-	}
-
-	public static AttributeModifierMap.MutableAttribute createBaseHorseAttributes() {
-		return MobEntity.createMobAttributes().add(Attributes.JUMP_STRENGTH).add(Attributes.MAX_HEALTH, 53.0D).add(Attributes.MOVEMENT_SPEED, (double)0.225F);
-	}
-
+	@Override
 	public int getMaxTemper() {
 		return 100;
 	}
 
-	/**
-	 * Returns the volume for the sounds this mob makes.
-	 */
-	protected float getSoundVolume() {
-		return 0.8F;
-	}
-
-	/**
-	 * Get number of ticks, at least during which the living entity will be silent.
-	 */
-	public int getAmbientSoundInterval() {
-		return 400;
-	}
-
-	public void openInventory(PlayerEntity pPlayer) {
+	private void openInventory(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide && (!this.isVehicle() || this.hasPassenger(pPlayer)) && this.isTamed()) {
 			if(pPlayer instanceof ServerPlayerEntity) {
 				openWargInventory((ServerPlayerEntity)pPlayer, this, this.inventory);
@@ -303,7 +386,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 
 	}
 
-	public void openWargInventory(ServerPlayerEntity pPlayer, WargEntity pHorse, IInventory pInventory) {
+	private void openWargInventory(ServerPlayerEntity pPlayer, WargEntity pHorse, IInventory pInventory) {
 		if (pPlayer.containerMenu != pPlayer.inventoryMenu) {
 			pPlayer.closeContainer();
 		}
@@ -314,7 +397,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(pPlayer, pPlayer.containerMenu));
 	}
 
-	public ActionResultType fedFood(PlayerEntity pPlayer, ItemStack pStack) {
+	private ActionResultType fedFood(PlayerEntity pPlayer, ItemStack pStack) {
 		boolean flag = this.handleEating(pPlayer, pStack);
 		if (!pPlayer.abilities.instabuild) {
 			pStack.shrink(1);
@@ -327,7 +410,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		}
 	}
 
-	protected boolean handleEating(PlayerEntity pPlayer, ItemStack pStack) {
+	private boolean handleEating(PlayerEntity pPlayer, ItemStack pStack) {
 		boolean flag = false;
 		float f = 0.0F;
 		int i = 0;
@@ -354,7 +437,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		return flag;
 	}
 
-	protected void doPlayerRide(PlayerEntity pPlayer) {
+	private void doPlayerRide(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide) {
 			pPlayer.yRot = this.yRot;
 			pPlayer.xRot = this.xRot;
@@ -374,7 +457,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
 	 * the animal type)
 	 */
-	public boolean isFood(ItemStack pStack) {
+	private boolean isFood(ItemStack pStack) {
 		return FOOD_ITEMS.test(pStack);
 	}
 
@@ -392,6 +475,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		}
 	}
 
+	@Override
 	public boolean tameWithName(PlayerEntity pPlayer) {
 		this.setOwnerUUID(pPlayer.getUUID());
 		this.setTamed(true);
@@ -469,51 +553,8 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 		}
 	}
 
-	protected void playJumpSound() {
+	private void playJumpSound() {
 		this.playSound(SoundEvents.HORSE_JUMP, 0.4F, 1.0F);
-	}
-
-	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap=false)
-	public void addAdditionalSaveData(CompoundNBT pCompound) {
-		pCompound.putInt("Temper", this.getTemper());
-		pCompound.putBoolean("Tame", this.isTamed());
-		if (this.getOwnerUUID() != null) {
-			pCompound.putUUID("Owner", this.getOwnerUUID());
-		}
-
-		if (!this.inventory.getItem(0).isEmpty()) {
-			pCompound.put("SaddleItem", this.inventory.getItem(0).save(new CompoundNBT()));
-		}
-
-	}
-
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
-	@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap=false)
-	public void readAdditionalSaveData(CompoundNBT pCompound) {
-		this.setTemper(pCompound.getInt("Temper"));
-		this.setTamed(pCompound.getBoolean("Tame"));
-		UUID uuid;
-		if (pCompound.hasUUID("Owner")) {
-			uuid = pCompound.getUUID("Owner");
-		} else {
-			String s = pCompound.getString("Owner");
-			uuid = PreYggdrasilConverter.convertMobOwnerIfNecessary(this.getServer(), s);
-		}
-
-		if (uuid != null) {
-			this.setOwnerUUID(uuid);
-		}
-
-		if (pCompound.contains("SaddleItem", 10)) {
-			ItemStack itemstack = ItemStack.of(pCompound.getCompound("SaddleItem"));
-			if (itemstack.getItem() == Items.SADDLE) {
-				this.inventory.setItem(0, itemstack);
-			}
-		}
-
-		this.updateContainerEquipment();
 	}
 
 	/**
@@ -522,7 +563,7 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 	 */
 	@Override
 	public boolean canBeControlledByRider() {
-		return this.getControllingPassenger() instanceof LivingEntity;
+		return this.getControllingPassenger() instanceof PlayerEntity;
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -594,27 +635,6 @@ public abstract class MixinWargEntity extends WargEntity implements IInventoryCh
 //			}
 //		}
 
-	}
-
-	/**
-	 * Returns randomized max health
-	 */
-	protected float generateRandomMaxHealth() {
-		return 15.0F + (float)this.random.nextInt(8) + (float)this.random.nextInt(9);
-	}
-
-	/**
-	 * Returns randomized jump strength
-	 */
-	protected double generateRandomJumpStrength() {
-		return (double)0.4F + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D;
-	}
-
-	/**
-	 * Returns randomized movement speed
-	 */
-	protected double generateRandomSpeed() {
-		return ((double)0.45F + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
 	}
 
 	/**

@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
+import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
 
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.inv.ExtendedWargInventoryContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
