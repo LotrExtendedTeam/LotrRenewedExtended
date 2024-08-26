@@ -2,15 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
-
-import lotr.common.entity.npc.WargEntity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.inventory.Inventory;
+import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -43,18 +35,8 @@ public class ExtendedSOpenWargWindowPacket {
 	}
 
 	public static void handle(ExtendedSOpenWargWindowPacket pPacket, Supplier<NetworkEvent.Context> context) {
-		Minecraft mc = Minecraft.getInstance();
-		ClientPlayerEntity player = mc.player;
-		Entity entity = mc.level.getEntity(pPacket.getEntityId());
-		if (entity instanceof AbstractHorseEntity) {
-			ClientPlayerEntity clientplayerentity = mc.player;
-			WargEntity abstracthorseentity = (WargEntity)entity;
-			Inventory inventory = new Inventory(pPacket.getSize());
-			ExtendedWargInventoryContainer warginventorycontainer = new ExtendedWargInventoryContainer(pPacket.getContainerId(), clientplayerentity.inventory, inventory, abstracthorseentity);
-			clientplayerentity.containerMenu = warginventorycontainer;
-			mc.setScreen(new ExtendedWargInventoryScreen(warginventorycontainer, clientplayerentity.inventory, abstracthorseentity));
-			context.get().setPacketHandled(true);
-		}
+		ExtendedClientsideSeperatedScreenHandler.handle(pPacket);
+		context.get().setPacketHandled(true);
 	}
 
 	public int getContainerId() {

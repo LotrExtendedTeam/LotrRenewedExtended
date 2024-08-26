@@ -74,6 +74,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Try Add New Attributes Names
+		for (Entry<String, String> entity : DataGenValueHolder.attributeNames.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
+		}
+
 		// Try Add New Advancement Values
 		for (Entry<String, String> entity : DataGenValueHolder.advancementHolder.entrySet()) {
 			addD(entity.getKey(), entity.getValue());

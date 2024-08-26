@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
@@ -32,6 +34,7 @@ import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -62,10 +65,12 @@ import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.TransportationHelper;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -143,7 +148,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
 	}
 
-	@Override()
+	@Override
 	protected void addNPCAI() {
 		super.addNPCAI();
 		goalSelector.addGoal(0, new SwimGoal(this));
@@ -158,6 +163,16 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		goalSelector.addGoal(10, new LookRandomlyGoal(this));
 	}
 
+	/**
+	 * @author maximuslotro
+	 * @reason Needing to add Jump Attribute to Wargs
+	 * */
+	@Overwrite(remap = false)
+	public static MutableAttribute regAttrs() {
+		return NPCEntity.registerBaseNPCAttributes().add(Attributes.FOLLOW_RANGE, 32.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
+	}
+	
 	private boolean getFlag(int pFlagId) {
 		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
 	}
@@ -241,12 +256,10 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	            this.openInventory(pPlayer);
 	            return ActionResultType.sidedSuccess(this.level.isClientSide);
 	         }
-
 	         if (this.isVehicle()) {
 	            return super.mobInteract(pPlayer, pHand);
 	         }
 	      }
-
 		if (!itemstack.isEmpty()) {
 			if (this.isFood(itemstack)) {
 				return this.fedFood(pPlayer, itemstack);
@@ -259,16 +272,17 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 			if (!this.isTamed()) {
 				this.playSound(getAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
+				this.level.broadcastEntityEvent(this, (byte)6);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
+			pPlayer.sendMessage(new StringTextComponent(!this.isBaby() +":"+ !this.isSaddled() +":"+ (itemstack.getItem() == Items.SADDLE)), Util.NIL_UUID);
 			if (this.isArmor(itemstack) || flag) {
 				this.openInventory(pPlayer);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 		}
-
 		this.doPlayerRide(pPlayer);
 		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
@@ -356,11 +370,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			this.playSound(SoundEvents.HORSE_SADDLE, 0.5F, 1.0F);
 		}
 
-	}
-
-
-	public double getCustomJump() {
-		return this.getAttributeValue(Attributes.JUMP_STRENGTH);
 	}
 
 	//public static AttributeModifierMap.MutableAttribute createBaseHorseAttributes() {
@@ -505,7 +514,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				}
 
 				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
-					double d0 = this.getCustomJump() * (double)this.playerJumpPendingScale * (double)this.getBlockJumpFactor();
+					double d0 = this.getAttributeValue(ExtendedAttributes.WARG_JUMP_STRENGTH.get()) * (double)this.playerJumpPendingScale * (double)this.getBlockJumpFactor();
 					double d1;
 					if (this.hasEffect(Effects.JUMP)) {
 						d1 = d0 + (double)((float)(this.getEffect(Effects.JUMP).getAmplifier() + 1) * 0.1F);
@@ -595,13 +604,28 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	}
 
 	/**
+	 * Handles an entity event fired from {@link net.minecraft.world.level.Level#broadcastEntityEvent}.
+	 */
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void handleEntityEvent(byte pId) {
+		if (pId == 7) {
+			this.spawnTamingParticles(true);
+		} else if (pId == 6) {
+			this.spawnTamingParticles(false);
+		} else {
+			super.handleEntityEvent(pId);
+		}
+	}
+	  
+	/**
 	 * Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
 	 */
 	@OnlyIn(Dist.CLIENT)
 	protected void spawnTamingParticles(boolean pTamed) {
 		IParticleData iparticledata = pTamed ? ParticleTypes.HEART : ParticleTypes.SMOKE;
 
-		for(int i = 0; i < 7; ++i) {
+		for(int i = 0; i < 8; ++i) {
 			double d0 = this.random.nextGaussian() * 0.02D;
 			double d1 = this.random.nextGaussian() * 0.02D;
 			double d2 = this.random.nextGaussian() * 0.02D;
@@ -653,7 +677,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return false;
+		return true;
 	}
 
 	@Override
