@@ -13,4 +13,5 @@ public class DataGenValueHolder {
 	public static List<String> newWoodTypesHolder = new ArrayList<>();
 	public static Map<String, String> bannerPatternItemNameHolders = new HashMap<>();
 	public static Map<String, String> advancementHolder = new HashMap<>();
+	public static Map<String, String> attributeNames = new HashMap<>();
 }
