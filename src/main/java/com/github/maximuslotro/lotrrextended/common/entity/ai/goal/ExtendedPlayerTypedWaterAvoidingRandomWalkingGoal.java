@@ -19,8 +19,10 @@ public class ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal extends WaterAvoi
 	 */
 	public boolean canUse() {
 		if (this.mob.isVehicle() && this.mob.canBeControlledByRider()) {
+			System.out.println("NA Using walk goal");
 			return false;
 		} else {
+			System.out.println("using Goal");
 			if (!this.forceTrigger && (this.mob.getNoActionTime() >= 100 || this.mob.getRandom().nextInt(this.interval) != 0)) {
 				return false;
 			}
