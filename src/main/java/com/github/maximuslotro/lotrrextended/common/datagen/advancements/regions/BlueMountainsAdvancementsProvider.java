@@ -7,10 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdv
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.LOTRBiomes;
-import lotr.common.init.LOTREntities;
-import lotr.common.init.LOTRItems;
-import lotr.common.init.PreRegisteredLOTRBiome;
+import lotr.common.init.*;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 
@@ -65,6 +62,10 @@ public class BlueMountainsAdvancementsProvider extends BaseAdvancementType{
 		Advancement dwarf_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "blue_dwarven_khagal_abbadu", false, FrameType.CHALLENGE, true, true, false)
 				.setTitle("Uzbad/Uzbadûna Khagal'abbadu").setDescription("Reach +3000.0 alignment with the Dwarves of the Blue Mountains."), 
 				addAlignmentTrigger(make(), FactionPointers.BLUE_MOUNTAINS, 3000).parent(dwarf_1500));
+
+		Advancement blue_mountains_merchant_trade = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "wealth_from_abroad", false, FrameType.TASK, true, true, false)
+						.setTitle("Wealth from Abroad").setDescription("Trade with a merchant of the Blue Mountains"),
+				addTradeEntityTrigger(make(), ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get()).parent(blue_mountains));
 	}
 
 	@Override

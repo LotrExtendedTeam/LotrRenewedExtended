@@ -168,6 +168,19 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.rivendell_wanderer.departure.8", "%1$s: I will have to depart soon.");
 		addD("speechbank.rivendell_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
 
+		// Blue Mountains Merchant departure lines
+		addD("speechbank.blue_mountains_merchant.departure.1", "%1$s: Well, I'll be on my way soon enough.");
+		addD("speechbank.blue_mountains_merchant.departure.2", "%1$s: I can't stay here forever. Other lands to visit, other goods to trade...");
+		addD("speechbank.blue_mountains_merchant.departure.3", "%1$s: If you wish to trade with me, you would be wise to hurry!");
+		addD("speechbank.blue_mountains_merchant.departure.4", "%1$s: The riches of the Blue Mountains shall not wait here forever.");
+		addD("speechbank.blue_mountains_merchant.departure.5", "%1$s: This is your last chance to get an excellent Dwarvish bargain!");
+		addD("speechbank.blue_mountains_merchant.departure.6", "%1$s: I shall be leaving soon, but there is still time for a trade or two!");
+		addD("speechbank.blue_mountains_merchant.departure.7", "%1$s: Business cannot wait, Person! I will not stay here for too long.");
+		addD("speechbank.blue_mountains_merchant.departure.8", "%1$s: Other lands await! I'll be leaving soon.");
+		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry, Person! I will have to depart these lands soon.");
+		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well, you had better be quick. I'll be on my way soon!");
+		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, Person! If you wish to trade with me, you must do it now!");
+
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
 		addD("gui.lotrextended.fellowships.creation.disabled", "Fellowship creation is disabled!");

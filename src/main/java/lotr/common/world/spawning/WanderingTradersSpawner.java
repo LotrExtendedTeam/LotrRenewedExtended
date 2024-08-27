@@ -102,6 +102,8 @@ public class WanderingTradersSpawner {
             return ExtendedEntities.RIVENDELL_WANDERER.get();
         } else if (name.equals("lotr:oddment_collector")) {
             return ExtendedEntities.ODDMENT_COLLECTOR.get();
+        } else if (name.equals("lotr:blue_mountains_merchant")) {
+           return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
         } else {
             return null;
         }

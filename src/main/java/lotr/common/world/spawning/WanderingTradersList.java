@@ -8,23 +8,23 @@ public class WanderingTradersList {
 
 	public static Map<String, List<String>> traders = new HashMap<String, List<String>>() {{
 	    // Shire
-	    put("lotr:shire", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:shire_moors", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:shire_marshes", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:shire_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:white_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
+	    put("lotr:shire", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire_moors", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire_marshes", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:white_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 		put("lotr:blue_mountains", Arrays.asList("lotr:rivendell_wanderer", "lotr:oddment_collector"));
 		put("lotr:blue_mountains_foothills", Arrays.asList("lotr:rivendell_wanderer", "lotr:oddment_collector"));
 
 	    // Eriador
-	    put("lotr:eriador", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-		put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-		put("lotr:hills_of_evendim", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:eriador_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    put("lotr:eriador", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		put("lotr:hills_of_evendim", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:eriador_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:swanfleet", Collections.emptyList()); // Swanfleet has no wandering traders according to the wiki
 
 	    // Rivendell only gets Galadhrim traders
@@ -48,9 +48,9 @@ public class WanderingTradersList {
 	    put("lotr:dor_en_ernil", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
 	    // Older elven regions
-	    put("lotr:lindon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer"));
-	    put("lotr:lindon_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer"));
-	    put("lotr:eregion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
+	    put("lotr:lindon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
+	    put("lotr:lindon_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
+	    put("lotr:eregion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 	    // Lothlorien only gets Rivendell traders
 	    put("lotr:lothlorien_eaves", Collections.singletonList("lotr:rivendell_wanderer"));
@@ -59,8 +59,8 @@ public class WanderingTradersList {
 		put("lotr:gladden_fields", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
 	    // Bree-land
-	    put("lotr:breeland", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
-	    put("lotr:chetwood", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector"));
+	    put("lotr:breeland", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:chetwood", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 	    put("lotr:rohan", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:wold", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
@@ -70,15 +70,15 @@ public class WanderingTradersList {
 
 	    put("lotr:enedwaith", Collections.singletonList("lotr:oddment_collector"));
 
-	    put("lotr:northern_dale", Collections.singletonList("lotr:oddment_collector"));
-	    put("lotr:dale", Collections.singletonList("lotr:oddment_collector"));
+	    put("lotr:northern_dale", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:dale", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
-		put("lotr:iron_hills", Collections.singletonList("lotr:oddment_collector"));
+		put("lotr:iron_hills", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 		put("lotr:dorwinion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 		put("lotr:emyn_winion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
-		put("lotr:dunland", Collections.singletonList("lotr:oddment_collector"));
+		put("lotr:dunland", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 		put("lotr:umbar", Collections.singletonList("lotr:oddment_collector"));
 		put("lotr:umbar_hills", Collections.singletonList("lotr:oddment_collector"));
@@ -89,9 +89,8 @@ public class WanderingTradersList {
 		put("lotr:harnennor", Collections.singletonList("lotr:oddment_collector"));
 
 	    // Lone-lands
-	    put("lotr:lone_lands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer"));
-	    put("lotr:lone_lands_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer"));
-
+	    put("lotr:lone_lands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
+	    put("lotr:lone_lands_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
 	    // Mirkwood
 	    put("lotr:woodland_realm", Collections.singletonList("lotr:galadhrim_wanderer"));
 	    // in Legacy no travelling traders come to Northern Mirkwood, but I am adding them here because I feel like it fits the theme
@@ -156,8 +155,6 @@ public class WanderingTradersList {
 		// TODO: since this is close to Harad it seems like from the wiki it should only have Harad traders
 		//  which means there is nothing that can go here yet
 		put("lotr:wilderland", Collections.emptyList());
-
-		// TODO: Make sure areas west of Lindon and the shire have wandering traders
 	}};
 
     /**
