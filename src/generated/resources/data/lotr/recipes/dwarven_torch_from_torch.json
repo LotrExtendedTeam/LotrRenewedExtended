@@ -1,0 +1,12 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:any_dwarven",
+  "ingredients": [
+    {
+      "item": "minecraft:torch"
+    }
+  ],
+  "result": {
+    "item": "lotr:dwarven_torch"
+  }
+}

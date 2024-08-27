@@ -1226,7 +1226,53 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.save(consumer, lotrLoc(name));
 		}
 	}
-	
+
+	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name1 = fromItem.get().getRegistryName().getPath();
+		String name2 = toItem.get().getRegistryName().getPath();
+		if(table==null) {
+			ShapelessRecipeBuilder.shapeless(toItem.get())
+			.requires(fromItem.get())
+			.unlockedBy("has_"+name1, has(fromItem.get()))
+			.unlockedBy("has_"+name2, has(toItem.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+		else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(toItem.get(), table)
+			.requires(fromItem.get())
+			.unlockedBy("has_"+name1, has(fromItem.get()))
+			.unlockedBy("has_"+name2, has(toItem.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+	}
+
+	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, Supplier<? extends Item> material, int conversionFactor, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name1 = fromItem.get().getRegistryName().getPath();
+		String name2 = toItem.get().getRegistryName().getPath();
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(toItem.get(), conversionFactor)
+			.pattern(" T ")
+			.pattern("TMT")
+			.pattern(" T ")
+			.define('T', Ingredient.of(fromItem.get()))
+			.define('M', Ingredient.of(material.get()))
+			.unlockedBy("has_"+name1, has(fromItem.get()))
+			.unlockedBy("has_"+name2, has(material.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(toItem.get(), conversionFactor, table)
+			.pattern(" T ")
+			.pattern("TMT")
+			.pattern(" T ")
+			.define('T', Ingredient.of(fromItem.get()))
+			.define('M', Ingredient.of(material.get()))
+			.unlockedBy("has_"+name1, has(fromItem.get()))
+			.unlockedBy("has_"+name2, has(material.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+	}
+
 	protected void makeStorageBlock3x3ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = item.get().getRegistryName().getPath();
 		String name2 = block.get().getRegistryName().getPath();

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:green_mallorn_torch"
+    }
+  ],
+  "result": {
+    "item": "minecraft:torch"
+  }
+}
