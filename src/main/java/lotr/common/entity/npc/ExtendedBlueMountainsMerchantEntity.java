@@ -89,14 +89,14 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.RUBY.get()), 15, 25), new ExtendedTradeEntry(new ItemStack(ExtendedItems.AMETHYST.get()), 9, 15),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.TOPAZ.get()), 9, 15), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2, 3),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.LIGHT), 8, 13),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.MODERATE), 11, 18),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.STRONG), 13, 22)}
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.LIGHT), 8, 13, 8),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.MODERATE), 11, 18, 8),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.STRONG), 13, 22, 8)}
             ),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.MODERATE), 7, 11),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.STRONG), 8, 14)}
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 16),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.MODERATE), 7, 11, 16),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.STRONG), 8, 14, 16)}
             ),
             // TODO: Add the following: (looks pretty difficult to do might have to be in a follow up update)
             //  Barrel of Dwarven Ale (Moderate) 	90-150
