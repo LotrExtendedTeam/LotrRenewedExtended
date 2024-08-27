@@ -17,7 +17,6 @@
 		"lotr.common.entity.npc.MixinIsengardSnagaEntity",
 		"lotr.common.entity.npc.MixinNPCEntity",
 		"lotr.common.entity.npc.MixinNPCEntityInvoker",
-		"lotr.common.entity.npc.MixinWargEntity",
 		"lotr.common.fac.MixinEntityFactionHelper",
 		"lotr.common.init.MixinLOTRBlocks",
 		"lotr.common.init.MixinLOTRContainers",

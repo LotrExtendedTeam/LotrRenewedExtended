@@ -44,6 +44,6 @@ public class ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal extends WaterAvoi
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
 	public boolean canContinueToUse() {
-		return !this.mob.getNavigation().isDone() && (!this.mob.isVehicle() || !this.mob.canBeControlledByRider());
+		return !this.mob.getNavigation().isDone() && !(this.mob.isVehicle() && this.mob.canBeControlledByRider());
 	}
 }

@@ -32,7 +32,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IEquipable;
 import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -55,6 +54,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -147,20 +147,20 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
 	}
 
-//	@Override
-//	protected void addNPCAI() {
-//		super.addNPCAI();
-//		goalSelector.addGoal(0, new SwimGoal(this));
-//		goalSelector.addGoal(1, new PanicIfBurningGoal(this, 1.6D));
-//		goalSelector.addGoal(2, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
-//		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal((WargEntity)(Object)this, 0.45F));
-//		addAttackGoal(4);
-//		goalSelector.addGoal(7, new ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal(this, 1.0D));
-//		goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 12.0F, 0.02F));
-//		goalSelector.addGoal(8, new LookAtGoal(this, NPCEntity.class, 8.0F, 0.02F));
-//		goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 12.0F, 0.02F));
-//		goalSelector.addGoal(10, new LookRandomlyGoal(this));
-//	}
+	@Override
+	protected void addNPCAI() {
+		super.addNPCAI();
+		goalSelector.addGoal(0, new SwimGoal(this));
+		goalSelector.addGoal(1, new PanicIfBurningGoal(this, 1.6D));
+		goalSelector.addGoal(2, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
+		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal((WargEntity)(Object)this, 0.45F));
+		addAttackGoal(4);
+		goalSelector.addGoal(7, new ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal(this, 1.0D));
+		goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 12.0F, 0.02F));
+		goalSelector.addGoal(8, new LookAtGoal(this, NPCEntity.class, 8.0F, 0.02F));
+		goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 12.0F, 0.02F));
+		goalSelector.addGoal(10, new LookRandomlyGoal(this));
+	}
 
 	/**
 	 * @author maximuslotro
@@ -250,6 +250,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
+		if(!pPlayer.level.isClientSide) {
+			pPlayer.sendMessage(new StringTextComponent("Is Tamed:"+isTamed()+", isSecondaryUseActive"+pPlayer.isSecondaryUseActive()+", isFood:"+isFood(itemstack)), Util.NIL_UUID);
+		}
 		if (!this.isBaby()) {
 	         if (this.isTamed() && pPlayer.isSecondaryUseActive()) {
 	            this.openInventory(pPlayer);
@@ -490,71 +493,71 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return true;
 	}
 
-//	@Override
-//	public void travel(Vector3d pTravelVector) {
-//		if (this.isAlive()) {
-//			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
-//				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
-//				this.yRot = livingentity.yRot;
-//				this.yRotO = this.yRot;
-//				this.xRot = livingentity.xRot * 0.5F;
-//				this.setRot(this.yRot, this.xRot);
-//				this.yBodyRot = this.yRot;
-//				this.yHeadRot = this.yBodyRot;
-//				float f = livingentity.xxa * 0.5F;
-//				float f1 = livingentity.zza;
-//				if (f1 <= 0.0F) {
-//					f1 *= 0.25F;
-//				}
-//
-//				if (this.onGround && this.playerJumpPendingScale == 0.0F) {
-//					f = 0.0F;
-//					f1 = 0.0F;
-//				}
-//
-//				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
-//					double d0 = this.getAttributeValue(ExtendedAttributes.WARG_JUMP_STRENGTH.get()) * (double)this.playerJumpPendingScale * (double)this.getBlockJumpFactor();
-//					double d1;
-//					if (this.hasEffect(Effects.JUMP)) {
-//						d1 = d0 + (double)((float)(this.getEffect(Effects.JUMP).getAmplifier() + 1) * 0.1F);
-//					} else {
-//						d1 = d0;
-//					}
-//
-//					Vector3d vector3d = this.getDeltaMovement();
-//					this.setDeltaMovement(vector3d.x, d1, vector3d.z);
-//					this.setIsJumping(true);
-//					this.hasImpulse = true;
-//					net.minecraftforge.common.ForgeHooks.onLivingJump(this);
-//					if (f1 > 0.0F) {
-//						float f2 = MathHelper.sin(this.yRot * ((float)Math.PI / 180F));
-//						float f3 = MathHelper.cos(this.yRot * ((float)Math.PI / 180F));
-//						this.setDeltaMovement(this.getDeltaMovement().add((double)(-0.4F * f2 * this.playerJumpPendingScale), 0.0D, (double)(0.4F * f3 * this.playerJumpPendingScale)));
-//					}
-//
-//					this.playerJumpPendingScale = 0.0F;
-//				}
-//
-//				this.flyingSpeed = this.getSpeed() * 0.1F;
-//				if (this.isControlledByLocalInstance()) {
-//					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
-//					super.travel(new Vector3d((double)f, pTravelVector.y, (double)f1));
-//				} else if (livingentity instanceof PlayerEntity) {
-//					this.setDeltaMovement(Vector3d.ZERO);
-//				}
-//
-//				if (this.onGround) {
-//					this.playerJumpPendingScale = 0.0F;
-//					this.setIsJumping(false);
-//				}
-//
-//				this.calculateEntityAnimation(this, false);
-//			} else {
-//				this.flyingSpeed = 0.02F;
-//				super.travel(pTravelVector);
-//			}
-//		}
-//	}
+	@Override
+	public void travel(Vector3d pTravelVector) {
+		if (this.isAlive()) {
+			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
+				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
+				this.yRot = livingentity.yRot;
+				this.yRotO = this.yRot;
+				this.xRot = livingentity.xRot * 0.5F;
+				this.setRot(this.yRot, this.xRot);
+				this.yBodyRot = this.yRot;
+				this.yHeadRot = this.yBodyRot;
+				float f = livingentity.xxa * 0.5F;
+				float f1 = livingentity.zza;
+				if (f1 <= 0.0F) {
+					f1 *= 0.25F;
+				}
+
+				if (this.onGround && this.playerJumpPendingScale == 0.0F) {
+					f = 0.0F;
+					f1 = 0.0F;
+				}
+
+				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
+					double d0 = this.getAttributeValue(ExtendedAttributes.WARG_JUMP_STRENGTH.get()) * (double)this.playerJumpPendingScale * (double)this.getBlockJumpFactor();
+					double d1;
+					if (this.hasEffect(Effects.JUMP)) {
+						d1 = d0 + (double)((float)(this.getEffect(Effects.JUMP).getAmplifier() + 1) * 0.1F);
+					} else {
+						d1 = d0;
+					}
+
+					Vector3d vector3d = this.getDeltaMovement();
+					this.setDeltaMovement(vector3d.x, d1, vector3d.z);
+					this.setIsJumping(true);
+					this.hasImpulse = true;
+					net.minecraftforge.common.ForgeHooks.onLivingJump(this);
+					if (f1 > 0.0F) {
+						float f2 = MathHelper.sin(this.yRot * ((float)Math.PI / 180F));
+						float f3 = MathHelper.cos(this.yRot * ((float)Math.PI / 180F));
+						this.setDeltaMovement(this.getDeltaMovement().add((double)(-0.4F * f2 * this.playerJumpPendingScale), 0.0D, (double)(0.4F * f3 * this.playerJumpPendingScale)));
+					}
+
+					this.playerJumpPendingScale = 0.0F;
+				}
+
+				this.flyingSpeed = this.getSpeed() * 0.1F;
+				if (this.isControlledByLocalInstance()) {
+					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
+					super.travel(new Vector3d((double)f, pTravelVector.y, (double)f1));
+				} else if (livingentity instanceof PlayerEntity) {
+					this.setDeltaMovement(Vector3d.ZERO);
+				}
+
+				if (this.onGround) {
+					this.playerJumpPendingScale = 0.0F;
+					this.setIsJumping(false);
+				}
+
+				this.calculateEntityAnimation(this, false);
+			} else {
+				this.flyingSpeed = 0.02F;
+				super.travel(pTravelVector);
+			}
+		}
+	}
 
 	private void playJumpSound() {
 		this.playSound(SoundEvents.HORSE_JUMP, 0.4F, 1.0F);
@@ -566,23 +569,25 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	 */
 	@Override
 	public boolean canBeControlledByRider() {
-		Entity entity = this.getControllingPassenger();
-		if (!(entity instanceof PlayerEntity)) {
-			return false;
-		} else {
-			return true;
-		}
+		System.out.println("canBeControlledByRider"+(getControllingPassenger() instanceof PlayerEntity));
+		return this.getControllingPassenger() instanceof PlayerEntity;
 	}
 
-//	/**
-//	 * For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example,
-//	 * Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
-//	 */
-//	@Nullable
-//	@Override
-//	public Entity getControllingPassenger() {
-//		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
-//	}
+	/**
+	 * For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example,
+	 * Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
+	 */
+	@Nullable
+	@Override
+	public Entity getControllingPassenger() {
+		return this.getPassengers().isEmpty() ? null : (this.getPassengers().get(0) instanceof PlayerEntity ? this.getPassengers().get(0) : null);
+	}
+
+	@Override
+	public boolean isControlledByLocalInstance() {
+		System.out.println("isControlledByLocalInstance:"+ super.isControlledByLocalInstance());
+		return super.isControlledByLocalInstance();
+	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
@@ -639,7 +644,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	protected void spawnTamingParticles(boolean pTamed) {
 		IParticleData iparticledata = pTamed ? ParticleTypes.HEART : ParticleTypes.SMOKE;
 
-		for(int i = 0; i < 8; ++i) {
+		for(int i = 0; i < 10; ++i) {
 			double d0 = this.random.nextGaussian() * 0.02D;
 			double d1 = this.random.nextGaussian() * 0.02D;
 			double d2 = this.random.nextGaussian() * 0.02D;
@@ -652,9 +657,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public void positionRider(Entity pPassenger) {
 		super.positionRider(pPassenger);
-		if (pPassenger instanceof MobEntity) {
-			MobEntity mobentity = (MobEntity)pPassenger;
-			this.yBodyRot = mobentity.yBodyRot;
+		if (pPassenger instanceof PlayerEntity) {
+			PlayerEntity playerEntity = (PlayerEntity)pPassenger;
+			this.yBodyRot = playerEntity.yBodyRot;
 		}
 
 //		if (this.standAnimO > 0.0F) {
@@ -691,7 +696,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return true;
+		return false;
 	}
 
 	@Override
