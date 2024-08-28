@@ -9,8 +9,10 @@
   "spawn_area": {
     "topYvalue": 4,
     "lowerYvalue": -4,
-    "horizontal_bounds": 16
+    "horizontal_bounds": 20
   },
+  "inside_spawning": true,
+  "inside_spawning_chance": 70,
   "setHomeOnSpawn": true,
   "homeRadius": 26,
   "spawnCap": 15,

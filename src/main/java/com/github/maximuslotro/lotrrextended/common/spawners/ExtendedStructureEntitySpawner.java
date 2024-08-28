@@ -48,6 +48,7 @@ public class ExtendedStructureEntitySpawner {
 	private boolean shouldDisableFutureSpawn = false;
 	private int randomDiscardChance = 0;
 	private boolean enableInsideSpawning = false;
+	private int enableInsideSpawningChance = 100;
 
 	private ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
@@ -61,7 +62,7 @@ public class ExtendedStructureEntitySpawner {
 	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 			boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, boolean shouldDisableFutureSpawn,
-			int randomDiscardChance, boolean enableInsideSpawning) {
+			int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance) {
 		this(id, entries, spawnType, checkBoundaries, spawnRegion);
 		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
 		this.setHomeRandom = setHomeRandom;
@@ -74,6 +75,7 @@ public class ExtendedStructureEntitySpawner {
 		this.shouldDisableFutureSpawn = shouldDisableFutureSpawn;
 		this.randomDiscardChance = randomDiscardChance;
 		this.enableInsideSpawning = enableInsideSpawning;
+		this.enableInsideSpawningChance = enableInsideSpawningChance;
 	}
 
 	public ResourceLocation getId() {
@@ -213,6 +215,7 @@ public class ExtendedStructureEntitySpawner {
 		return randomDiscardChance != 0;
 	}
 
+	// INSIDE SPAWNING CHANCES
 	public boolean insideSpawning() {
 		return enableInsideSpawning;
 	}
@@ -220,6 +223,21 @@ public class ExtendedStructureEntitySpawner {
 	public void setInsideSpawn(boolean enableInsideSpawning) {
 		isCustom = true;
 		this.enableInsideSpawning = enableInsideSpawning;
+	}
+
+	public void setInsideSpawn(boolean enableInsideSpawning, int chance) {
+		isCustom = true;
+		this.enableInsideSpawning = enableInsideSpawning;
+		this.enableInsideSpawningChance = chance;
+	}
+	
+	public int getinsideSpawningChance() {
+		return enableInsideSpawningChance;
+	}
+
+	public void setInsideSpawnChance(int chance) {
+		isCustom = true;
+		this.enableInsideSpawningChance = chance;
 	}
 
 	// ##################################### Player Distance Methods ###########################
@@ -382,7 +400,13 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("inside_spawning")) {
 				spawner.setInsideSpawn(jsonobject.get("inside_spawning").getAsBoolean());
 				if(!spawner.insideSpawning()) {
-					ExtendedLog.info("Loaded Structure Spawner with weird inside_spawning configuration, value is false by default, no need to foece this! - %s", id);
+					ExtendedLog.info("Loaded Structure Spawner with weird inside_spawning configuration, value is false by default, no need to force this! - %s", id);
+				}
+				if(jsonobject.has("inside_spawning_chance")) {
+					spawner.setInsideSpawnChance(jsonobject.get("inside_spawning_chance").getAsInt());
+					if(spawner.getinsideSpawningChance()==100) {
+						ExtendedLog.info("Loaded Structure Spawner with weird inside_spawning_chance configuration, value is 100 by default, no need to force this! - %s", id);
+					}
 				}
 			}
 			if(jsonobject.has("randomDiscardChance")) {
@@ -415,6 +439,9 @@ public class ExtendedStructureEntitySpawner {
 			}
 			if(entitySpawner.insideSpawning()) {
 				jsonobject.addProperty("inside_spawning", entitySpawner.insideSpawning());
+				if(entitySpawner.getinsideSpawningChance()!=100) {
+					jsonobject.addProperty("inside_spawning_chance", entitySpawner.getinsideSpawningChance());
+				}
 			}
 			if(entitySpawner.isSetHomePositionOnSpawn()) {
 				jsonobject.addProperty("setHomeOnSpawn", entitySpawner.isSetHomePositionOnSpawn());
@@ -468,11 +495,12 @@ public class ExtendedStructureEntitySpawner {
 		private boolean shouldDisableFutureSpawn = false;
 		private int randomDiscardChance = 0;
 		private boolean enableInsideSpawning = false;
+		private int enableInsideSpawningChance = 100;
 
 		public Builder(List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn, 
 				boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, boolean shouldDisableFutureSpawn,
-				int randomDiscardChance, boolean enableInsideSpawning) {
+				int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance) {
 			this.entries = entries;
 			this.spawnType = spawnType;
 			this.setHomePositionOnSpawn = setHomePositionOnSpawn;
@@ -488,6 +516,7 @@ public class ExtendedStructureEntitySpawner {
 			this.shouldDisableFutureSpawn = shouldDisableFutureSpawn;
 			this.randomDiscardChance = randomDiscardChance;
 			this.enableInsideSpawning = enableInsideSpawning;
+			this.enableInsideSpawningChance = enableInsideSpawningChance;
 		}
 
 		private Builder(SpawnerType spawnType) {
@@ -548,15 +577,21 @@ public class ExtendedStructureEntitySpawner {
 			return this;
 		}
 
-		public ExtendedStructureEntitySpawner.Builder enableInsideSpawning() {
+		public ExtendedStructureEntitySpawner.Builder enableNonRandomSpawning() {
 			this.enableInsideSpawning = true;
+			this.enableInsideSpawningChance = 100;
+			return this;
+		}
+		public ExtendedStructureEntitySpawner.Builder enableNonRandomSpawning(int chance) {
+			this.enableInsideSpawning = true;
+			this.enableInsideSpawningChance = chance;
 			return this;
 		}
 
 		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
 			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
 					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap, shouldDisableFutureSpawn,
-					randomDiscardChance, enableInsideSpawning);
+					randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance);
 			spawner.isCustom = isCustom;
 			return spawner;
 		}
