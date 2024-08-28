@@ -10,15 +10,47 @@
 				},
 				{
 					"wood_type": "lotr:fir",
-					"weight": 1
+					"weight": 2
 				},
 				{
 					"wood_type": "lotr:aspen",
 					"weight": 3
 				},
 				{
+					"wood_type": "lotr:pear",
+					"weight": 3
+				},
+				{
+					"wood_type": "lotr:larch",
+					"weight": 3
+				},
+				{
+					"wood_type": "lotr:apple",
+					"weight": 3
+				},
+				{
+					"wood_type": "lotr:maple",
+					"weight": 3
+				},
+				{
+					"wood_type": "lotr:beech",
+					"weight": 3
+				},
+				{
+					"wood_type": "lotr:pine",
+					"weight": 3
+				},
+				{
 					"wood_type": "minecraft:oak",
-					"weight": 4
+					"weight": 3
+				},
+				{
+					"wood_type": "minecraft:birch",
+					"weight": 3
+				},
+				{
+					"wood_type": "minecraft:spruce",
+					"weight": 3
 				}
 			]
 		},
