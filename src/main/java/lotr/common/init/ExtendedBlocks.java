@@ -250,7 +250,9 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> CRACKED_ARNOR_PILLAR;
 	public static RegistryObject<Block> CRACKED_ARNOR_PILLAR_SLAB;
-
+	public static RegistryObject<Block> MOSSY_ARNOR_PILLAR;
+	public static RegistryObject<Block> MOSSY_ARNOR_PILLAR_SLAB;
+	
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;
 	public static RegistryObject<Block> BLACKBERRY_BUSH;

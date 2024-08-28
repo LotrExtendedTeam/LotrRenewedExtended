@@ -761,6 +761,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, 
 				ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB, 
 				LOTRItems.CRACKED_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, 
+				ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB, 
+				LOTRItems.MOSSY_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
 		//Shields
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)
@@ -1422,6 +1425,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_WALL);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB);
 	}
 
 	private void addOverrides() {

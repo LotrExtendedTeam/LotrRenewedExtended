@@ -419,6 +419,8 @@ public class MixinLOTRBlocks {
 		//Arnor
 		ExtendedBlocks.CRACKED_ARNOR_PILLAR = registerB("cracked_arnor_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
 		ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB = registerB("cracked_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR));
+		ExtendedBlocks.MOSSY_ARNOR_PILLAR = registerB("mossy_arnor_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
+		ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB = registerB("mossy_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR));
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
 		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD));
@@ -600,7 +602,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = registerB("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
 		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.5F)));
-		//TODO add block props
 		ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE = registerB("half_troll_crafting_table", () -> new ExtendedFactionCraftingTableBlock.HalfTroll(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.GUNDABAD_CRAFTING_TABLE = registerB("gundabad_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Gundabad(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(ExtendedBlocks.TAURETHRIM_BRICK));

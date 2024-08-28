@@ -389,6 +389,8 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> CRACKED_ARNOR_PILLAR;
 	public static RegistryObject<Item> CRACKED_ARNOR_PILLAR_SLAB;
+	public static RegistryObject<Item> MOSSY_ARNOR_PILLAR;
+	public static RegistryObject<Item> MOSSY_ARNOR_PILLAR_SLAB;
 
 	public static RegistryObject<Item> WHITE_PACKED_FUR;
 	public static RegistryObject<Item> WHITE_PACKED_FUR_SLAB;
