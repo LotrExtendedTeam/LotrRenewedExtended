@@ -1257,7 +1257,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('T', Ingredient.of(fromItem.get()))
 			.define('M', Ingredient.of(material.get()))
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(material.get()))
+			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
@@ -1268,7 +1268,34 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('T', Ingredient.of(fromItem.get()))
 			.define('M', Ingredient.of(material.get()))
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(material.get()))
+			.unlockedBy("has_"+name2, has(toItem.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+	}
+
+	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, ITag<Item> resource, int conversionFactor, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name1 = fromItem.get().getRegistryName().getPath();
+		String name2 = toItem.get().getRegistryName().getPath();
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(toItem.get(), conversionFactor)
+			.pattern(" T ")
+			.pattern("TMT")
+			.pattern(" T ")
+			.define('T', Ingredient.of(fromItem.get()))
+			.define('M', Ingredient.of(resource))
+			.unlockedBy("has_"+name1, has(fromItem.get()))
+			.unlockedBy("has_"+name2, has(toItem.get()))
+			.save(consumer, lotrLoc(name2+"_from_"+name1));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(toItem.get(), conversionFactor, table)
+			.pattern(" T ")
+			.pattern("TMT")
+			.pattern(" T ")
+			.define('T', Ingredient.of(fromItem.get()))
+			.define('M', Ingredient.of(resource))
+			.unlockedBy("has_"+name1, has(fromItem.get()))
+			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}

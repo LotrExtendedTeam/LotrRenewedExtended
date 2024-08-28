@@ -603,12 +603,26 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//BLUBBER
 		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
 		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
-		
+		//MALLORN
 		makeTorchConversionRecipe(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
 		makeTorchConversionRecipe(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
 		makeTorchConversionRecipe(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
 		makeTorchConversionRecipe(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		//ORC
 		makeTorchConversionRecipe(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
+		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_TORCH.get(), 1, LOTRRecipes.ANY_ORC)
+		.pattern("T")
+		.pattern("S")
+		.define('T', Ingredient.of(Items.TORCH))
+		.define('S', Ingredient.of(STICKS))
+		.unlockedBy("has_torch", has(Items.TORCH))
+		.unlockedBy("has_stick", has(STICKS))
+		.unlockedBy("has_orc_torch", has(LOTRItems.ORC_TORCH.get()))
+		.save(consumer, lotrLoc("orc_torch_from_torch"));
 	
 		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
@@ -627,9 +641,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("X #")
 		.pattern("X##")
 		.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
-		.define('X', Ingredient.of(Items.STICK))
+		.define('X', Ingredient.of(STICKS))
 		.unlockedBy("has_"+ExtendedItems.BOWSTRING.get().getRegistryName().getPath(), has(ExtendedItems.BOWSTRING.get()))
-		.unlockedBy("has_stick", has(Items.STICK))
+		.unlockedBy("has_stick", has(STICKS))
 		.save(consumer, lotrLoc(ExtendedItems.LONGBOW.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.BOWSTRING.get().getRegistryName().getPath());

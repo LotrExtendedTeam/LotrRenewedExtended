@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "T",
+    "S"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_torch"
+  }
+}
