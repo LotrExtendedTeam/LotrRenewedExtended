@@ -15,10 +15,12 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import lotr.common.block.LOTRBlockStates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -97,7 +99,26 @@ public class WoodPaletteProcessor extends StructureProcessor{
 		if(basePallet.getBlockMap().containsValue(blockstate.getBlock().getRegistryName())) {
 			String key = getKey(basePallet.getBlockMap(), blockstate.getBlock().getRegistryName());
 			Block pickedBlock = ForgeRegistries.BLOCKS.getValue(pickedPallet.getBlockMap().get(key));
-			if(pickedBlock==null || pickedBlock.equals(Blocks.AIR)) {
+			//Handle Vanilla Spoofed Vertical Slabs selecting non-vanilla vertical slabs
+			if("SLAB_VERT".equals(key) && pickedBlock.equals(Blocks.AIR)) {
+				Block newPickedBlock = ForgeRegistries.BLOCKS.getValue(pickedPallet.getBlockMap().get("SLAB"));
+				if(pickedBlock.equals(Blocks.AIR)) {
+					return blockInfoWorld;
+				}
+				pickedBlock=newPickedBlock;
+			}
+			//Handle vertical slabs picking slab
+			else if("SLAB".equals(key) && blockstate.hasProperty(LOTRBlockStates.SLAB_AXIS) && blockstate.getValue(LOTRBlockStates.SLAB_AXIS)!=Axis.Y) {
+				Block newPickedBlock = ForgeRegistries.BLOCKS.getValue(pickedPallet.getBlockMap().get("SLAB_VERT"));
+				if(pickedBlock.equals(Blocks.AIR)) {
+					return blockInfoWorld;
+				}
+				//Replace picked vanilla slab with its special vertical version
+				pickedBlock=newPickedBlock;
+			}
+			//Handle Missing Block Instances
+			if(pickedBlock==null) {
+				ExtendedLog.error("Found Missing Block in WoodPallet: "+pickedPallet.getName()+", KEY: "+key);
 				return blockInfoWorld;
 			}
 			//ExtendedLog.info("Replaced "+blockstate.getBlock().getRegistryName().toString() +" with"+ pickedBlock.getRegistryName().toString());

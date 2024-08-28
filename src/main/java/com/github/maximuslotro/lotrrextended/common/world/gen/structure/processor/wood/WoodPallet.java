@@ -45,7 +45,7 @@ public class WoodPallet {
 	public WoodPallet(String pName, Block lOG, Block sTRIPPED_LOG, Block lOG_SLAB,Block sTRIPPED_LOG_SLAB, Block wOOD, Block sTRIPPED_WOOD,
 			Block wOOD_SLAB, Block sTRIPPED_WOOD_SLAB, Block wOOD_STAIRS,Block sTRIPPED_WOOD_STAIRS, Block bRANCH, Block sTRIPPED_BRANCH,
 			Block pLANKS, Block sLAB, Block sTAIRS, Block bEAM, Block bEAM_SLAB,Block fENCE, Block fENCE_GATE, Block dOOR, Block tRAPDOOR,
-			Block pRESSURE_PLATE, Block bUTTON, Block sIGN, Block wALL_SIGN,Block lEAVES) {
+			Block pRESSURE_PLATE, Block bUTTON, Block sIGN, Block wALL_SIGN,Block lEAVES, Block vSLAB) {
 		name = pName;
         blockMap.put("LOG", lOG.getRegistryName());
         blockMap.put("STRIPPED_LOG", sTRIPPED_LOG.getRegistryName());
@@ -73,6 +73,7 @@ public class WoodPallet {
         blockMap.put("SIGN", sIGN.getRegistryName());
         blockMap.put("WALL_SIGN", wALL_SIGN.getRegistryName());
         blockMap.put("LEAVES", lEAVES.getRegistryName());
+        blockMap.put("SLAB_VERT", vSLAB.getRegistryName());
 //        blockMap.put("LOG", lOG);
 //        blockMap.put("STRIPPED_LOG", sTRIPPED_LOG);
 //        blockMap.put("LOG_SLAB", lOG_SLAB);
