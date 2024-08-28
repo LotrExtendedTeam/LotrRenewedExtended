@@ -84,6 +84,9 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
         	if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
         		return false;
         	}
+        	if(isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
+        		return false;
+        	}
         }
         return true;
     }

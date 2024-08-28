@@ -44,6 +44,7 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure(StructureType.RUIN));
 
     public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure(StructureType.GUNDABAD_ORC));
+    public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_ENCAMPMENT = STRUCTURE_REGISTRY.register("gundabad_encampment", () -> new SinglePoolStructure(StructureType.GUNDABAD_ORC));
 
     
 	public static void setupStructures() {
@@ -69,6 +70,7 @@ public class ExtendedStructuresV5 {
 		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 34063920);
 		register(ARNOR_RUINS.get(), true,              29, 18, 365876386);
 		register(GUNDABAD_CAMP.get(), true,            45, 25, 967990477);
+		register(GUNDABAD_ENCAMPMENT.get(), true,      54, 40, 43456);
 	}
 	
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
