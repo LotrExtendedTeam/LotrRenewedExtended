@@ -21,12 +21,16 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> DUCK_EGG = register("entity.duck.egg", "Duck plops");
 	public static final RegistryObject<SoundEvent> BASKET_OPEN = register("block.reed_basket.open", "Reed Basket Opens");
 	public static final RegistryObject<SoundEvent> BASKET_CLOSE = register("block.reed_basket.close", "Reed Basket Closes");
+	public static final RegistryObject<SoundEvent> STONE_CHEST_OPEN = register("block.stone_chest.open", "Stone Chest Opens");
+	public static final RegistryObject<SoundEvent> STONE_CHEST_CLOSE = register("block.stone_chest.close", "Stone Chest Closes");
+
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);
 		}
 		return SOUNDS.register(name, () -> new SoundEvent(new ResourceLocation(LotrExtendedMod.MODID, name)));
 	}
+
 	public static void register(IEventBus bus) {
 		SOUNDS.register(bus);
 	}
