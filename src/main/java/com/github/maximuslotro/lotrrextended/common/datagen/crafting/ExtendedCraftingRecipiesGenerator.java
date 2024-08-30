@@ -635,6 +635,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
 
+		GENERATEDRECIPES.add(ExtendedItems.ROPE.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.ROPE.get())
+		.pattern("S")
+		.pattern("S")
+		.pattern("S")
+		.define('S', Ingredient.of(Tags.Items.STRING))
+		.unlockedBy("has_string", has(Tags.Items.STRING))
+		.unlockedBy("has_"+ExtendedItems.ROPE.get().getRegistryName().getPath(), has(ExtendedItems.ROPE.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
+
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
 		.pattern("XXX")
@@ -648,10 +658,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 		GENERATEDRECIPES.add(ExtendedItems.BOWSTRING.get().getRegistryName().getPath());
 		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOWSTRING.get())
-		.requires(Items.STRING)
-		.requires(Items.STRING)
-		.requires(Items.STRING)
-		.unlockedBy("has_string", has(Items.STRING))
+		.requires(Tags.Items.STRING)
+		.requires(Tags.Items.STRING)
+		.requires(Tags.Items.STRING)
+		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
@@ -706,9 +716,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.HITHLAIN.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HITHLAIN.get(), 3, LOTRRecipes.GALADHRIM_CRAFTING)
 		.pattern("###")
-		.define('#', Ingredient.of(Items.STRING))
+		.define('#', Ingredient.of(Tags.Items.STRING))
 		.unlockedBy("has_"+ExtendedItems.HITHLAIN.get().getRegistryName().getPath(), has(ExtendedItems.HITHLAIN.get()))
-		.unlockedBy("has_"+Items.STRING.getRegistryName().getPath(), has(Items.STRING))
+		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.HITHLAIN.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
 		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOTTLE_OF_POISON.get())

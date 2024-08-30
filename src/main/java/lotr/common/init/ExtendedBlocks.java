@@ -391,4 +391,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BLUE_MOUNTAINS_WALL_BANNER;
 	public static RegistryObject<Block> DURINS_FOLK_BANNER;
 	public static RegistryObject<Block> DURINS_FOLK_WALL_BANNER;
+
+	public static RegistryObject<Block> ROPE;
 }

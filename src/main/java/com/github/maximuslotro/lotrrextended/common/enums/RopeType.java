@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 import net.minecraft.util.IStringSerializable;
 
 public enum RopeType implements IStringSerializable {
-	   TOP("bottom"),
+	   TOP("top"),
 	   MIDDLE("middle"),
 	   BOTTOM("bottom");
 
