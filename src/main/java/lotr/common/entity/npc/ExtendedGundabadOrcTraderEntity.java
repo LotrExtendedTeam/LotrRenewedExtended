@@ -23,6 +23,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -143,8 +144,79 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
         this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.MORDOR_DAGGER.get()));
         this.npcItemsInv.clearRangedWeapon(); // orc traders do not have ranged weapons
         this.npcItemsInv.clearIdleItem();
+
+		this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.FUR_BOOTS.get()));
+		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.FUR_LEGGINGS.get()));
+		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.FUR_CHESTPLATE.get()));
+		this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.FUR_HELMET.get()));
+		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.AIR));
+
         return spawnData;
     }
+
+	@Override
+	public void tick() {
+		super.tick();
+
+		if (level.isClientSide) {
+			return;
+		}
+
+		if (lastTickVerifiedPlayerTradingWithIsOnline >= 100) {
+			if (entityData.get(PLAYER_TRADING_WITH).isPresent()) {
+				UUID uuid = entityData.get(PLAYER_TRADING_WITH).get();
+				if (level.getPlayerByUUID(uuid) == null) entityData.set(PLAYER_TRADING_WITH, Optional.empty());
+			}
+
+			lastTickVerifiedPlayerTradingWithIsOnline = 0;
+		} else {
+			lastTickVerifiedPlayerTradingWithIsOnline++;
+		}
+
+		// every 1 minute allow one more trade in both buys and sells to be done again
+		if (lastTickCooldownReduced >= 1200) {
+			for (ExtendedTrade trade : itemsSoldByTrader) {
+				if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
+					trade.setQuantityLeft(trade.getQuantityLeft() + 1);
+				}
+			}
+
+			for (ExtendedTrade trade : itemsBoughtByTrader) {
+				if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
+					trade.setQuantityLeft(trade.getQuantityLeft() + 1);
+				}
+			}
+			lastTickCooldownReduced = 0;
+		} else {
+			lastTickCooldownReduced++;
+		}
+
+		ExtendedTraderHelper.tickTrader(this, this);
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundNBT tag) {
+		super.readAdditionalSaveData(tag);
+
+		loadAllTrades(tag);
+
+		// load values related to wandering traders
+		int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
+		entityData.set(WANDERING_TRADER_TIME_LEFT, wanderingTraderTimeLeft);
+
+		boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
+		entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+
+		escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundNBT tag) {
+		super.addAdditionalSaveData(tag);
+
+		saveAllTrades(tag);
+		ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
+	}
 
 	@Override
 	public void playTradeSound() {
@@ -244,6 +316,11 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
 		itemsSoldByTrader = trades;	
+	}
+
+	@Override
+	protected void addNPCTargetingAI() {
+		this.addNonAggressiveTargetingGoals();
 	}
 
 	@Override

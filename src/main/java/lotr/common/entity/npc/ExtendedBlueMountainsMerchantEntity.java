@@ -190,21 +190,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
         escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
-    // in Legacy the eat and drink pools for Oddment Collectors are based off Dunland
-    protected NPCFoodPool getEatPool() {
-        return NPCFoodPools.DUNLENDING;
-    }
-
-    protected NPCFoodPool getDrinkPool() {
-        return NPCFoodPools.DUNLENDING_DRINK;
-    }
-
-    protected NPCNameGenerator getNameGenerator() {
-        // TODO: In legacy it can pick Rohan, Gondor, Dunlend or Bree for names, but I am not sure how that will work
-        //  or if it will be consistent so just doing Dunland for now
-        return NPCNameGenerators.DUNLENDING;
-    }
-
     @Override
     protected void initialiseAttackGoals(AttackGoalsHolder holder) {
         holder.setMeleeAttackGoal(this.createDwarfAttackGoal());
