@@ -1,0 +1,23 @@
+{
+	"parent": "block/block",
+	"texture_size": [16, 16],
+	"textures": {
+		"0": "lotrextended:block/rope",
+		"particle": "lotrextended:block/rope"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 15],
+			"to": [9, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 9]},
+			"faces": {
+				"north": {"uv": [0, 0, 2, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 2, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 2, 0], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [0, 0, 2, 0], "texture": "#0", "cullface": "down"}
+			}
+		}
+	]
+}
