@@ -824,13 +824,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genRopeBlock(ExtendedRopeBlock rope) {
 		registeredBlocks.add(rope);
 		ResourceLocation ropeTexture = lotrExtendedLoc("block/"+rope.getRegistryName().getPath());
-		ModelFile modelTop = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath(), lotrExtendedLoc("block/rope_top"))
+		ModelFile modelTop = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_rope_top"))
                 .texture("0", ropeTexture)
                 .texture("particle", ropeTexture);
-		ModelFile modelBottom = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath(), lotrExtendedLoc("block/rope_bottom"))
+		ModelFile modelBottom = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_rope_bottom"))
                 .texture("0", ropeTexture)
                 .texture("particle", ropeTexture);
-		ModelFile model = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath(), lotrExtendedLoc("block/rope"))
+		ModelFile model = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_middle", lotrExtendedLoc("block/template_rope_middle"))
                 .texture("0", ropeTexture)
                 .texture("particle", ropeTexture);
 
