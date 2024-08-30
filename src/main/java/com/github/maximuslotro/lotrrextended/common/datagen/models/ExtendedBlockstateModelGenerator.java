@@ -830,7 +830,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile modelBottom = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_rope_bottom"))
                 .texture("0", ropeTexture)
                 .texture("particle", ropeTexture);
-		ModelFile model = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_middle", lotrExtendedLoc("block/template_rope_middle"))
+		ModelFile modelMiddle = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_middle", lotrExtendedLoc("block/template_rope_middle"))
                 .texture("0", ropeTexture)
                 .texture("particle", ropeTexture);
 
@@ -839,8 +839,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
 			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
             return ConfiguredModel.builder()
-                    .modelFile(type == RopeType.TOP ? modelTop : (type == RopeType.BOTTOM ? modelBottom : model))
-                    .rotationX(axis == Direction.EAST ? 270 : (axis == Direction.WEST ? 90 : (axis == Direction.SOUTH ? 180 : 0)))
+                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL || type == RopeType.SINGLE) ? modelTop : 
+                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom : modelMiddle))
+                    .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
                     .build();
         }, ExtendedRopeBlock.WATERLOGGED);
 	}
