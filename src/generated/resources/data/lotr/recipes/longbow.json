@@ -10,7 +10,7 @@
       "item": "lotr:bowstring"
     },
     "X": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

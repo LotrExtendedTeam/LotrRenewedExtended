@@ -242,6 +242,8 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
         tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
         tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
 
+	    tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get());
+
         tag(ExtendedTags.Blocks.COPPER_ORE).add(LOTRBlocks.COPPER_ORE.get());
         tag(ExtendedTags.Blocks.NITER_ORE).add(LOTRBlocks.NITER_ORE.get());
         tag(ExtendedTags.Blocks.SALT_ORE).add(LOTRBlocks.SALT_ORE.get());

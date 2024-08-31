@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=north,section_type=single": {
+      "model": "lotrextended:block/rope_top"
+    },
+    "facing=south,section_type=single": {
+      "model": "lotrextended:block/rope_top",
+      "y": 180
+    },
+    "facing=west,section_type=single": {
+      "model": "lotrextended:block/rope_top",
+      "y": 270
+    },
+    "facing=east,section_type=single": {
+      "model": "lotrextended:block/rope_top",
+      "y": 90
+    },
+    "facing=north,section_type=bottom_small": {
+      "model": "lotrextended:block/rope_bottom"
+    },
+    "facing=south,section_type=bottom_small": {
+      "model": "lotrextended:block/rope_bottom",
+      "y": 180
+    },
+    "facing=west,section_type=bottom_small": {
+      "model": "lotrextended:block/rope_bottom",
+      "y": 270
+    },
+    "facing=east,section_type=bottom_small": {
+      "model": "lotrextended:block/rope_bottom",
+      "y": 90
+    },
+    "facing=north,section_type=top_small": {
+      "model": "lotrextended:block/rope_top"
+    },
+    "facing=south,section_type=top_small": {
+      "model": "lotrextended:block/rope_top",
+      "y": 180
+    },
+    "facing=west,section_type=top_small": {
+      "model": "lotrextended:block/rope_top",
+      "y": 270
+    },
+    "facing=east,section_type=top_small": {
+      "model": "lotrextended:block/rope_top",
+      "y": 90
+    },
+    "facing=north,section_type=bottom_large": {
+      "model": "lotrextended:block/rope_bottom"
+    },
+    "facing=south,section_type=bottom_large": {
+      "model": "lotrextended:block/rope_bottom",
+      "y": 180
+    },
+    "facing=west,section_type=bottom_large": {
+      "model": "lotrextended:block/rope_bottom",
+      "y": 270
+    },
+    "facing=east,section_type=bottom_large": {
+      "model": "lotrextended:block/rope_bottom",
+      "y": 90
+    },
+    "facing=north,section_type=middle_large": {
+      "model": "lotrextended:block/rope_middle"
+    },
+    "facing=south,section_type=middle_large": {
+      "model": "lotrextended:block/rope_middle",
+      "y": 180
+    },
+    "facing=west,section_type=middle_large": {
+      "model": "lotrextended:block/rope_middle",
+      "y": 270
+    },
+    "facing=east,section_type=middle_large": {
+      "model": "lotrextended:block/rope_middle",
+      "y": 90
+    },
+    "facing=north,section_type=top_large": {
+      "model": "lotrextended:block/rope_top"
+    },
+    "facing=south,section_type=top_large": {
+      "model": "lotrextended:block/rope_top",
+      "y": 180
+    },
+    "facing=west,section_type=top_large": {
+      "model": "lotrextended:block/rope_top",
+      "y": 270
+    },
+    "facing=east,section_type=top_large": {
+      "model": "lotrextended:block/rope_top",
+      "y": 90
+    }
+  }
+}

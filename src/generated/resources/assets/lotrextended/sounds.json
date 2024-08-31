@@ -35,6 +35,12 @@
       "lotrextended:entity/duck/death1"
     ]
   },
+  "entity.duck.egg": {
+    "subtitle": "subtitles.lotrextended.entity.duck.egg",
+    "sounds": [
+      "mob/chicken/plop"
+    ]
+  },
   "block.reed_basket.open": {
     "subtitle": "subtitles.lotrextended.block.reed_basket.open",
     "sounds": [
@@ -47,10 +53,16 @@
       "lotrextended:block/reed_basket/close1"
     ]
   },
-  "entity.duck.egg": {
-    "subtitle": "subtitles.lotrextended.entity.duck.egg",
+  "block.stone_chest.open": {
+    "subtitle": "subtitles.lotrextended.block.stone_chest.open",
     "sounds": [
-      "mob/chicken/plop"
+      "lotrextended:block/stone_chest/open1"
+    ]
+  },
+  "block.stone_chest.close": {
+    "subtitle": "subtitles.lotrextended.block.stone_chest.close",
+    "sounds": [
+      "lotrextended:block/stone_chest/close1"
     ]
   }
 }

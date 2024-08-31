@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -26,6 +27,7 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSin
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 
 import lotr.common.block.AxialSlabBlock;
@@ -155,6 +157,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedFullBedBlock) {
 					genBedrollBlockItem((ExtendedFullBedBlock) block.getValue().get(), block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedRopeBlock) {
+					genRopeBlock((ExtendedRopeBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof BranchBlock) {
@@ -813,6 +819,31 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
         }, SlabBlock.WATERLOGGED);
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
+	}
+
+	private void genRopeBlock(ExtendedRopeBlock rope) {
+		registeredBlocks.add(rope);
+		ResourceLocation ropeTexture = lotrExtendedLoc("block/"+rope.getRegistryName().getPath());
+		ModelFile modelTop = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_rope_top"))
+                .texture("0", ropeTexture)
+                .texture("particle", ropeTexture);
+		ModelFile modelBottom = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_rope_bottom"))
+                .texture("0", ropeTexture)
+                .texture("particle", ropeTexture);
+		ModelFile modelMiddle = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_middle", lotrExtendedLoc("block/template_rope_middle"))
+                .texture("0", ropeTexture)
+                .texture("particle", ropeTexture);
+
+		getVariantBuilder(rope)
+		.forAllStatesExcept(state -> {
+			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
+			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
+            return ConfiguredModel.builder()
+                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL || type == RopeType.SINGLE) ? modelTop : 
+                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom : modelMiddle))
+                    .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
+                    .build();
+        }, ExtendedRopeBlock.WATERLOGGED);
 	}
 
 	private void genFarmlandBlockItem(ExtendedGroundFarmlandBlock extendedGroundFarmlandBlock, String name) {

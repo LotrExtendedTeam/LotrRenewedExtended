@@ -30,10 +30,13 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.DUCK_AMBIANT, createMultipleSameWeight(ExtendedSounds.DUCK_AMBIANT, 4));
 		add(ExtendedSounds.DUCK_HURT, createMultipleSameWeight(ExtendedSounds.DUCK_HURT, 1));
 		add(ExtendedSounds.DUCK_DEATH, createMultipleSameWeight(ExtendedSounds.DUCK_DEATH, 1));
-		
+		add(ExtendedSounds.DUCK_EGG, createCustomPathSound(ExtendedSounds.DUCK_EGG, new ResourceLocation("mob/chicken/plop")));
+
 		add(ExtendedSounds.BASKET_OPEN, createMultipleSameWeight(ExtendedSounds.BASKET_OPEN, 1));
 		add(ExtendedSounds.BASKET_CLOSE, createMultipleSameWeight(ExtendedSounds.BASKET_CLOSE, 1));
-		add(ExtendedSounds.DUCK_EGG, createCustomPathSound(ExtendedSounds.DUCK_EGG, new ResourceLocation("mob/chicken/plop")));
+
+		add(ExtendedSounds.STONE_CHEST_OPEN, createMultipleSameWeight(ExtendedSounds.STONE_CHEST_OPEN, 1));
+		add(ExtendedSounds.STONE_CHEST_CLOSE, createMultipleSameWeight(ExtendedSounds.STONE_CHEST_CLOSE, 1));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {

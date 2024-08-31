@@ -1,0 +1,33 @@
+{
+	"name": "lotrextended:gundabad/gundabad_encampment_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/encampment/gundabad_encampment_1",
+				"processors": "lotrextended:gundabad_encampment_processor"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/encampment/gundabad_encampment_2",
+				"processors": "lotrextended:gundabad_encampment_processor"
+			}
+		},
+		{
+			"weight": 7,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/encampment/gundabad_encampment_3",
+				"processors": "lotrextended:gundabad_encampment_processor"
+			}
+		}
+	]
+}

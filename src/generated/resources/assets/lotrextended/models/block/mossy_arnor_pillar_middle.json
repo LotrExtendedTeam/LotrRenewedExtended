@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/mossy_arnor_pillar_middle",
+    "end": "lotrextended:block/mossy_arnor_pillar_face"
+  }
+}

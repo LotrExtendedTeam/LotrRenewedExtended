@@ -152,7 +152,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					int y;
 					int z;
 					// Set spawn cords based upon spawner type
-					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !spawnerInstance.insideSpawning()) {
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !shouldSpawnInside()) {
 						x = MathHelper.floor(getX()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
 						z = MathHelper.floor(getZ()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
 						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, x, z);
@@ -300,6 +300,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		return true;
 	}
 
+	private boolean shouldSpawnInside() {
+		return spawnerInstance.insideSpawning() && (this.random.nextInt(100)+1)<=spawnerInstance.getinsideSpawningChance();
+	}
+
 	private void setSpawnerFromResourceLocation() {
 		spawnerInstance = ExtendedStructureEntitySpawnManager.INSTANCE.get(spawnerType);
 		if(spawnerInstance.isEmptySpawner()) {
@@ -363,8 +367,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					.append(new StringTextComponent(Boolean.toString(spawnerInstance.shouldTick())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			pPlayer.sendMessage(new StringTextComponent("Local Spawn Cap: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getLocalSpawnCap())).withStyle(TextFormatting.WHITE))
-					.append(new StringTextComponent(", Inside Spawning: ").withStyle(TextFormatting.GREEN))
-					.append(new StringTextComponent(Boolean.toString(spawnerInstance.insideSpawning())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(", Spawn TickRate: ").withStyle(TextFormatting.GREEN))
+					.append(new StringTextComponent(Integer.toString(spawnerInstance.getEntitySpawnTickRate())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+			pPlayer.sendMessage(new StringTextComponent("Inside Spawning: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(Boolean.toString(spawnerInstance.insideSpawning())).withStyle(TextFormatting.WHITE))
+					.append(new StringTextComponent(", Inside Chance: ").withStyle(TextFormatting.GREEN))
+					.append(new StringTextComponent(Integer.toString(spawnerInstance.getinsideSpawningChance())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			String str = "";
 			for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
 				if(str.equals("")) {

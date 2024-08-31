@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:high_elven_torch"
+    }
+  ],
+  "result": {
+    "item": "minecraft:torch"
+  }
+}

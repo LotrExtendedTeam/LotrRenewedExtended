@@ -590,6 +590,40 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL, 
 				()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
 		//ITEMS
+		// TORCH CONVERSIONS
+		// DWARVEN
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
+		makeTorchConversionRecipe(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
+		//MORGUL
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
+		makeTorchConversionRecipe(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
+		//HIGH ELVEN
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeTorchConversionRecipe(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
+		//BLUBBER
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
+		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
+		//MALLORN
+		makeTorchConversionRecipe(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipe(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipe(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipe(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		//ORC
+		makeTorchConversionRecipe(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
+		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_TORCH.get(), 1, LOTRRecipes.ANY_ORC)
+		.pattern("T")
+		.pattern("S")
+		.define('T', Ingredient.of(Items.TORCH))
+		.define('S', Ingredient.of(STICKS))
+		.unlockedBy("has_torch", has(Items.TORCH))
+		.unlockedBy("has_stick", has(STICKS))
+		.unlockedBy("has_orc_torch", has(LOTRItems.ORC_TORCH.get()))
+		.save(consumer, lotrLoc("orc_torch_from_torch"));
+	
 		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
 		.pattern("  #")
@@ -601,23 +635,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
 
+		GENERATEDRECIPES.add(ExtendedItems.ROPE.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.ROPE.get())
+		.pattern("S")
+		.pattern("S")
+		.pattern("S")
+		.define('S', Ingredient.of(Tags.Items.STRING))
+		.unlockedBy("has_string", has(Tags.Items.STRING))
+		.unlockedBy("has_"+ExtendedItems.ROPE.get().getRegistryName().getPath(), has(ExtendedItems.ROPE.get()))
+		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
+
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
 		.pattern("XXX")
 		.pattern("X #")
 		.pattern("X##")
 		.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
-		.define('X', Ingredient.of(Items.STICK))
+		.define('X', Ingredient.of(STICKS))
 		.unlockedBy("has_"+ExtendedItems.BOWSTRING.get().getRegistryName().getPath(), has(ExtendedItems.BOWSTRING.get()))
-		.unlockedBy("has_stick", has(Items.STICK))
+		.unlockedBy("has_stick", has(STICKS))
 		.save(consumer, lotrLoc(ExtendedItems.LONGBOW.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.BOWSTRING.get().getRegistryName().getPath());
 		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOWSTRING.get())
-		.requires(Items.STRING)
-		.requires(Items.STRING)
-		.requires(Items.STRING)
-		.unlockedBy("has_string", has(Items.STRING))
+		.requires(Tags.Items.STRING)
+		.requires(Tags.Items.STRING)
+		.requires(Tags.Items.STRING)
+		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
@@ -672,9 +716,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.HITHLAIN.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HITHLAIN.get(), 3, LOTRRecipes.GALADHRIM_CRAFTING)
 		.pattern("###")
-		.define('#', Ingredient.of(Items.STRING))
+		.define('#', Ingredient.of(Tags.Items.STRING))
 		.unlockedBy("has_"+ExtendedItems.HITHLAIN.get().getRegistryName().getPath(), has(ExtendedItems.HITHLAIN.get()))
-		.unlockedBy("has_"+Items.STRING.getRegistryName().getPath(), has(Items.STRING))
+		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.HITHLAIN.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
 		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOTTLE_OF_POISON.get())
@@ -741,6 +785,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, 
 				ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB, 
 				LOTRItems.CRACKED_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, 
+				ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB, 
+				LOTRItems.MOSSY_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
 		//Shields
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)
@@ -1402,6 +1449,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_WALL);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB);
 	}
 
 	private void addOverrides() {

@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:lossoth",
+  "pattern": [
+    " T ",
+    "TMT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "M": {
+      "item": "lotr:blubber"
+    }
+  },
+  "result": {
+    "item": "lotr:blubber_torch",
+    "count": 4
+  }
+}
