@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=north,section_type=single": {
-      "model": "lotrextended:block/rope_top"
+      "model": "lotrextended:block/rope_single"
     },
     "facing=south,section_type=single": {
-      "model": "lotrextended:block/rope_top",
+      "model": "lotrextended:block/rope_single",
       "y": 180
     },
     "facing=west,section_type=single": {
-      "model": "lotrextended:block/rope_top",
+      "model": "lotrextended:block/rope_single",
       "y": 270
     },
     "facing=east,section_type=single": {
-      "model": "lotrextended:block/rope_top",
+      "model": "lotrextended:block/rope_single",
       "y": 90
     },
     "facing=north,section_type=bottom_small": {
