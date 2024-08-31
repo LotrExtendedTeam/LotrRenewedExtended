@@ -1,13 +1,8 @@
 package lotr.common.entity.npc;
 
-import lotr.common.block.VesselDrinkBlock;
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.entity.npc.data.NPCFoodPool;
-import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.entity.npc.data.NPCGenderProvider;
-import lotr.common.entity.npc.data.name.NPCNameGenerator;
-import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -188,21 +183,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
         entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
 
         escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
-    }
-
-    // in Legacy the eat and drink pools for Oddment Collectors are based off Dunland
-    protected NPCFoodPool getEatPool() {
-        return NPCFoodPools.DUNLENDING;
-    }
-
-    protected NPCFoodPool getDrinkPool() {
-        return NPCFoodPools.DUNLENDING_DRINK;
-    }
-
-    protected NPCNameGenerator getNameGenerator() {
-        // TODO: In legacy it can pick Rohan, Gondor, Dunlend or Bree for names, but I am not sure how that will work
-        //  or if it will be consistent so just doing Dunland for now
-        return NPCNameGenerators.DUNLENDING;
     }
 
     @Override

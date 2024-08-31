@@ -1,0 +1,76 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=snaga"
+      },
+      "lines": [
+        "Orcs like silver coins as much as the next race, you know...",
+        "Bring me coins if you want equipment.",
+        "So you have proven yourself, Person. Now we can trade.",
+        "A nice little stinking sum of silver coins might be nice.",
+        "If you want to trade, bring some coins, and keep it quiet.",
+        "An Orc can never have enough silver coins, maggot!",
+        "I might be interested in buying some materials.",
+        "Certain materials can fetch a good price among traders like myself.",
+        "I love crunching on a nice Elf bone!",
+        "You want some equipment? Get me some coins first, maggot!",
+        "Get me some coins and I'll get you some tools!",
+        "If you want some of my fine equipment, then bring some coins!",
+        "I sell the finest equipment and the sharpest blades!",
+        "I don't usually trade with filthy Men, but you're good enough."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Have you not been driven out by our armies yet, scum?",
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "Looks like meat's back on the menu, boys!",
+        "You stink of fear!",
+        "Die, Man-scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Come any closer and I'll stick you like a fresh cut of meat!",
+        "We dine on Man-flesh tonight!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "friendly",
+            "rank": "<snaga"
+          }
+        ]
+      },
+      "lines": [
+        "Come crawling back when you've proved your worth, weakling.",
+        "The stench of evil on you is not yet strong enough, #p.",
+        "If you wish to trade, you must prove your worth among our forces!",
+        "I've seen more threatening Halflings than you!",
+        "You want to trade? Come back when you're further down the path of darkness, scum.",
+        "Go and slay a few stinking Elves, and then perhaps we can trade.",
+        "If you want any Orcish equipment, you'll have to work more evil first.",
+        "There's no way I'm trading with a maggot like you!",
+        "Do you think the Boss just lets me hand out equipment to anyone, maggot?",
+        "I don't trade with scum like you!",
+        "Kill some of those filthy Men and then we can talk!",
+        "Prove your worth, filth!",
+        "You won't be getting any equipment from me, maggot!",
+        "I don't trust filthy Men like you! Beat it, scum."
+      ]
+    }
+  ]
+}
