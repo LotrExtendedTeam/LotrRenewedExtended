@@ -44,7 +44,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	private static final DataParameter<Integer> TICKPERCENTAGE = EntityDataManager.defineId(ExtendedTraderRespawnEntity.class, DataSerializers.INT);
 
 	private boolean queueToRemove = false;
-	private int setEntityTickBackRate = 6000;
+	private int setEntityTickBackRate = 24000;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
 	public double spin = 0;
 	public double spinO = 0;
