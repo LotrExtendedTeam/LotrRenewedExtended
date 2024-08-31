@@ -288,6 +288,10 @@ public class ExtendedTradeContainer extends Container {
 
         if (slot.container.equals(displayInventory)) {
             if (slot.index < 9) {
+            	// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
+            	if(displayInventory.getItem(slot.index).getCount()<=0) {
+            		return ItemStack.EMPTY;
+            	}
                 int tradesToPerform = 64 / displayInventory.getItem(slot.index).getCount();
                 if (tradesToPerform > soldQuantities[slot.index]) tradesToPerform = soldQuantities[slot.index];
                 if (tradesToPerform * soldPrices[slot.index] >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {

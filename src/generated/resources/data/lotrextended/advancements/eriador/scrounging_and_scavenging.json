@@ -1,0 +1,42 @@
+{
+  "parent": "lotrextended:eriador/the_kindly_west",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.scrounging_and_scavenging.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.eriador.scrounging_and_scavenging.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_gundabad_orc_scrounger_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:gundabad_orc_scrounger",
+        "istraderselling": "false"
+      }
+    },
+    "trade_gundabad_orc_scrounger_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:gundabad_orc_scrounger",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_gundabad_orc_scrounger_buy",
+      "trade_gundabad_orc_scrounger_sell"
+    ]
+  ]
+}

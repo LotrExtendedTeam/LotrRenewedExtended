@@ -164,6 +164,10 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 		Advancement riven_elf_trader = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "treasures_of_imladris", false, FrameType.TASK, true, true, false)
 				.setTitle("Treasures of Imladris").setDescription("Trade with a Rivendell Wanderer."), 
 				addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_WANDERER.get()).parent(eriadorBase));
+
+		Advancement orc_trader = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "scrounging_and_scavenging", false, FrameType.TASK, true, true, false)
+						.setTitle("Scrounging and Scavenging").setDescription("Trade with a Gundabad Orc Scrounger."),
+				addTradeEntityTrigger(make(), ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).parent(eriadorBase));
 	}
 
 	@Override
