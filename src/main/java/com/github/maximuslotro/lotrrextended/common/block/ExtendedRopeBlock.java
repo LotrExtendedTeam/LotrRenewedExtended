@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,12 +16,15 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -32,8 +34,9 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable {
+public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<RopeType> SECTION_TYPE = EnumProperty.create("section_type", RopeType.class);
 	protected static final VoxelShape NORTH_AABB = Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D);
 	protected static final VoxelShape SOUTH_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D);
@@ -48,15 +51,15 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 	@Override
 	public VoxelShape getShape(BlockState blockState, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
 		switch (blockState.getValue(FACING)) {
-			case EAST :
-				return EAST_AABB;
-			case WEST :
-				return WEST_AABB;
-			case SOUTH :
-				return SOUTH_AABB;
-			case NORTH :
-			default :
-				return NORTH_AABB;
+		case EAST :
+			return EAST_AABB;
+		case WEST :
+			return WEST_AABB;
+		case SOUTH :
+			return SOUTH_AABB;
+		case NORTH :
+		default :
+			return NORTH_AABB;
 		}
 	}
 
@@ -77,12 +80,13 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 
 	@Override
 	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
-		Direction direction = pState.getValue(FACING);
-		return canAttachTo(pLevel, pPos.relative(direction.getOpposite()), direction) || canAttachAbove(pLevel, pPos);
+		Direction ropeFacingDirection = pState.getValue(FACING);
+		return canAttachTo(pLevel, pPos.relative(ropeFacingDirection.getOpposite()), ropeFacingDirection) || canAttachAbove(pLevel, pPos, ropeFacingDirection);
 	}
 
-	private static boolean canAttachAbove(IWorldReader pReader, BlockPos pPos) {
-		return pReader.getBlockState(pPos.relative(Direction.UP)).getBlock() instanceof ExtendedRopeBlock;
+	private static boolean canAttachAbove(IWorldReader pReader, BlockPos pPos, Direction ropeFacingDirection) {
+		BlockState above = pReader.getBlockState(pPos.relative(Direction.UP));
+		return above.getBlock() instanceof ExtendedRopeBlock && above.getValue(FACING) == ropeFacingDirection;
 	}
 
 	private static boolean canAttachTo(IBlockReader pBlockReader, BlockPos pPos, Direction pDirection) {
@@ -107,17 +111,24 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 					if (thisRopeType == RopeType.SINGLE && aboveRopeType == RopeType.TOP_SMALL) {
 						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_SMALL);
 					}
+					if (thisRopeType == RopeType.SINGLE && aboveRopeType == RopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
+					}
 					if (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.TOP_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
+					if (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.MIDDLE_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
 					}
 					if (thisRopeType == RopeType.TOP_SMALL && aboveRopeType == RopeType.TOP_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
 					}
-
+					if (thisRopeType == RopeType.TOP_SMALL && aboveRopeType == RopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
 					if (thisRopeType == RopeType.BOTTOM_SMALL && aboveRopeType == RopeType.MIDDLE_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
 					}
-
 					if (thisRopeType == RopeType.BOTTOM_LARGE && aboveRopeType == RopeType.TOP_SMALL) {
 						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_SMALL);
 					}
@@ -126,7 +137,7 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 						return pState.setValue(SECTION_TYPE, RopeType.SINGLE);
 					}
 					if (thisRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.TOP_SMALL);
+						return pState.setValue(SECTION_TYPE, RopeType.TOP_LARGE);
 					}
 				}
 			}
@@ -140,10 +151,25 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		RopeType type;
+		Direction pickedDirection = Direction.NORTH;
+		IWorldReader iworldreader = pContext.getLevel();
 		BlockPos blockpos = pContext.getClickedPos();
-	    BlockState aboveState = pContext.getLevel().getBlockState(blockpos.above());
-	    BlockState belowState = pContext.getLevel().getBlockState(blockpos.below());
-	    FluidState fluidstate = pContext.getLevel().getFluidState(blockpos);
+
+		Direction[] adirection = pContext.getNearestLookingDirections();
+		BlockState blockstate = this.defaultBlockState();
+		for(Direction direction : adirection) {
+			if (direction.getAxis().isHorizontal()) {
+				Direction direction1 = direction.getOpposite();
+				blockstate = blockstate.setValue(FACING, direction1);
+				if (blockstate.canSurvive(iworldreader, blockpos)) {
+					pickedDirection = direction1;
+					break;
+				}
+			}
+		}
+		BlockState aboveState = pContext.getLevel().getBlockState(blockpos.above());
+		BlockState belowState = pContext.getLevel().getBlockState(blockpos.below());
+		FluidState fluidstate = pContext.getLevel().getFluidState(blockpos);
 		if(aboveState.getBlock() instanceof ExtendedRopeBlock && belowState.getBlock() instanceof ExtendedRopeBlock) {
 			type = RopeType.MIDDLE_LARGE;
 		}else if (aboveState.getBlock() instanceof ExtendedRopeBlock) {
@@ -185,7 +211,7 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 		}else {
 			type = RopeType.SINGLE; // Since we are not in the middle or below rope, we must be a single rat
 		}
-		return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(SECTION_TYPE, type).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+		return this.defaultBlockState().setValue(FACING, pickedDirection).setValue(SECTION_TYPE, type).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -195,8 +221,17 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 	}
 
 	@Override
-    public boolean makesOpenTrapdoorAboveClimbable(BlockState state, IWorldReader world, BlockPos pos, BlockState trapdoorState)
-    {
-        return state.getBlock() instanceof ExtendedRopeBlock && state.getValue(ExtendedRopeBlock.FACING) == trapdoorState.getValue(TrapDoorBlock.FACING);
-    }
+	public boolean makesOpenTrapdoorAboveClimbable(BlockState state, IWorldReader world, BlockPos pos, BlockState trapdoorState)
+	{
+		return state.getBlock() instanceof ExtendedRopeBlock && state.getValue(ExtendedRopeBlock.FACING) == trapdoorState.getValue(TrapDoorBlock.FACING);
+	}
+
+	public BlockState rotate(BlockState pState, Rotation pRotation) {
+		return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+	}
+
+	@SuppressWarnings("deprecation")
+	public BlockState mirror(BlockState pState, Mirror pMirror) {
+		return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+	}
 }
