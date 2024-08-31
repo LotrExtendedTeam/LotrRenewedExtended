@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
@@ -97,10 +98,12 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 			new ExtendedTradeEntry(new ItemStack(Items.BONE), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.MAN_FLESH.get()), 2, 4),
     });
 
+	@SuppressWarnings("unchecked")
 	public ExtendedGundabadOrcTraderEntity(EntityType<? extends GundabadOrcEntity> type, World w) {
 		super(type, w);
 
 		setPersistenceRequired();
+		this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
 
 		itemsBoughtByTrader = GUNDABAD_ORC_BOUGHT.generateTrades();
 		itemsSoldByTrader = GUNDABAD_ORC_SOLD.generateTrades();
@@ -145,11 +148,11 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
         this.npcItemsInv.clearRangedWeapon(); // orc traders do not have ranged weapons
         this.npcItemsInv.clearIdleItem();
 
-		this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.FUR_BOOTS.get()));
-		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.FUR_LEGGINGS.get()));
-		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.FUR_CHESTPLATE.get()));
-		this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.FUR_HELMET.get()));
-		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.AIR));
+		this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get()));
+		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get()));
+		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get()));
+		this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.BROWN_WARG_HELMET.get()));
+		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 
         return spawnData;
     }

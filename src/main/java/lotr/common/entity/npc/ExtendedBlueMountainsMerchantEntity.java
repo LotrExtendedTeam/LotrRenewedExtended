@@ -1,13 +1,8 @@
 package lotr.common.entity.npc;
 
-import lotr.common.block.VesselDrinkBlock;
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.entity.npc.data.NPCFoodPool;
-import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.entity.npc.data.NPCGenderProvider;
-import lotr.common.entity.npc.data.name.NPCNameGenerator;
-import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
