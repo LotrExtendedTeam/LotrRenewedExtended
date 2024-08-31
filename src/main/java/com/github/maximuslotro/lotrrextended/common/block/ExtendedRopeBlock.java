@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 
 import net.minecraft.block.Block;
@@ -84,7 +85,7 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 		return pReader.getBlockState(pPos.relative(Direction.UP)).getBlock() instanceof ExtendedRopeBlock;
 	}
 
-	private boolean canAttachTo(IBlockReader pBlockReader, BlockPos pPos, Direction pDirection) {
+	private static boolean canAttachTo(IBlockReader pBlockReader, BlockPos pPos, Direction pDirection) {
 		BlockState blockstate = pBlockReader.getBlockState(pPos);
 		return blockstate.isFaceSturdy(pBlockReader, pPos, pDirection);
 	}
@@ -106,7 +107,9 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 					if (thisRopeType == RopeType.SINGLE && aboveRopeType == RopeType.TOP_SMALL) {
 						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_SMALL);
 					}
-
+					if (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.TOP_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
 					if (thisRopeType == RopeType.TOP_SMALL && aboveRopeType == RopeType.TOP_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
 					}
@@ -151,8 +154,16 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 				type = RopeType.BOTTOM_LARGE;
 			}else if(aboveType==RopeType.SINGLE) {
 				type = RopeType.BOTTOM_SMALL;
+			}else if(aboveType==RopeType.TOP_SMALL) {
+				type = RopeType.BOTTOM_SMALL;
+			}else if(aboveType==RopeType.TOP_LARGE) {
+				type = RopeType.BOTTOM_SMALL;
+			}else if(aboveType==RopeType.MIDDLE_LARGE) {
+				type = RopeType.BOTTOM_LARGE;
+			}else {
+				type = RopeType.MIDDLE_LARGE;
+				ExtendedLog.info("Rope Model Type Encountered an unknown combo upstream. Please report this! "+aboveType.getSerializedName());
 			}
-			type = RopeType.SINGLE;
 		}else if (belowState.getBlock() instanceof ExtendedRopeBlock) {
 			RopeType belowType = belowState.getValue(SECTION_TYPE);
 			if(belowType==RopeType.TOP_LARGE) {
@@ -161,8 +172,16 @@ public class ExtendedRopeBlock extends HorizontalBlock implements IWaterLoggable
 				type = RopeType.TOP_LARGE;
 			}else if(belowType==RopeType.SINGLE) {
 				type = RopeType.TOP_SMALL;
+			}else if(belowType==RopeType.MIDDLE_LARGE) {
+				type = RopeType.TOP_LARGE;
+			}else if(belowType==RopeType.BOTTOM_SMALL) {
+				type = RopeType.TOP_SMALL;
+			}else if(belowType==RopeType.BOTTOM_LARGE) {
+				type = RopeType.TOP_SMALL;
+			}else {
+				type = RopeType.SINGLE;
+				ExtendedLog.info("Rope Model Type Encountered an unknown combo downstream. Please report this! "+belowType.getSerializedName());
 			}
-			type = RopeType.SINGLE;
 		}else {
 			type = RopeType.SINGLE; // Since we are not in the middle or below rope, we must be a single rat
 		}
