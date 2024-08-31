@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 
@@ -95,15 +93,14 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	}
 
 	/**
-	 * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-	 * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-	 * returns its solidified counterpart.
-	 * Note that this method should ideally consider only the specific face passed in.
-	 */
+	 * When editing this method, ensure to check for loopable code
+	 * */
+	@Override
 	public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, IWorld pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
 		if (pFacing.getOpposite() == pState.getValue(FACING) && !pState.canSurvive(pLevel, pCurrentPos)) {
 			return Blocks.AIR.defaultBlockState();
 		} else {
+			// Actively update rope based upon chance in higher rope and this rope's current state
 			if (pFacing == Direction.UP) {
 				RopeType thisRopeType = pState.getValue(SECTION_TYPE);
 				if (pFacingState.getBlock() instanceof ExtendedRopeBlock) {
@@ -133,6 +130,10 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_SMALL);
 					}
 				} else {
+					// Ensure rope dies if above rope is gone and this rope can't be supported
+					if (!pState.canSurvive(pLevel, pCurrentPos)) {
+						return Blocks.AIR.defaultBlockState();
+					}
 					if (thisRopeType == RopeType.BOTTOM_SMALL || thisRopeType == RopeType.BOTTOM_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.SINGLE);
 					}
@@ -148,7 +149,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		}
 	}
 
-	@Nullable
+	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		RopeType type;
 		Direction pickedDirection = Direction.NORTH;
@@ -221,11 +222,11 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	}
 
 	@Override
-	public boolean makesOpenTrapdoorAboveClimbable(BlockState state, IWorldReader world, BlockPos pos, BlockState trapdoorState)
-	{
+	public boolean makesOpenTrapdoorAboveClimbable(BlockState state, IWorldReader world, BlockPos pos, BlockState trapdoorState) {
 		return state.getBlock() instanceof ExtendedRopeBlock && state.getValue(ExtendedRopeBlock.FACING) == trapdoorState.getValue(TrapDoorBlock.FACING);
 	}
 
+	@Override
 	public BlockState rotate(BlockState pState, Rotation pRotation) {
 		return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
 	}

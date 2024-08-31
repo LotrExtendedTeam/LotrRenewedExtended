@@ -646,7 +646,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 
-		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(AbstractBlock.Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(AbstractBlock.Properties.of(Material.DECORATION).sound(SoundType.GRASS).strength(0.2F).noOcclusion()));
 
 		//Banners
 		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN));
