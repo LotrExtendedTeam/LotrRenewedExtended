@@ -142,6 +142,39 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 					}
 				}
 			}
+			if (pFacing == Direction.DOWN) {
+				RopeType thisRopeType = pState.getValue(SECTION_TYPE);
+				if (pFacingState.getBlock() instanceof ExtendedRopeBlock) {
+					RopeType belowRopeType = pFacingState.getValue(SECTION_TYPE);
+					// Only Update when rope is of type SINGLE or is at the Bottom
+					if (thisRopeType == RopeType.SINGLE && belowRopeType == RopeType.BOTTOM_SMALL) {
+						return pState.setValue(SECTION_TYPE, RopeType.TOP_SMALL);
+					}
+					if (thisRopeType == RopeType.SINGLE && belowRopeType == RopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.TOP_LARGE);
+					}
+					if (thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
+					if (thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.BOTTOM_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
+					if (thisRopeType == RopeType.BOTTOM_LARGE && belowRopeType == RopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
+					if (thisRopeType == RopeType.BOTTOM_LARGE && belowRopeType == RopeType.BOTTOM_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					}
+				}else {
+					// Make sure not to send update upstream actively, only act upon the current state knowing no lower rope
+					if (thisRopeType == RopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
+					}
+					if (thisRopeType == RopeType.TOP_LARGE || thisRopeType == RopeType.TOP_SMALL) {
+						return pState.setValue(SECTION_TYPE, RopeType.SINGLE);
+					}
+				}
+			}
 			if (pState.getValue(WATERLOGGED)) {
 				pLevel.getLiquidTicks().scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
 			}
