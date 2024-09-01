@@ -20,6 +20,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -147,6 +148,11 @@ public class ExtendedTraderHelper {
     public static void tickTrader(NPCEntity npc, ExtendedTraderEntity trader) {
         if (trader.isWanderingTrader()) {
             if (trader.getWanderingTraderTicksLeft() < 1) {
+                // notify players the travelling trader has departed
+                for (PlayerEntity player : npc.level.players()) {
+                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+                }
+
                 npc.remove();
 
                 if (trader.getEscortUUIDs() != null && !trader.getEscortUUIDs().isEmpty()) {
@@ -160,6 +166,7 @@ public class ExtendedTraderHelper {
                         }
                     }
                 }
+
             } else {
                 trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
                 // warn players nearby at 4 minutes left

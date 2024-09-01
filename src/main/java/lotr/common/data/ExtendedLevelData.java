@@ -150,11 +150,10 @@ public class ExtendedLevelData {
             }
 
             // 1/5th of the time we will actually attempt to spawn otherwise just wait another minute
-            // TODO: Enable this afterwards
-            /*if (requireRandom && world.random.nextInt(4) > 0) {
+            if (requireRandom && world.random.nextInt(4) > 0) {
                 timeUntilTrader = 1200;
                 return;
-            }*/
+            }
 
             // pick a random player and spawn a trader near them
             List<PlayerEntity> shuffledPlayers = new ArrayList<>(world.players());
