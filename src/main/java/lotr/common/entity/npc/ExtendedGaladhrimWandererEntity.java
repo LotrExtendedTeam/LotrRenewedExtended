@@ -71,7 +71,7 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_DAGGER.get()), 10, 16),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_SPEAR.get()), 16, 26),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GALADHRIM_SWORD.get()), 16, 26),
-            new ExtendedTradeEntry(new ItemStack(Items.ARROW, 4), 2, 4),
+            new ExtendedTradeEntry(new ItemStack(Items.ARROW, 4), 2, 4, 64),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.MALLORN_PLANKS.get(), 4), 3, 5),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
                     new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_MALLORN_TORCH.get(), 4), 6, 10),
