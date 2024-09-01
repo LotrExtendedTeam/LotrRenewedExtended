@@ -9,10 +9,13 @@ import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -20,6 +23,7 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.apache.logging.log4j.core.util.UuidUtil;
 
 import java.util.List;
 
@@ -95,6 +99,12 @@ public class WorldEventHandlers {
 				if (trader.getEscortUUIDs().contains(entity.getUUID())) {
 					entity.remove();
 				}
+			}
+
+			// notify all players that the wandering trader has died
+			for (PlayerEntity player : event.getEntity().level.players()) {
+				ITextComponent text = event.getSource().getLocalizedDeathMessage(event.getEntityLiving());
+				player.sendMessage(text, Util.NIL_UUID);
 			}
 		}else {
 			NPCEntity npc = (NPCEntity)event.getEntity();

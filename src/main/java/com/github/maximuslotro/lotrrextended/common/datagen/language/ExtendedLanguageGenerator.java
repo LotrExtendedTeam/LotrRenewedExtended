@@ -122,6 +122,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.tooltip.cooldown", "On Cooldown");
 		addD("gui.lotrextended.trading.tooltip.new_trade_freq", "A trade comes back every minute.");
 		addD("gui.lotrextended.trading.tooltip.trades_used", "%1$s/%2$s Used");
+		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived nearby");
+		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
+		addD("chat.wandering_trader.left_the_area", "%1$s has left the area");
 
 		// wandering trader departure lines
 		// TODO: Eventually these should properly be moved to the speechbanks files but that is pretty complex to do
@@ -209,9 +212,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
 		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
-
-		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived nearby");
-		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
 
 		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");
