@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "lotr:banana_wall_sign",
-    "lotr:chestnut_wall_sign"
+    "lotr:chestnut_wall_sign",
+    "lotr:plum_wall_sign"
   ]
 }

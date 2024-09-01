@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    " T ",
+    "TMT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "M": {
+      "item": "lotr:gulduril"
+    }
+  },
+  "result": {
+    "item": "lotr:morgul_torch",
+    "count": 4
+  }
+}

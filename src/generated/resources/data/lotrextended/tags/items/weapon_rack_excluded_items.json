@@ -3,8 +3,8 @@
   "values": [
     "minecraft:air",
     "minecraft:barrier",
-    "minecraft:structure_void",
+    "minecraft:command_block",
     "minecraft:debug_stick",
-    "minecraft:command_block"
+    "minecraft:structure_void"
   ]
 }

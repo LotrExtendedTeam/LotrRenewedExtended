@@ -22,9 +22,14 @@ public class ExtendedLootTables {
 	public static final ResourceLocation GENERIC_RUIN = register("chests/generic_ruin");
 	public static final ResourceLocation ARNOR_TOWER_RUIN = register("chests/arnor_tower_ruin");
 
+	public static final ResourceLocation GUNDABAD_CAMP_SUPPLIES = register("chests/gundabad_camp_general");
+	public static final ResourceLocation GUNDABAD_CAMP_SMITHY = register("chests/gundabad_camp_smithy");
+	public static final ResourceLocation GUNDABAD_CAMP_WOOD = register("chests/gundabad_camp_wood");
+	public static final ResourceLocation GUNDABAD_CAMP_WOOL = register("chests/gundabad_camp_wool");
+
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
-
+	public static final ResourceLocation GUNDABAD_KEGS = register("kegs/gundabad");
 	public static void init() {}
 
 	private static ResourceLocation register(String location) {

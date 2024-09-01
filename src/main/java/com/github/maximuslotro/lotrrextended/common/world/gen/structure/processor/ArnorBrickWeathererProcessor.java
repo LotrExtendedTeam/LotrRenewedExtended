@@ -27,111 +27,129 @@ public class ArnorBrickWeathererProcessor extends StructureProcessor {
 	private ArnorBrickWeathererProcessor() {}
 
 	@Nullable
-	public Template.BlockInfo processBlock(IWorldReader p_230386_1_, BlockPos p_230386_2_, BlockPos p_230386_3_, Template.BlockInfo p_230386_4_, Template.BlockInfo p_230386_5_, PlacementSettings p_230386_6_) {
-		BlockState blockstate = p_230386_5_.state;
+	public Template.BlockInfo processBlock(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData) {
+		BlockState blockstate = blockInfoWorld.state;
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK.get(), blockstate), (CompoundNBT)null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK.get(), blockstate), (CompoundNBT)null);
-			}
-		}
-		if (blockstate.is(Blocks.STONE_BRICKS)) {
-			Random rand = new Random();
-			int num = rand.nextInt(8);
-			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.CRACKED_STONE_BRICKS, blockstate), (CompoundNBT)null);
-			}
-			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICKS, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK.get(), blockstate), (CompoundNBT)null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK_SLAB.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
-			}
-		}
-		if (blockstate.is(Blocks.STONE_BRICK_SLAB)) {
-			Random rand = new Random();
-			int num = rand.nextInt(8);
-			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
-			}
-			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_SLAB, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK_STAIRS.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
-			}
-		}
-		if (blockstate.is(Blocks.STONE_BRICK_STAIRS)) {
-			Random rand = new Random();
-			int num = rand.nextInt(8);
-			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
-			}
-			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_STAIRS, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK_WALL.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
-			}
-		}
-		if (blockstate.is(Blocks.STONE_BRICK_WALL)) {
-			Random rand = new Random();
-			int num = rand.nextInt(8);
-			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
-			}
-			else if (num<=2) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_WALL, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
 			}
-			return p_230386_5_;
-//			else if (num==1) {
-//				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
-//			}
+			else if (num<=2) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
+			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR_SLAB.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
 			}
-			return p_230386_5_;
-//			else if (num<=2) {
-//				return new Template.BlockInfo(p_230386_5_.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
-//			}
+			else if (num<=2) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+			}
 		}
-		return p_230386_5_;
+		if (blockstate.is(Blocks.STONE_BRICKS)) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.CRACKED_STONE_BRICKS, blockstate), (CompoundNBT)null);
+			}
+			else if (num<=2) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICKS, blockstate), (CompoundNBT)null);
+			}
+		}
+		if (blockstate.is(Blocks.STONE_BRICK_SLAB)) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
+			}
+			else if (num<=2) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_SLAB, blockstate), (CompoundNBT)null);
+			}
+		}
+		if (blockstate.is(Blocks.STONE_BRICK_STAIRS)) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
+			}
+			else if (num<=2) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_STAIRS, blockstate), (CompoundNBT)null);
+			}
+		}
+		if (blockstate.is(Blocks.STONE_BRICK_WALL)) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
+			}
+			else if (num<=2) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_WALL, blockstate), (CompoundNBT)null);
+			}
+		}
+//		if (blockstate.is(LOTRBlocks.STONE_PILLAR.get())) {
+//			Random rand = new Random();
+//			int num = rand.nextInt(8);
+//			if(num==0) {
+//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_STONE_PILLAR.get(), blockstate), (CompoundNBT)null);
+//			}
+//			else if (num<=2) {
+//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_STONE_PILLAR.get(), blockstate), (CompoundNBT)null);
+//			}
+//		}
+//		if (blockstate.is(LOTRBlocks.STONE_PILLAR_SLAB.get())) {
+//			Random rand = new Random();
+//			int num = rand.nextInt(8);
+//			if(num==0) {
+//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+//			}
+//			else if (num<=2) {
+//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_STONE_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+//			}
+//		}
+		return blockInfoWorld;
 	}
 
 	protected IStructureProcessorType<?> getType() {

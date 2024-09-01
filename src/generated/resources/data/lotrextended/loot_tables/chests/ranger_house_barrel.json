@@ -3,55 +3,11 @@
   "pools": [
     {
       "rolls": {
-        "min": 3.0,
-        "max": 5.0,
+        "min": 2.0,
+        "max": 3.0,
         "type": "minecraft:uniform"
       },
       "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 30,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:ranger_north_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 30,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:ranger_north_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 30,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:ranger_north_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 30,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:ranger_north_boots"
-        },
         {
           "type": "minecraft:item",
           "weight": 50,
@@ -106,39 +62,6 @@
             }
           ],
           "name": "minecraft:bow"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:dunedain_bow"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 40,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:dunedain_shield"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:longbow"
         },
         {
           "type": "minecraft:item",
@@ -350,6 +273,103 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:ranger_north_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:ranger_north_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:ranger_north_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:ranger_north_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:dunedain_bow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:dunedain_shield"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:longbow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:arrow"
         }
       ]
     }

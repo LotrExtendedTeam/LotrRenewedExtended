@@ -10,7 +10,7 @@ import lotr.common.world.biome.LindonBiome;
 @Mixin(LindonBiome.class)
 public class MixinLindonBiome {
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

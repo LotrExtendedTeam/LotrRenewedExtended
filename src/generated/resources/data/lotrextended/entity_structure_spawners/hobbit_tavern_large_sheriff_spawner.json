@@ -1,0 +1,27 @@
+{
+  "id": "lotrextended:hobbit_tavern_large_sheriff_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "disable_for_use_in_future": true,
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -9,
+    "horizontal_bounds": 20
+  },
+  "spawn_area": {
+    "topYvalue": 1,
+    "lowerYvalue": -1,
+    "horizontal_bounds": 2
+  },
+  "inside_spawning": true,
+  "setHomeOnSpawn": true,
+  "homeRadius": 12,
+  "spawnCap": 1,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:hobbit"
+    }
+  ]
+}

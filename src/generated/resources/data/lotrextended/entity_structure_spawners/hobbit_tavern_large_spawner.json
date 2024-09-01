@@ -1,0 +1,26 @@
+{
+  "id": "lotrextended:hobbit_tavern_large_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -9,
+    "horizontal_bounds": 20
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 12
+  },
+  "inside_spawning": true,
+  "setHomeOnSpawn": true,
+  "homeRadius": 18,
+  "spawnCap": 15,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 4,
+      "maxSpawnCount": 7,
+      "entity_type": "lotr:hobbit"
+    }
+  ]
+}

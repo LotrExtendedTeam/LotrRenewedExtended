@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
+    "lotr:banana_fence_gate",
     "lotr:chestnut_fence_gate",
-    "lotr:banana_fence_gate"
+    "lotr:plum_fence_gate"
   ]
 }

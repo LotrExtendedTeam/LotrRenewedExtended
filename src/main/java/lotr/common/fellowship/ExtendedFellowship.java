@@ -5,8 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
-
+import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -47,7 +46,7 @@ public class ExtendedFellowship {
 	}
 	public void createAndRegister() {
 		ExtendedFellowshipHolderServer.addFellowship(this);
-		ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).addFellowship(this);
+		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
 	public void load(CompoundNBT arg0) {
@@ -143,13 +142,13 @@ public class ExtendedFellowship {
 			FellowshipMembers.remove(ownerUUID);
 		if (FellowshipAdmins.contains(ownerUUID))
 			FellowshipAdmins.remove(ownerUUID);
-		ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, ownerUUID)).addFellowship(this);
+		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
 	public void addFellowshipMember(UUID player) {
 		if (!isFellowshipOwner(player) && !this.FellowshipMembers.contains(player)) {
 			FellowshipMembers.add(player);
-			ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).addFellowship(this);
+			((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
 			markDirty();
 		}
 	}
@@ -158,7 +157,7 @@ public class ExtendedFellowship {
 			FellowshipMembers.remove(player);
 		if (FellowshipAdmins.contains(player))
 			FellowshipAdmins.remove(player);
-		ExtendedReflectionHelper.getFellowshipData(LOTRLevelData.serverInstance().getData(null, player)).removeFellowship(this);
+		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().removeFellowship(this);
 		markDirty();
 		}
 	}

@@ -5,7 +5,8 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import lotr.common.init.LOTRBiomes;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -40,12 +41,15 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_FORT.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HIDEOUT.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_HIDEOUT.get());
-		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_RUIN.get());
+		//addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_HOUSE_RUIN.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RANGER_WATCHTOWER.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ARNOR_RUINS.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_CAMP.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
-	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<NoFeatureConfig> structure) {
+
+	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<? extends IFeatureConfig> structure) {
 		tempMap.putIfAbsent(structure, DimensionStructuresSettings.DEFAULTS.get(structure));
 	}
 
@@ -60,7 +64,7 @@ public class BiomeStructureAdder {
      */
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
 		if(event.getName()!=null) {
-			if(event.getName().toString().equals("lotr:shire")) {
+			if(event.getName().equals(LOTRBiomes.SHIRE.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_LARGE);
@@ -71,90 +75,145 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_LARGE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_WINDMILL);
 			}
-			if(event.getName().toString().equals("lotr:shire_woodlands")
-					||event.getName().toString().equals("lotr:shire_moors")||event.getName().toString().equals("lotr:white_downs")) {
+			if(event.getName().equals(LOTRBiomes.SHIRE_WOODLANDS.getRegistryName())
+					||event.getName().equals(LOTRBiomes.SHIRE_MOORS.getRegistryName())||event.getName().equals(LOTRBiomes.WHITE_DOWNS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_WINDMILL);
 			}
-			if(event.getName().toString().equals("lotr:lone_lands")) {
+			if(event.getName().equals(LOTRBiomes.LONE_LANDS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
+			}
+			if(event.getName().equals(LOTRBiomes.LONE_LANDS_HILLS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+			}
+			if(event.getName().equals(LOTRBiomes.ERIADOR.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
+			}
+			if(event.getName().equals(LOTRBiomes.ERIADOR_DOWNS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
+			}
+			if(event.getName().equals(LOTRBiomes.MINHIRIATH.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
-			if(event.getName().toString().equals("lotr:lone_lands_hills")) {
+			if(event.getName().equals(LOTRBiomes.ERYN_VORN.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
-			}
-			if(event.getName().toString().equals("lotr:eriador")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+			}
+			if(event.getName().equals(LOTRBiomes.TOWER_HILLS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+			}
+			if(event.getName().equals(LOTRBiomes.SWANFLEET.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+			}
+			if(event.getName().equals(LOTRBiomes.HILLS_OF_EVENDIM.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 			}
-			if(event.getName().toString().equals("lotr:eriador_downs")) {
+			if(event.getName().equals(LOTRBiomes.ENEDWAITH.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+			}
+			if(event.getName().equals(LOTRBiomes.TROLLSHAWS.getRegistryName())) {
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
+				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RUINED_HOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 			}
-			if(event.getName().toString().equals("lotr:minhiriath")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+			if(event.getName().equals(LOTRBiomes.NORTHERN_WILDERLAND.getRegistryName())) {;
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
-			if(event.getName().toString().equals("lotr:eryn_vorn")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_FORT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HIDEOUT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_HIDEOUT);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+			if(event.getName().equals(LOTRBiomes.LONG_MARSHES.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
-			if(event.getName().toString().equals("lotr:tower_hills")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
+			if(event.getName().equals(LOTRBiomes.ANDUIN_HILLS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
-			if(event.getName().toString().equals("lotr:swanfleet")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
+			if(event.getName().equals(LOTRBiomes.VALES_OF_ANDUIN.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
-			if(event.getName().toString().equals("lotr:hills_of_evendim")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
-			}
-			if(event.getName().toString().equals("lotr:enedwaith")) {
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_WATCHTOWER);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_HOUSE_RUIN);
-				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
+			if(event.getName().equals(LOTRBiomes.GLADDEN_FIELDS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
 		}
 	}

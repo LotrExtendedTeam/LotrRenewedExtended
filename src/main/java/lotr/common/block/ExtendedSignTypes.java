@@ -10,6 +10,7 @@ public class ExtendedSignTypes {
 	private static final List<WoodType> allExtendedModTypes = new ArrayList<>();
 	public static final WoodType CHESTNUT = register("chestnut");
 	public static final WoodType BANANA = register("banana");
+	public static final WoodType PLUM = register("plum");
 
 	private static final String createFullName(String s) {
 		return "lotr/" + s;

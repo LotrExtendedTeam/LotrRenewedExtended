@@ -1,8 +1,9 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "lotrextended:block/template_conquest_table",
   "textures": {
-    "side": "lotrextended:block/conquest_table_side",
-    "bottom": "lotrextended:block/conquest_table_bottom",
-    "top": "lotrextended:block/conquest_table_top"
+    "table_top": "lotrextended:block/conquest_table_map",
+    "block": "lotrextended:block/conquest_table_block",
+    "table_bottom": "lotrextended:block/conquest_table_bottom",
+    "particle": "lotrextended:block/conquest_table_map"
   }
 }

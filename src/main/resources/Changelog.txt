@@ -1,3 +1,152 @@
+(Beta 1.6.0)
+* Blocks
+ * Added Banana Branch
+ * Added Banana Wood
+ * Added Banana Wood Slab
+ * Added Banana Wood Stairs
+ * Added Black Warg  Fur Carpet
+ * Added Brown Warg  Fur Carpet
+ * Added Gray Warg  Fur Carpet
+ * Added Orc Barrel
+ * Added Orc Steel Door
+ * Added Orc Steel Trapdoor
+ * Added Plum Branch
+ * Added Plum Wood
+ * Added Plum Wood Slab
+ * Added Plum Wood Stairs
+ * Added Silver Warg  Fur Carpet
+ * Added Stripped Banana Branch
+ * Added Stripped Banana Wood
+ * Added Stripped Banana Wood Slab
+ * Added Stripped Banana Wood Stairs
+ * Added Stripped Plum Branch
+ * Added Stripped Plum Log
+ * Added Stripped Plum Log Slab
+ * Added Stripped Plum Wood
+ * Added Stripped Plum Wood Slab
+ * Added Stripped Plum Wood Stairs
+ * Added White Warg  Fur Carpet
+ * Made Conquest Table change texture by Shift-Click placing
+ * Made Conquest Table place directional
+ * Ported Blue Mountains Banner
+ * Ported Durin’s Folk Banner
+ * Ported Fallen Plum Leaves
+ * Ported Gundabad Orc Banner
+ * Ported Morgul Chandelier
+ * Ported Orc Chandelier
+ * Ported Plum Beam
+ * Ported Plum Beam Slab
+ * Ported Plum Button
+ * Ported Plum Door
+ * Ported Plum Fence
+ * Ported Plum Fence Gate
+ * Ported Plum Leaves
+ * Ported Plum Log
+ * Ported Plum Log Slab
+ * Ported Plum Planks
+ * Ported Plum Planks Slab
+ * Ported Plum Planks Stairs
+ * Ported Plum Pressure Plate
+ * Ported Plum Sapling
+ * Ported Plum Sign
+ * Ported Plum Trapdoor
+ * Ported Uruk Chandelier
+* Commands
+ * Added a command to set extended server config values in-game (sort of like /gamerules)
+ * Fixed a few issues with the fellowship command
+* Entities
+ * Added Ducks
+ * Added many Vanilla, Renewed, and Extended foods as duck feedables
+ * Implemented a system for making gendered mobs
+ * Made ducks use different textures based upon gender
+* GUIs
+ * Made Trader GUI close when button clicked with low alignment
+ * Optimized the layout of the Options GUI
+* Items
+ * Added Black Warg Helmet, Chestplate, Leggings, Boots
+ * Added Bone Axe
+ * Added Bone Dagger
+ * Added Bone Hoe
+ * Added Bone Pickaxe
+ * Added Bone Shovel
+ * Added Bone Spear
+ * Added Bone Sword
+ * Added Brown Warg Helmet, Chestplate, Leggings, Boots
+ * Added Cooked Duck Meat
+ * Added Duck Meat
+ * Added Duck eggs that ducks randomly drop currently how chickens work too (These duck eggs spawn baby ducks)
+ * Added Gray Warg Helmet, Chestplate, Leggings, Boots
+ * Added Gundabad Banner Pattern
+ * Added Gundabad Shield
+ * Added Plum Boat
+ * Added Silver Warg Helmet, Chestplate, Leggings, Boots
+ * Added White Warg Helmet, Chestplate, Leggings, Boots
+ * Ported Plum
+* Language
+ * Added Chinese (Taiwan) translation (zh_tw)
+ * Added dedicated speech-banks for a Hobbit Bartenders and Farmers
+ * Added localization for bow stats (damage, range, speed)
+ * Added localization for the entire fellowship command
+ * Fixed a typo with Dunedain Banners
+ * Updated Russian localization
+* Misc
+ * Added 2 new advancements in Extended (16 currently)
+ * Added 52 advancements from Legacy (31.9% currently)
+ * Added a message in the Fellowship GUI to use the command
+ * Added a setting for servers to require metal doors and trapdoors added by extended to be powered to open
+ * Changed Morgul Lantern recipe to use one Morgul Torch surrounded by Orc Steel Nuggets
+ * Enabled Renewed ResourcePack by default
+ * Fixed an issue with consuming advancements triggering by just holding the item
+ * Made Bedrolls, Branding Irons, and Orc Barrels use forge:leather tag in their recipes (allowing for modded leathers to be used)
+ * Tweaked Chest loot-tables across the board to reduce the rate of OP loot
+ * Updated Advancement Task/Goal/Challenge colors
+ * Updated Master Hunter advancement to use warg armors instead of fur armor
+* Sounds
+ * Added all new Hurt, Death and Ambiance sounds for Ducks
+ * Added new Reed Basket Open/Close sounds
+* Structures
+ * Added General Ruin altar variants (12 small, 8 large, 4 grand)
+ * Added General Ruined Turret variants (4 versions)
+ * Added General Ruined Wall variants (7 states of decay)
+ * Added General Ruined Wells variants (10 versions)
+ * Added Gundabad Camps in all applicable renewed biomes
+ * Added Ruined Arnor Towers (12 versions)
+ * Added Ruins structures to the Trollshaws
+ * Finished DataDriven (dataPackable) Entity Spawner System for Structures
+ * Finished Dynamic Wood Pallets for Structures. (WIP since December) (All Vanilla+Renewed+Extended Wood pallets)
+ * Fixed Ranger Camp fir wood type sometimes spawning halved firepits
+ * Nerfed structure spawn rates across the board to spread structures out a bit more
+ * Tweaked Ruin pools to have make some structures spawn more than others
+ * Updated all relevant structures with the new entity spawner
+* Textures
+ * Finally added a model and textures to the Conquest Table
+ * Fixed Small banners having a dark shadow shading
+ * Remastered Blue Mountains Banner texture
+ * Remastered Durin’s Folk Banner texture
+ * Remastered Gundabad Orc Banner texture
+ * Remastered Morgul Chandelier texture
+ * Remastered Orc Chandelier texture
+ * Remastered Plum Wood type textures
+ * Remastered Plum texture
+ * Remastered Uruk Chandelier texture
+* Trading
+ * Added a tooltip that shows the cooldown and number of items left on a trade
+ * Allowed talking to traders even if you don't have the required alignment to trade/exchange coins with them
+ * Implemented new Wandering Trader system
+
+(Beta 1.5.2)
+* Blocks
+ * Fixed a bug with bedroll events and players spawning in servers for first time
+ * Fixed Hobbit and Dunedain banner’s dropping incorrectly (double or nothing drops)
+* Language
+ * Fixed a typo with Hobbit Banners
+* Misc
+ * Added more compat for Lotr: Companions
+ * Added server setting to disable fishing enchanted items in Middle Earth
+ * Remove broken hacky fishing loot-table
+* Structures
+ * Fixed structure block items being saved in some ranger tents
+
 (Beta 1.5.1)
 * Blocks
  * Added Hanging Bananas

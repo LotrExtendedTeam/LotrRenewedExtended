@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:block/template_branch_post",
+  "textures": {
+    "branch": "lotrextended:block/plum_log"
+  }
+}

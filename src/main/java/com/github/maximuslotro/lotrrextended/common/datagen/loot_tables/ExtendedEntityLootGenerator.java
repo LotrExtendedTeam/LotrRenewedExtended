@@ -19,16 +19,19 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.TableLootEntry;
 import net.minecraft.loot.LootTable.Builder;
+import net.minecraft.loot.conditions.EntityHasProperty;
 import net.minecraft.loot.conditions.KilledByPlayer;
 import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.conditions.RandomChanceWithLooting;
 import net.minecraft.loot.functions.LootingEnchantBonus;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.loot.functions.Smelt;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -50,6 +53,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation lembas;
 	ResourceLocation rareDwarfDrops;
 	ResourceLocation pouch;
+	ResourceLocation mugs;
+	ResourceLocation foodItems;
 	//Bases
 	ResourceLocation orcBase;
 	ResourceLocation elfBase;
@@ -131,6 +136,24 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
 				.add(genQuickyItemBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 1, 4).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.12F, 0.025F))));
+		mugs = makeQuickyBasePart("mugs", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
+				.add(genQuickyItemBuilder(LOTRItems.WOODEN_MUG.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(LOTRItems.CERAMIC_MUG.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(LOTRItems.CLAY_MUG.get(), 1, 1).setWeight(5))
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
+		foodItems = makeQuickyBasePart("food_items", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
+				.add(genQuickyItemBuilder(Items.COOKED_BEEF, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(Items.COOKED_CHICKEN, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(Items.COOKED_COD, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(Items.COOKED_RABBIT, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(Items.COOKED_MUTTON, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(Items.COOKED_PORKCHOP, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(Items.APPLE, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(LOTRItems.PEAR.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(LOTRItems.LETTUCE.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.PLUM.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
 	}
 
 	private void makeBaseTables() {
@@ -279,7 +302,21 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
-		add(ExtendedEntities.DUCK_ENTITY.get(), LootTable.lootTable()); //TODO add duck meat, feathers, etc
+		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
+		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
+		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
+	    		.withPool(makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(Items.FEATHER, 0.0F, 2.0F)))
+	    		.withPool(makeQuickyPoolBuilder(1)
+	    				.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
+	    						.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
+
+	}
+
+	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {
+		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/" + name);
+		add(loc, builder);
+		return loc;
 	}
 
 	public ResourceLocation makeQuickyBasePart(String name, Builder builder) {
@@ -287,6 +324,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		add(loc, builder);
 		return loc;
 	}
+
 	public ResourceLocation makeQuickyFactionPart(String name, Builder builder) {
 		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/faction_bases/" + name);
 		add(loc, builder);
@@ -336,7 +374,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount, float minloot, float maxloot){
 		return genQuickyItemBuilder(item)
-				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(minloot, maxloot)))
 				.apply(SetCount.setCount(RandomValueRange.between(minCount, maxCount)));
 	}
 	

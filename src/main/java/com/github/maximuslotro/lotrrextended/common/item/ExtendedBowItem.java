@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
 import lotr.common.init.LOTRItemGroups;
-import lotr.common.init.LOTRMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -17,34 +16,28 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
+
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBowMaterial;
+
 import java.util.List;
 
 public class ExtendedBowItem extends BowItem {
 
-    private double arrowDamageFactor;
+	private final ExtendedBowMaterial bowMaterial;
 
-    public ExtendedBowItem(LOTRMaterial material) {
-        this(material, 1.0);
-    }
+	public ExtendedBowItem(ExtendedBowMaterial material) {
+		super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(material.getDurability()));
+		this.bowMaterial = material;
+	}
 
-    public ExtendedBowItem(LOTRMaterial material, double damageFactor) {
-        this(material == LOTRMaterial.RANGER_NORTH ? 525 : 400, damageFactor);
-        this.arrowDamageFactor = damageFactor;
-    }
-
-    public ExtendedBowItem(int durability, double damageFactor) {
-        super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(durability));
-        this.arrowDamageFactor = damageFactor;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
-        tooltip.add(new StringTextComponent(""));
-        tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", "100%").withStyle(TextFormatting.DARK_GREEN));
-        tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", arrowDamageFactor * 100)).withStyle(TextFormatting.DARK_GREEN));
-        tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", arrowDamageFactor * 100)).withStyle(TextFormatting.DARK_GREEN));
-    }
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+		super.appendHoverText(stack, world, tooltip, flag);
+		tooltip.add(new StringTextComponent(""));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(bowMaterial.getDrawSpeedTicks()/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", bowMaterial.getAttackDamageBonusScale() * 100)).withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", bowMaterial.getAttackDamageBonusScale() * 100)).withStyle(TextFormatting.DARK_GREEN));
+	}
 
     @Override
     public void releaseUsing(ItemStack bow, World p_77615_2_, LivingEntity p_77615_3_, int p_77615_4_) {
@@ -63,15 +56,19 @@ public class ExtendedBowItem extends BowItem {
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float f = getPowerForTime(i);
-                if (f >= 0.1D) {
+                float charge = i / (float)bowMaterial.getDrawSpeedTicks();
+				charge = (charge * charge + charge * 2.0F) / 3.0F;
+				if (charge > 1.0F) {
+					charge = 1.0F;
+				}
+                if (charge >= 0.1D) {
                     boolean flag1 = playerentity.abilities.instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, bow, playerentity);
                     if (!p_77615_2_.isClientSide) {
                         ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                         AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(p_77615_2_, itemstack, playerentity);
                         abstractarrowentity = this.customArrow(abstractarrowentity);
-                        abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, f * 3.0F * getLaunchSpeedFactor(bow), 1.0F);
-                        if (f == 1.0F) {
+                        abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, charge * 3.0F * getLaunchSpeedFactor(bow), 1.0F);
+                        if (charge == 1.0F) {
                             abstractarrowentity.setCritArrow(true);
                         }
 
@@ -99,7 +96,7 @@ public class ExtendedBowItem extends BowItem {
                         p_77615_2_.addFreshEntity(abstractarrowentity);
                     }
 
-                    p_77615_2_.playSound(null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    p_77615_2_.playSound(null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
                     if (!flag1 && !playerentity.abilities.instabuild) {
                         itemstack.shrink(1);
                         if (itemstack.isEmpty()) {
@@ -118,7 +115,7 @@ public class ExtendedBowItem extends BowItem {
         float f = 1.0F;
         if (itemstack != null) {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
-                f = (float)(f * ((ExtendedBowItem)itemstack.getItem()).arrowDamageFactor);
+                f = (float)(f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale());
             }
             // TODO: When we add smithing scrolls back in we can use this code
             //f*= LOTREnchantmentHelper.calcRangedDamageFactor(itemstack);
@@ -131,4 +128,24 @@ public class ExtendedBowItem extends BowItem {
         return 15;
         //return (int) Math.ceil(15 * arrowDamageFactor);
     }
+
+	/**
+	 * Return the enchantability factor of the item, most of the time is based on material.
+	 */
+	@Override
+	public int getEnchantmentValue() {
+		return this.bowMaterial.getEnchantabilityValue();
+	}
+
+	/**
+	 * Return whether this item is repairable in an anvil.
+	 */
+	@Override
+	public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+		return this.bowMaterial.getRepairIngredient().test(pRepair) || super.isValidRepairItem(pToRepair, pRepair);
+	}
+
+	public ExtendedBowMaterial getMaterial() {
+		return this.bowMaterial;
+	}
 }

@@ -3,8 +3,6 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
@@ -26,10 +24,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 	protected void makeTranslations() {
 		//Add default made Spawner Names
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.entrySet()) {
-			addOverride(block.getValue().get().getDescriptionId(), ((ExtendedGroupSpawnerBlock)block.getValue().get()).getEntitySpawn().getSerializedName() + " Spawner");
+			addOverrideRemove(block.getValue().get().getDescriptionId());
 		}
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYSPAWNERBLOCKS.entrySet()) {
-			addOverride(block.getValue().get().getDescriptionId(), ((ExtendedSpawnerBlock)block.getValue().get()).getEntitySpawn().getSerializedName() + " Spawner");
+			addOverrideRemove(block.getValue().get().getDescriptionId());
 		}
 
 		// Try Add New Block Names
@@ -76,6 +74,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Try Add New Attributes Names
+		for (Entry<String, String> entity : DataGenValueHolder.attributeNames.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
+		}
+
 		// Try Add New Advancement Values
 		for (Entry<String, String> entity : DataGenValueHolder.advancementHolder.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
@@ -119,6 +122,67 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.tooltip.cooldown", "On Cooldown");
 		addD("gui.lotrextended.trading.tooltip.new_trade_freq", "A trade comes back every minute.");
 		addD("gui.lotrextended.trading.tooltip.trades_used", "%1$s/%2$s Used");
+		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived nearby");
+		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
+		addD("chat.wandering_trader.left_the_area", "%1$s has left the area");
+
+		// wandering trader departure lines
+		// TODO: Eventually these should properly be moved to the speechbanks files but that is pretty complex to do
+		//  and in order to get 1.6 out quicker I have decided that it can wait until 1.7
+		addD("speechbank.oddment_collector.departure.1", "%1$s: Come now, %2$s. Or you shall forever hold your scrap!");
+		addD("speechbank.oddment_collector.departure.2", "%1$s: %2$s, are you sure you have no scrap to spare? For I shall have to leave soon! I accept firstborns for coin too...");
+		addD("speechbank.oddment_collector.departure.3", "%1$s: It is almost time for me to leave, %2$s. So hurry if you want me to take your oddments off your hands!");
+		addD("speechbank.oddment_collector.departure.4", "%1$s: I'm sure we can strike one last deal, %2$s.");
+		addD("speechbank.oddment_collector.departure.5", "%1$s: Can you spare just a little more scrap before I depart these forsaken lands?");
+		addD("speechbank.oddment_collector.departure.6", "%1$s: It's the scrap that's never collected that takes longest to sell, %2$s. So before I leave, can you not spare a little more scrap for a poor old oddment collector?");
+		addD("speechbank.oddment_collector.departure.7", "%1$s: I shall soon be taking a well-earned break. So, quickly, %2$s, bring me your last scrap!");
+		addD("speechbank.oddment_collector.departure.8", "%1$s: I fear this place has little else to offer me in the scrap market. I shall soon depart to richer lands.");
+		addD("speechbank.oddment_collector.departure.9", "%1$s: The scrap that one hoards is worth little more than pebbles, %2$s. So come now and sell that rubbish of yours before I go far away!");
+		addD("speechbank.oddment_collector.departure.10", "%1$s: The road must go on, %2$s! Who am I but a humble scrap collector to stop it. So before I hasten over the hills, let me rid you of any unwanted odds and ends.");
+		addD("speechbank.oddment_collector.departure.12", "%1$s: Come trade with me quickly, %2$s! For I shall soon be leaving these lands to seek the wealth of the Gundabad Orcs.");
+		addD("speechbank.oddment_collector.departure.14", "%1$s: I'm feeling thirsty, %2$s. A stay at a good inn would do me well! Luckily I know one near the mountains blue, so come quick or you shall miss me.");
+		addD("speechbank.oddment_collector.departure.15", "%1$s: My deals don't last forever, %2$s.");
+		addD("speechbank.oddment_collector.departure.16", "%1$s: A rest in a comfortable bed beckons, %2$s. Oddment collectors have to sleep too!");
+		addD("speechbank.oddment_collector.departure.17", "%1$s: Roll up, roll up! Last scrap deals for many weeks!");
+		addD("speechbank.oddment_collector.departure.18", "%1$s: Do you have no more scrap, %2$s? Then I shall have to leave.");
+		addD("speechbank.oddment_collector.departure.19", "%1$s: We scrap collectors move often to find the best sources of oddments. I am no exception, %2$s.");
+		addD("speechbank.oddment_collector.departure.20", "%1$s: Business is slow here. Perhaps it is time to seek my fortunes elsewhere.");
+		addD("speechbank.oddment_collector.departure.21", "%1$s: I hear the Mango-Men of Harad have plenty of scrap iron. Perhaps I should seek them instead of waiting for you to empty your pockets, %2$s.");
+
+		// Galadhrim Wanderer departure lines
+		addD("speechbank.galadhrim_wanderer.departure.1", "%1$s: My longing for the sea grows ever deeper. I think I shall be leaving soon.");
+		addD("speechbank.galadhrim_wanderer.departure.2", "%1$s: My time here is almost at an end.");
+		addD("speechbank.galadhrim_wanderer.departure.3", "%1$s: I shall not stay in these lands much longer.");
+		addD("speechbank.galadhrim_wanderer.departure.4", "%1$s: The time has almost come to move on.");
+		addD("speechbank.galadhrim_wanderer.departure.5", "%1$s: I will not tarry here forever.");
+		addD("speechbank.galadhrim_wanderer.departure.6", "%1$s: The wind is calling. I must away soon.");
+		addD("speechbank.galadhrim_wanderer.departure.7", "%1$s: If you wish to trade with me, you should hurry. I will be leaving soon.");
+		addD("speechbank.galadhrim_wanderer.departure.8", "%1$s: I will have to depart soon.");
+		addD("speechbank.galadhrim_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
+
+		// Rivendell Wanderer departure lines
+		addD("speechbank.rivendell_wanderer.departure.1", "%1$s: My longing for the sea grows ever deeper. I think I shall be leaving soon.");
+		addD("speechbank.rivendell_wanderer.departure.2", "%1$s: My time here is almost at an end.");
+		addD("speechbank.rivendell_wanderer.departure.3", "%1$s: I shall not stay in these lands much longer.");
+		addD("speechbank.rivendell_wanderer.departure.4", "%1$s: The time has almost come to move on.");
+		addD("speechbank.rivendell_wanderer.departure.5", "%1$s: I will not tarry here forever.");
+		addD("speechbank.rivendell_wanderer.departure.6", "%1$s: The wind is calling. I must away soon.");
+		addD("speechbank.rivendell_wanderer.departure.7", "%1$s: If you wish to trade with me, you should hurry. I will be leaving soon.");
+		addD("speechbank.rivendell_wanderer.departure.8", "%1$s: I will have to depart soon.");
+		addD("speechbank.rivendell_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
+
+		// Blue Mountains Merchant departure lines
+		addD("speechbank.blue_mountains_merchant.departure.1", "%1$s: Well, I'll be on my way soon enough.");
+		addD("speechbank.blue_mountains_merchant.departure.2", "%1$s: I can't stay here forever. Other lands to visit, other goods to trade...");
+		addD("speechbank.blue_mountains_merchant.departure.3", "%1$s: If you wish to trade with me, you would be wise to hurry!");
+		addD("speechbank.blue_mountains_merchant.departure.4", "%1$s: The riches of the Blue Mountains shall not wait here forever.");
+		addD("speechbank.blue_mountains_merchant.departure.5", "%1$s: This is your last chance to get an excellent Dwarvish bargain!");
+		addD("speechbank.blue_mountains_merchant.departure.6", "%1$s: I shall be leaving soon, but there is still time for a trade or two!");
+		addD("speechbank.blue_mountains_merchant.departure.7", "%1$s: Business cannot wait, Person! I will not stay here for too long.");
+		addD("speechbank.blue_mountains_merchant.departure.8", "%1$s: Other lands await! I'll be leaving soon.");
+		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry, Person! I will have to depart these lands soon.");
+		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well, you had better be quick. I'll be on my way soon!");
+		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, Person! If you wish to trade with me, you must do it now!");
 
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
@@ -136,8 +200,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
 		addD("gui.lotrextended.settings.rankGender.title", "Feminine Rank Override");
 		addD("gui.lotrextended.settings.rankGender.setting", "Feminine Rank Override: ");
-		addD("gui.lotrextended.settings.devtoggle.title", "Dev Mode");
-		addD("gui.lotrextended.settings.devtoggle.setting", "Dev Mode: ");
+		addD("gui.lotrextended.settings.devtoggle.title", "Client Dev Mode");
+		addD("gui.lotrextended.settings.devtoggle.setting", "Client Dev Mode: ");
+		addD("gui.lotrextended.settings.devtoggle.setting.forced", "Client Dev Mode: Server Forced");
 		addD("gui.lotrextended.settings.fsbr.title", "Force StrBlock Air Rendering");
 		addD("gui.lotrextended.settings.fsbr.setting", "Force StrBlock Air Rendering: ");
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");

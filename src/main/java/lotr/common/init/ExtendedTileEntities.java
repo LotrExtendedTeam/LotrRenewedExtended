@@ -24,6 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 
+@SuppressWarnings("deprecation")
 public class ExtendedTileEntities {
 	public static final Map<String, RegistryObject<TileEntityType<ExtendedStructureSpawnerTileEntity<? extends TileEntity, ? extends MobEntity>>>> SPAWNER_TILEENTITYS = new HashMap<>();
 	public static final Map<String, RegistryObject<TileEntityType<ExtendedStructureGroupSpawnerTileEntity<? extends TileEntity>>>> SPAWNER_GROUP_TILEENTITYS = new HashMap<>();

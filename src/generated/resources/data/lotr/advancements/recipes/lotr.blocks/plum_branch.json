@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:plum_branch"
+    ]
+  },
+  "criteria": {
+    "has_plum_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_branch"
+          }
+        ]
+      }
+    },
+    "has_plum_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:plum_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_branch",
+      "has_plum_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

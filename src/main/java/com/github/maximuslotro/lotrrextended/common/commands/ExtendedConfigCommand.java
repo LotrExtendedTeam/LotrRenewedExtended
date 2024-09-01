@@ -75,7 +75,7 @@ public class ExtendedConfigCommand
 								cantSetValue(context.getSource(), "enableDevMode");
 								return Command.SINGLE_SUCCESS;})
 							)
-						.executes(context -> retrieveValue(context.getSource(), "enableDevMode", ExtendedServerConfig.enableEnchantedLootDrops.get()))
+						.executes(context -> retrieveValue(context.getSource(), "enableDevMode", ExtendedServerConfig.enableDevMode.get()))
 				)
 				.then(Commands.literal("enableExtendedLogging")
 						.then(Commands.argument("set", BoolArgumentType.bool())
@@ -84,7 +84,7 @@ public class ExtendedConfigCommand
 								setValue(context.getSource(), "enableExtendedLogging", BoolArgumentType.getBool(context, "set"));
 								return Command.SINGLE_SUCCESS;})
 							)
-						.executes(context -> retrieveValue(context.getSource(), "enableExtendedLogging", ExtendedServerConfig.enableEnchantedLootDrops.get()))
+						.executes(context -> retrieveValue(context.getSource(), "enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging.get()))
 				));
 	}
 

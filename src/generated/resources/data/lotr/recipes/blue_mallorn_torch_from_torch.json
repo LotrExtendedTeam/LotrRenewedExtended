@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    " T ",
+    "TMT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "M": {
+      "tag": "lotr:blue_mallorn_colorants"
+    }
+  },
+  "result": {
+    "item": "lotr:blue_mallorn_torch",
+    "count": 4
+  }
+}

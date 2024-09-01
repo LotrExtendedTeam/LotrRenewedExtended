@@ -1,0 +1,55 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "As you can see, #p, my feet ache from this heavy load. Care you to buy something?",
+        "We Dwarves do not usually trade with Men, but you are an exception, #p.",
+        "Ale, armour, weapons - you want it, it's yours, my friend! As long as you have enough coins...",
+        "I come from the mighty strongholds of the Blue Mountains, #p. No other Dwarves boast riches quite like ours.",
+        "I am travelling the land in search of wealth - perhaps you are doing the same, #p?",
+        "Give me some coins, #p, and I shall be a very happy merchant indeed!",
+        "Greetings, #p! Do you wish to buy some goods from me?",
+        "I bring great treasures from the Blue Mountains! You can have them... for a certain price!",
+        "Do you wish to trade with me, #p? I have several items which might be of interest to you.",
+        "I will sell you anything for a fair price!",
+        "Do you want to trade with me, #p? For a few dozen silver coins you can enjoy the craftwork of the Dwarves of Ered Luin!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Don't expect to get the better of me, you rowdy lad!",
+        "You are no match for the kinsmen of the Blue Mountains!",
+        "You should not have come here, #p!",
+        "I'll cleave your miserable skull in twain!",
+        "Come on, lad! Show me what you've got!",
+        "Suffer the wrath of the Dwarves, #p!",
+        "Came you here only to be crushed?",
+        "Out with you, Morgul-scum!",
+        "Draw your last breath, #p!",
+        "No Dwarven ale for you!",
+        "Raaarrrgh!",
+        "I'll crush you like a rock, lad!",
+        "You have underestimated us, #p!",
+        "You're a nasty piece of work, #p!",
+        "What were you thinking, picking a fight with me? Ha!",
+        "Woe and ruin upon you and your kin, #p!",
+        "Khazâd ai-mênu!",
+        "Ishkhaqwi ai durugnul!",
+        "May you die in dragon-fire!",
+        "How dare you enter our lands?",
+        "Begone, Orc-scum!",
+        "You will pay for trespassing here, Morgul-scum!"
+      ]
+    }
+  ]
+}

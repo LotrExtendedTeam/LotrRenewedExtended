@@ -1,5 +1,5 @@
 {
-	"name": "lotrextended:ranger/camp_parts/hay_four_chestnut_pool",
+	"name": "lotrextended:ranger/camp_parts/tent_chestnut_pool",
 	"fallback": "lotrextended:ranger/camp_parts/path_chestnut_tent_override_pool",
 	"elements": [
 		{

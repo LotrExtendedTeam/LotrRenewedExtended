@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
-import lotr.common.entity.projectile.ExtendedConkerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -24,6 +26,10 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedOddmentCollectorEntity>> ODDMENT_COLLECTOR;
 	public static RegistryObject<EntityType<ExtendedConkerEntity>> THROWN_CONKER;
 	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
-	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK_ENTITY;
+	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK;
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
+	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
+	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
+	public static RegistryObject<EntityType<ExtendedGundabadOrcTraderEntity>> GUNDABAD_CAMP_TRADER;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsMerchantEntity>> BLUE_MOUNTAINS_MERCHANT;
 }

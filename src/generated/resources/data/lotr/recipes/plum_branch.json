@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:plum_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:plum_branch",
+    "count": 6
+  }
+}

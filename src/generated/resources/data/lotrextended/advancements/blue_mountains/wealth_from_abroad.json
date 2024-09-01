@@ -1,0 +1,42 @@
+{
+  "parent": "lotrextended:blue_mountains/firebeards_and_broadbeams",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "color": "green",
+      "translate": "advancements.lotrextended.blue_mountains.wealth_from_abroad.title"
+    },
+    "description": {
+      "color": "white",
+      "translate": "advancements.lotrextended.blue_mountains.wealth_from_abroad.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_blue_mountains_merchant_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:blue_mountains_merchant",
+        "istraderselling": "false"
+      }
+    },
+    "trade_blue_mountains_merchant_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:blue_mountains_merchant",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_blue_mountains_merchant_buy",
+      "trade_blue_mountains_merchant_sell"
+    ]
+  ]
+}

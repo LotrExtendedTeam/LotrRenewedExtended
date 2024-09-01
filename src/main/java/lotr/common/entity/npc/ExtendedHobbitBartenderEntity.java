@@ -27,6 +27,7 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import static lotr.common.item.VesselDrinkItem.Potency;
@@ -42,6 +43,10 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.OPTIONAL_UUID);
+    private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.INT);
+
+    private List<UUID> escorts = new ArrayList<>();
 
     // trading pools that bartenders will buy from players
     private final ExtendedTradeEntries HOBBIT_BARTENDER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
@@ -121,6 +126,9 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
+        this.entityData.define(IS_WANDERING_TRADER, false);
+        // start at 1000 ticks just to make sure there's no chance they immediately despawn
+        this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
     public boolean canTradeWith(PlayerEntity player) {
@@ -139,20 +147,24 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
 
-        TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, itemsBoughtByTrader, tag);
-        TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.SOLD, itemsSoldByTrader, tag);
+        saveAllTrades(tag);
+        ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
-        if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, tag) != null) {
-            itemsBoughtByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, tag);
-        }
-        if (TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag) != null) {
-            itemsSoldByTrader = TradeUtils.loadAllTrades(ExtendedTradeEntries.TradeType.SOLD, tag);
-        }
+        loadAllTrades(tag);
+
+        // load values related to wandering traders
+        int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
+        entityData.set(WANDERING_TRADER_TIME_LEFT, wanderingTraderTimeLeft);
+
+        boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
+        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+
+        escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
     @Override
@@ -226,6 +238,31 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     }
 
     @Override
+    public boolean isWanderingTrader() {
+        return entityData.get(IS_WANDERING_TRADER);
+    }
+
+    @Override
+    public void setWanderingTrader(boolean isWanderingTrader) {
+        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
+    }
+
+    @Override
+    public int getWanderingTraderTicksLeft() {
+        return entityData.get(WANDERING_TRADER_TIME_LEFT);
+    }
+
+    @Override
+    public void setWanderingTraderTicksLeft(int ticksLeft) {
+        entityData.set(WANDERING_TRADER_TIME_LEFT, ticksLeft);
+    }
+
+    @Override
+    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
+        return null;
+    }
+
+    @Override
     public List<ExtendedTrade> getSells() {
         return itemsSoldByTrader;
     }
@@ -268,6 +305,32 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         } else {
             lastTickCooldownReduced++;
         }
+
+        ExtendedTraderHelper.tickTrader(this, this);
     }
 
+    @Override
+    public List<UUID> getEscortUUIDs() {
+       return escorts;
+    }
+
+    @Override
+    public void addEscort(UUID uuid) {
+        escorts.add(uuid);
+    }
+
+    @Override
+    public NPCEntity createEscort() {
+        return null;
+    }
+
+	@Override
+	public void setBuys(ArrayList<ExtendedTrade> trades) {
+		itemsBoughtByTrader = trades;
+	}
+
+	@Override
+	public void setSells(ArrayList<ExtendedTrade> trades) {
+		itemsSoldByTrader = trades;		
+	}
 }

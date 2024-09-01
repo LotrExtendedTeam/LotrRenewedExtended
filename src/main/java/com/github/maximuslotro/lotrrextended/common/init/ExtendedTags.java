@@ -61,6 +61,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> GREEN_FIRE_BASE_BLOCKS = BlockTags.bind("lotrextended:green_fire_base_blocks");
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
 		public static final ITag.INamedTag<Block> BANANA_LOGS = BlockTags.bind("lotrextended:banana_logs");
+		public static final ITag.INamedTag<Block> PLUM_LOGS = BlockTags.bind("lotrextended:plum_logs");
 	}
 
 	public static class Items {
@@ -137,8 +138,12 @@ public class ExtendedTags {
 	    public static final ITag.INamedTag<Item> EDHELVIR_ORE = ItemTags.bind("forge:ores/edhelvir");
 	    public static final ITag.INamedTag<Item> GULDURIL_ORE = ItemTags.bind("forge:ores/gulduril");
 	    
+	    public static final ITag.INamedTag<Item> FURS = ItemTags.bind("forge:furs");
+
 	    public static final ITag.INamedTag<Item> CHESTNUT_LOGS = ItemTags.bind("lotrextended:chestnut_logs");
 	    public static final ITag.INamedTag<Item> BANANA_LOGS = ItemTags.bind("lotrextended:banana_logs");
+	    public static final ITag.INamedTag<Item> PLUM_LOGS = ItemTags.bind("lotrextended:plum_logs");
+
 	    public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS = ItemTags.bind("lotrextended:weapon_rack_additional_items");
 	    public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_EXCLUDE = ItemTags.bind("lotrextended:weapon_rack_excluded_items");
 	    public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_FULL_SCALE = ItemTags.bind("lotrextended:weapon_rack_items_full_scale");

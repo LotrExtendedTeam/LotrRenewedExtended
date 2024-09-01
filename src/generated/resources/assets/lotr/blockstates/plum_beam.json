@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lotrextended:block/plum_beam",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lotrextended:block/plum_beam"
+    },
+    "axis=z": {
+      "model": "lotrextended:block/plum_beam",
+      "x": 90
+    }
+  }
+}

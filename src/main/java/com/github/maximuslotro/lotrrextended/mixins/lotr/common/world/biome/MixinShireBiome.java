@@ -10,7 +10,7 @@ import lotr.common.world.biome.ShireBiome;
 @Mixin(ShireBiome.class)
 public class MixinShireBiome {
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
@@ -26,6 +26,7 @@ public class MixinShireBiome {
 				LOTRBiomeFeatures.aspenLarge(), 100, LOTRBiomeFeatures.apple(), 50, 
 				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pear(), 50, 
 				LOTRBiomeFeatures.pearBees(), 1, LOTRBiomeFeatures.cherry(), 20, 
-				LOTRBiomeFeatures.cherryBees(), 1 };
+				LOTRBiomeFeatures.cherryBees(), 1, 
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1 };
 	}
 }

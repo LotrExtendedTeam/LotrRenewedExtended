@@ -11,7 +11,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class ExtendedPacketHandler {
 
-	private static final String PROTOCOL_VERSION = "5";
+	private static final String PROTOCOL_VERSION = "6";
 
 	private static SimpleChannel CHANNEL;
 
@@ -32,6 +32,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSPacketNpcMarriageInfo.class, ExtendedSPacketNpcMarriageInfo::encode, ExtendedSPacketNpcMarriageInfo::decode, ExtendedSPacketNpcMarriageInfo::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketSendServerSettings.class, ExtendedSPacketSendServerSettings::encode, ExtendedSPacketSendServerSettings::decode, ExtendedSPacketSendServerSettings::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketStopTradingWithTrader.class, ExtendedCPacketStopTradingWithTrader::encode, ExtendedCPacketStopTradingWithTrader::decode, ExtendedCPacketStopTradingWithTrader::handle);
+		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
 		if (id >= 255) {
 			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
 		}

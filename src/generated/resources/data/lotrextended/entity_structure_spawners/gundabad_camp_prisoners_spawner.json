@@ -1,0 +1,50 @@
+{
+  "id": "lotrextended:gundabad_camp_prisoners_spawner",
+  "spawner_type": "single_use_spawner",
+  "randomDiscardChance": 40,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_types": [
+        {
+          "weight": 80,
+          "entity_type": "lotr:hobbit"
+        },
+        {
+          "weight": 80,
+          "entity_type": "lotr:bree_hobbit"
+        },
+        {
+          "weight": 90,
+          "entity_type": "lotr:bree_man"
+        },
+        {
+          "weight": 50,
+          "entity_type": "lotr:dunedain_ranger"
+        },
+        {
+          "weight": 30,
+          "entity_type": "lotr:blue_mountains_dwarf"
+        },
+        {
+          "weight": 1,
+          "entity_type": "lotr:lindon_elf"
+        },
+        {
+          "weight": 1,
+          "entity_type": "lotr:rivendell_elf"
+        },
+        {
+          "weight": 5,
+          "entity_type": "lotr:gundabad_orc"
+        },
+        {
+          "weight": 5,
+          "entity_type": "lotr:gundabad_orc_archer"
+        }
+      ]
+    }
+  ]
+}

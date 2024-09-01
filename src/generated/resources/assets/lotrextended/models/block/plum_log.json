@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/plum_log",
+    "end": "lotrextended:block/plum_log_top"
+  }
+}

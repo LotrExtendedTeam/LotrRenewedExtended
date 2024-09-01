@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits;
 
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
@@ -11,8 +12,8 @@ import net.minecraft.world.gen.feature.structure.Structure;
 
 public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
 
-	public HobbitHoleLargeStructure() {
-		super(NoFeatureConfig.CODEC);
+	public HobbitHoleLargeStructure(StructureType type) {
+		super(NoFeatureConfig.CODEC, type);
 	}
 
 	@Override

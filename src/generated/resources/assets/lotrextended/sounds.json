@@ -17,7 +17,10 @@
   "entity.duck.idle": {
     "subtitle": "subtitles.lotrextended.entity.duck.idle",
     "sounds": [
-      "lotrextended:entity/duck/idle1"
+      "lotrextended:entity/duck/idle1",
+      "lotrextended:entity/duck/idle2",
+      "lotrextended:entity/duck/idle3",
+      "lotrextended:entity/duck/idle4"
     ]
   },
   "entity.duck.hurt": {
@@ -26,10 +29,40 @@
       "lotrextended:entity/duck/hurt1"
     ]
   },
+  "entity.duck.death": {
+    "subtitle": "subtitles.lotrextended.entity.duck.death",
+    "sounds": [
+      "lotrextended:entity/duck/death1"
+    ]
+  },
   "entity.duck.egg": {
     "subtitle": "subtitles.lotrextended.entity.duck.egg",
     "sounds": [
       "mob/chicken/plop"
+    ]
+  },
+  "block.reed_basket.open": {
+    "subtitle": "subtitles.lotrextended.block.reed_basket.open",
+    "sounds": [
+      "lotrextended:block/reed_basket/open1"
+    ]
+  },
+  "block.reed_basket.close": {
+    "subtitle": "subtitles.lotrextended.block.reed_basket.close",
+    "sounds": [
+      "lotrextended:block/reed_basket/close1"
+    ]
+  },
+  "block.stone_chest.open": {
+    "subtitle": "subtitles.lotrextended.block.stone_chest.open",
+    "sounds": [
+      "lotrextended:block/stone_chest/open1"
+    ]
+  },
+  "block.stone_chest.close": {
+    "subtitle": "subtitles.lotrextended.block.stone_chest.close",
+    "sounds": [
+      "lotrextended:block/stone_chest/close1"
     ]
   }
 }

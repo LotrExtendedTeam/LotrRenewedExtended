@@ -1,0 +1,47 @@
+{
+  "parent": "lotrextended:general/master_hunter",
+  "display": {
+    "icon": {
+      "item": "lotr:white_warg_fur_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.super_master_hunter.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.super_master_hunter.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "white_warg_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:white_warg_fur_helmet"
+          },
+          {
+            "item": "lotr:white_warg_fur_chestplate"
+          },
+          {
+            "item": "lotr:white_warg_fur_leggings"
+          },
+          {
+            "item": "lotr:white_warg_fur_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "white_warg_armor"
+    ]
+  ]
+}

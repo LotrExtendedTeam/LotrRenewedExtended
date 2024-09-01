@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_rope_middle",
+  "textures": {
+    "0": "lotrextended:block/rope",
+    "particle": "lotrextended:block/rope"
+  }
+}

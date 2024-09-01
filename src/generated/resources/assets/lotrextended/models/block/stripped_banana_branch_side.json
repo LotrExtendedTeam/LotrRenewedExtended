@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:block/template_branch_side",
+  "textures": {
+    "branch": "lotrextended:block/stripped_banana_log"
+  }
+}

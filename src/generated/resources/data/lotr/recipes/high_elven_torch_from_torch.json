@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    " T ",
+    "TMT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "M": {
+      "item": "lotr:edhelvir"
+    }
+  },
+  "result": {
+    "item": "lotr:high_elven_torch",
+    "count": 4
+  }
+}

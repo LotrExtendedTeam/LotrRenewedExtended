@@ -1,0 +1,15 @@
+{
+  "id": "lotrextended:dunedain_ranger_single_chance_spawner",
+  "spawner_type": "single_use_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 3,
+  "randomDiscardChance": 60,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:dunedain_ranger"
+    }
+  ]
+}

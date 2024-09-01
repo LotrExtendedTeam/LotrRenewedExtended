@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:plum_planks_from_plum_branch"
+    ]
+  },
+  "criteria": {
+    "has_plum_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_planks"
+          }
+        ]
+      }
+    },
+    "has_plum_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_branch"
+          }
+        ]
+      }
+    },
+    "has_stripped_plum_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:stripped_plum_branch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:plum_planks_from_plum_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_planks",
+      "has_plum_branch",
+      "has_stripped_plum_branch",
+      "has_the_recipe"
+    ]
+  ]
+}

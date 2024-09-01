@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:sapphire_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_sapphire_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:sapphire_ore"
+          }
+        ]
+      }
+    },
+    "has_sapphire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:sapphire"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:sapphire_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sapphire_ore",
+      "has_sapphire",
+      "has_the_recipe"
+    ]
+  ]
+}

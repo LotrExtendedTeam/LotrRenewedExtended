@@ -32,6 +32,8 @@ public class ExtendedKegLootGenerator extends ChestLootTables  {
                 		.add(addEntry(LOTRItems.CIDER.get(), 50))
                 		.add(addEntry(LOTRItems.PERRY.get(), 50))
                 		.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
+
+		make(consumer, ExtendedLootTables.GUNDABAD_KEGS, makePool().add(addEntry(LOTRItems.ORC_DRAUGHT.get(), 100)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){

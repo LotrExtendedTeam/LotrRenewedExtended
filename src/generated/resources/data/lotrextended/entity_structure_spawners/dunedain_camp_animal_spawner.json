@@ -1,0 +1,37 @@
+{
+  "id": "lotrextended:dunedain_camp_animal_spawner",
+  "spawner_type": "single_use_spawner",
+  "numRolls": 3,
+  "pools": [
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "minecraft:cow"
+    },
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "minecraft:sheep"
+    },
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "minecraft:pig"
+    },
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 5,
+      "entity_type": "minecraft:chicken"
+    },
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 2,
+      "entity_type": "minecraft:horse"
+    }
+  ]
+}

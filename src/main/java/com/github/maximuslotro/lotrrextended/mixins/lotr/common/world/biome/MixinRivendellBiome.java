@@ -12,7 +12,7 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 @Mixin(RivendellBiome.class)
 public class MixinRivendellBiome {
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */

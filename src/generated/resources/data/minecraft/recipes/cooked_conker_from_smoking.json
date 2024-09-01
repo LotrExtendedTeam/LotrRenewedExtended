@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "lotr:conker"
+  },
+  "result": "lotr:roasted_chestnut",
+  "experience": 0.15,
+  "cookingtime": 100
+}

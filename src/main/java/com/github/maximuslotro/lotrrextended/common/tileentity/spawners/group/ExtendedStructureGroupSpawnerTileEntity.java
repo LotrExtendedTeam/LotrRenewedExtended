@@ -7,6 +7,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Replaced by the new Entity Spawner system for Structures
+ * @deprecated
+ * @since beta-1.6
+ * */
 public abstract class ExtendedStructureGroupSpawnerTileEntity<V extends TileEntity> extends TileEntity implements ITickableTileEntity {
 
 	private boolean spawned = false;

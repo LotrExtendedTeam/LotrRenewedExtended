@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#lotrextended:banana_logs",
     "#lotrextended:chestnut_logs",
-    "#lotrextended:banana_logs"
+    "#lotrextended:plum_logs"
   ]
 }

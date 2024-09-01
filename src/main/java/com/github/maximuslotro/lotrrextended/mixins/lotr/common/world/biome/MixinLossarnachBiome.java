@@ -12,7 +12,7 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 @Mixin(LossarnachBiome.class)
 public class MixinLossarnachBiome {
 
-	/***
+	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
@@ -31,7 +31,8 @@ public class MixinLossarnachBiome {
 				ExtendedBiomeFeatures.chestnutFancy(), 100, ExtendedBiomeFeatures.chestnutBees(), 5,
 				ExtendedBiomeFeatures.chestnutFancyBees(), 1, LOTRBiomeFeatures.apple(), 400, 
 				LOTRBiomeFeatures.pear(), 400, LOTRBiomeFeatures.appleBees(), 40, 
-				LOTRBiomeFeatures.pearBees(), 40, LOTRBiomeFeatures.oakShrub(), 6000);
+				LOTRBiomeFeatures.pearBees(), 40, LOTRBiomeFeatures.oakShrub(), 6000, 
+				ExtendedBiomeFeatures.plum(), 200, ExtendedBiomeFeatures.plumBees(), 40);
 		LOTRBiomeFeatures.addGrass((LossarnachBiome)(Object)this, builder, 8, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 10);

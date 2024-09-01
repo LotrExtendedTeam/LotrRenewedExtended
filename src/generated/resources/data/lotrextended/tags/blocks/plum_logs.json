@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:plum_log",
+    "lotr:plum_wood",
+    "lotr:stripped_plum_log",
+    "lotr:stripped_plum_wood"
+  ]
+}

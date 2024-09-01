@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "lotr:banana_button",
-    "lotr:chestnut_button"
+    "lotr:chestnut_button",
+    "lotr:plum_button"
   ]
 }

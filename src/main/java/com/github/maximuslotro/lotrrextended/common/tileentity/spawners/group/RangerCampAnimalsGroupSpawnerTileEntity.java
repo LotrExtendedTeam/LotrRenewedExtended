@@ -10,6 +10,11 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Replaced by the new Entity Spawner system for Structures
+ * @deprecated
+ * @since beta-1.6
+ * */
 public class RangerCampAnimalsGroupSpawnerTileEntity extends ExtendedStructureGroupSpawnerTileEntity<RangerCampAnimalsGroupSpawnerTileEntity>{
 
 	public RangerCampAnimalsGroupSpawnerTileEntity() {

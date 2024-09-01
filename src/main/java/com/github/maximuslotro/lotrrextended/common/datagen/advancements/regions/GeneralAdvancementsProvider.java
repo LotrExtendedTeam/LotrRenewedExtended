@@ -89,6 +89,11 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 												ExtendedItems.BLACK_WARG_LEGGINGS.get(), ExtendedItems.BLACK_WARG_BOOTS.get())
 				.requirements(IRequirementsStrategy.OR).parent(base));
 
+		Advancement white_warg_armor = build(false, data(ExtendedItems.WHITE_WARG_CHESTPLATE.get(), "super_master_hunter", false, FrameType.CHALLENGE, true, true, false)
+				.setTitle("One with the Snow").setDescription("Acquire a full set of White Warg Fur armor."),
+				addArmorTrigger(make(), "white_warg", ExtendedItems.WHITE_WARG_HELMET.get(), ExtendedItems.WHITE_WARG_CHESTPLATE.get(), 
+												ExtendedItems.WHITE_WARG_LEGGINGS.get(), ExtendedItems.WHITE_WARG_BOOTS.get()).parent(warg_armor));
+
 		Advancement copper_award = build(false, data(LOTRItems.COPPER_INGOT.get(), "copper_award", false, FrameType.TASK, true, true, false)
 				.setTitle("Copper Award").setDescription("Obtain a copper ingot by smelting copper ore."), 
 				addItemTrigger(make(), LOTRItems.COPPER_INGOT.get()).parent(base));

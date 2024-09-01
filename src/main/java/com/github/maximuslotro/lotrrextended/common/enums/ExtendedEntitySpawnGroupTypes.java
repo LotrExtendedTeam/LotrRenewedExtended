@@ -9,6 +9,11 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.group.*;
 
 import net.minecraft.util.IStringSerializable;
 
+/**
+ * Replaced by the new Entity Spawner system for Structures
+ * @deprecated
+ * @since beta-1.6
+ * */
 public enum ExtendedEntitySpawnGroupTypes implements IStringSerializable {
 	RANGER_CAMP_ANIMALS(RangerCampAnimalsGroupSpawnerTileEntity::new);
 	

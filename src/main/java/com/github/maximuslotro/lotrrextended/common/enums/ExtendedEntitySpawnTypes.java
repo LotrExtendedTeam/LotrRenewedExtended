@@ -11,6 +11,11 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.HobbitBa
 
 import net.minecraft.util.IStringSerializable;
 
+/**
+ * Replaced by the new Entity Spawner system for Structures
+ * @deprecated
+ * @since beta-1.6
+ * */
 public enum ExtendedEntitySpawnTypes implements IStringSerializable {
 	HOBBIT_BARTENDER(HobbitBartenderSpawnerTileEntity::new),
 	HOBBIT_FARMER(ExtendedHobbitFarmerSpawnerTileEntity::new);

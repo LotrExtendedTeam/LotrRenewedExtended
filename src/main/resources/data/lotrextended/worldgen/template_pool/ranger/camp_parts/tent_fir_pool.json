@@ -1,5 +1,5 @@
 {
-	"name": "lotrextended:ranger/camp_parts/hay_four_fir_pool",
+	"name": "lotrextended:ranger/camp_parts/tent_fir_pool",
 	"fallback": "lotrextended:ranger/camp_parts/path_fir_tent_override_pool",
 	"elements": [
 		{

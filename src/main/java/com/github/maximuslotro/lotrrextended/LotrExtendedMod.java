@@ -7,8 +7,10 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
@@ -18,6 +20,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
@@ -30,6 +33,7 @@ import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -45,22 +49,23 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 @Mod(value = LotrExtendedMod.MODID)
 public class LotrExtendedMod{
-
 	public static final String MODID = "lotrextended";
 	private IEventBus modBus;
-	IEventBus forgeBus;
 	public static LotrExtendedMod INSTANCE;
+	public static ExtendedTickHandlerServer serverTickEventHandler;
+
 	public LotrExtendedMod() {
 		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
-		forgeBus = MinecraftForge.EVENT_BUS;
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::setup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
+		forgeBus.addListener(this::registerDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
 		forgeBus.addListener(this::addDimensionalSpacing);
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
@@ -68,6 +73,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
@@ -78,6 +84,7 @@ public class LotrExtendedMod{
 		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
 		ExtendedEffects.register();
+		serverTickEventHandler = new ExtendedTickHandlerServer();
 	}
 
 	public void setup(FMLCommonSetupEvent event) {
@@ -90,6 +97,10 @@ public class LotrExtendedMod{
 
 	public IEventBus getModBus() {
 		return modBus;
+	}
+
+	public void registerDataPackListeners(AddReloadListenerEvent event) {
+		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
 	}
 
 	public void registerCommands(RegisterCommandsEvent event) {

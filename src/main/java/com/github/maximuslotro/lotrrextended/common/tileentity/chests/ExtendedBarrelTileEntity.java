@@ -18,7 +18,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 
@@ -88,7 +87,7 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 	         BlockState blockstate = this.getBlockState();
 	         boolean flag = blockstate.getValue(ExtendedBarrelBlock.OPEN);
 	         if (!flag) {
-	            this.playSound(blockstate, SoundEvents.BARREL_OPEN);
+	            this.playSound(blockstate, BarrelOpen());
 	            this.updateBlockState(blockstate, true);
 	         }
 
@@ -96,6 +95,10 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 	      }
 
 	   }
+
+	   public abstract SoundEvent BarrelOpen();
+	   
+	   public abstract SoundEvent BarrelClose();
 
 	   private void scheduleRecheck() {
 	      this.level.getBlockTicks().scheduleTick(this.getBlockPos(), this.getBlockState().getBlock(), 5);
@@ -119,7 +122,7 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 
 	         boolean flag = blockstate.getValue(ExtendedBarrelBlock.OPEN);
 	         if (flag) {
-	            this.playSound(blockstate, SoundEvents.BARREL_CLOSE);
+	            this.playSound(blockstate, BarrelClose());
 	            this.updateBlockState(blockstate, false);
 	         }
 	      }

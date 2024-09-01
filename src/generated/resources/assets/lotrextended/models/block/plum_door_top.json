@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "bottom": "lotrextended:block/plum_door_bottom",
+    "top": "lotrextended:block/plum_door_top"
+  }
+}

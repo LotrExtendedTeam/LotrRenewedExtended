@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:plum_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_plum_wood_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_wood_slab"
+          }
+        ]
+      }
+    },
+    "has_plum_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:plum_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:plum_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_wood_slab",
+      "has_plum_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

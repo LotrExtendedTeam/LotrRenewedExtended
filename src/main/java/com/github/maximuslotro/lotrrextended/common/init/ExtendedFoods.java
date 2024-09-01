@@ -17,8 +17,12 @@ public class ExtendedFoods {
 	public static final Food AGED_CHEESE_SLICE = new Builder().nutrition(5).saturationMod(0.8F).build();
 
 	public static final Food ROASTED_CHESTNUT = new Builder().nutrition(2).saturationMod(0.2F).build();
-	public static final Food BANANA = new Builder().nutrition(2).saturationMod(0.5F).build();
+	public static final Food BANANA = new Builder().nutrition(2).saturationMod(0.2F).build();
 	public static final Food BANANA_BREAD = new Builder().nutrition(5).saturationMod(0.6F).build();
 
+	public static final Food PLUM = new Builder().nutrition(4).saturationMod(0.3F).build();
+	
+	public static final Food DUCK = new Food.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new EffectInstance(Effects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final Food COOKED_DUCK = new Food.Builder().nutrition(6).saturationMod(0.6F).meat().build();
 	public static void init() {}
 }

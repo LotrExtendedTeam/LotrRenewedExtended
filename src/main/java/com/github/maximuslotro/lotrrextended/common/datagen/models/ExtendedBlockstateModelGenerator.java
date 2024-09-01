@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -26,6 +27,7 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSin
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 
 import lotr.common.block.AxialSlabBlock;
@@ -121,10 +123,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedConquestTableBlock) {
-					genEndSideNonRotatableBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"));
-					continue;
-				}
 				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
 					numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
 					continue;
@@ -161,8 +159,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genBedrollBlockItem((ExtendedFullBedBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
+				if(block.getValue().get() instanceof ExtendedRopeBlock) {
+					genRopeBlock((ExtendedRopeBlock) block.getValue().get());
+					continue;
+				}
 				if(block.getValue().get() instanceof BranchBlock) {
 					genBranchBlockItem((BranchBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_log"));
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedConquestTableBlock) {
+					genConquestTableBlockItem((ExtendedConquestTableBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
@@ -815,6 +821,35 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
+	private void genRopeBlock(ExtendedRopeBlock rope) {
+		registeredBlocks.add(rope);
+		ResourceLocation ropeTexture = lotrExtendedLoc("block/"+rope.getRegistryName().getPath());
+		ModelFile modelTop = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_rope_top"))
+                .texture("0", ropeTexture)
+                .texture("particle", ropeTexture);
+		ModelFile modelBottom = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_rope_bottom"))
+                .texture("0", ropeTexture)
+                .texture("particle", ropeTexture);
+		ModelFile modelMiddle = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_middle", lotrExtendedLoc("block/template_rope_middle"))
+                .texture("0", ropeTexture)
+                .texture("particle", ropeTexture);
+		ModelFile modelSingle = models().withExistingParent("lotrextended:"+rope.getRegistryName().getPath()+"_single", lotrExtendedLoc("block/template_rope_single"))
+				.texture("0", ropeTexture)
+				.texture("particle", ropeTexture);
+
+		getVariantBuilder(rope)
+		.forAllStatesExcept(state -> {
+			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
+			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
+            return ConfiguredModel.builder()
+                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL) ? modelTop : 
+                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom : 
+                    	type == RopeType.SINGLE ? modelSingle : modelMiddle))
+                    .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
+                    .build();
+        }, ExtendedRopeBlock.WATERLOGGED);
+	}
+
 	private void genFarmlandBlockItem(ExtendedGroundFarmlandBlock extendedGroundFarmlandBlock, String name) {
 		registeredBlocks.add(extendedGroundFarmlandBlock);
 		ResourceLocation farmland = lotrExtendedLoc(name);
@@ -1202,6 +1237,25 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(model);
+	}
+
+	private void genConquestTableBlockItem(ExtendedConquestTableBlock block, String name) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), "lotrextended:block/template_conquest_table")
+				.texture("table_top", lotrExtendedLoc("block/"+name+"_map")).texture("block", lotrExtendedLoc("block/"+name+"_block"))
+				.texture("table_bottom", lotrExtendedLoc("block/"+name+"_bottom")).texture("particle", lotrExtendedLoc("block/"+name+"_map"));
+		ModelFile modelSEPTA = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_sepia", "lotrextended:block/template_conquest_table")
+				.texture("table_top", lotrExtendedLoc("block/"+name+"_map_sepia")).texture("block", lotrExtendedLoc("block/"+name+"_block"))
+				.texture("table_bottom", lotrExtendedLoc("block/"+name+"_bottom")).texture("particle", lotrExtendedLoc("block/"+name+"_map_sepia"));
+		getVariantBuilder(block).forAllStates(state -> {
+			Boolean sepia = state.getValue(ExtendedConquestTableBlock.SEPIA);
+			Direction facing = state.getValue(ExtendedConquestTableBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(sepia ? modelSEPTA : modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		});
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genStrippedWoodBlockItem(LOTRStrippedWoodBlock block, ResourceLocation resourceLocation) {

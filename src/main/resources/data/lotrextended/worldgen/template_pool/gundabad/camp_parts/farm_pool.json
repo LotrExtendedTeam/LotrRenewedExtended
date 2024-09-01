@@ -1,0 +1,150 @@
+{
+	"name": "lotrextended:gundabad/camp_parts/farm_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 8,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/farm/gundabad_camp_farm_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 8,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/farm/gundabad_camp_farm_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 8,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/farm/gundabad_camp_farm_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/fur/gundabad_camp_fur_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/fur/gundabad_camp_fur_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/fur/gundabad_camp_fur_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/fur/gundabad_camp_fur_4",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/fur/gundabad_camp_fur_5",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:gundabad/camp/fur/gundabad_camp_fur_6",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_4",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_5",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_6",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:gundabad/camp/wood/gundabad_camp_woodpile_7",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

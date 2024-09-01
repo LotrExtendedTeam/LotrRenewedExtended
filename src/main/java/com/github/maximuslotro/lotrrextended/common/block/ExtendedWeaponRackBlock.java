@@ -102,6 +102,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
     	}
     	return state;
     }
+
     @Override
     public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         TileEntity tileentity = worldIn.getBlockEntity(pos);

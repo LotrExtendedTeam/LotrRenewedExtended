@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotrextended:block/plum_log",
+    "bottom": "lotrextended:block/plum_log_top",
+    "top": "lotrextended:block/plum_log_top"
+  }
+}

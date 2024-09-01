@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
@@ -17,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -69,6 +71,7 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapDoorBlock;
@@ -112,6 +115,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 
 	@Override
     protected void addTables() {
+		createCakePool(Blocks.CAKE);
+		createCakePool(LOTRBlocks.CHERRY_PIE.get());
+		createCakePool(LOTRBlocks.APPLE_CRUMBLE.get());
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof ExtendedGrowableAxialSlabBlock) {
 				add(block.getValue().get(), createGrowableSlabItemTable((SlabBlock)block.getValue().get(),((ExtendedGrowableAxialSlabBlock)block.getValue().get()).getBaseForLootTables().get()));
@@ -154,6 +160,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedStoneBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedRopeBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -289,6 +299,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), noDrop());
 				continue;
 			}
+			if(block.getValue().get() instanceof ExtendedCakeBlock) {
+				createCakePool(block.getValue().get());
+				continue;
+			}
 			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
 				dropSelf(block.getValue().get());
 				continue;
@@ -394,6 +408,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		add(ExtendedBlocks.HANGING_BANANA.get(), (block) -> {
 			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedItems.BANANA.get())
 							.apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))));});
+		add(ExtendedBlocks.PLUM_LEAVES.get(), (p_241170_0_) -> {
+	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+	         });
+		add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get(), (p_241170_0_) -> {
+	         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), ExtendedItems.PLUM.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 		add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {
 	         return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
 		add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> {
@@ -433,8 +452,22 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			filtered.add(bl.getValue());
 		}
-        return filtered.stream().map(RegistryObject::get)::iterator;
+		filtered.add(LOTRBlocks.CHERRY_PIE);
+		filtered.add(LOTRBlocks.APPLE_CRUMBLE);
+		Stream<Block> blocks= filtered.stream().map(RegistryObject::get);
+		blocks = Stream.concat(blocks, Stream.of(Blocks.CAKE));
+        return blocks::iterator;
     }
+
+	protected void createCakePool(Block block){
+		add(block, (lamdaBlock) -> {
+			return LootTable.lootTable().withPool(applyExplosionCondition(lamdaBlock, 
+			LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+			.add(ItemLootEntry.lootTableItem(lamdaBlock)
+			.when(BlockStateProperty.hasBlockStateProperties(lamdaBlock)
+			.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedCakeBlock.BITES, 0))))));
+	      });
+	}
 
 	protected static LootTable.Builder createNameableBlockEntityTable(Block p_218481_0_) {
 		return LootTable.lootTable().withPool(applyExplosionCondition(p_218481_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));

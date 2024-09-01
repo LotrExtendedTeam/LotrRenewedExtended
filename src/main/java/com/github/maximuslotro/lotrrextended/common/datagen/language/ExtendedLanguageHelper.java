@@ -6,6 +6,11 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
@@ -41,6 +46,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	protected Map<String, String> newStrings = new TreeMap<>();
 	protected Map<String, String> overrideStrings = new TreeMap<>();
 	protected Map<String, String> existingStrings = new TreeMap<>();
+	protected List<String> removeStrings = new ArrayList<>();
 	protected final DataGenerator genHere;
 	protected final String modidHere;
 	protected final String localeHere;
@@ -54,8 +60,29 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	@Override
 	public void run(DirectoryCache cache) throws IOException {
 		addTranslations();
-		if (!dataHere.isEmpty())
-			saveHere(cache, dataHere, this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json"));
+		if (!dataHere.isEmpty()) {
+			List<String> sortedKeys = new ArrayList<>(dataHere.keySet());
+			Collections.sort(sortedKeys, new Comparator<String>() {
+				public int compare(String o1, String o2) {
+					if(o1.replaceAll("[0-9]","").equals(o2.replaceAll("[0-9]",""))) {
+						if(queryValue(o1)!=0 && queryValue(o2)!=0) {
+							return queryValue(o1) - queryValue(o2);
+						}
+					}
+					return o1.compareTo(o2);
+				}
+
+				int queryValue(String s) {
+					String num = s.replaceAll("\\D", "");
+					return num.isEmpty() ? 0 : Integer.parseInt(num);
+				}
+			});
+			Map<String, String> sortedData = new LinkedHashMap<>();
+			for(String key : sortedKeys) {
+				sortedData.put(key, dataHere.getOrDefault(key, "MISSING VALUE ON SORT!"));
+			}
+			saveHere(cache, sortedData, this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json"));
+		}
 	}
 
 	private void saveHere(DirectoryCache cache, Object object, Path target) throws IOException {
@@ -86,6 +113,10 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 
 	public void addOverride(String key, String name) {
 		overrideStrings.put(key, name);
+	}
+
+	public void addOverrideRemove(String key) {
+		removeStrings.add(key);
 	}
 
 	public void addBlock(Supplier<? extends Block> key, String name) {
@@ -212,6 +243,11 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		for (Entry<String, String> entry : sorted.entrySet()) {
 			if (this.dataHere.put(entry.getKey(), entry.getValue()) != null) {
 				throw new IllegalStateException("Duplicate translation key " + entry.getKey());
+			}
+		}
+		for (String str : removeStrings) {
+			if(dataHere.containsKey(str)) {
+				dataHere.remove(str);
 			}
 		}
 	}

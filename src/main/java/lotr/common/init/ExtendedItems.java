@@ -56,6 +56,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Item> BANANA_LOG;
+	public static RegistryObject<Item> BANANA_WOOD;
 	public static RegistryObject<Item> BANANA_PLANKS;
 	public static RegistryObject<Item> BANANA_LEAVES;
 	public static RegistryObject<Item> BANANA_SAPLING;
@@ -68,14 +69,52 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_PRESSURE_PLATE;
 	public static RegistryObject<Item> BANANA_BUTTON;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG;
+	public static RegistryObject<Item> STRIPPED_BANANA_WOOD;
 	public static RegistryObject<Item> BANANA_BEAM;
 	public static RegistryObject<Item> BANANA_SIGN;
 	public static RegistryObject<Item> BANANA_BOAT;
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
-	public static RegistryObject<Item> BOWSTRING;
+	public static RegistryObject<Item> BANANA_WOOD_SLAB;
+	public static RegistryObject<Item> BANANA_WOOD_STAIRS;
+	public static RegistryObject<Item> BANANA_BRANCH;
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_BANANA_BRANCH;
 	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
+
+	public static RegistryObject<Item> PLUM_LOG;
+	public static RegistryObject<Item> PLUM_WOOD;
+	public static RegistryObject<Item> PLUM_PLANKS;
+	public static RegistryObject<Item> PLUM_LEAVES;
+	public static RegistryObject<Item> PLUM_LEAVES_FRUIT;
+	public static RegistryObject<Item> PLUM_SAPLING;
+	public static RegistryObject<Item> PLUM_SLAB;
+	public static RegistryObject<Item> PLUM_STAIRS;
+	public static RegistryObject<Item> PLUM_FENCE;
+	public static RegistryObject<Item> PLUM_FENCE_GATE;
+	public static RegistryObject<Item> PLUM_DOOR;
+	public static RegistryObject<Item> PLUM_TRAPDOOR;
+	public static RegistryObject<Item> PLUM_PRESSURE_PLATE;
+	public static RegistryObject<Item> PLUM_BUTTON;
+	public static RegistryObject<Item> STRIPPED_PLUM_LOG;
+	public static RegistryObject<Item> STRIPPED_PLUM_WOOD;
+	public static RegistryObject<Item> PLUM_BEAM;
+	public static RegistryObject<Item> PLUM_SIGN;
+	public static RegistryObject<Item> PLUM_BOAT;
+	public static RegistryObject<Item> PLUM_LOG_SLAB;
+	public static RegistryObject<Item> PLUM_WOOD_SLAB;
+	public static RegistryObject<Item> PLUM_WOOD_STAIRS;
+	public static RegistryObject<Item> PLUM_BRANCH;
+	public static RegistryObject<Item> STRIPPED_PLUM_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_PLUM_BRANCH;
+	public static RegistryObject<Item> PLUM_BEAM_SLAB;
+	public static RegistryObject<Item> FALLEN_PLUM_LEAVES;
+
+	public static RegistryObject<Item> BOWSTRING;
 
 	public static RegistryObject<Item> MORGUL_SWORD;
 	public static RegistryObject<Item> MORGUL_HELMET;
@@ -246,7 +285,10 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> ROASTED_CHESTNUT;
 	public static RegistryObject<Item> CONKER;
-
+	public static RegistryObject<Item> PLUM;
+	public static RegistryObject<Item> COOKED_DUCK;
+	public static RegistryObject<Item> RAW_DUCK;
+	
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
@@ -347,6 +389,8 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> CRACKED_ARNOR_PILLAR;
 	public static RegistryObject<Item> CRACKED_ARNOR_PILLAR_SLAB;
+	public static RegistryObject<Item> MOSSY_ARNOR_PILLAR;
+	public static RegistryObject<Item> MOSSY_ARNOR_PILLAR_SLAB;
 
 	public static RegistryObject<Item> WHITE_PACKED_FUR;
 	public static RegistryObject<Item> WHITE_PACKED_FUR_SLAB;
@@ -458,6 +502,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
 
+	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
@@ -475,5 +520,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> HOBBIT_BANNER;
 
 	public static RegistryObject<Item> DUCK_EGG;
+
+	public static RegistryObject<Item> ENTITY_SPAWNER;
+
+	public static RegistryObject<Item> ROPE;
+
 }
 

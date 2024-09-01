@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:plum_planks"
+    }
+  ],
+  "result": {
+    "item": "lotr:plum_button"
+  }
+}
