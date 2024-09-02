@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:general/first_steps",
+  "parent": "lotrextended:general/trade",
   "display": {
     "icon": {
       "item": "lotr:silver_coin_one"

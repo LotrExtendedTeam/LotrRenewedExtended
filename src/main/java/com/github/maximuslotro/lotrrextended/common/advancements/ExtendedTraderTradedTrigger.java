@@ -30,43 +30,50 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 
 	public ExtendedTraderTradedTrigger.Instance createInstance(JsonObject jsonObject, EntityPredicate.AndPredicate playerPredicate, ConditionArrayParser p_230241_3_) {
 		return new ExtendedTraderTradedTrigger.Instance(playerPredicate, EntityTypePredicate.fromJson(jsonObject.get("entity")), 
-				jsonObject.get("istraderselling").getAsBoolean(), ItemPredicate.fromJson(jsonObject.get("item")));
+				jsonObject.get("istraderselling").getAsBoolean(), ItemPredicate.fromJson(jsonObject.get("item")), MinMaxBounds.IntBound.fromJson(jsonObject.get("coins_moved")));
 	}
 
-	public void trigger(ServerPlayerEntity player, EntityType<?> entityType, boolean isTraderSelling, ItemStack stack) {
+	public void trigger(ServerPlayerEntity player, EntityType<?> entityType, boolean didPlayerBuyItemFromTrader, ItemStack stack) {
 		this.trigger(player, (instance) -> {
-			return instance.matches(player, entityType, isTraderSelling, stack);
+			return instance.matches(player, entityType, didPlayerBuyItemFromTrader, stack);
 		});
 	}
 
 	public static class Instance extends CriterionInstance {
 		private final EntityTypePredicate entityTypePredicate;
-		private final boolean isTraderSelling;
+		private final boolean didPlayerBuyItemFromTrader;
 		private final ItemPredicate item;
+		private final MinMaxBounds.IntBound coinsTransphered;
 
-		public Instance(EntityPredicate.AndPredicate playerPredicate, EntityTypePredicate entityType, boolean isTraderSelling, ItemPredicate itemProvider) {
+		public Instance(EntityPredicate.AndPredicate playerPredicate, EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, ItemPredicate itemProvider, MinMaxBounds.IntBound coinsTransphered) {
 			super(ExtendedTraderTradedTrigger.ID, playerPredicate);
 			this.entityTypePredicate = entityType;
-			this.isTraderSelling = isTraderSelling;
+			this.didPlayerBuyItemFromTrader = didPlayerBuyItemFromTrader;
 			this.item = itemProvider;
+			this.coinsTransphered = coinsTransphered;
 		}
 
-		public static ExtendedTraderTradedTrigger.Instance tradedWithAndItem(EntityType<?> entityType, boolean isTraderSelling, IItemProvider possableItem) {
-			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, EntityTypePredicate.of(entityType), isTraderSelling,
-					new ItemPredicate((ITag<Item>) null, possableItem.asItem(),MinMaxBounds.IntBound.ANY,MinMaxBounds.IntBound.ANY,
-							EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, (Potion) null, NBTPredicate.ANY));
+		public static ExtendedTraderTradedTrigger.Instance tradedWithAndItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, IItemProvider possableItem, MinMaxBounds.IntBound coinsTransphered) {
+			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, entityType, didPlayerBuyItemFromTrader,
+					new ItemPredicate((ITag<Item>) null, possableItem.asItem(), MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY,
+							EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, (Potion) null, NBTPredicate.ANY), coinsTransphered);
 		}
 
-		public static ExtendedTraderTradedTrigger.Instance tradedWithALLItem(EntityType<?> entityType, boolean isTraderSelling) {
-			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, EntityTypePredicate.of(entityType), isTraderSelling,
-					ItemPredicate.ANY);
+		public static ExtendedTraderTradedTrigger.Instance tradedWithALLItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, MinMaxBounds.IntBound coinsTransphered) {
+			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, entityType, didPlayerBuyItemFromTrader,
+					ItemPredicate.ANY, coinsTransphered);
 		}
 
-		public boolean matches(ServerPlayerEntity player, EntityType<?> entity, boolean isTraderSelling, ItemStack stack) {
-			if (this.isTraderSelling && isTraderSelling) {
+		public static ExtendedTraderTradedTrigger.Instance tradedWithALLItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader) {
+			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, entityType, didPlayerBuyItemFromTrader,
+					ItemPredicate.ANY, MinMaxBounds.IntBound.ANY);
+		}
+
+		public boolean matches(ServerPlayerEntity player, EntityType<?> entity, boolean didPlayerBuyItemFromTrader, ItemStack stack) {
+			if (this.didPlayerBuyItemFromTrader && didPlayerBuyItemFromTrader) {
 				return this.entityTypePredicate.matches(entity) && item.matches(stack);
 			}
-			if (!this.isTraderSelling && !isTraderSelling) {
+			if (!this.didPlayerBuyItemFromTrader && !didPlayerBuyItemFromTrader) {
 				return this.entityTypePredicate.matches(entity) && item.matches(stack);
 			}
 			return false;
@@ -75,8 +82,9 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 		public JsonObject serializeToJson(ConditionArraySerializer serializer) {
 			JsonObject jsonobject = super.serializeToJson(serializer);
 			jsonobject.add("entity", this.entityTypePredicate.serializeToJson());
-			jsonobject.addProperty("istraderselling", Boolean.toString(isTraderSelling));
+			jsonobject.addProperty("istraderselling", Boolean.toString(didPlayerBuyItemFromTrader));
 			jsonobject.add("item", this.item.serializeToJson());
+			jsonobject.add("coins_moved", this.coinsTransphered.serializeToJson());
 			return jsonobject;
 		}
 	}

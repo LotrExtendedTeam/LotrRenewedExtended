@@ -263,10 +263,10 @@ public class ExtendedTradeContainer extends Container {
 
                 if (!tradedYet) {
                     player.awardStat(ExtendedStats.TRADERS_TRADED);
-                    if (!player.level.isClientSide()) {
-                    	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade);
-                    }
                     tradedYet = true;
+                }
+                if (!player.level.isClientSide()) {
+                	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade);
                 }
             }
 

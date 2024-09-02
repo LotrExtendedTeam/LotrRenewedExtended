@@ -49,9 +49,17 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Kingsfoil").setDescription("Find the Athelas herb."), 
 				addItemTrigger(make(), LOTRItems.ATHELAS.get()).parent(base));
 
+		Advancement trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "trade", false, FrameType.TASK, true, true, false)
+			.setTitle("Middle Earth Marketplace").setDescription("Trade with a Middle Earth trader."), 
+			addTradeNoEntityTrigger(make(), "any_trader", 0).parent(base));
+
+		Advancement filthy_rich = build(true, data(ExtendedItems.SILVER_COIN_HUNDRED.get(), "filthy_rich", false, FrameType.CHALLENGE, true, true, false)
+			.setTitle("Filthy Rich").setDescription("Earn 1000 coins from a single trade."), 
+			addTradeNoEntityTrigger(make(), "any_trader", false, 1000).parent(trade));
+
 		Advancement trash = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "one_mans_trash", false, FrameType.TASK, true, true, false)
 				.setTitle("One Man's Trash").setDescription("Trade with a travelling Oddment Collector."), 
-				addTradeEntityTrigger(make(), ExtendedEntities.ODDMENT_COLLECTOR.get()).parent(base));
+				addTradeEntityTrigger(make(), ExtendedEntities.ODDMENT_COLLECTOR.get()).parent(trade));
 
 		Advancement pouches = build(true, data(LOTRItems.SMALL_POUCH.get(), "bigger_on_the_inside", false, FrameType.TASK, true, true, false)
 				.setTitle("Bigger on the Inside").setDescription("Acquire a pouch."), 

@@ -18,11 +18,13 @@ import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.ChangeDimensionTrigger;
 import net.minecraft.advancements.criterion.ConsumeItemTrigger;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.EntityTypePredicate;
 import net.minecraft.advancements.criterion.FishingRodHookedTrigger;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
 import net.minecraft.advancements.criterion.PositionTrigger;
 import net.minecraft.block.Block;
@@ -122,13 +124,29 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 	
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(entityType, false));
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(entityType, true));
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), false));
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), true));
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
 	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item) {
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(entityType, isPlayerBuyingItem, item));
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.ANY));
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addTradeNoEntityTrigger(Advancement.Builder builder, String identifier, boolean isPlayerBuyingItem, int threshold) {
+		builder.addCriterion("trade_"+identifier+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.ANY, isPlayerBuyingItem, MinMaxBounds.IntBound.atLeast(threshold)));
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addTradeNoEntityTrigger(Advancement.Builder builder, String identifier, int threshold) {
+		builder.addCriterion("trade_"+identifier+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.ANY, true, MinMaxBounds.IntBound.atLeast(threshold)));
+		builder.addCriterion("trade_"+identifier+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.ANY, false, MinMaxBounds.IntBound.atLeast(threshold)));
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item, int threshold) {
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.atLeast(threshold)));
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 

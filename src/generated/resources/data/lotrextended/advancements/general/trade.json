@@ -1,0 +1,45 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.trade.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.trade.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_any_trader_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "true",
+        "coins_moved": {
+          "min": 0
+        }
+      }
+    },
+    "trade_any_trader_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "false",
+        "coins_moved": {
+          "min": 0
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_sell",
+      "trade_any_trader_buy"
+    ]
+  ]
+}
