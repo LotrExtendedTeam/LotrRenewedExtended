@@ -73,7 +73,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		// un-disable when gundabad captain is added
 		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
 		// un-disable when gundabad trader is added
-		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 5).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_TRADER);
+		single(ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_TRADER);
 		single(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
 				.addPool(LOTREntities.BREE_MAN.get(), 90).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 50)
