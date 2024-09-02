@@ -52,6 +52,7 @@
 		"lotr.common.world.biome.MixinLebenninBiome",
 		"lotr.common.world.biome.MixinLindonBiome",
 		"lotr.common.world.biome.MixinLossarnachBiome",
+		"lotr.common.world.biome.MixinLOTRBiomeBase",
 		"lotr.common.world.biome.MixinLOTRBiomeFeatures",
 		"lotr.common.world.biome.MixinMirkwoodNorthernBiome",
 		"lotr.common.world.biome.MixinPinnathGelinBiome",

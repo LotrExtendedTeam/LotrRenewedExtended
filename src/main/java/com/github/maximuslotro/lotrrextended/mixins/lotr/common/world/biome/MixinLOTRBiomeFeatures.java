@@ -32,14 +32,14 @@ public class MixinLOTRBiomeFeatures {
 		}
 	}
 
-	@Inject(method = "setup", at = @At("TAIL"), remap = false)
+	@Inject(method = "setup(Lnet/minecraftforge/event/RegistryEvent$Register;)V", at = @At("TAIL"), remap = false)
 	private static void setup(RegistryEvent.Register<Block> event, CallbackInfo info) {
 		if (event.getRegistry() == ForgeRegistries.BLOCKS) {
 			ExtendedBiomeFeatures.setup(event);
 		}
 	}
 
-	@Inject(method = "addOres", at = @At("TAIL"), remap = false)
+	@Inject(method = "addOres(Lnet/minecraft/world/biome/BiomeGenerationSettings$Builder;)V", at = @At("TAIL"), remap = false)
 	private static void addOres(BiomeGenerationSettings.Builder builder, CallbackInfo info) {
 		ExtendedBiomeFeatures.addOres(builder);
 	}

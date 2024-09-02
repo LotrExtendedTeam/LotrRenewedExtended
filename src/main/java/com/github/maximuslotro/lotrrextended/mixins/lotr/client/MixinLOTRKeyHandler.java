@@ -59,7 +59,7 @@ public abstract class MixinLOTRKeyHandler{
 	 * @author maximuslotro
 	 * @reason need to hide special factions from rendering and stuff
 	 * */
-	@Inject(method = "onKeyInput", at = @At("HEAD"), remap = false, cancellable = true)
+	@Inject(method = "onKeyInput(Lnet/minecraftforge/client/event/InputEvent$KeyInputEvent;)V", at = @At("HEAD"), remap = false, cancellable = true)
 	public void onKeyInput(KeyInputEvent event, CallbackInfo cl) {
 		cl.cancel();
 		int key = event.getKey();

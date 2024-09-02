@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
+import java.util.Random;
+
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -8,6 +10,7 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
@@ -15,6 +18,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.BreedGoal;
@@ -33,6 +37,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -41,7 +46,10 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuckEntity> {
@@ -83,6 +91,38 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
+	}
+
+	public static boolean checkTurtleSpawnRules(EntityType<ExtendedDuckEntity> pTurtle, IWorld pLevel, SpawnReason pSpawnType, BlockPos pPos, Random pRandom) {
+		return isNearWater(pLevel, pPos, pRandom) && onSandOrGrassOrGravel(pLevel, pPos) && pLevel.getRawBrightness(pPos, 0) > 8;
+	}
+
+	public static boolean isNearWater(IWorld pReader, BlockPos pPos, Random pRandom) {
+		Biome biome = pReader.getBiome(pPos);
+		if(biome.getBiomeCategory() == Biome.Category.RIVER) {
+			return true;
+		}
+		if(pRandom.nextInt(4)==0) {
+			return true;
+		}
+		for(BlockPos pos : BlockPos.betweenClosed(pPos.offset(-12, -5, -12), pPos.offset(12, 4, 12))) {
+			if(pReader.getBlockState(pPos).is(Blocks.WATER)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean onSandOrGrassOrGravel(IBlockReader pReader, BlockPos pPos) {
+		return isSand(pReader, pPos.below()) || isGrass(pReader, pPos.below());
+	}
+
+	public static boolean isSand(IBlockReader pReader, BlockPos pPos) {
+		return pReader.getBlockState(pPos).is(BlockTags.SAND);
+	}
+
+	public static boolean isGrass(IBlockReader pReader, BlockPos pPos) {
+		return pReader.getBlockState(pPos).is(Blocks.GRASS_BLOCK);
 	}
 
 	@Override
