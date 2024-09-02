@@ -5,11 +5,10 @@
       "item": "minecraft:dirt"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.barren_wasteland.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.barren_wasteland.description"
     },
     "frame": "task",

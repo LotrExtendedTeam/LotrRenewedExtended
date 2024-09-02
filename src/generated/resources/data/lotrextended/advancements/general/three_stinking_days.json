@@ -5,11 +5,10 @@
       "item": "lotr:maggoty_bread"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.three_stinking_days.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.three_stinking_days.description"
     },
     "frame": "task",

@@ -5,11 +5,10 @@
       "item": "lotr:small_pouch"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.bigger_on_the_inside.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.bigger_on_the_inside.description"
     },
     "frame": "task",

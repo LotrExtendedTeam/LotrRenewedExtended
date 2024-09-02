@@ -5,11 +5,10 @@
       "item": "lotr:hobbit_bone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.shire.hobbit_slayer.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.hobbit_slayer.description"
     },
     "frame": "task",

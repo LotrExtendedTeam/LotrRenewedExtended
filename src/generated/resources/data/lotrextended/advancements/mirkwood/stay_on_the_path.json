@@ -4,11 +4,10 @@
       "item": "lotr:hanging_web"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.mirkwood.stay_on_the_path.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.mirkwood.stay_on_the_path.description"
     },
     "frame": "task",

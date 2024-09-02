@@ -163,8 +163,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 			data.setTitleStype(TextFormatting.GOLD);
 			data.setDescriptionStype(TextFormatting.AQUA);
 		}else {
-			data.setTitleStype(TextFormatting.GREEN);
-			data.setDescriptionStype(TextFormatting.WHITE);
+			data.setDescriptionStype(TextFormatting.GREEN);
 		}
 		builder.display(data.makeInfo());
 		if(isLegacy) {

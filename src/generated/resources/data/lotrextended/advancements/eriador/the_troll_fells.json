@@ -5,11 +5,10 @@
       "item": "minecraft:spruce_sapling"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eriador.the_troll_fells.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eriador.the_troll_fells.description"
     },
     "frame": "task",

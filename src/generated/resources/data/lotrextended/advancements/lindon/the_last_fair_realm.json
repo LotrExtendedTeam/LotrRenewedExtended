@@ -4,11 +4,10 @@
       "item": "lotr:high_elven_brick"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.lindon.the_last_fair_realm.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.lindon.the_last_fair_realm.description"
     },
     "frame": "task",

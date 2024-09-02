@@ -5,11 +5,10 @@
       "item": "lotr:silver_coin_one"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.shire.welcome_customer.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.welcome_customer.description"
     },
     "frame": "task",

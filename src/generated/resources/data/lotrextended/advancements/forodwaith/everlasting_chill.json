@@ -4,11 +4,10 @@
       "item": "minecraft:snow_block"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.forodwaith.everlasting_chill.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.forodwaith.everlasting_chill.description"
     },
     "frame": "task",

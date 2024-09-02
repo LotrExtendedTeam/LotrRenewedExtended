@@ -4,11 +4,10 @@
       "item": "lotr:mallorn_log"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.lothlorien.lothlorien.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.lothlorien.lothlorien.description"
     },
     "frame": "task",

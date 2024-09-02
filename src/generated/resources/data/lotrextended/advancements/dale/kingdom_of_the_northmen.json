@@ -4,11 +4,10 @@
       "item": "lotr:dale_paving"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.dale.kingdom_of_the_northmen.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.dale.kingdom_of_the_northmen.description"
     },
     "frame": "task",

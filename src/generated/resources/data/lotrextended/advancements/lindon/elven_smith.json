@@ -5,11 +5,10 @@
       "item": "lotr:elven_steel_ingot"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.lindon.elven_smith.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.lindon.elven_smith.description"
     },
     "frame": "task",

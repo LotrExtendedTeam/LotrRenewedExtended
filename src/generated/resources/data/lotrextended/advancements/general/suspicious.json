@@ -5,11 +5,10 @@
       "item": "lotr:suspicious_meat"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.suspicious.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.suspicious.description"
     },
     "frame": "task",

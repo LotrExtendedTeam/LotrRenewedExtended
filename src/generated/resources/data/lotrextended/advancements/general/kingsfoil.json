@@ -5,11 +5,10 @@
       "item": "lotr:athelas"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.kingsfoil.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.kingsfoil.description"
     },
     "frame": "task",

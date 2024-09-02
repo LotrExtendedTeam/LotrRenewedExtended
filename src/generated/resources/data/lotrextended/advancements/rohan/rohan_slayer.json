@@ -5,11 +5,10 @@
       "item": "minecraft:bone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rohan.rohan_slayer.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rohan.rohan_slayer.description"
     },
     "frame": "task",

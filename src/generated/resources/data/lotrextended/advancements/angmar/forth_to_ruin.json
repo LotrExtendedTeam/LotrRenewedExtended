@@ -6,11 +6,10 @@
       "nbt": "{Damage:0}"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.angmar.forth_to_ruin.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.angmar.forth_to_ruin.description"
     },
     "frame": "task",

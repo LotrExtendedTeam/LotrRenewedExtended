@@ -4,11 +4,10 @@
       "item": "minecraft:grass_block"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.enedwaith.forsaken_country.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.enedwaith.forsaken_country.description"
     },
     "frame": "task",

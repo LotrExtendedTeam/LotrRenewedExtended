@@ -5,11 +5,10 @@
       "item": "minecraft:stone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.here_be_dragons.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.here_be_dragons.description"
     },
     "frame": "task",

@@ -4,11 +4,10 @@
       "item": "minecraft:stone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.iron_hills.iron_hills.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.iron_hills.iron_hills.description"
     },
     "frame": "task",

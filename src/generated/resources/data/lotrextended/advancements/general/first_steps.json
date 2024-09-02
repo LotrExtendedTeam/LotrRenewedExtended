@@ -4,11 +4,10 @@
       "item": "lotr:red_book"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.first_steps.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.first_steps.description"
     },
     "frame": "task",

@@ -5,11 +5,10 @@
       "item": "minecraft:dirt"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rohan.entwash.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rohan.entwash.description"
     },
     "frame": "task",

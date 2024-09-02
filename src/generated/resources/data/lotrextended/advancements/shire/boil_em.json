@@ -5,11 +5,10 @@
       "item": "minecraft:potato"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.shire.boil_em.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.boil_em.description"
     },
     "frame": "task",

@@ -6,11 +6,10 @@
       "nbt": "{Damage:0}"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eriador.livery_of_lord_elrond.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eriador.livery_of_lord_elrond.description"
     },
     "frame": "task",

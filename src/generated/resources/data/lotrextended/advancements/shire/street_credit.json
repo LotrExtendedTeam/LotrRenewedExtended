@@ -5,11 +5,10 @@
       "item": "lotr:pipeweed_leaf"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.shire.street_credit.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.street_credit.description"
     },
     "frame": "task",

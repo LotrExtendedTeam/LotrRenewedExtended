@@ -5,11 +5,10 @@
       "item": "lotr:apple_crumble"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.traditional_dish.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.traditional_dish.description"
     },
     "frame": "task",

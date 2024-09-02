@@ -5,11 +5,10 @@
       "item": "minecraft:grass_block"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.eastward_bound.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.eastward_bound.description"
     },
     "frame": "task",

@@ -4,11 +4,10 @@
       "item": "minecraft:oak_log"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.fangorn.lower_your_axe.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.fangorn.lower_your_axe.description"
     },
     "frame": "task",

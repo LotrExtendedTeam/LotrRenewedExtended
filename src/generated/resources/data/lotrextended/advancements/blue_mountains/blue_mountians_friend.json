@@ -5,11 +5,10 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.blue_mountians_friend.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.blue_mountians_friend.description"
     },
     "frame": "task",

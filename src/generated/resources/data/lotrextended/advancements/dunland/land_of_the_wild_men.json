@@ -5,11 +5,10 @@
       "nbt": "{Damage:0}"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.dunland.land_of_the_wild_men.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.dunland.land_of_the_wild_men.description"
     },
     "frame": "task",

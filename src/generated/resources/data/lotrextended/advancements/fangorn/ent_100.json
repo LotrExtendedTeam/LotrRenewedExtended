@@ -5,11 +5,10 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.fangorn.ent_100.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.fangorn.ent_100.description"
     },
     "frame": "task",

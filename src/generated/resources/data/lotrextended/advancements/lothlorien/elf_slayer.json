@@ -5,11 +5,10 @@
       "item": "lotr:elf_bone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.lothlorien.elf_slayer.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.lothlorien.elf_slayer.description"
     },
     "frame": "task",

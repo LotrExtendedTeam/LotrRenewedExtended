@@ -5,11 +5,10 @@
       "item": "minecraft:stone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.a_nasty_drop.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.a_nasty_drop.description"
     },
     "frame": "task",

@@ -4,11 +4,10 @@
       "item": "lotr:drystone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.bree.of_hobbits_and_men.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.bree.of_hobbits_and_men.description"
     },
     "frame": "task",

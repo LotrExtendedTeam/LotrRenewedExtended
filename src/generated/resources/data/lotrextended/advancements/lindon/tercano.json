@@ -5,11 +5,10 @@
       "item": "lotr:gold_ring"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.lindon.tercano.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.lindon.tercano.description"
     },
     "frame": "task",

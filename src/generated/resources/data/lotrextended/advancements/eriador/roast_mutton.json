@@ -5,11 +5,10 @@
       "item": "minecraft:cooked_mutton"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eriador.roast_mutton.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eriador.roast_mutton.description"
     },
     "frame": "task",

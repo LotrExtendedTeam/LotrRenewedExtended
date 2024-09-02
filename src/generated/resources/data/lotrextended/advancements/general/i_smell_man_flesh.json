@@ -5,11 +5,10 @@
       "item": "lotr:man_flesh"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.i_smell_man_flesh.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.i_smell_man_flesh.description"
     },
     "frame": "task",

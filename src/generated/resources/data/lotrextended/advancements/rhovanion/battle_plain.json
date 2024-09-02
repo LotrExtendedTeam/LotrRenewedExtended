@@ -5,11 +5,10 @@
       "item": "lotr:mordor_gravel"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.battle_plain.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.battle_plain.description"
     },
     "frame": "task",

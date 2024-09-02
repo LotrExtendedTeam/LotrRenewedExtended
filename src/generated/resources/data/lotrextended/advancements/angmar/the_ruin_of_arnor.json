@@ -4,11 +4,10 @@
       "item": "lotr:angmar_brick"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.angmar.the_ruin_of_arnor.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.angmar.the_ruin_of_arnor.description"
     },
     "frame": "task",

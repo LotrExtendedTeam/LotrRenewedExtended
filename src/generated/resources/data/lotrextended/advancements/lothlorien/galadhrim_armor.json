@@ -6,11 +6,10 @@
       "nbt": "{Damage:0}"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.lothlorien.galadhrim_armor.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.lothlorien.galadhrim_armor.description"
     },
     "frame": "task",

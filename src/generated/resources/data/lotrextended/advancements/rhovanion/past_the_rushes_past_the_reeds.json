@@ -5,11 +5,10 @@
       "item": "lotr:reeds"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.past_the_rushes_past_the_reeds.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.past_the_rushes_past_the_reeds.description"
     },
     "frame": "task",

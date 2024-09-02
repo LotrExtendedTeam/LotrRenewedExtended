@@ -5,11 +5,10 @@
       "item": "minecraft:lily_pad"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eriador.nin_in_eilph.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eriador.nin_in_eilph.description"
     },
     "frame": "task",

@@ -6,11 +6,10 @@
       "nbt": "{Damage:0}"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.forodwaith.wrapped_warmly.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.forodwaith.wrapped_warmly.description"
     },
     "frame": "task",

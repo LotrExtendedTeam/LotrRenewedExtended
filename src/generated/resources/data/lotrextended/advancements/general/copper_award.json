@@ -5,11 +5,10 @@
       "item": "lotr:copper_ingot"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.copper_award.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.copper_award.description"
     },
     "frame": "task",

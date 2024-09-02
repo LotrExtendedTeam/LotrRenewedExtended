@@ -5,11 +5,10 @@
       "item": "lotr:quagmire"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eriador.more_midges_than_water.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eriador.more_midges_than_water.description"
     },
     "frame": "task",

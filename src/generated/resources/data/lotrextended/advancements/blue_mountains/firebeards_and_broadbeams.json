@@ -4,11 +4,10 @@
       "item": "lotr:blue_rock"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.firebeards_and_broadbeams.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.firebeards_and_broadbeams.description"
     },
     "frame": "task",

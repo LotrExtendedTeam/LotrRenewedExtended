@@ -5,11 +5,10 @@
       "item": "lotr:yellow_iris"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.watery_grave.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.watery_grave.description"
     },
     "frame": "task",

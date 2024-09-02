@@ -5,11 +5,10 @@
       "item": "minecraft:oak_sapling"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.bree.ruffians_haunt.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.bree.ruffians_haunt.description"
     },
     "frame": "task",

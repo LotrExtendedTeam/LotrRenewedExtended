@@ -4,11 +4,10 @@
       "item": "lotr:holly_sapling"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eregion.faded_splendor.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eregion.faded_splendor.description"
     },
     "frame": "task",

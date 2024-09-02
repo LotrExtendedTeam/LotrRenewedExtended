@@ -4,11 +4,10 @@
       "item": "minecraft:snow_block"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.misty_mountains.the_misty_mountains_cold.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.misty_mountains.the_misty_mountains_cold.description"
     },
     "frame": "task",

@@ -5,11 +5,10 @@
       "item": "lotr:tin_ingot"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.tin_award.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.tin_award.description"
     },
     "frame": "task",

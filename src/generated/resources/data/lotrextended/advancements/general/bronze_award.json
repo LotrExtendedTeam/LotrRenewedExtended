@@ -5,11 +5,10 @@
       "item": "lotr:bronze_ingot"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.general.bronze_award.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.general.bronze_award.description"
     },
     "frame": "task",

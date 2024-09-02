@@ -5,11 +5,10 @@
       "item": "lotr:orc_bone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rohan.snaga_slayer.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rohan.snaga_slayer.description"
     },
     "frame": "task",

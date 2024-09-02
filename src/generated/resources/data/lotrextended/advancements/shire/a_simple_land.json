@@ -4,11 +4,10 @@
       "item": "lotr:shire_heather"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.shire.a_simple_land.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.a_simple_land.description"
     },
     "frame": "task",

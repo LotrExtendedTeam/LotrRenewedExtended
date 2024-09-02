@@ -5,11 +5,10 @@
       "item": "lotr:silver_coin_one"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.wealth_from_abroad.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.wealth_from_abroad.description"
     },
     "frame": "task",

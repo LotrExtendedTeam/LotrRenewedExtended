@@ -5,11 +5,10 @@
       "item": "lotr:dwarf_bone"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.blue_mountains_dwarf_slayer.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.blue_mountains.blue_mountains_dwarf_slayer.description"
     },
     "frame": "task",

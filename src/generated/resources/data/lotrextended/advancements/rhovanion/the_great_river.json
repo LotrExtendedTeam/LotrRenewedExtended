@@ -4,11 +4,10 @@
       "item": "minecraft:oak_sapling"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.the_great_river.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.rhovanion.the_great_river.description"
     },
     "frame": "task",

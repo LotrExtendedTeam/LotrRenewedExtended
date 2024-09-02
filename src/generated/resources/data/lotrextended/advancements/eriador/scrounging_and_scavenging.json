@@ -5,11 +5,10 @@
       "item": "lotr:silver_coin_one"
     },
     "title": {
-      "color": "green",
       "translate": "advancements.lotrextended.eriador.scrounging_and_scavenging.title"
     },
     "description": {
-      "color": "white",
+      "color": "green",
       "translate": "advancements.lotrextended.eriador.scrounging_and_scavenging.description"
     },
     "frame": "task",
