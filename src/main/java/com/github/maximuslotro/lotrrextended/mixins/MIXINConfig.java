@@ -62,7 +62,7 @@ public class MIXINConfig implements IMixinConfigPlugin {
 //				System.out.println("NOT ADDING MIXIN: "+targetClassName+", "+mixinClassName);
 //			}
 //		}
-		System.out.println("ADDING MIXIN: "+targetClassName+", "+mixinClassName);
+		ExtendedMixinLog.debug("ADDING MIXIN: "+targetClassName+", "+mixinClassName);
 		return true;
 	}
 

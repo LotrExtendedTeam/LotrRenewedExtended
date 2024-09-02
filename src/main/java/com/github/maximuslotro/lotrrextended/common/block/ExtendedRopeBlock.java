@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 
+import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
@@ -61,8 +63,85 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand unused, BlockRayTraceResult p_225533_6_) {
+	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand pHand, BlockRayTraceResult p_225533_6_) {
+		ItemStack itemstack = player.getItemInHand(pHand);
+		Direction pickedDirection = Direction.NORTH;
+		Direction[] adirection = Direction.orderedByNearest(player);
+		for(Direction direction : adirection) {
+			if (direction.getAxis().isVertical()) {
+				pickedDirection = direction;
+				break;
+			}
+		}
+		if(!pickedDirection.getAxis().isVertical()) {
+			return ActionResultType.PASS;
+		}
+		int yValue = -1;
+		boolean highorlow = true;
+		BlockState chosenBlockState = null;
+		if(pickedDirection==Direction.UP) {
+			BlockState lastBlockState = blockState;
+			for(int y = pos.getY(); y<=255; y++) {
+				BlockPos localPos = new BlockPos(pos.getX(), y, pos.getZ());
+				BlockState emptyBlock = world.getBlockState(localPos);
+				if(emptyBlock.getBlock() instanceof ExtendedRopeBlock) {
+					lastBlockState = emptyBlock;
+					continue;
+				}else if(emptyBlock.isAir()) {
+					yValue = y;
+					chosenBlockState = lastBlockState;
+					highorlow=true;
+					break;
+				}else {
+					return ActionResultType.PASS;
+				}
+			}
+		}else if(pickedDirection==Direction.DOWN) {
+			BlockState lastBlockState = blockState;
+			for(int y = pos.getY(); y>=0; y--) {
+				BlockPos localPos = new BlockPos(pos.getX(), y, pos.getZ());
+				BlockState emptyBlock = world.getBlockState(localPos);
+				if(emptyBlock.getBlock() instanceof ExtendedRopeBlock) {
+					lastBlockState = emptyBlock;
+					continue;
+				}else if(emptyBlock.isAir()) {
+					yValue = y;
+					chosenBlockState = lastBlockState;
+					highorlow=false;
+					break;
+				}else {
+					return ActionResultType.PASS;
+				}
+			}
+		}else {
+			return ActionResultType.PASS;
+		}
+		if(yValue!=-1 && chosenBlockState!=null) {
+			Direction dir = chosenBlockState.getValue(FACING);
+			RopeType type = chosenBlockState.getValue(SECTION_TYPE);
+			if (type == RopeType.TOP_SMALL && highorlow) {
+				type = RopeType.TOP_LARGE;
+			}else if (type == RopeType.SINGLE && highorlow) {
+				type = RopeType.TOP_SMALL;
+			}else if (type == RopeType.SINGLE && !highorlow) {
+				type = RopeType.BOTTOM_SMALL;
+			}else if (type == RopeType.BOTTOM_SMALL && !highorlow) {
+				type = RopeType.BOTTOM_LARGE;
+			}
+			BlockState newRopeBlock = ExtendedBlocks.ROPE.get().defaultBlockState().setValue(FACING, dir).setValue(SECTION_TYPE, type);
+			BlockPos newBlockPos = new BlockPos(pos.getX(), yValue, pos.getZ());
+			if(newRopeBlock.canSurvive(world, newBlockPos)) {
+				world.setBlockAndUpdate(newBlockPos, newRopeBlock);
+				updateShape(chosenBlockState, pickedDirection, newRopeBlock, world, pos, newBlockPos, true);
+				if (!player.abilities.instabuild) {
+					itemstack.shrink(1);
+				}
+				return ActionResultType.sidedSuccess(world.isClientSide);
+			}
+			return ActionResultType.PASS;
+		}
 		return ActionResultType.SUCCESS;
 	}
 
@@ -97,6 +176,10 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	 * */
 	@Override
 	public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, IWorld pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+		return this.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos, false);
+	}
+
+	public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, IWorld pLevel, BlockPos pCurrentPos, BlockPos pFacingPos, boolean isPlacingRiskyUpdates) {
 		if (pFacing.getOpposite() == pState.getValue(FACING) && !pState.canSurvive(pLevel, pCurrentPos)) {
 			return Blocks.AIR.defaultBlockState();
 		} else {

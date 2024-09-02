@@ -33,4 +33,12 @@ public class ExtendedMixinLog {
 	public static void warn(String s, Object... params) {
 		LOGGER.warn(String.format("lotrExtendedMixin: " + s, params));
 	}
+
+	public static void debug(String s) {
+		LOGGER.debug("lotrExtendedMixin: " + s);
+	}
+
+	public static void debug(String s, Object... params) {
+		LOGGER.debug(String.format("lotrExtendedMixin: " + s, params));
+	}
 }

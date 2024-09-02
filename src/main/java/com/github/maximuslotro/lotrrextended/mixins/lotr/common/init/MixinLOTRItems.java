@@ -114,6 +114,13 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+	private static RegistryObject<Item> regExtendedBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, itemMaker);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
 	private static RegistryObject<Item> regHiddenBlockItemB(RegistryObject<Block> blockSup) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
 			return new LOTRBlockItem(b, new Properties());
@@ -133,7 +140,7 @@ public class MixinLOTRItems {
 
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new ExtendedBedItem(b, (new Properties()).stacksTo(1).tab(group));
+			return new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group));
 		});
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
@@ -768,7 +775,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DUNEDAIN_BANNER_PATTERN = regBannerPaternItem("dunedain_banner_pattern", ExtendedBannerPatterns.dunedain, () -> new BannerPatternItem(ExtendedBannerPatterns.dunedain, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN = regBannerPaternItem("gundabad_orc_banner_pattern", ExtendedBannerPatterns.gundabad_orc, () -> new BannerPatternItem(ExtendedBannerPatterns.gundabad_orc, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.ENTITY_SPAWNER = regItemB("structure_entity_spawner", () -> new ExtendedEntitySpawnerItem(new Properties().tab(LOTRItemGroups.MISC).fireResistant()));
-		ExtendedItems.ROPE = regBlockItemB(ExtendedBlocks.ROPE, LOTRItemGroups.UTIL);
+		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
