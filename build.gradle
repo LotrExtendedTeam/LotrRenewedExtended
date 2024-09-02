@@ -23,7 +23,7 @@ plugins {
 }
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.6.1-alpha-1'
+version = '1.6.1-alpha-2'
 group = 'maximuslotro'
 archivesBaseName = 'lotr-1.16-extended-beta'
 
