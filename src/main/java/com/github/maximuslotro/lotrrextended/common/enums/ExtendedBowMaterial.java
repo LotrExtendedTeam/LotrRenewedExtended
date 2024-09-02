@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.init;
+package com.github.maximuslotro.lotrrextended.common.enums;
 
 import java.util.function.Supplier;
 
@@ -8,6 +8,7 @@ import net.minecraft.util.LazyValue;
 
 public enum ExtendedBowMaterial {
 	GENERIC("generic", 0, 400, 20, 1.1F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	ORC("orc", 0, 400, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	RANGER_NORTH("ranger_north", 1, 525, 20, 1.2F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 	private final String bowMaterialName;
 	private final int bowLevel;

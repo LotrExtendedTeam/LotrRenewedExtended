@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/orc_bow",
+  "textures": {
+    "layer0": "lotrextended:item/orc_bow_pulling_2"
+  }
+}

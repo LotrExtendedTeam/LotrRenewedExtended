@@ -645,6 +645,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ROPE.get().getRegistryName().getPath(), has(ExtendedItems.ROPE.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
 
+		GENERATEDRECIPES.add(ExtendedItems.ORC_BOW.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ORC_BOW.get(), LOTRRecipes.ANY_ORC)
+		.pattern(" X#")
+		.pattern("X #")
+		.pattern(" X#")
+		.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
+		.define('X', Ingredient.of(ExtendedTags.Items.ORC_STEEL))
+		.unlockedBy("has_"+ExtendedItems.BOWSTRING.get().getRegistryName().getPath(), has(ExtendedItems.BOWSTRING.get()))
+		.unlockedBy("has_orc_steel_ingot", has(ExtendedTags.Items.ORC_STEEL))
+		.save(consumer, lotrLoc(ExtendedItems.ORC_BOW.get().getRegistryName().getPath()));
+
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
 		.pattern("XXX")
@@ -737,8 +748,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath()));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipes.EXTENDED_TIPPED_ARROW.get()).save(consumer, lotrLoc("tipped_arrow_poison"));
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
-		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(),
-				LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.ORC_STEEL)
 		.requires(ExtendedTags.Items.MORGUL_IRON_ORE)
 		.requiresAlloy(LOTRItems.DURNOR.get())
@@ -746,8 +756,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.DURNOR.get().getRegistryName().getPath(), has(LOTRItems.DURNOR.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath());
-		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GALVORN_INGOT.get(),
-				LOTRRecipes.DWARVEN_FORGE_ALLOY_SERIALIZER.get())
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GALVORN_INGOT.get(), LOTRRecipes.DWARVEN_FORGE_ALLOY_SERIALIZER.get())
 		.requires(IRON_ORE)
 		.requires(IRON_INGOT)
 		.requiresAlloy(LOTRItems.EDHELVIR.get())
@@ -755,8 +764,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.EDHELVIR.get().getRegistryName().getPath(), has(LOTRItems.EDHELVIR.get()))
 		.save(consumer, lotrLoc(ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath());
-		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GILDED_IRON_INGOT.get(),
-				LOTRRecipes.ALLOY_SERIALIZER.get())
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GILDED_IRON_INGOT.get(), LOTRRecipes.ALLOY_SERIALIZER.get())
 		.requires(IRON_ORE)
 		.requires(IRON_INGOT)
 		.requiresAlloy(Items.GOLD_NUGGET)
@@ -764,8 +772,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+Items.GOLD_NUGGET.getRegistryName().getPath(), has(Items.GOLD_NUGGET))
 		.save(consumer, lotrLoc(ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath());
-		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.MORGUL_STEEL_INGOT.get(),
-				LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.MORGUL_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.ORC_STEEL)
 		.requires(ExtendedTags.Items.MORGUL_IRON_ORE)
 		.requiresAlloy(LOTRItems.GULDURIL.get())
@@ -773,8 +780,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.GULDURIL.get().getRegistryName().getPath(), has(LOTRItems.GULDURIL.get()))
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.ITHILDIN.get().getRegistryName().getPath());
-		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.ITHILDIN.get(),
-				LOTRRecipes.ELVEN_FORGE_ALLOY_SERIALIZER.get())
+		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.ITHILDIN.get(), LOTRRecipes.ELVEN_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.SILVER_INGOT)
 		.requires(ExtendedTags.Items.SILVER_ORE)
 		.requiresAlloy(LOTRItems.MITHRIL_NUGGET.get())

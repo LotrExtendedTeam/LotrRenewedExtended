@@ -17,7 +17,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedBowMaterial;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 
 import java.util.List;
 

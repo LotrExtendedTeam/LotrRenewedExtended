@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    " X#",
+    "X #",
+    " X#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bowstring"
+    },
+    "X": {
+      "tag": "forge:ingots/orc_steel"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_bow"
+  }
+}

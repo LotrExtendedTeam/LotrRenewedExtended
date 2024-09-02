@@ -692,6 +692,14 @@ ad050d80972e7468bc93abd2f01b6c7357c2e7f4 assets/lotr/models/item/obsidian_tauret
 ce18b92e52b1c9de86a4d95b96e3e4a49b949866 assets/lotr/models/item/opal_ore.json
 f1daaa080492f7ae1a652a40829fe34633c89b1a assets/lotr/models/item/orc_barrel.json
 981303f8e3a4a760ce90a7706cc66c6ca9fce8da assets/lotr/models/item/orc_bed.json
+a001c2950548ace2b3cabd9f01e3556de3cac66d assets/lotr/models/item/orc_bow.json
+78a7558e8cc72a491f37567006532aaa3e514df5 assets/lotr/models/item/orc_bow_handheld.json
+86486f2c5fc2644c4dc6bcbb8d3cb0639ca1cbb8 assets/lotr/models/item/orc_bow_handheld_pulling_0.json
+fe3070fa584db56520722cb1177030faa515bfa0 assets/lotr/models/item/orc_bow_handheld_pulling_1.json
+cd6fcd82fe3ce8035acc81ce7ec4299fe5f18369 assets/lotr/models/item/orc_bow_handheld_pulling_2.json
+07d29237cec7fe2354a37b03282d507832216e74 assets/lotr/models/item/orc_bow_pulling_0.json
+587c9823aae480a13966a55c3b170c6ed3788061 assets/lotr/models/item/orc_bow_pulling_1.json
+211b2b39af2555e8e275fae0e477bb010e884990 assets/lotr/models/item/orc_bow_pulling_2.json
 1f99eab1f9b6365d22ef8cf1875be15b5c40e25f assets/lotr/models/item/orc_chandelier.json
 c7517383263cf09ad93e8c2a5a28affc8b4f5223 assets/lotr/models/item/orc_steel_door.json
 21e061194438f7a0b7f88676514d4a5533d7757d assets/lotr/models/item/orc_steel_nugget.json
@@ -860,7 +868,7 @@ f8fd76ef9c3176f62abe9d58688b0691e5ad233b assets/lotr/models/item/white_warg_fur_
 bce4b788fead9a92ca6c72e487469a677ff3ae5a assets/lotr/models/item/white_warg_fur_leggings.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-3dcdd8f006cb8b651a14490ec1e54ef6d1c556ed assets/lotrextended/lang/en_us.json
+12d32905b1cb14dd061fd78dba1184e4bcfb4012 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -1992,6 +2000,7 @@ e349eb65d0cd8960bd814af5af29af9f0a323b08 data/lotr/advancements/recipes/lotr.com
 df7ec3f184ea28a20d4959a2510e08353c6a2e84 data/lotr/advancements/recipes/lotr.combat/morgul_helmet.json
 c0f61c59cdb1d3cea18487c30ecc9fc49135f3c2 data/lotr/advancements/recipes/lotr.combat/morgul_leggings.json
 e275e1bd32f1f32b4514414a28a1f67e01bdba38 data/lotr/advancements/recipes/lotr.combat/morgul_spear.json
+52dead58b55cddf5dd471fa7be4cdf0cc307dc38 data/lotr/advancements/recipes/lotr.combat/orc_bow.json
 d19ca38782621b2c5e034c44f102fa7b78a825dc data/lotr/advancements/recipes/lotr.combat/silver_warg_fur_boots.json
 7d4d86a05f1b18733cd4ddc427ae8e8badd3a98f data/lotr/advancements/recipes/lotr.combat/silver_warg_fur_chestplate.json
 ecbdd89a620b6b34ea7595318a9661260920edcb data/lotr/advancements/recipes/lotr.combat/silver_warg_fur_helmet.json
@@ -2130,6 +2139,7 @@ cb15877cb6b7b6bdd0df7c5a1728a272c6cad7ff data/lotr/advancements/recipes/lotr.mis
 e52b05e1de9172a07cc573c0dfcee5255c49e2e2 data/lotr/advancements/recipes/lotr.misc/durin_banner_pattern.json
 8f29704029e399af196f7979c0fe13e825a64ef1 data/lotr/advancements/recipes/lotr.misc/gundabad_orc_banner_pattern.json
 b4011d4af8182879f4863f6d570da57e5467cac0 data/lotr/advancements/recipes/lotr.misc/plum_boat.json
+dde6fc1d1746ba97a59a0d95f239af88e8a49af2 data/lotr/advancements/recipes/lotr.misc/rope.json
 e912fa08ae79e09f054585c65d5ef9f96d2fc175 data/lotr/advancements/recipes/lotr.misc/silver_coin_one.json
 50640836a7e5022ca5672b8826c56edb2c91b714 data/lotr/advancements/recipes/lotr.tools/angmar_axe.json
 262f6d0273e8197a5a3597d7c004b0b0cd060eec data/lotr/advancements/recipes/lotr.tools/angmar_hoe.json
@@ -2170,7 +2180,6 @@ d714c974053784635983044bb157c4d4887a227c data/lotr/advancements/recipes/lotr.uti
 831e0a8ae67e7fe935032cd3a0b9d6006e2ff7bd data/lotr/advancements/recipes/lotr.util/plum_pressure_plate.json
 78e8a6f1643f4b1e8add6cda25a2ff8ee71c8cdd data/lotr/advancements/recipes/lotr.util/plum_trapdoor.json
 7f6b065b6da19526b9f1659ac216d2ecfaff1b24 data/lotr/advancements/recipes/lotr.util/rhunic_crafting_table.json
-dde6fc1d1746ba97a59a0d95f239af88e8a49af2 data/lotr/advancements/recipes/lotr.util/rope.json
 466e6f75d60f335e3c930cd116e633966cba3dc1 data/lotr/advancements/recipes/lotr.util/stone_taurethrim_crafting_table.json
 61a3de23e6e9379caafe4e717699b46edc813843 data/lotr/advancements/recipes/lotr.util/taurethrim_crafting_table.json
 374fc761ad454802cb3e7a484cfec94537b114d8 data/lotr/loot_tables/blocks/aged_cheese_wheel.json
@@ -2808,6 +2817,7 @@ e242b428e3df34e453ab73c729233b12555b1459 data/lotr/recipes/opal_block_from_opal.
 391fb1c1c9fd6f0fd9704af9782cc96e30a2b2ec data/lotr/recipes/opal_from_opal_block.json
 1053fb8576eda460f05ba55f03f810cfa8700e94 data/lotr/recipes/orc_barrel.json
 b9138f7e3c33b3bbfc08d4267812086b54863622 data/lotr/recipes/orc_bed.json
+8b7c1c1b9937216ae58d81b5e1c768653af00a79 data/lotr/recipes/orc_bow.json
 38728f9069fd1c991ae218ec4abae0ab36a626da data/lotr/recipes/orc_chandelier.json
 445dcae8b2f7f16b59c22b83aa4854794f38a4a3 data/lotr/recipes/orc_steel_door.json
 74dbe6a586f5f29631b9699f4f8b05148c94fcbd data/lotr/recipes/orc_steel_ingot_from_orc_steel_nugget.json

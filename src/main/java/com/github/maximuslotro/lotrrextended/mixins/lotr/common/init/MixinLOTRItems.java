@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRenderHelper;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedBowMaterial;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.item.CompostableItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
@@ -704,6 +704,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("ANGMAR")));
 
 		//Bone Equipment
+		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
 		ExtendedItems.BONE_SWORD = regItemB("bone_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("EXT_BONE")));
 		ExtendedItems.BONE_SPEAR = regItemB("bone_spear",() -> new SpearItem(LOTRMaterial.valueOf("EXT_BONE")));
 		ExtendedItems.BONE_DAGGER = regItemB("bone_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("EXT_BONE")));
