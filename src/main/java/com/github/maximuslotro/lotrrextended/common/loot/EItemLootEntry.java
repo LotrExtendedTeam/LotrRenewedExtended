@@ -1,12 +1,14 @@
 package com.github.maximuslotro.lotrrextended.common.loot;
 
 import net.minecraft.item.Item;
+import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootEntry;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.StandaloneLootEntry;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.functions.ILootFunction;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.loot.functions.SetDamage;
 import net.minecraft.util.IItemProvider;
 
@@ -41,8 +43,13 @@ public class EItemLootEntry extends ItemLootEntry{
 			return this.constructor.build(this.weight, this.quality, this.getConditions(), this.getFunctions());
 		}
 
-		public ExtendedBuilder setArmorDamage(float min, float max) {
+		public ExtendedBuilder setDamageRange(float min, float max) {
 			this.apply(SetDamage.setDamage(RandomValueRange.between(min, max)));
+			return this.getThis();
+		}
+
+		public ExtendedBuilder setCount(int number) {
+			this.apply(SetCount.setCount(ConstantRange.exactly(number)));
 			return this.getThis();
 		}
 	}

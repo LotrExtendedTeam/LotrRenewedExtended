@@ -140,16 +140,6 @@
             }
           ],
           "name": "lotr:medium_pouch"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:large_pouch"
         }
       ]
     }
