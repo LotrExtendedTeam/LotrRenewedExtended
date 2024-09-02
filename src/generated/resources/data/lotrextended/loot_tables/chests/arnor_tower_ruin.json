@@ -43,6 +43,13 @@
           "weight": 25,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.35,
+                "max": 0.8
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -53,6 +60,13 @@
           "type": "minecraft:item",
           "weight": 25,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.35,
+                "max": 0.8
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -65,6 +79,13 @@
           "weight": 25,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.35,
+                "max": 0.8
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -75,6 +96,13 @@
           "type": "minecraft:item",
           "weight": 25,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.35,
+                "max": 0.8
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -87,6 +115,13 @@
           "weight": 40,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -97,6 +132,13 @@
           "type": "minecraft:item",
           "weight": 40,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -109,6 +151,13 @@
           "weight": 40,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -119,6 +168,13 @@
           "type": "minecraft:item",
           "weight": 40,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -266,6 +322,13 @@
           "weight": 40,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -276,6 +339,13 @@
           "type": "minecraft:item",
           "weight": 40,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -288,6 +358,13 @@
           "weight": 40,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -298,6 +375,13 @@
           "type": "minecraft:item",
           "weight": 50,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -310,6 +394,13 @@
           "weight": 50,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -320,6 +411,13 @@
           "type": "minecraft:item",
           "weight": 50,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -332,6 +430,13 @@
           "weight": 40,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -342,6 +447,13 @@
           "type": "minecraft:item",
           "weight": 50,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -354,6 +466,13 @@
           "weight": 50,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -364,6 +483,13 @@
           "type": "minecraft:item",
           "weight": 50,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -376,6 +502,13 @@
           "weight": 50,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -386,6 +519,13 @@
           "type": "minecraft:item",
           "weight": 50,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -398,6 +538,13 @@
           "weight": 50,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -408,6 +555,13 @@
           "type": "minecraft:item",
           "weight": 25,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -420,6 +574,13 @@
           "weight": 25,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -430,6 +591,13 @@
           "type": "minecraft:item",
           "weight": 25,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1

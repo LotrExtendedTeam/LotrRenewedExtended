@@ -144,6 +144,13 @@
           "weight": 10,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.05,
+                "max": 0.65
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }

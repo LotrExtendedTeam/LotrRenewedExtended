@@ -73,6 +73,13 @@
           "weight": 30,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.8
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -83,6 +90,13 @@
           "type": "minecraft:item",
           "weight": 30,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.8
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -95,6 +109,13 @@
           "weight": 40,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -105,6 +126,13 @@
           "type": "minecraft:item",
           "weight": 40,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -214,6 +242,13 @@
           "weight": 10,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.8
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -222,8 +257,15 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 210,
+          "weight": 10,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.8
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -236,6 +278,13 @@
           "weight": 10,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.8
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -246,6 +295,13 @@
           "type": "minecraft:item",
           "weight": 10,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.8
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1
@@ -258,6 +314,13 @@
           "weight": 10,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.8
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -269,6 +332,13 @@
           "weight": 30,
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
+            {
               "function": "minecraft:set_count",
               "count": 1
             }
@@ -279,6 +349,13 @@
           "type": "minecraft:item",
           "weight": 60,
           "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.15,
+                "max": 0.75
+              }
+            },
             {
               "function": "minecraft:set_count",
               "count": 1

@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.loot;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import net.minecraft.item.Item;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
@@ -19,20 +21,17 @@ public class EItemLootEntry extends ItemLootEntry{
 	}
 
 	public static StandaloneLootEntry.Builder<ExtendedBuilder> lootItem(IItemProvider pItem) {
-		return simpleExtendedBuilder((p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_) -> {
+		return new EItemLootEntry.ExtendedBuilder((p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_) -> {
 			return new EItemLootEntry(pItem.asItem(), p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_);
-		});
-	}
-
-	public static StandaloneLootEntry.Builder<ExtendedBuilder> simpleExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder pEntryBuilder) {
-		return new EItemLootEntry.ExtendedBuilder(pEntryBuilder);
+		}, pItem.asItem().canBeDepleted());
 	}
 
 	public static class ExtendedBuilder extends StandaloneLootEntry.Builder<EItemLootEntry.ExtendedBuilder> {
 		private final StandaloneLootEntry.ILootEntryBuilder constructor;
-
-		public ExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder p_i50485_1_) {
+		private final boolean isDamagable;
+		public ExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder p_i50485_1_, boolean canDamage) {
 			this.constructor = p_i50485_1_;
+			this.isDamagable = canDamage;
 		}
 
 		protected EItemLootEntry.ExtendedBuilder getThis() {
@@ -44,6 +43,10 @@ public class EItemLootEntry extends ItemLootEntry{
 		}
 
 		public ExtendedBuilder setDamageRange(float min, float max) {
+			if(!isDamagable) {
+				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+min+":"+max);
+				return this.getThis();
+			}
 			this.apply(SetDamage.setDamage(RandomValueRange.between(min, max)));
 			return this.getThis();
 		}
