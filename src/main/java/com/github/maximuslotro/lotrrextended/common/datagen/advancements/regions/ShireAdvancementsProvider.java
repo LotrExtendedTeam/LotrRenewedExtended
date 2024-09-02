@@ -66,21 +66,21 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Thain of the Shire").setDescription("Reach +3000.0 alignment with the Hobbits of the Shire."), 
 				addAlignmentTrigger(make(), FactionPointers.HOBBITS, 3000).parent(hobbit_2000));
 
-		Advancement hobbit_farmer_trade = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "treasures_of_imladris", false, FrameType.TASK, true, true, false)
-				.setTitle("Treasures of Imladris").setDescription("Trade with a Rivendell Wanderer."), 
+		Advancement hobbit_farmer_trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "hobbit_farmer_trade", false, FrameType.TASK, true, true, false)
+				.setTitle("Farmer Maggot's cousin").setDescription("Trade with a Hobbit Farmer."), 
 				addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_WANDERER.get()).parent(shire));
+
+		Advancement hobbit_farmer_potato = build(true, data(Items.POTATO, "boil_em", false, FrameType.GOAL, true, true, false)
+			.setTitle("Boil 'Em, Mash 'Em...").setDescription("Buy potatoes from a Hobbit Farmer."), 
+			addTradeTrigger(make(), ExtendedEntities.HOBBIT_FARMER.get(), true, Items.POTATO).parent(hobbit_farmer_trade));
 
 		Advancement hobbit_bartender_trade = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "welcome_customer", false, FrameType.TASK, true, true, false)
 				.setTitle("Welcome Customer").setDescription("Trade with a Hobbit Bartender."), 
 				addTradeEntityTrigger(make(), ExtendedEntities.HOBBIT_BARTENDER.get()).parent(shire));
 
-		Advancement hobbit_bartender_pipeweed = build(true, data(LOTRItems.PIPEWEED_LEAF.get(), "street_credit", false, FrameType.TASK, true, true, false)
+		Advancement hobbit_bartender_pipeweed = build(true, data(LOTRItems.PIPEWEED_LEAF.get(), "street_credit", false, FrameType.GOAL, true, true, false)
 				.setTitle("Street Credit").setDescription("Sell some Pipe-weed leaf to a Hobbit Bartender."), 
-				addTradeTrigger(make(), ExtendedEntities.HOBBIT_BARTENDER.get(), false, LOTRItems.PIPEWEED_LEAF.get()).parent(shire));
-
-		Advancement hobbit_farmer_potato = build(true, data(Items.POTATO, "boil_em", false, FrameType.TASK, true, true, false)
-				.setTitle("Boil 'Em, Mash 'Em...").setDescription("Buy potatoes from a Hobbit Farmer."), 
-				addTradeTrigger(make(), ExtendedEntities.HOBBIT_FARMER.get(), true, Items.POTATO).parent(shire));
+				addTradeTrigger(make(), ExtendedEntities.HOBBIT_BARTENDER.get(), false, LOTRItems.PIPEWEED_LEAF.get()).parent(hobbit_bartender_trade));
 	}
 
 	@Override

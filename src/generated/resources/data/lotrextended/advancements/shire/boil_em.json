@@ -1,17 +1,18 @@
 {
-  "parent": "lotrextended:shire/a_simple_land",
+  "parent": "lotrextended:shire/hobbit_farmer_trade",
   "display": {
     "icon": {
       "item": "minecraft:potato"
     },
     "title": {
+      "color": "gold",
       "translate": "advancements.lotrextended.shire.boil_em.title"
     },
     "description": {
-      "color": "green",
+      "color": "aqua",
       "translate": "advancements.lotrextended.shire.boil_em.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

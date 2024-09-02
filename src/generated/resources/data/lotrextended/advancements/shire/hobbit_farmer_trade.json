@@ -5,11 +5,11 @@
       "item": "lotr:silver_coin_one"
     },
     "title": {
-      "translate": "advancements.lotrextended.shire.treasures_of_imladris.title"
+      "translate": "advancements.lotrextended.shire.hobbit_farmer_trade.title"
     },
     "description": {
       "color": "green",
-      "translate": "advancements.lotrextended.shire.treasures_of_imladris.description"
+      "translate": "advancements.lotrextended.shire.hobbit_farmer_trade.description"
     },
     "frame": "task",
     "show_toast": true,
