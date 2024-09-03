@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
+import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.Heightmap.Type;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
@@ -25,6 +31,9 @@ import net.minecraft.world.gen.feature.Features.Placements;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
+import net.minecraft.world.gen.placement.ConfiguredPlacement;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
@@ -60,6 +69,14 @@ public class ExtendedBiomeFeatures {
 	private static BlockState RUBY_ORE;
 	private static BlockState EMERALD_ORE;
 	private static BlockState DIAMOND_ORE;
+
+	public static BlockState BLACKBERRYBUSH;
+	public static BlockState BLUEBERRYBUSH;
+	public static BlockState CRANBERRYBUSH;
+	public static BlockState ELDERBERRYBUSH;
+	public static BlockState RASPBERRYBUSH;
+	public static BlockState WILDBERRYBUSH;
+	public static BlockClusterFeatureConfig BUSH_PATCH_CONFIG;
 
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
 	public static BaseTreeFeatureConfig CHESTNUT_TREE;
@@ -178,8 +195,21 @@ public class ExtendedBiomeFeatures {
 		PLUM_TREE_FANCY = buildFancyTree(PLUM_LOG, PLUM_LEAVES_POOL);
 		PLUM_TREE_FANCY_BEES = buildFancyTreeWithBees(PLUM_LOG, PLUM_LEAVES_POOL);
 		PLUM_PARTY = buildNormalPartyTree(PLUM_LOG, PLUM_WOOD, PLUM_BRANCH, PLUM_LEAVES_POOL);
+
+		BLACKBERRYBUSH = ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		BLUEBERRYBUSH = ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		CRANBERRYBUSH = ExtendedBlocks.CRANBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		ELDERBERRYBUSH = ExtendedBlocks.ELDERBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		RASPBERRYBUSH = ExtendedBlocks.RASPBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		WILDBERRYBUSH = ExtendedBlocks.WILDBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		BUSH_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new ExtendedListTypedBlockStateProvider(BLACKBERRYBUSH)
+			.addBlock(BLUEBERRYBUSH).addBlock(CRANBERRYBUSH).addBlock(ELDERBERRYBUSH).addBlock(RASPBERRYBUSH).addBlock(WILDBERRYBUSH), new SimpleBlockPlacer())
+			.tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build();
 	}
 
+	public static void addBushes(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(placeHeightmapDoubleChance(4)));
+	}
 
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AMETHYST_ORE, 6)).range(64).squared().weighted(2F).feature.get());
@@ -253,5 +283,9 @@ public class ExtendedBiomeFeatures {
 
 	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, List<TreeDecorator> decorators) {
 		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new PartyTrunkPlacer(baseHeight, heightRandA, 0, wood, branch), new TwoLayerFeature(1, 1, 2)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
+	}
+
+	private static ConfiguredPlacement<?> placeHeightmapDoubleChance(int chance) {
+		return Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance);
 	}
 }

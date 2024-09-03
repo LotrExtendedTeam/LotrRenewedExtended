@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHa
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
@@ -73,6 +74,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();
 		ExtendedParticles.register(modBus);
