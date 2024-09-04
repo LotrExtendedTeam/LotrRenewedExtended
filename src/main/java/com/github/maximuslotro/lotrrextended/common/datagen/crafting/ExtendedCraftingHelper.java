@@ -163,6 +163,33 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeChainRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> chain, Supplier<? extends Item> ingot, Supplier<? extends Item> nugget, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = chain.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(chain.get())
+			.pattern("N")
+			.pattern("#")
+			.pattern("N")
+			.define('#', Ingredient.of(ingot.get()))
+			.define('N', Ingredient.of(nugget.get()))
+			.unlockedBy("has_"+name, has(chain.get()))
+			.unlockedBy("has_"+nugget.get().getRegistryName().getPath(), has(nugget.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(chain.get(), table)
+			.pattern("N")
+			.pattern("#")
+			.pattern("N")
+			.define('#', Ingredient.of(ingot.get()))
+			.define('N', Ingredient.of(nugget.get()))
+			.unlockedBy("has_"+name, has(chain.get()))
+			.unlockedBy("has_"+nugget.get().getRegistryName().getPath(), has(nugget.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeBedRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, Item reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);

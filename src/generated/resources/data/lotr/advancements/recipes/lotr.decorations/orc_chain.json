@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:orc_chain"
+    ]
+  },
+  "criteria": {
+    "has_orc_chain": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_chain"
+          }
+        ]
+      }
+    },
+    "has_orc_steel_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:orc_chain"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orc_chain",
+      "has_orc_steel_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

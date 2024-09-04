@@ -455,6 +455,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> URUK_CHANDELIER;
 	public static RegistryObject<Item> ORC_STEEL_DOOR;
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;
+	public static RegistryObject<Item> ORC_CHAIN;
 
 	public static RegistryObject<Item> DRYSTONE_SLAB;
 	public static RegistryObject<Item> DRYSTONE_STAIRS;
@@ -527,4 +528,3 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROPE;
 
 }
-

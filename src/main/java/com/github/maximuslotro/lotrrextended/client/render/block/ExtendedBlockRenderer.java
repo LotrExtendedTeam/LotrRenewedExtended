@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.render.block;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
@@ -88,6 +89,9 @@ public class ExtendedBlockRenderer {
 			}
 			if(block instanceof ExtendedFireBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedChainBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get(), RenderType.cutout());

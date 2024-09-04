@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -73,6 +74,7 @@ import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.CakeBlock;
+import net.minecraft.block.ChainBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
@@ -129,6 +131,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
 					genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedChainBlock) {
+					genChainBlock(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
@@ -381,7 +387,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
-					geChestBlockItem(block.getValue().get(), block.getKey());
+					genChestBlockItem(block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getKey().equals("barren_dirt")) {
@@ -1360,12 +1366,26 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
-	private void geChestBlockItem(Block block, String name) {
+	private void genChestBlockItem(Block block, String name) {
 		registeredBlocks.add(block);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), "lotrextended:block/template_chest").texture("texture", lotrExtendedLoc("entity/chest/"+name));
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), "lotrextended:block/template_chest")
+			.texture("texture", lotrExtendedLoc("entity/chest/"+name));
 		simpleBlock(block, modelFile);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
+	}
 
+	private void genChainBlock(Block block, String name) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), "minecraft:block/chain")
+			.texture("particle", lotrExtendedLoc(name)).texture("all", lotrExtendedLoc(name));
+		getVariantBuilder(block).forAllStatesExcept(state -> {
+			Axis axis = state.getValue(ChainBlock.AXIS);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(axis==Axis.X ? 90 : 0)
+                    .rotationX(axis==Axis.Z||axis==Axis.X ? 90 : 0)
+                    .build();
+		}, ChainBlock.WATERLOGGED);
 	}
 
 	private void genRandomCubeBlockItem(Block block, ResourceLocation allSides) {

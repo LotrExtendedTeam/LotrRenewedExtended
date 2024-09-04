@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/chain",
+  "textures": {
+    "particle": "lotrextended:block/orc_chain",
+    "all": "lotrextended:block/orc_chain"
+  }
+}
