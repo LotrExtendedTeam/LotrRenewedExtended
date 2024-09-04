@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone_block"
+    }
+  },
+  "result": {
+    "item": "lotr:bone_block_wall",
+    "count": 6
+  }
+}

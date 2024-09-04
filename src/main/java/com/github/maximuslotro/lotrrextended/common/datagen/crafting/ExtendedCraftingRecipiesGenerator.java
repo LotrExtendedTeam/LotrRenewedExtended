@@ -245,6 +245,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.OBSIDIAN_SHARD, ()->Blocks.OBSIDIAN, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_FUR, ExtendedBlocks.BLACK_PACKED_FUR, null);
 		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.ORC_STEEL_INGOT, ExtendedItems.ORC_STEEL_NUGGET, null);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BONE_BLOCK_STAIRS, 
+			ExtendedBlocks.BONE_BLOCK_SLAB, 
+			ExtendedBlocks.BONE_BLOCK_WALL, 
+			()->Blocks.BONE_BLOCK.asItem(), null);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BLACK_PACKED_FUR_STAIRS, 
 				ExtendedBlocks.BLACK_PACKED_FUR_SLAB, 
 				ExtendedBlocks.BLACK_PACKED_FUR_WALL, 
@@ -1335,6 +1339,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 		//Add vanilla dependent recipes for extended blocks
 		makeStoneCutterRecipe(consumer, () ->Blocks.SMOOTH_STONE, ExtendedBlocks.SMOOTH_STONE_STAIRS);
+		makeStoneCutterRecipe(consumer, () ->Blocks.BONE_BLOCK, ExtendedBlocks.BONE_BLOCK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, () ->Blocks.BONE_BLOCK, ExtendedBlocks.BONE_BLOCK_STAIRS);
+		makeStoneCutterRecipe(consumer, () ->Blocks.BONE_BLOCK, ExtendedBlocks.BONE_BLOCK_WALL);
 
 		//Add renewed dependent recipes for extended blocks
 		makeStoneCutterRecipe(consumer, LOTRBlocks.NUMENOREAN_BRICK, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK);

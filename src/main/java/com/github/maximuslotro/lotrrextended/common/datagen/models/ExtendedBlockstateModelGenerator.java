@@ -459,6 +459,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
+						if(block.getKey().equals("bone_block_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/bone_block_side"),
+									mcLoc("block/bone_block_top"),
+									mcLoc("block/bone_block_top"),
+							models().withExistingParent("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/bone_block")), false, true);
+							continue;
+						}
 						if(block.getKey().equals("grass_path_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_top"),
 									mcLoc("block/grass_path_top"),
@@ -520,6 +527,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_top"));
 							continue;
 						}
+						if(block.getKey().equals("bone_block_stairs")) {
+							genStairsBlockItem((StairsBlock) block.getValue().get(), mcLoc("block/bone_block_side"),
+									mcLoc("block/bone_block_top"),
+									mcLoc("block/bone_block_top"));
+							continue;
+						}
 						if(block.getKey().contains("mud_path")) {
 							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
 							continue;
@@ -547,6 +560,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						}
 						if(block.getKey().contains("mud_path")) {
 							genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+							continue;
+						}
+						if(block.getKey().contains("bone_block_wall")) {
+							genWallBlockItem((WallBlock) block.getValue().get(), mcLoc("block/bone_block_side"));
 							continue;
 						}
 						genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));

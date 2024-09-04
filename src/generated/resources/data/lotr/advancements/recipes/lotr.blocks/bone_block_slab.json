@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:bone_block_slab"
+    ]
+  },
+  "criteria": {
+    "has_bone_block_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bone_block_slab"
+          }
+        ]
+      }
+    },
+    "has_bone_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:bone_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:bone_block_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bone_block_slab",
+      "has_bone_block",
+      "has_the_recipe"
+    ]
+  ]
+}
