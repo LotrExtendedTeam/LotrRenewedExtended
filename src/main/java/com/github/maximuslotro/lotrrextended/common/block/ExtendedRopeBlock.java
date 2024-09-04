@@ -3,13 +3,17 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 
+import lotr.common.block.LOTRBlockStates;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FenceBlock;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -20,8 +24,10 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -38,10 +44,10 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<RopeType> SECTION_TYPE = EnumProperty.create("section_type", RopeType.class);
-	protected static final VoxelShape NORTH_AABB = Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D);
-	protected static final VoxelShape SOUTH_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D);
-	protected static final VoxelShape WEST_AABB = Block.box(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	protected static final VoxelShape EAST_AABB = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);
+	protected static final VoxelShape NORTH_AABB = Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D);
+	protected static final VoxelShape SOUTH_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 2.0D);
+	protected static final VoxelShape WEST_AABB = Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	protected static final VoxelShape EAST_AABB = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
 
 	public ExtendedRopeBlock(Properties p_i48440_1_) {
 		super(p_i48440_1_);
@@ -168,7 +174,22 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 
 	private static boolean canAttachTo(IBlockReader pBlockReader, BlockPos pPos, Direction pDirection) {
 		BlockState blockstate = pBlockReader.getBlockState(pPos);
-		return blockstate.isFaceSturdy(pBlockReader, pPos, pDirection);
+		if(blockstate.isFaceSturdy(pBlockReader, pPos, pDirection)){
+			return true;
+		}
+		if(blockstate.hasProperty(SlabBlock.TYPE) && blockstate.getValue(SlabBlock.TYPE)!=SlabType.BOTTOM) {
+			if(blockstate.hasProperty(LOTRBlockStates.SLAB_AXIS) && blockstate.getValue(LOTRBlockStates.SLAB_AXIS)==Axis.Y) {
+				if(blockstate.getValue(LOTRBlockStates.SLAB_AXIS)==Axis.Y) {
+					return true;
+				}
+			}else {
+				return true;
+			}
+		}
+		if(blockstate.getBlock() instanceof FenceBlock || blockstate.getBlock() instanceof WallBlock) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
