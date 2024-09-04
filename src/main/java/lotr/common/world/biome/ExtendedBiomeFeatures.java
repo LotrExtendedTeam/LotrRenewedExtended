@@ -204,7 +204,7 @@ public class ExtendedBiomeFeatures {
 		WILDBERRYBUSH = ExtendedBlocks.WILDBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
 		BUSH_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new ExtendedListTypedBlockStateProvider(BLACKBERRYBUSH)
 			.addBlock(BLUEBERRYBUSH).addBlock(CRANBERRYBUSH).addBlock(ELDERBERRYBUSH).addBlock(RASPBERRYBUSH).addBlock(WILDBERRYBUSH), new SimpleBlockPlacer())
-			.tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build();
+			.tries(15).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build();
 	}
 
 	public static void addBushes(BiomeGenerationSettings.Builder builder) {
