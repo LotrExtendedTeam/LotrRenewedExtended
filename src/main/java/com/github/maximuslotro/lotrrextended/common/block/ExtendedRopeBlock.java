@@ -44,10 +44,10 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<RopeType> SECTION_TYPE = EnumProperty.create("section_type", RopeType.class);
-	protected static final VoxelShape NORTH_AABB = Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D);
-	protected static final VoxelShape SOUTH_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D);
-	protected static final VoxelShape WEST_AABB = Block.box(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	protected static final VoxelShape EAST_AABB = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);
+	protected static final VoxelShape NORTH_AABB = Block.box(4.0D, 0.0D, 13.0D, 12.0D, 16.0D, 16.0D);
+	protected static final VoxelShape SOUTH_AABB = Block.box(4.0D, 0.0D, 0.0D, 12.0D, 16.0D, 3.0D);
+	protected static final VoxelShape WEST_AABB = Block.box(13.0D, 0.0D, 4.0D, 16.0D, 16.0D, 12.0D);
+	protected static final VoxelShape EAST_AABB = Block.box(0.0D, 0.0D, 4.0D, 3.0D, 16.0D, 12.0D);
 
 	public ExtendedRopeBlock(Properties p_i48440_1_) {
 		super(p_i48440_1_);
