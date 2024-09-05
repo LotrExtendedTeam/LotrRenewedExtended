@@ -51,7 +51,8 @@ public class ExtendedSpawners {
    public static final ResourceLocation GUNDABAD_ENCAMPMENT_TRADER = register("gundabad_encampment_trader_spawner");
    public static final ResourceLocation GUNDABAD_ENCAMPMENT_CAPTAIN = register("gundabad_encampment_captain_spawner");
    public static final ResourceLocation GUNDABAD_ENCAMPMENT_PRISONERS = register("gundabad_encampment_prisoners_spawner");
-
+   public static final ResourceLocation GUNDABAD_ENCAMPMENT_ANIMAL = register("gundabad_encampment_animal_spawner");
+   public static final ResourceLocation GUNDABAD_ENCAMPMENT_WARG = register("gundabad_encampment_warg_spawner");
 
    private static ResourceLocation register(String pId) {
       return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

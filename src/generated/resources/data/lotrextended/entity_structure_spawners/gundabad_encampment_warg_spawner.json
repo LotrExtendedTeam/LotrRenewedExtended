@@ -1,0 +1,32 @@
+{
+  "id": "lotrextended:gundabad_encampment_warg_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 24
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 20
+  },
+  "inside_spawning": true,
+  "setHomeOnSpawn": true,
+  "setHomeRandomly": true,
+  "homeRadius": 26,
+  "spawnCap": 8,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 3,
+      "entity_types": [
+        {
+          "weight": 100,
+          "entity_type": "lotr:gundabad_warg"
+        }
+      ]
+    }
+  ]
+}

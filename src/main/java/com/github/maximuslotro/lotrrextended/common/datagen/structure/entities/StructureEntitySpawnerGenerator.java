@@ -80,5 +80,9 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 				.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 30).addPool(LOTREntities.LINDON_ELF.get(), 1)
 				.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.GUNDABAD_ORC.get(), 5)
 				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).setRandomDiscardChance(30).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_PRISONERS);
+		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
+		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).setPoolRolls(2).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ANIMAL);
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.GUNDABAD_WARG.get(), 100).build(), 2, 3, true, 26, 8)
+		.setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_WARG);
 	}
 }
