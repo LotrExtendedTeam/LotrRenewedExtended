@@ -21,7 +21,7 @@ public class ExtendedModelTaurethrimChieftanHelmet extends ExtendedSpecialArmorM
         ModelRenderer crest = new ModelRenderer(this,0,16);
         crest.setPos(0.0f,-f,0.0f);
         crest.addBox(-8.0f, -23.0f, 0.0f, 16, 14, 0, 0.0f);
-        crest.xRot=-0.17453292519943295f;
+		setRotationAngle(crest, -0.17453292519943295f, 0.0f, 0.0F);
         head.addChild(crest);
     }
 }
