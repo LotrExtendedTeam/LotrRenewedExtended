@@ -15,11 +15,11 @@
   "inside_spawning_chance": 70,
   "setHomeOnSpawn": true,
   "homeRadius": 26,
-  "spawnCap": 15,
+  "spawnCap": 20,
   "pools": [
     {
       "weight": 100,
-      "minSpawnCount": 4,
+      "minSpawnCount": 5,
       "maxSpawnCount": 7,
       "entity_types": [
         {

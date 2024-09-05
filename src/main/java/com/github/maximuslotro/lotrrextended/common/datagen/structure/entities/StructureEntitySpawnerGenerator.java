@@ -69,7 +69,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 				.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).setRandomDiscardChance(40).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_PRISONERS);
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
-				.build(), 4, 7, false, 26, 15).setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning(70).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
+				.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning(70).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
 		// un-disable when gundabad captain is added
 		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
 		// un-disable when gundabad trader is added
