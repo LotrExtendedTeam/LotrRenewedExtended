@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelTaurethrimChieftanHelmet extends SpecialArmorModel<LivingEntity> {
+public class ExtendedModelTaurethrimChieftanHelmet extends ExtendedSpecialArmorModel<LivingEntity> {
     private ModelRenderer crest;
 
     public ExtendedModelTaurethrimChieftanHelmet(BipedModel<LivingEntity> referenceBipedModel) {

@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelMorgulHelmet extends SpecialArmorModel<LivingEntity> {
+public class ExtendedModelMorgulHelmet extends ExtendedSpecialArmorModel<LivingEntity> {
     private ModelRenderer[] spikes = new ModelRenderer[8];
 
     public ExtendedModelMorgulHelmet(BipedModel<LivingEntity> referenceBipedModel) {

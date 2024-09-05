@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelLeatherHat extends SpecialArmorModel<LivingEntity> {
+public class ExtendedModelLeatherHat extends ExtendedSpecialArmorModel<LivingEntity> {
 
     public ExtendedModelLeatherHat(BipedModel<LivingEntity> referenceBipedModel) {
        this(referenceBipedModel, 1.0F);
