@@ -485,7 +485,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_SUPPLIES, LootTable.lootTable()
 			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(3, 5))
+				.setRolls(RandomValueRange.between(2, 4))
 				.add(EItemLootEntry.lootItem(LOTRItems.MAN_FLESH.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(3, 6))))
 				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(3, 5))))
 				.add(EItemLootEntry.lootItem(LOTRItems.MAGGOTY_BREAD.get()).setWeight(65).apply(SetCount.setCount(RandomValueRange.between(3, 6))))

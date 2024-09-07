@@ -1083,7 +1083,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.RAW_DUCK.get()), 
 				ExtendedItems.COOKED_DUCK.get(), 0.35F, 200)
 		.unlockedBy("has_"+ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.COOKED_DUCK.get()))
-		.unlockedBy("has_"+ExtendedItems.RAW_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.CONKER.get()))
+		.unlockedBy("has_"+ExtendedItems.RAW_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.RAW_DUCK.get()))
 		.save(consumer, lotrLoc(ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath()));
 
 		makeCookingRecipes(consumer, "smoking", IRecipeSerializer.SMOKING_RECIPE, 100);
