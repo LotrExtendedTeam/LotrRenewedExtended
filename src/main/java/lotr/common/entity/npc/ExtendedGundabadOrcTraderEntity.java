@@ -152,33 +152,33 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
         ItemStack legaItem;
         ItemStack bootsItem;
         if (random.nextInt(500) == 0) {
-        	headItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
-            chestItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
+        	headItem= new ItemStack(ExtendedItems.WHITE_WARG_HELMET.get());
+            chestItem= new ItemStack(ExtendedItems.WHITE_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
-            bootsItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.WHITE_WARG_BOOTS.get());
 		}
 		if (random.nextInt(24) == 0) {
-        	headItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
-            chestItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
+        	headItem= new ItemStack(ExtendedItems.BLACK_WARG_HELMET.get());
+            chestItem= new ItemStack(ExtendedItems.BLACK_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
-            bootsItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.BLACK_WARG_BOOTS.get());
 		}
 		if (random.nextInt(10) == 0) {
-        	headItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
-            chestItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
+        	headItem= new ItemStack(ExtendedItems.SILVER_WARG_HELMET.get());
+            chestItem= new ItemStack(ExtendedItems.SILVER_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
-            bootsItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.SILVER_WARG_BOOTS.get());
 		}
-		if(random.nextInt(5) == 0) {
-        	headItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
-            chestItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
+		if(random.nextInt(3) == 0) {
+        	headItem= new ItemStack(ExtendedItems.BROWN_WARG_HELMET.get());
+            chestItem= new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
-            bootsItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get());
 		}else{
-        	headItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+        	headItem= new ItemStack(ExtendedItems.GRAY_WARG_HELMET.get());
             chestItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
             legaItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
-            bootsItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.GRAY_WARG_BOOTS.get());
 		}
 		this.setItemSlot(EquipmentSlotType.FEET, bootsItem);
 		this.setItemSlot(EquipmentSlotType.LEGS, legaItem);
