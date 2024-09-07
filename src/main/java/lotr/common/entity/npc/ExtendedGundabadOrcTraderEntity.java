@@ -147,11 +147,43 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
         this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.MORDOR_DAGGER.get()));
         this.npcItemsInv.clearRangedWeapon(); // orc traders do not have ranged weapons
         this.npcItemsInv.clearIdleItem();
-
-		this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get()));
-		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get()));
-		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get()));
-		this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.BROWN_WARG_HELMET.get()));
+        ItemStack headItem;
+        ItemStack chestItem;
+        ItemStack legaItem;
+        ItemStack bootsItem;
+        if (random.nextInt(500) == 0) {
+        	headItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
+            chestItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
+            legaItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
+		}
+		if (random.nextInt(24) == 0) {
+        	headItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
+            chestItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
+            legaItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
+		}
+		if (random.nextInt(10) == 0) {
+        	headItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
+            chestItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
+            legaItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
+		}
+		if(random.nextInt(5) == 0) {
+        	headItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
+            chestItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
+            legaItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
+		}else{
+        	headItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+            chestItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+            legaItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+            bootsItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+		}
+		this.setItemSlot(EquipmentSlotType.FEET, bootsItem);
+		this.setItemSlot(EquipmentSlotType.LEGS, legaItem);
+		this.setItemSlot(EquipmentSlotType.CHEST, chestItem);
+		this.setItemSlot(EquipmentSlotType.HEAD, headItem);
 		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 
         return spawnData;
