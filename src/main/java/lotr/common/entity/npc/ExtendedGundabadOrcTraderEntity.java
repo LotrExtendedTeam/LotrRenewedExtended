@@ -156,20 +156,17 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
             chestItem= new ItemStack(ExtendedItems.WHITE_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.WHITE_WARG_LEGGINGS.get());
             bootsItem= new ItemStack(ExtendedItems.WHITE_WARG_BOOTS.get());
-		}
-		if (random.nextInt(24) == 0) {
+		} else if (random.nextInt(24) == 0) {
         	headItem= new ItemStack(ExtendedItems.BLACK_WARG_HELMET.get());
             chestItem= new ItemStack(ExtendedItems.BLACK_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.BLACK_WARG_LEGGINGS.get());
             bootsItem= new ItemStack(ExtendedItems.BLACK_WARG_BOOTS.get());
-		}
-		if (random.nextInt(10) == 0) {
+		} else if (random.nextInt(10) == 0) {
         	headItem= new ItemStack(ExtendedItems.SILVER_WARG_HELMET.get());
             chestItem= new ItemStack(ExtendedItems.SILVER_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.SILVER_WARG_LEGGINGS.get());
             bootsItem= new ItemStack(ExtendedItems.SILVER_WARG_BOOTS.get());
-		}
-		if(random.nextInt(3) == 0) {
+		} else if(random.nextInt(3) == 0) {
         	headItem= new ItemStack(ExtendedItems.BROWN_WARG_HELMET.get());
             chestItem= new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get());
