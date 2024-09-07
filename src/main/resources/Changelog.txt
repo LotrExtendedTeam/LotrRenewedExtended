@@ -1,3 +1,73 @@
+(Beta 1.6.1)
+* Blocks
+ * Added Bone Block Slab
+ * Added Bone Block Stairs
+ * Added Bone Block Wall
+ * Added Mossy Arnor Pillar Slabs
+ * Added Mossy Arnor Pillars
+ * Added Orc Steel Chain
+ * Changed Packed fur block tab (decoration->building)
+ * Ported Rope
+* Items
+ * Added legacy ability for different bows to have different draw speeds
+ * Fixed Bow models rendering incorrectly in first-person view
+ * Fixed Ranger Bow and Longbows not being repairable. (Repairable with Bowstring now)
+ * Ported Orc Bow
+* Entities
+ * Added Trader Respawners (that floating coin thingy)
+ * Gundabad Orc Traders equip warg armor with same rarity as Gundabad Warg color rarity
+ * Made Ducks Spawn naturally
+ * Made Elven Traders properly hold coins in their hand
+ * Mordor Orcs can now spawn with Black and Brown Warg Fur armor
+ * Ported Blue Mountains Wandering Trader
+ * Ported Gundabad Orc Scrounger (found in orc encampments)
+* Localization
+ * Fixed Dunedain Banner Patterns not using accented Dunedain description
+ * Updated Chinese (Taiwan) translation (zh_tw)
+* Loot Tables
+ * Applied Random Damage to all Structure Chest loot-table's Armor/Tools/Weapons
+ * Overhauled Gundabad Camp Supply Chest loot-tables (32 -> 73 items)
+* Misc
+ * Added 1 advancements from Legacy (32.3% currently)
+ * Added 2 new advancements in Extended (18 currently)
+ * Added Gemstone Smelting Recipes for furnaces
+ * Added Recipes to convert between different torch types
+ * Added Warg Fur Armor and Bone Weapon/Tools to Gundabad and Isengard Orc equipment pools
+ * Allowed Melon and Pumpkin stems to grow Melons and Pumpkins on Barren Dirt
+ * Changed Advancement Colors
+ * Fixed Extended’s Bookshelves not supplying enchanting power to Enchanting Tables
+ * Fixed Java 9+ compatibility issues in renewed
+ * Fixed roast duck recipe unlocking from conkers
+ * Made Berries, Berry Bushes, Conkers, Roasted Chestnuts, Plums, Bananas, and Banana Bread compostable
+ * Made Cheese Wheels, Cherry Pie, Apple Crumble, Cake (vanilla mc cake) drop as an item if there a no bites when broken (normally they can never be picked back up once placed)
+* Sounds
+ * Add new Unique Open/Close sounds for the Stone Chest
+* Structures
+ * Added Gundabad Encampments (6 variants)
+ * Disabled Large Hobbit Hole spawning due to issues with it
+ * Fix wood pallets incorrectly handling vanilla verticalized slabs
+ * Fixed Ranger Hideouts being in Lone Lands and Eriador (needs to be in forested areas)
+* Textures
+ * Remastered Orc Bow texture
+ * Synced Bow model speed to bow dependent Draw Speed
+ * Updated Bedroll texture
+ * Updated Gray and Silver Packed fur and Bundled fur block textures
+ * Updated Gray and Silver fur textures
+ * Updated Rope item texture
+ * Updated White and Black Packed fur and Bundled fur block textures
+ * Updated White and Black fur texture
+ * Updated all Warg armor models and textures
+* Trading
+ * Added 7 Missing Trades back to Hobbit Bartender (including Smoking Pipe)
+ * Added Depart and Death chat messages for wandering traders
+ * Corrected biome lists so all currently added Wandering Traders properly spawn in it’s legacy biomes
+ * Fixed client crash when shift-clicking on a sold-out trade slot
+ * Make spawn message match format of legacy
+ * Prevent wandering traders from spawning for players in creative or spectator game modes
+ * Updated shift-click buying only buying a max of 64 items, not ultra-maxing out your inventory
+* WorldGen
+ * Made Berry Bushes Spawn Naturally in approximately all the same legacy biomes
+
 (Beta 1.6.0)
 * Blocks
  * Added Banana Branch
