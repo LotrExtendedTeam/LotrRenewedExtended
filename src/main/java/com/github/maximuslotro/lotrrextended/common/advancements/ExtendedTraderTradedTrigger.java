@@ -33,9 +33,9 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 				jsonObject.get("istraderselling").getAsBoolean(), ItemPredicate.fromJson(jsonObject.get("item")), MinMaxBounds.IntBound.fromJson(jsonObject.get("coins_moved")));
 	}
 
-	public void trigger(ServerPlayerEntity player, EntityType<?> entityType, boolean didPlayerBuyItemFromTrader, ItemStack stack) {
+	public void trigger(ServerPlayerEntity player, EntityType<?> entityType, boolean didPlayerBuyItemFromTrader, ItemStack stack, int coinAmount) {
 		this.trigger(player, (instance) -> {
-			return instance.matches(player, entityType, didPlayerBuyItemFromTrader, stack);
+			return instance.matches(player, entityType, didPlayerBuyItemFromTrader, stack, coinAmount);
 		});
 	}
 
@@ -69,12 +69,12 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 					ItemPredicate.ANY, MinMaxBounds.IntBound.ANY);
 		}
 
-		public boolean matches(ServerPlayerEntity player, EntityType<?> entity, boolean didPlayerBuyItemFromTrader, ItemStack stack) {
+		public boolean matches(ServerPlayerEntity player, EntityType<?> entity, boolean didPlayerBuyItemFromTrader, ItemStack stack, int coinAmount) {
 			if (this.didPlayerBuyItemFromTrader && didPlayerBuyItemFromTrader) {
-				return this.entityTypePredicate.matches(entity) && item.matches(stack);
+				return this.entityTypePredicate.matches(entity) && item.matches(stack) && coinsTransphered.matches(coinAmount);
 			}
 			if (!this.didPlayerBuyItemFromTrader && !didPlayerBuyItemFromTrader) {
-				return this.entityTypePredicate.matches(entity) && item.matches(stack);
+				return this.entityTypePredicate.matches(entity) && item.matches(stack) && coinsTransphered.matches(coinAmount);
 			}
 			return false;
 		}

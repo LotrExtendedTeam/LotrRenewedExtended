@@ -246,7 +246,10 @@ public class ExtendedTradeContainer extends Container {
                             && player.inventory.getCarried().getCount() + soldItems[index].getCount() <= soldItems[index].getMaxStackSize());
 
             if (canPerformTrade && stackHasSpace) {
-                CoinUtils.removeCoins(player, player.inventory, soldPrices[index]);
+            	int price = soldPrices[index];
+            	if(!CoinUtils.removeCoins(player, player.inventory, soldPrices[index])) {
+            		return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
+            	}
                 trader.playTradeSound();
                 ItemStack itemForTrade = soldItems[index].copy();
                 if (player.inventory.getCarried().equals(ItemStack.EMPTY)) {
@@ -266,7 +269,7 @@ public class ExtendedTradeContainer extends Container {
                     tradedYet = true;
                 }
                 if (!player.level.isClientSide()) {
-                	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade);
+                	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade, price);
                 }
             }
 
@@ -397,6 +400,12 @@ public class ExtendedTradeContainer extends Container {
             tradedYet = true;
         }
 
+        if (!player.level.isClientSide()) {
+        	for(ItemStack itemSold : soldItems) {
+        		ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false, itemSold, coinsGiven);
+        	}
+        }
+
         // give in the largest currencies first
         List<ItemStack> itemsToGive = new ArrayList<>();
         if (coinsGiven / 100 > 0) {
@@ -420,9 +429,6 @@ public class ExtendedTradeContainer extends Container {
 
         // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
-        	for(ItemStack itemSold : soldItems) {
-        		ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false, itemSold);
-        	}
         	ExtendedPacketHandler.sendToClient(new ExtendedSPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }
