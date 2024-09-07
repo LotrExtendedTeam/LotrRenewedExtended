@@ -173,7 +173,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
             bootsItem= new ItemStack(ExtendedItems.BROWN_WARG_BOOTS.get());
 		}else{
         	headItem= new ItemStack(ExtendedItems.GRAY_WARG_HELMET.get());
-            chestItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
+            chestItem= new ItemStack(ExtendedItems.GRAY_WARG_CHESTPLATE.get());
             legaItem= new ItemStack(ExtendedItems.GRAY_WARG_LEGGINGS.get());
             bootsItem= new ItemStack(ExtendedItems.GRAY_WARG_BOOTS.get());
 		}
