@@ -16,6 +16,7 @@
 		"lotr.common.entity.npc.MixinGundabadOrcEntity",
 		"lotr.common.entity.npc.MixinIsengardSnagaArcherEntity",
 		"lotr.common.entity.npc.MixinIsengardSnagaEntity",
+		"lotr.common.entity.npc.MixinMordorOrcEntity",
 		"lotr.common.entity.npc.MixinNPCEntity",
 		"lotr.common.entity.npc.MixinNPCEntityInvoker",
 		"lotr.common.event.MixinLOTREventHandlerJavaPatch",
