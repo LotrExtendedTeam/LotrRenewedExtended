@@ -23,6 +23,7 @@ import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGloba
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
@@ -67,7 +68,7 @@ public class LotrExtendedMod{
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::registerCommands);
 		forgeBus.addListener(this::registerDataPackListeners);
-		forgeBus.addListener(EventPriority.HIGH, this::addStructuresToBiomes);
+		forgeBus.addListener(EventPriority.HIGH, this::addFeatureToBiomes);
 		forgeBus.addListener(this::addDimensionalSpacing);
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		ExtendedServerConfig.register();
@@ -113,8 +114,9 @@ public class LotrExtendedMod{
 		return ModList.get().getModFileById(MODID).getFile();
 	}
 
-	public void addStructuresToBiomes(BiomeLoadingEvent event) {
+	public void addFeatureToBiomes(BiomeLoadingEvent event) {
 		BiomeStructureAdder.addStructuresToBiomes(event);
+		BiomeFeatureAdder.addFeatureToBiomes(event);
 	}
 
     public void addDimensionalSpacing(WorldEvent.Load event) {
