@@ -116,9 +116,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 
 	@Override
     protected void addTables() {
+		// Fix Vanilla and Renewed block loot-tables
 		createCakePool(Blocks.CAKE);
 		createCakePool(LOTRBlocks.CHERRY_PIE.get());
 		createCakePool(LOTRBlocks.APPLE_CRUMBLE.get());
+		// Generate Extended's block loot-tables
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof ExtendedGrowableAxialSlabBlock) {
 				add(block.getValue().get(), createGrowableSlabItemTable((SlabBlock)block.getValue().get(),((ExtendedGrowableAxialSlabBlock)block.getValue().get()).getBaseForLootTables().get()));
@@ -298,10 +300,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
 				dropSelf(block.getValue().get());
-				continue;
-			}
-			if(block.getValue().get() instanceof ExtendedCakeBlock) {
-				add(block.getValue().get(), noDrop());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedCakeBlock) {

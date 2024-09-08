@@ -19,7 +19,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements ExtedndedAgeingCheese {
+public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements ExtendedAgeingCheese {
 	private final RegistryObject<Item> sliceitem;
 	private final ExtendedCheeseState age;
 	public ExtendedCheeseWheelBlock(Properties p_i48434_1_, float compostValue, RegistryObject<Item> sliceitem, ExtendedCheeseState age) {
@@ -65,7 +65,7 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exted
 
 	@Override
 	public boolean isRandomlyTicking(BlockState p_154935_) {
-		return ExtedndedAgeingCheese.getNext(p_154935_.getBlock()).isPresent();
+		return ExtendedAgeingCheese.getNext(p_154935_.getBlock()).isPresent();
 	}
 	  
 	@Override

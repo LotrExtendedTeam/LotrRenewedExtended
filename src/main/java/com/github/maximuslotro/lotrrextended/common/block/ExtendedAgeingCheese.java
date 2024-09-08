@@ -13,7 +13,7 @@ import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 
-public interface ExtedndedAgeingCheese extends ExtendedChangingOverTimeBlock<ExtendedCheeseState> {
+public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<ExtendedCheeseState> {
 	   Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> {
 	      return ImmutableBiMap.<Block, Block>builder().put(ExtendedBlocks.CHEESE_WHEEL.get(), ExtendedBlocks.AGED_CHEESE_WHEEL.get()).build();
 	   });
