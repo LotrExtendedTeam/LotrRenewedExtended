@@ -165,7 +165,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		.addTag(ExtendedTags.Items.URUK_STEEL).addTag(ExtendedTags.Items.MITHRIL);
 
 		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET);
-		
+
 		tag(ExtendedTags.Items.TOPAZ_GEMS).add(ExtendedItems.TOPAZ.get());
 		tag(ExtendedTags.Items.AMETHYST_GEMS).add(ExtendedItems.AMETHYST.get());
 		tag(ExtendedTags.Items.SAPPHIRE_GEMS).add(ExtendedItems.SAPPHIRE.get());

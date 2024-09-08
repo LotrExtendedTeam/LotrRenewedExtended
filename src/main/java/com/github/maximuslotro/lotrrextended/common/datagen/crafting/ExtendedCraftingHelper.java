@@ -57,6 +57,10 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		super(gen);
 	}
 
+	public ResourceLocation mcLoc(String name) {
+        return new ResourceLocation(name);
+    }
+
 	public ResourceLocation lotrLoc(String name) {
         return new ResourceLocation("lotr", name);
     }

@@ -680,7 +680,24 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Tags.Items.STRING)
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
-
+		//Vanilla egg fixes
+		ShapedRecipeBuilder.shaped(Items.CAKE)
+		.pattern("MMM")
+		.pattern("SES")
+		.pattern("WWW")
+		.define('M', Ingredient.of(Items.MILK_BUCKET))
+		.define('S', Ingredient.of(Items.SUGAR))
+		.define('E', Ingredient.of(Tags.Items.EGGS))
+		.define('W', Ingredient.of(Items.WHEAT))
+		.unlockedBy("has_"+Items.CAKE.getRegistryName().getPath(), has(Items.CAKE))
+		.save(consumer, mcLoc(Items.CAKE.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(Items.PUMPKIN_PIE)
+		.requires(Items.SUGAR)
+		.requires(Items.PUMPKIN)
+		.requires(Tags.Items.EGGS)
+		.unlockedBy("has_"+Items.PUMPKIN_PIE.getRegistryName().getPath(), has(Items.PUMPKIN_PIE))
+		.save(consumer, mcLoc(Items.PUMPKIN_PIE.getRegistryName().getPath()));
+		// Extended cheese
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
 		.pattern("###")
