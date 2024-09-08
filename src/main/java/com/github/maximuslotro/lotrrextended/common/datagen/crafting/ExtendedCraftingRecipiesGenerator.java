@@ -725,7 +725,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("ZZZ")
 		.define('#', Ingredient.of(Items.MILK_BUCKET))
 		.define('X', Ingredient.of(ExtendedItems.BANANA.get()))
-		.define('S', Ingredient.of(Items.EGG))
+		.define('S', Ingredient.of(Tags.Items.EGGS))
 		.define('Z', Ingredient.of(Items.WHEAT))
 		.unlockedBy("has_"+ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath(), has(ExtendedItems.BANANA_CAKE.get()))
 		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))

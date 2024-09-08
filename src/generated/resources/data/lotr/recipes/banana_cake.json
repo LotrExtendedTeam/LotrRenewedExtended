@@ -13,7 +13,7 @@
       "item": "lotr:banana"
     },
     "S": {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     },
     "Z": {
       "item": "minecraft:wheat"
