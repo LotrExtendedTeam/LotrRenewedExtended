@@ -26,8 +26,8 @@ import net.minecraft.util.WeightedRandom;
 
 public class ExtendedStructureEntitySpawner {
 	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(ExtendedSpawners.EMPTY, new ArrayList<>(), SpawnerType.UNKNOWN, ExtendedSpawnerBoundsEntry.DEFAULT, ExtendedSpawnerBoundsEntry.DEFAULT);
-	private static final int defaultEntitySpawnTickRate = 3600;
-	private static final int defaultPlayerMinSpawnDistance = 10;
+	private static final int defaultEntitySpawnTickRate = 6000;
+	private static final int defaultPlayerMinSpawnDistance = 15;
 	private static final int defaultPlayerMaxSpawnDistance = 64;
 	private static final int defultHomeRadius = 16;
 	private static final int defaultLocalSpawnCap = 4;
