@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.tileentity.chests;
 
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBarrelBlock;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,10 +26,6 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 
 	   public ExtendedBarrelTileEntity(TileEntityType<?> p_i49963_1_) {
 	      super(p_i49963_1_);
-	   }
-
-	   public ExtendedBarrelTileEntity() {
-	      this(ExtendedTileEntities.REED_BASKET.get());
 	   }
 
 	   @Override
