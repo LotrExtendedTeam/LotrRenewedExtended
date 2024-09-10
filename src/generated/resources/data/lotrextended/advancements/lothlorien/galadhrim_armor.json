@@ -2,7 +2,7 @@
   "parent": "lotrextended:lothlorien/lothlorien",
   "display": {
     "icon": {
-      "item": "lotr:dwarven_chestplate",
+      "item": "lotr:galadhrim_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {

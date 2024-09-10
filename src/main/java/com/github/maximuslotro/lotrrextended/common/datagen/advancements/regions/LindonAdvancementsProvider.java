@@ -57,11 +57,11 @@ public class LindonAdvancementsProvider extends BaseAdvancementType{
 //				addItemTrigger(make(), LOTRItems.ELVEN_STEEL_INGOT.get()).parent(elven_ingot));
 
 		Advancement elf_10 = build(true, data(LOTRItems.GOLD_RING.get(), "high_elf_guest", false, FrameType.TASK, true, true, false)
-				.setTitle("Blue Mountains Guest").setDescription("Reach +10.0 alignment with the High Elves."), 
+				.setTitle("High Elf Guest").setDescription("Reach +10.0 alignment with the High Elves."), 
 				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 10).parent(lindon));
 
 		Advancement elf_50 = build(true, data(LOTRItems.GOLD_RING.get(), "high_elf_friend", false, FrameType.TASK, true, true, false)
-				.setTitle("Blue Mountains Friend").setDescription("Reach +50.0 alignment with the High Elves."), 
+				.setTitle("High Elf Friend").setDescription("Reach +50.0 alignment with the High Elves."), 
 				addAlignmentTrigger(make(), FactionPointers.HIGH_ELVES, 50).parent(elf_10));
 
 		Advancement elf_100 = build(true, data(LOTRItems.GOLD_RING.get(), "mahtar", false, FrameType.TASK, true, true, false)

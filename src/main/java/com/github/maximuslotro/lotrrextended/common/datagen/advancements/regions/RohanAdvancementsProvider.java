@@ -65,28 +65,28 @@ public class RohanAdvancementsProvider extends BaseAdvancementType{
 				addAlignmentTrigger(make(), FactionPointers.ROHAN, 2000).parent(rohan_1000));
 	
 		Advancement isengard_10 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_10", false, FrameType.TASK, true, true, false)
-				.setTitle("Rohan Guest").setDescription("Reach +10.0 alignment with Isengard."), 
+				.setTitle("Isengard Thrall").setDescription("Reach +10.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 10).parent(horse_lords));
 		Advancement isengard_50 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_50", false, FrameType.TASK, true, true, false)
-				.setTitle("Eorling Footman").setDescription("Reach +50.0 alignment with Isengard."), 
+				.setTitle("Isengard Snaga").setDescription("Reach +50.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 50).parent(isengard_10));
 		Advancement isengard_100 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_100", false, FrameType.TASK, true, true, false)
-				.setTitle("Eorling-at-Arms").setDescription("Reach +100.0 alignment with Isengard."), 
+				.setTitle("Isengard Soldier").setDescription("Reach +100.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 100).parent(isengard_50));
 		Advancement isengard_200 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_200", false, FrameType.TASK, true, true, false)
-				.setTitle("Rider of Rohan").setDescription("Reach +200.0 alignment with Isengard."), 
+				.setTitle("Isengard Tree-feller").setDescription("Reach +200.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 200).parent(isengard_100));
 		Advancement isengard_500 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_500", false, FrameType.TASK, true, true, false)
-				.setTitle("Esquire of Rohan").setDescription("Reach +500.0 alignment with Isengard."), 
+				.setTitle("Isengard Berserker").setDescription("Reach +500.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 500).parent(isengard_200));
 		Advancement isengard_1000 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_1000", false, FrameType.TASK, true, true, false)
-				.setTitle("Eorling Captain").setDescription("Reach +1000.0 alignment with Isengard."), 
+				.setTitle("Isengard Corporal").setDescription("Reach +1000.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 1000).parent(isengard_500));
 		Advancement isengard_2000 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_2000", false, FrameType.GOAL, true, true, false)
-				.setTitle("Eorling Marshal").setDescription("Reach +2000.0 alignment with Isengard."), 
+				.setTitle("Hand of Isengard").setDescription("Reach +2000.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 2000).parent(isengard_1000));
 		Advancement isengard_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "isengard_3000", false, FrameType.CHALLENGE, true, true, false)
-				.setTitle("Eorling Marshal").setDescription("Reach +3000.0 alignment with Isengard."), 
+				.setTitle("Captain of the Hand").setDescription("Reach +3000.0 alignment with Isengard."), 
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 3000).parent(isengard_2000));
 
 		Advancement uruk_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "uruk_slayer", false, FrameType.TASK, true, true, false)

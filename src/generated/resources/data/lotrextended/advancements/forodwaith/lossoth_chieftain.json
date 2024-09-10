@@ -18,11 +18,11 @@
     "hidden": false
   },
   "criteria": {
-    "has_dunland_level_1000": {
+    "has_lossoth_level_1000": {
       "trigger": "lotrextended:alignment_changed",
       "conditions": {
         "alignment": {
-          "faction": "lotr:dunland",
+          "faction": "lotr:lossoth",
           "level": {
             "min": 1000.0
           }
@@ -32,7 +32,7 @@
   },
   "requirements": [
     [
-      "has_dunland_level_1000"
+      "has_lossoth_level_1000"
     ]
   ]
 }
