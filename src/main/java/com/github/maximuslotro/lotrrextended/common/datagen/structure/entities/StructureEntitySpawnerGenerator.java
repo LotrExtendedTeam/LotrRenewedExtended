@@ -43,7 +43,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 
 		// RANGERS
 		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 3).setRandomDiscardChance(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_SINGLE_CHANCE);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).enableNonRandomSpawning(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
 		// un-disable when ranger captain is added
@@ -58,6 +58,9 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
 				.build(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_ORC);
+		persisted(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
+				.build(), 1, 4, false, 10, 4).enableNonRandomSpawning().setEntitySpawnTickRate(24000).save(pConsumer, ExtendedSpawners.GUNDABAD_ORC_RUIN);
 		// un-disable when gundabad captain is added
 		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
 		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN_PERMANENT);

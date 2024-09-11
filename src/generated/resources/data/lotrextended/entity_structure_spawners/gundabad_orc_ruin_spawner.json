@@ -1,0 +1,26 @@
+{
+  "id": "lotrextended:gundabad_orc_ruin_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "inside_spawning": true,
+  "setHomeOnSpawn": true,
+  "homeRadius": 10,
+  "entitySpawnTickRate": 24000,
+  "spawnCap": 4,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 4,
+      "entity_types": [
+        {
+          "weight": 100,
+          "entity_type": "lotr:gundabad_orc"
+        },
+        {
+          "weight": 80,
+          "entity_type": "lotr:gundabad_orc_archer"
+        }
+      ]
+    }
+  ]
+}
