@@ -3483,6 +3483,10 @@ adcca3845e6cc195f6923bc7a1b17c30e094dff2 data/lotrextended/tags/blocks/banana_lo
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/blocks/plum_logs.json
 adcca3845e6cc195f6923bc7a1b17c30e094dff2 data/lotrextended/tags/items/banana_logs.json
 19c1062326b7326c1cabcec3af55181f0f8e3a28 data/lotrextended/tags/items/chestnut_logs.json
+28f36b8ae590888de8f55ccf2cd58a5ed71c5bc2 data/lotrextended/tags/items/coins/coin_all.json
+67e0f9489cd09100154da8275519f7ce406a9048 data/lotrextended/tags/items/coins/coin_hundred.json
+a2e665b6357fe429fd9109aab46f5d134d1e9645 data/lotrextended/tags/items/coins/coin_one.json
+25ec3e9a933819b41a67a08f4d6ba604a1914eff data/lotrextended/tags/items/coins/coin_ten.json
 3a557c2d511f95bfb78cc0df2b033cfcfb49e065 data/lotrextended/tags/items/foods/duck_feedables.json
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/items/plum_logs.json
 6574cc2b451e01b9b5e91e5b8c28464fa6dfc285 data/lotrextended/tags/items/weapon_rack_additional_items.json

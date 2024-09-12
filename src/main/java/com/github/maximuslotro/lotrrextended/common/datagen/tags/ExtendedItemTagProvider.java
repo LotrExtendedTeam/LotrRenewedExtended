@@ -217,6 +217,12 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		.add(ExtendedItems.BLUEBERRY.get()).add(ExtendedItems.CRANBERRY.get()).add(ExtendedItems.ELDERBERRY.get())
 		.add(ExtendedItems.RASPBERRY.get()).add(ExtendedItems.PLUM.get());
 
+		tag(ExtendedTags.Items.COIN_ALL).add(ExtendedItems.SILVER_COIN_ONE.get())
+		.add(ExtendedItems.SILVER_COIN_TEN.get()).add(ExtendedItems.SILVER_COIN_HUNDRED.get());
+		tag(ExtendedTags.Items.COIN_ONE).add(ExtendedItems.SILVER_COIN_ONE.get());
+		tag(ExtendedTags.Items.COIN_TEN).add(ExtendedItems.SILVER_COIN_TEN.get());
+		tag(ExtendedTags.Items.COIN_HUNDRED).add(ExtendedItems.SILVER_COIN_HUNDRED.get());
+
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
 			if(item.get() instanceof SpearItem) {

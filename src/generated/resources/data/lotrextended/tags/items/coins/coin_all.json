@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:silver_coin_hundred",
+    "lotr:silver_coin_one",
+    "lotr:silver_coin_ten"
+  ]
+}
