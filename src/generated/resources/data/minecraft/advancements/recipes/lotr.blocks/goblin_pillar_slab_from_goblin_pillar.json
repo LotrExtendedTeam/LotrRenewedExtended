@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:goblin_pillar_slab_from_goblin_pillar"
+    ]
+  },
+  "criteria": {
+    "has_goblin_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:goblin_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:goblin_pillar_slab_from_goblin_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goblin_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

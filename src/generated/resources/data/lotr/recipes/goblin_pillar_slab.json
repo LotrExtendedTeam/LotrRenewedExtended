@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:northern_orc",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:goblin_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:goblin_pillar_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:goblin_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_goblin_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:goblin_brick_slab"
+          }
+        ]
+      }
+    },
+    "has_goblin_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:goblin_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:goblin_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goblin_brick_slab",
+      "has_goblin_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

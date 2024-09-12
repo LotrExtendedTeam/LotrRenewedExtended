@@ -323,6 +323,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> OBSIDIAN_DWARVEN_BRICK_STAIRS;
 	public static RegistryObject<Item> OBSIDIAN_DWARVEN_BRICK_WALL;
 
+	public static RegistryObject<Item> GOBLIN_BRICK;
+	public static RegistryObject<Item> GOBLIN_BRICK_SLAB;
+	public static RegistryObject<Item> GOBLIN_BRICK_STAIRS;
+	public static RegistryObject<Item> GOBLIN_BRICK_WALL;
+	public static RegistryObject<Item> GOBLIN_PILLAR;
+	public static RegistryObject<Item> GOBLIN_PILLAR_SLAB;
+
 	public static RegistryObject<Item> BONE_BLOCK_SLAB;
 	public static RegistryObject<Item> BONE_BLOCK_STAIRS;
 	public static RegistryObject<Item> BONE_BLOCK_WALL;

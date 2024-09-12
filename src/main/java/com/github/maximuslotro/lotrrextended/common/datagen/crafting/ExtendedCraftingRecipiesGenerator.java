@@ -407,6 +407,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeArmorRecipe(consumer, ExtendedItems.WHITE_WARG_HELMET, ExtendedItems.WHITE_WARG_CHESTPLATE, 
 				ExtendedItems.WHITE_WARG_LEGGINGS, ExtendedItems.WHITE_WARG_BOOTS, 
 				ExtendedItems.WHITE_FUR, LOTRRecipes.ANY_ORC);
+		// GOBLIN/URUK
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK, 
+				ExtendedBlocks.GOBLIN_BRICK_STAIRS, 
+				ExtendedBlocks.GOBLIN_BRICK_SLAB, 
+				ExtendedBlocks.GOBLIN_BRICK_WALL, 
+				()->Blocks.STONE.asItem(), ExtendedRecipes.GUNDABAD_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.GOBLIN_PILLAR, 
+				ExtendedBlocks.GOBLIN_PILLAR_SLAB, 
+				()->Blocks.STONE.asItem(), ExtendedRecipes.GUNDABAD_CRAFTING);
 		//TAURETHRIM
 		makeArmorRecipe(consumer, ExtendedItems.TAURETHRIM_HELMET, 
 				ExtendedItems.TAURETHRIM_CHESTPLATE, 
@@ -1446,6 +1455,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedBlocks.DOL_GULDUR_BRICK_WALL);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.DOL_GULDUR_PILLAR, ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK, ExtendedBlocks.GOBLIN_BRICK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK, ExtendedBlocks.GOBLIN_BRICK_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK, ExtendedBlocks.GOBLIN_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.GOBLIN_PILLAR, ExtendedBlocks.GOBLIN_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL);

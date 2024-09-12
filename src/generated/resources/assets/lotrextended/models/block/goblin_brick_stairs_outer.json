@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "lotrextended:block/goblin_brick",
+    "bottom": "lotrextended:block/goblin_brick",
+    "top": "lotrextended:block/goblin_brick"
+  }
+}

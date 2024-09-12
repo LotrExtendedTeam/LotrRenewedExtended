@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:northern_orc",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:goblin_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:goblin_brick_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:goblin_brick_stairs_from_goblin_brick"
+    ]
+  },
+  "criteria": {
+    "has_goblin_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:goblin_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:goblin_brick_stairs_from_goblin_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goblin_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -556,7 +556,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.ORNATE_ROHAN_BEAM = registerB("ornate_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
 		ExtendedBlocks.GOLDEN_ROHAN_BEAM = registerB("golden_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
 		ExtendedBlocks.ORNATE_GOLDEN_ROHAN_BEAM = registerB("ornate_golden_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
-		
+
+		// Goblin
+		ExtendedBlocks.GOBLIN_BRICK = registerB("goblin_brick", () -> new LOTRStoneBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.GOBLIN_BRICK_SLAB = registerB("goblin_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOBLIN_BRICK));
+		ExtendedBlocks.GOBLIN_BRICK_STAIRS = registerB("goblin_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GOBLIN_BRICK));
+		ExtendedBlocks.GOBLIN_BRICK_WALL = registerB("goblin_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GOBLIN_BRICK));
+		ExtendedBlocks.GOBLIN_PILLAR = registerB("goblin_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.GOBLIN_PILLAR_SLAB = registerB("goblin_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOBLIN_PILLAR));
 		//Gondor
 		ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK = registerB("black_carved_gondor_brick", () -> new LOTRStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
 		ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK = registerB("carved_black_umbar_brick", () -> new LOTRStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));

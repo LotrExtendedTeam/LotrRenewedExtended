@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:goblin_brick_wall"
+    ]
+  },
+  "criteria": {
+    "has_goblin_brick_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:goblin_brick_wall"
+          }
+        ]
+      }
+    },
+    "has_goblin_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:goblin_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:goblin_brick_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goblin_brick_wall",
+      "has_goblin_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

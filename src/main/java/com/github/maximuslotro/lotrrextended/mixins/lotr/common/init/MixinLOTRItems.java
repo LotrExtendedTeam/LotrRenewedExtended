@@ -480,6 +480,13 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSSY_DRYSTONE_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_DRYSTONE_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_DRYSTONE_WALL = regBlockItemB(ExtendedBlocks.MOSSY_DRYSTONE_WALL, LOTRItemGroups.BLOCKS);
 		
+		// Goblin Bricks
+		ExtendedItems.GOBLIN_BRICK = regBlockItemB(ExtendedBlocks.GOBLIN_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOBLIN_BRICK_SLAB = regBlockItemB(ExtendedBlocks.GOBLIN_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOBLIN_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.GOBLIN_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOBLIN_BRICK_WALL = regBlockItemB(ExtendedBlocks.GOBLIN_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOBLIN_PILLAR = regBlockItemB(ExtendedBlocks.GOBLIN_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GOBLIN_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.GOBLIN_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		//Taurethrim Bricks
 		ExtendedItems.TAURETHRIM_BRICK = regBlockItemB(ExtendedBlocks.TAURETHRIM_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TAURETHRIM_BRICK_SLAB = regBlockItemB(ExtendedBlocks.TAURETHRIM_BRICK_SLAB, LOTRItemGroups.BLOCKS);
