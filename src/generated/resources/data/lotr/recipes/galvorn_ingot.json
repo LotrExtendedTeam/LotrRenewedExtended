@@ -2,10 +2,7 @@
   "type": "lotr:dwarven_forge_alloy",
   "ingredient": [
     {
-      "tag": "forge:ores/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:ingots/elven_steel"
     }
   ],
   "alloy": [
