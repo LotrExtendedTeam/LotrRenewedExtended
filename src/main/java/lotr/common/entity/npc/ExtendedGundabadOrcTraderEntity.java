@@ -57,7 +57,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	// items a Gundabad Orc trader will sell
     private final ExtendedTradeEntries GUNDABAD_ORC_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
 			// TODO: Add poisoned bronze daggers as trades eventually
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.GUNDABAD_CRAFTING_TABLE.get()), 30, 50, 16),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get()), 30, 50, 16),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 15, 25, 8),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_CHESTPLATE.get()), 23, 38, 8),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_LEGGINGS.get()), 20, 33, 8),

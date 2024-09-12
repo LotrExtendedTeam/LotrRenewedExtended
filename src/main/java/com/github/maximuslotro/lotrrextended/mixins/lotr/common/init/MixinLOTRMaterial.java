@@ -61,6 +61,9 @@ public class MixinLOTRMaterial {
 	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 350, 5.5F, 2.5F, 10, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0, 
 									() -> Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
 	
+	private static final LOTRMaterial GUNDABAD_URUK = lotrmaterialExpansion$addVariant("GUNDABAD_URUK", "gundabad_uruk", 2, 550, 6.0F, 3.0F, 4, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0, 
+			() -> Ingredient.of(LOTRItems.URUK_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
+
 	private static final LOTRMaterial EXT_BONE = lotrmaterialExpansion$addVariant("EXT_BONE", "ext_bone", 0, 150, 3.0F, 2.0F, 10, 0.3F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 
 									() -> Ingredient.of(Tags.Items.BONES));
 	@Invoker("<init>")

@@ -123,7 +123,15 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_BOOTS;
 	public static RegistryObject<Item> MORGUL_SPEAR;
 	public static RegistryObject<Item> MORGUL_DAGGER;
-	
+
+	public static RegistryObject<Item> GUNDABAD_URUK_SWORD;
+	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;
+	public static RegistryObject<Item> GUNDABAD_URUK_DAGGER;
+	public static RegistryObject<Item> GUNDABAD_URUK_HELMET;
+	public static RegistryObject<Item> GUNDABAD_URUK_CHESTPLATE;
+	public static RegistryObject<Item> GUNDABAD_URUK_LEGGINGS;
+	public static RegistryObject<Item> GUNDABAD_URUK_BOOTS;
+
 	// Gemstones
 	public static RegistryObject<Item> TOPAZ_ORE;
 	public static RegistryObject<Item> AMETHYST_ORE;
@@ -378,7 +386,7 @@ public class ExtendedItems {
 	
 	public static RegistryObject<Item> MORWAITH_CRAFTING_TABLE;
 
-	public static RegistryObject<Item> GUNDABAD_CRAFTING_TABLE;
+	public static RegistryObject<Item> NORTHERN_ORC_CRAFTING_TABLE;
 
 	public static RegistryObject<Item> HALF_TROLL_CRAFTING_TABLE;
 

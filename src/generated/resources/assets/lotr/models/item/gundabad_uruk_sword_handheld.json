@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_large",
+  "textures": {
+    "layer0": "lotrextended:item/gundabad_uruk_sword_large"
+  }
+}

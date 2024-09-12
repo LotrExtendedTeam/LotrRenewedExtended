@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gundabad_uruk_sword"
+    ]
+  },
+  "criteria": {
+    "has_gundabad_uruk_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gundabad_uruk_sword"
+          }
+        ]
+      }
+    },
+    "has_uruk_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/uruk_steel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gundabad_uruk_sword"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gundabad_uruk_sword",
+      "has_uruk_steel",
+      "has_the_recipe"
+    ]
+  ]
+}

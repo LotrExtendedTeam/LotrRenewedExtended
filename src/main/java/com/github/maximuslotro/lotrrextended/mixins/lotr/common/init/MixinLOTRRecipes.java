@@ -52,7 +52,7 @@ public class MixinLOTRRecipes {
 		ExtendedRecipes.RHUNIC_CRAFTING = registerFactionD("rhunic", "Rh\u00FBnic Crafting", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
 		ExtendedRecipes.MORWAITH_CRAFTING = registerFactionD("morwaith", "Morwaith Crafting", ExtendedBlocks.MORWAITH_CRAFTING_TABLE);
 		ExtendedRecipes.HALF_TROLL_CRAFTING = registerFactionD("half_troll", "Half Troll Crafting", ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE);
-		ExtendedRecipes.GUNDABAD_CRAFTING = registerFactionD("northern_orc", "Gundabad Crafting", ExtendedBlocks.GUNDABAD_CRAFTING_TABLE);
+		ExtendedRecipes.NORTHERN_ORC_CRAFTING = registerFactionD("northern_orc", "Gundabad Crafting", ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE);
 
 		ExtendedRecipes.EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("extended_crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
 	}
@@ -60,7 +60,7 @@ public class MixinLOTRRecipes {
 	@Inject(method = "registerMulti(Ljava/lang/String;Ljava/util/List;)Llotr/common/recipe/MultiTableType;", at = @At("HEAD"), remap=false, cancellable = true)
 	private static void injectMultipart(String s, List<FactionTableType> types, CallbackInfoReturnable<MultiTableType> ci) {
 		if(s.equals("any_orc")) {
-			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.URUK_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING, ExtendedRecipes.GUNDABAD_CRAFTING, ExtendedRecipes.HALF_TROLL_CRAFTING)));
+			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.URUK_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING, ExtendedRecipes.NORTHERN_ORC_CRAFTING, ExtendedRecipes.HALF_TROLL_CRAFTING)));
 		}
 		if(s.equals("any_morgul")) {
 			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING)));

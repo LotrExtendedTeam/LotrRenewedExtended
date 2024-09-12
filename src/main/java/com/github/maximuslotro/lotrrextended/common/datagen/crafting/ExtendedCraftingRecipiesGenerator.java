@@ -212,8 +212,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->ExtendedBlocks.RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE, 
 				()->Blocks.COBBLESTONE.asItem(), ExtendedRecipes.HALF_TROLL_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.GUNDABAD_CRAFTING_TABLE, 
-				()->Blocks.COBBLESTONE.asItem(), ExtendedRecipes.GUNDABAD_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE, 
+				()->Blocks.COBBLESTONE.asItem(), ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.MORWAITH_CRAFTING_TABLE, 
 				()->Blocks.CLAY.asItem(), ExtendedRecipes.MORWAITH_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath());
@@ -391,6 +391,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSwordRecipe(consumer, ExtendedItems.BONE_SWORD, Tags.Items.BONES, "bone", null);
 		makeSpearRecipe(consumer, ExtendedItems.BONE_SPEAR, Tags.Items.BONES, "bone", null);
 		makeDaggerRecipe(consumer, ExtendedItems.BONE_DAGGER, Tags.Items.BONES, "bone", null);
+		// Gundabad Uruk
+		makeArmorRecipe(consumer, ExtendedItems.GUNDABAD_URUK_HELMET, 
+				ExtendedItems.GUNDABAD_URUK_CHESTPLATE, 
+				ExtendedItems.GUNDABAD_URUK_LEGGINGS, 
+				ExtendedItems.GUNDABAD_URUK_BOOTS, 
+				LOTRItems.URUK_STEEL_INGOT, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeSwordRecipe(consumer, ExtendedItems.GUNDABAD_URUK_SWORD, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeSpearRecipe(consumer, ExtendedItems.GUNDABAD_URUK_SPEAR, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeDaggerRecipe(consumer, ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		//WARG
 		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_WARG_CHESTPLATE, 
 				ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_BOOTS, 
@@ -412,10 +421,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.GOBLIN_BRICK_STAIRS, 
 				ExtendedBlocks.GOBLIN_BRICK_SLAB, 
 				ExtendedBlocks.GOBLIN_BRICK_WALL, 
-				()->Blocks.STONE.asItem(), ExtendedRecipes.GUNDABAD_CRAFTING);
+				()->Blocks.STONE.asItem(), ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makePillarSlabRecipe(consumer, ExtendedBlocks.GOBLIN_PILLAR, 
 				ExtendedBlocks.GOBLIN_PILLAR_SLAB, 
-				()->Blocks.STONE.asItem(), ExtendedRecipes.GUNDABAD_CRAFTING);
+				()->Blocks.STONE.asItem(), ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		//TAURETHRIM
 		makeArmorRecipe(consumer, ExtendedItems.TAURETHRIM_HELMET, 
 				ExtendedItems.TAURETHRIM_CHESTPLATE, 
@@ -837,7 +846,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.DUNEDAIN_SHIELD.get()))
 		.save(consumer, lotrLoc(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_SHIELD.get(), ExtendedRecipes.GUNDABAD_CRAFTING)
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_SHIELD.get(), ExtendedRecipes.NORTHERN_ORC_CRAFTING)
 		.pattern("PIP")
 		.pattern("PPP")
 		.pattern(" P ")
@@ -892,7 +901,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_ORC_BANNER.get(), ExtendedRecipes.GUNDABAD_CRAFTING)
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_ORC_BANNER.get(), ExtendedRecipes.NORTHERN_ORC_CRAFTING)
 		.pattern("W")
 		.pattern("S")
 		.pattern("P")
@@ -925,7 +934,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get()))
 		.save(consumer, lotrLoc(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get(), ExtendedRecipes.GUNDABAD_CRAFTING)
+		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get(), ExtendedRecipes.NORTHERN_ORC_CRAFTING)
 		.requires(Items.PAPER)
 		.requires(ExtendedItems.GUNDABAD_ORC_BANNER.get())
 		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
