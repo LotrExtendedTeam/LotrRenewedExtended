@@ -118,6 +118,8 @@ public class MixinLOTREntities {
 		ExtendedEntities.TRADER_RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedTraderRespawnEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
 		ExtendedEntities.BLUE_MOUNTAINS_MERCHANT = regNPCD("blue_mountains_merchant", ExtendedBlueMountainsMerchantEntity::new, ExtendedBlueMountainsMerchantEntity::regAttrs, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		ExtendedEntities.GUNDABAD_CAMP_TRADER = regNPCD("gundabad_orc_scrounger", ExtendedGundabadOrcTraderEntity::new, ExtendedGundabadOrcTraderEntity::regAttrs, LOTREntities.EntitySizeHolder.orcSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5979436, 13421772));
+		ExtendedEntities.GUNDABAD_URUK = regNPCD("gundabad_uruk", ExtendedGundabadUrukEntity::new, ExtendedGundabadUrukEntity::regAttrs, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
+		ExtendedEntities.GUNDABAD_URUK_ARCHER = regNPCD("gundabad_uruk_archer", ExtendedGundabadUrukArcherEntity::new, ExtendedGundabadUrukArcherEntity::regAttrs, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
 	}
 
 }

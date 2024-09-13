@@ -90,7 +90,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation orcMordor;
 	ResourceLocation orcIsengard;
 	ResourceLocation rareDunedainRangerDrops;
-	
+	ResourceLocation orcGundabadUruk;
+
 	@Override
 	protected void addTables() {
 		makePartTables();
@@ -245,6 +246,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		orcUruk = makeQuickyFactionPart("uruk", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseUrukSteel)));
 		orcMordor = makeQuickyFactionPart("mordor", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseSteel)));
 		orcIsengard = makeQuickyFactionPart("isengard_snaga", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseSteel)));
+		orcGundabadUruk = makeQuickyFactionPart("gundabad_uruk", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseUrukSteel)));
 	}
 
 	private void makeEntities() {
@@ -313,6 +315,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	    				.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
 	    						.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
+		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk);
+		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, arrows);
 
 	}
 

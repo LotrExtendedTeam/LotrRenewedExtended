@@ -32,4 +32,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
 	public static RegistryObject<EntityType<ExtendedGundabadOrcTraderEntity>> GUNDABAD_CAMP_TRADER;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsMerchantEntity>> BLUE_MOUNTAINS_MERCHANT;
+	public static RegistryObject<EntityType<ExtendedGundabadUrukEntity>> GUNDABAD_URUK;
+	public static RegistryObject<EntityType<ExtendedGundabadUrukArcherEntity>> GUNDABAD_URUK_ARCHER;
 }

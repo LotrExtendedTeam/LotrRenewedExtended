@@ -23,5 +23,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TRADER_RESPAWNER_ENTITY.get(), ExtendedTraderRespawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), ExtendedBlueMountainsMerchantRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedGundabadOrcScroungerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK.get(), ExtendedGundabadOrcScroungerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), ExtendedGundabadOrcScroungerRenderer::new);
 	}
 }
