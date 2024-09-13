@@ -6,7 +6,7 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 public class BiomeFeatureAdder {
 	public static void addFeatureToBiomes(BiomeLoadingEvent event) {
-		if(event.getName()!=null) {
+		if(event.getName()!=null && event.getName().getNamespace().equals("lotr")) {
 			if(!(event.getName().equals(LOTRBiomes.MORDOR.getRegistryName())
 				||event.getName().equals(LOTRBiomes.MORDOR_MOUNTAINS.getRegistryName())
 				||event.getName().equals(LOTRBiomes.MORGUL_VALE.getRegistryName()))) {

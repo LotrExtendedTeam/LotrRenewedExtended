@@ -63,7 +63,7 @@ public class BiomeStructureAdder {
      * RegistryKey. Then that can be fed into the dictionary to get the biome's types.
      */
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
-		if(event.getName()!=null) {
+		if(event.getName()!=null && event.getName().getNamespace().equals("lotr")) {
 			if(event.getName().equals(LOTRBiomes.SHIRE.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
