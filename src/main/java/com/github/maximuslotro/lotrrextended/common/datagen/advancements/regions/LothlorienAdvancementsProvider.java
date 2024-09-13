@@ -32,7 +32,7 @@ public class LothlorienAdvancementsProvider extends BaseAdvancementType{
 				addKillEntityTriggers(make(), LOTREntities.GALADHRIM_ELF.get(), LOTREntities.GALADHRIM_WARRIOR.get()).parent(lothlorien));
 
 		Advancement galadhrim_armor = build(true, data(LOTRItems.GALADHRIM_CHESTPLATE.get(), "galadhrim_armor", false, FrameType.TASK, true, true, false)
-				.setTitle("Golden Wood Warrior").setDescription("Equip a full suit of Galadhrim armour."), 
+				.setTitle("Golden Wood Warrior").setDescription("Equip a full suit of Galadhrim armor."), 
 				addArmorTrigger(make(), "galadhrim", LOTRItems.GALADHRIM_HELMET.get(), LOTRItems.GALADHRIM_CHESTPLATE.get(), 
 						LOTRItems.GALADHRIM_LEGGINGS.get(), LOTRItems.GALADHRIM_BOOTS.get()).parent(lothlorien));
 

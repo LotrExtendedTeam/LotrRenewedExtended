@@ -146,6 +146,24 @@
               "count": 1.0
             }
           ],
+          "name": "lotr:green_apple"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1.0
+            }
+          ],
           "name": "lotr:pear"
         },
         {
@@ -201,6 +219,24 @@
             }
           ],
           "name": "lotr:cooked_duck"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1.0
+            }
+          ],
+          "name": "lotr:roasted_chestnut"
         }
       ],
       "conditions": [

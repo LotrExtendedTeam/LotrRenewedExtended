@@ -26,7 +26,7 @@ public class IronHillsAdvancementsProvider extends BaseAdvancementType{
 						LOTREntities.DWARF_WARRIOR.get()).parent(iron_hills));
 
 		Advancement dwarf_armor = build(true, data(LOTRItems.DWARVEN_CHESTPLATE.get(), "tight_fit", false, FrameType.TASK, true, true, false)
-				.setTitle("A Tight Fit").setDescription("Equip a full suit of Dwarven armour."), 
+				.setTitle("A Tight Fit").setDescription("Equip a full suit of Dwarven armor."), 
 				addArmorTrigger(make(), "dwarven", LOTRItems.DWARVEN_HELMET.get(), LOTRItems.DWARVEN_CHESTPLATE.get(), 
 						LOTRItems.DWARVEN_LEGGINGS.get(), LOTRItems.DWARVEN_BOOTS.get()).parent(iron_hills));
 

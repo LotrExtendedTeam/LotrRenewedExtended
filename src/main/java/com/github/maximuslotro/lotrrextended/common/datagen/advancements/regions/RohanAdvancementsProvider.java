@@ -33,12 +33,12 @@ public class RohanAdvancementsProvider extends BaseAdvancementType{
 						LOTREntities.ROHIRRIM_WARRIOR.get()).parent(horse_lords));
 
 		Advancement rohan_armor = build(true, data(LOTRItems.ROHAN_CHESTPLATE.get(), "rohan_armor", false, FrameType.TASK, true, true, false)
-				.setTitle("Rider of Rohan").setDescription("Equip a full suit of Rohirric armour."), 
+				.setTitle("Rider of Rohan").setDescription("Equip a full suit of Rohirric armor."), 
 				addArmorTrigger(make(), "rohan", LOTRItems.ROHAN_HELMET.get(), LOTRItems.ROHAN_CHESTPLATE.get(), 
 						LOTRItems.ROHAN_LEGGINGS.get(), LOTRItems.ROHAN_BOOTS.get()).parent(horse_lords));
 
 		Advancement rohan_marshal_armor = build(true, data(LOTRItems.ROHAN_MARSHAL_CHESTPLATE.get(), "rohan_marshal_armor", false, FrameType.TASK, true, true, false)
-				.setTitle("Marshal of Rohan").setDescription("Equip a full suit of Rohirric marshal armour."), 
+				.setTitle("Marshal of Rohan").setDescription("Equip a full suit of Rohirric marshal armor."), 
 				addArmorTrigger(make(), "rohan_marshal", LOTRItems.ROHAN_MARSHAL_HELMET.get(), LOTRItems.ROHAN_MARSHAL_CHESTPLATE.get(), 
 						LOTRItems.ROHAN_MARSHAL_LEGGINGS.get(), LOTRItems.ROHAN_MARSHAL_BOOTS.get()).parent(rohan_armor));
 
@@ -99,7 +99,7 @@ public class RohanAdvancementsProvider extends BaseAdvancementType{
 				.parent(vale_of_the_wizard));
 
 		Advancement uruk_armor = build(true, data(LOTRItems.URUK_CHESTPLATE.get(), "uruk_armor", false, FrameType.TASK, true, true, false)
-				.setTitle("The Feared").setDescription("Equip a full suit of Uruk armour."), 
+				.setTitle("The Feared").setDescription("Equip a full suit of Uruk armor."), 
 				addArmorTrigger(make(), "uruk", LOTRItems.URUK_HELMET.get(), LOTRItems.URUK_CHESTPLATE.get(), 
 						LOTRItems.URUK_LEGGINGS.get(), LOTRItems.URUK_BOOTS.get()).parent(vale_of_the_wizard));
 	}

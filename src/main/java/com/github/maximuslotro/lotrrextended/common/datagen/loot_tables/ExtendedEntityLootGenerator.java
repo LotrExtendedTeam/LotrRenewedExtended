@@ -31,6 +31,7 @@ import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.conditions.RandomChanceWithLooting;
 import net.minecraft.loot.functions.LootingEnchantBonus;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.loot.functions.SetDamage;
 import net.minecraft.loot.functions.Smelt;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -129,8 +130,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.016666F))));
 		rareDunedainRangerDrops = makeQuickyBasePart("dunedain_ranger_rare_drops", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-				.add(genQuickyItemBuilder(ExtendedItems.BARROW_BLADE.get()).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.BARROW_BLADE.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.015F))));
 		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
@@ -149,10 +150,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(genQuickyItemBuilder(Items.COOKED_MUTTON, 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(Items.COOKED_PORKCHOP, 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(Items.APPLE, 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(LOTRItems.GREEN_APPLE.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(LOTRItems.PEAR.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(LOTRItems.LETTUCE.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.PLUM.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 1).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
 	}
 

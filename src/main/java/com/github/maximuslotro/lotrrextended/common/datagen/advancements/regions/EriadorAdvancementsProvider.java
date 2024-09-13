@@ -36,7 +36,10 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_orc_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Gundabad Orc Slayer").setDescription("Kill a Gundabad Orc."), 
 				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get()).parent(lone_lands));
-
+		Advancement gun_uruk_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_uruk_slayer", false, FrameType.GOAL, true, true, false)
+			.setTitle("Bigger, Stronger, Meaner").setDescription("Kill a Gundabad Uruk."), 
+			addKillEntityTriggers(make(), ExtendedEntities.GUNDABAD_URUK.get(), ExtendedEntities.GUNDABAD_URUK_ARCHER.get()).parent(gun_orc_slayer));
+		
 		Advancement ranger_armor = build(true, data(LOTRItems.RANGER_NORTH_CHESTPLATE.get(), "watcher", false, FrameType.TASK, true, true, false)
 				.setTitle("Watcher").setDescription("Acquire a full set of Ranger armor."), 
 				addArmorTrigger(make(), "ranger_north", LOTRItems.RANGER_NORTH_HELMET.get(), LOTRItems.RANGER_NORTH_CHESTPLATE.get(), 
@@ -57,10 +60,10 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 //				.setTitle("Bigger, Stronger, Meaner").setDescription("Kill a Gundabad Uruk."), 
 //				addArmorTrigger(slay trigger lotrextended:gundabad_uruk).parent(eriadorBase));
 
-//		Advancement gundabad_uruk_armor = build(data(LOTRItems.GUNDABAD_URUK_CHESTPLATE.get(), "scourge_of_the_mountains", false, FrameType.TASK, true, true, false)
-//				.setTitle("Scourge of the Mountains").setDescription("Acquire a full set of Gundabad Uruk armor."), 
-//				addArmorTrigger(make(), "gundabad_uruk", LOTRItems.GUNDABAD_URUK_HELMET.get(), LOTRItems.GUNDABAD_URUK_CHESTPLATE.get(), 
-//						LOTRItems.GUNDABAD_URUK_LEGGINGS.get(), LOTRItems.GUNDABAD_URUK_BOOTS.get()).parent(eriadorBase));
+		Advancement gundabad_uruk_armor = build(true, data(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get(), "scourge_of_the_mountains", false, FrameType.TASK, true, true, false)
+				.setTitle("Scourge of the Mountains").setDescription("Acquire a full set of Gundabad Uruk armor."), 
+				addArmorTrigger(make(), "gundabad_uruk", ExtendedItems.GUNDABAD_URUK_HELMET.get(), ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get(), 
+					ExtendedItems.GUNDABAD_URUK_LEGGINGS.get(), ExtendedItems.GUNDABAD_URUK_BOOTS.get()).parent(eriadorBase));
 
 //		Advancement theAngle = build(data(Items.GREEN_WOOL, "a_fastness_in_the_wild", false, FrameType.TASK, true, true, false)
 //				.setTitle("A Fastness in the Wild").setDescription("Enter the Lands of the Angle."), 

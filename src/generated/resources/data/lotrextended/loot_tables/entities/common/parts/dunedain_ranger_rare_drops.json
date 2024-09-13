@@ -7,11 +7,29 @@
         {
           "type": "minecraft:item",
           "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.5,
+                "max": 0.75
+              }
+            }
+          ],
           "name": "lotr:barrow_blade"
         },
         {
           "type": "minecraft:item",
           "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.5,
+                "max": 0.75
+              }
+            }
+          ],
           "name": "lotr:dunedain_bow"
         }
       ],
