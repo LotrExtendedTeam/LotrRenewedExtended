@@ -1,0 +1,6 @@
+{
+  "load_order": 2,
+  "relations": {
+    "lotr:dunland, lotr:near_harad": "friend"
+  }
+}
