@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "entity_type": "lotr:gundabad_uruk",
+      "weight": 20,
+      "min_count": 2,
+      "max_count": 4
+    },
+    {
+      "entity_type": "lotr:gundabad_uruk_archer",
+      "weight": 10,
+      "min_count": 2,
+      "max_count": 4
+    }
+  ]
+}

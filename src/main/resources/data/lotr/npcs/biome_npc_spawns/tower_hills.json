@@ -26,11 +26,11 @@
     },
     {
       "faction": "lotr:dunedain_north",
-      "base_weight": 5,
+      "base_weight": 15,
       "lists": [
         {
           "list": "lotr:rangers",
-          "weight": 2
+          "weight": 10
         }
       ]
     }
