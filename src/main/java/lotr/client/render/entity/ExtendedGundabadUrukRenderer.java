@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.entity;
+package lotr.client.render.entity;
 
 import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.LargeOrcRenderer;
