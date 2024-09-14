@@ -164,7 +164,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAlignedWithLevel(player, this, 75.0F);
+        return isFriendlyAndAlignedWithLevel(player, this, 100.0F);
     }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return ElfEntity.regAttrs();
