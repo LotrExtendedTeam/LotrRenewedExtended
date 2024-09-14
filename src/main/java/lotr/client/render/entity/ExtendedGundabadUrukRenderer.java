@@ -1,7 +1,6 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.RandomTextureVariants;
-import lotr.client.render.entity.LargeOrcRenderer;
 import lotr.common.entity.npc.OrcEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

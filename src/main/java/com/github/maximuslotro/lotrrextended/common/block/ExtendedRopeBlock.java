@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -31,10 +32,12 @@ import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -73,6 +76,9 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand pHand, BlockRayTraceResult p_225533_6_) {
 		ItemStack itemstack = player.getItemInHand(pHand);
+		if(itemstack.getItem()!=ExtendedItems.ROPE.get()) {
+			return ActionResultType.PASS;
+		}
 		Direction pickedDirection = Direction.NORTH;
 		Direction[] adirection = Direction.orderedByNearest(player);
 		for(Direction direction : adirection) {
@@ -148,7 +154,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 			}
 			return ActionResultType.PASS;
 		}
-		return ActionResultType.SUCCESS;
+		return ActionResultType.PASS;
 	}
 
 	@Override
