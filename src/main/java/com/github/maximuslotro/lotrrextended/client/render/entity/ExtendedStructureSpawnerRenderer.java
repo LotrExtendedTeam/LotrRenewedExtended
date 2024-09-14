@@ -31,8 +31,8 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 	public void render(ExtendedStructureSpawnerEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
 		pMatrixStack.pushPose();
 		Minecraft minecraft = Minecraft.getInstance();
-		boolean flag = !pEntity.isInvisibleTo(minecraft.player);
-		RenderType rendertype = flag ? model.renderType(TEXTURE_LOCATION) : null;
+		boolean shouldHide = pEntity.isInvisibleTo(minecraft.player) || minecraft.options.hideGui;
+		RenderType rendertype = shouldHide ? null : model.renderType(TEXTURE_LOCATION);
 		if (rendertype != null) {
 			IVertexBuilder ivertexbuilder = pBuffer.getBuffer(rendertype);
 			this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
@@ -63,6 +63,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 	@Override
 	protected boolean shouldShowName(ExtendedStructureSpawnerEntity pEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
-		return !pEntity.isInvisibleTo(minecraft.player);
+		boolean shouldHide = pEntity.isInvisibleTo(minecraft.player) || minecraft.options.hideGui;
+		return !shouldHide;
 	}
 }
