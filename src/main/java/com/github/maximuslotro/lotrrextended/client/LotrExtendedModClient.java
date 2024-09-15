@@ -102,7 +102,7 @@ public class LotrExtendedModClient {
 	public static void createRenewedPack(ResourcePackList packs) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":renewed_textures", 
-				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Extended Renewed Textures"), 
+				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Redone Renewed Textures"), 
 				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
