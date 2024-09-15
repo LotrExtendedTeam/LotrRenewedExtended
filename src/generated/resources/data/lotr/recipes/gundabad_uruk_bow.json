@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:northern_orc",
+  "pattern": [
+    " X#",
+    "X #",
+    " X#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bowstring"
+    },
+    "X": {
+      "tag": "forge:ingots/uruk_steel"
+    }
+  },
+  "result": {
+    "item": "lotr:gundabad_uruk_bow"
+  }
+}

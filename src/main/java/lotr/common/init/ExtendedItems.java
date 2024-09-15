@@ -124,6 +124,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_SPEAR;
 	public static RegistryObject<Item> MORGUL_DAGGER;
 
+	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
 	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;
 	public static RegistryObject<Item> GUNDABAD_URUK_DAGGER;

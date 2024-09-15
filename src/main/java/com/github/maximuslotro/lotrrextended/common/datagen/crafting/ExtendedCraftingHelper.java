@@ -1029,6 +1029,32 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeBowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> bandItem, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if (table == null) {
+			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern(" X#")
+			.pattern("X #")
+			.pattern(" X#")
+			.define('#', Ingredient.of(bandItem.get()))
+			.define('X', Ingredient.of(resource))
+			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		} else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern(" X#")
+			.pattern("X #")
+			.pattern(" X#")
+			.define('#', Ingredient.of(bandItem.get()))
+			.define('X', Ingredient.of(resource))
+			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeToolsRecipe(Consumer<IFinishedRecipe> consumer, 
 			Supplier<? extends Item> pickaxeToBeCrafted,
 			Supplier<? extends Item> shovelToBeCrafted,

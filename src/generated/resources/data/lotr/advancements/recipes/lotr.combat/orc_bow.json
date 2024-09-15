@@ -6,17 +6,17 @@
     ]
   },
   "criteria": {
-    "has_bowstring": {
+    "has_orc_bow": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:bowstring"
+            "item": "lotr:orc_bow"
           }
         ]
       }
     },
-    "has_orc_steel_ingot": {
+    "has_orc_steel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -35,8 +35,8 @@
   },
   "requirements": [
     [
-      "has_bowstring",
-      "has_orc_steel_ingot",
+      "has_orc_bow",
+      "has_orc_steel",
       "has_the_recipe"
     ]
   ]
