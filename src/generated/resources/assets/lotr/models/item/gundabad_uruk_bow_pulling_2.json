@@ -1,6 +1,0 @@
-{
-  "parent": "lotr:item/gundabad_uruk_bow",
-  "textures": {
-    "layer0": "lotrextended:item/gundabad_uruk_bow_pulling_2"
-  }
-}
