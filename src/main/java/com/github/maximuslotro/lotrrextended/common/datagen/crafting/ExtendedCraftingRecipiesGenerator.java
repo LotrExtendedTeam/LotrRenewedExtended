@@ -400,6 +400,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSwordRecipe(consumer, ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeSpearRecipe(consumer, ExtendedItems.GUNDABAD_URUK_SPEAR, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeDaggerRecipe(consumer, ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		//WARG
 		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_WARG_CHESTPLATE, 
 				ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_BOOTS, 
@@ -669,16 +670,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ROPE.get().getRegistryName().getPath(), has(ExtendedItems.ROPE.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
 
-		GENERATEDRECIPES.add(ExtendedItems.ORC_BOW.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ORC_BOW.get(), LOTRRecipes.ANY_ORC)
-		.pattern(" X#")
-		.pattern("X #")
-		.pattern(" X#")
-		.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
-		.define('X', Ingredient.of(ExtendedTags.Items.ORC_STEEL))
-		.unlockedBy("has_"+ExtendedItems.BOWSTRING.get().getRegistryName().getPath(), has(ExtendedItems.BOWSTRING.get()))
-		.unlockedBy("has_orc_steel_ingot", has(ExtendedTags.Items.ORC_STEEL))
-		.save(consumer, lotrLoc(ExtendedItems.ORC_BOW.get().getRegistryName().getPath()));
+		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.ORC_STEEL, "orc_steel", LOTRRecipes.ANY_ORC);
 
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())

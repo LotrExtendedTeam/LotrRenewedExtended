@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:item/template_bow_handheld",
+  "parent": "lotrextended:item/template_bow",
   "textures": {
     "layer0": "lotrextended:item/dunedain_bow_handheld"
   },

@@ -7,11 +7,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 
 public enum ExtendedBowMaterial {
-	GENERIC("generic", 0, 400, 20, 1.1F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	ORC("orc", 0, 400, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	RANGER_NORTH("ranger_north", 1, 525, 20, 1.2F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+	GENERIC("generic", 400, 20, 1.1F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	ORC("orc", 600, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	GUNDABAD_URUK("gundabad_uruk", 750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	RANGER_NORTH("ranger_north", 525, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 	private final String bowMaterialName;
-	private final int bowLevel;
+	//private final int bowLevel;
 	private final int bowDurability;
 	// Number of ticks needed to draw bow to full power, default is 20 ticks (1 second)
 	private final int drawSpeed;
@@ -19,9 +20,9 @@ public enum ExtendedBowMaterial {
 	private final int enchantability;
 	private final LazyValue<Ingredient> repairIngredient;
 
-	private ExtendedBowMaterial(String materialName, int bowLevel, int bowDurability, int drawSpeed, float bowDamage, int ench, Supplier<Ingredient> repairIngredient) {
+	private ExtendedBowMaterial(String materialName, int bowDurability, int drawSpeed, float bowDamage, int ench, Supplier<Ingredient> repairIngredient) {
 		this.bowMaterialName = materialName;
-		this.bowLevel = bowLevel;
+		//this.bowLevel = bowLevel;
 		this.bowDurability = bowDurability;
 		this.drawSpeed = drawSpeed;
 		this.bowDamage = bowDamage;
@@ -37,9 +38,9 @@ public enum ExtendedBowMaterial {
 		return enchantability;
 	}
 
-	public int getMaterialLevel() {
-		return bowLevel;
-	}
+//	public int getMaterialLevel() {
+//		return bowLevel;
+//	}
 
 	public Ingredient getRepairIngredient() {
 		return repairIngredient.get();
