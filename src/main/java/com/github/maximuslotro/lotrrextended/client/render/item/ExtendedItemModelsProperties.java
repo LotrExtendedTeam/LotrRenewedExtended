@@ -30,6 +30,7 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.DUNEDAIN_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.LONGBOW.get());
 		registerBowItemModelProperties(ExtendedItems.ORC_BOW.get());
+		registerBowItemModelProperties(ExtendedItems.GUNDABAD_URUK_BOW.get());
 	}
 
 	public static void registerBowItemModelProperties(Item item) {
