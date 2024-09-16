@@ -70,6 +70,7 @@ import lotr.common.block.MineralBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
+import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
@@ -124,6 +125,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
 					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
 					continue;
+				}
+				if(block.getValue().get() instanceof VesselDrinkBlock) {
+					if(block.getValue().get()==ExtendedBlocks.SKULL_GOBLET.get()) {
+						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
+						continue;
+					}
 				}
 				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
 					numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
@@ -1279,6 +1286,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genSkullGobletBlock(VesselDrinkBlock block) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction direction = state.getValue(VesselDrinkBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
+                    .build();
+		});
 	}
 
 	private void genStrippedWoodBlockItem(LOTRStrippedWoodBlock block, ResourceLocation resourceLocation) {

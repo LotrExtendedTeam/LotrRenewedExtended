@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "lotrextended:block/skull_goblet"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/skull_goblet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/skull_goblet",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/skull_goblet",
+      "y": 90
+    }
+  }
+}

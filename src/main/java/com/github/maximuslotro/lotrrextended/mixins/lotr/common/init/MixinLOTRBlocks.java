@@ -100,6 +100,7 @@ import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableLogStairsBlock;
 import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
@@ -662,6 +663,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(AbstractBlock.Properties.of(Material.DECORATION).sound(SoundType.GRASS).strength(0.2F).noOcclusion()));
 
+		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
 		//Banners
 		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN));
 		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN));

@@ -62,10 +62,12 @@ import lotr.common.block.MineralBlock;
 import lotr.common.block.StrippableBranchBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.loot.functions.VesselDrink;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
@@ -274,6 +276,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
+			if(block.getValue().get() instanceof VesselDrinkBlock) {
+				add(block.getValue().get(), ExtendedBlockLootGenerator::createDrinkVesselTable);
+				continue;
+			}
 			if(block.getValue().get() instanceof LOTRDoorBlock) {
 				add(block.getValue().get(), BlockLootTables::createDoorTable);
 				continue;
@@ -474,6 +480,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 
 	protected static LootTable.Builder createNameableBlockEntityTable(Block p_218481_0_) {
 		return LootTable.lootTable().withPool(applyExplosionCondition(p_218481_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));
+	}
+
+	protected static LootTable.Builder createDrinkVesselTable(Block p_218481_0_) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(VesselDrink.vesselDrinkBuilder())));
 	}
 
 	protected static LootTable.Builder createBannerDrop(Block banner) {

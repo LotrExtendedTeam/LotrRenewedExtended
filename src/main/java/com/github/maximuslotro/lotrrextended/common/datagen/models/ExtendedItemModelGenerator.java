@@ -17,6 +17,7 @@ import lotr.common.block.ChandelierBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStandingSignBlock;
+import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.*;
@@ -73,6 +74,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRStandingSignBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof VesselDrinkBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}

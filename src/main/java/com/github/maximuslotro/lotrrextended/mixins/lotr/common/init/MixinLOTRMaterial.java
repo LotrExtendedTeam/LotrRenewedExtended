@@ -83,7 +83,6 @@ public class MixinLOTRMaterial {
 	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		ArrayList<LOTRMaterial> variants = new ArrayList<LOTRMaterial>(Arrays.asList(MixinLOTRMaterial.$VALUES));
-		LOTRMaterial.BONE.ordinal();
 		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, toolTeir, uses, efficiency, atk, ench, pr, sound, tough, repair, armorRepair, specs);
 		variants.add(instrument);
 		MixinLOTRMaterial.$VALUES = variants.toArray(new LOTRMaterial[0]);
