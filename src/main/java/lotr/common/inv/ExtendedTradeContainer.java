@@ -117,7 +117,7 @@ public class ExtendedTradeContainer extends Container {
 
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return false;
                 }
             });
         }
@@ -127,6 +127,11 @@ public class ExtendedTradeContainer extends Container {
             addSlot(new Slot(displayInventory, i + 9, 8 + (i * 18), 92) {
                 @Override
                 public boolean mayPickup(PlayerEntity player) {
+                    return false;
+                }
+
+                @Override
+                public boolean mayPlace(ItemStack stack) {
                     return false;
                 }
             });
@@ -229,7 +234,7 @@ public class ExtendedTradeContainer extends Container {
     @Override
     public ItemStack clicked(int index, int p_184996_2_, ClickType clickType, PlayerEntity p_184996_4_) {
         // handle buy items
-        if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP))) {
+        if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP) || clickType.equals(ClickType.PICKUP_ALL))) {
             boolean canPerformTrade =
                     CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index]
                             && soldQuantities[index] > 0;
@@ -274,6 +279,62 @@ public class ExtendedTradeContainer extends Container {
             }
 
             return player.inventory.getCarried();
+        }
+
+        // implement custom PICKUP_ALL logic based on deobfuscated MC code that
+        // only evaluates items from the players inventory and not the other containers
+        if (clickType == ClickType.PICKUP_ALL && index >= 0) {
+            if (index < 27) {
+                return ItemStack.EMPTY;
+            }
+
+            // Get the slot the player is trying to interact with
+            Slot initialSlot = this.slots.get(index);
+            ItemStack carriedItem = player.inventory.getCarried(); // Item the player is currently holding
+
+            // Check if the player is holding something and the initial slot is either empty or not allowed to pick up from
+            if (!carriedItem.isEmpty() && (initialSlot == null || !initialSlot.hasItem() || !initialSlot.mayPickup(player))) {
+                // Decide whether to loop from the start or end of the inventory based on the button pressed
+                int startIndex = p_184996_2_ == 0 ? 0 : this.slots.size() - 1;
+                int direction = p_184996_2_ == 0 ? 1 : -1;
+
+                // Perform two passes over the slots
+                for (int pass = 0; pass < 2; ++pass) {
+                    // Loop through the slots in the container
+                    for (int i = startIndex; i >= 0 && i < this.slots.size() && carriedItem.getCount() < carriedItem.getMaxStackSize(); i += direction) {
+                        Slot currentSlot = this.slots.get(i);
+                        if (!currentSlot.container.equals(player.inventory)) {
+                            continue;
+                        }
+
+                        // Check if the slot contains items, the items can be quick replaced, and the player is allowed to pick them up
+                        if (currentSlot.hasItem() && canItemQuickReplace(currentSlot, carriedItem, true) && currentSlot.mayPickup(player) && this.canTakeItemForPickAll(carriedItem, currentSlot)) {
+                            ItemStack slotItem = currentSlot.getItem(); // Get the item in the current slot
+
+                            // On the second pass or if the slot is not full, allow item transfer
+                            if (pass != 0 || slotItem.getCount() != slotItem.getMaxStackSize()) {
+                                // Calculate how many items can be transferred from this slot
+                                int transferCount = Math.min(carriedItem.getMaxStackSize() - carriedItem.getCount(), slotItem.getCount());
+
+                                // Remove the items from the slot and add them to the carried stack
+                                ItemStack removedStack = currentSlot.remove(transferCount);
+                                carriedItem.grow(transferCount); // Increase the carried item stack count
+
+                                // If the slot is now empty, set it to an empty stack
+                                if (removedStack.isEmpty()) {
+                                    currentSlot.set(ItemStack.EMPTY);
+                                }
+
+                                // Notify the slot that the item has been taken
+                                currentSlot.onTake(player, removedStack);
+                            }
+                        }
+                    }
+                }
+            }
+
+            this.broadcastChanges(); // Notify the container that changes have occurred
+            return carriedItem;
         }
 
         return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
