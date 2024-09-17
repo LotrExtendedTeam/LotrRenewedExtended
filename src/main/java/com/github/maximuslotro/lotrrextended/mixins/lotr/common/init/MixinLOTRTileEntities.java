@@ -2,7 +2,9 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
 import java.util.function.Supplier;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,24 +25,59 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhit
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedOrcBarrelTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedReedBasketTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
+import com.mojang.datafixers.DataFixUtils;
+import com.mojang.datafixers.types.Type;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedTileEntities;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRTileEntities;
+import lotr.common.tileentity.VesselDrinkTileEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
+import net.minecraft.util.SharedConstants;
+import net.minecraft.util.datafix.DataFixesManager;
+import net.minecraft.util.datafix.TypeReferences;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 
 @SuppressWarnings("deprecation")
 @Mixin(LOTRTileEntities.class)
 public class MixinLOTRTileEntities {
 
+	@Final
 	@Shadow(remap=false)
-	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String key, Supplier<Builder<T>> builderSup) {
-		return null;
-    }
+	public static DeferredRegister<TileEntityType<?>> TILE_ENTITIES;
+
+	/**
+	 * @author maximuslotro
+	 * @reason Need to change VesselTileEntityAppliedBlocks
+	 * */
+	@SuppressWarnings("unchecked")
+	@Overwrite(remap=false)
+	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String key, Supplier<TileEntityType.Builder<T>> builderSup) {
+		Supplier<TileEntityType.Builder<T>> builderSupEXTENDED;
+		if("vessel_drink".equals(key)) {
+			builderSupEXTENDED = () -> (Builder<T>) Builder.of(VesselDrinkTileEntity::new, LOTRBlocks.WOODEN_MUG.get(), LOTRBlocks.CERAMIC_MUG.get(), 
+					LOTRBlocks.GOLDEN_GOBLET.get(), LOTRBlocks.SILVER_GOBLET.get(), LOTRBlocks.COPPER_GOBLET.get(), LOTRBlocks.WOODEN_CUP.get(), 
+					LOTRBlocks.ALE_HORN.get(), LOTRBlocks.GOLDEN_ALE_HORN.get(), ExtendedBlocks.SKULL_GOBLET.get());
+		}else {
+			builderSupEXTENDED = builderSup;
+		}
+		
+		Type<?> datafixType = null;
+		try {
+			datafixType = DataFixesManager.getDataFixer().getSchema(DataFixUtils.makeKey(SharedConstants.getCurrentVersion().getWorldVersion())).getChoiceType(TypeReferences.BLOCK_ENTITY, key);
+		} catch (IllegalArgumentException var4) {
+			if (SharedConstants.IS_RUNNING_IN_IDE) {
+				throw var4;
+			}
+		}
+		final Type<?> datafixType2 = datafixType;
+		return TILE_ENTITIES.register(key, () -> builderSupEXTENDED.get().build(datafixType2));
+	}
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {

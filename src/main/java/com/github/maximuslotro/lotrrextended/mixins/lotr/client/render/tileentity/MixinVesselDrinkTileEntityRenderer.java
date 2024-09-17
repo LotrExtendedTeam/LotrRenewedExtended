@@ -62,11 +62,8 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 			}else if(vesselType == VesselType.ALE_HORN || vesselType == VesselType.GOLDEN_ALE_HORN) {
 				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.valueOf("SKULL_GOBLET")) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 2.25F, 11.0F, combinedLight, combinedOverlay);
-			}else {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 2.25F, 10.0F, combinedLight, combinedOverlay);
+				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 12, 6.0F, 9.0F, combinedLight, combinedOverlay);
 			}
-			this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 2.25F, 12.0F, combinedLight, combinedOverlay);
 			matStack.popPose();
 			RenderSystem.disableBlend();
 			RenderSystem.enableCull();
