@@ -715,9 +715,6 @@ public class MixinLOTRItems {
 		ExtendedItems.GOLDEN_TAURETHRIM_LEGGINGS = regItemB("golden_taurethrim_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GOLDEN_TAURETHRIM"), EquipmentSlotType.LEGS));
 		ExtendedItems.GOLDEN_TAURETHRIM_BOOTS = regItemB("golden_taurethrim_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GOLDEN_TAURETHRIM"), EquipmentSlotType.FEET));
 
-		// Gundabad Equipment
-		ExtendedItems.GUNDABAD_SHIELD = regItemB("gundabad_shield", () -> new LOTRShieldItem(LOTRMaterial.MORDOR));
-
 		//Angmar Equipment
 		ExtendedItems.ANGMAR_HELMET = regItemB("angmar_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.HEAD));
 		ExtendedItems.ANGMAR_CHESTPLATE = regItemB("angmar_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("ANGMAR"), EquipmentSlotType.CHEST));
@@ -728,7 +725,6 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("ANGMAR")));
 
 		//Bone Equipment
-		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
 		ExtendedItems.BONE_SWORD = regItemB("bone_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("EXT_BONE")));
 		ExtendedItems.BONE_SPEAR = regItemB("bone_spear",() -> new SpearItem(LOTRMaterial.valueOf("EXT_BONE")));
 		ExtendedItems.BONE_DAGGER = regItemB("bone_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("EXT_BONE")));
@@ -773,9 +769,11 @@ public class MixinLOTRItems {
 		ExtendedItems.GUNDABAD_URUK_SPEAR = regItemB("gundabad_uruk_spear",() -> new SpearItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_DAGGER = regItemB("gundabad_uruk_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_BOW = regItemB("gundabad_uruk_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.GUNDABAD_URUK));
-		//Ranger of the North equipment
+
+		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
 		ExtendedItems.DUNEDAIN_BOW = regItemB("dunedain_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.RANGER_NORTH));
+		//Ranger of the North equipment
 		ExtendedItems.DUNEDAIN_SHIELD = regItemB("dunedain_shield", () -> new LOTRShieldItem(LOTRMaterial.RANGER_NORTH));
 
 		// misc equipment

@@ -9,7 +9,6 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -26,7 +25,7 @@ public class ExtendedGundabadUrukArcherEntity extends ExtendedGundabadUrukEntity
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-		npcItemsInv.setRangedWeapon(new ItemStack(Items.BOW));
+		npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_BOW.get()));
 		npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_DAGGER.get()));
 		npcItemsInv.setIdleItemsFromRangedWeapons();
 		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
