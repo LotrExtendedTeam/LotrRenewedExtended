@@ -4,17 +4,17 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelWargHat extends ExtendedSpecialArmorModel<LivingEntity> {
+public class ExtendedModelWargHat<E extends LivingEntity> extends ExtendedSpecialArmorModel<E> {
 	private final ModelRenderer ear_r1;
 	private final ModelRenderer ear_r2;
 	private final ModelRenderer fur_r1;
 	private final ModelRenderer fur_r2;
 
-	public ExtendedModelWargHat(BipedModel<LivingEntity> referenceBipedModel) {
+	public ExtendedModelWargHat(BipedModel<E> referenceBipedModel) {
 		this(referenceBipedModel, 1.0F);
 	}
 
-	public ExtendedModelWargHat(BipedModel<LivingEntity> referenceBipedModel, float f) {
+	public ExtendedModelWargHat(BipedModel<E> referenceBipedModel, float f) {
 		super(referenceBipedModel, f, 64, 64);
 		clearNonHelmetParts();
 

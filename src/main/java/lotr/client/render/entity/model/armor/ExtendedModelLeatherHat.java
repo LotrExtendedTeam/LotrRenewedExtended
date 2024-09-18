@@ -4,12 +4,12 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelLeatherHat extends ExtendedSpecialArmorModel<LivingEntity> {
+public class ExtendedModelLeatherHat<E extends LivingEntity> extends ExtendedSpecialArmorModel<E> {
 
-    public ExtendedModelLeatherHat(BipedModel<LivingEntity> referenceBipedModel) {
+    public ExtendedModelLeatherHat(BipedModel<E> referenceBipedModel) {
        this(referenceBipedModel, 1.0F);
     }
-    public ExtendedModelLeatherHat(BipedModel<LivingEntity> referenceBipedModel, float f) {
+    public ExtendedModelLeatherHat(BipedModel<E> referenceBipedModel, float f) {
         super(referenceBipedModel, f);
 
         clearNonHelmetParts();

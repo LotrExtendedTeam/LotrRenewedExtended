@@ -19,8 +19,14 @@ public abstract class ExtendedSpecialArmorModel<E extends LivingEntity> extends 
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.xRot = x;
-		modelRenderer.yRot = y;
-		modelRenderer.zRot = z;
+		if(x!=0.0f) {
+			modelRenderer.xRot = x;
+		}
+		if(y!=0.0f) {
+			modelRenderer.yRot = y;
+		}
+		if(z!=0.0f) {
+			modelRenderer.zRot = z;
+		}
 	}
 }

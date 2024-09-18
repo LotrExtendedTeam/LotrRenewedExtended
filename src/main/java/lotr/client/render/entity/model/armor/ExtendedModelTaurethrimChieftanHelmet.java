@@ -4,14 +4,14 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelTaurethrimChieftanHelmet extends ExtendedSpecialArmorModel<LivingEntity> {
+public class ExtendedModelTaurethrimChieftanHelmet<E extends LivingEntity> extends ExtendedSpecialArmorModel<E> {
     private ModelRenderer crest;
 
-    public ExtendedModelTaurethrimChieftanHelmet(BipedModel<LivingEntity> referenceBipedModel) {
+    public ExtendedModelTaurethrimChieftanHelmet(BipedModel<E> referenceBipedModel) {
         this(referenceBipedModel, 1.0F);
     }
 
-    public ExtendedModelTaurethrimChieftanHelmet(BipedModel<LivingEntity> referenceBipedModel, float f) {
+    public ExtendedModelTaurethrimChieftanHelmet(BipedModel<E> referenceBipedModel, float f) {
         super(referenceBipedModel, f);
         clearNonHelmetParts();
         head = new ModelRenderer(this, 0, 0);

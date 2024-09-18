@@ -4,14 +4,14 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class ExtendedModelMorgulHelmet extends ExtendedSpecialArmorModel<LivingEntity> {
+public class ExtendedModelMorgulHelmet<E extends LivingEntity> extends ExtendedSpecialArmorModel<E> {
     private ModelRenderer[] spikes = new ModelRenderer[8];
 
-    public ExtendedModelMorgulHelmet(BipedModel<LivingEntity> referenceBipedModel) {
+    public ExtendedModelMorgulHelmet(BipedModel<E> referenceBipedModel) {
         this(referenceBipedModel, 1.0F);
     }
 
-    public ExtendedModelMorgulHelmet(BipedModel<LivingEntity> referenceBipedModel, float f) {
+    public ExtendedModelMorgulHelmet(BipedModel<E> referenceBipedModel, float f) {
         super(referenceBipedModel, f);
         clearNonHelmetParts();
         head = new ModelRenderer(this, 0, 0);

@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.client.render.entity.model.armor;
 
 import lotr.client.render.entity.model.armor.ExtendedModelGoldenTaurethrimHelmet;
+import lotr.client.render.entity.model.armor.ExtendedModelGundabadUrukHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelLeatherHat;
 import lotr.client.render.entity.model.armor.ExtendedModelMorgulHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelTaurethrimChieftanHelmet;
@@ -34,5 +35,6 @@ public class MixinLOTRArmorModels {
         addSpecialArmorModel(ExtendedItems.GRAY_WARG_HELMET, ExtendedModelWargHat::new);
         addSpecialArmorModel(ExtendedItems.SILVER_WARG_HELMET, ExtendedModelWargHat::new);
         addSpecialArmorModel(ExtendedItems.WHITE_WARG_HELMET, ExtendedModelWargHat::new);
+        addSpecialArmorModel(ExtendedItems.GUNDABAD_URUK_HELMET, ExtendedModelGundabadUrukHelmet::new);
     }
 }
