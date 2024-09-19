@@ -11,6 +11,9 @@ import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nullable;
+
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,12 @@ public class ExtendedDunedainRangerRenderer extends LOTRBipedRenderer<ExtendedDu
     public ResourceLocation getTextureLocation(ExtendedDunedainRangerEntity man) {
         return SKINS.getRandomSkin(man);
     }
+
+    @Override
+	protected void scale(ExtendedDunedainRangerEntity entity, MatrixStack matStack, float f) {
+		super.scale(entity, matStack, f);
+		matStack.scale(0.965f, 0.965F, 0.965F);
+	}
 
     @Override
     @Nullable

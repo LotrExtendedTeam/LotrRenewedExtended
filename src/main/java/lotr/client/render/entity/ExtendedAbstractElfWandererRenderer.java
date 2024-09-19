@@ -19,8 +19,8 @@ public abstract class ExtendedAbstractElfWandererRenderer<E extends ExtendedAbst
         this.addLayer(new ElfWandererCloakLayer<>(this, new ExtendedElfWandererModel<>(0.5F), new ExtendedElfWandererModel<>(1.0F)));
     }
 
-    protected void preRenderCallback(E elf, MatrixStack matStack, float f) {
-        super.preRenderCallback(elf, matStack, f);
+    protected void scale(E elf, MatrixStack matStack, float f) {
+        super.scale(elf, matStack, f);
         if (CalendarUtil.isAprilFools()) {
             float scale = 0.25F;
             matStack.scale(scale, scale, scale);
