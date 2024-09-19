@@ -765,6 +765,7 @@ public class MixinLOTRItems {
 		ExtendedItems.GUNDABAD_URUK_CHESTPLATE = regItemB("gundabad_uruk_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GUNDABAD_URUK"), EquipmentSlotType.CHEST));
 		ExtendedItems.GUNDABAD_URUK_LEGGINGS = regItemB("gundabad_uruk_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GUNDABAD_URUK"), EquipmentSlotType.LEGS));
 		ExtendedItems.GUNDABAD_URUK_BOOTS = regItemB("gundabad_uruk_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GUNDABAD_URUK"), EquipmentSlotType.FEET));
+		ExtendedItems.GUNDABAD_SHIELD = regItemB("gundabad_shield", () -> new LOTRShieldItem(LOTRMaterial.MORDOR));
 		ExtendedItems.GUNDABAD_URUK_CLEAVER = regItemB("gundabad_uruk_sword",() -> new LOTRSwordItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_SPEAR = regItemB("gundabad_uruk_spear",() -> new SpearItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_DAGGER = regItemB("gundabad_uruk_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));

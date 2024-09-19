@@ -690,6 +690,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Tags.Items.STRING)
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.SKULL_GOBLET.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.SKULL_GOBLET.get())
+		.pattern("S")
+		.pattern("T")
+		.define('S', Ingredient.of(Items.SKELETON_SKULL))
+		.define('T', Ingredient.of(LOTRTags.Items.INGOTS_TIN))
+		.unlockedBy("has_"+Items.SKELETON_SKULL.getRegistryName().getPath(), has(Items.SKELETON_SKULL))
+		.save(consumer, lotrLoc(ExtendedItems.SKULL_GOBLET.get().getRegistryName().getPath()));
 		//Vanilla egg fixes
 		ShapedRecipeBuilder.shaped(Items.CAKE)
 		.pattern("MMM")
@@ -1598,8 +1606,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.PLUM_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.RAW_DUCK.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedBlocks.SKULL_GOBLET.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedItems.SKULL_GOBLET.get().getRegistryName().getPath());
 	}
 
 	@Override
