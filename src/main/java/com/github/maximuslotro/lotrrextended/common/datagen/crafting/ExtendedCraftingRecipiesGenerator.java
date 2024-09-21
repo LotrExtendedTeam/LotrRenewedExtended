@@ -40,6 +40,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	@Override
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 		buildRecipes(consumer);
+		addMissingRenewedRecipes(consumer);
+		addMissingVanillaRecipes(consumer);
 		buildStonecutterRecipes(consumer);
 		buildCookingRecipes(consumer);
 		buildSmeltingRecipes(consumer);
@@ -335,8 +337,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.DOL_GULDUR_PILLAR, 
 				ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB, 
 				()->Blocks.STONE.asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
-		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, 
-				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_DOL_GULDUR_BRICK, 
+				ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK, 
 				()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS, 
@@ -359,10 +361,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedItems.ANGMAR_SHOVEL, 
 				ExtendedItems.ANGMAR_AXE, 
 				ExtendedItems.ANGMAR_HOE, 
-				LOTRItems.ORC_STEEL_INGOT, null);
-		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, null);
-		makeSpearRecipe(consumer, ExtendedItems.ANGMAR_SPEAR, LOTRItems.ORC_STEEL_INGOT, null);
-		makeDaggerRecipe(consumer, ExtendedItems.ANGMAR_DAGGER, LOTRItems.ORC_STEEL_INGOT, null);
+				LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+		makeSwordRecipe(consumer, ExtendedItems.ANGMAR_SWORD, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+		makeSpearRecipe(consumer, ExtendedItems.ANGMAR_SPEAR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
+		makeDaggerRecipe(consumer, ExtendedItems.ANGMAR_DAGGER, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ORC_CHANDELIER.get(), LOTRRecipes.ANY_ORC)
 		.pattern(" N ")
@@ -515,8 +517,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.RHUNIC_BRICK_SLAB, 
 				ExtendedBlocks.RHUNIC_BRICK_WALL, 
 				()->ExtendedBlocks.RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_RHUNIC_BRICK, 
-				()->ExtendedBlocks.RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_RHUNIC_BRICK, 
+				ExtendedBlocks.RHUNIC_BRICK, ExtendedBlocks.RHUNIC_BRICK_SLAB, ExtendedRecipes.RHUNIC_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedBlocks.RHUNIC_PILLAR.get(), 3, ExtendedRecipes.RHUNIC_CRAFTING)
 		.pattern("#")
@@ -564,8 +566,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				ExtendedBlocks.RED_RHUNIC_BRICK_SLAB, 
 				ExtendedBlocks.RED_RHUNIC_BRICK_WALL, 
 				()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, 
-				()->ExtendedBlocks.RED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_RED_RHUNIC_BRICK, 
+				ExtendedBlocks.RED_RHUNIC_BRICK, ExtendedBlocks.RED_RHUNIC_BRICK_SLAB, ExtendedRecipes.RHUNIC_CRAFTING);
 		makePillarSlabRecipe(consumer, ExtendedBlocks.RED_RHUNIC_PILLAR, 
 				ExtendedBlocks.RED_RHUNIC_PILLAR_SLAB, 
 				()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
@@ -601,12 +603,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//GONDOR
 		makeStairRecipe(consumer, ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS, 
 				()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
-		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK, 
-				()->LOTRBlocks.NUMENOREAN_BRICK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
-		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK, 
-				()->LOTRBlocks.NUMENOREAN_BRICK.get().asItem(), LOTRRecipes.UMBAR_CRAFTING);
-		make2x2BlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK, 
-				()->LOTRBlocks.UMBAR_BRICK.get().asItem(), LOTRRecipes.UMBAR_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK, 
+				LOTRBlocks.NUMENOREAN_BRICK, LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.GONDOR_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK, 
+				LOTRBlocks.NUMENOREAN_BRICK, LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK, 
+				LOTRBlocks.UMBAR_BRICK, LOTRBlocks.UMBAR_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
 		//DWARVEN
 		make2x2BlockRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK, 
 				ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.DWARVEN_CRAFTING);
@@ -1078,6 +1080,58 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
 	}
 
+	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_ANGMAR_BRICK, 
+			LOTRBlocks.ANGMAR_BRICK_SLAB, LOTRRecipes.ANGMAR_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_ARNOR_BRICK, 
+			LOTRBlocks.ARNOR_BRICK_SLAB, LOTRRecipes.RANGER_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_BLUE_BRICK, 
+			LOTRBlocks.BLUE_BRICK_SLAB, null);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_BRICK, 
+			()->Blocks.BRICK_SLAB, null);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_CHALK_BRICK, 
+			LOTRBlocks.CHALK_BRICK_SLAB, null);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_DALE_BRICK, 
+			LOTRBlocks.DALE_BRICK_SLAB, LOTRRecipes.DALE_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_DWARVEN_BRICK, 
+			LOTRBlocks.DWARVEN_BRICK_SLAB, LOTRRecipes.ANY_DWARVEN);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_GALADHRIM_BRICK, 
+			LOTRBlocks.GALADHRIM_BRICK_SLAB, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_GONDOR_BRICK, 
+			LOTRBlocks.GONDOR_BRICK_SLAB, LOTRRecipes.GONDOR_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_HIGH_ELVEN_BRICK, 
+			LOTRBlocks.HIGH_ELVEN_BRICK_SLAB, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_MORDOR_BASALT_BRICK, 
+			LOTRBlocks.MORDOR_BASALT_BRICK_SLAB, LOTRRecipes.MORDOR_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_MORDOR_BRICK, 
+			LOTRBlocks.MORDOR_BRICK_SLAB, LOTRRecipes.MORDOR_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_NUMENOREAN_BRICK, 
+			LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.ANY_NUMENOREAN);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_RED_BRICK, 
+			LOTRBlocks.RED_BRICK_SLAB, null);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_ROHAN_BRICK, 
+			LOTRBlocks.ROHAN_BRICK_SLAB, LOTRRecipes.ROHAN_CRAFTING);
+		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_WOOD_ELVEN_BRICK, 
+			LOTRBlocks.WOOD_ELVEN_BRICK_SLAB, LOTRRecipes.WOOD_ELVEN_CRAFTING);
+	}
+
+	private void addMissingVanillaRecipes(Consumer<IFinishedRecipe> consumer) {
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.CHISELED_NETHER_BRICKS, 
+			Blocks.NETHER_BRICKS, Blocks.NETHER_BRICK_SLAB);
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.CHISELED_POLISHED_BLACKSTONE, 
+			Blocks.POLISHED_BLACKSTONE, Blocks.POLISHED_BLACKSTONE_SLAB);
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.CHISELED_QUARTZ_BLOCK, 
+			Blocks.QUARTZ_BLOCK, Blocks.QUARTZ_SLAB);
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.CHISELED_RED_SANDSTONE, 
+			Blocks.RED_SANDSTONE, Blocks.RED_SANDSTONE_SLAB);
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.CHISELED_SANDSTONE, 
+			Blocks.SANDSTONE, Blocks.SANDSTONE_SLAB);
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.CHISELED_STONE_BRICKS, 
+			Blocks.STONE_BRICKS, Blocks.STONE_BRICK_SLAB);
+		makeCarvedBlockRecipeVanilla(consumer, Blocks.INFESTED_CHISELED_STONE_BRICKS, 
+			Blocks.INFESTED_STONE_BRICKS, null);
+	}
+
 	private void buildSmeltingRecipes(Consumer<IFinishedRecipe> consumer) {
 		makeSmeltingRecipes(consumer, ExtendedItems.AMBER_ORE.get(), ExtendedItems.AMBER.get());
 		makeSmeltingRecipes(consumer, ExtendedItems.AMETHYST_ORE.get(), ExtendedItems.AMETHYST.get());
@@ -1352,6 +1406,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ANGMAR_BRICK, LOTRBlocks.ANGMAR_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ANGMAR_BRICK, LOTRBlocks.ANGMAR_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.ANGMAR_BRICK, LOTRBlocks.ANGMAR_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, LOTRBlocks.ANGMAR_BRICK, LOTRBlocks.CARVED_ANGMAR_BRICK);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_ANGMAR_BRICK, LOTRBlocks.MOSSY_ANGMAR_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_ANGMAR_BRICK, LOTRBlocks.MOSSY_ANGMAR_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, LOTRBlocks.MOSSY_ANGMAR_BRICK, LOTRBlocks.MOSSY_ANGMAR_BRICK_WALL);

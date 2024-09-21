@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "lotr:faction_shaped",
+  "table": "lotr:angmar",
   "pattern": [
     "#",
     "X",

@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:red_rhunic_brick_slab"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_red_rhunic_brick"
+  }
+}

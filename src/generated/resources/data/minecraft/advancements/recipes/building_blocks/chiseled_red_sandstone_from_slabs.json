@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:chiseled_red_sandstone_from_slabs"
+    ]
+  },
+  "criteria": {
+    "has_chiseled_red_sandstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:chiseled_red_sandstone"
+          }
+        ]
+      }
+    },
+    "has_red_sandstone_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:red_sandstone_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:chiseled_red_sandstone_from_slabs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chiseled_red_sandstone",
+      "has_red_sandstone_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

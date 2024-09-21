@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:carved_chalk_brick_from_slabs"
+    ]
+  },
+  "criteria": {
+    "has_carved_chalk_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:carved_chalk_brick"
+          }
+        ]
+      }
+    },
+    "has_chalk_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:chalk_brick_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:carved_chalk_brick_from_slabs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carved_chalk_brick",
+      "has_chalk_brick_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dwarven_brick_slab"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_dwarven_brick"
+  }
+}

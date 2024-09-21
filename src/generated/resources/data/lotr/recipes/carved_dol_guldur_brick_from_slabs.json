@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_guldur",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dol_guldur_brick_slab"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_dol_guldur_brick"
+  }
+}
