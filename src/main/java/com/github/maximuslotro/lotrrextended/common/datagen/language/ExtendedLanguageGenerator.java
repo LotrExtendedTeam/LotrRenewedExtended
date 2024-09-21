@@ -139,15 +139,15 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.oddment_collector.departure.8", "%1$s: I fear this place has little else to offer me in the scrap market. I shall soon depart to richer lands.");
 		addD("speechbank.oddment_collector.departure.9", "%1$s: The scrap that one hoards is worth little more than pebbles, %2$s. So come now and sell that rubbish of yours before I go far away!");
 		addD("speechbank.oddment_collector.departure.10", "%1$s: The road must go on, %2$s! Who am I but a humble scrap collector to stop it. So before I hasten over the hills, let me rid you of any unwanted odds and ends.");
-		addD("speechbank.oddment_collector.departure.12", "%1$s: Come trade with me quickly, %2$s! For I shall soon be leaving these lands to seek the wealth of the Gundabad Orcs.");
-		addD("speechbank.oddment_collector.departure.14", "%1$s: I'm feeling thirsty, %2$s. A stay at a good inn would do me well! Luckily I know one near the mountains blue, so come quick or you shall miss me.");
-		addD("speechbank.oddment_collector.departure.15", "%1$s: My deals don't last forever, %2$s.");
-		addD("speechbank.oddment_collector.departure.16", "%1$s: A rest in a comfortable bed beckons, %2$s. Oddment collectors have to sleep too!");
-		addD("speechbank.oddment_collector.departure.17", "%1$s: Roll up, roll up! Last scrap deals for many weeks!");
-		addD("speechbank.oddment_collector.departure.18", "%1$s: Do you have no more scrap, %2$s? Then I shall have to leave.");
-		addD("speechbank.oddment_collector.departure.19", "%1$s: We scrap collectors move often to find the best sources of oddments. I am no exception, %2$s.");
-		addD("speechbank.oddment_collector.departure.20", "%1$s: Business is slow here. Perhaps it is time to seek my fortunes elsewhere.");
-		addD("speechbank.oddment_collector.departure.21", "%1$s: I hear the Mango-Men of Harad have plenty of scrap iron. Perhaps I should seek them instead of waiting for you to empty your pockets, %2$s.");
+		addD("speechbank.oddment_collector.departure.11", "%1$s: Come trade with me quickly, %2$s! For I shall soon be leaving these lands to seek the wealth of the Gundabad Orcs.");
+		addD("speechbank.oddment_collector.departure.12", "%1$s: I'm feeling thirsty, %2$s. A stay at a good inn would do me well! Luckily I know one near the mountains blue, so come quick or you shall miss me.");
+		addD("speechbank.oddment_collector.departure.13", "%1$s: My deals don't last forever, %2$s.");
+		addD("speechbank.oddment_collector.departure.14", "%1$s: A rest in a comfortable bed beckons, %2$s. Oddment collectors have to sleep too!");
+		addD("speechbank.oddment_collector.departure.15", "%1$s: Roll up, roll up! Last scrap deals for many weeks!");
+		addD("speechbank.oddment_collector.departure.16", "%1$s: Do you have no more scrap, %2$s? Then I shall have to leave.");
+		addD("speechbank.oddment_collector.departure.17", "%1$s: We scrap collectors move often to find the best sources of oddments. I am no exception, %2$s.");
+		addD("speechbank.oddment_collector.departure.18", "%1$s: Business is slow here. Perhaps it is time to seek my fortunes elsewhere.");
+		addD("speechbank.oddment_collector.departure.19", "%1$s: I hear the Mango-Men of Harad have plenty of scrap iron. Perhaps I should seek them instead of waiting for you to empty your pockets, %2$s.");
 
 		// Galadhrim Wanderer departure lines
 		addD("speechbank.galadhrim_wanderer.departure.1", "%1$s: My longing for the sea grows ever deeper. I think I shall be leaving soon.");

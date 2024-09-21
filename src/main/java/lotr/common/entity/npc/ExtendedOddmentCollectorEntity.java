@@ -361,7 +361,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     @Override
     public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        return new TranslationTextComponent("speechbank.oddment_collector.departure." + (random.nextInt(20) + 1), getName(), player.getName());
+        return new TranslationTextComponent("speechbank.oddment_collector.departure." + (random.nextInt(18) + 1), getName(), player.getName());
     }
 
     static {

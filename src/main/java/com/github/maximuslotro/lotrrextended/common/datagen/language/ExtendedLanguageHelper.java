@@ -230,6 +230,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			if (entry.getKey().contains("block.minecraft.banner")) {
 				continue;
 			}
+			if (entry.getKey().contains("speechbank.")) {
+				continue;
+			}
 			existingStrings.put(entry.getKey(), entry.getValue());
 		}
 	}
