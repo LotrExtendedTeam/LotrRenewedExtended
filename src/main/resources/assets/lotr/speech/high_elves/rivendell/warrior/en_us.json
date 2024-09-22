@@ -1,0 +1,116 @@
+{
+  "parent": "lotr:high_elves/rivendell/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "The time of the Elves is fading, but our strength is not yet gone.",
+        "I defend the Elves of Imladris.",
+        "Greetings, #p.",
+        "We defend the free peoples of Middle-earth.",
+        "It seems you are a friend of the Elves, #p.",
+        "May the grace of the Valar protect you.",
+        "How many Orcs have you slain today, #p?",
+        "The world is changing, #p... I feel it in my heart.",
+        "If you fight for freedom, then I am with you.",
+        "Long ago, an alliance existed between my people and yours. Will you honour that alliance?",
+        "Ever stronger grows the sway of the Enemy over our lands.",
+        "Welcome, #p, to the land of Elrond Half-elven!",
+        "You shall find no evil in Rivendell, #p! Our land is safe and fair.",
+        "I have protected this valley for many a year.",
+        "I protect the High Elves of Imladris. No evil shall escape my wrath.",
+        "The power of the Elves is waning in this world, but our strength is not yet gone!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!",
+        "Tôl acharn.",
+        "Few in Middle-earth can stand against the Eldar of the West."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "You are safe here in Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth"
+      },
+      "lines": [
+        "It was here I fought, 3000 years ago in the War of the Last Alliance.",
+        "Here I fought alongside High-king Gil-Galad against the armies of Sauron millennia ago."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:eregion"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "By the star of Eärendil, I swear I shall see you slain!",
+        "You are not welcome in Imladris!",
+        "You are not welcome in Rivendell, #p!",
+        "You may not set foot in this fair valley!",
+        "Flee these lands, #p!",
+        "For Imladris!",
+        "Perish, you Morgul-demon!",
+        "No longer shall you darken these lands, #p!",
+        "I swear by the Valar, I shall put an end to your evil!",
+        "To Udûn with you!",
+        "Go and kiss an Orc!",
+        "Death to the foes of the Elves!",
+        "Who brings to us this token of doom?",
+        "Begone, foul servant of the Enemy!",
+        "Leave this land, or face the edge of our blades!",
+        "I will not allow evil to taint the realm of Imladris. You shall soon meet your doom, #p.",
+        "By the Valar! How dare you enter this land, #p?",
+        "Flee, scum of Mordor, or face a rain of arrows.",
+        "How dare you poison this fair realm with your foul feet?",
+        "Le nallon sí dinguruthos!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!",
+        "Tôl acharn!"
+      ]
+    }
+  ]
+}

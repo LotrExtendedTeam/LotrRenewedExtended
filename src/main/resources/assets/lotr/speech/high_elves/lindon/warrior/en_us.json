@@ -1,0 +1,92 @@
+{
+  "parent": "lotr:high_elves/lindon/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "The time of the Elves is fading, but our strength is not yet gone.",
+        "I defend the Elves of Lindon.",
+        "Greetings, #p.",
+        "We defend the free peoples of Middle-earth.",
+        "It seems you are a friend of the Elves, #p.",
+        "May the grace of the Valar protect you.",
+        "How many Orcs have you slain today, #p?",
+        "The world is changing, #p... I feel it in my heart.",
+        "If you fight for freedom, then I am with you.",
+        "Long ago, an alliance existed between my people and yours. Will you honour that alliance?",
+        "Ever stronger grows the sway of the Enemy over our lands.",
+        "Welcome, #p, to the land of Círdan the Shipwright!",
+        "You shall find no evil in Lindon, #p! Our land is safe and fair.",
+        "I have protected these shores for many a year.",
+        "I protect the High Elves of Lindon. No evil shall escape my wrath.",
+        "The power of the Elves is waning in this world, but our strength is not yet gone!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!",
+        "Tôl acharn!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "By the star of Eärendil, I swear I shall see you slain!",
+        "You are not welcome in Lindon!",
+        "You are not welcome in Lindon, #p!",
+        "You may not set foot in this fair realm!",
+        "Flee these lands, #p!",
+        "For Lindon!",
+        "Perish, you Morgul-demon!",
+        "No longer shall you darken these lands, #p!",
+        "I swear by the Valar, I shall put an end to your evil!",
+        "To Udûn with you!",
+        "Go and kiss an Orc!",
+        "Death to the foes of the Elves!",
+        "Who brings to us this token of doom?",
+        "Begone, foul servant of the Enemy!",
+        "Leave this land, or face the edge of our blades!",
+        "I will not allow evil to taint the land of Lindon. You shall soon meet your doom, #p.",
+        "By the Valar! How dare you enter this land, #p?",
+        "Flee, scum of Mordor, or face the a rain of arrows.",
+        "How dare you poison this fair realm with your foul feet?",
+        "Le nallon sí dinguruthos!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!",
+        "Tôl acharn!"
+      ]
+    }
+  ]
+}

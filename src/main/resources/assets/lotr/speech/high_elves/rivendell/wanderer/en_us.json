@@ -5,19 +5,90 @@
         "relation": "friendly"
       },
       "lines": [
-        "Greetings from the land of Imladris, #p!",
-        "The treasures of Rivendell may be bought for silver coins.",
-        "If you desire Elven crafts, I could exchange something for silver coins.",
-        "Do you wish to trade, #p?",
         "The sea calls me home, but I value silver coins as much as the next merchant.",
-        "Greetings, #p. Perhaps you have something to trade?",
         "I am a High Elf of the folk of Lord Elrond.",
         "I shall soon be leaving these shores.",
-        "I bring you the craftwork of the Elves of Rivendell!",
-        "Mae govannen, #p! Do you wish to trade with me?",
-        "I have travelled far and wide... and now I come to you! I have many treasures that will interest you, #p.",
         "I hail from Imladris, and I bring many gifts and treasures with me!",
-        "You have not seen beauty until you have beheld the valley of Imladris, #p!"
+        "You have not seen beauty until you have beheld the valley of Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warrior | >=friend"
+      },
+      "lines": [
+        "Much you have done for my people #p, but there is yet more work to do before you have our trust.",
+        "You have a fair heart #p, but you yet have much to prove to the Eldar before you can trade with me."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Greetings from the land of Imladris!",
+        "The treasures of Rivendell may be bought for silver coins.",
+        "If you desire Elven crafts, I could exchange something for silver coins.",
+        "Do you wish to trade?",
+        "Greetings. Perhaps you have something to trade?",
+        "I bring you the craftwork of the Elves of Rivendell!",
+        "Mae govannen! Do you wish to trade with me?",
+        "I have travelled far and wide... and now I come to you! I have many treasures that will interest you."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=herald"
+      },
+      "lines": [
+        "Greetings, Elf-Friend! May I interest you in some goods and treasures?",
+        "Mae govannen elendil! Would you like to browse through the finest elf-made goods?",
+        "Mae govannen, mellyn nín! Do you wish to trade with me?",
+        "Greetings from the land of Imladris, #p!",
+        "You have not seen beauty until you have beheld the valley of Imladris, #p!",
+        "I have travelled far and wide... and now I come to you! I have many treasures that will interest you, #p.",
+        "Do you wish to trade, #p?",
+        "Mae govannen, #p! Do you wish to trade with me?",
+        "Greetings, #p. Perhaps you have something to trade?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Mae govannen, i-mellyn nín! Would you like to trade?",
+        "Mae govannen, i-arben nín!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Mae govannen, Hîril-in-Gelydh!",
+        "Ai! Hîril-in-Gelydh!",
+        "Ai! Suilad i-chîril nín!",
+        "Greetings, my lady! Fair day it is to see you here! Would you like to trade for some fine elvish goods?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Mae govannen, Hîr-in-Gelydh!",
+        "Ai! Hîr-in-Gelydh!",
+        "Ai! Suilad i-chîr nín!",
+        "Greetings, my lord! Fair day it is to see you here! Would you like to trade for some fine elvish goods?"
       ]
     },
     {
@@ -32,7 +103,7 @@
         "You are not welcome among the Elves, #p.",
         "Lord Elrond is no friend of yours.",
         "Those such as myself do not hold those such as yourself in high regard.",
-        "You are no friend of the Quendi; that much is plain to see.",
+        "You are no friend of the Eldar; that much is plain to see.",
         "Were you to set foot in Imladris, I guarantee you would regret it, #p.",
         "You are in the service of the Enemy!",
         "I share neither silver nor the craft of Elves with the likes of you.",
@@ -40,7 +111,20 @@
         "I should rather die than give you any of my goods!",
         "No evil hand may touch the precious tokens that I carry!",
         "My kin would rather perish than ally with the servants of the Nameless One!",
-        "Go back to the shadow whence you came!"
+        "Go back to the shadow whence you came!",
+        "You are unwelcome in our lands.",
+        "You are no Elf-friend, #p!",
+        "To Udûn with you!",
+        "Go and kiss an Orc!",
+        "Who brings to us this token of doom?",
+        "Begone, servant of evil!",
+        "Go back to the shadow whence you came!",
+        "We shall not allow evil to enter our realm. Leave now or face our wrath!",
+        "Lacho calad! Drego morn!",
+        "Naur an edraith ammen!",
+        "Aglar’ni in Ellath!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!"
       ]
     }
   ]

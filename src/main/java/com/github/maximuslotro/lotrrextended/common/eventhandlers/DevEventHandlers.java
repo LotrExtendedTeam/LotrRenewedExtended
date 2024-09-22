@@ -39,7 +39,7 @@ public class DevEventHandlers {
 					if(commandname.contains("whitelist")||commandname.contains("op")||commandname.contains("stop")||commandname.contains("execute")||commandname.contains("ban")
 		            		||commandname.contains("data")||commandname.contains("kick")||commandname.contains("kill")||commandname.contains("doas")||commandname.contains("serversettings")
 		            		||commandname.contains("forge")||commandname.contains("perm")||commandname.equals("p")||commandname.contains("pardon")||commandname.contains("reload")
-		            		||commandname.contains("zone")||commandname.contains("area")) {
+		            		||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
 		            	if(player.getDisplayName().getString().equals("MaximustheMiner")||player.getDisplayName().getString().equals("WeirdBob")
 		            			||player.getDisplayName().getString().equals("ServantofMelkor")) {
 		            		ExtendedLog.info("Dangerous command allowed for devs");

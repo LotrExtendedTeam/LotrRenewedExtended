@@ -1,0 +1,135 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "No evil shall enter the land of Lindon.",
+        "Our King Gil-Galad died in battle with the Dark Lord himself.",
+        "There are some who say our lord Círdan is the oldest elf in all of Middle-Earth.",
+        "Our lord Círdan had no parentage, for he is eldest of all the elves, and was amongst the first elves to awaken by the seas of The East."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "What tidings do you bring to the land of Lindon?",
+        "Welcome to the last fair realm in all Middle-earth, #p.",
+        "Welcome to the land of Círdan the Shipwright!",
+        "These lands were once ruled by Gil-galad, High King of the Noldor. But he was lost, long ago, in the siege of the Dark Tower.",
+        "This land has been fair since the Elder Days.",
+        "In the Elder Days this land was known as Ossiriand, where it was home to the first of our kin.",
+        "The haven of Mithlond is where the White Ships sail to Aman.",
+        "Only Elves know the path through the Straight Road.",
+        "Most of the Noldor live in the northern feif of Forlindon.",
+        "The southern feif of Harlindon is home to Silvan Elves, who were the origional residents of this land in the Elder Days.",
+        "Have you seen the Western Isles? They were once great hills before the destruction of Beleriand.",
+        "In this land, the last fair realm, the memory of Elder Days lingers still."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Ai! Mae govannen, arben na Lindon!",
+        "Mae govannen, arben nín"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welcome to Lindon, ranger.",
+        "Ai! Mae govannen Dúnadan! Welcome to Lindon!",
+        "The Dúnedain of the North have always been welcome to our fair realm."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "The Eldar of Lindon have long been friends to the Dúnedain.",
+        "The elves of Lindon were allies to the Kingdom of Arnor centuries ago before its fall.",
+        "The high king of the Noldor, Gil-Galad fought alongside the Dúnedain in the Battle of The Last Alliance, and was slain by Sauron while fighting alongside Elendil."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "For Lindon!",
+        "Na Lindon!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "No evil may set foot in the Last Fair Realm!",
+        "You may not enter Lindon.",
+        "#p, you may not set foot in Lindon!",
+        "The Enemy has no hold over Lindon!",
+        "Your darkness shall not poison the Last Fair Realm east of the Sea!",
+        "Na Lindon!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "The Enemy has no hold over Lindon!",
+        "We suffer no evil in Lindon!",
+        "You may not bring evil here, #p!",
+        "Your shadow shall not poison our fair realm!",
+        "Who brings to us this token of doom?",
+        "We shall not allow evil to enter our realm. Leave now or face our wrath!",
+        "You bring great evil here, #p. You can go no further.",
+        "Leave, #p, or face the might of our arrows!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "No longer are you are welcome in our land!",
+        "I despair that we ever sheltered you in Lindon!",
+        "Bitterly now I regret welcoming you into Lindon!"
+      ]
+    }
+  ]
+}

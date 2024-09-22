@@ -1,0 +1,180 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "No evil shall enter the realm of Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "What tidings do you bring to the land of Imladris?",
+        "Welcome to the last Homely House in Middle-earth, #p.",
+        "Welcome to the house of Lord Elrond, #p.",
+        "Welcome to the realm of Elrond Half-elven!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "After the destruction of Eregion, our people fled north and took refuge in this valley, hidden from foul eyes.",
+        "Our Lord Elrond has kept watch over this valley for many centuries.",
+        "Elrond Half-elven safeguards this valley with the power of the elvish ring Vilya, yet if the Nameless One returns in full he could use the ring no longer.",
+        "Imladris fought alongside the Kingdom of Arnor long ago. Now the Kingdom is ruined and its people scattered, but many of their relics are held here.",
+        "You are always welcome in Imladris, #p.",
+        "The darkness that grows in the shadows will never find itself here, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Lord Elrond was there 3000 years ago in the Battle of the Last alliance.",
+        "We hold many relics of the west here in Imladris.",
+        "Osgiliath has been taken, Isengard has turned to the enemy, the Woodland Realm was assulted, and The Nazgûl are roaming across Eriador! Middle-Earth has been enveloped in war, and our hope now lies on the edge of a knife."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord"
+      },
+      "lines": [
+        "Envoys from kingdoms all across Middle-Earth have come into Rivendell, the Nameless One gathers his forces against the free peoples.",
+        "The Nazgûl have been moving across Eriador. They attacked the Dúnedain at Sarn Ford, the town of Bree, and almost crossed the Bruinen into our lands! I fear such a bold move by the enemy could only mean one thing. The One Ring has been found.",
+        "The Rings of Power maintain the splendour of our lands, yet in the end they only prolongue our fatigue of the world."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Ai! Mae govannen, arben na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "none",
+        "biome": "lotr:tower_hills"
+      },
+      "lines": [
+        "Far have we travelled to view through Elendil's Stone.",
+        "From Imladris I came to view through the Palantír in Elostirion, yet the call of The West is ever strong now, I am not sure if I shall go back."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welcome to Rivendell, ranger.",
+        "Ai! Mae govannen Dúnadan! Welcome to Imladris!",
+        "The Dúnedain of the North have always been welcome in our house.",
+        "We hold many relics of the Dúnedain here in Imladris.",
+        "The Sceptre of Annúminas is but one of the relics of Arnor still held in Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "The Eldar of Imladris have long been friends to the Dúnedain.",
+        "The elves of Imladris were allies to the Kingdom of Arnor centuries ago before its fall."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "For Imladris!",
+        "Na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "No evil may set foot in Imladris!",
+        "You may not enter Rivendell.",
+        "#p, you may not set foot in Rivendell!",
+        "The Enemy has no hold over Imladris!",
+        "Your darkness shall not poison the Last Homely House!",
+        "Na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "The Enemy has no hold over Imladris!",
+        "We suffer no evil in Imladris!",
+        "You may not bring evil here, #p!",
+        "Your shadow shall not poison our homely house!",
+        "Who brings to us this token of doom?",
+        "We shall not allow evil to enter our realm. Leave now or face our wrath!",
+        "You bring great evil here, #p. You can go no further.",
+        "Leave, #p, or face the might of our arrows!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "No longer are you are welcome in our land!",
+        "I despair that we ever sheltered you in Imladris!",
+        "Bitterly now I regret welcoming you into Imladris!"
+      ]
+    }
+  ]
+}

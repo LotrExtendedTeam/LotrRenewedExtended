@@ -1,0 +1,537 @@
+  {
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+          "The world is indeed full of peril.",
+          "To the sea, to the sea!",
+          "West, west away, the round sun is falling.",
+          "Our days are ending and our years failing.",
+          "Grey ship, grey ship, do you hear them calling?",
+          "Too long I have dwelt upon this Hither Shore.",
+          "Gilthoniel! O Elbereth!",
+          "Miruvor! Refreshes the body and cleanses the spirit.",
+          "It is easy to lose oneself among our folk.",
+          "The days grow cold and the years fade.",
+          "The call of the sea in my heart grows ever stronger.",
+          "Rarely have we spoken with Men since the changing of the world.",
+          "A darkness is gathering in these lands. I feel it in my flesh.",
+          "The strength of the Elves is dwindling here.",
+          "I have seen years of the sun beyond the count of mortal Men.",
+          "Gil-galad was an Elven king. Of him the harpers sadly sing. The last whose realm was fair and free, between the mountains and the sea...",
+          "Aiya Eärendil, elenion ancalima!",
+          "Nover.",
+          "The world is changed. I feel it in the water... I feel it in the earth... I smell it in the air.",
+          "The time of our kin is almost done. ",
+          "Our hearts desire to behold the land of Aman.",
+          "Soon we shall leave this world.",
+          "White gulls are calling...",
+          "The Nameless One has returned. We cannot stay in these lands for long.",
+          "That which has stood so long against the darkness will now fall.",
+          "We must depart into the West, or dwindle to a rustic folk of dell and cave, slowly to forget and to be forgotten.",
+          "That what should be shall be.",
+          "Our love for this land is deeper than the depths of the Sea.",
+          "We would rather cast all that we love away than submit to the will of the Dark Lord.",
+          "Rumour grows of a shadow in the East. We fear that the Nameless One has returned.",
+          "The Sea calls us home.",
+          "The time of the Elves is over.",
+          "My people are leaving these shores.",
+          "Some things that should have not been forgotten were lost.",
+          "Long are the waves on the Last Shore falling.",
+          "A star rises out of the darkness.",
+          "Hail, Eärendil, brightest of stars!",
+          "Can you hear the white gulls calling?",
+          "A shadow rises in the East.",
+          "Soon, all lands will be filled with despair and grief, but hope still remains.",
+          "Our time in this world is ending, but it is not quite over yet.",
+          "One has not truly felt pain until they have crossed the frigid ices of the Helcaraxë.",
+          "A! Elbereth Gilthoniel! Silivren penna míriel...",
+          "To the Sea, to the Sea! The white gulls are crying, the wind is blowing, and the white foam is flying...",
+          "Long are the waves on the Last Shore falling, sweet are the voices in the Lost Isle calling...",
+          "A darkness grows in the East.",
+          "Our time in this world is coming to an end.",
+          "We alone remember the ancient lore of the houses of men.",
+          "Fanuilos, le linnathon.",
+          "A Hîr Annûn Gilthoniel, le linnon im Tinúviel!",
+          "Aglar’ni in Ellath.",
+          "The life of the Eldar ever fatigues as the shadow in the East grows.",
+          "I long for the white shores, and beyond, a far green country under a swift sunrise.",
+          "Only we remember the shadow of Morgoth and the lives that were lost in Beleriand.",
+          "My memory reaches back to the Elder Days, when our people were many but the darkness was great.",
+          "A time there was when a squirrel could go from tree to tree from what is now the Shire to Dunland.",
+          "Snow-white! Snow-white! O Lady clear! O Queen beyond the Western Seas! O light to us that wander here. Amid the world of woven trees!",
+          "Gilthoniel! O Elbereth! Clear are thy eyes and bright thy breath! Snow-white! Snow-white! We sing to thee in a far land beyond the sea.",
+          "O Stars that in the Sunless Year. With shining hand by her were sown, in windy fields now bright and clear. We see your silver blossom blown!",
+          "I sang of leaves, of leaves of gold, and leaves of gold there grew: Of wind I sang, a wind there came and in the branches blew."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "evening | dusk"
+        },
+        "lines": [
+          "West, west away, the round sun is falling."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dusk | night | dawn",
+          "weather": "clear"
+        },
+        "lines": [
+          "A star rises out of the darkness."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "stargazing": "true"
+        },
+        "lines": [
+          "Stories are told of when the Elves first awoke under the stars, along the shores of Nen Echui. The white starlight of the night sky was our first sight, and has been precious to us ever since.",
+          "In the hearts of the Eldar few things are as cherished as starlight.",
+          "Moonlight drowns out all but the brightest stars.",
+          "The stars of Elbereth fill our hearts with gladness."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "sun_admiring": "true"
+        },
+        "lines": [
+          "Hail, Eärendil, brightest of stars!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=commander",
+          "sun_admiring": "true"
+        },
+        "lines": [
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Are you an Elf-friend?",
+          "Are you a friend of the Eldar?",
+          "Greetings, traveller from afar! What news do you bring to us from the lands of Men?",
+          "Well met stranger! What tidings do you bring?",
+          "I urge you stay away from foul folk and creatures!",
+          "Can we count you among our friends?",
+          "Well met! From what land have you journeyed from?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": "<=friend",
+          "biome": "#home"
+        },
+        "lines": [
+          "Welcome traveller!",
+          "I hope our hospitality fairs you well traveller."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "What tidings do you bring, #p?",
+          "I long for the sea, #p.",
+          "Soon... soon, I shall depart these lands, #p.",
+          "Don't look for trouble, #p - it will come to you.",
+          "How do your travels fare, #p?",
+          "The time of the Grey Havens approaches. Do you hear the harbour calling, #p?",
+          "I feel that soon I shall depart these lands, #p. To the sea, to the sea!",
+          "You cannot call yourself a true Elf-friend until you have tasted lembas, #p.",
+          "How long shall I linger here, #p?",
+          "May the bread of Yavanna fill you on your travels!",
+          "Mae govannen!",
+          "Ai! Well met!",
+          "A darkness grows in the hearts of the Eldar - foul things are to come to this world #p, and my folk can help the race of Men little in this fight.",
+          "I feel a darkness growing in the East, we must hold faith in the hearts of men.",
+          "May the stars of Elbereth guide you!",
+          "May the winds of Manwë show you the way!",
+          "May the wind fill your sails!",
+          "Do you feel the shadow growing in The East, #p? Our time may be over, but there is yet hope for the race of men.",
+          "May the stars of Varda light your way!",
+          "Greetings #p! What news do you bring to us from the lands of Men?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=warrior"
+        },
+        "lines": [
+          "Ai, #p!",
+          "Mae govannen, #p!",
+          "A star shines upon the hour of our meeting, #p.",
+          "May the leaves of your life tree never turn brown, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=warrior",
+          "biome": "#home"
+        },
+        "lines": [
+          "Welcome to my dwelling, #p.",
+          "Welcome, #p!",
+          "Ai! Welcome to our lands, #p!",
+          "We grace you with our hospitality, #p.",
+          "Nathlo, #p!",
+          "Suilad!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=herald"
+        },
+        "lines": [
+          "Well met friend! What tidings do you bring?",
+          "Greetings, Elf-Friend!",
+          "Mae govannen elendil!",
+          "Mae govannen, mellyn nín!",
+          "Linnathol?",
+          "Ancient beyond measure some of our folk are, #p. We long to forever leave these lands and endure the sorrow of the world no more.",
+          "An ally you may be #p, but unaware are you to the fatigue of time the Eldar endure.",
+          "Those who have dwelt in the Blessed Realm live in both the Seen and Unseen worlds, and against both worlds they have great power.",
+          "The race of Númenor has decayed, and the span of their years has lessened.",
+          "The Dark Lord is putting forth all his strength against the Free Peoples of Middle-earth.",
+          "We are glad to include you among our friends, #p!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=captain"
+        },
+        "lines": [
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=noble"
+        },
+        "lines": [
+          "Mae govannen, i-mellyn nín!",
+          "Mae govannen, i-arben nín!",
+          "Even the smallest person can change the course of the future. It is in this all who are free must hold hope in.",
+          "The realms of Imladris and Lórien are preserved only through the power of the rings. Without their power, the realms will fade. If ever we are to defeat Sauron it will mean the end for our people.",
+          "The Morgul-lord and his Black Riders have come forth from Mordor, they scour the land for the One."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=lord",
+          "player_gender_pref": "f"
+        },
+        "lines": [
+          "May the wind fill your sails, my lady.",
+          "Mae govannen, Hîril-in-Gelydh!",
+          "Ai! Hîril-in-Gelydh!",
+          "Ai! Suilad i-chîril nín!",
+          "Greetings, my lady!",
+          "Well met lady #p! What news do you bear from far-off lands?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=lord",
+          "player_gender_pref": "m"
+        },
+        "lines": [
+          "May the wind fill your sails, my lord.",
+          "Mae govannen, Hîr-in-Gelydh!",
+          "Ai! Hîr-in-Gelydh!",
+          "Ai! Suilad i-chîr nín!",
+          "Greetings, my lord!",
+          "Well met lord #p! What news do you bear from far-off lands?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+        },
+        "lines": [
+          "I remember the days when these lands were a part of the Kingdom of Arnor.",
+          "Much of our kin died in the defense of these lands, yet it was all for naught.",
+          "This was once a part of a great kingdom of the Dúnedain, yet still many of its descendants wander and protect these lands.",
+          "The High Elves were close allies to the Kingdom of Arnor of old."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale"
+        },
+        "lines": [
+          "One for the Dark Lord on his dark throne. In the Land of Mordor where the Shadows lie...",
+          "I feel his gaze, his eye is upon us.",
+          "The call of The West has never felt stronger.",
+          "Lacho calad! Drego morn!",
+          "A tiro nin, Fanuilos!",
+          "Le nallon sí di’nguruthos.",
+          "Rach sīn duir!",
+          "I long to forever leave this dreaded place!",
+          "Many of our kin died fighting the forces of Sauron here during the War of the Last Alliance."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:angmar | lotr:angmar_mountains"
+        },
+        "lines": [
+          "These lands are of our ancient enemy.",
+          "The Witch-King once ruled these lands.",
+          "Lacho calad! Drego morn!",
+          "A tiro nin, Fanuilos!",
+          "Le nallon sí di’nguruthos.",
+          "Rach sīn duir!",
+          "I long to forever leave this dreaded place!",
+          "These are the lands of the long-forgotten kingdom of Angmar, the scourge of Arnor.",
+          "Here the Witch-King of Angmar bread his armies and launched war on the Kingdom of Arnor."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:eregion"
+        },
+        "lines": [
+          "Three Rings for the Elven-kings under the sky...",
+          "These are the lands of the fallen kingdom of Eregion, once home to the finest Elven smiths, who Sauron decieved into forging the Rings of Power.",
+          "Celebrimbor o Eregion teithant i thiw hin.",
+          "These lands were once home to my kin before it fell under darkness.",
+          "This was once the elvish kingdom of Eregion.",
+          "Celebrimbor was the greatest smith since the First Age, he was lord of these lands before Sauron brought the Kingdom to ruin."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:lothlorien"
+        },
+        "lines": [
+          "The beauty of these lands are unmatched.",
+          "Galadriel's splendour blesses these lands.",
+          "An Elven-maid there was of old, a shining star by day - her mantle white was hemmed with gold, her shoes of silver-grey...",
+          "Si loth a galadh lasto dîn!",
+          "Here in Lórien there are fair trees of The West which are found nowhere else in Middle-Earth.",
+          "Lady Galadriel preserves the beauty and splendour of Lórien with the ring, Nenya."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:woodland_realm"
+        },
+        "lines": [
+          "The Silvan Elves are hardy and valiant, but ill-equipped with armour or weapons in comparison to us Eldar of the West",
+          "Few kin we have among the Wood-elves, yet among the Eldar they are still counted.",
+          "The Silvan Elves are less wise and more dangerous than their western kin.",
+          "King Oropher of Doriath founded the Woodland Realm after Beleriand fell to the sea. His son, Thranduil now rules.",
+          "The Elves of the Woodland Realm long not to go west as we do, their folk have never beheld the splendour of Valinor."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:western_isles"
+        },
+        "lines": [
+          "These lands were once a part of Beleriand.",
+          "In the Elder Days these were highlands home to Elves, now only memories of sorrow remain here."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "none",
+          "biome": "lotr:tower_hills"
+        },
+        "lines": [
+          "I hope to peer through Elendil's stone, and see my kin in The West.",
+          "The tower of Elostirion holds one of the last Palantíri, it is turned to The West so we can view our kin and avoid the prying eyes of Sauron.",
+          "These towers were origionally built by our now fallen High King, Gil-Galad, but now are under the care of Lord Círdan.",
+          "The sight from the Palantír in Elostirion is breathtaking, but only makes the call of The West stronger."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:fangorn"
+        },
+        "lines": [
+          "Si loth a galadh lasto dîn.",
+          "This forest is old. Very old. Full of memories... and anger.",
+          "Do you feel the tenseness? It takes my breath.",
+          "This forest is old and full of memory. I could have been happy here, if I had come in days of peace.",
+          "Do you hear the trees? They whisper amongst each other.",
+          "The elves long ago taught the Ents the art of language.",
+          "A great pain festers in this forest, the trees are drowned in sorrow."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:dunedain_north"
+        },
+        "lines": [
+          "Ai na vedui Dúnadan! Mae govannen!",
+          "Well met, Ranger! What news do you bear to the Eldar?",
+          "Mae govannen, cuio i Dúnadain anann!",
+          "The Dúnedain are always welcome into our lands.",
+          "The blood of Númenor is all but spent, its pride and dignity forgotten, there is little hope now in men to face against the growing darkness.",
+          "The Rangers may be scattered, but they are strong and resilient and embrace the ways of their fathers more than their southern kin.",
+          "The Rangers do much work in guarding the peoples of Eriador, they are indeed a noble people!",
+          "We have heard of the Nazgûl attack at Sarn Ford! Few even in our lands could stand against the Nine!",
+          "The Rangers of the North are of the last remnant of the Men across the Sea."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:durins_folk | lotr:blue_mountains"
+        },
+        "lines": [
+          "Mae govannen, cuio i Negyth anann!",
+          "What news do you bear from the Dwarves?",
+          "In the days of Eregion the High Elves and the Dwarves of Moria worked together closely. Now Eregion is in ruins and Moria under shadow.",
+          "Long have the Eldar and Dwarves had disputes and quarrels, yet now we find ourselves friends, and we shall stand together against the growing dark.",
+          "I hear the enemy has sent foul emmisaries to the dwarven lords, I fear war may soon come to the north of Middle-Earth.",
+          "In Moria the Dwarves delved too greedily and too deep, they awake in the depths a beast of fire and darkness, a beast from the Elder Days."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:gondor"
+        },
+        "lines": [
+          "What news do you bring from the lands of Gondor?",
+          "The fair lands of Dor-en-Ernil were once inhabited by Elves after the fall of Beleriand.",
+          "We have heard news of Osgiliath's capture by the forces of Sauron. We hold hope in the race of men to stand strong against the oncoming darkness.",
+          "Darkness looms over Gondor #p, but fear not, for there is still hope.",
+          "The blood of Númenor is all but spent, its pride and dignity forgotten, there is little hope now in men to face against the growing darkness.",
+          "Gondor is failing, soon the will and strength of all it's people shall be tested.",
+          "Silver flow the streams from Celos to Erui, in the green fields of Lebennin! Tall grows the grass there. In the wind from the Sea The white lilies sway!",
+          "They say the Sword that was Broken has been reforged! And the Heir of Isildur rides now to Gondor, but will the men of Gondor accept their rightful king?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:lothlorien"
+        },
+        "lines": [
+          "Mae govannen, cuio i Galadhrim anann!",
+          "What news does Lady Galadriel bear to her kin in the west?",
+          "The Galadhrim are always welcome in our lands.",
+          "We are kin to many of the Galadhrim."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:woodland_realm"
+        },
+        "lines": [
+          "Mae govannen, cuio i Dannir anann!",
+          "Few kin we have among the Wood-elves, yet among the Eldar they are still counted.",
+          "We have heard of the recent attack on the Woodland Realm by the Orcs of Dol Guldur! War is beginning, and I fear it may soon consume all of Middle-Earth!",
+          "Friendly are the Wood-elves with their western kin, but many differences we share. Through mingling with the Avari, they have developed a different language and culture than the rest of the Eldar.",
+          "The Silvan Elves are hardy and valiant, but ill-equipped with armour or weapons in comparison to us Eldar of the West"
+        ]
+      },
+      {
+        "conditions": {
+          "hired": "own"
+        },
+        "lines": [
+          "We Elves are among the finest warriors in all Middle-earth.",
+          "It has been long indeed since the races of Men and Elves fought side by side, #p.",
+          "Few can match the prowess of an Elf in combat.",
+          "The Morgul-scum shall perish by bow and blade!",
+          "You have our allegiance, #p.",
+          "I seek to defend all that is good in this world.",
+          "May the grace of the Valar protect us in combat, #p.",
+          "Silver means little to an Elf, #p, but we fight for a common cause.",
+          "My bow shall sing with your sword, #p!",
+          "The bones of our foes will gleam under the Sun, #p.",
+          "I shall follow you through shadow and flame! None shall withstand the gleaming light of our swords!",
+          "Let us cleanse this world of the foul scum of Morgoth!",
+          "The days grow dark and cold, but the light of the Elves is not yet gone!",
+          "I fear that the Nameless One has returned. The Shadow must be destroyed before it is too late.",
+          "In the name of all that is good, let us cleanse this world of evil!",
+          "We must not allow evil to spread!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#home"
+        },
+        "lines": [
+          "Your presence is unwelcome here.",
+          "You may not bring evil here, #p!",
+          "How dare you poison this fair realm with your foul feet?",
+          "You bring great evil here, #p. You can go no further."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+          "You breathe so loudly I could have shot you in the dark.",
+          "You are unwelcome in our lands.",
+          "You are no Elf-friend, #p!",
+          "To Udûn with you!",
+          "Go and kiss an Orc!",
+          "Death to the foes of the Elves!",
+          "Who brings to us this token of doom?",
+          "Begone, servant of evil!",
+          "Go back to the shadow whence you came!",
+          "We shall not allow evil to enter our realm. Leave now or face our wrath!",
+          "Lacho calad! Drego morn!",
+          "Naur an edraith ammen!",
+          "Aglar’ni in Ellath!",
+          "A tiro nin, Fanuilos!",
+          "Gurth an Glamhoth!"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "rank": ">enemy"
+        },
+        "lines": [
+          "I knew you were no friend of our people!",
+          "I knew you could not be trusted, #p!",
+          "You are an Orc in the garments of a friend!",
+          "I saw through you from the first, Morgul-spy!"
+        ]
+      }
+    ]
+  }
