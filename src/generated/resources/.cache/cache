@@ -388,6 +388,7 @@ cd74603cb024110f95dc5dbc7fff2d822750bd67 assets/lotr/models/item/angmar_sword_ha
 64c5ca3521f5a3ed7afdf12bb7f7bf9b09e8bfe2 assets/lotr/models/item/banana.json
 ad9cff9884de3de29b43e843d0c63e8ea4bbc7ea assets/lotr/models/item/banana_beam.json
 079844e398f8256acf90d00f0af4816bf2736e74 assets/lotr/models/item/banana_beam_slab.json
+e875265fa3d30acef3c676ec993e56ce184a9f2c assets/lotr/models/item/banana_beer.json
 09fd81dab9751b6b6294583fa237c43571d0ce80 assets/lotr/models/item/banana_boat.json
 477c2da4c2ccf92e57dc60518d28ca62070d2e89 assets/lotr/models/item/banana_branch.json
 d103ae5cee0c387787ef936a235713807c86a1b1 assets/lotr/models/item/banana_bread.json
@@ -751,6 +752,7 @@ d2fd9014c32da03a7cb3f647af01342a872ca973 assets/lotr/models/item/plum_button.jso
 d1d6a4319028d3f70f062e8b614ffd0bdfc0b646 assets/lotr/models/item/plum_door.json
 31727d2d71aaeeec733c7237968b0136f5d74a57 assets/lotr/models/item/plum_fence.json
 55855f8616c6328e6cc011d66a07ebd81f52e040 assets/lotr/models/item/plum_fence_gate.json
+9b117ba0f295e0693d6ad0278752de18733a2466 assets/lotr/models/item/plum_kvass.json
 fc8d65252b08fa2f70221488f05b841173a9a481 assets/lotr/models/item/plum_leaves.json
 389b3e691ea53612a336c371093a1bc111e23d55 assets/lotr/models/item/plum_leaves_fruit.json
 01b5dece0f3e546260497cfa243820d67d882921 assets/lotr/models/item/plum_log.json
@@ -899,7 +901,7 @@ f8fd76ef9c3176f62abe9d58688b0691e5ad233b assets/lotr/models/item/white_warg_fur_
 bce4b788fead9a92ca6c72e487469a677ff3ae5a assets/lotr/models/item/white_warg_fur_leggings.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-9bf19aa9a415770774736e1f582aa8266d245334 assets/lotrextended/lang/en_us.json
+c23199c101c2949bb362e77019b07d99254c5137 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -2657,6 +2659,7 @@ bab473cc868cfaec28d7b5f19abe725850b8b87a data/lotr/recipes/angmar_leggings.json
 3b7c7b6da14c73050a2faa23a4ddb5d549c7853c data/lotr/recipes/angmar_sword.json
 f09fbec55cc6dc867dcbd5a8a09b7087696cd100 data/lotr/recipes/banana_beam.json
 4be17af33b10c147762baa897dda9c47a6a35f5c data/lotr/recipes/banana_beam_slab.json
+db65fffa7a1a61942daf9fe444542bd4c844c232 data/lotr/recipes/banana_beer.json
 3fc41aeabf8eb4b1b21bd86f5e80a0ad58c15b6a data/lotr/recipes/banana_boat.json
 ea2647d866587c543c42b0105be9f914484233a0 data/lotr/recipes/banana_branch.json
 d97df8259ec8bd8b265f2439e284a3e57f2a1796 data/lotr/recipes/banana_bread.json
@@ -2993,6 +2996,7 @@ a12a558a5b55b35f0ef50d1e5eba4a51d449fda0 data/lotr/recipes/plum_boat.json
 3c8b64fa681981def6ee586468cdd42560ea1bf1 data/lotr/recipes/plum_door.json
 b899970bd6cdd40099e7c9fc508f8daffb44d273 data/lotr/recipes/plum_fence.json
 b653752074c3df18d05e7ca6da955b154a334779 data/lotr/recipes/plum_fence_gate.json
+499e58bc6657efb781977a6c75e58823a903df8b data/lotr/recipes/plum_kvass.json
 964c166225bd030f33b3838b3d7abee1263fdba0 data/lotr/recipes/plum_log_slab.json
 84b56976c6c1f38800a070f332ef0369b4be9b50 data/lotr/recipes/plum_planks.json
 9c794349bd9f0476a2d02e77fdcc05fddce99018 data/lotr/recipes/plum_planks_from_plum_branch.json

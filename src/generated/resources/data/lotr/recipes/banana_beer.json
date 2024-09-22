@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "lotr:banana"
+    },
+    {
+      "item": "lotr:banana"
+    },
+    {
+      "item": "lotr:banana"
+    },
+    {
+      "item": "lotr:banana"
+    },
+    {
+      "item": "lotr:banana"
+    },
+    {
+      "item": "lotr:banana"
+    }
+  ],
+  "result": "lotr:banana_beer",
+  "experience": 1.0,
+  "brewtime": 12000
+}

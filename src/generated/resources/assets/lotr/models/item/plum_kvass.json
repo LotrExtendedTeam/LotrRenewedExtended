@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "liquid": "lotrextended:item/plum_kvass_liquid"
+  },
+  "loader": "lotr:vessel_drink"
+}

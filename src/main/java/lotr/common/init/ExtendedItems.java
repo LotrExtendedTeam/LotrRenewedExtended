@@ -287,6 +287,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA;
 	public static RegistryObject<Item> BANANA_CAKE;
 	public static RegistryObject<Item> BANANA_BREAD;
+	public static RegistryObject<Item> BANANA_BEER;
+	public static RegistryObject<Item> PLUM_KVASS;
 
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;

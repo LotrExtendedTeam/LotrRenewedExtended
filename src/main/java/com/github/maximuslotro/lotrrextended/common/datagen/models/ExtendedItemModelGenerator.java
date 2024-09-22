@@ -107,6 +107,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 				
 			}
+			if(item.getValue().get() instanceof VesselDrinkItem) {
+				genDrink(item.getKey(), "item/"+item.getKey());
+				continue;
+				
+			}
 			if(item.getValue().get() instanceof BannerPatternItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
@@ -216,6 +221,13 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 //		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling0))).predicate(ExtendedItemModelsProperties.pulling, 1);
 //		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling1))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
 //		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling2))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+	}
+
+	private ItemModelBuilder genDrink(String name, String location) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/generated");
+		builder.texture("liquid", lotrExtendedLoc(location+"_liquid"));
+		builder.customLoader(ExtendedVesselModelBuilder::new);
+		return builder;
 	}
 
 	private ItemModelBuilder genSword(String name) {
