@@ -1554,7 +1554,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 
 	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output) {
-		makeMillingRecipe(consumer, input, output, 1.0F, 1);
+		makeMillingRecipe(consumer, input, output, 0.0F, 1);
 
 	}
 
@@ -1563,13 +1563,13 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 
 	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, int count) {
-		makeMillingRecipe(consumer, input, output, 1.0F, count);
+		makeMillingRecipe(consumer, input, output, 0.0F, count);
 	}
 
 	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int count) {
 		String name1 = output.get().getRegistryName().getPath();
 		String name2 = input.get().getRegistryName().getPath();
-		ExtendedMillingRecipeBuilder.milling(output.get(), count, Ingredient.of(input.get()), 1.0F, ExtendedRecipes.MILLING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_milled_from_"+name2));
+		ExtendedMillingRecipeBuilder.milling(output.get(), count, Ingredient.of(input.get()), breakChance, ExtendedRecipes.MILLING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_milled_from_"+name2));
 	}
 
 	public void checkForMissingRecipes() {

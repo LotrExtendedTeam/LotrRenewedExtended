@@ -45,6 +45,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		addMissingVanillaRecipes(consumer);
 		buildCookingRecipes(consumer);
 		makeDrinkRecipes(consumer);
+		buildMillstoneRecipes(consumer);
 		buildStonecutterRecipes(consumer);
 		buildSmeltingRecipes(consumer);
 		addOverrides();
@@ -1209,6 +1210,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	}
 
 	private void buildMillstoneRecipes(Consumer<IFinishedRecipe> consumer) {
+		makeMillingRecipe(consumer, ()->Blocks.STONE, ()->Items.COBBLESTONE);
+		makeMillingRecipe(consumer, ()->Blocks.COBBLESTONE, ()->Items.GRAVEL, 0.25f);
+		makeMillingRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRItems.MORDOR_GRAVEL, 0.25f);
+		makeMillingRecipe(consumer, LOTRBlocks.MORDOR_GRAVEL, ()->Items.GRAVEL, 0.25f);
+		makeMillingRecipe(consumer, ()->Blocks.GRAVEL, ()->Items.FLINT, 0.75f);
+		//makeMillingRecipe(consumer, ExtendedBlocks.OBSIDIAN_GRAVEL, ExtendedItems.OBSIDIAN_SHARD, 0.75f);
+		makeMillingRecipe(consumer, LOTRBlocks.SALT_ORE, LOTRItems.SALT);
+		makeMillingRecipe(consumer, ()->Blocks.SANDSTONE, ()->Items.SAND, 2);
+		makeMillingRecipe(consumer, ()->Blocks.RED_SANDSTONE, ()->Items.RED_SAND, 2);
+		makeMillingRecipe(consumer, LOTRBlocks.WHITE_SANDSTONE, LOTRItems.WHITE_SAND, 2);
+		makeMillingRecipe(consumer, ()->Blocks.BRICKS, LOTRItems.CRACKED_RED_BRICK);
+		makeMillingRecipe(consumer, ()->Blocks.STONE_BRICKS, ()->Items.CRACKED_STONE_BRICKS);
+		makeMillingRecipe(consumer, ()->Blocks.NETHER_BRICKS, ()->Items.CRACKED_NETHER_BRICKS);
+		makeMillingRecipe(consumer, ()->Blocks.POLISHED_BLACKSTONE_BRICKS, ()->Items.CRACKED_POLISHED_BLACKSTONE_BRICKS);
 	}
 
 	private void buildStonecutterRecipes(Consumer<IFinishedRecipe> consumer) {

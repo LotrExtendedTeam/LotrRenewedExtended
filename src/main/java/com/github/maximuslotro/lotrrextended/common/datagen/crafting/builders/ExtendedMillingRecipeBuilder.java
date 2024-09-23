@@ -20,7 +20,7 @@ public class ExtendedMillingRecipeBuilder {
 	private final Item result;
 	private final int count;
 	/**
-	 * 0.0 is 100% chance to break, 1.0 is a 0% chance to break
+	 * 1.0 is 100% chance to break, 0.0 is a 0% chance to break
 	 * */
 	private final float breakChance;
 	private final float experience;
@@ -38,7 +38,7 @@ public class ExtendedMillingRecipeBuilder {
 	}
 
 	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, Ingredient ingredient, IRecipeSerializer<?> serializer) {
-		return milling(result, 1, ingredient, 1.0f, 1.0f, 200, serializer);
+		return milling(result, 1, ingredient, 0.0f, 1.0f, 200, serializer);
 	}
 
 	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
@@ -120,7 +120,7 @@ public class ExtendedMillingRecipeBuilder {
 			if(millingTime!=200) {
 				p_218610_1_.addProperty("millingtime", this.millingTime);
 			}
-			if(breakChance!=1.0F) {
+			if(breakChance!=0.0F) {
 				p_218610_1_.addProperty("breakchance", this.breakChance);
 			}
 			p_218610_1_.addProperty("experience", this.experience);

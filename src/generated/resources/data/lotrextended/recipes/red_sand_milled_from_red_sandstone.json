@@ -1,0 +1,9 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "minecraft:red_sandstone"
+  },
+  "result": "minecraft:red_sand",
+  "count": 2,
+  "experience": 1.0
+}

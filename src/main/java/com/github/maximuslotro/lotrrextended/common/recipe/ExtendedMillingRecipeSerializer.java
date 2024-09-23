@@ -45,7 +45,7 @@ public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeS
 		}
 		float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
 		int millingtime = JSONUtils.getAsInt(json, "millingtime", 200);
-		float breakChance = JSONUtils.getAsFloat(json, "breakchance", 1.0F);
+		float breakChance = JSONUtils.getAsFloat(json, "breakchance", 0.0F);
 		return new ExtendedMillstoneRecipe(recipeId, group, ingredient, result, experience, millingtime, breakChance);
 	}
 
