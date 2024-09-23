@@ -47,7 +47,8 @@ public class ExtendedDunedainRangerRenderer extends LOTRBipedRenderer<ExtendedDu
     @Override
 	protected void scale(ExtendedDunedainRangerEntity entity, MatrixStack matStack, float f) {
 		super.scale(entity, matStack, f);
-		matStack.scale(0.965f, 0.965F, 0.965F);
+		//matStack.scale(0.965f, 0.965F, 0.965F);
+		matStack.scale(0.965f, 1.05F, 0.965f);
 	}
 
     @Override
