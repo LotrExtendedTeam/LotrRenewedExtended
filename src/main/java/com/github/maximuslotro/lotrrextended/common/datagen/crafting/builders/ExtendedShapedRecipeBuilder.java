@@ -29,7 +29,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Code Copied from {@link net.minecraft.data.ShapedRecipeBuilder}
@@ -95,14 +95,12 @@ public class ExtendedShapedRecipeBuilder {
 		return this;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void save(Consumer<IFinishedRecipe> p_200464_1_) {
-		this.save(p_200464_1_, Registry.ITEM.getKey(this.result));
+		this.save(p_200464_1_, ForgeRegistries.ITEMS.getKey(this.result));
 	}
 
-	@SuppressWarnings("deprecation")
 	public void save(Consumer<IFinishedRecipe> p_200466_1_, String p_200466_2_) {
-		ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
+		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
 		if ((new ResourceLocation(p_200466_2_)).equals(resourcelocation)) {
 			throw new IllegalStateException("Shaped Recipe " + p_200466_2_ + " should remove its 'save' argument");
 		} else {
@@ -170,7 +168,6 @@ public class ExtendedShapedRecipeBuilder {
 			this.advancementId = p_i48271_9_;
 		}
 
-		@SuppressWarnings("deprecation")
 		public void serializeRecipeData(JsonObject p_218610_1_) {
 			if (!this.group.isEmpty()) {
 				p_218610_1_.addProperty("group", this.group);
@@ -191,7 +188,7 @@ public class ExtendedShapedRecipeBuilder {
 
 			p_218610_1_.add("key", jsonobject);
 			JsonObject jsonobject1 = new JsonObject();
-			jsonobject1.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+			jsonobject1.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
 			if (this.count > 1) {
 				jsonobject1.addProperty("count", this.count);
 			}

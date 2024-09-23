@@ -21,13 +21,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Code Copied from {@link net.minecraft.data.CookingRecipeBuilder}
  * to add alloy recipe data
  * */
-@SuppressWarnings("deprecation")
 public class ExtendedAlloyCookingRecipeBuilder {
 	private final Item result;
 	private final List<Ingredient> ingredients = Lists.newArrayList();
@@ -109,11 +108,11 @@ public class ExtendedAlloyCookingRecipeBuilder {
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_218630_1_) {
-		this.save(p_218630_1_, Registry.ITEM.getKey(this.result));
+		this.save(p_218630_1_, ForgeRegistries.ITEMS.getKey(this.result));
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_218632_1_, String p_218632_2_) {
-		ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
+		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
 		ResourceLocation resourcelocation1 = new ResourceLocation(p_218632_2_);
 		if (resourcelocation1.equals(resourcelocation)) {
 			throw new IllegalStateException("Recipe " + resourcelocation1 + " should remove its 'save' argument");
@@ -179,7 +178,7 @@ public class ExtendedAlloyCookingRecipeBuilder {
 			p_218610_1_.add("alloy", jsonarray1);
 
 			p_218610_1_.addProperty("swappable", this.swappable);
-			p_218610_1_.addProperty("result", Registry.ITEM.getKey(this.result).toString());
+			p_218610_1_.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
 			p_218610_1_.addProperty("experience", this.experience);
 			p_218610_1_.addProperty("cookingtime", this.cookingTime);
 		}

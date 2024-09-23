@@ -27,13 +27,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Code Copied from {@link net.minecraft.data.ShapelessRecipeBuilder}
  * to add a table type for faction table types
  * */
-@SuppressWarnings("deprecation")
 public class ExtendedFactionShapelessRecipeBuilder {
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Item result;
@@ -96,11 +95,11 @@ public class ExtendedFactionShapelessRecipeBuilder {
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_200482_1_) {
-		this.save(p_200482_1_, Registry.ITEM.getKey(this.result));
+		this.save(p_200482_1_, ForgeRegistries.ITEMS.getKey(this.result));
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_200484_1_, String p_200484_2_) {
-		ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
+		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
 		if ((new ResourceLocation(p_200484_2_)).equals(resourcelocation)) {
 			throw new IllegalStateException("Shapeless Recipe " + p_200484_2_ + " should remove its 'save' argument");
 		} else {
@@ -155,7 +154,7 @@ public class ExtendedFactionShapelessRecipeBuilder {
 
 			p_218610_1_.add("ingredients", jsonarray);
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+			jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
 			if (this.count > 1) {
 				jsonobject.addProperty("count", this.count);
 			}
