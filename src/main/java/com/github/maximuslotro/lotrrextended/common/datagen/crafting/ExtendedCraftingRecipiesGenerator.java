@@ -1208,6 +1208,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.PLUM_KVASS.get().getRegistryName().getPath()));
 	}
 
+	private void buildMillstoneRecipes(Consumer<IFinishedRecipe> consumer) {
+	}
+
 	private void buildStonecutterRecipes(Consumer<IFinishedRecipe> consumer) {
 		//Add missing recipes for renewed blocks
 		makeStoneCutterRecipe(consumer, () ->Blocks.COBBLESTONE, LOTRBlocks.DRYSTONE);

@@ -21,6 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
@@ -78,6 +79,7 @@ public class LotrExtendedMod{
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();
+		ExtendedRecipes.register(modBus);
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedStats.init();

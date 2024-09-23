@@ -10,6 +10,8 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
@@ -63,6 +65,10 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	public ResourceLocation lotrLoc(String name) {
         return new ResourceLocation("lotr", name);
+    }
+
+	public ResourceLocation extendedLoc(String name) {
+        return new ResourceLocation("lotrextended", name);
     }
 
 	protected void makePillarSlabRecipe(Consumer<IFinishedRecipe> consumer,
@@ -1545,6 +1551,25 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name1 = ing.get().getRegistryName().getPath();
 		String name2 = output.get().getRegistryName().getPath();
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(ing.get()), output.get(), num).unlocks("has_"+name1, has(ing.get())).save(consumer, name2+"_from_"+name1);
+	}
+
+	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output) {
+		makeMillingRecipe(consumer, input, output, 1.0F, 1);
+
+	}
+
+	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance) {
+		makeMillingRecipe(consumer, input, output, breakChance, 1);
+	}
+
+	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, int count) {
+		makeMillingRecipe(consumer, input, output, 1.0F, count);
+	}
+
+	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int count) {
+		String name1 = output.get().getRegistryName().getPath();
+		String name2 = input.get().getRegistryName().getPath();
+		ExtendedMillingRecipeBuilder.milling(output.get(), count, Ingredient.of(input.get()), 1.0F, ExtendedRecipes.MILLING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_milled_from_"+name2));
 	}
 
 	public void checkForMissingRecipes() {
