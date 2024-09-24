@@ -107,7 +107,6 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRParticles;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
@@ -398,7 +397,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.REMAINS_DWARF = registerB("remains_ore_dwarf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 
 		///////////////////////////////BRICKS
-		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(AbstractBlock.Properties.copy(Blocks.DIRT)));
+		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(Properties.copy(Blocks.DIRT)));
 		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new AxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
 		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new AxialSlabBlock(Blocks.COARSE_DIRT));
 		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new AxialSlabBlock(Blocks.DIRT));
@@ -615,11 +614,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("stone_taurethrim_crafting_table", () -> new ExtendedTwoTypeDummyBlock(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = registerB("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
-		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.5F)));
 		ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE = registerB("half_troll_crafting_table", () -> new ExtendedFactionCraftingTableBlock.HalfTroll(()-> Blocks.COBBLESTONE));
 		ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE = registerB("gundabad_crafting_table", () -> new ExtendedFactionCraftingTableBlock.NorthernOrc(ExtendedBlocks.GOBLIN_BRICK));
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(()-> Blocks.TERRACOTTA));
-		
+
+		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.5F)));
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
 		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", () -> new ChandelierBlock());
@@ -627,12 +626,12 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
-		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
+		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());
-		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(AbstractBlock.Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> {
+		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> {
 		      return 10;
 		   }).sound(SoundType.WOOL)));
 
@@ -648,20 +647,20 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BANANA_CAKE = registerB("banana_cake", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F));
 
 		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedSingleChestBlock(()-> new ExtendedStoneChestTileEntity()));
-		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(AbstractBlock.Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));
-		ExtendedBlocks.ORC_BARREL = registerB("orc_barrel", () -> new ExtendedOrcBarrelBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
-		ExtendedBlocks.WEAPON_RACK = registerB("weapon_rack", () -> new ExtendedWeaponRackBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));
+		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));
+		ExtendedBlocks.ORC_BARREL = registerB("orc_barrel", () -> new ExtendedOrcBarrelBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
+		ExtendedBlocks.WEAPON_RACK = registerB("weapon_rack", () -> new ExtendedWeaponRackBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));
 
-		ExtendedBlocks.STRAW_BED = registerB("straw_bed", () -> new ExtendedStrawBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.ORC_BED = registerB("orc_bed", () -> new ExtendedOrcBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.BLACK_FUR_BED = registerB("black_fur_bed", () -> new ExtendedBlackFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.FUR_BED = registerB("fur_bed", () -> new ExtendedFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.GRAY_FUR_BED = registerB("gray_fur_bed", () -> new ExtendedGrayFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.SILVER_FUR_BED = registerB("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(AbstractBlock.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.STRAW_BED = registerB("straw_bed", () -> new ExtendedStrawBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.ORC_BED = registerB("orc_bed", () -> new ExtendedOrcBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.BLACK_FUR_BED = registerB("black_fur_bed", () -> new ExtendedBlackFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.FUR_BED = registerB("fur_bed", () -> new ExtendedFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.GRAY_FUR_BED = registerB("gray_fur_bed", () -> new ExtendedGrayFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.SILVER_FUR_BED = registerB("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 
-		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(AbstractBlock.Properties.of(Material.DECORATION).sound(SoundType.GRASS).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(SoundType.GRASS).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
 		//Banners

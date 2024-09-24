@@ -9,25 +9,16 @@ import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.DatagenModLoader;
 
 public class ExtendedStats {
-	public static ResourceLocation FELLOWSHIP_CREATE;
-	public static ResourceLocation FELLOWSHIP_DISBAND;
-	public static ResourceLocation EAT_CHEESE_SLICE;
-	public static ResourceLocation SLICE_CHEESE_SLICE;
-	public static ResourceLocation ANIMALS_BRANDED;
-	public static ResourceLocation TRADERS_TRADED;
-	public static ResourceLocation OPEN_STONE_CHEST;
-	public static ResourceLocation OPEN_BOOKSHELF;
+	public static ResourceLocation FELLOWSHIP_CREATE = registerStat("fellowship_create", "Fellowships Created", IStatFormatter.DEFAULT);
+	public static ResourceLocation FELLOWSHIP_DISBAND = registerStat("fellowship_delete", "Fellowships Disbanded", IStatFormatter.DEFAULT);
+	public static ResourceLocation EAT_CHEESE_SLICE = registerStat("eat_cheese_slice", "Cheese Slices Eaten", IStatFormatter.DEFAULT);
+	public static ResourceLocation SLICE_CHEESE_SLICE = registerStat("sliced_cheese", "Cheese Slices Cut", IStatFormatter.DEFAULT);
+	public static ResourceLocation ANIMALS_BRANDED = registerStat("animals_branded", "Animals Branded", IStatFormatter.DEFAULT);
+	public static ResourceLocation TRADERS_TRADED = registerStat("traders_traded", "Times Traded With Traders", IStatFormatter.DEFAULT);
+	public static ResourceLocation INTERACT_WITH_STONE_CHEST = registerStat("interact_with_stone_chest", "Stone Chests Opened", IStatFormatter.DEFAULT);
+	public static ResourceLocation INTERACT_WITH_BOOKSHELF = registerStat("interact_with_bookshelf", "Bookshelves Opened", IStatFormatter.DEFAULT);
 
-	public static void init() {
-		FELLOWSHIP_CREATE = registerStat("fellowship_create", "Fellowships Created", IStatFormatter.DEFAULT);
-		FELLOWSHIP_DISBAND = registerStat("fellowship_delete", "Fellowships Disbanded", IStatFormatter.DEFAULT);
-		EAT_CHEESE_SLICE = registerStat("eat_cheese_slice", "Cheese Slices Eaten", IStatFormatter.DEFAULT);
-		SLICE_CHEESE_SLICE = registerStat("sliced_cheese", "Cheese Slices Cut", IStatFormatter.DEFAULT);
-		ANIMALS_BRANDED = registerStat("animals_branded", "Animals Branded", IStatFormatter.DEFAULT);
-		TRADERS_TRADED = registerStat("traders_traded", "Times Traded With Traders", IStatFormatter.DEFAULT);
-		OPEN_STONE_CHEST = registerStat("stone_chest_open", "Stone Chests Opened", IStatFormatter.DEFAULT);
-		OPEN_BOOKSHELF = registerStat("bookshelves_opened", "Bookshelves Interacted", IStatFormatter.DEFAULT);
-	}
+	public static void init() {}
 
 	private static ResourceLocation registerStat(String key, String defaultName, IStatFormatter formatter) {
 		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.statsHolders.put("stat.lotrextended."+key, defaultName);}

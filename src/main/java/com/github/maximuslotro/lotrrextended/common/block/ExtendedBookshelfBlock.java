@@ -38,7 +38,7 @@ public class ExtendedBookshelfBlock extends ContainerBlock {
 			TileEntity tileentity = p_225533_2_.getBlockEntity(p_225533_3_);
 			if (tileentity instanceof ExtendedBookshelfTileEntity) {
 				p_225533_4_.openMenu((ExtendedBookshelfTileEntity)tileentity);
-				p_225533_4_.awardStat(ExtendedStats.OPEN_BOOKSHELF);
+				p_225533_4_.awardStat(ExtendedStats.INTERACT_WITH_BOOKSHELF);
 			}
 			return ActionResultType.CONSUME;
 		}

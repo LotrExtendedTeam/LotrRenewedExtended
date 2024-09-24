@@ -231,7 +231,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('Z', Ingredient.of(LOTRTags.Items.INGOTS_BRONZE))
 		.unlockedBy("has_"+LOTRItems.BRONZE_INGOT.get().getRegistryName().getPath(), has(LOTRItems.BRONZE_INGOT.get()))
 		.unlockedBy("has_"+ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath(), has(ExtendedItems.CONQUEST_TABLE.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK, null);
@@ -1210,20 +1210,25 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	}
 
 	private void buildMillstoneRecipes(Consumer<IFinishedRecipe> consumer) {
+		// Stone/Rock to cracked
 		makeMillingRecipe(consumer, ()->Blocks.STONE, ()->Items.COBBLESTONE);
 		makeMillingRecipe(consumer, ()->Blocks.COBBLESTONE, ()->Items.GRAVEL, 0.25f);
 		makeMillingRecipe(consumer, LOTRBlocks.MORDOR_ROCK, LOTRItems.MORDOR_GRAVEL, 0.25f);
+		// Gravel to items
 		makeMillingRecipe(consumer, LOTRBlocks.MORDOR_GRAVEL, ()->Items.GRAVEL, 0.25f);
 		makeMillingRecipe(consumer, ()->Blocks.GRAVEL, ()->Items.FLINT, 0.75f);
 		//makeMillingRecipe(consumer, ExtendedBlocks.OBSIDIAN_GRAVEL, ExtendedItems.OBSIDIAN_SHARD, 0.75f);
 		makeMillingRecipe(consumer, LOTRBlocks.SALT_ORE, LOTRItems.SALT);
+		// Sandstones to sand
 		makeMillingRecipe(consumer, ()->Blocks.SANDSTONE, ()->Items.SAND, 2);
 		makeMillingRecipe(consumer, ()->Blocks.RED_SANDSTONE, ()->Items.RED_SAND, 2);
 		makeMillingRecipe(consumer, LOTRBlocks.WHITE_SANDSTONE, LOTRItems.WHITE_SAND, 2);
+		// Vanilla blocks to cracked
 		makeMillingRecipe(consumer, ()->Blocks.BRICKS, LOTRItems.CRACKED_RED_BRICK);
 		makeMillingRecipe(consumer, ()->Blocks.STONE_BRICKS, ()->Items.CRACKED_STONE_BRICKS);
 		makeMillingRecipe(consumer, ()->Blocks.NETHER_BRICKS, ()->Items.CRACKED_NETHER_BRICKS);
 		makeMillingRecipe(consumer, ()->Blocks.POLISHED_BLACKSTONE_BRICKS, ()->Items.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+		// Renewed cracked recipes
 		makeMillingRecipe(consumer, LOTRBlocks.ANGMAR_BRICK, LOTRItems.CRACKED_ANGMAR_BRICK);
 		makeMillingRecipe(consumer, LOTRBlocks.ARNOR_BRICK, LOTRItems.CRACKED_ARNOR_BRICK);
 		makeMillingRecipe(consumer, LOTRBlocks.BLUE_BRICK, LOTRItems.CRACKED_BLUE_BRICK);
@@ -1242,7 +1247,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeMillingRecipe(consumer, LOTRBlocks.ROHAN_BRICK, LOTRItems.CRACKED_ROHAN_BRICK);
 		makeMillingRecipe(consumer, LOTRBlocks.UMBAR_BRICK, LOTRItems.CRACKED_UMBAR_BRICK);
 		makeMillingRecipe(consumer, LOTRBlocks.WOOD_ELVEN_BRICK, LOTRItems.CRACKED_WOOD_ELVEN_BRICK);
+		// Extended cracked recipes from renewed blocks
 		makeMillingRecipe(consumer, LOTRBlocks.ARNOR_PILLAR, ExtendedItems.CRACKED_ARNOR_PILLAR);
+		// Extended cracked block recipes
 		makeMillingRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedItems.CRACKED_DOL_GULDUR_BRICK);
 		makeMillingRecipe(consumer, ExtendedBlocks.MUD_BRICK, ExtendedItems.CRACKED_MUD_BRICK);
 		makeMillingRecipe(consumer, ExtendedBlocks.RED_RHUNIC_BRICK, ExtendedItems.CRACKED_RED_RHUNIC_BRICK);
