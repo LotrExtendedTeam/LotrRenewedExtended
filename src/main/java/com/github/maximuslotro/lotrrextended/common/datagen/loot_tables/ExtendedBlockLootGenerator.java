@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMillstoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
@@ -356,6 +357,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
 			if(block.getValue().get() instanceof ExtendedBarrelBlock) {
+				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			}
+			if(block.getValue().get() instanceof ExtendedMillstoneBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {

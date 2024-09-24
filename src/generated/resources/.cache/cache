@@ -901,7 +901,7 @@ f8fd76ef9c3176f62abe9d58688b0691e5ad233b assets/lotr/models/item/white_warg_fur_
 bce4b788fead9a92ca6c72e487469a677ff3ae5a assets/lotr/models/item/white_warg_fur_leggings.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-c23199c101c2949bb362e77019b07d99254c5137 assets/lotrextended/lang/en_us.json
+e45a4de591efe6115a1bc1f4a3afd3cb490802e8 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -2269,6 +2269,7 @@ e13ea8ed53495b9276cbf01ad34d9ca7bd1a9419 data/lotr/advancements/recipes/lotr.uti
 d18dad34c16c1cc8d0b9295b2f22617a26057aa1 data/lotr/advancements/recipes/lotr.util/chestnut_fence_gate.json
 e9bd97cecc7645d9ca9bed0a136e9f747b1c9791 data/lotr/advancements/recipes/lotr.util/chestnut_pressure_plate.json
 d714c974053784635983044bb157c4d4887a227c data/lotr/advancements/recipes/lotr.util/chestnut_trapdoor.json
+a7b35a4551a7398e9c9620950f36de10634b3d9f data/lotr/advancements/recipes/lotr.util/conquest_table.json
 0ac9a146cf5a226cc21ffbdbdc495d9f8c5679e6 data/lotr/advancements/recipes/lotr.util/dol_guldur_crafting_table.json
 5833d0e1e918c1d97fc9f57d463deede022ddd1e data/lotr/advancements/recipes/lotr.util/gundabad_crafting_table.json
 23e704a1e46836736962325178ca22117317918e data/lotr/advancements/recipes/lotr.util/half_troll_crafting_table.json
@@ -2455,6 +2456,7 @@ dcaef959df4fbdcf55a89809635b84eed14826f7 data/lotr/loot_tables/blocks/gundabad_o
 53ae94363013e5d89ceb5827310dbd7573c64892 data/lotr/loot_tables/blocks/hanging_banana.json
 c36e869e907e18d307d6d1d34724ec61191626de data/lotr/loot_tables/blocks/hobbit_banner.json
 501c2ac696257b8420bb0096e7946a13285765a8 data/lotr/loot_tables/blocks/hobbit_wall_banner.json
+40c05240b824edf752d6e0f1ea1b02a88c14cf8a data/lotr/loot_tables/blocks/millstone.json
 1f67a5b24d510a4244190eb799df51dce0902a94 data/lotr/loot_tables/blocks/morgul_chandelier.json
 8b3902df66090c4b382c126a0b8e36d24bb0434d data/lotr/loot_tables/blocks/morgul_lantern.json
 f2dfcc5e6d6be049371b00e7c87cbc1c1a2f4efb data/lotr/loot_tables/blocks/morgul_steel_block.json
@@ -2905,6 +2907,7 @@ d66453de7f9c623f0421d8b72289feadfce0415b data/lotr/recipes/hobbit_banner.json
 8f7e7794b74677e4ced2223c4b2eff6e531af8b4 data/lotr/recipes/horn_of_command.json
 c2984c7e5c6dcfc22d32053a10ca4975de0d298a data/lotr/recipes/ithildin.json
 7c83d744ae31f4151f41e54a82282a8b967c5932 data/lotr/recipes/longbow.json
+d12cd44fff0a43af64a0c8128377f873d6814100 data/lotr/recipes/millstone.json
 093ba9233f954a1f3103d670701bd87d1eaeabe9 data/lotr/recipes/morgul_blade.json
 916de024c556d7d8bc758a21dbecb3c005a0b783 data/lotr/recipes/morgul_boots.json
 da745fbba6fe4a7426cfe04d27744c6d28c5b665 data/lotr/recipes/morgul_chandelier.json
@@ -3608,6 +3611,7 @@ adcca3845e6cc195f6923bc7a1b17c30e094dff2 data/lotrextended/tags/items/banana_log
 a2e665b6357fe429fd9109aab46f5d134d1e9645 data/lotrextended/tags/items/coins/coin_one.json
 25ec3e9a933819b41a67a08f4d6ba604a1914eff data/lotrextended/tags/items/coins/coin_ten.json
 3a557c2d511f95bfb78cc0df2b033cfcfb49e065 data/lotrextended/tags/items/foods/duck_feedables.json
+bf5862108137a7d8bce6a51b5c3c3cc072d1bd34 data/lotrextended/tags/items/millstone/lubricants.json
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/items/plum_logs.json
 c708d6389e73f8d6dcadfcb554bd13b87f0b1d15 data/lotrextended/tags/items/weapon_rack_additional_items.json
 2949eed0018ee2f2393bb359e03ee232b9b0d7ff data/lotrextended/tags/items/weapon_rack_excluded_items.json

@@ -14,49 +14,49 @@ public class ExtendedTags {
 
 	public static class Blocks {
 		public static void init() {}
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GALVORN = BlockTags.bind("forge:storage_blocks/galvorn");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_BLACK_URUK_STEEL = BlockTags.bind("forge:storage_blocks/black_uruk_steel");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GILDED_IRON = BlockTags.bind("forge:storage_blocks/gilded_iron");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MORGUL_STEEL = BlockTags.bind("forge:storage_blocks/morgul_steel");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DWARVEN_STEEL = BlockTags.bind("forge:storage_blocks/dwarven_steel");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ELVEN_STEEL = BlockTags.bind("forge:storage_blocks/elven_steel");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MITHRIL = BlockTags.bind("forge:storage_blocks/mithril");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_URUK_STEEL = BlockTags.bind("forge:storage_blocks/uruk_steel");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_TOPAZ = BlockTags.bind("forge:storage_blocks/lotr_topaz");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_AMETHYST = BlockTags.bind("forge:storage_blocks/lotr_amethyst");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_SAPPHIRE = BlockTags.bind("forge:storage_blocks/lotr_sapphire");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RUBY = BlockTags.bind("forge:storage_blocks/lotr_ruby");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_AMBER = BlockTags.bind("forge:storage_blocks/lotr_amber");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DIAMOND = BlockTags.bind("forge:storage_blocks/lotr_diamond");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_OPAL = BlockTags.bind("forge:storage_blocks/lotr_opal");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EMERALD = BlockTags.bind("forge:storage_blocks/lotr_emerald");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_PEARL = BlockTags.bind("forge:storage_blocks/lotr_pearl");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CORAL = BlockTags.bind("forge:storage_blocks/lotr_coral");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DURNOR = BlockTags.bind("forge:storage_blocks/durnor");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EDHELVIR = BlockTags.bind("forge:storage_blocks/edhelvir");
-	    public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GULDURIL = BlockTags.bind("forge:storage_blocks/gulduril");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GALVORN = BlockTags.bind("forge:storage_blocks/galvorn");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_BLACK_URUK_STEEL = BlockTags.bind("forge:storage_blocks/black_uruk_steel");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GILDED_IRON = BlockTags.bind("forge:storage_blocks/gilded_iron");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MORGUL_STEEL = BlockTags.bind("forge:storage_blocks/morgul_steel");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DWARVEN_STEEL = BlockTags.bind("forge:storage_blocks/dwarven_steel");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ELVEN_STEEL = BlockTags.bind("forge:storage_blocks/elven_steel");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MITHRIL = BlockTags.bind("forge:storage_blocks/mithril");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_URUK_STEEL = BlockTags.bind("forge:storage_blocks/uruk_steel");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_TOPAZ = BlockTags.bind("forge:storage_blocks/lotr_topaz");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_AMETHYST = BlockTags.bind("forge:storage_blocks/lotr_amethyst");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_SAPPHIRE = BlockTags.bind("forge:storage_blocks/lotr_sapphire");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RUBY = BlockTags.bind("forge:storage_blocks/lotr_ruby");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_AMBER = BlockTags.bind("forge:storage_blocks/lotr_amber");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DIAMOND = BlockTags.bind("forge:storage_blocks/lotr_diamond");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_OPAL = BlockTags.bind("forge:storage_blocks/lotr_opal");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EMERALD = BlockTags.bind("forge:storage_blocks/lotr_emerald");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_PEARL = BlockTags.bind("forge:storage_blocks/lotr_pearl");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CORAL = BlockTags.bind("forge:storage_blocks/lotr_coral");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DURNOR = BlockTags.bind("forge:storage_blocks/durnor");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EDHELVIR = BlockTags.bind("forge:storage_blocks/edhelvir");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GULDURIL = BlockTags.bind("forge:storage_blocks/gulduril");
 
-	    public static final ITag.INamedTag<Block> COPPER_ORE = BlockTags.bind("forge:ores/copper");
-	    public static final ITag.INamedTag<Block> NITER_ORE = BlockTags.bind("forge:ores/niter");
-	    public static final ITag.INamedTag<Block> SALT_ORE = BlockTags.bind("forge:ores/salt");
-	    public static final ITag.INamedTag<Block> SILVER_ORE = BlockTags.bind("forge:ores/silver");
-	    public static final ITag.INamedTag<Block> SULFUR_ORE = BlockTags.bind("forge:ores/sulfur");
-	    public static final ITag.INamedTag<Block> TIN_ORE = BlockTags.bind("forge:ores/tin");
+		public static final ITag.INamedTag<Block> COPPER_ORE = BlockTags.bind("forge:ores/copper");
+		public static final ITag.INamedTag<Block> NITER_ORE = BlockTags.bind("forge:ores/niter");
+		public static final ITag.INamedTag<Block> SALT_ORE = BlockTags.bind("forge:ores/salt");
+		public static final ITag.INamedTag<Block> SILVER_ORE = BlockTags.bind("forge:ores/silver");
+		public static final ITag.INamedTag<Block> SULFUR_ORE = BlockTags.bind("forge:ores/sulfur");
+		public static final ITag.INamedTag<Block> TIN_ORE = BlockTags.bind("forge:ores/tin");
 
-	    public static final ITag.INamedTag<Block> GLOWSTONE_ORE = BlockTags.bind("forge:ores/glowstone");
-	    public static final ITag.INamedTag<Block> MITHRIL_ORE = BlockTags.bind("forge:ores/mithril");
-	    public static final ITag.INamedTag<Block> MORGUL_IRON_ORE = BlockTags.bind("forge:ores/morgul_iron");
-	    public static final ITag.INamedTag<Block> TOPAZ_ORE = BlockTags.bind("forge:ores/lotr_topaz");
-	    public static final ITag.INamedTag<Block> AMETHYST_ORE = BlockTags.bind("forge:ores/lotr_amethyst");
-	    public static final ITag.INamedTag<Block> SAPPHIRE_ORE = BlockTags.bind("forge:ores/lotr_sapphire");
-	    public static final ITag.INamedTag<Block> RUBY_ORE = BlockTags.bind("forge:ores/lotr_ruby");
-	    public static final ITag.INamedTag<Block> AMBER_ORE = BlockTags.bind("forge:ores/lotr_amber");
-	    public static final ITag.INamedTag<Block> DIAMOND_ORE = BlockTags.bind("forge:ores/lotr_diamond");
-	    public static final ITag.INamedTag<Block> OPAL_ORE = BlockTags.bind("forge:ores/lotr_opal");
-	    public static final ITag.INamedTag<Block> EMERALD_ORE = BlockTags.bind("forge:ores/lotr_emerald");
-	    public static final ITag.INamedTag<Block> DURNOR_ORE = BlockTags.bind("forge:ores/durnor");
-	    public static final ITag.INamedTag<Block> EDHELVIR_ORE = BlockTags.bind("forge:ores/edhelvir");
-	    public static final ITag.INamedTag<Block> GULDURIL_ORE = BlockTags.bind("forge:ores/gulduril");
+		public static final ITag.INamedTag<Block> GLOWSTONE_ORE = BlockTags.bind("forge:ores/glowstone");
+		public static final ITag.INamedTag<Block> MITHRIL_ORE = BlockTags.bind("forge:ores/mithril");
+		public static final ITag.INamedTag<Block> MORGUL_IRON_ORE = BlockTags.bind("forge:ores/morgul_iron");
+		public static final ITag.INamedTag<Block> TOPAZ_ORE = BlockTags.bind("forge:ores/lotr_topaz");
+		public static final ITag.INamedTag<Block> AMETHYST_ORE = BlockTags.bind("forge:ores/lotr_amethyst");
+		public static final ITag.INamedTag<Block> SAPPHIRE_ORE = BlockTags.bind("forge:ores/lotr_sapphire");
+		public static final ITag.INamedTag<Block> RUBY_ORE = BlockTags.bind("forge:ores/lotr_ruby");
+		public static final ITag.INamedTag<Block> AMBER_ORE = BlockTags.bind("forge:ores/lotr_amber");
+		public static final ITag.INamedTag<Block> DIAMOND_ORE = BlockTags.bind("forge:ores/lotr_diamond");
+		public static final ITag.INamedTag<Block> OPAL_ORE = BlockTags.bind("forge:ores/lotr_opal");
+		public static final ITag.INamedTag<Block> EMERALD_ORE = BlockTags.bind("forge:ores/lotr_emerald");
+		public static final ITag.INamedTag<Block> DURNOR_ORE = BlockTags.bind("forge:ores/durnor");
+		public static final ITag.INamedTag<Block> EDHELVIR_ORE = BlockTags.bind("forge:ores/edhelvir");
+		public static final ITag.INamedTag<Block> GULDURIL_ORE = BlockTags.bind("forge:ores/gulduril");
 
 		public static final ITag.INamedTag<Block> GREEN_FIRE_BASE_BLOCKS = BlockTags.bind("lotrextended:green_fire_base_blocks");
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
@@ -155,5 +155,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> COIN_ONE = ItemTags.bind("lotrextended:coins/coin_one");
 		public static final ITag.INamedTag<Item> COIN_TEN = ItemTags.bind("lotrextended:coins/coin_ten");
 		public static final ITag.INamedTag<Item> COIN_HUNDRED = ItemTags.bind("lotrextended:coins/coin_hundred");
+
+		public static final ITag.INamedTag<Item> MILLSTONE_LUBRICANTS = ItemTags.bind("lotrextended:millstone/lubricants");
 	}
 }

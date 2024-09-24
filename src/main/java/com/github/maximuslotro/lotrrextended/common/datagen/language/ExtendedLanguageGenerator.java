@@ -263,6 +263,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
+		addD("container.lotrextended.millstone", "Millstone");
 		
 	}
 

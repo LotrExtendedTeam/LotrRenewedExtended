@@ -232,6 +232,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.BRONZE_INGOT.get().getRegistryName().getPath(), has(LOTRItems.BRONZE_INGOT.get()))
 		.unlockedBy("has_"+ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath(), has(ExtendedItems.CONQUEST_TABLE.get()))
 		.save(consumer, lotrLoc(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.MILLSTONE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.MILLSTONE.get())
+		.pattern("CZC")
+		.pattern("CYC")
+		.pattern("CCC")
+		.define('C', Ingredient.of(Items.COBBLESTONE))
+		.define('Y', Ingredient.of(STICKS))
+		.define('Z', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+ExtendedItems.MILLSTONE.get().getRegistryName().getPath(), has(ExtendedItems.MILLSTONE.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.MILLSTONE.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK, null);

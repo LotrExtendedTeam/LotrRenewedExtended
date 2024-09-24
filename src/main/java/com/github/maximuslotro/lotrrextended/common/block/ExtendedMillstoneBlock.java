@@ -4,6 +4,9 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMillstoneTileEntity;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -12,6 +15,7 @@ import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -27,15 +31,16 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedMillstone extends ContainerBlock {
+public class ExtendedMillstoneBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-	protected ExtendedMillstone(AbstractBlock.Properties p_i50000_1_) {
+	public ExtendedMillstoneBlock(AbstractBlock.Properties p_i50000_1_) {
 		super(p_i50000_1_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.valueOf(false)));
 	}
@@ -50,7 +55,11 @@ public class ExtendedMillstone extends ContainerBlock {
 	}
 
 	private void openContainer(World pLevel, BlockPos pPos, PlayerEntity pPlayer) {
-
+		TileEntity tileentity = pLevel.getBlockEntity(pPos);
+	      if (tileentity instanceof ExtendedMillstoneTileEntity) {
+	         //pPlayer.openMenu((INamedContainerProvider)tileentity);
+	         pPlayer.awardStat(ExtendedStats.INTERACT_WITH_MILLSTONE);
+	      }
 	}
 
 	@Nullable
@@ -86,9 +95,9 @@ public class ExtendedMillstone extends ContainerBlock {
 	 public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		 if (pStack.hasCustomHoverName()) {
 			 TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			 //if (tileentity instanceof AbstractFurnaceTileEntity) {
-			//	 ((AbstractFurnaceTileEntity)tileentity).setCustomName(pStack.getHoverName());
-			 //}
+			 if (tileentity instanceof ExtendedMillstoneTileEntity) {
+				 ((ExtendedMillstoneTileEntity)tileentity).setCustomName(pStack.getHoverName());
+			 }
 		 }
 
 	 }
@@ -97,11 +106,11 @@ public class ExtendedMillstone extends ContainerBlock {
 	 public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 		 if (!pState.is(pNewState.getBlock())) {
 			 TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			 //if (tileentity instanceof AbstractFurnaceTileEntity) {
-			//	 InventoryHelper.dropContents(pLevel, pPos, (AbstractFurnaceTileEntity)tileentity);
-			//	 ((AbstractFurnaceTileEntity)tileentity).getRecipesToAwardAndPopExperience(pLevel, Vector3d.atCenterOf(pPos));
-			//	 pLevel.updateNeighbourForOutputSignal(pPos, this);
-			 //}
+			 if (tileentity instanceof ExtendedMillstoneTileEntity) {
+				 InventoryHelper.dropContents(pLevel, pPos, (ExtendedMillstoneTileEntity)tileentity);
+				 ((ExtendedMillstoneTileEntity)tileentity).getRecipesToAwardAndPopExperience(pLevel, Vector3d.atCenterOf(pPos));
+				 pLevel.updateNeighbourForOutputSignal(pPos, this);
+			 }
 
 			 super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
 		 }
@@ -134,7 +143,6 @@ public class ExtendedMillstone extends ContainerBlock {
 
 	 @Override
 	 public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		 // TODO Auto-generated method stub
-		 return null;
+		 return new ExtendedMillstoneTileEntity();
 	 }
 }

@@ -793,8 +793,8 @@ public class MixinLOTRItems {
 		ExtendedItems.RHUNIC_CRAFTING_TABLE = regBlockItemB(ExtendedBlocks.RHUNIC_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_CRAFTING_TABLE = regBlockItemB(ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, LOTRItemGroups.UTIL);
 		ExtendedItems.TAURETHRIM_STONE_CRAFTING_TABLE = regBlockItemB(ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE, LOTRItemGroups.UTIL);
-
 		ExtendedItems.CONQUEST_TABLE = regBlockItemB(ExtendedBlocks.CONQUEST_TABLE, LOTRItemGroups.UTIL);
+		ExtendedItems.MILLSTONE = regBlockItemB(ExtendedBlocks.MILLSTONE, LOTRItemGroups.UTIL);
 
 		//########################################################################MISC##########################################################
 
