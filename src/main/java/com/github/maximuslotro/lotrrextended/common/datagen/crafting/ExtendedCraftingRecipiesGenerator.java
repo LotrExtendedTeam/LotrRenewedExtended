@@ -1224,6 +1224,30 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeMillingRecipe(consumer, ()->Blocks.STONE_BRICKS, ()->Items.CRACKED_STONE_BRICKS);
 		makeMillingRecipe(consumer, ()->Blocks.NETHER_BRICKS, ()->Items.CRACKED_NETHER_BRICKS);
 		makeMillingRecipe(consumer, ()->Blocks.POLISHED_BLACKSTONE_BRICKS, ()->Items.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+		makeMillingRecipe(consumer, LOTRBlocks.ANGMAR_BRICK, LOTRItems.CRACKED_ANGMAR_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.ARNOR_BRICK, LOTRItems.CRACKED_ARNOR_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.BLUE_BRICK, LOTRItems.CRACKED_BLUE_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.DALE_BRICK, LOTRItems.CRACKED_DALE_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.DOL_AMROTH_BRICK, LOTRItems.CRACKED_DOL_AMROTH_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.DORWINION_BRICK, LOTRItems.CRACKED_DORWINION_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.DWARVEN_BRICK, LOTRItems.CRACKED_DWARVEN_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.GALADHRIM_BRICK, LOTRItems.CRACKED_GALADHRIM_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.GONDOR_BRICK, LOTRItems.CRACKED_GONDOR_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.GONDOR_COBBLEBRICK, LOTRItems.CRACKED_GONDOR_COBBLEBRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.HIGH_ELVEN_BRICK, LOTRItems.CRACKED_HIGH_ELVEN_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.MORDOR_BRICK, LOTRItems.CRACKED_MORDOR_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.NUMENOREAN_BRICK, LOTRItems.CRACKED_NUMENOREAN_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.RED_BRICK, LOTRItems.CRACKED_RED_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.RED_DORWINION_BRICK, LOTRItems.CRACKED_RED_DORWINION_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.ROHAN_BRICK, LOTRItems.CRACKED_ROHAN_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.UMBAR_BRICK, LOTRItems.CRACKED_UMBAR_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.WOOD_ELVEN_BRICK, LOTRItems.CRACKED_WOOD_ELVEN_BRICK);
+		makeMillingRecipe(consumer, LOTRBlocks.ARNOR_PILLAR, ExtendedItems.CRACKED_ARNOR_PILLAR);
+		makeMillingRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedItems.CRACKED_DOL_GULDUR_BRICK);
+		makeMillingRecipe(consumer, ExtendedBlocks.MUD_BRICK, ExtendedItems.CRACKED_MUD_BRICK);
+		makeMillingRecipe(consumer, ExtendedBlocks.RED_RHUNIC_BRICK, ExtendedItems.CRACKED_RED_RHUNIC_BRICK);
+		makeMillingRecipe(consumer, ExtendedBlocks.RHUNIC_BRICK, ExtendedItems.CRACKED_RHUNIC_BRICK);
+		makeMillingRecipe(consumer, ExtendedBlocks.TAURETHRIM_BRICK, ExtendedItems.CRACKED_TAURETHRIM_BRICK);
 	}
 
 	private void buildStonecutterRecipes(Consumer<IFinishedRecipe> consumer) {

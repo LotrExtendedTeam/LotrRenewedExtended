@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "lotr:galadhrim_brick"
+  },
+  "result": "lotr:cracked_galadhrim_brick",
+  "experience": 1.0
+}

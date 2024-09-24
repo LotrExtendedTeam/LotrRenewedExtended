@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "lotr:gondor_cobblebrick"
+  },
+  "result": "lotr:cracked_gondor_cobblebrick",
+  "experience": 1.0
+}

@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "lotr:rhunic_brick"
+  },
+  "result": "lotr:cracked_rhunic_brick",
+  "experience": 1.0
+}
