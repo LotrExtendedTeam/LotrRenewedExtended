@@ -1062,6 +1062,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			()->LOTRBlocks.DRYSTONE.get().asItem(), null);
 		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DRYSTONE, 
 			()->LOTRBlocks.DRYSTONE.get().asItem(), null);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_DRYSTONE, 
+			()->ExtendedBlocks.COBBLED_DRYSTONE.get().asItem(), null, "_from_cobbled_drystone");
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_DRYSTONE_STAIRS, 
 			ExtendedBlocks.MOSSY_DRYSTONE_SLAB, 
 			ExtendedBlocks.MOSSY_DRYSTONE_WALL, 

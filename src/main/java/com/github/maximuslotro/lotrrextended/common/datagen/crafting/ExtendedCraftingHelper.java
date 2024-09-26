@@ -664,6 +664,9 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 
 	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		makeMossyBlockRecipe(consumer, blockToBeCrafted, resource, table, "");
+	}
+	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table, String altName) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
@@ -672,7 +675,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.requires((Ingredient.of(()->Items.VINE)))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
-			.save(consumer, lotrLoc(name));
+			.save(consumer, lotrLoc(name+altName));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
@@ -680,7 +683,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.requires((Ingredient.of(()->Items.VINE)))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
-			.save(consumer, lotrLoc(name));
+			.save(consumer, lotrLoc(name+altName));
 		}
 	}
 
