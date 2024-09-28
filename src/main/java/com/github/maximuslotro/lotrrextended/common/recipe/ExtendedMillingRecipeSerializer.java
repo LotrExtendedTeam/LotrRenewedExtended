@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -27,26 +26,20 @@ public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeS
 		if (!json.has("result")) {
 			throw new JsonSyntaxException("Missing result, expected to find a string or object");
 		}
-		ItemStack result;
-		if (json.get("result").isJsonObject()) {
-			result = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
-		} else {
-			String resultString = JSONUtils.getAsString(json, "result");
-			ResourceLocation resultId = new ResourceLocation(resultString);
-			Item resultant = ForgeRegistries.ITEMS.getValue(recipeId);
-	        if (resultant == null) {
-	            throw new JsonSyntaxException("Unknown item '" + resultString + "'");
-	        }
-			result = new ItemStack(resultant);
-		}
-		if (json.has("count")) {
-			int count = JSONUtils.getAsInt(json, "count", 1);
-			result.setCount(count);
-		}
+		ItemStack result = getItemStack(json);
 		float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
 		int millingtime = JSONUtils.getAsInt(json, "millingtime", 200);
 		float breakChance = JSONUtils.getAsFloat(json, "breakchance", 0.0F);
 		return new ExtendedMillstoneRecipe(recipeId, group, ingredient, result, experience, millingtime, breakChance);
+	}
+
+	public static ItemStack getItemStack(JsonObject json) {
+		String itemName = JSONUtils.getAsString(json, "result");
+		Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName));
+		if (item == null) {
+			throw new JsonSyntaxException("Unknown item '" + itemName + "'");
+		}
+		return new ItemStack(item, JSONUtils.getAsInt(json, "count", 1));
 	}
 
 	@Override

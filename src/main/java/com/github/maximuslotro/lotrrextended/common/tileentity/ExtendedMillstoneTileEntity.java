@@ -138,7 +138,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 		if (!this.level.isClientSide) {
 			//ItemStack itemstack = this.items.get(1);
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
-				IRecipe<?> irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
+				ExtendedMillstoneRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canMill(irecipe)) {
 					++this.millingProgress;
 					if (this.millingProgress == this.millingTotalTime) {
@@ -169,11 +169,11 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	protected boolean canMill(@Nullable IRecipe<?> recipe) {
+	protected boolean canMill(@Nullable ExtendedMillstoneRecipe recipe) {
 		if (!this.items.get(0).isEmpty() && recipe != null) {
-			ItemStack itemstack = ((IRecipe<ISidedInventory>) recipe).assemble(this);
+			ItemStack itemstack = recipe.assemble(this);
 			if (itemstack.isEmpty()) {
+				System.out.println("AssembeledEmpty: "+recipe.getDataHash());
 				return false;
 			} else {
 				ItemStack itemstack1 = this.items.get(2);
@@ -192,11 +192,10 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private void mill(@Nullable IRecipe<?> recipe) {
+	private void mill(@Nullable ExtendedMillstoneRecipe recipe) {
 		if (recipe != null && this.canMill(recipe)) {
 			ItemStack itemstack = this.items.get(0);
-			ItemStack itemstack1 = ((IRecipe<ISidedInventory>) recipe).assemble(this);
+			ItemStack itemstack1 = recipe.assemble(this);
 			ItemStack itemstack2 = this.items.get(2);
 			if (itemstack2.isEmpty()) {
 				this.items.set(2, itemstack1.copy());

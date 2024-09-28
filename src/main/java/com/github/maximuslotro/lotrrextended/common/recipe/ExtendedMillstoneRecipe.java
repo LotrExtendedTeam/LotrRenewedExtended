@@ -29,6 +29,10 @@ public class ExtendedMillstoneRecipe implements IRecipe<IInventory> {
 		this.breakChance = breakChance;
 	}
 
+	public String getDataHash() {
+		return "[id:"+id.toString()+", ingredient:"+ingredient.toJson().toString()+", result:"+result.toString()+"]";
+	}
+
 	@Override
 	public boolean matches(IInventory inventory, World world) {
 		return this.ingredient.test(inventory.getItem(0));
