@@ -28,7 +28,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -55,6 +54,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 	protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 	private int millingProgress;
 	private int millingTotalTime;
+	private boolean usingLubrication = false;
 	protected final IIntArray dataAccess = new IIntArray() {
 		@Override
 		public int get(int pIndex) {
@@ -63,11 +63,12 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 				return ExtendedMillstoneTileEntity.this.millingProgress;
 			case 1:
 				return ExtendedMillstoneTileEntity.this.millingTotalTime;
+			case 2:
+				return ExtendedMillstoneTileEntity.this.usingLubrication ? 1 : 0;
 			default:
 				return 0;
 			}
 		}
-
 		@Override
 		public void set(int pIndex, int pValue) {
 			switch(pIndex) {
@@ -76,13 +77,14 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 				break;
 			case 1:
 				ExtendedMillstoneTileEntity.this.millingTotalTime = pValue;
+				break;
+			case 2:
+				ExtendedMillstoneTileEntity.this.usingLubrication = pValue == 0 ? false : true;
 			}
-
 		}
-
 		@Override
 		public int getCount() {
-			return 2;
+			return 3;
 		}
 	};
 	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
@@ -94,10 +96,6 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 
 	public ExtendedMillstoneTileEntity() {
 		this(ExtendedTileEntities.MILLSTONE.get());
-	}
-
-	private static boolean isNeverAFurnaceFuel(Item pItem) {
-		return ItemTags.NON_FLAMMABLE_WOOD.contains(pItem);
 	}
 
 	private boolean isPowered() {

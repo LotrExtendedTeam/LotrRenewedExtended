@@ -37,9 +37,8 @@ public class ExtendedMillstoneScreen extends ContainerScreen<ExtendedMillstoneCo
 		int i = (this.width - this.imageWidth) / 2;
 		int j = (this.height - this.imageHeight) / 2;
 		this.blit(pMatrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
-		if (this.menu.isMilling()) {
-			//int k = this.menu.getMillingProgress();
-			//this.blit(pMatrixStack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+		if (this.menu.isLubed()) {
+			this.blit(pMatrixStack, i + 56, j + 36 + 12 - 13, 176, 12 - 13, 14, 13+1);
 		}
 
 		int l = this.menu.getMillingProgress();

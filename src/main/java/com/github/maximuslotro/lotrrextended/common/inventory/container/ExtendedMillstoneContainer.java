@@ -15,8 +15,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedMillstoneContainer extends Container {
 	private final IInventory container;
@@ -120,15 +118,17 @@ public class ExtendedMillstoneContainer extends Container {
 		return ExtendedTags.Items.MILLSTONE_LUBRICANTS.contains(pStack.getItem());
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	public int getMillingProgress() {
 		int i = this.data.get(0);
 		int j = this.data.get(1);
 		return j != 0 && i != 0 ? i * 24 / j : 0;
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	public boolean isMilling() {
 		return this.data.get(0) > 0;
+	}
+
+	public boolean isLubed() {
+		return this.data.get(2) > 0;
 	}
 }
