@@ -6,10 +6,12 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMillstoneBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedMillstoneContainer;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedMillstoneRecipe;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.google.common.collect.Lists;
 
+import io.netty.buffer.Unpooled;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.BlockState;
@@ -27,6 +29,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
@@ -431,7 +434,6 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 
 	@Override
 	protected Container createMenu(int pId, PlayerInventory pPlayer) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ExtendedMillstoneContainer(pId, pPlayer, this, this.dataAccess, new PacketBuffer(Unpooled.buffer()));
 	}
 }
