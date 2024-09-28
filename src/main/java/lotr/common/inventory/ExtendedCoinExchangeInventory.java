@@ -1,4 +1,4 @@
-package lotr.common.inv;
+package lotr.common.inventory;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.IInventoryChangedListener;

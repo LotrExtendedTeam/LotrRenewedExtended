@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-import lotr.common.inv.ExtendedKegDataHolderIInventory;
 import lotr.common.inv.KegContainer;
+import lotr.common.inventory.ExtendedKegDataHolderIInventory;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.recipe.DrinkBrewingRecipe;

@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.client.gui.inv;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.client.gui.inv.AlloyForgeScreen;
-import lotr.client.gui.inv.ExtendedCoinExchangeScreen;
+import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.inv.AbstractAlloyForgeContainer;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;

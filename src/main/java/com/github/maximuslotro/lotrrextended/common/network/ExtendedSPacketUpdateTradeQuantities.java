@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
-import lotr.common.inv.ExtendedTradeContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -8,6 +7,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
+
+import lotr.common.inventory.ExtendedTradeContainer;
 
 public class ExtendedSPacketUpdateTradeQuantities {
 

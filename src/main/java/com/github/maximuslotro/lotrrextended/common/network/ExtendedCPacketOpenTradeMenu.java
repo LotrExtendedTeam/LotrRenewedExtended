@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.init.ExtendedContainers;
-import lotr.common.inv.ExtendedTradeContainer;
+import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;

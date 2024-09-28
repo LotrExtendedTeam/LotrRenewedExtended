@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.inv.ExtendedCoinExchangeScreen;
 import lotr.client.gui.inv.FactionCraftingScreen;
+import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.inv.FactionCraftingContainer;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;

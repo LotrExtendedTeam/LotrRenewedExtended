@@ -14,8 +14,8 @@ import com.github.maximuslotro.lotrrextended.common.inv.ExtendedBookshelfContain
 
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
-import lotr.common.inv.ExtendedCoinExchangeContainer;
-import lotr.common.inv.ExtendedTradeContainer;
+import lotr.common.inventory.ExtendedCoinExchangeContainer;
+import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;

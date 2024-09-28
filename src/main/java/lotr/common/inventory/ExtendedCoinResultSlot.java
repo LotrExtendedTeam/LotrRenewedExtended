@@ -1,4 +1,4 @@
-package lotr.common.inv;
+package lotr.common.inventory;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketUpdateExchangeCoinContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;

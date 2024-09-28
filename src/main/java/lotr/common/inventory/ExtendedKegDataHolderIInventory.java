@@ -1,4 +1,4 @@
-package lotr.common.inv;
+package lotr.common.inventory;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;

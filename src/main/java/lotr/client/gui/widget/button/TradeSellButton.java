@@ -2,7 +2,8 @@ package lotr.client.gui.widget.button;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import lotr.common.inv.ExtendedTradeContainer;
+
+import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;

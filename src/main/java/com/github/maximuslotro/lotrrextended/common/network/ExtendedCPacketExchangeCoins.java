@@ -1,11 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
-import lotr.common.inv.ExtendedCoinExchangeContainer;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
+
+import lotr.common.inventory.ExtendedCoinExchangeContainer;
 
 public class ExtendedCPacketExchangeCoins {
 	private int side; // 0 is left, 1 is right

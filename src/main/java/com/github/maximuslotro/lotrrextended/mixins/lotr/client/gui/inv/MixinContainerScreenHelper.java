@@ -1,13 +1,13 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.client.gui.inv;
 
-import lotr.client.gui.inv.ExtendedTradeScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.client.gui.inv.ContainerScreenHelper;
-import lotr.client.gui.inv.ExtendedCoinExchangeScreen;
+import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
+import lotr.client.gui.inventory.ExtendedTradeScreen;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
 

@@ -1,4 +1,4 @@
-package lotr.common.inv;
+package lotr.common.inventory;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
