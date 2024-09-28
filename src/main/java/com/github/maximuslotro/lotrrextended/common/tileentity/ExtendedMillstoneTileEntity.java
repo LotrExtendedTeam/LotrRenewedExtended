@@ -14,6 +14,7 @@ import com.google.common.collect.Lists;
 import io.netty.buffer.Unpooled;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -91,7 +92,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 	LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
 	public ExtendedMillstoneTileEntity() {
-		super(null);
+		super(ExtendedTileEntities.MILLSTONE.get());
 		this.recipeType = ExtendedRecipes.MILLSTONE;
 	}
 

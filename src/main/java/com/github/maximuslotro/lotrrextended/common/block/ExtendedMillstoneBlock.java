@@ -45,6 +45,7 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.valueOf(false)));
 	}
 
+	@Override
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
 		if (pLevel.isClientSide) {
 			return ActionResultType.SUCCESS;
@@ -62,6 +63,7 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 	      }
 	}
 
+	@Override
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(POWERED, Boolean.valueOf(pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())));
@@ -92,6 +94,7 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 	/**
 	 * Called by ItemBlocks after a block is set in the world, to allow post-place logic
 	 */
+	@Override
 	 public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		 if (pStack.hasCustomHoverName()) {
 			 TileEntity tileentity = pLevel.getBlockEntity(pPos);
@@ -102,7 +105,8 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 
 	 }
 
-	 @SuppressWarnings("deprecation")
+	 @Override
+	@SuppressWarnings("deprecation")
 	 public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 		 if (!pState.is(pNewState.getBlock())) {
 			 TileEntity tileentity = pLevel.getBlockEntity(pPos);
@@ -116,28 +120,34 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 		 }
 	 }
 
-	 public boolean hasAnalogOutputSignal(BlockState pState) {
+	 @Override
+	public boolean hasAnalogOutputSignal(BlockState pState) {
 		 return true;
 	 }
 
-	 public int getAnalogOutputSignal(BlockState pBlockState, World pLevel, BlockPos pPos) {
+	 @Override
+	public int getAnalogOutputSignal(BlockState pBlockState, World pLevel, BlockPos pPos) {
 		 return Container.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
 	 }
 
-	 public BlockRenderType getRenderShape(BlockState pState) {
+	 @Override
+	public BlockRenderType getRenderShape(BlockState pState) {
 		 return BlockRenderType.MODEL;
 	 }
 
-	 public BlockState rotate(BlockState pState, Rotation pRotation) {
+	 @Override
+	public BlockState rotate(BlockState pState, Rotation pRotation) {
 		 return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
 	 }
 
-	 @SuppressWarnings("deprecation")
+	 @Override
+	@SuppressWarnings("deprecation")
 	 public BlockState mirror(BlockState pState, Mirror pMirror) {
 		 return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
 	 }
 
-	 protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
+	 @Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
 		 pBuilder.add(FACING, POWERED);
 	 }
 
