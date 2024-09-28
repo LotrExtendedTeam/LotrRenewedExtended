@@ -26,6 +26,7 @@ public class ExtendedBookshelfTileEntity extends LockableLootTileEntity{
 	      this(ExtendedTileEntities.BOOKSHELF.get());
 	   }
 
+	   @Override
 	   public int getContainerSize() {
 	      return 27;
 	   }
@@ -63,6 +64,7 @@ public class ExtendedBookshelfTileEntity extends LockableLootTileEntity{
 	      this.items = p_199721_1_;
 	   }
 
+	   @Override
 	   protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
 	      return ExtendedBookshelfContainer.threeRows(p_213906_1_, p_213906_2_, this, null);
 	   }

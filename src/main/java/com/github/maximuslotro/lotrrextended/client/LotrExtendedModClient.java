@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
@@ -112,6 +113,7 @@ public class LotrExtendedModClient {
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 		});
+		ExtendedScreenRegisterHandler.register();
 		ExtendedEntityRenderers.registerEntityRenderers();
 		ExtendedTileEntityRenderers.registerTileEntityRenderers();
 

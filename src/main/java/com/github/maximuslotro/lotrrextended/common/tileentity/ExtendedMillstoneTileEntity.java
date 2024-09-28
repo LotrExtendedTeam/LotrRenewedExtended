@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedMillstoneReci
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.google.common.collect.Lists;
 
-import io.netty.buffer.Unpooled;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import lotr.common.init.ExtendedTileEntities;
@@ -27,13 +26,12 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
@@ -88,12 +86,14 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 		}
 	};
 	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
-	protected final IRecipeType<ExtendedMillstoneRecipe> recipeType;
 	LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
+	private ExtendedMillstoneTileEntity(TileEntityType<?> tileEntityType) {
+		super(tileEntityType);
+	}
+
 	public ExtendedMillstoneTileEntity() {
-		super(ExtendedTileEntities.MILLSTONE.get());
-		this.recipeType = ExtendedRecipes.MILLSTONE;
+		this(ExtendedTileEntities.MILLSTONE.get());
 	}
 
 	private static boolean isNeverAFurnaceFuel(Item pItem) {
@@ -138,7 +138,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 		if (!this.level.isClientSide) {
 			//ItemStack itemstack = this.items.get(1);
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
-				IRecipe<?> irecipe = this.level.getRecipeManager().getRecipeFor(this.recipeType, this, this.level).orElse(null);
+				IRecipe<?> irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canMill(irecipe)) {
 					++this.millingProgress;
 					if (this.millingProgress == this.millingTotalTime) {
@@ -217,7 +217,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 	}
 
 	protected int getTotalMillingTime() {
-		return this.level.getRecipeManager().getRecipeFor(this.recipeType, this, this.level).map(ExtendedMillstoneRecipe::getMillingTime).orElse(200);
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).map(ExtendedMillstoneRecipe::getMillingTime).orElse(200);
 	}
 
 	@Override
@@ -435,6 +435,6 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 
 	@Override
 	protected Container createMenu(int pId, PlayerInventory pPlayer) {
-		return new ExtendedMillstoneContainer(pId, pPlayer, this, this.dataAccess, new PacketBuffer(Unpooled.buffer()));
+		return new ExtendedMillstoneContainer(pId, pPlayer, this, this.dataAccess, null);
 	}
 }

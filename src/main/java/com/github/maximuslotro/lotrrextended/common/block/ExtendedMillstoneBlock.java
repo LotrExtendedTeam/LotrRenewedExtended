@@ -50,17 +50,13 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 		if (pLevel.isClientSide) {
 			return ActionResultType.SUCCESS;
 		} else {
-			this.openContainer(pLevel, pPos, pPlayer);
+			TileEntity tileentity = pLevel.getBlockEntity(pPos);
+			if (tileentity instanceof ExtendedMillstoneTileEntity) {
+				pPlayer.openMenu((ExtendedMillstoneTileEntity)tileentity);
+				pPlayer.awardStat(ExtendedStats.INTERACT_WITH_MILLSTONE);
+			}
 			return ActionResultType.CONSUME;
 		}
-	}
-
-	private void openContainer(World pLevel, BlockPos pPos, PlayerEntity pPlayer) {
-		TileEntity tileentity = pLevel.getBlockEntity(pPos);
-	      if (tileentity instanceof ExtendedMillstoneTileEntity) {
-	         //pPlayer.openMenu((INamedContainerProvider)tileentity);
-	         pPlayer.awardStat(ExtendedStats.INTERACT_WITH_MILLSTONE);
-	      }
 	}
 
 	@Override
