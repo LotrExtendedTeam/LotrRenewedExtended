@@ -141,12 +141,19 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
 				ExtendedMillstoneRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canMill(irecipe)) {
+					++this.millingProgress;
 					if (this.millingProgress<100 && !this.usingLubrication) {
 						if(canLubeItem(this.items.get(1))){
 							usingLubrication=true;
 						}
 					}
-					++this.millingProgress;
+					if(canLubeItem(this.items.get(1))){
+						if (this.millingProgress<100 && !this.usingLubrication) {
+							usingLubrication=true;
+						}
+					}else {
+						usingLubrication=false;
+					}
 					if (this.millingProgress == this.millingTotalTime) {
 						this.millingProgress = 0;
 						this.millingTotalTime = this.getTotalMillingTime();
