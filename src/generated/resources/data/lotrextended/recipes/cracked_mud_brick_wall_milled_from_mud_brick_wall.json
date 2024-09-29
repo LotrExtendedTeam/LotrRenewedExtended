@@ -1,8 +1,8 @@
 {
   "type": "lotrextended:milling",
   "ingredient": {
-    "item": "minecraft:bricks"
+    "item": "lotr:mud_brick_wall"
   },
-  "result": "lotr:cracked_red_brick",
+  "result": "lotr:cracked_mud_brick_wall",
   "experience": 1.0
 }

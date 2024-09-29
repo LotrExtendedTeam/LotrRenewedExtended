@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "lotr:numenorean_brick_slab"
+  },
+  "result": "lotr:cracked_numenorean_brick_slab",
+  "experience": 1.0
+}

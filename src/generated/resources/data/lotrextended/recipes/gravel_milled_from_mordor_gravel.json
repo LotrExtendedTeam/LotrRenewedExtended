@@ -4,6 +4,6 @@
     "item": "lotr:mordor_gravel"
   },
   "result": "minecraft:gravel",
-  "breakchance": 0.25,
+  "breakchance": 0.75,
   "experience": 1.0
 }

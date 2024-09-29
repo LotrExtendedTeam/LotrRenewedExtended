@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "lotr:taurethrim_brick_wall"
+  },
+  "result": "lotr:cracked_taurethrim_brick_wall",
+  "experience": 1.0
+}

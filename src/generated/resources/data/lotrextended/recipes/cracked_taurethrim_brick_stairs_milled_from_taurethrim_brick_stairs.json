@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:milling",
+  "ingredient": {
+    "item": "lotr:taurethrim_brick_stairs"
+  },
+  "result": "lotr:cracked_taurethrim_brick_stairs",
+  "experience": 1.0
+}

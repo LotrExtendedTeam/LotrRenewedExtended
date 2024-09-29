@@ -22,13 +22,13 @@ public class ExtendedMillstoneContainer extends Container {
 	protected final World level;
 
 	public ExtendedMillstoneContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
-		this(pContainerId, pPlayerInventory, new Inventory(3), new IntArray(2), extraData);
+		this(pContainerId, pPlayerInventory, new Inventory(3), new IntArray(3), extraData);
 	}
 
 	public ExtendedMillstoneContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, IIntArray pData, PacketBuffer extraData) {
 		super(ExtendedContainers.MILLSTONE.get(), pContainerId);
 		checkContainerSize(pContainer, 3);
-		checkContainerDataCount(pData, 2);
+		checkContainerDataCount(pData, 3);
 		this.container = pContainer;
 		this.data = pData;
 		this.level = pPlayerInventory.player.level;
