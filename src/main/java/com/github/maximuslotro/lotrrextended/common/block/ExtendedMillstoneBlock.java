@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMillstoneTileEntity;
 
@@ -19,6 +20,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -29,12 +31,15 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedMillstoneBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -91,64 +96,83 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 	 * Called by ItemBlocks after a block is set in the world, to allow post-place logic
 	 */
 	@Override
-	 public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
-		 if (pStack.hasCustomHoverName()) {
-			 TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			 if (tileentity instanceof ExtendedMillstoneTileEntity) {
-				 ((ExtendedMillstoneTileEntity)tileentity).setCustomName(pStack.getHoverName());
-			 }
-		 }
+	public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
+		if (pStack.hasCustomHoverName()) {
+			TileEntity tileentity = pLevel.getBlockEntity(pPos);
+			if (tileentity instanceof ExtendedMillstoneTileEntity) {
+				((ExtendedMillstoneTileEntity)tileentity).setCustomName(pStack.getHoverName());
+			}
+		}
 
-	 }
+	}
 
-	 @Override
+	@Override
 	@SuppressWarnings("deprecation")
-	 public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-		 if (!pState.is(pNewState.getBlock())) {
-			 TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			 if (tileentity instanceof ExtendedMillstoneTileEntity) {
-				 InventoryHelper.dropContents(pLevel, pPos, (ExtendedMillstoneTileEntity)tileentity);
-				 ((ExtendedMillstoneTileEntity)tileentity).getRecipesToAwardAndPopExperience(pLevel, Vector3d.atCenterOf(pPos));
-				 pLevel.updateNeighbourForOutputSignal(pPos, this);
-			 }
+	public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+		if (!pState.is(pNewState.getBlock())) {
+			TileEntity tileentity = pLevel.getBlockEntity(pPos);
+			if (tileentity instanceof ExtendedMillstoneTileEntity) {
+				InventoryHelper.dropContents(pLevel, pPos, (ExtendedMillstoneTileEntity)tileentity);
+				((ExtendedMillstoneTileEntity)tileentity).getRecipesToAwardAndPopExperience(pLevel, Vector3d.atCenterOf(pPos));
+				pLevel.updateNeighbourForOutputSignal(pPos, this);
+			}
 
-			 super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-		 }
-	 }
+			super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+		}
+	}
 
-	 @Override
+	@Override
 	public boolean hasAnalogOutputSignal(BlockState pState) {
-		 return true;
-	 }
+		return true;
+	}
 
-	 @Override
+	@Override
 	public int getAnalogOutputSignal(BlockState pBlockState, World pLevel, BlockPos pPos) {
-		 return Container.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
-	 }
+		return Container.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
+	}
 
-	 @Override
+	@Override
 	public BlockRenderType getRenderShape(BlockState pState) {
-		 return BlockRenderType.MODEL;
-	 }
+		return BlockRenderType.MODEL;
+	}
 
-	 @Override
+	@Override
 	public BlockState rotate(BlockState pState, Rotation pRotation) {
-		 return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
-	 }
+		return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+	}
 
-	 @Override
+	@Override
 	@SuppressWarnings("deprecation")
-	 public BlockState mirror(BlockState pState, Mirror pMirror) {
-		 return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
-	 }
+	public BlockState mirror(BlockState pState, Mirror pMirror) {
+		return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+	}
 
-	 @Override
+	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
-		 pBuilder.add(FACING, POWERED);
-	 }
+		pBuilder.add(FACING, POWERED);
+	}
 
-	 @Override
-	 public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		 return new ExtendedMillstoneTileEntity();
-	 }
+	@Override
+	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
+		return new ExtendedMillstoneTileEntity();
+	}
+
+	/**
+	 * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
+	 * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
+	 * of whether the block can receive random update ticks
+	 */
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void animateTick(BlockState pState, World pLevel, BlockPos pPos, Random pRand) {
+		if (pState.getValue(POWERED)) {
+			double dX = pPos.getX() + 0.5D;
+			double dY = pPos.getY();
+			double dZ = pPos.getZ() + 0.5D;
+			if (pRand.nextDouble() < 0.1D) {
+				pLevel.playLocalSound(dX, dY, dZ, ExtendedSounds.MILLSTONE_GRINDING.get(), SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+			}
+			pLevel.addParticle(ParticleTypes.SMOKE, dX , dY + 1.0D, dZ , 0.0D, 0.0D, 0.0D);
+		}
+	}
 }

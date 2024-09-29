@@ -37,6 +37,8 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 
 		add(ExtendedSounds.STONE_CHEST_OPEN, createMultipleSameWeight(ExtendedSounds.STONE_CHEST_OPEN, 1));
 		add(ExtendedSounds.STONE_CHEST_CLOSE, createMultipleSameWeight(ExtendedSounds.STONE_CHEST_CLOSE, 1));
+
+		add(ExtendedSounds.MILLSTONE_GRINDING, createMultipleSameWeight(ExtendedSounds.MILLSTONE_GRINDING, 2));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {

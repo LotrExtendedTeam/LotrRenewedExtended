@@ -64,5 +64,12 @@
     "sounds": [
       "lotrextended:block/stone_chest/close1"
     ]
+  },
+  "block.millstone.grinding": {
+    "subtitle": "subtitles.lotrextended.block.millstone.grinding",
+    "sounds": [
+      "lotrextended:block/millstone/grinding1",
+      "lotrextended:block/millstone/grinding2"
+    ]
   }
 }
