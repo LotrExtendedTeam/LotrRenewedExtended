@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -14,6 +15,7 @@ import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import lotr.common.init.ExtendedTileEntities;
+import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,6 +27,8 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.PotionItem;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
@@ -134,29 +138,19 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide) {
-			//ItemStack itemstack = this.items.get(1);
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
 				ExtendedMillstoneRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canMill(irecipe)) {
+					if (this.millingProgress<100 && !this.usingLubrication) {
+						if(canLubeItem(this.items.get(1))){
+							usingLubrication=true;
+						}
+					}
 					++this.millingProgress;
 					if (this.millingProgress == this.millingTotalTime) {
 						this.millingProgress = 0;
 						this.millingTotalTime = this.getTotalMillingTime();
 						this.mill(irecipe);
-						// Handle Items that have replaced use items
-//						if (itemstack.hasContainerItem()) {
-//							this.items.set(1, itemstack.getContainerItem());
-//						} else if (itemstack.getItem() instanceof VesselDrinkItem) {
-//							this.items.set(1, ((VesselDrinkItem)itemstack.getItem()).getContainerItem(itemstack));
-//						} else if (itemstack.getItem() instanceof PotionItem) {
-//							this.items.set(1, new ItemStack(Items.GLASS_BOTTLE));
-//						} else if (!itemstack.isEmpty()) {
-//							Item item = itemstack.getItem();
-//							itemstack.shrink(1);
-//							if (itemstack.isEmpty()) {
-//								this.items.set(1, itemstack.getContainerItem());
-//							}
-//						}
 					}
 				} else {
 					this.millingProgress = 0;
@@ -165,6 +159,10 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 				this.millingProgress = MathHelper.clamp(this.millingProgress - 2, 0, this.millingTotalTime);
 			}
 		}
+	}
+
+	public boolean canLubeItem(ItemStack pStack) {
+		return ExtendedTags.Items.MILLSTONE_LUBRICANTS.contains(pStack.getItem());
 	}
 
 	protected boolean canMill(@Nullable ExtendedMillstoneRecipe recipe) {
@@ -195,6 +193,16 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 			ItemStack itemstack = this.items.get(0);
 			ItemStack itemstack1 = recipe.assemble(this);
 			ItemStack itemstack2 = this.items.get(2);
+			boolean needsLubeRemoving = false;
+			if(recipe.getBreakChance()>0.0f) {
+				Random rand = new Random();
+				if(rand.nextFloat()<recipe.getBreakChance()&&!this.usingLubrication) {
+					itemstack.shrink(1);
+					return;
+				}
+				needsLubeRemoving = true;
+				
+			}
 			if (itemstack2.isEmpty()) {
 				this.items.set(2, itemstack1.copy());
 			} else if (itemstack2.getItem() == itemstack1.getItem()) {
@@ -205,6 +213,24 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 				this.setRecipeUsed(recipe);
 			}
 
+			if(this.usingLubrication && needsLubeRemoving) {
+				ItemStack itemstack3 = this.items.get(1);
+				// Handle Items that have replaced use items
+				if (itemstack3.hasContainerItem()) {
+					this.items.set(1, itemstack3.getContainerItem());
+				} else if (itemstack3.getItem() instanceof VesselDrinkItem) {
+					this.items.set(1, ((VesselDrinkItem)itemstack3.getItem()).getContainerItem(itemstack3));
+				} else if (itemstack3.getItem() instanceof PotionItem) {
+					this.items.set(1, new ItemStack(Items.GLASS_BOTTLE));
+				} else if (!itemstack3.isEmpty()) {
+					Item item = itemstack3.getItem();
+					itemstack3.shrink(1);
+					if (itemstack3.isEmpty()) {
+						this.items.set(1, itemstack3.getContainerItem());
+					}
+				}
+				this.usingLubrication = false;
+			}
 			//if (itemstack.getItem() == Blocks.WET_SPONGE.asItem() && !this.items.get(1).isEmpty() && this.items.get(1).getItem() == Items.BUCKET) {
 			//	this.items.set(1, new ItemStack(Items.WATER_BUCKET));
 			//}
@@ -245,7 +271,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 			return true;
 		} else {
 			ItemStack itemstack = this.items.get(1);
-			return ExtendedTags.Items.MILLSTONE_LUBRICANTS.contains(itemstack.getItem());
+			return canLubeItem(itemstack);
 		}
 	}
 
@@ -255,8 +281,7 @@ public class ExtendedMillstoneTileEntity extends LockableTileEntity implements I
 	@Override
 	public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
 		if (pDirection == Direction.DOWN && pIndex == 1) {
-			Item item = pStack.getItem();
-			if (ExtendedTags.Items.MILLSTONE_LUBRICANTS.contains(item)) {
+			if (canLubeItem(pStack)) {
 				return false;
 			}
 		}
