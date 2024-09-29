@@ -34,6 +34,8 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -44,10 +46,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ExtendedMillstoneBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
 	public ExtendedMillstoneBlock(AbstractBlock.Properties p_i50000_1_) {
 		super(p_i50000_1_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+		return SHAPE;
 	}
 
 	@Override
@@ -169,10 +177,10 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 			double dX = pPos.getX() + 0.5D;
 			double dY = pPos.getY();
 			double dZ = pPos.getZ() + 0.5D;
-			if (pRand.nextDouble() < 0.1D) {
-				pLevel.playLocalSound(dX, dY, dZ, ExtendedSounds.MILLSTONE_GRINDING.get(), SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+			if (pRand.nextDouble() < 0.2D) {
+				pLevel.playLocalSound(dX, dY, dZ, ExtendedSounds.MILLSTONE_GRINDING.get(), SoundCategory.BLOCKS, 0.4F, 0.8F, false);
 			}
-			pLevel.addParticle(ParticleTypes.SMOKE, dX , dY + 1.0D, dZ , 0.0D, 0.0D, 0.0D);
+			pLevel.addParticle(ParticleTypes.SMOKE, dX , dY + 0.6D, dZ , 0.0D, 0.0D, 0.0D);
 		}
 	}
 }

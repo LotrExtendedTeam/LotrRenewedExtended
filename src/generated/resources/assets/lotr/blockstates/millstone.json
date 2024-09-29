@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "lotrextended:block/millstone"
+    },
+    "powered=true": {
+      "model": "lotrextended:block/millstone_powered"
+    }
+  }
+}

@@ -38,7 +38,8 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.STONE_CHEST_OPEN, createMultipleSameWeight(ExtendedSounds.STONE_CHEST_OPEN, 1));
 		add(ExtendedSounds.STONE_CHEST_CLOSE, createMultipleSameWeight(ExtendedSounds.STONE_CHEST_CLOSE, 1));
 
-		add(ExtendedSounds.MILLSTONE_GRINDING, createMultipleSameWeight(ExtendedSounds.MILLSTONE_GRINDING, 2));
+		
+		add(ExtendedSounds.MILLSTONE_GRINDING, createMultipleSameWeight(ExtendedSounds.MILLSTONE_GRINDING, 2, 8));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {
@@ -54,6 +55,15 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
 			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+(Integer.toString(i+1)))));
+		}
+		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
+		  .with(sounds.toArray(new Sound[0]));
+	}
+
+	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, int distance) {
+		List<Sound> sounds = new ArrayList<>();
+		for(int i=0; i<variants; i++) {
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+(Integer.toString(i+1)))).attenuationDistance(distance));
 		}
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
 		  .with(sounds.toArray(new Sound[0]));
