@@ -1,16 +1,20 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 
 public class MillstoneLubricationSlot extends Slot {
+	public static final ResourceLocation EMPTY_BUCKET_TEXTURE = new ResourceLocation("lotr", "item/empty_keg_slot_bucket");
 	private final ExtendedMillstoneContainer menu;
 
 	public MillstoneLubricationSlot(ExtendedMillstoneContainer pFurnaceMenu, IInventory pFurnaceContainer, int pSlot, int pXPosition, int pYPosition) {
 		super(pFurnaceContainer, pSlot, pXPosition, pYPosition);
 		this.menu = pFurnaceMenu;
+		setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_BUCKET_TEXTURE);
 	}
 
 	/**
