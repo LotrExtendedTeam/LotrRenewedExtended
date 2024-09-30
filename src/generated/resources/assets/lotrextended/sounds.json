@@ -68,8 +68,14 @@
   "block.millstone.grinding": {
     "subtitle": "subtitles.lotrextended.block.millstone.grinding",
     "sounds": [
-      "lotrextended:block/millstone/grinding1",
-      "lotrextended:block/millstone/grinding2"
+      {
+        "name": "lotrextended:block/millstone/grinding1",
+        "attenuation_distance": 8
+      },
+      {
+        "name": "lotrextended:block/millstone/grinding2",
+        "attenuation_distance": 8
+      }
     ]
   }
 }

@@ -903,7 +903,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(powered ? modelPowered : model)
                     .build();
         }, ExtendedMillstoneBlock.FACING);
-		itemModels().getBuilder("lotr:" + millstone.getRegistryName().getPath()).parent(modelPowered);
+		itemModels().getBuilder("lotr:" + millstone.getRegistryName().getPath()).parent(model);
 	}
 
 	private void genFarmlandBlockItem(ExtendedGroundFarmlandBlock extendedGroundFarmlandBlock, String name) {

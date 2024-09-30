@@ -178,7 +178,7 @@ public class ExtendedMillstoneBlock extends ContainerBlock {
 			double dY = pPos.getY();
 			double dZ = pPos.getZ() + 0.5D;
 			if (pRand.nextDouble() < 0.2D) {
-				pLevel.playLocalSound(dX, dY, dZ, ExtendedSounds.MILLSTONE_GRINDING.get(), SoundCategory.BLOCKS, 0.4F, 0.8F, false);
+				pLevel.playLocalSound(dX, dY, dZ, ExtendedSounds.MILLSTONE_GRINDING.get(), SoundCategory.BLOCKS, 0.5F, 0.8F, false);
 			}
 			pLevel.addParticle(ParticleTypes.SMOKE, dX , dY + 0.6D, dZ , 0.0D, 0.0D, 0.0D);
 		}

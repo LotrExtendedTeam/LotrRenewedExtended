@@ -39,10 +39,10 @@ public class MixinLOTRContainers {
 		ExtendedContainers.TRADING = register("trading", "Trading", () -> {
 			return IForgeContainerType.create(ExtendedTradeContainer::new);
 		});
-		ExtendedContainers.BOOKSHELF = register("bookshelf", "Bookshelf", () -> {
+		ExtendedContainers.BOOKSHELF = registerExtended("bookshelf", "Bookshelf", () -> {
 			return IForgeContainerType.create(ExtendedBookshelfContainer::threeRows);
 		});
-		ExtendedContainers.MILLSTONE = register("millstone", "Millstone", () -> {
+		ExtendedContainers.MILLSTONE = registerExtended("millstone", "Mill", () -> {
 			return IForgeContainerType.create(ExtendedMillstoneContainer::new);
 		});
 	}
@@ -50,6 +50,12 @@ public class MixinLOTRContainers {
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
     		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
+    	}
+		return CONTAINERS.register(name, sup);
+	}
+	private static <T extends Container> RegistryObject<ContainerType<T>> registerExtended(String name, String defaultName, Supplier<ContainerType<T>> sup) {
+		if(DatagenModLoader.isRunningDataGen()) {
+    		DataGenValueHolder.containerTitlesHolders.put("container.lotrextended."+name, defaultName);
     	}
 		return CONTAINERS.register(name, sup);
 	}
