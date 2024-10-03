@@ -90,6 +90,9 @@ public class ExtendedDataIdFixer {
 		
 		//Beta 1.5.1 Merged Flowery Chestnut Leaves with Chestnut Leaves
 		addRemapBlockWithItem("chestnut_leaves_flowers", "lotr", ExtendedBlocks.CHESTNUT_LEAVES, ExtendedItems.CHESTNUT_LEAVES);
+		
+		//Beta 1.6.2-alpha-1 Renamed Millstone to Stone Grinder
+		addRemapBlockWithItem("millstone", "lotr", ExtendedBlocks.STONE_GRINDER, ExtendedItems.STONE_GRINDER);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

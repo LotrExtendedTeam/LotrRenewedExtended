@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:umbar_brick_stairs"
-  },
-  "result": "lotr:cracked_umbar_brick_stairs",
-  "experience": 1.0
-}

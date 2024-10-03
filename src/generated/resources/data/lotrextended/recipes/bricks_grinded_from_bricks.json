@@ -1,0 +1,9 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:bricks"
+  },
+  "result": "minecraft:bricks",
+  "count": 3,
+  "experience": 1.0
+}

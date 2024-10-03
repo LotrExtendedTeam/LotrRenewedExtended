@@ -18,7 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedMillstoneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -177,8 +177,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genRopeBlock((ExtendedRopeBlock) block.getValue().get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedMillstoneBlock) {
-					genMillstoneBlock((ExtendedMillstoneBlock) block.getValue().get());
+				if(block.getValue().get() instanceof ExtendedGrinderBlock) {
+					genMillstoneBlock((ExtendedGrinderBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof BranchBlock) {
@@ -885,25 +885,25 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         }, ExtendedRopeBlock.WATERLOGGED);
 	}
 
-	private void genMillstoneBlock(ExtendedMillstoneBlock millstone) {
-		registeredBlocks.add(millstone);
-		ModelFile model = models().withExistingParent("lotrextended:"+millstone.getRegistryName().getPath(), lotrExtendedLoc("block/template_millstone"))
-                .texture("toptexture", lotrExtendedLoc("block/"+millstone.getRegistryName().getPath()+"_top"))
-                .texture("basetexture", lotrExtendedLoc("block/"+millstone.getRegistryName().getPath()+"_base"))
-                .texture("particle", lotrExtendedLoc("block/"+millstone.getRegistryName().getPath()+"_base"));
-		ModelFile modelPowered = models().withExistingParent("lotrextended:"+millstone.getRegistryName().getPath()+"_powered", lotrExtendedLoc("block/template_millstone"))
-                .texture("toptexture", lotrExtendedLoc("block/"+millstone.getRegistryName().getPath()+"_top_animated"))
-                .texture("basetexture", lotrExtendedLoc("block/"+millstone.getRegistryName().getPath()+"_base"))
-                .texture("particle", lotrExtendedLoc("block/"+millstone.getRegistryName().getPath()+"_base"));
+	private void genMillstoneBlock(ExtendedGrinderBlock stone_grinder) {
+		registeredBlocks.add(stone_grinder);
+		ModelFile model = models().withExistingParent("lotrextended:"+stone_grinder.getRegistryName().getPath(), lotrExtendedLoc("block/template_millstone"))
+                .texture("toptexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_top"))
+                .texture("basetexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"))
+                .texture("particle", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"));
+		ModelFile modelPowered = models().withExistingParent("lotrextended:"+stone_grinder.getRegistryName().getPath()+"_powered", lotrExtendedLoc("block/template_millstone"))
+                .texture("toptexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_top_animated"))
+                .texture("basetexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"))
+                .texture("particle", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"));
 
-		getVariantBuilder(millstone)
+		getVariantBuilder(stone_grinder)
 		.forAllStatesExcept(state -> {
-			boolean powered = state.getValue(ExtendedMillstoneBlock.POWERED);
+			boolean powered = state.getValue(ExtendedGrinderBlock.POWERED);
             return ConfiguredModel.builder()
                     .modelFile(powered ? modelPowered : model)
                     .build();
-        }, ExtendedMillstoneBlock.FACING);
-		itemModels().getBuilder("lotr:" + millstone.getRegistryName().getPath()).parent(model);
+        }, ExtendedGrinderBlock.FACING);
+		itemModels().getBuilder("lotr:" + stone_grinder.getRegistryName().getPath()).parent(model);
 	}
 
 	private void genFarmlandBlockItem(ExtendedGroundFarmlandBlock extendedGroundFarmlandBlock, String name) {

@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:dorwinion_brick_slab"
-  },
-  "result": "lotr:cracked_dorwinion_brick_slab",
-  "experience": 1.0
-}

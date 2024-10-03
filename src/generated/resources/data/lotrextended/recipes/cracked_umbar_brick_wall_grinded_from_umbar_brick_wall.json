@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:umbar_brick_wall"
+  },
+  "result": "lotr:cracked_umbar_brick_wall",
+  "experience": 1.0
+}

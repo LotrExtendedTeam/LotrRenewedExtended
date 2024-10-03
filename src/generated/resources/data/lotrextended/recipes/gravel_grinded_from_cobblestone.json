@@ -1,0 +1,9 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:cobblestone"
+  },
+  "result": "minecraft:gravel",
+  "breakchance": 0.25,
+  "experience": 1.0
+}

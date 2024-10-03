@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:high_elven_brick"
+  },
+  "result": "lotr:cracked_high_elven_brick",
+  "experience": 1.0
+}

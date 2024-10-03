@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:gondor_cobblebrick_stairs"
+  },
+  "result": "lotr:cracked_gondor_cobblebrick_stairs",
+  "experience": 1.0
+}

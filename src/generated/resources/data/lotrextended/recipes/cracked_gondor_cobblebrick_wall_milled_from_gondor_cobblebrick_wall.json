@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:gondor_cobblebrick_wall"
-  },
-  "result": "lotr:cracked_gondor_cobblebrick_wall",
-  "experience": 1.0
-}

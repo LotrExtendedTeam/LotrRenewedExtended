@@ -1,0 +1,9 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:sandstone"
+  },
+  "result": "minecraft:sand",
+  "count": 2,
+  "experience": 1.0
+}

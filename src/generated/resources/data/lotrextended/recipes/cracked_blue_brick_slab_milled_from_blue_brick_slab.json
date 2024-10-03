@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:blue_brick_slab"
-  },
-  "result": "lotr:cracked_blue_brick_slab",
-  "experience": 1.0
-}

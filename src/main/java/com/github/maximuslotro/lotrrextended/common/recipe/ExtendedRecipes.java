@@ -12,11 +12,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedRecipes {
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "lotrextended");
-	public static IRecipeType<ExtendedMillstoneRecipe> MILLSTONE;
-	public static final RegistryObject<IRecipeSerializer<ExtendedMillstoneRecipe>> MILLING_SERIALIZER = RECIPE_SERIALIZERS.register("milling", () -> new ExtendedMillingRecipeSerializer());
+	public static IRecipeType<ExtendeGrinderRecipe> MILLSTONE;
+	public static final RegistryObject<IRecipeSerializer<ExtendeGrinderRecipe>> MILLING_SERIALIZER = RECIPE_SERIALIZERS.register("stone_grinding", () -> new ExtendedMillingRecipeSerializer());
 	
 	public static void register(IEventBus modBus) {
-		MILLSTONE = register("milling");
+		MILLSTONE = register("stone_grinding");
 		RECIPE_SERIALIZERS.register(modBus);
 	}
 	

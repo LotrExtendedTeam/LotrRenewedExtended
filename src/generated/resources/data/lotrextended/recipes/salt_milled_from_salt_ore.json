@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:salt_ore"
-  },
-  "result": "lotr:salt",
-  "experience": 1.0
-}

@@ -19,20 +19,17 @@ import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
-import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 	private final Function<ITag.INamedTag<Block>, ITag.Builder> blockTags;
@@ -252,13 +249,14 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 			tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(ent.getValue());
 		}
 
-		tag(ExtendedTags.Items.MILLSTONE_LUBRICANTS).add(Items.MILK_BUCKET).add(Items.HONEY_BOTTLE).add(Items.WATER_BUCKET)
-		.add(Items.POTION).add(Items.SPLASH_POTION).add(Items.LINGERING_POTION);
-		for(Entry<RegistryKey<Item>, Item> item : ForgeRegistries.ITEMS.getEntries()) {
-			if(item.getValue() instanceof VesselDrinkItem) {
-				tag(ExtendedTags.Items.MILLSTONE_LUBRICANTS).add(item.getValue());
-			}
-		}
+		tag(ExtendedTags.Items.STONE_GRINDER_LUBRICANTS).add(Items.WATER_BUCKET).add(Items.POTION);
+//		tag(ExtendedTags.Items.STONE_GRINDER_LUBRICANTS).add(Items.MILK_BUCKET).add(Items.HONEY_BOTTLE).add(Items.WATER_BUCKET)
+//		.add(Items.POTION).add(Items.SPLASH_POTION).add(Items.LINGERING_POTION);
+//		for(Entry<RegistryKey<Item>, Item> item : ForgeRegistries.ITEMS.getEntries()) {
+//			if(item.getValue() instanceof VesselDrinkItem) {
+//				tag(ExtendedTags.Items.STONE_GRINDER_LUBRICANTS).add(item.getValue());
+//			}
+//		}
 
 		TreeMap<String, Item> additems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {

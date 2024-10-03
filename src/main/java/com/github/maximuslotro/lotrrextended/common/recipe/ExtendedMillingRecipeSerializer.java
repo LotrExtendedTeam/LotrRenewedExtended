@@ -14,23 +14,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendedMillstoneRecipe> {
+public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendeGrinderRecipe> {
 
 	@Override
-	public ExtendedMillstoneRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+	public ExtendeGrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 		String group = JSONUtils.getAsString(json, "group", "");
 		Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "ingredient"));
 		if (ingredient.isEmpty()) {
-			throw new JsonParseException("No ingredients for milling recipe");
+			throw new JsonParseException("No ingredients for stone grinding recipe");
 		}
 		if (!json.has("result")) {
 			throw new JsonSyntaxException("Missing result, expected to find a string or object");
 		}
 		ItemStack result = getItemStack(json);
 		float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
-		int millingtime = JSONUtils.getAsInt(json, "millingtime", 200);
+		int grindingtime = JSONUtils.getAsInt(json, "grindingtime", 200);
 		float breakChance = JSONUtils.getAsFloat(json, "breakchance", 0.0F);
-		return new ExtendedMillstoneRecipe(recipeId, group, ingredient, result, experience, millingtime, breakChance);
+		return new ExtendeGrinderRecipe(recipeId, group, ingredient, result, experience, grindingtime, breakChance);
 	}
 
 	public static ItemStack getItemStack(JsonObject json) {
@@ -43,23 +43,23 @@ public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeS
 	}
 
 	@Override
-	public ExtendedMillstoneRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+	public ExtendeGrinderRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 		String group = buffer.readUtf(32767);
 		Ingredient ingredient = Ingredient.fromNetwork(buffer);
 		ItemStack result = buffer.readItem();
 		float experience = buffer.readFloat();
-		int millingTime = buffer.readVarInt();
+		int grindingtime = buffer.readVarInt();
 		float breakChance = buffer.readFloat();
-		return new ExtendedMillstoneRecipe(recipeId, group, ingredient, result, experience, millingTime, breakChance);
+		return new ExtendeGrinderRecipe(recipeId, group, ingredient, result, experience, grindingtime, breakChance);
 	}
 
 	@Override
-	public void toNetwork(PacketBuffer buffer, ExtendedMillstoneRecipe recipe) {
+	public void toNetwork(PacketBuffer buffer, ExtendeGrinderRecipe recipe) {
 		buffer.writeUtf(recipe.group);
 		recipe.ingredient.toNetwork(buffer);
 		buffer.writeItem(recipe.result);
 		buffer.writeFloat(recipe.experience);
-		buffer.writeVarInt(recipe.millingTime);
+		buffer.writeVarInt(recipe.grindingTime);
 		buffer.writeFloat(recipe.breakChance);
 	}
 }

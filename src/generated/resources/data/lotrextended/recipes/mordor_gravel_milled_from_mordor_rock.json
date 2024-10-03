@@ -1,9 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:mordor_rock"
-  },
-  "result": "lotr:mordor_gravel",
-  "breakchance": 0.25,
-  "experience": 1.0
-}

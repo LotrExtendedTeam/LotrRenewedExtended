@@ -24,36 +24,36 @@ public class ExtendedMillingRecipeBuilder {
 	 * */
 	private final float breakChance;
 	private final float experience;
-	private final int millingTime;
+	private final int grindingTime;
 	private final IRecipeSerializer<?> serializer;
 
 	private ExtendedMillingRecipeBuilder(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, int time,  IRecipeSerializer<?> serializer) {
 		this.result = result.asItem();
 		this.experience = xp;
-		this.millingTime = time;
+		this.grindingTime = time;
 		this.serializer = serializer;
 		this.ingredient = ingredient;
 		this.count = count;
 		this.breakChance = breakChance;
 	}
 
-	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, Ingredient ingredient, IRecipeSerializer<?> serializer) {
-		return milling(result, 1, ingredient, 0.0f, 1.0f, 200, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, Ingredient ingredient, IRecipeSerializer<?> serializer) {
+		return grinding(result, 1, ingredient, 0.0f, 1.0f, 200, serializer);
 	}
 
-	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
-		return milling(result, 1, ingredient, breakChance, 1.0f, 200, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
+		return grinding(result, 1, ingredient, breakChance, 1.0f, 200, serializer);
 	}
 	
-	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, int count, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
-		return milling(result, count, ingredient, breakChance, 1.0f, 200, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
+		return grinding(result, count, ingredient, breakChance, 1.0f, 200, serializer);
 	}
 
-	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, IRecipeSerializer<?> serializer) {
-		return milling(result, count, ingredient, breakChance, xp, 200, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, IRecipeSerializer<?> serializer) {
+		return grinding(result, count, ingredient, breakChance, xp, 200, serializer);
 	}
 
-	public static ExtendedMillingRecipeBuilder milling(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, int time, IRecipeSerializer<?> serializer) {
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, int time, IRecipeSerializer<?> serializer) {
 		return new ExtendedMillingRecipeBuilder(result, count, ingredient, breakChance, xp, time, serializer);
 	}
 
@@ -73,7 +73,7 @@ public class ExtendedMillingRecipeBuilder {
 
 	public void save(Consumer<IFinishedRecipe> p_218635_1_, ResourceLocation outputLocation) {
 		this.ensureValid(outputLocation);
-		p_218635_1_.accept(new ExtendedMillingRecipeBuilder.Result(outputLocation, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, this.breakChance, this.experience, this.millingTime, this.serializer));
+		p_218635_1_.accept(new ExtendedMillingRecipeBuilder.Result(outputLocation, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, this.breakChance, this.experience, this.grindingTime, this.serializer));
 	}
 
 
@@ -89,18 +89,18 @@ public class ExtendedMillingRecipeBuilder {
 		private final Ingredient ingredient;
 		private final Item result;
 		private final float experience;
-		private final int millingTime;
+		private final int grindingTime;
 		private final int count;
 		private final float breakChance;
 		private final IRecipeSerializer<?> serializer;
 
-		public Result(ResourceLocation outputLocation, String group, Ingredient ingredient, Item result, int count, float breakChance, float experience, int millingTime, IRecipeSerializer<?> serializer) {
+		public Result(ResourceLocation outputLocation, String group, Ingredient ingredient, Item result, int count, float breakChance, float experience, int grindingTime, IRecipeSerializer<?> serializer) {
 			this.id = outputLocation;
 			this.group = group;
 			this.ingredient = ingredient;
 			this.result = result;
 			this.experience = experience;
-			this.millingTime = millingTime;
+			this.grindingTime = grindingTime;
 			this.serializer = serializer;
 			this.count = count;
 			this.breakChance = breakChance;
@@ -117,8 +117,8 @@ public class ExtendedMillingRecipeBuilder {
 			if(count>1) {
 				p_218610_1_.addProperty("count", this.count);
 			}
-			if(millingTime!=200) {
-				p_218610_1_.addProperty("millingtime", this.millingTime);
+			if(grindingTime!=200) {
+				p_218610_1_.addProperty("grindingtime", this.grindingTime);
 			}
 			if(breakChance!=0.0F) {
 				p_218610_1_.addProperty("breakchance", this.breakChance);

@@ -65,15 +65,15 @@
       "lotrextended:block/stone_chest/close1"
     ]
   },
-  "block.millstone.grinding": {
-    "subtitle": "subtitles.lotrextended.block.millstone.grinding",
+  "block.stone_grinder.grinding": {
+    "subtitle": "subtitles.lotrextended.block.stone_grinder.grinding",
     "sounds": [
       {
-        "name": "lotrextended:block/millstone/grinding1",
+        "name": "lotrextended:block/stone_grinder/grinding1",
         "attenuation_distance": 8
       },
       {
-        "name": "lotrextended:block/millstone/grinding2",
+        "name": "lotrextended:block/stone_grinder/grinding2",
         "attenuation_distance": 8
       }
     ]

@@ -23,7 +23,7 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> BASKET_CLOSE = register("block.reed_basket.close", "Reed Basket Closes");
 	public static final RegistryObject<SoundEvent> STONE_CHEST_OPEN = register("block.stone_chest.open", "Stone Chest Opens");
 	public static final RegistryObject<SoundEvent> STONE_CHEST_CLOSE = register("block.stone_chest.close", "Stone Chest Closes");
-	public static final RegistryObject<SoundEvent> MILLSTONE_GRINDING = register("block.millstone.grinding", "Millstone Grinds");
+	public static final RegistryObject<SoundEvent> MILLSTONE_GRINDING = register("block.stone_grinder.grinding", "Stone Grinder Grinds");
 
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen()) {

@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:dale_brick_stairs"
+  },
+  "result": "lotr:cracked_dale_brick_stairs",
+  "experience": 1.0
+}

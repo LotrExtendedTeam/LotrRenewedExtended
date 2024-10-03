@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:numenorean_brick"
+  },
+  "result": "lotr:cracked_numenorean_brick",
+  "experience": 1.0
+}

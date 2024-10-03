@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:galadhrim_brick_slab"
+  },
+  "result": "lotr:cracked_galadhrim_brick_slab",
+  "experience": 1.0
+}

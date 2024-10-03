@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:dorwinion_brick"
+  },
+  "result": "lotr:cracked_dorwinion_brick",
+  "experience": 1.0
+}

@@ -1,0 +1,9 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:gravel"
+  },
+  "result": "minecraft:flint",
+  "breakchance": 0.75,
+  "experience": 1.0
+}

@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:dwarven_brick_slab"
-  },
-  "result": "lotr:cracked_dwarven_brick_slab",
-  "experience": 1.0
-}

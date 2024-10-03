@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "lotr:dol_amroth_brick_slab"
-  },
-  "result": "lotr:cracked_dol_amroth_brick_slab",
-  "experience": 1.0
-}

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.inv.ExtendedBookshelfContainer;
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedMillstoneContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
 
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
@@ -42,8 +42,8 @@ public class MixinLOTRContainers {
 		ExtendedContainers.BOOKSHELF = registerExtended("bookshelf", "Bookshelf", () -> {
 			return IForgeContainerType.create(ExtendedBookshelfContainer::threeRows);
 		});
-		ExtendedContainers.MILLSTONE = registerExtended("millstone", "Mill", () -> {
-			return IForgeContainerType.create(ExtendedMillstoneContainer::new);
+		ExtendedContainers.MILLSTONE = registerExtended("stone_grinder", "Stone Grinder", () -> {
+			return IForgeContainerType.create(ExtendedGrinderContainer::new);
 		});
 	}
 

@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:salt_ore"
+  },
+  "result": "lotr:salt",
+  "experience": 1.0
+}

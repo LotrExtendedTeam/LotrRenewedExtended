@@ -17,7 +17,7 @@ public class ExtendedStats {
 	public static ResourceLocation TRADERS_TRADED = registerStat("traders_traded", "Times Traded With Traders", IStatFormatter.DEFAULT);
 	public static ResourceLocation INTERACT_WITH_STONE_CHEST = registerStat("interact_with_stone_chest", "Stone Chests Opened", IStatFormatter.DEFAULT);
 	public static ResourceLocation INTERACT_WITH_BOOKSHELF = registerStat("interact_with_bookshelf", "Bookshelves Opened", IStatFormatter.DEFAULT);
-	public static ResourceLocation INTERACT_WITH_MILLSTONE = registerStat("interact_with_millstone", " Millstones Opened", IStatFormatter.DEFAULT);
+	public static ResourceLocation INTERACT_WITH_MILLSTONE = registerStat("interact_with_ston_grinder", "Stone Grinders Opened", IStatFormatter.DEFAULT);
 
 	public static void init() {}
 

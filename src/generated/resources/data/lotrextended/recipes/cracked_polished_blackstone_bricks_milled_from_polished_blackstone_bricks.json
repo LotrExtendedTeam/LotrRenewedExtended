@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:milling",
-  "ingredient": {
-    "item": "minecraft:polished_blackstone_bricks"
-  },
-  "result": "minecraft:cracked_polished_blackstone_bricks",
-  "experience": 1.0
-}

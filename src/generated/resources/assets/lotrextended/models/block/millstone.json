@@ -1,8 +1,0 @@
-{
-  "parent": "lotrextended:block/template_millstone",
-  "textures": {
-    "toptexture": "lotrextended:block/millstone_top",
-    "basetexture": "lotrextended:block/millstone_base",
-    "particle": "lotrextended:block/millstone_base"
-  }
-}

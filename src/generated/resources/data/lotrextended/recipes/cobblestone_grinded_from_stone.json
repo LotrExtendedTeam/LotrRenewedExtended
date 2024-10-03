@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:stone"
+  },
+  "result": "minecraft:cobblestone",
+  "experience": 1.0
+}

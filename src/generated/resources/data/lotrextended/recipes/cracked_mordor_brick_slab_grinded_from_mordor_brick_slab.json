@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:mordor_brick_slab"
+  },
+  "result": "lotr:cracked_mordor_brick_slab",
+  "experience": 1.0
+}
