@@ -65,6 +65,12 @@
       "lotrextended:block/stone_chest/close1"
     ]
   },
+  "block.cheese_wheel.slice": {
+    "subtitle": "subtitles.lotrextended.block.cheese_wheel.slice",
+    "sounds": [
+      "lotrextended:block/cheese_wheel/slice1"
+    ]
+  },
   "block.stone_grinder.grinding": {
     "subtitle": "subtitles.lotrextended.block.stone_grinder.grinding",
     "sounds": [

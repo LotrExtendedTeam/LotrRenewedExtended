@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.item.DaggerItem;
@@ -47,7 +48,7 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exten
 				entity.getFoodData().eat(2, 0.1F);
 			}
 			entity.awardStat(ExtendedStats.EAT_CHEESE_SLICE);
-			world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
+			world.playSound((PlayerEntity)null, pos, ExtendedSounds.CHEESE_SLICE.get(), SoundCategory.BLOCKS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
 		}
 		int i = state.getValue(BITES);
 		if (i < 6) {
