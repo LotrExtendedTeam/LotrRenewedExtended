@@ -41,12 +41,12 @@ public class ExtendedGrinderScreen extends ContainerScreen<ExtendedGrinderContai
 			this.blit(pMatrixStack, i + 81, j + 34, 177, 104, 17, 17);
 		}
 
-		int l = this.menu.getMillingProgress();
-		if(i>0) {
+		if(menu.isMilling()) {
+			int l = this.menu.getMillingProgress();
 			if (this.menu.isLubed()) {
-				this.blit(pMatrixStack, i + 81, j + 34, 195, 104, 17, 1+l);
+				this.blit(pMatrixStack, i + 81, j + 34, 195, 104, 17, l);
 			}else {
-				this.blit(pMatrixStack, i + 81, j + 34, 177, 122, 17, 1+l);
+				this.blit(pMatrixStack, i + 81, j + 34, 177, 122, 17, l);
 			}
 		}
 	}

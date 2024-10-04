@@ -53,11 +53,11 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity {
 	private static final int[] SLOTS_FOR_UP = new int[]{0};
 	private static final int[] SLOTS_FOR_DOWN = new int[]{2, 1};
-	private static final int[] SLOTS_FOR_SIDES = new int[]{1};
+	private static final int[] SLOTS_FOR_SIDES = new int[]{0, 1};
 	// 0 - Input, 1- Fuel/Additive, 2 -Output
 	protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
-	private int grindingProgress;
-	private int grindingTotalTime;
+	private int grindingProgress = 0;
+	private int grindingTotalTime = 0;
 	private boolean usingLubrication = false;
 	protected final IIntArray dataAccess = new IIntArray() {
 		@Override
@@ -138,22 +138,17 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide) {
+			if(canLubeItem(this.items.get(1))){
+				if (this.grindingProgress<100 && !this.usingLubrication) {
+					usingLubrication=true;
+				}
+			}else {
+				usingLubrication=false;
+			}
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
 				ExtendeGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canGrind(irecipe)) {
 					++this.grindingProgress;
-					if (this.grindingProgress<100 && !this.usingLubrication) {
-						if(canLubeItem(this.items.get(1))){
-							usingLubrication=true;
-						}
-					}
-					if(canLubeItem(this.items.get(1))){
-						if (this.grindingProgress<100 && !this.usingLubrication) {
-							usingLubrication=true;
-						}
-					}else {
-						usingLubrication=false;
-					}
 					if (this.grindingProgress == this.grindingTotalTime) {
 						this.grindingProgress = 0;
 						this.grindingTotalTime = this.getTotalMillingTime();
@@ -274,11 +269,10 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 	public boolean canPlaceItem(int pIndex, ItemStack pStack) {
 		if (pIndex == 2) {
 			return false;
-		} else if (pIndex != 1) {
-			return true;
+		} else if (pIndex == 0) {
+			return !canLubeItem(pStack);
 		} else {
-			ItemStack itemstack = this.items.get(1);
-			return canLubeItem(itemstack);
+			return canLubeItem(pStack);
 		}
 	}
 
