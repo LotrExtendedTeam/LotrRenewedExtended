@@ -30,6 +30,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.DUCK_AMBIANT, createMultipleSameWeight(ExtendedSounds.DUCK_AMBIANT, 4));
 		add(ExtendedSounds.DUCK_HURT, createMultipleSameWeight(ExtendedSounds.DUCK_HURT, 1));
 		add(ExtendedSounds.DUCK_DEATH, createMultipleSameWeight(ExtendedSounds.DUCK_DEATH, 1));
+		add(ExtendedSounds.DUCK_STEP, createMultipleSameWeight(ExtendedSounds.DUCK_STEP, 3));
 		add(ExtendedSounds.DUCK_EGG, createCustomPathSound(ExtendedSounds.DUCK_EGG, new ResourceLocation("mob/chicken/plop")));
 
 		add(ExtendedSounds.BASKET_OPEN, createMultipleSameWeight(ExtendedSounds.BASKET_OPEN, 1));

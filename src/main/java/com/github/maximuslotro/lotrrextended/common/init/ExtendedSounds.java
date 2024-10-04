@@ -18,6 +18,7 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> DUCK_DEATH = register("entity.duck.death", "Duck dies");
 	public static final RegistryObject<SoundEvent> DUCK_HURT = register("entity.duck.hurt", "Duck hurts");
 	public static final RegistryObject<SoundEvent> DUCK_AMBIANT = register("entity.duck.idle", "Duck quacks");
+	public static final RegistryObject<SoundEvent> DUCK_STEP = register("entity.duck.step", "Footsteps");
 	public static final RegistryObject<SoundEvent> DUCK_EGG = register("entity.duck.egg", "Duck plops");
 	public static final RegistryObject<SoundEvent> BASKET_OPEN = register("block.reed_basket.open", "Reed Basket Opens");
 	public static final RegistryObject<SoundEvent> BASKET_CLOSE = register("block.reed_basket.close", "Reed Basket Closes");

@@ -1240,6 +1240,7 @@
   "subtitles.lotrextended.entity.duck.egg": "Duck plops",
   "subtitles.lotrextended.entity.duck.hurt": "Duck hurts",
   "subtitles.lotrextended.entity.duck.idle": "Duck quacks",
+  "subtitles.lotrextended.entity.duck.step": "Footsteps",
   "subtitles.lotrextended.event.trade": "Coins jingle",
   "subtitles.lotrextended.item.horn_blow": "Horn blows"
 }

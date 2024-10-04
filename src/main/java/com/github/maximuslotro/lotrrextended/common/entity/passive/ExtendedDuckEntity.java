@@ -42,7 +42,6 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -186,7 +185,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 	@Override
 	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(SoundEvents.CHICKEN_STEP, 0.15F, 1.0F);
+		this.playSound(ExtendedSounds.DUCK_STEP.get(), 0.15F, 1.0F);
 	}
 
 	@Override

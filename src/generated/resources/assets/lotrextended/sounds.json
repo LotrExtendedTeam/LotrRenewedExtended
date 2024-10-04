@@ -35,6 +35,14 @@
       "lotrextended:entity/duck/death1"
     ]
   },
+  "entity.duck.step": {
+    "subtitle": "subtitles.lotrextended.entity.duck.step",
+    "sounds": [
+      "lotrextended:entity/duck/step1",
+      "lotrextended:entity/duck/step2",
+      "lotrextended:entity/duck/step3"
+    ]
+  },
   "entity.duck.egg": {
     "subtitle": "subtitles.lotrextended.entity.duck.egg",
     "sounds": [
