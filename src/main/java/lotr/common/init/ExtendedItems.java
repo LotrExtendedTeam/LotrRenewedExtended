@@ -215,6 +215,23 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GOLDEN_ROHAN_BEAM;
 	public static RegistryObject<Item> ORNATE_GOLDEN_ROHAN_BEAM;
 
+	// New Blocks
+	public static RegistryObject<Item> GNEISS_ROCK;
+	public static RegistryObject<Item> GNEISS_BRICKS;
+	public static RegistryObject<Item> POLISHED_GNEISS;
+	public static RegistryObject<Item> LIMESTONE_ROCK;
+	public static RegistryObject<Item> LIMESTONE_BRICKS;
+	public static RegistryObject<Item> LIMESTONE_TILES;
+	public static RegistryObject<Item> POLISHED_LIMESTONE;
+	public static RegistryObject<Item> SMOOTH_LIMESTONE;
+	public static RegistryObject<Item> ASHLAR_LIMESTONE_BRICKS;
+	public static RegistryObject<Item> MOSS_BLOCK;
+	public static RegistryObject<Item> MOSS_CARPET;
+	public static RegistryObject<Item> SLATE_ROCK;
+	public static RegistryObject<Item> SLATE_BRICKS;
+	public static RegistryObject<Item> POLISHED_SLATE;
+
+	// Equipment
 	public static RegistryObject<Item> TAURETHRIM_AXE;
 	public static RegistryObject<Item> TAURETHRIM_SHOVEL;
 	public static RegistryObject<Item> TAURETHRIM_PICKAXE;

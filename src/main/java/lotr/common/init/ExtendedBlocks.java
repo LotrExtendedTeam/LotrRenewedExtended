@@ -264,6 +264,23 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BONE_BLOCK_STAIRS;
 	public static RegistryObject<Block> BONE_BLOCK_WALL;
 
+	// New Blocks
+	public static RegistryObject<Block> GNEISS_ROCK;
+	public static RegistryObject<Block> GNEISS_BRICKS;
+	public static RegistryObject<Block> POLISHED_GNEISS;
+	public static RegistryObject<Block> LIMESTONE_ROCK;
+	public static RegistryObject<Block> LIMESTONE_BRICKS;
+	public static RegistryObject<Block> LIMESTONE_TILES;
+	public static RegistryObject<Block> POLISHED_LIMESTONE;
+	public static RegistryObject<Block> SMOOTH_LIMESTONE;
+	public static RegistryObject<Block> ASHLAR_LIMESTONE_BRICKS;
+	public static RegistryObject<Block> MOSS_BLOCK;
+	public static RegistryObject<Block> MOSS_CARPET;
+	public static RegistryObject<Block> SLATE_ROCK;
+	public static RegistryObject<Block> SLATE_BRICKS;
+	public static RegistryObject<Block> POLISHED_SLATE;
+
+	// Bushes
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;
 	public static RegistryObject<Block> BLACKBERRY_BUSH;

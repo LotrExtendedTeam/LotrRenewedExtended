@@ -387,6 +387,21 @@ public class MixinLOTRItems {
 		ExtendedItems.CRACKED_ARNOR_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_ARNOR_PILLAR = regBlockItemB(ExtendedBlocks.MOSSY_ARNOR_PILLAR, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_ARNOR_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		
+		ExtendedItems.GNEISS_ROCK = regBlockItemB(ExtendedBlocks.GNEISS_ROCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GNEISS_BRICKS = regBlockItemB(ExtendedBlocks.GNEISS_BRICKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.POLISHED_GNEISS = regBlockItemB(ExtendedBlocks.POLISHED_GNEISS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.LIMESTONE_ROCK = regBlockItemB(ExtendedBlocks.LIMESTONE_ROCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.LIMESTONE_BRICKS = regBlockItemB(ExtendedBlocks.LIMESTONE_BRICKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.LIMESTONE_TILES = regBlockItemB(ExtendedBlocks.LIMESTONE_TILES, LOTRItemGroups.BLOCKS);
+		ExtendedItems.POLISHED_LIMESTONE = regBlockItemB(ExtendedBlocks.POLISHED_LIMESTONE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_LIMESTONE = regBlockItemB(ExtendedBlocks.SMOOTH_LIMESTONE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.ASHLAR_LIMESTONE_BRICKS = regBlockItemB(ExtendedBlocks.ASHLAR_LIMESTONE_BRICKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SLATE_ROCK = regBlockItemB(ExtendedBlocks.SLATE_ROCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SLATE_BRICKS = regBlockItemB(ExtendedBlocks.SLATE_BRICKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.POLISHED_SLATE = regBlockItemB(ExtendedBlocks.POLISHED_SLATE, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSS_BLOCK = regBlockItemB(ExtendedBlocks.MOSS_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSS_CARPET = regBlockItemB(ExtendedBlocks.MOSS_CARPET, LOTRItemGroups.BLOCKS);
 		//Mud
 		ExtendedItems.MUD = regBlockItemB(ExtendedBlocks.MUD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MUD_SLAB = regBlockItemB(ExtendedBlocks.MUD_SLAB, LOTRItemGroups.BLOCKS);
