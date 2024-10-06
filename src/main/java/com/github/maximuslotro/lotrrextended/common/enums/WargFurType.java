@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 
 import lotr.common.block.ExtendedPackedFurBlock;
 import net.minecraft.block.Block;
@@ -74,8 +74,8 @@ public enum WargFurType implements IStringSerializable {
 	public static WargFurType getWargFurType(ItemStack stack) {
 		if (stack.getItem() instanceof BlockItem) {
 			Block block = ((BlockItem) stack.getItem()).getBlock();
-			if(block instanceof ExtendedCarpetBlock) {
-				return ((ExtendedCarpetBlock) block).getWargFurType();
+			if(block instanceof ExtendedWargCarpetBlock) {
+				return ((ExtendedWargCarpetBlock) block).getWargFurType();
 			}
 			if(block instanceof ExtendedPackedFurBlock) {
 				return ((ExtendedPackedFurBlock) block).getWargFurType();

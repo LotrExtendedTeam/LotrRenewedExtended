@@ -15,7 +15,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCheeseWheelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
@@ -29,6 +30,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialS
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
@@ -55,7 +57,9 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.WargFurType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedMaterials;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSoundTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
 import lotr.common.block.AxialSlabBlock;
@@ -363,11 +367,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_BLACK));
 
 		//Fur carpets
-		ExtendedBlocks.BLACK_FUR_CARPET = registerB("black_fur_carpet", () -> new ExtendedCarpetBlock(WargFurType.BLACK));
-		ExtendedBlocks.BROWN_FUR_CARPET = registerB("brown_fur_carpet", () -> new ExtendedCarpetBlock(WargFurType.BROWN));
-		ExtendedBlocks.GRAY_FUR_CARPET = registerB("gray_fur_carpet", () -> new ExtendedCarpetBlock(WargFurType.GRAY));
-		ExtendedBlocks.SILVER_FUR_CARPET = registerB("silver_fur_carpet", () -> new ExtendedCarpetBlock(WargFurType.SILVER));
-		ExtendedBlocks.WHITE_FUR_CARPET = registerB("white_fur_carpet", () -> new ExtendedCarpetBlock(WargFurType.SILVER));
+		ExtendedBlocks.BLACK_FUR_CARPET = registerB("black_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.BLACK));
+		ExtendedBlocks.BROWN_FUR_CARPET = registerB("brown_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.BROWN));
+		ExtendedBlocks.GRAY_FUR_CARPET = registerB("gray_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.GRAY));
+		ExtendedBlocks.SILVER_FUR_CARPET = registerB("silver_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.SILVER));
+		ExtendedBlocks.WHITE_FUR_CARPET = registerB("white_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.SILVER));
 
 		//GEM STORAGE
 		ExtendedBlocks.TOPAZ_BLOCK = registerB("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
@@ -440,8 +444,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SLATE_ROCK = registerB("slate", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 		ExtendedBlocks.SLATE_BRICKS = registerB("slate_brick", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 		ExtendedBlocks.POLISHED_SLATE = registerB("polished_slate", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
-		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
-		ExtendedBlocks.MOSS_CARPET = registerB("moss_carpet", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
+		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
+		ExtendedBlocks.MOSS_CARPET = registerB("moss_carpet", () -> new ExtendedMossCarpetBlock(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
 		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD));

@@ -13,11 +13,11 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class ExtendedCarpetBlock extends CarpetBlock {
+public class ExtendedWargCarpetBlock extends CarpetBlock {
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 	private final WargFurType wargFurType;
 
-	public ExtendedCarpetBlock(WargFurType wargFurType) {
+	public ExtendedWargCarpetBlock(WargFurType wargFurType) {
 		super(wargFurType.getDyeColor(), AbstractBlock.Properties.of(Material.CLOTH_DECORATION, wargFurType.getDyeColor()).strength(0.1F).sound(SoundType.WOOL));
 		this.wargFurType = wargFurType;
 	}

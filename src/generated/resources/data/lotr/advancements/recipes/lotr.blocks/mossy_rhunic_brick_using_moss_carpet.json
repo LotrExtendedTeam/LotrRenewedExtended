@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:mossy_taurethrim_brick"
+      "lotr:mossy_rhunic_brick_using_moss_carpet"
     ]
   },
   "criteria": {
-    "has_mossy_taurethrim_brick": {
+    "has_mossy_rhunic_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:mossy_taurethrim_brick"
+            "item": "lotr:mossy_rhunic_brick"
           }
         ]
       }
     },
-    "has_taurethrim_brick": {
+    "has_rhunic_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:taurethrim_brick"
+            "item": "lotr:rhunic_brick"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:mossy_taurethrim_brick"
+        "recipe": "lotr:mossy_rhunic_brick_using_moss_carpet"
       }
     }
   },
   "requirements": [
     [
-      "has_mossy_taurethrim_brick",
-      "has_taurethrim_brick",
+      "has_mossy_rhunic_brick",
+      "has_rhunic_brick",
       "has_the_recipe"
     ]
   ]

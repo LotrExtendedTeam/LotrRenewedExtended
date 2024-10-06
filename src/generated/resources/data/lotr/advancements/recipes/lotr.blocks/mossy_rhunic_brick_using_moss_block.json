@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:mossy_drystone"
+      "lotr:mossy_rhunic_brick_using_moss_block"
     ]
   },
   "criteria": {
-    "has_mossy_drystone": {
+    "has_mossy_rhunic_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:mossy_drystone"
+            "item": "lotr:mossy_rhunic_brick"
           }
         ]
       }
     },
-    "has_drystone": {
+    "has_rhunic_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:drystone"
+            "item": "lotr:rhunic_brick"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:mossy_drystone"
+        "recipe": "lotr:mossy_rhunic_brick_using_moss_block"
       }
     }
   },
   "requirements": [
     [
-      "has_mossy_drystone",
-      "has_drystone",
+      "has_mossy_rhunic_brick",
+      "has_rhunic_brick",
       "has_the_recipe"
     ]
   ]

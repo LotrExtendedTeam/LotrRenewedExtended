@@ -1094,6 +1094,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.CRACKED_MUD_BRICK_SLAB, 
 			ExtendedBlocks.CRACKED_MUD_BRICK_WALL, 
 			()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
+		GENERATEDRECIPES.add(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.MOSS_CARPET.get(), 3)
+		.pattern("XX")
+		.define('X', Ingredient.of(ExtendedItems.MOSS_BLOCK.get()))
+		.unlockedBy("has_"+ExtendedItems.MOSS_BLOCK.get().getRegistryName().getPath(), has(ExtendedItems.MOSS_BLOCK.get()))
+		.save(consumer, lotrLoc(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath()));
 	}
 
 	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {

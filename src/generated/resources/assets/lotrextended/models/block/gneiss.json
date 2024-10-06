@@ -1,3 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all"
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "lotrextended:block/gneiss",
+    "bottom": "lotrextended:block/gneiss_top",
+    "top": "lotrextended:block/gneiss_top"
+  }
 }

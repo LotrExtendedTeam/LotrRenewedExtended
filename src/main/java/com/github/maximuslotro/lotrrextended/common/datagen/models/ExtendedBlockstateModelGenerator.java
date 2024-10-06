@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
@@ -18,6 +18,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
@@ -153,8 +155,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genBedBlockItem((ExtendedBedBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedCarpetBlock) {
-					genCarpetBlockItem((ExtendedCarpetBlock) block.getValue().get(), block.getKey());
+				if(block.getValue().get() instanceof ExtendedWargCarpetBlock) {
+					genCarpetBlockItem((ExtendedWargCarpetBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof FallenLeavesBlock) {
@@ -253,6 +255,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genChandelierBlock((ChandelierBlock)block.getValue().get(), block.getKey());
 					continue;
 				}
+				if(block.getValue().get() instanceof ExtendedMossCarpetBlock) {
+					genMossCarpetBlockItem((ExtendedMossCarpetBlock)block.getValue().get());
+					continue;
+				}
 				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
 					genTrapdoorBlockItem((LOTRTrapdoorBlock)block.getValue().get(),"block/"+block.getKey());
 					continue;
@@ -315,7 +321,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof LOTRStoneBlock) {
+				if(block.getValue().get() instanceof ExtendedMossBlock) {
 					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
@@ -326,6 +332,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					}
 					if(block.getKey()=="scorched_stone") {
 						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+						continue;
+					}
+					if(block.getKey()=="gneiss") {
+						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
+						continue;
+					}
+					if(block.getKey()=="polished_limestone") {
+						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}
 					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
@@ -1023,10 +1037,19 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(mcLoc("item/template_bed")));
 	}
 
-	private void genCarpetBlockItem(ExtendedCarpetBlock carpet, String name) {
+	private void genCarpetBlockItem(ExtendedWargCarpetBlock carpet, String name) {
 		registeredBlocks.add(carpet);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+carpet.getRegistryName().getPath(), lotrExtendedLoc("block/template_fur_carpet"))
 									.texture("0", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+		simpleBlock(carpet, modelFile);
+		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
+		registeredBlocks.add(carpet);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+carpet.getRegistryName().getPath(), lotrExtendedLoc("block/template_moss_carpet"))
+									.texture("block", lotrExtendedLoc("block/moss_block")).texture("particle", lotrExtendedLoc("block/moss_block"))
+									.texture("side", lotrExtendedLoc("block/moss_carpet_side"));
 		simpleBlock(carpet, modelFile);
 		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFile);
 	}
@@ -1424,6 +1447,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genCubeBlockItem(Block block, ResourceLocation allSides) {
 		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath(), allSides);
+		simpleBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
+	private void genCubeTopBlockItem(Block block, ResourceLocation side, ResourceLocation top) {
+		registeredBlocks.add(block);
+		ModelFile cubeModel = models().cubeBottomTop("lotrextended:"+block.getRegistryName().getPath(), side, top, top);
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}

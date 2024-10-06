@@ -675,7 +675,19 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.requires((Ingredient.of(()->Items.VINE)))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
-			.save(consumer, lotrLoc(name+altName));
+			.save(consumer, lotrLoc(name+altName+"_using_vines"));
+			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(ExtendedItems.MOSS_BLOCK.get())))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name+altName+"_using_moss_block"));
+			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(ExtendedItems.MOSS_CARPET.get())))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name+altName+"_using_moss_carpet"));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
@@ -683,7 +695,19 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.requires((Ingredient.of(()->Items.VINE)))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
-			.save(consumer, lotrLoc(name+altName));
+			.save(consumer, lotrLoc(name+altName+"_using_vines"));
+			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(ExtendedItems.MOSS_BLOCK.get())))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name+altName+"_using_moss_block"));
+			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(ExtendedItems.MOSS_CARPET.get())))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name+altName+"_using_moss_carpet"));
 		}
 	}
 

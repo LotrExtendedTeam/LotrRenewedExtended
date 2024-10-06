@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:mossy_drystone_from_cobbled_drystone"
+      "lotr:mossy_drystone_from_cobbled_drystone_using_moss_block"
     ]
   },
   "criteria": {
@@ -29,7 +29,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:mossy_drystone_from_cobbled_drystone"
+        "recipe": "lotr:mossy_drystone_from_cobbled_drystone_using_moss_block"
       }
     }
   },

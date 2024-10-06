@@ -91,5 +91,57 @@
         "attenuation_distance": 8
       }
     ]
+  },
+  "block.moss.break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "lotrextended:block/moss/place1",
+      "lotrextended:block/moss/place2",
+      "lotrextended:block/moss/place3",
+      "lotrextended:block/moss/place4",
+      "lotrextended:block/moss/place5"
+    ]
+  },
+  "block.moss.place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "lotrextended:block/moss/place1",
+      "lotrextended:block/moss/place2",
+      "lotrextended:block/moss/place3",
+      "lotrextended:block/moss/place4",
+      "lotrextended:block/moss/place5"
+    ]
+  },
+  "block.moss.hit": {
+    "subtitle": "subtitles.block.generic.hit​",
+    "sounds": [
+      "lotrextended:block/moss/step1",
+      "lotrextended:block/moss/step2",
+      "lotrextended:block/moss/step3",
+      "lotrextended:block/moss/step4",
+      "lotrextended:block/moss/step5",
+      "lotrextended:block/moss/step6"
+    ]
+  },
+  "block.moss.fall": {
+    "sounds": [
+      "lotrextended:block/moss/step1",
+      "lotrextended:block/moss/step2",
+      "lotrextended:block/moss/step3",
+      "lotrextended:block/moss/step4",
+      "lotrextended:block/moss/step5",
+      "lotrextended:block/moss/step6"
+    ]
+  },
+  "block.moss.step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "lotrextended:block/moss/step1",
+      "lotrextended:block/moss/step2",
+      "lotrextended:block/moss/step3",
+      "lotrextended:block/moss/step4",
+      "lotrextended:block/moss/step5",
+      "lotrextended:block/moss/step6"
+    ]
   }
 }

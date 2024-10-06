@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:mossy_mud_brick"
+      "lotr:mossy_drystone_from_cobbled_drystone_using_vines"
     ]
   },
   "criteria": {
-    "has_mossy_mud_brick": {
+    "has_mossy_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:mossy_mud_brick"
+            "item": "lotr:mossy_drystone"
           }
         ]
       }
     },
-    "has_mud_brick": {
+    "has_cobbled_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:mud_brick"
+            "item": "lotr:cobbled_drystone"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:mossy_mud_brick"
+        "recipe": "lotr:mossy_drystone_from_cobbled_drystone_using_vines"
       }
     }
   },
   "requirements": [
     [
-      "has_mossy_mud_brick",
-      "has_mud_brick",
+      "has_mossy_drystone",
+      "has_cobbled_drystone",
       "has_the_recipe"
     ]
   ]

@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.block;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
@@ -84,7 +84,7 @@ public class ExtendedBlockRenderer {
 			if(block instanceof ExtendedMEBannerWallBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
-			if(block instanceof ExtendedCarpetBlock) {
+			if(block instanceof ExtendedWargCarpetBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedFireBlock) {

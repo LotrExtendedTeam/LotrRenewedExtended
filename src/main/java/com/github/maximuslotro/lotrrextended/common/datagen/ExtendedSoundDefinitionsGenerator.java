@@ -42,6 +42,12 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.CHEESE_SLICE, createMultipleSameWeight(ExtendedSounds.CHEESE_SLICE, 1));
 		
 		add(ExtendedSounds.MILLSTONE_GRINDING, createMultipleSameWeight(ExtendedSounds.MILLSTONE_GRINDING, 2, 8));
+		
+		add(ExtendedSounds.MOSS_BROKEN, createFull("block/moss/place", 5, 0.93f, 0.8f, 16, "subtitles.block.generic.break"));
+		add(ExtendedSounds.MOSS_PLACED, createFull("block/moss/place", 5, 0.93f, 0.8f, 16, "subtitles.block.generic.place"));
+		add(ExtendedSounds.MOSS_HIT, createFull("block/moss/step", 6, 0.25f, 0.25f, 16, "subtitles.block.generic.hit​"));
+		add(ExtendedSounds.MOSS_FALL, createFull("block/moss/step", 6, 0.5f, 0.5f, 16, null));
+		add(ExtendedSounds.MOSS_STEP, createFull("block/moss/step", 6, 0.15f, 1.0f, 16, "subtitles.block.generic.footsteps"));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {
@@ -69,6 +75,17 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		}
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
 		  .with(sounds.toArray(new Sound[0]));
+	}
+
+	public static SoundDefinition createFull(String name, int variants, float vol, float pitch, int distance, String subKey) {
+		List<Sound> sounds = new ArrayList<>();
+		for(int i=0; i<variants; i++) {
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+(Integer.toString(i+1)))).attenuationDistance(distance));
+		}
+		if(subKey!=null) {
+			return definition().subtitle(subKey).with(sounds.toArray(new Sound[0]));
+		}
+		return definition().with(sounds.toArray(new Sound[0]));
 	}
 
 	@Override

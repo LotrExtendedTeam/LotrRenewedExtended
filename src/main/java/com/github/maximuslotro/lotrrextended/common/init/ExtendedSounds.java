@@ -26,9 +26,15 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> STONE_CHEST_CLOSE = register("block.stone_chest.close", "Stone Chest Closes");
 	public static final RegistryObject<SoundEvent> MILLSTONE_GRINDING = register("block.stone_grinder.grinding", "Stone Grinder Grinds");
 	public static final RegistryObject<SoundEvent> CHEESE_SLICE = register("block.cheese_wheel.slice", "Cheese Wheel Sliced");
+	
+	public static final RegistryObject<SoundEvent> MOSS_BROKEN = register("block.moss.break", null);
+	public static final RegistryObject<SoundEvent> MOSS_PLACED = register("block.moss.place", null);
+	public static final RegistryObject<SoundEvent> MOSS_HIT = register("block.moss.hit", null);
+	public static final RegistryObject<SoundEvent> MOSS_FALL = register("block.moss.fall", null);
+	public static final RegistryObject<SoundEvent> MOSS_STEP = register("block.moss.step", null);
 
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
-		if(DatagenModLoader.isRunningDataGen()) {
+		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {
 			DataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);
 		}
 		return SOUNDS.register(name, () -> new SoundEvent(new ResourceLocation(LotrExtendedMod.MODID, name)));

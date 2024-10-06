@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:rhunic",
+  "ingredients": [
+    {
+      "item": "lotr:rhunic_brick"
+    },
+    {
+      "item": "lotr:moss_carpet"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_rhunic_brick"
+  }
+}
