@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:blue_rock",
+    "lotr:gneiss",
+    "lotr:gondor_rock",
+    "lotr:limestone",
+    "lotr:mordor_rock",
+    "lotr:red_rock",
+    "lotr:rohan_rock",
+    "lotr:slate"
+  ]
+}

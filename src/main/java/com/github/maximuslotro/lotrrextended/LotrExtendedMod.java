@@ -25,6 +25,7 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedConfiguredStructuresV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
@@ -32,12 +33,14 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -82,6 +85,8 @@ public class LotrExtendedMod{
 		ExtendedRecipes.register(modBus);
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
+		ExtendedFeature.register(modBus);
+		modBus.addGenericListener(Feature.class, this::registerFeatures);
 		ExtendedStats.init();
 		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
@@ -110,6 +115,10 @@ public class LotrExtendedMod{
 
 	public void registerCommands(RegisterCommandsEvent event) {
 		ExtendedCommands.registerCommands(event.getDispatcher(), event.getEnvironment());
+	}
+
+	public void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+		ExtendedFeature.register(event);
 	}
 
 	public ModFile getModfile() {

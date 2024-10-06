@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:barren_dirt"
+    "lotr:barren_dirt",
+    "lotr:moss_block"
   ]
 }

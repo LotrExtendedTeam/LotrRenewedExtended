@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dirt",
+    "#minecraft:base_stone_overworld",
+    "minecraft:vine"
+  ]
+}
