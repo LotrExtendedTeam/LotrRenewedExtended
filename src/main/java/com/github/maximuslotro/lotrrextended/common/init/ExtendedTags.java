@@ -62,6 +62,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
 		public static final ITag.INamedTag<Block> BANANA_LOGS = BlockTags.bind("lotrextended:banana_logs");
 		public static final ITag.INamedTag<Block> PLUM_LOGS = BlockTags.bind("lotrextended:plum_logs");
+
+		public static final ITag.INamedTag<Block> MOSS_REPLACEABLE = BlockTags.bind("lotrextended:moss_replaceable");
 	}
 
 	public static class Items {

@@ -444,7 +444,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SLATE_ROCK = registerB("slate", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 		ExtendedBlocks.SLATE_BRICKS = registerB("slate_brick", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 		ExtendedBlocks.POLISHED_SLATE = registerB("polished_slate", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
-		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
+		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).harvestTool(ToolType.HOE).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 		ExtendedBlocks.MOSS_CARPET = registerB("moss_carpet", () -> new ExtendedMossCarpetBlock(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));

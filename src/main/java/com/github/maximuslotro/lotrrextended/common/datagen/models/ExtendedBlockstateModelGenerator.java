@@ -60,7 +60,6 @@ import lotr.common.block.LOTRPottedPlantBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStandingSignBlock;
-import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTrapdoorBlock;
