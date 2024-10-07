@@ -1,0 +1,8 @@
+{
+  "parent": "lotrextended:block/template_moss_carpet_display",
+  "textures": {
+    "block": "lotrextended:block/moss_block_display",
+    "particle": "lotrextended:block/moss_block_display",
+    "side": "lotrextended:block/moss_carpet_side_display"
+  }
+}

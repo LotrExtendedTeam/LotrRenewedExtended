@@ -18,6 +18,8 @@ public class ExtendedColorHelper {
 			return tintIndex != 0 ? -1 : (lightReader != null && pos != null) ? BiomeColors.getAverageGrassColor(lightReader, pos) : GrassColors.get(0.5D, 1.0D);
 		};
 		colors.register(naturalTint, ExtendedBlocks.GRASS_BLOCK_SLAB.get());
+		colors.register(naturalTint, ExtendedBlocks.MOSS_BLOCK.get());
+		colors.register(naturalTint, ExtendedBlocks.MOSS_CARPET.get());
 	}
 
 	public static void makeItemsColors(ColorHandlerEvent.Item event) {
@@ -28,5 +30,7 @@ public class ExtendedColorHelper {
 			return colors.getColor(state, null, null, tintIndex);
 		};
 		itemColors.register(blockTinter, ExtendedBlocks.GRASS_BLOCK_SLAB.get());
+		itemColors.register(blockTinter, ExtendedBlocks.MOSS_BLOCK.get());
+		itemColors.register(blockTinter, ExtendedBlocks.MOSS_CARPET.get());
 	}
 }

@@ -321,7 +321,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					}
 				}
 				if(block.getValue().get() instanceof ExtendedMossBlock) {
-					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+					registeredBlocks.add(block.getValue().get());
+					ModelFile cubeModel = models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath(), lotrExtendedLoc("block/tinted_cube_all"), "all", lotrExtendedLoc("block/"+block.getKey()));
+					ModelFile display = models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_display", lotrExtendedLoc("block/"+block.getKey()+"_display"));
+					simpleBlock(block.getValue().get(), cubeModel);
+					itemModels().getBuilder("lotr:"+block.getValue().get().getRegistryName().getPath()).parent(display);
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedStoneBlock) {
@@ -1047,10 +1051,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
 		registeredBlocks.add(carpet);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+carpet.getRegistryName().getPath(), lotrExtendedLoc("block/template_moss_carpet"))
-									.texture("block", lotrExtendedLoc("block/moss_block")).texture("particle", lotrExtendedLoc("block/moss_block"))
-									.texture("side", lotrExtendedLoc("block/moss_carpet_side"));
+			.texture("block", lotrExtendedLoc("block/moss_block")).texture("particle", lotrExtendedLoc("block/moss_block"))
+			.texture("side", lotrExtendedLoc("block/moss_carpet_side"));
+		ModelFile modelFileDisplay = models().withExistingParent("lotrextended:"+carpet.getRegistryName().getPath()+"_display", lotrExtendedLoc("block/template_moss_carpet_display"))
+			.texture("block", lotrExtendedLoc("block/moss_block_display")).texture("particle", lotrExtendedLoc("block/moss_block_display"))
+			.texture("side", lotrExtendedLoc("block/moss_carpet_side_display"));
 		simpleBlock(carpet, modelFile);
-		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFile);
+		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFileDisplay);
 	}
 
 	private void genHangingBlock(ExtendedHangingBlock bed, ResourceLocation texture) {
