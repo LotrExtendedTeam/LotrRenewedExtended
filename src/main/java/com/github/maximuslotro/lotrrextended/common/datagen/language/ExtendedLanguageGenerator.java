@@ -40,6 +40,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addItem(item.getValue(), "");
 		}
 
+		// Try Add New Biomes Names
+		for (String biome : DataGenValueHolder.biomeNames) {
+			addD(biome);
+		}
+
 		// Try Add New Banner Patterns
 		for (BannerPattern entity : ExtendedBannerPatterns.getPatterns()) {
 			for(DyeColor col : DyeColor.values()) {

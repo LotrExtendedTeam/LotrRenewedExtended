@@ -37,7 +37,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.text.LanguageMap;
-import net.minecraft.world.biome.Biome;
 
 @SuppressWarnings("deprecation")
 public abstract class ExtendedLanguageHelper implements IDataProvider {
@@ -150,15 +149,6 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 
 	public void add(Enchantment key, String name) {
 		addD(key.getDescriptionId(), name);
-	}
-
-	
-	public void addBiome(Supplier<? extends Biome> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(Biome key, String name) {
-		addD(key.toString(), name);
 	}
 
 	public void addEffect(Supplier<? extends Effect> key, String name) {

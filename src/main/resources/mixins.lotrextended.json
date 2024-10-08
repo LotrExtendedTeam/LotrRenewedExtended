@@ -23,6 +23,7 @@
 		"lotr.common.entity.npc.MixinUrukArcherEntity",
 		"lotr.common.event.MixinLOTREventHandlerJavaPatch",
 		"lotr.common.fac.MixinEntityFactionHelper",
+		"lotr.common.init.MixinLOTRBiomes",
 		"lotr.common.init.MixinLOTRBlocks",
 		"lotr.common.init.MixinLOTRContainers",
 		"lotr.common.init.MixinLOTRDimensionsJavaPatch",

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "type": "biome",
+    "biome": "lotr:barrow_downs"
+  },
+  "x": 900,
+  "z": 760,
+  "scale": 0.5,
+  "angle": -10,
+  "min_zoom": -0.5,
+  "max_zoom": 2.5
+}

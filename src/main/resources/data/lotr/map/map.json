@@ -1,5 +1,7 @@
 {
-  "image": "lotr:map/middle_earth.png",
+  "_comment": "To load a different map image in your datapack, save it under a new path - DON'T just edit and replace the default image! Different images must have unique paths.",
+
+  "image": "lotrextended:map/middle_earth.png",
   "origin_x": 810,
   "origin_z": 730,
   "scale_power": 7,

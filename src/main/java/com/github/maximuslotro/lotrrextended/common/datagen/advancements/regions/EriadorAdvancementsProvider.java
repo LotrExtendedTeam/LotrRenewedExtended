@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdv
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
@@ -69,9 +70,9 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 //				.setTitle("A Fastness in the Wild").setDescription("Enter the Lands of the Angle."), 
 //				addBiomeTrigger(make(),LOTRBiomes.THE_ANGLE).parent(eriadorBase));
 
-//		Advancement theAngle = build(data(Items.BONE, the_hills_of_the_dead, false, FrameType.TASK, true, true, false)
-//		.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."), 
-//		addBiomeTrigger(make(),LOTRBiomes.BARROW_DOWNS).parent(eriadorBase));
+		Advancement theDead = build(true, data(Items.BONE, "the_hills_of_the_dead", false, FrameType.TASK, true, true, false)
+				.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."), 
+				addBiomeTrigger(make(), ExtendedBiomes.BARROW_DOWNS).parent(eriadorBase));
 
 		Advancement minhiriath = build(true, data(Items.GRASS_BLOCK, "between_the_rivers", false, FrameType.TASK, true, true, false)
 				.setTitle("Between the Rivers").setDescription("Enter the region of Minhiriath."), 
