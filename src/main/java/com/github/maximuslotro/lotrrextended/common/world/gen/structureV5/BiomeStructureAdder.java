@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
+import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.LOTRBiomes;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -46,6 +47,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.ARNOR_RUINS.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_CAMP.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.BARROW_DOWN_RUINS.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -213,6 +215,9 @@ public class BiomeStructureAdder {
 			if(event.getName().equals(LOTRBiomes.GLADDEN_FIELDS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
+			}
+			if(event.getName().equals(ExtendedBiomes.BARROW_DOWNS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWNS_RUINS);
 			}
 		}
 	}

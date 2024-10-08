@@ -15,7 +15,7 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 
 	protected BarrowDownsBiome(Builder builder, boolean major) {
 		super(builder, major);//OldFog 10197915
-		biomeColors.setFoliage(5928279).setWater(329011).setGrass(5928279).setSky(9674385).setClouds(11842740).setFog(1514787).setFoggy(true);
+		biomeColors.setFoliage(5928279).setWater(672836).setGrass(5928279).setSky(9674385).setClouds(11842740).setFog(1514787).setFoggy(true);
 	}
 
 	@Override
