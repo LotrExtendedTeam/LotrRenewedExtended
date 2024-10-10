@@ -94,7 +94,7 @@ public class ExtendedVegetationPatchFeature extends Feature<ExtendedVegetationPa
 			BlockState blockstate = config.groundState.getState(random, blockPosMutable);
 			BlockState blockstate1 = worldgenlevel.getBlockState(blockPosMutable);
 			if (!blockstate.is(blockstate1.getBlock())) {
-				if (!predicate.test(blockstate1)) {
+				if (!predicate.test(blockstate1) || !config.shouldUseBlock(random)) {
 					return i != 0;
 				}
 

@@ -40,6 +40,8 @@ public class ExtendedVegetationPatchConfig implements IFeatureConfig {
 			return p_161312_.xzRadiusMax;
 		}), Codec.floatRange(0.0F, 1.0F).fieldOf("extra_edge_column_chance").forGetter((p_161306_) -> {
 			return p_161306_.extraEdgeColumnChance;
+		}), Codec.floatRange(0.0F, 1.0F).fieldOf("discard_block_chance").forGetter((p_161306_) -> {
+			return p_161306_.discardBlockChance;
 		})).apply(p_161304_, ExtendedVegetationPatchConfig::new);
 	});
 	public final ITag<Block> replaceable;
@@ -53,8 +55,9 @@ public class ExtendedVegetationPatchConfig implements IFeatureConfig {
 	public final int xzRadiusMin;
 	public final int xzRadiusMax;
 	public final float extraEdgeColumnChance;
+	public final float discardBlockChance;
 
-	public ExtendedVegetationPatchConfig(ITag<Block> replaceable, BlockStateProvider groundState, Supplier<ConfiguredFeature<?, ?>> vegetationFeature, ExtendedCaveSurface surface, int depth, float extraBottomBlockChance, int verticalRange, float vegetationChance, int xzRadiusMin, int xzRadiusMax, float extraEdgeColumnChance) {
+	public ExtendedVegetationPatchConfig(ITag<Block> replaceable, BlockStateProvider groundState, Supplier<ConfiguredFeature<?, ?>> vegetationFeature, ExtendedCaveSurface surface, int depth, float extraBottomBlockChance, int verticalRange, float vegetationChance, int xzRadiusMin, int xzRadiusMax, float extraEdgeColumnChance, float discardBlockChance) {
 		this.replaceable = replaceable;
 		this.groundState = groundState;
 		this.vegetationFeature = vegetationFeature;
@@ -66,9 +69,14 @@ public class ExtendedVegetationPatchConfig implements IFeatureConfig {
 		this.xzRadiusMin = xzRadiusMin;
 		this.xzRadiusMax = xzRadiusMax;
 		this.extraEdgeColumnChance = extraEdgeColumnChance;
+		this.discardBlockChance = discardBlockChance;
 	}
 
 	public int samplexzRadius(Random random) {
 		return random.nextInt(xzRadiusMax - xzRadiusMin + 1) + xzRadiusMin;
+	}
+
+	public boolean shouldUseBlock(Random random) {
+		return discardBlockChance==0.0f ? true : random.nextFloat()>discardBlockChance;
 	}
 }
