@@ -1,0 +1,78 @@
+{
+    "speech": [
+      {
+        "conditions": {
+        },
+        "lines": [
+            "Cold be hand and heart and bone... and cold be sleep under stone...",
+            "Never more to wake on stony bed... never... till the Sun fails and the Moon is dead...",
+            "In the black wind the stars shall die... and still on gold here let them lie...",
+            "Till the Dark Lord lifts up his hand... over dead sea and withered land...",
+            "Come with me...",
+            "Let me take you to my tomb...",
+            "Cold be heart and hand and bone... cold be travelers far from home...",
+            "They do not see what lies ahead... when sun has failed and moon is dead...",
+            "When winter first begins to bite... and stones crack in the frosty night... when pools are black and trees are bare...",
+            "I've been waiting for you...",
+            "I've been waiting #p...",
+            "Lost and forgotten be we... darker than darkness..",
+            "Cold now be heart and limb...",
+            "Alive without breath... as cold as death...",
+            "Come into the fog...",
+            "#p... #p... follow me...",
+            "Come here #p...",
+            "Arghhh...",
+            "Ahhggg...",
+            "Nine for Mortal Men doomed to die...",
+            "One for the Dark Lord on his dark throne... in the Land of Mordor where the Shadows lie...",
+            "One Ring to rule them all... one Ring to find them... one Ring to bring them all.. and in the darkness bind them...",
+            "#p...",
+            "Come closer... #p...",
+            "Die now and curse in vain...",
+            "Far off yet is his doom... and not by the hand of man will he fall...",
+            "We cleave to the darkness...",
+            "You shall wither...",
+            "Ahh... aghhhh...",
+            "Raghhh...",
+            "You shall join us #p...",
+            "#p... your end is near..."        ]
+      },
+      {
+        "conditions": {
+          "in_combat": "false"
+        },
+        "lines": [
+            "Where are you...?",
+            "#p... Come here...",
+            "Come to me..."
+        ]
+      },
+      {
+        "conditions": {
+          "daytime": "dusk"
+        },
+        "lines": [
+          "The darkness is falling..."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "#foreign"
+        },
+        "lines": [
+            "Let me take you back to my tomb...",
+            "You cannot run #p...",
+            "Come back..."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "#home"
+        },
+        "lines": [
+            "What brings you to my tomb?...",
+            "You cannot hide..."
+        ]
+      }
+    ]
+  }
