@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:limestone"
+    }
+  },
+  "result": {
+    "item": "lotr:ashlar_limestone_brick"
+  }
+}

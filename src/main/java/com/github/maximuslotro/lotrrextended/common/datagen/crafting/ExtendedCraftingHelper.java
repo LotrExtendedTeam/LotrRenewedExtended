@@ -225,23 +225,23 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeCarpetRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> carpet, Item reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeCarpetRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> carpet, Supplier<? extends Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = carpet.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ShapedRecipeBuilder.shaped(carpet.get())
 			.pattern("##")
-			.define('#', Ingredient.of(reasource))
+			.define('#', Ingredient.of(reasource.get()))
 			.unlockedBy("has_"+name, has(carpet.get()))
-			.unlockedBy("has_"+reasource.getRegistryName().getPath(), has(reasource))
+			.unlockedBy("has_"+reasource.get().getRegistryName().getPath(), has(reasource.get()))
 			.save(consumer, lotrLoc(name));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(carpet.get(), table)
 			.pattern("##")
-			.define('#', Ingredient.of(reasource))
+			.define('#', Ingredient.of(reasource.get()))
 			.unlockedBy("has_"+name, has(carpet.get()))
-			.unlockedBy("has_"+reasource.getRegistryName().getPath(), has(reasource))
+			.unlockedBy("has_"+reasource.get().getRegistryName().getPath(), has(reasource.get()))
 			.save(consumer, lotrLoc(name));
 		}
 	}

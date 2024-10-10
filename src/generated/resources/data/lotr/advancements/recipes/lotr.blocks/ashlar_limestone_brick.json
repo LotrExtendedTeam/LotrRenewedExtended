@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:ashlar_limestone_brick"
+    ]
+  },
+  "criteria": {
+    "has_ashlar_limestone_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ashlar_limestone_brick"
+          }
+        ]
+      }
+    },
+    "has_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:limestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:ashlar_limestone_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ashlar_limestone_brick",
+      "has_limestone",
+      "has_the_recipe"
+    ]
+  ]
+}

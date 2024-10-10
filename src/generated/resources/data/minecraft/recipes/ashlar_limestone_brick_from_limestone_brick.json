@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:limestone_brick"
+  },
+  "result": "lotr:ashlar_limestone_brick",
+  "count": 1
+}
