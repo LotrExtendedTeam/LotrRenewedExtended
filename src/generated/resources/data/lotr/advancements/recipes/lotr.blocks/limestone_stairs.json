@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:limestone_stairs"
+    ]
+  },
+  "criteria": {
+    "has_limestone_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:limestone_stairs"
+          }
+        ]
+      }
+    },
+    "has_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:limestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:limestone_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_limestone_stairs",
+      "has_limestone",
+      "has_the_recipe"
+    ]
+  ]
+}

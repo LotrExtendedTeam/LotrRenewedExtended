@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:limestone_brick"
+    ]
+  },
+  "criteria": {
+    "has_limestone_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:limestone_brick"
+          }
+        ]
+      }
+    },
+    "has_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:limestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:limestone_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_limestone_brick",
+      "has_limestone",
+      "has_the_recipe"
+    ]
+  ]
+}

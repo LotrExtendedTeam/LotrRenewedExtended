@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:smooth_limestone"
+  },
+  "result": "lotr:smooth_limestone_wall",
+  "count": 1
+}

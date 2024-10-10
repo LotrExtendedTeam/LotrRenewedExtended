@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:gneiss_brick"
+  },
+  "result": "lotr:gneiss_brick_stairs",
+  "count": 1
+}

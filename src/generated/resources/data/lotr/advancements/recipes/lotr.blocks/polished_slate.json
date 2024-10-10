@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:polished_slate"
+    ]
+  },
+  "criteria": {
+    "has_polished_slate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:polished_slate"
+          }
+        ]
+      }
+    },
+    "has_slate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:slate"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:polished_slate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_slate",
+      "has_slate",
+      "has_the_recipe"
+    ]
+  ]
+}

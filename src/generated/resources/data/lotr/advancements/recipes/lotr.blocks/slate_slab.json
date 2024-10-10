@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:slate_slab"
+    ]
+  },
+  "criteria": {
+    "has_slate_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:slate_slab"
+          }
+        ]
+      }
+    },
+    "has_slate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:slate"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:slate_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_slate_slab",
+      "has_slate",
+      "has_the_recipe"
+    ]
+  ]
+}

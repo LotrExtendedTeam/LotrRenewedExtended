@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:limestone"
+    }
+  },
+  "result": {
+    "item": "lotr:limestone_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:limestone"
+    }
+  },
+  "result": {
+    "item": "lotr:limestone_slab",
+    "count": 6
+  }
+}

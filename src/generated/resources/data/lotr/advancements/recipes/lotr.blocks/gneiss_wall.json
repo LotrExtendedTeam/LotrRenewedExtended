@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gneiss_wall"
+    ]
+  },
+  "criteria": {
+    "has_gneiss_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gneiss_wall"
+          }
+        ]
+      }
+    },
+    "has_gneiss": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gneiss"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gneiss_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gneiss_wall",
+      "has_gneiss",
+      "has_the_recipe"
+    ]
+  ]
+}

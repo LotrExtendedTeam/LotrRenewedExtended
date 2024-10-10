@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:polished_limestone"
+    ]
+  },
+  "criteria": {
+    "has_polished_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:polished_limestone"
+          }
+        ]
+      }
+    },
+    "has_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:limestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:polished_limestone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_limestone",
+      "has_limestone",
+      "has_the_recipe"
+    ]
+  ]
+}

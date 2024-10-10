@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:polished_slate"
+    }
+  },
+  "result": {
+    "item": "lotr:polished_slate_slab",
+    "count": 6
+  }
+}

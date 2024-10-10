@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:smooth_limestone_slab"
+    ]
+  },
+  "criteria": {
+    "has_smooth_limestone_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:smooth_limestone_slab"
+          }
+        ]
+      }
+    },
+    "has_smooth_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:smooth_limestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:smooth_limestone_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_limestone_slab",
+      "has_smooth_limestone",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -217,19 +217,52 @@ public class ExtendedItems {
 
 	// New Blocks
 	public static RegistryObject<Item> GNEISS_ROCK;
-	public static RegistryObject<Item> GNEISS_BRICKS;
+	public static RegistryObject<Item> GNEISS_ROCK_SLAB;
+	public static RegistryObject<Item> GNEISS_ROCK_STAIRS;
+	public static RegistryObject<Item> GNEISS_ROCK_WALL;
+	public static RegistryObject<Item> GNEISS_BRICK;
+	public static RegistryObject<Item> GNEISS_BRICK_SLAB;
+	public static RegistryObject<Item> GNEISS_BRICK_STAIRS;
+	public static RegistryObject<Item> GNEISS_BRICK_WALL;
 	public static RegistryObject<Item> POLISHED_GNEISS;
+	public static RegistryObject<Item> POLISHED_GNEISS_SLAB;
+	public static RegistryObject<Item> POLISHED_GNEISS_STAIRS;
+	public static RegistryObject<Item> POLISHED_GNEISS_WALL;
 	public static RegistryObject<Item> LIMESTONE_ROCK;
-	public static RegistryObject<Item> LIMESTONE_BRICKS;
-	public static RegistryObject<Item> LIMESTONE_TILES;
+	public static RegistryObject<Item> LIMESTONE_ROCK_SLAB;
+	public static RegistryObject<Item> LIMESTONE_ROCK_STAIRS;
+	public static RegistryObject<Item> LIMESTONE_ROCK_WALL;
+	public static RegistryObject<Item> LIMESTONE_BRICK;
+	public static RegistryObject<Item> LIMESTONE_BRICK_SLAB;
+	public static RegistryObject<Item> LIMESTONE_BRICK_STAIRS;
+	public static RegistryObject<Item> LIMESTONE_BRICK_WALL;
+	public static RegistryObject<Item> LIMESTONE_TILE;
+	public static RegistryObject<Item> LIMESTONE_TILE_SLAB;
+	public static RegistryObject<Item> LIMESTONE_TILE_STAIRS;
+	public static RegistryObject<Item> LIMESTONE_TILE_WALL;
 	public static RegistryObject<Item> POLISHED_LIMESTONE;
+	public static RegistryObject<Item> POLISHED_LIMESTONE_SLAB;
+	public static RegistryObject<Item> POLISHED_LIMESTONE_STAIRS;
+	public static RegistryObject<Item> POLISHED_LIMESTONE_WALL;
 	public static RegistryObject<Item> SMOOTH_LIMESTONE;
+	public static RegistryObject<Item> SMOOTH_LIMESTONE_SLAB;
+	public static RegistryObject<Item> SMOOTH_LIMESTONE_STAIRS;
+	public static RegistryObject<Item> SMOOTH_LIMESTONE_WALL;
 	public static RegistryObject<Item> ASHLAR_LIMESTONE_BRICKS;
 	public static RegistryObject<Item> MOSS_BLOCK;
 	public static RegistryObject<Item> MOSS_CARPET;
 	public static RegistryObject<Item> SLATE_ROCK;
-	public static RegistryObject<Item> SLATE_BRICKS;
+	public static RegistryObject<Item> SLATE_ROCK_SLAB;
+	public static RegistryObject<Item> SLATE_ROCK_STAIRS;
+	public static RegistryObject<Item> SLATE_ROCK_WALL;
+	public static RegistryObject<Item> SLATE_BRICK;
+	public static RegistryObject<Item> SLATE_BRICK_SLAB;
+	public static RegistryObject<Item> SLATE_BRICK_STAIRS;
+	public static RegistryObject<Item> SLATE_BRICK_WALL;
 	public static RegistryObject<Item> POLISHED_SLATE;
+	public static RegistryObject<Item> POLISHED_SLATE_SLAB;
+	public static RegistryObject<Item> POLISHED_SLATE_STAIRS;
+	public static RegistryObject<Item> POLISHED_SLATE_WALL;
 
 	// Equipment
 	public static RegistryObject<Item> TAURETHRIM_AXE;
