@@ -6,6 +6,7 @@ import java.util.OptionalInt;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
@@ -207,8 +208,12 @@ public class ExtendedBiomeFeatures {
 			.tries(15).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build();
 	}
 
-	public static void addBushes(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(placeHeightmapDoubleChance(4)));
+	public static void addBushes(BiomeGenerationSettings.Builder builder, int chance) {
+		builder.addFeature(Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(placeHeightmapDoubleChance(chance)));
+	}
+
+	public static void addMoss(BiomeGenerationSettings.Builder builder, int freq) {
+		builder.addFeature(Decoration.VEGETAL_DECORATION, ExtendedFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
 	}
 
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
@@ -287,5 +292,9 @@ public class ExtendedBiomeFeatures {
 
 	private static ConfiguredPlacement<?> placeHeightmapDoubleChance(int chance) {
 		return Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance);
+	}
+
+	private static ConfiguredPlacement<?> placeHeightmapDoubleFreq(int freq) {
+		return Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().count(freq);
 	}
 }

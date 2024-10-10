@@ -1,5 +1,6 @@
 package lotr.common.biome;
 
+import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeBase;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
@@ -20,8 +21,8 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 
 	@Override
 	protected void addAnimals(net.minecraft.world.biome.MobSpawnInfo.Builder builder) {
-		super.addAnimals(builder);
-		this.addHorsesDonkeys(builder);
+		//super.addAnimals(builder);
+		//this.addHorsesDonkeys(builder);
 	}
 
 	@Override
@@ -45,6 +46,7 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
 		LOTRBiomeFeatures.addGrass(this, builder, 6, GrassBlends.MUTED);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_MUTED);
+		ExtendedBiomeFeatures.addMoss(builder, 2);
 	}
 
 }

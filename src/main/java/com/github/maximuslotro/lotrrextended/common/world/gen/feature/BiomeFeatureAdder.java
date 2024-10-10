@@ -10,7 +10,7 @@ public class BiomeFeatureAdder {
 			if(!(event.getName().equals(LOTRBiomes.MORDOR.getRegistryName())
 				||event.getName().equals(LOTRBiomes.MORDOR_MOUNTAINS.getRegistryName())
 				||event.getName().equals(LOTRBiomes.MORGUL_VALE.getRegistryName()))) {
-				ExtendedBiomeFeatures.addBushes(event.getGeneration());
+				ExtendedBiomeFeatures.addBushes(event.getGeneration(), 4);
 			}
 		}
 	}
