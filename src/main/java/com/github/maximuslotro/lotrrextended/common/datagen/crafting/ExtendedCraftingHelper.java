@@ -173,6 +173,52 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeMetalTrapdoorRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> trapdoor, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = trapdoor.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(trapdoor.get(), 2)
+			.pattern("##")
+			.pattern("##")
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(trapdoor.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(trapdoor.get(), 2, table)
+			.pattern("##")
+			.pattern("##")
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(trapdoor.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
+	protected void makeMetalBarRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> trapdoor, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = trapdoor.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ShapedRecipeBuilder.shaped(trapdoor.get(), 2)
+			.pattern("###")
+			.pattern("###")
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(trapdoor.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(trapdoor.get(), 2, table)
+			.pattern("###")
+			.pattern("###")
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(trapdoor.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeChainRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> chain, Supplier<? extends Item> ingot, Supplier<? extends Item> nugget, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = chain.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);

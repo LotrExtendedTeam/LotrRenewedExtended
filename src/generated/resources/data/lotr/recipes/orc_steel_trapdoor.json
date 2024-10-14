@@ -2,8 +2,8 @@
   "type": "lotr:faction_shaped",
   "table": "lotr:any_orc",
   "pattern": [
-    "###",
-    "###"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
