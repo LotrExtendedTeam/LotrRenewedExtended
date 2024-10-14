@@ -452,7 +452,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.LIMESTONE_BRICK_SLAB = registerB("limestone_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.LIMESTONE_BRICK));
 		ExtendedBlocks.LIMESTONE_BRICK_STAIRS = registerB("limestone_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.LIMESTONE_BRICK));
 		ExtendedBlocks.LIMESTONE_BRICK_WALL = registerB("limestone_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.LIMESTONE_BRICK));
-		ExtendedBlocks.ASHLAR_LIMESTONE_BRICK = registerB("ashlar_limestone_brick", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.POLISHED_LIMESTONE = registerB("polished_limestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 		ExtendedBlocks.POLISHED_LIMESTONE_SLAB = registerB("polished_limestone_slab", () -> new AxialSlabBlock(ExtendedBlocks.POLISHED_LIMESTONE));
 		ExtendedBlocks.POLISHED_LIMESTONE_STAIRS = registerB("polished_limestone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.POLISHED_LIMESTONE));

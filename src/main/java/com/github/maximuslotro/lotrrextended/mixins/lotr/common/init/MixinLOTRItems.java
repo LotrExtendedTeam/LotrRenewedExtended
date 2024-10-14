@@ -420,7 +420,6 @@ public class MixinLOTRItems {
 		ExtendedItems.SMOOTH_LIMESTONE_SLAB = regBlockItemB(ExtendedBlocks.SMOOTH_LIMESTONE_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SMOOTH_LIMESTONE_STAIRS = regBlockItemB(ExtendedBlocks.SMOOTH_LIMESTONE_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SMOOTH_LIMESTONE_WALL = regBlockItemB(ExtendedBlocks.SMOOTH_LIMESTONE_WALL, LOTRItemGroups.BLOCKS);
-		ExtendedItems.ASHLAR_LIMESTONE_BRICKS = regBlockItemB(ExtendedBlocks.ASHLAR_LIMESTONE_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SLATE_ROCK = regBlockItemB(ExtendedBlocks.SLATE_ROCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SLATE_ROCK_SLAB = regBlockItemB(ExtendedBlocks.SLATE_ROCK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SLATE_ROCK_STAIRS = regBlockItemB(ExtendedBlocks.SLATE_ROCK_STAIRS, LOTRItemGroups.BLOCKS);

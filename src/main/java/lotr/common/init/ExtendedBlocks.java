@@ -297,7 +297,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SMOOTH_LIMESTONE_SLAB;
 	public static RegistryObject<Block> SMOOTH_LIMESTONE_STAIRS;
 	public static RegistryObject<Block> SMOOTH_LIMESTONE_WALL;
-	public static RegistryObject<Block> ASHLAR_LIMESTONE_BRICK;
 	public static RegistryObject<Block> MOSS_BLOCK;
 	public static RegistryObject<Block> MOSS_CARPET;
 	public static RegistryObject<Block> SLATE_ROCK;
