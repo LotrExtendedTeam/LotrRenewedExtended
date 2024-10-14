@@ -311,6 +311,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> POLISHED_SLATE_SLAB;
 	public static RegistryObject<Block> POLISHED_SLATE_STAIRS;
 	public static RegistryObject<Block> POLISHED_SLATE_WALL;
+	public static RegistryObject<Block> ANCIENT_RUNE_BLOCK;
 
 	// Bushes
 	public static RegistryObject<Block> RASPBERRY_BUSH;

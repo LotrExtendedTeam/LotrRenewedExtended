@@ -262,6 +262,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> POLISHED_SLATE_SLAB;
 	public static RegistryObject<Item> POLISHED_SLATE_STAIRS;
 	public static RegistryObject<Item> POLISHED_SLATE_WALL;
+	public static RegistryObject<Item> ANCIENT_RUNE_BLOCK;
 
 	// Equipment
 	public static RegistryObject<Item> TAURETHRIM_AXE;

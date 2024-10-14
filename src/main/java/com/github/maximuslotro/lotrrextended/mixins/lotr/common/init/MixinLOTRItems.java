@@ -434,6 +434,7 @@ public class MixinLOTRItems {
 		ExtendedItems.POLISHED_SLATE_WALL = regBlockItemB(ExtendedBlocks.POLISHED_SLATE_WALL, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSS_BLOCK = regBlockItemB(ExtendedBlocks.MOSS_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSS_CARPET = regBlockItemB(ExtendedBlocks.MOSS_CARPET, LOTRItemGroups.BLOCKS);
+		ExtendedItems.ANCIENT_RUNE_BLOCK = regBlockItemB(ExtendedBlocks.ANCIENT_RUNE_BLOCK, LOTRItemGroups.BLOCKS);
 
 		//Mud
 		ExtendedItems.MUD = regBlockItemB(ExtendedBlocks.MUD, LOTRItemGroups.BLOCKS);
