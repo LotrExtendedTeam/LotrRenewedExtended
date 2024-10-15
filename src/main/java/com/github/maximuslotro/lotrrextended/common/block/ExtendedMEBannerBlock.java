@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
@@ -14,7 +15,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -24,6 +27,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -44,7 +48,7 @@ public class ExtendedMEBannerBlock extends Block {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	private static final Map<BannerTypes, Block> BY_BANNER = Maps.newHashMap();
+	private final BannerTypes BANNER;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
 			Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
@@ -56,7 +60,7 @@ public class ExtendedMEBannerBlock extends Block {
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
 		this.banner = bannerType;
-		BY_BANNER.put(bannerType, this);
+		BANNER =bannerType;
 		this.registerDefaultState(this.stateDefinition.any().setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
@@ -152,12 +156,23 @@ public class ExtendedMEBannerBlock extends Block {
 		p_206840_1_.add(FACING).add(HALF).add(SMALL);
 	}
 
-	public static Block byBanner(BannerTypes banner) {
-		return BY_BANNER.getOrDefault(banner, Blocks.WHITE_BANNER);
-	}
-
 	public BannerTypes getBanner() {
 		return this.banner;
+	}
+
+	@Override
+	public boolean hasTileEntity(BlockState state) {
+		return true;
+	}
+
+	@Override
+	public boolean canCreatureSpawn(BlockState state, IBlockReader world, BlockPos pos, PlacementType type, EntityType<?> entityType) {
+		return false;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+		return new ExtendedMEBannerTileEntity();
 	}
 
 	@Override
