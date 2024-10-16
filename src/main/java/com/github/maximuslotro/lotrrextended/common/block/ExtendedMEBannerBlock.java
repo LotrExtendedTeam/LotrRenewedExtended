@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
