@@ -2,7 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.tileentity.banner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermissions;
 
@@ -22,13 +24,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private int alignmentLevel = 1;
 	//False for faction, true for whitelist
 	private boolean protectionType = false;
-	//Default perms for everyone
+	//Default perms for everyone in faction mode
 	private List<BannerPermissions> defaultPerms = new ArrayList<>();
 	//Should protect myself from destruction besides faction member or player placed
 	private boolean canProtectSelf = true;
 	//Should add nbt to dropped items?
 	private boolean used = false;
-	
+	private UUID placedPlayer;
+
 	public ExtendedMEBannerTileEntity() {
 		super(ExtendedTileEntities.BANNER.get());
 	}
@@ -62,6 +65,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public void load(BlockState blockState, CompoundNBT pCompound) {
 		super.load(blockState, pCompound);
 
+		if(pCompound.contains("placedPlayer")) {
+			placedPlayer = pCompound.getUUID("placedPlayer");
+		}
 		if(pCompound.contains("protectionType")) {
 			protectionType = pCompound.getBoolean("protectionType");
 		}
@@ -73,10 +79,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			for (int i = 0; i < whitelist.size(); i++) {
 	            CompoundNBT node = whitelist.getCompound(i);
 	            if (node != null) {
-	                protectionWhitelist.add(ProtectionEntry.fromNBT(node));
+	            	ProtectionEntry entry = ProtectionEntry.fromNBT(node);
+	            	if(entry!=null) {
+	            		protectionWhitelist.add(entry);
+	            	}
 	            }
 	        }
 		}
+		//TODO validate player fellowships 
 		if (pCompound.contains("defaultPerms", 7)) {  // 7 corresponds to a byte array in NBT
 			byte[] ordinalValues = pCompound.getByteArray("perms");
 			// Convert each ordinal value back to a BannerPermissions enum
@@ -100,6 +110,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		pCompound.putBoolean("protectionType", protectionType);
 		if(alignmentLevel>1) {
 			pCompound.putInt("alignmentThreshold", alignmentLevel);
+		}
+		if(placedPlayer!=null) {
+			pCompound.putUUID("placedPlayer", placedPlayer);
 		}
 		if(!protectionWhitelist.isEmpty()) {
 			ListNBT whitelist = new ListNBT();
@@ -130,9 +143,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	public static class ProtectionEntry {
 		private List<BannerPermissions> entryPerms = new ArrayList<>();
-		private ExtendedBannerProfile profile;
+		private ExtendedBannerProfileType profile;
 		
-		public ProtectionEntry(ExtendedBannerProfile profile) {
+		public ProtectionEntry(ExtendedBannerProfileType profile) {
 			this.profile = profile;
 		}
 
@@ -161,7 +174,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				data.putByteArray("perms", ordinalValues);
 			}
 			// Serialize the ExtendedBannerProfile and add it to the CompoundNBT
-			ExtendedBannerProfile.writeGameProfile(data, profile);
+			profile.writeGameProfile(data);
 			// Return the populated CompoundNBT containing all serialized data
 			return data;
 		}
@@ -178,10 +191,23 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 					entryPerms.add(BannerPermissions.values()[ordinal]);
 				}
 			}
-			// Read the ExtendedBannerProfile from the NBT data
-			ExtendedBannerProfile user = ExtendedBannerProfile.readGameProfile(nbt);
+			ExtendedBannerProfileType type;
+			if("player".equals(nbt.getString("type"))) {
+				type = ExtendedBannerPlayer.readGameProfile(nbt);
+			}else if("fellowship".equals(nbt.getString("type"))) {
+				type = ExtendedBannerFellowship.readGameProfile(nbt);
+			}
+			else {
+				ExtendedLog.error("Read an unknown ExtendedBannerProfileType data type!");
+				ExtendedLog.error("The following data has been removed from the banner: "+nbt.toString());
+				ExtendedLog.error("PLEASE REPORT THIS!");
+				return null;
+			}
+			if(type==null) {
+				return null;
+			}
 			// Create the ProtectionEntry object with the user profile
-			ProtectionEntry entry = new ProtectionEntry(user);
+			ProtectionEntry entry = new ProtectionEntry(type);
 			// Set the permissions for the entry
 			entry.setPerms(entryPerms);
 			return entry;

@@ -129,6 +129,9 @@ public class ExtendedFellowship {
 	public boolean isFellowshipAdmin(UUID player) {
 		return (isFellowshipMember(player) && FellowshipAdmins.contains(player));
 	}
+	public boolean isInFellowship(UUID player) {
+		return (isFellowshipMember(player) || isFellowshipOwner(player));
+	}
 	public boolean hasEditPowers(UUID player) {
 		return ((isFellowshipMember(player) && FellowshipAdmins.contains(player))||FellowshipOwner.equals(player));
 	}

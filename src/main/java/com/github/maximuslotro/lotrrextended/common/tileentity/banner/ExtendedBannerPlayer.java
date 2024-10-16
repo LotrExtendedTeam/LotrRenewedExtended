@@ -2,12 +2,10 @@ package com.github.maximuslotro.lotrrextended.common.tileentity.banner;
 
 import java.util.UUID;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 
-
-public class ExtendedBannerProfile {
+public class ExtendedBannerPlayer extends ExtendedBannerProfileType{
 	private final UUID id;
 	private final String name;
 
@@ -20,7 +18,7 @@ public class ExtendedBannerProfile {
 	 * @param name Display name of the profile
 	 * @throws java.lang.IllegalArgumentException Both ID and name are either null or empty
 	 */
-	public ExtendedBannerProfile(final UUID id, final String name) {
+	public ExtendedBannerPlayer(final UUID id, final String name) {
 		if (id == null && org.apache.commons.lang3.StringUtils.isBlank(name)) {
 			throw new IllegalArgumentException("Name and ID cannot both be blank");
 		}
@@ -36,6 +34,7 @@ public class ExtendedBannerProfile {
 	 *
 	 * @return ID of the profile
 	 */
+	@Override
 	public UUID getId() {
 		return id;
 	}
@@ -46,9 +45,21 @@ public class ExtendedBannerProfile {
 	 * This may be null for partial profile data if constructed manually.
 	 *
 	 * @return Name of the profile
+	 * 
 	 */
+	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public String getType() {
+		return "player";
+	}
+
+	@Override
+	public boolean isPlayerListedWithPerms(ServerPlayerEntity player) {
+		return player.getUUID().equals(id);
 	}
 
 	/**
@@ -58,10 +69,11 @@ public class ExtendedBannerProfile {
 	 *
 	 * @return True if this profile is complete (as opposed to partial)
 	 */
+	@Override
 	public boolean isComplete() {
 		return id != null && org.apache.commons.lang3.StringUtils.isNotBlank(getName());
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -71,7 +83,7 @@ public class ExtendedBannerProfile {
 			return false;
 		}
 
-		final ExtendedBannerProfile that = (ExtendedBannerProfile) o;
+		final ExtendedBannerPlayer that = (ExtendedBannerPlayer) o;
 
 		if (id != null ? !id.equals(that.id) : that.id != null) {
 			return false;
@@ -83,25 +95,7 @@ public class ExtendedBannerProfile {
 		return true;
 	}
 
-	@Override
-	public int hashCode() {
-		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (name != null ? name.hashCode() : 0);
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this)
-				.append("id", id)
-				.append("name", name)
-				.toString();
-	}
-
-	/**
-	 * Reads and returns a ExtendedBannerProfile that has been saved to the passed in NBTTagCompound
-	 */
-	public static ExtendedBannerProfile readGameProfile(CompoundNBT pTag) {
+	public static ExtendedBannerPlayer readGameProfile(CompoundNBT pTag) {
 		String s = null;
 		UUID uuid = null;
 		if (pTag.contains("Name", 8)) {
@@ -113,23 +107,21 @@ public class ExtendedBannerProfile {
 		}
 
 		try {
-			ExtendedBannerProfile gameprofile = new ExtendedBannerProfile(uuid, s);
+			ExtendedBannerPlayer gameprofile = new ExtendedBannerPlayer(uuid, s);
 			return gameprofile;
 		} catch (Throwable throwable) {
 			return null;
 		}
 	}
 
-	/**
-	 * Writes a {@code profile} to the given {@code tag}.
-	 */
-	public static CompoundNBT writeGameProfile(CompoundNBT pTag, ExtendedBannerProfile pProfile) {
-		if (!net.minecraft.util.StringUtils.isNullOrEmpty(pProfile.getName())) {
-			pTag.putString("Name", pProfile.getName());
+	@Override
+	public CompoundNBT writeProfileData(CompoundNBT pTag) {
+		if (!net.minecraft.util.StringUtils.isNullOrEmpty(this.getName())) {
+			pTag.putString("Name", this.getName());
 		}
 
-		if (pProfile.getId() != null) {
-			pTag.putUUID("Id", pProfile.getId());
+		if (this.getId() != null) {
+			pTag.putUUID("Id", this.getId());
 		}
 
 
