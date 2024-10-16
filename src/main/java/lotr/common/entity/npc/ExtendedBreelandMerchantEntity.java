@@ -59,13 +59,16 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
             new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 22, 35, 8),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CHERRY_PIE.get()), 7, 13, 16),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_CRUMBLE.get()), 7, 13, 16),
+            // TODO: Make several mutually exclusive trades with pipeweed seeds and the smokable pipeweed as well
             new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 2, 3, 192),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_PANCAKE.get()), 4, 8, 128),
     });
 
     // items Bree-land Merchants can sell to players
     private static final ExtendedTradeEntries BREELAND_MERCHANT_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(LOTRItems.BREE_CRAFTING_TABLE.get()), 75, 125, 8),
-            new ExtendedTradeEntry(new ItemStack(Items.IRON_SWORD), 9, 15, 8)
+            new ExtendedTradeEntry(new ItemStack(Items.IRON_SWORD), 9, 15, 8),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_SYRUP.get()), 2, 3, 16)
     });
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
