@@ -351,7 +351,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath()));
 		makeTorchRecipe(consumer, ExtendedBlocks.MORGUL_TORCH, LOTRItems.GULDURIL, LOTRRecipes.ANY_MORGUL);
 		makeDoorRecipe(consumer, ExtendedItems.ORC_STEEL_DOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
-		makeTrapdoorRecipe(consumer, ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
+		makeMetalTrapdoorRecipe(consumer, ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
 		makeChainRecipe(consumer, ExtendedBlocks.ORC_CHAIN, LOTRItems.ORC_STEEL_INGOT, ExtendedItems.ORC_STEEL_NUGGET, LOTRRecipes.ANY_ORC);
 		//DOL GULDUR
 		makeArmorRecipe(consumer, ExtendedItems.DOL_GULDUR_HELMET, 
@@ -1185,8 +1185,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.SMOOTH_LIMESTONE_SLAB, 
 			ExtendedBlocks.SMOOTH_LIMESTONE_WALL, 
 			ExtendedItems.SMOOTH_LIMESTONE, null);
-		makeCarpetRecipe(consumer, ExtendedBlocks.ASHLAR_LIMESTONE_BRICK, 
-			ExtendedItems.LIMESTONE_ROCK, null);
 	}
 
 	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1859,8 +1857,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_LIMESTONE, ExtendedBlocks.SMOOTH_LIMESTONE_SLAB, 2);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_LIMESTONE, ExtendedBlocks.SMOOTH_LIMESTONE_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_LIMESTONE, ExtendedBlocks.SMOOTH_LIMESTONE_WALL);
-		makeStoneCutterRecipe(consumer, ExtendedBlocks.LIMESTONE_ROCK, ExtendedBlocks.ASHLAR_LIMESTONE_BRICK);
-		makeStoneCutterRecipe(consumer, ExtendedBlocks.LIMESTONE_BRICK, ExtendedBlocks.ASHLAR_LIMESTONE_BRICK);
 		
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SLATE_ROCK, ExtendedBlocks.SLATE_ROCK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SLATE_ROCK, ExtendedBlocks.SLATE_ROCK_STAIRS);
@@ -1980,6 +1976,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.LIMESTONE_ROCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GNEISS_ROCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.MOSS_BLOCK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ANCIENT_RUNE_BLOCK.get().getRegistryName().getPath());
 	}
 
 	@Override

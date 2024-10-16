@@ -248,7 +248,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SMOOTH_LIMESTONE_SLAB;
 	public static RegistryObject<Item> SMOOTH_LIMESTONE_STAIRS;
 	public static RegistryObject<Item> SMOOTH_LIMESTONE_WALL;
-	public static RegistryObject<Item> ASHLAR_LIMESTONE_BRICKS;
 	public static RegistryObject<Item> MOSS_BLOCK;
 	public static RegistryObject<Item> MOSS_CARPET;
 	public static RegistryObject<Item> SLATE_ROCK;
@@ -263,6 +262,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> POLISHED_SLATE_SLAB;
 	public static RegistryObject<Item> POLISHED_SLATE_STAIRS;
 	public static RegistryObject<Item> POLISHED_SLATE_WALL;
+	public static RegistryObject<Item> ANCIENT_RUNE_BLOCK;
 
 	// Equipment
 	public static RegistryObject<Item> TAURETHRIM_AXE;

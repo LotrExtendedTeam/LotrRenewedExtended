@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lotr:ashlar_limestone_brick"
+          "name": "lotr:ancient_rune_stone"
         }
       ],
       "conditions": [
