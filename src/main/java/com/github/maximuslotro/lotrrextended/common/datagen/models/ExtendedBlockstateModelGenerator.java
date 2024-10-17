@@ -45,7 +45,6 @@ import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedFurBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
-import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.LOTRBlockStates;
@@ -359,10 +358,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRPillarBlock) {
 					genPillarBlockItem((LOTRPillarBlock) block.getValue().get(), "block/"+block.getKey());
-					continue;
-				}
-				if(block.getValue().get() instanceof ExtendedTwoTypeDummyBlock) {
-					genTopBottomTwoSidedNonRotatableBlockItem((ExtendedTwoTypeDummyBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedLOTRTorchBlock) {
@@ -998,8 +993,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation east = lotrExtendedLoc(name+"_side_2");
 		ResourceLocation west = lotrExtendedLoc(name+"_side_2");
 		ModelFile cubeModel = models().cube("lotrextended:"+table.getRegistryName().getPath(), down, up, north, south, east, west).texture("particle", north);
-		String name2 = table.getAltBlock().get().getRegistryName().getPath();
-		ModelFile cubeModel1 = models().getExistingFile(lotrExtendedLoc(name2));
+		ResourceLocation down1 = lotrExtendedLoc(name+"_bottom_alt");
+		ResourceLocation up1 = lotrExtendedLoc(name+"_top_alt");
+		ResourceLocation north1 = lotrExtendedLoc(name+"_side_1_alt");
+		ResourceLocation south1 = lotrExtendedLoc(name+"_side_1_alt");
+		ResourceLocation east1 = lotrExtendedLoc(name+"_side_2_alt");
+		ResourceLocation west1 = lotrExtendedLoc(name+"_side_2_alt");
+		ModelFile cubeModel1 = models().cube("lotrextended:"+table.getRegistryName().getPath()+"_alt", down1, up1, north1, south1, east1, west1).texture("particle", north1);
 		getVariantBuilder(table)
 		.forAllStatesExcept(state -> {
 			Boolean type = state.getValue(ExtendedTwoTypeCraftingTableBlock.ALTERNATITE);

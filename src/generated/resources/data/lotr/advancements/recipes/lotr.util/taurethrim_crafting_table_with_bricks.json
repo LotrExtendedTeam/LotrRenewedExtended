@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:stone_taurethrim_crafting_table"
+      "lotr:taurethrim_crafting_table_with_bricks"
     ]
   },
   "criteria": {
-    "has_stone_taurethrim_crafting_table": {
+    "has_taurethrim_crafting_table": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:stone_taurethrim_crafting_table"
+            "item": "lotr:taurethrim_crafting_table"
           }
         ]
       }
@@ -29,13 +29,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:stone_taurethrim_crafting_table"
+        "recipe": "lotr:taurethrim_crafting_table_with_bricks"
       }
     }
   },
   "requirements": [
     [
-      "has_stone_taurethrim_crafting_table",
+      "has_taurethrim_crafting_table",
       "has_taurethrim_brick",
       "has_the_recipe"
     ]

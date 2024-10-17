@@ -207,8 +207,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get().getRegistryName().getPath(), has(ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get().getRegistryName().getPath()+"_from_ornate"));
 		//CRAFTING TABLES
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE, 
-			()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, 
+			()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), "_with_bricks", ExtendedRecipes.TAURETHRIM_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, 
 			()->ExtendedBlocks.MUD_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, 

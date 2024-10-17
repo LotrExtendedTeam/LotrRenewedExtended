@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "lotrextended:block/taurethrim_crafting_table_bottom_alt",
+    "up": "lotrextended:block/taurethrim_crafting_table_top_alt",
+    "north": "lotrextended:block/taurethrim_crafting_table_side_1_alt",
+    "south": "lotrextended:block/taurethrim_crafting_table_side_1_alt",
+    "east": "lotrextended:block/taurethrim_crafting_table_side_2_alt",
+    "west": "lotrextended:block/taurethrim_crafting_table_side_2_alt",
+    "particle": "lotrextended:block/taurethrim_crafting_table_side_1_alt"
+  }
+}

@@ -4,7 +4,7 @@
       "model": "lotrextended:block/taurethrim_crafting_table"
     },
     "table_alternative_texture=true": {
-      "model": "lotrextended:block/stone_taurethrim_crafting_table"
+      "model": "lotrextended:block/taurethrim_crafting_table_alt"
     }
   }
 }

@@ -77,7 +77,6 @@ import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedFurBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedSignTypes;
-import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
@@ -665,8 +664,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WILDBERRY_BUSH_PLANT = registerB("wildberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.WILDBERRY));
 
 		//CRAFTING TABLES
-		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE));
-		ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE = registerB("stone_taurethrim_crafting_table", () -> new ExtendedTwoTypeDummyBlock(ExtendedBlocks.TAURETHRIM_BRICK, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE));
+		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.RHUNIC_CRAFTING_TABLE = registerB("rhunic_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Rhunic(ExtendedBlocks.RHUNIC_BRICK));
 		ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE = registerB("half_troll_crafting_table", () -> new ExtendedFactionCraftingTableBlock.HalfTroll(()-> Blocks.COBBLESTONE));
