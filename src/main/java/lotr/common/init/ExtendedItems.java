@@ -349,7 +349,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> RAW_DUCK;
 	
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
-	public static RegistryObject<Item> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_STAIRS;

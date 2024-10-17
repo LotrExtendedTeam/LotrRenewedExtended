@@ -78,7 +78,7 @@ public class ExtendedDataIdFixer {
 		addRemapBlock("entity_spawnerhobbit_bartender", "lotr", ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_BARTENDER.getSerializedName()));
 
 		//Beta 1.3.0-alpha-1 Renamed Stone Taurethrim table name
-		addRemapBlockWithItem("taurethrim_stone_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_STONE_CRAFTING_TABLE);
+		addRemapBlockWithItem("taurethrim_stone_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_CRAFTING_TABLE);
 
 		//Beta 1.4.0 Changed Grey->Gray
 		addRemapItem("grey_fur", "lotr", ExtendedItems.GRAY_FUR);
@@ -97,7 +97,7 @@ public class ExtendedDataIdFixer {
 		//Beta 1.7.0-alpha-2 Cleanup stuff
 		addRemapItem("morgul_spear", "lotr", ExtendedItems.ANGMAR_SPEAR);
 		addRemapItem("morgul_dagger", "lotr", ExtendedItems.ANGMAR_DAGGER);
-		addRemapBlockWithItem("stone_taurethrim_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_STONE_CRAFTING_TABLE);
+		addRemapBlockWithItem("stone_taurethrim_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_CRAFTING_TABLE);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {
