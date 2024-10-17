@@ -116,13 +116,11 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BOWSTRING;
 
-	public static RegistryObject<Item> MORGUL_SWORD;
+	public static RegistryObject<Item> MORGUL_BLADE;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
 	public static RegistryObject<Item> MORGUL_LEGGINGS;
 	public static RegistryObject<Item> MORGUL_BOOTS;
-	public static RegistryObject<Item> MORGUL_SPEAR;
-	public static RegistryObject<Item> MORGUL_DAGGER;
 
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;

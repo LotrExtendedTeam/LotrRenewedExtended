@@ -93,6 +93,10 @@ public class ExtendedDataIdFixer {
 		
 		//Beta 1.6.2-alpha-1 Renamed Millstone to Stone Grinder
 		addRemapBlockWithItem("millstone", "lotr", ExtendedBlocks.STONE_GRINDER, ExtendedItems.STONE_GRINDER);
+		
+		//Beta 1.7.0-alpha-2 Removed Morgul Dagger and Spear
+		addRemapItem("morgul_spear", "lotr", ExtendedItems.ANGMAR_SPEAR);
+		addRemapItem("morgul_dagger", "lotr", ExtendedItems.ANGMAR_DAGGER);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {
