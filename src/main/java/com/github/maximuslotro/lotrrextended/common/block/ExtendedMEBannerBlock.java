@@ -38,6 +38,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -152,6 +153,27 @@ public class ExtendedMEBannerBlock extends Block {
 		}
 	}
 
+	/**
+	 * Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect
+	 * this block
+	 */
+	@Override
+	public void playerWillDestroy(World pLevel, BlockPos pPos, BlockState pState, PlayerEntity pPlayer) {
+		if (!pLevel.isClientSide && pPlayer.isCreative()) {
+			DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
+			if (doubleblockhalf == DoubleBlockHalf.UPPER) {
+				BlockPos blockpos = pPos.below();
+				BlockState blockstate = pLevel.getBlockState(blockpos);
+				if (blockstate.getBlock() == pState.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+					pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+					pLevel.levelEvent(pPlayer, 2001, blockpos, Block.getId(blockstate));
+				}
+			}
+		}
+
+		super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
+	}
+
 	@Override
 	public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
 		return p_185499_1_.setValue(FACING, p_185499_2_.rotate(p_185499_1_.getValue(FACING)));
@@ -189,8 +211,8 @@ public class ExtendedMEBannerBlock extends Block {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(IBlockReader world, BlockPos blockPos, BlockState p_185473_3_) {
-		TileEntity tileentity = world.getBlockEntity(blockPos);
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		TileEntity tileentity = world.getBlockEntity(pos);
 		return tileentity instanceof ExtendedMEBannerTileEntity ? ((ExtendedMEBannerTileEntity) tileentity).getItem(type) : new ItemStack(this);
 	}
 

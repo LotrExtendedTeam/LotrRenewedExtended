@@ -17,6 +17,7 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
@@ -26,6 +27,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -74,9 +76,14 @@ public class ExtendedMEBannerWallBlock extends Block {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(IBlockReader world, BlockPos blockPos, BlockState p_185473_3_) {
-		TileEntity tileentity = world.getBlockEntity(blockPos);
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		TileEntity tileentity = world.getBlockEntity(pos);
 		return tileentity instanceof ExtendedMEHangingBannerTileEntity ? ((ExtendedMEHangingBannerTileEntity) tileentity).getItem(type) : new ItemStack(this);
+	}
+
+	@Override
+	public boolean hasTileEntity(BlockState state) {
+		return true;
 	}
 
 	@Override
@@ -133,23 +140,6 @@ public class ExtendedMEBannerWallBlock extends Block {
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
 		p_206840_1_.add(FACING);
 	}
-
-
-//	@Override
-//	public void setPlacedBy(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, @Nullable LivingEntity p_180633_4_, ItemStack p_180633_5_) {
-//		if (p_180633_5_.hasCustomHoverName()) {
-//			TileEntity tileentity = p_180633_1_.getBlockEntity(p_180633_2_);
-//			if (tileentity instanceof BannerTileEntity) {
-//				((BannerTileEntity) tileentity).setCustomName(p_180633_5_.getHoverName());
-//			}
-//		}
-//	}
-
-//	@Override
-//	public ItemStack getCloneItemStack(IBlockReader p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
-//		TileEntity tileentity = p_185473_1_.getBlockEntity(p_185473_2_);
-//		return tileentity instanceof BannerTileEntity ? ((BannerTileEntity) tileentity).getItem(p_185473_3_) : super.getCloneItemStack(p_185473_1_, p_185473_2_, p_185473_3_);
-//	}
 
 	public BannerTypes getBanner() {
 		return this.type;
