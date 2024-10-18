@@ -7,9 +7,13 @@ import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.VesselDrinkItem;
+import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
+import lotr.common.util.representation.ExtendedMultitradeEntry;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import lotr.common.util.representation.ExtendedTradeEntry;
@@ -59,16 +63,40 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
             new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 22, 35, 8),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CHERRY_PIE.get()), 7, 13, 16),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_CRUMBLE.get()), 7, 13, 16),
-            // TODO: Make several mutually exclusive trades with pipeweed seeds and the smokable pipeweed as well
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 2, 3, 192),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1, 192),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED.get(), 6), 8, 16, 64),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get(), 6), 6, 10, 16)}),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_PANCAKE.get()), 4, 8, 128),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.DRYSTONE.get(), 16), 2, 6, 16),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.SMOKING_PIPE.get()), 8, 14, 1)
     });
 
     // items Bree-land Merchants can sell to players
-    private static final ExtendedTradeEntries BREELAND_MERCHANT_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
+    private static final ExtendedTradeEntries BREELAND_MERCHANT_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[]{
             new ExtendedTradeEntry(new ItemStack(LOTRItems.BREE_CRAFTING_TABLE.get()), 75, 125, 8),
-            new ExtendedTradeEntry(new ItemStack(Items.IRON_SWORD), 9, 15, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_SYRUP.get()), 2, 3, 16)
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
+                    new ExtendedTradeEntry(new ItemStack(Items.IRON_SWORD), 9, 15, 8),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SWORD.get()), 8, 13, 8),
+            }),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.IRON_DAGGER.get()), 6, 10, 8),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 5, 9, 8),
+            }),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
+                    new ExtendedTradeEntry(new ItemStack(Items.IRON_CHESTPLATE), 17, 28, 8),
+                    new ExtendedTradeEntry(new ItemStack(Items.IRON_LEGGINGS), 14, 23, 8),
+            }),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
+                    new ExtendedTradeEntry(new ItemStack(Items.IRON_HELMET), 12, 20, 8),
+                    new ExtendedTradeEntry(new ItemStack(Items.IRON_BOOTS), 11, 18, 8),
+            }),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_SYRUP.get()), 2, 3, 16),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 8),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.MODERATE), 6, 10, 8),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.STRONG), 8, 13, 8)
+            })
     });
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
@@ -331,7 +359,7 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     @Override
     public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        // TODO: Actually setup merchant departure lines
+        // TODO: Make sure this gets updated to match the new number of departure lines
         return new TranslationTextComponent("speechbank.breeland_merchant.departure." + (random.nextInt(2) + 1), getName(), player.getName());
     }
 
@@ -355,7 +383,7 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     @Override
     public NPCEntity createEscort() {
-        return null;
+        return LOTREntities.BREE_GUARD.get().create(level);
     }
 
 	@Override

@@ -289,8 +289,6 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         }
 
         // every 1 minute allow one more trade in both buys and sells to be done again
-        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
-        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
         if (lastTickCooldownReduced >= 1200) {
             for (ExtendedTrade trade : itemsSoldByTrader) {
                 if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
