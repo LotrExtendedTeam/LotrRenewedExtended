@@ -218,6 +218,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
 		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
 
+		// Banner Item Info
+		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
+
 		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");
 		addD("item.lotr.horn_of_command.reddy");

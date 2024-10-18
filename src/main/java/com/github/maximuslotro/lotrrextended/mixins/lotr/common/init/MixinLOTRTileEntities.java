@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrinderTi
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEHangingBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -108,7 +109,8 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));
     	ExtendedTileEntities.ORC_BARREL = register("orc_barrel_tileentity", () -> Builder.of(ExtendedOrcBarrelTileEntity::new, ExtendedBlocks.ORC_BARREL.get()));
     	ExtendedTileEntities.MILLSTONE = register("stone_grinder_tileentity", () -> Builder.of(ExtendedGrinderTileEntity::new, ExtendedBlocks.STONE_GRINDER.get()));
-    	ExtendedTileEntities.BANNER = register("banner_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, BannerTypes.getContainedBlocks()));
+    	ExtendedTileEntities.BANNER_STANDING = register("banner_s_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, BannerTypes.getContainedStandingBlocks()));
+    	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, BannerTypes.getContainedHangingBlocks()));
 
     }
 }

@@ -1,32 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.function.Predicate;
-
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
-import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
-import com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
+import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.NPCEntity;
-import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
-import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,33 +14,21 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap.Type;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedBannerEntity extends Entity{
+public class ExtendedBannerEntity extends Entity {
 	private static final DataParameter<Integer> SPAWNER_BOUNDS = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.INT);
-
 	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
 	private boolean firstTick = true;
@@ -70,7 +38,7 @@ public class ExtendedBannerEntity extends Entity{
 	}
 
 	public ExtendedBannerEntity(World pLevel) {
-		this(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), pLevel);
+		this(ExtendedEntities.BANNER_HOLDER.get(), pLevel);
 	}
 
 	@Override
@@ -85,6 +53,19 @@ public class ExtendedBannerEntity extends Entity{
 			if(queueToRemove) {
 				this.remove();
 			}else {
+				TileEntity tileentity = level.getBlockEntity(blockPosition());
+		        if (tileentity instanceof ExtendedMEBannerTileEntity) {
+		        	ExtendedMEBannerTileEntity banner = ((ExtendedMEBannerTileEntity)tileentity);
+		        	if(banner.isActiveHalf()) {
+		        		if(!this.getUUID().equals(banner.getEntityID())) {
+			        		queueToRemove = true;
+			        	}
+		        	}else {
+		        		queueToRemove = true;
+		        	}
+		        }else {
+		        	queueToRemove = true;
+		        }
 				firstTick = false;
 			}
 		}
@@ -142,6 +123,10 @@ public class ExtendedBannerEntity extends Entity{
 
 	public int getSpawnerOutline() {
 		return this.getEntityData().get(SPAWNER_BOUNDS);
+	}
+
+	@Override
+	public void kill() {
 	}
 
 	@Override

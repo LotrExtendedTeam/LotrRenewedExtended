@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrinderTi
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEHangingBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
@@ -45,6 +46,7 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedReedBasketTileEntity>> REED_BASKET;
 	public static RegistryObject<TileEntityType<ExtendedOrcBarrelTileEntity>> ORC_BARREL;
 	public static RegistryObject<TileEntityType<ExtendedGrinderTileEntity>> MILLSTONE;
-	public static RegistryObject<TileEntityType<ExtendedMEBannerTileEntity>> BANNER;
+	public static RegistryObject<TileEntityType<ExtendedMEBannerTileEntity>> BANNER_STANDING;
+	public static RegistryObject<TileEntityType<ExtendedMEHangingBannerTileEntity>> BANNER_HANGING;
 }
 

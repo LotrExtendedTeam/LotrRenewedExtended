@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -48,19 +49,17 @@ public class ExtendedMEBannerBlock extends Block {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	private final BannerTypes BANNER;
+	private final BannerTypes type;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
 			Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
 			Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
 			Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D), 
 			Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
-	private final BannerTypes banner;
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
-		this.banner = bannerType;
-		BANNER =bannerType;
+		type =bannerType;
 		this.registerDefaultState(this.stateDefinition.any().setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
@@ -86,7 +85,6 @@ public class ExtendedMEBannerBlock extends Block {
 		} else {
 			return canSupportCenter(world, pos.below(), Direction.UP);
 		}
-		//return world.getBlockState(pos.below()).getMaterial().isSolid();
 	}
 
 	@Override
@@ -94,6 +92,20 @@ public class ExtendedMEBannerBlock extends Block {
 		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER)
 				.setValue(SMALL, state.getValue(SMALL))
 				.setValue(FACING, state.getValue(FACING)), 3);
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof ExtendedMEBannerTileEntity && stack.getItem() instanceof ExtendedMCBannerItem) {
+			if (stack.getTag()!=null && stack.getTag().contains("ProtectionData", 10)) {
+				((ExtendedMEBannerTileEntity) tileentity).loadProtectionData(stack.getTag());
+			}else {
+				if(placer instanceof PlayerEntity) {
+					((ExtendedMEBannerTileEntity) tileentity).setPlacedPlayerNameAndID(placer.getUUID(), ((PlayerEntity)placer).getGameProfile().getName());
+				}
+			}
+		}
+	}
+
+	public BannerTypes getBanner() {
+		return this.type;
 	}
 
 	@Override
@@ -156,10 +168,6 @@ public class ExtendedMEBannerBlock extends Block {
 		p_206840_1_.add(FACING).add(HALF).add(SMALL);
 	}
 
-	public BannerTypes getBanner() {
-		return this.banner;
-	}
-
 	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
@@ -180,21 +188,11 @@ public class ExtendedMEBannerBlock extends Block {
 		return true;
 	}
 
-//	@Override
-//	public void setPlacedBy(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, @Nullable LivingEntity p_180633_4_, ItemStack p_180633_5_) {
-//		if (p_180633_5_.hasCustomHoverName()) {
-//			TileEntity tileentity = p_180633_1_.getBlockEntity(p_180633_2_);
-//			if (tileentity instanceof BannerTileEntity) {
-//				((BannerTileEntity) tileentity).setCustomName(p_180633_5_.getHoverName());
-//			}
-//		}
-//	}
-
-//	@Override
-//	public ItemStack getCloneItemStack(IBlockReader p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
-//		TileEntity tileentity = p_185473_1_.getBlockEntity(p_185473_2_);
-//		return tileentity instanceof BannerTileEntity ? ((BannerTileEntity) tileentity).getItem(p_185473_3_) : super.getCloneItemStack(p_185473_1_, p_185473_2_, p_185473_3_);
-//	}
+	@Override
+	public ItemStack getCloneItemStack(IBlockReader world, BlockPos blockPos, BlockState p_185473_3_) {
+		TileEntity tileentity = world.getBlockEntity(blockPos);
+		return tileentity instanceof ExtendedMEBannerTileEntity ? ((ExtendedMEBannerTileEntity) tileentity).getItem(type) : new ItemStack(this);
+	}
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
