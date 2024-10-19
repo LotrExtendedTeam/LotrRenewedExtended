@@ -14,7 +14,9 @@ import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedTileEntities;
+import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -51,22 +53,37 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public void tick() {
 		isActiveHalf = this.getBlockState().getValue(ExtendedMEBannerBlock.HALF) == DoubleBlockHalf.LOWER;
 		if(isActiveHalf) {
-			if(connectedEntity==null) {
-				createAndSetBannerEntity();
-			}else {
-				AxisAlignedBB checkBox = new AxisAlignedBB(this.getBlockPos(), this.getBlockPos().offset(1, 1, 1));
-				Predicate<ExtendedBannerEntity> pred = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
-				List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, pred);
-				if(banners.size()<=0) {
+			setProtectionLevelFromBelowBlock();
+			if(isProtecting()) {
+				if(connectedEntity==null) {
 					createAndSetBannerEntity();
-				}
-				if(banners.size()>1){
-					for(ExtendedBannerEntity banner : banners) {
-						banner.remove();
+				}else {
+					AxisAlignedBB checkBox = new AxisAlignedBB(this.getBlockPos(), this.getBlockPos().offset(1, 1, 1));
+					Predicate<ExtendedBannerEntity> pred = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
+					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, pred);
+					if(banners.size()<=0) {
+						createAndSetBannerEntity();
+					}else if(banners.size()>1){
+						for(ExtendedBannerEntity banner : banners) {
+							banner.remove();
+						}
+						createAndSetBannerEntity();
 					}
-					createAndSetBannerEntity();
 				}
 			}
+		}
+	}
+
+	private void setProtectionLevelFromBelowBlock() {
+		BlockState belowBlockstate = level.getBlockState(this.getBlockPos().below());
+		if(belowBlockstate.is(Blocks.GOLD_BLOCK)) {
+			setProtectionLevel(BannerProtectionLevel.GOLD);
+		}else if(belowBlockstate.is(LOTRBlocks.SILVER_BLOCK.get())) {
+			setProtectionLevel(BannerProtectionLevel.SILVER);
+		}else if(belowBlockstate.is(LOTRBlocks.BRONZE_BLOCK.get())) {
+			setProtectionLevel(BannerProtectionLevel.BRONZE);
+		}else {
+			setProtectionLevel(BannerProtectionLevel.NONE);
 		}
 	}
 
@@ -76,8 +93,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private void createAndSetBannerEntity() {
 		EntityType<ExtendedBannerEntity> newBannerEntity = ExtendedEntities.BANNER_HOLDER.get();
 		ExtendedBannerEntity banner = newBannerEntity.create(level);
-		banner.moveTo(this.getBlockPos().offset(0.5D, 0, 0.5D), 0.0f, 0.0F);
-		connectedEntity = banner.getUUID();
+		if(banner!=null) {
+			banner.moveTo(this.getBlockPos().offset(0.5D, 0, 0.5D), 0.0f, 0.0F);
+			level.addFreshEntity(banner);
+			connectedEntity = banner.getUUID();
+		}
 	}
 
 	/**
@@ -98,6 +118,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	/**
+	 * Get banner protection radius
+	 * @return int
+	 * */
+	public int getProtectionRadius() {
+		return protectionLevel.getProtectionRadius();
+	}
+
+	/**
 	 * Gets the banner's protection level 
 	 * @return BannerProtectionLevel
 	 * */
@@ -111,6 +139,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * */
 	public void setProtectionLevel(BannerProtectionLevel protectionLevel) {
 		this.protectionLevel = protectionLevel;
+		if(protectionLevel.getProtectionRadius()>0) {
+			used = true;
+		}
 	}
 
 	/**
@@ -181,6 +212,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	public void loadProtectionData(CompoundNBT loadableData) {
+		if(loadableData.contains("ProtectionDataUnique")) {
+			if(loadableData.contains("connectedEntity")) {
+				connectedEntity = loadableData.getUUID("connectedEntity");
+			}
+		}
 		if(loadableData.contains("ProtectionData")) {
 			CompoundNBT pCompound = loadableData.getCompound("ProtectionData");
 			protectionType = pCompound.getBoolean("protectionType");
@@ -230,6 +266,13 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	@Override
 	public CompoundNBT save(CompoundNBT pCompound) {
 		super.save(pCompound);
+		CompoundNBT pUniqueCompound = new CompoundNBT();
+		if(connectedEntity!=null) {
+			pUniqueCompound.putUUID("connectedEntity", connectedEntity);
+		}
+		if(!pUniqueCompound.isEmpty()) {
+			pCompound.put("ProtectionDataUnique", pUniqueCompound);
+		}
 		saveProtectionData(pCompound);
 		return pCompound;
 	}

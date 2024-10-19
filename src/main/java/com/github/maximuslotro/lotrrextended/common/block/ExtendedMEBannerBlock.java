@@ -60,7 +60,7 @@ public class ExtendedMEBannerBlock extends Block {
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
-		type =bannerType;
+		type = bannerType;
 		this.registerDefaultState(this.stateDefinition.any().setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 

@@ -182,7 +182,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							continue; // Try spawning again
 						}
 					}
-					//System.out.println("Suscessfully ran Spawn checks");
+					//System.out.println("Successfully ran Spawn checks");
 					List<EntityType<?>> generatedSpawns = spawnerInstance.getSpawns(random);
 					for(EntityType<?> generatedSpawn : generatedSpawns) {
 						//System.out.println("Attempting to Spawn Entity");
@@ -234,7 +234,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							// Break out of entire loop
 							attempt = 100;
 							roll = 100;
-							//System.out.println("Spawned couple suscessfully");
+							//System.out.println("Spawned couple successfully");
 							break;
 						}else {
 							// Moved code from ExtendedStructureSpawnerTileEntity
@@ -272,7 +272,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
 						}
-						//System.out.println("Spawned entity suscessfully: "+nearbyEntitySpawnCount);
+						//System.out.println("Spawned entity successfully: "+nearbyEntitySpawnCount);
 						if(nearbyEntitySpawnCount >= spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 							//System.out.println("Spawning surpasses cap, exiting!");
 							attempt = 100;

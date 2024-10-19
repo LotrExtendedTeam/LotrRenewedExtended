@@ -31,7 +31,6 @@ public class ExtendedBannerEntity extends Entity {
 	private static final DataParameter<Integer> SPAWNER_BOUNDS = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.INT);
 	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
-	private boolean firstTick = true;
 
 	public ExtendedBannerEntity(EntityType<? extends ExtendedBannerEntity> pType, World pLevel) {
 		super(pType, pLevel);
@@ -59,6 +58,8 @@ public class ExtendedBannerEntity extends Entity {
 		        	if(banner.isActiveHalf()) {
 		        		if(!this.getUUID().equals(banner.getEntityID())) {
 			        		queueToRemove = true;
+			        	}else {
+			        		this.setSpawnerRange(banner.getProtectionRadius());
 			        	}
 		        	}else {
 		        		queueToRemove = true;
@@ -66,22 +67,27 @@ public class ExtendedBannerEntity extends Entity {
 		        }else {
 		        	queueToRemove = true;
 		        }
-				firstTick = false;
 			}
 		}
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
-		if(pCompound.contains("firstTick")) {
-			this.firstTick = pCompound.getBoolean("firstTick");
+//		if(pCompound.contains("firstTick")) {
+//			this.firstTick = pCompound.getBoolean("firstTick");
+//		}
+		if(pCompound.contains("protectionRange")) {
+			setSpawnerRange(pCompound.getInt("protectionRange"));
 		}
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
-		if(!this.firstTick) {
-			pCompound.putBoolean("firstTick", false);
+//		if(!this.firstTick) {
+//			pCompound.putBoolean("firstTick", false);
+//		}
+		if(getSpawnerRanger()>0) {
+			pCompound.putInt("protectionRange", getSpawnerRanger());
 		}
 	}
 
@@ -121,13 +127,19 @@ public class ExtendedBannerEntity extends Entity {
 		return true;
 	}
 
-	public int getSpawnerOutline() {
+	public int getSpawnerRanger() {
 		return this.getEntityData().get(SPAWNER_BOUNDS);
 	}
 
-	@Override
-	public void kill() {
+	public void setSpawnerRange(int range) {
+		this.getEntityData().set(SPAWNER_BOUNDS, range);
 	}
+
+	/**
+	 * Disable killing accidently with kill command
+	 * */
+	@Override
+	public void kill() {}
 
 	@Override
 	public void remove() {
