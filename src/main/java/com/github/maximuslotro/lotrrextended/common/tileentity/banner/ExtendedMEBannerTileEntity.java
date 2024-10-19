@@ -12,12 +12,14 @@ import com.github.maximuslotro.lotrrextended.common.enums.BannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionLevel;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 
+import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -205,6 +207,22 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		setPlacedPlayerName(placedPlayerName);
 	}
 
+	public void addWhitelistPlayer(PlayerEntity player) {
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerPlayer(player.getUUID(), player.getGameProfile().getName())));
+	}
+
+	public void addWhitelistPlayerWithPerms(PlayerEntity player, List<BannerPermissions> perms) {
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerPlayer(player.getUUID(), player.getGameProfile().getName())).setPerms(perms));
+	}
+
+	public void addWhitelistPlayer(ExtendedFellowship fellowship) {
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerFellowship(fellowship.getFellowshipId())));
+	}
+
+	public void addWhitelistPlayerWithPerms(ExtendedFellowship fellowship, List<BannerPermissions> perms) {
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerFellowship(fellowship.getFellowshipId())).setPerms(perms));
+	}
+
 	@Override
 	public void load(BlockState blockState, CompoundNBT pCompound) {
 		super.load(blockState, pCompound);
@@ -338,8 +356,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			this.profile = profile;
 		}
 
-		public void setPerms(List<BannerPermissions> perms) {
+		public ProtectionEntry setPerms(List<BannerPermissions> perms) {
 			entryPerms = perms;
+			return this;
 		}
 
 		/**
@@ -392,7 +411,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				ExtendedLog.error("PLEASE REPORT THIS!");
 				return null;
 			}
-			if(type==null) {
+			if(type==null || !type.isValid()) {
 				return null;
 			}
 			// Create the ProtectionEntry object with the user profile

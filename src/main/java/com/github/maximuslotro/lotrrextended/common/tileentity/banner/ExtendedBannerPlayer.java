@@ -73,7 +73,12 @@ public class ExtendedBannerPlayer extends ExtendedBannerProfileType{
 	public boolean isComplete() {
 		return id != null && org.apache.commons.lang3.StringUtils.isNotBlank(getName());
 	}
-	
+
+	@Override
+	public boolean isValid() {
+		return id != null;
+	}
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -123,8 +128,6 @@ public class ExtendedBannerPlayer extends ExtendedBannerProfileType{
 		if (this.getId() != null) {
 			pTag.putUUID("Id", this.getId());
 		}
-
-
 		return pTag;
 	}
 }

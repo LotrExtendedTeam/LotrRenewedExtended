@@ -28,8 +28,7 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 			throw new IllegalArgumentException("Fellowship ID cannot both be blank");
 		}
 		this.id = id;
-		ExtendedFellowship fellowship = ExtendedFellowshipHolderServer
-				.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+		ExtendedFellowship fellowship = getFellowshipFromID(id);
 		if(fellowship!=null) {
 			this.name = fellowship.getFellowshipName();
 		}else {
@@ -69,21 +68,18 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 
 	@Override
 	public boolean isPlayerListedWithPerms(ServerPlayerEntity player) {
-		ExtendedFellowship fellowship = ExtendedFellowshipHolderServer
-				.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+		ExtendedFellowship fellowship = getFellowshipFromID(id);
 		return fellowship!=null ? fellowship.isInFellowship(player.getUUID()) : false;
 	}
 
-	/**
-	 * Checks if this profile is complete.
-	 * <p />
-	 * A complete profile has no empty fields. Partial profiles may be constructed manually and used as input to methods.
-	 *
-	 * @return True if this profile is complete (as opposed to partial)
-	 */
 	@Override
 	public boolean isComplete() {
 		return id != null && org.apache.commons.lang3.StringUtils.isNotBlank(getName());
+	}
+	
+	@Override
+	public boolean isValid() {
+		return getFellowshipFromID(id) != null && !getFellowshipFromID(id).isRemoved();
 	}
 	
 	@Override
@@ -110,8 +106,7 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 	public static ExtendedBannerFellowship readGameProfile(CompoundNBT pTag) {
 		try {
 			UUID uuid = pTag.getUUID("Id");
-			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer
-					.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), uuid);
+			ExtendedFellowship fellowship = getFellowshipFromID(uuid);
 			if(fellowship!=null) {
 				return new ExtendedBannerFellowship(uuid);
 			}else {
@@ -121,6 +116,10 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 		} catch (Throwable throwable) {
 			return null;
 		}
+	}
+
+	private static ExtendedFellowship getFellowshipFromID(UUID id) {
+		return ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
 	}
 
 	@Override
