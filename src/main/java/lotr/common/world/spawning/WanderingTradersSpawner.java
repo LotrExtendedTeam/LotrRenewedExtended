@@ -14,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
@@ -73,9 +74,11 @@ public class WanderingTradersSpawner {
                         NPCEntity escort = ((ExtendedTraderEntity) trader).createEscort();
                         if (escort != null) {
                             escort.setPersistenceRequired();
+                            BlockPos escortPos = new BlockPos(trader.getX(), trader.getY(), trader.getZ());
+                            escort.finalizeSpawn((IServerWorld) world, world.getCurrentDifficultyAt(escortPos), SpawnReason.EVENT, null, null);
                             escort.setPos(trader.getX(), trader.getY(), trader.getZ());
                             world.addFreshEntity(escort);
-                            escort.restrictTo(pos, 5);
+                            escort.restrictTo(escortPos, 8);
                             ((ExtendedTraderEntity) trader).addEscort(escort.getUUID());
                         }
                     }

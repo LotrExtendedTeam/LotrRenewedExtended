@@ -69,6 +69,7 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
                     new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get(), 6), 6, 10, 16)}),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_PANCAKE.get()), 4, 8, 128),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.DRYSTONE.get(), 16), 2, 6, 16),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_LOG.get(), 16), 2, 6, 16),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.SMOKING_PIPE.get()), 8, 14, 1)
     });
 
@@ -96,7 +97,14 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
                     new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 8),
                     new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.MODERATE), 6, 10, 8),
                     new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.STRONG), 8, 13, 8)
-            })
+            }),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 8),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.MODERATE), 6, 10, 8),
+                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.STRONG), 8, 13, 8)
+            }),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.IRON_SPEAR.get()), 11, 19, 8),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_SAPLING.get()), 6, 10, 32)
     });
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
@@ -383,7 +391,8 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     @Override
     public NPCEntity createEscort() {
-        return LOTREntities.BREE_GUARD.get().create(level);
+        NPCEntity entity = LOTREntities.BREE_GUARD.get().create(level);
+        return entity;
     }
 
 	@Override
