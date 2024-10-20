@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:polished_gneiss"
-  },
-  "result": "lotr:polished_gneiss_stairs",
-  "count": 1
-}

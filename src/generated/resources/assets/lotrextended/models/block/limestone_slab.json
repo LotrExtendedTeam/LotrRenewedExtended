@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "lotrextended:block/limestone",
-    "bottom": "lotrextended:block/limestone",
-    "top": "lotrextended:block/limestone"
-  }
-}
