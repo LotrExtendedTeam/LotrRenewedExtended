@@ -6,16 +6,22 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermissions;
+import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionLevel;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 
+import lotr.common.fac.FactionPointer;
+import lotr.common.fac.FactionPointers;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -30,17 +36,17 @@ import net.minecraft.util.math.AxisAlignedBB;
 
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity{
 	private boolean isActiveHalf = false;
-	//Use for user whitelisting
+	//Use for user whitelist
 	private List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	//Use for faction alignment level
 	private int alignmentLevel = 1;
 	//False for faction, true for whitelist
 	private boolean protectionType = false;
 	//Default perms for everyone in faction mode
-	private List<BannerPermissions> defaultPerms = new ArrayList<>();
+	private List<BannerPermission> defaultPerms = new ArrayList<>();
 	//Should protect myself from destruction besides faction member or player placed
 	private boolean canProtectSelf = true;
-	//Should add nbt to dropped items?
+	//Should add NBT to dropped items?
 	private boolean used = false;
 	private UUID placedPlayer;
 	private String placedPlayerName;
@@ -155,6 +161,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	/**
+	 * Checks if this banner is protecting by faction
+	 * @return boolean
+	 * */
+	public FactionPointer getFactionProtcting() {
+		Block abstractBlock = this.getBlockState().getBlock();
+		if(abstractBlock instanceof ExtendedMEBannerBlock) {
+			return ((ExtendedMEBannerBlock)abstractBlock).getBanner().getFaction();
+		}
+		return FactionPointers.UNALIGNED;
+	}
+
+	/**
 	 * Gets Faction protecting alignment level
 	 * @return integer
 	 * */
@@ -208,19 +226,19 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	public void addWhitelistPlayer(PlayerEntity player) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerPlayer(player.getUUID(), player.getGameProfile().getName())));
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName())));
 	}
 
-	public void addWhitelistPlayerWithPerms(PlayerEntity player, List<BannerPermissions> perms) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerPlayer(player.getUUID(), player.getGameProfile().getName())).setPerms(perms));
+	public void addWhitelistPlayerWithPerms(PlayerEntity player, List<BannerPermission> perms) {
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName())).setPerms(perms));
 	}
 
 	public void addWhitelistPlayer(ExtendedFellowship fellowship) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerFellowship(fellowship.getFellowshipId())));
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())));
 	}
 
-	public void addWhitelistPlayerWithPerms(ExtendedFellowship fellowship, List<BannerPermissions> perms) {
-		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerFellowship(fellowship.getFellowshipId())).setPerms(perms));
+	public void addWhitelistPlayerWithPerms(ExtendedFellowship fellowship, List<BannerPermission> perms) {
+		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
 	@Override
@@ -266,10 +284,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			//TODO validate player fellowships 
 			if (pCompound.contains("defaultPerms", 7)) {  // 7 corresponds to a byte array in NBT
 				byte[] ordinalValues = pCompound.getByteArray("perms");
-				// Convert each ordinal value back to a BannerPermissions enum
+				// Convert each ordinal value back to a BannerPermission enum
 				defaultPerms.clear();
 				for (byte ordinal : ordinalValues) {
-					defaultPerms.add(BannerPermissions.values()[ordinal]);
+					defaultPerms.add(BannerPermission.values()[ordinal]);
 				}
 			}
 			if(pCompound.contains("protectionSelf")) {
@@ -317,11 +335,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				pCompound.put("whitelistEntrys", pCompound);
 			}
 			if (!defaultPerms.isEmpty()) {
-				// Initialize a byte array to store the ordinal values of BannerPermissions
+				// Initialize a byte array to store the ordinal values of BannerPermission
 				byte[] ordinalValues = new byte[defaultPerms.size()];
 				// Iterate over the entryPerms list to populate the byte array
 				for (int i = 0; i < defaultPerms.size(); i++) {
-					// Get the ordinal of the current BannerPermissions enum and cast it to byte
+					// Get the ordinal of the current BannerPermission enum and cast it to byte
 					ordinalValues[i] = (byte) defaultPerms.get(i).ordinal();
 				}
 				// Store the byte array in the CompoundNBT with the key "perms"
@@ -349,16 +367,24 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 
 	public static class ProtectionEntry {
-		private List<BannerPermissions> entryPerms = new ArrayList<>();
-		private ExtendedBannerProfileType profile;
+		private List<BannerPermission> entryPerms = new ArrayList<>();
+		private ExtendedBannerProfileBase profile;
 		
-		public ProtectionEntry(ExtendedBannerProfileType profile) {
+		public ProtectionEntry(ExtendedBannerProfileBase profile) {
 			this.profile = profile;
 		}
 
-		public ProtectionEntry setPerms(List<BannerPermissions> perms) {
+		public ProtectionEntry setPerms(List<BannerPermission> perms) {
 			entryPerms = perms;
 			return this;
+		}
+
+		public boolean containsPermissionNode(BannerPermission permission) {
+			return entryPerms.contains(permission);
+		}
+
+		public boolean hasPermission(BannerPermission permission) {
+			return containsPermissionNode(BannerPermission.EVERYTHING) || containsPermissionNode(permission);
 		}
 
 		/**
@@ -371,11 +397,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			CompoundNBT data = new CompoundNBT();
 			// Check if the entryPerms list is not empty
 			if (!entryPerms.isEmpty()) {
-				// Initialize a byte array to store the ordinal values of BannerPermissions
+				// Initialize a byte array to store the ordinal values of BannerPermission
 				byte[] ordinalValues = new byte[entryPerms.size()];
 				// Iterate over the entryPerms list to populate the byte array
 				for (int i = 0; i < entryPerms.size(); i++) {
-					// Get the ordinal of the current BannerPermissions enum and cast it to byte
+					// Get the ordinal of the current BannerPermission enum and cast it to byte
 					ordinalValues[i] = (byte) entryPerms.get(i).ordinal();
 				}
 				// Store the byte array in the CompoundNBT with the key "perms"
@@ -389,24 +415,24 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 
 		public static ProtectionEntry fromNBT(CompoundNBT nbt) {
-			// Create an empty list to store BannerPermissions
-			List<BannerPermissions> entryPerms = new ArrayList<>();
+			// Create an empty list to store BannerPermission
+			List<BannerPermission> entryPerms = new ArrayList<>();
 			// Read the byte array of ordinal values from NBT, if present
 			if (nbt.contains("perms", 7)) {  // 7 corresponds to a byte array in NBT
 				byte[] ordinalValues = nbt.getByteArray("perms");
-				// Convert each ordinal value back to a BannerPermissions enum
+				// Convert each ordinal value back to a BannerPermission enum
 				for (byte ordinal : ordinalValues) {
-					entryPerms.add(BannerPermissions.values()[ordinal]);
+					entryPerms.add(BannerPermission.values()[ordinal]);
 				}
 			}
-			ExtendedBannerProfileType type;
+			ExtendedBannerProfileBase type;
 			if("player".equals(nbt.getString("type"))) {
-				type = ExtendedBannerPlayer.readGameProfile(nbt);
+				type = ExtendedBannerProfilePlayer.readGameProfile(nbt);
 			}else if("fellowship".equals(nbt.getString("type"))) {
-				type = ExtendedBannerFellowship.readGameProfile(nbt);
+				type = ExtendedBannerProfileFellowship.readGameProfile(nbt);
 			}
 			else {
-				ExtendedLog.error("Read an unknown ExtendedBannerProfileType data type!");
+				ExtendedLog.error("Read an unknown ExtendedBannerProfileBase data type!");
 				ExtendedLog.error("The following data has been removed from the banner: "+nbt.toString());
 				ExtendedLog.error("PLEASE REPORT THIS!");
 				return null;

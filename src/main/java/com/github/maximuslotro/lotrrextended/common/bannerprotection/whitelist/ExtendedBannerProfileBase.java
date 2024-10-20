@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.tileentity.banner;
+package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
 import java.util.UUID;
 
@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 
-public abstract class ExtendedBannerProfileType {
+public abstract class ExtendedBannerProfileBase {
 
 	/**
 	 * Get unique identifier for profile

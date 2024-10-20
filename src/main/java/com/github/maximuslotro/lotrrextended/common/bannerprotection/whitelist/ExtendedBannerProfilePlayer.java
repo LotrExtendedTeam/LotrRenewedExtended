@@ -1,16 +1,11 @@
-package com.github.maximuslotro.lotrrextended.common.tileentity.banner;
+package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
-
-import lotr.common.fellowship.ExtendedFellowship;
-import lotr.common.fellowship.ExtendedFellowshipHolderServer;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
+public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	private final UUID id;
 	private final String name;
 
@@ -23,17 +18,13 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 	 * @param name Display name of the profile
 	 * @throws java.lang.IllegalArgumentException Both ID and name are either null or empty
 	 */
-	public ExtendedBannerFellowship(final UUID id) {
-		if (id == null) {
-			throw new IllegalArgumentException("Fellowship ID cannot both be blank");
+	public ExtendedBannerProfilePlayer(final UUID id, final String name) {
+		if (id == null && org.apache.commons.lang3.StringUtils.isBlank(name)) {
+			throw new IllegalArgumentException("Name and ID cannot both be blank");
 		}
+
 		this.id = id;
-		ExtendedFellowship fellowship = getFellowshipFromID(id);
-		if(fellowship!=null) {
-			this.name = fellowship.getFellowshipName();
-		}else {
-			this.name = "";
-		}
+		this.name = name;
 	}
 
 	/**
@@ -58,30 +49,36 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 	 */
 	@Override
 	public String getName() {
-		return "f/"+name;
+		return name;
 	}
 
 	@Override
 	public String getType() {
-		return "fellowship";
+		return "player";
 	}
 
 	@Override
 	public boolean isPlayerListedWithPerms(ServerPlayerEntity player) {
-		ExtendedFellowship fellowship = getFellowshipFromID(id);
-		return fellowship!=null ? fellowship.isInFellowship(player.getUUID()) : false;
+		return player.getUUID().equals(id);
 	}
 
+	/**
+	 * Checks if this profile is complete.
+	 * <p />
+	 * A complete profile has no empty fields. Partial profiles may be constructed manually and used as input to methods.
+	 *
+	 * @return True if this profile is complete (as opposed to partial)
+	 */
 	@Override
 	public boolean isComplete() {
 		return id != null && org.apache.commons.lang3.StringUtils.isNotBlank(getName());
 	}
-	
+
 	@Override
 	public boolean isValid() {
-		return getFellowshipFromID(id) != null && !getFellowshipFromID(id).isRemoved();
+		return id != null;
 	}
-	
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -91,7 +88,7 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 			return false;
 		}
 
-		final ExtendedBannerFellowship that = (ExtendedBannerFellowship) o;
+		final ExtendedBannerProfilePlayer that = (ExtendedBannerProfilePlayer) o;
 
 		if (id != null ? !id.equals(that.id) : that.id != null) {
 			return false;
@@ -103,28 +100,34 @@ public class ExtendedBannerFellowship extends ExtendedBannerProfileType{
 		return true;
 	}
 
-	public static ExtendedBannerFellowship readGameProfile(CompoundNBT pTag) {
+	public static ExtendedBannerProfilePlayer readGameProfile(CompoundNBT pTag) {
+		String s = null;
+		UUID uuid = null;
+		if (pTag.contains("Name", 8)) {
+			s = pTag.getString("Name");
+		}
+
+		if (pTag.hasUUID("Id")) {
+			uuid = pTag.getUUID("Id");
+		}
+
 		try {
-			UUID uuid = pTag.getUUID("Id");
-			ExtendedFellowship fellowship = getFellowshipFromID(uuid);
-			if(fellowship!=null) {
-				return new ExtendedBannerFellowship(uuid);
-			}else {
-				ExtendedLog.info("Removed fellowship "+uuid.toString()+" from banner since it cannot be found!");
-				return null;
-			}
+			ExtendedBannerProfilePlayer gameprofile = new ExtendedBannerProfilePlayer(uuid, s);
+			return gameprofile;
 		} catch (Throwable throwable) {
 			return null;
 		}
 	}
 
-	private static ExtendedFellowship getFellowshipFromID(UUID id) {
-		return ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
-	}
-
 	@Override
 	public CompoundNBT writeProfileData(CompoundNBT pTag) {
-		pTag.putUUID("Id", this.getId());
+		if (!net.minecraft.util.StringUtils.isNullOrEmpty(this.getName())) {
+			pTag.putString("Name", this.getName());
+		}
+
+		if (this.getId() != null) {
+			pTag.putUUID("Id", this.getId());
+		}
 		return pTag;
 	}
 }
