@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "lotrextended:block/polished_limestone",
-    "bottom": "lotrextended:block/polished_limestone",
-    "top": "lotrextended:block/polished_limestone"
-  }
-}

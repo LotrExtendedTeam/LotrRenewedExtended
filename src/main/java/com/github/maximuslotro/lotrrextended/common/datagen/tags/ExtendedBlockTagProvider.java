@@ -194,8 +194,8 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 			}
 		}
 
-		tag(BlockTags.BASE_STONE_OVERWORLD).add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get())
-		.add(ExtendedBlocks.SLATE_ROCK.get()).add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
+		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())
+		.add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
 		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).addTag(Tags.Blocks.DIRT);
