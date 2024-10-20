@@ -16,16 +16,16 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedReflectionHelper {
 
 	public static UUID getAlignmentData(PlayerDataModule data) {
-		UUID fellowData = null;
+		UUID underlyingPlayerUUID = null;
 		try {
 			Method fooMethod = PlayerDataModule.class.getDeclaredMethod("getPlayerUUID");
 			fooMethod.setAccessible(true);
-			fellowData = (UUID) fooMethod.invoke((PlayerDataModule)data);
+			underlyingPlayerUUID = (UUID) fooMethod.invoke((PlayerDataModule)data);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 			ExtendedLog.error("Reflection failed to get PlayerDataModule UUID");
 		}
-		return fellowData;
+		return underlyingPlayerUUID;
 	}
 
 	public static ResourceLocation getKegLootTable(KegTileEntity data) {

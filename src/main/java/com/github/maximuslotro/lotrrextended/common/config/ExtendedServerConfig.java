@@ -18,6 +18,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
 	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 
+	public static ForgeConfigSpec.BooleanValue enableBannerProtection;
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
 	}
@@ -28,6 +29,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable or disable renewed based waypoint creation");
 		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable or disable legacy based waypoint creation");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
+		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable or disable banner protection");
 		builder.pop();
 
 		builder.push("Vanilla Patches");

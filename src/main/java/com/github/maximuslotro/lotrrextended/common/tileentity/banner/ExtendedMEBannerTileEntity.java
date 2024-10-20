@@ -13,7 +13,9 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionLevel;
+import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionType;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
@@ -40,8 +42,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	//Use for faction alignment level
 	private int alignmentLevel = 1;
-	//False for faction, true for whitelist
-	private boolean protectionType = false;
+	private BannerProtectionType protectionType = BannerProtectionType.NONE;
 	//Default perms for everyone in faction mode
 	private List<BannerPermission> defaultPerms = new ArrayList<>();
 	//Should protect myself from destruction besides faction member or player placed
@@ -66,7 +67,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				if(connectedEntity==null) {
 					createAndSetBannerEntity();
 				}else {
-					AxisAlignedBB checkBox = new AxisAlignedBB(this.getBlockPos(), this.getBlockPos().offset(1, 1, 1));
+					AxisAlignedBB checkBox = AxisAlignedBBUtils.makeCroppedBB(this.getBlockPos());
 					Predicate<ExtendedBannerEntity> pred = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
 					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, pred);
 					if(banners.size()<=0) {
@@ -157,7 +158,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @return boolean
 	 * */
 	public boolean isFactionProtcting() {
-		return !protectionType;
+		return protectionType==BannerProtectionType.FACTION;
 	}
 
 	/**
@@ -184,8 +185,16 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Checks if this banner is protecting by whitelist
 	 * @return boolean
 	 * */
-	public boolean isWhitelistProtcting() {
-		return protectionType;
+	public boolean isWhitelistProtecting() {
+		return protectionType==BannerProtectionType.PLAYER;
+	}
+
+	/**
+	 * Checks if this banner is protecting by structure
+	 * @return boolean
+	 * */
+	public boolean isStructureProtecting() {
+		return protectionType==BannerProtectionType.STRUCTURE;
 	}
 
 	/**
@@ -255,16 +264,13 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 		if(loadableData.contains("ProtectionData")) {
 			CompoundNBT pCompound = loadableData.getCompound("ProtectionData");
-			protectionType = pCompound.getBoolean("protectionType");
+			protectionType = BannerProtectionType.getByID(pCompound.getInt("protectionType"));
 			used = true;
 			if(pCompound.contains("placedPlayer")) {
 				placedPlayer = pCompound.getUUID("placedPlayer");
 			}
 			if(pCompound.contains("placedPlayerName")) {
 				placedPlayerName = pCompound.getString("placedPlayerName");
-			}
-			if(pCompound.contains("protectionType")) {
-				protectionType = pCompound.getBoolean("protectionType");
 			}
 			if(pCompound.contains("alignmentThreshold")) {
 				alignmentLevel = pCompound.getInt("alignmentThreshold");
@@ -287,7 +293,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				// Convert each ordinal value back to a BannerPermission enum
 				defaultPerms.clear();
 				for (byte ordinal : ordinalValues) {
-					defaultPerms.add(BannerPermission.values()[ordinal]);
+					defaultPerms.add(BannerPermission.values[ordinal]);
 				}
 			}
 			if(pCompound.contains("protectionSelf")) {
@@ -316,7 +322,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public CompoundNBT saveProtectionData(CompoundNBT returnCompound) {
 		if(used) {
 			CompoundNBT pCompound = new CompoundNBT();
-			pCompound.putBoolean("protectionType", protectionType);
+			pCompound.putInt("protectionType", protectionType.getId());
 			pCompound.putBoolean("used", used);
 			if(alignmentLevel>1) {
 				pCompound.putInt("alignmentThreshold", alignmentLevel);
@@ -422,7 +428,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				byte[] ordinalValues = nbt.getByteArray("perms");
 				// Convert each ordinal value back to a BannerPermission enum
 				for (byte ordinal : ordinalValues) {
-					entryPerms.add(BannerPermission.values()[ordinal]);
+					entryPerms.add(BannerPermission.values[ordinal]);
 				}
 			}
 			ExtendedBannerProfileBase type;

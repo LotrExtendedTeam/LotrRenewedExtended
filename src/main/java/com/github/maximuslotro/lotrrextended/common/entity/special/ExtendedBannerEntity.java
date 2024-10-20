@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
@@ -20,6 +21,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -29,8 +31,10 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedBannerEntity extends Entity {
 	private static final DataParameter<Integer> SPAWNER_BOUNDS = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.INT);
+	@Deprecated // Remove when shipping release 1.7.0
 	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
+	private ExtendedMEBannerTileEntity connectedTileEntity;
 
 	public ExtendedBannerEntity(EntityType<? extends ExtendedBannerEntity> pType, World pLevel) {
 		super(pType, pLevel);
@@ -55,14 +59,11 @@ public class ExtendedBannerEntity extends Entity {
 				TileEntity tileentity = level.getBlockEntity(blockPosition());
 		        if (tileentity instanceof ExtendedMEBannerTileEntity) {
 		        	ExtendedMEBannerTileEntity banner = ((ExtendedMEBannerTileEntity)tileentity);
-		        	if(banner.isActiveHalf()) {
-		        		if(!this.getUUID().equals(banner.getEntityID())) {
-			        		queueToRemove = true;
-			        	}else {
-			        		this.setSpawnerRange(banner.getProtectionRadius());
-			        	}
-		        	}else {
+		        	if(!banner.isActiveHalf() || !this.getUUID().equals(banner.getEntityID())) {
 		        		queueToRemove = true;
+		        	}else {
+		        		this.setProtectionRange(banner.getProtectionRadius());
+		        		connectedTileEntity = banner;
 		        	}
 		        }else {
 		        	queueToRemove = true;
@@ -71,13 +72,26 @@ public class ExtendedBannerEntity extends Entity {
 		}
 	}
 
+
+	public ExtendedMEBannerTileEntity getConnectedTileEntity() {
+		return connectedTileEntity;
+	}
+
+	public boolean isValid() {
+		return connectedTileEntity!=null && !queueToRemove && getProtectionRange()>0;
+	}
+
+	public AxisAlignedBB getProtectionArea() {
+		return AxisAlignedBBUtils.makeCroppedBB(getX(), getBoundingBox().minY, getZ()).inflate(getProtectionRange());
+	}
+
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
 //		if(pCompound.contains("firstTick")) {
 //			this.firstTick = pCompound.getBoolean("firstTick");
 //		}
 		if(pCompound.contains("protectionRange")) {
-			setSpawnerRange(pCompound.getInt("protectionRange"));
+			setProtectionRange(pCompound.getInt("protectionRange"));
 		}
 	}
 
@@ -86,9 +100,17 @@ public class ExtendedBannerEntity extends Entity {
 //		if(!this.firstTick) {
 //			pCompound.putBoolean("firstTick", false);
 //		}
-		if(getSpawnerRanger()>0) {
-			pCompound.putInt("protectionRange", getSpawnerRanger());
+		if(getProtectionRange()>0) {
+			pCompound.putInt("protectionRange", getProtectionRange());
 		}
+	}
+
+	public int getProtectionRange() {
+		return this.getEntityData().get(SPAWNER_BOUNDS);
+	}
+
+	public void setProtectionRange(int range) {
+		this.getEntityData().set(SPAWNER_BOUNDS, range);
 	}
 
 	@Override
@@ -127,14 +149,6 @@ public class ExtendedBannerEntity extends Entity {
 		return true;
 	}
 
-	public int getSpawnerRanger() {
-		return this.getEntityData().get(SPAWNER_BOUNDS);
-	}
-
-	public void setSpawnerRange(int range) {
-		this.getEntityData().set(SPAWNER_BOUNDS, range);
-	}
-
 	/**
 	 * Disable killing accidently with kill command
 	 * */
@@ -143,6 +157,7 @@ public class ExtendedBannerEntity extends Entity {
 
 	@Override
 	public void remove() {
+		// TODO development line, remove when releasing 1.7.0
 		//if(!queueToRemove) {
 			this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		//}
