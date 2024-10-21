@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.tileentity.banner;
+package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity{
+public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
 	private boolean isActiveHalf = false;
 	//Use for user whitelist
 	private List<ProtectionEntry> protectionWhitelist = new ArrayList<>();

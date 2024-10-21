@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.tileentity.banner;
+package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 

@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
-import com.github.maximuslotro.lotrrextended.common.tileentity.banner.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.init.ExtendedEntities;
