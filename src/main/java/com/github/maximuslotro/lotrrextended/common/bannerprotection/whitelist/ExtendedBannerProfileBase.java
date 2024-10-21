@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 
 public abstract class ExtendedBannerProfileBase {
@@ -51,7 +51,7 @@ public abstract class ExtendedBannerProfileBase {
 	 * @return boolean
 	 * 
 	 */
-	public abstract boolean isPlayerListedWithPerms(ServerPlayerEntity player);
+	public abstract boolean isPlayerContained(PlayerEntity player);
 
 	/**
 	 * Saves the profile data to the passed CompoundNBT, returns the modified CompoundNBT

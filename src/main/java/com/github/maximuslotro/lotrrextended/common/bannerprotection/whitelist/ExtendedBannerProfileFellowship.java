@@ -6,7 +6,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.fellowship.ExtendedFellowshipHolderServer;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -54,7 +54,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	 * This may be null for partial profile data if constructed manually.
 	 *
 	 * @return Name of the profile
-	 * 
+	 *
 	 */
 	@Override
 	public String getName() {
@@ -67,7 +67,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	}
 
 	@Override
-	public boolean isPlayerListedWithPerms(ServerPlayerEntity player) {
+	public boolean isPlayerContained(PlayerEntity player) {
 		ExtendedFellowship fellowship = getFellowshipFromID(id);
 		return fellowship!=null ? fellowship.isInFellowship(player.getUUID()) : false;
 	}
@@ -76,12 +76,12 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	public boolean isComplete() {
 		return id != null && org.apache.commons.lang3.StringUtils.isNotBlank(getName());
 	}
-	
+
 	@Override
 	public boolean isValid() {
 		return getFellowshipFromID(id) != null && !getFellowshipFromID(id).isRemoved();
 	}
-	
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -93,10 +93,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 		final ExtendedBannerProfileFellowship that = (ExtendedBannerProfileFellowship) o;
 
-		if (id != null ? !id.equals(that.id) : that.id != null) {
-			return false;
-		}
-		if (name != null ? !name.equals(that.name) : that.name != null) {
+		if ((id != null ? !id.equals(that.id) : that.id != null) || (name != null ? !name.equals(that.name) : that.name != null)) {
 			return false;
 		}
 

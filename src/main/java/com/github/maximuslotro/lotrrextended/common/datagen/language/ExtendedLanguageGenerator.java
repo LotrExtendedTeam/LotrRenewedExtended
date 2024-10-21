@@ -221,6 +221,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Banner Item Info
 		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
 
+		// Banner Item Info
+		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
+
 		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");
 		addD("item.lotr.horn_of_command.reddy");

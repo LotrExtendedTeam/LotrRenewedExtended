@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
 import java.util.UUID;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 
 public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
@@ -45,7 +45,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	 * This may be null for partial profile data if constructed manually.
 	 *
 	 * @return Name of the profile
-	 * 
+	 *
 	 */
 	@Override
 	public String getName() {
@@ -58,7 +58,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	}
 
 	@Override
-	public boolean isPlayerListedWithPerms(ServerPlayerEntity player) {
+	public boolean isPlayerContained(PlayerEntity player) {
 		return player.getUUID().equals(id);
 	}
 
@@ -90,10 +90,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 
 		final ExtendedBannerProfilePlayer that = (ExtendedBannerProfilePlayer) o;
 
-		if (id != null ? !id.equals(that.id) : that.id != null) {
-			return false;
-		}
-		if (name != null ? !name.equals(that.name) : that.name != null) {
+		if ((id != null ? !id.equals(that.id) : that.id != null) || (name != null ? !name.equals(that.name) : that.name != null)) {
 			return false;
 		}
 

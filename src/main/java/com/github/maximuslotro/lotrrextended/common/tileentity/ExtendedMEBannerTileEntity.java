@@ -49,7 +49,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private boolean canProtectSelf = true;
 	//Should add NBT to dropped items?
 	private boolean used = false;
-	private UUID placedPlayer;
+	private UUID placedPlayerUUID;
 	private String placedPlayerName;
 	private UUID connectedEntity;
 	private BannerProtectionLevel protectionLevel = BannerProtectionLevel.NONE;
@@ -135,7 +135,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	/**
-	 * Gets the banner's protection level 
+	 * Gets the banner's protection level
 	 * @return BannerProtectionLevel
 	 * */
 	public BannerProtectionLevel getProtectionLevel() {
@@ -157,7 +157,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Checks if this banner is protecting by faction
 	 * @return boolean
 	 * */
-	public boolean isFactionProtcting() {
+	public boolean isFactionProtecting() {
 		return protectionType==BannerProtectionType.FACTION;
 	}
 
@@ -201,8 +201,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Gets ID of player who placed the banner
 	 * @return UUID
 	 * */
-	public UUID getPlacedPlayer() {
-		return placedPlayer;
+	public UUID getPlacedPlayerUUID() {
+		return placedPlayerUUID;
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		return placedPlayerName;
 	}
 
-	public void setPlacedPlayerID(UUID placedPlayer) {
-		this.placedPlayer = placedPlayer;
+	public void setPlacedPlayerUUID(UUID placedPlayer) {
+		this.placedPlayerUUID = placedPlayer;
 	}
 
 	public void setPlacedPlayerName(String placedPlayerName) {
@@ -222,8 +222,20 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	public void setPlacedPlayerNameAndID(UUID placedPlayer, String placedPlayerName) {
-		setPlacedPlayerID(placedPlayer);
+		setPlacedPlayerUUID(placedPlayer);
 		setPlacedPlayerName(placedPlayerName);
+	}
+
+	public void setDefaultPerms(List<BannerPermission> perms) {
+		defaultPerms = perms;
+	}
+
+	public boolean hasDefaultPerm(BannerPermission perm) {
+		return defaultPerms.contains(perm);
+	}
+
+	public List<ProtectionEntry> getProtectionWhitelist() {
+		return protectionWhitelist;
 	}
 
 	public void addWhitelistPlayer(PlayerEntity player) {
@@ -259,7 +271,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			protectionType = BannerProtectionType.getByID(pCompound.getInt("protectionType"));
 			used = true;
 			if(pCompound.contains("placedPlayer")) {
-				placedPlayer = pCompound.getUUID("placedPlayer");
+				placedPlayerUUID = pCompound.getUUID("placedPlayer");
 			}
 			if(pCompound.contains("placedPlayerName")) {
 				placedPlayerName = pCompound.getString("placedPlayerName");
@@ -270,16 +282,16 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if(pCompound.contains("whitelistEntrys")) {
 				ListNBT whitelist = pCompound.getList("whitelistEntrys", 10);
 				for (int i = 0; i < whitelist.size(); i++) {
-		            CompoundNBT node = whitelist.getCompound(i);
-		            if (node != null) {
-		            	ProtectionEntry entry = ProtectionEntry.fromNBT(node);
-		            	if(entry!=null) {
-		            		protectionWhitelist.add(entry);
-		            	}
-		            }
-		        }
+					CompoundNBT node = whitelist.getCompound(i);
+					if (node != null) {
+						ProtectionEntry entry = ProtectionEntry.fromNBT(node);
+						if(entry!=null) {
+							protectionWhitelist.add(entry);
+						}
+					}
+				}
 			}
-			//TODO validate player fellowships 
+			//TODO validate player fellowships
 			if (pCompound.contains("defaultPerms", 7)) {  // 7 corresponds to a byte array in NBT
 				byte[] ordinalValues = pCompound.getByteArray("perms");
 				// Convert each ordinal value back to a BannerPermission enum
@@ -287,6 +299,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				for (byte ordinal : ordinalValues) {
 					defaultPerms.add(BannerPermission.values[ordinal]);
 				}
+			}
+			if(defaultPerms.contains(BannerPermission.EVERYTHING)) {
+				defaultPerms.remove(BannerPermission.EVERYTHING);
+				ExtendedLog.info("Found Everything permission in banner defaults. Removing it!");
 			}
 			if(pCompound.contains("protectionSelf")) {
 				canProtectSelf = pCompound.getBoolean("protectionSelf");
@@ -319,8 +335,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if(alignmentLevel>1) {
 				pCompound.putInt("alignmentThreshold", alignmentLevel);
 			}
-			if(placedPlayer!=null) {
-				pCompound.putUUID("placedPlayer", placedPlayer);
+			if(placedPlayerUUID!=null) {
+				pCompound.putUUID("placedPlayer", placedPlayerUUID);
 			}
 			if(placedPlayerName!=null) {
 				pCompound.putString("placedPlayerName", placedPlayerName);
@@ -367,7 +383,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public static class ProtectionEntry {
 		private List<BannerPermission> entryPerms = new ArrayList<>();
 		private ExtendedBannerProfileBase profile;
-		
+
 		public ProtectionEntry(ExtendedBannerProfileBase profile) {
 			this.profile = profile;
 		}
@@ -383,6 +399,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 		public boolean hasPermission(BannerPermission permission) {
 			return containsPermissionNode(BannerPermission.EVERYTHING) || containsPermissionNode(permission);
+		}
+
+		public ExtendedBannerProfileBase getProfile() {
+			return profile;
 		}
 
 		/**
