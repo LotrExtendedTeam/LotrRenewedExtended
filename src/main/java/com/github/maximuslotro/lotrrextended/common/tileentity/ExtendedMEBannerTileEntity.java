@@ -190,14 +190,6 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	/**
-	 * Checks if this banner is protecting by structure
-	 * @return boolean
-	 * */
-	public boolean isStructureProtecting() {
-		return protectionType==BannerProtectionType.STRUCTURE;
-	}
-
-	/**
 	 * Gets ID of currently paired banner entity
 	 * @return UUID
 	 * */
