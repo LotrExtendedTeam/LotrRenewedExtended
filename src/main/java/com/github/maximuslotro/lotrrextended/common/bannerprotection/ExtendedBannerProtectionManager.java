@@ -19,14 +19,20 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
 import net.minecraftforge.common.util.FakePlayer;
 
 public class ExtendedBannerProtectionManager {
-	public static boolean isBannerProtected(World level, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
+	public static boolean isBannerProtected(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance) {
+		return isBannerProtected(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance);
+	}
+
+	public static boolean isBannerProtected(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
 			return false;
 		}
@@ -34,7 +40,7 @@ public class ExtendedBannerProtectionManager {
 		if(protInstance.extraScanArea>0) {
 			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
 		}
-		List<ExtendedBannerEntity> bannersInArea = level.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
+		List<ExtendedBannerEntity> bannersInArea = iWorld.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
 		if(bannersInArea.isEmpty()) {
 			return false;
 		}
@@ -68,7 +74,7 @@ public class ExtendedBannerProtectionManager {
 
 		public abstract boolean isProtected(ExtendedMEBannerTileEntity bannerInstance);
 
-		public class PlayerProtection extends SingleProtectionInstance{
+		public static class PlayerProtection extends SingleProtectionInstance{
 			private final PlayerEntity offendingPlayer;
 			private BannerPermission queryingPermission = BannerPermission.EVERYTHING;
 
@@ -83,7 +89,7 @@ public class ExtendedBannerProtectionManager {
 
 			@Override
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
-				if(offendingPlayer.abilities.instabuild) {
+				if(offendingPlayer==null || offendingPlayer.abilities.instabuild) {
 					return false;
 				}
 				if(bannerInstance.isFactionProtecting()) {
@@ -129,10 +135,10 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public class EntityProtection extends SingleProtectionInstance{
-			final LivingEntity offendingEntity;
+		public static class EntityProtection extends SingleProtectionInstance{
+			final Entity offendingEntity;
 
-			public EntityProtection(LivingEntity offendingEntity) {
+			public EntityProtection(Entity offendingEntity) {
 				this.offendingEntity = offendingEntity;
 			}
 			@Override
@@ -151,7 +157,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public class TNTProtection extends SingleProtectionInstance{
+		public static class TNTProtection extends SingleProtectionInstance{
 			final TNTEntity offendingEntity;
 
 			public TNTProtection(TNTEntity offendingEntity) {
@@ -174,7 +180,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public class LaunchedProtection extends SingleProtectionInstance{
+		public static class LaunchedProtection extends SingleProtectionInstance{
 			final ProjectileEntity offendingEntity;
 
 			public LaunchedProtection(ProjectileEntity offendingEntity) {
@@ -197,7 +203,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public class AnyProtection extends SingleProtectionInstance{
+		public static class AnyProtection extends SingleProtectionInstance{
 			@Override
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				return true;
