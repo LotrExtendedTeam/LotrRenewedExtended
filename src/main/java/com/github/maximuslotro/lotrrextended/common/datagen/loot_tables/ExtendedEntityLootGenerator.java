@@ -317,6 +317,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
 		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk);
 		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, arrows);
+		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable());
 
 	}
 
