@@ -28,6 +28,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(3, 6))
 				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_PANCAKE.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
 				.add(EItemLootEntry.lootItem(Items.POTATO).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(Items.BOWL).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
 				.add(EItemLootEntry.lootItem(Items.APPLE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 3))))

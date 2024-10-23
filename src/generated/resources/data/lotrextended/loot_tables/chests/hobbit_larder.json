@@ -25,6 +25,36 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 75,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:hobbit_pancake"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 75,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:hobbit_pancake_syrup"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 100,
           "functions": [
             {
