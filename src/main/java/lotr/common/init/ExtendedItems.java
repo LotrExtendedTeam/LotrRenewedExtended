@@ -595,6 +595,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> HOBBIT_BANNER;
 	public static RegistryObject<Item> HOBBIT_PANCAKE;
 	public static RegistryObject<Item> HOBBIT_PANCAKE_SYRUP;
+	public static RegistryObject<Item> HOBBIT_PANCAKE_SYRUP_BUTTER;
+	public static RegistryObject<Item> BUTTER;
 
 	public static RegistryObject<Item> DUCK_EGG;
 

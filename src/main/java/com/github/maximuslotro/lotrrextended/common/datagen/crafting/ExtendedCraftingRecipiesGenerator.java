@@ -313,11 +313,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 				.pattern("XXX")
 				.pattern("XYX")
 				.pattern("XXX")
-				//.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
-				.unlockedBy("has_hobbit_pancake", has(ExtendedItems.HOBBIT_PANCAKE.get()))
-				//.unlockedBy("has_maple_syrup" + ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
-				.unlockedBy("has_maple_syrup", has(ExtendedItems.HOBBIT_PANCAKE.get()))
+				.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
+				.unlockedBy("has_" + LOTRItems.MAPLE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
 				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath()));
+
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get(), 8, LOTRRecipes.HOBBIT_CRAFTING)
+				.define('X', ExtendedItems.HOBBIT_PANCAKE_SYRUP.get())
+				.define('Y', ExtendedItems.BUTTER.get())
+				.pattern("XXX")
+				.pattern("XYX")
+				.pattern("XXX")
+				.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
+				.unlockedBy("has_" + ExtendedItems.BUTTER.get().getRegistryName().getPath(), has(ExtendedItems.BUTTER.get()))
+				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath()));
 
 		//MORGUL
 		makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET, 
