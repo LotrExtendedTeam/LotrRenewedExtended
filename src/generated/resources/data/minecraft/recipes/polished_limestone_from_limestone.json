@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:limestone"
-  },
-  "result": "lotr:polished_limestone",
-  "count": 1
-}

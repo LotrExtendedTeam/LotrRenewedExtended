@@ -1,6 +1,0 @@
-{
-  "parent": "lotr:item/handheld_dagger_sneaking",
-  "textures": {
-    "layer0": "lotrextended:item/morgul_dagger"
-  }
-}

@@ -783,6 +783,10 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	}
 
 	protected void makeCraftingTableRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		this.makeCraftingTableRecipe(consumer, blockToBeCrafted, resource, "", table);
+	}
+
+	protected void makeCraftingTableRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, String altName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
@@ -793,7 +797,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('X', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
-			.save(consumer, lotrLoc(name));
+			.save(consumer, lotrLoc(name+altName));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
@@ -803,7 +807,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('X', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
-			.save(consumer, lotrLoc(name));
+			.save(consumer, lotrLoc(name+altName));
 		}
 	}
 

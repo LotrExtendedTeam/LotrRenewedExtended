@@ -16,12 +16,12 @@
         ]
       }
     },
-    "has_mud_brick": {
+    "has_taurethrim_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:mud_brick"
+            "item": "lotr:taurethrim_brick"
           }
         ]
       }
@@ -36,7 +36,7 @@
   "requirements": [
     [
       "has_taurethrim_crafting_table",
-      "has_mud_brick",
+      "has_taurethrim_brick",
       "has_the_recipe"
     ]
   ]
