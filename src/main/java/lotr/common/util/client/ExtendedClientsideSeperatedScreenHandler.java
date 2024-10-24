@@ -1,7 +1,7 @@
 package lotr.common.util.client;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
 import lotr.client.gui.ExtendedTraderMainScreen;

@@ -1,4 +1,4 @@
-package lotr.client.gui;
+package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import org.lwjgl.opengl.GL11;
 
@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketSelec
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedItems;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
@@ -16,7 +17,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHornSelectScreen extends BasicIngameScreen{
+public class ExtendedHornSelectScreen extends Screen {
 	public ExtendedHornSelectScreen() {
 		super(new StringTextComponent("HORNSELECT"));
 	}
@@ -35,8 +36,8 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 	  public void init() {
 	    this.guiLeft = (this.width - this.xSize) / 2;
 	    this.guiTop = (this.height - this.ySize) / 2;
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> setHorn(1.0F)));
-	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> setHorn(3.0F)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> setHorn(1.0F, button)));
+	    this.addButton(new Button(this.guiLeft + 40, this.guiTop + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> setHorn(3.0F, button)));
 	  }
 	  
 	@Override
@@ -54,8 +55,9 @@ public class ExtendedHornSelectScreen extends BasicIngameScreen{
 		}
 	}
 
-	public void setHorn(float type) {
+	public void setHorn(float type, Button button) {
 		ExtendedPacketHandler.sendToServer(new ExtendedCPacketSelectHorn(type));
+		//button.playDownSound(Minecraft.getInstance().getSoundManager());
 		this.minecraft.player.closeContainer();
 	}
 

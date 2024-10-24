@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedBookshelfContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
 
 import lotr.common.init.ExtendedContainers;

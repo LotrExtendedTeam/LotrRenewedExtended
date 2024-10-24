@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.inv;
+package com.github.maximuslotro.lotrrextended.common.inventory;
 
 import lotr.common.entity.npc.ExtendedRidableWargEntity;
 import lotr.common.entity.npc.WargEntity;

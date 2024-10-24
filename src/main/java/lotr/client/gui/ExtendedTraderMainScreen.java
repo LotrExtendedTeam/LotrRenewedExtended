@@ -7,6 +7,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
@@ -14,7 +15,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedTraderMainScreen extends BasicIngameScreen {
+public class ExtendedTraderMainScreen extends Screen {
 
     private NPCEntity entity;
     private final ExtendedTraderEntity trader;

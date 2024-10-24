@@ -1,10 +1,11 @@
-package lotr.client.gui;
+package lotr.client.gui.menu;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import lotr.client.gui.MiddleEarthMenuScreen;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fac.RankGender;
