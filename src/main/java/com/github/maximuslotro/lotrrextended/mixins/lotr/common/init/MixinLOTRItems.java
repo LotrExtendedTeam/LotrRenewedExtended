@@ -729,7 +729,7 @@ public class MixinLOTRItems {
 		ExtendedItems.HOBBIT_PANCAKE = regItemB("hobbit_pancake", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.HOBBIT_PANCAKE)));
 		ExtendedItems.HOBBIT_PANCAKE_SYRUP = regItemB("hobbit_pancake_syrup", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.HOBBIT_PANCAKE_SYRUP)));
 		ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER = regItemB("hobbit_pancake_syrup_butter", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.HOBBIT_PANCAKE_SYRUP_BUTTER)));
-		ExtendedItems.BUTTER = regItemB("butter", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
+		ExtendedItems.BUTTER = regItemB("butter", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BUTTER)));
 
 		ExtendedItems.BANANA = regItemB("banana", () -> new CompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BANANA), 0.65F));
 		ExtendedItems.BANANA_BREAD = regItemB("banana_bread", () -> new CompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BANANA_BREAD), 0.85F));

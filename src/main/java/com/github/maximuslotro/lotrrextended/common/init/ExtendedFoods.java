@@ -27,7 +27,9 @@ public class ExtendedFoods {
 
 	public static final Food HOBBIT_PANCAKE = new Food.Builder().nutrition(4).saturationMod(0.6F).build();
 	public static final Food HOBBIT_PANCAKE_SYRUP = new Food.Builder().nutrition(5).saturationMod(0.75F).build();
-	public static final Food HOBBIT_PANCAKE_SYRUP_BUTTER = new Food.Builder().nutrition(7).saturationMod(0.9F).build();
+	public static final Food HOBBIT_PANCAKE_SYRUP_BUTTER = new Food.Builder().nutrition(6).saturationMod(0.85F).build();
+
+	public static final Food BUTTER = new Food.Builder().nutrition(4).saturationMod(0.85F).build();
 
 	public static void init() {}
 }
