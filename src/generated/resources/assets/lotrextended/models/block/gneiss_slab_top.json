@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "lotrextended:block/gneiss",
-    "bottom": "lotrextended:block/gneiss",
-    "top": "lotrextended:block/gneiss"
-  }
-}

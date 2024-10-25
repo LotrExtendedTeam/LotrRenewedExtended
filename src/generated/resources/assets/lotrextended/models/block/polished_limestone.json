@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "lotrextended:block/polished_limestone",
-    "bottom": "lotrextended:block/polished_limestone_top",
-    "top": "lotrextended:block/polished_limestone_top"
-  }
-}

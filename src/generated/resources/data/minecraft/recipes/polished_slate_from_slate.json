@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:slate"
-  },
-  "result": "lotr:polished_slate",
-  "count": 1
-}
