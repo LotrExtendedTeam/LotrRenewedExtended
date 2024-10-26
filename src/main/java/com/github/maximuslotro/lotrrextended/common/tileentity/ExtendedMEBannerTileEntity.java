@@ -41,7 +41,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	//Use for user whitelist
 	private List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	//Use for faction alignment level
-	private int alignmentLevel = 1;
+	private float alignmentLevel = 1;
 	private BannerProtectionType protectionType = BannerProtectionType.NONE;
 	//Default perms for everyone in faction mode
 	private List<BannerPermission> defaultPerms = new ArrayList<>();
@@ -177,7 +177,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Gets Faction protecting alignment level
 	 * @return integer
 	 * */
-	public int getAlignmentLevel() {
+	public float getAlignmentLevel() {
 		return alignmentLevel;
 	}
 
@@ -254,6 +254,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
+	public List<BannerPermission> getDefaultPerms() {
+		return defaultPerms;
+	}
+
+	public boolean isCanProtectSelf() {
+		return canProtectSelf;
+	}
+
 	@Override
 	public void load(BlockState blockState, CompoundNBT pCompound) {
 		super.load(blockState, pCompound);
@@ -277,7 +285,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				placedPlayerName = pCompound.getString("placedPlayerName");
 			}
 			if(pCompound.contains("alignmentThreshold")) {
-				alignmentLevel = pCompound.getInt("alignmentThreshold");
+				alignmentLevel = pCompound.getFloat("alignmentThreshold");
 			}
 			if(pCompound.contains("whitelistEntrys")) {
 				ListNBT whitelist = pCompound.getList("whitelistEntrys", 10);
@@ -332,8 +340,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			CompoundNBT pCompound = new CompoundNBT();
 			pCompound.putInt("protectionType", protectionType.getId());
 			pCompound.putBoolean("used", used);
-			if(alignmentLevel>1) {
-				pCompound.putInt("alignmentThreshold", alignmentLevel);
+			if(alignmentLevel!=1) {
+				pCompound.putFloat("alignmentThreshold", alignmentLevel);
 			}
 			if(placedPlayerUUID!=null) {
 				pCompound.putUUID("placedPlayer", placedPlayerUUID);
@@ -398,11 +406,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 
 		public boolean hasPermission(BannerPermission permission) {
-			return containsPermissionNode(BannerPermission.EVERYTHING) || containsPermissionNode(permission);
+			return entryPerms.isEmpty() || containsPermissionNode(permission);
 		}
 
 		public ExtendedBannerProfileBase getProfile() {
 			return profile;
+		}
+
+		public List<BannerPermission> getEntryPerms() {
+			return entryPerms;
 		}
 
 		/**

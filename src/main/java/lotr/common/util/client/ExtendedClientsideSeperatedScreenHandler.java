@@ -1,7 +1,9 @@
 package lotr.common.util.client;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
 import lotr.client.gui.ExtendedTraderMainScreen;
@@ -20,7 +22,7 @@ public class ExtendedClientsideSeperatedScreenHandler {
 		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
 	}
 
-	public static void handle(ExtendedSOpenWargWindowPacket pPacket) {
+	public static void handleWargScreenOpen(ExtendedSOpenWargWindowPacket pPacket) {
 		Minecraft mc = Minecraft.getInstance();
 		ClientPlayerEntity player = mc.player;
 		Entity entity = mc.level.getEntity(pPacket.getEntityId());
@@ -32,5 +34,9 @@ public class ExtendedClientsideSeperatedScreenHandler {
 			clientplayerentity.containerMenu = warginventorycontainer;
 			mc.setScreen(new ExtendedWargInventoryScreen(warginventorycontainer, clientplayerentity.inventory, abstracthorseentity));
 		}
+	}
+
+	public static void openBannerGUI(ExtendedSBannerOpenScreenPacket packet) {
+		Minecraft.getInstance().setScreen(new ExtendedBannerConfigurationScreen(packet));
 	}
 }

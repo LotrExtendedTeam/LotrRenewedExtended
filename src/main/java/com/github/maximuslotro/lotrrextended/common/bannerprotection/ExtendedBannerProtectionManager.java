@@ -112,8 +112,14 @@ public class ExtendedBannerProtectionManager {
 					boolean isWhitelisted=false;
 					List<ProtectionEntry> whitelist = bannerInstance.getProtectionWhitelist();
 					for(ProtectionEntry entry : whitelist) {
-						if(entry!=null&&entry.hasPermission(queryingPermission)) {
-							if(entry.getProfile().isPlayerContained(offendingPlayer)) {
+						// Check which has better performance
+//						if(entry!=null&&entry.hasPermission(queryingPermission)) {
+//							if(entry.getProfile().isPlayerContained(offendingPlayer)) {
+//								isWhitelisted = true;
+//							}
+//						}
+						if(entry!=null&&entry.getProfile().isPlayerContained(offendingPlayer)) {
+							if(entry.hasPermission(queryingPermission)) {
 								isWhitelisted = true;
 							}
 						}

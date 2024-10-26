@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.util.ResourceLocation;
@@ -7,11 +8,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class BannerConfigurationScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScreen {
 	private static final ResourceLocation guiTexture = new ResourceLocation("lotr:gui/horn_select.png");
+	private final ExtendedSBannerOpenScreenPacket serverData;
 
-	protected BannerConfigurationScreen() {
+	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 176, 256);
+		this.serverData = serverData;
 	}
 
 	@Override

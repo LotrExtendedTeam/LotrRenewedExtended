@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
@@ -21,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -31,6 +35,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedBannerEntity extends Entity {
 	private static final DataParameter<Integer> SPAWNER_BOUNDS = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.INT);
+	private static final DataParameter<Optional<UUID>> OWNER = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.OPTIONAL_UUID);
+
 	@Deprecated // Remove when shipping release 1.7.0
 	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
@@ -113,6 +119,10 @@ public class ExtendedBannerEntity extends Entity {
 		this.getEntityData().set(SPAWNER_BOUNDS, range);
 	}
 
+	public UUID getProtectionOwner() {
+		return this.getEntityData().get(OWNER).orElse(Util.NIL_UUID);
+	}
+
 	@Override
 	public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
 		return ActionResultType.sidedSuccess(this.level.isClientSide);
@@ -167,6 +177,7 @@ public class ExtendedBannerEntity extends Entity {
 	@Override
 	protected void defineSynchedData() {
 		this.getEntityData().define(SPAWNER_BOUNDS, 0);
+		this.getEntityData().define(OWNER, Optional.empty());
 	}
 	  
 	@Override
