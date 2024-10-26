@@ -213,6 +213,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix", " blocks");
 
+		// Banner Menu strings
+		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
+		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection is Disabled");
+		addD("gui.lotrextended.banner_configuration.add_player", "Add Player");
+		addD("gui.lotrextended.banner_configuration.add_fellowship", "Add Fellowship");
+		addD("gui.lotrextended.banner_configuration.type_whitelist", "Protection Type: Whitelist");
+		addD("gui.lotrextended.banner_configuration.type_faction", "Protection Type: Faction");
+		addD("gui.lotrextended.banner_configuration.permission_type.full", "Full Permissions");
+		addD("gui.lotrextended.banner_configuration.permission_type.limited", "Limited Permissions");
+
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
@@ -221,7 +231,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Banner Item Info
 		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
 
-		// Banner Item Info
+		// Banner protection info
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
 
 		// Horn Type names

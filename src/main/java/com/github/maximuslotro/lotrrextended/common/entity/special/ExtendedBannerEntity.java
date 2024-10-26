@@ -69,6 +69,7 @@ public class ExtendedBannerEntity extends Entity {
 		        		queueToRemove = true;
 		        	}else {
 		        		this.setProtectionRange(banner.getProtectionRadius());
+		        		this.setProtectionOwner(banner.getPlacedPlayerUUID());
 		        		connectedTileEntity = banner;
 		        	}
 		        }else {
@@ -121,6 +122,10 @@ public class ExtendedBannerEntity extends Entity {
 
 	public UUID getProtectionOwner() {
 		return this.getEntityData().get(OWNER).orElse(Util.NIL_UUID);
+	}
+
+	public void setProtectionOwner(UUID owner) {
+		this.getEntityData().set(OWNER, Optional.of(owner));
 	}
 
 	@Override

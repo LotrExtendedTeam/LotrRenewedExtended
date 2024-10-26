@@ -33,6 +33,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSPacketSendServerSettings.class, ExtendedSPacketSendServerSettings::encode, ExtendedSPacketSendServerSettings::decode, ExtendedSPacketSendServerSettings::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketStopTradingWithTrader.class, ExtendedCPacketStopTradingWithTrader::encode, ExtendedCPacketStopTradingWithTrader::decode, ExtendedCPacketStopTradingWithTrader::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
 		if (id >= 255) {
 			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
 		}

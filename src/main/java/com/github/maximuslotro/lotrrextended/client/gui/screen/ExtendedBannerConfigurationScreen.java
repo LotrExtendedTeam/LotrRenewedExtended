@@ -9,7 +9,7 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScreen {
-	private static final ResourceLocation guiTexture = new ResourceLocation("lotr:gui/horn_select.png");
+	private static final ResourceLocation guiTexture = new ResourceLocation("lotrextended:textures/gui/banner_gui.png");
 	private final ExtendedSBannerOpenScreenPacket serverData;
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
@@ -19,6 +19,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 
 	@Override
 	public void init() {
+		super.init();
 		//this.addButton(new Button(this.leftPos + 40, this.topPos + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> setHorn(1.0F, button)));
 		//this.addButton(new Button(this.leftPos + 40, this.topPos + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> setHorn(3.0F, button)));
 	}

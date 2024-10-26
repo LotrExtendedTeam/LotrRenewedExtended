@@ -28,14 +28,22 @@ import net.minecraft.world.IWorld;
 import net.minecraftforge.common.util.FakePlayer;
 
 public class ExtendedBannerProtectionManager {
-	public static boolean isBannerProtected(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance) {
-		return isBannerProtected(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance);
+	public static boolean isBannerProtected(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance, boolean doLog) {
+		return isBannerProtected(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, doLog);
 	}
 
-	public static boolean isBannerProtected(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
+	public static boolean isBannerProtected(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance, boolean doLog) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
 			return false;
 		}
+		boolean isInteractionDenied = isBannerProtectedInner(iWorld, pX, pY, pZ, protInstance);
+		if(doLog && ExtendedServerConfig.enableExtendedLogging.get()) {
+			ExtendedLog.info("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+"]");
+		}
+		return isInteractionDenied;
+	}
+
+	private static boolean isBannerProtectedInner(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
 		AxisAlignedBB bannerScan = AxisAlignedBBUtils.makeCroppedBB(pX, pY, pZ).inflate(64.0D);
 		if(protInstance.extraScanArea>0) {
 			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
@@ -56,7 +64,6 @@ public class ExtendedBannerProtectionManager {
 				}
 			}
 		}
-		//TODO send feedback to the players
 		return false;
 	}
 
@@ -73,6 +80,13 @@ public class ExtendedBannerProtectionManager {
 		}
 
 		public abstract boolean isProtected(ExtendedMEBannerTileEntity bannerInstance);
+
+		@Override
+		public String toString() {
+			return getStringData();
+		}
+
+		public abstract String getStringData();
 
 		public static class PlayerProtection extends SingleProtectionInstance{
 			private final PlayerEntity offendingPlayer;
@@ -139,6 +153,11 @@ public class ExtendedBannerProtectionManager {
 				offendingPlayer.inventoryMenu.broadcastChanges();
 				offendingPlayer.sendMessage(new TranslationTextComponent("gui.lotrextended.bow.speed", iFormattableTextComponent), Util.NIL_UUID);
 			}
+
+			@Override
+			public String getStringData() {
+				return "PlayerProtection:UUID_"+offendingPlayer.getStringUUID()+":Name_"+offendingPlayer.getGameProfile().getName()+":Perm_"+queryingPermission.toString();
+			}
 		}
 
 		public static class EntityProtection extends SingleProtectionInstance{
@@ -160,6 +179,10 @@ public class ExtendedBannerProtectionManager {
 					ExtendedLog.error("Banner tried resolving a faction that does not exist! "+bannerInstance.getFactionProtcting().getNameString());
 				}
 				return false;
+			}
+			@Override
+			public String getStringData() {
+				return "EntityProtection:UUID"+offendingEntity.getStringUUID()+":Type_"+offendingEntity.getType().getDescriptionId();
 			}
 		}
 
@@ -184,6 +207,11 @@ public class ExtendedBannerProtectionManager {
 				}
 				return false;
 			}
+
+			@Override
+			public String getStringData() {
+				return "TNTProtection:UUID"+offendingEntity.getStringUUID()+":Loc_"+offendingEntity.blockPosition().toString();
+			}
 		}
 
 		public static class LaunchedProtection extends SingleProtectionInstance{
@@ -207,12 +235,22 @@ public class ExtendedBannerProtectionManager {
 				}
 				return false;
 			}
+
+			@Override
+			public String getStringData() {
+				return "EntityProtection:Type_"+offendingEntity.getType().getDescriptionId()+ (offendingEntity.getOwner()!=null ? ":OwnerType_"+offendingEntity.getOwner().getType().getDescriptionId() : "");
+			}
 		}
 
 		public static class AnyProtection extends SingleProtectionInstance{
 			@Override
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				return true;
+			}
+
+			@Override
+			public String getStringData() {
+				return "AnyProtection";
 			}
 		}
 	}

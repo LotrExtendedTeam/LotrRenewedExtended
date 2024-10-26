@@ -10,7 +10,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerT
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 
 import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -27,24 +26,6 @@ public class ExtendedSBannerOpenScreenPacket {
 		this.alignmentLevel = bannerEntity.getAlignmentLevel();
 		this.whitelist = bannerEntity.getProtectionWhitelist();
 		this.canSelfProtect = bannerEntity.isCanProtectSelf();
-		if(!protectionWhitelist.isEmpty()) {
-			ListNBT whitelist = new ListNBT();
-			for(ProtectionEntry protectionWWhitelist : protectionWhitelist) {
-				whitelist.add(protectionWWhitelist.save());
-			}
-			pCompound.put("whitelistEntrys", pCompound);
-		}
-		if (!defaultPerms.isEmpty()) {
-			// Initialize a byte array to store the ordinal values of BannerPermission
-			byte[] ordinalValues = new byte[defaultPerms.size()];
-			// Iterate over the entryPerms list to populate the byte array
-			for (int i = 0; i < defaultPerms.size(); i++) {
-				// Get the ordinal of the current BannerPermission enum and cast it to byte
-				ordinalValues[i] = (byte) defaultPerms.get(i).ordinal();
-			}
-			// Store the byte array in the CompoundNBT with the key "perms"
-			pCompound.putByteArray("defaultPerms", ordinalValues);
-		}
 	}
 
 	public static void encode(ExtendedSBannerOpenScreenPacket packet, PacketBuffer buf) {
@@ -60,6 +41,7 @@ public class ExtendedSBannerOpenScreenPacket {
 				buf.writeByte((byte) perm.ordinal());
 			}
 			buf.writeUUID(entry.getProfile().getId());
+			buf.writeUtf(entry.getProfile().getName(), 32767);
 		}
 		buf.writeBoolean(packet.canSelfProtect);
 	}

@@ -17,7 +17,7 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
-	private static final ResourceLocation guiTexture = new ResourceLocation("lotr:gui/horn_select.png");
+	private static final ResourceLocation guiTexture = new ResourceLocation("lotrextended:textures/gui/horn_select.png");
 
 	public ExtendedHornSelectScreen() {
 		super(new StringTextComponent("HORNSELECT"), 176, 256);

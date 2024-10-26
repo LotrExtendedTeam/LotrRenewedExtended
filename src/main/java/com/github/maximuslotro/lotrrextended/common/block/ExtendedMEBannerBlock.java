@@ -2,8 +2,13 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Map;
 
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -20,6 +25,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -223,6 +229,20 @@ public class ExtendedMEBannerBlock extends Block {
             world.setBlock(blockPos, state, 10);
             world.playSound((PlayerEntity)null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             return ActionResultType.sidedSuccess(world.isClientSide);
+        }
+        if(!world.isClientSide) {
+        	BlockPos blockPosBottom = blockPos;
+        	DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
+			if (doubleblockhalf == DoubleBlockHalf.UPPER) {
+				blockPosBottom = blockPos.below();
+			}
+        	TileEntity tileentity = world.getBlockEntity(blockPosBottom);
+    		if (tileentity instanceof ExtendedMEBannerTileEntity) {
+    			if(!ExtendedBannerProtectionManager.isBannerProtected(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true)) {
+            		ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
+            		ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
+            	}
+    		}
         }
         return ActionResultType.PASS;
      }
