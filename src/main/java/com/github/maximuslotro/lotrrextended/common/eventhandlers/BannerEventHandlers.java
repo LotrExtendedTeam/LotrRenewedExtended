@@ -41,6 +41,7 @@ import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.item.HangingEntity;
 import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.entity.item.minecart.TNTMinecartEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
@@ -139,11 +140,12 @@ public class BannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockLeftInteract(PlayerInteractEvent.LeftClickBlock event) {
 		World world = event.getWorld();
-		ExtendedLog.info("PlayerInteractEvent.LeftClickBlock");
-		if (!world.isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true)) {
+		if (!world.isClientSide()) {
 			if (world.getBlockState(event.getPos()).getBlock() instanceof FireBlock) {
-				event.setCanceled(true);
-				return;
+				if (!ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false)) {
+					event.setCanceled(true);
+					return;
+				}
 			}
 		}
 	}
@@ -154,7 +156,6 @@ public class BannerEventHandlers {
 		BlockState bState = world.getBlockState(event.getPos());
 		Block block = bState.getBlock();
 		BannerPermission perm = BannerPermission.EVERYTHING;
-		ExtendedLog.info("PlayerInteractEvent.RightClickBlock");
 		if(!(!world.isClientSide() && event.getPlayer().isShiftKeyDown() && !event.getPlayer().getItemInHand(event.getHand()).isEmpty())) {
 			if (block == Blocks.BOOKSHELF || block instanceof ExtendedBookshelfBlock || block instanceof LecternBlock) {
 				perm = BannerPermission.KNOWLEDGE;
@@ -193,16 +194,26 @@ public class BannerEventHandlers {
 	public static void onExplosionDetonate(ExplosionEvent.Detonate event) {
 		Explosion explosion = event.getExplosion();
 		World world = event.getWorld();
-		Entity exploder = event.getExplosion().getExploder();
+		Entity exploder = event.getExplosion().getSourceMob();
 		if (!world.isClientSide && exploder != null) {
-			ExtendedLog.info("ExplosionEvent.Detonate");
 			SingleProtectionInstance protectionInstance = null;
 			if(exploder instanceof NPCEntity || exploder instanceof MobEntity) {
 				protectionInstance = new SingleProtectionInstance.AnyProtection();
 			}else if(exploder instanceof ProjectileEntity) {
 				protectionInstance = new SingleProtectionInstance.LaunchedProtection((ProjectileEntity)exploder);
 			}else if(exploder instanceof TNTEntity) {
-				protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity)exploder);
+				if(((TNTEntity)exploder).getOwner()!=null) {
+					LivingEntity owner = ((TNTEntity)exploder).getOwner();
+					if(owner instanceof NPCEntity || owner instanceof MobEntity) {
+						protectionInstance = new SingleProtectionInstance.AnyProtection();
+					}else if(owner instanceof PlayerEntity) {
+						protectionInstance = new SingleProtectionInstance.PlayerProtection((PlayerEntity) owner);
+					}else {
+						protectionInstance = new SingleProtectionInstance.AnyProtection();
+					}
+				}else {
+					protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity)exploder);
+				}
 			}else if(exploder instanceof TNTMinecartEntity) {
 				protectionInstance = new SingleProtectionInstance.AnyProtection();
 			}
