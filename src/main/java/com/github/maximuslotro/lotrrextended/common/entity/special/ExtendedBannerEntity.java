@@ -36,9 +36,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class ExtendedBannerEntity extends Entity {
 	private static final DataParameter<Integer> SPAWNER_BOUNDS = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.INT);
 	private static final DataParameter<Optional<UUID>> OWNER = EntityDataManager.defineId(ExtendedBannerEntity.class, DataSerializers.OPTIONAL_UUID);
-
-	@Deprecated // Remove when shipping release 1.7.0
-	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
 	private ExtendedMEBannerTileEntity connectedTileEntity;
 
@@ -147,20 +144,15 @@ public class ExtendedBannerEntity extends Entity {
 
 	@Override
 	public boolean isInvisible() {
-		if(!this.level.isClientSide()) {
-			return super.isInvisible();
-		}
-		return isInvisible;
+		return true;
 	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean isInvisibleTo(PlayerEntity pPlayer) {
 		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableDevMode.get()) {
-			isInvisible = false;
 			return false;
 		}
-		isInvisible = true;
 		return true;
 	}
 
@@ -172,10 +164,9 @@ public class ExtendedBannerEntity extends Entity {
 
 	@Override
 	public void remove() {
-		// TODO development line, remove when releasing 1.7.0
-		//if(!queueToRemove) {
+		if(!queueToRemove) {
 			this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-		//}
+		}
 		super.remove();
 	}
 
@@ -220,7 +211,7 @@ public class ExtendedBannerEntity extends Entity {
 	 */
 	@Override
 	public boolean isPickable() {
-		return true;
+		return false;
 	}
 
 	/**

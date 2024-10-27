@@ -42,7 +42,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	//Use for faction alignment level
 	private float alignmentLevel = 1;
-	private BannerProtectionType protectionType = BannerProtectionType.NONE;
+	private BannerProtectionType protectionType = BannerProtectionType.FACTION;
 	//Default perms for everyone in faction mode
 	private List<BannerPermission> defaultPerms = new ArrayList<>();
 	//Should protect myself from destruction besides faction member or player placed

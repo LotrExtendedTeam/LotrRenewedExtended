@@ -14,10 +14,11 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSBannerOpenScreenPacket {
-	private List<BannerPermission> defaultPerms;
-	private float alignmentLevel;
-	private List<ProtectionEntry> whitelist;
-	private boolean canSelfProtect;
+	public List<BannerPermission> defaultPerms;
+	public float alignmentLevel;
+	public List<ProtectionEntry> whitelist;
+	public boolean canSelfProtect;
+	public int protectionType;
 
 	public ExtendedSBannerOpenScreenPacket() {}
 
@@ -29,14 +30,14 @@ public class ExtendedSBannerOpenScreenPacket {
 	}
 
 	public static void encode(ExtendedSBannerOpenScreenPacket packet, PacketBuffer buf) {
-		buf.writeVarInt(packet.defaultPerms.size());
+		buf.writeInt(packet.defaultPerms.size());
 		for(BannerPermission perm : packet.defaultPerms) {
 			buf.writeByte((byte) perm.ordinal());
 		}
 		buf.writeFloat(packet.alignmentLevel);
-		buf.writeVarInt(packet.whitelist.size());
+		buf.writeInt(packet.whitelist.size());
 		for(ProtectionEntry entry : packet.whitelist) {
-			buf.writeVarInt(entry.getEntryPerms().size());
+			buf.writeInt(entry.getEntryPerms().size());
 			for(BannerPermission perm : entry.getEntryPerms()) {
 				buf.writeByte((byte) perm.ordinal());
 			}
@@ -44,20 +45,21 @@ public class ExtendedSBannerOpenScreenPacket {
 			buf.writeUtf(entry.getProfile().getName(), 32767);
 		}
 		buf.writeBoolean(packet.canSelfProtect);
+		buf.writeInt(packet.protectionType);
 	}
 
 	public static ExtendedSBannerOpenScreenPacket decode(PacketBuffer buf) {
 		ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket();
-		int defaultPermsSize = buf.readVarInt();
+		int defaultPermsSize = buf.readInt();
 		packet.defaultPerms = new ArrayList<>();
 		for(int i = 0; i<defaultPermsSize; i++) {
 			packet.defaultPerms.add(BannerPermission.values[buf.readByte()]);
 		}
 		packet.alignmentLevel = buf.readFloat();
 		packet.whitelist = new ArrayList<>();
-		int whitelistSize = buf.readVarInt();
+		int whitelistSize = buf.readInt();
 		for(int i = 0; i<whitelistSize; i++) {
-			int permListSize = buf.readVarInt();
+			int permListSize = buf.readInt();
 			List<BannerPermission> profilePerms = new ArrayList<>();
 			for(int j = 0; j<permListSize; j++) {
 				profilePerms.add(BannerPermission.values[buf.readByte()]);
@@ -66,6 +68,7 @@ public class ExtendedSBannerOpenScreenPacket {
 			String name = buf.readUtf(32767);
 		}
 		packet.canSelfProtect = buf.readBoolean();
+		packet.protectionType = buf.readInt();
 		return packet;
 	}
 
