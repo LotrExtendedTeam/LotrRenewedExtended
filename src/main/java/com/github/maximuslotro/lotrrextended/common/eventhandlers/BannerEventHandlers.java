@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBan
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 
@@ -177,6 +178,8 @@ public class BannerEventHandlers {
 				perm = BannerPermission.BEDS;
 			} else if (block instanceof AbstractButtonBlock || block instanceof LeverBlock || block instanceof DaylightDetectorBlock) {
 				perm = BannerPermission.FLICKABLES;
+			}else if (block instanceof ExtendedMEBannerBlock) {
+				perm = BannerPermission.BANNER;
 			}
 		}
 		if (!world.isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true)) {

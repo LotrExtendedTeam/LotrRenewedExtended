@@ -38,7 +38,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	/** Alignment entry field */
 	private TextFieldWidget alignmentField;
 	/** is the text that appears when you press the chat key and the input box appears pre-filled */
-	private String initial = "";
+	private float previousAlignment;;
 	private boolean showDefaultPerms = false;
 	private List<Button> defaultPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
@@ -46,7 +46,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
 		this.defaultPerms = serverData.defaultPerms;
-		this.alignmentLevel = serverData.alignmentLevel;
+		this.alignmentLevel = Math.round(serverData.alignmentLevel * 10) / 10f;
+		this.previousAlignment = alignmentLevel;
 		this.whitelist = serverData.whitelist;
 		this.canSelfProtect = serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
@@ -56,10 +57,12 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	public void updatefromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
 		needsUpdate = false;
 		this.defaultPerms = serverData.defaultPerms;
-		this.alignmentLevel = serverData.alignmentLevel;
+		this.alignmentLevel = Math.round(serverData.alignmentLevel * 10) / 10f;
+		this.previousAlignment = alignmentLevel;
 		this.whitelist = serverData.whitelist;
 		this.canSelfProtect = serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
+		handleAlignmentUpdate();
 	}
 
 	public BlockPos getConfigurePos() {
@@ -69,18 +72,21 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	@Override
 	public void init() {
 		super.init();
-		this.addButton(alignmentField = new TextFieldWidget(this.font, this.leftPos+63, this.topPos+81, 80, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.textBox")));
+		this.addButton(alignmentField = new TextFieldWidget(this.font, this.leftPos+63, this.topPos+81, 80, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.textBox")) {
+			@Override   
+			public void setFocus(boolean pIsFocused) {
+				super.setFocus(pIsFocused);
+				if(!pIsFocused) {
+					ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate();
+				}
+			}
+		});
 		this.alignmentField.setMaxLength(12);
 		this.alignmentField.setBordered(false);
-		this.alignmentField.setValue("+"+(Math.round(alignmentLevel * 5) / 5d));
+		this.alignmentField.setValue("+"+alignmentLevel);
 		this.alignmentField.setFocus(false);
 		this.alignmentField.setCanLoseFocus(true);
 		this.alignmentField.setTextColorUneditable(65313);
-		this.alignmentField.setResponder((imput) -> {
-			if(!alignmentField.isFocused()) {
-				ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate();
-			}
-		});
 		this.addButton(protectionTypeButton = new SimpleButton(this.leftPos + 30, this.topPos + 20, 140, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"), button -> {
 			protectionType = protectionType==0 ? 1 : 0;
 			needsUpdate = true;
@@ -211,7 +217,10 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		alignmentLevel = Math.round(alignmentLevel * 10) / 10.f;
 
 		this.alignmentField.setValue("+"+alignmentLevel);
-		needsUpdate = true;
+		if(this.previousAlignment!=this.alignmentLevel) {
+			this.needsUpdate = true;
+			previousAlignment = alignmentLevel;
+		}
 	}
 
 	public static class PermissionButton extends TextureOffsetButton {
