@@ -16,13 +16,23 @@ public abstract class ExtendedBannerProfileBase {
 	public abstract UUID getId();
 	
 	/**
-	 * Get player viewable name for profile
+	 * Get underlying name for profile
 	 * * <p />
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */
 	@Nullable
 	public abstract String getName();
+
+	/**
+	 * Get display name for profile
+	 * can be the same as getName()
+	 * * <p />
+	 * This may be null for partial profile data if constructed manually.
+	 * @return String
+	 * */
+	@Nullable
+	public abstract String getDisplayName();
 
 	/**
 	 * Get profile type

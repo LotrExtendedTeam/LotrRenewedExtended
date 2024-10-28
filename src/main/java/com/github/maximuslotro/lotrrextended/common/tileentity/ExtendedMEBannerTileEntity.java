@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -15,8 +16,12 @@ import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionLevel;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionType;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
+import lotr.common.data.ExtendedFellowshipDataModule;
+import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
 import lotr.common.fellowship.ExtendedFellowship;
@@ -28,13 +33,17 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.common.UsernameCache;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
 	private boolean isActiveHalf = false;
@@ -100,12 +109,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Creates a new ExtendedBannerEntity for this banner
 	 * */
 	private void createAndSetBannerEntity() {
-		EntityType<ExtendedBannerEntity> newBannerEntity = ExtendedEntities.BANNER_HOLDER.get();
-		ExtendedBannerEntity banner = newBannerEntity.create(level);
-		if(banner!=null) {
-			banner.moveTo(this.getBlockPos().offset(0.5D, 0, 0.5D), 0.0f, 0.0F);
-			level.addFreshEntity(banner);
-			connectedEntity = banner.getUUID();
+		if(!level.isClientSide) {
+			EntityType<ExtendedBannerEntity> newBannerEntity = ExtendedEntities.BANNER_HOLDER.get();
+			ExtendedBannerEntity banner = newBannerEntity.create(level);
+			if(banner!=null) {
+				banner.moveTo(this.getBlockPos().offset(0.5D, 0, 0.5D), 0.0f, 0.0F);
+				level.addFreshEntity(banner);
+				connectedEntity = banner.getUUID();
+			}
 		}
 	}
 
@@ -154,11 +165,35 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	/**
+	 * Sets the banner protection type
+	 * @param BannerProtectionType
+	 * */
+	public void setProtectionType(BannerProtectionType protectionType) {
+		this.protectionType = protectionType;
+	}
+
+	/**
+	 * Gets the actual banner protection type
+	 * @return BannerProtectionType
+	 * */
+	public BannerProtectionType getProtectionType() {
+		return protectionType;
+	}
+
+	/**
 	 * Checks if this banner is protecting by faction
 	 * @return boolean
 	 * */
 	public boolean isFactionProtecting() {
 		return protectionType==BannerProtectionType.FACTION;
+	}
+
+	/**
+	 * Checks if this banner is protecting by whitelist
+	 * @return boolean
+	 * */
+	public boolean isWhitelistProtecting() {
+		return protectionType==BannerProtectionType.PLAYER;
 	}
 
 	/**
@@ -182,11 +217,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	/**
-	 * Checks if this banner is protecting by whitelist
-	 * @return boolean
+	 * Sets the Faction protecting alignment level
+	 * @param float
 	 * */
-	public boolean isWhitelistProtecting() {
-		return protectionType==BannerProtectionType.PLAYER;
+	public void setAlignmentLevel(float level) {
+		this.alignmentLevel = level;
 	}
 
 	/**
@@ -227,11 +262,24 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	}
 
 	public void setDefaultPerms(List<BannerPermission> perms) {
-		defaultPerms = perms;
+		defaultPerms.clear();
+		defaultPerms.addAll(perms);
+	}
+
+	public List<BannerPermission> getDefaultPerms() {
+		return defaultPerms;
 	}
 
 	public boolean hasDefaultPerm(BannerPermission perm) {
-		return defaultPerms.contains(perm);
+		if(perm==BannerPermission.BANNER) {
+			return defaultPerms.contains(perm);
+		}
+		return defaultPerms.contains(BannerPermission.EVERYTHING)|| defaultPerms.contains(perm);
+	}
+
+	public void setProtectionWhitelist(List<ProtectionEntry> whitelist) {
+		protectionWhitelist.clear();
+		protectionWhitelist.addAll(whitelist);
 	}
 
 	public List<ProtectionEntry> getProtectionWhitelist() {
@@ -254,12 +302,79 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
-	public List<BannerPermission> getDefaultPerms() {
-		return defaultPerms;
-	}
-
 	public boolean isCanProtectSelf() {
 		return canProtectSelf;
+	}
+
+	public void setCanProtectSelf(boolean canProtectSelf) {
+		this.canProtectSelf = canProtectSelf;
+	}
+
+	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(boolean shouldReturn, ServerPlayerEntity serverPlayer) {
+		boolean fixedBroken = false;
+		if(alignmentLevel<=0) {
+			alignmentLevel = 0.1f;
+			fixedBroken = true;
+		}
+		if(alignmentLevel>1000) {
+			alignmentLevel = 1000;
+			fixedBroken = true;
+		}
+		List<ProtectionEntry> toRemove = new ArrayList<>();
+		for (ProtectionEntry entry : this.protectionWhitelist) {
+			if(entry.getProfile() instanceof ExtendedBannerProfilePlayer) {
+				if(entry.getProfile().getId().equals(Util.NIL_UUID)) {
+					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(entry.getProfile().getName());
+					if(player!=null) {
+						entry.updateProfile(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName()));
+						fixedBroken = true;
+					}else {
+						boolean foundPlayer = false;
+						for(Entry<UUID, String> profile : UsernameCache.getMap().entrySet()) {
+							if(profile.getValue().equals(entry.getProfile().getName())) {
+								entry.updateProfile(new ExtendedBannerProfilePlayer(profile.getKey(), entry.getProfile().getName()));
+								foundPlayer = true;
+								fixedBroken = true;
+								break;
+							}
+						}
+						if(!foundPlayer) {
+							toRemove.add(entry);
+						}
+					}
+				}else {
+					// General username updating
+					String lastKnownUsername = UsernameCache.getLastKnownUsername(entry.getProfile().getId());
+					if(!lastKnownUsername.equals(entry.getProfile().getName())) {
+						entry.updateProfile(new ExtendedBannerProfilePlayer(entry.getProfile().getId(), lastKnownUsername));
+						fixedBroken = true;
+					}
+				}
+			}else if(entry.getProfile() instanceof ExtendedBannerProfileFellowship) {
+				if(entry.getProfile().getId().equals(Util.NIL_UUID) && serverPlayer!=null) {
+					ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)LOTRLevelData.getSidedData(serverPlayer)).getFellowshipData();
+					if(fellowshipModule.anyMatchingFellowshipNames(entry.getProfile().getName())) {
+						ExtendedFellowship fellow = fellowshipModule.getFellowshipByName(entry.getProfile().getName());
+						entry.updateProfile(new ExtendedBannerProfileFellowship(fellow.getFellowshipId()));
+						fixedBroken = true;
+					}else {
+						toRemove.add(entry);
+					}
+				}else {
+					if(!entry.getProfile().isValid()){
+						toRemove.add(entry);
+					}
+				}
+			}
+		}
+		if(!toRemove.isEmpty()) {
+			protectionWhitelist.removeAll(toRemove);
+			fixedBroken = true;
+		}
+		if(shouldReturn) {
+			return new ExtendedSBannerOpenChangedScreenPacket(this);
+		}
+		return null;
 	}
 
 	@Override
@@ -307,10 +422,6 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				for (byte ordinal : ordinalValues) {
 					defaultPerms.add(BannerPermission.values[ordinal]);
 				}
-			}
-			if(defaultPerms.contains(BannerPermission.EVERYTHING)) {
-				defaultPerms.remove(BannerPermission.EVERYTHING);
-				ExtendedLog.info("Found Everything permission in banner defaults. Removing it!");
 			}
 			if(pCompound.contains("protectionSelf")) {
 				canProtectSelf = pCompound.getBoolean("protectionSelf");
@@ -406,13 +517,20 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 
 		public boolean hasPermission(BannerPermission permission) {
-			return entryPerms.isEmpty() || containsPermissionNode(permission);
+			if(permission==BannerPermission.BANNER) {
+				return containsPermissionNode(permission);
+			}
+			return entryPerms.contains(BannerPermission.EVERYTHING) || containsPermissionNode(permission);
 		}
 
 		public ExtendedBannerProfileBase getProfile() {
 			return profile;
 		}
 
+		public void updateProfile(ExtendedBannerProfileBase newProfile) {
+			profile = newProfile;
+		}
+	
 		public List<BannerPermission> getEntryPerms() {
 			return entryPerms;
 		}

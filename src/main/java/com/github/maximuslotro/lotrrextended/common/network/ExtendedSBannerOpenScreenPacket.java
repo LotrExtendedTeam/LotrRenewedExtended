@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerT
 
 import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSBannerOpenScreenPacket {
@@ -19,6 +20,7 @@ public class ExtendedSBannerOpenScreenPacket {
 	public List<ProtectionEntry> whitelist;
 	public boolean canSelfProtect;
 	public int protectionType;
+	public BlockPos configurePos;
 
 	public ExtendedSBannerOpenScreenPacket() {}
 
@@ -27,6 +29,8 @@ public class ExtendedSBannerOpenScreenPacket {
 		this.alignmentLevel = bannerEntity.getAlignmentLevel();
 		this.whitelist = bannerEntity.getProtectionWhitelist();
 		this.canSelfProtect = bannerEntity.isCanProtectSelf();
+		this.protectionType = bannerEntity.getProtectionType().getId();
+		this.configurePos = bannerEntity.getBlockPos();
 	}
 
 	public static void encode(ExtendedSBannerOpenScreenPacket packet, PacketBuffer buf) {
@@ -46,6 +50,7 @@ public class ExtendedSBannerOpenScreenPacket {
 		}
 		buf.writeBoolean(packet.canSelfProtect);
 		buf.writeInt(packet.protectionType);
+		buf.writeBlockPos(packet.configurePos);
 	}
 
 	public static ExtendedSBannerOpenScreenPacket decode(PacketBuffer buf) {
@@ -69,6 +74,7 @@ public class ExtendedSBannerOpenScreenPacket {
 		}
 		packet.canSelfProtect = buf.readBoolean();
 		packet.protectionType = buf.readInt();
+		packet.configurePos = buf.readBlockPos();
 		return packet;
 	}
 

@@ -1027,7 +1027,7 @@
   "gui.lotrextended.banner_configuration.perms.beds": "Bed Permissions",
   "gui.lotrextended.banner_configuration.perms.beds.disc": "Allows sleeping in beds",
   "gui.lotrextended.banner_configuration.perms.containers": "Container Permissions",
-  "gui.lotrextended.banner_configuration.perms.containers.disc": "Allows for container inventories",
+  "gui.lotrextended.banner_configuration.perms.containers.disc": "Allows for accessing container inventories",
   "gui.lotrextended.banner_configuration.perms.crafting": "Crafting Table Permissions",
   "gui.lotrextended.banner_configuration.perms.crafting.disc": "Allows for users to crafting in workbenches",
   "gui.lotrextended.banner_configuration.perms.disc": "Show Additional Permissions",

@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.fellowship.ExtendedFellowship;
@@ -49,15 +51,25 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	}
 
 	/**
-	 * Gets the display name of this banner profile.
-	 * <p />
+	 * Get underlying name for profile
+	 * * <p />
 	 * This may be null for partial profile data if constructed manually.
-	 *
-	 * @return Name of the profile
-	 *
-	 */
-	@Override
-	public String getName() {
+	 * @return String
+	 * */
+	@Nullable
+	public  String getName() {
+		return name;
+	}
+
+	/**
+	 * Get display name for profile
+	 * can be the same as getName()
+	 * * <p />
+	 * This may be null for partial profile data if constructed manually.
+	 * @return String
+	 * */
+	@Nullable
+	public String getDisplayName() {
 		return "f/"+name;
 	}
 
@@ -79,7 +91,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 	@Override
 	public boolean isValid() {
-		return getFellowshipFromID(id) != null && !getFellowshipFromID(id).isRemoved();
+		return id != null && getFellowshipFromID(id) != null && !getFellowshipFromID(id).isRemoved();
 	}
 
 	@Override

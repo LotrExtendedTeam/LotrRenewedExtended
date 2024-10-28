@@ -238,7 +238,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.perms.crafting", "Crafting Table Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.crafting.disc", "Allows for users to crafting in workbenches");
 		addD("gui.lotrextended.banner_configuration.perms.containers", "Container Permissions");
-		addD("gui.lotrextended.banner_configuration.perms.containers.disc", "Allows for container inventories");
+		addD("gui.lotrextended.banner_configuration.perms.containers.disc", "Allows for accessing container inventories");
 		addD("gui.lotrextended.banner_configuration.perms.editables", "Edible Block Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.editables.disc", "Allows eating off plates and drinking vessels");
 		addD("gui.lotrextended.banner_configuration.perms.beds", "Bed Permissions");

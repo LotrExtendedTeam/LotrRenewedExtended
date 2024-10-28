@@ -3,6 +3,7 @@ package lotr.common.util.client;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
@@ -38,5 +39,12 @@ public class ExtendedClientsideSeperatedScreenHandler {
 
 	public static void openBannerGUI(ExtendedSBannerOpenScreenPacket packet) {
 		Minecraft.getInstance().setScreen(new ExtendedBannerConfigurationScreen(packet));
+	}
+
+	public static void handleBannerGUIUpdate(ExtendedSBannerOpenChangedScreenPacket packet) {
+		Minecraft mc = Minecraft.getInstance();
+		if(mc.screen instanceof ExtendedBannerConfigurationScreen && ((ExtendedBannerConfigurationScreen)mc.screen).getConfigurePos().equals(packet.configurePos)) {
+			((ExtendedBannerConfigurationScreen)mc.screen).updatefromPacket(packet);
+		}
 	}
 }
