@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldWidget;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -42,6 +43,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private boolean showDefaultPerms = false;
 	private List<Button> defaultPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
+	int shownWhiteListButtonCount = 0;
+	private List<ExtendedTextFieldWidget> whitelistFields = new ArrayList<>();
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
@@ -52,6 +55,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.canSelfProtect = serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
+		this.shownWhiteListButtonCount = Math.max(whitelist.size(), 4);
 	}
 
 	public void updatefromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
@@ -63,6 +67,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.canSelfProtect = serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
 		handleAlignmentUpdate();
+		this.shownWhiteListButtonCount = Math.max(whitelist.size(), 4);
 	}
 
 	public BlockPos getConfigurePos() {
@@ -72,21 +77,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	@Override
 	public void init() {
 		super.init();
-		this.addButton(alignmentField = new TextFieldWidget(this.font, this.leftPos+63, this.topPos+81, 80, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.textBox")) {
-			@Override   
-			public void setFocus(boolean pIsFocused) {
-				super.setFocus(pIsFocused);
-				if(!pIsFocused) {
-					ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate();
-				}
-			}
-		});
-		this.alignmentField.setMaxLength(12);
-		this.alignmentField.setBordered(false);
-		this.alignmentField.setValue("+"+alignmentLevel);
-		this.alignmentField.setFocus(false);
-		this.alignmentField.setCanLoseFocus(true);
-		this.alignmentField.setTextColorUneditable(65313);
+		// General stuff
 		this.addButton(protectionTypeButton = new SimpleButton(this.leftPos + 30, this.topPos + 20, 140, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"), button -> {
 			protectionType = protectionType==0 ? 1 : 0;
 			needsUpdate = true;
@@ -121,6 +112,14 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.showDefaultPerms;
+			}
+			@Override
+			public boolean shouldDoDiffrentOffset() {
+				return !defaultPerms.isEmpty();
+			}
+			@Override
+			public int additionalOffset() {
+				return 10;
 			}
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
@@ -166,6 +165,102 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		for(Button button : defaultPermButtons) {
 			this.addButton(button);
 		}
+		// Faction
+		this.addButton(alignmentField = new TextFieldWidget(this.font, this.leftPos+63, this.topPos+81, 80, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.textBox")) {
+			@Override   
+			public void setFocus(boolean pIsFocused) {
+				super.setFocus(pIsFocused);
+				if(!pIsFocused) {
+					ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate();
+				}
+			}
+		});
+		this.alignmentField.setMaxLength(12);
+		this.alignmentField.setBordered(false);
+		this.alignmentField.setValue("+"+alignmentLevel);
+		this.alignmentField.setFocus(false);
+		this.alignmentField.setCanLoseFocus(true);
+		this.alignmentField.setTextColorUneditable(65313);
+		// Whitelist
+		for(int i=0; i<4; i++) {
+			ExtendedTextFieldWidget textField =  new ExtendedTextFieldWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 80, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
+				@Override   
+				public void setFocus(boolean pIsFocused) {
+					super.setFocus(pIsFocused);
+					if(!pIsFocused) {
+						//ExtendedBannerConfigurationScreen.this.handleAlignmentUpdate();
+					}
+				}
+			};
+			textField.setBordered(false);
+			textField.setValue("");
+			textField.setFocus(false);
+			textField.setCanLoseFocus(true);
+			textField.setTextColorUneditable(65313);
+			
+			IndexedButton permShowButton = new IndexedButton(this.leftPos + 29, this.topPos + 63 + (i*30), 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), i, button -> {
+				textField.togglePermVis();
+			}){
+				@Override
+				public boolean shouldOffset() {
+					return ExtendedBannerConfigurationScreen.this.whitelistFields.get(this.id).showPerms;
+				}
+				@Override
+				public boolean shouldDoDiffrentOffset() {
+					return !defaultPerms.isEmpty(); //TODO finish
+				}
+				@Override
+				public int additionalOffset() {
+					return 10;
+				}
+				@Override
+				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+					ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms.disc"), 200), pMouseX, pMouseY);
+				}
+			};
+			textField.permShowButton = permShowButton;
+			for(BannerPermission perm : BannerPermission.values()) {
+				int leftLoc = this.leftPos + 41;
+				if(perm.ordinal()>0) {
+					leftLoc += 12;
+				}
+				if(perm.ordinal()>1 ) {
+					leftLoc += (perm.ordinal()-1) * 10;
+				}
+				 //TODO finish
+				TextureOffsetButton permButton = new PermissionButton(leftLoc, this.topPos + 63 + (i*30), 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, button -> {
+					if(defaultPerms.contains(((PermissionButton)button).perm)) {
+						defaultPerms.remove(((PermissionButton)button).perm);
+					}else {
+						defaultPerms.add(((PermissionButton)button).perm);
+					}
+					needsUpdate = true;
+				}){
+					@Override
+					public boolean shouldOffset() {
+						return ExtendedBannerConfigurationScreen.this.defaultPerms.contains((this.perm));
+					}
+					@Override
+					public int hoverOffset() {
+						return 10;
+					}
+					@Override
+					public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+						ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc"), 200), pMouseX, pMouseY);
+					}
+				};
+				textField.permButtons.add(permButton);
+			}
+			this.whitelistFields.add(textField);
+		}
+		
+		for(ExtendedTextFieldWidget field : whitelistFields) {
+			this.addButton(field);
+			this.addButton(field.permShowButton);
+			for(TextureOffsetButton button : field.permButtons) {
+				this.addButton(button);
+			}
+		}
 	}
 
 	@Override
@@ -177,12 +272,19 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.font.draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
 		if(protectionType==0) {
 			alignmentField.visible=true;
+			whitelistFields.forEach((textField -> textField.isVisable(false)));
 			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.requires"), leftPos + 61, topPos + 64, 4210752);
 			this.minecraft.getTextureManager().bind(guiTexture);
 			blit(matStack, this.leftPos+60, this.topPos+76, 0, 192, 80, 17);
 			alignmentField.render(matStack, mouseX, mouseY, tick);
 		}else {
 			alignmentField.visible=false;
+			whitelistFields.forEach((textField -> textField.isVisable(true)));
+			this.minecraft.getTextureManager().bind(guiTexture);
+			for(int i=0;i<4; i++) {
+				blit(matStack, this.leftPos+29, this.topPos+46 + (i*30), 0, 192, 80, 17);
+				whitelistFields.get(i).render(matStack, mouseX, mouseY, tick);
+			}
 		}
 		for(Button button : defaultPermButtons) {
 			button.visible = showDefaultPerms;
@@ -201,6 +303,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		alignmentField.tick();
 		protectionTypeButton.setMessage(protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"));
 		update.active = needsUpdate;
+		whitelistFields.forEach((textField) -> textField.tick());
 	}
 
 	public void handleAlignmentUpdate() {
@@ -231,6 +334,14 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 	}
 
+	public static class IndexedButton extends TextureOffsetButton {
+		public int id;
+		public IndexedButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, int id, IPressable pOnPress) {
+			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress);
+			this.id = id;
+		}
+	}
+
 	public static class TextureOffsetButton extends SimpleButton {
 		private int xLoc;
 		private int yLoc;
@@ -244,17 +355,29 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 			Minecraft minecraft = Minecraft.getInstance();
 			minecraft.getTextureManager().bind(guiTexture);
-			int amount = (shouldOffset()? this.height+ hoverOffset() + (this.isHovered() ? hoverOffset() : 0): (this.isHovered() ? hoverOffset() : 0));
+			int amount = shouldOffset() ? this.height + hoverOffset() + (this.isHovered() ? hoverOffset() : 0): (this.isHovered() ? hoverOffset() : 0);
+			if(shouldDoDiffrentOffset()){
+				amount = this.height + additionalOffset() + (this.shouldOffset() ? additionalOffset() : 0);
+			}
 			this.blit(pMatrixStack, this.x, this.y, xLoc, yLoc+amount, this.width, this.height);
 			this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
 
 		}
+
 		public int hoverOffset() {
 			return 0;
 		}
 
 		public boolean shouldOffset() {
 			return false;
+		}
+
+		public boolean shouldDoDiffrentOffset() {
+			return false;
+		}
+
+		public int additionalOffset() {
+			return 0;
 		}
 	}
 

@@ -216,8 +216,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
 		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection Is Disabled");
-		addD("gui.lotrextended.banner_configuration.add_player", "Add Player");
-		addD("gui.lotrextended.banner_configuration.add_fellowship", "Add Fellowship");
+		addD("gui.lotrextended.banner_configuration.whitelist.textBox", "Name");
+		addD("gui.lotrextended.banner_configuration.whitelist.add_player", "Add Player");
+		addD("gui.lotrextended.banner_configuration.whitelist.add_fellowship", "Add Fellowship");
 		addD("gui.lotrextended.banner_configuration.type_whitelist", "Protection Type: Whitelist");
 		addD("gui.lotrextended.banner_configuration.type_faction", "Protection Type: Faction");
 		addD("gui.lotrextended.banner_configuration.permission_type.full", "Full Permissions");
