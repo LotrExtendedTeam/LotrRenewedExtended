@@ -94,6 +94,7 @@ import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
+import net.minecraft.loot.functions.CopyNbt;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.state.properties.BedPart;
@@ -497,16 +498,14 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				LootPool.lootPool().setRolls(ConstantRange.exactly(1))
 				.when(BlockStateProperty.hasBlockStateProperties(banner).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedMEBannerBlock.HALF, DoubleBlockHalf.LOWER)))
 				.add(ItemLootEntry.lootTableItem(banner)
-//						.apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
-//						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("Patterns", "BlockEntityTag.Patterns"))
+						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("ProtectionData", "ProtectionData"))
 						)));
 	}
 
 	protected static LootTable.Builder createWallBannerDrop(Block banner) {
 		return LootTable.lootTable().withPool(applyExplosionCondition(banner, 
 				LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(banner)
-//						.apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
-//						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("Patterns", "BlockEntityTag.Patterns"))
+						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("ProtectionData", "ProtectionData"))
 						)));
 	}
 

@@ -8,11 +8,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.client.gui.BasicIngameScreen;
-import lotr.client.gui.ExtendedFellowshipScreen;
-import lotr.client.gui.ExtendedOptionsScreen;
 import lotr.client.gui.MiddleEarthFactionsScreen;
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
 import lotr.client.gui.map.MiddleEarthMapScreen;
+import lotr.client.gui.menu.ExtendedFellowshipScreen;
+import lotr.client.gui.menu.ExtendedOptionsScreen;
 import lotr.client.gui.widget.button.MiddleEarthMenuButton;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.text.ITextComponent;

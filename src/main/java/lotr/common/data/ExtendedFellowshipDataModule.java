@@ -299,6 +299,13 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		return null;
 	}
 
+	public ExtendedFellowship getFellowshipByID(UUID id) {
+		if(fellowshipIDs.contains(id)) {
+			return ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+		}
+		return null;
+	}
+
 	public ExtendedFellowship getFellowshipByInviteName(String fsName) {
 		for (ExtendedFellowshipInvite fsID : invites) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);

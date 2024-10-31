@@ -8,6 +8,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
@@ -34,5 +35,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBlueMountainsMerchantEntity>> BLUE_MOUNTAINS_MERCHANT;
 	public static RegistryObject<EntityType<ExtendedGundabadUrukEntity>> GUNDABAD_URUK;
 	public static RegistryObject<EntityType<ExtendedGundabadUrukArcherEntity>> GUNDABAD_URUK_ARCHER;
+	public static RegistryObject<EntityType<ExtendedBannerEntity>> BANNER_HOLDER;
 	public static RegistryObject<EntityType<ExtendedBreelandMerchantEntity>> BREE_MERCHANT;
 }

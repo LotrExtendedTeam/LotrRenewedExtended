@@ -1,7 +1,8 @@
-package lotr.client.gui;
+package lotr.client.gui.menu;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import lotr.client.gui.MiddleEarthMenuScreen;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;

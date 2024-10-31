@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.item.clientside;
 
-import lotr.client.gui.ExtendedHornSelectScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectScreen;
+
 import net.minecraft.client.Minecraft;
 
 public class ExtendedCommandHornClientSide {

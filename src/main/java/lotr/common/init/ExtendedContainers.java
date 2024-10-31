@@ -1,6 +1,6 @@
 package lotr.common.init;
 
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedBookshelfContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
 
 import lotr.common.inventory.ExtendedCoinExchangeContainer;

@@ -218,10 +218,54 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix", " blocks");
 
+		// Banner Menu strings
+		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
+		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection Is Disabled");
+		addD("gui.lotrextended.banner_configuration.whitelist.textBox", "Name");
+		addD("gui.lotrextended.banner_configuration.whitelist.add_player", "Add Player");
+		addD("gui.lotrextended.banner_configuration.whitelist.add_fellowship", "Add Fellowship");
+		addD("gui.lotrextended.banner_configuration.type_whitelist", "Protection Type: Whitelist");
+		addD("gui.lotrextended.banner_configuration.type_faction", "Protection Type: Faction");
+		addD("gui.lotrextended.banner_configuration.permission_type.full", "Full Permissions");
+		addD("gui.lotrextended.banner_configuration.permission_type.limited", "Limited Permissions");
+		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner Now");
+		addD("gui.lotrextended.banner_configuration.send_update.disc", "Sync And Validate Banner Info With Server");
+		addD("gui.lotrextended.banner_configuration.self_protection", "Self Protection");
+		addD("gui.lotrextended.banner_configuration.self_protection.on", "Self Protection: On");
+		addD("gui.lotrextended.banner_configuration.self_protection.off", "Self Protection: Off");
+		addD("gui.lotrextended.banner_configuration.faction.requires", "Required Alignment:");
+		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
+		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.disc", "Show Additional Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.everything", "Full Permission");
+		addD("gui.lotrextended.banner_configuration.perms.everything.disc", "This allows \"Everything\" Including Block Breaking/Placing. This is gives the user/group the same permissions as you, with the exception of banner editing.");
+		addD("gui.lotrextended.banner_configuration.perms.doors", "Door Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.doors.disc", "Allows for opening/closing doors/gates/fences");
+		addD("gui.lotrextended.banner_configuration.perms.crafting", "Crafting Table Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.crafting.disc", "Allows for users to crafting in workbenches");
+		addD("gui.lotrextended.banner_configuration.perms.containers", "Container Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.containers.disc", "Allows for accessing container inventories");
+		addD("gui.lotrextended.banner_configuration.perms.editables", "Edible Block Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.editables.disc", "Allows eating off plates and drinking vessels");
+		addD("gui.lotrextended.banner_configuration.perms.beds", "Bed Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.beds.disc", "Allows sleeping in beds");
+		addD("gui.lotrextended.banner_configuration.perms.flickables", "Flickable Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.flickables.disc", "Allows redstone component toggling");
+		addD("gui.lotrextended.banner_configuration.perms.knowledge", "Learning Block Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.knowledge.disc", "Allows accessing lecterns and bookshelves");
+		addD("gui.lotrextended.banner_configuration.perms.banner", "Banner Editing Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.banner.disc", "!! This permission gives the users the ability to edit this banner without your consent. Be careful who you grant this to!");
+
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
 		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
+
+		// Banner Item Info
+		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
+
+		// Banner protection info
+		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
 
 		// Horn Type names
 		addD("item.lotr.horn_of_command.halt");

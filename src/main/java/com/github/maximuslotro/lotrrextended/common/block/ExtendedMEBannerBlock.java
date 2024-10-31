@@ -2,7 +2,14 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Map;
 
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
@@ -14,8 +21,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -24,6 +34,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -33,6 +44,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -44,19 +56,17 @@ public class ExtendedMEBannerBlock extends Block {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	private static final Map<BannerTypes, Block> BY_BANNER = Maps.newHashMap();
+	private final BannerTypes type;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
 			Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
 			Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
 			Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D), 
 			Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
-	private final BannerTypes banner;
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
-		this.banner = bannerType;
-		BY_BANNER.put(bannerType, this);
+		type = bannerType;
 		this.registerDefaultState(this.stateDefinition.any().setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
@@ -82,7 +92,6 @@ public class ExtendedMEBannerBlock extends Block {
 		} else {
 			return canSupportCenter(world, pos.below(), Direction.UP);
 		}
-		//return world.getBlockState(pos.below()).getMaterial().isSolid();
 	}
 
 	@Override
@@ -90,6 +99,20 @@ public class ExtendedMEBannerBlock extends Block {
 		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER)
 				.setValue(SMALL, state.getValue(SMALL))
 				.setValue(FACING, state.getValue(FACING)), 3);
+		TileEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof ExtendedMEBannerTileEntity && stack.getItem() instanceof ExtendedMCBannerItem) {
+			if (stack.getTag()!=null && stack.getTag().contains("ProtectionData", 10)) {
+				((ExtendedMEBannerTileEntity) tileentity).loadProtectionData(stack.getTag());
+			}else {
+				if(placer instanceof PlayerEntity) {
+					((ExtendedMEBannerTileEntity) tileentity).setPlacedPlayerNameAndID(placer.getUUID(), ((PlayerEntity)placer).getGameProfile().getName());
+				}
+			}
+		}
+	}
+
+	public BannerTypes getBanner() {
+		return this.type;
 	}
 
 	@Override
@@ -136,6 +159,27 @@ public class ExtendedMEBannerBlock extends Block {
 		}
 	}
 
+	/**
+	 * Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect
+	 * this block
+	 */
+	@Override
+	public void playerWillDestroy(World pLevel, BlockPos pPos, BlockState pState, PlayerEntity pPlayer) {
+		if (!pLevel.isClientSide && pPlayer.isCreative()) {
+			DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
+			if (doubleblockhalf == DoubleBlockHalf.UPPER) {
+				BlockPos blockpos = pPos.below();
+				BlockState blockstate = pLevel.getBlockState(blockpos);
+				if (blockstate.getBlock() == pState.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+					pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+					pLevel.levelEvent(pPlayer, 2001, blockpos, Block.getId(blockstate));
+				}
+			}
+		}
+
+		super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
+	}
+
 	@Override
 	public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
 		return p_185499_1_.setValue(FACING, p_185499_2_.rotate(p_185499_1_.getValue(FACING)));
@@ -152,12 +196,19 @@ public class ExtendedMEBannerBlock extends Block {
 		p_206840_1_.add(FACING).add(HALF).add(SMALL);
 	}
 
-	public static Block byBanner(BannerTypes banner) {
-		return BY_BANNER.getOrDefault(banner, Blocks.WHITE_BANNER);
+	@Override
+	public boolean hasTileEntity(BlockState state) {
+		return true;
 	}
 
-	public BannerTypes getBanner() {
-		return this.banner;
+	@Override
+	public boolean canCreatureSpawn(BlockState state, IBlockReader world, BlockPos pos, PlacementType type, EntityType<?> entityType) {
+		return false;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+		return new ExtendedMEBannerTileEntity();
 	}
 
 	@Override
@@ -165,21 +216,11 @@ public class ExtendedMEBannerBlock extends Block {
 		return true;
 	}
 
-//	@Override
-//	public void setPlacedBy(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, @Nullable LivingEntity p_180633_4_, ItemStack p_180633_5_) {
-//		if (p_180633_5_.hasCustomHoverName()) {
-//			TileEntity tileentity = p_180633_1_.getBlockEntity(p_180633_2_);
-//			if (tileentity instanceof BannerTileEntity) {
-//				((BannerTileEntity) tileentity).setCustomName(p_180633_5_.getHoverName());
-//			}
-//		}
-//	}
-
-//	@Override
-//	public ItemStack getCloneItemStack(IBlockReader p_185473_1_, BlockPos p_185473_2_, BlockState p_185473_3_) {
-//		TileEntity tileentity = p_185473_1_.getBlockEntity(p_185473_2_);
-//		return tileentity instanceof BannerTileEntity ? ((BannerTileEntity) tileentity).getItem(p_185473_3_) : super.getCloneItemStack(p_185473_1_, p_185473_2_, p_185473_3_);
-//	}
+	@Override
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		TileEntity tileentity = world.getBlockEntity(pos);
+		return tileentity instanceof ExtendedMEBannerTileEntity ? ((ExtendedMEBannerTileEntity) tileentity).getItem(type) : new ItemStack(this);
+	}
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
@@ -188,6 +229,20 @@ public class ExtendedMEBannerBlock extends Block {
             world.setBlock(blockPos, state, 10);
             world.playSound((PlayerEntity)null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             return ActionResultType.sidedSuccess(world.isClientSide);
+        }
+        if(!world.isClientSide) {
+        	BlockPos blockPosBottom = blockPos;
+        	DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
+			if (doubleblockhalf == DoubleBlockHalf.UPPER) {
+				blockPosBottom = blockPos.below();
+			}
+        	TileEntity tileentity = world.getBlockEntity(blockPosBottom);
+    		if (tileentity instanceof ExtendedMEBannerTileEntity) {
+    			if(!ExtendedBannerProtectionManager.isBannerProtected(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true)) {
+            		ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
+            		ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
+            	}
+    		}
         }
         return ActionResultType.PASS;
      }

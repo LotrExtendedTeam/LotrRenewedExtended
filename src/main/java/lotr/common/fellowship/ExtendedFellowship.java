@@ -26,7 +26,7 @@ public class ExtendedFellowship {
 	private boolean PreventPVP = true;
 	private boolean ShowMap = true;
 	private boolean needsSaving = false;
-	private boolean removed;
+	private boolean disbanded;
 	private ItemStack icon = ItemStack.EMPTY;
 	
 	public ExtendedFellowship(String publicName, UUID ownerUUID) {
@@ -49,13 +49,13 @@ public class ExtendedFellowship {
 		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
-	public void load(CompoundNBT arg0) {
-		removed = arg0.getBoolean("Disbanded");
-		if (arg0.contains("Owner"))
-			FellowshipOwner = UUID.fromString(arg0.getString("Owner")); 
+	public void load(CompoundNBT pCompound) {
+		disbanded = pCompound.getBoolean("Disbanded");
+		if (pCompound.contains("Owner"))
+			FellowshipOwner = UUID.fromString(pCompound.getString("Owner")); 
 		FellowshipMembers.clear();
 		FellowshipAdmins.clear();
-		ListNBT memberTags = arg0.getList("Members", 10);
+		ListNBT memberTags = pCompound.getList("Members", 10);
 		for (int i = 0; i < memberTags.size(); i++) {
 			CompoundNBT nbt = memberTags.getCompound(i);
 			UUID member = UUID.fromString(nbt.getString("Member"));
@@ -68,24 +68,24 @@ public class ExtendedFellowship {
 				}
 			}
 		}
-		if (arg0.contains("Icon")) {
-			CompoundNBT item = arg0.getCompound("Icon");
+		if (pCompound.contains("Icon")) {
+			CompoundNBT item = pCompound.getCompound("Icon");
 		      icon = ItemStack.of(item);
 		}
-		if (arg0.contains("Name"))
-			FellowshipName = arg0.getString("Name");
-		if (arg0.contains("PreventPVP"))
-			PreventPVP = arg0.getBoolean("PreventPVP");
-		if (arg0.contains("PreventHiredFF"))
-			PreventHiredFF = arg0.getBoolean("PreventHiredFF");
-		if (arg0.contains("ShowMap"))
-			ShowMap = arg0.getBoolean("ShowMap");
+		if (pCompound.contains("Name"))
+			FellowshipName = pCompound.getString("Name");
+		if (pCompound.contains("PreventPVP"))
+			PreventPVP = pCompound.getBoolean("PreventPVP");
+		if (pCompound.contains("PreventHiredFF"))
+			PreventHiredFF = pCompound.getBoolean("PreventHiredFF");
+		if (pCompound.contains("ShowMap"))
+			ShowMap = pCompound.getBoolean("ShowMap");
 	}
 
-	public void save(CompoundNBT arg0) {
-		arg0.putBoolean("Disbanded", removed);
+	public void save(CompoundNBT pCompound) {
+		pCompound.putBoolean("Disbanded", disbanded);
 		if(FellowshipOwner != null)
-			arg0.putString("Owner", FellowshipOwner.toString());
+			pCompound.putString("Owner", FellowshipOwner.toString());
 		ListNBT memberTags = new ListNBT();
 	    for (UUID member : FellowshipMembers) {
 	    	CompoundNBT nbt = new CompoundNBT();
@@ -94,17 +94,17 @@ public class ExtendedFellowship {
 	    		nbt.putBoolean("Admin", true);
 	    	memberTags.add(nbt);
 	    } 
-	    arg0.put("Members", memberTags);
+	    pCompound.put("Members", memberTags);
 	    if (icon != null) {
 	    	CompoundNBT item = new CompoundNBT();
 	    	item = icon.serializeNBT();
-	    	arg0.put("Icon", item);
+	    	pCompound.put("Icon", item);
 	    } 
 	    if (FellowshipName != null)
-	    	arg0.putString("Name", FellowshipName);
-	    arg0.putBoolean("PreventPVP", PreventPVP);
-	    arg0.putBoolean("PreventHiredFF", PreventHiredFF);
-	    arg0.putBoolean("ShowMap", ShowMap);
+	    	pCompound.putString("Name", FellowshipName);
+	    pCompound.putBoolean("PreventPVP", PreventPVP);
+	    pCompound.putBoolean("PreventHiredFF", PreventHiredFF);
+	    pCompound.putBoolean("ShowMap", ShowMap);
 	    needsSaving = false;
 	}
 	public String getFellowshipName() {
@@ -128,6 +128,9 @@ public class ExtendedFellowship {
 	}
 	public boolean isFellowshipAdmin(UUID player) {
 		return (isFellowshipMember(player) && FellowshipAdmins.contains(player));
+	}
+	public boolean isInFellowship(UUID player) {
+		return (isFellowshipMember(player) || isFellowshipOwner(player));
 	}
 	public boolean hasEditPowers(UUID player) {
 		return ((isFellowshipMember(player) && FellowshipAdmins.contains(player))||FellowshipOwner.equals(player));
@@ -219,13 +222,13 @@ public class ExtendedFellowship {
 		markDirty();
 	}
 	public void disband() {
-		removed = true;
+		disbanded = true;
 		for (UUID player : new ArrayList<UUID>(FellowshipMembers))
 	    	removeFellowshipMember(player);
 		markDirty();
 	}
 	public boolean isRemoved() {
-		return removed;
+		return disbanded;
 	}
 
 	public void createNotification(String message, PlayerEntity reciever) {

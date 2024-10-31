@@ -16,7 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
