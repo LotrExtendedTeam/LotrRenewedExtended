@@ -56,6 +56,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
 		this.shownWhiteListButtonCount = Math.max(whitelist.size(), 4);
+		this.showDefaultPerms = !defaultPerms.isEmpty();
 	}
 
 	public void updatefromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
@@ -68,6 +69,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.protectionType = serverData.protectionType;
 		handleAlignmentUpdate();
 		this.shownWhiteListButtonCount = Math.max(whitelist.size(), 4);
+		this.showDefaultPerms = !defaultPerms.isEmpty();
 	}
 
 	public BlockPos getConfigurePos() {
@@ -163,6 +165,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			defaultPermButtons.add(permButton);
 		}
 		for(Button button : defaultPermButtons) {
+			button.visible = showDefaultPerms;
 			this.addButton(button);
 		}
 		// Faction
