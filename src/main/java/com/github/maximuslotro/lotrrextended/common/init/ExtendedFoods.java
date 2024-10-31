@@ -24,5 +24,12 @@ public class ExtendedFoods {
 	
 	public static final Food DUCK = new Food.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new EffectInstance(Effects.HUNGER, 600, 0), 0.3F).meat().build();
 	public static final Food COOKED_DUCK = new Food.Builder().nutrition(6).saturationMod(0.6F).meat().build();
+
+	public static final Food HOBBIT_PANCAKE = new Food.Builder().nutrition(4).saturationMod(0.6F).build();
+	public static final Food HOBBIT_PANCAKE_SYRUP = new Food.Builder().nutrition(5).saturationMod(0.75F).build();
+	public static final Food HOBBIT_PANCAKE_SYRUP_BUTTER = new Food.Builder().nutrition(6).saturationMod(0.85F).build();
+
+	public static final Food BUTTER = new Food.Builder().nutrition(4).saturationMod(0.85F).build();
+
 	public static void init() {}
 }

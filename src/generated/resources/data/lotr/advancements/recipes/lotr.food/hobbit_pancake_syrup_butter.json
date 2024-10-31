@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:morgul_dagger"
+      "lotr:hobbit_pancake_syrup_butter"
     ]
   },
   "criteria": {
-    "has_morgul_dagger": {
+    "has_hobbit_pancake_syrup": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:morgul_dagger"
+            "item": "lotr:hobbit_pancake_syrup"
           }
         ]
       }
     },
-    "has_morgul_steel_ingot": {
+    "has_butter": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:morgul_steel_ingot"
+            "item": "lotr:butter"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:morgul_dagger"
+        "recipe": "lotr:hobbit_pancake_syrup_butter"
       }
     }
   },
   "requirements": [
     [
-      "has_morgul_dagger",
-      "has_morgul_steel_ingot",
+      "has_hobbit_pancake_syrup",
+      "has_butter",
       "has_the_recipe"
     ]
   ]

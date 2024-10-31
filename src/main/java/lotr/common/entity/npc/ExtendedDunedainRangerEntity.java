@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
-    private static final SpawnEquipmentTable WEAPONS;
+    private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.ARNOR_SWORD, LOTRItems.BRONZE_SWORD, Items.IRON_SWORD, LOTRItems.ARNOR_DAGGER, LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
             ExtendedDunedainRangerEntity.class, DataSerializers.INT);
@@ -75,6 +75,48 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         }
     }
 
+    @Override
+    protected void addNPCAI() {
+        super.addNPCAI();
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.addAttackGoal(2);
+        this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(5, new TalkToCurrentGoal(this));
+        this.goalSelector.addGoal(6, new FriendlyNPCConversationGoal(this, 0.001F));
+        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.01F));
+        this.goalSelector.addGoal(8, new StargazingGoal(this, 4.0E-4F));
+        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 1.0));
+        this.goalSelector.addGoal(10, new NPCEatGoal(this, this.getEatPool(), 12000));
+        this.goalSelector.addGoal(10, new NPCDrinkGoal(this, this.getDrinkPool(), 8000));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
+        this.goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(13, new LookRandomlyGoal(this));
+    }
+
+    @Override
+    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+
+        // setup weapons
+        this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
+        this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
+        this.npcItemsInv.setIdleItemsFromRangedWeapons();
+
+        if (this.random.nextFloat() < 0.5F) {
+            this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()));
+        }
+
+        // setup armor
+        this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()));
+        this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()));
+        this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()));
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()));
+
+        return spawnData;
+    }
+
+    @Override
     public void tick() {
         super.tick();
 
@@ -271,53 +313,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         this.addAggressiveTargetingGoals();
     }
 
-    @Override
-    protected void addNPCAI() {
-        super.addNPCAI();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.addAttackGoal(2);
-        this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(5, new TalkToCurrentGoal(this));
-        this.goalSelector.addGoal(6, new FriendlyNPCConversationGoal(this, 0.001F));
-        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.01F));
-        this.goalSelector.addGoal(8, new StargazingGoal(this, 4.0E-4F));
-        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 1.0));
-        this.goalSelector.addGoal(10, new NPCEatGoal(this, this.getEatPool(), 12000));
-        this.goalSelector.addGoal(10, new NPCDrinkGoal(this, this.getDrinkPool(), 8000));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
-        this.goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(13, new LookRandomlyGoal(this));
-    }
-
-    @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
-        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-
-        // setup weapons
-        this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
-        this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
-        this.npcItemsInv.setIdleItemsFromRangedWeapons();
-
-        if (this.random.nextFloat() < 0.5F) {
-            this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()));
-        }
-
-        // setup armor
-        this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()));
-        this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()));
-        this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()));
-        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()));
-
-        return spawnData;
-    }
-
     public ResourceLocation getCloakTextureLocation() {
         return new ResourceLocation("lotr", "textures/cape/ranger.png");
     }
-
-    static {
-        WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_SPEAR, LOTRItems.ARNOR_SPEAR, LOTRItems.ARNOR_SWORD, Items.IRON_SWORD);
-    }
-
 }

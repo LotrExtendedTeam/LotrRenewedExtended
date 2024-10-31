@@ -41,7 +41,6 @@ import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedFurBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
-import lotr.common.block.ExtendedTwoTypeDummyBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.LOTRDoorBlock;
@@ -197,21 +196,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedTwoTypeDummyBlock) {
-				dropSelf(block.getValue().get());
-				continue;
-			}
 			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
 				if(block.getValue().get() instanceof ExtendedTwoTypeCraftingTableBlock) {
-					ExtendedTwoTypeCraftingTableBlock blok = (ExtendedTwoTypeCraftingTableBlock)block.getValue().get();
-					add(blok, (p_241171_0_) -> {
-				         return applyExplosionDecay(p_241171_0_, LootTable.lootTable()
-				        		 .withPool(LootPool.lootPool().when(BlockStateProperty.hasBlockStateProperties(blok)
-				        				 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedTwoTypeCraftingTableBlock.ALTERNATITE, false)))
-				        				 .add(ItemLootEntry.lootTableItem(blok)).apply(SetCount.setCount(ConstantRange.exactly(1))))
-				        		 .withPool(LootPool.lootPool().when(BlockStateProperty.hasBlockStateProperties(blok)
-				        				 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedTwoTypeCraftingTableBlock.ALTERNATITE, true)))
-				        				 .add(ItemLootEntry.lootTableItem(blok.getAltBlock().get())).apply(SetCount.setCount(ConstantRange.exactly(1)))));});
+					dropSelf(block.getValue().get());
 					continue;
 				}
 				dropSelf(block.getValue().get());

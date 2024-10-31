@@ -116,13 +116,11 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BOWSTRING;
 
-	public static RegistryObject<Item> MORGUL_SWORD;
+	public static RegistryObject<Item> MORGUL_BLADE;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
 	public static RegistryObject<Item> MORGUL_LEGGINGS;
 	public static RegistryObject<Item> MORGUL_BOOTS;
-	public static RegistryObject<Item> MORGUL_SPEAR;
-	public static RegistryObject<Item> MORGUL_DAGGER;
 
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
@@ -351,7 +349,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> RAW_DUCK;
 	
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
-	public static RegistryObject<Item> TAURETHRIM_STONE_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_SLAB;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_STAIRS;
@@ -593,6 +590,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER_PATTERN;
 	public static RegistryObject<Item> BLUE_MOUNTAINS_BANNER;
 	public static RegistryObject<Item> HOBBIT_BANNER;
+	public static RegistryObject<Item> HOBBIT_PANCAKE;
+	public static RegistryObject<Item> HOBBIT_PANCAKE_SYRUP;
+	public static RegistryObject<Item> HOBBIT_PANCAKE_SYRUP_BUTTER;
+	public static RegistryObject<Item> BUTTER;
 
 	public static RegistryObject<Item> DUCK_EGG;
 

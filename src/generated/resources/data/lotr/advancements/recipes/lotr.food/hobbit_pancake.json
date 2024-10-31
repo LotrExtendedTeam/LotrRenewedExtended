@@ -2,26 +2,36 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:stone_taurethrim_crafting_table"
+      "lotr:hobbit_pancake"
     ]
   },
   "criteria": {
-    "has_stone_taurethrim_crafting_table": {
+    "has_eggs": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:stone_taurethrim_crafting_table"
+            "item": "minecraft:egg"
           }
         ]
       }
     },
-    "has_taurethrim_brick": {
+    "has_wheat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:taurethrim_brick"
+            "item": "minecraft:wheat"
+          }
+        ]
+      }
+    },
+    "has_milk": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:milk_bucket"
           }
         ]
       }
@@ -29,14 +39,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:stone_taurethrim_crafting_table"
+        "recipe": "lotr:hobbit_pancake"
       }
     }
   },
   "requirements": [
     [
-      "has_stone_taurethrim_crafting_table",
-      "has_taurethrim_brick",
+      "has_eggs",
+      "has_wheat",
+      "has_milk",
       "has_the_recipe"
     ]
   ]

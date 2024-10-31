@@ -207,8 +207,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get().getRegistryName().getPath(), has(ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get().getRegistryName().getPath()+"_from_ornate"));
 		//CRAFTING TABLES
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_STONE_CRAFTING_TABLE, 
-			()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, 
+			()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), "_with_bricks", ExtendedRecipes.TAURETHRIM_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, 
 			()->ExtendedBlocks.MUD_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
 		makeCraftingTableRecipe(consumer, ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, 
@@ -295,15 +295,46 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, LOTRItems.FUR, LOTRBlocks.FUR_BUNDLE, null);
 
+		// hobbit pancakes
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath());
+		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.HOBBIT_PANCAKE.get(), 1, LOTRRecipes.HOBBIT_CRAFTING)
+				.requires(Items.EGG)
+				.requires(Items.MILK_BUCKET)
+				.requires(Items.WHEAT)
+				.unlockedBy("has_eggs", has(Items.EGG))
+				.unlockedBy("has_wheat", has(Items.WHEAT))
+				.unlockedBy("has_milk", has(Items.MILK_BUCKET))
+				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath()));
+
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get(), 8, LOTRRecipes.HOBBIT_CRAFTING)
+				.define('X', ExtendedItems.HOBBIT_PANCAKE.get())
+				.define('Y', LOTRItems.MAPLE_SYRUP.get())
+				.pattern("XXX")
+				.pattern("XYX")
+				.pattern("XXX")
+				.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
+				.unlockedBy("has_" + LOTRItems.MAPLE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
+				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath()));
+
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get(), 8, LOTRRecipes.HOBBIT_CRAFTING)
+				.define('X', ExtendedItems.HOBBIT_PANCAKE_SYRUP.get())
+				.define('Y', ExtendedItems.BUTTER.get())
+				.pattern("XXX")
+				.pattern("XYX")
+				.pattern("XXX")
+				.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
+				.unlockedBy("has_" + ExtendedItems.BUTTER.get().getRegistryName().getPath(), has(ExtendedItems.BUTTER.get()))
+				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath()));
+
 		//MORGUL
 		makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET, 
 			ExtendedItems.MORGUL_CHESTPLATE, 
 			ExtendedItems.MORGUL_LEGGINGS, 
 			ExtendedItems.MORGUL_BOOTS, 
 			ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
-		makeSwordRecipe(consumer, ExtendedItems.MORGUL_SWORD, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
-		makeSpearRecipe(consumer, ExtendedItems.MORGUL_SPEAR, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
-		makeDaggerRecipe(consumer, ExtendedItems.MORGUL_DAGGER, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
+		makeSwordRecipe(consumer, ExtendedItems.MORGUL_BLADE, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_LANTERN.get(), LOTRRecipes.ANY_MORGUL)
 		.pattern("YYY")

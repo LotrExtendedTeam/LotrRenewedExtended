@@ -187,7 +187,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.blue_mountains_merchant.departure.8", "%1$s: Other lands await! I'll be leaving soon.");
 		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry, Person! I will have to depart these lands soon.");
 		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well, you had better be quick. I'll be on my way soon!");
-		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, Person! If you wish to trade with me, you must do it now!");
+		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, %2$s! If you wish to trade with me, you must do it now!");
+
+		// Temp Bree-Land Merchant departure lines
+		// TODO: Update these with the real ones from Hails
+		addD("speechbank.breeland_merchant.departure.1", "%1$s: If you wish to get goods from Bree you must make your purchases soon, %2$s!");
+		addD("speechbank.breeland_merchant.departure.2", "%1$s: I must be leaving for Bree soon %2$s, I have not seen my family in many months.");
 
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
