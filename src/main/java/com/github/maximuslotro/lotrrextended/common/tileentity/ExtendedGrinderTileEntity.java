@@ -171,7 +171,6 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 		if (!this.items.get(0).isEmpty() && recipe != null) {
 			ItemStack itemstack = recipe.assemble(this);
 			if (itemstack.isEmpty()) {
-				System.out.println("AssembeledEmpty: "+recipe.getDataHash());
 				return false;
 			} else {
 				ItemStack itemstack1 = this.items.get(2);

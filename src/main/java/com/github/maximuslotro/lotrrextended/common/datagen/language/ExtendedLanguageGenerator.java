@@ -223,7 +223,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.type_faction", "Protection Type: Faction");
 		addD("gui.lotrextended.banner_configuration.permission_type.full", "Full Permissions");
 		addD("gui.lotrextended.banner_configuration.permission_type.limited", "Limited Permissions");
-		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner");
+		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner Now");
 		addD("gui.lotrextended.banner_configuration.send_update.disc", "Sync And Validate Banner Info With Server");
 		addD("gui.lotrextended.banner_configuration.self_protection", "Self Protection");
 		addD("gui.lotrextended.banner_configuration.self_protection.on", "Self Protection: On");

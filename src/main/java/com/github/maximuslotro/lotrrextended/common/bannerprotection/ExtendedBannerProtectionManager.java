@@ -112,12 +112,13 @@ public class ExtendedBannerProtectionManager {
 					}
 					float alignment = LOTRLevelData.serverInstance().getData(offendingPlayer).getAlignmentData().getAlignment(bannerInstance.getFactionProtcting());
 					if(alignment<bannerInstance.getAlignmentLevel()) {
+						if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).isPresent()) {
+							tellPlayerYSNP(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().getColoredDisplayName());
+						}else {
+							tellPlayerYSNP(new StringTextComponent("UNKNOWN"));
+						}
 						return true;
 					}
-					if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).isPresent()) {
-						tellPlayerYSNP(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().getDisplayName());
-					}
-					tellPlayerYSNP(new StringTextComponent("UNKNOWN"));
 				}
 				if(bannerInstance.isWhitelistProtecting()) {
 					if(offendingPlayer.getUUID().equals(bannerInstance.getPlacedPlayerUUID()) || bannerInstance.hasDefaultPerm(queryingPermission)) {
@@ -139,9 +140,9 @@ public class ExtendedBannerProtectionManager {
 						}
 					}
 					if(!isWhitelisted) {
+						tellPlayerYSNP(new StringTextComponent(bannerInstance.getPlacedPlayerName()));
 						return true;
 					}
-					tellPlayerYSNP(new StringTextComponent(bannerInstance.getPlacedPlayerName()));
 				}
 				return false;
 			}
@@ -151,7 +152,7 @@ public class ExtendedBannerProtectionManager {
 					return;
 				}
 				offendingPlayer.inventoryMenu.broadcastChanges();
-				offendingPlayer.sendMessage(new TranslationTextComponent("gui.lotrextended.bow.speed", iFormattableTextComponent), Util.NIL_UUID);
+				offendingPlayer.sendMessage(new TranslationTextComponent("message.lotrextended.banner.land_protected", iFormattableTextComponent), Util.NIL_UUID);
 			}
 
 			@Override
