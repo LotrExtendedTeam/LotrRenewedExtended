@@ -35,7 +35,7 @@ public class ExtendedSOpenWargWindowPacket {
 	}
 
 	public static void handle(ExtendedSOpenWargWindowPacket pPacket, Supplier<NetworkEvent.Context> context) {
-		ExtendedClientsideSeperatedScreenHandler.handle(pPacket);
+		ExtendedClientsideSeperatedScreenHandler.handleWargScreenOpen(pPacket);
 		context.get().setPacketHandled(true);
 	}
 

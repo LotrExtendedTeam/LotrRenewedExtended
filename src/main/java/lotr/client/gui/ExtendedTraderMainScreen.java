@@ -1,6 +1,7 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopTradingWithTrader;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTalkWithTrader;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -14,24 +15,16 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedTraderMainScreen extends BasicIngameScreen {
+public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 
     private NPCEntity entity;
     private final ExtendedTraderEntity trader;
     private final PlayerEntity player;
 
-    private int xSize = 176;
-
-    private int ySize = 256;
-
-    private int guiLeft;
-
-    private int guiTop;
-
     private Button tradeButton;
 
     public ExtendedTraderMainScreen(NPCEntity entity, ExtendedTraderEntity trader, PlayerEntity player) {
-        super(new StringTextComponent("Trader Menu"));
+        super(new StringTextComponent("Trader Menu"), 176, 256);
 
         this.entity = entity;
         this.trader = trader;
@@ -40,11 +33,9 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
 
     @Override
     public void init() {
-        this.guiLeft = (this.width - this.xSize) / 2;
-        this.guiTop = (this.height - this.ySize) / 2;
-        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
-        tradeButton = this.addButton(new Button(this.guiLeft + ((this.xSize - 120) / 2) + 63, this.guiTop + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> tradeWithNPC()));
-        this.addButton(new Button(this.guiLeft + (this.xSize - 120) / 2, this.guiTop + 140, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.exchange_button"), button -> tradeCoinsWithNPC()));
+        this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
+        tradeButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) + 63, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> tradeWithNPC()));
+        this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 140, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.exchange_button"), button -> tradeCoinsWithNPC()));
     }
 
     private void talkWithNPC() {
@@ -90,7 +81,7 @@ public class ExtendedTraderMainScreen extends BasicIngameScreen {
         renderBackground(matStack);
 
         TextComponent title = new StringTextComponent(entity.getName().getString());
-        this.font.draw(matStack, title, guiLeft + ((this.xSize - font.width(title)) / 2), guiTop + 95, 16777215);
+        this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
 
         super.render(matStack, mouseX, mouseY, tick);
     }

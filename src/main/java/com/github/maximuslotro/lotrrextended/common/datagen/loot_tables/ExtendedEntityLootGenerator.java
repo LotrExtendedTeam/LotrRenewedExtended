@@ -318,7 +318,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk);
 		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, arrows);
 		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable());
-
+		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

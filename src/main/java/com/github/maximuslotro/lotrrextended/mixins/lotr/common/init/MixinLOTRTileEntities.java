@@ -10,10 +10,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrinderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHangingBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
@@ -106,5 +109,8 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));
     	ExtendedTileEntities.ORC_BARREL = register("orc_barrel_tileentity", () -> Builder.of(ExtendedOrcBarrelTileEntity::new, ExtendedBlocks.ORC_BARREL.get()));
     	ExtendedTileEntities.MILLSTONE = register("stone_grinder_tileentity", () -> Builder.of(ExtendedGrinderTileEntity::new, ExtendedBlocks.STONE_GRINDER.get()));
+    	ExtendedTileEntities.BANNER_STANDING = register("banner_s_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, BannerTypes.getContainedStandingBlocks()));
+    	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, BannerTypes.getContainedHangingBlocks()));
+
     }
 }

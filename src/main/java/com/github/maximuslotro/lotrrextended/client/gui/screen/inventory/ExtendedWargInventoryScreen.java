@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 

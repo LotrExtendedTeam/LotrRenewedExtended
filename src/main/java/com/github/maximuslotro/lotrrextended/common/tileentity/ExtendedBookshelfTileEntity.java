@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
-import com.github.maximuslotro.lotrrextended.common.inv.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedBookshelfContainer;
 
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;

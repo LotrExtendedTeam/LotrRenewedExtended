@@ -28,7 +28,7 @@ public class ExtendedCPacketExchangeCoins {
 	}
 
 	public static void handle(ExtendedCPacketExchangeCoins packet, Supplier<Context> context) {
-		ServerPlayerEntity player = ((Context) context.get()).getSender();
+		ServerPlayerEntity player = context.get().getSender();
 	    if (player.containerMenu instanceof ExtendedCoinExchangeContainer) {
 			ExtendedCoinExchangeContainer container = (ExtendedCoinExchangeContainer) player.containerMenu;
 			container.handleExchange(packet.side);

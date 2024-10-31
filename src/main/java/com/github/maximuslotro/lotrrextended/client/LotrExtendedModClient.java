@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedScreenRegisterHandler;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;

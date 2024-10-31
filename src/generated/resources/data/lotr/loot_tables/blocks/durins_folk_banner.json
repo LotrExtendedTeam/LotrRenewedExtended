@@ -6,6 +6,19 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "ProtectionData",
+                  "target": "ProtectionData",
+                  "op": "replace"
+                }
+              ]
+            }
+          ],
           "name": "lotr:durins_folk_banner"
         }
       ],

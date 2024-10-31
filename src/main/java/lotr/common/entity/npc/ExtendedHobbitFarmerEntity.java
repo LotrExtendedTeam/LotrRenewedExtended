@@ -58,7 +58,8 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
             new ExtendedTradeEntry(new ItemStack(Items.MILK_BUCKET), 6, 10, 10), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 3, 5, 64),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get()), 2, 4, 64), new ExtendedTradeEntry(new ItemStack(Items.POTATO), 2, 3, 64),
             new ExtendedTradeEntry(new ItemStack(Items.WHEAT_SEEDS), 1, 1, 128), new ExtendedTradeEntry(new ItemStack(Items.WHEAT), 2, 3, 64),
-            new ExtendedTradeEntry(new ItemStack(Items.WHITE_WOOL), 2,3, 128), new ExtendedTradeEntry(new ItemStack(ExtendedItems.BRANDING_IRON.get()), 20, 30, 8)
+            new ExtendedTradeEntry(new ItemStack(Items.WHITE_WOOL), 2,3, 128), new ExtendedTradeEntry(new ItemStack(ExtendedItems.BRANDING_IRON.get()), 20, 30, 8),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.BUTTER.get()), 15,22, 64)
     });
 
     private ArrayList<ExtendedTrade> itemsSoldByTrader;

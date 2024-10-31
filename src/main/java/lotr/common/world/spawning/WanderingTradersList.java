@@ -8,20 +8,20 @@ public class WanderingTradersList {
 
 	public static Map<String, List<String>> traders = new HashMap<String, List<String>>() {{
 	    // Shire
-	    put("lotr:shire", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:shire_moors", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:shire_marshes", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:shire_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:white_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire_moors", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire_marshes", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:shire_woodlands", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:white_downs", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 		put("lotr:blue_mountains", Arrays.asList("lotr:rivendell_wanderer", "lotr:oddment_collector"));
 		put("lotr:blue_mountains_foothills", Arrays.asList("lotr:rivendell_wanderer", "lotr:oddment_collector"));
 
 	    // Eriador
-	    put("lotr:eriador", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:eriador", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 		put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 		put("lotr:hills_of_evendim", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:eriador_downs", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:eriador_downs", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
@@ -60,7 +60,7 @@ public class WanderingTradersList {
 
 	    // Bree-land
 	    put("lotr:breeland", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:chetwood", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    put("lotr:chetwood", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
 	    put("lotr:rohan", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 	    put("lotr:wold", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));

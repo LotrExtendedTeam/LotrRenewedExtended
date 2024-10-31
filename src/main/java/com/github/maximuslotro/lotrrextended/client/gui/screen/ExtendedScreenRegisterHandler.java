@@ -1,4 +1,6 @@
-package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
+package com.github.maximuslotro.lotrrextended.client.gui.screen;
+
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedGrinderScreen;
 
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;

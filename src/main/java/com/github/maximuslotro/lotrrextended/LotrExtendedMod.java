@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
+import com.github.maximuslotro.lotrrextended.common.eventhandlers.BannerEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
@@ -79,6 +80,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		forgeBus.register(BannerEventHandlers.class);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();
