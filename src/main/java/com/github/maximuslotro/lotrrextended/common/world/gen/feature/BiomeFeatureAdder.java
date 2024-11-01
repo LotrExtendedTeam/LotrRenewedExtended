@@ -13,10 +13,10 @@ public class BiomeFeatureAdder {
 				||event.getName().equals(LOTRBiomes.MORGUL_VALE.getRegistryName()))) {
 				ExtendedBiomeFeatures.addBushes(event.getGeneration(), 4);
 			}
-		}
 
-		if (event.getName().equals(LOTRBiomes.DEAD_MARSHES.getRegistryName())) {
-			ExtendedBiomeFeatures.addRemains(event.getGeneration());
+			if (event.getName().equals(LOTRBiomes.DEAD_MARSHES.getRegistryName())) {
+				ExtendedBiomeFeatures.addRemains(event.getGeneration());
+			}
 		}
 	}
 }
