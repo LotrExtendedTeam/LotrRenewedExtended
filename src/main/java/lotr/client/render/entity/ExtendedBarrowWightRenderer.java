@@ -4,17 +4,19 @@ import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.model.ExtendedBarrowWightModel;
 import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-public class ExtendedBarrowWightRenderer extends LOTRBipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
+public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
     public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/barrow_wight"));
 
     public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
-        super(mgr, ExtendedBarrowWightModel::new, new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(0.5F), new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(1.0F), 0.5F);
+        super(mgr, new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(0.0F), 0.5F);
 
     }
 
@@ -27,7 +29,7 @@ public class ExtendedBarrowWightRenderer extends LOTRBipedRenderer<ExtendedBarro
 	protected void scale(ExtendedBarrowWrightEntity entity, MatrixStack matStack, float f) {
 		super.scale(entity, matStack, f);
 		//matStack.scale(0.965f, 0.965F, 0.965F);
-		matStack.scale(0.965f, 1.05F, 0.965f);
+		//matStack.scale(0.965f, 1.05F, 0.965f);
 	}
 
     @Override
