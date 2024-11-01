@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "lotrextended:block/ancient_rune_stone_2"
+  }
+}
