@@ -1,6 +1,6 @@
 package lotr.client.render.entity;
 
-import lotr.client.render.GenderedRandomTextureVariants;
+import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.model.ExtendedBarrowWightModel;
 import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
 import net.minecraft.client.renderer.RenderType;
@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 public class ExtendedBarrowWightRenderer extends LOTRBipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
-    public static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/dunedain_north/ranger");
+    public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation("lotrextended", "textures/entity/barrow_wight/ranger"));
 
     public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
         super(mgr, ExtendedBarrowWightModel::new, new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(0.5F), new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(1.0F), 0.5F);

@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class ExtendedBarrowWrightEntity extends NPCEntity {
@@ -30,10 +29,10 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 		}
 
 	}
-	@Override
-	public AxisAlignedBB getBoundingBox() {
-		return new AxisAlignedBB(this.getX() - 0.5, this.getY(), this.getZ() - 0.5, this.getX() + 1.5, this.getY() + 1.0, this.getZ() + 0.5);
-	}
+//	@Override
+//	public AxisAlignedBB getBoundingBox() {
+//		return new AxisAlignedBB(this.getX() - 0.5, this.getY(), this.getZ() - 0.5, this.getX() + 1.5, this.getY() + 1.0, this.getZ() + 0.5);
+//	}
 
 
 	public CreatureAttribute getMobType() {
