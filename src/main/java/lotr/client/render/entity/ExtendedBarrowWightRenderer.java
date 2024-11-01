@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 public class ExtendedBarrowWightRenderer extends LOTRBipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
-    public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation("lotrextended", "textures/entity/barrow_wight/ranger"));
+    public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/barrow_wight"));
 
     public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
         super(mgr, ExtendedBarrowWightModel::new, new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(0.5F), new ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>(1.0F), 0.5F);
