@@ -1,25 +1,26 @@
 package lotr.common.world.biome;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedHoleySphereConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import lotr.common.LOTRLog;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.GenerationStage.Decoration;
@@ -31,16 +32,12 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
-import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
-import net.minecraft.world.gen.feature.template.RuleTest;
-import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
@@ -82,32 +79,32 @@ public class ExtendedBiomeFeatures {
 	private static BlockState REMAINS_ELF;
 	private static BlockState REMAINS_MAN;
 	private static BlockState REMAINS_DWARF;
-	private static final RuleTest DIRT = new BlockMatchRuleTest(Blocks.DIRT);;
+	private static List<BlockState> REMAINS_TYPE;
 
-	public static BlockState BLACKBERRYBUSH;
-	public static BlockState BLUEBERRYBUSH;
-	public static BlockState CRANBERRYBUSH;
-	public static BlockState ELDERBERRYBUSH;
-	public static BlockState RASPBERRYBUSH;
-	public static BlockState WILDBERRYBUSH;
-	public static BlockClusterFeatureConfig BUSH_PATCH_CONFIG;
+	private static BlockState BLACKBERRYBUSH;
+	private static BlockState BLUEBERRYBUSH;
+	private static BlockState CRANBERRYBUSH;
+	private static BlockState ELDERBERRYBUSH;
+	private static BlockState RASPBERRYBUSH;
+	private static BlockState WILDBERRYBUSH;
+	private static BlockClusterFeatureConfig BUSH_PATCH_CONFIG;
 
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_BEES;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
-	public static BaseTreeFeatureConfig CHESTNUT_PARTY;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE_BEES;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
+	private static BaseTreeFeatureConfig CHESTNUT_PARTY;
 
 	private static BlockStateProvider BANANA_LEAVES_POOL;
-	public static BaseTreeFeatureConfig BANANA_TREE;
+	private static BaseTreeFeatureConfig BANANA_TREE;
 
 	private static BlockStateProvider PLUM_LEAVES_POOL;
-	public static BaseTreeFeatureConfig PLUM_TREE;
-	public static BaseTreeFeatureConfig PLUM_TREE_FANCY;
-	public static BaseTreeFeatureConfig PLUM_TREE_BEES;
-	public static BaseTreeFeatureConfig PLUM_TREE_FANCY_BEES;
-	public static BaseTreeFeatureConfig PLUM_PARTY;
+	private static BaseTreeFeatureConfig PLUM_TREE;
+	private static BaseTreeFeatureConfig PLUM_TREE_FANCY;
+	private static BaseTreeFeatureConfig PLUM_TREE_BEES;
+	private static BaseTreeFeatureConfig PLUM_TREE_FANCY_BEES;
+	private static BaseTreeFeatureConfig PLUM_PARTY;
 
 	//Chestnut
 	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
@@ -158,6 +155,7 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(PLUM_PARTY);
 	}
 
+
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
@@ -191,6 +189,8 @@ public class ExtendedBiomeFeatures {
 		REMAINS_ELF = ExtendedBlocks.REMAINS_ELF.get().defaultBlockState();
 		REMAINS_MAN = ExtendedBlocks.REMAINS_MAN.get().defaultBlockState();
 		REMAINS_DWARF = ExtendedBlocks.REMAINS_DWARF.get().defaultBlockState();
+		REMAINS_TYPE = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
+
 
 		//Use flag to catch re-initialization of block that causes doubling of registry items causing crashing
 		if(!created) {
@@ -248,32 +248,13 @@ public class ExtendedBiomeFeatures {
 
 	public static void addRemains(BiomeGenerationSettings.Builder builder) {
 
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_ORC,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
-				.feature.get());
+		List<BlockState> remainsTypes = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
 
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_ELF,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.HOLEY_UNDERWATER_SPHERE.get().configured(new ExtendedHoleySphereConfig(remainsTypes,
+						FeatureSpread.of(2, 3), 4,
+						ImmutableList.of(Blocks.DIRT.defaultBlockState()), 20))
 				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
-				.feature.get());
-
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_MAN,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
-				.feature.get());
-
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_DWARF,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
+				.weighted(5F)
 				.feature.get());
 	}
 
