@@ -12,12 +12,14 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoila
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
+import lotr.common.LOTRLog;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.GenerationStage.Decoration;
@@ -29,12 +31,16 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
+import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
@@ -50,11 +56,11 @@ public class ExtendedBiomeFeatures {
 	private static BlockState CHESTNUT_BRANCH;
 	private static BlockState CHESTNUT_LEAVES;
 	private static BlockState CHESTNUT_LEAVES_FRUIT;
-	
+
 	private static BlockState BANANA_LOG;
 	private static BlockState BANANA_LEAVES;
 	public static BlockState BANANA_FRUIT;
-	
+
 	private static BlockState PLUM_LOG;
 	private static BlockState PLUM_WOOD;
 	private static BlockState PLUM_BRANCH;
@@ -70,6 +76,13 @@ public class ExtendedBiomeFeatures {
 	private static BlockState RUBY_ORE;
 	private static BlockState EMERALD_ORE;
 	private static BlockState DIAMOND_ORE;
+
+	// Remains Ores
+	private static BlockState REMAINS_ORC;
+	private static BlockState REMAINS_ELF;
+	private static BlockState REMAINS_MAN;
+	private static BlockState REMAINS_DWARF;
+	private static final RuleTest DIRT = new BlockMatchRuleTest(Blocks.DIRT);;
 
 	public static BlockState BLACKBERRYBUSH;
 	public static BlockState BLUEBERRYBUSH;
@@ -173,6 +186,12 @@ public class ExtendedBiomeFeatures {
 		EMERALD_ORE = ExtendedBlocks.EMERALD_ORE.get().defaultBlockState();
 		DIAMOND_ORE = ExtendedBlocks.DIAMOND_ORE.get().defaultBlockState();
 
+		// remains block states
+		REMAINS_ORC = ExtendedBlocks.REMAINS_ORC.get().defaultBlockState();
+		REMAINS_ELF = ExtendedBlocks.REMAINS_ELF.get().defaultBlockState();
+		REMAINS_MAN = ExtendedBlocks.REMAINS_MAN.get().defaultBlockState();
+		REMAINS_DWARF = ExtendedBlocks.REMAINS_DWARF.get().defaultBlockState();
+
 		//Use flag to catch re-initialization of block that causes doubling of registry items causing crashing
 		if(!created) {
 			created = true;
@@ -225,6 +244,37 @@ public class ExtendedBiomeFeatures {
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 4)).range(32).squared().weighted(1F).feature.get());
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, EMERALD_ORE, 4)).range(24).squared().weighted(0.75F).feature.get());
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, DIAMOND_ORE, 4)).range(16).squared().weighted(0.5F).feature.get());
+	}
+
+	public static void addRemains(BiomeGenerationSettings.Builder builder) {
+
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_ORC,
+						FeatureSpread.of(1, 2), 1,
+						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
+				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
+				.weighted(4F)
+				.feature.get());
+
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_ELF,
+						FeatureSpread.of(1, 2), 1,
+						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
+				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
+				.weighted(4F)
+				.feature.get());
+
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_MAN,
+						FeatureSpread.of(1, 2), 1,
+						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
+				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
+				.weighted(4F)
+				.feature.get());
+
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_DWARF,
+						FeatureSpread.of(1, 2), 1,
+						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
+				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
+				.weighted(4F)
+				.feature.get());
 	}
 
 	//Classic Trees
