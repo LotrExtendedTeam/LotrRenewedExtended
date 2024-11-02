@@ -1,12 +1,15 @@
 package lotr.common.world.biome;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedMultiSphereConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
@@ -82,7 +85,6 @@ public class ExtendedBiomeFeatures {
 	private static BlockState REMAINS_ELF;
 	private static BlockState REMAINS_MAN;
 	private static BlockState REMAINS_DWARF;
-	private static final RuleTest DIRT = new BlockMatchRuleTest(Blocks.DIRT);;
 
 	public static BlockState BLACKBERRYBUSH;
 	public static BlockState BLUEBERRYBUSH;
@@ -158,6 +160,7 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(PLUM_PARTY);
 	}
 
+
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
@@ -191,6 +194,8 @@ public class ExtendedBiomeFeatures {
 		REMAINS_ELF = ExtendedBlocks.REMAINS_ELF.get().defaultBlockState();
 		REMAINS_MAN = ExtendedBlocks.REMAINS_MAN.get().defaultBlockState();
 		REMAINS_DWARF = ExtendedBlocks.REMAINS_DWARF.get().defaultBlockState();
+
+
 
 		//Use flag to catch re-initialization of block that causes doubling of registry items causing crashing
 		if(!created) {
@@ -248,29 +253,10 @@ public class ExtendedBiomeFeatures {
 
 	public static void addRemains(BiomeGenerationSettings.Builder builder) {
 
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_ORC,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
-				.feature.get());
+		List<BlockState> remainsTypes = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
 
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_ELF,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
-				.feature.get());
-
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_MAN,
-						FeatureSpread.of(1, 2), 1,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(4F)
-				.feature.get());
-
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, Feature.DISK.configured(new SphereReplaceConfig(REMAINS_DWARF,
-						FeatureSpread.of(1, 2), 1,
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.MULTI_SPHERE.get().configured(new ExtendedMultiSphereConfig(remainsTypes,
+						FeatureSpread.of(1, 2), 3,
 						ImmutableList.of(Blocks.DIRT.defaultBlockState())))
 				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
 				.weighted(4F)

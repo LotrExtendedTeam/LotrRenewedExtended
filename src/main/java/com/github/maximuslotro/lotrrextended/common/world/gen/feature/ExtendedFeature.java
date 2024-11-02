@@ -15,6 +15,8 @@ public class ExtendedFeature {
 	public static final RegistryObject<ExtendedSimpleBlockFeature> SIMPLE_BLOCK = redFeature("simple_block", SIMPLE_BLOCK_PRE);
 	public static final ExtendedVegetationPatchFeature VEGETATION_PATCH_PRE = new ExtendedVegetationPatchFeature(ExtendedVegetationPatchConfig.CODEC);
 	public static final RegistryObject<ExtendedVegetationPatchFeature> VEGETATION_PATCH = redFeature("vegetation_patch", VEGETATION_PATCH_PRE);
+	public static final ExtendedMultiSphereFeature MULTI_SPHERE_PRE = new ExtendedMultiSphereFeature(ExtendedMultiSphereConfig.CODEC);
+	public static final RegistryObject<ExtendedMultiSphereFeature> MULTI_SPHERE = redFeature("multi_sphere", MULTI_SPHERE_PRE);
 
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> redFeature(String name, F feature) {
 		return FEATURES.register(name, () -> {
