@@ -100,6 +100,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			setProtectionLevel(BannerProtectionLevel.SILVER);
 		}else if(belowBlockstate.is(LOTRBlocks.BRONZE_BLOCK.get())) {
 			setProtectionLevel(BannerProtectionLevel.BRONZE);
+		}else if(belowBlockstate.is(LOTRBlocks.COPPER_BLOCK.get())) {
+			setProtectionLevel(BannerProtectionLevel.COPPER);
 		}else {
 			setProtectionLevel(BannerProtectionLevel.NONE);
 		}
