@@ -445,14 +445,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	         return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
 		add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> {
 	         return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
-		add(ExtendedBlocks.REMAINS_ELF.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-		add(ExtendedBlocks.REMAINS_MAN.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-		add(ExtendedBlocks.REMAINS_ORC.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-		add(ExtendedBlocks.REMAINS_DWARF.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+		dropSelf(ExtendedBlocks.REMAINS_ELF.get());
+		dropSelf(ExtendedBlocks.REMAINS_MAN.get());
+		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
+		dropSelf(ExtendedBlocks.REMAINS_DWARF.get());
 		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
     }
 	
