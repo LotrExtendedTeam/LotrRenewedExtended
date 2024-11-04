@@ -13,7 +13,7 @@ public class ExtendedTextFieldWidget extends TextFieldWidget{
 	public final int id;
 	public List<TextureOffsetButton> permButtons = new ArrayList<>();
 	public TextureOffsetButton permShowButton;
-	public boolean showPerms;
+	public boolean showPerms = false;
 
 	public ExtendedTextFieldWidget(FontRenderer pFont, int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, int id) {
 		super(pFont, pX, pY, pWidth, pHeight, pMessage);
