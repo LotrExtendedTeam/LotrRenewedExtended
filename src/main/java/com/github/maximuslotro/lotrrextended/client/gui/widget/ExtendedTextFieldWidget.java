@@ -23,11 +23,13 @@ public class ExtendedTextFieldWidget extends TextFieldWidget{
 	public void isVisable(boolean isVisable) {
 		this.visible = isVisable;
 		permShowButton.visible = isVisable;
+	}
+	public void isPermVisable(boolean isVisable) {
 		permButtons.forEach((button) -> button.visible = isVisable);
 	}
 
 	public void togglePermVis() {
 		showPerms = !showPerms;
-		permButtons.forEach((button) -> button.visible = showPerms);
+		isPermVisable(showPerms);
 	}
 }
