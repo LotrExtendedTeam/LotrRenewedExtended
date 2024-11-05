@@ -275,7 +275,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.addButton(createPlayer = new SimpleButton(this.leftPos + 29, this.topPos + 46, 65, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_player"), button -> {
 			this.whitelist.add(new ProtectionEntry(new ExtendedBannerProfileClient("")));
 		}));
-		this.addButton(createFellowship = new SimpleButton(this.leftPos + 94, this.topPos + 46, 65, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), button -> {
+		this.addButton(createFellowship = new SimpleButton(this.leftPos + 93, this.topPos + 46, 77, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), button -> {
 			this.whitelist.add(new ProtectionEntry(new ExtendedBannerProfileClient("f/")));
 		}));
 	}
@@ -298,6 +298,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 		if(protectionType==0) {
 			alignmentField.visible=true;
+			createPlayer.visible = false;
+			createFellowship.visible = false;
 			whitelistFields.forEach((textField -> {textField.isVisable(false); textField.isPermVisable(false);}));
 			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.requires"), leftPos + 61, topPos + 64, 4210752);
 			this.minecraft.getTextureManager().bind(guiTexture);
