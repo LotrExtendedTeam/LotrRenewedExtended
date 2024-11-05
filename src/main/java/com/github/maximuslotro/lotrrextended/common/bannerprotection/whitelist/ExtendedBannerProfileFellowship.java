@@ -18,8 +18,6 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 	/**
 	 * Constructs a new Banner Profile with the specified ID and name.
-	 * <p />
-	 * Either ID or name may be null/empty, but at least one must be filled.
 	 *
 	 * @param id Unique ID of the profile
 	 * @param name Display name of the profile
@@ -36,6 +34,17 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 		}else {
 			this.name = "";
 		}
+	}
+
+	/**
+	 * Constructs a new Fellowship banner profile manually
+	 *
+	 * @param id Unique ID of the profile
+	 * @param name Display name of the profile
+	 */
+	public ExtendedBannerProfileFellowship(final String name, final UUID id) {
+		this.name = name;
+		this.id = id;
 	}
 
 	/**

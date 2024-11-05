@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionType;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
@@ -75,6 +78,15 @@ public class ExtendedCBannerSaveInfoPacket {
 			}
 			UUID id = buf.readUUID();
 			String name = buf.readUtf(32767);
+			ExtendedBannerProfileBase type;
+			if(name.startsWith("f/")) {
+				type = new ExtendedBannerProfileFellowship(name, id);
+			}else {
+				type = new ExtendedBannerProfilePlayer(id, name);
+			}
+			ProtectionEntry entry = new ProtectionEntry(type);
+			entry.setPerms(profilePerms);
+			packet.whitelist.add(entry);
 		}
 		packet.canSelfProtect = buf.readBoolean();
 		packet.protectionType = buf.readInt();

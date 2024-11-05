@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Locale;
 
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldWidget;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileClient;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -46,6 +48,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	int shownWhiteListButtonCount = 0;
 	private List<ExtendedTextFieldWidget> whitelistFields = new ArrayList<>();
 	private int whiteListOffset = 0;
+	private Button createFellowship;
+	private Button createPlayer;
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
@@ -268,6 +272,12 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			this.whitelistFields.add(textField);
 			this.addButton(textField);
 		}
+		this.addButton(createPlayer = new SimpleButton(this.leftPos + 29, this.topPos + 46, 65, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_player"), button -> {
+			this.whitelist.add(new ProtectionEntry(new ExtendedBannerProfileClient("")));
+		}));
+		this.addButton(createFellowship = new SimpleButton(this.leftPos + 94, this.topPos + 46, 65, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), button -> {
+			this.whitelist.add(new ProtectionEntry(new ExtendedBannerProfileClient("f/")));
+		}));
 	}
 
 	@Override
@@ -277,6 +287,15 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		TranslationTextComponent title = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
 		this.font.draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
+		if(!ExtendedServerConfig.enableBannerProtection.get()) {
+			alignmentField.visible=false;
+			protectionTypeButton.visible=false;
+			update.visible=false;
+			whitelistFields.forEach((textField -> {textField.isVisable(false); textField.isPermVisable(false);}));
+			defaultPermButtons.forEach((permButton) -> permButton.visible=false);
+			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.disabled"), leftPos + 55, topPos + 64, 16711680);
+			return;
+		}
 		if(protectionType==0) {
 			alignmentField.visible=true;
 			whitelistFields.forEach((textField -> {textField.isVisable(false); textField.isPermVisable(false);}));
@@ -299,6 +318,15 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				whitelistFields.get(i).isVisable(false);
 				whitelistFields.get(i).isPermVisable(false);
 			}
+			if(shownWhiteListButtonCount<4) {
+				createPlayer.visible = true;
+				createFellowship.visible = true;
+				createPlayer.y = this.topPos+46 + (shownWhiteListButtonCount*30);
+				createFellowship.y = this.topPos+46 + (shownWhiteListButtonCount*30);
+			}else {
+				createPlayer.visible = false;
+				createFellowship.visible = false;
+			}
 		}
 		for(Button button : defaultPermButtons) {
 			button.visible = showDefaultPerms;
@@ -318,7 +346,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		protectionTypeButton.setMessage(protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"));
 		update.active = needsUpdate;
 		whitelistFields.forEach((textField) -> textField.tick());
-		shownWhiteListButtonCount = Math.max(this.whitelist.size(), 4);
+		shownWhiteListButtonCount = Math.min(this.whitelist.size(), 4);
 	}
 
 	@Override
