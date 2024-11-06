@@ -51,6 +51,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private Button createFellowship;
 	private Button createPlayer;
 	private boolean justCreatedWhitelistEntry = false;
+	private boolean updateWhitelistFromServer= false;
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
@@ -62,6 +63,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
 		this.shownWhiteListButtonCount = Math.min(whitelist.size(), 4);
+		updateWhitelistFromServer = true;
 	}
 
 	public void updatefromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
@@ -77,6 +79,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.shownWhiteListButtonCount = Math.min(whitelist.size(), 4);
 		whiteListOffset = 0;
 		justCreatedWhitelistEntry = false;
+		updateWhitelistFromServer = true;
 	}
 
 	public BlockPos getConfigurePos() {
@@ -323,12 +326,16 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				textField.isVisable(true);
 				//textField.render(matStack, mouseX, mouseY, tick);
 				textField.isPermVisable(textField.showPerms);
+				if(this.updateWhitelistFromServer) {
+					textField.setValue(whitelist.get(i).getProfile().getDisplayName());
+				}
 				if(justCreatedWhitelistEntry &&  i+1==shownWhiteListButtonCount) {
-					textField.setValue(whitelist.get(i).getProfile().getName());
+					textField.setValue(whitelist.get(i).getProfile().getDisplayName());
 					textField.setEditable(true);
 					justCreatedWhitelistEntry = false;
 				}
 			}
+			updateWhitelistFromServer = false;
 			for(int i=shownWhiteListButtonCount;i<4; i++) {
 				whitelistFields.get(i).isVisable(false);
 				whitelistFields.get(i).isPermVisable(false);
