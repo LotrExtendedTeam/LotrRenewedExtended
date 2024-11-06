@@ -99,7 +99,7 @@ public class ExtendedCBannerSaveInfoPacket {
 		TileEntity tileEntity = player.level.getBlockEntity(pPacket.configurePos);
 	    if (tileEntity instanceof ExtendedMEBannerTileEntity) {
 	    	ExtendedMEBannerTileEntity bannerTE = (ExtendedMEBannerTileEntity)tileEntity;
-	    	if(!ExtendedBannerProtectionManager.isBannerProtected(player.level, pPacket.configurePos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true)) {
+	    	if(!ExtendedBannerProtectionManager.isBannerProtected(player.level, pPacket.configurePos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "ExtendedCBannerSaveInfoPacket")) {
 	    		bannerTE.setDefaultPerms(pPacket.defaultPerms);
 	    		bannerTE.setAlignmentLevel(pPacket.alignmentLevel);
 	    		bannerTE.setProtectionWhitelist(pPacket.whitelist);

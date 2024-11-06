@@ -28,17 +28,17 @@ import net.minecraft.world.IWorld;
 import net.minecraftforge.common.util.FakePlayer;
 
 public class ExtendedBannerProtectionManager {
-	public static boolean isBannerProtected(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance, boolean doLog) {
-		return isBannerProtected(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, doLog);
+	public static boolean isBannerProtected(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance, boolean doLog, String source) {
+		return isBannerProtected(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, doLog, source);
 	}
 
-	public static boolean isBannerProtected(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance, boolean doLog) {
+	public static boolean isBannerProtected(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance, boolean doLog, String source) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
 			return false;
 		}
 		boolean isInteractionDenied = isBannerProtectedInner(iWorld, pX, pY, pZ, protInstance);
 		if(doLog && ExtendedServerConfig.enableExtendedLogging.get()) {
-			ExtendedLog.info("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+"]");
+			ExtendedLog.info("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
 		}
 		return isInteractionDenied;
 	}
