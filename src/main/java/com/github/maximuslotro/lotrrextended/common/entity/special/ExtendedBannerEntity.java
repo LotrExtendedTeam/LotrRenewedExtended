@@ -122,7 +122,9 @@ public class ExtendedBannerEntity extends Entity {
 	}
 
 	public void setProtectionOwner(UUID owner) {
-		this.getEntityData().set(OWNER, Optional.of(owner));
+		if(owner!=null) {
+			this.getEntityData().set(OWNER, Optional.of(owner));
+		}
 	}
 
 	@Override
