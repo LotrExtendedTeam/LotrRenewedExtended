@@ -467,7 +467,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				for(ProtectionEntry protectionWWhitelist : protectionWhitelist) {
 					whitelist.add(protectionWWhitelist.save());
 				}
-				pCompound.put("whitelistEntrys", pCompound);
+				pCompound.put("whitelistEntrys", whitelist);
 			}
 			if (!defaultPerms.isEmpty()) {
 				// Initialize a byte array to store the ordinal values of BannerPermission
