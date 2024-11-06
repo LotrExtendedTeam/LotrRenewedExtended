@@ -53,7 +53,7 @@ public class ExtendedCBannerSaveInfoPacket {
 				buf.writeByte((byte) perm.ordinal());
 			}
 			buf.writeUUID(entry.getProfile().getId());
-			buf.writeUtf(entry.getProfile().getName(), 32767);
+			buf.writeUtf(entry.getProfile().getDisplayName(), 32767);
 		}
 		buf.writeBoolean(packet.canSelfProtect);
 		buf.writeInt(packet.protectionType);
@@ -80,7 +80,7 @@ public class ExtendedCBannerSaveInfoPacket {
 			String name = buf.readUtf(32767);
 			ExtendedBannerProfileBase type;
 			if(name.startsWith("f/")) {
-				type = new ExtendedBannerProfileFellowship(name, id);
+				type = new ExtendedBannerProfileFellowship(name.substring(2), id);
 			}else {
 				type = new ExtendedBannerProfilePlayer(id, name);
 			}
