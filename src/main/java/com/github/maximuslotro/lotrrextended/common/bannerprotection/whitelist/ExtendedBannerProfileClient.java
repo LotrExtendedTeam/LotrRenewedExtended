@@ -9,7 +9,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 
 public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
-	private final String name;
+	private String name;
 
 	/**
 	 * Constructs a new Banner Profile with the specified ID and name.
@@ -45,6 +45,10 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
 	@Nullable
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

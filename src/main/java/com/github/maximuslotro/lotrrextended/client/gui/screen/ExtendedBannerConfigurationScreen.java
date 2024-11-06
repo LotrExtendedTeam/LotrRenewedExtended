@@ -22,7 +22,6 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -99,6 +98,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		protectionTypeButton.setMessage(protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"));
 		this.addButton(update = new SimpleButton(this.leftPos +this.imageWidth -115, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
 			needsUpdate = false;
+			whitelistFields.forEach((textButton) -> textButton.setFocus(false));
 			ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
 		}) {
 			@Override
@@ -201,7 +201,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				public void setFocus(boolean pIsFocused) {
 					super.setFocus(pIsFocused);
 					if(!pIsFocused) {
-						ExtendedBannerConfigurationScreen.this.handleWhitelistUpdate(convertWhitelistOffset(this.id));
+						ExtendedBannerConfigurationScreen.this.handleWhitelistUpdate(this.id);
 					}
 				}
 			};
@@ -325,7 +325,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				textField.isPermVisable(textField.showPerms);
 				if(justCreatedWhitelistEntry &&  i+1==shownWhiteListButtonCount) {
 					textField.setValue(whitelist.get(i).getProfile().getName());
-					textField.setFocus(true);
+					textField.setEditable(true);
 					justCreatedWhitelistEntry = false;
 				}
 			}
@@ -392,7 +392,20 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 
 	public void handleWhitelistUpdate(int id) {
 		Minecraft mc =Minecraft.getInstance();
-		mc.player.sendMessage(new StringTextComponent("Updating line: "+id), Util.NIL_UUID);
+		if(whitelist.size()>convertWhitelistOffset(id) && whitelistFields.size()==4) {
+			if(!whitelist.get(convertWhitelistOffset(id)).getProfile().getDisplayName().equals(this.whitelistFields.get(id).getValue())) {
+				if(whitelist.get(convertWhitelistOffset(id)).getProfile() instanceof ExtendedBannerProfileClient) {
+					((ExtendedBannerProfileClient)whitelist.get(convertWhitelistOffset(id)).getProfile()).setName(this.whitelistFields.get(id).getValue());
+				}
+				else {
+					String newName = this.whitelistFields.get(id).getValue();
+					ProtectionEntry entity = new ProtectionEntry(new ExtendedBannerProfileClient(newName));
+					entity.setPerms(whitelist.get(convertWhitelistOffset(id)).getEntryPerms());
+					whitelist.set(convertWhitelistOffset(id), entity);
+				}
+				this.needsUpdate = true;
+			}
+		}
 	}
 
 	public static class PermissionButton extends TextureOffsetButton {
