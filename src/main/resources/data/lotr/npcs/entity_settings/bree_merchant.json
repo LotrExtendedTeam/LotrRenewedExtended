@@ -1,5 +1,5 @@
 {
   "faction": "lotr:bree",
-  "speechbank": "lotr:bree/man",
+  "speechbank": "lotr:bree/merchant",
   "kill_bonus": 1
 }
