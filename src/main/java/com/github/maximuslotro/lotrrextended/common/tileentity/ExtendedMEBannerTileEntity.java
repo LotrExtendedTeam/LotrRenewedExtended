@@ -100,6 +100,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			setProtectionLevel(BannerProtectionLevel.SILVER);
 		}else if(belowBlockstate.is(LOTRBlocks.BRONZE_BLOCK.get())) {
 			setProtectionLevel(BannerProtectionLevel.BRONZE);
+		}else if(belowBlockstate.is(LOTRBlocks.COPPER_BLOCK.get())) {
+			setProtectionLevel(BannerProtectionLevel.COPPER);
 		}else {
 			setProtectionLevel(BannerProtectionLevel.NONE);
 		}
@@ -465,7 +467,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				for(ProtectionEntry protectionWWhitelist : protectionWhitelist) {
 					whitelist.add(protectionWWhitelist.save());
 				}
-				pCompound.put("whitelistEntrys", pCompound);
+				pCompound.put("whitelistEntrys", whitelist);
 			}
 			if (!defaultPerms.isEmpty()) {
 				// Initialize a byte array to store the ordinal values of BannerPermission

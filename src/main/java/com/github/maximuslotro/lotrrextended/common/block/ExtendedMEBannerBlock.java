@@ -237,10 +237,11 @@ public class ExtendedMEBannerBlock extends Block {
 				blockPosBottom = blockPos.below();
 			}
         	TileEntity tileentity = world.getBlockEntity(blockPosBottom);
-    		if (tileentity instanceof ExtendedMEBannerTileEntity) {
-    			if(!ExtendedBannerProtectionManager.isBannerProtected(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true)) {
+    		if (tileentity instanceof ExtendedMEBannerTileEntity && ((ExtendedMEBannerTileEntity) tileentity).isProtecting()) {
+    			if(!ExtendedBannerProtectionManager.isBannerProtected(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "bannerBlocknteract")) {
             		ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
             		ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
+                    return ActionResultType.sidedSuccess(world.isClientSide);
             	}
     		}
         }
