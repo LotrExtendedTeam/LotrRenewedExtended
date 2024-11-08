@@ -1,0 +1,97 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "You'll find no finer goods of Men this side of the Mountains!",
+        "I'd be willing to buy goods of you for a fair price.",
+        "Need some supplies for the road?",
+        "I sell the finest wares of Bree!",
+        "May I tempt you with the finest Southlinch?",
+        "Have you ever been to Bree? I can give you a taste of what we have to offer if you have some coin.",
+        "I bring the finest goods of The Hill!",
+        "I have many fine goods to trade!",
+        "I bring greetings and well-wishes from the Men of Bree!",
+        "Have you come to trade, #p?",
+        "I have many goods to sell. Come, come quickly!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Hello #p! Would you like to browse my wares?",
+        "Greetings, #p! I come from the Lands of Bree.",
+        "What would you like to buy today, #p?",
+        "#p! Need some supplies for the road?",
+        "Hello #p! I have travelled far to find you, would you like some goods of Bree for your travels?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest"
+      },
+      "lines": [
+        "Hello #p! Would you like to browse my wares?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:shire | lotr:shire_moors | lotr:shire_forest"
+      },
+      "lines": [
+        "You're not one of them Halflings! Perhaps you'll trust my wares more then these Little-folk.",
+        "Don't trust what those Little-folk say about my goods! I price fairly, its them who drive a hard bargain.",
+        "The Little-folk here dont fancy my pipeweed, perhaps you'd like to try some Southlinch?",
+        "The Little-folk of the colonies don't care much for us Bree-folk."
+      ]
+    },
+    {
+
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+        "Don't trust them Ruffians heading through these lands, one of them sold me false goods!",
+        "If you're going to be travelling through such wild lands as these, you ought to buy some supplies from me!",
+        "You don't look to be one of them Ruffians, would you like to trade?",
+        "A thief stole some coins of mine while passing through the Greenway! Would you do me a favor and buy something from me?",
+        "I don't trust them Rangers, but they pay fairly.",
+        "These lands are wild, you ought to trade with me while you have the chance.",
+        "We get strange folk coming up from the South, I try not to trade with them.",
+        "I can't be in these lands for too long, don't want robbers or Goblins to get me."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "I dont trade with Ruffians!",
+        "I better not see your face again near Bree!",
+        "I don't trade with thieves, be gone!",
+        "You won't buy any goods from me!",
+        "Be gone! Robber!",
+        "Be on your way, #p!",
+        "I won't be selling anything to you.",
+        "Run off! Else I'll beat you with this!",
+        "The guards will be after you, #p!",
+        "I don't care how much money you have, #p, you're not buying anything from me!",
+        "I don't deal with Ruffians, #p!",
+        "I hope one of them Rangers catches you!",
+        "You are no friend of Bree, #p!"
+      ]
+    }
+  ]
+}

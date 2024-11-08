@@ -189,10 +189,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well, you had better be quick. I'll be on my way soon!");
 		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, %2$s! If you wish to trade with me, you must do it now!");
 
-		// Temp Bree-Land Merchant departure lines
-		// TODO: Update these with the real ones from Hails
-		addD("speechbank.breeland_merchant.departure.1", "%1$s: If you wish to get goods from Bree you must make your purchases soon, %2$s!");
-		addD("speechbank.breeland_merchant.departure.2", "%1$s: I must be leaving for Bree soon %2$s, I have not seen my family in many months.");
+		// Bree-Land Merchant departure lines
+		addD("speechbank.breeland_merchant.departure.1", "%1$s: I hear Black Riders have been wandering around these parts, I can't stay here much longer.");
+		addD("speechbank.breeland_merchant.departure.2", "%1$s: Hurry, I'll be leaving soon.");
+		addD("speechbank.breeland_merchant.departure.3", "%1$s: If you'd like some Bree-land goods, now is your last chance!");
+		addD("speechbank.breeland_merchant.departure.4", "%1$s: I'll be back on the road here soon.");
+		addD("speechbank.breeland_merchant.departure.5", "%1$s: I can't be in these lands for too long, don't want robbers or Goblins to get me.");
 
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
