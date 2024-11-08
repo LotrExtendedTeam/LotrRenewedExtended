@@ -602,4 +602,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROPE;
 
 	public static RegistryObject<Item> SKULL_GOBLET;
+
+	public static RegistryObject<Item> CHISEL;
 }

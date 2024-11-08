@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "rune_type=1": {
+      "model": "lotrextended:block/ancient_rune_stone_1"
+    },
+    "rune_type=2": {
+      "model": "lotrextended:block/ancient_rune_stone_2"
+    }
+  }
+}

@@ -35,6 +35,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBlueMountainsMerchantEntity>> BLUE_MOUNTAINS_MERCHANT;
 	public static RegistryObject<EntityType<ExtendedGundabadUrukEntity>> GUNDABAD_URUK;
 	public static RegistryObject<EntityType<ExtendedGundabadUrukArcherEntity>> GUNDABAD_URUK_ARCHER;
+	public static RegistryObject<EntityType<ExtendedBarrowWrightEntity>> BARROW_WIGHT;
 	public static RegistryObject<EntityType<ExtendedBannerEntity>> BANNER_HOLDER;
 	public static RegistryObject<EntityType<ExtendedBreelandMerchantEntity>> BREE_MERCHANT;
 }
