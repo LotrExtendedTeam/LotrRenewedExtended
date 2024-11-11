@@ -1,12 +1,15 @@
 package lotr.common.world.biome;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedHoleySphereConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
@@ -50,11 +53,11 @@ public class ExtendedBiomeFeatures {
 	private static BlockState CHESTNUT_BRANCH;
 	private static BlockState CHESTNUT_LEAVES;
 	private static BlockState CHESTNUT_LEAVES_FRUIT;
-	
+
 	private static BlockState BANANA_LOG;
 	private static BlockState BANANA_LEAVES;
 	public static BlockState BANANA_FRUIT;
-	
+
 	private static BlockState PLUM_LOG;
 	private static BlockState PLUM_WOOD;
 	private static BlockState PLUM_BRANCH;
@@ -71,30 +74,37 @@ public class ExtendedBiomeFeatures {
 	private static BlockState EMERALD_ORE;
 	private static BlockState DIAMOND_ORE;
 
-	public static BlockState BLACKBERRYBUSH;
-	public static BlockState BLUEBERRYBUSH;
-	public static BlockState CRANBERRYBUSH;
-	public static BlockState ELDERBERRYBUSH;
-	public static BlockState RASPBERRYBUSH;
-	public static BlockState WILDBERRYBUSH;
-	public static BlockClusterFeatureConfig BUSH_PATCH_CONFIG;
+	// Remains Ores
+	private static BlockState REMAINS_ORC;
+	private static BlockState REMAINS_ELF;
+	private static BlockState REMAINS_MAN;
+	private static BlockState REMAINS_DWARF;
+	private static List<BlockState> REMAINS_TYPE;
+
+	private static BlockState BLACKBERRYBUSH;
+	private static BlockState BLUEBERRYBUSH;
+	private static BlockState CRANBERRYBUSH;
+	private static BlockState ELDERBERRYBUSH;
+	private static BlockState RASPBERRYBUSH;
+	private static BlockState WILDBERRYBUSH;
+	private static BlockClusterFeatureConfig BUSH_PATCH_CONFIG;
 
 	private static BlockStateProvider CHESTNUT_LEAVES_POOL;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_BEES;
-	public static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
-	public static BaseTreeFeatureConfig CHESTNUT_PARTY;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE_BEES;
+	private static BaseTreeFeatureConfig CHESTNUT_TREE_FANCY_BEES;
+	private static BaseTreeFeatureConfig CHESTNUT_PARTY;
 
 	private static BlockStateProvider BANANA_LEAVES_POOL;
-	public static BaseTreeFeatureConfig BANANA_TREE;
+	private static BaseTreeFeatureConfig BANANA_TREE;
 
 	private static BlockStateProvider PLUM_LEAVES_POOL;
-	public static BaseTreeFeatureConfig PLUM_TREE;
-	public static BaseTreeFeatureConfig PLUM_TREE_FANCY;
-	public static BaseTreeFeatureConfig PLUM_TREE_BEES;
-	public static BaseTreeFeatureConfig PLUM_TREE_FANCY_BEES;
-	public static BaseTreeFeatureConfig PLUM_PARTY;
+	private static BaseTreeFeatureConfig PLUM_TREE;
+	private static BaseTreeFeatureConfig PLUM_TREE_FANCY;
+	private static BaseTreeFeatureConfig PLUM_TREE_BEES;
+	private static BaseTreeFeatureConfig PLUM_TREE_FANCY_BEES;
+	private static BaseTreeFeatureConfig PLUM_PARTY;
 
 	//Chestnut
 	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
@@ -145,6 +155,7 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(PLUM_PARTY);
 	}
 
+
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
@@ -172,6 +183,14 @@ public class ExtendedBiomeFeatures {
 		RUBY_ORE = ExtendedBlocks.RUBY_ORE.get().defaultBlockState();
 		EMERALD_ORE = ExtendedBlocks.EMERALD_ORE.get().defaultBlockState();
 		DIAMOND_ORE = ExtendedBlocks.DIAMOND_ORE.get().defaultBlockState();
+
+		// remains block states
+		REMAINS_ORC = ExtendedBlocks.REMAINS_ORC.get().defaultBlockState();
+		REMAINS_ELF = ExtendedBlocks.REMAINS_ELF.get().defaultBlockState();
+		REMAINS_MAN = ExtendedBlocks.REMAINS_MAN.get().defaultBlockState();
+		REMAINS_DWARF = ExtendedBlocks.REMAINS_DWARF.get().defaultBlockState();
+		REMAINS_TYPE = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
+
 
 		//Use flag to catch re-initialization of block that causes doubling of registry items causing crashing
 		if(!created) {
@@ -225,6 +244,18 @@ public class ExtendedBiomeFeatures {
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 4)).range(32).squared().weighted(1F).feature.get());
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, EMERALD_ORE, 4)).range(24).squared().weighted(0.75F).feature.get());
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, DIAMOND_ORE, 4)).range(16).squared().weighted(0.5F).feature.get());
+	}
+
+	public static void addRemains(BiomeGenerationSettings.Builder builder) {
+
+		List<BlockState> remainsTypes = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
+
+		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.HOLEY_UNDERWATER_SPHERE.get().configured(new ExtendedHoleySphereConfig(remainsTypes,
+						FeatureSpread.of(2, 3), 4,
+						ImmutableList.of(Blocks.DIRT.defaultBlockState()), 20))
+				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
+				.weighted(5F)
+				.feature.get());
 	}
 
 	//Classic Trees

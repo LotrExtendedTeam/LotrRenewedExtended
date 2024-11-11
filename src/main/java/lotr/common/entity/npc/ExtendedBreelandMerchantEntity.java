@@ -367,8 +367,7 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     @Override
     public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        // TODO: Make sure this gets updated to match the new number of departure lines
-        return new TranslationTextComponent("speechbank.breeland_merchant.departure." + (random.nextInt(2) + 1), getName(), player.getName());
+        return new TranslationTextComponent("speechbank.breeland_merchant.departure." + (random.nextInt(5) + 1), getName(), player.getName());
     }
 
     static {

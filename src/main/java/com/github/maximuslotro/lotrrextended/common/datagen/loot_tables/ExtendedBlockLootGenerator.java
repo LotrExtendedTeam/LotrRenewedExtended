@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Stream;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -140,7 +140,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedAncientRuneBlock) {
+			if(block.getValue().get() instanceof ExtendedAncientStoneRuneBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -445,14 +445,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	         return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
 		add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> {
 	         return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
-		add(ExtendedBlocks.REMAINS_ELF.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-		add(ExtendedBlocks.REMAINS_MAN.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-		add(ExtendedBlocks.REMAINS_ORC.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
-		add(ExtendedBlocks.REMAINS_DWARF.get(), (p_241170_0_) -> {
-	         return createSingleItemTableWithSilkTouch(p_241170_0_, LOTRBlocks.PALANTIR.get());});
+		dropSelf(ExtendedBlocks.REMAINS_ELF.get());
+		dropSelf(ExtendedBlocks.REMAINS_MAN.get());
+		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
+		dropSelf(ExtendedBlocks.REMAINS_DWARF.get());
 		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
     }
 	

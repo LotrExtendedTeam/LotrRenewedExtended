@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
@@ -479,7 +479,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).harvestTool(ToolType.HOE).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 		ExtendedBlocks.MOSS_CARPET = registerB("moss_carpet", () -> new ExtendedMossCarpetBlock(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
-		ExtendedBlocks.ANCIENT_RUNE_BLOCK = registerB("ancient_rune_stone", () -> new ExtendedAncientRuneBlock(Properties.of(Material.STONE).sound(SoundType.STONE)));
+		ExtendedBlocks.ANCIENT_RUNE_BLOCK = registerB("ancient_rune_stone", () -> new ExtendedAncientStoneRuneBlock());
 
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));

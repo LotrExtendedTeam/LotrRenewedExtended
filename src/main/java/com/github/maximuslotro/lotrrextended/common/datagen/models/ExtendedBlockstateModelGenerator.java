@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
@@ -159,6 +160,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof FallenLeavesBlock) {
 					genFallenLeavesBlock((FallenLeavesBlock) block.getValue().get(), block.getKey().substring(7));
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedAncientStoneRuneBlock) {
+					genAncientRuneBlockItem((ExtendedAncientStoneRuneBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
@@ -1140,6 +1145,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+extendedReedBasketBlock.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genAncientRuneBlockItem(ExtendedAncientStoneRuneBlock runeStone, String name) {
+		registeredBlocks.add(runeStone);
+		ModelFile modelFileItem = models().cubeAll("lotrextended:"+runeStone.getRegistryName().getPath()+"_1", lotrExtendedLoc("block/"+name+"_1"));
+		getVariantBuilder(runeStone).forAllStates(state -> {
+			int type = state.getValue(ExtendedAncientStoneRuneBlock.TYPE);
+			return ConfiguredModel.builder()
+                    .modelFile(models().cubeAll("lotrextended:"+runeStone.getRegistryName().getPath()+"_"+type, lotrExtendedLoc("block/"+name+"_"+type)))
+                    .build();
+		});
+		itemModels().getBuilder("lotr:"+runeStone.getRegistryName().getPath()).parent(modelFileItem);
 	}
 
 	private void genBarrelBlockItem(ExtendedBarrelBlock extendedReedBasketBlock, String name) {
