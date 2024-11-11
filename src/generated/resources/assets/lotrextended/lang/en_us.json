@@ -1050,6 +1050,8 @@
   "gui.lotrextended.banner_configuration.type_whitelist": "Protection Type: Whitelist",
   "gui.lotrextended.banner_configuration.whitelist.add_fellowship": "Add Fellowship",
   "gui.lotrextended.banner_configuration.whitelist.add_player": "Add Player",
+  "gui.lotrextended.banner_configuration.whitelist.delete": "Remove",
+  "gui.lotrextended.banner_configuration.whitelist.delete.disc": "Remove this whitelist entry",
   "gui.lotrextended.banner_configuration.whitelist.textBox": "Name",
   "gui.lotrextended.banner_item.info": "Banner contains protection information",
   "gui.lotrextended.base.disable": "Disable",

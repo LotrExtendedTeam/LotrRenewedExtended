@@ -13,6 +13,7 @@ public class ExtendedTextFieldWidget extends TextFieldWidget{
 	public final int id;
 	public List<TextureOffsetButton> permButtons = new ArrayList<>();
 	public TextureOffsetButton permShowButton;
+	public TextureOffsetButton deleteButton;
 	public boolean showPerms = false;
 
 	public ExtendedTextFieldWidget(FontRenderer pFont, int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, int id) {
@@ -23,6 +24,7 @@ public class ExtendedTextFieldWidget extends TextFieldWidget{
 	public void isVisable(boolean isVisable) {
 		this.visible = isVisable;
 		permShowButton.visible = isVisable;
+		deleteButton.visible = isVisable;
 	}
 	public void isPermVisable(boolean isVisable) {
 		permButtons.forEach((button) -> button.visible = isVisable);
