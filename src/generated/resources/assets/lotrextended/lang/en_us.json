@@ -1043,7 +1043,7 @@
   "gui.lotrextended.banner_configuration.self_protection.off": "Self Protection: Off",
   "gui.lotrextended.banner_configuration.self_protection.on": "Self Protection: On",
   "gui.lotrextended.banner_configuration.send_update": "Sync Banner Now",
-  "gui.lotrextended.banner_configuration.send_update.disc": "Sync And Validate Banner Info With Server",
+  "gui.lotrextended.banner_configuration.send_update.disc": "Sync And Validate Banner Info With Server\nThis is done automatically when closing the GUI",
   "gui.lotrextended.banner_configuration.title": "Banner Protection",
   "gui.lotrextended.banner_configuration.type_faction": "Protection Type: Faction",
   "gui.lotrextended.banner_configuration.type_whitelist": "Protection Type: Whitelist",

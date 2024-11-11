@@ -196,7 +196,6 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.alignmentField.setValue("+"+alignmentLevel);
 		this.alignmentField.setFocus(false);
 		this.alignmentField.setCanLoseFocus(true);
-		this.alignmentField.setTextColorUneditable(65313);
 		// Whitelist
 		for(int i=0; i<4; i++) {
 			ExtendedTextFieldWidget textField =  new ExtendedTextFieldWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
@@ -212,7 +211,6 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			textField.setValue("");
 			textField.setFocus(false);
 			textField.setCanLoseFocus(true);
-			textField.setTextColorUneditable(65313);
 			
 			IndexedButton permShowButton = new IndexedButton(this.leftPos + 29, this.topPos + 63 + (i*30), 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), i, button -> {
 				textField.togglePermVis();
@@ -323,6 +321,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				blit(matStack, this.leftPos+29, this.topPos+46 + (i*30), 0, 192, 80, 17);
 				blit(matStack, this.leftPos+55, this.topPos+46 + (i*30), 1, 192, 79, 17);
 				ExtendedTextFieldWidget textField = whitelistFields.get(i);
+				textField.setTextColor(whitelist.get(i).getProfile() instanceof ExtendedBannerProfileClient ? 65313 : 14737632);
 				textField.isVisable(true);
 				//textField.render(matStack, mouseX, mouseY, tick);
 				textField.isPermVisable(textField.showPerms);
@@ -374,7 +373,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	@Override
 	public void onClose() {
 		super.onClose();
-		//ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
+		ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
 	}
 
 	public void handleAlignmentUpdate() {
