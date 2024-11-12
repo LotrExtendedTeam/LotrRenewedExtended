@@ -60,7 +60,9 @@ public class WorldEventHandlers {
 			ExtendedLevelData serverInstance = ExtendedLevelData.serverInstance();
 			ServerWorld serverWorld = (ServerWorld) world;
 			PlayerEntity player = event.getPlayer();
-			if (serverInstance.isPlayerBarrowCursed(player) && event.getContainer() instanceof ChestContainer) {
+			if (serverInstance.isPlayerBarrowCursed(player)
+					&& world.getBiome(player.blockPosition()).getRegistryName().toString().equals("lotr:barrow_downs")
+					&& event.getContainer() instanceof ChestContainer) {
 				ExtendedBarrowWrightEntity barrowWight = new ExtendedBarrowWrightEntity(ExtendedEntities.BARROW_WIGHT.get(), serverWorld);
 				boolean spawned = false;
 				int tries = 0;
