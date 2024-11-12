@@ -58,6 +58,7 @@ public class ExtendedTickHandlerServer {
 					// only decrement player cooldowns once a second (stored in seconds not ticks)
 					if (world.getGameTime() % 20L == 0L) {
 						levelData.decrementPlayerTraderCooldowns(world);
+						levelData.incrementPlayerTimeInBarrows(world);
 					}
 
 					// wandering trader spawns should be done every tick
