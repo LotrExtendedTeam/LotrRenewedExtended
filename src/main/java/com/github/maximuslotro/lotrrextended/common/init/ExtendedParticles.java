@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.init;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 
-import net.minecraft.client.particle.IParticleRenderType;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.eventbus.api.IEventBus;
