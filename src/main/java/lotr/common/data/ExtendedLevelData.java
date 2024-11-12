@@ -1,9 +1,7 @@
 package lotr.common.data;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import lotr.common.LOTRLog;
-import lotr.common.init.ExtendedBiomes;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;

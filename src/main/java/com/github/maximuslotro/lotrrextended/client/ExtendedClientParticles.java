@@ -5,8 +5,6 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FlameParticle;
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 
