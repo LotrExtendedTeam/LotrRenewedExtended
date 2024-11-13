@@ -39,7 +39,7 @@ public class BarrowWightJumpscareParticle extends Particle {
         float f1 = MathHelper.cos(f * (float)Math.PI/2);
         MatrixStack matrixstack = new MatrixStack();
         matrixstack.mulPose(pRenderInfo.rotation());
-        matrixstack.scale(-1.0F, -1.0F, 1.0f);
+        matrixstack.scale(-1.0F, -1.0F, 2-f1);
         matrixstack.translate(0.0D, 0.0D, 1.5D);
         IRenderTypeBuffer.Impl irendertypebuffer$impl = Minecraft.getInstance().renderBuffers().bufferSource();
         IVertexBuilder ivertexbuilder = irendertypebuffer$impl.getBuffer(this.renderType);
