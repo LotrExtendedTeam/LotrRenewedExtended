@@ -9,6 +9,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -26,15 +27,19 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 
 	@Override
 	public void render(ExtendedBannerEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
-		pMatrixStack.pushPose();
 		Minecraft minecraft = Minecraft.getInstance();
 		boolean shouldHide = pEntity.isInvisibleTo(minecraft.player) || minecraft.options.hideGui;
 		RenderType rendertype = shouldHide ? null : model.renderType(TEXTURE_LOCATION);
 		if (rendertype != null) {
+			pMatrixStack.pushPose();
 			IVertexBuilder ivertexbuilder = pBuffer.getBuffer(rendertype);
 			this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+			pMatrixStack.popPose();
 		}
-		pMatrixStack.popPose();
+        IVertexBuilder ivertexBuilder = pBuffer.getBuffer(RenderType.lines());
+        if (pEntity.getProtectionRange()>0) {
+           WorldRenderer.renderLineBox(pMatrixStack, ivertexBuilder, pEntity.getProtectionArea(), 0F, 255F, 0F, 1F);
+        }
 		super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
 	}
 
@@ -45,8 +50,6 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 
 	@Override
 	protected boolean shouldShowName(ExtendedBannerEntity pEntity) {
-		Minecraft minecraft = Minecraft.getInstance();
-		boolean shouldHide = pEntity.isInvisibleTo(minecraft.player) || minecraft.options.hideGui;
-		return !shouldHide;
+		return false;
 	}
 }
