@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -36,14 +37,16 @@ public class BarrowWightJumpscareParticle extends Particle {
 
     public void render(IVertexBuilder pBuffer, ActiveRenderInfo pRenderInfo, float pPartialTicks) {
         float f = ((float)this.age + pPartialTicks) / (float)this.lifetime;
-        float f1 = MathHelper.cos(f * (float)Math.PI/2);
+        float alpha = MathHelper.sin(f * (float)Math.PI);
         MatrixStack matrixstack = new MatrixStack();
         matrixstack.mulPose(pRenderInfo.rotation());
-        matrixstack.scale(-1.0F, -1.0F, 2-f1);
-        matrixstack.translate(0.0D, 0.0D, 1.5D);
+        matrixstack.mulPose(Vector3f.ZP.rotationDegrees(45.0f));
+        matrixstack.mulPose(Vector3f.XP.rotationDegrees(-150.0F * f + 90.0F));
+        matrixstack.scale(-1.0F, -1.0F, 1.0F);
+        matrixstack.translate(0, 0, 1.0D);
         IRenderTypeBuffer.Impl irendertypebuffer$impl = Minecraft.getInstance().renderBuffers().bufferSource();
         IVertexBuilder ivertexbuilder = irendertypebuffer$impl.getBuffer(this.renderType);
-        this.model.renderToBuffer(matrixstack, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, f1);
+        this.model.renderToBuffer(matrixstack, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
         irendertypebuffer$impl.endBatch();
     }
 
