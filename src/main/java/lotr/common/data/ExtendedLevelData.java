@@ -7,6 +7,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -139,10 +141,13 @@ public class ExtendedLevelData {
                     if (seconds <= 180 && seconds != -1) {
                         secondsInBarrows.put(playerUUID, seconds+1);
                     }
-                    if (seconds > 180 && world.random.nextDouble() < 1.0/510.0) {
+                    double rand = world.random.nextDouble();
+                    if (seconds > 180 && rand < 1.0/510.0) {
                         //After 3 minutes, there's a 1/510 chance of being jumpscared each second (on average it takes 8.5 minutes)
                         ((ServerWorld) world).sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 10, 0, 0, 0, 1);
-                        secondsInBarrows.put(playerUUID, -1);
+                        //player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 6000, 2));
+                        if (510.0*rand < 0.4)
+                            secondsInBarrows.put(playerUUID, -1);
                     }
                 }
                 else {
