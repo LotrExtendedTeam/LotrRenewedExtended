@@ -41,6 +41,7 @@ public class ExtendedBannerEntity extends Entity {
 
 	public ExtendedBannerEntity(EntityType<? extends ExtendedBannerEntity> pType, World pLevel) {
 		super(pType, pLevel);
+		this.noCulling = true;
 	}
 
 	public ExtendedBannerEntity(World pLevel) {

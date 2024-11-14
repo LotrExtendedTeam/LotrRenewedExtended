@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -36,11 +38,14 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 			this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 			pMatrixStack.popPose();
 		}
-        IVertexBuilder ivertexBuilder = pBuffer.getBuffer(RenderType.lines());
-        if (pEntity.getProtectionRange()>0) {
-           WorldRenderer.renderLineBox(pMatrixStack, ivertexBuilder, pEntity.getProtectionArea(), 0F, 255F, 0F, 1F);
-        }
-		super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
+		IVertexBuilder ivertexBuilder = pBuffer.getBuffer(RenderType.lines());
+		if (pEntity.getProtectionRange()>0) {
+			minecraft.player.sendMessage(new StringTextComponent("Sent "+pEntity.getProtectionRange()+" "+pEntity.getProtectionArea().toString()), Util.NIL_UUID);
+			pMatrixStack.pushPose();
+			WorldRenderer.renderLineBox(pMatrixStack, ivertexBuilder, pEntity.getProtectionArea(), 0.5f, 0.5f, 0.5f, 1.0F);
+			pMatrixStack.popPose();
+		}
+		//super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
 	}
 
 	@Override

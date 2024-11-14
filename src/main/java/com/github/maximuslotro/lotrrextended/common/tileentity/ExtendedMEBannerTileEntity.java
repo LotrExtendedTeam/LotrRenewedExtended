@@ -416,13 +416,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 					}
 				}
 			}
-			//TODO validate player fellowships
 			if (pCompound.contains("defaultPerms", 7)) {  // 7 corresponds to a byte array in NBT
 				byte[] ordinalValues = pCompound.getByteArray("perms");
 				// Convert each ordinal value back to a BannerPermission enum
 				defaultPerms.clear();
 				for (byte ordinal : ordinalValues) {
 					defaultPerms.add(BannerPermission.values[ordinal]);
+				}
+				if(defaultPerms.contains(BannerPermission.EVERYTHING)) {
+					defaultPerms.removeIf(permission -> permission !=BannerPermission.BANNER && permission !=BannerPermission.EVERYTHING);
 				}
 			}
 			if(pCompound.contains("protectionSelf")) {
@@ -514,6 +516,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			return this;
 		}
 
+		public ProtectionEntry addPerm(BannerPermission perm) {
+			entryPerms.add(perm);
+			return this;
+		}
+
 		public boolean containsPermissionNode(BannerPermission permission) {
 			return entryPerms.contains(permission);
 		}
@@ -574,6 +581,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				for (byte ordinal : ordinalValues) {
 					entryPerms.add(BannerPermission.values[ordinal]);
 				}
+			}
+			if(entryPerms.contains(BannerPermission.EVERYTHING)) {
+				entryPerms.removeIf(permission -> permission !=BannerPermission.BANNER && permission !=BannerPermission.EVERYTHING);
 			}
 			ExtendedBannerProfileBase type;
 			if("player".equals(nbt.getString("type"))) {
