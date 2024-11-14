@@ -47,7 +47,11 @@ public class ExtendedLevelData {
 
     private Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
 
-    // -1 if the player is cursed (the next chest they open will spawn a barrow wight)
+    /** -1 if the player is marked to be cursed
+     *  -2 if the player was cursed
+     *  -3 if the player left the barrow downs after having entered the first time
+     *   0 if
+     */
     private Map<UUID, Integer> secondsInBarrows = new HashMap<>();
 
     public boolean needsLoad() {
@@ -112,7 +116,7 @@ public class ExtendedLevelData {
     }
 
     public void removeCurse(PlayerEntity player) {
-        secondsInBarrows.put(player.getUUID(), 0);
+        secondsInBarrows.put(player.getUUID(), -2);
     }
 
     public void decrementPlayerTraderCooldowns(World world) {
@@ -134,25 +138,36 @@ public class ExtendedLevelData {
     public void incrementPlayerTimeInBarrows(World world) {
         for (PlayerEntity player : world.players()) {
             Biome biome = world.getBiome(player.blockPosition());
+            UUID playerUUID = player.getUUID();
             if(biome.getRegistryName().toString().equals("lotr:barrow_downs")) {
-                UUID playerUUID = player.getUUID();
                 if (secondsInBarrows.containsKey(playerUUID)) {
                     int seconds = secondsInBarrows.get(playerUUID);
-                    if (seconds <= 180 && seconds != -1) {
+                    if (seconds == -3) {
+                        //reentered barrows
+                        double rand = world.random.nextDouble();
+                        if (rand < 0.13) {
+                            secondsInBarrows.put(playerUUID, 1);
+                        }
+                        else {
+                            secondsInBarrows.put(playerUUID, -2);
+                        }
+                    }
+                    if (seconds <= 30 && seconds >= 1) {
                         secondsInBarrows.put(playerUUID, seconds+1);
                     }
-                    double rand = world.random.nextDouble();
-                    if (seconds > 180 && rand < 1.0/510.0) {
-                        //After 3 minutes, there's a 1/510 chance of being jumpscared each second (on average it takes 8.5 minutes)
+                    if (seconds > 30) {
+                        //After 30 seconds in the barrows, get jumpscared the first time!
                         ((ServerWorld) world).sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 10, 0, 0, 0, 1);
-                        //player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 6000, 2));
-                        if (510.0*rand < 0.4)
-                            secondsInBarrows.put(playerUUID, -1);
+                        secondsInBarrows.put(playerUUID, -1);
                     }
                 }
                 else {
                     secondsInBarrows.put(playerUUID, 1);
                 }
+            }
+            else if (secondsInBarrows.containsKey(playerUUID)) {
+                if (secondsInBarrows.get(playerUUID) == -2)
+                    secondsInBarrows.put(playerUUID, -3);
             }
         }
     }
