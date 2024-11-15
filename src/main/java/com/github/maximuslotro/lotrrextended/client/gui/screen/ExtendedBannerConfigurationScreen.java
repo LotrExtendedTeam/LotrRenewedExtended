@@ -24,10 +24,8 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.Color;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -139,7 +137,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			}
 			@Override
 			public boolean shouldDoDiffrentOffset() {
-				return !(defaultPerms.size()==1 && defaultPerms.contains(BannerPermission.EVERYTHING));
+				return !defaultPerms.isEmpty();
 			}
 			@Override
 			public int additionalOffset() {
@@ -163,7 +161,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				}
 			}
 			int upLoc = this.topPos + ((perm.ordinal()==0||perm.ordinal()>4) ? this.imageHeight-15 : this.imageHeight-25);
-			TextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)).setStyle(perm==BannerPermission.BANNER ? Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.RED)) : Style.EMPTY), perm, -1, button -> {
+			TextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, -1, button -> {
 				BannerPermission tweaking = ((PermissionButton)button).perm;
 				if(defaultPerms.contains(tweaking)) {
 					defaultPerms.remove(tweaking);
@@ -187,7 +185,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				}
 				@Override
 				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-					ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc"), 200), pMouseX, pMouseY);
+					ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==BannerPermission.BANNER ? TextFormatting.RED : TextFormatting.WHITE), 200), pMouseX, pMouseY);
 				}
 			};
 			permButton.visible = showDefaultPerms;
@@ -275,7 +273,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				if(perm.ordinal()>1 ) {
 					leftLoc += (perm.ordinal()-1) * 10;
 				}
-				PermissionButton permButton = new PermissionButton(leftLoc, this.topPos + 63 + (i*30), 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)).setStyle(perm==BannerPermission.BANNER ? Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.RED)) : Style.EMPTY), perm, i, button -> {
+				PermissionButton permButton = new PermissionButton(leftLoc, this.topPos + 63 + (i*30), 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, i, button -> {
 					if(whitelist.size()>convertWhitelistOffset(((PermissionButton)button).parentID)) {
 						BannerPermission tweaking = ((PermissionButton)button).perm;
 						int buttonIndex = convertWhitelistOffset(((PermissionButton)button).parentID);
@@ -305,7 +303,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 					}
 					@Override
 					public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-						ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc"), 200), pMouseX, pMouseY);
+						ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==BannerPermission.BANNER ? TextFormatting.RED : TextFormatting.WHITE), 200), pMouseX, pMouseY);
 					}
 				};
 				permButton.visible = textField.showPerms;
