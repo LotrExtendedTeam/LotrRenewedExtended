@@ -3,6 +3,7 @@ package lotr.common.biome;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeBase;
 import lotr.common.world.biome.LOTRBiomeFeatures;
+import lotr.common.world.gen.feature.grassblend.ExtendedGrassBlends;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome.Builder;
@@ -44,7 +45,7 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 		LOTRBiomeFeatures.addTrees(this, builder, 0, 0.1F, weightedTrees);
 		LOTRBiomeFeatures.addAthelasChance(builder);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
-		LOTRBiomeFeatures.addGrass(this, builder, 6, GrassBlends.MUTED);
+		LOTRBiomeFeatures.addGrass(this, builder, 7, ExtendedGrassBlends.BARROW_DOWNS_GRASS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_MUTED);
 		ExtendedBiomeFeatures.addMoss(builder, 2);
 	}
