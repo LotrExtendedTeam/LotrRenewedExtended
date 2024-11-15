@@ -457,4 +457,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ROPE;
 
 	public static RegistryObject<Block> SKULL_GOBLET;
+
+	public static RegistryObject<Block> LARGE_POT;
 }

@@ -745,6 +745,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('T', Ingredient.of(LOTRTags.Items.INGOTS_TIN))
 		.unlockedBy("has_"+Items.SKELETON_SKULL.getRegistryName().getPath(), has(Items.SKELETON_SKULL))
 		.save(consumer, lotrLoc(ExtendedItems.SKULL_GOBLET.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())
+		.pattern("SI")
+		.define('S', Ingredient.of(STICKS))
+		.define('I', Ingredient.of(IRON_INGOT))
+		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
+		.save(consumer, lotrLoc(ExtendedItems.CHISEL.get().getRegistryName().getPath()));
 		//Vanilla egg fixes
 		ShapedRecipeBuilder.shaped(Items.CAKE)
 		.pattern("MMM")
@@ -881,6 +888,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, 
 			ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB, 
 			LOTRItems.MOSSY_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.LARGE_POT.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.LARGE_POT.get())
+		.pattern("# #")
+		.pattern("# #")
+		.pattern("###")
+		.define('#', Ingredient.of(Items.BRICKS))
+		.unlockedBy("has_bricks", has(Items.BRICKS))
+		.save(consumer, lotrLoc(ExtendedItems.LARGE_POT.get().getRegistryName().getPath()));
 		//Shields
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)

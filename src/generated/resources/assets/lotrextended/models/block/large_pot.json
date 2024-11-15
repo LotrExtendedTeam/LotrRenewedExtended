@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/large_pot",
+  "textures": {
+    "pot": "lotrextended:block/large_pot",
+    "particle": "lotrextended:block/large_pot"
+  }
+}
