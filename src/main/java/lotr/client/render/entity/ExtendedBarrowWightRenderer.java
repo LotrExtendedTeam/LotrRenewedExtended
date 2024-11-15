@@ -34,7 +34,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
 
     @Override
     public ResourceLocation getTextureLocation(ExtendedBarrowWrightEntity man) {
-        return SKINS.getRandomSkin(man);
+        return new ResourceLocation("lotrextended:textures/entity/barrow_wight.png");
     }
 
     @Override
@@ -69,8 +69,8 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
     @Override
     @Nullable
     protected RenderType getRenderType(ExtendedBarrowWrightEntity ranger, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
-        ResourceLocation resourceLocation = ExtendedBarrowWightRenderer.SKINS.getRandomSkin(ranger);
-        return RenderType.entityCutoutNoCull(resourceLocation);
+        //ResourceLocation resourceLocation = ExtendedBarrowWightRenderer.SKINS.getRandomSkin(ranger);
+        return RenderType.entityCutoutNoCull(getTextureLocation(ranger));
     }
 
 }

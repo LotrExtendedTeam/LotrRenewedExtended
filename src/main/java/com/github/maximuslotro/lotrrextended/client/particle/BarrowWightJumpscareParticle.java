@@ -25,11 +25,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BarrowWightJumpscareParticle extends Particle {
     private final Model model = new ExtendedBarrowWightModel<>(0.0f, true);
     private final RenderType renderType = RenderType.entityTranslucent(new ResourceLocation("lotrextended:textures/particle/scare_wight_1.png"));
+    private float angle;
+
 
     private BarrowWightJumpscareParticle(ClientWorld clientWorld, double pX, double pY, double pZ) {
         super(clientWorld, pX, pY, pZ);
         this.gravity = 0.0F;
-        this.lifetime = 30;
+        this.lifetime = 60;
+        this.angle = clientWorld.random.nextFloat();
     }
 
     public IParticleRenderType getRenderType() {
@@ -38,13 +41,10 @@ public class BarrowWightJumpscareParticle extends Particle {
 
     public void render(IVertexBuilder pBuffer, ActiveRenderInfo pRenderInfo, float pPartialTicks) {
         float f = ((float)this.age + pPartialTicks) / (float)this.lifetime;
-        float alpha = MathHelper.sin(f * (float)Math.PI);
+        float alpha = 0.25f*MathHelper.sin(f * (float)Math.PI);
         MatrixStack matrixstack = new MatrixStack();
         matrixstack.mulPose(pRenderInfo.rotation());
-        if (random.nextBoolean())
-            matrixstack.mulPose(Vector3f.ZP.rotationDegrees(45.0f));
-        else
-            matrixstack.mulPose(Vector3f.ZP.rotationDegrees(-45.0f));
+        matrixstack.mulPose(Vector3f.ZP.rotationDegrees(45.0f*(2*angle - 1)));
         matrixstack.mulPose(Vector3f.XP.rotationDegrees(-150.0F * f + 90.0F));
         matrixstack.scale(-1.0F, -1.0F, 1.0F);
         matrixstack.translate(0, 0, 1.0D);
