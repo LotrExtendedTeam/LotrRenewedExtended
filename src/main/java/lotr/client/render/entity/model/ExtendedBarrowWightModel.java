@@ -7,6 +7,7 @@ import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
@@ -205,6 +206,38 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 		}
 
 		this.hat.copyFrom(this.head);
+	}
+
+
+	protected void setupAttackAnimation(ExtendedBarrowWrightEntity p_230486_1_, float p_230486_2_) {
+		if (!(this.attackTime <= 0.0F)) {
+			for (HandSide handSide : HandSide.values()) {
+				ModelRenderer modelrenderer = this.getArm(handSide);
+				float f = this.attackTime;
+				this.body.yRot = MathHelper.sin(MathHelper.sqrt(f) * ((float) Math.PI * 2F)) * 0.2F;
+
+				/** This shifts the arms into the barrow wight's chest lol
+				 *
+				 this.rightArm.z = MathHelper.sin(this.body.yRot) * 5.0F;
+				 this.rightArm.x = -MathHelper.cos(this.body.yRot) * 5.0F;
+				 this.leftArm.z = -MathHelper.sin(this.body.yRot) * 5.0F;
+				 this.leftArm.x = MathHelper.cos(this.body.yRot) * 5.0F;
+				 */
+
+				this.rightArm.yRot += this.body.yRot;
+				this.leftArm.yRot += this.body.yRot;
+				this.leftArm.xRot += this.body.yRot;
+				f = 1.0F - this.attackTime;
+				f = f * f;
+				f = f * f;
+				f = 1.0F - f;
+				float f1 = MathHelper.sin(f * (float) Math.PI);
+				float f2 = MathHelper.sin(this.attackTime * (float) Math.PI) * -(this.head.xRot - 0.7F) * 0.75F;
+				modelrenderer.xRot = (float) ((double) modelrenderer.xRot - ((double) f1 * 1.2D + (double) f2));
+				modelrenderer.yRot += this.body.yRot * 2.0F;
+				modelrenderer.zRot += MathHelper.sin(this.attackTime * (float) Math.PI) * -0.4F;
+			}
+		}
 	}
 
 	@Override

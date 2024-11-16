@@ -44,10 +44,12 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
 		//matStack.scale(0.965f, 1.05F, 0.965f);
 	}
 
+
     @Override
     public void render(ExtendedBarrowWrightEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
-        pMatrixStack.scale(-1.0F, -1.0F, 1.0F);
-        pMatrixStack.translate(0.0D, -1.501D, 0.0D);
+
+        pMatrixStack.pushPose();
+        this.model.attackTime = this.getAttackAnim(pEntity, pPartialTicks);
 
         float f = MathHelper.rotLerp(pPartialTicks, pEntity.yBodyRotO, pEntity.yBodyRot);
         float f1 = MathHelper.rotLerp(pPartialTicks, pEntity.yHeadRotO, pEntity.yHeadRot);
@@ -59,16 +61,23 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
         float f6 = MathHelper.lerp(pPartialTicks, pEntity.xRotO, pEntity.xRot);
 
         this.setupRotations(pEntity, pMatrixStack, f7, f, pPartialTicks);
+        pMatrixStack.scale(-1.0F, -1.0F, 1.0F);
+        this.scale(pEntity, pMatrixStack, pPartialTicks);
+        pMatrixStack.translate(0.0D, -1.501D, 0.0D);
+        this.model.prepareMobModel(pEntity, f5, f8, pPartialTicks);
         this.model.setupAnim(pEntity, f5, f8, f7, f2 , f6);
 
         IVertexBuilder ivertexbuilder = pBuffer.getBuffer(getRenderType(pEntity, false, false, false));
-        this.model.renderToBuffer(pMatrixStack, ivertexbuilder, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 0.5f);
+        int i = getOverlayCoords(pEntity, this.getWhiteOverlayProgress(pEntity, pPartialTicks));
+        this.model.renderToBuffer(pMatrixStack, ivertexbuilder, pPackedLight, i, 1.0F, 1.0F, 1.0F, 0.5f);
         if (!pEntity.isSpectator()) {
             for(LayerRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> layerrenderer : this.layers) {
                 layerrenderer.render(pMatrixStack, pBuffer, pPackedLight, pEntity, f5, f8, pPartialTicks, f7, f2, f6);
             }
         }
+        pMatrixStack.popPose();
     }
+
 
     @Override
     @Nullable
