@@ -604,4 +604,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SKULL_GOBLET;
 
 	public static RegistryObject<Item> CHISEL;
+
+	public static RegistryObject<Item> LARGE_POT;
 }

@@ -27,6 +27,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation GUNDABAD_CAMP_WOOD = register("chests/gundabad_camp_wood");
 	public static final ResourceLocation GUNDABAD_CAMP_WOOL = register("chests/gundabad_camp_wool");
 
+	public static final ResourceLocation BARROW_DOWN_CHEST = register("chests/barrow_downs");
+
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = register("kegs/gundabad");

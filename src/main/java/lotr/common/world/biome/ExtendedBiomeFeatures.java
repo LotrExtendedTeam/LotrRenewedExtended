@@ -79,7 +79,6 @@ public class ExtendedBiomeFeatures {
 	private static BlockState REMAINS_ELF;
 	private static BlockState REMAINS_MAN;
 	private static BlockState REMAINS_DWARF;
-	private static List<BlockState> REMAINS_TYPE;
 
 	private static BlockState BLACKBERRYBUSH;
 	private static BlockState BLUEBERRYBUSH;
@@ -189,7 +188,6 @@ public class ExtendedBiomeFeatures {
 		REMAINS_ELF = ExtendedBlocks.REMAINS_ELF.get().defaultBlockState();
 		REMAINS_MAN = ExtendedBlocks.REMAINS_MAN.get().defaultBlockState();
 		REMAINS_DWARF = ExtendedBlocks.REMAINS_DWARF.get().defaultBlockState();
-		REMAINS_TYPE = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
 
 
 		//Use flag to catch re-initialization of block that causes doubling of registry items causing crashing
@@ -215,6 +213,7 @@ public class ExtendedBiomeFeatures {
 		PLUM_TREE_FANCY = buildFancyTree(PLUM_LOG, PLUM_LEAVES_POOL);
 		PLUM_TREE_FANCY_BEES = buildFancyTreeWithBees(PLUM_LOG, PLUM_LEAVES_POOL);
 		PLUM_PARTY = buildNormalPartyTree(PLUM_LOG, PLUM_WOOD, PLUM_BRANCH, PLUM_LEAVES_POOL);
+
 
 		BLACKBERRYBUSH = ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
 		BLUEBERRYBUSH = ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
