@@ -53,6 +53,7 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 
 	@Override
 	protected void addNPCTargetingAI() {
+		System.out.println("SET WIGHT ATTACK GOAL ######################################################");
 		addAggressiveTargetingGoals();
 	}
 

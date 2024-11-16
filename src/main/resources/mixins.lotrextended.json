@@ -5,6 +5,7 @@
 	"refmap": "mixins.lotrextended.refmap.json",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
+		"lotr.common.entity.npc.ai.goal.MixinNPCNearestAttackableTargetGoal",
 		"lotr.common.MixinLOTRGameRules",
 		"lotr.common.block.MixinSignSetupHelperJavaPatch",
 		"lotr.common.data.MixinAlignmentDataModule",
