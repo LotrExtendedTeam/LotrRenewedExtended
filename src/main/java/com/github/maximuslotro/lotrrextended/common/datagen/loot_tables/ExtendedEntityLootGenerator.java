@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
 
 import lotr.common.init.ExtendedEntities;
@@ -317,7 +318,61 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
 		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk);
 		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, arrows);
-		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable());
+		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4)))))
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(0, 1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(200).apply(SetCount.setCount(RandomValueRange.between(1, 20))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+				.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+				.add(EItemLootEntry.lootItem(Items.GOLD_INGOT).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_NUGGET.get()).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
+				.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(100).setCount(1))
+				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(20).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(20).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.COPPER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(Items.IRON_HELMET).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_CHESTPLATE).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_LEGGINGS).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_BOOTS).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_SWORD).setWeight(25).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.IRON_SPEAR.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_CHESTPLATE.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_LEGGINGS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_BOOTS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SPEAR.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.9F, 0.99F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.9F, 0.99F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.9F, 0.99F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_HELMET.get()).setWeight(1).setDamageRange(0.9F, 0.99F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.9F, 0.99F).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.9F, 0.99F).setCount(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setCount(1))));
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 	}
 

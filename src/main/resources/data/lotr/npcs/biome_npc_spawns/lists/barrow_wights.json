@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "entity_type": "lotr:barrow_wight",
+      "weight": 10,
+      "min_count": 1,
+      "max_count": 1
+    }
+  ]
+}

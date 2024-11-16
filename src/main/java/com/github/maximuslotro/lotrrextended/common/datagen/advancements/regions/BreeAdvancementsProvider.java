@@ -7,6 +7,8 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdv
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBiomes;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -64,6 +66,14 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 		Advancement bree_2000 = build(true, data(LOTRItems.GOLD_RING.get(), "bree_master", false, FrameType.CHALLENGE, true, true, false)
 				.setTitle("Master of Bree").setDescription("Reach +2000.0 alignment with Bree-land."), 
 				addAlignmentTrigger(make(), FactionPointers.BREE, 2000).parent(bree_1000));
+
+		Advancement theDead = build(true, data(Items.BONE, "the_hills_of_the_dead", false, FrameType.TASK, true, true, false)
+			.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."), 
+			addBiomeTrigger(make(), ExtendedBiomes.BARROW_DOWNS).parent(bree));
+
+		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", false, FrameType.TASK, true, true, false)
+			.setTitle("Cold be thy Hand...").setDescription("Kill a Barrow-wight."), 
+			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(theDead));
 	}
 
 	@Override

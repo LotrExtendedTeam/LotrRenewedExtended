@@ -627,7 +627,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.75F, 0.9F).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.75F, 0.9F).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SPEAR.get()).setWeight(1).setDamageRange(0.75F, 0.9F).setCount(1))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(80).setCount(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(30).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setCount(1))));
 	}

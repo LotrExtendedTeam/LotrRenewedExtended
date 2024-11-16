@@ -1,0 +1,16 @@
+{
+  "faction_spawn_lists": [
+    {
+	  "faction": "lotr:hostile",
+	  "base_weight": 100,
+	  "lists": [
+	    {
+		  "list": "lotr:barrow_wights",
+		  "weight": 10
+		}
+	  ]
+	}
+  ],
+  "npc_density": 0.2,
+  "conquest_gain_rate": 0.2
+}
