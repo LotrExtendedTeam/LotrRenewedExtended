@@ -83,6 +83,7 @@
 	"client": [
 		"lotr.client.MixinLOTRKeyHandler",
 		"lotr.client.event.MixinClientWorldDimensionTypeHelperJavaPatch",
+		"lotr.client.event.MixinLOTRTickHandlerClient",
 		"lotr.client.event.MixinLOTRTickHandlerClientJavaPatch",
 		"lotr.client.gui.MixinMiddleEarthFactionsScreen",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
