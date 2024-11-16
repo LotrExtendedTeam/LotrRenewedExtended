@@ -48,6 +48,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
     public void render(ExtendedBarrowWrightEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
         pMatrixStack.scale(-1.0F, -1.0F, 1.0F);
         pMatrixStack.translate(0.0D, -1.501D, 0.0D);
+
         float f = MathHelper.rotLerp(pPartialTicks, pEntity.yBodyRotO, pEntity.yBodyRot);
         float f1 = MathHelper.rotLerp(pPartialTicks, pEntity.yHeadRotO, pEntity.yHeadRot);
         float f2 = f1 - f;
@@ -56,7 +57,10 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
         float f8 = MathHelper.lerp(pPartialTicks, pEntity.animationSpeedOld, pEntity.animationSpeed);
         float f7 = (float)pEntity.tickCount + pPartialTicks;
         float f6 = MathHelper.lerp(pPartialTicks, pEntity.xRotO, pEntity.xRot);
+
+        this.setupRotations(pEntity, pMatrixStack, f7, f, pPartialTicks);
         this.model.setupAnim(pEntity, f5, f8, f7, f2 , f6);
+
         IVertexBuilder ivertexbuilder = pBuffer.getBuffer(getRenderType(pEntity, false, false, false));
         this.model.renderToBuffer(pMatrixStack, ivertexbuilder, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 0.5f);
         if (!pEntity.isSpectator()) {
