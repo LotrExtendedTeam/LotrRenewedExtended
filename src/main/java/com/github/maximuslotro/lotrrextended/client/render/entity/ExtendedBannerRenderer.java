@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedBannerModel;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -13,17 +12,14 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity> {
 	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/imgnazgulscreamman.png");
-	private ExtendedBannerModel model =  new ExtendedBannerModel();
 	public ExtendedBannerRenderer(EntityRendererManager entityRenderDispatcher) {
 		super(entityRenderDispatcher);
 	}
@@ -39,11 +35,6 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 			if (buffer == null)
 				return;
 			IVertexBuilder builder = buffer.getBuffer(RenderType.LINES);
-			minecraft.player.sendMessage(new StringTextComponent(pEntity.getProtectionArea().toString()), Util.NIL_UUID);
-			minecraft.player.sendMessage(new StringTextComponent("x: " + pEntity.getX()), Util.NIL_UUID);
-			minecraft.player.sendMessage(new StringTextComponent("y: " + pEntity.getY()), Util.NIL_UUID);
-			minecraft.player.sendMessage(new StringTextComponent("z: " + pEntity.getZ()), Util.NIL_UUID);
-			minecraft.player.sendMessage(new StringTextComponent("Changing call"), Util.NIL_UUID);
 			pMatrixStack.pushPose();
 			pMatrixStack.translate(-((int) pEntity.getX())-0.5D, -((int) pEntity.getY()), -((int) pEntity.getZ())-0.5D);
 			renderLineBox(pMatrixStack, builder, pEntity.getProtectionArea(), 0, 255, 0, 255);

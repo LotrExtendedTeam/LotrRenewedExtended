@@ -48,6 +48,12 @@ public class ExtendedBannerEntity extends Entity {
 		this(ExtendedEntities.BANNER_HOLDER.get(), pLevel);
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public boolean shouldRender(double pX, double pY, double pZ) {
+		return true;
+	}
+
 	@Override
 	public void tick() {
 		this.noPhysics = true;
