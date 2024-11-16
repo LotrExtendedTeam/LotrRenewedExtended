@@ -87,7 +87,7 @@ public class ExtendedBannerEntity extends Entity {
 	}
 
 	public AxisAlignedBB getProtectionArea() {
-		return AxisAlignedBBUtils.makeCroppedBB(getX(), getBoundingBox().minY, getZ()).inflate(getProtectionRange());
+		return AxisAlignedBBUtils.makeCroppedBB(getX()-0.5, getBoundingBox().minY, getZ()-0.5).inflate(getProtectionRange()-0.01D);
 	}
 
 	@Override
