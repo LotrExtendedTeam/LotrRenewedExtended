@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
 import lotr.common.init.LOTRBiomes;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 public class BiomeFeatureAdder {

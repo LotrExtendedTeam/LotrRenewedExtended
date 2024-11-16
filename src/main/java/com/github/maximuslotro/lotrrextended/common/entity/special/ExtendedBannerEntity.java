@@ -41,10 +41,17 @@ public class ExtendedBannerEntity extends Entity {
 
 	public ExtendedBannerEntity(EntityType<? extends ExtendedBannerEntity> pType, World pLevel) {
 		super(pType, pLevel);
+		this.noCulling = true;
 	}
 
 	public ExtendedBannerEntity(World pLevel) {
 		this(ExtendedEntities.BANNER_HOLDER.get(), pLevel);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public boolean shouldRender(double pX, double pY, double pZ) {
+		return true;
 	}
 
 	@Override
@@ -86,7 +93,7 @@ public class ExtendedBannerEntity extends Entity {
 	}
 
 	public AxisAlignedBB getProtectionArea() {
-		return AxisAlignedBBUtils.makeCroppedBB(getX(), getBoundingBox().minY, getZ()).inflate(getProtectionRange());
+		return AxisAlignedBBUtils.makeCroppedBB(getX()-0.5, getBoundingBox().minY, getZ()-0.5).inflate(getProtectionRange()-0.01D);
 	}
 
 	@Override
