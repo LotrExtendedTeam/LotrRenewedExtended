@@ -25,6 +25,7 @@
 		"lotr.common.entity.projectile.MixinThrownPlateEntity",
 		"lotr.common.event.MixinLOTREventHandlerJavaPatch",
 		"lotr.common.fac.MixinEntityFactionHelper",
+		"lotr.common.fac.MixinTechnicalFactions",
 		"lotr.common.init.MixinLOTRBiomes",
 		"lotr.common.init.MixinLOTRBlocks",
 		"lotr.common.init.MixinLOTRContainers",

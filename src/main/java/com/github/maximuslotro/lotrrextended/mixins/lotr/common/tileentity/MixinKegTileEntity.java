@@ -108,6 +108,7 @@ public class MixinKegTileEntity {
 				proxyInv.setItem(i, getItem(i));
 			}
 			KegTileEntity entity = ((KegTileEntity)(Object)(this));
+			// Extended Start
 			//Fix structure generation null-pointer exception. Level is null before chunk creation baking
 			if(!entity.hasLevel()) {
 				currentBrewingRecipe = null;
@@ -116,6 +117,7 @@ public class MixinKegTileEntity {
 				entity.setChanged();
 				return;
 			}
+			//Extended End
 			World level = entity.getLevel();
 			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
 					proxyInv, level);
@@ -165,7 +167,9 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite
 	protected Container createMenu(int id, PlayerInventory playerInventory) {
+		// Extended Start
 		unpackLootTableKeg(playerInventory.player);
+		// Extended End
 		return new KegContainer(id, playerInventory, ((KegTileEntity)(Object)(this)), kegData);
 	}
 
@@ -175,7 +179,9 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite
 	public ItemStack getItem(int index) {
+		// Extended Start
 		unpackLootTableKeg((PlayerEntity)null);
+		// Extended End
 		return inventory.get(index);
 	}
 
@@ -185,7 +191,9 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite
 	public ItemStack removeItem(int index, int count) {
+		// Extended Start
 		unpackLootTableKeg((PlayerEntity)null);
+		// Extended End
 		ItemStack ret = ItemStackHelper.removeItem(inventory, index, count);
 		if (isIngredientOrWaterSlot(index)) {
 			updateBrewingRecipe();
@@ -200,7 +208,9 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite
 	public ItemStack removeItemNoUpdate(int index) {
+		// Extended Start
 		unpackLootTableKeg((PlayerEntity)null);
+		// Extended End
 		ItemStack ret = ItemStackHelper.takeItem(inventory, index);
 		if (isIngredientOrWaterSlot(index)) {
 			updateBrewingRecipe();
@@ -215,7 +225,9 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite
 	public boolean isEmpty() {
+		// Extended Start
 		unpackLootTableKeg((PlayerEntity)null);
+		// Extended End
 		for(ItemStack itemstack : inventory) {
 			if(!itemstack.isEmpty()) {
 				return false;
@@ -230,7 +242,9 @@ public class MixinKegTileEntity {
 	 */
 	@Overwrite
 	public void setItem(int index, ItemStack stack) {
+		// Extended Start
 		unpackLootTableKeg((PlayerEntity)null);
+		// Extended End
 		inventory.get(index);
 		inventory.set(index, stack);
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
@@ -244,6 +258,9 @@ public class MixinKegTileEntity {
 
 	}
 
+	/**
+	 * Extended method to load in a loot table for kegs, uses chest loottable code
+	 * */
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
 		try {
@@ -271,7 +288,9 @@ public class MixinKegTileEntity {
 		}
 	}
 
-	//Inject into 
+	/**
+	 * This method is called using reflection for now
+	 * */
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;

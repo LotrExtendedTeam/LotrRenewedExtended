@@ -25,10 +25,11 @@ public class MixinNPCNearestAttackableTargetGoal {
 	 * @reason Fix hostile aligned mobs not attacking players
 	 * */
 	protected boolean isPlayerSuitableAlignmentTarget(PlayerEntity player) {
+		// Extended Start
 		if(FactionPointers.HOSTILE.matches(theNPC.getFaction())) {
-			System.out.println("Entity targeting player");
 			return true;
 		}
+		// Extended End
 		return LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(theNPC.getFaction(), AlignmentPredicates.NEGATIVE);
 	}
 }
