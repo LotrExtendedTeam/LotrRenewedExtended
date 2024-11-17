@@ -258,7 +258,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.perms.knowledge", "Learning Block Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.knowledge.disc", "Allows accessing lecterns and bookshelves");
 		addD("gui.lotrextended.banner_configuration.perms.banner", "Banner Editing Permissions");
-		addD("gui.lotrextended.banner_configuration.perms.banner.disc", "!! This permission gives the users the ability to edit this banner without your consent. Be careful who you grant this to!");
+		addD("gui.lotrextended.banner_configuration.perms.banner.disc", "This permission gives the users the ability to edit this banner without your consent. Be careful who you grant this to!");
 
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");

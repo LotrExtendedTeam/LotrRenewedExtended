@@ -72,7 +72,7 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 			addBiomeTrigger(make(), ExtendedBiomes.BARROW_DOWNS).parent(bree));
 
 		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", false, FrameType.TASK, true, true, false)
-			.setTitle("Cold be thy Hand...").setDescription("Kill a Barrow-wight."), 
+			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."), 
 			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(theDead));
 	}
 
