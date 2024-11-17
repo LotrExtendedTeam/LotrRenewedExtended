@@ -108,7 +108,12 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 		this.leftArm.x = 5.0F;
 		*/
 
+
+
 		float f = 1.0F;
+
+
+
 		if (flag) {
 			f = (float)pEntity.getDeltaMovement().lengthSqr();
 			f = f / 0.2F;
@@ -118,6 +123,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 		if (f < 1.0F) {
 			f = 1.0F;
 		}
+
 
 		this.rightArm.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 2.0F * pLimbSwingAmount * 0.5F / f;
 		this.leftArm.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 2.0F * pLimbSwingAmount * 0.5F / f;
@@ -142,6 +148,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 
 		this.rightArm.yRot = 0.0F;
 		this.leftArm.yRot = 0.0F;
+
 		/*
 		boolean flag2 = pEntity.getMainArm() == HandSide.RIGHT;
 		boolean flag3 = flag2 ? this.leftArmPose.isTwoHanded() : this.rightArmPose.isTwoHanded();
@@ -206,6 +213,9 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 		}
 
 		this.hat.copyFrom(this.head);
+
+		if (pEntity.isAggressive())
+			ModelHelper.animateZombieArms(this.leftArm, this.rightArm, pEntity.isAggressive(), this.attackTime, pAgeInTicks);
 	}
 
 
