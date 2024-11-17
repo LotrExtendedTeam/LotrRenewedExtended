@@ -9,6 +9,7 @@ import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.ai.goal.NPCNearestAttackableTargetGoal;
 import lotr.common.fac.AlignmentPredicates;
+import lotr.common.fac.FactionPointers;
 import net.minecraft.entity.player.PlayerEntity;
 
 @Mixin(NPCNearestAttackableTargetGoal.class)
@@ -21,11 +22,13 @@ public class MixinNPCNearestAttackableTargetGoal {
 	@Overwrite(remap=false)
 	/**
 	 * @author maximuslotro
-	 * @reason testing
+	 * @reason Fix hostile aligned mobs not attacking players
 	 * */
 	protected boolean isPlayerSuitableAlignmentTarget(PlayerEntity player) {
-		boolean result = LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(theNPC.getFaction(), AlignmentPredicates.NEGATIVE);
-		System.out.println("Entity targeting player result: "+result);
-		return result;
+		if(FactionPointers.HOSTILE.matches(theNPC.getFaction())) {
+			System.out.println("Entity targeting player");
+			return true;
+		}
+		return LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(theNPC.getFaction(), AlignmentPredicates.NEGATIVE);
 	}
 }
