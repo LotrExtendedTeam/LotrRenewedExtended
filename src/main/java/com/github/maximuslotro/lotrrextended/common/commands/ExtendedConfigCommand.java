@@ -69,6 +69,15 @@ public class ExtendedConfigCommand
 							)
 						.executes(context -> retrieveValue(context.getSource(), "enableEnchantedLootDrops", ExtendedServerConfig.enableEnchantedLootDrops.get()))
 				)
+				.then(Commands.literal("enableBannerProtection")
+					.then(Commands.argument("set", BoolArgumentType.bool())
+						.executes(context -> {
+							ExtendedServerConfig.enableBannerProtection.set(BoolArgumentType.getBool(context, "set"));
+							setValue(context.getSource(), "enableBannerProtection", BoolArgumentType.getBool(context, "set"));
+							return Command.SINGLE_SUCCESS;})
+						)
+					.executes(context -> retrieveValue(context.getSource(), "enableBannerProtection", ExtendedServerConfig.enableBannerProtection.get()))
+			)
 				.then(Commands.literal("enableDevMode")
 						.then(Commands.argument("set", BoolArgumentType.bool())
 							.executes(context -> {
