@@ -35,6 +35,11 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 	}
 
 	@Override
+	protected double calculateDefaultNPCReach() {
+		return 0.5F * getBbWidth() + 1.7F;
+	}
+
+	@Override
 	protected void addNPCAI() {
 		super.addNPCAI();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
