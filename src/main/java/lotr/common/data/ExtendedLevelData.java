@@ -157,7 +157,7 @@ public class ExtendedLevelData {
                     }
                     if (seconds > 30) {
                         //After 30 seconds in the barrows, get jumpscared the first time!
-                        ((ServerWorld) world).sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 10, 0, 0, 0, 1);
+                        ((ServerWorld) world).sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 1);
                         secondsInBarrows.put(playerUUID, -1);
                     }
                 }
