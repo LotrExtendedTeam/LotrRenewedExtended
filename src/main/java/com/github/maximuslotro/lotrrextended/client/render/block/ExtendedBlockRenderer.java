@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
@@ -92,6 +93,9 @@ public class ExtendedBlockRenderer {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedFireBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedLargePotBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedChainBlock) {
