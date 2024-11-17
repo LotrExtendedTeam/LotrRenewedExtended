@@ -50,7 +50,6 @@ public class ExtendedLevelData {
     /** -1 if the player is marked to be cursed
      *  -2 if the player was cursed
      *  -3 if the player left the barrow downs after having entered the first time
-     *   0 if
      */
     private Map<UUID, Integer> secondsInBarrows = new HashMap<>();
 
