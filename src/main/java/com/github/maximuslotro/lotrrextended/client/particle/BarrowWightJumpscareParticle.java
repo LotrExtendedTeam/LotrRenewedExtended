@@ -39,6 +39,11 @@ public class BarrowWightJumpscareParticle extends Particle {
         return IParticleRenderType.CUSTOM;
     }
 
+    @Override
+    public boolean shouldCull() {
+        return false;
+    }
+
     public void render(IVertexBuilder pBuffer, ActiveRenderInfo pRenderInfo, float pPartialTicks) {
         float f = ((float)this.age + pPartialTicks) / (float)this.lifetime;
         float alpha = 0.25f*MathHelper.sin(f * (float)Math.PI);

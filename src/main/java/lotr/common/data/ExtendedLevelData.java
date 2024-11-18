@@ -50,7 +50,6 @@ public class ExtendedLevelData {
     /** -1 if the player is marked to be cursed
      *  -2 if the player was cursed
      *  -3 if the player left the barrow downs after having entered the first time
-     *   0 if
      */
     private Map<UUID, Integer> secondsInBarrows = new HashMap<>();
 
@@ -157,7 +156,7 @@ public class ExtendedLevelData {
                     }
                     if (seconds > 30) {
                         //After 30 seconds in the barrows, get jumpscared the first time!
-                        ((ServerWorld) world).sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 10, 0, 0, 0, 1);
+                        ((ServerWorld) world).sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 1);
                         secondsInBarrows.put(playerUUID, -1);
                     }
                 }

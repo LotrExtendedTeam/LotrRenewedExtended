@@ -65,7 +65,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
         this.scale(pEntity, pMatrixStack, pPartialTicks);
         pMatrixStack.translate(0.0D, -1.501D, 0.0D);
         this.model.prepareMobModel(pEntity, f5, f8, pPartialTicks);
-        this.model.setupAnim(pEntity, f5, f8, f7, f2 , f6);
+        this.model.setupAnim(pEntity, f7*0.1f, 0.2f, f7, f2 , f6);
 
         IVertexBuilder ivertexbuilder = pBuffer.getBuffer(getRenderType(pEntity, false, false, false));
         int i = getOverlayCoords(pEntity, this.getWhiteOverlayProgress(pEntity, pPartialTicks));
@@ -76,6 +76,8 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
             }
         }
         pMatrixStack.popPose();
+
+
     }
 
 
