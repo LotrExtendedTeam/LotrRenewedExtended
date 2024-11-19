@@ -18,18 +18,16 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 
 public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
-    public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/barrow_wight"));
 
-    private boolean aggro = false;
 
     public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
-        super(mgr, new ExtendedBarrowWightModel<>(0.0F, false), 0.5F);
+        super(mgr, new ExtendedBarrowWightModel<>(0.0F), 0.5F);
         this.addLayer(new BarrowWightEyesLayer<>(this));
     }
 
     @Override
     public ResourceLocation getTextureLocation(ExtendedBarrowWrightEntity man) {
-        return new ResourceLocation("lotrextended:textures/entity/barrow_wight.png");
+        return new ResourceLocation("lotrextended:textures/entity/barrow_wight/barrow_wight" + (man.isAggressive() ? "_aggro" : "") + ".png");
     }
 
     @Override
@@ -49,7 +47,6 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
         float f = MathHelper.rotLerp(pPartialTicks, pEntity.yBodyRotO, pEntity.yBodyRot);
         float f1 = MathHelper.rotLerp(pPartialTicks, pEntity.yHeadRotO, pEntity.yHeadRot);
         float f2 = f1 - f;
-        this.model.aggro = aggro;
         float f5 = pEntity.animationPosition - pEntity.animationSpeed * (1.0F - pPartialTicks);
         float f8 = MathHelper.lerp(pPartialTicks, pEntity.animationSpeedOld, pEntity.animationSpeed);
         float f7 = (float)pEntity.tickCount + pPartialTicks;

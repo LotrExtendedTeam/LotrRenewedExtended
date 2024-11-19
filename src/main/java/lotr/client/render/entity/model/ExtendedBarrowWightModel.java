@@ -16,14 +16,12 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 	private final ModelRenderer skirt_r2;
 	private final ModelRenderer skirt_r3;
 	private final ModelRenderer skirt_r4;
-	public boolean aggro;
 
 	// TODO code in modelSize
-	public ExtendedBarrowWightModel(float modelSize, boolean aggro) {
+	public ExtendedBarrowWightModel(float modelSize) {
 		super(modelSize);
 		texWidth = 96;
 		texHeight = 96;
-		this.aggro = aggro;
 
 		head = new ModelRenderer(this);
 		head.setPos(0.0F, -11.0f, -1.0F);
