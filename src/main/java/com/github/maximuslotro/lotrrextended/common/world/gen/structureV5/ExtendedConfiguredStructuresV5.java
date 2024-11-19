@@ -42,6 +42,7 @@ public class ExtendedConfiguredStructuresV5 {
 	public static WeightedStructureConfig barrowDownsRuinsConfig = new WeightedStructureConfig().addStructureToPool("ruins/arnor_other_ruins_pool", 10)
 		.addStructureToPool("ruins/arnor_tower_ruins_pool", 20).addStructureToPool("ruins/general_ruins_pool", 70);
 	public static StructureFeature<?, ?> CONFIGURED_BARROW_DOWNS_RUINS = register(ExtendedStructuresV5.BARROW_DOWN_RUINS.get().configured(barrowDownsRuinsConfig));
+	public static StructureFeature<?, ?> CONFIGURED_BARROW_DOWN_BARROWS = register(ExtendedStructuresV5.BARROW_DOWN_BARROWS.get().configured(new WeightedStructureConfig().addStructureToPool("barrow_downs/barrow_pool", 1)));
 
 	public static void registerConfiguredStructures(){}
 

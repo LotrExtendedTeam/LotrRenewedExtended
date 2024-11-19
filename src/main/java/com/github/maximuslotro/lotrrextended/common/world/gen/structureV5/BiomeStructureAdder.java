@@ -48,6 +48,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_CAMP.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BARROW_DOWN_RUINS.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.BARROW_DOWN_BARROWS.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -218,6 +219,8 @@ public class BiomeStructureAdder {
 			}
 			if(event.getName().equals(ExtendedBiomes.BARROW_DOWNS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWNS_RUINS);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWN_BARROWS);
+
 			}
 		}
 	}
