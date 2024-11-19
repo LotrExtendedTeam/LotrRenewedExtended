@@ -46,7 +46,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedB
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedOrcBarrelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
-import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedStoneChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
@@ -702,7 +702,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.BANANA_CAKE = registerB("banana_cake", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F));
 
-		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedSingleChestBlock(()-> new ExtendedStoneChestTileEntity()));
+		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedStoneChestBlock(()-> new ExtendedStoneChestTileEntity()));
 		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.ORC_BARREL = registerB("orc_barrel", () -> new ExtendedOrcBarrelBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.WEAPON_RACK = registerB("weapon_rack", () -> new ExtendedWeaponRackBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));

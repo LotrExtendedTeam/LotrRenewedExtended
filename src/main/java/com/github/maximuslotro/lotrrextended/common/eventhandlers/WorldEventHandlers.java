@@ -1,39 +1,30 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
+import java.util.List;
+
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
-import lotr.common.data.ExtendedLevelData;
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedEntities;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.List;
 
 public class WorldEventHandlers {
 
@@ -46,36 +37,6 @@ public class WorldEventHandlers {
 
 				ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
 				event.setCanceled(true);
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void onContainerOpen(PlayerContainerEvent.Open event) {
-		World world = event.getPlayer().level;
-		if (!world.isClientSide) {
-			ExtendedLevelData serverInstance = ExtendedLevelData.serverInstance();
-			ServerWorld serverWorld = (ServerWorld) world;
-			PlayerEntity player = event.getPlayer();
-			if (serverInstance.isPlayerBarrowCursed(player)
-					&& world.getBiome(player.blockPosition()).getRegistryName().toString().equals("lotr:barrow_downs")
-					&& event.getContainer() instanceof ChestContainer) {
-				ExtendedBarrowWrightEntity barrowWight = new ExtendedBarrowWrightEntity(ExtendedEntities.BARROW_WIGHT.get(), serverWorld);
-				boolean spawned = false;
-				int tries = 0;
-				while (!spawned && tries < 49) {
-					double x = player.getX() + (world.random.nextDouble() - world.random.nextDouble())*5 + 0.5D;
-					double y = player.getY() + world.random.nextInt(3) - 1;
-					double z = player.getZ() + (world.random.nextDouble() - world.random.nextDouble())*5 + 0.5D;
-					if (world.getBlockState(new BlockPos((int)x, (int)y, (int)z)).is(Blocks.AIR) && world.getBlockState(new BlockPos((int)x, (int)y+1, (int)z)).is(Blocks.AIR)) {
-						barrowWight.setPos(x, y, z);
-						serverWorld.addFreshEntity(barrowWight);
-						//maybe add a sound effect?
-						serverInstance.removeCurse(player);
-						spawned = true;
-					}
-					tries++;
-				}
 			}
 		}
 	}
@@ -116,10 +77,7 @@ public class WorldEventHandlers {
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public static void handleWanderingTraderDeath(LivingDeathEvent event) {
-		if (!(event.getEntity() instanceof ExtendedTraderEntity)) {
-			return;
-		}
-		if (!(event.getEntity() instanceof NPCEntity)) {
+		if (!(event.getEntity() instanceof ExtendedTraderEntity && event.getEntity() instanceof NPCEntity)) {
 			return;
 		}
 
@@ -148,7 +106,7 @@ public class WorldEventHandlers {
 			NPCEntity npc = (NPCEntity)event.getEntity();
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
-			
+
 			//Set entity Type
 			respawnerEntity.setTraderType(npc.getType());
 			//Save trader trades

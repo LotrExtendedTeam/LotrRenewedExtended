@@ -110,6 +110,7 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 		}
 	}
 
+	@Override
 	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
 		return tileentityholder.get();
 	}
