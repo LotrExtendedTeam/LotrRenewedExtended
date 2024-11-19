@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.client.particle;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import lotr.client.render.entity.ExtendedBarrowWightRenderer;
 import lotr.client.render.entity.model.ExtendedBarrowWightModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IParticleFactory;

@@ -5,7 +5,6 @@ import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
-import net.minecraft.client.renderer.entity.model.EndermanModel;
 import net.minecraft.util.ResourceLocation;
 
 public class BarrowWightEyesLayer<T extends ExtendedBarrowWrightEntity> extends AbstractEyesLayer<T, ExtendedBarrowWightModel<T>> {

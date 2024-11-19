@@ -28,10 +28,11 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 
 	public static MutableAttribute regAttrs() {
 		return NPCEntity.registerBaseNPCAttributes()
-			.add(Attributes.MAX_HEALTH, 50.0D)
+			.add(Attributes.MAX_HEALTH, 70.0D)
 			.add(Attributes.FOLLOW_RANGE, 40.0D)
-			.add(Attributes.MOVEMENT_SPEED, 0.2D)
-			.add(Attributes.ATTACK_DAMAGE, 6.0D);
+			.add(Attributes.MOVEMENT_SPEED, 0.25D)
+			.add(Attributes.ARMOR, 2.5D)
+			.add(Attributes.ATTACK_DAMAGE, 12.0D);
 	}
 
 	@Override
