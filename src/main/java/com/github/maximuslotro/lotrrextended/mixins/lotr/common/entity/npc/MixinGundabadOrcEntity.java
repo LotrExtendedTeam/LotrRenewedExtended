@@ -29,25 +29,43 @@ public class MixinGundabadOrcEntity{
 	@Final
 	@Mutable
 	@Shadow(remap=false)
-	private static final SpawnEquipmentTable HELMETS = SpawnEquipmentTable.of(Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, 
-			LOTRItems.BONE_HELMET, LOTRItems.MORDOR_HELMET, ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.SILVER_WARG_HELMET);
+	private static final SpawnEquipmentTable HELMETS = SpawnEquipmentTable.of(
+		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET, 
+		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+		LOTRItems.MORDOR_HELMET, ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.SILVER_WARG_HELMET);
 	@Final
 	@Mutable
 	@Shadow(remap=false)
-	private static final SpawnEquipmentTable CHESTPLATES = SpawnEquipmentTable.of(Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, 
-			LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, 
-			ExtendedItems.SILVER_WARG_CHESTPLATE);
+	private static final SpawnEquipmentTable CHESTPLATES = SpawnEquipmentTable.of(
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
+		ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.SILVER_WARG_CHESTPLATE);
 	@Final
 	@Mutable
 	@Shadow(remap=false)
-	private static final SpawnEquipmentTable LEGGINGS = SpawnEquipmentTable.of(Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, 
-			LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS, ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, 
-			ExtendedItems.SILVER_WARG_LEGGINGS);
+	private static final SpawnEquipmentTable LEGGINGS = SpawnEquipmentTable.of(
+		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS, 
+		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+		ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.SILVER_WARG_LEGGINGS);
 	@Final
 	@Mutable
 	@Shadow(remap=false)
-	private static final SpawnEquipmentTable BOOTS = SpawnEquipmentTable.of(Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, 
-			LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.SILVER_WARG_BOOTS);
+	private static final SpawnEquipmentTable BOOTS = SpawnEquipmentTable.of(
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
+		ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.SILVER_WARG_BOOTS);
 
 	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;", 
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
