@@ -1,6 +1,11 @@
 package lotr.client.render.entity;
 
+import javax.annotation.Nullable;
+
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.layers.BarrowWightEyesLayer;
 import lotr.client.render.entity.model.ExtendedBarrowWightModel;
@@ -11,14 +16,10 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
-import javax.annotation.Nullable;
-
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 
 public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
-
+	public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/barrow_wight"));
 
     public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
         super(mgr, new ExtendedBarrowWightModel<>(0.0F), 0.5F);
@@ -27,7 +28,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
 
     @Override
     public ResourceLocation getTextureLocation(ExtendedBarrowWrightEntity man) {
-        return new ResourceLocation("lotrextended:textures/entity/barrow_wight/barrow_wight" + (man.isAggressive() ? "_aggro" : "") + ".png");
+        return SKINS.getRandomSkin(man);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
         float f2 = f1 - f;
         float f5 = pEntity.animationPosition - pEntity.animationSpeed * (1.0F - pPartialTicks);
         float f8 = MathHelper.lerp(pPartialTicks, pEntity.animationSpeedOld, pEntity.animationSpeed);
-        float f7 = (float)pEntity.tickCount + pPartialTicks;
+        float f7 = pEntity.tickCount + pPartialTicks;
         float f6 = MathHelper.lerp(pPartialTicks, pEntity.xRotO, pEntity.xRot);
 
         this.setupRotations(pEntity, pMatrixStack, f7, f, pPartialTicks);
@@ -68,16 +69,11 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
             }
         }
         pMatrixStack.popPose();
-
-
     }
-
 
     @Override
     @Nullable
     protected RenderType getRenderType(ExtendedBarrowWrightEntity ranger, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
-        //ResourceLocation resourceLocation = ExtendedBarrowWightRenderer.SKINS.getRandomSkin(ranger);
         return RenderType.entityCutoutNoCull(getTextureLocation(ranger));
     }
-
 }

@@ -16,6 +16,8 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 	private final ModelRenderer skirt_r2;
 	private final ModelRenderer skirt_r3;
 	private final ModelRenderer skirt_r4;
+	private final ModelRenderer head_Normal_Piece;
+	private final ModelRenderer head_Angry_Piece;
 
 	// TODO code in modelSize
 	public ExtendedBarrowWightModel(float modelSize) {
@@ -25,10 +27,20 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 
 		head = new ModelRenderer(this);
 		head.setPos(0.0F, -11.0f, -1.0F);
-		head.texOffs(32, 19).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+		// Normal head
+		//head.texOffs(32, 19).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+		// Angry Head
 		//head.texOffs(32, 0).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 11.0F, 8.0F, 0.0F, false);
 		head.texOffs(64, 44).addBox(-3.0F, -5.0F, -3.01F, 6.0F, 1.0F, 0.0F, 0.0F, false);
 		head.texOffs(0, 25).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 12.0F, 8.0F, 0.25F, false);
+		
+		head_Normal_Piece = new ModelRenderer(this);
+		head_Normal_Piece.texOffs(32, 19).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+		head.addChild(head_Normal_Piece);
+		head_Angry_Piece = new ModelRenderer(this);
+		head_Angry_Piece.visible=false;
+		head_Angry_Piece.texOffs(32, 0).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 11.0F, 8.0F, 0.0F, false);
+		head.addChild(head_Angry_Piece);
 
 		helmet = new ModelRenderer(this);
 		helmet.setPos(0.0F, 35.0F, 1.0F);
@@ -248,8 +260,15 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 	}
 
 	@Override
-	public void prepareMobModel(E ranger, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
-		super.prepareMobModel(ranger, p_212843_2_, p_212843_3_, p_212843_4_);
+	public void prepareMobModel(E wight, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
+		if(wight.isAggressive()) {
+			head_Angry_Piece.visible=true;
+			head_Normal_Piece.visible=false;
+		}else{
+			head_Angry_Piece.visible=false;
+			head_Normal_Piece.visible=true;
+		}
+		super.prepareMobModel(wight, p_212843_2_, p_212843_3_, p_212843_4_);
 	}
 
 	@Override
