@@ -937,6 +937,14 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		makeLeggingsRecipe(consumer, leggingsToBeCrafted, resource, table);
 		makeBootsRecipe(consumer, bootsToBeCrafted, resource, table);
 	}
+	protected void makeArmorRecipe(Consumer<IFinishedRecipe> consumer,
+		Supplier<? extends Item> chestplateToBeCrafted,
+		Supplier<? extends Item> leggingsToBeCrafted,
+		Supplier<? extends Item> bootsToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	makeChestplateRecipe(consumer, chestplateToBeCrafted, resource, table);
+	makeLeggingsRecipe(consumer, leggingsToBeCrafted, resource, table);
+	makeBootsRecipe(consumer, bootsToBeCrafted, resource, table);
+}
 	protected void makeHelmetRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);

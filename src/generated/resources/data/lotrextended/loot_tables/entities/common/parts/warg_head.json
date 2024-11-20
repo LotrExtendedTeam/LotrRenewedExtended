@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lotr:warg_fur_helmet"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.02
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:warg_fur_type"
+        }
+      ]
+    }
+  ]
+}

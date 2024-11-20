@@ -449,19 +449,19 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeDaggerRecipe(consumer, ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		//WARG
-		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_WARG_CHESTPLATE, 
+		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_CHESTPLATE, 
 			ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_BOOTS, 
 			ExtendedItems.BLACK_FUR, LOTRRecipes.ANY_ORC);
-		makeArmorRecipe(consumer, ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.BROWN_WARG_CHESTPLATE, 
+		makeArmorRecipe(consumer, ExtendedItems.BROWN_WARG_CHESTPLATE, 
 			ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.BROWN_WARG_BOOTS, 
 			LOTRItems.FUR, LOTRRecipes.ANY_ORC);
-		makeArmorRecipe(consumer, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.GRAY_WARG_CHESTPLATE, 
+		makeArmorRecipe(consumer, ExtendedItems.GRAY_WARG_CHESTPLATE, 
 			ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_BOOTS, 
 			ExtendedItems.GRAY_FUR, LOTRRecipes.ANY_ORC);
-		makeArmorRecipe(consumer, ExtendedItems.SILVER_WARG_HELMET, ExtendedItems.SILVER_WARG_CHESTPLATE, 
+		makeArmorRecipe(consumer, ExtendedItems.SILVER_WARG_CHESTPLATE, 
 			ExtendedItems.SILVER_WARG_LEGGINGS, ExtendedItems.SILVER_WARG_BOOTS, 
 			ExtendedItems.SILVER_FUR, LOTRRecipes.ANY_ORC);
-		makeArmorRecipe(consumer, ExtendedItems.WHITE_WARG_HELMET, ExtendedItems.WHITE_WARG_CHESTPLATE, 
+		makeArmorRecipe(consumer, ExtendedItems.WHITE_WARG_CHESTPLATE, 
 			ExtendedItems.WHITE_WARG_LEGGINGS, ExtendedItems.WHITE_WARG_BOOTS, 
 			ExtendedItems.WHITE_FUR, LOTRRecipes.ANY_ORC);
 		// GOBLIN/URUK

@@ -43,6 +43,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation coins;
 	ResourceLocation coinsRare;
 	ResourceLocation wargFur;
+	ResourceLocation wargHead;
 	ResourceLocation orcBones;
 	ResourceLocation manBones;
 	ResourceLocation elfBones;
@@ -106,6 +107,10 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		coins = makeQuickyBasePart("coins", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 0, 3)));
 		wargFur = makeQuickyBasePart("warg_fur", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.FUR.get(), 1, 3)
 				.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));
+		wargHead = makeQuickyBasePart("warg_head", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.BROWN_WARG_HELMET.get())
+			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())
+			.when(KilledByPlayer.killedByPlayer())
+			.when(RandomChance.randomChance(0.02F))));
 		orcBones = makeQuickyBasePart("orc_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.ORC_BONE.get(), 0, 1)));
 		manBones = makeQuickyBasePart("man_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.BONE, 0, 1)));
 		elfBones = makeQuickyBasePart("elf_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.ELF_BONE.get(), 0, 1)));
@@ -182,7 +187,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.withPool(addAnotherQuickyPoolRefrence(pouch)));
 		wargBase = makeQuickyBasePart("warg", LootTable.lootTable()
 				.withPool(addAnotherQuickyPoolRefrence(wargBones))
-				.withPool(addAnotherQuickyPoolRefrence(wargFur)));
+				.withPool(addAnotherQuickyPoolRefrence(wargFur))
+				.withPool(addAnotherQuickyPoolRefrence(wargHead)));
 		manBase = makeQuickyBasePart("man", LootTable.lootTable()
 				.withPool(addAnotherQuickyPoolRefrence(manBones))
 				.withPool(addAnotherQuickyPoolRefrence(pouch))

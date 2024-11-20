@@ -48,7 +48,26 @@ public class ExtendedSetWargFurType extends LootFunction {
 				}
 			}
 		}
-
+		if (stack.getItem() == ExtendedItems.BROWN_WARG_HELMET.get()) {
+			Entity entity = context.getParamOrNull(LootParameters.THIS_ENTITY);
+			if (entity != null) {
+				if(entity instanceof WargEntity) {
+					WargEntity warg = (WargEntity) entity;
+					int count = stack.getCount();
+					if(warg.getWargType().getId()==1) {
+						stack = new ItemStack(ExtendedItems.GRAY_WARG_HELMET.get());
+					}else if(warg.getWargType().getId()==2) {
+						stack = new ItemStack(ExtendedItems.BLACK_WARG_HELMET.get());
+					}else if(warg.getWargType().getId()==3) {
+						stack = new ItemStack(ExtendedItems.SILVER_WARG_HELMET.get());
+					}else if(warg.getWargType().getId()==4) {
+						stack = new ItemStack(ExtendedItems.WHITE_WARG_HELMET.get());
+					}
+					stack.setCount(count);
+					return stack;
+				}
+			}
+		}
 		return stack;
 	}
 
