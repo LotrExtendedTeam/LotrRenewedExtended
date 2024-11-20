@@ -53,6 +53,11 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 	}
 
 	@Override
+	public boolean causeFallDamage(float pFallDistance, float pDamageMultiplier) {
+		return false;
+	}
+
+	@Override
 	protected void initialiseAttackGoals(AttackGoalsHolder holder) {
 		holder.setMeleeAttackGoal(new NPCMeleeAttackGoal(this, 1.5D));
 	}
