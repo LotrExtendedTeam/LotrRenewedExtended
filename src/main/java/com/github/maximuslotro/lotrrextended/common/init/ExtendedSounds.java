@@ -33,6 +33,8 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> MOSS_FALL = register("block.moss.fall", null);
 	public static final RegistryObject<SoundEvent> MOSS_STEP = register("block.moss.step", null);
 
+	public static final RegistryObject<SoundEvent> WIGHT_AMBIENCE = register("entity.wight.ambience", "Creepy Noises");
+
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {
 			DataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);

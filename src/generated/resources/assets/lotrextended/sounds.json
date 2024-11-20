@@ -143,5 +143,14 @@
       "lotrextended:block/moss/step5",
       "lotrextended:block/moss/step6"
     ]
+  },
+  "entity.wight.ambience": {
+    "subtitle": "subtitles.lotrextended.entity.wight.ambience",
+    "sounds": [
+      "lotrextended:entity/wight/ambience1",
+      "lotrextended:entity/wight/ambience2",
+      "lotrextended:entity/wight/ambience3",
+      "lotrextended:entity/wight/ambience4"
+    ]
   }
 }

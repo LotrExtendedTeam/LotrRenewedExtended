@@ -48,6 +48,9 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.MOSS_HIT, createFull("block/moss/step", 6, 0.25f, 0.25f, 16, "subtitles.block.generic.hit​"));
 		add(ExtendedSounds.MOSS_FALL, createFull("block/moss/step", 6, 0.5f, 0.5f, 16, null));
 		add(ExtendedSounds.MOSS_STEP, createFull("block/moss/step", 6, 0.15f, 1.0f, 16, "subtitles.block.generic.footsteps"));
+		
+		add(ExtendedSounds.WIGHT_AMBIENCE, createMultipleSameWeight(ExtendedSounds.WIGHT_AMBIENCE, 4));
+
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {

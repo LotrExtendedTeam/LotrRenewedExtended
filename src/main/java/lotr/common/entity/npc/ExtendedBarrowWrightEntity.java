@@ -1,9 +1,12 @@
 package lotr.common.entity.npc;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.common.utils.EffectDurationUtils;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,6 +19,10 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.world.World;
 
@@ -89,8 +96,26 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 	//		return new AxisAlignedBB(this.getX() - 0.5, this.getY(), this.getZ() - 0.5, this.getX() + 1.5, this.getY() + 1.0, this.getZ() + 0.5);
 	//	}
 
-
+	@Override
 	public CreatureAttribute getMobType() {
 		return CreatureAttribute.UNDEAD;
 	}
+
+	@Nullable
+	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+		return SoundEvents.GENERIC_HURT;
+	}
+
+	@Nullable
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.GENERIC_DEATH;
+	}
+
+	@Nullable
+	protected SoundEvent getAmbientSound() {
+		return null;
+	}
+
+	@Override
+	protected void playStepSound(BlockPos pPos, BlockState pBlock) {}
 }
