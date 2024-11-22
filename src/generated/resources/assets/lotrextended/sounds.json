@@ -95,53 +95,159 @@
   "block.moss.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
-      "lotrextended:block/moss/place1",
-      "lotrextended:block/moss/place2",
-      "lotrextended:block/moss/place3",
-      "lotrextended:block/moss/place4",
-      "lotrextended:block/moss/place5"
+      {
+        "name": "lotrextended:block/moss/place1",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place2",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place3",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place4",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place5",
+        "volume": 0.93,
+        "pitch": 0.8
+      }
     ]
   },
   "block.moss.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
-      "lotrextended:block/moss/place1",
-      "lotrextended:block/moss/place2",
-      "lotrextended:block/moss/place3",
-      "lotrextended:block/moss/place4",
-      "lotrextended:block/moss/place5"
+      {
+        "name": "lotrextended:block/moss/place1",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place2",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place3",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place4",
+        "volume": 0.93,
+        "pitch": 0.8
+      },
+      {
+        "name": "lotrextended:block/moss/place5",
+        "volume": 0.93,
+        "pitch": 0.8
+      }
     ]
   },
   "block.moss.hit": {
     "subtitle": "subtitles.block.generic.hit​",
     "sounds": [
-      "lotrextended:block/moss/step1",
-      "lotrextended:block/moss/step2",
-      "lotrextended:block/moss/step3",
-      "lotrextended:block/moss/step4",
-      "lotrextended:block/moss/step5",
-      "lotrextended:block/moss/step6"
+      {
+        "name": "lotrextended:block/moss/step1",
+        "volume": 0.25,
+        "pitch": 0.25
+      },
+      {
+        "name": "lotrextended:block/moss/step2",
+        "volume": 0.25,
+        "pitch": 0.25
+      },
+      {
+        "name": "lotrextended:block/moss/step3",
+        "volume": 0.25,
+        "pitch": 0.25
+      },
+      {
+        "name": "lotrextended:block/moss/step4",
+        "volume": 0.25,
+        "pitch": 0.25
+      },
+      {
+        "name": "lotrextended:block/moss/step5",
+        "volume": 0.25,
+        "pitch": 0.25
+      },
+      {
+        "name": "lotrextended:block/moss/step6",
+        "volume": 0.25,
+        "pitch": 0.25
+      }
     ]
   },
   "block.moss.fall": {
     "sounds": [
-      "lotrextended:block/moss/step1",
-      "lotrextended:block/moss/step2",
-      "lotrextended:block/moss/step3",
-      "lotrextended:block/moss/step4",
-      "lotrextended:block/moss/step5",
-      "lotrextended:block/moss/step6"
+      {
+        "name": "lotrextended:block/moss/step1",
+        "volume": 0.5,
+        "pitch": 0.5
+      },
+      {
+        "name": "lotrextended:block/moss/step2",
+        "volume": 0.5,
+        "pitch": 0.5
+      },
+      {
+        "name": "lotrextended:block/moss/step3",
+        "volume": 0.5,
+        "pitch": 0.5
+      },
+      {
+        "name": "lotrextended:block/moss/step4",
+        "volume": 0.5,
+        "pitch": 0.5
+      },
+      {
+        "name": "lotrextended:block/moss/step5",
+        "volume": 0.5,
+        "pitch": 0.5
+      },
+      {
+        "name": "lotrextended:block/moss/step6",
+        "volume": 0.5,
+        "pitch": 0.5
+      }
     ]
   },
   "block.moss.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
-      "lotrextended:block/moss/step1",
-      "lotrextended:block/moss/step2",
-      "lotrextended:block/moss/step3",
-      "lotrextended:block/moss/step4",
-      "lotrextended:block/moss/step5",
-      "lotrextended:block/moss/step6"
+      {
+        "name": "lotrextended:block/moss/step1",
+        "volume": 0.15
+      },
+      {
+        "name": "lotrextended:block/moss/step2",
+        "volume": 0.15
+      },
+      {
+        "name": "lotrextended:block/moss/step3",
+        "volume": 0.15
+      },
+      {
+        "name": "lotrextended:block/moss/step4",
+        "volume": 0.15
+      },
+      {
+        "name": "lotrextended:block/moss/step5",
+        "volume": 0.15
+      },
+      {
+        "name": "lotrextended:block/moss/step6",
+        "volume": 0.15
+      }
     ]
   },
   "entity.wight.ambience": {
