@@ -51,6 +51,9 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		
 		add(ExtendedSounds.WIGHT_AMBIENCE, createMultipleSameWeight(ExtendedSounds.WIGHT_AMBIENCE, 4));
 
+		add(ExtendedSounds.ROPE_BROKEN, createCustomSub("block/rope/break", 2, "subtitles.block.generic.break"));
+		add(ExtendedSounds.ROPE_PLACED, createCustomSub("block/rope/place", 1, "subtitles.block.generic.place"));
+		add(ExtendedSounds.ROPE_STEP, createCustomSub("block/rope/step", 2, "subtitles.block.generic.footsteps"));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {
@@ -78,6 +81,17 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		}
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
 		  .with(sounds.toArray(new Sound[0]));
+	}
+
+	public static SoundDefinition createCustomSub(String name, int variants, String subKey) {
+		List<Sound> sounds = new ArrayList<>();
+		for(int i=0; i<variants; i++) {
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+(Integer.toString(i+1)))));
+		}
+		if(subKey!=null) {
+			return definition().subtitle(subKey).with(sounds.toArray(new Sound[0]));
+		}
+		return definition().with(sounds.toArray(new Sound[0]));
 	}
 
 	public static SoundDefinition createFull(String name, int variants, float vol, float pitch, int distance, String subKey) {

@@ -152,5 +152,25 @@
       "lotrextended:entity/wight/ambience3",
       "lotrextended:entity/wight/ambience4"
     ]
+  },
+  "block.rope.break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "lotrextended:block/rope/break1",
+      "lotrextended:block/rope/break2"
+    ]
+  },
+  "block.rope.place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "lotrextended:block/rope/place1"
+    ]
+  },
+  "block.rope.step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "lotrextended:block/rope/step1",
+      "lotrextended:block/rope/step2"
+    ]
   }
 }
