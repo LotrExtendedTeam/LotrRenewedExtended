@@ -2,6 +2,7 @@ package lotr.common.entity.npc;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.utils.EffectDurationUtils;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
@@ -108,12 +109,12 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 
 	@Nullable
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.GENERIC_DEATH;
+		return ExtendedSounds.WIGHT_DEATH.get();
 	}
 
 	@Nullable
 	protected SoundEvent getAmbientSound() {
-		return null;
+		return ExtendedSounds.WIGHT_AMBIENCE.get();
 	}
 
 	@Override

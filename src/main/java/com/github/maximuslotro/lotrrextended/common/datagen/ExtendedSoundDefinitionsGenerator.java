@@ -50,6 +50,8 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.MOSS_STEP, createFull("block/moss/step", 6, 0.15f, 1.0f, 16, "subtitles.block.generic.footsteps"));
 		
 		add(ExtendedSounds.WIGHT_AMBIENCE, createMultipleSameWeight(ExtendedSounds.WIGHT_AMBIENCE, 4));
+		add(ExtendedSounds.WIGHT_SPAWN, createMultipleSameWeight(ExtendedSounds.WIGHT_SPAWN, 2));
+		add(ExtendedSounds.WIGHT_DEATH, createMultipleSameWeight(ExtendedSounds.WIGHT_DEATH, 3));
 
 		add(ExtendedSounds.ROPE_BROKEN, createCustomSub("block/rope/break", 2, "subtitles.block.generic.break"));
 		add(ExtendedSounds.ROPE_PLACED, createCustomSub("block/rope/place", 1, "subtitles.block.generic.place"));

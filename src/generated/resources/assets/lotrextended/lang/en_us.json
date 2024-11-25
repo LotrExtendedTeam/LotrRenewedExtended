@@ -1349,6 +1349,8 @@
   "subtitles.lotrextended.entity.duck.idle": "Duck quacks",
   "subtitles.lotrextended.entity.duck.step": "Footsteps",
   "subtitles.lotrextended.entity.wight.ambience": "Creepy Noises",
+  "subtitles.lotrextended.entity.wight.death": "Wight Death",
+  "subtitles.lotrextended.entity.wight.spawn": "Wight Spawns",
   "subtitles.lotrextended.event.trade": "Coins jingle",
   "subtitles.lotrextended.item.horn_blow": "Horn blows"
 }
