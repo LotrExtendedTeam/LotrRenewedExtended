@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
@@ -59,10 +60,10 @@ public class ExtendedMEBannerBlock extends Block {
 	private final BannerTypes type;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
-			Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
-			Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
-			Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D), 
-			Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
+		Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
+		Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
+		Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D), 
+		Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
@@ -97,8 +98,8 @@ public class ExtendedMEBannerBlock extends Block {
 	@Override
 	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
 		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER)
-				.setValue(SMALL, state.getValue(SMALL))
-				.setValue(FACING, state.getValue(FACING)), 3);
+			.setValue(SMALL, state.getValue(SMALL))
+			.setValue(FACING, state.getValue(FACING)), 3);
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof ExtendedMEBannerTileEntity && stack.getItem() instanceof ExtendedMCBannerItem) {
 			if (stack.getTag()!=null && stack.getTag().contains("ProtectionData", 10)) {
@@ -224,27 +225,32 @@ public class ExtendedMEBannerBlock extends Block {
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-        if(player.isCrouching()) {
-        	state = state.cycle(SMALL);
-            world.setBlock(blockPos, state, 10);
-            world.playSound((PlayerEntity)null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            return ActionResultType.sidedSuccess(world.isClientSide);
-        }
-        if(!world.isClientSide) {
-        	BlockPos blockPosBottom = blockPos;
-        	DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
+		if(player.isCrouching()) {
+			state = state.cycle(SMALL);
+			world.setBlock(blockPos, state, 10);
+			world.playSound((PlayerEntity)null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			return ActionResultType.sidedSuccess(world.isClientSide);
+		}
+		if(!world.isClientSide) {
+			BlockPos blockPosBottom = blockPos;
+			DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
 			if (doubleblockhalf == DoubleBlockHalf.UPPER) {
 				blockPosBottom = blockPos.below();
 			}
-        	TileEntity tileentity = world.getBlockEntity(blockPosBottom);
-    		if (tileentity instanceof ExtendedMEBannerTileEntity && ((ExtendedMEBannerTileEntity) tileentity).isProtecting()) {
-    			if(!ExtendedBannerProtectionManager.isBannerProtected(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "bannerBlocknteract")) {
-            		ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
-            		ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
-                    return ActionResultType.sidedSuccess(world.isClientSide);
-            	}
-    		}
-        }
-        return ActionResultType.PASS;
-     }
+			TileEntity tileentity = world.getBlockEntity(blockPosBottom);
+			if (tileentity instanceof ExtendedMEBannerTileEntity && ((ExtendedMEBannerTileEntity) tileentity).isProtecting()) {
+				if(!ExtendedServerConfig.enableBannerProtection.get()) {
+					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket(false);
+					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
+					return ActionResultType.sidedSuccess(world.isClientSide);
+				}
+				if(!ExtendedBannerProtectionManager.isBannerProtected(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "bannerBlocknteract")) {
+					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
+					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
+					return ActionResultType.sidedSuccess(world.isClientSide);
+				}
+			}
+		}
+		return ActionResultType.PASS;
+	}
 }

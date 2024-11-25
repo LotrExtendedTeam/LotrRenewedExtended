@@ -247,6 +247,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @return UUID
 	 * */
 	public String getPlacedPlayerName() {
+		if(placedPlayerName==null) {
+			if(placedPlayerUUID==null) {
+				placedPlayerName="UNKNOWN";
+				return placedPlayerName;
+			}
+			String lastKnownUsername = UsernameCache.getLastKnownUsername(placedPlayerUUID);
+			placedPlayerName = lastKnownUsername;
+			ExtendedLog.warn("Fixed missing banner player username!");
+		}
 		return placedPlayerName;
 	}
 

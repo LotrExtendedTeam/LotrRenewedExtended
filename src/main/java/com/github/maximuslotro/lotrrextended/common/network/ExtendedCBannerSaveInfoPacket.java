@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBan
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionType;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
@@ -97,7 +98,7 @@ public class ExtendedCBannerSaveInfoPacket {
 	public static void handle(ExtendedCBannerSaveInfoPacket pPacket, Supplier<Context> context) {
 		ServerPlayerEntity player = context.get().getSender();
 		TileEntity tileEntity = player.level.getBlockEntity(pPacket.configurePos);
-	    if (tileEntity instanceof ExtendedMEBannerTileEntity) {
+	    if (tileEntity instanceof ExtendedMEBannerTileEntity && ExtendedServerConfig.enableBannerProtection.get()) {
 	    	ExtendedMEBannerTileEntity bannerTE = (ExtendedMEBannerTileEntity)tileEntity;
 	    	if(!ExtendedBannerProtectionManager.isBannerProtected(player.level, pPacket.configurePos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "ExtendedCBannerSaveInfoPacket")) {
 	    		bannerTE.setDefaultPerms(pPacket.defaultPerms);

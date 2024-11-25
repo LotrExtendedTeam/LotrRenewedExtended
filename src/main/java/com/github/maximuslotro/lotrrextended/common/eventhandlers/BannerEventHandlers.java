@@ -45,6 +45,7 @@ import net.minecraft.entity.item.minecart.TNTMinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
@@ -183,9 +184,19 @@ public class BannerEventHandlers {
 		if (!world.isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract")) {
 			event.setCanceled(true);
 			if (block instanceof DoorBlock) {
-				world.setBlockAndUpdate(event.getPos().below(), bState);
-				world.setBlockAndUpdate(event.getPos(), bState);
-				world.setBlockAndUpdate(event.getPos().above(), bState);
+				if(bState.getValue(DoorBlock.HALF)==DoubleBlockHalf.UPPER) {
+					BlockState belowBlock = world.getBlockState(event.getPos().below());
+					if(belowBlock.hasProperty(DoorBlock.HALF) && belowBlock.hasProperty(DoorBlock.OPEN)) {
+						world.setBlockAndUpdate(event.getPos().below(), belowBlock.setValue(DoorBlock.OPEN, !bState.getValue(DoorBlock.OPEN)));
+					}
+					world.setBlockAndUpdate(event.getPos(), bState);
+				}else {
+					BlockState aboveBlock = world.getBlockState(event.getPos().above());
+					if(aboveBlock.hasProperty(DoorBlock.HALF) && aboveBlock.hasProperty(DoorBlock.OPEN)) {
+						world.setBlockAndUpdate(event.getPos().above(), aboveBlock.setValue(DoorBlock.OPEN, !bState.getValue(DoorBlock.OPEN)));
+					}
+					world.setBlockAndUpdate(event.getPos(), bState);
+				}
 			}
 			return;
 		}

@@ -24,8 +24,19 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	public boolean canSelfProtect;
 	public int protectionType;
 	public BlockPos configurePos;
+	public boolean enabled;
 
 	public ExtendedSBannerOpenChangedScreenPacket() {}
+
+	public ExtendedSBannerOpenChangedScreenPacket(boolean enabled) {
+		this.defaultPerms = new ArrayList<>();
+		this.alignmentLevel = 0;
+		this.whitelist = new ArrayList<>();
+		this.canSelfProtect = false;
+		this.protectionType = 0;
+		this.configurePos = new BlockPos(0,0,0);
+		this.enabled = enabled;
+	}
 
 	public ExtendedSBannerOpenChangedScreenPacket(ExtendedMEBannerTileEntity bannerEntity) {
 		this.defaultPerms = bannerEntity.getDefaultPerms();
@@ -34,6 +45,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.canSelfProtect = bannerEntity.isCanProtectSelf();
 		this.protectionType = bannerEntity.getProtectionType().getId();
 		this.configurePos = bannerEntity.getBlockPos();
+		this.enabled = true;
 	}
 
 	public static void encode(ExtendedSBannerOpenChangedScreenPacket packet, PacketBuffer buf) {
@@ -54,6 +66,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		buf.writeBoolean(packet.canSelfProtect);
 		buf.writeInt(packet.protectionType);
 		buf.writeBlockPos(packet.configurePos);
+		buf.writeBoolean(packet.enabled);
 	}
 
 	public static ExtendedSBannerOpenChangedScreenPacket decode(PacketBuffer buf) {
@@ -87,6 +100,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		packet.canSelfProtect = buf.readBoolean();
 		packet.protectionType = buf.readInt();
 		packet.configurePos = buf.readBlockPos();
+		packet.enabled = buf.readBoolean();
 		return packet;
 	}
 
