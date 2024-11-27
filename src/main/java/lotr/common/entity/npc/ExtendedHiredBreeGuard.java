@@ -1,5 +1,7 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
@@ -283,7 +285,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         if (hand == Hand.MAIN_HAND) {
             if (this.isAlliedTo(player)) {
                 if (this.level.isClientSide()) {
-                    PacketHandler.sendToServer(new CompanionsClientOpenMenuPacket(getId()));
+                    ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenHiredMenu(getId()));
                 }
             }
             return ActionResultType.sidedSuccess(this.level.isClientSide());

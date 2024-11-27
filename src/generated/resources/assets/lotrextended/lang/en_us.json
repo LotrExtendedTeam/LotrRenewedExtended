@@ -1000,6 +1000,8 @@
   "container.lotrextended.reed_basket": "Reed Basket",
   "container.lotrextended.stone_chest": "Stone Chest",
   "container.lotrextended.stone_grinder": "Stone Grinder",
+  "container.lotrextended.hired_unit_menu": "Update Equipment",
+  "container.lotrextended.hired_unit_equipment": "Hired Unit Inventory",
   "entity.lotr.banner_dataholder": "Internal Banner Entity",
   "entity.lotr.barrow_wight": "Barrow Wight",
   "entity.lotr.blue_mountains_merchant": "Blue Mountains Merchant",

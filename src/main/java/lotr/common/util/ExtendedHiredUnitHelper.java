@@ -2,10 +2,12 @@ package lotr.common.util;
 
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.DamageSource;
@@ -78,6 +80,58 @@ public class ExtendedHiredUnitHelper {
         }
 
         return null;
+    }
+
+    public static boolean updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
+        boolean result = false;
+
+        if (companion instanceof ExtendedHirableEntity) {
+            ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
+
+            if (slot == EquipmentSlotType.FEET) {
+                hirable.updateFeetSlot(item);
+                result = true;
+            } else if (slot == EquipmentSlotType.HEAD) {
+                hirable.updateHeadSlot(item);
+                result = true;
+            } else if (slot == EquipmentSlotType.CHEST) {
+                hirable.updateChestSlot(item);
+                result = true;
+            } else if (slot == EquipmentSlotType.LEGS) {
+                hirable.updateLegsSlot(item);
+                result = true;
+            } else if (slot == EquipmentSlotType.MAINHAND) {
+                hirable.updateMainhandSlot(item);
+                result = true;
+            } else if (slot == EquipmentSlotType.OFFHAND) {
+                hirable.updateOffhandSlot(item);
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    public static ItemStack[] getBaseGear(Entity entity) {
+        ItemStack[] baseGear = new ItemStack[6];
+
+        if (entity instanceof ExtendedHiredBreeGuard) {
+            baseGear[0] = BREE_GUARD_HEAD;
+            baseGear[1] = BREE_GUARD_CHEST;
+            baseGear[2] = BREE_GUARD_LEGS;
+            baseGear[3] = BREE_GUARD_FEET;
+            baseGear[4] = BREE_GUARD_MAINHAND;
+            baseGear[5] = BREE_GUARD_OFFHAND;
+        } else {
+            baseGear[0] = ItemStack.EMPTY;
+            baseGear[1] = ItemStack.EMPTY;
+            baseGear[2] = ItemStack.EMPTY;
+            baseGear[3] = ItemStack.EMPTY;
+            baseGear[4] = ItemStack.EMPTY;
+            baseGear[5] = ItemStack.EMPTY;
+        }
+
+        return baseGear;
     }
 
 }
