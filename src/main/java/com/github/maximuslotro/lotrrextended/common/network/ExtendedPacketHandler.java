@@ -38,6 +38,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketOpenHiredMenu.class, ExtendedCPacketOpenHiredMenu::encode, ExtendedCPacketOpenHiredMenu::decode, ExtendedCPacketOpenHiredMenu::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketOpenHiredEquipmentMenu.class, ExtendedCPacketOpenHiredEquipmentMenu::encode, ExtendedCPacketOpenHiredEquipmentMenu::decode, ExtendedCPacketOpenHiredEquipmentMenu::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketSetHiredUnitStationary.class, ExtendedCPacketSetHiredUnitStationary::encode, ExtendedCPacketSetHiredUnitStationary::decode, ExtendedCPacketSetHiredUnitStationary::handle);
 		if (id >= 255) {
 			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
 		}

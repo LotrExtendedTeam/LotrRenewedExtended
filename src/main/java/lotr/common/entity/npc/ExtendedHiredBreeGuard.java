@@ -2,8 +2,7 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
+import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -326,7 +325,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new ExtendedHiredSitGoal(this));
         this.goalSelector.addGoal(3, new ExtendedHiredFollowPlayerGoal( this,1.3D, 8.0F, 2.0F, false));
-        this.goalSelector.addGoal(5, new CustomWaterAvoidingRandomWalkingGoal(this,this, 1.0D));
+        this.goalSelector.addGoal(5, new ExtendedHiredWaterAvoidingRandomWalkingGoal(this,1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(8, new OpenDoorGoal(this, true));
@@ -334,8 +333,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         //  their attack animations
         //this.goalSelector.addGoal(9, new LowHealthGoal(this,this));
         //this.goalSelector.addGoal(10, new EatGoal(this,this));
-        this.targetSelector.addGoal(1, new CustomOwnerHurtByTargetGoal(this,this));
-        this.targetSelector.addGoal(2, new CustomOwnerHurtTargetGoal(this,this));
+        this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new ExtendedHiredPlayerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
@@ -366,7 +365,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         tag.putInt("mob_kills", this.getMobKills());
         tag.putInt("xp_level", this.getExpLvl());
         tag.putFloat("current_xp", this.getCurrentXp());
-        tag.putInt("max_xp", this.getMaxXp());
+        tag.putFloat("max_xp", this.getMaxXp());
         tag.putInt("base_health", this.getBaseHealth());
         tag.putFloat("tmp_last_health", this.getHealth());
     }

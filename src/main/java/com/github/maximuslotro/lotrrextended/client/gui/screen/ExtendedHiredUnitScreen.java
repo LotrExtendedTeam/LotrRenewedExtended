@@ -3,10 +3,12 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredEquipmentMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketSetHiredUnitStationary;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -100,7 +102,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 16, 12, 0, 0, 13,
                 STATIONARY_BUTTON,
                 btn -> {
-                    ExtendedPacketHandler.sendToServer(new SetStationaryPacket(companion.getHiredUnitId()));
+                    ExtendedPacketHandler.sendToServer(new ExtendedCPacketSetHiredUnitStationary(companion.getHiredUnitId()));
                 })
         );
 
@@ -132,8 +134,8 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.font.draw(matrix, classTitle.withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 12,
                 4210752);
 
-        if (companion instanceof HiredGondorSoldier) {
-            this.font.draw(matrix, "Gondor Soldier", sidebarX, this.titleLabelY + 22, 4210752);
+        if (companion instanceof ExtendedHiredBreeGuard) {
+            this.font.draw(matrix, "Bree Guard", sidebarX, this.titleLabelY + 22, 4210752);
         }
 
         this.font.draw(matrix, healthTitle.withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32,
