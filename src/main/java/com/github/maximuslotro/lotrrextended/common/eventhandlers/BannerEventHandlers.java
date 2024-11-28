@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
@@ -65,7 +64,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class BannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
-		ExtendedLog.info("BreakEvent");
+		//ExtendedLog.info("BreakEvent");
 		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlockBreak")) {
 			event.setCanceled(true);
 		}
@@ -75,7 +74,7 @@ public class BannerEventHandlers {
 	public static void handleBannerBlucketFill(FillBucketEvent event) {
 		World world = event.getWorld();
 		if (!world.isClientSide() && event.getTarget().getType() == Type.BLOCK) {
-			ExtendedLog.info("FillBucketEvent");
+			//ExtendedLog.info("FillBucketEvent");
 			BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getBlockPos();
 			if (ExtendedBannerProtectionManager.isBannerProtected(world, pos, new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlucketFill")) {
 				event.setResult(Result.DENY);
@@ -129,7 +128,7 @@ public class BannerEventHandlers {
 		World level = event.getEntity().level;
 		Entity entity = event.getEntity();
 		if (!level.isClientSide() && (entity instanceof HangingEntity)) {
-			ExtendedLog.info("AttackEntityEvent");
+			//ExtendedLog.info("AttackEntityEvent");
 			if (ExtendedBannerProtectionManager.isBannerProtected(level, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerEntityAttacked")) {
 				event.setCanceled(true);
 				return;
