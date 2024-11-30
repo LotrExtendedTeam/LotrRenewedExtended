@@ -1,13 +1,21 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 
+import lotr.common.entity.npc.BreeGuardEntity;
+import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.inventory.ExtendedCoinExchangeContainer;
 import lotr.common.inventory.ExtendedTradeContainer;
+import lotr.common.util.CoinUtils;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
@@ -57,5 +65,7 @@ public class ForgeInventoryEvents {
             container.trader.removePlayerFromTrading(event.getPlayer());
         }
     }
+
+
 
 }
