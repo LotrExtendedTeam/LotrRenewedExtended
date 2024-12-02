@@ -27,7 +27,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
 
     private Button backButton;
 
-    private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/upgrade_equipment_menu.png");
+    private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_upgrade_equipment_menu.png");
     DecimalFormat df = new DecimalFormat("#.#");
     int sidebarX;
 

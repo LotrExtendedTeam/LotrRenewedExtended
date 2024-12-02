@@ -1,10 +1,14 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.util.CoinUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -42,6 +46,32 @@ public class HiredUnitEventHandlers {
 
         guard.tame(event.getPlayer());
         ExtendedLog.info("EntityBreeGuard tamed");
+    }
+
+    @SubscribeEvent
+    public static void playerCloseInventory(final PlayerContainerEvent.Close event) {
+        if (!((event.getContainer() instanceof ExtendedHiredUnitContainer) ||
+                (event.getContainer() instanceof ExtendedHiredUnitEquipmentContainer))) {
+            return;
+        }
+
+        Entity entity;
+        if (event.getContainer() instanceof ExtendedHiredUnitContainer) {
+            entity = event.getPlayer().level.getEntity(((ExtendedHiredUnitContainer) event.getContainer()).getEntityId());
+        } else {
+            entity = event.getPlayer().level.getEntity(((ExtendedHiredUnitEquipmentContainer) event.getContainer()).getEntityId());
+        }
+
+        // make companion no longer stationary
+        if (event.getContainer() instanceof ExtendedHiredUnitContainer) {
+            if (entity instanceof ExtendedHiredBreeGuard) {
+                ((ExtendedHiredBreeGuard) entity).setInventoryOpen(false);
+            }
+        } else if (event.getContainer() instanceof ExtendedHiredUnitEquipmentContainer) {
+            if (entity instanceof ExtendedHiredBreeGuard) {
+                ((ExtendedHiredBreeGuard) entity).setEquipmentOpen(false);
+            }
+        }
     }
 
 }

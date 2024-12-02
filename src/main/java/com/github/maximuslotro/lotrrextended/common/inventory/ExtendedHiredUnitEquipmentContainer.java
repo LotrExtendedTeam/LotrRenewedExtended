@@ -34,7 +34,6 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     private Slot[] armorSlots = new Slot[4];
     private Slot mainHand;
     private Slot offHand;
-
     private int entityId;
 
     public static final ResourceLocation EMPTY_ARMOR_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
@@ -54,7 +53,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     private final World level;
 
     // TODO: Update this
-    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.equipment");
+    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.hired_unit_equipment");
 
     Inventory tempInventory;
 

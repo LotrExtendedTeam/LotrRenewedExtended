@@ -30,10 +30,10 @@ import java.util.List;
 
 public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitContainer> implements IHasContainer<ExtendedHiredUnitContainer> {
 
-    private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/companion_menu.png");
-    private static final ResourceLocation PATROL_BUTTON = new ResourceLocation(LotrExtendedMod.MODID, "textures" +
+    private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_overview_menu.png");
+    private static final ResourceLocation PATROL_BUTTON = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui" +
             "/patrol_button.png");
-    private static final ResourceLocation STATIONARY_BUTTON = new ResourceLocation(LotrExtendedMod.MODID, "textures" +
+    private static final ResourceLocation STATIONARY_BUTTON = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui" +
             "/stationary_button.png");
 
     private final ExtendedHirableEntity companion;
@@ -45,8 +45,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
     // buttons
     private CompanionButton patrolButton;
     private CompanionButton stationaryButton;
-
-    private ItemStack[] baseGear;
 
     private Button equipmentButton;
 
@@ -69,10 +67,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.imageWidth = 226;
         df.setRoundingMode(RoundingMode.CEILING);
         sidebarX = 90;
-
-        Entity entity = p_98410_.player.level.getEntity(container.getEntityId());
-
-        baseGear = ExtendedHiredUnitHelper.getBaseGear(entity);
     }
 
     @Override
@@ -180,26 +174,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
             tooltips.add(new StringTextComponent("Companion will not move while attacking in guard mode").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
 
             this.renderComponentTooltip(stack, tooltips, x, y);
-        }
-
-        // render tooltips for base gear
-        if (isHovering(25, 31, x, y)) {
-            this.renderTooltip(stack, baseGear[0], x, y);
-        }
-        if (isHovering(25, 49, x, y)) {
-            this.renderTooltip(stack, baseGear[1], x, y);
-        }
-        if (isHovering(25, 67, x, y)) {
-            this.renderTooltip(stack, baseGear[2], x, y);
-        }
-        if (isHovering(25, 85, x, y)) {
-            this.renderTooltip(stack, baseGear[3], x, y);
-        }
-        if (isHovering(62, 67, x, y)) {
-            this.renderTooltip(stack, baseGear[4], x, y);
-        }
-        if (isHovering(62, 85, x, y)) {
-            this.renderTooltip(stack, baseGear[5], x, y);
         }
     }
 
