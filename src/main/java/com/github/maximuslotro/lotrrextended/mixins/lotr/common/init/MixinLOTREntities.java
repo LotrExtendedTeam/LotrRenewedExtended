@@ -97,6 +97,7 @@ public class MixinLOTREntities {
 		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, 5, 3, (builder) -> {
 			builder.canSpawnFarFromPlayer();
 			builder.fireImmune();
+			builder.noSummon();
 		});
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedEntities.REGISTEREDNONMOBENTITIES.add(key);
@@ -121,7 +122,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.GUNDABAD_CAMP_TRADER = regNPCD("gundabad_orc_scrounger", ExtendedGundabadOrcTraderEntity::new, ExtendedGundabadOrcTraderEntity::regAttrs, LOTREntities.EntitySizeHolder.orcSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5979436, 13421772));
 		ExtendedEntities.GUNDABAD_URUK = regNPCD("gundabad_uruk", ExtendedGundabadUrukEntity::new, ExtendedGundabadUrukEntity::regAttrs, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
 		ExtendedEntities.GUNDABAD_URUK_ARCHER = regNPCD("gundabad_uruk_archer", ExtendedGundabadUrukArcherEntity::new, ExtendedGundabadUrukArcherEntity::regAttrs, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
-		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWrightEntity::new, ExtendedBarrowWrightEntity::regAttrs, LOTREntities.EntitySizeHolder.size(0.8F, 2.5f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
+		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWrightEntity::new, ExtendedBarrowWrightEntity::regAttrs, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
 		ExtendedEntities.BANNER_HOLDER = regEntityExpanded("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F);
 		ExtendedEntities.BREE_MERCHANT = regNPCD("bree_merchant", ExtendedBreelandMerchantEntity::new, ExtendedBreelandMerchantEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
 	}
