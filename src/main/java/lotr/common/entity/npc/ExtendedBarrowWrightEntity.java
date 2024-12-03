@@ -7,7 +7,9 @@ import com.github.maximuslotro.lotrrextended.common.utils.EffectDurationUtils;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
+import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -24,6 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.world.World;
 
@@ -73,6 +76,13 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 	@Override
 	protected void addNPCTargetingAI() {
 		addAggressiveTargetingGoals();
+	}
+
+	@Override
+	public void makeStuckInBlock(BlockState pState, Vector3d pMotionMultiplier) {
+		if (!pState.is(Blocks.COBWEB) && !pState.is(Blocks.SWEET_BERRY_BUSH) && !pState.is(LOTRBlocks.HANGING_WEB.get())) {
+			super.makeStuckInBlock(pState, pMotionMultiplier);
+		}
 	}
 
 	@Override
