@@ -141,7 +141,7 @@ public class BannerEventHandlers {
 		World world = event.getWorld();
 		if (!world.isClientSide()) {
 			if (world.getBlockState(event.getPos()).getBlock() instanceof FireBlock) {
-				if (!ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false, "handleBannerBlockLeftInteract")) {
+				if (ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false, "handleBannerBlockLeftInteract")) {
 					event.setCanceled(true);
 					return;
 				}
