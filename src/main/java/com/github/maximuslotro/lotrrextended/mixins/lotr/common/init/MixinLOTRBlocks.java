@@ -114,6 +114,7 @@ import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SandBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -161,7 +162,7 @@ public class MixinLOTRBlocks {
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUBBER_TORCH;
-	
+
 	@SuppressWarnings("unchecked")
 	@Redirect(method = "<clinit>", 
 			at = @At(value = "INVOKE", 
@@ -213,9 +214,17 @@ public class MixinLOTRBlocks {
 		}else if(name.equals("orc_torch")) {
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedDoubleTorchBlock(14);});
+		}else if(name.equals("white_sand")) {
+			//Fixes white sand not being mined faster with shovels.
+			//Also removes lotr.common.block.LOTRSandBlock from being used
+			returnBlock = BLOCKS.register(name, () -> {
+				return new SandBlock(15856113, Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).harvestTool(ToolType.SHOVEL).sound(SoundType.SAND));});
 		}
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);
+		}else {
+			//Try cleaning unused block declarations
+			sup = null;
 		}
 		return returnBlock;
 	}
