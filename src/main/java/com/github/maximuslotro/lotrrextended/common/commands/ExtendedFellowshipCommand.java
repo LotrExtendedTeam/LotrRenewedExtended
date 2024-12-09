@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
@@ -44,13 +45,16 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "invites"), false))
 								)
 						)
+				.then(Commands.literal("list").requires(context -> context.hasPermission(0))
+					.executes(context -> list(context.getSource(), (PlayerEntity) context.getSource().getEntity()))
+					)
 				.then(Commands.literal("viewInfo").requires(context -> context.hasPermission(0))
 						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
 								.suggests(SUGGEST_FELLOWSHIP_USER)
 								.executes(context -> displayInfo(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship")))
 								)
 						)
-				.then(Commands.literal("modify").requires(context -> context.hasPermission(0))
+				.then(Commands.literal("settings").requires(context -> context.hasPermission(0))
 						.then(Commands.argument("fellowship", StringArgumentType.string())
 								.suggests(SUGGEST_FELLOWSHIP_USER)
 								.then(Commands.literal("renameFellowship")
@@ -116,7 +120,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 												.executes(context -> createFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), true))
 												)
 										)
-								.then(Commands.literal("option")
+								.then(Commands.literal("settings")
 										.then(Commands.argument("fellowship", StringArgumentType.string())
 												.suggests(SUGGEST_FELLOWSHIP_PLAYER)
 												.then(Commands.literal("renameFellowship")
@@ -196,7 +200,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	};
     
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_PLAYER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(EntityArgument.getPlayer(ctx, "player"));
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
 
@@ -233,6 +237,19 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         	return 0;
         }
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
+		return 0;
+	}
+	private static int list(CommandSource source, PlayerEntity player) {
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
+		List<ExtendedFellowship> fellowships = fellowshipData.getFellowships();
+		String fellowshipList = "";
+		for(ExtendedFellowship fellowship : fellowships) {
+			if(!fellowshipList.isEmpty()) {
+				fellowshipList += ", ";
+			}
+			fellowshipList += fellowship.getFellowshipName();
+		}
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.list", fellowshipList), true);
 		return 0;
 	}
 	private static int toggleHiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
@@ -285,7 +302,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	ExtendedFellowshipDataModule fellowshipData2 =getFellowshipData(newMember);
+        	ExtendedFellowshipDataModule fellowshipData2 = getFellowshipData(newMember);
         	fellowshipData2.addInvitePlayer(fellowship, player.getUUID());
         	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.invited", newMember.getDisplayName().getString()), true);
         	return 0;

@@ -107,7 +107,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public void removeFellowship(ExtendedFellowship fellowship) {
-		if (!fellowship.isFellowshipOwner(getPlayerUUID()) || fellowship.isRemoved()) {
+		if (!fellowship.isFellowshipOwner(getPlayerUUID()) || fellowship.isDisbanded()) {
 			UUID fsID = fellowship.getFellowshipId();
 			if (fellowshipIDs.contains(fsID)) {
 				fellowshipIDs.remove(fsID);
@@ -163,11 +163,13 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public void addInvitePlayer(ExtendedFellowship fs, UUID playerSendingInvite) {
+		// Check if currently has an invite
 		for(ExtendedFellowshipInvite invite : invites) {
 			if(invite.fellowshipID.equals(fs.getFellowshipId())) {
 				return;
 			}
 		}
+		// Check if currently in that fellowship
 		for(UUID invite : fellowshipIDs) {
 			if(invite.equals(fs.getFellowshipId())) {
 				return;
@@ -206,11 +208,14 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			}
 		}
 		if(existingInvite!=null) {
-			if (fs.isRemoved()) {
+			if (fs.isDisbanded()) {
 				removeInvitePlayer(fs, false);
 				return;
 			}
 			fs.addFellowshipMember(getPlayerUUID());
+			if (!fellowshipIDs.contains(fs.getFellowshipId())) {
+				fellowshipIDs.add(fs.getFellowshipId());
+			}
 			invites.remove(existingInvite);
 			markDirty();
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());

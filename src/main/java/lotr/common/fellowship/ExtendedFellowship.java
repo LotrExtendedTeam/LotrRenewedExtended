@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Util;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -227,19 +228,25 @@ public class ExtendedFellowship {
 	    	removeFellowshipMember(player);
 		markDirty();
 	}
-	public boolean isRemoved() {
+	public boolean isDisbanded() {
 		return disbanded;
 	}
 
 	public void createNotification(String message, PlayerEntity reciever) {
 		TextComponent comp = new TranslationTextComponent(message);
 		comp.withStyle(TextFormatting.YELLOW);
-		reciever.sendMessage(comp, Util.NIL_UUID);
+		sendMessage(reciever, comp);
 	}
 
 	public void createNotification(String message, PlayerEntity reciever, Object... args) {
 		TextComponent comp = new TranslationTextComponent(message, args);
 		comp.withStyle(TextFormatting.YELLOW);
-		reciever.sendMessage(comp, Util.NIL_UUID);
+		sendMessage(reciever, comp);
+	}
+
+	private void sendMessage(PlayerEntity reciever, ITextComponent pComponent){
+		if(reciever!=null) {
+			reciever.sendMessage(pComponent, Util.NIL_UUID);
+		}
 	}
 }

@@ -2,6 +2,7 @@ package lotr.common.fellowship;
 
 import java.util.UUID;
 
+// TODO add fellowship name data move with invites
 public class ExtendedFellowshipInvite {
 	public final UUID fellowshipID;
 	public final UUID Invitor;

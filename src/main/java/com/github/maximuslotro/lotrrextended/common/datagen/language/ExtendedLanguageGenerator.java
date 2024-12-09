@@ -314,6 +314,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.hiredunitff", "hired unit friendly fire");
 		addD("command.lotrextended.fellowship.maplocation", "Fellowship map location is now");
 		addD("command.lotrextended.fellowship.left", "You have left %s");
+		addD("command.lotrextended.fellowship.list", "Joined Fellowships: %s");
 		addD("command.lotrextended.fellowship.data.name", "Fellowship Name: ");
 		addD("command.lotrextended.fellowship.data.pvp", "PVP: ");
 		addD("command.lotrextended.fellowship.data.hupvp", "Hired Units PVP: ");
