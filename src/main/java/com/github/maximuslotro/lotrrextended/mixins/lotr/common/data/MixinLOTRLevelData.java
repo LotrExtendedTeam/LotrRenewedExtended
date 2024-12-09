@@ -87,8 +87,7 @@ public class MixinLOTRLevelData {
 					show = true;
 				} else {
 					for (ExtendedFellowship fs : fellowshipsMapShow) {
-						if (fs.isFellowshipMember(otherPlayer.getUUID())
-								|| fs.isFellowshipOwner(otherPlayer.getUUID())) {
+						if (fs.isInFellowship(otherPlayer.getUUID())) {
 							show = true;
 							break;
 						}

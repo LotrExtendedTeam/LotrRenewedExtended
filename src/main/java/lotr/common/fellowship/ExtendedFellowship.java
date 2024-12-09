@@ -18,25 +18,25 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedFellowship {
-	private UUID FellowshipId;
-	private String FellowshipName;
-	private UUID FellowshipOwner;
-	private Set<UUID> FellowshipMembers = new HashSet<UUID>();
-	private Set<UUID> FellowshipAdmins = new HashSet<UUID>();
-	private boolean PreventHiredFF = true;
-	private boolean PreventPVP = true;
-	private boolean ShowMap = true;
+	private UUID fellowshipId;
+	private String fellowshipName;
+	private UUID fellowshipOwner;
+	private Set<UUID> fellowshipMembers = new HashSet<UUID>();
+	private Set<UUID> fellowshipAdmins = new HashSet<UUID>();
+	private boolean preventHiredFF = true;
+	private boolean preventPVP = true;
+	private boolean showMap = true;
 	private boolean needsSaving = false;
 	private boolean disbanded;
 	private ItemStack icon = ItemStack.EMPTY;
 	
 	public ExtendedFellowship(String publicName, UUID ownerUUID) {
-		this.FellowshipId = UUID.randomUUID();
-		this.FellowshipName = publicName;
-		this.FellowshipOwner = ownerUUID;
+		this.fellowshipId = UUID.randomUUID();
+		this.fellowshipName = publicName;
+		this.fellowshipOwner = ownerUUID;
 	}
 	public ExtendedFellowship(UUID ID) {
-		FellowshipId = ID;
+		fellowshipId = ID;
 	}
 
 	public void markDirty() {
@@ -47,25 +47,25 @@ public class ExtendedFellowship {
 	}
 	public void createAndRegister() {
 		ExtendedFellowshipHolderServer.addFellowship(this);
-		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
+		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, fellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
 	public void load(CompoundNBT pCompound) {
 		disbanded = pCompound.getBoolean("Disbanded");
 		if (pCompound.contains("Owner"))
-			FellowshipOwner = UUID.fromString(pCompound.getString("Owner")); 
-		FellowshipMembers.clear();
-		FellowshipAdmins.clear();
+			fellowshipOwner = UUID.fromString(pCompound.getString("Owner")); 
+		fellowshipMembers.clear();
+		fellowshipAdmins.clear();
 		ListNBT memberTags = pCompound.getList("Members", 10);
 		for (int i = 0; i < memberTags.size(); i++) {
 			CompoundNBT nbt = memberTags.getCompound(i);
 			UUID member = UUID.fromString(nbt.getString("Member"));
 			if (member != null) {
-				FellowshipMembers.add(member);
+				fellowshipMembers.add(member);
 				if (nbt.contains("Admin")) {
 					boolean isAdmin = nbt.getBoolean("Admin");
 					if (isAdmin)
-						FellowshipAdmins.add(member); 
+						fellowshipAdmins.add(member); 
 				}
 			}
 		}
@@ -74,24 +74,24 @@ public class ExtendedFellowship {
 		      icon = ItemStack.of(item);
 		}
 		if (pCompound.contains("Name"))
-			FellowshipName = pCompound.getString("Name");
-		if (pCompound.contains("PreventPVP"))
-			PreventPVP = pCompound.getBoolean("PreventPVP");
-		if (pCompound.contains("PreventHiredFF"))
-			PreventHiredFF = pCompound.getBoolean("PreventHiredFF");
-		if (pCompound.contains("ShowMap"))
-			ShowMap = pCompound.getBoolean("ShowMap");
+			fellowshipName = pCompound.getString("Name");
+		if (pCompound.contains("preventPVP"))
+			preventPVP = pCompound.getBoolean("preventPVP");
+		if (pCompound.contains("preventHiredFF"))
+			preventHiredFF = pCompound.getBoolean("preventHiredFF");
+		if (pCompound.contains("showMap"))
+			showMap = pCompound.getBoolean("showMap");
 	}
 
 	public void save(CompoundNBT pCompound) {
 		pCompound.putBoolean("Disbanded", disbanded);
-		if(FellowshipOwner != null)
-			pCompound.putString("Owner", FellowshipOwner.toString());
+		if(fellowshipOwner != null)
+			pCompound.putString("Owner", fellowshipOwner.toString());
 		ListNBT memberTags = new ListNBT();
-	    for (UUID member : FellowshipMembers) {
+	    for (UUID member : fellowshipMembers) {
 	    	CompoundNBT nbt = new CompoundNBT();
 	    	nbt.putString("Member", member.toString());
-	    	if (FellowshipAdmins.contains(member))
+	    	if (fellowshipAdmins.contains(member))
 	    		nbt.putBoolean("Admin", true);
 	    	memberTags.add(nbt);
 	    } 
@@ -101,118 +101,118 @@ public class ExtendedFellowship {
 	    	item = icon.serializeNBT();
 	    	pCompound.put("Icon", item);
 	    } 
-	    if (FellowshipName != null)
-	    	pCompound.putString("Name", FellowshipName);
-	    pCompound.putBoolean("PreventPVP", PreventPVP);
-	    pCompound.putBoolean("PreventHiredFF", PreventHiredFF);
-	    pCompound.putBoolean("ShowMap", ShowMap);
+	    if (fellowshipName != null)
+	    	pCompound.putString("Name", fellowshipName);
+	    pCompound.putBoolean("preventPVP", preventPVP);
+	    pCompound.putBoolean("preventHiredFF", preventHiredFF);
+	    pCompound.putBoolean("showMap", showMap);
 	    needsSaving = false;
 	}
 	public String getFellowshipName() {
-		return FellowshipName;
+		return fellowshipName;
 	}
 	public void setFellowshipName(String name) {
-		FellowshipName = name;
+		fellowshipName = name;
 		markDirty();
 	}
 	public UUID getFellowshipId() {
-		return FellowshipId;
+		return fellowshipId;
 	}
 	public UUID getOwnerUUID() {
-		return FellowshipOwner;
+		return fellowshipOwner;
 	}
 	public boolean isFellowshipOwner(UUID player) {
-		return FellowshipOwner.equals(player);
+		return fellowshipOwner.equals(player);
 	}
 	public boolean isFellowshipMember(UUID player) {
-		return FellowshipMembers.contains(player);
+		return fellowshipMembers.contains(player);
 	}
 	public boolean isFellowshipAdmin(UUID player) {
-		return (isFellowshipMember(player) && FellowshipAdmins.contains(player));
+		return isFellowshipMember(player) && fellowshipAdmins.contains(player);
 	}
 	public boolean isInFellowship(UUID player) {
-		return (isFellowshipMember(player) || isFellowshipOwner(player));
+		return isFellowshipMember(player) || isFellowshipOwner(player);
 	}
 	public boolean hasEditPowers(UUID player) {
-		return ((isFellowshipMember(player) && FellowshipAdmins.contains(player))||FellowshipOwner.equals(player));
+		return (isFellowshipMember(player) && fellowshipAdmins.contains(player)) || fellowshipOwner.equals(player);
 	}
 	public void setOwnerUUID(UUID ownerUUID) {
-		UUID prevOwner = FellowshipOwner;
+		UUID prevOwner = fellowshipOwner;
 		if (prevOwner != null)
-			if (!FellowshipMembers.contains(prevOwner))
-				FellowshipMembers.add(prevOwner);
-		FellowshipOwner = ownerUUID;
-		if (FellowshipMembers.contains(ownerUUID))
-			FellowshipMembers.remove(ownerUUID);
-		if (FellowshipAdmins.contains(ownerUUID))
-			FellowshipAdmins.remove(ownerUUID);
-		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
+			if (!fellowshipMembers.contains(prevOwner))
+				fellowshipMembers.add(prevOwner);
+		fellowshipOwner = ownerUUID;
+		if (fellowshipMembers.contains(ownerUUID))
+			fellowshipMembers.remove(ownerUUID);
+		if (fellowshipAdmins.contains(ownerUUID))
+			fellowshipAdmins.remove(ownerUUID);
+		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, fellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
 	public void addFellowshipMember(UUID player) {
-		if (!isFellowshipOwner(player) && !this.FellowshipMembers.contains(player)) {
-			FellowshipMembers.add(player);
-			((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().addFellowship(this);
+		if (!isFellowshipOwner(player) && !this.fellowshipMembers.contains(player)) {
+			fellowshipMembers.add(player);
+			((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, fellowshipOwner)).getFellowshipData().addFellowship(this);
 			markDirty();
 		}
 	}
 	public void removeFellowshipMember(UUID player) {
-		if (FellowshipMembers.contains(player)) {
-			FellowshipMembers.remove(player);
-		if (FellowshipAdmins.contains(player))
-			FellowshipAdmins.remove(player);
-		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, FellowshipOwner)).getFellowshipData().removeFellowship(this);
+		if (fellowshipMembers.contains(player)) {
+			fellowshipMembers.remove(player);
+		if (fellowshipAdmins.contains(player))
+			fellowshipAdmins.remove(player);
+		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, fellowshipOwner)).getFellowshipData().removeFellowship(this);
 		markDirty();
 		}
 	}
 	public Set<UUID> getFellowshipMembers() {
-		return FellowshipMembers;
+		return fellowshipMembers;
 	}
 
 	public Set<UUID> getAllFellowshipMembers() {
 		Set<UUID> list = new HashSet<UUID>();
-		list.add(FellowshipOwner);
-		list.addAll(FellowshipMembers);
+		list.add(fellowshipOwner);
+		list.addAll(fellowshipMembers);
 		return list;
 	}
 	public Set<UUID> getFellowshipAdmins() {
-		return FellowshipAdmins;
+		return fellowshipAdmins;
 	}
 	public void addFellowshipAdmin(UUID player) {
-		if (FellowshipMembers.contains(player)) {
-			if(!FellowshipAdmins.contains(player)) {
-				FellowshipAdmins.add(player);
+		if (fellowshipMembers.contains(player)) {
+			if(!fellowshipAdmins.contains(player)) {
+				fellowshipAdmins.add(player);
 				markDirty();
 			}
 		}
 	}
 	public void removeFellowshipAdmin(UUID player) {
-		if (FellowshipMembers.contains(player)) {
-			if(FellowshipAdmins.contains(player)) {
-				FellowshipAdmins.remove(player);
+		if (fellowshipMembers.contains(player)) {
+			if(fellowshipAdmins.contains(player)) {
+				fellowshipAdmins.remove(player);
 				markDirty();
 			}
 		}
 	}
 	public boolean isPreventPVP() {
-		return PreventPVP;
+		return preventPVP;
 	}
 	public void setPreventPVP(boolean allowPVP) {
-		PreventPVP = allowPVP;
+		preventPVP = allowPVP;
 		markDirty();
 	}
 	public boolean isPreventHiredFF() {
-		return PreventHiredFF;
+		return preventHiredFF;
 	}
 	public void setPreventHiredFF(boolean allowUnitPVP) {
-		PreventHiredFF = allowUnitPVP;
+		preventHiredFF = allowUnitPVP;
 		markDirty();
 	}
 	public boolean isHideMapLocation() {
-		return ShowMap;
+		return showMap;
 	}
 	public void setHideMapLocation(boolean hideMapLocation) {
-		ShowMap = hideMapLocation;
+		showMap = hideMapLocation;
 		markDirty();
 	}
 	public ItemStack getIcon() {
@@ -224,7 +224,7 @@ public class ExtendedFellowship {
 	}
 	public void disband() {
 		disbanded = true;
-		for (UUID player : new ArrayList<UUID>(FellowshipMembers))
+		for (UUID player : new ArrayList<UUID>(fellowshipMembers))
 	    	removeFellowshipMember(player);
 		markDirty();
 	}

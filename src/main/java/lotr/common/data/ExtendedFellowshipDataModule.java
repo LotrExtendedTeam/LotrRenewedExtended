@@ -97,7 +97,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public void addFellowship(ExtendedFellowship fellowship) {
-		if (fellowship.isFellowshipMember(getPlayerUUID()) || fellowship.isFellowshipOwner(getPlayerUUID())) {
+		if (fellowship.isInFellowship(getPlayerUUID())) {
 			UUID fsID = fellowship.getFellowshipId();
 			if (!fellowshipIDs.contains(fsID)) {
 				fellowshipIDs.add(fsID);
@@ -324,7 +324,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		List<String> list = new ArrayList<String>();
 		for (UUID fsID : fellowshipIDs) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
-			if (fs != null && (fs.isFellowshipMember(getPlayerUUID()) || fs.isFellowshipOwner(getPlayerUUID())))
+			if (fs != null && fs.isInFellowship(getPlayerUUID()))
 				list.add(fs.getFellowshipName());
 		}
 		return list;
