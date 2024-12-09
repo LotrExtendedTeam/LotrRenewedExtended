@@ -570,12 +570,11 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 40,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -593,7 +592,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -611,7 +610,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -629,7 +628,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -642,12 +641,11 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 30,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -665,7 +663,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -683,7 +681,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -701,7 +699,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -714,12 +712,11 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -737,7 +734,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -755,7 +752,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -773,7 +770,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -786,12 +783,11 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -809,7 +805,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -827,7 +823,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -845,7 +841,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -855,23 +851,6 @@
             }
           ],
           "name": "lotr:black_warg_fur_boots"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.1,
-                "max": 0.45
-              }
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:white_warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -931,7 +910,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -949,7 +928,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -967,7 +946,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -985,7 +964,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },
@@ -1351,7 +1330,7 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.39,
+                "min": 0.4,
                 "max": 0.85
               }
             },

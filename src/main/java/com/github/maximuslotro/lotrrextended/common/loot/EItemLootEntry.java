@@ -47,8 +47,8 @@ public class EItemLootEntry extends ItemLootEntry{
 		 * maxDamagePercent is the largest  damage percent. ie. 0.95 is the item is at most  95% damaged
 		 * */
 		public ExtendedBuilder setDamageRange(float minDamagePercent, float maxDamagePercent) {
-			float modifiedMin = (int)(100-(maxDamagePercent*100)) / 100.0f;
-			float modifiedMax = (int)(100-(minDamagePercent*100)) / 100.0f;
+			float modifiedMin = (100-(int)(maxDamagePercent*100)) / 100.0f;
+			float modifiedMax = (100-(int)(minDamagePercent*100)) / 100.0f;
 			if(!isDamagable) {
 				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+modifiedMin+":"+modifiedMax);
 				return this.getThis();
