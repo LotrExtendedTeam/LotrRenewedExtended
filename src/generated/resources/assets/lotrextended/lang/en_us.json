@@ -959,6 +959,7 @@
   "command.lotrextended.fellowship.error": "Fellowship does not exist or you are missing permissions!",
   "command.lotrextended.fellowship.error.exists": "Fellowship with the name [%s] already exists!",
   "command.lotrextended.fellowship.error.noexists": "No fellowship by that name exists!",
+  "command.lotrextended.fellowship.error.ownercant": "Owners can't leave Fellowships! You must disband or transfer ownership to leave!",
   "command.lotrextended.fellowship.hiredunitff": "hired unit friendly fire",
   "command.lotrextended.fellowship.icon.removed": "Fellowship icon reset!",
   "command.lotrextended.fellowship.icon.set": "Fellowship icon set",

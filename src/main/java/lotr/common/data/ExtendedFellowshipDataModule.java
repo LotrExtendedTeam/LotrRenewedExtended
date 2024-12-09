@@ -192,7 +192,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			markDirty();
 			if(reject) {
 				PlayerEntity player = getPlayerFromUUID(getPlayerUUID());
-				fs.createNotification("You have accepted rejected fellowship invite", player);
+				fs.createNotification("You have rejected fellowship invite", player);
 			}
 		}
 	}

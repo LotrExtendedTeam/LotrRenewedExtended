@@ -81,17 +81,17 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 										)
 								.then(Commands.literal("prevent-pvp")
 										.then(Commands.argument("toggle", BoolArgumentType.bool())
-												.executes(context -> pvp(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+												.executes(context -> togglePvp(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
 												)
 										)
 								.then(Commands.literal("prevent-hired-ff")
 										.then(Commands.argument("toggle", BoolArgumentType.bool())
-												.executes(context -> hiredUnits(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+												.executes(context -> toggleHiredUnits(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
 												)
 										)
 								.then(Commands.literal("map-show")
 										.then(Commands.argument("toggle", BoolArgumentType.bool())
-												.executes(context -> mapLoc(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+												.executes(context -> toggleMapLoc(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
 												)
 										)
 								.then(Commands.literal("op")
@@ -152,17 +152,17 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 														)
 												.then(Commands.literal("prevent-pvp")
 														.then(Commands.argument("toggle", BoolArgumentType.bool())
-																.executes(context -> pvp(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+																.executes(context -> togglePvp(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
 																)
 														)
 												.then(Commands.literal("prevent-hired-ff")
 														.then(Commands.argument("toggle", BoolArgumentType.bool())
-																.executes(context -> hiredUnits(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+																.executes(context -> toggleHiredUnits(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
 																)
 														)
 												.then(Commands.literal("map-show")
 														.then(Commands.argument("toggle", BoolArgumentType.bool())
-																.executes(context -> mapLoc(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+																.executes(context -> toggleMapLoc(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
 																)
 														)
 												.then(Commands.literal("op")
@@ -226,7 +226,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
-	private static int pvp(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
+	private static int togglePvp(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
 		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
@@ -238,7 +238,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
-	private static int hiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
+	private static int toggleHiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
 		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
@@ -250,7 +250,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
-	private static int mapLoc(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
+	private static int toggleMapLoc(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
 		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
@@ -326,12 +326,18 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	private static int leave(CommandSource source, PlayerEntity player, String fellowshipname) {
 		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        if (fellowship != null && fellowship.isFellowshipMember(player.getUUID())) {
-        	fellowshipData.leaveFellowship(fellowship);
-        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.left", fellowshipname), true);
-        	return 0;
-        }
-        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
+		if (fellowship != null) {
+			if (fellowship.isFellowshipOwner(player.getUUID())) {
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.ownercant").withStyle(TextFormatting.RED), true);
+				return 0;
+			}
+			if (fellowship.isFellowshipMember(player.getUUID())) {
+				fellowshipData.leaveFellowship(fellowship);
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.left", fellowshipname), true);
+				return 0;
+			}
+		}
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
 	private static int icon(CommandSource source, PlayerEntity player, String fellowshipname) {

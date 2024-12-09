@@ -286,6 +286,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
 		addD("command.lotrextended.fellowship.error.noexists", "No fellowship by that name exists!");
 		addD("command.lotrextended.fellowship.error.exists", "Fellowship with the name [%s] already exists!");
+		addD("command.lotrextended.fellowship.error.ownercant", "Owners can't leave Fellowships! You must disband or transfer ownership to leave!");
 		addD("command.lotrextended.fellowship.notexists", "No fellowship by that name exists!");
 		addD("command.lotrextended.fellowship.player.added", "Added %s to the fellowship");
 		addD("command.lotrextended.fellowship.player.removed", "Removed %s from the fellowship");
