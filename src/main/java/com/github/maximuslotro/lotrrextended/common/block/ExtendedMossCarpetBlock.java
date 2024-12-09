@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import lotr.common.event.CompostingHelper;
+import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -40,6 +41,7 @@ public class ExtendedMossCarpetBlock extends Block {
 
 	@Override
 	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
-		return !pLevel.isEmptyBlock(pPos.below());
+		BlockPos blockpos = pPos.below();
+		return pLevel.getBlockState(blockpos).isFaceSturdy(pLevel, blockpos, Direction.UP) && !pLevel.getBlockState(blockpos).is(ExtendedBlocks.MOSS_CARPET.get());
 	}
 }

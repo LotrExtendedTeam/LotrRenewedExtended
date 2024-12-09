@@ -272,6 +272,21 @@
               }
             }
           ],
+          "name": "lotr:cooked_duck"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 75,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
           "name": "minecraft:cooked_rabbit"
         },
         {
@@ -318,6 +333,21 @@
             }
           ],
           "name": "minecraft:egg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:duck_egg"
         },
         {
           "type": "minecraft:item",
@@ -449,6 +479,21 @@
             }
           ],
           "name": "lotr:pear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:plum"
         },
         {
           "type": "minecraft:item",

@@ -70,13 +70,28 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 45,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:plum"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 30,
           "functions": [
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.25,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.75
               }
             },
             {
@@ -93,8 +108,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.25,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.75
               }
             },
             {
@@ -111,8 +126,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -129,8 +144,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -244,8 +259,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.85
               }
             },
             {
@@ -262,8 +277,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.85
               }
             },
             {
@@ -280,8 +295,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.85
               }
             },
             {
@@ -298,8 +313,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.85
               }
             },
             {
@@ -316,8 +331,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.8
+                "min": 0.2,
+                "max": 0.85
               }
             },
             {
@@ -334,8 +349,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -352,8 +367,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
