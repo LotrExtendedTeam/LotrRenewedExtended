@@ -12,9 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedFellowship {
 	private UUID FellowshipId;
@@ -232,7 +232,13 @@ public class ExtendedFellowship {
 	}
 
 	public void createNotification(String message, PlayerEntity reciever) {
-		TextComponent comp = new StringTextComponent(message);
+		TextComponent comp = new TranslationTextComponent(message);
+		comp.withStyle(TextFormatting.YELLOW);
+		reciever.sendMessage(comp, Util.NIL_UUID);
+	}
+
+	public void createNotification(String message, PlayerEntity reciever, Object... args) {
+		TextComponent comp = new TranslationTextComponent(message, args);
 		comp.withStyle(TextFormatting.YELLOW);
 		reciever.sendMessage(comp, Util.NIL_UUID);
 	}

@@ -33,15 +33,15 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 								)
 						)
 				.then(Commands.literal("acceptInvite").requires(context -> context.hasPermission(0))
-						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
+						.then(Commands.argument("invites", StringArgumentType.greedyString())
 								.suggests(SUGGEST_INVITES_USER)
-								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), true))
+								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "invites"), true))
 								)
 						)
 				.then(Commands.literal("declineInvite").requires(context -> context.hasPermission(0))
-						.then(Commands.argument("fellowship", StringArgumentType.greedyString())
+						.then(Commands.argument("invites", StringArgumentType.greedyString())
 								.suggests(SUGGEST_INVITES_USER)
-								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), false))
+								.executes(context -> processInvite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "invites"), false))
 								)
 						)
 				.then(Commands.literal("viewInfo").requires(context -> context.hasPermission(0))
@@ -51,132 +51,132 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 								)
 						)
 				.then(Commands.literal("modify").requires(context -> context.hasPermission(0))
-						.then(Commands.argument("Name", StringArgumentType.string())
+						.then(Commands.argument("fellowship", StringArgumentType.string())
 								.suggests(SUGGEST_FELLOWSHIP_USER)
-								.then(Commands.literal("rename")
+								.then(Commands.literal("renameFellowship")
 										.then(Commands.argument("NewName", StringArgumentType.string())
-												.executes(context -> renameFellowship(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), StringArgumentType.getString(context, "NewName")))
+												.executes(context -> renameFellowship(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), StringArgumentType.getString(context, "NewName")))
 												)
 										)
-								.then(Commands.literal("invite")
+								.then(Commands.literal("invitePlayer")
 										.then(Commands.argument("playerToAdd", EntityArgument.player())
-												.executes(context -> invite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "playerToAdd")))
+												.executes(context -> invite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToAdd")))
 												)
 										)
-								.then(Commands.literal("remove")
+								.then(Commands.literal("removePlayer")
 										.then(Commands.argument("playerToRemove", EntityArgument.player())
-												.executes(context -> removePlayer(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "playerToRemove")))
+												.executes(context -> removePlayer(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToRemove")))
 												)
 										)
-								.then(Commands.literal("transfer")
+								.then(Commands.literal("transferOwnership")
 										.then(Commands.argument("newOwner", EntityArgument.player())
-												.executes(context -> setOwner(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "newOwner")))
+												.executes(context -> setOwner(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "newOwner")))
 												)
 										)
-								.then(Commands.literal("disband")
-										.executes(context -> disband(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name")))
+								.then(Commands.literal("disbandFellowship")
+										.executes(context -> disband(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship")))
 										)
-								.then(Commands.literal("icon")
-										.executes(context -> icon(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name")))
+								.then(Commands.literal("changeIcon")
+										.executes(context -> icon(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship")))
 										)
-								.then(Commands.literal("prevent-pvp")
+								.then(Commands.literal("togglePvp")
 										.then(Commands.argument("toggle", BoolArgumentType.bool())
-												.executes(context -> togglePvp(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+												.executes(context -> togglePvp(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), BoolArgumentType.getBool(context, "toggle")))
 												)
 										)
-								.then(Commands.literal("prevent-hired-ff")
+								.then(Commands.literal("toggleHiredFF")
 										.then(Commands.argument("toggle", BoolArgumentType.bool())
-												.executes(context -> toggleHiredUnits(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+												.executes(context -> toggleHiredUnits(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), BoolArgumentType.getBool(context, "toggle")))
 												)
 										)
-								.then(Commands.literal("map-show")
+								.then(Commands.literal("toggleMapLoc")
 										.then(Commands.argument("toggle", BoolArgumentType.bool())
-												.executes(context -> toggleMapLoc(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+												.executes(context -> toggleMapLoc(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), BoolArgumentType.getBool(context, "toggle")))
 												)
 										)
-								.then(Commands.literal("op")
+								.then(Commands.literal("promoteAdmin")
 										.then(Commands.argument("addingPlayer", EntityArgument.player())
-												.executes(context -> admin(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "addingPlayer"), true))
+												.executes(context -> admin(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "addingPlayer"), true))
 												)
 										)
-								.then(Commands.literal("deop")
+								.then(Commands.literal("removeAdmin")
 										.then(Commands.argument("removingPlayer", EntityArgument.player())
-												.executes(context -> admin(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "removingPlayer"), false))
+												.executes(context -> admin(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "removingPlayer"), false))
 												)
 										)
-								.then(Commands.literal("leave")
-										.executes(context -> leave(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "Name")))
+								.then(Commands.literal("leaveFellowship")
+										.executes(context -> leave(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship")))
 										)
 								)
 						)
 				.then(Commands.literal("admin").requires(context -> context.hasPermission(2))
 						.then(Commands.argument("player", EntityArgument.player())
 								.then(Commands.literal("create")
-										.then(Commands.argument("Name", StringArgumentType.string())
-												.executes(context -> createFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), true))
+										.then(Commands.argument("fellowship", StringArgumentType.string())
+												.executes(context -> createFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), true))
 												)
 										)
 								.then(Commands.literal("option")
-										.then(Commands.argument("Name", StringArgumentType.string())
+										.then(Commands.argument("fellowship", StringArgumentType.string())
 												.suggests(SUGGEST_FELLOWSHIP_PLAYER)
-												.then(Commands.literal("rename")
+												.then(Commands.literal("renameFellowship")
 														.then(Commands.argument("NewName", StringArgumentType.string())
-																.executes(context -> renameFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), StringArgumentType.getString(context, "NewName")))
+																.executes(context -> renameFellowship(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), StringArgumentType.getString(context, "NewName")))
 																)
 														)
-												.then(Commands.literal("add")
+												.then(Commands.literal("forceAddPlayer")
 														.then(Commands.argument("playerToAdd", EntityArgument.player())
-																.executes(context -> add(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "playerToAdd")))
+																.executes(context -> add(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToAdd")))
 																)
 														)
-												.then(Commands.literal("invite")
+												.then(Commands.literal("invitePlayer")
 														.then(Commands.argument("playerToAdd", EntityArgument.player())
-																.executes(context -> invite(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "playerToAdd")))
+																.executes(context -> invite(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToAdd")))
 																)
 														)
-												.then(Commands.literal("remove")
+												.then(Commands.literal("removePlayer")
 														.then(Commands.argument("playerToRemove", EntityArgument.player())
-																.executes(context -> removePlayer(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "playerToRemove")))
+																.executes(context -> removePlayer(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToRemove")))
 																)
 														)
-												.then(Commands.literal("transfer")
+												.then(Commands.literal("transferOwnership")
 														.then(Commands.argument("newOwner", EntityArgument.player())
-																.executes(context -> setOwner(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "newOwner")))
+																.executes(context -> setOwner(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "newOwner")))
 																)
 														)
-												.then(Commands.literal("disband")
-														.executes(context -> disband(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name")))
+												.then(Commands.literal("disbandFellowship")
+														.executes(context -> disband(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship")))
 														)
-												.then(Commands.literal("icon")
-														.executes(context -> icon(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name")))
+												.then(Commands.literal("changeIcon")
+														.executes(context -> icon(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship")))
 														)
-												.then(Commands.literal("prevent-pvp")
+												.then(Commands.literal("togglePvp")
 														.then(Commands.argument("toggle", BoolArgumentType.bool())
-																.executes(context -> togglePvp(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+																.executes(context -> togglePvp(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), BoolArgumentType.getBool(context, "toggle")))
 																)
 														)
-												.then(Commands.literal("prevent-hired-ff")
+												.then(Commands.literal("toggleHiredFF")
 														.then(Commands.argument("toggle", BoolArgumentType.bool())
-																.executes(context -> toggleHiredUnits(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+																.executes(context -> toggleHiredUnits(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), BoolArgumentType.getBool(context, "toggle")))
 																)
 														)
-												.then(Commands.literal("map-show")
+												.then(Commands.literal("toggleMapLoc")
 														.then(Commands.argument("toggle", BoolArgumentType.bool())
-																.executes(context -> toggleMapLoc(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), BoolArgumentType.getBool(context, "toggle")))
+																.executes(context -> toggleMapLoc(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), BoolArgumentType.getBool(context, "toggle")))
 																)
 														)
-												.then(Commands.literal("op")
+												.then(Commands.literal("promoteAdmin")
 														.then(Commands.argument("addingPlayer", EntityArgument.player())
-																.executes(context -> admin(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "addingPlayer"), true))
+																.executes(context -> admin(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "addingPlayer"), true))
 																)
 														)
-												.then(Commands.literal("deop")
+												.then(Commands.literal("removeAdmin")
 														.then(Commands.argument("removingPlayer", EntityArgument.player())
-																.executes(context -> admin(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name"), EntityArgument.getPlayer(context, "removingPlayer"), false))
+																.executes(context -> admin(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "removingPlayer"), false))
 																)
 														)
-												.then(Commands.literal("leave")
-														.executes(context -> leave(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "Name")))
+												.then(Commands.literal("leaveFellowship")
+														.executes(context -> leave(context.getSource(), EntityArgument.getPlayer(context, "player"), StringArgumentType.getString(context, "fellowship")))
 														)
 												)
 										)
@@ -186,25 +186,22 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	}
 	
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_USER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(
-				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
     
 	public static final SuggestionProvider<CommandSource> SUGGEST_INVITES_USER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(
-				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
 		return ISuggestionProvider.suggest(fellowshipData.listAllInviteNames(), builder);
 	};
     
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_PLAYER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(
-				((PlayerEntity) ctx.getSource().getEntity()).level, ((PlayerEntity) ctx.getSource().getEntity()).getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
 
 	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
         	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
@@ -216,7 +213,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.renameFellowship(fellowship, fellowshipNewName);
@@ -227,7 +224,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int togglePvp(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventPVP(fellowship, toggle);
@@ -239,7 +236,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int toggleHiredUnits(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipPreventHiredFF(fellowship, toggle);
@@ -251,7 +248,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int toggleMapLoc(CommandSource source, PlayerEntity player, String fellowshipname, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.setFellowshipShowMapLocations(fellowship, toggle);
@@ -263,7 +260,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int removePlayer(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity playerToRemove) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	fellowshipData.removePlayer(fellowship, playerToRemove.getUUID());
@@ -274,7 +271,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int setOwner(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newOwner) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.setOwner(fellowship, newOwner.getUUID());
@@ -285,10 +282,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int invite(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	ExtendedFellowshipDataModule fellowshipData2 =((ExtendedLOTRPlayerData)getLevelData().getData(newMember.level, newMember.getUUID())).getFellowshipData();
+        	ExtendedFellowshipDataModule fellowshipData2 =getFellowshipData(newMember);
         	fellowshipData2.addInvitePlayer(fellowship, player.getUUID());
         	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.invited", newMember.getDisplayName().getString()), true);
         	return 0;
@@ -297,7 +294,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int add(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	fellowshipData.addPlayer(fellowship, newMember.getUUID());
@@ -308,7 +305,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int admin(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity changing, boolean toggle) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(toggle) {
@@ -324,7 +321,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int leave(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
 		if (fellowship != null) {
 			if (fellowship.isFellowshipOwner(player.getUUID())) {
@@ -341,7 +338,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int icon(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
         	if(!player.getMainHandItem().isEmpty()) {
@@ -357,7 +354,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
         	if(fellowshipData.disbandFellowship(fellowship)) {
@@ -372,7 +369,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return 0;
 	}
 	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByInviteName(fellowshipname);
 		if (fellowship != null) {
 			if(accept) {
@@ -386,7 +383,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         return 0;
 	}
 	private static int displayInfo(CommandSource source, PlayerEntity player, String fellowshipname) {
-		ExtendedFellowshipDataModule fellowshipData = ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
 		if (fellowship != null) {
 			//Send Name
@@ -425,5 +422,9 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         }
 		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.noexists").withStyle(TextFormatting.RED), true);
         return 0;
+	}
+
+	private static ExtendedFellowshipDataModule getFellowshipData(PlayerEntity player) {
+		return ((ExtendedLOTRPlayerData)getLevelData().getData(player.level, player.getUUID())).getFellowshipData();
 	}
 }

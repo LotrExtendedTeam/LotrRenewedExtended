@@ -145,7 +145,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
 			fs.removeFellowshipAdmin(player);
 			PlayerEntity owner = getPlayerFromUUID(player);
-			fs.createNotification("You been demoted from fellowship admin in "+fs.getFellowshipName(), owner);
+			fs.createNotification("command.lotrextended.fellowship.client.admin.removed", owner, fs.getFellowshipName());
 		}
 	}
 
@@ -153,7 +153,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
 			fs.addFellowshipAdmin(player);
 			PlayerEntity owner = getPlayerFromUUID(player);
-			fs.createNotification("You been promoted to fellowship admin in "+fs.getFellowshipName(), owner);
+			fs.createNotification("command.lotrextended.fellowship.client.admin.added", owner, fs.getFellowshipName());
 		}
 	}
 
@@ -176,7 +176,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		invites.add(new ExtendedFellowshipInvite(fs.getFellowshipId(), playerSendingInvite));
 		markDirty();
 		PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
-		fs.createNotification("You have recieved a fellowship invite", owner);
+		fs.createNotification("command.lotrextended.fellowship.client.invite.recieved", owner);
 	}
 
 	public void removeInvitePlayer(ExtendedFellowship fs, boolean reject) {
@@ -192,7 +192,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			markDirty();
 			if(reject) {
 				PlayerEntity player = getPlayerFromUUID(getPlayerUUID());
-				fs.createNotification("You have rejected fellowship invite", player);
+				fs.createNotification("command.lotrextended.fellowship.client.invite.rejected", player);
 			}
 		}
 	}
@@ -214,7 +214,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			invites.remove(existingInvite);
 			markDirty();
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
-			fs.createNotification("You have accepted the fellowship invite", owner);
+			fs.createNotification("command.lotrextended.fellowship.client.invite.accepted", owner);
 		}
 	}
 
@@ -227,7 +227,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		if (fs.hasEditPowers(getPlayerUUID())) {
 			fs.removeFellowshipMember(player);
 			PlayerEntity owner = getPlayerFromUUID(player);
-			fs.createNotification("You been removed from the fellowship "+fs.getFellowshipName(), owner);
+			fs.createNotification("command.lotrextended.fellowship.client.removed", owner, fs.getFellowshipName());
 		}
 	}
 
@@ -235,7 +235,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
 			fs.setOwnerUUID(player);
 			PlayerEntity owner = getPlayerFromUUID(player);
-			fs.createNotification("You have been transfered ownership of the fellowship "+fs.getFellowshipName(), owner);
+			fs.createNotification("command.lotrextended.fellowship.client.transfered", owner, fs.getFellowshipName());
 		}
 	}
 
@@ -252,7 +252,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			ExtendedFellowship fellowship = new ExtendedFellowship(name, getPlayerUUID());
 			fellowship.createAndRegister();
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
-			fellowship.createNotification("Fellowship created!", owner);
+			fellowship.createNotification("command.lotrextended.fellowship.client.created", owner);
 			return true;
 		}
 		return false;
@@ -264,7 +264,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			if (fellowshipIDs.contains(fs.getFellowshipId()))
 				removeFellowship(fs);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
-			fs.createNotification("You have left the fellowship", owner);
+			fs.createNotification("command.lotrextended.fellowship.client.leave", owner);
 		}
 	}
 
@@ -273,7 +273,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 			for(UUID user : fs.getFellowshipMembers()) {
 				PlayerEntity player = getPlayerFromUUID(user);
 				if(player!=null) {
-					fs.createNotification("The fellowship "+fs.getFellowshipName()+"  has been disbanded", player);
+					fs.createNotification("command.lotrextended.fellowship.client.disbanded", player, fs.getFellowshipName());
 				}
 			}
 			fs.disband();
