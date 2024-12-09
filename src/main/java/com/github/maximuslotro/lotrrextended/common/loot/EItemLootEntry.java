@@ -29,8 +29,8 @@ public class EItemLootEntry extends ItemLootEntry{
 	public static class ExtendedBuilder extends StandaloneLootEntry.Builder<EItemLootEntry.ExtendedBuilder> {
 		private final StandaloneLootEntry.ILootEntryBuilder constructor;
 		private final boolean isDamagable;
-		public ExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder p_i50485_1_, boolean canDamage) {
-			this.constructor = p_i50485_1_;
+		public ExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder lootEntryConstructor, boolean canDamage) {
+			this.constructor = lootEntryConstructor;
 			this.isDamagable = canDamage;
 		}
 
@@ -42,12 +42,22 @@ public class EItemLootEntry extends ItemLootEntry{
 			return this.constructor.build(this.weight, this.quality, this.getConditions(), this.getFunctions());
 		}
 
-		public ExtendedBuilder setDamageRange(float min, float max) {
+		/**
+		 * minDamagePercent is the smallest damage percent. ie. 0.90 is the item is at least 90% damaged
+		 * maxDamagePercent is the largest  damage percent. ie. 0.95 is the item is at most  95% damaged
+		 * */
+		public ExtendedBuilder setDamageRange(float minDamagePercent, float maxDamagePercent) {
+			float modifiedMin = (int)(100-(maxDamagePercent*100)) / 100.0f;
+			float modifiedMax = (int)(100-(minDamagePercent*100)) / 100.0f;
 			if(!isDamagable) {
-				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+min+":"+max);
+				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+modifiedMin+":"+modifiedMax);
 				return this.getThis();
 			}
-			this.apply(SetDamage.setDamage(RandomValueRange.between(min, max)));
+			if(modifiedMin > modifiedMax) {
+				ExtendedLog.error("Tried Setting an inverted damage value range to an item! "+modifiedMin+":"+modifiedMax);
+				return this.getThis();
+			}
+			this.apply(SetDamage.setDamage(RandomValueRange.between(modifiedMin, modifiedMax)));
 			return this.getThis();
 		}
 

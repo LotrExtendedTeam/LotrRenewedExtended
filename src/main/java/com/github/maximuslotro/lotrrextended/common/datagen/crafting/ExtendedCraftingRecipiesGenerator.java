@@ -2001,6 +2001,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //		GENERATEDRECIPES.add(ExtendedBlocks.GNEISS_ROCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.MOSS_BLOCK.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.ANCIENT_RUNE_BLOCK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BLACK_WARG_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BROWN_WARG_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GRAY_WARG_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SILVER_WARG_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.WHITE_WARG_HELMET.get().getRegistryName().getPath());
 	}
 
 	@Override
