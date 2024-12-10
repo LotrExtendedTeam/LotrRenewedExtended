@@ -7,12 +7,14 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.SlabType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,21 +40,22 @@ public class HackyChairDatabase {
 	@SubscribeEvent(receiveCanceled = true)
 	public void extendedPlayerChairClick(RightClickBlock event) {
 		// Check for valid player
-		if(event.getPlayer().getUseItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && (!event.getPlayer().isPassenger() || event.getPlayer().getVehicle() instanceof ExtendedChairEntity)) {
+		if(event.getPlayer().getMainHandItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && (!event.getPlayer().isPassenger() || event.getPlayer().getVehicle() instanceof ExtendedChairEntity)) {
 			// Check for valid block location
-			if(getChairByPosition(event.getPos(), event.getWorld())==null && event.getWorld().isEmptyBlock(event.getPos().above())) {
+			BlockState state = event.getWorld().getBlockState(event.getPos());
+			if(getChairByPosition(event.getPos(), event.getWorld())==null && event.getWorld().isEmptyBlock(event.getPos().above()) && event.getWorld().isEmptyBlock(event.getPos().above().above())) {
 				// Check for valid block type
-				if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof StairsBlock && event.getWorld().getBlockState(event.getPos()).hasProperty(BlockStateProperties.HALF)) {
+				if(state.getBlock() instanceof StairsBlock && state.hasProperty(StairsBlock.HALF)) {
 					// Check valid orientation
-					if(event.getWorld().getBlockState(event.getPos()).getValue(BlockStateProperties.HALF)==Half.BOTTOM) {
-						addNewChair(event.getWorld(), event.getPos(), event.getPlayer());
+					if(state.getValue(StairsBlock.HALF)==Half.BOTTOM) {
+						addNewChair(event.getWorld(), event.getPos(), event.getPlayer(), state.hasProperty(StairsBlock.FACING) ? state.getValue(StairsBlock.FACING) : null);
 						return;
 					}
 				}
-				if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof SlabBlock && event.getWorld().getBlockState(event.getPos()).hasProperty(BlockStateProperties.SLAB_TYPE)) {
+				if(state.getBlock() instanceof SlabBlock && state.hasProperty(SlabBlock.TYPE)) {
 					// Check valid orientation
-					if(event.getWorld().getBlockState(event.getPos()).getValue(BlockStateProperties.SLAB_TYPE)==SlabType.BOTTOM) {
-						addNewChair(event.getWorld(), event.getPos(), event.getPlayer());
+					if(state.getValue(SlabBlock.TYPE)==SlabType.BOTTOM) {
+						addNewChair(event.getWorld(), event.getPos(), event.getPlayer(), null);
 						return;
 					}
 				}
@@ -60,7 +63,7 @@ public class HackyChairDatabase {
 		}
 	}
 
-	public void addNewChair(World world, BlockPos pos, PlayerEntity rider) {
+	public void addNewChair(World world, BlockPos pos, PlayerEntity rider, Direction dir) {
 		ExtendedChairEntity chair = new ExtendedChairEntity(world);
 		chair.setPos(pos.getX()+0.5D, pos.getY()+0.28D, pos.getZ()+0.5D);
 		addChairToDatabase(world, pos, chair);
@@ -71,6 +74,11 @@ public class HackyChairDatabase {
 			// Which will call removeChairFromDatabase with the proper blockpos
 			//removeChairFromDatabase(world, rider.blockPosition());
 			rider.getVehicle().ejectPassengers();
+		}
+		if(dir!=null) {
+			if(rider instanceof ServerPlayerEntity) {
+				 ((ServerPlayerEntity)rider).connection.teleport(rider.getX(), rider.getY(), rider.getZ(), dir.getOpposite().toYRot(), rider.xRot);
+			}
 		}
 		rider.startRiding(chair);
 	}

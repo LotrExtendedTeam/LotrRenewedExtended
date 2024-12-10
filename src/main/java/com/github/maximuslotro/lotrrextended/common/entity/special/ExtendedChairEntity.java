@@ -39,9 +39,7 @@ public class ExtendedChairEntity extends Entity {
 
 	@Override
 	public void remove() {
-		if(!level.isClientSide) {
-			LotrExtendedModServer.hackyChairManager.removeChairFromDatabase(level, blockPosition());
-		}
+		LotrExtendedModServer.hackyChairManager.removeChairFromDatabase(level, blockPosition());
 		super.remove();
 	}
 
