@@ -27,6 +27,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
@@ -94,11 +95,21 @@ public class MixinLOTREntities {
 		return entity;
 	}
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height) {
-		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, 5, 3, (builder) -> {
+		RegistryObject<EntityType<T>> entity = regEntityExpanded(key, factory, classif, width, height, 5, 3);
+		return entity;
+	}
+
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
+		RegistryObject<EntityType<T>> entity = regEntityExpanded(key, factory, classif, width, height, trackRange, updateFreq, (builder) -> {
 			builder.canSpawnFarFromPlayer();
 			builder.fireImmune();
 			builder.noSummon();
 		});
+		return entity;
+	}
+
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
+		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, trackRange, updateFreq, extraProps);
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedEntities.REGISTEREDNONMOBENTITIES.add(key);
 		}
@@ -125,6 +136,13 @@ public class MixinLOTREntities {
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWrightEntity::new, ExtendedBarrowWrightEntity::regAttrs, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
 		ExtendedEntities.BANNER_HOLDER = regEntityExpanded("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F);
 		ExtendedEntities.BREE_MERCHANT = regNPCD("bree_merchant", ExtendedBreelandMerchantEntity::new, ExtendedBreelandMerchantEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
+		ExtendedEntities.CHAIR = regEntityExpanded("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 64, 20, (builder) -> {
+			builder.canSpawnFarFromPlayer();
+			builder.fireImmune();
+			builder.noSummon();
+			//builder.noSave();
+		});
+
 	}
 
 }

@@ -1,20 +1,23 @@
 package com.github.maximuslotro.lotrrextended.common.chairs;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
+
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
-import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
+import net.minecraft.state.properties.SlabType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
@@ -22,23 +25,14 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class HackyChairDatabase {
-	protected List<StairChairType> chairs = new CopyOnWriteArrayList<StairChairType>();
-	public final static String CHAIRTAG = "ExtChair";
+	protected Map<ResourceLocation, Map<BlockPos, ExtendedChairEntity>> chairs = new HashMap<>();
+
 	public HackyChairDatabase() {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	/**
-	 * Ok, some funky stuff is being done here to be able to delete each chair before moving to the next.
-	 * A chair is being used to obtain a threadsafe version of itself that can be deleated without causing {@Link ConcurrentModificationException}
-	 * */
 	public void handleServerStopping() {
-		for(final StairChairType chair: chairs) {
-			StairChairType internalThreadSafeChair = getChairByPlayer(chair.getSittingPlayer());
-			if(internalThreadSafeChair != null) {
-				internalThreadSafeChair.killChair();
-			}
-		}
+		// TODO see if we need to do some clensing of old data
 	}
 
 	@SubscribeEvent(receiveCanceled = true)
@@ -48,91 +42,96 @@ public class HackyChairDatabase {
 			// Check for valid block location
 			if(getChairByPosition(event.getPos(), event.getWorld())==null && event.getWorld().isEmptyBlock(event.getPos().above())) {
 				// Check for valid block type
-				if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof StairsBlock) {
+				if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof StairsBlock && event.getWorld().getBlockState(event.getPos()).hasProperty(BlockStateProperties.HALF)) {
 					// Check valid orientation
 					if(event.getWorld().getBlockState(event.getPos()).getValue(BlockStateProperties.HALF)==Half.BOTTOM) {
-						chairs.add(new StairChairType(event.getPos(), event.getPlayer()));
+						addNewChair(event.getWorld(), event.getPos(), event.getPlayer());
+						return;
+					}
+				}
+				if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof SlabBlock && event.getWorld().getBlockState(event.getPos()).hasProperty(BlockStateProperties.SLAB_TYPE)) {
+					// Check valid orientation
+					if(event.getWorld().getBlockState(event.getPos()).getValue(BlockStateProperties.SLAB_TYPE)==SlabType.BOTTOM) {
+						addNewChair(event.getWorld(), event.getPos(), event.getPlayer());
+						return;
 					}
 				}
 			}
 		}
 	}
 
-	@SubscribeEvent
-	public void extendedPlayerChairMove(LivingUpdateEvent event) {
-		if(event.getEntity() instanceof BatEntity) {
-			StairChairType eventChair = null;
-			for (final StairChairType chair : chairs) {
-				if (chair.getChair().equals(event.getEntity())) {
-					eventChair = getChairByPlayer(chair.getSittingPlayer());
-					System.out.println("UpdateFoundChair");
-					event.setCanceled(true);
-					break;
-				}
-			}
-			if(eventChair!=null) {
-				if(eventChair.getChair().isVehicle()) {
-					System.out.println("Killing enpty passanger");
-					//eventChair.killChair();
-				}
-			}else {
-				if(event.getEntity().getPersistentData().getBoolean(CHAIRTAG)) {
-					System.out.println("Killing currupted chair");
-					event.getEntity().remove();
-				}
-			}
-		}
+	public void addNewChair(World world, BlockPos pos, PlayerEntity rider) {
+		ExtendedChairEntity chair = new ExtendedChairEntity(world);
+		chair.setPos(pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D);
+		addChairToDatabase(world, pos, chair);
+		world.addFreshEntity(chair);
+		rider.startRiding(chair);
 	}
 
 	@SubscribeEvent
 	public void extendedBreakChairEvent(BreakEvent event) {
-		StairChairType chair = getChairByPosition(event.getPos(), event.getPlayer().level);
+		ExtendedChairEntity chair = getChairByPosition(event.getPos(), event.getPlayer().level);
 		if(chair != null) {
 			System.out.println("BlockBreak");
-			event.getPlayer().removeVehicle();
-			chair.killChair();
+			if(event.getWorld() instanceof World) {
+				removeChairFromDatabase((World)event.getWorld(), event.getPos());
+			}
+			chair.ejectPassengers();
 		}
 	}
 
 	@SubscribeEvent
 	public void extendedPlayerChairLoggedOut(PlayerLoggedOutEvent event) {
-		StairChairType chair = getChairByPlayer(event.getPlayer());
+		ExtendedChairEntity chair = getChairByPlayer(event.getPlayer());
 		if(chair != null) {
 			System.out.println("PlayerLogged");
-			event.getPlayer().removeVehicle();
-			chair.killChair();
+			removeChairFromDatabase(event.getEntity().level, event.getEntity().blockPosition());
+			chair.ejectPassengers();
 		}
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void extendedPlayerChairAttackedEvent(LivingAttackEvent e) {
-		if(e.getEntity() instanceof PlayerEntity) {
-			StairChairType chair = getChairByPlayer((PlayerEntity)e.getEntity());
+	public void extendedPlayerChairAttackedEvent(LivingAttackEvent event) {
+		if(event.getEntity() instanceof PlayerEntity) {
+			ExtendedChairEntity chair = getChairByPlayer((PlayerEntity)event.getEntity());
 			if(chair != null) {
 				System.out.println("PlayerAttacked");
-				((PlayerEntity)e.getEntity()).removeVehicle();
-				chair.killChair();
+				removeChairFromDatabase(event.getEntity().level, event.getEntity().blockPosition());
+				chair.ejectPassengers();
 			}
 		}
 	}
 
-	@Nullable
-	public StairChairType getChairByPlayer(PlayerEntity player) {
-		for(StairChairType chair : chairs) {
-			if(chair.getSittingPlayer().equals(player)) {
-				System.out.println("FoundChair Player");
-				return chair;
+	public void removeChairFromDatabase(World uniqueLevel, BlockPos pos) {
+		if(chairs.containsKey(uniqueLevel.dimension().location())) {
+			if(chairs.get(uniqueLevel.dimension().location()).containsKey(pos)) {
+				chairs.remove(uniqueLevel.dimension().location()).get(pos);
 			}
+		}
+	}
+
+	// TODO should we check if an instance at the pos al
+	public boolean addChairToDatabase(World uniqueLevel, BlockPos pos, ExtendedChairEntity entity) {
+		if(!chairs.containsKey(uniqueLevel.dimension().location())) {
+			chairs.put(uniqueLevel.dimension().location(), new HashMap<>());
+		}
+		chairs.get(uniqueLevel.dimension().location()).put(pos, entity);
+		return true;
+	}
+
+	@Nullable
+	public ExtendedChairEntity getChairByPlayer(PlayerEntity player) {
+		if(player.isPassenger() && player.getVehicle() instanceof ExtendedChairEntity) {
+			return (ExtendedChairEntity) player.getVehicle();
 		}
 		return null;
 	}
 
 	@Nullable
-	public StairChairType getChairByPosition(BlockPos pos, World uniqueLevel) {
-		for(StairChairType chair : chairs) {
-			if(chair.getChairPosition().equals(pos) && chair.getSittingPlayer().level.equals(uniqueLevel)) {
-				System.out.println("Found Chair Pos");
-				return chair;
+	public ExtendedChairEntity getChairByPosition(BlockPos pos, World uniqueLevel) {
+		if(chairs.containsKey(uniqueLevel.dimension().location())) {
+			if(chairs.get(uniqueLevel.dimension().location()).containsKey(pos)) {
+				return chairs.get(uniqueLevel.dimension().location()).get(pos);
 			}
 		}
 		return null;
