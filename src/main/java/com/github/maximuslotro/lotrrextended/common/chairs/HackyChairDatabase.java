@@ -66,7 +66,10 @@ public class HackyChairDatabase {
 		addChairToDatabase(world, pos, chair);
 		world.addFreshEntity(chair);
 		if(rider.getVehicle() instanceof ExtendedChairEntity) {
-			removeChairFromDatabase(world, rider.blockPosition());
+			// Not needed here as ExtendedChairEntity.getDismountLocationForPassenger
+			// Will trigger ExtendedChairEntity.remove
+			// Which will call removeChairFromDatabase with the proper blockpos
+			//removeChairFromDatabase(world, rider.blockPosition());
 			rider.getVehicle().ejectPassengers();
 		}
 		rider.startRiding(chair);
@@ -106,12 +109,11 @@ public class HackyChairDatabase {
 	public void removeChairFromDatabase(World uniqueLevel, BlockPos pos) {
 		if(chairs.containsKey(uniqueLevel.dimension().location())) {
 			if(chairs.get(uniqueLevel.dimension().location()).containsKey(pos)) {
-				chairs.remove(uniqueLevel.dimension().location()).get(pos);
+				chairs.get(uniqueLevel.dimension().location()).remove(pos);
 			}
 		}
 	}
 
-	// TODO should we check if an instance at the pos al
 	public boolean addChairToDatabase(World uniqueLevel, BlockPos pos, ExtendedChairEntity entity) {
 		if(!chairs.containsKey(uniqueLevel.dimension().location())) {
 			chairs.put(uniqueLevel.dimension().location(), new HashMap<>());
