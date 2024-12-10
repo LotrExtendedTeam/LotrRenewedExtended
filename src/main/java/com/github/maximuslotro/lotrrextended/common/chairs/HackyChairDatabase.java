@@ -38,7 +38,7 @@ public class HackyChairDatabase {
 	@SubscribeEvent(receiveCanceled = true)
 	public void extendedPlayerChairClick(RightClickBlock event) {
 		// Check for valid player
-		if(event.getPlayer().getUseItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && !event.getPlayer().isPassenger()) {
+		if(event.getPlayer().getUseItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && (!event.getPlayer().isPassenger() || event.getPlayer().getVehicle() instanceof ExtendedChairEntity)) {
 			// Check for valid block location
 			if(getChairByPosition(event.getPos(), event.getWorld())==null && event.getWorld().isEmptyBlock(event.getPos().above())) {
 				// Check for valid block type
@@ -62,9 +62,13 @@ public class HackyChairDatabase {
 
 	public void addNewChair(World world, BlockPos pos, PlayerEntity rider) {
 		ExtendedChairEntity chair = new ExtendedChairEntity(world);
-		chair.setPos(pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D);
+		chair.setPos(pos.getX()+0.5D, pos.getY()+0.28D, pos.getZ()+0.5D);
 		addChairToDatabase(world, pos, chair);
 		world.addFreshEntity(chair);
+		if(rider.getVehicle() instanceof ExtendedChairEntity) {
+			removeChairFromDatabase(world, rider.blockPosition());
+			rider.getVehicle().ejectPassengers();
+		}
 		rider.startRiding(chair);
 	}
 
@@ -72,7 +76,6 @@ public class HackyChairDatabase {
 	public void extendedBreakChairEvent(BreakEvent event) {
 		ExtendedChairEntity chair = getChairByPosition(event.getPos(), event.getPlayer().level);
 		if(chair != null) {
-			System.out.println("BlockBreak");
 			if(event.getWorld() instanceof World) {
 				removeChairFromDatabase((World)event.getWorld(), event.getPos());
 			}
@@ -84,7 +87,6 @@ public class HackyChairDatabase {
 	public void extendedPlayerChairLoggedOut(PlayerLoggedOutEvent event) {
 		ExtendedChairEntity chair = getChairByPlayer(event.getPlayer());
 		if(chair != null) {
-			System.out.println("PlayerLogged");
 			removeChairFromDatabase(event.getEntity().level, event.getEntity().blockPosition());
 			chair.ejectPassengers();
 		}
@@ -95,7 +97,6 @@ public class HackyChairDatabase {
 		if(event.getEntity() instanceof PlayerEntity) {
 			ExtendedChairEntity chair = getChairByPlayer((PlayerEntity)event.getEntity());
 			if(chair != null) {
-				System.out.println("PlayerAttacked");
 				removeChairFromDatabase(event.getEntity().level, event.getEntity().blockPosition());
 				chair.ejectPassengers();
 			}

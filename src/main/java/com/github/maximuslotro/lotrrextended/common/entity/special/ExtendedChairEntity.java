@@ -34,7 +34,7 @@ public class ExtendedChairEntity extends Entity {
 	@Override
 	public Vector3d getDismountLocationForPassenger(LivingEntity pLivingEntity) {
 		remove();
-		return super.getDismountLocationForPassenger(pLivingEntity);
+		return new Vector3d(this.getX(), this.getBoundingBox().maxY+0.5D, this.getZ());
 	}
 
 	@Override
