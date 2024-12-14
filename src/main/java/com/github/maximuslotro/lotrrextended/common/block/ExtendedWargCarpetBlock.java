@@ -5,7 +5,9 @@ import com.github.maximuslotro.lotrrextended.common.enums.WargFurType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CarpetBlock;
+import net.minecraft.block.FireBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +22,7 @@ public class ExtendedWargCarpetBlock extends CarpetBlock {
 	public ExtendedWargCarpetBlock(WargFurType wargFurType) {
 		super(wargFurType.getDyeColor(), AbstractBlock.Properties.of(Material.CLOTH_DECORATION, wargFurType.getDyeColor()).strength(0.1F).sound(SoundType.WOOL));
 		this.wargFurType = wargFurType;
+		((FireBlock) Blocks.FIRE).setFlammable(this, 60, 20);
 	}
 
 	public WargFurType getWargFurType() {

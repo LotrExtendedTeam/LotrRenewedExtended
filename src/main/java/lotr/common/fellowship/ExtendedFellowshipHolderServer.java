@@ -38,7 +38,7 @@ public class ExtendedFellowshipHolderServer {
 			if (fellowship != null)
 				fellowshipMap.put(fsID, fellowship);
 		}
-		if (fellowship != null && fellowship.isRemoved()) {
+		if (fellowship != null && fellowship.isDisbanded()) {
 			return null;
 		}
 		return fellowship;

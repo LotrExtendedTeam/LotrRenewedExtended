@@ -75,8 +75,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -93,8 +93,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -111,8 +111,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -129,8 +129,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -327,8 +327,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -345,8 +345,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -363,8 +363,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -381,8 +381,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.65
+                "min": 0.35,
+                "max": 0.85
               }
             },
             {
@@ -399,8 +399,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.65
+                "min": 0.35,
+                "max": 0.85
               }
             },
             {
@@ -417,8 +417,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.65
+                "min": 0.35,
+                "max": 0.85
               }
             },
             {
@@ -435,8 +435,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.7
+                "min": 0.3,
+                "max": 0.85
               }
             },
             {
@@ -453,8 +453,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.7
+                "min": 0.3,
+                "max": 0.85
               }
             },
             {
@@ -471,8 +471,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.7
+                "min": 0.3,
+                "max": 0.85
               }
             },
             {
@@ -507,8 +507,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.55
+                "min": 0.45,
+                "max": 0.85
               }
             },
             {
@@ -525,8 +525,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.55
+                "min": 0.45,
+                "max": 0.85
               }
             },
             {
@@ -543,8 +543,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.55
+                "min": 0.45,
+                "max": 0.85
               }
             },
             {
@@ -615,8 +615,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -633,8 +633,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {
@@ -651,8 +651,8 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "min": 0.15,
-                "max": 0.75
+                "min": 0.25,
+                "max": 0.85
               }
             },
             {

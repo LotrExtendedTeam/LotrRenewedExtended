@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
@@ -45,6 +44,7 @@ import net.minecraft.entity.item.minecart.TNTMinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
@@ -64,7 +64,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class BannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
-		ExtendedLog.info("BreakEvent");
+		//ExtendedLog.info("BreakEvent");
 		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlockBreak")) {
 			event.setCanceled(true);
 		}
@@ -74,7 +74,7 @@ public class BannerEventHandlers {
 	public static void handleBannerBlucketFill(FillBucketEvent event) {
 		World world = event.getWorld();
 		if (!world.isClientSide() && event.getTarget().getType() == Type.BLOCK) {
-			ExtendedLog.info("FillBucketEvent");
+			//ExtendedLog.info("FillBucketEvent");
 			BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getBlockPos();
 			if (ExtendedBannerProtectionManager.isBannerProtected(world, pos, new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlucketFill")) {
 				event.setResult(Result.DENY);
@@ -128,7 +128,7 @@ public class BannerEventHandlers {
 		World level = event.getEntity().level;
 		Entity entity = event.getEntity();
 		if (!level.isClientSide() && (entity instanceof HangingEntity)) {
-			ExtendedLog.info("AttackEntityEvent");
+			//ExtendedLog.info("AttackEntityEvent");
 			if (ExtendedBannerProtectionManager.isBannerProtected(level, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerEntityAttacked")) {
 				event.setCanceled(true);
 				return;
@@ -141,7 +141,7 @@ public class BannerEventHandlers {
 		World world = event.getWorld();
 		if (!world.isClientSide()) {
 			if (world.getBlockState(event.getPos()).getBlock() instanceof FireBlock) {
-				if (!ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false, "handleBannerBlockLeftInteract")) {
+				if (ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false, "handleBannerBlockLeftInteract")) {
 					event.setCanceled(true);
 					return;
 				}
@@ -183,9 +183,19 @@ public class BannerEventHandlers {
 		if (!world.isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract")) {
 			event.setCanceled(true);
 			if (block instanceof DoorBlock) {
-				world.setBlockAndUpdate(event.getPos().below(), bState);
-				world.setBlockAndUpdate(event.getPos(), bState);
-				world.setBlockAndUpdate(event.getPos().above(), bState);
+				if(bState.getValue(DoorBlock.HALF)==DoubleBlockHalf.UPPER) {
+					BlockState belowBlock = world.getBlockState(event.getPos().below());
+					if(belowBlock.hasProperty(DoorBlock.HALF) && belowBlock.hasProperty(DoorBlock.OPEN)) {
+						world.setBlockAndUpdate(event.getPos().below(), belowBlock.setValue(DoorBlock.OPEN, !bState.getValue(DoorBlock.OPEN)));
+					}
+					world.setBlockAndUpdate(event.getPos(), bState);
+				}else {
+					BlockState aboveBlock = world.getBlockState(event.getPos().above());
+					if(aboveBlock.hasProperty(DoorBlock.HALF) && aboveBlock.hasProperty(DoorBlock.OPEN)) {
+						world.setBlockAndUpdate(event.getPos().above(), aboveBlock.setValue(DoorBlock.OPEN, !bState.getValue(DoorBlock.OPEN)));
+					}
+					world.setBlockAndUpdate(event.getPos(), bState);
+				}
 			}
 			return;
 		}

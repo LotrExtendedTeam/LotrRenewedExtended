@@ -34,6 +34,8 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> MOSS_STEP = register("block.moss.step", null);
 
 	public static final RegistryObject<SoundEvent> WIGHT_AMBIENCE = register("entity.wight.ambience", "Creepy Noises");
+	public static final RegistryObject<SoundEvent> WIGHT_SPAWN = register("entity.wight.spawn", "Wight Spawns");
+	public static final RegistryObject<SoundEvent> WIGHT_DEATH = register("entity.wight.death", "Wight Death");
 
 	public static final RegistryObject<SoundEvent> ROPE_BROKEN = register("block.rope.break", null);
 	public static final RegistryObject<SoundEvent> ROPE_PLACED = register("block.rope.place", null);

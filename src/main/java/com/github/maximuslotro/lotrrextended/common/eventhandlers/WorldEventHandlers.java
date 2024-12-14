@@ -6,11 +6,13 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
+import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SpawnEggItem;
@@ -18,6 +20,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -118,6 +121,13 @@ public class WorldEventHandlers {
 				respawnerEntity.setHomeInfo(npc.getRestrictCenter(), (int)npc.getRestrictRadius());
 			}
 			npc.level.addFreshEntity(respawnerEntity);
+		}
+	}
+
+	@SubscribeEvent
+	public static void handleWightSizeChange(EntityEvent.Size event) {
+		if(event.getEntity()!=null && event.getEntity().level!=null && event.getEntity().level.isClientSide() && event.getEntity() instanceof ExtendedBarrowWrightEntity) {
+			event.setNewSize(EntitySize.scalable(0.8f, 2.4f));
 		}
 	}
 }

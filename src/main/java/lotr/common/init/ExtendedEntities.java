@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
@@ -38,6 +39,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBarrowWrightEntity>> BARROW_WIGHT;
 	public static RegistryObject<EntityType<ExtendedBannerEntity>> BANNER_HOLDER;
 	public static RegistryObject<EntityType<ExtendedBreelandMerchantEntity>> BREE_MERCHANT;
-
+	public static RegistryObject<EntityType<ExtendedChairEntity>> CHAIR;
 	public static RegistryObject<EntityType<ExtendedHiredBreeGuard>> HIRED_BREE_GUARD;
+  
 }

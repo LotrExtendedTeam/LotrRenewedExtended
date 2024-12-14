@@ -27,7 +27,7 @@ public class MixinEntityFactionHelper {
 			ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)LOTRLevelData.getSidedData(attacker)).getFellowshipData();
 			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships();
 	        for (ExtendedFellowship fs : fellowships) {
-	          if (fs.isPreventPVP() && fs.isFellowshipMember(((PlayerEntity) target).getUUID()))
+	          if (fs.isPreventPVP() && fs.isInFellowship(((PlayerEntity) target).getUUID()))
 	        	  cir.setReturnValue(false);
 	        }
 		}

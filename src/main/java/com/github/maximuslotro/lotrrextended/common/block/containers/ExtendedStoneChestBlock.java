@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block.containers;
 
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.data.ExtendedLevelData;
@@ -15,6 +16,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -49,7 +51,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 					if (pWorld.getBlockState(new BlockPos((int)x, (int)y, (int)z)).is(Blocks.AIR) && pWorld.getBlockState(new BlockPos((int)x, (int)y+1, (int)z)).is(Blocks.AIR)) {
 						barrowWight.setPos(x, y, z);
 						serverWorld.addFreshEntity(barrowWight);
-						//maybe add a sound effect?
+						serverWorld.playSound(null, barrowWight, ExtendedSounds.WIGHT_SPAWN.get(), SoundCategory.HOSTILE, 1.0f, 0.7f);
 						serverInstance.removeCurse(pPlayerEntity);
 						spawned = true;
 					}

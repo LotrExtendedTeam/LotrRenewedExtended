@@ -1,84 +1,148 @@
+(Beta 1.7.0)
+* Blocks
+  * Added Ancient Rune block (two variants, use chisel to change)
+  * Added Large Clay Pot
+  * Added Moss Block and Carpet
+  * Ported the Stone Grinder (formally the millstone)
+* Commands
+  * Added banner protection enable/disable option to the config command
+* Entities
+  * Added Bree Wandering Merchant
+  * Barrow Wights take no fall damage
+  * Fixed Dunedain Ranger’s models not scaling correctly to their new height
+  * Fixed Gundabad Uruk Archer name missing "Archer"
+  * Orcs spawn wearing fur armor much less now
+  * Ported Barrow Wights
+  * Removed spears from the Dunedain Rangers spawn equipment pool and added daggers and more sword types
+* Features
+  * Added 1.17 Moss block functionality
+  * Added Banner Protection
+  * Added Barrow Wight Fog
+  * Added Barrow Wight jumpscare
+  * Made Copper blocks provide an 8x8 banner protection range
+* GUI
+  * Added Barrow Down Biome+Label to ME map
+  * Made all-new Banner Configuration GUI (currently only four protection slots)
+  * Overhauled the Stone Grinder GUI
+* Items
+  * Added Hobbit pancake with butter
+  * Added butter
+  * Made Warg fur helmets only obtainable from killing wargs now, not crafting
+  * Ported Hobbit pancake
+  * Ported Hobbit pancake with syrup
+  * Ported the Chisel
+  * Removed Morgul Spear & Dagger
+* Localization
+  * Added Bree Merchant SpeechBanks
+* Misc
+  * Added 73 new Stone Grinder recipes (slab/stairs/wall -> cracked variants)
+  * Added mossy drystone from cobbled drystone recipe
+  * Fixed Orc Trapdoor overriding Orc Bar recipe
+* Structures
+  * Added barrows to the Barrow Downs (4 small,3 medium,3 large,2 giant)
+  * Fixed well ruins being surrounded by air pockets
+* Sounds
+  * Added Duck walking (step) sounds (was using chicken step sounds before)
+  * Added a Cheese Wheel Slice sound
+  * Added new Barrow Wight spawn and death sounds
+  * Added new creepy/wight ambiance noises
+  * Added new sounds for rope breaking/placing/interacting
+  * Fixed cheese wheel playing slice sound on eating
+  * Updated Stone Chest close sound
+* Textures
+  * Barrow Wights have all new textures and model
+  * Barrow Wights change texture and model when angry
+  * Hobbit pancakes have all new textures
+  * Moss carpets have frills on the edge
+* WorldGen
+  * Added Moors grass to the Barrow Downs
+  * Added Moss to the Barrow Downs
+  * Ported Barrow Downs Biome
+  * Remains Ore now generates in the Dead marshes
+  * Remains Ore now spawns in swiss cheese like deposits
+  * Tweaked Barrow Downs colors
+
 (Beta 1.6.2)
 * Blocks
-   * Ported Skull Goblet
-   * Added Goblin Bricks and Pillar
-   * Added Goblin Brick Slab
-   * Added Goblin Brick Stairs
-   * Added Goblin Brick Wall
-   * Added Goblin Pillar
-   * Added Goblin Pillar Slab
-   * Fixed Rope dupping as fast as wild rabbits
-   * Fixed Stone Chest not using the new open/close sounds
+  * Ported Skull Goblet
+  * Added Goblin Bricks and Pillar
+  * Added Goblin Brick Slab
+  * Added Goblin Brick Stairs
+  * Added Goblin Brick Wall
+  * Added Goblin Pillar
+  * Added Goblin Pillar Slab
+  * Fixed Rope dupping as fast as wild rabbits
+  * Fixed Stone Chest not using the new open/close sounds
 * Entities
-   * Ported Gundabad Uruk
-   * Ported Gundabad Uruk Archer
-   * Made Gundabad Uruks spawn naturally in the same 5 biomes as it did in legacy
-   * Made Gundabad Orc Archers, Mordor Orc Archers, and Uruk Archers use the Orc Bow
-   * Made Entity spawners in structures hide in in f1 mode (in creative)
-   * Made Rangers a bit taller (to be more lore accurate)
+  * Ported Gundabad Uruk
+  * Ported Gundabad Uruk Archer
+  * Made Gundabad Uruks spawn naturally in the same 5 biomes as it did in legacy
+  * Made Gundabad Orc Archers, Mordor Orc Archers, and Uruk Archers use the Orc Bow
+  * Made Entity spawners in structures hide in in f1 mode (in creative)
+  * Made Rangers a bit taller (to be more lore accurate)
 * Items
-   * Ported Gundabad Uruk Bow
-   * Ported Banana Beer
-   * Ported Plum Kvass
-   * Ported Orc Bow
-   * Ported Gundabad Uruk Helmet
-   * Ported Gundabad Uruk Chestplate
-   * Ported Gundabad Uruk Leggings
-   * Ported Gundabad Uruk Boots
-   * Ported Gundabad Uruk Cleaver
-   * Ported Gundabad Uruk Spear
-   * Ported Gundabad Uruk Dagger
+  * Ported Gundabad Uruk Bow
+  * Ported Banana Beer
+  * Ported Plum Kvass
+  * Ported Orc Bow
+  * Ported Gundabad Uruk Helmet
+  * Ported Gundabad Uruk Chestplate
+  * Ported Gundabad Uruk Leggings
+  * Ported Gundabad Uruk Boots
+  * Ported Gundabad Uruk Cleaver
+  * Ported Gundabad Uruk Spear
+  * Ported Gundabad Uruk Dagger
 * Localization
-   * Overhauled High Elven Speechbanks
+  * Overhauled High Elven Speechbanks
 * LootTables
-   * Fixed Ranger bow drops not being damaged
-   * Fixed Gundabad Camp Wood Chest not applying damage to axes
-   * Fixed Banana Cake and Cheese Wheels not dropping when broken if not eaten
-   * Nerfed Hobbit Treasure Chest LootTable
+  * Fixed Ranger bow drops not being damaged
+  * Fixed Gundabad Camp Wood Chest not applying damage to axes
+  * Fixed Banana Cake and Cheese Wheels not dropping when broken if not eaten
+  * Nerfed Hobbit Treasure Chest LootTable
 * Misc
-   * Added 2 advancements from Legacy (32.6% currently)
-   * Changed Creative inv bow ordering
-   * Fixed Angmar tools and weapons only being craftable on the vanilla table, instead of the Angmar crafting table
-   * Fixed Carved Angmar Brick not having a stonecutter recipe
-   * Fixed all Renewed and Extended Carved bricks not having a 2-slab crafting recipe
-   * Added additional chiseled block recipes to tie into R+E crafting scheme
-   * Added Tags for coins for datapackers/modders
-   * Changed Galvorn Ingot recipe to use Elven Steel Ingots instead of Iron Ingots
-   * Fixed Advancements having incorrect icons, descriptions, titles, and alignment unlocks
-   * Fixed Morgul/Angmar/Dol Guldur weapons not harvesting man flesh
-   * Fixed Cake, Banana Cake and Pumpkin Pie not being craftable with duck eggs
-   * Made Fur Bundles craftable on the vanilla crafting table
-   * Made Near Harad a friend of Dunland (to be lore accurate to history)
+  * Added 2 advancements from Legacy (32.6% currently)
+  * Changed Creative inv bow ordering
+  * Fixed Angmar tools and weapons only being craftable on the vanilla table, instead of the Angmar crafting table
+  * Fixed Carved Angmar Brick not having a stonecutter recipe
+  * Fixed all Renewed and Extended Carved bricks not having a 2-slab crafting recipe
+  * Added additional chiseled block recipes to tie into R+E crafting scheme
+  * Added Tags for coins for datapackers/modders
+  * Changed Galvorn Ingot recipe to use Elven Steel Ingots instead of Iron Ingots
+  * Fixed Advancements having incorrect icons, descriptions, titles, and alignment unlocks
+  * Fixed Morgul/Angmar/Dol Guldur weapons not harvesting man flesh
+  * Fixed Cake, Banana Cake and Pumpkin Pie not being craftable with duck eggs
+  * Made Fur Bundles craftable on the vanilla crafting table
+  * Made Near Harad a friend of Dunland (to be lore accurate to history)
 * Structures
-   * Added Orc spawners to some well ruins, and more ranger spawners to several layers of the ranger watchtower
-   * Raised the default respawn time and minimum player distance for entity spawners in structures
+  * Added Orc spawners to some well ruins, and more ranger spawners to several layers of the ranger watchtower
+  * Raised the default respawn time and minimum player distance for entity spawners in structures
 * Textures
-   * Updated Dale armor item textures in the Redone Renewed resource pack
-   * Updated Dorwinion Elven armor item textures in the Redone Renewed resource pack
-   * Updated Harad armor item textures in the Redone Renewed resource pack
-   * Updated Harnennor armor item textures in the Redone Renewed resource pack
-   * Updated Ithilien Ranger armor item textures in the Redone Renewed resource pack
-   * Updated Umbar armor  item textures in the Redone Renewed resource pack
-   * Updated Rohan Marshal armor item textures in the Redone Renewed resource pack
-   * Updated Dunlanding armor item textures in the Redone Renewed resource pack
+  * Updated Dale armor item textures in the Redone Renewed resource pack
+  * Updated Dorwinion Elven armor item textures in the Redone Renewed resource pack
+  * Updated Harad armor item textures in the Redone Renewed resource pack
+  * Updated Harnennor armor item textures in the Redone Renewed resource pack
+  * Updated Ithilien Ranger armor item textures in the Redone Renewed resource pack
+  * Updated Umbar armor  item textures in the Redone Renewed resource pack
+  * Updated Rohan Marshal armor item textures in the Redone Renewed resource pack
+  * Updated Dunlanding armor item textures in the Redone Renewed resource pack
 * Trading
-   * Fixed quick stacking removing items directly from trade menu
-   * Fixed players from placing items in "Buy Items" inventory (causing a crash)
-   * Fixed Oddment collector missing two departure speech lines
-   * Raised Rivendell Wanderer’s required alignment to trade to 100
+  * Fixed quick stacking removing items directly from trade menu
+  * Fixed players from placing items in "Buy Items" inventory (causing a crash)
+  * Fixed Oddment collector missing two departure speech lines
+  * Raised Rivendell Wanderer’s required alignment to trade to 100
 * WorldGen
-   * Fixed Berry Bushes(Plants) spawning outside of the Middle Earth dimension
+  * Fixed Berry Bushes(Plants) spawning outside of the Middle Earth dimension
 
 (Beta 1.6.1)
 * Blocks
-   * Added Bone Block Slab
-   * Added Bone Block Stairs
-   * Added Bone Block Wall
-   * Added Mossy Arnor Pillar Slabs
-   * Added Mossy Arnor Pillars
-   * Added Orc Steel Chain
-   * Changed Packed fur block tab (decoration->building)
-   * Ported Rope
+  * Added Bone Block Slab
+  * Added Bone Block Stairs
+  * Added Bone Block Wall
+  * Added Mossy Arnor Pillar Slabs
+  * Added Mossy Arnor Pillars
+  * Added Orc Steel Chain
+  * Changed Packed fur block tab (decoration->building)
+  * Ported Rope
 * Items
   * Added legacy ability for different bows to have different draw speeds
   * Fixed Bow models rendering incorrectly in first-person view
@@ -700,7 +764,7 @@ Structures
   * Updated Red Rhûnic Pillar texture
   * Updated Rhûnic Crafting Table texture
   * Updated Ruby Block texture
-  * Updated Ruby Ore texture 
+  * Updated Ruby Ore texture
   * Updated Ruby texture
   * Updated Silver Fur texture
   * Updated Taurethrim Equipment textures
@@ -1260,3 +1324,4 @@ Structures
   * Remastered Red Rhûnic Pillar texture
   * Remastered Obsidian Taurethrim Brick texture
   * Remastered Obsidian Taurethrim Pillar texture
+

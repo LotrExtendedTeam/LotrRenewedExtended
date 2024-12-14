@@ -100,7 +100,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 	@Override
 	public boolean isValid() {
-		return id != null && getFellowshipFromID(id) != null && !getFellowshipFromID(id).isRemoved();
+		return id != null && getFellowshipFromID(id) != null && !getFellowshipFromID(id).isDisbanded();
 	}
 
 	@Override

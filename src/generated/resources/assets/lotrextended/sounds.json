@@ -259,6 +259,21 @@
       "lotrextended:entity/wight/ambience4"
     ]
   },
+  "entity.wight.spawn": {
+    "subtitle": "subtitles.lotrextended.entity.wight.spawn",
+    "sounds": [
+      "lotrextended:entity/wight/spawn1",
+      "lotrextended:entity/wight/spawn2"
+    ]
+  },
+  "entity.wight.death": {
+    "subtitle": "subtitles.lotrextended.entity.wight.death",
+    "sounds": [
+      "lotrextended:entity/wight/death1",
+      "lotrextended:entity/wight/death2",
+      "lotrextended:entity/wight/death3"
+    ]
+  },
   "block.rope.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [

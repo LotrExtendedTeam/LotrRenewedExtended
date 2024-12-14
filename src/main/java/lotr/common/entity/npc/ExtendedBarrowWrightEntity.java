@@ -2,11 +2,14 @@ package lotr.common.entity.npc;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.utils.EffectDurationUtils;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
+import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -23,6 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.world.World;
 
@@ -75,6 +79,13 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 	}
 
 	@Override
+	public void makeStuckInBlock(BlockState pState, Vector3d pMotionMultiplier) {
+		if (!pState.is(Blocks.COBWEB) && !pState.is(Blocks.SWEET_BERRY_BUSH) && !pState.is(LOTRBlocks.HANGING_WEB.get())) {
+			super.makeStuckInBlock(pState, pMotionMultiplier);
+		}
+	}
+
+	@Override
 	public boolean doHurtTarget(Entity target) {
 		if (super.doHurtTarget(target)) {
 			if (target instanceof LivingEntity) {
@@ -108,12 +119,12 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 
 	@Nullable
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.GENERIC_DEATH;
+		return ExtendedSounds.WIGHT_DEATH.get();
 	}
 
 	@Nullable
 	protected SoundEvent getAmbientSound() {
-		return null;
+		return ExtendedSounds.WIGHT_AMBIENCE.get();
 	}
 
 	@Override

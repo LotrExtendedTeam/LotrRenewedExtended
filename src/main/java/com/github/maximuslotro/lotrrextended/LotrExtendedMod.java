@@ -46,7 +46,6 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
@@ -61,16 +60,17 @@ public class LotrExtendedMod{
 		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
+		DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> LotrExtendedModServer::staticServerSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
-		modBus.addListener(this::setup);
+		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
-		forgeBus.addListener(this::registerCommands);
-		forgeBus.addListener(this::registerDataPackListeners);
-		forgeBus.addListener(EventPriority.HIGH, this::addFeatureToBiomes);
-		forgeBus.addListener(this::addDimensionalSpacing);
+		forgeBus.addListener(this::extendedRegisterCommands);
+		forgeBus.addListener(this::extendedRegisterDataPackListeners);
+		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
+		forgeBus.addListener(this::extendesAddDimensionalSpacing);
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
@@ -85,7 +85,7 @@ public class LotrExtendedMod{
 		ExtendedParticles.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedFeature.register(modBus);
-		modBus.addGenericListener(Feature.class, this::registerFeatures);
+		modBus.addGenericListener(Feature.class, this::extendedRegisterFeatures);
 		ExtendedStats.init();
 		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
@@ -96,7 +96,7 @@ public class LotrExtendedMod{
 		serverTickEventHandler = new ExtendedTickHandlerServer();
 	}
 
-	public void setup(FMLCommonSetupEvent event) {
+	public void extendedCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
         	ExtendedStructureProcessors.init();
             ExtendedStructuresV5.setupStructures();
@@ -108,15 +108,15 @@ public class LotrExtendedMod{
 		return modBus;
 	}
 
-	public void registerDataPackListeners(AddReloadListenerEvent event) {
+	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
 	}
 
-	public void registerCommands(RegisterCommandsEvent event) {
+	public void extendedRegisterCommands(RegisterCommandsEvent event) {
 		ExtendedCommands.registerCommands(event.getDispatcher(), event.getEnvironment());
 	}
 
-	public void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+	public void extendedRegisterFeatures(RegistryEvent.Register<Feature<?>> event) {
 		ExtendedFeature.register(event);
 	}
 
@@ -124,12 +124,12 @@ public class LotrExtendedMod{
 		return ModList.get().getModFileById(MODID).getFile();
 	}
 
-	public void addFeatureToBiomes(BiomeLoadingEvent event) {
+	public void extendedAddFeatureToBiomes(BiomeLoadingEvent event) {
 		BiomeStructureAdder.addStructuresToBiomes(event);
 		BiomeFeatureAdder.addFeatureToBiomes(event);
 	}
 
-    public void addDimensionalSpacing(WorldEvent.Load event) {
+    public void extendesAddDimensionalSpacing(WorldEvent.Load event) {
 		if(event.getWorld() instanceof ServerWorld){
             ServerWorld serverWorld = (ServerWorld)event.getWorld();
             ServerChunkProvider provider = serverWorld.getChunkSource();
@@ -139,8 +139,4 @@ public class LotrExtendedMod{
             BiomeStructureAdder.addDimensionalSpacing(provider);
         }
     }
-
-	public void gatherData(GatherDataEvent event) {
-		DataGeneratorExtended.gatherData(event);
-	}
 }

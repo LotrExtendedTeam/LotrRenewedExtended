@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldWidget;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileClient;
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -53,6 +52,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private Button createPlayer;
 	private boolean justCreatedWhitelistEntry = false;
 	private boolean updateWhitelist= false;
+	private boolean isEnabled;
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
@@ -63,6 +63,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.canSelfProtect = true; //serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
+		this.isEnabled = serverData.enabled;
 		this.shownWhiteListButtonCount = calcWhiteListSize();
 		updateWhitelist = true;
 	}
@@ -76,6 +77,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.canSelfProtect = true; //serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
+		this.isEnabled = serverData.enabled;
 		handleAlignmentUpdate();
 		this.shownWhiteListButtonCount = calcWhiteListSize();
 		whiteListOffset = 0;
@@ -107,7 +109,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.addButton(update = new SimpleButton(this.leftPos +this.imageWidth -115, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
 			needsUpdate = false;
 			whitelistFields.forEach((textButton) -> textButton.setFocus(false));
-			ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
+			if(isEnabled) {
+				ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
+			}
 		}) {
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
@@ -332,13 +336,13 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		TranslationTextComponent title = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
 		this.font.draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
-		if(!ExtendedServerConfig.enableBannerProtection.get()) {
+		if(!isEnabled) {
 			alignmentField.visible=false;
 			protectionTypeButton.visible=false;
 			update.visible=false;
 			whitelistFields.forEach((textField -> {textField.isVisable(false); textField.isPermVisable(false);}));
 			defaultPermButtons.forEach((permButton) -> permButton.visible=false);
-			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.disabled"), leftPos + 55, topPos + 64, 16711680);
+			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.disabled"), leftPos + 25, topPos + 64, 16711680);
 			return;
 		}
 		if(protectionType==0) {
@@ -410,7 +414,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	@Override
 	public void onClose() {
 		super.onClose();
-		ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
+		if(isEnabled) {
+			ExtendedPacketHandler.sendToServer(new ExtendedCBannerSaveInfoPacket(this.defaultPerms, this.alignmentLevel, this.whitelist, this.canSelfProtect, this.protectionType, this.configurePos));
+		}
 	}
 
 	public void handleAlignmentUpdate() {

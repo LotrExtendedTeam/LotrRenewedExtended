@@ -107,11 +107,12 @@ public class ExtendedBannerProtectionManager {
 					return false;
 				}
 				if(bannerInstance.isFactionProtecting()) {
-					if(bannerInstance.hasDefaultPerm(queryingPermission)) {
+					if(offendingPlayer.getUUID().equals(bannerInstance.getPlacedPlayerUUID()) || bannerInstance.hasDefaultPerm(queryingPermission)) {
 						return false;
 					}
 					float alignment = LOTRLevelData.serverInstance().getData(offendingPlayer).getAlignmentData().getAlignment(bannerInstance.getFactionProtcting());
-					if(alignment<bannerInstance.getAlignmentLevel()) {
+					// Ensure players can't open banners even if they have alignment
+					if(alignment<bannerInstance.getAlignmentLevel() || queryingPermission==BannerPermission.BANNER) {
 						if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).isPresent()) {
 							tellPlayerYSNP(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().getColoredDisplayName());
 						}else {
