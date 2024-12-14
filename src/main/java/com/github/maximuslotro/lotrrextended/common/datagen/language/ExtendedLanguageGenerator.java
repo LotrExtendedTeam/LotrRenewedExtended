@@ -281,6 +281,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
 
+		// hired unit menus
+		addD("gui.lotrextended.menu.equipment", "Equipment");
+		addD("gui.lotrextended.menu.back", "Back");
+
 		// Command strings
 		addD("command.lotrextended.info.listPatches", "Injected patches:");
 		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
@@ -332,7 +336,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
-		
+		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
+		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
+
 	}
 
 	@Override
