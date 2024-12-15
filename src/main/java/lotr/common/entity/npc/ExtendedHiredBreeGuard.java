@@ -219,7 +219,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     @Override
     public ITextComponent getHiredUnitName() {
-        return new TranslationTextComponent("entity.lotr.shortname.hired_bree_guard",
+        return new TranslationTextComponent("entity_shortname.lotrextended.hired_bree_guard",
                 new StringTextComponent(getPersonalInfo().getName()));
     }
 

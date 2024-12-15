@@ -19,12 +19,12 @@ import net.minecraft.world.World;
 
 public class ExtendedHiredUnitHelper {
 
-    public static final ItemStack BREE_GUARD_HEAD = new ItemStack(Items.IRON_HELMET).setHoverName(new StringTextComponent("Base Helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_CHEST = new ItemStack(Items.LEATHER_CHESTPLATE).setHoverName(new StringTextComponent("Base Chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_LEGS = new ItemStack(Items.CHAINMAIL_LEGGINGS).setHoverName(new StringTextComponent("Base Leggings").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_FEET = new ItemStack(Items.CHAINMAIL_BOOTS).setHoverName(new StringTextComponent("Base Boots").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_MAINHAND  = new ItemStack(LOTRItems.IRON_SPEAR.get()).setHoverName(new StringTextComponent("Base Weapon").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_OFFHAND = new ItemStack(Items.SHIELD).setHoverName(new StringTextComponent("Base Shield").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_HEAD = new ItemStack(Items.IRON_HELMET).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_CHEST = new ItemStack(Items.LEATHER_CHESTPLATE).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_LEGS = new ItemStack(Items.CHAINMAIL_LEGGINGS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.leggings").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_FEET = new ItemStack(Items.CHAINMAIL_BOOTS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.boots").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_MAINHAND  = new ItemStack(LOTRItems.IRON_SPEAR.get()).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.weapon").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_OFFHAND = new ItemStack(Items.SHIELD).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.shield").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
         if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getOwner() instanceof ServerPlayerEntity) {
@@ -39,8 +39,7 @@ public class ExtendedHiredUnitHelper {
         }
         String s = "death.attack." + source.msgId;
 
-        // TODO: This translation text needs to be brought in and updated
-        TranslationTextComponent companionName = new TranslationTextComponent("notification.hired_companion_prefix", unit.getHiredUnitName());
+        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unit.getHiredUnitName());
 
         return killer != null ? new TranslationTextComponent(s, companionName, killer.getDisplayName()) : new TranslationTextComponent(s, companionName);
     }
@@ -56,6 +55,7 @@ public class ExtendedHiredUnitHelper {
             unit.setBaseHealth(unit.getBaseHealth() + 2);
 
             if (unit.getOwner() != null) {
+                // TODO: Add a chat translation for this line
                 unit.getOwner().sendMessage(
                         new StringTextComponent("Your hired companion ").
                                 append(unit.getHiredUnitName()).
