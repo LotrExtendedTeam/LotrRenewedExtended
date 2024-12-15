@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 
 import lotr.common.init.ExtendedItems;
@@ -285,6 +286,10 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRHoeItem ) {
+				additems.put(item.getKey(), item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof ExtendedChiselItem ) {
 				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
