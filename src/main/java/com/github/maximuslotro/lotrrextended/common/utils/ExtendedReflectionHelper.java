@@ -10,9 +10,6 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.data.PlayerDataModule;
-import lotr.common.tileentity.KegTileEntity;
-import lotr.common.tileentity.PlateTileEntity;
-import net.minecraft.util.ResourceLocation;
 
 public class ExtendedReflectionHelper {
 
@@ -27,50 +24,6 @@ public class ExtendedReflectionHelper {
 			ExtendedLog.error("Reflection failed to get PlayerDataModule UUID");
 		}
 		return underlyingPlayerUUID;
-	}
-
-	public static ResourceLocation getKegLootTable(KegTileEntity data) {
-		ResourceLocation location = null;
-		try {
-			Field field = KegTileEntity.class.getField("lootTable");
-			location = (ResourceLocation) field.get(data);
-		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to get keg LootTable");
-		}
-		return location;
-	}
-
-	public static void setKegloottable(KegTileEntity data, ResourceLocation location, long seed) {
-		try {
-			Method fooMethod = KegTileEntity.class.getMethod("setLootTable", ResourceLocation.class, long.class);
-			fooMethod.invoke(data, location, seed);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to set keg LootTable");
-		}
-	}
-
-	public static ResourceLocation getPlateLootTable(PlateTileEntity data) {
-		ResourceLocation location = null;
-		try {
-			Field field = PlateTileEntity.class.getField("lootTable");
-			location = (ResourceLocation) field.get(data);
-		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to get plate LootTable");
-		}
-		return location;
-	}
-	
-	public static void setPlateloottable(PlateTileEntity data, ResourceLocation location, long seed) {
-		try {
-			Method fooMethod = PlateTileEntity.class.getMethod("setLootTable", ResourceLocation.class, long.class);
-			fooMethod.invoke(data, location, seed);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to set plate LootTable");
-		}
 	}
 
 	public static void setTorchValues(Object obj, LOTRTorchBlock copyFromBlock) {

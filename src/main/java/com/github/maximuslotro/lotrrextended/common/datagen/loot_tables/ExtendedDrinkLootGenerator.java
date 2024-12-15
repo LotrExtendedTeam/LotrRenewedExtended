@@ -16,27 +16,27 @@ import net.minecraft.loot.StandaloneLootEntry;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedKegLootGenerator extends ChestLootTables  {
+public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
-		make(consumer, ExtendedLootTables.HOBBIT_KEGS, makePool()
+		make(consumer, ExtendedLootTables.HOBBIT_KEGS, ExtendedLootTables.HOBBIT_VESSELS, makePool()
 				.add(addEntry(LOTRItems.ALE.get(), 100))
 				.add(addEntry(LOTRItems.CIDER.get(), 50))
 				.add(addEntry(LOTRItems.PERRY.get(), 50))
 				.add(addEntry(LOTRItems.CHERRY_LIQUEUR.get(), 50))
 				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
 
-		make(consumer, ExtendedLootTables.RANGER_KEGS, makePool()
+		make(consumer, ExtendedLootTables.RANGER_KEGS, ExtendedLootTables.RANGER_VESSELS, makePool()
 				.add(addEntry(LOTRItems.ALE.get(), 100))
 				.add(addEntry(LOTRItems.CIDER.get(), 50))
 				.add(addEntry(LOTRItems.PERRY.get(), 50))
 				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
 
-		make(consumer, ExtendedLootTables.GUNDABAD_KEGS, makePool()
+		make(consumer, ExtendedLootTables.GUNDABAD_KEGS, ExtendedLootTables.GUNDABAD_VESSELS, makePool()
 				.add(addEntry(LOTRItems.ORC_DRAUGHT.get())));
 
-		make(consumer, ExtendedLootTables.BREE_KEGS, makePool()
+		make(consumer, ExtendedLootTables.BREE_KEGS, ExtendedLootTables.BREE_VESSELS, makePool()
 				.add(addEntry(LOTRItems.ALE.get(), 15))
 				.add(addEntry(LOTRItems.CIDER.get(), 10))
 				.add(addEntry(LOTRItems.PERRY.get(), 5))
@@ -56,7 +56,8 @@ public class ExtendedKegLootGenerator extends ChestLootTables  {
 		return LootPool.lootPool().setRolls(ConstantRange.exactly(1));
 	}
 
-	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation t, LootPool.Builder pool){
-		consumer.accept(t, LootTable.lootTable().withPool(pool));
+	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation keg, ResourceLocation vessel, LootPool.Builder pool){
+		consumer.accept(keg, LootTable.lootTable().withPool(pool));
+		consumer.accept(vessel, LootTable.lootTable().withPool(pool));
 	}
 }

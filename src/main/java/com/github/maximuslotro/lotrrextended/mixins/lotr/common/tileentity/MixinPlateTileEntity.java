@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import lotr.common.inventory.ExtendedSingleItemDataHolderIInventory;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
+import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +34,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
 @Mixin(PlateTileEntity.class)
-public class MixinPlateTileEntity {
+public class MixinPlateTileEntity implements ExtendedLootTableAccessor{
 
 	@Nullable
 	public ResourceLocation lootTable;
@@ -128,11 +129,14 @@ public class MixinPlateTileEntity {
 		}
 	}
 
-	/**
-	 * This method is called using reflection for now
-	 * */
+	@Override
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
+	}
+
+	@Override
+	public ResourceLocation getLootTable() {
+		return lootTable;
 	}
 }

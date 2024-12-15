@@ -40,6 +40,7 @@
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
 		"lotr.common.tileentity.MixinKegTileEntity",
 		"lotr.common.tileentity.MixinPlateTileEntity",
+		"lotr.common.tileentity.MixinVesselDrinkTileEntity",
 		"lotr.common.world.biome.MixinAndrastBiome",
 		"lotr.common.world.biome.MixinAnduinValeBiome",
 		"lotr.common.world.biome.MixinAnorienBiome",

@@ -24,6 +24,7 @@ import lotr.common.recipe.DrinkBrewingRecipe;
 import lotr.common.recipe.LOTRRecipes;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.util.DrinkUtils;
+import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -47,7 +48,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 @Mixin(KegTileEntity.class)
-public class MixinKegTileEntity {
+public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 
 	@Nullable
 	public ResourceLocation lootTable;
@@ -288,11 +289,14 @@ public class MixinKegTileEntity {
 		}
 	}
 
-	/**
-	 * This method is called using reflection for now
-	 * */
+	@Override
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
+	}
+
+	@Override
+	public ResourceLocation getLootTable() {
+		return lootTable;
 	}
 }
