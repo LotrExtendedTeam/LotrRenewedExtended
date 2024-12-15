@@ -42,7 +42,7 @@ public class ExtendedReflectionHelper {
 
 	public static void setKegloottable(KegTileEntity data, ResourceLocation location, long seed) {
 		try {
-			Method fooMethod = KegTileEntity.class.getMethod("setLootTable",ResourceLocation.class, long.class);
+			Method fooMethod = KegTileEntity.class.getMethod("setLootTable", ResourceLocation.class, long.class);
 			fooMethod.invoke(data, location, seed);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();

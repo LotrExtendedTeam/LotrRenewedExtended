@@ -14,7 +14,7 @@ import net.minecraft.world.GameRules.RuleType;
 public class MixinLOTRGameRules {
 
 	/**
-	 * @reason Because I'm Lazy and didn't want to write an inject
+	 * @reason Need to remove custom Waypoint Gamerule to allow for differentiating between legacy and renewed Waypoints in the future
 	 * @author maximuslotro
 	 * */
 	@Overwrite(remap = false)

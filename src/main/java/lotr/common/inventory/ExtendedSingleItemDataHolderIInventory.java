@@ -4,7 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class ExtendedKegDataHolderIInventory implements IInventory{
+public class ExtendedSingleItemDataHolderIInventory implements IInventory{
 	private ItemStack inventory = ItemStack.EMPTY;
 
 	@Override

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.inv.KegContainer;
-import lotr.common.inventory.ExtendedKegDataHolderIInventory;
+import lotr.common.inventory.ExtendedSingleItemDataHolderIInventory;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.recipe.DrinkBrewingRecipe;
@@ -259,7 +259,7 @@ public class MixinKegTileEntity {
 	}
 
 	/**
-	 * Extended method to load in a loot table for kegs, uses chest loottable code
+	 * Extended method to load in a loot table for kegs, uses chest loot-table code
 	 * */
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
@@ -276,7 +276,7 @@ public class MixinKegTileEntity {
 				if (player != null) {
 					lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
 				}
-				ExtendedKegDataHolderIInventory placeHolder = new ExtendedKegDataHolderIInventory();
+				ExtendedSingleItemDataHolderIInventory placeHolder = new ExtendedSingleItemDataHolderIInventory();
 				loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
 				entity.fillBrewedWith(DrinkUtils.createDrink(new Random(), placeHolder.getItem(0)));
 			}

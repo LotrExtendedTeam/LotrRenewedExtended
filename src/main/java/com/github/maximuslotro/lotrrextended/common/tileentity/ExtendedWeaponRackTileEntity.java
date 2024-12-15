@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -41,10 +42,12 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 
 	@Override
 	public void tick() {
-		if (this.lootTable != null && !level.isClientSide && playerInDistance() && !ticked) {
-			ticked=true;
-			this.unpackLootTable((PlayerEntity)null);
-			this.markAndUpdate();
+		if(!ExtendedServerConfig.enableDevMode.get()) {
+			if (this.lootTable != null && !level.isClientSide && playerInDistance() && !ticked) {
+				ticked=true;
+				this.unpackLootTable((PlayerEntity)null);
+				this.markAndUpdate();
+			}
 		}
 	}
 

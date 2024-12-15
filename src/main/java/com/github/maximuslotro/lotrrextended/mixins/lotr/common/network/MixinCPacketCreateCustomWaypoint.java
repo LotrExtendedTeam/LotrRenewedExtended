@@ -27,14 +27,16 @@ import net.minecraft.world.server.ServerWorld;
 public class MixinCPacketCreateCustomWaypoint {
 
 	/**
-	 * @reason Because I'm Lazy and didn't want to write an inject
+	 * @reason Need to change removed Gamerule call
 	 * @author maximuslotro
 	 * */
 	@Overwrite(remap = false)
 	private static void doCreateCustomWaypoint(CPacketCreateCustomWaypoint packet, ServerPlayerEntity player, FastTravelDataModule ftData) {
 		ServerWorld world = player.getLevel();
+		// Extended Start
 		if (!ExtendedServerConfig.enableRenewedWaypointCreation.get()) {
 			LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.create.disabled.gamerule"));
+		// Extended End
 		} else if (!LOTRWorldTypes.hasMapFeatures(world)) {
 			LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.create.disabled.worldtype"));
 		} else if (!ftData.canCreateOrAdoptMoreCustomWaypoints()) {
