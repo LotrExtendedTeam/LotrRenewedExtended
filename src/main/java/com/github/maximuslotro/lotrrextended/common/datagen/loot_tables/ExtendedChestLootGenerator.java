@@ -21,8 +21,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
-		//revamp
-		//ADD cooked venison, plum, hobbit pancake, corn, cooked corn, leek, roasted chestnut, leek soup, turnip, cooked turnip, marzipan, chocolate marzipan, 
+		//TODO add cooked venison, corn, cooked corn, leek, leek soup, turnip, cooked turnip, marzipan, chocolate marzipan, 
 		//ale, cider, perry, cherry liqueur, apple juice, 
 		consumer.accept(ExtendedLootTables.HOBBIT_LARDER, LootTable.lootTable()
 			.withPool(LootPool.lootPool()
@@ -60,6 +59,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.COCOA_BEANS).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(2, 6))))
 				.add(EItemLootEntry.lootItem(LOTRItems.PEAR.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(ExtendedItems.PLUM.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BUTTER.get()).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
 				.add(EItemLootEntry.lootItem(LOTRItems.CHERRY.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
 				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_PLATE.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
 				.add(EItemLootEntry.lootItem(LOTRItems.FINE_PLATE.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
@@ -71,12 +71,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.CRANBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
 				.add(EItemLootEntry.lootItem(ExtendedItems.ELDERBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
 				.add(EItemLootEntry.lootItem(ExtendedItems.RASPBERRY.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_PANCAKE.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get()).setWeight(6).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(50).apply(SetCount.setCount(RandomValueRange.between(2, 4))))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setCount(1))));
 
-		//revamp
 		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE, LootTable.lootTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(1, 2))
@@ -89,12 +91,11 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(25).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setCount(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setCount(1))));
 
-		//revamp
 		consumer.accept(ExtendedLootTables.HOBBIT_LIVING, LootTable.lootTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(3, 6))
@@ -258,6 +259,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.STICK).setWeight(40).apply(SetCount.setCount(RandomValueRange.between(5, 12))))
 				.add(EItemLootEntry.lootItem(Items.WHEAT).setWeight(60).apply(SetCount.setCount(RandomValueRange.between(4, 10))))
 				.add(EItemLootEntry.lootItem(Items.WHEAT_SEEDS).setWeight(55).apply(SetCount.setCount(RandomValueRange.between(2, 7))))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BUTTER.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(80).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
 				.add(EItemLootEntry.lootItem(Items.COOKED_PORKCHOP).setWeight(70).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
 				.add(EItemLootEntry.lootItem(Items.BEEF).setWeight(80).apply(SetCount.setCount(RandomValueRange.between(2, 5))))
