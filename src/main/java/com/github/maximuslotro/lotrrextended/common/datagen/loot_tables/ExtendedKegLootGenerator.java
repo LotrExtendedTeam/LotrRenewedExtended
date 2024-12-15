@@ -19,25 +19,30 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedKegLootGenerator extends ChestLootTables  {
 
 	@Override
-    public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
+	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
 		make(consumer, ExtendedLootTables.HOBBIT_KEGS, makePool()
-                		.add(addEntry(LOTRItems.ALE.get(), 100))
-                		.add(addEntry(LOTRItems.CIDER.get(), 50))
-                		.add(addEntry(LOTRItems.PERRY.get(), 50))
-                		.add(addEntry(LOTRItems.CHERRY_LIQUEUR.get(), 50))
-                		.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
+				.add(addEntry(LOTRItems.ALE.get(), 100))
+				.add(addEntry(LOTRItems.CIDER.get(), 50))
+				.add(addEntry(LOTRItems.PERRY.get(), 50))
+				.add(addEntry(LOTRItems.CHERRY_LIQUEUR.get(), 50))
+				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
 
 		make(consumer, ExtendedLootTables.RANGER_KEGS, makePool()
-                		.add(addEntry(LOTRItems.ALE.get(), 100))
-                		.add(addEntry(LOTRItems.CIDER.get(), 50))
-                		.add(addEntry(LOTRItems.PERRY.get(), 50))
-                		.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
+				.add(addEntry(LOTRItems.ALE.get(), 100))
+				.add(addEntry(LOTRItems.CIDER.get(), 50))
+				.add(addEntry(LOTRItems.PERRY.get(), 50))
+				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
 
-		make(consumer, ExtendedLootTables.GUNDABAD_KEGS, makePool().add(addEntry(LOTRItems.ORC_DRAUGHT.get(), 100)));
+		make(consumer, ExtendedLootTables.GUNDABAD_KEGS, makePool()
+				.add(addEntry(LOTRItems.ORC_DRAUGHT.get())));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){
 		return ItemLootEntry.lootTableItem(item).setWeight(weight).apply(SetCount.setCount(ConstantRange.exactly(1)));
+	}
+
+	public StandaloneLootEntry.Builder<?> addEntry(Item item){
+		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(ConstantRange.exactly(1)));
 	}
 
 	public LootPool.Builder makePool(){
