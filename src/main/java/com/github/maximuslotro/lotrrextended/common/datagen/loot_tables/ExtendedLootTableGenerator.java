@@ -33,7 +33,8 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 				Pair.of(ExtendedBlockLootGenerator::new, LootParameterSets.BLOCK),
 				Pair.of(ExtendedChestLootGenerator::new, LootParameterSets.CHEST),
 				Pair.of(ExtendedEntityLootGenerator::new, LootParameterSets.ENTITY),
-				Pair.of(ExtendedKegLootGenerator::new, LootParameterSets.CHEST));
+				Pair.of(ExtendedKegLootGenerator::new, LootParameterSets.CHEST),
+				Pair.of(ExtendedPlateLootGenerator::new, LootParameterSets.CHEST));
 	}
 
 	@Override

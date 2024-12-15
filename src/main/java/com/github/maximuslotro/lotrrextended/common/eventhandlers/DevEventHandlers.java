@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRac
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
 import lotr.common.tileentity.KegTileEntity;
+import lotr.common.tileentity.PlateTileEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
@@ -77,6 +78,16 @@ public class DevEventHandlers {
 		if (tileentity instanceof KegTileEntity&&ExtendedReflectionHelper.getKegLootTable((KegTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
+			TextComponent comp2 = new StringTextComponent("Location: "+ExtendedReflectionHelper.getKegLootTable((KegTileEntity)tileentity).toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
+			return;
+		}
+		if (tileentity instanceof PlateTileEntity&&ExtendedReflectionHelper.getPlateLootTable((PlateTileEntity)tileentity)!=null && !event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Plate has a devworld loot-table set!");
 			comp.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
 			TextComponent comp2 = new StringTextComponent("Location: "+ExtendedReflectionHelper.getKegLootTable((KegTileEntity)tileentity).toString());

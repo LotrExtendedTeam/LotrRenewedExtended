@@ -13,6 +13,7 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
+import lotr.common.tileentity.PlateTileEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
@@ -76,6 +77,11 @@ public class ExtendedStructureHelperComamnd {
 		if (tileentity instanceof KegTileEntity) {
 			ExtendedReflectionHelper.setKegloottable((KegTileEntity)tileentity, resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Keg Location: "+resourceLocation.toString()), false);
+			return Command.SINGLE_SUCCESS;
+		}
+		if (tileentity instanceof PlateTileEntity) {
+			ExtendedReflectionHelper.setPlateloottable((PlateTileEntity)tileentity, resourceLocation, 0L);
+			source.sendSuccess(new StringTextComponent("Set Plate Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof ExtendedWeaponRackTileEntity) {

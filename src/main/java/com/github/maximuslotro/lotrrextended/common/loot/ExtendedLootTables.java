@@ -32,6 +32,13 @@ public class ExtendedLootTables {
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = register("kegs/gundabad");
+	public static final ResourceLocation BREE_KEGS = register("kegs/bree");
+
+	public static final ResourceLocation HOBBIT_PLATES = register("plates/hobbit");
+	public static final ResourceLocation RANGER_PLATES = register("plates/ranger");
+	public static final ResourceLocation GUNDABAD_PLATES = register("plates/gundabad");
+	public static final ResourceLocation BREE_MAN_PLATES = register("plates/bree_man");
+	public static final ResourceLocation BREE_HOBBIT_PLATES = register("plates/bree_hobbit");
 	public static void init() {}
 
 	private static ResourceLocation register(String location) {
