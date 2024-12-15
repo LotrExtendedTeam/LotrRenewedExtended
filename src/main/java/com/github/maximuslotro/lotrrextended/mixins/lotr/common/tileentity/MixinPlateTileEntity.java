@@ -16,7 +16,6 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.inventory.ExtendedSingleItemDataHolderIInventory;
-import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -29,19 +28,32 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
 @Mixin(PlateTileEntity.class)
-public class MixinPlateTileEntity implements ExtendedLootTableAccessor{
+public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
 
 	@Nullable
 	public ResourceLocation lootTable;
 	protected long lootTableSeed;
-
+	private boolean ticked=false;
+	
 	@Shadow(remap = false)
 	private ItemStack foodItem;
+
+	@Override
+	public void tick() {
+		if(!ExtendedServerConfig.enableDevMode.get()) {
+			PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
+			if (this.lootTable != null && entity.getLevel()!=null && !entity.getLevel().isClientSide() && !ticked) {
+				ticked=true;
+				unpackLootTablePlate((PlayerEntity)null);
+			}
+		}
+	}
 
 	//Handle saving loot-tables
 	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
@@ -70,7 +82,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor{
 	@Overwrite(remap = false)
 	public ItemStack getFoodItem() {
 		// Extended Start
-		KegTileEntity entity = ((KegTileEntity)(Object)(this));
+		PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 		if(entity.hasLevel() && !entity.getLevel().isClientSide()) {
 			unpackLootTablePlate((PlayerEntity)null);
 		}
@@ -97,7 +109,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor{
 		PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 		try {
 			if(!ExtendedServerConfig.enableDevMode.get()) {
-				if (this.lootTable != null && entity.getLevel() != null && entity.getLevel().getServer() != null) {
+				if (this.lootTable != null && entity.getLevel() != null && !entity.getLevel().isClientSide() && entity.getLevel().getServer() != null ) {
 					LootTable loottable = entity.getLevel().getServer().getLootTables().get(lootTable);
 					if (player instanceof ServerPlayerEntity) {
 						CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) player, lootTable);
@@ -125,7 +137,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor{
 			ExtendedLog.error("Caught a null-pointer exception while unpacking plate loot-table");
 			ExtendedLog.error("Location: "+lootTable.toString()+", Pos: "+entity.getBlockPos().toString());
 			e.printStackTrace();
-			ExtendedLog.error("Please report this if it happens again");
+			ExtendedLog.error("Please report this if it happens!");
 		}
 	}
 
@@ -133,6 +145,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor{
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
+		ticked = false;
 	}
 
 	@Override

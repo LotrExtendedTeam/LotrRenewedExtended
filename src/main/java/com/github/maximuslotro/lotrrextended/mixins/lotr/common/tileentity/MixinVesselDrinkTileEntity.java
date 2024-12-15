@@ -18,9 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import lotr.common.inventory.ExtendedSingleItemDataHolderIInventory;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselType;
-import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import lotr.common.util.DrinkUtils;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
@@ -32,21 +30,34 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
 @Mixin(VesselDrinkTileEntity.class)
-public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor {
+public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
 	@Nullable
 	public ResourceLocation lootTable;
 	protected long lootTableSeed;
+	private boolean ticked=false;
 
 	@Shadow(remap = false)
 	private ItemStack drinkItem;
 
 	@Shadow(remap = false)
 	private VesselType vesselType;
+
+	@Override
+	public void tick() {
+		if(!ExtendedServerConfig.enableDevMode.get()) {
+			VesselDrinkTileEntity entity = ((VesselDrinkTileEntity)(Object)(this));
+			if (this.lootTable != null && entity.getLevel()!=null && !entity.getLevel().isClientSide() && !ticked) {
+				ticked=true;
+				unpackLootTableVessel((PlayerEntity)null);
+			}
+		}
+	}
 
 	//Handle saving loot-tables
 	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
@@ -75,7 +86,7 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite(remap = false)
 	public ItemStack getVesselItem() {
 		// Extended Start
-		KegTileEntity entity = ((KegTileEntity)(Object)(this));
+		VesselDrinkTileEntity entity = ((VesselDrinkTileEntity)(Object)(this));
 		if(entity.hasLevel() && !entity.getLevel().isClientSide()) {
 			unpackLootTableVessel((PlayerEntity)null);
 		}
@@ -113,7 +124,7 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor {
 		VesselDrinkTileEntity entity = ((VesselDrinkTileEntity)(Object)(this));
 		try {
 			if(!ExtendedServerConfig.enableDevMode.get()) {
-				if (this.lootTable != null && entity.getLevel() != null && entity.getLevel().getServer() != null) {
+				if (this.lootTable != null && entity.getLevel() != null && !entity.getLevel().isClientSide() && entity.getLevel().getServer() != null ) {
 					LootTable loottable = entity.getLevel().getServer().getLootTables().get(lootTable);
 					if (player instanceof ServerPlayerEntity) {
 						CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) player, lootTable);
@@ -129,14 +140,16 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor {
 					loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
 					ItemStack drink = placeHolder.getItem(0);
 					VesselDrinkItem.setVessel(drink, vesselType);
-					entity.setVesselItem(DrinkUtils.createDrink(new Random(), drink));
+					VesselDrinkItem.setPotency(drink, VesselDrinkItem.Potency.randomForNPC(new Random()));
+					drink.setCount(1);
+					entity.setVesselItem(drink);
 				}
 			}
 		}catch(NullPointerException e) {
 			ExtendedLog.error("Caught a null-pointer exception while unpacking vessel loot-table");
 			ExtendedLog.error("Location: "+lootTable.toString()+", Pos: "+entity.getBlockPos().toString());
 			e.printStackTrace();
-			ExtendedLog.error("Please report this if it happens again");
+			ExtendedLog.error("Please report this if it happens!");
 		}
 	}
 
@@ -144,6 +157,7 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor {
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
+		ticked = false;
 	}
 
 	@Override

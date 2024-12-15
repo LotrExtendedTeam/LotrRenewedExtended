@@ -82,7 +82,7 @@ public class ExtendedStructureHelperComamnd {
 		}
 		if (tileentity instanceof VesselDrinkTileEntity) {
 			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
-			source.sendSuccess(new StringTextComponent("Set Plate Location: "+resourceLocation.toString()), false);
+			source.sendSuccess(new StringTextComponent("Set Vessel Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof PlateTileEntity) {
