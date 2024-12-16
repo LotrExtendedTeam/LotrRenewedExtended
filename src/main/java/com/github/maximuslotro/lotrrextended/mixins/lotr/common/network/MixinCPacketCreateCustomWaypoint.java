@@ -27,21 +27,25 @@ import net.minecraft.world.server.ServerWorld;
 public class MixinCPacketCreateCustomWaypoint {
 
 	/**
-	 * @reason Because I'm Lazy and didn't want to write an inject
+	 * @reason Need to change removed Gamerule call
 	 * @author maximuslotro
 	 * */
 	@Overwrite(remap = false)
 	private static void doCreateCustomWaypoint(CPacketCreateCustomWaypoint packet, ServerPlayerEntity player, FastTravelDataModule ftData) {
 		ServerWorld world = player.getLevel();
+		// Extended Start
 		if (!ExtendedServerConfig.enableRenewedWaypointCreation.get()) {
 			LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.create.disabled.gamerule"));
+		// Extended End
 		} else if (!LOTRWorldTypes.hasMapFeatures(world)) {
 			LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.create.disabled.worldtype"));
 		} else if (!ftData.canCreateOrAdoptMoreCustomWaypoints()) {
 			LOTRLog.warn("Player %s tried to create a custom waypoint but has reached their limit", UsernameHelper.getRawUsername(player));
 		} else {
+			// Extended Start
 			String waypointName = ExtendedReflectionHelper.getStringFieldFromClass(CPacketCreateCustomWaypoint.class, packet, "name");
 			String waypointLore = ExtendedReflectionHelper.getStringFieldFromClass(CPacketCreateCustomWaypoint.class, packet, "lore");
+			// Extended End
 			if (waypointName==null||waypointName.isEmpty()) {
 				LOTRLog.warn("Player %s tried to create a custom waypoint with a blank name", UsernameHelper.getRawUsername(player));
 			} else if (waypointName.length() > 40) {
@@ -50,7 +54,9 @@ public class MixinCPacketCreateCustomWaypoint {
 				LOTRLog.warn("Player %s tried to create a custom waypoint with lore too long (%s)", UsernameHelper.getRawUsername(player), waypointLore);
 			} else {
 				boolean isPublic = false;
+				// Extended Start
 				Boolean retrievedValue = ExtendedReflectionHelper.getBooleanFieldFromClass(CPacketCreateCustomWaypoint.class, packet, "isPublic");
+				// Extended End
 				if(retrievedValue==null) {
 					ExtendedLog.error("Failed to parse CreateCustomWaypointPacket public modifier! Setting waypoint to private by default!");
 				}else {

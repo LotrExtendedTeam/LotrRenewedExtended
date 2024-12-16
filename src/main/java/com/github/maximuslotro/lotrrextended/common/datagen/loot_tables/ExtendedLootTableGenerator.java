@@ -13,6 +13,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 
@@ -25,7 +26,9 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 	}
 
 	@Override
-	protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationtracker) {}
+	protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationtracker) {
+		ExtendedLog.info("Made "+map.size()+" Loot-Tables!");
+	}
 
 	@Override
 	protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
@@ -33,7 +36,9 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 				Pair.of(ExtendedBlockLootGenerator::new, LootParameterSets.BLOCK),
 				Pair.of(ExtendedChestLootGenerator::new, LootParameterSets.CHEST),
 				Pair.of(ExtendedEntityLootGenerator::new, LootParameterSets.ENTITY),
-				Pair.of(ExtendedKegLootGenerator::new, LootParameterSets.CHEST));
+				Pair.of(ExtendedDrinkLootGenerator::new, LootParameterSets.CHEST),
+				Pair.of(ExtendedPlateLootGenerator::new, LootParameterSets.CHEST),
+				Pair.of(ExtendedWeaponRackLootGenerator::new, LootParameterSets.CHEST));
 	}
 
 	@Override

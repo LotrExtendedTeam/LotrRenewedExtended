@@ -32,7 +32,9 @@ public abstract class MixinThrownPlateEntity extends ProjectileItemEntity{
 	private boolean breakGlass(BlockPos pos) {
 		BlockState state = level.getBlockState(pos);
 		if (state.getMaterial() == Material.GLASS) {
+			// Extended Start
 			boolean bannerProtection = ExtendedBannerProtectionManager.isBannerProtected(level, pos, new SingleProtectionInstance.LaunchedProtection(this), true, "breakGlass");
+			// Extended End
 			if (!bannerProtection) {
 				level.levelEvent((PlayerEntity) null, 2001, pos, Block.getId(state));
 				level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());

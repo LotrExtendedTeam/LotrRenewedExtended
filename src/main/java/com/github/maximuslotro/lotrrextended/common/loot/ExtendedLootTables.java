@@ -32,6 +32,26 @@ public class ExtendedLootTables {
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = register("kegs/gundabad");
+	public static final ResourceLocation BREE_KEGS = register("kegs/bree");
+
+	public static final ResourceLocation HOBBIT_VESSELS = register("vessels/hobbit");
+	public static final ResourceLocation RANGER_VESSELS = register("vessels/ranger");
+	public static final ResourceLocation GUNDABAD_VESSELS = register("vessels/gundabad");
+	public static final ResourceLocation BREE_VESSELS = register("vessels/bree");
+
+	public static final ResourceLocation HOBBIT_PLATES = register("plates/hobbit");
+	public static final ResourceLocation RANGER_PLATES = register("plates/ranger");
+	public static final ResourceLocation GUNDABAD_PLATES = register("plates/gundabad");
+	public static final ResourceLocation BREE_MAN_PLATES = register("plates/bree_man");
+	public static final ResourceLocation BREE_HOBBIT_PLATES = register("plates/bree_hobbit");
+
+	public static final ResourceLocation HOBBIT_WEAPONRACKS = register("weaponracks/hobbit");
+	public static final ResourceLocation RANGER_WEAPONRACKS = register("weaponracks/ranger");
+	public static final ResourceLocation GUNDABAD_WEAPONRACKS = register("weaponracks/gundabad");
+	public static final ResourceLocation BARROW_DOWN_WEAPONRACKS = register("weaponracks/barrow_down");
+	public static final ResourceLocation BREE_MAN_WEAPONRACKS = register("weaponracks/bree_man");
+	public static final ResourceLocation BREE_HOBBIT_WEAPONRACKS = register("weaponracks/bree_hobbit");
+
 	public static void init() {}
 
 	private static ResourceLocation register(String location) {
