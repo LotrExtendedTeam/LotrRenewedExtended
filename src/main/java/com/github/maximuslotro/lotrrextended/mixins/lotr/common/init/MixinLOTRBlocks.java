@@ -29,6 +29,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlo
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
@@ -732,6 +733,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
+		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", () -> new ExtendedLargeFlowerPotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 		//Banners
 		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN));
 		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN));

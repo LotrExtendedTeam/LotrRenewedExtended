@@ -896,6 +896,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Items.BRICKS))
 		.unlockedBy("has_bricks", has(Items.BRICKS))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_POT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.LARGE_FLOWER_POT.get())
+		.pattern("# #")
+		.pattern("###")
+		.define('#', Ingredient.of(Items.BRICKS))
+		.unlockedBy("has_bricks", has(Items.BRICKS))
+		.save(consumer, lotrLoc(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath()));
 		//Shields
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)

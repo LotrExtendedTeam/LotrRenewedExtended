@@ -606,4 +606,5 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CHISEL;
 
 	public static RegistryObject<Item> LARGE_POT;
+	public static RegistryObject<Item> LARGE_FLOWER_POT;
 }

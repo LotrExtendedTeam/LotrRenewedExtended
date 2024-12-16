@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
@@ -144,7 +145,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedLargePotBlock) {
-					genPotBlockItem((ExtendedLargePotBlock) block.getValue().get(), "block/"+block.getKey());
+					genLargePotBlockItem((ExtendedLargePotBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedLargeFlowerPotBlock) {
+					genLargeFlowerPotBlockItem((ExtendedLargeFlowerPotBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedChainBlock) {
@@ -1152,9 +1157,22 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+extendedReedBasketBlock.getRegistryName().getPath()).parent(modelFile);
 	}
 
-	private void genPotBlockItem(ExtendedLargePotBlock pot, String key) {
+	private void genLargePotBlockItem(ExtendedLargePotBlock pot, String key) {
 		registeredBlocks.add(pot);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_pot")).texture("pot", lotrExtendedLoc(key)).texture("particle", lotrExtendedLoc(key));
+		getVariantBuilder(pot).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedLargePotBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		});
+		itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genLargeFlowerPotBlockItem(ExtendedLargeFlowerPotBlock pot, String key) {
+		registeredBlocks.add(pot);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot")).texture("pot", lotrExtendedLoc(key)).texture("particle", lotrExtendedLoc(key));
 		getVariantBuilder(pot).forAllStates(state -> {
 			Direction facing = state.getValue(ExtendedLargePotBlock.FACING);
 			return ConfiguredModel.builder()

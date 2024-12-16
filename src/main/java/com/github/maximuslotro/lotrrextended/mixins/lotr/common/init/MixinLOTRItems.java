@@ -517,6 +517,7 @@ public class MixinLOTRItems {
 		ExtendedItems.MUD_FARMLAND = regBlockItemB(ExtendedBlocks.MUD_FARMLAND, LOTRItemGroups.DECO);
 
 		ExtendedItems.LARGE_POT = regBlockItemB(ExtendedBlocks.LARGE_POT, LOTRItemGroups.DECO);
+		ExtendedItems.LARGE_FLOWER_POT = regBlockItemB(ExtendedBlocks.LARGE_FLOWER_POT, LOTRItemGroups.DECO);
 		ExtendedItems.STONE_CHEST = regBlockItemB(ExtendedBlocks.STONE_CHEST, LOTRItemGroups.DECO);
 		ExtendedItems.REED_BASKET = regBlockItemB(ExtendedBlocks.REED_BASKET, LOTRItemGroups.DECO);
 		ExtendedItems.ORC_BARREL = regBlockItemB(ExtendedBlocks.ORC_BARREL, LOTRItemGroups.DECO);
