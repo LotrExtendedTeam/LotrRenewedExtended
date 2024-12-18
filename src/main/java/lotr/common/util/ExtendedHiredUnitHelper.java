@@ -55,11 +55,9 @@ public class ExtendedHiredUnitHelper {
             unit.setBaseHealth(unit.getBaseHealth() + 2);
 
             if (unit.getOwner() != null) {
-                // TODO: Add a chat translation for this line
                 unit.getOwner().sendMessage(
-                        new StringTextComponent("Your hired companion ").
-                                append(unit.getHiredUnitName()).
-                                append(" has reached level " + unit.getExpLvl() + "!"),
+                        new TranslationTextComponent("chat.lotrextended.hired_companion_levelup",
+                                unit.getHiredUnitId(), unit.getExpLvl()),
                         unit.getOwnerUUID());
             }
         } else {

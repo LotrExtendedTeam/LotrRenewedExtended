@@ -28,7 +28,7 @@ public interface ExtendedHirableEntity {
 
     void setMobKills(int kills);
 
-    void giveExperiencePoints(int points);
+    void giveExperiencePoints(float points);
 
     int getMobKills();
 

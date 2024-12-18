@@ -661,7 +661,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     // TODO: Make it so that hired units cannot be damaged by allied factions
 
-    public void giveExperiencePoints(int points) {
+    @Override
+    public void giveExperiencePoints(float points) {
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
     }
 }

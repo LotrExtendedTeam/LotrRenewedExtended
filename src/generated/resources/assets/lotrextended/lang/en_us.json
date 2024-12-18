@@ -940,6 +940,7 @@
   "block.minecraft.banner.lotrextended_gundabad_orc.red": "Red Gundabad Orc",
   "block.minecraft.banner.lotrextended_gundabad_orc.white": "White Gundabad Orc",
   "block.minecraft.banner.lotrextended_gundabad_orc.yellow": "Yellow Gundabad Orc",
+  "chat.lotrextended.hired_companion_levelup": "Your hired companion %1$s has reached level %2$s!",
   "chat.lotrextended.hired_companion_prefix": "Your hired companion %1$s",
   "chat.wandering_trader.arrive_near_player": "%1$s has arrived nearby %2$s",
   "chat.wandering_trader.arrive_near_you": "%1$s has arrived nearby",
