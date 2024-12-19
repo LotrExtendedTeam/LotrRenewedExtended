@@ -196,6 +196,9 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 			if(block.getValue().get() instanceof LOTRStrippedWoodBlock) {
 				tag(CHARRABLE_STRIPPED_WOODS).add(block.getValue().get());
 			}
+			if(block.getKey().contains("packed_fur")||block.getKey().contains("fur_bundle")||block.getKey().contains("fur_carpet")) {
+				tag(ExtendedTags.Blocks.FUR_BLOCKS).add(block.getValue().get());
+			}
 		}
 
 		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())

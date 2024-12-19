@@ -1720,6 +1720,7 @@ e02918e4d98c6e35c09919af69bdd016f8f65ddc data/forge/tags/blocks/ores/morgul_iron
 5feb69806b8ffbbd46e65545fc336e4f06dca19a data/forge/tags/blocks/ores/silver.json
 a5e4606d7446aebfb1b5cef2c5f5c1a5fa4e2e80 data/forge/tags/blocks/ores/sulfur.json
 496a024bd7c743c800dd8aa8dff840db8a4b29ef data/forge/tags/blocks/ores/tin.json
+e33c84db89e75593dead56c4e257a2ae776936db data/forge/tags/blocks/shearable.json
 1991e1db6bc4f111b87d1c0af98b33f3b051497f data/forge/tags/blocks/storage_blocks.json
 10faf0433c5c126e33d5ab14afcb9d599c6887c2 data/forge/tags/blocks/storage_blocks/black_uruk_steel.json
 41e68ac79bc9b193e9f9203a9ad0d3dfab12012a data/forge/tags/blocks/storage_blocks/durnor.json
@@ -3758,6 +3759,7 @@ d0b58c8311b5eaeaeee70106fb9acd958879d092 data/lotrextended/recipes/red_sand_grin
 1b59b977fbece2109220dbaf961e713c054c84ac data/lotrextended/recipes/white_sand_grinded_from_white_sandstone.json
 adcca3845e6cc195f6923bc7a1b17c30e094dff2 data/lotrextended/tags/blocks/banana_logs.json
 19c1062326b7326c1cabcec3af55181f0f8e3a28 data/lotrextended/tags/blocks/chestnut_logs.json
+b085c41b5afbbfef18b1c6a09af469f371f01daa data/lotrextended/tags/blocks/fur_blocks.json
 6c812bb15724e109c88223c397bec1dd021a34a0 data/lotrextended/tags/blocks/green_fire_base_blocks.json
 efbfc7b0eae5c4c8c46b8cb0b56cacdbc0eabf44 data/lotrextended/tags/blocks/moss_replaceable.json
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/blocks/plum_logs.json
