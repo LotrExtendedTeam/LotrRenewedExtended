@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 
 import net.minecraft.block.BlockState;
@@ -34,11 +35,14 @@ public class HackyChairDatabase {
 	}
 
 	public void handleServerStopping() {
-		// TODO see if we need to do some clensing of old data
+		// TODO see if we need to do some cleansing of old data
 	}
 
 	@SubscribeEvent(receiveCanceled = true)
 	public void extendedPlayerChairClick(RightClickBlock event) {
+		if(!ExtendedServerConfig.enableChairSlabSitting.get()) {
+			return;
+		}
 		// Check for valid player
 		if(event.getPlayer().getMainHandItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && (!event.getPlayer().isPassenger() || event.getPlayer().getVehicle() instanceof ExtendedChairEntity)) {
 			// Check for valid block location
