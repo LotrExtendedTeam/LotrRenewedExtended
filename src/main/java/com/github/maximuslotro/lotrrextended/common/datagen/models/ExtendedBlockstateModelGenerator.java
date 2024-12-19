@@ -36,6 +36,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -162,6 +163,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedBedBlock) {
 					genBedBlockItem((ExtendedBedBlock) block.getValue().get(), block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedVineBlock) {
+					genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedWargCarpetBlock) {
@@ -1046,6 +1051,45 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
         });
+	}
+
+	private void genVineBlock(ExtendedVineBlock bed, String name) {
+		registeredBlocks.add(bed);
+//	      this.blockStateOutput.accept(FinishedVariantBlockState.multiVariant(Blocks.VINE)
+//	    		  .with(BlockStateVariantBuilder.properties(BlockStateProperties.EAST, BlockStateProperties.NORTH, BlockStateProperties.SOUTH, BlockStateProperties.UP, BlockStateProperties.WEST)
+//	    				  .select(false, false, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")))
+//	    				  .select(false, false, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")))
+//	    				  .select(false, false, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(false, true, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
+//	    				  .select(true, false, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
+//	    				  .select(true, true, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")))
+//	    				  .select(true, false, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(false, false, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
+//	    				  .select(false, true, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
+//	    				  .select(true, false, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2_opposite")))
+//	    				  .select(false, true, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2_opposite")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(true, true, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")))
+//	    				  .select(true, false, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(false, true, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
+//	    				  .select(true, true, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
+//	    				  .select(true, true, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_4")))
+//	    				  .select(false, false, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_u")))
+//	    				  .select(false, false, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")))
+//	    				  .select(false, false, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(false, true, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
+//	    				  .select(true, false, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
+//	    				  .select(true, true, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")))
+//	    				  .select(true, false, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(false, false, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
+//	    				  .select(false, true, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
+//	    				  .select(true, false, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u_opposite")))
+//	    				  .select(false, true, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u_opposite")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(true, true, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")))
+//	    				  .select(true, false, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
+//	    				  .select(false, true, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
+//	    				  .select(true, true, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
+//	    				  .select(true, true, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_4u")))));
+
 	}
 
 	private void genBedBlockItem(ExtendedBedBlock bed, String name) {

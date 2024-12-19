@@ -607,4 +607,6 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> LARGE_POT;
 	public static RegistryObject<Item> LARGE_FLOWER_POT;
+
+	public static RegistryObject<Item> MORDOR_MOSS_VINES;
 }

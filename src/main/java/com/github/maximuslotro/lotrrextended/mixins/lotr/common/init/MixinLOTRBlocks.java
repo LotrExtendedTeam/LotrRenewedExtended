@@ -55,6 +55,7 @@ import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedTrapDoorBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
@@ -116,6 +117,7 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRParticles;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SandBlock;
@@ -745,6 +747,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER = registerB("blue_mountains_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BLUEMOUNTIANS));
 		ExtendedBlocks.GUNDABAD_ORC_BANNER = registerB("gundabad_orc_banner", () -> new ExtendedMEBannerBlock(BannerTypes.GUNDABAD_ORC));
 		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.GUNDABAD_ORC));
+
+		ExtendedBlocks.MORDOR_MOSS_VINES = registerB("mordor_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)

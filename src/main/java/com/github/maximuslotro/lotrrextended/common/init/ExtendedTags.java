@@ -58,6 +58,9 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> EDHELVIR_ORE = BlockTags.bind("forge:ores/edhelvir");
 		public static final ITag.INamedTag<Block> GULDURIL_ORE = BlockTags.bind("forge:ores/gulduril");
 
+		public static final ITag.INamedTag<Block> SHEARABLE_BLOCKS = BlockTags.bind("forge:shearable");
+
+		public static final ITag.INamedTag<Block> FUR_BLOCKS = BlockTags.bind("lotrextended:fur_blocks");
 		public static final ITag.INamedTag<Block> GREEN_FIRE_BASE_BLOCKS = BlockTags.bind("lotrextended:green_fire_base_blocks");
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
 		public static final ITag.INamedTag<Block> BANANA_LOGS = BlockTags.bind("lotrextended:banana_logs");

@@ -162,6 +162,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genCommandHorn(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
+			if(item.getKey().contains("vines")) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem ) {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
 				continue;

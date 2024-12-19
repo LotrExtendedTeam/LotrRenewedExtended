@@ -3,6 +3,7 @@
   "values": [
     "#forge:dirt",
     "#minecraft:base_stone_overworld",
+    "lotr:mordor_moss_vines",
     "minecraft:vine"
   ]
 }

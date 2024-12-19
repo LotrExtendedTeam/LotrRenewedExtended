@@ -460,4 +460,6 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> LARGE_POT;
 	public static RegistryObject<Block> LARGE_FLOWER_POT;
+
+	public static RegistryObject<Block> MORDOR_MOSS_VINES;
 }
