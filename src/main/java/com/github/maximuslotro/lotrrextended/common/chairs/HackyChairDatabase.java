@@ -8,14 +8,18 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 
+import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.VerticalOnlySlabBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -56,9 +60,20 @@ public class HackyChairDatabase {
 						return;
 					}
 				}
+				// Players can't sit on vertical slabs
+				if(state.getBlock() instanceof VerticalOnlySlabBlock) {
+					return;
+				}
 				if(state.getBlock() instanceof SlabBlock && state.hasProperty(SlabBlock.TYPE)) {
 					// Check valid orientation
 					if(state.getValue(SlabBlock.TYPE)==SlabType.BOTTOM) {
+						// Check if vertical slab, players can't sit on vertical slabs
+						if(state.getBlock() instanceof AxialSlabBlock && state.hasProperty(BlockStateProperties.AXIS)) {
+							System.out.println(state.getValue(BlockStateProperties.AXIS).toString());
+							if(state.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
+								return;
+							}
+						}
 						addNewChair(event.getWorld(), event.getPos(), event.getPlayer(), null);
 						return;
 					}
