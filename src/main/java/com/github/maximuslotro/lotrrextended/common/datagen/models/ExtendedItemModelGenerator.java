@@ -85,6 +85,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(item.getKey().contains("vines")) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(((BlockItem)item.getValue().get()) instanceof FallenLeavesItem) {
 				try {
 					genGenerated(item.getKey(), true, lotrExtendedLoc("block/"+item.getKey().substring(7)));
@@ -160,10 +164,6 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedCommandHornItem ) {
 				genCommandHorn(item.getKey(), "item/"+item.getKey());
-				continue;
-			}
-			if(item.getKey().contains("vines")) {
-				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem ) {
