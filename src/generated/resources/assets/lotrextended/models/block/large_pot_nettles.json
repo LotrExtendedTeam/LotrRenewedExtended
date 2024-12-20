@@ -1,0 +1,11 @@
+{
+  "parent": "lotrextended:block/template_large_flower_pot_nettles",
+  "textures": {
+    "pot": "lotrextended:block/large_flower_pot",
+    "particle": "lotrextended:block/large_flower_pot",
+    "stem": "lotr:block/nettles_stem",
+    "top": "lotr:block/nettles_top",
+    "middle": "lotr:block/nettles_middle",
+    "bottom": "lotr:block/nettles_bottom"
+  }
+}

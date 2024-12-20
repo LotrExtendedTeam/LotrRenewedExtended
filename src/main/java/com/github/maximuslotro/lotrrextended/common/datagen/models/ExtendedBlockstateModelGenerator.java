@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
@@ -51,6 +52,7 @@ import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.FallenLeavesBlock;
+import lotr.common.block.FourLeafCloverBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
@@ -72,16 +74,23 @@ import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.MineralBlock;
+import lotr.common.block.NettleBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.ThistleBlock;
+import lotr.common.block.ThreeLeafCloverBlock;
 import lotr.common.block.VerticalOnlySlabBlock;
 import lotr.common.block.VesselDrinkBlock;
+import lotr.common.block.WildPipeweedBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
+import net.minecraft.block.BambooBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.CactusBlock;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.NetherRootsBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
@@ -95,6 +104,7 @@ import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -1216,15 +1226,117 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genLargeFlowerPotBlockItem(ExtendedLargeFlowerPotBlock pot, String key) {
 		registeredBlocks.add(pot);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot")).texture("pot", lotrExtendedLoc(key)).texture("particle", lotrExtendedLoc(key));
-		getVariantBuilder(pot).forAllStates(state -> {
-			Direction facing = state.getValue(ExtendedLargePotBlock.FACING);
-			return ConfiguredModel.builder()
-                    .modelFile(modelFile)
-                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
-                    .build();
-		});
-		itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
+		if(pot.equals(ExtendedBlocks.LARGE_FLOWER_POT.get())) {
+			ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot")).texture("pot", lotrExtendedLoc(key)).texture("particle", lotrExtendedLoc(key));
+			getVariantBuilder(pot).forAllStates(state -> {
+				Direction facing = state.getValue(ExtendedLargePotBlock.FACING);
+				return ConfiguredModel.builder()
+	                    .modelFile(modelFile)
+	                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+	                    .build();
+			});
+			itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
+		}else {
+			BlockModelBuilder modelFile = null;
+			if(pot.getContent().getRegistryName().getNamespace().equals("minecraft")) {
+				if(pot.getContent() instanceof CactusBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_cactus"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"));
+				}else if(pot.getContent() instanceof BambooBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_bamboo"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"));
+				}else if(pot.getContent() instanceof NetherRootsBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_crossed"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("plant", new ResourceLocation("minecraft:block/"+pot.getContent().getRegistryName().getPath()+"_pot"));
+				}else if(pot.getContent().getRegistryName().getPath().contains("fern")) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_crossed_tinted"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("plant", new ResourceLocation("minecraft:block/"+pot.getContent().getRegistryName().getPath()));
+				}else {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_crossed"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("plant", new ResourceLocation("minecraft:block/"+pot.getContent().getRegistryName().getPath()));
+				}
+			}else {
+				if(pot.getContent().getRegistryName().getPath().contains("athelas")||pot.getContent() instanceof WildPipeweedBlock) {
+					if(pot.getContent().getRegistryName().getPath().contains("athelas")) {
+						modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_herb"))
+								.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("plant", new ResourceLocation("lotr:block/athelas"))
+								.texture("leaf", new ResourceLocation("lotr:block/athelas_leaf_small"));
+					}else {
+						modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_herb"))
+								.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("plant", new ResourceLocation("lotr:block/wild_pipeweed"))
+								.texture("leaf", new ResourceLocation("lotr:block/pipeweed_crop_stage1"));
+					}
+				}else if(pot.getContent().getRegistryName().getPath().contains("fernsprout")) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_crossed_tinted"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("plant", new ResourceLocation("lotr:block/"+pot.getContent().getRegistryName().getPath()));
+				}else if(pot.getContent() instanceof ThistleBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_herb_overlay"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("plant", new ResourceLocation("lotr:block/thistle"))
+							.texture("leaf", new ResourceLocation("lotr:block/thistle_leaf_small"))
+							.texture("plant_overlay", new ResourceLocation("lotr:block/thistle_overlay"));
+				}else if(pot.getContent() instanceof NettleBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_nettles"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("stem", new ResourceLocation("lotr:block/nettles_stem"))
+							.texture("top", new ResourceLocation("lotr:block/nettles_top"))
+							.texture("middle", new ResourceLocation("lotr:block/nettles_middle"))
+							.texture("bottom", new ResourceLocation("lotr:block/nettles_bottom"));
+				}else if(pot.getContent() instanceof FourLeafCloverBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_clover_four"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("stem", new ResourceLocation("lotr:block/clover_stem"))
+							.texture("petals", new ResourceLocation("lotr:block/clover_petals"));
+				}else if(pot.getContent() instanceof ThreeLeafCloverBlock) {
+					modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_clover"))
+							.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+							.texture("stem", new ResourceLocation("lotr:block/clover_stem"))
+							.texture("petals", new ResourceLocation("lotr:block/clover_petals"));
+				}else {
+					try {
+						modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_crossed"))
+								.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("plant", new ResourceLocation("lotr:block/"+pot.getContent().getRegistryName().getPath()));
+					}catch(IllegalArgumentException e) {
+						modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_flower_pot_crossed"))
+								.texture("pot", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("particle", new ResourceLocation("lotrextended:block/large_flower_pot"))
+								.texture("plant", new ResourceLocation("lotrextended:block/"+pot.getContent().getRegistryName().getPath()));
+					}
+				}
+			}
+			if(modelFile==null) {
+				ExtendedLog.error("Missing Pot Model for "+pot.getContent().getRegistryName().toString());
+				return;
+			}
+			BlockModelBuilder modelFileFinal = modelFile;
+			getVariantBuilder(pot).forAllStates(state -> {
+				Direction facing = state.getValue(ExtendedLargePotBlock.FACING);
+				return ConfiguredModel.builder()
+	                    .modelFile(modelFileFinal)
+	                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+	                    .build();
+			});
+		}
 	}
 
 	private void genAncientRuneBlockItem(ExtendedAncientStoneRuneBlock runeStone, String name) {

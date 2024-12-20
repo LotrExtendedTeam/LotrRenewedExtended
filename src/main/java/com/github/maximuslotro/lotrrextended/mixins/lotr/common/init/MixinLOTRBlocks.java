@@ -243,6 +243,15 @@ public class MixinLOTRBlocks {
 		return block;
     }
 
+	private static RegistryObject<Block> registerPOT(String name, Supplier<? extends Block> sup) {
+		RegistryObject<Block> block = BLOCKS.register(name, sup);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedBlocks.REGISTEREDBLOCKS.put(name, block);
+		}
+		ExtendedBlocks.REGISTEREDPOTS.put(name, block);
+		return block;
+    }
+	
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
@@ -264,6 +273,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CHESTNUT_LEAVES_FRUIT = registerB("chestnut_leaves_fruit", LOTRLeavesBlock::new);
 		ExtendedBlocks.CHESTNUT_SAPLING = registerB("chestnut_sapling", () -> new LOTRSaplingBlock(new ChestnutTree()));
 		ExtendedBlocks.POTTED_CHESTNUT_SAPLING = registerB("potted_chestnut_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.CHESTNUT_SAPLING));
+		registerPOT("large_pot_chestnut_sapling", () -> new ExtendedLargeFlowerPotBlock(ExtendedBlocks.CHESTNUT_SAPLING));
 		ExtendedBlocks.CHESTNUT_SLAB = registerB("chestnut_slab", () -> new AxialSlabBlock(ExtendedBlocks.CHESTNUT_PLANKS));
 		ExtendedBlocks.CHESTNUT_STAIRS = registerB("chestnut_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CHESTNUT_PLANKS));
 		ExtendedBlocks.CHESTNUT_FENCE = registerB("chestnut_fence", () -> new LOTRFenceBlock(ExtendedBlocks.CHESTNUT_PLANKS));
@@ -294,6 +304,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BANANA_LEAVES = registerB("banana_leaves", LOTRLeavesBlock::new);
 		ExtendedBlocks.BANANA_SAPLING = registerB("banana_sapling", () -> new LOTRSaplingBlock(new BananaTree()));
 		ExtendedBlocks.POTTED_BANANA_SAPLING = registerB("potted_banana_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.BANANA_SAPLING));
+		registerPOT("large_pot_banana_sapling", () -> new ExtendedLargeFlowerPotBlock(ExtendedBlocks.BANANA_SAPLING));
 		ExtendedBlocks.BANANA_SLAB = registerB("banana_slab", () -> new AxialSlabBlock(ExtendedBlocks.BANANA_PLANKS));
 		ExtendedBlocks.BANANA_STAIRS = registerB("banana_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.BANANA_PLANKS));
 		ExtendedBlocks.BANANA_FENCE = registerB("banana_fence", () -> new LOTRFenceBlock(ExtendedBlocks.BANANA_PLANKS));
@@ -326,6 +337,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PLUM_LEAVES_FRUIT = registerB("plum_leaves_fruit", LOTRLeavesBlock::new);
 		ExtendedBlocks.PLUM_SAPLING = registerB("plum_sapling", () -> new LOTRSaplingBlock(new PlumTree()));
 		ExtendedBlocks.POTTED_PLUM_SAPLING = registerB("potted_plum_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.PLUM_SAPLING));
+		registerPOT("large_pot_plum_sapling", () -> new ExtendedLargeFlowerPotBlock(ExtendedBlocks.PLUM_SAPLING));
 		ExtendedBlocks.PLUM_SLAB = registerB("plum_slab", () -> new AxialSlabBlock(ExtendedBlocks.PLUM_PLANKS));
 		ExtendedBlocks.PLUM_STAIRS = registerB("plum_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.PLUM_PLANKS));
 		ExtendedBlocks.PLUM_FENCE = registerB("plum_fence", () -> new LOTRFenceBlock(ExtendedBlocks.PLUM_PLANKS));
@@ -735,7 +747,90 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
-		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", () -> new ExtendedLargeFlowerPotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
+
+		// Large flower pot
+		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", () -> new ExtendedLargeFlowerPotBlock());
+		registerPOT("large_pot_apple_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.APPLE_SAPLING));
+		registerPOT("large_pot_aspen_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ASPEN_SAPLING));
+		registerPOT("large_pot_asphodel", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ASPHODEL));
+		registerPOT("large_pot_athelas", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ATHELAS));
+		registerPOT("large_pot_beech_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.BEECH_SAPLING));
+		registerPOT("large_pot_blackroot", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.BLACKROOT));
+		registerPOT("large_pot_bluebell", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.BLUEBELL));
+		registerPOT("large_pot_cedar_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.CEDAR_SAPLING));
+		registerPOT("large_pot_cherry_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.CHERRY_SAPLING));
+		ExtendedBlocks.LARGE_FLOWER_POT_CLOVER = registerPOT("large_pot_clover", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.CLOVER));
+		registerPOT("large_pot_culumalda_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.CULUMALDA_SAPLING));
+		registerPOT("large_pot_cypress_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.CYPRESS_SAPLING));
+		registerPOT("large_pot_dwarfwort", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.DWARFWORT));
+		registerPOT("large_pot_elanor", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ELANOR));
+		ExtendedBlocks.LARGE_FLOWER_POT_FERNSPROUT = registerPOT("large_pot_fernsprout", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.FERNSPROUT));
+		registerPOT("large_pot_fir_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.FIR_SAPLING));
+		ExtendedBlocks.LARGE_FLOWER_POT_FOUR_CLOVER = registerPOT("large_pot_four_leaf_clover", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.FOUR_LEAF_CLOVER));
+		registerPOT("large_pot_green_oak_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.GREEN_OAK_SAPLING));
+		registerPOT("large_pot_harad_daisy", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.HARAD_DAISY));
+		registerPOT("large_pot_holly_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.HOLLY_SAPLING));
+		registerPOT("large_pot_lairelosse_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.LAIRELOSSE_SAPLING));
+		registerPOT("large_pot_larch_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.LARCH_SAPLING));
+		registerPOT("large_pot_lavender", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.LAVENDER));
+		registerPOT("large_pot_lebethron_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.LEBETHRON_SAPLING));
+		registerPOT("large_pot_mallorn_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MALLORN_SAPLING));
+		registerPOT("large_pot_mallos", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MALLOS));
+		registerPOT("large_pot_maple_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MAPLE_SAPLING));
+		registerPOT("large_pot_marigold", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MARIGOLD));
+		registerPOT("large_pot_mirk_oak_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MIRK_OAK_SAPLING));
+		registerPOT("large_pot_mirk_shroom", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MIRK_SHROOM));
+		registerPOT("large_pot_mordor_thorn", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MORDOR_THORN));
+		registerPOT("large_pot_morgum_flower", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MORGUL_FLOWER));
+		registerPOT("large_pot_morgul_shroom", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.MORGUL_SHROOM));
+		ExtendedBlocks.LARGE_FLOWER_POT_NETTLES = registerPOT("large_pot_nettles", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.NETTLES));
+		registerPOT("large_pot_niphredil", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.NIPHREDIL));
+		registerPOT("large_pot_orange_chrysanthemum", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ORANGE_CHRYSANTHEMUM));
+		registerPOT("large_pot_pear_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.PEAR_SAPLING));
+		registerPOT("large_pot_pine_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.PINE_SAPLING));
+		registerPOT("large_pot_pink_chrysanthemum", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.PINK_CHRYSANTHEMUM));
+		registerPOT("large_pot_red_chrysanthemum", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.RED_CHRYSANTHEMUM));
+		registerPOT("large_pot_red_oak_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.RED_OAK_SAPLING));
+		registerPOT("large_pot_red_sand_gem", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.RED_SAND_GEM));
+		registerPOT("large_pot_shire_heather", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.SHIRE_HEATHER));
+		registerPOT("large_pot_simbelmyne", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.SIMBELMYNE));
+		registerPOT("large_pot_southbell", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.SOUTHBELL));
+		ExtendedBlocks.LARGE_FLOWER_POT_THISTLE = registerPOT("large_pot_thistle", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.THISTLE));
+		registerPOT("large_pot_white_chrysanthemum", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.WHITE_CHRYSANTHEMUM));
+		registerPOT("large_pot_wild_flax", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.WILD_FLAX));
+		registerPOT("large_pot_wild_pipeweed", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.WILD_PIPEWEED));
+		registerPOT("large_pot_yellow_chrysanthemum", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.YELLOW_CHRYSANTHEMUM));
+		registerPOT("large_pot_yellow_sand_gem", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.YELLOW_SAND_GEM));
+		registerPOT("large_pot_acacia_sapling", () -> new ExtendedLargeFlowerPotBlock(Blocks.ACACIA_SAPLING));
+		registerPOT("large_pot_allium", () -> new ExtendedLargeFlowerPotBlock(Blocks.ALLIUM));
+		registerPOT("large_pot_azure_bluet", () -> new ExtendedLargeFlowerPotBlock(Blocks.AZURE_BLUET));
+		registerPOT("large_pot_bamboo", () -> new ExtendedLargeFlowerPotBlock(Blocks.BAMBOO));
+		registerPOT("large_pot_birch_sapling", () -> new ExtendedLargeFlowerPotBlock(Blocks.BIRCH_SAPLING));
+		registerPOT("large_pot_blue_orchid", () -> new ExtendedLargeFlowerPotBlock(Blocks.BLUE_ORCHID));
+		registerPOT("large_pot_brown_mushroom", () -> new ExtendedLargeFlowerPotBlock(Blocks.BROWN_MUSHROOM));
+		registerPOT("large_pot_cactus", () -> new ExtendedLargeFlowerPotBlock(Blocks.CACTUS));
+		registerPOT("large_pot_cornflower", () -> new ExtendedLargeFlowerPotBlock(Blocks.CORNFLOWER));
+		registerPOT("large_pot_crimson_fungus", () -> new ExtendedLargeFlowerPotBlock(Blocks.CRIMSON_FUNGUS));
+		registerPOT("large_pot_crimson_roots", () -> new ExtendedLargeFlowerPotBlock(Blocks.CRIMSON_ROOTS));
+		registerPOT("large_pot_dandelion", () -> new ExtendedLargeFlowerPotBlock(Blocks.DANDELION));
+		registerPOT("large_pot_dark_oak_sapling", () -> new ExtendedLargeFlowerPotBlock(Blocks.DARK_OAK_SAPLING));
+		registerPOT("large_pot_dead_bush", () -> new ExtendedLargeFlowerPotBlock(Blocks.DEAD_BUSH));
+		ExtendedBlocks.LARGE_FLOWER_POT_FERN = registerPOT("large_pot_fern", () -> new ExtendedLargeFlowerPotBlock(Blocks.FERN));
+		registerPOT("large_pot_jungle_sapling", () -> new ExtendedLargeFlowerPotBlock(Blocks.JUNGLE_SAPLING));
+		registerPOT("large_pot_lily_of_the_valley", () -> new ExtendedLargeFlowerPotBlock(Blocks.LILY_OF_THE_VALLEY));
+		registerPOT("large_pot_oak_sapling", () -> new ExtendedLargeFlowerPotBlock(Blocks.OAK_SAPLING));
+		registerPOT("large_pot_orange_tulip", () -> new ExtendedLargeFlowerPotBlock(Blocks.ORANGE_TULIP));
+		registerPOT("large_pot_oxeye_daisy", () -> new ExtendedLargeFlowerPotBlock(Blocks.OXEYE_DAISY));
+		registerPOT("large_pot_pink_tulip", () -> new ExtendedLargeFlowerPotBlock(Blocks.PINK_TULIP));
+		registerPOT("large_pot_poppy", () -> new ExtendedLargeFlowerPotBlock(Blocks.POPPY));
+		registerPOT("large_pot_red_mushroom", () -> new ExtendedLargeFlowerPotBlock(Blocks.RED_MUSHROOM));
+		registerPOT("large_pot_red_tulip", () -> new ExtendedLargeFlowerPotBlock(Blocks.RED_TULIP));
+		registerPOT("large_pot_spruce_sapling", () -> new ExtendedLargeFlowerPotBlock(Blocks.SPRUCE_SAPLING));
+		registerPOT("large_pot_warped_fungus", () -> new ExtendedLargeFlowerPotBlock(Blocks.WARPED_FUNGUS));
+		registerPOT("large_pot_warped_roots", () -> new ExtendedLargeFlowerPotBlock(Blocks.WARPED_ROOTS));
+		registerPOT("large_pot_white_tulip", () -> new ExtendedLargeFlowerPotBlock(Blocks.WHITE_TULIP));
+		registerPOT("large_pot_wither_rose", () -> new ExtendedLargeFlowerPotBlock(Blocks.WITHER_ROSE));
+
 		//Banners
 		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN));
 		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN));

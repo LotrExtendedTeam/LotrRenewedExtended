@@ -1,0 +1,9 @@
+{
+  "parent": "lotrextended:block/template_large_flower_pot_clover",
+  "textures": {
+    "pot": "lotrextended:block/large_flower_pot",
+    "particle": "lotrextended:block/large_flower_pot",
+    "stem": "lotr:block/clover_stem",
+    "petals": "lotr:block/clover_petals"
+  }
+}

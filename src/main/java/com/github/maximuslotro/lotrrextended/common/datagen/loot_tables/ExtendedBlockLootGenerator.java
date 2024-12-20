@@ -121,10 +121,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			System.out.println("FOUND EMPTY: "+p_218507_1_.getRegistryName().toString());
 		}
 		super.add(p_218507_1_, p_218507_2_);
-	   }
+	}
 
 	@Override
-    protected void addTables() {
+	protected void addTables() {
 		// Fix Vanilla and Renewed block loot-tables
 		createCakePool(Blocks.CAKE);
 		createCakePool(LOTRBlocks.CHERRY_PIE.get());
@@ -168,7 +168,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedLargeFlowerPotBlock) {
-				dropSelf(block.getValue().get());
+				dropExtendedPottedContents(block.getValue().get());
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedChainBlock) {
@@ -309,14 +309,14 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
-			         return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
-			      });
+					return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
+				});
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedFullBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
-			         return createSinglePropConditionTable(p_218569_0_, ExtendedFullBedBlock.PART, BedPart.HEAD);
-			      });
+					return createSinglePropConditionTable(p_218569_0_, ExtendedFullBedBlock.PART, BedPart.HEAD);
+				});
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
@@ -357,12 +357,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
 				add(block.getValue().get(), (p_241170_0_) -> {
-			         return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundGrassBlock)block.getValue().get()).getBase().get());});
+					return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundGrassBlock)block.getValue().get()).getBase().get());});
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
 				add(block.getValue().get(), (p_241170_0_) -> {
-			         return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get());});
+					return createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get());});
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedMEBannerBlock) {
@@ -383,92 +383,92 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				ExtendedBerryBushBlock thingy = (ExtendedBerryBushBlock)block.getValue().get();
 				add(thingy, (p_241171_0_) -> {
-			         return LootTable.lootTable()
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 3)))
-			        				 .add(ItemLootEntry.lootTableItem(thingy.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 7.0F)))
-					        		 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 3)))
-			        				 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 2)))
-			        				 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 1)))
-			        				 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 0)))
-			        				 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()));
-			         }
-				);
+					return LootTable.lootTable()
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 3)))
+									.add(ItemLootEntry.lootTableItem(thingy.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 7.0F)))
+									.apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 3)))
+									.add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 2)))
+									.add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 1)))
+									.add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 0)))
+									.add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()));
+				}
+						);
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
 				ExtendedBerryPlantBlock blok = (ExtendedBerryPlantBlock)block.getValue().get();
 				add(blok, (p_241171_0_) -> {
-			         return LootTable.lootTable()
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 3)))
-			        				 .add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))
-					        		 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 2)))
-			        				 .add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 1)))
-			        				 .add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
-			        		 .withPool(LootPool.lootPool()
-			        				 .when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 0)))
-			        				 .add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()));
-			         }
-				);
+					return LootTable.lootTable()
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 3)))
+									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))
+									.apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 2)))
+									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 1)))
+									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+							.withPool(LootPool.lootPool()
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 0)))
+									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()));
+				}
+						);
 				continue;
 			}
 		}
 
 		dropSelf(ExtendedBlocks.BARREN_DIRT.get());
 		add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (p_241170_0_) -> {
-	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
-	         });
+			return createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		});
 		add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (p_241170_0_) -> {
-	         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
+			return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 		add(ExtendedBlocks.BANANA_LEAVES.get(), (p_241170_0_) -> {
-	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
-	         });
+			return createLeavesDrops(p_241170_0_, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		});
 		add(ExtendedBlocks.HANGING_BANANA.get(), (block) -> {
 			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedItems.BANANA.get())
-							.apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))));});
+					.apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))));});
 		add(ExtendedBlocks.PLUM_LEAVES.get(), (p_241170_0_) -> {
-	         return createLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
-	         });
+			return createLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		});
 		add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get(), (p_241170_0_) -> {
-	         return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), ExtendedItems.PLUM.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
+			return createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), ExtendedItems.PLUM.get(), NORMAL_LEAVES_SAPLING_CHANCES);});
 		add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.AMBER.get());});
 		add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.TOPAZ.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.TOPAZ.get());});
 		add(ExtendedBlocks.AMETHYST_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.AMETHYST.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.AMETHYST.get());});
 		add(ExtendedBlocks.SAPPHIRE_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.SAPPHIRE.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.SAPPHIRE.get());});
 		add(ExtendedBlocks.RUBY_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.RUBY.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.RUBY.get());});
 		add(ExtendedBlocks.DIAMOND_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.DIAMOND.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.DIAMOND.get());});
 		add(ExtendedBlocks.OPAL_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.OPAL.get());});
 		add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> {
-	         return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
+			return createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get());});
 		dropSelf(ExtendedBlocks.REMAINS_ELF.get());
 		dropSelf(ExtendedBlocks.REMAINS_MAN.get());
 		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
 		dropSelf(ExtendedBlocks.REMAINS_DWARF.get());
 		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
-    }
-	
+	}
+
 	@Override
-    protected Iterable<Block> getKnownBlocks() {
+	protected Iterable<Block> getKnownBlocks() {
 		List<RegistryObject<Block>> filtered = new ArrayList<>();
 		for(Entry<String, RegistryObject<Block>> bl : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(bl.getValue().get() instanceof ExtendedSpawnerBlock){
@@ -483,17 +483,17 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		filtered.add(LOTRBlocks.APPLE_CRUMBLE);
 		Stream<Block> blocks= filtered.stream().map(RegistryObject::get);
 		blocks = Stream.concat(blocks, Stream.of(Blocks.CAKE));
-        return blocks::iterator;
-    }
+		return blocks::iterator;
+	}
 
 	protected void createCakePool(Block block){
 		add(block, (lamdaBlock) -> {
 			return LootTable.lootTable().withPool(applyExplosionCondition(lamdaBlock, 
-			LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-			.add(ItemLootEntry.lootTableItem(lamdaBlock)
-			.when(BlockStateProperty.hasBlockStateProperties(lamdaBlock)
-			.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedCakeBlock.BITES, 0))))));
-	      });
+					LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(ItemLootEntry.lootTableItem(lamdaBlock)
+							.when(BlockStateProperty.hasBlockStateProperties(lamdaBlock)
+									.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedCakeBlock.BITES, 0))))));
+		});
 	}
 
 	protected static LootTable.Builder createNameableBlockEntityTable(Block p_218481_0_) {
@@ -523,7 +523,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	protected static LootTable.Builder createFruitLeavesDrops(Block p_218526_0_, Block p_218526_1_, IItemProvider item, float... p_218526_2_) {
 		return createLeavesDrops(p_218526_0_, p_218526_1_, p_218526_2_).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
 				.when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(p_218526_0_, ItemLootEntry.lootTableItem(item))
-								.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay())));
+						.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay())));
 	}
 
 	protected static LootTable.Builder createGrowableSlabItemTable(SlabBlock block, Block baseSlabDropNoSilk) {
@@ -532,6 +532,15 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 						.apply(SetCount.setCount(ConstantRange.exactly(2)).when(BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE)))).when(HAS_SILK_TOUCH)
 						.otherwise(applyExplosionCondition(block, ItemLootEntry.lootTableItem(baseSlabDropNoSilk)
 								.apply(SetCount.setCount(ConstantRange.exactly(2)).when(BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE))))))));
+	}
+
+	public void dropExtendedPottedContents(Block pFlowerPot) {
+		this.add(pFlowerPot, (p_241751_0_) -> {
+			return createExtendedPotFlowerItemTable(((ExtendedLargeFlowerPotBlock)p_241751_0_).getContent());
+		});
+	}
+	protected static LootTable.Builder createExtendedPotFlowerItemTable(IItemProvider pFlowerPotContent) {
+		return LootTable.lootTable().withPool(applyExplosionCondition(ExtendedBlocks.LARGE_FLOWER_POT.get(), LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedBlocks.LARGE_FLOWER_POT.get())))).withPool(applyExplosionCondition(pFlowerPotContent, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(pFlowerPotContent))));
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.block;
+package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
