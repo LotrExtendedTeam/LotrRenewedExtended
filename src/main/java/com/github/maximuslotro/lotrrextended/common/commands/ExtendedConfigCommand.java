@@ -51,6 +51,43 @@ public class ExtendedConfigCommand
 							)
 						.executes(context -> retrieveValue(context.getSource(), "makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower.get()))
 				)
+				.then(Commands.literal("enableBannerProtection")
+					.then(Commands.argument("set", BoolArgumentType.bool())
+						.executes(context -> {
+							ExtendedServerConfig.enableBannerProtection.set(BoolArgumentType.getBool(context, "set"));
+							setValue(context.getSource(), "enableBannerProtection", BoolArgumentType.getBool(context, "set"));
+							return Command.SINGLE_SUCCESS;})
+						)
+					.executes(context -> retrieveValue(context.getSource(), "enableBannerProtection", ExtendedServerConfig.enableBannerProtection.get()))
+				)
+				//Chair
+				.then(Commands.literal("enableChairSlabSitting")
+						.then(Commands.argument("set", BoolArgumentType.bool())
+							.executes(context -> {
+								ExtendedServerConfig.enableChairSlabSitting.set(BoolArgumentType.getBool(context, "set"));
+								setValue(context.getSource(), "enableChairSlabSitting", BoolArgumentType.getBool(context, "set"));
+								return Command.SINGLE_SUCCESS;})
+							)
+						.executes(context -> retrieveValue(context.getSource(), "enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting.get()))
+				)
+				.then(Commands.literal("enableChairSwapping")
+						.then(Commands.argument("set", BoolArgumentType.bool())
+							.executes(context -> {
+								ExtendedServerConfig.enableChairSwapping.set(BoolArgumentType.getBool(context, "set"));
+								setValue(context.getSource(), "enableChairSwapping", BoolArgumentType.getBool(context, "set"));
+								return Command.SINGLE_SUCCESS;})
+							)
+						.executes(context -> retrieveValue(context.getSource(), "enableChairSwapping", ExtendedServerConfig.enableChairSwapping.get()))
+				).then(Commands.literal("enableChairProtectionOverride")
+						.then(Commands.argument("set", BoolArgumentType.bool())
+								.executes(context -> {
+									ExtendedServerConfig.enableChairProtectionOverride.set(BoolArgumentType.getBool(context, "set"));
+									setValue(context.getSource(), "enableChairProtectionOverride", BoolArgumentType.getBool(context, "set"));
+									return Command.SINGLE_SUCCESS;})
+								)
+							.executes(context -> retrieveValue(context.getSource(), "enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride.get()))
+				)
+				//Vanilla patches
 				.then(Commands.literal("enableFishingEnchantedItems")
 						.then(Commands.argument("set", BoolArgumentType.bool())
 							.executes(context -> {
@@ -69,15 +106,7 @@ public class ExtendedConfigCommand
 							)
 						.executes(context -> retrieveValue(context.getSource(), "enableEnchantedLootDrops", ExtendedServerConfig.enableEnchantedLootDrops.get()))
 				)
-				.then(Commands.literal("enableBannerProtection")
-					.then(Commands.argument("set", BoolArgumentType.bool())
-						.executes(context -> {
-							ExtendedServerConfig.enableBannerProtection.set(BoolArgumentType.getBool(context, "set"));
-							setValue(context.getSource(), "enableBannerProtection", BoolArgumentType.getBool(context, "set"));
-							return Command.SINGLE_SUCCESS;})
-						)
-					.executes(context -> retrieveValue(context.getSource(), "enableBannerProtection", ExtendedServerConfig.enableBannerProtection.get()))
-			)
+				//Special
 				.then(Commands.literal("enableDevMode")
 						.then(Commands.argument("set", BoolArgumentType.bool())
 							.executes(context -> {
