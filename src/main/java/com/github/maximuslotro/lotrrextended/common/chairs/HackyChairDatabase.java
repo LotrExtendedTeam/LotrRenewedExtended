@@ -48,7 +48,7 @@ public class HackyChairDatabase {
 			return;
 		}
 		// Check for valid player
-		if(event.getPlayer().getMainHandItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && (!event.getPlayer().isPassenger() || event.getPlayer().getVehicle() instanceof ExtendedChairEntity)) {
+		if(event.getPlayer().getMainHandItem().isEmpty() && !event.getPlayer().isShiftKeyDown() && (!event.getPlayer().isPassenger() || (event.getPlayer().getVehicle() instanceof ExtendedChairEntity && ExtendedServerConfig.enableChairSwapping.get()))) {
 			// Check for valid block location
 			BlockState state = event.getWorld().getBlockState(event.getPos());
 			if(getChairByPosition(event.getPos(), event.getWorld())==null && event.getWorld().isEmptyBlock(event.getPos().above()) && event.getWorld().isEmptyBlock(event.getPos().above().above())) {

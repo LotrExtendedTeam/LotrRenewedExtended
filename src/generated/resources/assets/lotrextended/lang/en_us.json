@@ -1073,6 +1073,7 @@
   "command.lotrextended.version.right": "was found",
   "config.lotrextended.enableBannerProtection": "Enable banner protection",
   "config.lotrextended.enableChairSlabSitting": "Allow players to sit on slabs or stairs",
+  "config.lotrextended.enableChairSwapping": "Allow players to switch seats without standing",
   "config.lotrextended.enableDevMode": "Never enable this unless you are on the Extended Dev Team or developing the mod!",
   "config.lotrextended.enableDevModeClient": "Never enable this unless you are on the Extended Dev Team or developing the mod!",
   "config.lotrextended.enableEnchantedLootDrops": "Enable any enchated loot drops in Middle Earth (overrides the above)",
