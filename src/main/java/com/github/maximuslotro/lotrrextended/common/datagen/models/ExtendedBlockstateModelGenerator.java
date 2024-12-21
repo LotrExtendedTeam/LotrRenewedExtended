@@ -94,6 +94,7 @@ import net.minecraft.block.NetherRootsBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.VineBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
@@ -1063,43 +1064,52 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         });
 	}
 
-	private void genVineBlock(ExtendedVineBlock bed, String name) {
-		registeredBlocks.add(bed);
-//	      this.blockStateOutput.accept(FinishedVariantBlockState.multiVariant(Blocks.VINE)
-//	    		  .with(BlockStateVariantBuilder.properties(BlockStateProperties.EAST, BlockStateProperties.NORTH, BlockStateProperties.SOUTH, BlockStateProperties.UP, BlockStateProperties.WEST)
-//	    				  .select(false, false, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")))
-//	    				  .select(false, false, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")))
-//	    				  .select(false, false, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(false, true, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
-//	    				  .select(true, false, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
-//	    				  .select(true, true, false, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")))
-//	    				  .select(true, false, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(false, false, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
-//	    				  .select(false, true, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
-//	    				  .select(true, false, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2_opposite")))
-//	    				  .select(false, true, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2_opposite")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(true, true, true, false, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")))
-//	    				  .select(true, false, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(false, true, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
-//	    				  .select(true, true, false, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
-//	    				  .select(true, true, true, false, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_4")))
-//	    				  .select(false, false, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_u")))
-//	    				  .select(false, false, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")))
-//	    				  .select(false, false, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(false, true, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
-//	    				  .select(true, false, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_1u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
-//	    				  .select(true, true, false, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")))
-//	    				  .select(true, false, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(false, false, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
-//	    				  .select(false, true, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
-//	    				  .select(true, false, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u_opposite")))
-//	    				  .select(false, true, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_2u_opposite")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(true, true, true, true, false, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")))
-//	    				  .select(true, false, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R90))
-//	    				  .select(false, true, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R180))
-//	    				  .select(true, true, false, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_3u")).with(BlockModelFields.Y_ROT, BlockModelFields.Rotation.R270))
-//	    				  .select(true, true, true, true, true, BlockModelDefinition.variant().with(BlockModelFields.MODEL, ModelsResourceUtil.getModelLocation(Blocks.VINE, "_4u")))));
-
+	private void genVineBlock(ExtendedVineBlock vine, String name) {
+		registeredBlocks.add(vine);
+		ModelFile m_u = models().getExistingFile(lotrExtendedLoc(name+"_u"));
+		ModelFile m_1 = models().getExistingFile(lotrExtendedLoc(name+"_1"));
+		ModelFile m_1u = models().getExistingFile(lotrExtendedLoc(name+"_1u"));
+		ModelFile m_2 = models().getExistingFile(lotrExtendedLoc(name+"_2"));
+		ModelFile m_2_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2_opposite"));
+		ModelFile m_2u = models().getExistingFile(lotrExtendedLoc(name+"_2u"));
+		ModelFile m_2u_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2u_opposite"));
+		ModelFile m_3 = models().getExistingFile(lotrExtendedLoc(name+"_3"));
+		ModelFile m_3u = models().getExistingFile(lotrExtendedLoc(name+"_3u"));
+		ModelFile m_4 = models().getExistingFile(lotrExtendedLoc(name+"_4"));
+		ModelFile m_4u = models().getExistingFile(lotrExtendedLoc(name+"_4u"));
+		getVariantBuilder(vine)
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().modelFile(m_1).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(90).modelFile(m_1).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().modelFile(m_u).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().rotationY(90).modelFile(m_1u).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().modelFile(m_1).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(180).modelFile(m_2).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().modelFile(m_1u).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().rotationY(180).modelFile(m_2u).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().rotationY(180).modelFile(m_1).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(270).modelFile(m_2).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().rotationY(180).modelFile(m_1u).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().rotationY(270).modelFile(m_2u).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().rotationY(90).modelFile(m_2_opposite).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(180).modelFile(m_3).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().rotationY(90).modelFile(m_2u_opposite).addModel()
+		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().rotationY(180).modelFile(m_3u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().rotationY(270).modelFile(m_1).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().modelFile(m_2_opposite).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().rotationY(270).modelFile(m_1u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().modelFile(m_2u_opposite).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().rotationY(90).modelFile(m_2).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(90).modelFile(m_3).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().rotationY(90).modelFile(m_2u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().rotationY(90).modelFile(m_3u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().modelFile(m_2).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(270).modelFile(m_3).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().modelFile(m_2u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, false).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().rotationY(270).modelFile(m_3u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().modelFile(m_3).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().modelFile(m_4).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().modelFile(m_3u).addModel()
+		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().modelFile(m_4u).addModel();
 	}
 
 	private void genBedBlockItem(ExtendedBedBlock bed, String name) {
