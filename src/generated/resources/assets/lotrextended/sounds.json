@@ -293,5 +293,10 @@
       "lotrextended:block/rope/step1",
       "lotrextended:block/rope/step2"
     ]
+  },
+  "block.conquest_table.open": {
+    "sounds": [
+      "lotrextended:block/conquest_table/open1"
+    ]
   }
 }

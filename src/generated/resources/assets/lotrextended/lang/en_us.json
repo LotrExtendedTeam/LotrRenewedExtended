@@ -1444,14 +1444,14 @@
   "subtitles.lotrextended.block.stone_chest.close": "Stone Chest Closes",
   "subtitles.lotrextended.block.stone_chest.open": "Stone Chest Opens",
   "subtitles.lotrextended.block.stone_grinder.grinding": "Stone Grinder Grinds",
-  "subtitles.lotrextended.entity.duck.death": "Duck dies",
-  "subtitles.lotrextended.entity.duck.egg": "Duck plops",
-  "subtitles.lotrextended.entity.duck.hurt": "Duck hurts",
-  "subtitles.lotrextended.entity.duck.idle": "Duck quacks",
+  "subtitles.lotrextended.entity.duck.death": "Duck Dies",
+  "subtitles.lotrextended.entity.duck.egg": "Duck Egg Plops",
+  "subtitles.lotrextended.entity.duck.hurt": "Duck Hurts",
+  "subtitles.lotrextended.entity.duck.idle": "Duck Quacks",
   "subtitles.lotrextended.entity.duck.step": "Footsteps",
   "subtitles.lotrextended.entity.wight.ambience": "Creepy Noises",
   "subtitles.lotrextended.entity.wight.death": "Wight Death",
   "subtitles.lotrextended.entity.wight.spawn": "Wight Spawns",
-  "subtitles.lotrextended.event.trade": "Coins jingle",
-  "subtitles.lotrextended.item.horn_blow": "Horn blows"
+  "subtitles.lotrextended.event.trade": "Coins Jingle",
+  "subtitles.lotrextended.item.horn_blow": "Horn Blows"
 }
