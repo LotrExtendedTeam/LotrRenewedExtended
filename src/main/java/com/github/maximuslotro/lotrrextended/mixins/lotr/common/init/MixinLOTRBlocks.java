@@ -54,6 +54,7 @@ import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedTrapDoorBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
@@ -664,6 +665,7 @@ public class MixinLOTRBlocks {
 		//Mordor
 		ExtendedBlocks.SMOOTH_MORDOR_ROCK_STAIRS = registerB("smooth_mordor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_MORDOR_ROCK));
 
+		ExtendedBlocks.CROSSED_WATTLE_AND_DAUB = registerB("crossed_wattle_and_daub", () -> new ExtendedThreeTallPillarBlock(Properties.of(Material.GRASS, MaterialColor.QUARTZ).sound(SoundType.SCAFFOLDING).strength(1.0F)));
 		//Drytone/stone
 		ExtendedBlocks.DRYSTONE_SLAB = registerB("drystone_slab", () -> new AxialSlabBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.DRYSTONE_STAIRS = registerB("drystone_stairs", () -> new LOTRStairsBlock(LOTRBlocks.DRYSTONE));

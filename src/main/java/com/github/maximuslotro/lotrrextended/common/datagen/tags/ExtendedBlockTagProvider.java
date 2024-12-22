@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -95,7 +96,7 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	@Override
 	protected void addTags() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof LOTRPillarBlock) {
+			if(block.getValue().get() instanceof LOTRPillarBlock || block.getValue().get() instanceof ExtendedThreeTallPillarBlock) {
 				tag(PILLARS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {

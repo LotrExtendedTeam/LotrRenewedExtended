@@ -1121,6 +1121,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.MOSSY_DRYSTONE_SLAB, 
 			ExtendedBlocks.MOSSY_DRYSTONE_WALL, 
 			()->ExtendedBlocks.MOSSY_DRYSTONE.get().asItem(), null);
+		GENERATEDRECIPES.add(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get(), 4)
+		.pattern("SDS")
+		.pattern("DSD")
+		.pattern("SDS")
+		.define('S', Ingredient.of(STICKS))
+		.define('D', Ingredient.of(LOTRBlocks.WATTLE_AND_DAUB.get()))
+		.unlockedBy("has_"+LOTRBlocks.WATTLE_AND_DAUB.get().getRegistryName().getPath(), has(LOTRBlocks.WATTLE_AND_DAUB.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get().getRegistryName().getPath()));
 		//Mud
 		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_SLAB.get(), 
 			()->ExtendedBlocks.MUD.get().asItem(), null);

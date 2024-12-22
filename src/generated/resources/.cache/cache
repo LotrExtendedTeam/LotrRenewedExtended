@@ -998,7 +998,7 @@ f8fd76ef9c3176f62abe9d58688b0691e5ad233b assets/lotr/models/item/white_warg_fur_
 bce4b788fead9a92ca6c72e487469a677ff3ae5a assets/lotr/models/item/white_warg_fur_leggings.json
 608ce25dfa474acb29d6c69097c6126b237ae8d1 assets/lotr/models/item/wildberry.json
 9950977d9e9acc5dd91e183a8b5ec3906bfb65c6 assets/lotr/models/item/wildberry_bush.json
-194de3950dbe6535d5c32f06ed1724c2446373ac assets/lotrextended/lang/en_us.json
+99dc7bdbcbcff07f61c0a8c8ff480f1f3802adb8 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -2352,6 +2352,7 @@ c11a8685204853af1c866adbda908361c0d1aa64 data/lotr/advancements/recipes/lotr.dec
 ffd9d23d273f642b72b4b139bcdb54f29ec04167 data/lotr/advancements/recipes/lotr.decorations/brown_fur_carpet.json
 68405521ca3ddcfa9a65e0644f57b3dfc0ae4477 data/lotr/advancements/recipes/lotr.decorations/chestnut_fence.json
 60c5c3be4e66ef4991495eb04a64da99ccbba86e data/lotr/advancements/recipes/lotr.decorations/chestnut_sign.json
+f9935c480369005eef5687e4bfc72791be1ee391 data/lotr/advancements/recipes/lotr.decorations/crossed_wattle_and_daub.json
 ecb19361b6986c4cddd5f9751a0bc3ab5c8829a3 data/lotr/advancements/recipes/lotr.decorations/dunedain_banner.json
 6b6fadfe852abe89b459b2882ab6ac5d6ae82945 data/lotr/advancements/recipes/lotr.decorations/durins_folk_banner.json
 9c968155a9e1eb3bf8654f72c1cbde54c07f702a data/lotr/advancements/recipes/lotr.decorations/dwarven_torch_from_torch.json
@@ -2598,6 +2599,7 @@ afc8e55c691835fdffa3f92c6726b2c6c5b1587f data/lotr/loot_tables/blocks/cracked_ta
 4b31a6c655aeb01d802c9d871c03bb305113c019 data/lotr/loot_tables/blocks/cracked_taurethrim_brick_wall.json
 e3b9385a12590aecbd24b95fd7516555cb324d0a data/lotr/loot_tables/blocks/cranberry_bush.json
 2293a5e80decef8fe7951b7348456e4ebd908e0c data/lotr/loot_tables/blocks/cranberry_plant.json
+75ba29705f56789868fabac9e92eb68e19ca3d60 data/lotr/loot_tables/blocks/crossed_wattle_and_daub.json
 14746bf00d40d87e6a2da0133b2bfa0102dd1793 data/lotr/loot_tables/blocks/cut_drystone.json
 b841a466430914392613d6a5110ac16525b116f1 data/lotr/loot_tables/blocks/diamond_block.json
 c40a57d864cfc3b56d773aabb71b13788d200681 data/lotr/loot_tables/blocks/diamond_ore.json
@@ -3098,6 +3100,7 @@ fdfe2558bc409405e0bf60eb381626423c8dd2f5 data/lotr/recipes/cracked_taurethrim_br
 8248ab0a9705c46d840afcc4880bf275248bdbf5 data/lotr/recipes/cracked_taurethrim_brick_slab.json
 f74dd96be3b71c9cb1d839b220e7f531311fe3cb data/lotr/recipes/cracked_taurethrim_brick_stairs.json
 e03328eb8daf189541ea7936c49ba8d8d6e63e06 data/lotr/recipes/cracked_taurethrim_brick_wall.json
+5b0f610d037708e044b7f3a9c35b6138beba1934 data/lotr/recipes/crossed_wattle_and_daub.json
 349c463990fcae4d3ebfb75966bcb289ae7e7c30 data/lotr/recipes/cut_drystone.json
 346103a227e0b73df76fbe0847c82c2ea5b3e0e8 data/lotr/recipes/diamond_block_from_diamond.json
 e247d00bf935f16f14dc31ef9aac7417ace3fede data/lotr/recipes/diamond_from_diamond_block.json
@@ -3457,7 +3460,7 @@ aa2e35a441a9869599b71330e3a311ff09f265c1 data/lotr/tags/blocks/charrable_logs.js
 5813de190d3569ad5dd9600e006a26cb25f19aa7 data/lotr/tags/blocks/charrable_woods.json
 2cd3adc9ca2593aadc6919e0549d833145ab6739 data/lotr/tags/blocks/log_slabs.json
 b67486fda566da42dade7c955b4361345a218bb5 data/lotr/tags/blocks/log_stairs.json
-e6e2622383c8fd967cda3e3fb8c25f5b67a33fa4 data/lotr/tags/blocks/pillars.json
+d081ad736877e37f9d14c231d1b2f650252c1a11 data/lotr/tags/blocks/pillars.json
 57c3d7ba1000ef6f283eea612dde816289561d29 data/lotr/tags/blocks/wooden_beam_slabs.json
 03a8fac43763c78973da95ed8166413b36ad0ced data/lotr/tags/blocks/wooden_beams.json
 d4a931e0cc118fc4285021a23fd1131c63ad5d86 data/lotr/tags/blocks/wooden_fence_gates.json
@@ -3469,7 +3472,7 @@ aa2e35a441a9869599b71330e3a311ff09f265c1 data/lotr/tags/items/charrable_logs.jso
 5813de190d3569ad5dd9600e006a26cb25f19aa7 data/lotr/tags/items/charrable_woods.json
 2cd3adc9ca2593aadc6919e0549d833145ab6739 data/lotr/tags/items/log_slabs.json
 b67486fda566da42dade7c955b4361345a218bb5 data/lotr/tags/items/log_stairs.json
-e6e2622383c8fd967cda3e3fb8c25f5b67a33fa4 data/lotr/tags/items/pillars.json
+d081ad736877e37f9d14c231d1b2f650252c1a11 data/lotr/tags/items/pillars.json
 57c3d7ba1000ef6f283eea612dde816289561d29 data/lotr/tags/items/wooden_beam_slabs.json
 03a8fac43763c78973da95ed8166413b36ad0ced data/lotr/tags/items/wooden_beams.json
 d4a931e0cc118fc4285021a23fd1131c63ad5d86 data/lotr/tags/items/wooden_fence_gates.json

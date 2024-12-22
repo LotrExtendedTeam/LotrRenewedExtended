@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:crossed_wattle_and_daub"
+    ]
+  },
+  "criteria": {
+    "has_wattle_and_daub": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:wattle_and_daub"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:crossed_wattle_and_daub"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wattle_and_daub",
+      "has_the_recipe"
+    ]
+  ]
+}
