@@ -68,7 +68,7 @@ public class ShireAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement hobbit_farmer_trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "hobbit_farmer_trade", false, FrameType.TASK, true, true, false)
 				.setTitle("Farmer Maggot's cousin").setDescription("Trade with a Hobbit Farmer."), 
-				addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_WANDERER.get()).parent(shire));
+				addTradeEntityTrigger(make(), ExtendedEntities.HOBBIT_FARMER.get()).parent(shire));
 
 		Advancement hobbit_farmer_potato = build(true, data(Items.POTATO, "boil_em", false, FrameType.GOAL, true, true, false)
 			.setTitle("Boil 'Em, Mash 'Em...").setDescription("Buy potatoes from a Hobbit Farmer."), 
