@@ -110,7 +110,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = boatOnject.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(boatOnject.get(), 4)
+			ShapedRecipeBuilder.shaped(boatOnject.get())
 			.pattern("# #")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
@@ -119,7 +119,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.save(consumer, lotrLoc(name));
 		}
 		else {
-			ExtendedFactionShapedRecipeBuilder.shaped(boatOnject.get(), 4, table)
+			ExtendedFactionShapedRecipeBuilder.shaped(boatOnject.get(), table)
 			.pattern("# #")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))

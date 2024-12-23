@@ -2960,7 +2960,7 @@ bab473cc868cfaec28d7b5f19abe725850b8b87a data/lotr/recipes/angmar_leggings.json
 f09fbec55cc6dc867dcbd5a8a09b7087696cd100 data/lotr/recipes/banana_beam.json
 4be17af33b10c147762baa897dda9c47a6a35f5c data/lotr/recipes/banana_beam_slab.json
 db65fffa7a1a61942daf9fe444542bd4c844c232 data/lotr/recipes/banana_beer.json
-3fc41aeabf8eb4b1b21bd86f5e80a0ad58c15b6a data/lotr/recipes/banana_boat.json
+2a9a2b3031a8a7ec583af1d09beea7395faee03d data/lotr/recipes/banana_boat.json
 ea2647d866587c543c42b0105be9f914484233a0 data/lotr/recipes/banana_branch.json
 d97df8259ec8bd8b265f2439e284a3e57f2a1796 data/lotr/recipes/banana_bread.json
 1a8b2775eb45e9db9df852b534d157d7216bbfab data/lotr/recipes/banana_button.json
@@ -3051,7 +3051,7 @@ d98188357342e7151ae4d644ed5d8338183b4ca2 data/lotr/recipes/carved_wood_elven_bri
 68bc59abcf5462d435ec5fed70ee89f0ff12a1e6 data/lotr/recipes/cheese_wheel_from_slices.json
 05d4c27546b72e582a3a2d8b7677422a7c08ce43 data/lotr/recipes/chestnut_beam.json
 28554b07b983a00e71e76dfed85a21c7ac6297ef data/lotr/recipes/chestnut_beam_slab.json
-28523c3693469f997f89231fe12087ef3571dfb9 data/lotr/recipes/chestnut_boat.json
+88d6ca02b8b6b68d88ea690f02be6875ab4ff3a5 data/lotr/recipes/chestnut_boat.json
 1967612bdf0be4cbb014d6f37d11840e6bda182e data/lotr/recipes/chestnut_branch.json
 4940b9bbbdbdf842606599f084700b263ff5f74a data/lotr/recipes/chestnut_button.json
 da0eaad06c949c81a6632b6f8b7349d3f1ade237 data/lotr/recipes/chestnut_door.json
@@ -3311,7 +3311,7 @@ feab0dc77f64cafd9e8beeff393be515a4f57ae1 data/lotr/recipes/packed_fur_wall.json
 c94270cb58a8793a5a49d42e59f9755b2183d2cb data/lotr/recipes/pearl_from_pearl_block.json
 6d423722af232ed504af6b11a4e0ba9ba0a5973d data/lotr/recipes/plum_beam.json
 179a9b3240d050bc91148bae5e71bbcf9333a9be data/lotr/recipes/plum_beam_slab.json
-a12a558a5b55b35f0ef50d1e5eba4a51d449fda0 data/lotr/recipes/plum_boat.json
+119563cec9cef8ac10413803f8951448d83e40c9 data/lotr/recipes/plum_boat.json
 55ff2db8fa28f84ae85e2cc73e4e811ff6091f12 data/lotr/recipes/plum_branch.json
 94c34bd59d943f04c5fc30f2b460e7550278c049 data/lotr/recipes/plum_button.json
 3c8b64fa681981def6ee586468cdd42560ea1bf1 data/lotr/recipes/plum_door.json
