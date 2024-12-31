@@ -126,7 +126,7 @@
 			"name": "leaf_n",
 			"from": [5, 8, 0],
 			"to": [11, 8, 8],
-			"rotation": {"angle": 45, "axis": "x", "origin": [8, 5, 8]},
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"up": {"uv": [5, 8, 11, 16], "texture": "#leaf", "tintindex": 0},
 				"down": {"uv": [11, 8, 5, 16], "rotation": 180, "texture": "#leaf", "tintindex": 0}
@@ -136,7 +136,7 @@
 			"name": "leaf_s",
 			"from": [5, 8, 8],
 			"to": [11, 8, 16],
-			"rotation": {"angle": -45, "axis": "x", "origin": [8, 5, 8]},
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"up": {"uv": [5, 8, 11, 16], "rotation": 180, "texture": "#leaf", "tintindex": 0},
 				"down": {"uv": [11, 8, 5, 16], "texture": "#leaf", "tintindex": 0}
@@ -146,7 +146,7 @@
 			"name": "leaf_w",
 			"from": [8, 8, 5],
 			"to": [16, 8, 11],
-			"rotation": {"angle": 45, "axis": "z", "origin": [8, 5, 8]},
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 8, 8]},
 			"faces": {
 				"up": {"uv": [5, 8, 11, 16], "rotation": 90, "texture": "#leaf", "tintindex": 0},
 				"down": {"uv": [11, 8, 5, 16], "rotation": 90, "texture": "#leaf", "tintindex": 0}
@@ -156,7 +156,7 @@
 			"name": "leaf_e",
 			"from": [0, 8, 5],
 			"to": [8, 8, 11],
-			"rotation": {"angle": -45, "axis": "z", "origin": [8, 5, 8]},
+			"rotation": {"angle": -45, "axis": "z", "origin": [8, 8, 8]},
 			"faces": {
 				"up": {"uv": [5, 8, 11, 16], "rotation": 270, "texture": "#leaf", "tintindex": 0},
 				"down": {"uv": [11, 8, 5, 16], "rotation": 270, "texture": "#leaf", "tintindex": 0}

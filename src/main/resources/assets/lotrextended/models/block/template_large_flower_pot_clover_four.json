@@ -101,7 +101,7 @@
             }
         },
         {   "from": [ 6.5, 11, 5 ],
-            "to": [ 9.5, 1, 8 ],
+            "to": [ 9.5, 11, 8 ],
             "rotation": { "origin": [ 8, 12, 8 ], "axis": "y", "angle": 0 },
             "shade": false,
             "faces": {
