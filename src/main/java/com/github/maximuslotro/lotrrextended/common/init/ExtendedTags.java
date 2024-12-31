@@ -69,6 +69,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> LARGE_FLOWER_POT_COMPATABLE = BlockTags.bind("lotrextended:large_flower_pot_compatable");
 
 		public static final ITag.INamedTag<Block> MOSS_REPLACEABLE = BlockTags.bind("lotrextended:moss_replaceable");
+
+		public static final ITag.INamedTag<Block> FIXED_SIZE_PILLARS = BlockTags.bind("lotrextended:fixed_size_pillars");
 	}
 
 	public static class Items {

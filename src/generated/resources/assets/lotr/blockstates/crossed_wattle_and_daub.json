@@ -1,0 +1,76 @@
+{
+  "variants": {
+    "axis=x,pillar_state=single": {
+      "model": "lotrextended:block/crossed_wattle_and_daub",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,pillar_state=single": {
+      "model": "lotrextended:block/crossed_wattle_and_daub"
+    },
+    "axis=z,pillar_state=single": {
+      "model": "lotrextended:block/crossed_wattle_and_daub",
+      "x": 270
+    },
+    "axis=x,pillar_state=bottom_small": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,pillar_state=bottom_small": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_bottom"
+    },
+    "axis=z,pillar_state=bottom_small": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_bottom",
+      "x": 270
+    },
+    "axis=x,pillar_state=top_small": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_top",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,pillar_state=top_small": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_top"
+    },
+    "axis=z,pillar_state=top_small": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_top",
+      "x": 270
+    },
+    "axis=x,pillar_state=bottom_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,pillar_state=bottom_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_bottom"
+    },
+    "axis=z,pillar_state=bottom_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_bottom",
+      "x": 270
+    },
+    "axis=x,pillar_state=middle_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_middle",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,pillar_state=middle_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_middle"
+    },
+    "axis=z,pillar_state=middle_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_middle",
+      "x": 270
+    },
+    "axis=x,pillar_state=top_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_top",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,pillar_state=top_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_top"
+    },
+    "axis=z,pillar_state=top_large": {
+      "model": "lotrextended:block/crossed_wattle_and_daub_tall_top",
+      "x": 270
+    }
+  }
+}

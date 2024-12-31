@@ -35,8 +35,10 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSin
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 
 import lotr.common.block.AxialSlabBlock;
@@ -389,6 +391,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRPillarBlock) {
 					genPillarBlockItem((LOTRPillarBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedThreeTallPillarBlock) {
+					genSpecialPillarBlockItem((ExtendedThreeTallPillarBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedLOTRTorchBlock) {
@@ -814,12 +820,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation top = lotrExtendedLoc(name+"_top");
 		ResourceLocation middle = lotrExtendedLoc(name+"_middle");
 		ResourceLocation bottom = lotrExtendedLoc(name+"_bottom");
-		
+
 		ModelFile pillarBottom = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_bottom", bottom, face);
 		ModelFile pillarMiddle = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_middle", middle, face);
 		ModelFile pillarTop = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_top", top, face);
 		ModelFile pillarBlock = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath(), pillar, face);
-		
+
 		getVariantBuilder(pillarB)
 		.forAllStatesExcept(state -> {
 			Axis axis = state.getValue(LOTRPillarBlock.AXIS);
@@ -827,17 +833,73 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			Boolean below = state.getValue(LOTRPillarBlock.BELOW);
 			ModelFile selectedfile = null;
 			if(above) {
-				if(below) {selectedfile = pillarMiddle;}
-				else {selectedfile = pillarBottom;}}
+				if(below) {
+					selectedfile = pillarMiddle;
+				}
+				else {
+					selectedfile = pillarBottom;
+				}
+			}
 			else {
-				if(below) {selectedfile = pillarTop;}
-				else {selectedfile = pillarBlock;}}
-            return ConfiguredModel.builder()
-                    .modelFile(selectedfile)
-                    .rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
-                    .rotationY(axis == Axis.X ? 90 : 0)
-                    .build();
-        });
+				if(below) {
+					selectedfile = pillarTop;
+				}
+				else {
+					selectedfile = pillarBlock;
+				}
+			}
+			return ConfiguredModel.builder()
+					.modelFile(selectedfile)
+					.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+					.rotationY(axis == Axis.X ? 90 : 0)
+					.build();
+		});
+		itemModels().getBuilder("lotr:"+pillarB.getRegistryName().getPath()).parent(pillarBlock);
+	}
+
+	private void genSpecialPillarBlockItem(ExtendedThreeTallPillarBlock pillarB, String name) {
+		registeredBlocks.add(pillarB);
+		ResourceLocation face = lotrExtendedLoc(name+"_face");
+		ResourceLocation pillar = lotrExtendedLoc(name+"_face");
+		ResourceLocation top_tall = lotrExtendedLoc(name+"_tall_top");
+		ResourceLocation middle_tall = lotrExtendedLoc(name+"_tall_middle");
+		ResourceLocation bottom_tall = lotrExtendedLoc(name+"_tall_bottom");
+		ResourceLocation top = lotrExtendedLoc(name+"_top");
+		ResourceLocation bottom = lotrExtendedLoc(name+"_bottom");
+
+		ModelFile pillarBottom = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_bottom", bottom, face);
+		ModelFile pillarTop = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_top", top, face);
+
+		ModelFile pillarTallBottom = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_tall_bottom", bottom_tall, face);
+		ModelFile pillarTallMiddle = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_tall_middle", middle_tall, face);
+		ModelFile pillarTallTop = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath()+"_tall_top", top_tall, face);
+
+		ModelFile pillarBlock = models().cubeColumn("lotrextended:"+pillarB.getRegistryName().getPath(), pillar, face);
+
+		getVariantBuilder(pillarB)
+		.forAllStatesExcept(state -> {
+			Axis axis = state.getValue(ExtendedThreeTallPillarBlock.AXIS);
+			PillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
+			ModelFile selectedfile = null;
+			if(above.equals(PillarType.BOTTOM_LARGE)) {
+				selectedfile = pillarTallBottom;
+			}else if(above.equals(PillarType.BOTTOM_SMALL)) {
+				selectedfile = pillarBottom;
+			}else if(above.equals(PillarType.MIDDLE_LARGE)) {
+				selectedfile = pillarTallMiddle;
+			}else if(above.equals(PillarType.TOP_LARGE)) {
+				selectedfile = pillarTallTop;
+			}else if(above.equals(PillarType.TOP_SMALL)) {
+				selectedfile = pillarTop;
+			}else {
+				selectedfile = pillarBlock;
+			}
+			return ConfiguredModel.builder()
+					.modelFile(selectedfile)
+					.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+					.rotationY(axis == Axis.X ? 90 : 0)
+					.build();
+		});
 		itemModels().getBuilder("lotr:"+pillarB.getRegistryName().getPath()).parent(pillarBlock);
 	}
 

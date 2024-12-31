@@ -96,8 +96,11 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	@Override
 	protected void addTags() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof LOTRPillarBlock || block.getValue().get() instanceof ExtendedThreeTallPillarBlock) {
+			if(block.getValue().get() instanceof LOTRPillarBlock) {
 				tag(PILLARS).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof ExtendedThreeTallPillarBlock ) {
+				tag(ExtendedTags.Blocks.FIXED_SIZE_PILLARS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
 				tag(FLOWER_POTS).add(block.getValue().get());
