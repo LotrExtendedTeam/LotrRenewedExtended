@@ -82,8 +82,8 @@
 				"down": {"uv": [7, 5.75, 6.75, 7.75], "texture": "#pot"}
 			}
 		},
-        {   "from": [ 5.3, 4, 8 ],
-            "to": [ 10.7, 12, 8 ],
+        {   "from": [ 5.3, 7, 8 ],
+            "to": [ 10.7, 15, 8 ],
             "rotation": { "origin": [ 8, 12, 8 ], "axis": "y", "angle": 45, "rescale": true },
             "shade": false,
             "faces": {
@@ -91,8 +91,8 @@
                 "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#stem", "tintindex": 0 }
             }
         },
-        {   "from": [ 8, 4, 5.3 ],
-            "to": [ 8, 12, 10.7 ],
+        {   "from": [ 8, 7, 5.3 ],
+            "to": [ 8, 15, 10.7 ],
             "rotation": { "origin": [ 8, 12, 8 ], "axis": "y", "angle": 45, "rescale": true },
             "shade": false,
             "faces": {
@@ -100,8 +100,8 @@
                 "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#stem", "tintindex": 0 }
             }
         },
-        {   "from": [ 6.5, 8, 5 ],
-            "to": [ 9.5, 8, 8 ],
+        {   "from": [ 6.5, 11, 5 ],
+            "to": [ 9.5, 11, 8 ],
             "rotation": { "origin": [ 8, 12, 8 ], "axis": "y", "angle": 0 },
             "shade": false,
             "faces": {
@@ -109,8 +109,8 @@
                 "down": { "uv": [ 0, 0, 8, 8 ], "texture": "#petals", "tintindex": 0 }
             }
         },
-        {   "from": [ 8, 8.0025, 6.5 ],
-            "to": [ 11, 8.0025, 9.5 ],
+        {   "from": [ 8, 11.0025, 6.5 ],
+            "to": [ 11, 11.0025, 9.5 ],
             "rotation": { "origin": [ 8, 12, 8 ], "axis": "y", "angle": -22.5 },
             "shade": false,
             "faces": {
@@ -118,8 +118,8 @@
                 "down": { "uv": [ 8, 0, 16, 8 ], "texture": "#petals", "tintindex": 0 }
             }
         },
-        {   "from": [ 5, 8.005, 6.5 ],
-            "to": [ 8, 8.005, 9.5 ],
+        {   "from": [ 5, 11.005, 6.5 ],
+            "to": [ 8, 11.005, 9.5 ],
             "rotation": { "origin": [ 8, 12, 8 ], "axis": "y", "angle": 22.5 },
             "shade": false,
             "faces": {

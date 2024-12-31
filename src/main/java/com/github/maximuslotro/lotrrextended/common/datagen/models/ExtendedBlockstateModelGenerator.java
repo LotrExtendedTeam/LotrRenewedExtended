@@ -1141,7 +1141,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genHangingBlock(ExtendedHangingBlock bed, ResourceLocation texture) {
 		registeredBlocks.add(bed);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrExtendedLoc("block/template_hanging_block"))
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrExtendedLoc("block/template_hanging_block_crossed"))
 				.texture("particle", texture).texture("hanging", texture);
 		simpleBlock(bed, modelFile);
 	}

@@ -72,7 +72,6 @@ public class HackyChairDatabase {
 					if(state.getValue(SlabBlock.TYPE)==SlabType.BOTTOM) {
 						// Check if vertical slab, players can't sit on vertical slabs
 						if(state.getBlock() instanceof AxialSlabBlock && state.hasProperty(BlockStateProperties.AXIS)) {
-							System.out.println(state.getValue(BlockStateProperties.AXIS).toString());
 							if(state.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
 								return;
 							}
