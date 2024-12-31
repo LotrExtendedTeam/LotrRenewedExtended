@@ -370,6 +370,8 @@ public class MixinLOTRItems {
 		ExtendedItems.BONE_BLOCK_STAIRS = regBlockItemB(ExtendedBlocks.BONE_BLOCK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BONE_BLOCK_WALL = regBlockItemB(ExtendedBlocks.BONE_BLOCK_WALL, LOTRItemGroups.BLOCKS);
 
+		ExtendedItems.CROSSED_WATTLE_AND_DAUB = regBlockItemB(ExtendedBlocks.CROSSED_WATTLE_AND_DAUB, LOTRItemGroups.BLOCKS);
+
 		//scorched stuff
 		ExtendedItems.SCORCHED_COBBLESTONE = regBlockItemB(ExtendedBlocks.SCORCHED_COBBLESTONE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SCORCHED_COBBLESTONE_SLAB = regBlockItemB(ExtendedBlocks.SCORCHED_COBBLESTONE_SLAB, LOTRItemGroups.BLOCKS);
@@ -512,8 +514,6 @@ public class MixinLOTRItems {
 		ExtendedItems.ORC_CHAIN = regBlockItemB(ExtendedBlocks.ORC_CHAIN, LOTRItemGroups.DECO);
 		ExtendedItems.ORC_CHANDELIER = regBlockItemB(ExtendedBlocks.ORC_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.URUK_CHANDELIER = regBlockItemB(ExtendedBlocks.URUK_CHANDELIER, LOTRItemGroups.DECO);
-
-		ExtendedItems.CROSSED_WATTLE_AND_DAUB = regBlockItemB(ExtendedBlocks.CROSSED_WATTLE_AND_DAUB, LOTRItemGroups.DECO);
 
 		ExtendedItems.MUD_PATH = regBlockItemB(ExtendedBlocks.MUD_PATH, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_PATH_SLAB = regBlockItemB(ExtendedBlocks.MUD_PATH_SLAB, LOTRItemGroups.DECO);
