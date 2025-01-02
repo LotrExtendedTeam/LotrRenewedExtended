@@ -165,6 +165,9 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> COIN_TEN = ItemTags.bind("lotrextended:coins/coin_ten");
 		public static final ITag.INamedTag<Item> COIN_HUNDRED = ItemTags.bind("lotrextended:coins/coin_hundred");
 
+		public static final ITag.INamedTag<Item> TORCH_EXTINGUISHING = ItemTags.bind("lotrextended:torch_extinguishing");
+		public static final ITag.INamedTag<Item> TORCH_LIGHTING = ItemTags.bind("lotrextended:torch_lighting");
+
 		public static final ITag.INamedTag<Item> STONE_GRINDER_LUBRICANTS = ItemTags.bind("lotrextended:stone_grinder/lubricants");
 	}
 }

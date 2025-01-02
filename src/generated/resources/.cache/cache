@@ -3478,6 +3478,7 @@ aa2e35a441a9869599b71330e3a311ff09f265c1 data/lotr/tags/items/charrable_logs.jso
 9cc9cc28390d10d1dc8998af7626f8c3a1072036 data/lotr/tags/items/charrable_stripped_logs.json
 8bae5c495481d1fe30f2e9a709e242562686dd98 data/lotr/tags/items/charrable_stripped_woods.json
 5813de190d3569ad5dd9600e006a26cb25f19aa7 data/lotr/tags/items/charrable_woods.json
+30dd9bfa589b96be592f65c94bff71c847e8833a data/lotr/tags/items/drink_vessels.json
 2cd3adc9ca2593aadc6919e0549d833145ab6739 data/lotr/tags/items/log_slabs.json
 b67486fda566da42dade7c955b4361345a218bb5 data/lotr/tags/items/log_stairs.json
 e6e2622383c8fd967cda3e3fb8c25f5b67a33fa4 data/lotr/tags/items/pillars.json
@@ -4036,6 +4037,8 @@ a2e665b6357fe429fd9109aab46f5d134d1e9645 data/lotrextended/tags/items/coins/coin
 3a557c2d511f95bfb78cc0df2b033cfcfb49e065 data/lotrextended/tags/items/foods/duck_feedables.json
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/items/plum_logs.json
 f5e3a827ea05aceb44a9c8af060826ce1578eee5 data/lotrextended/tags/items/stone_grinder/lubricants.json
+c2fe82202b0f3cab27c86def51a41c30189cf800 data/lotrextended/tags/items/torch_extinguishing.json
+a483bbde81d00df573e3cea549b7dafc4b2e8056 data/lotrextended/tags/items/torch_lighting.json
 9081f373557f6d33eca26c118a41b8a44d0c5169 data/lotrextended/tags/items/weapon_rack_additional_items.json
 2949eed0018ee2f2393bb359e03ee232b9b0d7ff data/lotrextended/tags/items/weapon_rack_excluded_items.json
 13cb57a7904601e7013a1378f4a2d4b9b18b7e48 data/lotrextended/tags/items/weapon_rack_items_full_scale.json

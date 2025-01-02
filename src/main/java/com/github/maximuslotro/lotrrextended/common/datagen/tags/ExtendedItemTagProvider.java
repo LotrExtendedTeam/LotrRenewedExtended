@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
+import lotr.common.init.LOTRTags;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRAxeItem;
@@ -223,6 +224,11 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.COIN_ONE).add(ExtendedItems.SILVER_COIN_ONE.get());
 		tag(ExtendedTags.Items.COIN_TEN).add(ExtendedItems.SILVER_COIN_TEN.get());
 		tag(ExtendedTags.Items.COIN_HUNDRED).add(ExtendedItems.SILVER_COIN_HUNDRED.get());
+
+		tag(LOTRTags.Items.DRINK_VESSELS).add(ExtendedItems.SKULL_GOBLET.get());
+
+		tag(ExtendedTags.Items.TORCH_EXTINGUISHING).add(Items.POTION).add(LOTRItems.WATER_DRINK.get());
+		tag(ExtendedTags.Items.TORCH_LIGHTING).add(LOTRItems.POCKET_MATCH.get()).add(Items.FLINT_AND_STEEL);
 
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
