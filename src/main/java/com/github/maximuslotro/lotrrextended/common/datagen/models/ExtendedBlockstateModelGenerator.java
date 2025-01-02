@@ -1269,8 +1269,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genReedBarrelBlockItem(ExtendedReedBasketBlock extendedReedBasketBlock, String name) {
 		registeredBlocks.add(extendedReedBasketBlock);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name)).texture("particle", lotrExtendedLoc("entity/chest/"+name));
-		ModelFile modelFile_open = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name+"_open")).texture("particle", lotrExtendedLoc("entity/chest/"+name+"_open"));
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath(), lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name)).texture("particle", lotrLoc("block/reed_thatch"));
+		ModelFile modelFile_open = models().withExistingParent("lotrextended:"+extendedReedBasketBlock.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/template_reed_basket_shape")).texture("1", lotrExtendedLoc("entity/chest/"+name+"_open")).texture("particle", lotrLoc("block/reed_thatch"));
 		getVariantBuilder(extendedReedBasketBlock).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedBarrelBlock.FACING);
 			Boolean open = state.getValue(ExtendedBarrelBlock.OPEN);
