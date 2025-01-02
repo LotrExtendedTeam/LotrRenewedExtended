@@ -106,7 +106,7 @@ public class DevEventHandlers {
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
-		if (tileentity instanceof ExtendedWeaponRackTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && event.getPlayer().isCrouching()) {
+		if (tileentity instanceof ExtendedWeaponRackTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Weapon rack item setting is disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
