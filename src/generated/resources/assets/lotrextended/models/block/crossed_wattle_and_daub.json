@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "lotrextended:block/crossed_wattle_and_daub_face",
+    "side": "lotrextended:block/crossed_wattle_and_daub_single",
     "end": "lotrextended:block/crossed_wattle_and_daub_face"
   }
 }

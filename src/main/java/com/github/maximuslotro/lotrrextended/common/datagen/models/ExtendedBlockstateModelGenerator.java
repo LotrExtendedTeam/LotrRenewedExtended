@@ -860,7 +860,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genSpecialPillarBlockItem(ExtendedThreeTallPillarBlock pillarB, String name) {
 		registeredBlocks.add(pillarB);
 		ResourceLocation face = lotrExtendedLoc(name+"_face");
-		ResourceLocation pillar = lotrExtendedLoc(name+"_face");
+		ResourceLocation pillar = lotrExtendedLoc(name+"_single");
 		ResourceLocation top_tall = lotrExtendedLoc(name+"_tall_top");
 		ResourceLocation middle_tall = lotrExtendedLoc(name+"_tall_middle");
 		ResourceLocation bottom_tall = lotrExtendedLoc(name+"_tall_bottom");
