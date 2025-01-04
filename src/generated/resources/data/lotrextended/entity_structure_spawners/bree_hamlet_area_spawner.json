@@ -1,0 +1,36 @@
+{
+  "id": "lotrextended:bree_hamlet_area_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 24
+  },
+  "spawn_area": {
+    "topYvalue": 8,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 14
+  },
+  "inside_spawning": true,
+  "inside_spawning_chance": 20,
+  "setHomeOnSpawn": true,
+  "homeRadius": 25,
+  "spawnCap": 5,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 4,
+      "entity_types": [
+        {
+          "weight": 20,
+          "entity_type": "lotr:bree_guard"
+        },
+        {
+          "weight": 100,
+          "entity_type": "lotr:bree_man"
+        }
+      ]
+    }
+  ]
+}
