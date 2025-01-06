@@ -25,5 +25,6 @@ public class MixinResourcePackLoader {
     private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo cl) {
 		//LotrExtendedModClient.createLecacyPack(resourcePacks);
 		LotrExtendedModClient.createRenewedPack(resourcePacks);
+		LotrExtendedModClient.createForcedPack(resourcePacks);
     }
 }
