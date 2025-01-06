@@ -23,7 +23,7 @@ public class MixinResourcePackLoader {
 
 	@Inject(method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
     private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo cl) {
-		LotrExtendedModClient.createLecacyPack(resourcePacks);
+		//LotrExtendedModClient.createLecacyPack(resourcePacks);
 		LotrExtendedModClient.createRenewedPack(resourcePacks);
     }
 }
