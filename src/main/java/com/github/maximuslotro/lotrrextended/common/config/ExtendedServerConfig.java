@@ -19,22 +19,32 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 
 	public static ForgeConfigSpec.BooleanValue enableBannerProtection;
+	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
+	public static ForgeConfigSpec.BooleanValue enableChairSwapping;
+	public static ForgeConfigSpec.BooleanValue enableChairProtectionOverride;
+	
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
 	}
 
 	private static ForgeConfigSpec.Builder setupConfig(ForgeConfigSpec.Builder builder) {
 		builder.push("Gameplay settings");
-		enableFellowshipCreation = createBooleanValue(builder, "enableFellowshipCreation", true, false, "Enable or disable fellowship creation");
-		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable or disable renewed based waypoint creation");
-		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable or disable legacy based waypoint creation");
+		enableFellowshipCreation = createBooleanValue(builder, "enableFellowshipCreation", true, false, "Enable fellowship creation");
+		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable renewed based waypoint creation");
+		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable legacy based waypoint creation");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
-		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable or disable banner protection");
+		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable banner protection");
+		builder.pop();
+
+		builder.push("Chair settings");
+		enableChairSlabSitting = createBooleanValue(builder, "enableChairSlabSitting", true, false, "Allow players to sit on slabs or stairs (overrides all below)");
+		enableChairSwapping = createBooleanValue(builder, "enableChairSwapping", true, false, "Allow players to switch seats without standing");
+		enableChairProtectionOverride = createBooleanValue(builder, "enableChairProtectionOverride", true, false, "Allow players sit on seats in banner-protected areas (global setting overriding banner spicific settings)");
 		builder.pop();
 
 		builder.push("Vanilla Patches");
-		enableFishingEnchantedItems = createBooleanValue(builder, "enableFishingEnchantedItems", false, false, "Enable or disable fishing enchanted items in Middle Earth");
-		enableEnchantedLootDrops = createBooleanValue(builder, "enableEnchantedLootDrops", true, false, "Enable or disable any enchated loot drops in Middle Earth");
+		enableEnchantedLootDrops = createBooleanValue(builder, "enableEnchantedLootDrops", true, false, "Enable any enchated loot drops in Middle Earth (overall setting)");
+		enableFishingEnchantedItems = createBooleanValue(builder, "enableFishingEnchantedItems", false, false, "Enable fishing enchanted items in Middle Earth");
 		builder.pop();
 
 		builder.push("Special settings");

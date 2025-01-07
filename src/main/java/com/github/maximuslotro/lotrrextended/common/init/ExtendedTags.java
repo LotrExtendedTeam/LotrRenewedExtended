@@ -58,12 +58,19 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> EDHELVIR_ORE = BlockTags.bind("forge:ores/edhelvir");
 		public static final ITag.INamedTag<Block> GULDURIL_ORE = BlockTags.bind("forge:ores/gulduril");
 
+		public static final ITag.INamedTag<Block> SHEARABLE_BLOCKS = BlockTags.bind("forge:shearable");
+
+		public static final ITag.INamedTag<Block> FUR_BLOCKS = BlockTags.bind("lotrextended:fur_blocks");
 		public static final ITag.INamedTag<Block> GREEN_FIRE_BASE_BLOCKS = BlockTags.bind("lotrextended:green_fire_base_blocks");
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
 		public static final ITag.INamedTag<Block> BANANA_LOGS = BlockTags.bind("lotrextended:banana_logs");
 		public static final ITag.INamedTag<Block> PLUM_LOGS = BlockTags.bind("lotrextended:plum_logs");
 
+		public static final ITag.INamedTag<Block> LARGE_FLOWER_POT_COMPATABLE = BlockTags.bind("lotrextended:large_flower_pot_compatable");
+
 		public static final ITag.INamedTag<Block> MOSS_REPLACEABLE = BlockTags.bind("lotrextended:moss_replaceable");
+
+		public static final ITag.INamedTag<Block> FIXED_SIZE_PILLARS = BlockTags.bind("lotrextended:fixed_size_pillars");
 	}
 
 	public static class Items {
@@ -157,6 +164,9 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> COIN_ONE = ItemTags.bind("lotrextended:coins/coin_one");
 		public static final ITag.INamedTag<Item> COIN_TEN = ItemTags.bind("lotrextended:coins/coin_ten");
 		public static final ITag.INamedTag<Item> COIN_HUNDRED = ItemTags.bind("lotrextended:coins/coin_hundred");
+
+		public static final ITag.INamedTag<Item> TORCH_EXTINGUISHING = ItemTags.bind("lotrextended:torch_extinguishing");
+		public static final ITag.INamedTag<Item> TORCH_LIGHTING = ItemTags.bind("lotrextended:torch_lighting");
 
 		public static final ITag.INamedTag<Item> STONE_GRINDER_LUBRICANTS = ItemTags.bind("lotrextended:stone_grinder/lubricants");
 	}

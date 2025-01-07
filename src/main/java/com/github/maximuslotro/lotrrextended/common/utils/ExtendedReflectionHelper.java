@@ -10,8 +10,6 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.data.PlayerDataModule;
-import lotr.common.tileentity.KegTileEntity;
-import net.minecraft.util.ResourceLocation;
 
 public class ExtendedReflectionHelper {
 
@@ -26,28 +24,6 @@ public class ExtendedReflectionHelper {
 			ExtendedLog.error("Reflection failed to get PlayerDataModule UUID");
 		}
 		return underlyingPlayerUUID;
-	}
-
-	public static ResourceLocation getKegLootTable(KegTileEntity data) {
-		ResourceLocation location = null;
-		try {
-			Field field = KegTileEntity.class.getField("lootTable");
-			location = (ResourceLocation) field.get(data);
-		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to get keg LootTable");
-		}
-		return location;
-	}
-
-	public static void setKegloottable(KegTileEntity data, ResourceLocation location, long seed) {
-		try {
-			Method fooMethod = KegTileEntity.class.getMethod("setLootTable",ResourceLocation.class, long.class);
-			fooMethod.invoke(data, location, seed);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to set keg LootTable");
-		}
 	}
 
 	public static void setTorchValues(Object obj, LOTRTorchBlock copyFromBlock) {

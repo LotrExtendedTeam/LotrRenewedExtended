@@ -15,15 +15,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.inv.KegContainer;
-import lotr.common.inventory.ExtendedKegDataHolderIInventory;
+import lotr.common.inventory.ExtendedSingleItemDataHolderIInventory;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.recipe.DrinkBrewingRecipe;
 import lotr.common.recipe.LOTRRecipes;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.util.DrinkUtils;
+import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -47,7 +49,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 @Mixin(KegTileEntity.class)
-public class MixinKegTileEntity {
+public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 
 	@Nullable
 	public ResourceLocation lootTable;
@@ -259,40 +261,45 @@ public class MixinKegTileEntity {
 	}
 
 	/**
-	 * Extended method to load in a loot table for kegs, uses chest loottable code
+	 * Extended method to load in a loot table for kegs, uses chest loot-table code
 	 * */
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
 		try {
-			if (this.lootTable != null && entity.getLevel() != null && entity.getLevel().getServer() != null) {
-				LootTable loottable = entity.getLevel().getServer().getLootTables().get(lootTable);
-				if (player instanceof ServerPlayerEntity) {
-					CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) player, lootTable);
-				}
+			if(!ExtendedServerConfig.enableDevMode.get()) {
+				if (this.lootTable != null && entity.getLevel() != null && entity.getLevel().getServer() != null) {
+					LootTable loottable = entity.getLevel().getServer().getLootTables().get(lootTable);
+					if (player instanceof ServerPlayerEntity) {
+						CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayerEntity) player, lootTable);
+					}
 
-				this.lootTable = null;
-				LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) entity.getLevel()))
-						.withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(entity.getBlockPos())).withOptionalRandomSeed(lootTableSeed);
-				if (player != null) {
-					lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
+					this.lootTable = null;
+					LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) entity.getLevel()))
+							.withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(entity.getBlockPos())).withOptionalRandomSeed(lootTableSeed);
+					if (player != null) {
+						lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
+					}
+					ExtendedSingleItemDataHolderIInventory placeHolder = new ExtendedSingleItemDataHolderIInventory();
+					loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
+					entity.fillBrewedWith(DrinkUtils.createDrink(new Random(), placeHolder.getItem(0)));
 				}
-				ExtendedKegDataHolderIInventory placeHolder = new ExtendedKegDataHolderIInventory();
-				loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
-				entity.fillBrewedWith(DrinkUtils.createDrink(new Random(), placeHolder.getItem(0)));
 			}
 		}catch(NullPointerException e) {
 			ExtendedLog.error("Caught a null-pointer exception while unpacking keg loot-table");
 			ExtendedLog.error("Location: "+lootTable.toString()+", Pos: "+entity.getBlockPos().toString());
 			e.printStackTrace();
-			ExtendedLog.error("Please report this if it happens again");
+			ExtendedLog.error("Please report this if it happens!");
 		}
 	}
 
-	/**
-	 * This method is called using reflection for now
-	 * */
+	@Override
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
+	}
+
+	@Override
+	public ResourceLocation getLootTable() {
+		return lootTable;
 	}
 }

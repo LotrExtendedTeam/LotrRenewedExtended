@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
-import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedWeaponRackItemRenderer;
-
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 

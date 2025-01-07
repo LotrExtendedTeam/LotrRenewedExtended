@@ -2,6 +2,6 @@
   "parent": "lotrextended:block/template_reed_basket_shape",
   "textures": {
     "1": "lotrextended:entity/chest/reed_basket",
-    "particle": "lotrextended:entity/chest/reed_basket"
+    "particle": "lotr:block/reed_thatch"
   }
 }

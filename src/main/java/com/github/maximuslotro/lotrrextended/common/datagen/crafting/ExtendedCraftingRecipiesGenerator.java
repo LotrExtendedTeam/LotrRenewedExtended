@@ -896,6 +896,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Items.BRICKS))
 		.unlockedBy("has_bricks", has(Items.BRICKS))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_POT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.LARGE_FLOWER_POT.get())
+		.pattern("# #")
+		.pattern("###")
+		.define('#', Ingredient.of(Items.BRICKS))
+		.unlockedBy("has_bricks", has(Items.BRICKS))
+		.save(consumer, lotrLoc(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath()));
 		//Shields
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)
@@ -1114,6 +1121,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.MOSSY_DRYSTONE_SLAB, 
 			ExtendedBlocks.MOSSY_DRYSTONE_WALL, 
 			()->ExtendedBlocks.MOSSY_DRYSTONE.get().asItem(), null);
+		GENERATEDRECIPES.add(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get().getRegistryName().getPath());
+		ShapedRecipeBuilder.shaped(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get(), 4)
+		.pattern("SDS")
+		.pattern("DSD")
+		.pattern("SDS")
+		.define('S', Ingredient.of(STICKS))
+		.define('D', Ingredient.of(LOTRBlocks.WATTLE_AND_DAUB.get()))
+		.unlockedBy("has_"+LOTRBlocks.WATTLE_AND_DAUB.get().getRegistryName().getPath(), has(LOTRBlocks.WATTLE_AND_DAUB.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get().getRegistryName().getPath()));
 		//Mud
 		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_SLAB.get(), 
 			()->ExtendedBlocks.MUD.get().asItem(), null);
@@ -2006,6 +2022,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.GRAY_WARG_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_WARG_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.WHITE_WARG_HELMET.get().getRegistryName().getPath());
+		for(RegistryObject<Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
+			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
+		}
+		GENERATEDRECIPES.add(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath());
 	}
 
 	@Override

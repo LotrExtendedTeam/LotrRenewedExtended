@@ -8,7 +8,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlocks {
 	public static Map<String, RegistryObject<Block>> REGISTEREDBLOCKS = new HashMap<>();
-	
+	public static Map<String, RegistryObject<Block>> REGISTEREDPOTS = new HashMap<>();
 	public static RegistryObject<Block> GALVORN_BLOCK;
 	public static RegistryObject<Block> BLACK_URUK_STEEL_BLOCK;
 	public static RegistryObject<Block> GILDED_IRON_BLOCK;
@@ -459,4 +459,14 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SKULL_GOBLET;
 
 	public static RegistryObject<Block> LARGE_POT;
+	public static RegistryObject<Block> LARGE_FLOWER_POT;
+	public static RegistryObject<Block> LARGE_FLOWER_POT_NETTLES;
+	public static RegistryObject<Block> LARGE_FLOWER_POT_FERNSPROUT;
+	public static RegistryObject<Block> LARGE_FLOWER_POT_THISTLE;
+	public static RegistryObject<Block> LARGE_FLOWER_POT_CLOVER;
+	public static RegistryObject<Block> LARGE_FLOWER_POT_FOUR_CLOVER;
+	public static RegistryObject<Block> LARGE_FLOWER_POT_FERN;
+	public static RegistryObject<Block> MORDOR_MOSS_VINES;
+
+	public static RegistryObject<Block> CROSSED_WATTLE_AND_DAUB;
 }

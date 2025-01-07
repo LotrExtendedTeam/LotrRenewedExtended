@@ -1,0 +1,10 @@
+{
+  "parent": "lotrextended:block/template_large_flower_pot_herb_overlay",
+  "textures": {
+    "pot": "lotrextended:block/large_flower_pot",
+    "particle": "lotrextended:block/large_flower_pot",
+    "plant": "lotr:block/thistle",
+    "leaf": "lotr:block/thistle_leaf_small",
+    "plant_overlay": "lotr:block/thistle_overlay"
+  }
+}

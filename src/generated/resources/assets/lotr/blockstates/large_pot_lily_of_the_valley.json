@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "lotrextended:block/large_pot_lily_of_the_valley"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/large_pot_lily_of_the_valley",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/large_pot_lily_of_the_valley",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/large_pot_lily_of_the_valley",
+      "y": 90
+    }
+  }
+}

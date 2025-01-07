@@ -85,6 +85,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(item.getKey().contains("vines")) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()+"_hand"));
+				continue;
+			}
 			if(((BlockItem)item.getValue().get()) instanceof FallenLeavesItem) {
 				try {
 					genGenerated(item.getKey(), true, lotrExtendedLoc("block/"+item.getKey().substring(7)));

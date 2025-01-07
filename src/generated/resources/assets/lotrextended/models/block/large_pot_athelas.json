@@ -1,0 +1,9 @@
+{
+  "parent": "lotrextended:block/template_large_flower_pot_herb",
+  "textures": {
+    "pot": "lotrextended:block/large_flower_pot",
+    "particle": "lotrextended:block/large_flower_pot",
+    "plant": "lotr:block/athelas",
+    "leaf": "lotr:block/athelas_leaf_small"
+  }
+}

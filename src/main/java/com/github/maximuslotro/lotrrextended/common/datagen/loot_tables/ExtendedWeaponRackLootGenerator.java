@@ -1,0 +1,158 @@
+package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
+
+import java.util.function.BiConsumer;
+
+import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
+import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
+
+import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
+import net.minecraft.data.loot.ChestLootTables;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTable.Builder;
+import net.minecraft.loot.StandaloneLootEntry;
+import net.minecraft.loot.functions.SetCount;
+import net.minecraft.util.ResourceLocation;
+
+public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
+
+	@Override
+	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
+		make(consumer, ExtendedLootTables.HOBBIT_WEAPONRACKS, makePool()
+				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 1, 0.3f, 0.7f)));
+
+		make(consumer, ExtendedLootTables.RANGER_WEAPONRACKS, makePool()
+				.add(addEntry(Items.WOODEN_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.WOODEN_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.WOODEN_SWORD, 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.WOODEN_DAGGER.get(), 80, 0.3f, 0.7f))
+				//.add(addEntry(LOTRItems.WOODEN_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_SWORD, 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.STONE_DAGGER.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.STONE_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_AXE.get(), 70, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_PICKAXE.get(), 70, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_SWORD.get(), 100, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 100, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 100, 0.2f, 0.65f))
+				.add(addEntry(Items.IRON_AXE, 60, 0.2f, 0.65f))
+				.add(addEntry(Items.IRON_PICKAXE, 60, 0.2f, 0.65f))
+				.add(addEntry(Items.IRON_SWORD, 90, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 90, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.IRON_SPEAR.get(), 90, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.ARNOR_SWORD.get(), 80, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.ARNOR_DAGGER.get(), 80, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.ARNOR_SPEAR.get(), 80, 0.2f, 0.65f))
+				.add(addEntry(Items.BOW, 85, 0.2f, 0.65f))
+				.add(addEntry(ExtendedItems.LONGBOW.get(), 65, 0.2f, 0.65f))
+				.add(addEntry(ExtendedItems.DUNEDAIN_BOW.get(), 45, 0.2f, 0.65f)));
+
+		make(consumer, ExtendedLootTables.GUNDABAD_WEAPONRACKS, makePool()
+				.add(addEntry(Items.WOODEN_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.WOODEN_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.WOODEN_SWORD, 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.WOODEN_DAGGER.get(), 80, 0.3f, 0.7f))
+				//.add(addEntry(LOTRItems.WOODEN_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_SWORD, 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.STONE_DAGGER.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.STONE_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_AXE.get(), 70, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_PICKAXE.get(), 70, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_SWORD.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(Items.IRON_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.IRON_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.IRON_SWORD, 90, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 90, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.IRON_SPEAR.get(), 90, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.BONE_AXE.get(), 70, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.BONE_PICKAXE.get(), 70, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.BONE_SWORD.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.BONE_DAGGER.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.BONE_SPEAR.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.ANGMAR_AXE.get(), 70, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.ANGMAR_PICKAXE.get(), 70, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.ANGMAR_SWORD.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.ANGMAR_DAGGER.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.ANGMAR_SPEAR.get(), 100, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.MORDOR_AXE.get(), 60, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.MORDOR_PICKAXE.get(), 60, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.MORDOR_SCIMITAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.MORDOR_DAGGER.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.MORDOR_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 30, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 40, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 40, 0.3f, 0.7f))
+				.add(addEntry(Items.BOW, 85, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.ORC_BOW.get(), 65, 0.3f, 0.7f))
+				.add(addEntry(ExtendedItems.GUNDABAD_URUK_BOW.get(), 35, 0.3f, 0.7f)));
+
+		make(consumer, ExtendedLootTables.BARROW_DOWN_WEAPONRACKS, makePool()
+				.add(addEntry(LOTRItems.BRONZE_AXE.get(), 70, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.BRONZE_PICKAXE.get(), 70, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.BRONZE_SWORD.get(), 100, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 100, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 100, 0.25f, 0.8f))
+				.add(addEntry(Items.IRON_AXE, 60, 0.25f, 0.8f))
+				.add(addEntry(Items.IRON_PICKAXE, 60, 0.25f, 0.8f))
+				.add(addEntry(Items.IRON_SWORD, 90, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 90, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.IRON_SPEAR.get(), 90, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.ARNOR_SWORD.get(), 80, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.ARNOR_DAGGER.get(), 80, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.ARNOR_SPEAR.get(), 80, 0.25f, 0.8f))
+				.add(addEntry(LOTRItems.MITHRIL_AXE.get(), 1, 0.8f, 0.95f))
+				.add(addEntry(LOTRItems.MITHRIL_SPEAR.get(), 1, 0.8f, 0.95f))
+				.add(addEntry(LOTRItems.MITHRIL_SWORD.get(), 1, 0.8f, 0.95f))
+				.add(addEntry(LOTRItems.MITHRIL_DAGGER.get(), 1, 0.8f, 0.95f))
+				.add(addEntry(LOTRItems.MITHRIL_SPEAR.get(), 1, 0.8f, 0.95f))
+				.add(addEntry(ExtendedItems.BARROW_BLADE.get(), 75, 0.2f, 0.6f)));
+
+		make(consumer, ExtendedLootTables.BREE_MAN_WEAPONRACKS, makePool()
+				.add(addEntry(Items.WOODEN_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.WOODEN_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.WOODEN_SWORD, 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.WOODEN_DAGGER.get(), 80, 0.3f, 0.7f))
+				//.add(addEntry(LOTRItems.WOODEN_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_AXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_PICKAXE, 60, 0.3f, 0.7f))
+				.add(addEntry(Items.STONE_SWORD, 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.STONE_DAGGER.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.STONE_SPEAR.get(), 80, 0.3f, 0.7f))
+				.add(addEntry(LOTRItems.BRONZE_AXE.get(), 70, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_PICKAXE.get(), 70, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_SWORD.get(), 100, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 100, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 100, 0.2f, 0.65f))
+				.add(addEntry(Items.IRON_AXE, 60, 0.2f, 0.65f))
+				.add(addEntry(Items.IRON_PICKAXE, 60, 0.2f, 0.65f))
+				.add(addEntry(Items.IRON_SWORD, 90, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 90, 0.2f, 0.65f))
+				.add(addEntry(LOTRItems.IRON_SPEAR.get(), 90, 0.2f, 0.65f)));
+
+		make(consumer, ExtendedLootTables.BREE_HOBBIT_WEAPONRACKS, makePool()
+				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 1, 0.3f, 0.7f)));
+
+	}
+
+	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float min, float max){
+		return EItemLootEntry.lootItem(item).setWeight(weight).setDamageRange(min, max).apply(SetCount.setCount(ConstantRange.exactly(1)));
+	}
+
+	public LootPool.Builder makePool(){
+		return LootPool.lootPool().setRolls(ConstantRange.exactly(1));
+	}
+
+	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation loc, LootPool.Builder pool){
+		consumer.accept(loc, LootTable.lootTable().withPool(pool));
+	}
+}

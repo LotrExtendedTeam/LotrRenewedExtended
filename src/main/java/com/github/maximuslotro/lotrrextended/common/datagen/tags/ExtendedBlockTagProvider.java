@@ -2,7 +2,10 @@ package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
 import java.nio.file.Path;
 import java.util.Map.Entry;
+import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -36,6 +39,7 @@ import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
@@ -48,7 +52,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	//LOTR
-    public static final ITag.INamedTag<Block> PILLARS = BlockTags.bind("lotr:pillars");
+	public static final ITag.INamedTag<Block> PILLARS = BlockTags.bind("lotr:pillars");
 	public static final ITag.INamedTag<Block> WOODEN_FENCES = BlockTags.bind("lotr:wooden_fences");
 	public static final ITag.INamedTag<Block> WOODEN_FENCE_GATES = BlockTags.bind("lotr:wooden_fence_gates");
 	public static final ITag.INamedTag<Block> LOG_SLABS = BlockTags.bind("lotr:log_slabs");
@@ -62,14 +66,14 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	public static final ITag.INamedTag<Block> CHARRABLE_STRIPPED_WOODS = BlockTags.bind("lotr:charrable_stripped_woods");
 	//MINECRAFT
 	public static final ITag.INamedTag<Block> BEDS = BlockTags.bind(BlockTags.BEDS.getName().toString());
-    public static final ITag.INamedTag<Block> SLABS = BlockTags.bind(BlockTags.SLABS.getName().toString());
-    public static final ITag.INamedTag<Block> WOODEN_SLABS = BlockTags.bind(BlockTags.WOODEN_SLABS.getName().toString());
-    public static final ITag.INamedTag<Block> STAIRS = BlockTags.bind(BlockTags.STAIRS.getName().toString());
-    public static final ITag.INamedTag<Block> WOODEN_STAIRS = BlockTags.bind(BlockTags.WOODEN_STAIRS.getName().toString());
-    public static final ITag.INamedTag<Block> WALLS = BlockTags.bind(BlockTags.WALLS.getName().toString());
-    public static final ITag.INamedTag<Block> WOODEN_BUTTONS = BlockTags.bind(BlockTags.WOODEN_BUTTONS.getName().toString());
-    public static final ITag.INamedTag<Block> WOODEN_TRAPDOORS = BlockTags.bind(BlockTags.WOODEN_TRAPDOORS.getName().toString());
-    public static final ITag.INamedTag<Block> WOODEN_PRESSURE_PLATES = BlockTags.bind(BlockTags.WOODEN_PRESSURE_PLATES.getName().toString());
+	public static final ITag.INamedTag<Block> SLABS = BlockTags.bind(BlockTags.SLABS.getName().toString());
+	public static final ITag.INamedTag<Block> WOODEN_SLABS = BlockTags.bind(BlockTags.WOODEN_SLABS.getName().toString());
+	public static final ITag.INamedTag<Block> STAIRS = BlockTags.bind(BlockTags.STAIRS.getName().toString());
+	public static final ITag.INamedTag<Block> WOODEN_STAIRS = BlockTags.bind(BlockTags.WOODEN_STAIRS.getName().toString());
+	public static final ITag.INamedTag<Block> WALLS = BlockTags.bind(BlockTags.WALLS.getName().toString());
+	public static final ITag.INamedTag<Block> WOODEN_BUTTONS = BlockTags.bind(BlockTags.WOODEN_BUTTONS.getName().toString());
+	public static final ITag.INamedTag<Block> WOODEN_TRAPDOORS = BlockTags.bind(BlockTags.WOODEN_TRAPDOORS.getName().toString());
+	public static final ITag.INamedTag<Block> WOODEN_PRESSURE_PLATES = BlockTags.bind(BlockTags.WOODEN_PRESSURE_PLATES.getName().toString());
 	public static final ITag.INamedTag<Block> WOODEN_DOORS = BlockTags.bind(BlockTags.WOODEN_DOORS.getName().toString());
 	public static final ITag.INamedTag<Block> DOORS = BlockTags.bind(BlockTags.DOORS.getName().toString());
 	public static final ITag.INamedTag<Block> TRAPDOORS = BlockTags.bind(BlockTags.TRAPDOORS.getName().toString());
@@ -90,10 +94,13 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	}
 
 	@Override
-    protected void addTags() {
+	protected void addTags() {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getValue().get() instanceof LOTRPillarBlock) {
 				tag(PILLARS).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof ExtendedThreeTallPillarBlock ) {
+				tag(ExtendedTags.Blocks.FIXED_SIZE_PILLARS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
 				tag(FLOWER_POTS).add(block.getValue().get());
@@ -180,6 +187,9 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 			if(block.getValue().get() instanceof BranchBlock) {
 				tag(BRANCHES).add(block.getValue().get());
 			}
+			if(block.getValue().get() instanceof ExtendedVineBlock) {
+				tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).add(block.getValue().get());
+			}
 			if(block.getValue().get() instanceof StrippableLogBlock) {
 				tag(CHARRABLE_LOGS).add(block.getValue().get());
 			}
@@ -192,110 +202,119 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 			if(block.getValue().get() instanceof LOTRStrippedWoodBlock) {
 				tag(CHARRABLE_STRIPPED_WOODS).add(block.getValue().get());
 			}
+			if(block.getKey().contains("packed_fur")||block.getKey().contains("fur_bundle")||block.getKey().contains("fur_carpet")) {
+				tag(ExtendedTags.Blocks.FUR_BLOCKS).add(block.getValue().get());
+			}
 		}
 
 		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())
 		.add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
-		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).addTag(Tags.Blocks.DIRT);
-		 
+		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.MORDOR_MOSS_VINES.get()).addTag(Tags.Blocks.DIRT);
+
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get());
 		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS);
 
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).add(ExtendedBlocks.GALVORN_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).add(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON).add(ExtendedBlocks.GILDED_IRON_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL).add(ExtendedBlocks.MORGUL_STEEL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DWARVEN_STEEL).add(LOTRBlocks.DWARVEN_STEEL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_ELVEN_STEEL).add(LOTRBlocks.ELVEN_STEEL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_MITHRIL).add(LOTRBlocks.MITHRIL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_URUK_STEEL).add(LOTRBlocks.URUK_STEEL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_TOPAZ).add(ExtendedBlocks.TOPAZ_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST).add(ExtendedBlocks.AMETHYST_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE).add(ExtendedBlocks.SAPPHIRE_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY).add(ExtendedBlocks.RUBY_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER).add(ExtendedBlocks.AMBER_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND).add(ExtendedBlocks.DIAMOND_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL).add(ExtendedBlocks.OPAL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).add(ExtendedBlocks.EMERALD_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).add(ExtendedBlocks.PEARL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL).add(ExtendedBlocks.CORAL_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).add(LOTRBlocks.DURNOR_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR).add(LOTRBlocks.EDHELVIR_BLOCK.get());
-	    tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL).add(LOTRBlocks.GULDURIL_BLOCK.get());
+		for(Entry<ResourceLocation, Supplier<? extends Block>> blo : ((FlowerPotBlock)Blocks.FLOWER_POT).getFullPotsView().entrySet()) {
+			tag(ExtendedTags.Blocks.LARGE_FLOWER_POT_COMPATABLE).add(blo.getValue().get());
+		}
+			
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).add(ExtendedBlocks.GALVORN_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).add(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON).add(ExtendedBlocks.GILDED_IRON_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL).add(ExtendedBlocks.MORGUL_STEEL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DWARVEN_STEEL).add(LOTRBlocks.DWARVEN_STEEL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_ELVEN_STEEL).add(LOTRBlocks.ELVEN_STEEL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_MITHRIL).add(LOTRBlocks.MITHRIL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_URUK_STEEL).add(LOTRBlocks.URUK_STEEL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_TOPAZ).add(ExtendedBlocks.TOPAZ_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST).add(ExtendedBlocks.AMETHYST_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE).add(ExtendedBlocks.SAPPHIRE_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY).add(ExtendedBlocks.RUBY_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER).add(ExtendedBlocks.AMBER_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND).add(ExtendedBlocks.DIAMOND_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL).add(ExtendedBlocks.OPAL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).add(ExtendedBlocks.EMERALD_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).add(ExtendedBlocks.PEARL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL).add(ExtendedBlocks.CORAL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).add(LOTRBlocks.DURNOR_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR).add(LOTRBlocks.EDHELVIR_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL).add(LOTRBlocks.GULDURIL_BLOCK.get());
 
-	    tag(BlockTags.BEACON_BASE_BLOCKS).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_TOPAZ)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY) .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL);
+		tag(BlockTags.BEACON_BASE_BLOCKS).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_TOPAZ)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY) .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL);
 
-        tag(Tags.Blocks.STORAGE_BLOCKS)
-        .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DWARVEN_STEEL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_ELVEN_STEEL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_MITHRIL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_URUK_STEEL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_TOPAZ).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR)
-	    .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL);
+		tag(Tags.Blocks.STORAGE_BLOCKS)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DWARVEN_STEEL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_ELVEN_STEEL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_MITHRIL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_URUK_STEEL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_TOPAZ).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR)
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL);
 
-        tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
-        tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
+		tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
+		tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
 
-	    tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get());
+		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.MORDOR_MOSS_VINES.get());
 
-        tag(ExtendedTags.Blocks.COPPER_ORE).add(LOTRBlocks.COPPER_ORE.get());
-        tag(ExtendedTags.Blocks.NITER_ORE).add(LOTRBlocks.NITER_ORE.get());
-        tag(ExtendedTags.Blocks.SALT_ORE).add(LOTRBlocks.SALT_ORE.get());
-        tag(ExtendedTags.Blocks.SILVER_ORE).add(LOTRBlocks.SILVER_ORE.get());
-        tag(ExtendedTags.Blocks.SULFUR_ORE).add(LOTRBlocks.SULFUR_ORE.get());
-        tag(ExtendedTags.Blocks.TIN_ORE).add(LOTRBlocks.TIN_ORE.get());
+		tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).addTag(ExtendedTags.Blocks.FUR_BLOCKS);
+
+		tag(ExtendedTags.Blocks.COPPER_ORE).add(LOTRBlocks.COPPER_ORE.get());
+		tag(ExtendedTags.Blocks.NITER_ORE).add(LOTRBlocks.NITER_ORE.get());
+		tag(ExtendedTags.Blocks.SALT_ORE).add(LOTRBlocks.SALT_ORE.get());
+		tag(ExtendedTags.Blocks.SILVER_ORE).add(LOTRBlocks.SILVER_ORE.get());
+		tag(ExtendedTags.Blocks.SULFUR_ORE).add(LOTRBlocks.SULFUR_ORE.get());
+		tag(ExtendedTags.Blocks.TIN_ORE).add(LOTRBlocks.TIN_ORE.get());
 
 		tag(ExtendedTags.Blocks.TOPAZ_ORE).add(ExtendedBlocks.TOPAZ_ORE.get());
-	    tag(ExtendedTags.Blocks.AMETHYST_ORE).add(ExtendedBlocks.AMETHYST_ORE.get());
-	    tag(ExtendedTags.Blocks.SAPPHIRE_ORE).add(ExtendedBlocks.SAPPHIRE_ORE.get());
-	    tag(ExtendedTags.Blocks.RUBY_ORE).add(ExtendedBlocks.RUBY_ORE.get());
-	    tag(ExtendedTags.Blocks.AMBER_ORE).add(ExtendedBlocks.AMBER_ORE.get());
-	    tag(ExtendedTags.Blocks.DIAMOND_ORE).add(ExtendedBlocks.DIAMOND_ORE.get());
-	    tag(ExtendedTags.Blocks.OPAL_ORE).add(ExtendedBlocks.OPAL_ORE.get());
-	    tag(ExtendedTags.Blocks.EMERALD_ORE).add(ExtendedBlocks.EMERALD_ORE.get());
-	    tag(ExtendedTags.Blocks.DURNOR_ORE).add(LOTRBlocks.DURNOR_ORE.get());
-	    tag(ExtendedTags.Blocks.EDHELVIR_ORE).add(LOTRBlocks.EDHELVIR_ORE.get());
-	    tag(ExtendedTags.Blocks.GULDURIL_ORE).add(LOTRBlocks.GULDURIL_ORE_MORDOR.get()).add(LOTRBlocks.GULDURIL_ORE_STONE.get());
-	    tag(ExtendedTags.Blocks.GLOWSTONE_ORE).add(LOTRBlocks.GLOWSTONE_ORE.get());
-	    tag(ExtendedTags.Blocks.MITHRIL_ORE).add(LOTRBlocks.MITHRIL_ORE.get());
-	    tag(ExtendedTags.Blocks.MORGUL_IRON_ORE).add(LOTRBlocks.MORGUL_IRON_ORE_MORDOR.get()).add(LOTRBlocks.MORGUL_IRON_ORE_STONE.get());
+		tag(ExtendedTags.Blocks.AMETHYST_ORE).add(ExtendedBlocks.AMETHYST_ORE.get());
+		tag(ExtendedTags.Blocks.SAPPHIRE_ORE).add(ExtendedBlocks.SAPPHIRE_ORE.get());
+		tag(ExtendedTags.Blocks.RUBY_ORE).add(ExtendedBlocks.RUBY_ORE.get());
+		tag(ExtendedTags.Blocks.AMBER_ORE).add(ExtendedBlocks.AMBER_ORE.get());
+		tag(ExtendedTags.Blocks.DIAMOND_ORE).add(ExtendedBlocks.DIAMOND_ORE.get());
+		tag(ExtendedTags.Blocks.OPAL_ORE).add(ExtendedBlocks.OPAL_ORE.get());
+		tag(ExtendedTags.Blocks.EMERALD_ORE).add(ExtendedBlocks.EMERALD_ORE.get());
+		tag(ExtendedTags.Blocks.DURNOR_ORE).add(LOTRBlocks.DURNOR_ORE.get());
+		tag(ExtendedTags.Blocks.EDHELVIR_ORE).add(LOTRBlocks.EDHELVIR_ORE.get());
+		tag(ExtendedTags.Blocks.GULDURIL_ORE).add(LOTRBlocks.GULDURIL_ORE_MORDOR.get()).add(LOTRBlocks.GULDURIL_ORE_STONE.get());
+		tag(ExtendedTags.Blocks.GLOWSTONE_ORE).add(LOTRBlocks.GLOWSTONE_ORE.get());
+		tag(ExtendedTags.Blocks.MITHRIL_ORE).add(LOTRBlocks.MITHRIL_ORE.get());
+		tag(ExtendedTags.Blocks.MORGUL_IRON_ORE).add(LOTRBlocks.MORGUL_IRON_ORE_MORDOR.get()).add(LOTRBlocks.MORGUL_IRON_ORE_STONE.get());
 
-	    tag(Tags.Blocks.ORES).addTag(ExtendedTags.Blocks.TOPAZ_ORE)
-	    .addTag(ExtendedTags.Blocks.AMETHYST_ORE).addTag(ExtendedTags.Blocks.SAPPHIRE_ORE)
-	    .addTag(ExtendedTags.Blocks.RUBY_ORE).addTag(ExtendedTags.Blocks.AMBER_ORE)
-	    .addTag(ExtendedTags.Blocks.DIAMOND_ORE).addTag(ExtendedTags.Blocks.OPAL_ORE)
-	    .addTag(ExtendedTags.Blocks.EMERALD_ORE) .addTag(ExtendedTags.Blocks.DURNOR_ORE)
-	    .addTag(ExtendedTags.Blocks.EDHELVIR_ORE).addTag(ExtendedTags.Blocks.GULDURIL_ORE)
-	    .addTag(ExtendedTags.Blocks.GLOWSTONE_ORE).addTag(ExtendedTags.Blocks.MITHRIL_ORE)
-	    .addTag(ExtendedTags.Blocks.MORGUL_IRON_ORE).addTag(ExtendedTags.Blocks.COPPER_ORE)
-	    .addTag(ExtendedTags.Blocks.NITER_ORE).addTag(ExtendedTags.Blocks.SALT_ORE)
-	    .addTag(ExtendedTags.Blocks.SILVER_ORE).addTag(ExtendedTags.Blocks.SULFUR_ORE)
-	    .addTag(ExtendedTags.Blocks.TIN_ORE);
+		tag(Tags.Blocks.ORES).addTag(ExtendedTags.Blocks.TOPAZ_ORE)
+		.addTag(ExtendedTags.Blocks.AMETHYST_ORE).addTag(ExtendedTags.Blocks.SAPPHIRE_ORE)
+		.addTag(ExtendedTags.Blocks.RUBY_ORE).addTag(ExtendedTags.Blocks.AMBER_ORE)
+		.addTag(ExtendedTags.Blocks.DIAMOND_ORE).addTag(ExtendedTags.Blocks.OPAL_ORE)
+		.addTag(ExtendedTags.Blocks.EMERALD_ORE) .addTag(ExtendedTags.Blocks.DURNOR_ORE)
+		.addTag(ExtendedTags.Blocks.EDHELVIR_ORE).addTag(ExtendedTags.Blocks.GULDURIL_ORE)
+		.addTag(ExtendedTags.Blocks.GLOWSTONE_ORE).addTag(ExtendedTags.Blocks.MITHRIL_ORE)
+		.addTag(ExtendedTags.Blocks.MORGUL_IRON_ORE).addTag(ExtendedTags.Blocks.COPPER_ORE)
+		.addTag(ExtendedTags.Blocks.NITER_ORE).addTag(ExtendedTags.Blocks.SALT_ORE)
+		.addTag(ExtendedTags.Blocks.SILVER_ORE).addTag(ExtendedTags.Blocks.SULFUR_ORE)
+		.addTag(ExtendedTags.Blocks.TIN_ORE);
 
-	    tag(CHESTS).add(ExtendedBlocks.STONE_CHEST.get());
-	    tag(BARRELS).add(ExtendedBlocks.REED_BASKET.get()).add(ExtendedBlocks.ORC_BARREL.get());
-	    tag(BARRELS_WOODEN).add(ExtendedBlocks.REED_BASKET.get()).add(ExtendedBlocks.ORC_BARREL.get());
+		tag(CHESTS).add(ExtendedBlocks.STONE_CHEST.get());
+		tag(BARRELS).add(ExtendedBlocks.REED_BASKET.get()).add(ExtendedBlocks.ORC_BARREL.get());
+		tag(BARRELS_WOODEN).add(ExtendedBlocks.REED_BASKET.get()).add(ExtendedBlocks.ORC_BARREL.get());
 
-	    tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
-	    .add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());
-	    tag(ExtendedTags.Blocks.BANANA_LOGS).add(ExtendedBlocks.BANANA_LOG.get()).add(ExtendedBlocks.STRIPPED_BANANA_LOG.get())
-	    .add(ExtendedBlocks.BANANA_WOOD.get()).add(ExtendedBlocks.STRIPPED_BANANA_WOOD.get());
-	    tag(ExtendedTags.Blocks.PLUM_LOGS).add(ExtendedBlocks.PLUM_LOG.get()).add(ExtendedBlocks.STRIPPED_PLUM_LOG.get())
-	    .add(ExtendedBlocks.PLUM_WOOD.get()).add(ExtendedBlocks.STRIPPED_PLUM_WOOD.get());
+		tag(ExtendedTags.Blocks.CHESTNUT_LOGS).add(ExtendedBlocks.CHESTNUT_LOG.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get())
+		.add(ExtendedBlocks.CHESTNUT_WOOD.get()).add(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD.get());
+		tag(ExtendedTags.Blocks.BANANA_LOGS).add(ExtendedBlocks.BANANA_LOG.get()).add(ExtendedBlocks.STRIPPED_BANANA_LOG.get())
+		.add(ExtendedBlocks.BANANA_WOOD.get()).add(ExtendedBlocks.STRIPPED_BANANA_WOOD.get());
+		tag(ExtendedTags.Blocks.PLUM_LOGS).add(ExtendedBlocks.PLUM_LOG.get()).add(ExtendedBlocks.STRIPPED_PLUM_LOG.get())
+		.add(ExtendedBlocks.PLUM_WOOD.get()).add(ExtendedBlocks.STRIPPED_PLUM_WOOD.get());
 	}
 
 	@Override

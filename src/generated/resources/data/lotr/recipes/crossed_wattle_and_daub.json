@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SDS",
+    "DSD",
+    "SDS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "D": {
+      "item": "lotr:wattle_and_daub"
+    }
+  },
+  "result": {
+    "item": "lotr:crossed_wattle_and_daub",
+    "count": 4
+  }
+}

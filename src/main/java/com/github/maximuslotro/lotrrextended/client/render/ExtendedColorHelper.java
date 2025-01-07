@@ -20,6 +20,12 @@ public class ExtendedColorHelper {
 		colors.register(naturalTint, ExtendedBlocks.GRASS_BLOCK_SLAB.get());
 		colors.register(naturalTint, ExtendedBlocks.MOSS_BLOCK.get());
 		colors.register(naturalTint, ExtendedBlocks.MOSS_CARPET.get());
+		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_FERNSPROUT.get());
+		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_NETTLES.get());
+		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_THISTLE.get());
+		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_FERN.get());
+		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_FOUR_CLOVER.get());
+		colors.register(naturalTint, ExtendedBlocks.LARGE_FLOWER_POT_CLOVER.get());
 	}
 
 	public static void makeItemsColors(ColorHandlerEvent.Item event) {

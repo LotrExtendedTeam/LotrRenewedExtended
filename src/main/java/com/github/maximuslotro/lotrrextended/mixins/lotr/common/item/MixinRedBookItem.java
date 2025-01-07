@@ -31,7 +31,7 @@ public class MixinRedBookItem {
 	private void playOpenScreenSound(World world, BlockPos pos) {}
 
 	/**
-	 * @reason Because I'm Lazy and didn't want to write an inject
+	 * @reason Need to change waypoint Gamerule call
 	 * @author maximuslotro
 	 * */
 	@Overwrite(remap = false)
@@ -40,11 +40,12 @@ public class MixinRedBookItem {
 			ServerWorld sWorld = (ServerWorld) world;
 			boolean canBeCWPStructure = CustomWaypointStructureHandler.INSTANCE.isFocalPoint(world, pos);
 			if (canBeCWPStructure) {
+				// Extended Start
 				if (!ExtendedServerConfig.enableRenewedWaypointCreation.get()) {
 					LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.create.disabled"));
 					return false;
 				}
-
+				// Extended End
 				if (CustomWaypointStructureHandler.INSTANCE.hasAdjacentWaypointMarker(world, pos)) {
 					LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.alreadyExists"));
 					playFailedSound(world, pos);

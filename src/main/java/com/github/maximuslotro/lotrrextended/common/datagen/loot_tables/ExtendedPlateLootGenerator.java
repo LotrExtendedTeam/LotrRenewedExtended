@@ -1,0 +1,175 @@
+package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
+
+import java.util.function.BiConsumer;
+
+import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
+
+import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
+import net.minecraft.data.loot.ChestLootTables;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTable.Builder;
+import net.minecraft.loot.StandaloneLootEntry;
+import net.minecraft.loot.functions.SetCount;
+import net.minecraft.util.ResourceLocation;
+
+public class ExtendedPlateLootGenerator extends ChestLootTables  {
+
+	@Override
+	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
+		//TODO add corn bread, leeks, leek soup, turnips, cooked turnips, mushroom pie, cooked corn, marzipan, chocolate marzipan
+		make(consumer, ExtendedLootTables.HOBBIT_PLATES, makePool()
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_COD))
+				.add(addEntry(Items.COOKED_SALMON))
+				.add(addEntry(Items.COOKED_CHICKEN))
+				.add(addEntry(Items.COOKED_BEEF))
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_MUTTON))
+				.add(addEntry(Items.BAKED_POTATO))
+				.add(addEntry(Items.APPLE))
+				.add(addEntry(Items.BREAD))
+				.add(addEntry(Items.CARROT))
+				.add(addEntry(Items.BROWN_MUSHROOM))
+				.add(addEntry(Items.RED_MUSHROOM))
+				.add(addEntry(Items.PUMPKIN_PIE))
+				.add(addEntry(Items.COOKIE))
+				.add(addEntry(Items.COOKED_RABBIT))
+				.add(addEntry(Items.MUSHROOM_STEW))
+				.add(addEntry(Items.RABBIT_STEW))
+				.add(addEntry(LOTRItems.GAMMON.get()))
+				.add(addEntry(LOTRItems.GREEN_APPLE.get()))
+				.add(addEntry(LOTRItems.LETTUCE.get()))
+				.add(addEntry(LOTRItems.PEAR.get()))
+				.add(addEntry(LOTRItems.CHERRY.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
+				.add(addEntry(ExtendedItems.PLUM.get()))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE.get()))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get()))
+				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
+				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
+				.add(addEntry(ExtendedItems.CRANBERRY.get()))
+				.add(addEntry(ExtendedItems.ELDERBERRY.get()))
+				.add(addEntry(ExtendedItems.RASPBERRY.get()))
+				.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get())));
+
+		//TODO add cooked deer
+		make(consumer, ExtendedLootTables.RANGER_PLATES, makePool()
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_COD))
+				.add(addEntry(Items.COOKED_SALMON))
+				.add(addEntry(Items.COOKED_CHICKEN))
+				.add(addEntry(Items.COOKED_BEEF))
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_MUTTON))
+				.add(addEntry(Items.BAKED_POTATO))
+				.add(addEntry(Items.APPLE))
+				.add(addEntry(Items.BREAD))
+				.add(addEntry(Items.COOKED_RABBIT))
+				.add(addEntry(Items.BROWN_MUSHROOM))
+				.add(addEntry(Items.RED_MUSHROOM))
+				.add(addEntry(Items.MUSHROOM_STEW))
+				.add(addEntry(Items.RABBIT_STEW))
+				.add(addEntry(LOTRItems.GREEN_APPLE.get()))
+				.add(addEntry(LOTRItems.PEAR.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
+				.add(addEntry(ExtendedItems.PLUM.get()))
+				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
+				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
+				.add(addEntry(ExtendedItems.CRANBERRY.get()))
+				.add(addEntry(ExtendedItems.ELDERBERRY.get()))
+				.add(addEntry(ExtendedItems.RASPBERRY.get()))
+				.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get())));
+
+		make(consumer, ExtendedLootTables.GUNDABAD_PLATES, makePool()
+				.add(addEntry(Items.ROTTEN_FLESH))
+				.add(addEntry(LOTRItems.MAGGOTY_BREAD.get()))
+				.add(addEntry(LOTRItems.MAN_FLESH.get())));
+
+		// TODO add cooked deer, turnip, turnip cooked, mushroom pie, leek, leek soup
+		make(consumer, ExtendedLootTables.BREE_MAN_PLATES, makePool()
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_COD))
+				.add(addEntry(Items.COOKED_SALMON))
+				.add(addEntry(Items.COOKED_CHICKEN))
+				.add(addEntry(Items.COOKED_BEEF))
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_MUTTON))
+				.add(addEntry(Items.BAKED_POTATO))
+				.add(addEntry(Items.APPLE))
+				.add(addEntry(Items.BREAD))
+				.add(addEntry(Items.CARROT))
+				.add(addEntry(Items.COOKED_RABBIT))
+				.add(addEntry(Items.RABBIT_STEW))
+				.add(addEntry(Items.BROWN_MUSHROOM))
+				.add(addEntry(Items.RED_MUSHROOM))
+				.add(addEntry(Items.MUSHROOM_STEW))
+				.add(addEntry(LOTRItems.GREEN_APPLE.get()))
+				.add(addEntry(LOTRItems.PEAR.get()))
+				.add(addEntry(LOTRItems.LETTUCE.get()))
+				.add(addEntry(LOTRItems.PEAR.get()))
+				.add(addEntry(LOTRItems.CHERRY.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
+				.add(addEntry(ExtendedItems.PLUM.get()))
+				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
+				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
+				.add(addEntry(ExtendedItems.CRANBERRY.get()))
+				.add(addEntry(ExtendedItems.ELDERBERRY.get()))
+				.add(addEntry(ExtendedItems.RASPBERRY.get()))
+				.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get())));
+
+		// TODO add cooked deer, turnip, turnip cooked, mushroom pie, leek, leek soup
+		make(consumer, ExtendedLootTables.BREE_HOBBIT_PLATES, makePool()
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_COD))
+				.add(addEntry(Items.COOKED_SALMON))
+				.add(addEntry(Items.COOKED_CHICKEN))
+				.add(addEntry(Items.COOKED_BEEF))
+				.add(addEntry(Items.COOKED_PORKCHOP))
+				.add(addEntry(Items.COOKED_MUTTON))
+				.add(addEntry(Items.BAKED_POTATO))
+				.add(addEntry(Items.APPLE))
+				.add(addEntry(Items.BREAD))
+				.add(addEntry(Items.CARROT))
+				.add(addEntry(Items.COOKED_RABBIT))
+				.add(addEntry(Items.RABBIT_STEW))
+				.add(addEntry(Items.BROWN_MUSHROOM))
+				.add(addEntry(Items.RED_MUSHROOM))
+				.add(addEntry(Items.MUSHROOM_STEW))
+				.add(addEntry(LOTRItems.GREEN_APPLE.get()))
+				.add(addEntry(LOTRItems.PEAR.get()))
+				.add(addEntry(LOTRItems.LETTUCE.get()))
+				.add(addEntry(LOTRItems.PEAR.get()))
+				.add(addEntry(LOTRItems.CHERRY.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
+				.add(addEntry(ExtendedItems.PLUM.get()))
+				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
+				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
+				.add(addEntry(ExtendedItems.CRANBERRY.get()))
+				.add(addEntry(ExtendedItems.ELDERBERRY.get()))
+				.add(addEntry(ExtendedItems.RASPBERRY.get()))
+				.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get()))
+				.add(addEntry(ExtendedItems.BUTTER.get()))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE.get()))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get())));
+	}
+
+	public StandaloneLootEntry.Builder<?> addEntry(Item item){
+		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(ConstantRange.exactly(1)));
+	}
+
+	public LootPool.Builder makePool(){
+		return LootPool.lootPool().setRolls(ConstantRange.exactly(1));
+	}
+
+	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation t, LootPool.Builder pool){
+		consumer.accept(t, LootTable.lootTable().withPool(pool));
+	}
+}

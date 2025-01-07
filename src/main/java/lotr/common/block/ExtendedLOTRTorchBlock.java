@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.function.ToIntFunction;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBlockParms;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -56,23 +57,35 @@ public class ExtendedLOTRTorchBlock extends LOTRTorchBlock{
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult hitBlock) {
 		if (world.isClientSide) {
-			BlockState blockstate1 = blockState.cycle(LIT);
-			if (blockstate1.getValue(LIT)) {
-				makeLightParticles(world, blockPos);
+			if(blockState.getValue(LIT)) {
+				return ActionResultType.PASS;
+			}else {
+				if(!player.getMainHandItem().isEmpty() && ExtendedTags.Items.TORCH_LIGHTING.contains(player.getMainHandItem().getItem())) {
+					this.cycle(blockState, world, blockPos);
+					makeLightParticles(world, blockPos);
+					return ActionResultType.SUCCESS;
+				}
+				return ActionResultType.PASS;
 			}
-			return ActionResultType.SUCCESS;
 		} else {
-			BlockState blockstate = this.light(blockState, world, blockPos);
-			if(blockstate.getValue(LIT)) {
-				world.playSound((PlayerEntity)null, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 0.3F, 0.6F);
-			} else {
-				world.playSound((PlayerEntity)null, blockPos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 0.3F, 0.5F);
+			if(blockState.getValue(LIT)) {
+				if(!player.getMainHandItem().isEmpty() && ExtendedTags.Items.TORCH_EXTINGUISHING.contains(player.getMainHandItem().getItem())) {
+					this.cycle(blockState, world, blockPos);
+					world.playSound((PlayerEntity)null, blockPos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 0.3F, 0.5F);
+					return ActionResultType.CONSUME;
+				}
+			}else {
+				if(!player.getMainHandItem().isEmpty() && ExtendedTags.Items.TORCH_LIGHTING.contains(player.getMainHandItem().getItem())) {
+					this.cycle(blockState, world, blockPos);
+					world.playSound((PlayerEntity)null, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 0.3F, 0.6F);
+					return ActionResultType.CONSUME;
+				}
 			}
-			return ActionResultType.CONSUME;
+			return ActionResultType.PASS;
 		}
 	}
 
-	private BlockState light(BlockState blockState, World world, BlockPos blockPos) {
+	private BlockState cycle(BlockState blockState, World world, BlockPos blockPos) {
 		blockState = blockState.cycle(LIT);
 		world.setBlock(blockPos, blockState, 3);
 		return blockState;

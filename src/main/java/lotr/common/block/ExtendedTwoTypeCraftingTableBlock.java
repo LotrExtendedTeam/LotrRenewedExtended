@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
 public class ExtendedTwoTypeCraftingTableBlock extends FactionCraftingTableBlock {
-	//True if table is alt type
+	//True if table is alternative type
 	public static final BooleanProperty ALTERNATITE = BooleanProperty.create("table_alternative_texture");
 	public ExtendedTwoTypeCraftingTableBlock(Supplier<? extends Block> block, FactionPointer tableFac, FactionTableType factionRecipeType, String tableScreenName) {
 		super(block, tableFac, factionRecipeType, tableScreenName);

@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
+import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.init.ExtendedBlocks;
@@ -44,7 +45,7 @@ import net.minecraft.world.World;
 public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final EnumProperty<RopeType> SECTION_TYPE = EnumProperty.create("section_type", RopeType.class);
+	public static final EnumProperty<RopeType> SECTION_TYPE = ExtendedBlockStateProperties.ROPE_TYPE;
 	protected static final VoxelShape NORTH_AABB = Block.box(4.0D, 0.0D, 13.0D, 12.0D, 16.0D, 16.0D);
 	protected static final VoxelShape SOUTH_AABB = Block.box(4.0D, 0.0D, 0.0D, 12.0D, 16.0D, 3.0D);
 	protected static final VoxelShape WEST_AABB = Block.box(13.0D, 0.0D, 4.0D, 16.0D, 16.0D, 12.0D);

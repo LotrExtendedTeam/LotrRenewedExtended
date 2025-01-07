@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "lotrextended:block/large_pot_mallos"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/large_pot_mallos",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/large_pot_mallos",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/large_pot_mallos",
+      "y": 90
+    }
+  }
+}

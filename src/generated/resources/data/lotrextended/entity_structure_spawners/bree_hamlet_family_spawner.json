@@ -1,0 +1,14 @@
+{
+  "id": "lotrextended:bree_hamlet_family_spawner",
+  "spawner_type": "single_family_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 10,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:bree_man"
+    }
+  ]
+}

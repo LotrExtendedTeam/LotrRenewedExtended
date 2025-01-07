@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "lotr:mordor_moss_vines",
     "lotr:rope"
   ]
 }

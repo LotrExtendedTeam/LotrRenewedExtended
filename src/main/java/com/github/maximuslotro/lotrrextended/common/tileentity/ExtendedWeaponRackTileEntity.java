@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -41,10 +42,12 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 
 	@Override
 	public void tick() {
-		if (this.lootTable != null && !level.isClientSide && playerInDistance() && !ticked) {
-			ticked=true;
-			this.unpackLootTable((PlayerEntity)null);
-			this.markAndUpdate();
+		if(!ExtendedServerConfig.enableDevMode.get()) {
+			if (this.lootTable != null && !level.isClientSide && playerInDistance() && !ticked) {
+				ticked=true;
+				this.unpackLootTable((PlayerEntity)null);
+				this.markAndUpdate();
+			}
 		}
 	}
 
@@ -60,9 +63,13 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	@Override
 	public void load(BlockState p_230337_1_, CompoundNBT nbt) {
 		super.load(p_230337_1_, nbt);
-		if (!this.tryLoadLootTable(nbt)) {
+		// Set empty if loot-table is set
+		if (this.tryLoadLootTable(nbt)) {
+			containedItem = ItemStack.EMPTY;
+		}else {
 			if (nbt.contains(tagName, NBT.TAG_COMPOUND)) {
 				this.containedItem = ItemStack.of(nbt.getCompound(tagName));
+				// Should never run, but can if major issues
 				if (containedItem == null) {
 					ExtendedLog.warn("Weapon Rack Loaded with a null Item, this should not happen. All Contained Items Have been lost!");
 					containedItem = ItemStack.EMPTY;
@@ -75,7 +82,9 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	@Override
 	public CompoundNBT save(CompoundNBT nbt) {
 		super.save(nbt);
+		// Don't save item if loot-table is saved
 		if (!this.trySaveLootTable(nbt)) {
+			// Should never run, but can if major issues
 			if (containedItem == null) {
 				ExtendedLog.warn("Weapon Rack failed to save as contained item is NULL! This should not happen. All Contained Items Have been lost!");
 				containedItem = ItemStack.EMPTY;
@@ -115,7 +124,9 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 
 	public void markAndUpdate() {
 		this.setChanged();
-		this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+		if (this.hasLevel()) {
+			this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+		}
 	}
 
 	public boolean hasItem() {
@@ -125,6 +136,7 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 		return false;
 	}
 	public ItemStack getContainedItem() {
+		// Should never run, but can if major issues
 		if (containedItem == null) {
 			ExtendedLog.warn("Weapon Rack contains a null Item, this should not happen. All Contained Items Have been lost!");
 			containedItem = ItemStack.EMPTY;
@@ -135,6 +147,7 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 
 	public void setContainedItem(ItemStack containedItem) {
 		this.containedItem = containedItem;
+		// Should never run, but can if major issues
 		if (containedItem == null) {
 			ExtendedLog.warn("Tried Setting a NULL item to a Weapon Rack, correcting to ItemStack.EMPTY!");
 			containedItem = ItemStack.EMPTY;

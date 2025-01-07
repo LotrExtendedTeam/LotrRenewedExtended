@@ -75,7 +75,6 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 				.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning(70).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
 		// un-disable when gundabad captain is added
 		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
-		// un-disable when gundabad trader is added
 		single(ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_TRADER);
 		single(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
@@ -87,5 +86,17 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).setPoolRolls(2).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ANIMAL);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.GUNDABAD_WARG.get(), 100).build(), 2, 3, true, 26, 8)
 		.setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_WARG);
+
+		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FAMILY_SPAWNER);
+		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.BREE_HAMLET_ANIMALS);
+		persisted(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.BREE_GUARD.get(), 20).addPool(LOTREntities.BREE_MAN.get(), 100)
+				.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 24, 8, -4, 14).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_AREA_SPAWNER);
+		// un-disable when bree hamlet potter is added
+		single(LOTREntities.BREE_MAN.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.BREE_HAMLET_POTTER);
+		// un-disable when bree hamlet farmer is added
+		single(LOTREntities.BREE_MAN.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.BREE_HAMLET_FARMER);
+		persisted(LOTREntities.BREE_MAN.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE);
 	}
 }

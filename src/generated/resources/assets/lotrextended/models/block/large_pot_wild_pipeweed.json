@@ -1,0 +1,9 @@
+{
+  "parent": "lotrextended:block/template_large_flower_pot_herb",
+  "textures": {
+    "pot": "lotrextended:block/large_flower_pot",
+    "particle": "lotrextended:block/large_flower_pot",
+    "plant": "lotr:block/wild_pipeweed",
+    "leaf": "lotr:block/pipeweed_crop_stage1"
+  }
+}
