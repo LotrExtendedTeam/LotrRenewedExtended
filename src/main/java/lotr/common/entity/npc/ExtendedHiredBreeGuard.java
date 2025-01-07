@@ -264,6 +264,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         setHealth(p_70606_1_);
     }
 
+    @Override
     public void setInventoryOpen(boolean isOpen) {
         this.entityData.set(INVENTORY_OPEN, isOpen);
     }

@@ -52,7 +52,7 @@ public class ExtendedCPacketOpenHiredMenu {
             if (entity instanceof NPCEntity) {
                 NPCEntity npcEntity = (NPCEntity) entity;
                 if (npcEntity instanceof ExtendedHirableEntity) {
-                    ((ExtendedHirableEntity) npcEntity).setEquipmentOpen(true);
+                    ((ExtendedHirableEntity) npcEntity).setInventoryOpen(true);
                 }
             }
 

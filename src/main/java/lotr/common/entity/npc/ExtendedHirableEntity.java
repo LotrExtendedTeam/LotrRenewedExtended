@@ -81,4 +81,6 @@ public interface ExtendedHirableEntity {
 
     boolean isEquipmentOpen();
     void setEquipmentOpen(boolean isOpen);
+
+    void setInventoryOpen(boolean isOpen);
 }
