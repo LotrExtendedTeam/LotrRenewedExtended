@@ -81,6 +81,7 @@
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.item.MixinSpawnEggItem",
 		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket"
 	],
 	
