@@ -33,6 +33,7 @@ public interface ExtendedHirableEntity {
     int getMobKills();
 
     ITextComponent getHiredUnitName();
+    ITextComponent getHiredUnitNameAndTitle();
 
     boolean isPatrolling();
 

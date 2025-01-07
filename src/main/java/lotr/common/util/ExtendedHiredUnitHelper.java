@@ -11,6 +11,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -39,9 +40,18 @@ public class ExtendedHiredUnitHelper {
         }
         String s = "death.attack." + source.msgId;
 
-        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unit.getHiredUnitName());
+        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unit.getHiredUnitNameAndTitle());
 
-        return killer != null ? new TranslationTextComponent(s, companionName, killer.getDisplayName()) : new TranslationTextComponent(s, companionName);
+        ITextComponent killerName = new StringTextComponent("");
+        if (killer != null) {
+            killerName = killer.getDisplayName();
+            if (killer instanceof ExtendedHiredBreeGuard) {
+                killerName = ((ExtendedHiredBreeGuard) killer).getHiredUnitNameAndTitle();
+            }
+        }
+
+
+        return killer != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
     }
 
     public static void giveExperiencePoints(ExtendedHirableEntity unit, float points) {
@@ -57,7 +67,7 @@ public class ExtendedHiredUnitHelper {
             if (unit.getOwner() != null) {
                 unit.getOwner().sendMessage(
                         new TranslationTextComponent("chat.lotrextended.hired_companion_levelup",
-                                unit.getHiredUnitId(), unit.getExpLvl()),
+                                unit.getHiredUnitNameAndTitle(), unit.getExpLvl()),
                         unit.getOwnerUUID());
             }
         } else {

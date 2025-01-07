@@ -223,6 +223,12 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
                 new StringTextComponent(getPersonalInfo().getName()));
     }
 
+    @Override
+    public ITextComponent getHiredUnitNameAndTitle() {
+        return new TranslationTextComponent("entity_title.lotrextended.hired_bree_guard",
+                new StringTextComponent(getPersonalInfo().getName()));
+    }
+
     public ItemStack checkFood() {
         for (int i = 0; i < 9; ++i) {
             ItemStack itemstack = this.inventory.getItem(i);
@@ -280,7 +286,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getItemInHand(hand);
         if (hand == Hand.MAIN_HAND) {
             if (this.isAlliedTo(player)) {
                 if (this.level.isClientSide()) {

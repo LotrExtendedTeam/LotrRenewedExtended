@@ -37,10 +37,6 @@ public class MixinSpawnEggItem {
 
     @Overwrite(remap = false)
     public ActionResultType useOn(ItemUseContext context) {
-        ExtendedLog.info("===============================================");
-        ExtendedLog.info("useOn called from custom Mixin");
-        ExtendedLog.info("===============================================");
-
         World world = context.getLevel();
         if (!(world instanceof ServerWorld)) {
             return ActionResultType.SUCCESS;
