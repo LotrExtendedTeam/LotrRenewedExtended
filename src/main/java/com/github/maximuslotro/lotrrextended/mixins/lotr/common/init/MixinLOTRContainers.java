@@ -2,8 +2,6 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -46,12 +44,6 @@ public class MixinLOTRContainers {
 		});
 		ExtendedContainers.MILLSTONE = registerExtended("stone_grinder", "Stone Grinder", () -> {
 			return IForgeContainerType.create(ExtendedGrinderContainer::new);
-		});
-		ExtendedContainers.HIRED_UNIT_CONTAINER = register("hired_unit_menu", "Hired Unit Inventory", () -> {
-			return IForgeContainerType.create(ExtendedHiredUnitContainer::new);
-		});
-		ExtendedContainers.HIRED_UNIT_EQUIPMENT = register("hired_unit_equipment", "Update Equipment", () -> {
-			return IForgeContainerType.create(ExtendedHiredUnitEquipmentContainer::new);
 		});
 	}
 

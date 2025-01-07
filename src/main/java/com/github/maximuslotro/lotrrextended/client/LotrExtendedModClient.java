@@ -2,10 +2,8 @@ package com.github.maximuslotro.lotrrextended.client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.eventhandlers.RenderHiredUnitHealthbars;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
@@ -36,7 +34,6 @@ import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -54,8 +51,6 @@ public class LotrExtendedModClient {
 
 	public static LotrExtendedModClient INSTANCE;
 
-	public static UUID usersUUID = null;
-
 	public LotrExtendedMod getParentInstance() {
 		return LotrExtendedMod.INSTANCE;
 	}
@@ -66,7 +61,6 @@ public class LotrExtendedModClient {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::login);
 		forgeBus.addListener(this::commandevent);
-		forgeBus.addListener(RenderHiredUnitHealthbars::renderHpBar);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
@@ -76,8 +70,6 @@ public class LotrExtendedModClient {
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
-
-		//DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::setupUsersUUID);
 	}
 
     /**
@@ -127,7 +119,6 @@ public class LotrExtendedModClient {
 		event.enqueueWork(()->{
 			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
-			setupUsersUUID();
 		});
 		ExtendedScreenRegisterHandler.register();
 		ExtendedEntityRenderers.registerEntityRenderers();
@@ -174,22 +165,5 @@ public class LotrExtendedModClient {
 				rpl.setSelected(packs.stream().collect(ImmutableSet.toImmutableSet()));
 			}
 		}
-	}
-
-	private void setupUsersUUID() {
-		String userUUIDString = Minecraft.getInstance().getUser().getUuid();
-		if (!userUUIDString.equals("")) userUUIDString = addDashesToUUID(userUUIDString);
-		try {
-			usersUUID = UUID.fromString(userUUIDString);
-		} catch (IllegalArgumentException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	private static String addDashesToUUID(String uuid) {
-		return uuid.replaceFirst(
-				"(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)",
-				"$1-$2-$3-$4-$5"
-		);
 	}
 }
