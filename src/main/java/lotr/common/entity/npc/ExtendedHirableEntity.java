@@ -28,24 +28,22 @@ public interface ExtendedHirableEntity {
 
     void setMobKills(int kills);
 
-    void giveExperiencePoints(float points);
+    void giveExperiencePoints(int points);
 
     int getMobKills();
 
     ITextComponent getHiredUnitName();
-    ITextComponent getHiredUnitNameAndTitle();
 
     boolean isPatrolling();
-
     float getHiredUnitMaxHealth();
 
     float getHiredUnitHealth();
 
     int getExpLvl();
 
-    float getMaxXp();
+    int getMaxXp();
 
-    float getCurrentXp();
+    int getCurrentXp();
 
     boolean isAlert();
 
@@ -53,13 +51,13 @@ public interface ExtendedHirableEntity {
 
     UUID getOwnerUUID();
 
-    void setMaxXp(float maxXp);
+    void setMaxXp(int maxXp);
 
     void setHiredUnitHealth(float p_70606_1_);
 
     void setExpLvl(int lvl);
 
-    void setCurrentXp(float currentXp);
+    void setCurrentXp(int currentXp);
 
     void setBaseHealth(int health);
 
@@ -67,18 +65,4 @@ public interface ExtendedHirableEntity {
 
     void setStationary(boolean stationary);
 
-    void updateFeetSlot(ItemStack stack);
-
-    void updateHeadSlot(ItemStack stack);
-
-    void updateChestSlot(ItemStack stack);
-
-    void updateLegsSlot(ItemStack stack);
-
-    void updateMainhandSlot(ItemStack stack);
-
-    void updateOffhandSlot(ItemStack stack);
-
-    boolean isEquipmentOpen();
-    void setEquipmentOpen(boolean isOpen);
 }
