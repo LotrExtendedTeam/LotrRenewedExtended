@@ -34,6 +34,10 @@ public class MixinSpawnEggItem {
         return null;
     }
 
+    /**
+     * @author Richard
+     * @reason more temporary measure
+     * */
     @Overwrite(remap = false)
     public ActionResultType useOn(ItemUseContext context) {
         World world = context.getLevel();

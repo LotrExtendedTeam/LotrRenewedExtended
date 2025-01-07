@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
-import lotr.common.init.LOTREntityClassifications;
 import net.minecraft.entity.*;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
@@ -12,7 +11,6 @@ import net.minecraft.entity.EntityType.IFactory;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
@@ -39,7 +37,7 @@ import java.util.function.Supplier;
 @Mixin(LOTREntities.class)
 public class MixinLOTREntities {
 
-	@Shadow
+	@Shadow(remap = false)
 	private static final Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES = new HashMap<>();
 
 	@Shadow(remap=false)
