@@ -281,6 +281,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
 
+		// hired unit menus
+		addD("gui.lotrextended.menu.equipment", "Equipment");
+		addD("gui.lotrextended.menu.back", "Back");
+
 		// Command strings
 		addD("command.lotrextended.info.listPatches", "Injected patches:");
 		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
@@ -332,7 +336,23 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
-		
+		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
+		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
+
+		// Hired Units related language entries
+		// entity shortnames
+		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s (Bree-land Guard)");
+		addD("entity_title.lotrextended.hired_bree_guard", "%1$s the Bree-land Guard");
+		// item names for base gear
+		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
+		addD("item.lotrextended.base_gear.helmet", "Base Helmet");
+		addD("item.lotrextended.base_gear.leggings", "Base Leggings");
+		addD("item.lotrextended.base_gear.boots", "Base Boots");
+		addD("item.lotrextended.base_gear.weapon", "Base Weapon");
+		addD("item.lotrextended.base_gear.shield", "Base Shield");
+		// chat notifications
+		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
+		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
 	}
 
 	@Override
