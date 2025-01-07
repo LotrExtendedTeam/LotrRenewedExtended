@@ -92,6 +92,10 @@ public class HiredUnitEventHandlers {
                 && event.getSource().getEntity() instanceof PlayerEntity) {
             // cancel a damage event if damage comes from owner
             PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
+            if (owner == null) {
+                return;
+            }
+
             if (owner.equals(player.getUUID())) {
                 event.setCanceled(true);
             }

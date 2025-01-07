@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.item;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
