@@ -11,6 +11,9 @@ import lotr.client.gui.inventory.ExtendedTradeScreen;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHiredUnitScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHiredUnitEquipmentScreen;
+
 @Mixin(ContainerScreenHelper.class)
 public class MixinContainerScreenHelper {
 
@@ -18,5 +21,7 @@ public class MixinContainerScreenHelper {
     private static void addAdditionalScreens(CallbackInfo ci) {
 		ScreenManager.register(ExtendedContainers.COIN_TRADING.get(), ExtendedCoinExchangeScreen::new);
         ScreenManager.register(ExtendedContainers.TRADING.get(), ExtendedTradeScreen::new);
+        ScreenManager.register(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), ExtendedHiredUnitEquipmentScreen::new);
+        ScreenManager.register(ExtendedContainers.HIRED_UNIT_CONTAINER.get(), ExtendedHiredUnitScreen::new);
     }
 }
