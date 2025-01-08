@@ -45,7 +45,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		
 		add(ExtendedSounds.MOSS_BROKEN, createFull("block/moss/place", 5, 0.93f, 0.8f, 16, "subtitles.block.generic.break"));
 		add(ExtendedSounds.MOSS_PLACED, createFull("block/moss/place", 5, 0.93f, 0.8f, 16, "subtitles.block.generic.place"));
-		add(ExtendedSounds.MOSS_HIT, createFull("block/moss/step", 6, 0.25f, 0.25f, 16, "subtitles.block.generic.hit​"));
+		add(ExtendedSounds.MOSS_HIT, createFull("block/moss/step", 6, 0.25f, 0.25f, 16, "subtitles.block.generic.hit"));
 		add(ExtendedSounds.MOSS_FALL, createFull("block/moss/step", 6, 0.5f, 0.5f, 16, null));
 		add(ExtendedSounds.MOSS_STEP, createFull("block/moss/step", 6, 0.15f, 1.0f, 16, "subtitles.block.generic.footsteps"));
 		

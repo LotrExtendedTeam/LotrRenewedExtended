@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
-
 import lotr.common.inventory.ExtendedCoinExchangeContainer;
 import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.entity.item.ItemEntity;
@@ -57,5 +56,7 @@ public class ForgeInventoryEvents {
             container.trader.removePlayerFromTrading(event.getPlayer());
         }
     }
+
+
 
 }

@@ -3,11 +3,9 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.*;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityType.Builder;
 import net.minecraft.entity.EntityType.IFactory;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -31,11 +29,16 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChair
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @Mixin(LOTREntities.class)
 public class MixinLOTREntities {
+
+	@Shadow(remap = false)
+	private static final Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES = new HashMap<>();
 
 	@Shadow(remap=false)
 	private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPC(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
@@ -84,6 +87,11 @@ public class MixinLOTREntities {
 
 	@Shadow(remap=false)
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
+		return null;
+	}
+
+	@Shadow(remap = false)
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, Consumer<EntityType.Builder<T>> extraProps, Consumer<EntityType<T>> builtTypeConsumer) {
 		return null;
 	}
 
@@ -141,7 +149,8 @@ public class MixinLOTREntities {
 			builder.fireImmune();
 			builder.noSummon();
 			//builder.noSave();
-		});
+		});    
+		ExtendedEntities.HIRED_BREE_GUARD = regNPCD("hired_bree_guard", ExtendedHiredBreeGuard::new, ExtendedHiredBreeGuard::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
 
 	}
 
