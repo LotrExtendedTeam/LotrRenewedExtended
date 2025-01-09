@@ -97,7 +97,7 @@ public class ExtendedCPacketOpenHiredEquipmentMenu {
         }
 
         // if either of the stacks is empty, they're not equal
-        
+
 
         // check item type
         // check stack size

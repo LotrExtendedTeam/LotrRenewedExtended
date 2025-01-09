@@ -3,14 +3,14 @@ package lotr.client.render.entity.model;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> extends BipedModel<E> {
+public class ExtendedBarrowWightModel<E extends ExtendedBarrowWightEntity> extends BipedModel<E> {
 	private final ModelRenderer helmet;
 	private final ModelRenderer skirt_r1;
 	private final ModelRenderer skirt_r2;
@@ -229,7 +229,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 
 
 	@Override
-	protected void setupAttackAnimation(ExtendedBarrowWrightEntity p_230486_1_, float p_230486_2_) {
+	protected void setupAttackAnimation(ExtendedBarrowWightEntity p_230486_1_, float p_230486_2_) {
 		if (!(this.attackTime <= 0.0F)) {
 			for (HandSide handSide : HandSide.values()) {
 				ModelRenderer modelrenderer = this.getArm(handSide);

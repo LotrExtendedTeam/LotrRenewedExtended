@@ -17,7 +17,7 @@ import lotr.client.event.MistyMountainsMist;
 import lotr.client.event.RainMist;
 import lotr.client.event.SandstormFog;
 import lotr.client.render.world.LOTRDimensionRenderInfo;
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.FogRenderer.FogType;
@@ -63,7 +63,7 @@ public class MixinLOTRTickHandlerClient {
 		Entity viewer = this.mc.cameraEntity;
 		ClientWorld world = (ClientWorld) player.level;
 		prevWightFogModifier = wightFogModifier;
-		boolean noWights = world.getEntitiesOfClass(ExtendedBarrowWrightEntity.class, viewer.getBoundingBox().inflate(32.0D)).isEmpty();
+		boolean noWights = world.getEntitiesOfClass(ExtendedBarrowWightEntity.class, viewer.getBoundingBox().inflate(32.0D)).isEmpty();
 		if(!noWights) {
 			if(wightFogModifier<100) {
 				wightFogModifier++;

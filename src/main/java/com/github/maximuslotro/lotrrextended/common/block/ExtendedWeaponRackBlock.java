@@ -220,7 +220,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE)) {
 				return false;
 			}
-			
+
 			//Check Minecraft items and handle some modded types
 			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS) || (item instanceof SwordItem)
 					|| (item instanceof ToolItem)

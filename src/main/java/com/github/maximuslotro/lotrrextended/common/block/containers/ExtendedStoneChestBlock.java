@@ -6,7 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.data.ExtendedLevelData;
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -41,7 +41,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 			ExtendedLevelData serverInstance = ExtendedLevelData.serverInstance();
 			ServerWorld serverWorld = (ServerWorld) pWorld;
 			if (serverInstance.isPlayerBarrowCursed(pPlayerEntity) && pWorld.getBiome(pPlayerEntity.blockPosition()).getRegistryName().toString().equals("lotr:barrow_downs")) {
-				ExtendedBarrowWrightEntity barrowWight = new ExtendedBarrowWrightEntity(ExtendedEntities.BARROW_WIGHT.get(), serverWorld);
+				ExtendedBarrowWightEntity barrowWight = new ExtendedBarrowWightEntity(ExtendedEntities.BARROW_WIGHT.get(), serverWorld);
 				boolean spawned = false;
 				int tries = 0;
 				while (!spawned && tries < 49) {
