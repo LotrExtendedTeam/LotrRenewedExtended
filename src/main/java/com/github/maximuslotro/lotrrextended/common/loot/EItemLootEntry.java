@@ -61,8 +61,17 @@ public class EItemLootEntry extends ItemLootEntry{
 			return this.getThis();
 		}
 
-		public ExtendedBuilder setCount(int number) {
+		public ExtendedBuilder setExactly(int number) {
 			this.apply(SetCount.setCount(ConstantRange.exactly(number)));
+			return this.getThis();
+		}
+
+		public ExtendedBuilder setRange(int min, int max) {
+			if(min >= max) {
+				ExtendedLog.error("Tried Setting an incorrect item count rage! "+min+">="+max);
+				return this.getThis();
+			}
+			this.apply(SetCount.setCount(RandomValueRange.between(min, max)));
 			return this.getThis();
 		}
 	}
