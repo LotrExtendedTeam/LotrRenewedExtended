@@ -826,5 +826,40 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.FLOWER_POT).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_FLOWER_POT.get()).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))));
+		
+		consumer.accept(ExtendedLootTables.BREE_TOWN_FARM, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+
+		consumer.accept(ExtendedLootTables.BREE_TOWN_HOUSE, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+
+		consumer.accept(ExtendedLootTables.BREE_TOWN_INN, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+
+		consumer.accept(ExtendedLootTables.BREE_TOWN_INN_CUSTOMER_CHEST, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+
+		consumer.accept(ExtendedLootTables.BREE_TOWN_SMITHY, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+
+		consumer.accept(ExtendedLootTables.BREE_TOWN_SHERIF, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+
+		consumer.accept(ExtendedLootTables.BREE_TOWN_SHERIF_CONFISCATED_GOODS, LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(4, 6))
+						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 	}
 }

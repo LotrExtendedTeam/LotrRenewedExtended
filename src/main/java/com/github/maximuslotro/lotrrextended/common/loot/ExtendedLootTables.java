@@ -33,6 +33,14 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_HAMLET_FARM = register("chests/bree_hamlet_farm");
 	public static final ResourceLocation BREE_HAMLET_POTTER = register("chests/bree_hamlet_potter");
 
+	public static final ResourceLocation BREE_TOWN_HOUSE = register("chests/bree_town_house");
+	public static final ResourceLocation BREE_TOWN_FARM = register("chests/bree_town_farm");
+	public static final ResourceLocation BREE_TOWN_SMITHY = register("chests/bree_town_smithy");
+	public static final ResourceLocation BREE_TOWN_INN = register("chests/bree_town_inn");
+	public static final ResourceLocation BREE_TOWN_INN_CUSTOMER_CHEST = register("chests/bree_town_inn_customer_chest");
+	public static final ResourceLocation BREE_TOWN_SHERIF = register("chests/bree_town_sherif");
+	public static final ResourceLocation BREE_TOWN_SHERIF_CONFISCATED_GOODS = register("chests/bree_town_sherif_confiscated_goods");
+
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = register("kegs/gundabad");
