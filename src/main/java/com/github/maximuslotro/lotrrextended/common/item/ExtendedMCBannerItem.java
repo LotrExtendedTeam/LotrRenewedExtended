@@ -37,12 +37,13 @@ public class ExtendedMCBannerItem extends WallOrFloorItem {
 		}
 	}
 
-	
+
 
 	public BannerTypes getBanner() {
 		return ((ExtendedMEBannerBlock)this.getBlock()).getBanner();
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pItemStack, @Nullable World world, List<ITextComponent> textLines, ITooltipFlag p_77624_4_) {
 		appendHoverTextFromBannerBlockEntityTag(pItemStack, textLines);

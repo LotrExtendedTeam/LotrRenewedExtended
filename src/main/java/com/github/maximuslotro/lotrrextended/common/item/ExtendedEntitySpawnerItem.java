@@ -32,7 +32,7 @@ public class ExtendedEntitySpawnerItem extends Item{
 	public ExtendedEntitySpawnerItem(Properties p_i48487_1_) {
 		super(p_i48487_1_);
 	}
-	 
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		if (!world.isClientSide() && player.isCreative()) {
@@ -51,7 +51,7 @@ public class ExtendedEntitySpawnerItem extends Item{
 		return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 	}
 
-	 
+
 	@Override
 	public ActionResultType useOn(ItemUseContext pContext) {
 		ActionResultType actionresulttype = this.place(new BlockItemUseContext(pContext));
@@ -85,6 +85,7 @@ public class ExtendedEntitySpawnerItem extends Item{
 		}
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
 		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);

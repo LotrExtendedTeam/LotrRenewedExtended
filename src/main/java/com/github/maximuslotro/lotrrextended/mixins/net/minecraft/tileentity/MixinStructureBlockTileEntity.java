@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 @Mixin(StructureBlockTileEntity.class)
 public abstract class MixinStructureBlockTileEntity extends TileEntity {
-	
+
 	public MixinStructureBlockTileEntity(TileEntityType<?> p_i48289_1_) {
 		super(p_i48289_1_);
 	}

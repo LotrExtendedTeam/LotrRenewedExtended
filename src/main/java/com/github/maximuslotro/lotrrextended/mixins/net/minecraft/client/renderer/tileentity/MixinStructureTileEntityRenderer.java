@@ -1,11 +1,10 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.renderer.tileentity;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
-
-import org.spongepowered.asm.mixin.injection.At;
 
 import net.minecraft.client.renderer.tileentity.StructureTileEntityRenderer;
 import net.minecraft.tileentity.StructureBlockTileEntity;

@@ -67,11 +67,13 @@ public class ExtendedHiredUnitContainer extends Container {
         return entityId;
     }
 
-    public boolean stillValid(PlayerEntity p_39242_) {
+    @Override
+	public boolean stillValid(PlayerEntity p_39242_) {
         return this.container.stillValid(p_39242_);
     }
 
-    public ItemStack quickMoveStack(PlayerEntity player, int p_39254_) {
+    @Override
+	public ItemStack quickMoveStack(PlayerEntity player, int p_39254_) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(p_39254_);
 
@@ -97,7 +99,8 @@ public class ExtendedHiredUnitContainer extends Container {
         return itemstack;
     }
 
-    public void removed(PlayerEntity p_39251_) {
+    @Override
+	public void removed(PlayerEntity p_39251_) {
         super.removed(p_39251_);
         this.container.stopOpen(p_39251_);
     }

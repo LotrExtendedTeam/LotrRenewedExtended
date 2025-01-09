@@ -30,7 +30,8 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	    * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 	    * method as well.
 	    */
-	   public boolean canUse() {
+	   @Override
+	public boolean canUse() {
 	      if (!((ExtendedRidableWargEntity)this.warg).isTamed() && this.warg.isVehicle() && this.warg.canBeControlledByRider()) {
 	         Vector3d vector3d = RandomPositionGenerator.getPos(this.warg, 5, 4);
 	         if (vector3d == null) {
@@ -49,21 +50,24 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	   /**
 	    * Execute a one shot task or start executing a continuous task
 	    */
-	   public void start() {
+	   @Override
+	public void start() {
 	      this.warg.getNavigation().moveTo(this.posX, this.posY, this.posZ, this.speedModifier);
 	   }
 
 	   /**
 	    * Returns whether an in-progress EntityAIBase should continue executing
 	    */
-	   public boolean canContinueToUse() {
+	   @Override
+	public boolean canContinueToUse() {
 	      return !((ExtendedRidableWargEntity)this.warg).isTamed() && !this.warg.getNavigation().isDone() && this.warg.isVehicle() && this.warg.canBeControlledByRider();
 	   }
 
 	   /**
 	    * Keep ticking a continuous task that has already been started
 	    */
-	   public void tick() {
+	   @Override
+	public void tick() {
 	      if (!((ExtendedRidableWargEntity)this.warg).isTamed() && this.warg.getRandom().nextInt(50) == 0) {
 	         Entity entity = this.warg.getPassengers().get(0);
 	         if (entity == null) {

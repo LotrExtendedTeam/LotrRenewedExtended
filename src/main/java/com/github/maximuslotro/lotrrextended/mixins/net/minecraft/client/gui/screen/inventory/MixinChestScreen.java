@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.gui.screen.inventory;
 
+import org.spongepowered.asm.mixin.Mixin;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
@@ -7,14 +9,12 @@ import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ChestScreen;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ChestContainer;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import org.spongepowered.asm.mixin.Mixin;
 
 @OnlyIn(Dist.CLIENT)
 @Mixin(ChestScreen.class)

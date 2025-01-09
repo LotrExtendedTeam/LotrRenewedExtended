@@ -26,6 +26,7 @@ public class ArnorBrickWeathererProcessor extends StructureProcessor {
 
 	private ArnorBrickWeathererProcessor() {}
 
+	@Override
 	@Nullable
 	public Template.BlockInfo processBlock(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData) {
 		BlockState blockstate = blockInfoWorld.state;
@@ -152,6 +153,7 @@ public class ArnorBrickWeathererProcessor extends StructureProcessor {
 		return blockInfoWorld;
 	}
 
+	@Override
 	protected IStructureProcessorType<?> getType() {
 		return ExtendedStructureProcessors.ARNOR_WEATHERER_PROCESSOR;
 	}

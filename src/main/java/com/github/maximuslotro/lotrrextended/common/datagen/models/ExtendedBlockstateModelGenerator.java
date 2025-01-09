@@ -9,10 +9,10 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -24,8 +24,11 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -37,9 +40,6 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -55,6 +55,7 @@ import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.FourLeafCloverBlock;
+import lotr.common.block.HearthBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
@@ -72,11 +73,11 @@ import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTrapdoorBlock;
 import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallSignBlock;
-import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.block.NettleBlock;
+import lotr.common.block.NonWaterloggableLanternBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.ThistleBlock;
@@ -86,27 +87,37 @@ import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WildPipeweedBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
+import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.BambooBlock;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.CactusBlock;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.FarmlandBlock;
+import net.minecraft.block.FourWayBlock;
+import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.block.NetherRootsBlock;
+import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.WallBlock;
+import net.minecraft.block.WallTorchBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.state.properties.SlabType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -427,13 +438,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genHangingLanternBlockItem((ExtendedLanternBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedSpawnerBlock) {
-					registeredBlocks.add(block.getValue().get());
-					ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath(), lotrExtendedLoc("block/spawner_block"));
-					simpleBlock(block.getValue().get(), cubeModel);
-					continue;
-				}
-				if(block.getValue().get() instanceof ExtendedGroupSpawnerBlock) {
+				if((block.getValue().get() instanceof ExtendedSpawnerBlock) || (block.getValue().get() instanceof ExtendedGroupSpawnerBlock)) {
 					registeredBlocks.add(block.getValue().get());
 					ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath(), lotrExtendedLoc("block/spawner_block"));
 					simpleBlock(block.getValue().get(), cubeModel);
@@ -687,7 +692,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile down = models().withExistingParent("lotrextended:"+plate.getRegistryName().getPath()+"_down", parent2).texture("texture", texture);
 		getVariantBuilder(plate)
 		.forAllStatesExcept(state -> {
-			Boolean powered = state.getValue(LOTRWoodPressurePlateBlock.POWERED);
+			Boolean powered = state.getValue(PressurePlateBlock.POWERED);
             return ConfiguredModel.builder()
                     .modelFile(powered ? down : plateModel)
                     .build();
@@ -702,13 +707,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation postParent = lotrLoc("block/template_branch_post");
 		ModelFile postModel = models().withExistingParent("lotrextended:"+branch.getRegistryName().getPath()+"_post", postParent).texture("branch", texture);
 		MultiPartBlockStateBuilder builder = getMultipartBuilder(branch).part().modelFile(postModel).addModel().end();
-	        builder.part().modelFile(sideModel).uvLock(true).addModel().condition(BranchBlock.NORTH, true).end();
-	        builder.part().modelFile(sideModel).uvLock(true).rotationY(90).addModel().condition(BranchBlock.EAST, true).end();
-	        builder.part().modelFile(sideModel).uvLock(true).rotationY(180).addModel().condition(BranchBlock.SOUTH, true).end();
-	        builder.part().modelFile(sideModel).uvLock(true).rotationY(270).addModel().condition(BranchBlock.WEST, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).addModel().condition(FourWayBlock.NORTH, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(90).addModel().condition(FourWayBlock.EAST, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(180).addModel().condition(FourWayBlock.SOUTH, true).end();
+	        builder.part().modelFile(sideModel).uvLock(true).rotationY(270).addModel().condition(FourWayBlock.WEST, true).end();
 		itemModels().getBuilder("lotr:" + branch.getRegistryName().getPath()).parent(postModel);
 	}
-	
+
 
 	private void genButtonBlockItem(LOTRWoodButtonBlock button, ResourceLocation texture) {
 		registeredBlocks.add(button);
@@ -718,12 +723,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile pressed = models().withExistingParent("lotrextended:"+button.getRegistryName().getPath()+"_pressed", parent2).texture("texture", texture);
 		ResourceLocation parent3 = mcLoc("block/button_inventory");
 		ModelFile inventory = models().withExistingParent("lotrextended:"+button.getRegistryName().getPath()+"_inventory", parent3).texture("texture", texture);
-		
+
 		getVariantBuilder(button)
 		.forAllStatesExcept(state -> {
-			AttachFace face = state.getValue(LOTRWoodButtonBlock.FACE);
-			Direction faciing = state.getValue(LOTRWoodButtonBlock.FACING);
-			Boolean powered = state.getValue(LOTRWoodButtonBlock.POWERED);
+			AttachFace face = state.getValue(HorizontalFaceBlock.FACE);
+			Direction faciing = state.getValue(HorizontalBlock.FACING);
+			Boolean powered = state.getValue(AbstractButtonBlock.POWERED);
 			int yValue = 0;
 			if(faciing==Direction.EAST) {
 				if(face==AttachFace.WALL||face==AttachFace.FLOOR) {
@@ -828,7 +833,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 		getVariantBuilder(pillarB)
 		.forAllStatesExcept(state -> {
-			Axis axis = state.getValue(LOTRPillarBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			Boolean above = state.getValue(LOTRPillarBlock.ABOVE);
 			Boolean below = state.getValue(LOTRPillarBlock.BELOW);
 			ModelFile selectedfile = null;
@@ -949,7 +954,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(slab)
 		.forAllStatesExcept(state -> {
 			Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
-			SlabType type = state.getValue(AxialSlabBlock.TYPE);
+			SlabType type = state.getValue(SlabBlock.TYPE);
             boolean uvlock = axis != Axis.Y;
             return ConfiguredModel.builder()
                     .modelFile(type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
@@ -982,8 +987,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
 			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
             return ConfiguredModel.builder()
-                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL) ? modelTop : 
-                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom : 
+                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL) ? modelTop :
+                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom :
                     	type == RopeType.SINGLE ? modelSingle : modelMiddle))
                     .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
                     .build();
@@ -1025,7 +1030,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("top", farmlandMoist);
 		getVariantBuilder(extendedGroundFarmlandBlock)
 		.forAllStatesExcept(state -> {
-			Integer dripping = state.getValue(ExtendedGroundFarmlandBlock.MOISTURE);
+			Integer dripping = state.getValue(FarmlandBlock.MOISTURE);
             return ConfiguredModel.builder()
                     .modelFile(dripping <7 ? dry : wet)
                     .build();
@@ -1053,7 +1058,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("side", side1);
 		getVariantBuilder(extendedGroundFarmlandBlock)
 		.forAllStatesExcept(state -> {
-			Boolean snowTrue = state.getValue(ExtendedGroundGrassBlock.SNOWY);
+			Boolean snowTrue = state.getValue(SnowyDirtBlock.SNOWY);
 			if(snowTrue) {
 				return ConfiguredModel.builder().modelFile(snow).build();
 			}
@@ -1119,7 +1124,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("chain", chain);
 		getVariantBuilder(lantern)
 		.forAllStates(state -> {
-			Boolean hanging = state.getValue(ExtendedLanternBlock.HANGING);
+			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
@@ -1223,8 +1228,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);
 			Boolean small = state.getValue(ExtendedMEBannerBlock.SMALL);
 			return ConfiguredModel.builder()
-                    .modelFile(small&&half==DoubleBlockHalf.LOWER ? modelFileSmallBottom : 
-                    	(small&&half==DoubleBlockHalf.UPPER ? modelFileSmallTop : 
+                    .modelFile(small&&half==DoubleBlockHalf.LOWER ? modelFileSmallBottom :
+                    	(small&&half==DoubleBlockHalf.UPPER ? modelFileSmallTop :
                     		(!small&&half==DoubleBlockHalf.LOWER ? modelFileBottom : modelFileTop)))
                     .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
                     .build();
@@ -1444,8 +1449,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile head = models().getExistingFile(lotrExtendedLoc("block/bedroll_head"));
 		ModelFile foot = models().getExistingFile(lotrExtendedLoc("block/bedroll_foot"));
 		getVariantBuilder(bed).forAllStates(state -> {
-			Direction bites = state.getValue(ExtendedFullBedBlock.FACING);
-			BedPart part = state.getValue(ExtendedFullBedBlock.PART);
+			Direction bites = state.getValue(HorizontalBlock.FACING);
+			BedPart part = state.getValue(BedBlock.PART);
 			return ConfiguredModel.builder()
                     .modelFile(part == BedPart.HEAD ? head : foot)
                     .rotationY(bites == Direction.EAST ? 270 : (bites == Direction.SOUTH ? 0 : (bites == Direction.WEST ? 90 : 180)))
@@ -1504,7 +1509,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torchWall("lotrextended:"+torch.getRegistryName().getPath(), texture);
 		getVariantBuilder(torch).forAllStates(state -> {
-			Direction bites = state.getValue(LOTRWallTorchBlock.FACING);
+			Direction bites = state.getValue(WallTorchBlock.FACING);
 			return ConfiguredModel.builder()
                     .modelFile(cubeModel)
                     .rotationY(bites == Direction.EAST ? 0 : (bites == Direction.SOUTH ? 90 : (bites == Direction.WEST ? 180 : 270)))
@@ -1518,8 +1523,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile ground = models().getExistingFile(lotrExtendedLoc("block/weapon_rack_ground"));
 		ModelFile ceiling = models().getExistingFile(lotrExtendedLoc("block/weapon_rack_ceiling"));
 		getVariantBuilder(weaponRack).forAllStates(state -> {
-			AttachFace face = state.getValue(ExtendedWeaponRackBlock.FACE);
-			Direction direction = state.getValue(ExtendedWeaponRackBlock.FACING);
+			AttachFace face = state.getValue(HorizontalFaceBlock.FACE);
+			Direction direction = state.getValue(HorizontalBlock.FACING);
 			int yValue = 0;
 			if(face==AttachFace.WALL) {
 				if(direction==Direction.SOUTH) {
@@ -1569,7 +1574,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile lit = models().cubeBottomTop("lotrextended:"+block.getRegistryName().getPath()+"_lit", side, bottom, top);
 		ModelFile unlit = models().getExistingFile(lotrLoc("block/hearth_block"));
 		getVariantBuilder(block).forAllStates(state -> {
-			Boolean litBoolean = state.getValue(ExtendedHearthBlock.LIT);
+			Boolean litBoolean = state.getValue(HearthBlock.LIT);
 			return ConfiguredModel.builder()
                     .modelFile(litBoolean ? lit : unlit)
                     .build();
@@ -1581,7 +1586,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation top = lotrExtendedLoc(resourceLocation.getPath()+"_top");
 		ModelFile model = models().cubeColumn("lotrextended:"+block.getRegistryName().getPath(), resourceLocation, top);
 		getVariantBuilder(block).forAllStates(state -> {
-			Axis axis = state.getValue(WoodBeamBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			return ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationY(axis==Axis.X ? 90 : 0)
@@ -1595,7 +1600,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(block);
 		ModelFile model = models().cubeColumn("lotrextended:"+block.getRegistryName().getPath(), resourceLocation, resourceLocation);
 		getVariantBuilder(block).forAllStates(state -> {
-			Axis axis = state.getValue(StrippableWoodBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			return ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationY(axis==Axis.X ? 90 : 0)
@@ -1640,7 +1645,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(block);
 		ModelFile model = models().cubeColumn("lotrextended:"+block.getRegistryName().getPath(), resourceLocation, resourceLocation);
 		getVariantBuilder(block).forAllStates(state -> {
-			Axis axis = state.getValue(LOTRStrippedWoodBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			return ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationY(axis==Axis.X ? 90 : 0)
@@ -1655,7 +1660,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation top = lotrExtendedLoc(resourceLocation.getPath()+"_top");
 		ModelFile model = models().cubeColumn("lotrextended:"+block.getRegistryName().getPath(), resourceLocation, top);
 		getVariantBuilder(block).forAllStates(state -> {
-			Axis axis = state.getValue(StrippableLogBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			return ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationY(axis==Axis.X ? 90 : 0)
@@ -1670,7 +1675,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation top = lotrExtendedLoc(resourceLocation.getPath()+"_top");
 		ModelFile model = models().cubeColumn("lotrextended:"+block.getRegistryName().getPath(), resourceLocation, top);
 		getVariantBuilder(block).forAllStates(state -> {
-			Axis axis = state.getValue(LOTRStrippedLogBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			return ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationY(axis==Axis.X ? 90 : 0)
@@ -1700,7 +1705,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(block, cubeModel);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
-	
+
 	private void genTopBottomTwoSidedNonRotatableBlockItem(Block block, String sidesBase) {
 		registeredBlocks.add(block);
 		ResourceLocation down = lotrExtendedLoc(sidesBase+"_bottom");
@@ -1730,7 +1735,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genCubeBlockItem(Block block, String allSides) {
 		genCubeBlockItem(block, lotrExtendedLoc(allSides));
 	}
-	
+
 	private void genCubeBlockItem(Block block, ResourceLocation allSides) {
 		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath(), allSides);
@@ -1758,7 +1763,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), "minecraft:block/chain")
 			.texture("particle", lotrExtendedLoc(name)).texture("all", lotrExtendedLoc(name));
 		getVariantBuilder(block).forAllStatesExcept(state -> {
-			Axis axis = state.getValue(ChainBlock.AXIS);
+			Axis axis = state.getValue(RotatedPillarBlock.AXIS);
 			return ConfiguredModel.builder()
                     .modelFile(modelFile)
                     .rotationY(axis==Axis.X ? 90 : 0)
@@ -1845,12 +1850,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("fire", lotrExtendedLoc("block/"+block.getRegistryName().getPath()+"_0"));
 		ModelFile floor1 = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_floor1", "minecraft:block/template_fire_floor")
                 .texture("fire", lotrExtendedLoc("block/"+block.getRegistryName().getPath()+"_1"));
-		
+
 		ModelFile side_alt0 = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_side_alt0", "minecraft:block/template_fire_side_alt")
                 .texture("fire", lotrExtendedLoc("block/"+block.getRegistryName().getPath()+"_0"));
 		ModelFile side_alt1 = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_side_alt1", "minecraft:block/template_fire_side_alt")
                 .texture("fire", lotrExtendedLoc("block/"+block.getRegistryName().getPath()+"_1"));
-		
+
 		ModelFile side0 = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_side0", "minecraft:block/template_fire_side")
                 .texture("fire", lotrExtendedLoc("block/"+block.getRegistryName().getPath()+"_0"));
 		ModelFile side1 = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_side1", "minecraft:block/template_fire_side")

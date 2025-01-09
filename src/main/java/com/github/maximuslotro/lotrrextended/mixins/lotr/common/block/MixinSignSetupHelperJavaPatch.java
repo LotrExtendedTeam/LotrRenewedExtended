@@ -18,10 +18,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @Mixin(SignSetupHelper.class)
 public class MixinSignSetupHelperJavaPatch {
-	
+
 	@Shadow(remap=false)
 	private static List<Block> preparedSignBlocks;
-	
+
 	/**
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems

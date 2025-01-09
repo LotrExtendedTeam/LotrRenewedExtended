@@ -1,12 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
+import java.util.List;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-
-import java.util.List;
 
 public class ExtendedHoleySphereConfig implements IFeatureConfig {
     public static final Codec<ExtendedHoleySphereConfig> CODEC = RecordCodecBuilder.create((p_236518_0_) -> {

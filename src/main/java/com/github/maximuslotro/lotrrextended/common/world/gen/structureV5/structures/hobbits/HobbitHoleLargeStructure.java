@@ -20,7 +20,7 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
 		return HobbitHoleLargeStructure.Start::new;
 	}
-    
+
     public static class Start extends ExtendedStructureStartV5<NoFeatureConfig> {
         public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
             super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);

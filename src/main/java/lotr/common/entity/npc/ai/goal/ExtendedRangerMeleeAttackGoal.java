@@ -11,7 +11,8 @@ public class ExtendedRangerMeleeAttackGoal extends NPCMeleeAttackGoal {
         this.ranger = ranger;
     }
 
-    public void start() {
+    @Override
+	public void start() {
         super.start();
         //ranger.unCloak();
     }

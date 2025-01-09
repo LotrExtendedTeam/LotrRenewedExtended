@@ -171,7 +171,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return NPCEntity.registerBaseNPCAttributes().add(Attributes.FOLLOW_RANGE, 32.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
 	}
-	
+
 	private boolean getFlag(int pFlagId) {
 		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
 	}
@@ -329,7 +329,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.playSound(getAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
 
 	}
-	  
+
 	@Override
 	public int getInventorySize() {
 		return 2;
@@ -636,7 +636,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			super.handleEntityEvent(pId);
 		}
 	}
-	  
+
 	/**
 	 * Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
 	 */

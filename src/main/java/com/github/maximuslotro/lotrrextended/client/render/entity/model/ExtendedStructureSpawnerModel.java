@@ -23,6 +23,7 @@ public class ExtendedStructureSpawnerModel extends NonLivingModel<ExtendedStruct
 		spawner.addBox(-5.0F, 0.0F, 0.0F, 10.0F, 26.0F, 0.0F, 0.0F, true);
 	}
 
+	@Override
 	public void renderExtendedToBuffer(ExtendedStructureSpawnerEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.pushPose();
 		if (entity != null) {

@@ -1,5 +1,13 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.item;
 
+import java.util.Objects;
+
+import javax.annotation.Nullable;
+
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
+
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
@@ -19,12 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.AbstractSpawner;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-
-import javax.annotation.Nullable;
-import java.util.Objects;
 
 @Mixin(SpawnEggItem.class)
 public class MixinSpawnEggItem {

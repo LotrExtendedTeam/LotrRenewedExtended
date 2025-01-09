@@ -5,8 +5,8 @@ import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -17,10 +17,10 @@ import net.minecraft.world.World;
 
 public class ExtendedGundabadUrukEntity extends GundabadOrcEntity{
 	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
-		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER, 
-		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER, 
 		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
-		ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedItems.GUNDABAD_URUK_DAGGER, 
+		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
+		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
+		ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedItems.GUNDABAD_URUK_DAGGER,
 		ExtendedItems.GUNDABAD_URUK_SPEAR);
 
 	public ExtendedGundabadUrukEntity(EntityType<? extends GundabadOrcEntity> type, World w) {

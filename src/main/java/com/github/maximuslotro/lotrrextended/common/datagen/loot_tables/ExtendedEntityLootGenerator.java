@@ -23,9 +23,9 @@ import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.TableLootEntry;
-import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.conditions.EntityHasProperty;
 import net.minecraft.loot.conditions.KilledByPlayer;
 import net.minecraft.loot.conditions.RandomChance;
@@ -421,7 +421,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	public LootPool.Builder makeQuickyPoolBuilder(int numRoles){
 		return LootPool.lootPool().setRolls(ConstantRange.exactly(numRoles));
 	}
-	
+
 	public LootPool.Builder genSingleQuickyBuilder(IItemProvider item, float minCount, float maxCount){
 		return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item, minCount, maxCount));
 	}
@@ -433,7 +433,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item){
 		return ItemLootEntry.lootTableItem(item);
 	}
-	
+
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount){
 		return genQuickyItemBuilder(item, minCount, maxCount, 0.0F, 1.0F);
 	}
@@ -441,13 +441,13 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	public LootPool.Builder addAnotherQuickyPoolRefrence(ResourceLocation quickyLocation) {
 		return makeQuickyPoolBuilder(1).add(TableLootEntry.lootTableReference(quickyLocation));
 	}
-	
+
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount, float minloot, float maxloot){
 		return genQuickyItemBuilder(item)
 				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(minloot, maxloot)))
 				.apply(SetCount.setCount(RandomValueRange.between(minCount, maxCount)));
 	}
-	
+
 	public LootPool.Builder createQuickyDrinkBuilder(IItemProvider item) {
 		if ((item.asItem() instanceof VesselDrinkItem) && ((VesselDrinkItem) item.asItem()).hasPotencies) {
 			return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item).apply(SetNPCDrinkPotency.setNPCDrinkPotencyBuilder()));

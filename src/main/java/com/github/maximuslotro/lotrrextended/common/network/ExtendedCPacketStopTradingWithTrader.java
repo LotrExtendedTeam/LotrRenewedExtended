@@ -1,13 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.Objects;
+import java.util.function.Supplier;
+
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * @author RichardB122

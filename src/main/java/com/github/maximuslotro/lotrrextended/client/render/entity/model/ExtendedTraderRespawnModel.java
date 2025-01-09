@@ -24,6 +24,7 @@ public class ExtendedTraderRespawnModel extends NonLivingModel<ExtendedTraderRes
 		coin.texOffs(16, 3).addBox(-2.5F, -4.5F, -0.5F, 5.0F, 1.0F, 1.0F, 0.0F, false);
 	}
 
+	@Override
 	public void renderExtendedToBuffer(ExtendedTraderRespawnEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.pushPose();
 		if (entity != null) {

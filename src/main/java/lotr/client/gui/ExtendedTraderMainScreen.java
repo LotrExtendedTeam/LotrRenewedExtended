@@ -1,10 +1,11 @@
 package lotr.client.gui;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopTradingWithTrader;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTalkWithTrader;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;

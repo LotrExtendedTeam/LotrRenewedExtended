@@ -26,10 +26,12 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<ExtendedBlockBreakTrigger.Instance> {
 	private static final ResourceLocation ID = new ResourceLocation("extended", "break_block");
 
+	@Override
 	public ResourceLocation getId() {
 		return ID;
 	}
 
+	@Override
 	public ExtendedBlockBreakTrigger.Instance createInstance(JsonObject pJson, EntityPredicate.AndPredicate pEntityPredicate, ConditionArrayParser pConditionsParser) {
 		Block block = deserializeBlock(pJson);
 		StatePropertiesPredicate statepropertiespredicate = StatePropertiesPredicate.fromJson(pJson.get("state"));
@@ -94,6 +96,7 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 			}
 		}
 
+		@Override
 		@SuppressWarnings("deprecation")
 		public JsonObject serializeToJson(ConditionArraySerializer pConditions) {
 			JsonObject jsonobject = super.serializeToJson(pConditions);

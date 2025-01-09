@@ -15,6 +15,7 @@ import net.minecraft.world.server.ServerWorld;
  * @deprecated
  * @since beta-1.6
  * */
+@Deprecated
 public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T extends MobEntity> extends TileEntity implements ITickableTileEntity {
 
 	private final EntityType<T> entity;

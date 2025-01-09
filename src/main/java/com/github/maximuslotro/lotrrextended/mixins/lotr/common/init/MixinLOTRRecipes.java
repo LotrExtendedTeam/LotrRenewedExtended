@@ -56,7 +56,7 @@ public class MixinLOTRRecipes {
 
 		ExtendedRecipes.EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("extended_crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
 	}
-	
+
 	@Inject(method = "registerMulti(Ljava/lang/String;Ljava/util/List;)Llotr/common/recipe/MultiTableType;", at = @At("HEAD"), remap=false, cancellable = true)
 	private static void injectMultipart(String s, List<FactionTableType> types, CallbackInfoReturnable<MultiTableType> ci) {
 		if(s.equals("any_orc")) {
@@ -66,11 +66,11 @@ public class MixinLOTRRecipes {
 			ci.setReturnValue(registerMultiPrivate(s, createList(LOTRRecipes.MORDOR_CRAFTING, LOTRRecipes.ANGMAR_CRAFTING, ExtendedRecipes.DOL_GULDUR_CRAFTING)));
 		}
 	}
-	
+
 	private static List<FactionTableType> createList(FactionTableType... types) {
 		return (List<FactionTableType>) ImmutableList.copyOf(types);
 	}
-	
+
 	private static MultiTableType registerMultiPrivate(String s, List<FactionTableType> types) {
 		ResourceLocation res = new ResourceLocation("lotr", s);
 		return (MultiTableType) Registry.register(Registry.RECIPE_TYPE, res, new MultiTableType(res, types));

@@ -1,7 +1,7 @@
 package lotr.common.inventory;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketUpdateExchangeCoinContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketUpdateExchangeCoinContainer;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -24,7 +24,8 @@ public class ExtendedCoinResultSlot extends Slot {
         this.container = container;
     }
 
-    public boolean mayPickup(PlayerEntity player) {
+    @Override
+	public boolean mayPickup(PlayerEntity player) {
         return container.exchanged && slotNumber == container.sideExchanged;
     }
 
@@ -46,7 +47,8 @@ public class ExtendedCoinResultSlot extends Slot {
         return stack;
     }
 
-    public boolean mayPlace(ItemStack stack) {
+    @Override
+	public boolean mayPlace(ItemStack stack) {
         return false;
     }
 

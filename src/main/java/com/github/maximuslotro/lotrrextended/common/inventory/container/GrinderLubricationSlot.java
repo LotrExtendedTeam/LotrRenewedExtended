@@ -20,10 +20,12 @@ public class GrinderLubricationSlot extends Slot {
 	/**
 	 * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 	 */
+	@Override
 	public boolean mayPlace(ItemStack pStack) {
 		return this.menu.isLubrication(pStack) || isBucket(pStack);
 	}
 
+	@Override
 	public int getMaxStackSize(ItemStack pStack) {
 		return isBucket(pStack) ? 1 : super.getMaxStackSize(pStack);
 	}

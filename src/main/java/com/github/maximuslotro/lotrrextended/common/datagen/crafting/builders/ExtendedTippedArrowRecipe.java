@@ -18,6 +18,7 @@ public class ExtendedTippedArrowRecipe extends SpecialRecipe {
 		super(p_i48184_1_);
 	}
 
+	@Override
 	public boolean matches(CraftingInventory p_77569_1_, World p_77569_2_) {
 		if (p_77569_1_.getWidth() == 3 && p_77569_1_.getHeight() == 3) {
 			for(int i = 0; i < p_77569_1_.getWidth(); ++i) {
@@ -44,6 +45,7 @@ public class ExtendedTippedArrowRecipe extends SpecialRecipe {
 		}
 	}
 
+	@Override
 	public ItemStack assemble(CraftingInventory p_77572_1_) {
 		ItemStack itemstack = p_77572_1_.getItem(1 + p_77572_1_.getWidth());
 		if (itemstack.getItem() != ExtendedItems.BOTTLE_OF_POISON.get()) {
@@ -56,10 +58,12 @@ public class ExtendedTippedArrowRecipe extends SpecialRecipe {
 		}
 	}
 
+	@Override
 	public boolean canCraftInDimensions(int p_194133_1_, int p_194133_2_) {
 		return p_194133_1_ > 2 && p_194133_2_ > 2;
 	}
 
+	@Override
 	public IRecipeSerializer<?> getSerializer() {
 		return ExtendedRecipes.EXTENDED_TIPPED_ARROW.get();
 	}

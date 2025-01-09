@@ -5,12 +5,13 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
@@ -27,8 +28,6 @@ import net.minecraft.item.TridentItem;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -221,17 +220,11 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE)) {
 				return false;
 			}
-			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS)) {
-				return true;
-			}
+			
 			//Check Minecraft items and handle some modded types
-			if(item instanceof SwordItem) {
-				return true;
-			}
-			if(item instanceof ToolItem) {
-				return true;
-			}
-			if(item instanceof ShearsItem) {
+			if(item.is(ExtendedTags.Items.WEAPONRACK_ITEMS) || (item instanceof SwordItem)
+					|| (item instanceof ToolItem)
+					|| (item instanceof ShearsItem)) {
 				return true;
 			}
 			if(item instanceof TridentItem) {

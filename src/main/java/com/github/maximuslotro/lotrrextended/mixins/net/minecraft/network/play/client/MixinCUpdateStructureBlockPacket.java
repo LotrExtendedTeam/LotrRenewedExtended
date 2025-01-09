@@ -77,7 +77,7 @@ public class MixinCUpdateStructureBlockPacket {
 		showAir = (k & 2) != 0;
 		showBoundingBox = (k & 4) != 0;
 	}
-	  
+
 	/**
 	 * @author Maximuslotro
 	 * @reason minecraft is stupid and used small data types

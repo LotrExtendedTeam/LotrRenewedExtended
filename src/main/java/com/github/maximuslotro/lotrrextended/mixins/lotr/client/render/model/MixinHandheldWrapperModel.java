@@ -21,7 +21,7 @@ public class MixinHandheldWrapperModel {
 	@Shadow(remap = false)
 	@Final
 	private IBakedModel handheldModel;
-	
+
 	/**
 	 * @author maximuslotro
 	 * @reason Don't have mess with inject rn, I'm tired rn.
@@ -29,7 +29,7 @@ public class MixinHandheldWrapperModel {
 	@Overwrite(remap = false)
 	public IBakedModel handlePerspective(TransformType transformType, MatrixStack mat) {
 		IBakedModel modelToUse = defaultModel;
-		if (transformType == TransformType.FIRST_PERSON_LEFT_HAND || transformType == TransformType.FIRST_PERSON_RIGHT_HAND 
+		if (transformType == TransformType.FIRST_PERSON_LEFT_HAND || transformType == TransformType.FIRST_PERSON_RIGHT_HAND
 				|| transformType == TransformType.THIRD_PERSON_LEFT_HAND || transformType == TransformType.THIRD_PERSON_RIGHT_HAND
 				|| transformType == TransformType.FIXED) {
 			modelToUse = handheldModel;

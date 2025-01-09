@@ -112,6 +112,7 @@ public class ExtendedVesselBrewingRecipeBuilder {
 			this.serializer = serializer;
 		}
 
+		@Override
 		public void serializeRecipeData(JsonObject p_218610_1_) {
 			if (!this.group.isEmpty()) {
 				p_218610_1_.addProperty("group", this.group);
@@ -128,19 +129,23 @@ public class ExtendedVesselBrewingRecipeBuilder {
 			p_218610_1_.addProperty("brewtime", this.brewingTime);
 		}
 
+		@Override
 		public IRecipeSerializer<?> getType() {
 			return this.serializer;
 		}
 
+		@Override
 		public ResourceLocation getId() {
 			return this.id;
 		}
 
+		@Override
 		@Nullable
 		public JsonObject serializeAdvancement() {
 			return null;
 		}
 
+		@Override
 		@Nullable
 		public ResourceLocation getAdvancementId() {
 			return null;

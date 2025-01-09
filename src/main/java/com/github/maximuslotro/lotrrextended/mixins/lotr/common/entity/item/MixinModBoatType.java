@@ -33,14 +33,14 @@ public class MixinModBoatType {
 	private static final ModBoatType BANANA = lotrModBoatType$addVariant("BANANA", ExtendedBlocks.BANANA_PLANKS, ExtendedItems.BANANA_BOAT, "banana");
 	private static final ModBoatType PLUM = lotrModBoatType$addVariant("PLUM", ExtendedBlocks.PLUM_PLANKS, ExtendedItems.PLUM_BOAT, "plum");
 
-	
+
 	@Invoker("<init>")
 	public static ModBoatType lotrModBoatType$invokeInit(String internalName, int internalId, Supplier<Block> plank, Supplier<Item> boat, String s) {
 		throw new AssertionError();
 	}
 
 	private static ModBoatType lotrModBoatType$addVariant(String internalName, Supplier<Block> plank, Supplier<Item> boat, String s) {
-		ArrayList<ModBoatType> variants = new ArrayList<ModBoatType>(Arrays.asList(MixinModBoatType.$VALUES));
+		ArrayList<ModBoatType> variants = new ArrayList<>(Arrays.asList(MixinModBoatType.$VALUES));
 		ModBoatType instrument = lotrModBoatType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, plank, boat, s);
 		variants.add(instrument);
 		MixinModBoatType.$VALUES = variants.toArray(new ModBoatType[0]);

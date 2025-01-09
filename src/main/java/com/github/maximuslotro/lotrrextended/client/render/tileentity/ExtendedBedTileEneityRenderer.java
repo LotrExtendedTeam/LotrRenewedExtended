@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -79,7 +80,7 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 					.get(p_225616_5_);
 			this.renderPiece(p_225616_3_, p_225616_4_,
 					blockstate.getValue(BedBlock.PART) == BedPart.HEAD,
-					blockstate.getValue(BedBlock.FACING), rendermaterial, i,
+					blockstate.getValue(HorizontalBlock.FACING), rendermaterial, i,
 					p_225616_6_, false);
 		} else {
 			this.renderPiece(p_225616_3_, p_225616_4_, true, Direction.SOUTH,
@@ -90,7 +91,7 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 
 	}
 
-	private void renderPiece(MatrixStack p_228847_1_, IRenderTypeBuffer p_228847_2_, boolean p_228847_3_, Direction p_228847_4_, 
+	private void renderPiece(MatrixStack p_228847_1_, IRenderTypeBuffer p_228847_2_, boolean p_228847_3_, Direction p_228847_4_,
 			RenderMaterial p_228847_5_, int p_228847_6_, int p_228847_7_, boolean p_228847_8_) {
 		this.headPiece.visible = p_228847_3_;
 		this.footPiece.visible = !p_228847_3_;

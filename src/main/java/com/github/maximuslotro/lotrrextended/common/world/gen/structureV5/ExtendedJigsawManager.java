@@ -58,7 +58,7 @@ public class ExtendedJigsawManager {
 	      Rotation rotation = Rotation.getRandom(random);
 	      JigsawPattern jigsawpattern = structureConfig.startPool().get();
 	      JigsawPiece jigsawpiece = jigsawpattern.getRandomTemplate(random);
-	      // Extended start add 
+	      // Extended start add
 	      Optional<WoodPaletteProcessor> carryOverProcessor = Optional.empty();
 	      if(jigsawpiece instanceof SingleJigsawPiece) {
 	    	  List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)jigsawpiece).processors.get().list());

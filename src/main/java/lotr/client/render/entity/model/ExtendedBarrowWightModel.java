@@ -33,7 +33,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 		//head.texOffs(32, 0).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 11.0F, 8.0F, 0.0F, false);
 		head.texOffs(64, 44).addBox(-3.0F, -5.0F, -3.01F, 6.0F, 1.0F, 0.0F, 0.0F, false);
 		head.texOffs(0, 25).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 12.0F, 8.0F, 0.25F, false);
-		
+
 		head_Normal_Piece = new ModelRenderer(this);
 		head_Normal_Piece.texOffs(32, 19).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
 		head.addChild(head_Normal_Piece);
@@ -228,6 +228,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 	}
 
 
+	@Override
 	protected void setupAttackAnimation(ExtendedBarrowWrightEntity p_230486_1_, float p_230486_2_) {
 		if (!(this.attackTime <= 0.0F)) {
 			for (HandSide handSide : HandSide.values()) {

@@ -1,6 +1,17 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
-import lotr.client.render.entity.*;
+import lotr.client.render.entity.ExtendedBarrowWightRenderer;
+import lotr.client.render.entity.ExtendedBlueMountainsMerchantRenderer;
+import lotr.client.render.entity.ExtendedBreeMerchantRenderer;
+import lotr.client.render.entity.ExtendedDunedainRangerRenderer;
+import lotr.client.render.entity.ExtendedGaladhrimWandererRenderer;
+import lotr.client.render.entity.ExtendedGundabadOrcScroungerRenderer;
+import lotr.client.render.entity.ExtendedGundabadUrukRenderer;
+import lotr.client.render.entity.ExtendedHiredBreeGuardRenderer;
+import lotr.client.render.entity.ExtendedHobbitBartenderRenderer;
+import lotr.client.render.entity.ExtendedHobbitFarmerRenderer;
+import lotr.client.render.entity.ExtendedOddmentCollectorRenderer;
+import lotr.client.render.entity.ExtendedRivendellWandererRenderer;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;

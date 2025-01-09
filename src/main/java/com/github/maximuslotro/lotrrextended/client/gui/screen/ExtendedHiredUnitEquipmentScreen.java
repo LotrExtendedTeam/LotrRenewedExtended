@@ -1,11 +1,16 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.Objects;
+
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -18,10 +23,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.Objects;
 
 public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHiredUnitEquipmentContainer> implements IHasContainer<ExtendedHiredUnitEquipmentContainer> {
 
@@ -71,7 +72,8 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         this.renderTooltip(p_98418_, p_98419_, p_98420_);
     }
 
-    protected void init() {
+    @Override
+	protected void init() {
         super.init();
         this.leftPos = (this.width - this.imageWidth) / 2;
         this.topPos = (this.height - this.imageHeight) / 2;
@@ -79,6 +81,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         backButton = this.addButton(new Button(this.leftPos + 7, this.topPos + 105, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.back"), button -> openMainMenu()));
     }
 
+	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);

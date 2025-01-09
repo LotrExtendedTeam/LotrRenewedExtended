@@ -14,7 +14,8 @@ public class ExtendedRivendellWandererRenderer extends ExtendedAbstractElfWander
         super(mgr);
     }
 
-    public ResourceLocation getTextureLocation(ExtendedAbstractElfWandererEntity elf) {
+    @Override
+	public ResourceLocation getTextureLocation(ExtendedAbstractElfWandererEntity elf) {
         return SKINS.getRandomSkin(elf);
     }
 }

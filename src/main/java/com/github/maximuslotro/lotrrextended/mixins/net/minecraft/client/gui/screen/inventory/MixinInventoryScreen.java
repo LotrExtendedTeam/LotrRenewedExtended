@@ -1,5 +1,10 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.gui.screen.inventory;
 
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
@@ -13,11 +18,6 @@ import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @OnlyIn(Dist.CLIENT)
 @Mixin(InventoryScreen.class)

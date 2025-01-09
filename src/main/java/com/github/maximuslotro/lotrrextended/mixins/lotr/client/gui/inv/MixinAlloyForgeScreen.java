@@ -1,6 +1,12 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.client.gui.inv;
 
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.gui.inv.AlloyForgeScreen;
 import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.inv.AbstractAlloyForgeContainer;
@@ -9,10 +15,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AlloyForgeScreen.class)
 public abstract class MixinAlloyForgeScreen extends ContainerScreen<AbstractAlloyForgeContainer> {

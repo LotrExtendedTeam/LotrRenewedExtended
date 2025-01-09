@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.inventory;
 
 import lotr.common.entity.npc.ExtendedRidableWargEntity;
 import lotr.common.entity.npc.WargEntity;
+import net.minecraft.entity.IEquipable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.entity.IEquipable;
 
 public class ExtendedWargInventoryContainer extends Container {
 	   private final IInventory horseContainer;
@@ -28,7 +28,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	         /**
 	          * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 	          */
-	         public boolean mayPlace(ItemStack pStack) {
+	         @Override
+			public boolean mayPlace(ItemStack pStack) {
 	            return pStack.getItem() == Items.SADDLE && !this.hasItem() && ((IEquipable)warg).isSaddleable();
 	         }
 
@@ -36,7 +37,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	          * Actualy only call when we want to render the white square effect over the slots. Return always True, except
 	          * for the armor slot of the Donkey/Mule (we can't interact with the Undead and Skeleton horses)
 	          */
-	         @OnlyIn(Dist.CLIENT)
+	         @Override
+			@OnlyIn(Dist.CLIENT)
 	         public boolean isActive() {
 	            return ((IEquipable)warg).isSaddleable();
 	         }
@@ -45,7 +47,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	         /**
 	          * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 	          */
-	         public boolean mayPlace(ItemStack pStack) {
+	         @Override
+			public boolean mayPlace(ItemStack pStack) {
 	            return ((ExtendedRidableWargEntity)warg).isArmor(pStack);
 	         }
 
@@ -53,7 +56,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	          * Actualy only call when we want to render the white square effect over the slots. Return always True, except
 	          * for the armor slot of the Donkey/Mule (we can't interact with the Undead and Skeleton horses)
 	          */
-	         @OnlyIn(Dist.CLIENT)
+	         @Override
+			@OnlyIn(Dist.CLIENT)
 	         public boolean isActive() {
 	            return ((ExtendedRidableWargEntity)warg).canWearArmor();
 	         }
@@ -62,7 +66,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	          * Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the
 	          * case of armor slots)
 	          */
-	         public int getMaxStackSize() {
+	         @Override
+			public int getMaxStackSize() {
 	            return 1;
 	         }
 	      });
@@ -89,7 +94,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	   /**
 	    * Determines whether supplied player can use this container
 	    */
-	   public boolean stillValid(PlayerEntity pPlayer) {
+	   @Override
+	public boolean stillValid(PlayerEntity pPlayer) {
 	      return this.horseContainer.stillValid(pPlayer) && this.warg.isAlive() && this.warg.distanceTo(pPlayer) < 8.0F;
 	   }
 
@@ -97,7 +103,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	    * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
 	    * inventory and the other inventory(s).
 	    */
-	   public ItemStack quickMoveStack(PlayerEntity pPlayer, int pIndex) {
+	   @Override
+	public ItemStack quickMoveStack(PlayerEntity pPlayer, int pIndex) {
 	      ItemStack itemstack = ItemStack.EMPTY;
 	      Slot slot = this.slots.get(pIndex);
 	      if (slot != null && slot.hasItem()) {
@@ -147,7 +154,8 @@ public class ExtendedWargInventoryContainer extends Container {
 	   /**
 	    * Called when the container is closed.
 	    */
-	   public void removed(PlayerEntity pPlayer) {
+	   @Override
+	public void removed(PlayerEntity pPlayer) {
 	      super.removed(pPlayer);
 	      this.horseContainer.stopOpen(pPlayer);
 	   }

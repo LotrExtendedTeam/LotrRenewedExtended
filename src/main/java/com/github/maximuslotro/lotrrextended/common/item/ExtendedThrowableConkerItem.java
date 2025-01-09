@@ -22,7 +22,7 @@ public class ExtendedThrowableConkerItem extends Item{
 		DispenserBlock.registerBehavior(this, new ExtendedDispenserConker());
 		CompostingHelper.prepareCompostable(this, 0.3F);
 	}
-	 
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);

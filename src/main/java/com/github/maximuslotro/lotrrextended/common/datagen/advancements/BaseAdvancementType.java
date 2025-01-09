@@ -122,7 +122,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
-	
+
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), false));
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), true));
@@ -221,7 +221,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		private float y = 0.34F;
 		private TextFormatting titleFormatting = null;
 		private TextFormatting descriptionFormatting = null;
-		
+
 		public BaseData(ItemStack icon, String name, boolean mainCat, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden) {
 			this.icon = icon;
 			this.name = name;

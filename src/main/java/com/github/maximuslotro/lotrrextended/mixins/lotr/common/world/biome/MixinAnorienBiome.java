@@ -17,15 +17,15 @@ public class MixinAnorienBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addTreesWithClusters((AnorienBiome)(Object)this, builder, 0, 0.02F, TreeCluster.of(10, 30), 
-				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000, 
-				LOTRBiomeFeatures.oakBees(), 100, LOTRBiomeFeatures.oakFancyBees(), 30, 
-				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 200, 
-				LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 2, 
-				LOTRBiomeFeatures.beech(), 500, LOTRBiomeFeatures.beechFancy(), 200, 
-				LOTRBiomeFeatures.beechBees(), 5, LOTRBiomeFeatures.beechFancyBees(), 2, 
-				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1, 
+		LOTRBiomeFeatures.addTreesWithClusters((AnorienBiome)(Object)this, builder, 0, 0.02F, TreeCluster.of(10, 30),
+				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000,
+				LOTRBiomeFeatures.oakBees(), 100, LOTRBiomeFeatures.oakFancyBees(), 30,
+				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 200,
+				LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 2,
+				LOTRBiomeFeatures.beech(), 500, LOTRBiomeFeatures.beechFancy(), 200,
+				LOTRBiomeFeatures.beechBees(), 5, LOTRBiomeFeatures.beechFancyBees(), 2,
+				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50,
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((AnorienBiome)(Object)this, builder, 10, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);

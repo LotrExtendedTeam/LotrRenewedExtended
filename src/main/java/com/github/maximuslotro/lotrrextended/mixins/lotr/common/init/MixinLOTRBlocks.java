@@ -1,7 +1,8 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
 
-import lotr.common.init.ExtendedItems;
+import java.util.function.Supplier;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,13 +17,12 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCheeseWheelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedDoorBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGreenFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -34,8 +34,13 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedTrapDoorBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
@@ -53,10 +58,6 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedTrapDoorBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
@@ -114,11 +115,12 @@ import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRParticles;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
-import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SandBlock;
@@ -131,8 +133,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 @Mixin(LOTRBlocks.class)
@@ -171,8 +171,8 @@ public class MixinLOTRBlocks {
 	public static RegistryObject<Block> BLUBBER_TORCH;
 
 	@SuppressWarnings("unchecked")
-	@Redirect(method = "<clinit>", 
-			at = @At(value = "INVOKE", 
+	@Redirect(method = "<clinit>",
+			at = @At(value = "INVOKE",
 			target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
 	private static RegistryObject<Block> injectedBlockRegister(DeferredRegister<Block> register, String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> returnBlock = null;
@@ -252,7 +252,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.REGISTEREDPOTS.put(name, block);
 		return block;
     }
-	
+
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
@@ -298,7 +298,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH = registerB("stripped_chestnut_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
 		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 		ExtendedBlocks.FALLEN_CHESTNUT_LEAVES = registerB("fallen_chestnut_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.CHESTNUT_LEAVES));
-		
+
 		ExtendedBlocks.BANANA_LOG = registerB("banana_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_YELLOW, () -> ExtendedBlocks.STRIPPED_BANANA_LOG.get()));
 		ExtendedBlocks.BANANA_WOOD = registerB("banana_wood", () -> new StrippableWoodBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_WOOD.get()));
 		ExtendedBlocks.BANANA_PLANKS = registerB("banana_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
@@ -368,27 +368,27 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		ExtendedBlocks.WHITE_PACKED_FUR_STAIRS = registerB("white_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		ExtendedBlocks.WHITE_PACKED_FUR_WALL = registerB("white_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.WHITE_PACKED_FUR));
-		
+
 		ExtendedBlocks.SILVER_PACKED_FUR = registerB("silver_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.SILVER));
 		ExtendedBlocks.SILVER_PACKED_FUR_SLAB = registerB("silver_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_STAIRS = registerB("silver_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_WALL = registerB("silver_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.SILVER_PACKED_FUR));
-		
+
 		ExtendedBlocks.GRAY_PACKED_FUR = registerB("gray_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.GRAY));
 		ExtendedBlocks.GRAY_PACKED_FUR_SLAB = registerB("gray_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.GRAY_PACKED_FUR));
 		ExtendedBlocks.GRAY_PACKED_FUR_STAIRS = registerB("gray_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.GRAY_PACKED_FUR));
 		ExtendedBlocks.GRAY_PACKED_FUR_WALL = registerB("gray_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.GRAY_PACKED_FUR));
-		
+
 		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.BROWN));
 		ExtendedBlocks.BROWN_PACKED_FUR_SLAB = registerB("packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		ExtendedBlocks.BROWN_PACKED_FUR_STAIRS = registerB("packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		ExtendedBlocks.BROWN_PACKED_FUR_WALL = registerB("packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BROWN_PACKED_FUR));
-		
+
 		ExtendedBlocks.BLACK_PACKED_FUR = registerB("black_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.BLACK));
 		ExtendedBlocks.BLACK_PACKED_FUR_SLAB = registerB("black_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		ExtendedBlocks.BLACK_PACKED_FUR_STAIRS = registerB("black_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		ExtendedBlocks.BLACK_PACKED_FUR_WALL = registerB("black_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BLACK_PACKED_FUR));
-		
+
 		//Bundled Fur
 		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.WOOL));
 		ExtendedBlocks.SILVER_FUR_BUNDLE = registerB("silver_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
@@ -538,17 +538,17 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.TAURETHRIM_BRICK_WALL = registerB("taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.TAURETHRIM_PILLAR = registerB("taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GREEN));
 		ExtendedBlocks.TAURETHRIM_PILLAR_SLAB = registerB("taurethrim_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.TAURETHRIM_PILLAR));
-		
+
 		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK = registerB("mossy_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GREEN));
 		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_SLAB = registerB("mossy_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));
 		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_STAIRS = registerB("mossy_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));
 		ExtendedBlocks.MOSSY_TAURETHRIM_BRICK_WALL = registerB("mossy_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_TAURETHRIM_BRICK));
-		
+
 		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK = registerB("cracked_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GREEN));
 		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_SLAB = registerB("cracked_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK));
 		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_STAIRS = registerB("cracked_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK));
 		ExtendedBlocks.CRACKED_TAURETHRIM_BRICK_WALL = registerB("cracked_taurethrim_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_TAURETHRIM_BRICK));
-		
+
 		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK = registerB("golden_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_YELLOW));
 		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_SLAB = registerB("golden_taurethrim_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
 		ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_STAIRS = registerB("golden_taurethrim_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK));
@@ -575,17 +575,17 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DOL_GULDUR_BRICK_WALL = registerB("dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 		ExtendedBlocks.DOL_GULDUR_PILLAR = registerB("dol_guldur_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB = registerB("dol_guldur_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.DOL_GULDUR_PILLAR));
-		
+
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK = registerB("mossy_dol_guldur_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_SLAB = registerB("mossy_dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_STAIRS = registerB("mossy_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
 		ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK_WALL = registerB("mossy_dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_DOL_GULDUR_BRICK));
-		
+
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK = registerB("cracked_dol_guldur_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_SLAB = registerB("cracked_dol_guldur_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_STAIRS = registerB("cracked_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
 		ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL = registerB("cracked_dol_guldur_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK));
-		
+
 		ExtendedBlocks.CARVED_DOL_GULDUR_BRICK = registerB("carved_dol_guldur_brick", () -> new ExtendedStoneBlock(ExtendedBlocks.DOL_GULDUR_BRICK));
 
 		//Rhunic
@@ -596,7 +596,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.RHUNIC_PILLAR = registerB("rhunic_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_YELLOW));
 		ExtendedBlocks.RHUNIC_PILLAR_SLAB = registerB("rhunic_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.RHUNIC_PILLAR));
 		ExtendedBlocks.CARVED_RHUNIC_BRICK = registerB("carved_rhunic_brick", () -> new ExtendedStoneBlock(ExtendedBlocks.RHUNIC_BRICK));
-		
+
 		ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK = registerB("gold_trimmed_rhunic_brick", () -> new ExtendedStoneBlock(ExtendedBlocks.RHUNIC_BRICK));
 		ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK_SLAB = registerB("gold_trimmed_rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.RHUNIC_BRICK));
 		ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK_STAIRS = registerB("gold_trimmed_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.RHUNIC_BRICK));
@@ -616,7 +616,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_SLAB = registerB("flowery_rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
 		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_STAIRS = registerB("flowery_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
 		ExtendedBlocks.FLOWERY_RHUNIC_BRICK_WALL = registerB("flowery_rhunic_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.FLOWERY_RHUNIC_BRICK));
-		
+
 		ExtendedBlocks.RED_RHUNIC_BRICK = registerB("red_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 		ExtendedBlocks.RED_RHUNIC_BRICK_SLAB = registerB("red_rhunic_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.RED_RHUNIC_BRICK));
 		ExtendedBlocks.RED_RHUNIC_BRICK_STAIRS = registerB("red_rhunic_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.RED_RHUNIC_BRICK));
@@ -652,13 +652,13 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK = registerB("carved_black_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
 		ExtendedBlocks.CARVED_UMBAR_BRICK = registerB("carved_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.UMBAR_BRICK));
 		ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS = registerB("smooth_gondor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_GONDOR_ROCK));
-		
+
 		//Rohan
 		ExtendedBlocks.SMOOTH_ROHAN_ROCK_STAIRS = registerB("smooth_rohan_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_ROHAN_ROCK));
 
 		//Blue Mountains
 		ExtendedBlocks.SMOOTH_BLUE_ROCK_STAIRS = registerB("smooth_blue_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_BLUE_ROCK));
-		
+
 		//Red Mountains
 		ExtendedBlocks.SMOOTH_RED_ROCK_STAIRS = registerB("smooth_red_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_RED_ROCK));
 
@@ -673,12 +673,12 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.COBBLED_DRYSTONE = registerB("cobbled_drystone", () -> new ExtendedStoneBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.CUT_DRYSTONE = registerB("cut_drystone", () -> new ExtendedStoneBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.SMOOTH_STONE_STAIRS = registerB("smooth_stone_stairs", () -> new LOTRStairsBlock(Blocks.SMOOTH_STONE));
-		
+
 		ExtendedBlocks.MOSSY_DRYSTONE = registerB("mossy_drystone", () -> new ExtendedStoneBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.MOSSY_DRYSTONE_SLAB = registerB("mossy_drystone_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_DRYSTONE));
 		ExtendedBlocks.MOSSY_DRYSTONE_STAIRS = registerB("mossy_drystone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_DRYSTONE));
 		ExtendedBlocks.MOSSY_DRYSTONE_WALL = registerB("mossy_drystone_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_DRYSTONE));
-		
+
 		//BUSHES
 		ExtendedBlocks.BLACKBERRY_BUSH = registerB("blackberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH));
 		ExtendedBlocks.BLUEBERRY_BUSH = registerB("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));

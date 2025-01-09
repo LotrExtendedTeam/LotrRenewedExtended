@@ -30,12 +30,12 @@ public class ExtendedCommandHornItem extends Item {
 	public UseAction getUseAnimation(ItemStack p_77661_1_) {
 		return UseAction.BOW;
 	}
-	
+
 	@Override
 	public int getUseDuration(ItemStack p_77626_1_) {
 		return 40;
 	}
-	
+
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, World world, LivingEntity entityplayer) {
 		if (isHalt(itemstack)) {
@@ -46,7 +46,7 @@ public class ExtendedCommandHornItem extends Item {
 		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);

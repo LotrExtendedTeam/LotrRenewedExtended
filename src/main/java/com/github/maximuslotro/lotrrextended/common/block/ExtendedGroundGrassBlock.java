@@ -43,7 +43,7 @@ public class ExtendedGroundGrassBlock extends SpreadableSnowyDirtBlock implement
 
 	@Override
 	public BlockState getToolModifiedState(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack stack, ToolType toolType) {
-		return (toolType == ToolType.SHOVEL && path!=null) ? path.get().defaultBlockState() : 
+		return (toolType == ToolType.SHOVEL && path!=null) ? path.get().defaultBlockState() :
 			(toolType == ToolType.HOE && till!=null) ? till.get().defaultBlockState() : super.getToolModifiedState(state, world, pos, player, stack, toolType);
 	}
 

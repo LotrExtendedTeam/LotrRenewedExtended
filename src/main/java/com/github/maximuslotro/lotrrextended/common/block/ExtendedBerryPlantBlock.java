@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import net.minecraft.block.*;
+import lotr.common.init.LOTRBlocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
@@ -19,8 +22,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
-
-import lotr.common.init.LOTRBlocks;
 
 public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
     private final RegistryObject<Item> berryItem;
@@ -72,6 +73,6 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
 
     public Item getBerryItem() {
 		return berryItem.get();
-    	
+
     }
 }

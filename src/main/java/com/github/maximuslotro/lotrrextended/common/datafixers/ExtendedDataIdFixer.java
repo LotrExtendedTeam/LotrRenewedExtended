@@ -87,13 +87,13 @@ public class ExtendedDataIdFixer {
 		addRemapBlockWithItem("grey_packed_fur_slab", "lotr", ExtendedBlocks.GRAY_PACKED_FUR_SLAB, ExtendedItems.GRAY_PACKED_FUR_SLAB);
 		addRemapBlockWithItem("grey_packed_fur_stairs", "lotr", ExtendedBlocks.GRAY_PACKED_FUR_STAIRS, ExtendedItems.GRAY_PACKED_FUR_STAIRS);
 		addRemapBlockWithItem("grey_packed_fur_wall", "lotr", ExtendedBlocks.GRAY_PACKED_FUR_WALL, ExtendedItems.GRAY_PACKED_FUR_WALL);
-		
+
 		//Beta 1.5.1 Merged Flowery Chestnut Leaves with Chestnut Leaves
 		addRemapBlockWithItem("chestnut_leaves_flowers", "lotr", ExtendedBlocks.CHESTNUT_LEAVES, ExtendedItems.CHESTNUT_LEAVES);
-		
+
 		//Beta 1.6.2-alpha-1 Renamed Millstone to Stone Grinder
 		addRemapBlockWithItem("millstone", "lotr", ExtendedBlocks.STONE_GRINDER, ExtendedItems.STONE_GRINDER);
-		
+
 		//Beta 1.7.0-alpha-2 Cleanup stuff
 		addRemapItem("morgul_spear", "lotr", ExtendedItems.ANGMAR_SPEAR);
 		addRemapItem("morgul_dagger", "lotr", ExtendedItems.ANGMAR_DAGGER);

@@ -22,7 +22,7 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	public UUID maleID;
 	public UUID femaleID;
 	public UUID playerID;
-	
+
 	private boolean resendData = true;
 
 	public ExtendedNpcMarriageHolder(NPCEntity thisEntity) {
@@ -30,6 +30,7 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	}
 
 	//TODO implement with changing other data types
+	@Override
 	public void markDirty() {
 		if (!thisEntity.level.isClientSide) {
 			if (thisEntity.tickCount > 0) {
@@ -82,47 +83,47 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 			nbt.putLong("PlayerUUIDMost", playerID.getMostSignificantBits());
 			nbt.putLong("PlayerUUIDLeast", playerID.getLeastSignificantBits());
 		}
-		
+
 	}
 
 	@Override
 	public PacketBuffer createDataPacketToClient(PacketBuffer buf) {
 		buf.writeVarInt(thisEntity.getId());
-		
+
 		buf.writeBoolean(numberOfCurrentChildren!=0);
 		if (numberOfCurrentChildren!=0) {
 			buf.writeVarInt(numberOfCurrentChildren);
 		}
-		
+
 		buf.writeBoolean(maxNumberOfCurrentChildren!=0);
 		if (maxNumberOfCurrentChildren!=0) {
 			buf.writeVarInt(maxNumberOfCurrentChildren);
 		}
-		
+
 		buf.writeBoolean(spouseID!=null);
 		if (spouseID!=null) {
 			buf.writeLong(spouseID.getMostSignificantBits());
 			buf.writeLong(spouseID.getLeastSignificantBits());
 		}
-		
+
 		buf.writeBoolean(maleID!=null);
 		if (maleID!=null) {
 			buf.writeLong(maleID.getMostSignificantBits());
 			buf.writeLong(maleID.getLeastSignificantBits());
 		}
-		
+
 		buf.writeBoolean(femaleID!=null);
 		if (femaleID!=null) {
 			buf.writeLong(femaleID.getMostSignificantBits());
 			buf.writeLong(femaleID.getLeastSignificantBits());
 		}
-		
+
 		buf.writeBoolean(playerID!=null);
 		if (playerID!=null) {
 			buf.writeLong(playerID.getMostSignificantBits());
 			buf.writeLong(playerID.getLeastSignificantBits());
 		}
-		return buf;	
+		return buf;
 	}
 
 	public static void readDataPacketFromServer(PacketBuffer buf, World world) {
@@ -146,7 +147,7 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	public void sendDataToPlayer(ServerPlayerEntity player) {
 		ExtendedSPacketNpcMarriageInfo packet = new ExtendedSPacketNpcMarriageInfo(this);
 		ExtendedPacketHandler.sendToClient(packet, player);
-		
+
 	}
 
 	@Override

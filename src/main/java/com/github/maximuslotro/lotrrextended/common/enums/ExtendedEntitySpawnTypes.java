@@ -19,7 +19,7 @@ import net.minecraft.util.IStringSerializable;
 public enum ExtendedEntitySpawnTypes implements IStringSerializable {
 	HOBBIT_BARTENDER(HobbitBartenderSpawnerTileEntity::new),
 	HOBBIT_FARMER(ExtendedHobbitFarmerSpawnerTileEntity::new);
-	
+
 	private final Supplier<? extends ExtendedStructureSpawnerTileEntity<?, ?>> supplier;
 	public static final ExtendedEntitySpawnTypes[] LIST=values();
 
@@ -40,7 +40,7 @@ public enum ExtendedEntitySpawnTypes implements IStringSerializable {
 	public ExtendedStructureSpawnerTileEntity<?, ?> getSupplierObject() {
 		return supplier != null ? supplier.get() : null;
 	}
-	
+
 	@Override
 	public String getSerializedName() {
 		return name().toLowerCase(Locale.ROOT).replace(' ', '_');

@@ -251,7 +251,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		this.getEntityData().define(DATA_SPAWNER_TYPE, "empty");
 		this.getEntityData().define(TICKPERCENTAGE, 3600);
 	}
-	  
+
 	@Override
 	public boolean canChangeDimensions() {
 		return false;

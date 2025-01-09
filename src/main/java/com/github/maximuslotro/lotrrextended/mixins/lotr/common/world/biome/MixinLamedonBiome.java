@@ -20,18 +20,18 @@ public class MixinLamedonBiome {
 	 * @reason don't want to replace class
 	 * */
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addTreesWithClusters((LamedonBiome)(Object)this, builder, getLamedonBaseTreeRate(), 0.1F, TreeCluster.of(10, 20), 
-				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000, 
-				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10, 
-				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 100, 
-				LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 1, 
-				LOTRBiomeFeatures.beech(), 500, LOTRBiomeFeatures.beechFancy(), 100, 
-				LOTRBiomeFeatures.beechBees(), 5, LOTRBiomeFeatures.beechFancyBees(), 1, 
-				ExtendedBiomeFeatures.chestnut(), 2000, ExtendedBiomeFeatures.chestnutFancy(), 500, 
+		LOTRBiomeFeatures.addTreesWithClusters((LamedonBiome)(Object)this, builder, getLamedonBaseTreeRate(), 0.1F, TreeCluster.of(10, 20),
+				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
+				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
+				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 100,
+				LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 1,
+				LOTRBiomeFeatures.beech(), 500, LOTRBiomeFeatures.beechFancy(), 100,
+				LOTRBiomeFeatures.beechBees(), 5, LOTRBiomeFeatures.beechFancyBees(), 1,
+				ExtendedBiomeFeatures.chestnut(), 2000, ExtendedBiomeFeatures.chestnutFancy(), 500,
 				ExtendedBiomeFeatures.chestnutBees(), 20, ExtendedBiomeFeatures.chestnutFancyBees(), 5,
-				LOTRBiomeFeatures.larch(), 3000, LOTRBiomeFeatures.aspen(), 3000, 
-				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1, 
+				LOTRBiomeFeatures.larch(), 3000, LOTRBiomeFeatures.aspen(), 3000,
+				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50,
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((LamedonBiome)(Object)this, builder, 8, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);

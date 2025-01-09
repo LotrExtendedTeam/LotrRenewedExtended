@@ -1,7 +1,17 @@
 package lotr.common.entity.npc;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
-import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
+import lotr.common.entity.npc.ai.goal.NPCEatGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
@@ -20,7 +30,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -37,11 +50,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity implements ExtendedTraderEntity {
 
@@ -205,7 +213,8 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
     }
 
-    public boolean canTradeWith(PlayerEntity player) {
+    @Override
+	public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAlignedWithLevel(player, this, 0);
     }
 
@@ -352,7 +361,8 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
         WEAPONS = SpawnEquipmentTable.of(LOTRItems.BLUE_DWARVEN_DAGGER);
     }
 
-    protected NPCGenderProvider getGenderProvider() {
+    @Override
+	protected NPCGenderProvider getGenderProvider() {
         return NPCGenderProvider.MALE;
     }
 
@@ -378,7 +388,7 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;		
+		itemsSoldByTrader = trades;
 	}
 
 }

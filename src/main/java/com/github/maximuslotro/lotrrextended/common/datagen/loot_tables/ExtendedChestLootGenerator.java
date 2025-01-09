@@ -13,16 +13,16 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.LootTable.Builder;
+import net.minecraft.loot.RandomValueRange;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
-		//TODO add cooked venison, corn, cooked corn, leek, leek soup, turnip, cooked turnip, marzipan, chocolate marzipan, 
-		//ale, cider, perry, cherry liqueur, apple juice, 
+		//TODO add cooked venison, corn, cooked corn, leek, leek soup, turnip, cooked turnip, marzipan, chocolate marzipan,
+		//ale, cider, perry, cherry liqueur, apple juice,
 		consumer.accept(ExtendedLootTables.HOBBIT_LARDER, LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 6))
@@ -826,7 +826,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.FLOWER_POT).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_FLOWER_POT.get()).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))));
-		
+
 		consumer.accept(ExtendedLootTables.BREE_TOWN_FARM, LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))

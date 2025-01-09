@@ -1,6 +1,7 @@
 package lotr.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.common.entity.npc.BreeManEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

@@ -1,5 +1,7 @@
 package lotr.common.entity.npc.ai.goal;
 
+import java.util.EnumSet;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
@@ -7,11 +9,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.pathfinding.*;
+import net.minecraft.pathfinding.FlyingPathNavigator;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.pathfinding.WalkNodeProcessor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
-
-import java.util.EnumSet;
 
 public class ExtendedHiredFollowPlayerGoal extends Goal {
     private final NPCEntity entity;

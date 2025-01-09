@@ -41,7 +41,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	/** Alignment entry field */
 	private TextFieldWidget alignmentField;
 	/** is the text that appears when you press the chat key and the input box appears pre-filled */
-	private float previousAlignment;;
+	private float previousAlignment;
 	private boolean showDefaultPerms = false;
 	private List<Button> defaultPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
@@ -198,7 +198,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 		// Faction
 		this.addButton(alignmentField = new TextFieldWidget(this.font, this.leftPos+63, this.topPos+81, 80, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.textBox")) {
-			@Override   
+			@Override
 			public void setFocus(boolean pIsFocused) {
 				super.setFocus(pIsFocused);
 				if(!pIsFocused) {
@@ -214,7 +214,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		// Whitelist
 		for(int i=0; i<4; i++) {
 			ExtendedTextFieldWidget textField =  new ExtendedTextFieldWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
-				@Override   
+				@Override
 				public void setFocus(boolean pIsFocused) {
 					super.setFocus(pIsFocused);
 					if(!pIsFocused) {
@@ -226,7 +226,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			textField.setValue("");
 			textField.setFocus(false);
 			textField.setCanLoseFocus(true);
-			
+
 			IndexedButton permShowButton = new IndexedButton(this.leftPos + 29, this.topPos + 63 + (i*30), 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), i, button -> {
 				textField.togglePermVis();
 			}){

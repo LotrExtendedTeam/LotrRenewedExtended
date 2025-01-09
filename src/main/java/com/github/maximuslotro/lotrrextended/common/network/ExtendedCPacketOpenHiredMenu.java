@@ -1,6 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.Objects;
+import java.util.function.Supplier;
+
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
+
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -10,9 +14,6 @@ import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class ExtendedCPacketOpenHiredMenu {
 

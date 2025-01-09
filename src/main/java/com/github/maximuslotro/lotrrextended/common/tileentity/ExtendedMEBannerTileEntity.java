@@ -548,7 +548,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		public void updateProfile(ExtendedBannerProfileBase newProfile) {
 			profile = newProfile;
 		}
-	
+
 		public List<BannerPermission> getEntryPerms() {
 			return entryPerms;
 		}

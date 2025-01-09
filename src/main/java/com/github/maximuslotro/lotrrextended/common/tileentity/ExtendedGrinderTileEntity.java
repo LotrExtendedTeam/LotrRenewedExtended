@@ -202,7 +202,7 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 					return;
 				}
 				needsLubeRemoving = true;
-				
+
 			}
 			if (itemstack2.isEmpty()) {
 				this.items.set(2, itemstack1.copy());

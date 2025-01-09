@@ -92,7 +92,7 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 	   }
 
 	   public abstract SoundEvent BarrelOpen();
-	   
+
 	   public abstract SoundEvent BarrelClose();
 
 	   private void scheduleRecheck() {

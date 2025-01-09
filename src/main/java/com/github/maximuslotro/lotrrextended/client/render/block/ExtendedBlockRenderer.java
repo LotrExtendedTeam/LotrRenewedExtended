@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.block;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
@@ -11,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;

@@ -16,7 +16,7 @@ import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class BananaFoliagePlacer extends ExtendedFoliagePlacer {
-	public static final Codec<BananaFoliagePlacer> CODEC = RecordCodecBuilder.create(instance -> 
+	public static final Codec<BananaFoliagePlacer> CODEC = RecordCodecBuilder.create(instance ->
 	foliagePlacerParts(instance).and(FeatureSpread.codec(0, 8, 5).fieldOf("leaves_height").forGetter(foliage -> foliage.leavesHeight)).apply(instance, BananaFoliagePlacer::new));
 
 	private final FeatureSpread leavesHeight;

@@ -16,18 +16,18 @@ public class MixinBreelandBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] breelandTrees() {
-		return new Object[] { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000, 
-				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 3, 
-				LOTRBiomeFeatures.beech(), 3000, LOTRBiomeFeatures.beechFancy(), 750, 
-				LOTRBiomeFeatures.beechBees(), 3, LOTRBiomeFeatures.beechFancyBees(), 1, 
-				LOTRBiomeFeatures.maple(), 2000, LOTRBiomeFeatures.mapleFancy(), 500, 
-				LOTRBiomeFeatures.mapleBees(), 2, LOTRBiomeFeatures.mapleFancyBees(), 1, 
-				ExtendedBiomeFeatures.chestnut(), 3000, ExtendedBiomeFeatures.chestnutFancy(), 750, 
+		return new Object[] { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000,
+				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 3,
+				LOTRBiomeFeatures.beech(), 3000, LOTRBiomeFeatures.beechFancy(), 750,
+				LOTRBiomeFeatures.beechBees(), 3, LOTRBiomeFeatures.beechFancyBees(), 1,
+				LOTRBiomeFeatures.maple(), 2000, LOTRBiomeFeatures.mapleFancy(), 500,
+				LOTRBiomeFeatures.mapleBees(), 2, LOTRBiomeFeatures.mapleFancyBees(), 1,
+				ExtendedBiomeFeatures.chestnut(), 3000, ExtendedBiomeFeatures.chestnutFancy(), 750,
 				ExtendedBiomeFeatures.chestnutBees(), 30, ExtendedBiomeFeatures.chestnutFancyBees(), 7,
-				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 200, 
-				LOTRBiomeFeatures.birchBees(), 1, LOTRBiomeFeatures.birchFancyBees(), 1, 
-				LOTRBiomeFeatures.aspen(), 500, LOTRBiomeFeatures.aspenLarge(), 100, 
-				LOTRBiomeFeatures.apple(), 30, LOTRBiomeFeatures.pear(), 30, 
+				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 200,
+				LOTRBiomeFeatures.birchBees(), 1, LOTRBiomeFeatures.birchFancyBees(), 1,
+				LOTRBiomeFeatures.aspen(), 500, LOTRBiomeFeatures.aspenLarge(), 100,
+				LOTRBiomeFeatures.apple(), 30, LOTRBiomeFeatures.pear(), 30,
 				LOTRBiomeFeatures.appleBees(), 15, LOTRBiomeFeatures.pearBees(), 15 };
 	}
 }

@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
 public enum EntityGender {
-	MALE("male", 0), 
-	FEMALE("female", 1), 
-	GENDERLESS("genderless", 2), 
+	MALE("male", 0),
+	FEMALE("female", 1),
+	GENDERLESS("genderless", 2),
 	UNKNOWN("unknown", 3);
 
 	private final String name;

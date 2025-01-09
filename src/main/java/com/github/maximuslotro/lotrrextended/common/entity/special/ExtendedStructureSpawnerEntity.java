@@ -170,7 +170,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					// Check if spawn position is valid for boundary check spawns
 					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !spawnerInstance.insideSpawning()) {
 						BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
-						if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP) 
+						if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP)
 								|| !floorBlock.getMaterial().isSolid()) {
 							//System.out.println("Failed spawn check fullface+solid");
 							continue; // Try spawning again
@@ -190,16 +190,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							Entity entityMale = generatedSpawn.create(world);
 							Entity entityFemale = generatedSpawn.create(world);
 							if(!(entityMale instanceof NPCEntity)||!(entityFemale instanceof NPCEntity)) {
-								
+
 							}
 							NPCEntity entityMaleNpc = (NPCEntity) entityMale;
 							NPCEntity entityFemaleNpc = (NPCEntity) entityFemale;
 							if(((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
-									||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
-								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
-								return false;
-							}
-							if(((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
+									||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE) || ((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
 									||((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
 								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;
@@ -488,7 +484,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		this.getEntityData().define(DATA_SPAWNER_SBoundMin, BlockPos.ZERO);
 		this.getEntityData().define(DATA_SPAWNER_SBoundMax, BlockPos.ZERO);
 	}
-	  
+
 	@Override
 	public boolean canChangeDimensions() {
 		return false;

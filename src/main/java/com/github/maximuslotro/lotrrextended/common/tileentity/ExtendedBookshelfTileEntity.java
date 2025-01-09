@@ -68,5 +68,5 @@ public class ExtendedBookshelfTileEntity extends LockableLootTileEntity{
 	   protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
 	      return ExtendedBookshelfContainer.threeRows(p_213906_1_, p_213906_2_, this, null);
 	   }
-	   
+
 	}

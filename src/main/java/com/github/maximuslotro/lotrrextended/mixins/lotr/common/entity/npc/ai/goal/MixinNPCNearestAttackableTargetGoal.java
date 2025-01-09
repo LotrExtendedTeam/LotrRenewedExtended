@@ -18,7 +18,7 @@ public class MixinNPCNearestAttackableTargetGoal {
 	@Shadow(remap=false)
 	@Final
 	private NPCEntity theNPC;
-	
+
 	@Overwrite(remap=false)
 	/**
 	 * @author maximuslotro

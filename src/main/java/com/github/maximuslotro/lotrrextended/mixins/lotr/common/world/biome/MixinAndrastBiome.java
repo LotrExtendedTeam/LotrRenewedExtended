@@ -27,7 +27,7 @@ public class MixinAndrastBiome {
 						LOTRBiomeFeatures.beechFancyBees(), 1, LOTRBiomeFeatures.fir(), 2000, LOTRBiomeFeatures.pine(),
 						2000, LOTRBiomeFeatures.spruce(), 2000, LOTRBiomeFeatures.larch(), 2000,
 						LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1,
-						LOTRBiomeFeatures.pearBees(), 1, ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 
+						LOTRBiomeFeatures.pearBees(), 1, ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(),
 						1, LOTRBiomeFeatures.oakShrub(), 15000});
 		LOTRBiomeFeatures.addGrass((AndrastBiome)(Object)this, builder, 12, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 4, GrassBlends.DOUBLE_STANDARD);

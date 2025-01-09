@@ -1,5 +1,13 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.client.render.entity.model.armor;
 
+import java.util.function.Supplier;
+
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import lotr.client.render.entity.model.armor.ExtendedArnorHelmetModel;
 import lotr.client.render.entity.model.armor.ExtendedModelGoldenTaurethrimHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelGundabadUrukHelmet;
@@ -12,13 +20,6 @@ import lotr.client.render.entity.model.armor.SpecialArmorModelHolder.SpecialArmo
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.item.Item;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.function.Supplier;
 
 @Mixin(LOTRArmorModels.class)
 public class MixinLOTRArmorModels {

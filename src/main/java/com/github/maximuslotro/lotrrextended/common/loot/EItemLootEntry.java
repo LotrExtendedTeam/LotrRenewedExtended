@@ -34,10 +34,12 @@ public class EItemLootEntry extends ItemLootEntry{
 			this.isDamagable = canDamage;
 		}
 
+		@Override
 		protected EItemLootEntry.ExtendedBuilder getThis() {
 			return this;
 		}
 
+		@Override
 		public LootEntry build() {
 			return this.constructor.build(this.weight, this.quality, this.getConditions(), this.getFunctions());
 		}

@@ -22,6 +22,7 @@ public class GraniteWhiteWoolBeehiveThatchRemoverProcessor extends StructureProc
 
 	private GraniteWhiteWoolBeehiveThatchRemoverProcessor() {}
 
+	@Override
 	@Nullable
 	public Template.BlockInfo processBlock(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData) {
 		BlockState blockstate = blockInfoWorld.state;
@@ -32,6 +33,7 @@ public class GraniteWhiteWoolBeehiveThatchRemoverProcessor extends StructureProc
 		}
 	}
 
+	@Override
 	protected IStructureProcessorType<?> getType() {
 		return ExtendedStructureProcessors.THATCH_POLISHED_GRANITE_BEEHIVE_WHITE_WOOL_PROCESSOR;
 	}

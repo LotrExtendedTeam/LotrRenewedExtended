@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import java.util.Objects;
+
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
@@ -26,8 +28,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.AbstractSpawner;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-
-import java.util.Objects;
 
 public class ExtendedHiredBreeGuardEggItem extends ForgeSpawnEggItem {
     public ExtendedHiredBreeGuardEggItem () {

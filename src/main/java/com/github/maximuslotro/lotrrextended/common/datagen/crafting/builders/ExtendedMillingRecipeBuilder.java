@@ -44,7 +44,7 @@ public class ExtendedMillingRecipeBuilder {
 	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
 		return grinding(result, 1, ingredient, breakChance, 1.0f, 200, serializer);
 	}
-	
+
 	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
 		return grinding(result, count, ingredient, breakChance, 1.0f, 200, serializer);
 	}
@@ -106,6 +106,7 @@ public class ExtendedMillingRecipeBuilder {
 			this.breakChance = breakChance;
 		}
 
+		@Override
 		public void serializeRecipeData(JsonObject p_218610_1_) {
 			if (!this.group.isEmpty()) {
 				p_218610_1_.addProperty("group", this.group);
@@ -126,19 +127,23 @@ public class ExtendedMillingRecipeBuilder {
 			p_218610_1_.addProperty("experience", this.experience);
 		}
 
+		@Override
 		public IRecipeSerializer<?> getType() {
 			return this.serializer;
 		}
 
+		@Override
 		public ResourceLocation getId() {
 			return this.id;
 		}
 
+		@Override
 		@Nullable
 		public JsonObject serializeAdvancement() {
 			return null;
 		}
 
+		@Override
 		@Nullable
 		public ResourceLocation getAdvancementId() {
 			return null;

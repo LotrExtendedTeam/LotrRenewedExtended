@@ -45,13 +45,15 @@ public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<Exte
 	      return Optional.ofNullable(NEXT_BY_BLOCK.get().get(p_154905_));
 	   }
 
-	   default Optional<BlockState> getNext(BlockState p_154893_) {
+	   @Override
+	default Optional<BlockState> getNext(BlockState p_154893_) {
 	      return getNext(p_154893_.getBlock()).map((p_154896_) -> {
 	         return BlockStateUtils.copyBlockStateToBlock(p_154896_, p_154893_);
 	      });
 	   }
 
-	   default float getChanceModifier() {
+	   @Override
+	default float getChanceModifier() {
 	      return this.getAge() == ExtendedCheeseState.UNAFFECTED ? 0.75F : 1.0F;
 	   }
 }

@@ -15,6 +15,7 @@ import net.minecraft.world.server.ServerWorld;
  * @deprecated
  * @since beta-1.6
  * */
+@Deprecated
 public class RangerCampAnimalsGroupSpawnerTileEntity extends ExtendedStructureGroupSpawnerTileEntity<RangerCampAnimalsGroupSpawnerTileEntity>{
 
 	public RangerCampAnimalsGroupSpawnerTileEntity() {

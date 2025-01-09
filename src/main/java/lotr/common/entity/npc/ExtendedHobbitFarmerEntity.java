@@ -1,9 +1,16 @@
 package lotr.common.entity.npc;
 
-import lotr.common.entity.npc.ai.goal.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
-
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
@@ -14,7 +21,12 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -32,8 +44,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import java.util.*;
 
 public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedTraderEntity {
 
@@ -77,7 +87,8 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     }
 
     // Remove, drink, smoke and eat AIs
-    protected void addNPCAI() {
+    @Override
+	protected void addNPCAI() {
         ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
         this.getNavigation().setCanFloat(true);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
@@ -86,7 +97,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
         this.addNPCTargetingAI();
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<OrcEntity>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.6));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(10, new ExtendedTraderTalkToCurrentGoal(this, this));
@@ -132,15 +143,18 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
         escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
 
-    public void updatePlayerTradingWith(UUID uuid) {
+    @Override
+	public void updatePlayerTradingWith(UUID uuid) {
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
 
-    public Optional<UUID> getPlayerTradingWith() {
+    @Override
+	public Optional<UUID> getPlayerTradingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
-    public boolean canTradeWith(PlayerEntity player) {
+    @Override
+	public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
     }
 
@@ -326,6 +340,6 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
 
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;		
+		itemsSoldByTrader = trades;
 	}
 }

@@ -1,8 +1,11 @@
 package lotr.client.gui.inventory;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopTradingWithTrader;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTradeSellItems;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -17,9 +20,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author RichardB122

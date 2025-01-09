@@ -1,19 +1,9 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
-import lotr.common.entity.npc.*;
-import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTREntities;
-import net.minecraft.entity.*;
-import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
-import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
-import net.minecraft.entity.EntityType.Builder;
-import net.minecraft.entity.EntityType.IFactory;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.world.gen.Heightmap.Type;
-import net.minecraftforge.fml.DatagenModLoader;
-import net.minecraftforge.fml.RegistryObject;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,10 +19,36 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChair
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBlueMountainsMerchantEntity;
+import lotr.common.entity.npc.ExtendedBreelandMerchantEntity;
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
+import lotr.common.entity.npc.ExtendedGaladhrimWandererEntity;
+import lotr.common.entity.npc.ExtendedGundabadOrcTraderEntity;
+import lotr.common.entity.npc.ExtendedGundabadUrukArcherEntity;
+import lotr.common.entity.npc.ExtendedGundabadUrukEntity;
+import lotr.common.entity.npc.ExtendedHiredBreeGuard;
+import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
+import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
+import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
+import lotr.common.entity.npc.ExtendedRivendellWandererEntity;
+import lotr.common.entity.npc.NPCEntity;
+import lotr.common.init.ExtendedEntities;
+import lotr.common.init.LOTREntities;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
+import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EntityType.Builder;
+import net.minecraft.entity.EntityType.IFactory;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.world.gen.Heightmap.Type;
+import net.minecraftforge.fml.DatagenModLoader;
+import net.minecraftforge.fml.RegistryObject;
 
 @Mixin(LOTREntities.class)
 public class MixinLOTREntities {
@@ -53,8 +69,8 @@ public class MixinLOTREntities {
 	}
 
 	@Shadow(remap=false)
-	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory, 
-									LOTREntities.EntitySizeHolder size, int trackRange, int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors, 
+	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
+									LOTREntities.EntitySizeHolder size, int trackRange, int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors,
 									PlacementType placementType, Type heightmapType, IPlacementPredicate<T> placementPredicate) {
 		return null;
 	}
@@ -70,7 +86,7 @@ public class MixinLOTREntities {
 	}
 
 	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
-									LOTREntities.EntitySizeHolder size, int trackRange,int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors, 
+									LOTREntities.EntitySizeHolder size, int trackRange,int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors,
 									IPlacementPredicate<T> placementPredicate) {
 		RegistryObject<EntityType<T>> entity = regAnimal(key, factory, attribFactory, size, trackRange, updateFreq, eggColors, PlacementType.ON_GROUND,
 										Type.MOTION_BLOCKING_NO_LEAVES, placementPredicate);
@@ -149,7 +165,7 @@ public class MixinLOTREntities {
 			builder.fireImmune();
 			builder.noSummon();
 			//builder.noSave();
-		});    
+		});
 		ExtendedEntities.HIRED_BREE_GUARD = regNPCD("hired_bree_guard", ExtendedHiredBreeGuard::new, ExtendedHiredBreeGuard::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
 
 	}

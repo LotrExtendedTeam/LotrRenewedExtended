@@ -49,7 +49,7 @@ public abstract class MixinLOTRKeyHandler{
 	@Final
 	@Shadow(remap = false)
 	public static KeyBinding KEY_BIND_ALIGNMENT_GROUP_NEXT;
-	
+
 	private static final Map<KeyBinding, ExtendedAlignmentKeyAction> ExtendedALIGNMENT_KEY_ACTIONS = ImmutableMap.of(KEY_BIND_ALIGNMENT_PREVIOUS, new ExtendedAlignmentKeyAction(-1, 0), KEY_BIND_ALIGNMENT_NEXT, new ExtendedAlignmentKeyAction(1, 0), KEY_BIND_ALIGNMENT_GROUP_PREVIOUS, new ExtendedAlignmentKeyAction(0, -1), KEY_BIND_ALIGNMENT_GROUP_NEXT, new ExtendedAlignmentKeyAction(0, 1));
 
 	@Shadow(remap = false)

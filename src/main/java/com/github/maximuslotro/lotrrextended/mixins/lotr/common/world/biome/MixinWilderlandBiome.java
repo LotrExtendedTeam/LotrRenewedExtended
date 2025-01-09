@@ -16,10 +16,10 @@ public class MixinWilderlandBiome {
 	 * @reason don't want to replace class
 	 * */
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addTreesWithClusters((WilderlandBiome)(Object)this, builder, 0, 0.05F, TreeCluster.of(8, 20), 
-				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000, 
-				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 1, 
-				LOTRBiomeFeatures.oakDead(), 5000, LOTRBiomeFeatures.spruce(), 2000, 
+		LOTRBiomeFeatures.addTreesWithClusters((WilderlandBiome)(Object)this, builder, 0, 0.05F, TreeCluster.of(8, 20),
+				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,
+				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 1,
+				LOTRBiomeFeatures.oakDead(), 5000, LOTRBiomeFeatures.spruce(), 2000,
 				LOTRBiomeFeatures.spruceDead(), 1000, ExtendedBiomeFeatures.chestnut(), 1000,
 				ExtendedBiomeFeatures.chestnutBees(), 1, ExtendedBiomeFeatures.chestnutFancy(), 100,
 				ExtendedBiomeFeatures.chestnutFancyBees(), 1);

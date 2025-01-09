@@ -1,12 +1,12 @@
 package lotr.common.entity.npc.ai.goal;
 
+import java.util.EnumSet;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-
-import java.util.EnumSet;
 
 public class ExtendedHiredSitGoal extends Goal {
     private final NPCEntity entity;
@@ -28,7 +28,8 @@ public class ExtendedHiredSitGoal extends Goal {
         return hirable.isStationary() || hirable.isInventoryOpen();
     }
 
-    public boolean canUse() {
+    @Override
+	public boolean canUse() {
         if (!hirable.isTame()) {
             return false;
         } else if (this.entity.isInWaterOrBubble()) {
@@ -46,11 +47,13 @@ public class ExtendedHiredSitGoal extends Goal {
         }
     }
 
-    public void start() {
+    @Override
+	public void start() {
         this.entity.getNavigation().stop();
     }
 
-    public void stop() {
+    @Override
+	public void stop() {
 
     }
 }

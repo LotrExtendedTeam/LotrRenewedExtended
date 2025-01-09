@@ -8,8 +8,8 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.LOTRMod;
 import lotr.common.fellowship.ExtendedFellowship;
-import lotr.common.fellowship.ExtendedFellowshipInvite;
 import lotr.common.fellowship.ExtendedFellowshipHolderServer;
+import lotr.common.fellowship.ExtendedFellowshipInvite;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -23,9 +23,9 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedFellowshipDataModule extends PlayerDataModule {
 
-	private List<UUID> fellowshipIDs = new ArrayList<UUID>();
+	private List<UUID> fellowshipIDs = new ArrayList<>();
 
-	private List<ExtendedFellowshipInvite> invites = new ArrayList<ExtendedFellowshipInvite>();
+	private List<ExtendedFellowshipInvite> invites = new ArrayList<>();
 
 	public ExtendedFellowshipDataModule(LOTRPlayerData pd) {
 		super(pd);
@@ -86,7 +86,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public List<ExtendedFellowship> getFellowships() {
-		List<ExtendedFellowship> ships = new ArrayList<ExtendedFellowship>();
+		List<ExtendedFellowship> ships = new ArrayList<>();
 		for (UUID ids : fellowshipIDs) {
 			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer
 					.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), ids);
@@ -321,7 +321,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public List<String> listAllFellowshipNames() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		for (UUID fsID : fellowshipIDs) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
 			if (fs != null && fs.isInFellowship(getPlayerUUID()))
@@ -331,7 +331,7 @@ public class ExtendedFellowshipDataModule extends PlayerDataModule {
 	}
 
 	public List<String> listAllInviteNames() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		for (ExtendedFellowshipInvite fsID : invites) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
 			if (fs != null)

@@ -30,7 +30,7 @@ public class WeightedPoolStructure extends ExtendedSurfaceStructuresV5<WeightedS
 	public IStartFactory<WeightedStructureConfig> getStructureStartFactory() {
 		return WeightedPoolStructure.Start::new;
 	}
-    
+
     public static class Start extends ExtendedStructureStartV5<WeightedStructureConfig> {
         public Start(Structure<WeightedStructureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
             super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
@@ -56,7 +56,7 @@ public class WeightedPoolStructure extends ExtendedSurfaceStructuresV5<WeightedS
             }
 
             ExtendedJigsawManager.addPieces(dynamicRegistryManager,
-                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()), 
+                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()),
                     AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
             this.calculateBoundingBox();
     	}

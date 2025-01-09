@@ -197,7 +197,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ARNOR_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}
-			if(event.getName().equals(LOTRBiomes.NORTHERN_WILDERLAND.getRegistryName())) {;
+			if(event.getName().equals(LOTRBiomes.NORTHERN_WILDERLAND.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_CAMP);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_GUNDABAD_ENCAMPMENT);
 			}

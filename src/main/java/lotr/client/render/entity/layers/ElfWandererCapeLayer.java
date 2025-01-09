@@ -2,6 +2,7 @@ package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import lotr.client.render.entity.model.ExtendedElfWandererModel;
 import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -21,7 +22,8 @@ public class ElfWandererCapeLayer<E extends ExtendedAbstractElfWandererEntity> e
         super(elf);
     }
 
-    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, E elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    @Override
+	public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, E elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (elf.getCloakTextureLocation() != null) {
             ItemStack chestItemStack = elf.getItemBySlot(EquipmentSlotType.CHEST);
             if (chestItemStack.getItem() != Items.ELYTRA) {

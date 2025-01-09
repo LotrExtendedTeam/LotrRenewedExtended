@@ -1,7 +1,5 @@
 package lotr.common.init;
 
-import lotr.common.entity.npc.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +11,19 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChair
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
+import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBlueMountainsMerchantEntity;
+import lotr.common.entity.npc.ExtendedBreelandMerchantEntity;
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
+import lotr.common.entity.npc.ExtendedGaladhrimWandererEntity;
+import lotr.common.entity.npc.ExtendedGundabadOrcTraderEntity;
+import lotr.common.entity.npc.ExtendedGundabadUrukArcherEntity;
+import lotr.common.entity.npc.ExtendedGundabadUrukEntity;
+import lotr.common.entity.npc.ExtendedHiredBreeGuard;
+import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
+import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
+import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
+import lotr.common.entity.npc.ExtendedRivendellWandererEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -41,5 +52,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandMerchantEntity>> BREE_MERCHANT;
 	public static RegistryObject<EntityType<ExtendedChairEntity>> CHAIR;
 	public static RegistryObject<EntityType<ExtendedHiredBreeGuard>> HIRED_BREE_GUARD;
-  
+
 }

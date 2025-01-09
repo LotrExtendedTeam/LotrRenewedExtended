@@ -12,9 +12,9 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FenceBlock;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SlabBlock;
-import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -220,10 +220,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 					if (thisRopeType == RopeType.SINGLE && aboveRopeType == RopeType.MIDDLE_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
 					}
-					if (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.TOP_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
-					}
-					if (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.MIDDLE_LARGE) {
+					if ((thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.TOP_LARGE) || (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.MIDDLE_LARGE)) {
 						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
 					}
 					if (thisRopeType == RopeType.TOP_SMALL && aboveRopeType == RopeType.TOP_LARGE) {
@@ -262,10 +259,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 					if (thisRopeType == RopeType.SINGLE && belowRopeType == RopeType.MIDDLE_LARGE) {
 						return pState.setValue(SECTION_TYPE, RopeType.TOP_LARGE);
 					}
-					if (thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
-					}
-					if (thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.BOTTOM_LARGE) {
+					if ((thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.MIDDLE_LARGE) || (thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.BOTTOM_LARGE)) {
 						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
 					}
 					if (thisRopeType == RopeType.BOTTOM_LARGE && belowRopeType == RopeType.MIDDLE_LARGE) {
@@ -365,7 +359,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 
 	@Override
 	public boolean makesOpenTrapdoorAboveClimbable(BlockState state, IWorldReader world, BlockPos pos, BlockState trapdoorState) {
-		return state.getBlock() instanceof ExtendedRopeBlock && state.getValue(ExtendedRopeBlock.FACING) == trapdoorState.getValue(TrapDoorBlock.FACING);
+		return state.getBlock() instanceof ExtendedRopeBlock && state.getValue(ExtendedRopeBlock.FACING) == trapdoorState.getValue(HorizontalBlock.FACING);
 	}
 
 	@Override
@@ -373,6 +367,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public BlockState mirror(BlockState pState, Mirror pMirror) {
 		return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));

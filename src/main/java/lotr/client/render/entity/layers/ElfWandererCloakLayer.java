@@ -2,6 +2,7 @@ package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import lotr.client.render.entity.model.ExtendedElfWandererModel;
 import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
 import lotr.common.entity.npc.ExtendedGaladhrimWandererEntity;

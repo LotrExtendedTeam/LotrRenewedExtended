@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.function.Supplier;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.Entity;
@@ -7,8 +9,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
-
-import java.util.function.Supplier;
 
 public class ExtendedCPacketSetHiredUnitStationary {
 

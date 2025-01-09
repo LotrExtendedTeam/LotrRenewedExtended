@@ -54,11 +54,13 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
         this.trader = (ExtendedTraderEntity) traderNPC;
 
         inputSlot = addSlot(new Slot(this.coinInputInv, 0, 80, 46) {
-            public boolean mayPlace(ItemStack stack) {
+            @Override
+			public boolean mayPlace(ItemStack stack) {
                 return super.mayPlace(stack) && CoinUtils.isValidCoin(stack);
             }
 
-            public boolean mayPickup(PlayerEntity p_82869_1_) {
+            @Override
+			public boolean mayPickup(PlayerEntity p_82869_1_) {
                 return !exchanged;
             }
 
@@ -165,7 +167,8 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
         }
     }
 
-    public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
+    @Override
+	public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
         Slot slot = this.slots.get(slotId);
         ItemStack itemstack = slot.getItem();
 
@@ -244,7 +247,8 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
     /* PICKUP clicks that stack an item on the inputSlot do not sync with the server. This method makes that happen
        by determining if that type of click has occurred in the input slot, supering the action and then marking the
        input slot has updated. */
-    public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
+    @Override
+	public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
         Slot s1 = null;
         if (slot1 >= 0 && slot1 < player.inventory.getContainerSize()) s1 = slots.get(slot1);
         boolean s1Equal = s1 == inputSlot;

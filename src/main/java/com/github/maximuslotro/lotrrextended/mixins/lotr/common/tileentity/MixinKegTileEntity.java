@@ -62,7 +62,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Shadow(remap = false)
 	@Final
 	private static final int[] SLOTS_WATER = { 6, 7, 8 };
-	
+
 	@Shadow(remap = false)
 	private KegTileEntity.KegMode kegMode;
 
@@ -237,7 +237,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * @reason Inject loot-tables
 	 * @author maximuslotro

@@ -7,14 +7,14 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processo
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.mojang.serialization.Codec;
 
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 
 public class ExtendedStructureProcessors {
 	public static final IStructureProcessorType<WoodPaletteProcessor> WOOD_PALETTE_PROCESSOR = register("wood_palette_processor", WoodPaletteProcessor.CODEC);
-	
+
 	//Kept for legacy 1.5.2 structure purposes, remove by December 31st, 2025. By this time any 1.5.0 processors will have been used
 	public static final IStructureProcessorType<ArnorBrickWeathererProcessor> ARNOR_WEATHERER_PROCESSOR = register("arnor_weatherer_processor", ArnorBrickWeathererProcessor.CODEC);
 

@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
+import java.util.Random;
+
 import com.mojang.serialization.Codec;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.FluidTags;
@@ -8,8 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-
-import java.util.Random;
 
 public class ExtendedHolyUnderwaterSphereFeature extends Feature<ExtendedHoleySphereConfig> {
     public ExtendedHolyUnderwaterSphereFeature(Codec<ExtendedHoleySphereConfig> codec) {

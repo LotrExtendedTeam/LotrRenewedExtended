@@ -1,5 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.function.Supplier;
+
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.init.ExtendedContainers;
@@ -13,12 +19,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.function.Supplier;
-
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 public class ExtendedCPacketOpenTradeMenu {
 
@@ -66,7 +66,7 @@ public class ExtendedCPacketOpenTradeMenu {
     	int[] soldPrices = new int[9];
     	int[] soldQuantities = new int[9];
     	int[] soldOriginalQuantities = new int[9];
-    	ArrayList<ItemStack> soldItems = new ArrayList<ItemStack>();
+    	ArrayList<ItemStack> soldItems = new ArrayList<>();
 
     	boughtPrices = trader.getBoughtPrices();
     	boughtQuantities = trader.getBoughtQuantities();

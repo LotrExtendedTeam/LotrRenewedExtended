@@ -40,7 +40,8 @@ public enum ExtendedCaveSurface implements IStringSerializable {
 	      throw new IllegalArgumentException("Unknown Surface type: " + p_162109_);
 	   }
 
-	   public String getSerializedName() {
+	   @Override
+	public String getSerializedName() {
 	      return this.id;
 	   }
 	}

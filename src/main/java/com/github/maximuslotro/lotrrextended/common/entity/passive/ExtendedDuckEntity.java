@@ -98,10 +98,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 
 	public static boolean isNearWater(IWorld pReader, BlockPos pPos, Random pRandom) {
 		Biome biome = pReader.getBiome(pPos);
-		if(biome.getBiomeCategory() == Biome.Category.RIVER) {
-			return true;
-		}
-		if(pRandom.nextInt(4)==0) {
+		if((biome.getBiomeCategory() == Biome.Category.RIVER) || (pRandom.nextInt(4)==0)) {
 			return true;
 		}
 		for(BlockPos pos : BlockPos.betweenClosed(pPos.offset(-12, -5, -12), pPos.offset(12, 4, 12))) {
@@ -162,7 +159,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		}
 		return super.mobInteract(pPlayer, pHand);
 	}
-	  
+
 	@Override
 	public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
 		return false;
@@ -244,7 +241,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	public ExtendedDuckEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
 		return ExtendedEntities.DUCK.get().create(pServerLevel);
 	}
-	
+
 	/**
 	 * Set baby ducks {@Link ExtendedGenderedAnimalEntity.isBob} if parent is bob type
 	 * */

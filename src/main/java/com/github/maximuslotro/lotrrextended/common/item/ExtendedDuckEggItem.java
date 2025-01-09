@@ -24,7 +24,8 @@ public class ExtendedDuckEggItem extends Item {
     * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
     * {@link #onItemUse}.
     */
-   public ActionResult<ItemStack> use(World pLevel, PlayerEntity pPlayer, Hand pHand) {
+   @Override
+public ActionResult<ItemStack> use(World pLevel, PlayerEntity pPlayer, Hand pHand) {
       ItemStack itemstack = pPlayer.getItemInHand(pHand);
       pLevel.playSound((PlayerEntity)null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.EGG_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
       if (!pLevel.isClientSide) {

@@ -1,6 +1,15 @@
 package lotr.common.data;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
+
 import lotr.common.LOTRLog;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,9 +20,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
-
-import java.io.File;
-import java.util.*;
 
 /**
  * @author Richardb122
@@ -224,13 +230,8 @@ public class ExtendedLevelData {
             timeUntilTrader--;
         } else {
             // if no players online try again in another minute
-            if (world.players().isEmpty()) {
-                timeUntilTrader = 1200;
-                return;
-            }
-
             // 1/5th of the time we will actually attempt to spawn otherwise just wait another minute
-            if (requireRandom && world.random.nextInt(4) > 0) {
+            if (world.players().isEmpty() || (requireRandom && world.random.nextInt(4) > 0)) {
                 timeUntilTrader = 1200;
                 return;
             }

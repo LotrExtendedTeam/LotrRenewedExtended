@@ -24,12 +24,14 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<ExtendedTraderTradedTrigger.Instance> {
 	private static final ResourceLocation ID = new ResourceLocation("lotrextended", "trader_traded_with");
 
+	@Override
 	public ResourceLocation getId() {
 		return ID;
 	}
 
+	@Override
 	public ExtendedTraderTradedTrigger.Instance createInstance(JsonObject jsonObject, EntityPredicate.AndPredicate playerPredicate, ConditionArrayParser p_230241_3_) {
-		return new ExtendedTraderTradedTrigger.Instance(playerPredicate, EntityTypePredicate.fromJson(jsonObject.get("entity")), 
+		return new ExtendedTraderTradedTrigger.Instance(playerPredicate, EntityTypePredicate.fromJson(jsonObject.get("entity")),
 				jsonObject.get("istraderselling").getAsBoolean(), ItemPredicate.fromJson(jsonObject.get("item")), MinMaxBounds.IntBound.fromJson(jsonObject.get("coins_moved")));
 	}
 
@@ -70,15 +72,13 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 		}
 
 		public boolean matches(ServerPlayerEntity player, EntityType<?> entity, boolean didPlayerBuyItemFromTrader, ItemStack stack, int coinAmount) {
-			if (this.didPlayerBuyItemFromTrader && didPlayerBuyItemFromTrader) {
-				return this.entityTypePredicate.matches(entity) && item.matches(stack) && coinsTransphered.matches(coinAmount);
-			}
-			if (!this.didPlayerBuyItemFromTrader && !didPlayerBuyItemFromTrader) {
+			if ((this.didPlayerBuyItemFromTrader && didPlayerBuyItemFromTrader) || (!this.didPlayerBuyItemFromTrader && !didPlayerBuyItemFromTrader)) {
 				return this.entityTypePredicate.matches(entity) && item.matches(stack) && coinsTransphered.matches(coinAmount);
 			}
 			return false;
 		}
 
+		@Override
 		public JsonObject serializeToJson(ConditionArraySerializer serializer) {
 			JsonObject jsonobject = super.serializeToJson(serializer);
 			jsonobject.add("entity", this.entityTypePredicate.serializeToJson());

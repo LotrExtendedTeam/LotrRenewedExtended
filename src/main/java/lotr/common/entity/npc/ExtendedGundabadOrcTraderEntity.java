@@ -6,7 +6,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
+import lotr.common.entity.npc.ai.goal.NPCEatGoal;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -22,7 +26,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -347,7 +354,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;	
+		itemsSoldByTrader = trades;
 	}
 
 	@Override

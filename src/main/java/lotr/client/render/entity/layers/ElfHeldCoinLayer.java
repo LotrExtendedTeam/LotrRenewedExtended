@@ -1,6 +1,7 @@
 package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.render.entity.model.ExtendedElfWandererModel;
 import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
 import lotr.common.init.ExtendedItems;
@@ -19,7 +20,8 @@ public class ElfHeldCoinLayer<E extends ExtendedAbstractElfWandererEntity> exten
         super(p_i50926_1_);
     }
 
-    public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, ExtendedAbstractElfWandererEntity elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    @Override
+	public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, ExtendedAbstractElfWandererEntity elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         matStack.pushPose();
 
         this.getParentModel().translateToHand(HandSide.LEFT, matStack);

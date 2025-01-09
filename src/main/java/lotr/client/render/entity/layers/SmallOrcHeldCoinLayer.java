@@ -1,6 +1,7 @@
 package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.render.entity.model.OrcModel;
 import lotr.common.entity.npc.OrcEntity;
 import lotr.common.init.ExtendedItems;
@@ -18,7 +19,8 @@ public class SmallOrcHeldCoinLayer extends LayerRenderer<OrcEntity, OrcModel<Orc
         super(renderer);
     }
 
-    public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, OrcEntity orc, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    @Override
+	public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, OrcEntity orc, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         matStack.pushPose();
 
         this.getParentModel().translateToHand(HandSide.LEFT, matStack);

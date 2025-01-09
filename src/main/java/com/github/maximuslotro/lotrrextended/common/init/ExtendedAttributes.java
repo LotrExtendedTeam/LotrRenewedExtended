@@ -23,6 +23,6 @@ public class ExtendedAttributes {
 			DataGenValueHolder.attributeNames.put("attribute.name.lotrextended." + name, defaultName);
 		}
 		return REGISTRY.register(name, () -> new RangedAttribute("attribute.name.lotrextended." + name, defaultValue, min, max));
-		
+
 	}
 }

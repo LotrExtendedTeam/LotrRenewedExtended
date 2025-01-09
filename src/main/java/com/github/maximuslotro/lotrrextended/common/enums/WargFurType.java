@@ -15,10 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
 public enum WargFurType implements IStringSerializable {
-	BLACK(0, "black", DyeColor.BLACK), 
-	BROWN(1, "brown", DyeColor.BROWN), 
+	BLACK(0, "black", DyeColor.BLACK),
+	BROWN(1, "brown", DyeColor.BROWN),
 	GRAY(2, "gray", DyeColor.GRAY),
-	SILVER(3, "silver", DyeColor.LIGHT_GRAY), 
+	SILVER(3, "silver", DyeColor.LIGHT_GRAY),
 	WHITE(4, "white", DyeColor.WHITE);
 
 	private static final WargFurType[] BY_ID = Arrays.stream(values())
@@ -62,10 +62,12 @@ public enum WargFurType implements IStringSerializable {
 		return p_204271_1_;
 	}
 
+	@Override
 	public String toString() {
 		return this.name;
 	}
 
+	@Override
 	public String getSerializedName() {
 		return this.name;
 	}

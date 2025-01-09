@@ -14,7 +14,7 @@ public abstract class ExtendedBannerProfileBase {
 	 * @return UUID
 	 * */
 	public abstract UUID getId();
-	
+
 	/**
 	 * Get underlying name for profile
 	 * * <p />
@@ -59,7 +59,7 @@ public abstract class ExtendedBannerProfileBase {
 	 * Checks of the passed ServerPlayerEntity has permissions in this entry
 	 * @param ServerPlayerEntity
 	 * @return boolean
-	 * 
+	 *
 	 */
 	public abstract boolean isPlayerContained(PlayerEntity player);
 
@@ -69,7 +69,7 @@ public abstract class ExtendedBannerProfileBase {
 	 * @return CompoundNBT
 	 */
 	public abstract CompoundNBT writeProfileData(CompoundNBT pTag);
-	
+
 	/**
 	 * Saves the profile entry to the passed CompoundNBT, returns the modified CompoundNBT
 	 * @param CompoundNBT

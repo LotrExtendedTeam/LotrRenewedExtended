@@ -1,8 +1,8 @@
 package lotr.client.gui.inventory;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketExchangeCoins;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopTradingWithTrader;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 

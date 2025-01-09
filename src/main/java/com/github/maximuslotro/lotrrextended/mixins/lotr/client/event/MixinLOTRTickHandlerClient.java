@@ -55,8 +55,8 @@ public class MixinLOTRTickHandlerClient {
 	private float wightFogModifier;
 	private float prevWightFogModifier;
 
-	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V", 
-		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), 
+	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V",
+		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER),
 		locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
 	public void injectWightFogLogic(ClientTickEvent event, CallbackInfo ci) {
 		ClientPlayerEntity player = this.mc.player;

@@ -24,7 +24,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 public class StructureFileIO {
 	private static final FolderName STRUCTURE_GEN_FOLDER = new FolderName("structure_gen");
 	private static File MOD_FILE;
-	
+
 	public static void init() {
 		List<ModInfo> mods = ModList.get().getMods();
         for (ModInfo mod : mods)

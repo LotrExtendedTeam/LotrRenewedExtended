@@ -17,6 +17,7 @@ public class ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal extends WaterAvoi
 	 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 	 * method as well.
 	 */
+	@Override
 	public boolean canUse() {
 		if (this.mob.isVehicle() && this.mob.canBeControlledByRider()) {
 			System.out.println("NA Using walk goal");
@@ -43,6 +44,7 @@ public class ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal extends WaterAvoi
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean canContinueToUse() {
 		return !this.mob.getNavigation().isDone() && !(this.mob.isVehicle() && this.mob.canBeControlledByRider());
 	}

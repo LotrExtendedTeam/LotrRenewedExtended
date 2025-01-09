@@ -73,6 +73,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 	 * @author maximuslotro
 	 * @reason need to hide special factions from rendering and stuff
 	 * */
+	@Override
 	@Overwrite(remap = false)
 	protected void onUpdate(ServerPlayerEntity player, ServerWorld world, int tick) {
 		RegistryKey<World> currentDimension = LOTRDimensions.getCurrentLOTRDimensionOrFallback(world);

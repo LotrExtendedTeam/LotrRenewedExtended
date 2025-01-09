@@ -33,7 +33,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class WoodPaletteProcessor extends StructureProcessor{
 	public static final Codec<WoodPaletteProcessor> CODEC = RecordCodecBuilder.create((processorInstance) -> {
 		return processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getBasePalletName),
-				Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName), 
+				Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName),
 				Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error))
 				.fieldOf("woodTypes").forGetter(WoodPaletteProcessor::getRawPallets)).apply(processorInstance, WoodPaletteProcessor::new);
 	});
@@ -86,10 +86,7 @@ public class WoodPaletteProcessor extends StructureProcessor{
 			ExtendedLog.info("Replaceing "+basePallet.getName()+" pallet with "+pickedPallet.getName());
 			applied = true;
 		}
-		if(pickedPallet.isEmpty()) {
-			return blockInfoWorld;
-		}
-		if(pickedPallet.equals(basePallet)) {
+		if(pickedPallet.isEmpty() || pickedPallet.equals(basePallet)) {
 			return blockInfoWorld;
 		}
 		BlockState blockstate = blockInfoWorld.state;

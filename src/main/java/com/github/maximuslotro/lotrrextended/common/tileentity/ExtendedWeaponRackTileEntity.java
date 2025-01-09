@@ -208,6 +208,6 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 			e.printStackTrace();
 			ExtendedLog.error("Please report this if it happens again");
 		}
-		
+
 	}
 }

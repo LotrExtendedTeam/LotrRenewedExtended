@@ -30,7 +30,8 @@ public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInv
       this.passEvents = false;
    }
 
-   protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pX, int pY) {
+   @Override
+protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pX, int pY) {
       RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
       this.minecraft.getTextureManager().bind(WARG_INVENTORY_LOCATION);
       int i = (this.width - this.imageWidth) / 2;
@@ -58,7 +59,8 @@ public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInv
       InventoryScreen.renderEntityInInventory(i + 51, j + 60, 17, (float)(i + 51) - this.xMouse, (float)(j + 75 - 50) - this.yMouse, this.warg);
    }
 
-   public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
+   @Override
+public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
       this.renderBackground(pMatrixStack);
       this.xMouse = (float)pMouseX;
       this.yMouse = (float)pMouseY;

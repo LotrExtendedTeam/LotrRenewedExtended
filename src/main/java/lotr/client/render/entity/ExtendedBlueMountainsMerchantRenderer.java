@@ -14,7 +14,8 @@ public class ExtendedBlueMountainsMerchantRenderer extends BlueDwarfRenderer {
         this.addLayer(new DwarfHeldCoinLayer(this));
     }
 
-    public ResourceLocation getEntityTexture(DwarfEntity dwarf) {
+    @Override
+	public ResourceLocation getEntityTexture(DwarfEntity dwarf) {
         return SKINS.getRandomSkin(dwarf);
     }
 }

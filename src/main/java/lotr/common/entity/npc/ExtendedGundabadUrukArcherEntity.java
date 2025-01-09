@@ -35,6 +35,6 @@ public class ExtendedGundabadUrukArcherEntity extends ExtendedGundabadUrukEntity
 	@Override
 	protected void initialiseAttackGoals(AttackGoalsHolder holder) {
 		super.initialiseAttackGoals(holder);
-		holder.setRangedAttackGoal(new NPCRangedAttackGoal<ExtendedGundabadUrukArcherEntity>(this, 1.4D, 20, 20.0F));
+		holder.setRangedAttackGoal(new NPCRangedAttackGoal<>(this, 1.4D, 20, 20.0F));
 	}
 }

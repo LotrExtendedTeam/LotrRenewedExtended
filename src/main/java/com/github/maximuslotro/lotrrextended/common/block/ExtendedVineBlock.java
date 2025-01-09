@@ -22,6 +22,7 @@ public class ExtendedVineBlock extends VineBlock{
 	/**
 	 * make grow delay twice vanilla
 	 */
+	@Override
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
 		// Extended Start

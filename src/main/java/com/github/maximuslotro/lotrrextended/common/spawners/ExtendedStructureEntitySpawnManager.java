@@ -15,8 +15,8 @@ import java.util.Set;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.google.common.collect.ImmutableMap.Builder;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
@@ -36,7 +36,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	private final String directory = "entity_structure_spawners";
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
 	private HashMap<String, List<String>> cachedSpawnLists = new HashMap<>();
-	
+
 	// Don't allow more than one instance than {@Link ExtendedStructureEntitySpawnManager#INSTANCE }
 	private ExtendedStructureEntitySpawnManager() {}
 
@@ -127,7 +127,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 
 		return map;
 	}
-	  
+
 	public static String serialize(Gson gson, ExtendedStructureEntitySpawner data) {
 		return gson.toJson(data);
 	}

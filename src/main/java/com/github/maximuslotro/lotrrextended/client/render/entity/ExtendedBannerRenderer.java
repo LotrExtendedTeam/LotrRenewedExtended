@@ -62,7 +62,7 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 //        pMatrixStack.popPose();
 //        RenderSystem.disableDepthTest();
 //        buffer.endBatch(RenderType.LINES);
-//        
+//
 //	}
 //	pMatrixStack.popPose();
 //	//super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);

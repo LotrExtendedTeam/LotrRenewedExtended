@@ -14,7 +14,8 @@ public class ExtendedTraderWaterAvoidingRandomWalkingGoal extends WaterAvoidingR
         this.trader = trader;
     }
 
-    public boolean canUse() {
+    @Override
+	public boolean canUse() {
         if (!trader.isInteractingWithPlayer()) {
             return super.canUse();
         } else {
@@ -22,7 +23,8 @@ public class ExtendedTraderWaterAvoidingRandomWalkingGoal extends WaterAvoidingR
         }
     }
 
-    public boolean canContinueToUse() {
+    @Override
+	public boolean canContinueToUse() {
         if (!trader.isInteractingWithPlayer()) {
             return super.canContinueToUse();
         } else {

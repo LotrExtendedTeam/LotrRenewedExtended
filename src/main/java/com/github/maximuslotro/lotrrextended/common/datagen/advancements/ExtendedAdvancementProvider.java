@@ -3,7 +3,25 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.*;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.AngmarAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.BlueMountainsAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.BreeAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.DaleAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.DunlandAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.EnedwaithAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.EregionAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.EriadorAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.FangornAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.ForodwaithAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.GeneralAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.IronHillsAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.LindonAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.LothlorienAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.MirkwoodAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.MistyMountainsAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.RhovanionAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.RohanAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.ShireAdvancementsProvider;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.AdvancementProvider;
@@ -18,6 +36,7 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		super(generator, existingFileHelper);
 	}
 
+	@Override
 	protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
 		new GeneralAdvancementsProvider().accept(consumer);
 		new EriadorAdvancementsProvider().accept(consumer);

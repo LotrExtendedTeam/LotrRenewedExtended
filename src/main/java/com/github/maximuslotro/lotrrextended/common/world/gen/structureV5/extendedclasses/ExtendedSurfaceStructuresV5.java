@@ -64,7 +64,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
         // Now we test to make sure our structure is not spawning on water or other fluids.
         // You can do height check instead too to make it spawn at high elevations.
         boolean waterPresent = !topBlock.getFluidState().isEmpty(); //landHeight > 100;
-        
+
         // Check if can spawn in water
         if(!canSpawnInWater() && waterPresent) {
         	return false;
@@ -81,10 +81,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
         chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
         chunkRandom.nextInt();
         if(structureType==StructureType.RANGER) {
-        	if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
-        		return false;
-        	}
-        	if(isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
+        	if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10) || isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
         		return false;
         	}
         }

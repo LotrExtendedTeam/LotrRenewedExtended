@@ -47,6 +47,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */
+	@Override
 	@Nullable
 	public String getName() {
 		return name;
@@ -59,6 +60,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */
+	@Override
 	@Nullable
 	public String getDisplayName() {
 		return name;

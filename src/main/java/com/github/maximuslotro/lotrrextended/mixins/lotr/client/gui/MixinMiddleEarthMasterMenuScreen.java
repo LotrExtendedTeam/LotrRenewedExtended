@@ -28,11 +28,12 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 
 	@Shadow(remap=false)
 	public static void resetLastMenuScreen() {}
-	
+
 	/**
 	 * @author maximuslotr
 	 * @reason injections were to hard
 	 * */
+	@Override
 	@Overwrite
 	public void init() {
 		super.init();
@@ -53,7 +54,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?"), 0, 83));
 		addButton(new MiddleEarthMenuButton(0, 0, ExtendedOptionsScreen.class, new TranslationTextComponent("gui.lotrextended.menu.settings"), 1, 79));
 
-		List<MiddleEarthMenuButton> menuButtonsToArrange = new ArrayList<MiddleEarthMenuButton>();
+		List<MiddleEarthMenuButton> menuButtonsToArrange = new ArrayList<>();
 
 		for (Widget widget : buttons) {
 			if (widget instanceof MiddleEarthMenuButton) {
@@ -81,10 +82,10 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		}
 
 	}
-	
-//	@Inject(method = "init()V", 
-//			at = @At(value = "INVOKE", 
-//			target = "Llotr/client/gui/MiddleEarthMasterMenuScreen;resetLastMenuScreen()V", 
+
+//	@Inject(method = "init()V",
+//			at = @At(value = "INVOKE",
+//			target = "Llotr/client/gui/MiddleEarthMasterMenuScreen;resetLastMenuScreen()V",
 //			remap=false,
 //			shift = At.Shift.AFTER))
 //	public void addAchevmentButton(CallbackInfo ci) {
@@ -94,8 +95,8 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 //		//((MiddleEarthMasterMenuScreen)(Object)this).addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Shields"), 5, 83));
 //		((MiddleEarthMasterMenuScreen)(Object)this).addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Options"), 1, 79));
 //	}
-//	@Inject(method = "init()V", 
-//			at = @At(value = "NEW", 
+//	@Inject(method = "init()V",
+//			at = @At(value = "NEW",
 //			target = "Ljava/util/ArrayList;",
 //			shift = At.Shift.AFTER))
 //	public void addFellowshipButton(CallbackInfo ci) {

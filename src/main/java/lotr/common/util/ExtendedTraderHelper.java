@@ -1,9 +1,18 @@
 package lotr.common.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenTradeMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
 import lotr.common.util.representation.ExtendedTrade;
@@ -23,16 +32,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenTradeMenu;
 
 public class ExtendedTraderHelper {
 

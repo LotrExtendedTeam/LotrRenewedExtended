@@ -16,7 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAnimalEntity<?>> extends AnimalEntity {
 
 	private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(ExtendedGenderedAnimalEntity.class, DataSerializers.INT);
-	
+
 	protected ExtendedGenderedAnimalEntity(EntityType<? extends ExtendedGenderedAnimalEntity<T>> entityType, World world) {
 		super(entityType, world);
 		this.setGenderRandomly(isGendered(), world);
@@ -69,7 +69,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 		}
 		return modifyBreedingOffspring(baby, pServerLevel, pMate);
 	}
-	
+
 	/**
 	 * Overridden vanilla method to read entity gender from {@Link CompoundNBT}
 	 * */
@@ -92,7 +92,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Overridden vanilla method to allow for gender checking when determining if two animals can mate 
+	 * Overridden vanilla method to allow for gender checking when determining if two animals can mate
 	 * */
 	@Override
 	public boolean canMate(AnimalEntity pOtherAnimal) {

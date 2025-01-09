@@ -36,7 +36,7 @@ public class ExtendedDoubleTorchBlock extends DoubleTorchBlock{
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
 		if (state.getValue(LIT)) {
-			super.animateTick(state, world, pos, rand); 
+			super.animateTick(state, world, pos, rand);
 		}
 	}
 

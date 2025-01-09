@@ -126,7 +126,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_PLUM_BRANCH;
 	public static RegistryObject<Block> PLUM_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_PLUM_LEAVES;
-	
+
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;
 	public static RegistryObject<Block> RHUNIC_CRAFTING_TABLE;
@@ -180,7 +180,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_WALL;
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_PILLAR;
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_PILLAR_SLAB;
-	
+
 	public static RegistryObject<Block> DOL_GULDUR_BRICK;
 	public static RegistryObject<Block> DOL_GULDUR_BRICK_SLAB;
 	public static RegistryObject<Block> DOL_GULDUR_BRICK_STAIRS;
@@ -196,7 +196,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_SLAB;
 	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_STAIRS;
 	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_WALL;
-	
+
 	public static RegistryObject<Block> RHUNIC_BRICK;
 	public static RegistryObject<Block> RHUNIC_BRICK_SLAB;
 	public static RegistryObject<Block> RHUNIC_BRICK_STAIRS;
@@ -325,7 +325,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CRANBERRY_BUSH_PLANT;
 	public static RegistryObject<Block> ELDERBERRY_BUSH_PLANT;
 	public static RegistryObject<Block> WILDBERRY_BUSH_PLANT;
-	
+
 	public static RegistryObject<Block> WHITE_PACKED_FUR;
 	public static RegistryObject<Block> WHITE_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> WHITE_PACKED_FUR_STAIRS;
@@ -346,12 +346,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BLACK_PACKED_FUR_SLAB;
 	public static RegistryObject<Block> BLACK_PACKED_FUR_STAIRS;
 	public static RegistryObject<Block> BLACK_PACKED_FUR_WALL;
-	
+
 	public static RegistryObject<Block> WHITE_FUR_BUNDLE;
 	public static RegistryObject<Block> SILVER_FUR_BUNDLE;
 	public static RegistryObject<Block> GRAY_FUR_BUNDLE;
 	public static RegistryObject<Block> BLACK_FUR_BUNDLE;
-	
+
 	public static RegistryObject<Block> BLACK_FUR_CARPET;
 	public static RegistryObject<Block> BROWN_FUR_CARPET;
 	public static RegistryObject<Block> GRAY_FUR_CARPET;
@@ -376,7 +376,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_DRYSTONE_SLAB;
 	public static RegistryObject<Block> MOSSY_DRYSTONE_STAIRS;
 	public static RegistryObject<Block> MOSSY_DRYSTONE_WALL;
-	
+
 	public static RegistryObject<Block> SMOOTH_GONDOR_ROCK_STAIRS;
 	public static RegistryObject<Block> SMOOTH_ROHAN_ROCK_STAIRS;
 	public static RegistryObject<Block> SMOOTH_MORDOR_ROCK_STAIRS;

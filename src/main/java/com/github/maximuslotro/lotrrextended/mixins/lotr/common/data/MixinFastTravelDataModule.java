@@ -1,17 +1,17 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.data;
 
-import lotr.common.event.LOTRFastTravelWaypointEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.Mixin;
-
-import lotr.common.data.FastTravelDataModule;
-import lotr.common.world.map.Waypoint;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import lotr.common.data.FastTravelDataModule;
+import lotr.common.event.LOTRFastTravelWaypointEvent;
+import lotr.common.world.map.Waypoint;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mixin(FastTravelDataModule.class)
 public abstract class MixinFastTravelDataModule {
