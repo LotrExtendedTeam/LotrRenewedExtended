@@ -233,7 +233,7 @@ public class ExtendedBannerProtectionManager {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
 				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection((LivingEntity)offender).isProtected(bannerInstance);
+					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
 				}
 				return false;
 			}

@@ -71,8 +71,8 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
         blit(matrix, 179, 104, 176, 77, 18, 18);
         this.font.draw(matrix, String.valueOf(CoinUtils.totalValueInPlayerInventory(player.inventory)), 196, 109, 0xFFFFFFFF);
 
-        this.font.draw(matrix, this.title, (float) this.titleLabelX, (float) this.titleLabelY, 4210752);
-        this.font.draw(matrix, this.inventory.getDisplayName(), (float) this.inventoryLabelX, (float) this.inventoryLabelY, 4210752);
+        this.font.draw(matrix, this.title, this.titleLabelX, this.titleLabelY, 4210752);
+        this.font.draw(matrix, this.inventory.getDisplayName(), this.inventoryLabelX, this.inventoryLabelY, 4210752);
     }
 
     @Override

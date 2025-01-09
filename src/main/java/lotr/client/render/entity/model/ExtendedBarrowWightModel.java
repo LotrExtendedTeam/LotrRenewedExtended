@@ -253,7 +253,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWightEntity> exten
 				f = 1.0F - f;
 				float f1 = MathHelper.sin(f * (float) Math.PI);
 				float f2 = MathHelper.sin(this.attackTime * (float) Math.PI) * -(this.head.xRot - 0.7F) * 0.75F;
-				modelrenderer.xRot = (float) ((double) modelrenderer.xRot - ((double) f1 * 1.2D + (double) f2));
+				modelrenderer.xRot = (float) (modelrenderer.xRot - (f1 * 1.2D + f2));
 				modelrenderer.yRot += this.body.yRot * 2.0F;
 				modelrenderer.zRot += MathHelper.sin(this.attackTime * (float) Math.PI) * -0.4F;
 			}

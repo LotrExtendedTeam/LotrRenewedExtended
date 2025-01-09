@@ -60,13 +60,13 @@ public abstract class ExtendedChestTileEntity<T extends ChestTileEntity> extends
 	private void playSound(SoundEvent p_195483_1_) {
 		ChestType chesttype = this.getBlockState().getValue(ChestBlock.TYPE);
 		if (chesttype != ChestType.LEFT) {
-			double d0 = (double)this.worldPosition.getX() + 0.5D;
-			double d1 = (double)this.worldPosition.getY() + 0.5D;
-			double d2 = (double)this.worldPosition.getZ() + 0.5D;
+			double d0 = this.worldPosition.getX() + 0.5D;
+			double d1 = this.worldPosition.getY() + 0.5D;
+			double d2 = this.worldPosition.getZ() + 0.5D;
 			if (chesttype == ChestType.RIGHT) {
 				Direction direction = ChestBlock.getConnectedDirection(this.getBlockState());
-				d0 += (double)direction.getStepX() * 0.5D;
-				d2 += (double)direction.getStepZ() * 0.5D;
+				d0 += direction.getStepX() * 0.5D;
+				d2 += direction.getStepZ() * 0.5D;
 			}
 
 			this.level.playSound((PlayerEntity)null, d0, d1, d2, p_195483_1_, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);

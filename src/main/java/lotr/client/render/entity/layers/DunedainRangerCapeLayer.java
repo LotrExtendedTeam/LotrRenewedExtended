@@ -28,9 +28,9 @@ public class DunedainRangerCapeLayer extends LayerRenderer<ExtendedDunedainRange
             if (chestItemStack.getItem() != Items.ELYTRA) {
                 matrixStack.pushPose();
                 matrixStack.translate(0.0, 0.0, 0.125);
-                double offsetX = MathHelper.lerp(partialTicks, ranger.xCloakO, ranger.xCloak) - MathHelper.lerp((double)partialTicks, ranger.xo, ranger.getX());
-                double offsetY = MathHelper.lerp(partialTicks, ranger.yCloakO, ranger.yCloak) - MathHelper.lerp((double)partialTicks, ranger.yo, ranger.getY());
-                double offsetZ = MathHelper.lerp(partialTicks, ranger.zCloakO, ranger.zCloak) - MathHelper.lerp((double)partialTicks, ranger.zo, ranger.getZ());
+                double offsetX = MathHelper.lerp(partialTicks, ranger.xCloakO, ranger.xCloak) - MathHelper.lerp(partialTicks, ranger.xo, ranger.getX());
+                double offsetY = MathHelper.lerp(partialTicks, ranger.yCloakO, ranger.yCloak) - MathHelper.lerp(partialTicks, ranger.yo, ranger.getY());
+                double offsetZ = MathHelper.lerp(partialTicks, ranger.zCloakO, ranger.zCloak) - MathHelper.lerp(partialTicks, ranger.zo, ranger.getZ());
                 float bodyRotationYaw = ranger.yBodyRotO + (ranger.yBodyRot - ranger.yBodyRotO);
                 double sinYaw = MathHelper.sin(bodyRotationYaw * 0.017453292F);
                 double cosYaw = -MathHelper.cos(bodyRotationYaw * 0.017453292F);

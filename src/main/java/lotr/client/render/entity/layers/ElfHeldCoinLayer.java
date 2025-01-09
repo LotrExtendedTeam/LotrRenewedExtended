@@ -32,7 +32,7 @@ public class ElfHeldCoinLayer<E extends ExtendedAbstractElfWandererEntity> exten
 
         matStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
         ItemStack heldItem = new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), 1);
-        matStack.translate((double)((float)(1) / 16.0F), -0.3D, -0.05D);
+        matStack.translate((1) / 16.0F, -0.3D, -0.05D);
         Minecraft.getInstance().getItemInHandRenderer().renderItem(elf, heldItem, ItemCameraTransforms.TransformType.GROUND, false, matStack, buf, packedLight);
         matStack.popPose();
     }

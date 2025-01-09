@@ -124,7 +124,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
 					proxyInv, level);
 			if (opt.isPresent()) {
-				DrinkBrewingRecipe recipe = (DrinkBrewingRecipe) opt.get();
+				DrinkBrewingRecipe recipe = opt.get();
 				this.currentBrewingRecipe = recipe.getId();
 				ItemStack result = recipe.assemble(proxyInv);
 				result.setCount(16);

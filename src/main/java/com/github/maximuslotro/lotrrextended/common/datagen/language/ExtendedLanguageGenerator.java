@@ -20,6 +20,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		super(gen, modid, locale);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void makeTranslations() {
 		//Add default made Spawner Names
@@ -40,7 +41,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addItem(item.getValue(), "");
 		}
 
-		// Try Add New Biomes Names
+		// Try Add New Biome Names
 		for (String biome : DataGenValueHolder.biomeNames) {
 			addD(biome);
 		}

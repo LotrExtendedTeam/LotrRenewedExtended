@@ -89,7 +89,7 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 				return false;
 			} else if (!this.brokenBlockState.matches(pState)) {
 				return false;
-			} else if (!this.brokenBlockLocation.matches(pLevel, (float)pPos.getX(), (float)pPos.getY(), (float)pPos.getZ())) {
+			} else if (!this.brokenBlockLocation.matches(pLevel, pPos.getX(), pPos.getY(), pPos.getZ())) {
 				return false;
 			} else {
 				return this.playerHeldItem.matches(pItem);

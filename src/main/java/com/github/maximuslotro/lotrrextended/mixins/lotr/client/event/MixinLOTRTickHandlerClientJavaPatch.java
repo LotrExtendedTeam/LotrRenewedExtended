@@ -27,7 +27,7 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 	@Overwrite(remap=false)
 	private static <T, U extends T> void replaceFinalMinecraftFieldIfNotReplaced(Minecraft mc, Class<T> baseClass, Class<U> subClass, Function<Minecraft, T> getter, Supplier<U> newSubClassSupplier, String loggingNameOfField) {
 		if("GameRenderer".equals(loggingNameOfField)) {
-			T object = (T) getter.apply(mc);
+			T object = getter.apply(mc);
 			if (!subClass.isAssignableFrom(object.getClass())) {
 				U newSubClassObject = newSubClassSupplier.get();
 				mc.gameRenderer = (GameRenderer) newSubClassObject;
@@ -42,7 +42,7 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 			}
 		}
 		else if("WorldRenderer".equals(loggingNameOfField)) {
-			T object = (T) getter.apply(mc);
+			T object = getter.apply(mc);
 			if (!subClass.isAssignableFrom(object.getClass())) {
 				U newSubClassObject = newSubClassSupplier.get();
 				mc.levelRenderer = (WorldRenderer) newSubClassObject;

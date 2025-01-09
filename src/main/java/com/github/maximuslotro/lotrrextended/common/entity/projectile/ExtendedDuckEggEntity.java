@@ -44,9 +44,9 @@ public class ExtendedDuckEggEntity extends ProjectileItemEntity {
 			for (int i = 0; i < 8; ++i) {
 				this.level.addParticle(
 						new ItemParticleData(ParticleTypes.ITEM, this.getItem()), this.getX(), this.getY(), this.getZ(),
-						((double) this.random.nextFloat() - 0.5D) * 0.08D,
-						((double) this.random.nextFloat() - 0.5D) * 0.08D,
-						((double) this.random.nextFloat() - 0.5D) * 0.08D);
+						(this.random.nextFloat() - 0.5D) * 0.08D,
+						(this.random.nextFloat() - 0.5D) * 0.08D,
+						(this.random.nextFloat() - 0.5D) * 0.08D);
 			}
 		}
 	}

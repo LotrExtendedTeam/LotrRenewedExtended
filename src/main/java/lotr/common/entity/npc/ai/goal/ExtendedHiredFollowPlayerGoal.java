@@ -125,7 +125,7 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
     }
 
     private boolean maybeTeleportTo(int p_226328_1_, int p_226328_2_, int p_226328_3_) {
-        if (Math.abs((double)p_226328_1_ - this.owner.getX()) < 2.0D && Math.abs((double)p_226328_3_ - this.owner.getZ()) < 2.0D) {
+        if (Math.abs(p_226328_1_ - this.owner.getX()) < 2.0D && Math.abs(p_226328_3_ - this.owner.getZ()) < 2.0D) {
             return false;
         } else if (!this.canTeleportTo(new BlockPos(p_226328_1_, p_226328_2_, p_226328_3_))) {
             return false;

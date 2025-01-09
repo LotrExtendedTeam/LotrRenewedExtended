@@ -27,7 +27,7 @@ public class ExtendedStructureSpawnerModel extends NonLivingModel<ExtendedStruct
 	public void renderExtendedToBuffer(ExtendedStructureSpawnerEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.pushPose();
 		if (entity != null) {
-			matrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp((double)ageInTicks, entity.spinO, entity.spin) * 10.0F));
+			matrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp(ageInTicks, entity.spinO, entity.spin) * 10.0F));
 		}
 		spawner.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		matrixStack.popPose();

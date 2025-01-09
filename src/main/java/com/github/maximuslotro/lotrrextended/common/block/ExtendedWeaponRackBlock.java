@@ -178,7 +178,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
 		if (!blockState.is(blockStateOther.getBlock())) {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof ExtendedWeaponRackTileEntity) {
-				InventoryHelper.dropItemStack(world, (double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), ((ExtendedWeaponRackTileEntity)tileentity).getContainedItem().copy());
+				InventoryHelper.dropItemStack(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), ((ExtendedWeaponRackTileEntity)tileentity).getContainedItem().copy());
 				world.updateNeighbourForOutputSignal(blockPos, this);
 			}
 			super.onRemove(blockState, world, blockPos, blockStateOther, p_196243_5_);

@@ -68,11 +68,11 @@ public class MixinLOTRRecipes {
 	}
 
 	private static List<FactionTableType> createList(FactionTableType... types) {
-		return (List<FactionTableType>) ImmutableList.copyOf(types);
+		return ImmutableList.copyOf(types);
 	}
 
 	private static MultiTableType registerMultiPrivate(String s, List<FactionTableType> types) {
 		ResourceLocation res = new ResourceLocation("lotr", s);
-		return (MultiTableType) Registry.register(Registry.RECIPE_TYPE, res, new MultiTableType(res, types));
+		return Registry.register(Registry.RECIPE_TYPE, res, new MultiTableType(res, types));
 	}
 }

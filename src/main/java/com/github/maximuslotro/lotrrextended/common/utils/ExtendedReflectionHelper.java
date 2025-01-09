@@ -18,7 +18,7 @@ public class ExtendedReflectionHelper {
 		try {
 			Method fooMethod = PlayerDataModule.class.getDeclaredMethod("getPlayerUUID");
 			fooMethod.setAccessible(true);
-			underlyingPlayerUUID = (UUID) fooMethod.invoke((PlayerDataModule)data);
+			underlyingPlayerUUID = (UUID) fooMethod.invoke(data);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 			ExtendedLog.error("Reflection failed to get PlayerDataModule UUID");

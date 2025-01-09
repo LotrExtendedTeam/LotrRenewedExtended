@@ -126,13 +126,13 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		super.aiStep();
 		this.oFlap = this.flap;
 		this.oFlapSpeed = this.flapSpeed;
-		this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3D);
+		this.flapSpeed = (float) (this.flapSpeed + (this.onGround ? -1 : 4) * 0.3D);
 		this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
 		if (!this.onGround && this.flapping < 1.0F) {
 			this.flapping = 1.0F;
 		}
 
-		this.flapping = (float) ((double) this.flapping * 0.9D);
+		this.flapping = (float) (this.flapping * 0.9D);
 		Vector3d vector3d = this.getDeltaMovement();
 		if (!this.onGround && vector3d.y < 0.0D) {
 			this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
@@ -213,7 +213,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		float f1 = MathHelper.cos(this.yBodyRot * ((float) Math.PI / 180F));
 		float f2 = 0.1F;
 		float f3 = 0.0F;
-		p_184232_1_.setPos(this.getX() + (double) (f2 * f), this.getY(0.5D) + p_184232_1_.getMyRidingOffset() + f3, this.getZ() - (double) (f2 * f1));
+		p_184232_1_.setPos(this.getX() + f2 * f, this.getY(0.5D) + p_184232_1_.getMyRidingOffset() + f3, this.getZ() - f2 * f1);
 		if (p_184232_1_ instanceof LivingEntity) {
 			((LivingEntity) p_184232_1_).yBodyRot = this.yBodyRot;
 		}

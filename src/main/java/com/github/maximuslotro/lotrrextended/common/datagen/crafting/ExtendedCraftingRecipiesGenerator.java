@@ -1911,6 +1911,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //		makeStoneCutterRecipe(consumer, ExtendedBlocks.POLISHED_SLATE, ExtendedBlocks.POLISHED_SLATE_WALL);
 	}
 
+	@SuppressWarnings("deprecation")
 	private void addOverrides() {
 		GENERATEDRECIPES.add(ExtendedItems.LEATHER_HAT.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GOLDEN_TAURETHRIM_HELMET.get().getRegistryName().getPath());

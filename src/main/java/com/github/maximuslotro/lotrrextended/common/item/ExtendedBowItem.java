@@ -81,7 +81,7 @@ public class ExtendedBowItem extends BowItem {
 
                         int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bow);
                         if (j > 0) {
-                            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + (double)j * 0.5 + 0.5);
+                            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + j * 0.5 + 0.5);
                         }
 
                         int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, bow);
@@ -122,7 +122,7 @@ public class ExtendedBowItem extends BowItem {
         float f = 1.0F;
         if (itemstack != null) {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
-                f = (float)(f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale());
+                f = f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale();
             }
             // TODO: When we add smithing scrolls back in we can use this code
             //f*= LOTREnchantmentHelper.calcRangedDamageFactor(itemstack);

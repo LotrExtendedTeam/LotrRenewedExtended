@@ -66,7 +66,7 @@ public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 			int i = regionList.indexOf(currentRegion);
 			++i;
 			i = IntMath.mod(i, regionList.size());
-			currentRegion = (FactionRegion) regionList.get(i);
+			currentRegion = regionList.get(i);
 			updateCurrentDimensionAndFaction();
 			setCurrentScrollFromFaction();
 			scrollPaneAlliesEnemies.resetScroll();
@@ -87,7 +87,7 @@ public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 					++i;
 					i = IntMath.mod(i, regionList.size());
 				}
-				currentRegion = (FactionRegion) regionList.get(i);
+				currentRegion = regionList.get(i);
 				updateCurrentDimensionAndFaction();
 				setCurrentScrollFromFaction();
 				scrollPaneAlliesEnemies.resetScroll();

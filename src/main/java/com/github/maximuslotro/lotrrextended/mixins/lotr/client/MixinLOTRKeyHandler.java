@@ -93,7 +93,7 @@ public abstract class MixinLOTRKeyHandler{
 						i = factionList.indexOf(currentFaction);
 						i += factionShift;
 						i = IntMath.mod(i, factionList.size());
-						alignData.setCurrentViewedFaction((Faction) factionList.get(i));
+						alignData.setCurrentViewedFaction(factionList.get(i));
 						changedAlignmentView = true;
 					}
 
@@ -106,7 +106,7 @@ public abstract class MixinLOTRKeyHandler{
 							i += groupShift;
 							i = IntMath.mod(i, regionList.size());
 						}
-						alignData.setCurrentViewedFaction(alignData.getRegionLastViewedFaction((FactionRegion) regionList.get(i)));
+						alignData.setCurrentViewedFaction(alignData.getRegionLastViewedFaction(regionList.get(i)));
 						changedAlignmentView = true;
 					}
 				}

@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -34,7 +33,7 @@ public class ExtendedLOTRWallTorchBlock extends LOTRWallTorchBlock{
 	}
 
 	public ExtendedLOTRWallTorchBlock(SoundType sound, Supplier<Block> lootBlock) {
-		this(Properties.copy((AbstractBlock) lootBlock.get()).lootFrom(lootBlock));
+		this(Properties.copy(lootBlock.get()).lootFrom(lootBlock));
 		ExtendedReflectionHelper.setTorchValues(this, (LOTRTorchBlock) lootBlock.get());
 	}
 
@@ -94,10 +93,10 @@ public class ExtendedLOTRWallTorchBlock extends LOTRWallTorchBlock{
 	}
 
 	private void makeLightParticles(BlockState state, World world, BlockPos pos) {
-		Direction facing = (Direction) state.getValue(FACING);
-		double d0 = (double)pos.getX() + 0.5D;
-		double d1 = (double)pos.getY() + 0.7D;
-		double d2 = (double)pos.getZ() + 0.5D;
+		Direction facing = state.getValue(FACING);
+		double d0 = pos.getX() + 0.5D;
+		double d1 = pos.getY() + 0.7D;
+		double d2 = pos.getZ() + 0.5D;
 		double up = 0.22D;
 		double across = 0.27D;
 		Direction opposite = facing.getOpposite();

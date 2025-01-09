@@ -35,7 +35,7 @@ public class ExtendedTraderRespawnModel extends NonLivingModel<ExtendedTraderRes
 			//}
 
 			//matrixStack.translate(0.0D, (double)0.4F, 0.0D);
-			matrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp((double)ageInTicks, entity.spinO, entity.spin) * 10.0F));
+			matrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp(ageInTicks, entity.spinO, entity.spin) * 10.0F));
 			//matrixStack.translate(0.0D, (double)-0.2F, 0.0D);
 			//matrixStack.mulPose(Vector3f.XP.rotationDegrees(-30.0F));
 			float scale = scale(entity.getTickpercentage(), 1.0F, 1200.0F, 0.1F, 0.9F);

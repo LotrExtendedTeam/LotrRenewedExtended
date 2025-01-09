@@ -42,10 +42,10 @@ import net.minecraft.util.text.LanguageMap;
 public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	private final Map<String, String> dataHere = new TreeMap<>();
-	protected Map<String, String> newStrings = new TreeMap<>();
-	protected Map<String, String> overrideStrings = new TreeMap<>();
-	protected Map<String, String> existingStrings = new TreeMap<>();
-	protected List<String> removeStrings = new ArrayList<>();
+	private Map<String, String> newStrings = new TreeMap<>();
+	private Map<String, String> overrideStrings = new TreeMap<>();
+	private Map<String, String> existingStrings = new TreeMap<>();
+	private List<String> removeStrings = new ArrayList<>();
 	protected final DataGenerator genHere;
 	protected final String modidHere;
 	protected final String localeHere;

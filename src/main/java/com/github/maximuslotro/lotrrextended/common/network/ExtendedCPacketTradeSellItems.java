@@ -19,7 +19,7 @@ public class ExtendedCPacketTradeSellItems {
 	}
 
 	public static void handle(ExtendedCPacketTradeSellItems packet, Supplier<Context> context) {
-		ServerPlayerEntity player = ((Context) context.get()).getSender();
+		ServerPlayerEntity player = context.get().getSender();
 	    if (player.containerMenu instanceof ExtendedTradeContainer) {
 			ExtendedTradeContainer container = (ExtendedTradeContainer) player.containerMenu;
 			container.handleSellItems();

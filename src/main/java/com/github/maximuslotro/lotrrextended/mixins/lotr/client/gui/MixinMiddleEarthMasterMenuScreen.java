@@ -71,7 +71,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		int btmRowLeft = midX - (numBtmRowButtons * buttonSize + (numBtmRowButtons - 1) * buttonGap) / 2;
 
 		for (int l = 0; l < numButtons; ++l) {
-			MiddleEarthMenuButton button = (MiddleEarthMenuButton) menuButtonsToArrange.get(l);
+			MiddleEarthMenuButton button = menuButtonsToArrange.get(l);
 			if (l < numTopRowButtons) {
 				button.x = topRowLeft + l * (buttonSize + buttonGap);
 				button.y = midY - buttonGap / 2 - buttonSize;

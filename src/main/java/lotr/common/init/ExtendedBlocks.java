@@ -389,7 +389,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GREEN_FLAME_HEARTH_BLOCK;
 	public static RegistryObject<Block> GREEN_FIRE_BLOCK;
 
+	@Deprecated
 	public static Map<String, RegistryObject<Block>> ENTITYSPAWNERBLOCKS = new HashMap<>();
+	@Deprecated
 	public static Map<String, RegistryObject<Block>> ENTITYGROUPSPAWNERBLOCKS = new HashMap<>();
 
 	public static RegistryObject<Block> CHEESE_WHEEL;
