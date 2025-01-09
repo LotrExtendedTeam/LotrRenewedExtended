@@ -29,6 +29,9 @@ public class ExtendedLootTables {
 
 	public static final ResourceLocation BARROW_DOWN_CHEST = register("chests/barrow_downs");
 
+	public static final ResourceLocation BREE_HAMLET_HOUSE = register("chests/bree_hamlet_house");
+	public static final ResourceLocation BBREE_HAMLET_FARM= register("chests/bree_hamlet_farm");
+
 	public static final ResourceLocation HOBBIT_KEGS = register("kegs/hobbit");
 	public static final ResourceLocation RANGER_KEGS = register("kegs/ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = register("kegs/gundabad");
