@@ -184,7 +184,7 @@ public class ExtendedBannerEntity extends Entity {
 		this.getEntityData().define(SPAWNER_BOUNDS, 0);
 		this.getEntityData().define(OWNER, Optional.empty());
 	}
-	  
+
 	@Override
 	public boolean canChangeDimensions() {
 		return false;

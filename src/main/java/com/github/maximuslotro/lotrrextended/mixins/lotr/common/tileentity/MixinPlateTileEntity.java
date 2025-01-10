@@ -40,7 +40,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	public ResourceLocation lootTable;
 	protected long lootTableSeed;
 	private boolean ticked=false;
-	
+
 	@Shadow(remap = false)
 	private ItemStack foodItem;
 

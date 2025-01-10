@@ -17,6 +17,7 @@ public enum PillarType implements IStringSerializable {
 		this.name = pName;
 	}
 
+	@Override
 	public String getSerializedName() {
 		return this.name;
 	}

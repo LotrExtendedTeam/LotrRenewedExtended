@@ -140,6 +140,7 @@ public class ExtendedFactionShapelessRecipeBuilder {
 			this.tableTypeOBJECXT = tableType;
 		}
 
+		@Override
 		public void serializeRecipeData(JsonObject p_218610_1_) {
 			if (!this.group.isEmpty()) {
 				p_218610_1_.addProperty("group", this.group);
@@ -162,19 +163,23 @@ public class ExtendedFactionShapelessRecipeBuilder {
 			p_218610_1_.add("result", jsonobject);
 		}
 
+		@Override
 		public IRecipeSerializer<?> getType() {
 			return LOTRRecipes.FACTION_SHAPELESS.get();
 		}
 
+		@Override
 		public ResourceLocation getId() {
 			return this.id;
 		}
 
+		@Override
 		@Nullable
 		public JsonObject serializeAdvancement() {
 			return this.advancement.serializeToJson();
 		}
 
+		@Override
 		@Nullable
 		public ResourceLocation getAdvancementId() {
 			return this.advancementId;

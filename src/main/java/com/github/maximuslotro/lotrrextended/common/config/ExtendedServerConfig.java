@@ -22,7 +22,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
 	public static ForgeConfigSpec.BooleanValue enableChairSwapping;
 	public static ForgeConfigSpec.BooleanValue enableChairProtectionOverride;
-	
+
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
 	}

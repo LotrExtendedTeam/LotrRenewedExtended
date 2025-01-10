@@ -12,9 +12,9 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
@@ -42,10 +42,10 @@ import net.minecraft.util.text.LanguageMap;
 public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	private final Map<String, String> dataHere = new TreeMap<>();
-	protected Map<String, String> newStrings = new TreeMap<>();
-	protected Map<String, String> overrideStrings = new TreeMap<>();
-	protected Map<String, String> existingStrings = new TreeMap<>();
-	protected List<String> removeStrings = new ArrayList<>();
+	private Map<String, String> newStrings = new TreeMap<>();
+	private Map<String, String> overrideStrings = new TreeMap<>();
+	private Map<String, String> existingStrings = new TreeMap<>();
+	private List<String> removeStrings = new ArrayList<>();
 	protected final DataGenerator genHere;
 	protected final String modidHere;
 	protected final String localeHere;
@@ -62,6 +62,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		if (!dataHere.isEmpty()) {
 			List<String> sortedKeys = new ArrayList<>(dataHere.keySet());
 			Collections.sort(sortedKeys, new Comparator<String>() {
+				@Override
 				public int compare(String o1, String o2) {
 					if(o1.replaceAll("[0-9]","").equals(o2.replaceAll("[0-9]",""))) {
 						if(queryValue(o1)!=0 && queryValue(o2)!=0) {
@@ -196,16 +197,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
 		for (Entry<String, String> entry : map.entrySet()) {
-			if (entry.getKey().contains("container.lotr")) {
-				continue;
-			}
-			if (entry.getKey().contains("stat.lotrextended")) {
-				continue;
-			}
-			if (entry.getKey().contains("config.lotrextended")) {
-				continue;
-			}
-			if (entry.getKey().contains("subtitles.lotrextended")) {
+			if (entry.getKey().contains("container.lotr") || entry.getKey().contains("stat.lotrextended") || entry.getKey().contains("config.lotrextended") || entry.getKey().contains("subtitles.lotrextended")) {
 				continue;
 			}
 			if (entry.getKey().contains("advancements.lotrextended")) {

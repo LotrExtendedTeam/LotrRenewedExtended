@@ -14,7 +14,7 @@ public class ExtendedCPacketSelectHorn {
 	private float type;
 
 	public ExtendedCPacketSelectHorn() {}
-	
+
 	public ExtendedCPacketSelectHorn(float type) {
 		this.type = type;
 	}

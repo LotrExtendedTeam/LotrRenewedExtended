@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.tags;
 
-import java.util.Map.Entry;
-import java.util.function.Function;
 import java.nio.file.Path;
+import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.function.Function;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
@@ -77,7 +77,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedBlockTagProvider.CHESTS, Tags.Items.CHESTS);
 		this.copy(ExtendedBlockTagProvider.BARRELS, Tags.Items.BARRELS);
 		this.copy(ExtendedBlockTagProvider.BARRELS_WOODEN, Tags.Items.BARRELS_WOODEN);
-		
+
 		this.copy(ExtendedBlockTagProvider.WOODEN_FENCES, ExtendedItemTagProvider.WOODEN_FENCES);
 		this.copy(ExtendedBlockTagProvider.WOODEN_FENCE_GATES, ExtendedItemTagProvider.WOODEN_FENCE_GATES);
 		this.copy(ExtendedBlockTagProvider.LOG_SLABS, ExtendedItemTagProvider.LOG_SLABS);
@@ -89,7 +89,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedBlockTagProvider.CHARRABLE_WOODS, ExtendedItemTagProvider.CHARRABLE_WOODS);
 		this.copy(ExtendedBlockTagProvider.CHARRABLE_STRIPPED_LOGS, ExtendedItemTagProvider.CHARRABLE_STRIPPED_LOGS);
 		this.copy(ExtendedBlockTagProvider.CHARRABLE_STRIPPED_WOODS, ExtendedItemTagProvider.CHARRABLE_STRIPPED_WOODS);
-		
+
 		this.copy(ExtendedTags.Blocks.CHESTNUT_LOGS, ExtendedTags.Items.CHESTNUT_LOGS);
 		this.copy(ExtendedTags.Blocks.BANANA_LOGS, ExtendedTags.Items.BANANA_LOGS);
 		this.copy(ExtendedTags.Blocks.PLUM_LOGS, ExtendedTags.Items.PLUM_LOGS);
@@ -115,7 +115,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR, ExtendedTags.Items.STORAGE_BLOCKS_DURNOR);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR, ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL, ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
-		
+
 		this.copy(ExtendedTags.Blocks.COPPER_ORE, ExtendedTags.Items.COPPER_ORE);
 		this.copy(ExtendedTags.Blocks.NITER_ORE, ExtendedTags.Items.NITER_ORE);
 		this.copy(ExtendedTags.Blocks.SALT_ORE, ExtendedTags.Items.SALT_ORE);
@@ -136,7 +136,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.DURNOR_ORE, ExtendedTags.Items.DURNOR_ORE);
 		this.copy(ExtendedTags.Blocks.EDHELVIR_ORE, ExtendedTags.Items.EDHELVIR_ORE);
 		this.copy(ExtendedTags.Blocks.GULDURIL_ORE, ExtendedTags.Items.GULDURIL_ORE);
-		
+
 		tag(Tags.Items.STORAGE_BLOCKS).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GALVORN)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GILDED_IRON)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_MORGUL_STEEL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_TOPAZ)
@@ -146,7 +146,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Items.STORAGE_BLOCKS_PEARL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_CORAL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DURNOR)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
-		
+
 		tag(ExtendedTags.Items.MORGUL_STEEL).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.ORC_STEEL).add(LOTRItems.ORC_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.MORGUL_INGOTS).add(ExtendedItems.MORGUL_STEEL_INGOT.get(),LOTRItems.ORC_STEEL_INGOT.get());
@@ -181,7 +181,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.DURNOR_GEMS).add(LOTRItems.DURNOR.get());
 		tag(ExtendedTags.Items.EDHELVIR_GEMS).add(LOTRItems.EDHELVIR.get());
 		tag(ExtendedTags.Items.GULDURIL_GEMS).add(LOTRItems.GULDURIL.get());
-	    
+
 		tag(Tags.Items.GEMS).addTag(ExtendedTags.Items.TOPAZ_GEMS)
 		.addTag(ExtendedTags.Items.AMETHYST_GEMS).addTag(ExtendedTags.Items.SAPPHIRE_GEMS)
 		.addTag(ExtendedTags.Items.RUBY_GEMS).addTag(ExtendedTags.Items.AMBER_GEMS)
@@ -201,7 +201,7 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.NITER_ORE).addTag(ExtendedTags.Items.SALT_ORE)
 	    .addTag(ExtendedTags.Items.SILVER_ORE).addTag(ExtendedTags.Items.SULFUR_ORE)
 	    .addTag(ExtendedTags.Items.TIN_ORE);
-		
+
 		tag(Tags.Items.EGGS).add(ExtendedItems.DUCK_EGG.get());
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
@@ -267,19 +267,9 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 
 		TreeMap<String, Item> additems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if(item.getValue().get() instanceof SpearItem) {
-				additems.put(item.getKey(), item.getValue().get());
-				continue;
-			}
-			if(item.getValue().get() instanceof DaggerItem) {
-				additems.put(item.getKey(), item.getValue().get());
-				continue;
-			}
-			if(item.getValue().get() instanceof LOTRSwordItem) {
-				additems.put(item.getKey(), item.getValue().get());
-				continue;
-			}
-			if(item.getValue().get() instanceof LOTRPickaxeItem) {
+			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
+					|| (item.getValue().get() instanceof LOTRSwordItem)
+					|| (item.getValue().get() instanceof LOTRPickaxeItem)) {
 				additems.put(item.getKey(), item.getValue().get());
 				continue;
 			}

@@ -97,7 +97,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		buttonMapLocation.setMessage(map.append(new TranslationTextComponent(pd.getMiscData().getShowMapLocation()? "gui.lotrextended.base.shown" : "gui.lotrextended.base.hidden")));
 		TextComponent rank = new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting");
 		buttonFeminineRank.setMessage(rank.append(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
-		
+
 		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 			enableClientDevMode.visible = true;
 			forceStructureBlockAirViewing.visible = true;
@@ -116,7 +116,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			structureBlockOutlineViewDistance.visible = false;
 		}
 	}
-	
+
 	public void toggleFF() {
 		Minecraft mc = Minecraft.getInstance();
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);

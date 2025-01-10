@@ -41,7 +41,7 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> ROPE_BROKEN = register("block.rope.break", null);
 	public static final RegistryObject<SoundEvent> ROPE_PLACED = register("block.rope.place", null);
 	public static final RegistryObject<SoundEvent> ROPE_STEP = register("block.rope.step", null);
-	
+
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {
 			DataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);

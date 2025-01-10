@@ -1,6 +1,7 @@
 package lotr.client.render.entity.layers;
 
 import java.util.function.Predicate;
+
 import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.ArmsStyleModelProvider;
 import lotr.client.render.entity.model.HobbitModel;

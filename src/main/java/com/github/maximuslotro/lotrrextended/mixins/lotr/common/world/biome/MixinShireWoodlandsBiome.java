@@ -17,16 +17,16 @@ public class MixinShireWoodlandsBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addTrees((ShireWoodlandsBiome)(Object)this, builder, 9, 0.5F, 
-				LOTRBiomeFeatures.shirePine(), 25000, LOTRBiomeFeatures.oak(), 10000, 
-				LOTRBiomeFeatures.oakFancy(), 4000, LOTRBiomeFeatures.oakBees(), 20, 
-				LOTRBiomeFeatures.oakFancyBees(), 8, LOTRBiomeFeatures.birch(), 2500, 
-				LOTRBiomeFeatures.birchFancy(), 100, LOTRBiomeFeatures.birchBees(), 1, 
-				LOTRBiomeFeatures.birchFancyBees(), 1, LOTRBiomeFeatures.aspen(), 3000, 
-				LOTRBiomeFeatures.aspenLarge(), 1000, LOTRBiomeFeatures.apple(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.pearBees(), 1, LOTRBiomeFeatures.cherry(), 20, 
-				LOTRBiomeFeatures.cherryBees(), 1, 
+		LOTRBiomeFeatures.addTrees((ShireWoodlandsBiome)(Object)this, builder, 9, 0.5F,
+				LOTRBiomeFeatures.shirePine(), 25000, LOTRBiomeFeatures.oak(), 10000,
+				LOTRBiomeFeatures.oakFancy(), 4000, LOTRBiomeFeatures.oakBees(), 20,
+				LOTRBiomeFeatures.oakFancyBees(), 8, LOTRBiomeFeatures.birch(), 2500,
+				LOTRBiomeFeatures.birchFancy(), 100, LOTRBiomeFeatures.birchBees(), 1,
+				LOTRBiomeFeatures.birchFancyBees(), 1, LOTRBiomeFeatures.aspen(), 3000,
+				LOTRBiomeFeatures.aspenLarge(), 1000, LOTRBiomeFeatures.apple(), 50,
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pear(), 50,
+				LOTRBiomeFeatures.pearBees(), 1, LOTRBiomeFeatures.cherry(), 20,
+				LOTRBiomeFeatures.cherryBees(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((ShireWoodlandsBiome)(Object)this, builder, 10, GrassBlends.SHIRE_WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_WITH_FERNS);

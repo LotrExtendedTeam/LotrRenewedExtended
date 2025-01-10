@@ -30,7 +30,7 @@ public class SinglePoolStructure extends ExtendedSurfaceStructuresV5<SinglePoolC
 	public IStartFactory<SinglePoolConfig> getStructureStartFactory() {
 		return SinglePoolStructure.Start::new;
 	}
-    
+
     public static class Start extends ExtendedStructureStartV5<SinglePoolConfig> {
         public Start(Structure<SinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
             super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
@@ -56,7 +56,7 @@ public class SinglePoolStructure extends ExtendedSurfaceStructuresV5<SinglePoolC
             }
 
             ExtendedJigsawManager.addPieces(dynamicRegistryManager,
-                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()), 
+                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()),
                     AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
             this.calculateBoundingBox();
     	}

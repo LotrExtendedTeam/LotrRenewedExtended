@@ -81,6 +81,7 @@ public class ExtendedSetWargFurType extends LootFunction {
 			return new ExtendedSetWargFurType(conditions);
 		}
 
+		@Override
 		public void serialize(JsonObject object, ExtendedSetWargFurType function, JsonSerializationContext context) {
 			super.serialize(object, function, context);
 		}

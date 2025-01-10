@@ -15,11 +15,13 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedTameLivingClassTrigger extends AbstractCriterionTrigger<ExtendedTameLivingClassTrigger.Instance> {
 	   private static final ResourceLocation ID = new ResourceLocation("extended", "tame_living");
 
-	   public ResourceLocation getId() {
+	   @Override
+	public ResourceLocation getId() {
 	      return ID;
 	   }
 
-	   public ExtendedTameLivingClassTrigger.Instance createInstance(JsonObject pJson, EntityPredicate.AndPredicate pEntityPredicate, ConditionArrayParser pConditionsParser) {
+	   @Override
+	public ExtendedTameLivingClassTrigger.Instance createInstance(JsonObject pJson, EntityPredicate.AndPredicate pEntityPredicate, ConditionArrayParser pConditionsParser) {
 	      EntityPredicate.AndPredicate entitypredicate$andpredicate = EntityPredicate.AndPredicate.fromJson(pJson, "entity", pConditionsParser);
 	      return new ExtendedTameLivingClassTrigger.Instance(pEntityPredicate, entitypredicate$andpredicate);
 	   }
@@ -51,7 +53,8 @@ public class ExtendedTameLivingClassTrigger extends AbstractCriterionTrigger<Ext
 	         return this.entity.matches(pContext);
 	      }
 
-	      public JsonObject serializeToJson(ConditionArraySerializer pConditions) {
+	      @Override
+		public JsonObject serializeToJson(ConditionArraySerializer pConditions) {
 	         JsonObject jsonobject = super.serializeToJson(pConditions);
 	         jsonobject.add("entity", this.entity.toJson(pConditions));
 	         return jsonobject;

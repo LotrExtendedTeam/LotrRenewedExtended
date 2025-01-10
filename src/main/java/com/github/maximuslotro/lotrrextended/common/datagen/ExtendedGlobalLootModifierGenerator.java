@@ -21,7 +21,7 @@ public class ExtendedGlobalLootModifierGenerator extends GlobalLootModifierProvi
 	@Override
 	protected void start() {
 		//add("warg_fur_colorizer", ExtendedGlobalLootModifiers.WARG_FUR.get(), new WargFurColorizer(new ILootCondition[0]));
-		List<ResourceLocation> fishingRods = new ArrayList<ResourceLocation>();
+		List<ResourceLocation> fishingRods = new ArrayList<>();
 		fishingRods.add(Items.FISHING_ROD.getRegistryName());
 		add("me_enchantment_disabler", ExtendedGlobalLootModifiers.ENCHANTMENT_DISABLER.get(), new EnchantmentedInMEDisabler(new ILootCondition[0], fishingRods));
 	}

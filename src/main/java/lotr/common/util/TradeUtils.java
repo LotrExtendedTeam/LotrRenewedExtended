@@ -1,14 +1,14 @@
 package lotr.common.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TradeUtils {
 

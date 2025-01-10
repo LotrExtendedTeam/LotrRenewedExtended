@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.datagen.structure.entities;
 
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;

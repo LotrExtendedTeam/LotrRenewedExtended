@@ -1,5 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
+
 import lotr.common.init.LOTRItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -7,19 +13,20 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.ArrowItem;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-
-import javax.annotation.Nullable;
-
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
-
-import java.util.List;
 
 public class ExtendedBowItem extends BowItem {
 
@@ -74,7 +81,7 @@ public class ExtendedBowItem extends BowItem {
 
                         int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bow);
                         if (j > 0) {
-                            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + (double)j * 0.5 + 0.5);
+                            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + j * 0.5 + 0.5);
                         }
 
                         int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, bow);
@@ -115,7 +122,7 @@ public class ExtendedBowItem extends BowItem {
         float f = 1.0F;
         if (itemstack != null) {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
-                f = (float)(f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale());
+                f = f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale();
             }
             // TODO: When we add smithing scrolls back in we can use this code
             //f*= LOTREnchantmentHelper.calcRangedDamageFactor(itemstack);

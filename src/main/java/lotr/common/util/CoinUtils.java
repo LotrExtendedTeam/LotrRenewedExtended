@@ -1,5 +1,9 @@
 package lotr.common.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,10 +11,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class CoinUtils {
 

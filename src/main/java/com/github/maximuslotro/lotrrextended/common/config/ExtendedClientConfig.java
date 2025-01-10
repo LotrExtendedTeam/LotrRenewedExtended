@@ -31,7 +31,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		structureBlockOutlineViewDistance = createDoubleValue(builder, "structureBlockOutlineViewDistance", 96.0D, 32.0D, MixinConstants.StructureLimit, false, "Change the distance at which structure block outlines render.");
 		forceStructureBlockAirViewing = createBooleanValue(builder, "forceStructureBlockAirViewing", false, false, "Force Structure Voids to render inside of Structure Block Outline Rendering.");
 		builder.pop();
-		
+
 		builder.push("Special settings");
 		enableDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
 		lastClientBootVersion = createStringValue(builder, "lastClientBootVersion", "null", true, "Last version this mod launched with. Don't touch! Value handled by extended.");

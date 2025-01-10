@@ -39,7 +39,7 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 	@Override
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		Object[] weightedTrees = { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakVines(), 2000,
-				LOTRBiomeFeatures.oakFancy(), 2000, LOTRBiomeFeatures.oakDead(), 15000, 
+				LOTRBiomeFeatures.oakFancy(), 2000, LOTRBiomeFeatures.oakDead(), 15000,
 				LOTRBiomeFeatures.spruce(), 5000, LOTRBiomeFeatures.spruceDead(), 1000,
 				LOTRBiomeFeatures.birch(), 1500, LOTRBiomeFeatures.birchDead(), 150 };
 		LOTRBiomeFeatures.addTrees(this, builder, 0, 0.1F, weightedTrees);

@@ -230,7 +230,7 @@ public class ExtendedStructureEntitySpawner {
 		this.enableInsideSpawning = enableInsideSpawning;
 		this.enableInsideSpawningChance = chance;
 	}
-	
+
 	public int getinsideSpawningChance() {
 		return enableInsideSpawningChance;
 	}
@@ -315,6 +315,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawner>, JsonSerializer<ExtendedStructureEntitySpawner> {
+		@Override
 		public ExtendedStructureEntitySpawner deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawner");
 			List<ExtendedStructureEntitySpawnerEntry> alootpool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntry[0], context, ExtendedStructureEntitySpawnerEntry[].class));
@@ -424,6 +425,7 @@ public class ExtendedStructureEntitySpawner {
 			return spawner;
 		}
 
+		@Override
 		public JsonElement serialize(ExtendedStructureEntitySpawner entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", entitySpawner.getId().toString());
@@ -497,7 +499,7 @@ public class ExtendedStructureEntitySpawner {
 		private boolean enableInsideSpawning = false;
 		private int enableInsideSpawningChance = 100;
 
-		public Builder(List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn, 
+		public Builder(List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 				boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, boolean shouldDisableFutureSpawn,
 				int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance) {
@@ -556,7 +558,7 @@ public class ExtendedStructureEntitySpawner {
 			this.entitySpawnTickRate = minutes * 60 * 20;
 			return this;
 		}
-	
+
 		public ExtendedStructureEntitySpawner.Builder setPoolRolls(int rolls) {
 			this.poolRolls = rolls;
 			return this;
@@ -589,7 +591,7 @@ public class ExtendedStructureEntitySpawner {
 		}
 
 		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
-			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius, 
+			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius,
 					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap, shouldDisableFutureSpawn,
 					randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance);
 			spawner.isCustom = isCustom;
@@ -613,7 +615,7 @@ public class ExtendedStructureEntitySpawner {
 		public static ExtendedStructureEntitySpawner.Builder spawner(SpawnerType spawnType, boolean setHomePositionOnSpawn, int homeRadius) {
 			return new ExtendedStructureEntitySpawner.Builder(spawnType).setHomeInfo(setHomePositionOnSpawn, homeRadius);
 		}
-		
+
 		public ExtendedStructureEntitySpawner.Builder addSinglePool(EntityType<?> type, int weight, int minSpawnCount, int maxSpawnCount) {
 			entries.add(new ExtendedStructureEntitySpawnerEntry(new SingleSpawnType(type), weight, minSpawnCount, maxSpawnCount));
 			return this;

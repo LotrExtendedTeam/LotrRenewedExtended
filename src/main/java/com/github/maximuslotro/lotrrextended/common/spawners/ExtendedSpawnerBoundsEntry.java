@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class ExtendedSpawnerBoundsEntry {
 	public static final ExtendedSpawnerBoundsEntry DEFAULT = new ExtendedSpawnerBoundsEntry(0, 0, 0);
-	
+
 	public int topYvalue;
 	public int lowerYvalue;
 	public int horizontalBounds;
@@ -39,6 +39,7 @@ public class ExtendedSpawnerBoundsEntry {
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedSpawnerBoundsEntry>, JsonSerializer<ExtendedSpawnerBoundsEntry> {
+		@Override
 		public ExtendedSpawnerBoundsEntry deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawner");
 			int topY = jsonobject.get("topYvalue").getAsInt();
@@ -47,6 +48,7 @@ public class ExtendedSpawnerBoundsEntry {
 			return new ExtendedSpawnerBoundsEntry(topY, bottomY, horizontal);
 		}
 
+		@Override
 		public JsonElement serialize(ExtendedSpawnerBoundsEntry entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("topYvalue", entitySpawner.topYvalue);

@@ -21,15 +21,15 @@ public class ExtendedFellowship {
 	private UUID fellowshipId;
 	private String fellowshipName;
 	private UUID fellowshipOwner;
-	private Set<UUID> fellowshipMembers = new HashSet<UUID>();
-	private Set<UUID> fellowshipAdmins = new HashSet<UUID>();
+	private Set<UUID> fellowshipMembers = new HashSet<>();
+	private Set<UUID> fellowshipAdmins = new HashSet<>();
 	private boolean preventHiredFF = true;
 	private boolean preventPVP = true;
 	private boolean showMap = true;
 	private boolean needsSaving = false;
 	private boolean disbanded;
 	private ItemStack icon = ItemStack.EMPTY;
-	
+
 	public ExtendedFellowship(String publicName, UUID ownerUUID) {
 		this.fellowshipId = UUID.randomUUID();
 		this.fellowshipName = publicName;
@@ -53,7 +53,7 @@ public class ExtendedFellowship {
 	public void load(CompoundNBT pCompound) {
 		disbanded = pCompound.getBoolean("Disbanded");
 		if (pCompound.contains("Owner"))
-			fellowshipOwner = UUID.fromString(pCompound.getString("Owner")); 
+			fellowshipOwner = UUID.fromString(pCompound.getString("Owner"));
 		fellowshipMembers.clear();
 		fellowshipAdmins.clear();
 		ListNBT memberTags = pCompound.getList("Members", 10);
@@ -65,7 +65,7 @@ public class ExtendedFellowship {
 				if (nbt.contains("Admin")) {
 					boolean isAdmin = nbt.getBoolean("Admin");
 					if (isAdmin)
-						fellowshipAdmins.add(member); 
+						fellowshipAdmins.add(member);
 				}
 			}
 		}
@@ -94,13 +94,13 @@ public class ExtendedFellowship {
 	    	if (fellowshipAdmins.contains(member))
 	    		nbt.putBoolean("Admin", true);
 	    	memberTags.add(nbt);
-	    } 
+	    }
 	    pCompound.put("Members", memberTags);
 	    if (icon != null) {
 	    	CompoundNBT item = new CompoundNBT();
 	    	item = icon.serializeNBT();
 	    	pCompound.put("Icon", item);
-	    } 
+	    }
 	    if (fellowshipName != null)
 	    	pCompound.putString("Name", fellowshipName);
 	    pCompound.putBoolean("preventPVP", preventPVP);
@@ -170,7 +170,7 @@ public class ExtendedFellowship {
 	}
 
 	public Set<UUID> getAllFellowshipMembers() {
-		Set<UUID> list = new HashSet<UUID>();
+		Set<UUID> list = new HashSet<>();
 		list.add(fellowshipOwner);
 		list.addAll(fellowshipMembers);
 		return list;
@@ -224,7 +224,7 @@ public class ExtendedFellowship {
 	}
 	public void disband() {
 		disbanded = true;
-		for (UUID player : new ArrayList<UUID>(fellowshipMembers))
+		for (UUID player : new ArrayList<>(fellowshipMembers))
 	    	removeFellowshipMember(player);
 		markDirty();
 	}

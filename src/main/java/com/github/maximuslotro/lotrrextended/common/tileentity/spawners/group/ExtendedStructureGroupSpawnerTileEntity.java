@@ -12,6 +12,7 @@ import net.minecraft.world.server.ServerWorld;
  * @deprecated
  * @since beta-1.6
  * */
+@Deprecated
 public abstract class ExtendedStructureGroupSpawnerTileEntity<V extends TileEntity> extends TileEntity implements ITickableTileEntity {
 
 	private boolean spawned = false;

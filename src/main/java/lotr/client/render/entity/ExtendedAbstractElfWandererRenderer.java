@@ -1,6 +1,7 @@
 package lotr.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.render.entity.layers.ElfHeldCoinLayer;
 import lotr.client.render.entity.layers.ElfWandererCapeLayer;
 import lotr.client.render.entity.layers.ElfWandererCloakLayer;
@@ -19,7 +20,8 @@ public abstract class ExtendedAbstractElfWandererRenderer<E extends ExtendedAbst
         this.addLayer(new ElfWandererCloakLayer<>(this, new ExtendedElfWandererModel<>(0.5F), new ExtendedElfWandererModel<>(1.0F)));
     }
 
-    protected void scale(E elf, MatrixStack matStack, float f) {
+    @Override
+	protected void scale(E elf, MatrixStack matStack, float f) {
         super.scale(elf, matStack, f);
         if (CalendarUtil.isAprilFools()) {
             float scale = 0.25F;
@@ -28,6 +30,7 @@ public abstract class ExtendedAbstractElfWandererRenderer<E extends ExtendedAbst
 
     }
 
-    public abstract ResourceLocation getTextureLocation(ExtendedAbstractElfWandererEntity elf);
+    @Override
+	public abstract ResourceLocation getTextureLocation(ExtendedAbstractElfWandererEntity elf);
 
 }

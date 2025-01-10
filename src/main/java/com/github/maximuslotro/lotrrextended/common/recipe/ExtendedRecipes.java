@@ -14,12 +14,12 @@ public class ExtendedRecipes {
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "lotrextended");
 	public static IRecipeType<ExtendeGrinderRecipe> MILLSTONE;
 	public static final RegistryObject<IRecipeSerializer<ExtendeGrinderRecipe>> MILLING_SERIALIZER = RECIPE_SERIALIZERS.register("stone_grinding", () -> new ExtendedMillingRecipeSerializer());
-	
+
 	public static void register(IEventBus modBus) {
 		MILLSTONE = register("stone_grinding");
 		RECIPE_SERIALIZERS.register(modBus);
 	}
-	
+
 	private static <T extends IRecipe<?>> IRecipeType<T> register(String key) {
 		final ResourceLocation location = new ResourceLocation("lotrextended", key);
 		return Registry.register(Registry.RECIPE_TYPE, location, new IRecipeType<T>() {

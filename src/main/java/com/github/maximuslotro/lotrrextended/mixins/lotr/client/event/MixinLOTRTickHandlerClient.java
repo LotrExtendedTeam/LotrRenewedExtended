@@ -17,7 +17,7 @@ import lotr.client.event.MistyMountainsMist;
 import lotr.client.event.RainMist;
 import lotr.client.event.SandstormFog;
 import lotr.client.render.world.LOTRDimensionRenderInfo;
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.FogRenderer.FogType;
@@ -55,15 +55,15 @@ public class MixinLOTRTickHandlerClient {
 	private float wightFogModifier;
 	private float prevWightFogModifier;
 
-	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V", 
-		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), 
+	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V",
+		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER),
 		locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
 	public void injectWightFogLogic(ClientTickEvent event, CallbackInfo ci) {
 		ClientPlayerEntity player = this.mc.player;
 		Entity viewer = this.mc.cameraEntity;
 		ClientWorld world = (ClientWorld) player.level;
 		prevWightFogModifier = wightFogModifier;
-		boolean noWights = world.getEntitiesOfClass(ExtendedBarrowWrightEntity.class, viewer.getBoundingBox().inflate(32.0D)).isEmpty();
+		boolean noWights = world.getEntitiesOfClass(ExtendedBarrowWightEntity.class, viewer.getBoundingBox().inflate(32.0D)).isEmpty();
 		if(!noWights) {
 			if(wightFogModifier<100) {
 				wightFogModifier++;

@@ -18,16 +18,16 @@ public class MixinPinnathGelinBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addTreesWithClusters((PinnathGelinBiome)(Object)this, builder, 0, 0.01F, TreeCluster.of(10, 80), 
-				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000, 
-				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10, 
-				LOTRBiomeFeatures.aspen(), 5000, LOTRBiomeFeatures.birch(), 2000, 
-				LOTRBiomeFeatures.birchFancy(), 500, LOTRBiomeFeatures.birchBees(), 20, 
-				LOTRBiomeFeatures.birchFancyBees(), 5, ExtendedBiomeFeatures.chestnut(), 1000, 
-				ExtendedBiomeFeatures.chestnutFancy(), 500, ExtendedBiomeFeatures.chestnutBees(), 10, 
-				ExtendedBiomeFeatures.chestnutFancyBees(), 5, LOTRBiomeFeatures.apple(), 50, 
-				LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1, 
-				LOTRBiomeFeatures.pearBees(), 1, 
+		LOTRBiomeFeatures.addTreesWithClusters((PinnathGelinBiome)(Object)this, builder, 0, 0.01F, TreeCluster.of(10, 80),
+				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
+				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
+				LOTRBiomeFeatures.aspen(), 5000, LOTRBiomeFeatures.birch(), 2000,
+				LOTRBiomeFeatures.birchFancy(), 500, LOTRBiomeFeatures.birchBees(), 20,
+				LOTRBiomeFeatures.birchFancyBees(), 5, ExtendedBiomeFeatures.chestnut(), 1000,
+				ExtendedBiomeFeatures.chestnutFancy(), 500, ExtendedBiomeFeatures.chestnutBees(), 10,
+				ExtendedBiomeFeatures.chestnutFancyBees(), 5, LOTRBiomeFeatures.apple(), 50,
+				LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1,
+				LOTRBiomeFeatures.pearBees(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((PinnathGelinBiome)(Object)this, builder, 10, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_STANDARD);

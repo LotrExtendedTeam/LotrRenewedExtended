@@ -34,10 +34,12 @@ public class MixinLOTRDimensionsJavaPatch {
 			//TODO replace with AT later if possable
 			final Codec<DimensionGeneratorSettings> codec = DimensionGeneratorSettings.CODEC;
 			Codec<DimensionGeneratorSettings> stableCodec = new Codec<DimensionGeneratorSettings>() {
+				@Override
 				public <T> DataResult<T> encode(DimensionGeneratorSettings input, DynamicOps<T> ops, T prefix) {
 					return codec.encode(input, ops, prefix);
 				}
 
+				@Override
 				public <T> DataResult<Pair<DimensionGeneratorSettings, T>> decode(DynamicOps<T> ops, T input) {
 					DataResult<Pair<DimensionGeneratorSettings, T>> result = codec.decode(ops, input);
 					return DataResult.success(result.result().orElseThrow(() -> new IllegalStateException("Failed to change lifecycle to stable")), Lifecycle.stable());

@@ -54,7 +54,7 @@ public class MultiSpawnType implements ExtendedStructureEntityTypeInterface {
 		public static MultiSpawnType.Builder multi() {
 			return new MultiSpawnType.Builder();
 		}
-		
+
 		public MultiSpawnType.Builder addPool(EntityType<?> type, int weight) {
 			entries.add(new MultiSpawnEntry(weight, type));
 			return this;

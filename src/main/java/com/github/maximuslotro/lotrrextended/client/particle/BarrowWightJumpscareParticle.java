@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.particle;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import lotr.client.render.entity.model.ExtendedBarrowWightModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IParticleFactory;
@@ -34,7 +35,8 @@ public class BarrowWightJumpscareParticle extends Particle {
         this.angle = clientWorld.random.nextFloat();
     }
 
-    public IParticleRenderType getRenderType() {
+    @Override
+	public IParticleRenderType getRenderType() {
         return IParticleRenderType.CUSTOM;
     }
 
@@ -43,7 +45,8 @@ public class BarrowWightJumpscareParticle extends Particle {
         return false;
     }
 
-    public void render(IVertexBuilder pBuffer, ActiveRenderInfo pRenderInfo, float pPartialTicks) {
+    @Override
+	public void render(IVertexBuilder pBuffer, ActiveRenderInfo pRenderInfo, float pPartialTicks) {
         float f = ((float)this.age + pPartialTicks) / (float)this.lifetime;
         float alpha = 0.25f*MathHelper.sin(f * (float)Math.PI);
         MatrixStack matrixstack = new MatrixStack();
@@ -61,7 +64,8 @@ public class BarrowWightJumpscareParticle extends Particle {
     @OnlyIn(Dist.CLIENT)
     public static class Factory implements IParticleFactory<BasicParticleType> {
 
-        public Particle createParticle(BasicParticleType pType, ClientWorld pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+        @Override
+		public Particle createParticle(BasicParticleType pType, ClientWorld pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
             return new BarrowWightJumpscareParticle(pLevel, pX, pY, pZ);
         }
     }

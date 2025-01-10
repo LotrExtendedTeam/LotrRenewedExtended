@@ -1,6 +1,13 @@
 package lotr.common.entity.npc;
 
-import lotr.common.entity.npc.ai.goal.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -20,7 +27,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -38,11 +49,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedTraderEntity {
 
@@ -100,7 +106,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     // give them the 5 armor points they have in Legacy
     public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return ManEntity.regAttrs().add(Attributes.ARMOR, 5.0);
+        return AbstractMannishEntity.regAttrs().add(Attributes.ARMOR, 5.0);
     }
 
     @Override
@@ -183,15 +189,18 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     }
 
     // in Legacy the eat and drink pools for Oddment Collectors are based off Dunland
-    protected NPCFoodPool getEatPool() {
+    @Override
+	protected NPCFoodPool getEatPool() {
         return NPCFoodPools.DUNLENDING;
     }
 
-    protected NPCFoodPool getDrinkPool() {
+    @Override
+	protected NPCFoodPool getDrinkPool() {
         return NPCFoodPools.DUNLENDING_DRINK;
     }
 
-    protected NPCNameGenerator getNameGenerator() {
+    @Override
+	protected NPCNameGenerator getNameGenerator() {
         // TODO: In legacy it can pick Rohan, Gondor, Dunlend or Bree for names, but I am not sure how that will work
         //  or if it will be consistent so just doing Dunland for now
         return NPCNameGenerators.DUNLENDING;
@@ -219,7 +228,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     // TODO: Maybe some sort of negative reputation limit should prevent a player from trading but for now I don't want killing
     //  an Oddment Collector once to prevent you from being able to sell to them
-    public boolean canTradeWith(PlayerEntity player) {
+    @Override
+	public boolean canTradeWith(PlayerEntity player) {
         return this.isNotFighting(player);
     }
 
@@ -368,7 +378,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.BRONZE_DAGGER);
     }
 
-    protected NPCGenderProvider getGenderProvider() {
+    @Override
+	protected NPCGenderProvider getGenderProvider() {
         return NPCGenderProvider.MALE;
     }
 
@@ -394,7 +405,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;		
+		itemsSoldByTrader = trades;
 	}
 }
 

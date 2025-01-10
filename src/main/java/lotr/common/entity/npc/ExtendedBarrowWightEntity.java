@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -27,11 +28,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.world.World;
 
-public class ExtendedBarrowWrightEntity extends NPCEntity {
-	public ExtendedBarrowWrightEntity(EntityType<? extends NPCEntity> type, World w) {
+public class ExtendedBarrowWightEntity extends NPCEntity {
+	public ExtendedBarrowWightEntity(EntityType<? extends NPCEntity> type, World w) {
 		super(type, w);
 		this.spawnRequiresSurfaceBlock = true;
 		this.spawnRequiresDarkness = true;
@@ -112,16 +112,19 @@ public class ExtendedBarrowWrightEntity extends NPCEntity {
 		return CreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
 		return SoundEvents.GENERIC_HURT;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getDeathSound() {
 		return ExtendedSounds.WIGHT_DEATH.get();
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getAmbientSound() {
 		return ExtendedSounds.WIGHT_AMBIENCE.get();

@@ -25,7 +25,7 @@ import net.minecraftforge.common.loot.LootModifier;
 
 public class EnchantmentedInMEDisabler extends LootModifier {
 	List<ResourceLocation> fishingRods;
-	
+
 	public EnchantmentedInMEDisabler(ILootCondition[] conds, List<ResourceLocation> fishingRods) {
 		super(conds);
 		this.fishingRods = fishingRods;
@@ -80,7 +80,7 @@ public class EnchantmentedInMEDisabler extends LootModifier {
 			JsonObject jObject = makeConditions(instance.conditions);
 			JsonArray list = new JsonArray();
 			for (ResourceLocation fishingRodResourceLocation : instance.fishingRods)
-				list.add(fishingRodResourceLocation.toString()); 
+				list.add(fishingRodResourceLocation.toString());
 			jObject.add("fishing_rods_affected", list);
 			return jObject;
 		}

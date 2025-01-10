@@ -16,7 +16,6 @@ import lotr.common.world.map.CustomWaypointStructureHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -60,7 +59,7 @@ public class MixinRedBookItem {
 				}
 
 				boolean isCompleteStructure = CustomWaypointStructureHandler.INSTANCE.isFocalPointOfCompletableStructure(sWorld, pos, msg -> {
-					LOTRUtil.sendMessage(player, (ITextComponent) msg);
+					LOTRUtil.sendMessage(player, msg);
 				});
 				if (isCompleteStructure) {
 					CustomWaypointStructureHandler.INSTANCE.setPlayerClickedOnBlockToCreate(player, pos);

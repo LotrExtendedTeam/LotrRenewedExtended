@@ -22,7 +22,8 @@ public class ExtendedHiredWaterAvoidingRandomWalkingGoal extends WaterAvoidingRa
         this.hirable = hirable;
     }
 
-    public boolean canUse() {
+    @Override
+	public boolean canUse() {
         if (!hirable.isFollowing()) {
             return false;
         }

@@ -26,10 +26,12 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<ExtendedBlockBreakTrigger.Instance> {
 	private static final ResourceLocation ID = new ResourceLocation("extended", "break_block");
 
+	@Override
 	public ResourceLocation getId() {
 		return ID;
 	}
 
+	@Override
 	public ExtendedBlockBreakTrigger.Instance createInstance(JsonObject pJson, EntityPredicate.AndPredicate pEntityPredicate, ConditionArrayParser pConditionsParser) {
 		Block block = deserializeBlock(pJson);
 		StatePropertiesPredicate statepropertiespredicate = StatePropertiesPredicate.fromJson(pJson.get("state"));
@@ -87,13 +89,14 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 				return false;
 			} else if (!this.brokenBlockState.matches(pState)) {
 				return false;
-			} else if (!this.brokenBlockLocation.matches(pLevel, (float)pPos.getX(), (float)pPos.getY(), (float)pPos.getZ())) {
+			} else if (!this.brokenBlockLocation.matches(pLevel, pPos.getX(), pPos.getY(), pPos.getZ())) {
 				return false;
 			} else {
 				return this.playerHeldItem.matches(pItem);
 			}
 		}
 
+		@Override
 		@SuppressWarnings("deprecation")
 		public JsonObject serializeToJson(ConditionArraySerializer pConditions) {
 			JsonObject jsonobject = super.serializeToJson(pConditions);

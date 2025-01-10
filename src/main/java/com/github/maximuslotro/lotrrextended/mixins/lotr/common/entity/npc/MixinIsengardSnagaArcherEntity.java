@@ -16,6 +16,6 @@ public class MixinIsengardSnagaArcherEntity{
 	@Final
 	@Mutable
 	@Shadow(remap=false)
-	private static final SpawnEquipmentTable DAGGERS = SpawnEquipmentTable.of(LOTRItems.STONE_DAGGER, LOTRItems.IRON_DAGGER, 
+	private static final SpawnEquipmentTable DAGGERS = SpawnEquipmentTable.of(LOTRItems.STONE_DAGGER, LOTRItems.IRON_DAGGER,
 			LOTRItems.BRONZE_DAGGER, LOTRItems.URUK_DAGGER, ExtendedItems.BONE_DAGGER);
 }

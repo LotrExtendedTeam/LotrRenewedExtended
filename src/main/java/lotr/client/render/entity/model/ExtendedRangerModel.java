@@ -2,6 +2,7 @@ package lotr.client.render.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;

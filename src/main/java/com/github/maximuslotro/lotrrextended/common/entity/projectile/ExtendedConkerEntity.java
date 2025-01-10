@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedConkerEntity extends ProjectileItemEntity{
-	
+
 
 	public ExtendedConkerEntity(World p_i48541_8_, double p_i48541_2_, double p_i48541_4_, double p_i48541_6_) {
 		super(ExtendedEntities.THROWN_CONKER.get(), p_i48541_2_, p_i48541_4_, p_i48541_6_, p_i48541_8_);
@@ -32,7 +32,7 @@ public class ExtendedConkerEntity extends ProjectileItemEntity{
 	protected float getGravity() {
 		return 0.04F;
 	}
-	  
+
 	@Override
 	protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
 		super.onHitEntity(p_213868_1_);

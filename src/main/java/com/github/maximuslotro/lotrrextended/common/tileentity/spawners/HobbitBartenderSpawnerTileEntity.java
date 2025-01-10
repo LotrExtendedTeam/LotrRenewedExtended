@@ -11,6 +11,7 @@ import lotr.common.init.ExtendedTileEntities;
  * @deprecated
  * @since beta-1.6
  * */
+@Deprecated
 public class HobbitBartenderSpawnerTileEntity extends ExtendedStructureSpawnerTileEntity<HobbitBartenderSpawnerTileEntity, ExtendedHobbitBartenderEntity>{
 
 	public HobbitBartenderSpawnerTileEntity() {

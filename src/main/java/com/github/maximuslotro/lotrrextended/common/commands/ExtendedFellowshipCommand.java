@@ -184,21 +184,21 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 														)
 												)
 										)
-								)				
+								)
 						)
 				);
 	}
-	
+
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_USER = (ctx, builder) -> {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
-    
+
 	public static final SuggestionProvider<CommandSource> SUGGEST_INVITES_USER = (ctx, builder) -> {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
 		return ISuggestionProvider.suggest(fellowshipData.listAllInviteNames(), builder);
 	};
-    
+
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_PLAYER = (ctx, builder) -> {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(EntityArgument.getPlayer(ctx, "player"));
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);

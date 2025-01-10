@@ -13,13 +13,13 @@ import net.minecraft.item.Items;
 
 
 public class MistyMountainsAdvancementsProvider extends BaseAdvancementType{
-	private static final List<PreRegisteredLOTRBiome> MISTY_MOUNTAIN_BIOMES = ImmutableList.of(LOTRBiomes.MISTY_MOUNTAINS, 
+	private static final List<PreRegisteredLOTRBiome> MISTY_MOUNTAIN_BIOMES = ImmutableList.of(LOTRBiomes.MISTY_MOUNTAINS,
 			LOTRBiomes.MISTY_MOUNTAINS_FOOTHILLS);
 
 	@Override
 	public void generateAdvancements() {
 		Advancement mm = build(true, data(Items.SNOW_BLOCK, "the_misty_mountains_cold", true, FrameType.TASK, true, true, false)
-				.setTitle("The Mountains Cold").setDescription("Enter the Misty Mountains."), 
+				.setTitle("The Mountains Cold").setDescription("Enter the Misty Mountains."),
 				addBiomeTriggers(make(), MISTY_MOUNTAIN_BIOMES));
 	}
 

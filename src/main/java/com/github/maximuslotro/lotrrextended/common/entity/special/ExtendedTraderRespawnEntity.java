@@ -93,7 +93,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(this.level.isClientSide()) {
 			this.spinO = this.spin;
 			// Monster Spawner Logic
-			this.spin = (this.spin + (double)(1000.0F / (float)getTickpercentage())) % 360.0D;
+			this.spin = (this.spin + 1000.0F / getTickpercentage()) % 360.0D;
 		}
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
@@ -251,7 +251,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		this.getEntityData().define(DATA_SPAWNER_TYPE, "empty");
 		this.getEntityData().define(TICKPERCENTAGE, 3600);
 	}
-	  
+
 	@Override
 	public boolean canChangeDimensions() {
 		return false;

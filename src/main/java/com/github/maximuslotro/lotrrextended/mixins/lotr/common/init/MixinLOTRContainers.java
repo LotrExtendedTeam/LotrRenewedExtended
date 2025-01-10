@@ -2,8 +2,6 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,6 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
 
 import lotr.common.init.ExtendedContainers;
@@ -32,7 +32,7 @@ public class MixinLOTRContainers {
 	@Shadow(remap = false)
 	@Final
 	public static DeferredRegister<ContainerType<?>> CONTAINERS;
-	
+
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedContainers(CallbackInfo ci) {
 		ExtendedContainers.COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> {

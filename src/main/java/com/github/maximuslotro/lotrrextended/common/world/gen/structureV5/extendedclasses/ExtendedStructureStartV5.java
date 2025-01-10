@@ -28,7 +28,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
 
 	public abstract String getLocation();
-	
+
 	public ExtendedStructureStartV5(Structure<C> feature, int chunkX, int chunkZ, MutableBoundingBox boundingBox, int references, long seed) {
 		super(feature, chunkX, chunkZ, boundingBox, references, seed);
 	}
@@ -42,11 +42,11 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
                 new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                		.get(new ResourceLocation(LotrExtendedMod.MODID, getLocation())), maxDepth()), AbstractVillagePiece::new, 
+                		.get(new ResourceLocation(LotrExtendedMod.MODID, getLocation())), maxDepth()), AbstractVillagePiece::new,
                 chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 
         this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
-        
+
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();
 //        int zOffset = blockpos.getZ() - structureCenter.getZ();

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.render;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;

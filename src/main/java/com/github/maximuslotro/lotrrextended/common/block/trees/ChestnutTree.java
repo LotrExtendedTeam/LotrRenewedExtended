@@ -11,7 +11,7 @@ public class ChestnutTree extends PartyableTree {
 	@Override
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random rand, boolean bees) {
 		if (rand.nextInt(10) == 0)
-			return bees ? ExtendedBiomeFeatures.chestnutFancyBees() : ExtendedBiomeFeatures.chestnutFancy(); 
+			return bees ? ExtendedBiomeFeatures.chestnutFancyBees() : ExtendedBiomeFeatures.chestnutFancy();
 		return bees ? ExtendedBiomeFeatures.chestnutBees() : ExtendedBiomeFeatures.chestnut();
 	}
 

@@ -1,8 +1,19 @@
 package lotr.common.entity.npc;
 
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import lotr.common.entity.npc.ai.goal.*;
+
+import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtByTargetGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -11,7 +22,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -32,12 +47,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
 
 public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedHirableEntity {
 
@@ -115,27 +124,33 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.setTame(false);
     }
 
-    public void updateFeetSlot(ItemStack stack) {
+    @Override
+	public void updateFeetSlot(ItemStack stack) {
         entityData.set(EQUIPMENT_FEET, stack);
     }
 
-    public void updateHeadSlot(ItemStack stack) {
+    @Override
+	public void updateHeadSlot(ItemStack stack) {
         entityData.set(EQUIPMENT_HEAD, stack);
     }
 
-    public void updateChestSlot(ItemStack stack) {
+    @Override
+	public void updateChestSlot(ItemStack stack) {
         entityData.set(EQUIPMENT_CHEST, stack);
     }
 
-    public void updateLegsSlot(ItemStack stack) {
+    @Override
+	public void updateLegsSlot(ItemStack stack) {
         entityData.set(EQUIPMENT_LEGS, stack);
     }
 
-    public void updateMainhandSlot(ItemStack stack) {
+    @Override
+	public void updateMainhandSlot(ItemStack stack) {
         entityData.set(EQUIPMENT_MAINHAND, stack);
     }
 
-    public void updateOffhandSlot(ItemStack stack) {
+    @Override
+	public void updateOffhandSlot(ItemStack stack) {
         entityData.set(EQUIPMENT_OFFHAND, stack);
     }
 
@@ -155,7 +170,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.addAttackGoal(2);
     }
 
-    public Inventory getCustomInventory() {
+    @Override
+	public Inventory getCustomInventory() {
         return inventory;
     }
 
@@ -166,7 +182,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         return stack;
     }
 
-    protected void defineSynchedData() {
+    @Override
+	protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
@@ -194,26 +211,30 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return BreeGuardEntity.regAttrs()
+        return AbstractMannishEntity.regAttrs()
                 .add(Attributes.FOLLOW_RANGE, 20.0D)
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 1.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.32D);
     }
 
-    public void setExpLvl(int lvl) {
+    @Override
+	public void setExpLvl(int lvl) {
         this.entityData.set(LVL, lvl);
     }
 
-    public int getExpLvl() {
+    @Override
+	public int getExpLvl() {
         return this.entityData.get(LVL);
     }
 
-    public void setMobKills(int kills) {
+    @Override
+	public void setMobKills(int kills) {
         this.entityData.set(KILLS, kills);
     }
 
-    public int getMobKills() {
+    @Override
+	public int getMobKills() {
         return this.entityData.get(KILLS);
     }
 
@@ -229,7 +250,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
                 new StringTextComponent(getPersonalInfo().getName()));
     }
 
-    public ItemStack checkFood() {
+    @Override
+	public ItemStack checkFood() {
         for (int i = 0; i < 9; ++i) {
             ItemStack itemstack = this.inventory.getItem(i);
             if (itemstack.isEdible()) {
@@ -239,23 +261,28 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         return ItemStack.EMPTY;
     }
 
-    public void setCurrentXp(float currentXp) {
+    @Override
+	public void setCurrentXp(float currentXp) {
         this.entityData.set(CURRENT_XP, currentXp);
     }
 
-    public float getCurrentXp() {
+    @Override
+	public float getCurrentXp() {
         return this.entityData.get(CURRENT_XP);
     }
 
-    public boolean isInventoryOpen() {
+    @Override
+	public boolean isInventoryOpen() {
         return this.entityData.get(INVENTORY_OPEN);
     }
 
-    public boolean isEquipmentOpen() {
+    @Override
+	public boolean isEquipmentOpen() {
         return this.entityData.get(EQUIPMENT_OPEN);
     }
 
-    public void setMaxXp(float maxXp) {
+    @Override
+	public void setMaxXp(float maxXp) {
         this.entityData.set(MAX_XP, maxXp);
     }
 
@@ -269,19 +296,23 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.entityData.set(INVENTORY_OPEN, isOpen);
     }
 
-    public void setEquipmentOpen(boolean isOpen) {
+    @Override
+	public void setEquipmentOpen(boolean isOpen) {
         this.entityData.set(EQUIPMENT_OPEN, isOpen);
     }
 
-    public float getMaxXp() {
+    @Override
+	public float getMaxXp() {
         return this.entityData.get(MAX_XP);
     }
 
-    public void setBaseHealth(int health) {
+    @Override
+	public void setBaseHealth(int health) {
         this.entityData.set(BASE_HEALTH, health);
     }
 
-    public int getBaseHealth() {
+    @Override
+	public int getBaseHealth() {
         return this.entityData.get(BASE_HEALTH);
     }
 
@@ -302,7 +333,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.entityData.set(PATROLLING, patrolling);
     }
 
-    public boolean isAlliedTo(Entity p_184191_1_) {
+    @Override
+	public boolean isAlliedTo(Entity p_184191_1_) {
         if (this.isTame()) {
             LivingEntity livingentity = this.getOwner();
             if (p_184191_1_ == livingentity) {
@@ -317,7 +349,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         return super.isAlliedTo(p_184191_1_);
     }
 
-    @Nullable
+    @Override
+	@Nullable
     public UUID getOwnerUUID() {
         return this.entityData.get(DATA_OWNERUUID_ID).orElse((UUID)null);
     }
@@ -344,11 +377,13 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
-    public boolean wantsToAttack(LivingEntity p_142018_1_, LivingEntity p_142018_2_) {
+    @Override
+	public boolean wantsToAttack(LivingEntity p_142018_1_, LivingEntity p_142018_2_) {
         return true;
     }
 
-    public void addAdditionalSaveData(CompoundNBT tag) {
+    @Override
+	public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         if (this.getOwnerUUID() != null) {
             tag.putUUID("Owner", this.getOwnerUUID());
@@ -380,11 +415,13 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         return this.entityData.get(TMP_LAST_HEALTH);
     }
 
-    public boolean isFollowing() {
+    @Override
+	public boolean isFollowing() {
         return this.entityData.get(FOLLOWING);
     }
 
-    public boolean isPatrolling() {
+    @Override
+	public boolean isPatrolling() {
         return this.entityData.get(PATROLLING);
     }
 
@@ -398,7 +435,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         return getHealth();
     }
 
-    public boolean isAlert() {
+    @Override
+	public boolean isAlert() {
         return this.entityData.get(ALERT);
     }
 
@@ -407,11 +445,13 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         return getId();
     }
 
-    public boolean isStationary() {
+    @Override
+	public boolean isStationary() {
         return this.entityData.get(STATIONARY);
     }
 
-    public void setStationary(boolean stationary) {
+    @Override
+	public void setStationary(boolean stationary) {
         this.entityData.set(STATIONARY, stationary);
     }
 
@@ -434,7 +474,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
     }
 
-    @Nullable
+    @Override
+	@Nullable
     public LivingEntity getOwner() {
         try {
             UUID uuid = this.getOwnerUUID();
@@ -444,7 +485,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
     }
 
-    public void readAdditionalSaveData(CompoundNBT tag) {
+    @Override
+	public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
         UUID uuid;
@@ -504,7 +546,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
     }
 
-    public void tick() {
+    @Override
+	public void tick() {
         // heal
         if (lastHealed == HEAL_RATE)  {
             if (this.getHealth() < this.getMaxHealth()) this.setHealth(this.getHealth() + 1);
@@ -524,12 +567,14 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         super.tick();
     }
 
-    public void die(DamageSource p_70645_1_) {
+    @Override
+	public void die(DamageSource p_70645_1_) {
         ExtendedHiredUnitHelper.die(this.level, p_70645_1_, this);
         super.die(p_70645_1_);
     }
 
-    public boolean isTame() {
+    @Override
+	public boolean isTame() {
         return (this.entityData.get(DATA_FLAGS_ID) & 4) != 0;
     }
 
@@ -648,9 +693,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         ModifiableAttributeInstance attributeInstance = this.getAttribute(Attributes.MAX_HEALTH);
         Set<AttributeModifier> modifiers = attributeInstance.getModifiers();
         if (!modifiers.isEmpty()) {
-            Iterator<AttributeModifier> iterator = modifiers.iterator();
-            while (iterator.hasNext()) {
-                AttributeModifier attributeModifier = iterator.next();
+            for (AttributeModifier attributeModifier : modifiers) {
                 if (attributeModifier != null && attributeModifier.getName().equals(name)) {
                     this.getAttribute(Attributes.MAX_HEALTH).removeModifier(attributeModifier);
                 }

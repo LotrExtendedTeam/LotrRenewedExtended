@@ -1,9 +1,17 @@
 package lotr.common.entity.npc;
 
-import lotr.common.init.ExtendedItems;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
-import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
@@ -15,7 +23,12 @@ import lotr.common.util.representation.ExtendedTradeEntry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -30,10 +43,6 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-
-import static lotr.common.item.VesselDrinkItem.Potency;
-
-import java.util.*;
 
 /**
  * @author RichardB122
@@ -55,7 +64,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
             new ExtendedTradeEntry(new ItemStack(Items.MUTTON), 2, 4, 128), new ExtendedTradeEntry(new ItemStack(Items.CHICKEN), 2, 4, 128),
             new ExtendedTradeEntry(new ItemStack(Items.RABBIT), 2, 4, 128), new ExtendedTradeEntry(new ItemStack(ExtendedItems.RAW_DUCK.get()), 2, 4, 128),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_PLATE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_MUG.get()), 1, 1),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1, 160), new ExtendedTradeEntry(new ItemStack(Items.POTATO, 3), 1, 1, 128), 
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1, 160), new ExtendedTradeEntry(new ItemStack(Items.POTATO, 3), 1, 1, 128),
             new ExtendedTradeEntry(new ItemStack(Items.COD), 2, 3, 128), new ExtendedTradeEntry(new ItemStack(Items.SALMON), 2, 3, 128),
             new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 32), new ExtendedTradeEntry(new ItemStack(Items.COAL, 2), 1, 1, 128),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.SALT.get()), 8, 13, 128), new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16),
@@ -66,10 +75,10 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     private final ExtendedTradeEntries HOBBIT_BARTENDER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
             new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_PORKCHOP), 5, 9, 32),
             new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 5, 8, 32),
-            new ExtendedTradeEntry(new ItemStack(Items.COOKED_RABBIT), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(ExtendedItems.COOKED_DUCK.get()), 5, 8, 32), 
+            new ExtendedTradeEntry(new ItemStack(Items.COOKED_RABBIT), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(ExtendedItems.COOKED_DUCK.get()), 5, 8, 32),
             new ExtendedTradeEntry(new ItemStack(Items.BREAD), 4, 6, 40), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED.get(), 6), 5, 8, 64),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.SMOKING_PIPE.get()), 11, 19, 8), new ExtendedTradeEntry(new ItemStack(LOTRItems.WOODEN_MUG.get()), 2, 3, 64),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.CERAMIC_MUG.get()), 2, 3, 64), new ExtendedTradeEntry(new ItemStack(Items.BAKED_POTATO, 2), 5, 9, 32), 
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.CERAMIC_MUG.get()), 2, 3, 64), new ExtendedTradeEntry(new ItemStack(Items.BAKED_POTATO, 2), 5, 9, 32),
             new ExtendedTradeEntry(new ItemStack(Items.COOKED_SALMON), 5, 8, 32), new ExtendedTradeEntry(new ItemStack(Items.COOKED_COD), 5, 8, 32),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CHOCOLATE_DRINK.get()), 3, 5, 20), new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_JUICE.get()), 5, 8, 20),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.MUSHROOM_STEW), 8, 13, 8),
@@ -103,7 +112,8 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
     }
 
     // Remove, drink, smoke and eat AIs
-    protected void addNPCAI() {
+    @Override
+	protected void addNPCAI() {
         ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
         this.getNavigation().setCanFloat(true);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
@@ -112,7 +122,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         this.addNPCTargetingAI();
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<OrcEntity>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, OrcEntity.class, 12.0F, 1.5, 1.8));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.6));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(10, new ExtendedInteractableTalkToCurrentGoal(this, this));
@@ -134,7 +144,8 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
-    public boolean canTradeWith(PlayerEntity player) {
+    @Override
+	public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
     }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -332,6 +343,6 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;		
+		itemsSoldByTrader = trades;
 	}
 }

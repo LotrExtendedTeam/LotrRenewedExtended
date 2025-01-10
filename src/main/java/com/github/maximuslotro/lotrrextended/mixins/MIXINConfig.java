@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 public class MIXINConfig implements IMixinConfigPlugin {
 
-	protected static TreeSet<String> injectedPatches = new TreeSet<String>();
+	protected static TreeSet<String> injectedPatches = new TreeSet<>();
 	protected static boolean isBrokenJavaFutureVersions = false;
 
 	@Override

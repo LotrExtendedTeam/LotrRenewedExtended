@@ -37,7 +37,7 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 		this.entityProvider = entityProvider;
 		this.minSpawn = minSpawn;
 		this.maxSpawn = maxSpawn;
-		
+
 	}
 
 	public List<EntityType<?>> getSpawns(Random random){
@@ -56,6 +56,7 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 		return entityProvider;
 	}
 	public static class Serializer implements JsonDeserializer<ExtendedStructureEntitySpawnerEntry>, JsonSerializer<ExtendedStructureEntitySpawnerEntry> {
+		@Override
 		public ExtendedStructureEntitySpawnerEntry deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedStructureEntitySpawnerEntry");
 			int weight = jsonobject.get("weight").getAsInt();
@@ -92,6 +93,7 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 			return new ExtendedStructureEntitySpawnerEntry(entityProvider, weight, minSpawn, maxSpawn);
 		}
 
+		@Override
 		public JsonElement serialize(ExtendedStructureEntitySpawnerEntry entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("weight", entitySpawner.weight);

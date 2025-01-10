@@ -1,9 +1,12 @@
 package com.github.maximuslotro.lotrrextended.client.eventhandlers;
 
+import static net.minecraftforge.client.ForgeHooksClient.isNameplateInRenderDistance;
+
 import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotrrextended.client.render.HiredUnitHpBar;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -12,8 +15,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import static net.minecraftforge.client.ForgeHooksClient.isNameplateInRenderDistance;
 
 public class RenderHiredUnitHealthbars {
 

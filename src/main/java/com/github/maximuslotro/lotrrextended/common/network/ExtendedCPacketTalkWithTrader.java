@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.Objects;
+import java.util.Random;
+import java.util.function.Supplier;
+
 import lotr.common.config.LOTRConfig;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.stat.LOTRStats;
@@ -7,10 +11,6 @@ import lotr.common.util.LOTRUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-
-import java.util.Objects;
-import java.util.Random;
-import java.util.function.Supplier;
 
 /**
  * @author RichardB122

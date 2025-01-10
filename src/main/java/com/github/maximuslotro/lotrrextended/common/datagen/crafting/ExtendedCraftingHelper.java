@@ -54,7 +54,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
     public static final ITag.INamedTag<Item> BRONZE_INGOT = ItemTags.bind("forge:ingots/bronze");
     public static final ITag.INamedTag<Item> IRON_ORE = ItemTags.bind("forge:ores/iron");
     public static final ITag.INamedTag<Item> IRON_INGOT = ItemTags.bind("forge:ingots/iron");
-    
+
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
 	}
@@ -82,25 +82,25 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			Supplier<? extends Block> blockToBeCrafted,
 			Supplier<? extends Block> stairsToBeCrafted,
 			Supplier<? extends Block> slabToBeCrafted,
-			Supplier<? extends Block> wallToBeCrafted, 
+			Supplier<? extends Block> wallToBeCrafted,
 			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		make2x2BlockRecipe(consumer, blockToBeCrafted, resource, table);
 		makeStairRecipe(consumer, stairsToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
 		makeSlabRecipe(consumer, slabToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
 		makeWallRecipe(consumer, wallToBeCrafted, ()->blockToBeCrafted.get().asItem(), table);
 	}
-	protected void makeStairSlabWallRecipe(Consumer<IFinishedRecipe> consumer, 
+	protected void makeStairSlabWallRecipe(Consumer<IFinishedRecipe> consumer,
 			Supplier<? extends Block> stairsToBeCrafted,
 			Supplier<? extends Block> slabToBeCrafted,
-			Supplier<? extends Block> wallToBeCrafted, 
+			Supplier<? extends Block> wallToBeCrafted,
 			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		makeStairRecipe(consumer, stairsToBeCrafted, resource, table);
 		makeSlabRecipe(consumer, slabToBeCrafted, resource, table);
 		makeWallRecipe(consumer, wallToBeCrafted, resource, table);
 	}
-	protected void makeStairSlabRecipe(Consumer<IFinishedRecipe> consumer, 
+	protected void makeStairSlabRecipe(Consumer<IFinishedRecipe> consumer,
 			Supplier<? extends Block> stairsToBeCrafted,
-			Supplier<? extends Block> slabToBeCrafted, 
+			Supplier<? extends Block> slabToBeCrafted,
 			Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		makeStairRecipe(consumer, stairsToBeCrafted, resource, table);
 		makeSlabRecipe(consumer, slabToBeCrafted, resource, table);
@@ -380,8 +380,8 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makePlanksFromBlocksRecipe(Consumer<IFinishedRecipe> consumer, 
-			Supplier<? extends Item> planks, 
+	protected void makePlanksFromBlocksRecipe(Consumer<IFinishedRecipe> consumer,
+			Supplier<? extends Item> planks,
 			Supplier<? extends Item> log_slab,
 			Supplier<? extends Item> stripped_log_slab,
 			Supplier<? extends Item> branch,
@@ -453,8 +453,8 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makePlanksFromBlocksRecipeNoBranchWood(Consumer<IFinishedRecipe> consumer, 
-			Supplier<? extends Item> planks, 
+	protected void makePlanksFromBlocksRecipeNoBranchWood(Consumer<IFinishedRecipe> consumer,
+			Supplier<? extends Item> planks,
 			Supplier<? extends Item> log_slab,
 			Supplier<? extends Item> stripped_log_slab, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = planks.get().getRegistryName().getPath();
@@ -702,7 +702,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		CookingRecipeBuilder.smelting(
-				Ingredient.of(resource.get()), 
+				Ingredient.of(resource.get()),
 				blockToBeCrafted.get(), 0.1F, 200)
 		.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
@@ -1227,7 +1227,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeToolsRecipe(Consumer<IFinishedRecipe> consumer, 
+	protected void makeToolsRecipe(Consumer<IFinishedRecipe> consumer,
 			Supplier<? extends Item> pickaxeToBeCrafted,
 			Supplier<? extends Item> shovelToBeCrafted,
 			Supplier<? extends Item> axeToBeCrafted,
@@ -1350,7 +1350,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		makeAxeRecipe(consumer, axeToBeCrafted, resource, resourceName, table);
 		makeHoeRecipe(consumer, hoeToBeCrafted, resource, resourceName, table);
 	}
-	
+
 	protected void makePickaxeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);

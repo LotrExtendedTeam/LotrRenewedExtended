@@ -9,7 +9,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class ExtendedItems {
 	public static Map<String, RegistryObject<Item>> REGISTEREDITEMS = new HashMap<>();
 	public static Map<String, RegistryObject<Item>> REGISTEREDBLOCKITEMS = new HashMap<>();
-	
+
 	public static RegistryObject<Item> COMMANDHORN;
 
 	public static RegistryObject<Item> ITHILDIN;
@@ -280,7 +280,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_CHESTPLATE;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_LEGGINGS;
 	public static RegistryObject<Item> GOLDEN_TAURETHRIM_BOOTS;
-	
+
 	public static RegistryObject<Item> DOL_GULDUR_AXE;
 	public static RegistryObject<Item> DOL_GULDUR_SHOVEL;
 	public static RegistryObject<Item> DOL_GULDUR_PICKAXE;
@@ -292,7 +292,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DOL_GULDUR_HOE;
 	public static RegistryObject<Item> DOL_GULDUR_SPEAR;
 	public static RegistryObject<Item> DOL_GULDUR_DAGGER;
-	
+
 	public static RegistryObject<Item> ANGMAR_AXE;
 	public static RegistryObject<Item> ANGMAR_SHOVEL;
 	public static RegistryObject<Item> ANGMAR_PICKAXE;
@@ -347,7 +347,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> PLUM;
 	public static RegistryObject<Item> COOKED_DUCK;
 	public static RegistryObject<Item> RAW_DUCK;
-	
+
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Item> TAURETHRIM_BRICK;
 	public static RegistryObject<Item> TAURETHRIM_BRICK_SLAB;
@@ -433,7 +433,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_SLAB;
 	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_STAIRS;
 	public static RegistryObject<Item> FLOWERY_RHUNIC_BRICK_WALL;
-	
+
 	public static RegistryObject<Item> MORWAITH_CRAFTING_TABLE;
 
 	public static RegistryObject<Item> NORTHERN_ORC_CRAFTING_TABLE;
@@ -531,12 +531,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DRYSTONE_WALL;
 	public static RegistryObject<Item> COBBLED_DRYSTONE;
 	public static RegistryObject<Item> CUT_DRYSTONE;
-	
+
 	public static RegistryObject<Item> MOSSY_DRYSTONE;
 	public static RegistryObject<Item> MOSSY_DRYSTONE_SLAB;
 	public static RegistryObject<Item> MOSSY_DRYSTONE_STAIRS;
 	public static RegistryObject<Item> MOSSY_DRYSTONE_WALL;
-	
+
 	public static RegistryObject<Item> MORGUL_TORCH;
 
 	public static RegistryObject<Item> SILVER_COIN_ONE;

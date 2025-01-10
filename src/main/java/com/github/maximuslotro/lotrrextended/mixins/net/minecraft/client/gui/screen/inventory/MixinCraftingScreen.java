@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.gui.screen.inventory;
 
+import org.spongepowered.asm.mixin.Mixin;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
@@ -13,8 +15,6 @@ import net.minecraft.inventory.container.WorkbenchContainer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import org.spongepowered.asm.mixin.Mixin;
 
 @OnlyIn(Dist.CLIENT)
 @Mixin(CraftingScreen.class)

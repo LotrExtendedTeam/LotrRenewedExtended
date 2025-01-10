@@ -12,6 +12,7 @@ public class NullEntityRenderer extends EntityRenderer<Entity>{
 		super(p_i46179_1_);
 	}
 
+	@Override
 	public boolean shouldRender(Entity pLivingEntity, ClippingHelper pCamera, double pCamX, double pCamY, double pCamZ) {
 		return false;
 	}

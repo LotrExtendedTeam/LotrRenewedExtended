@@ -1,6 +1,14 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import net.minecraft.block.*;
+import java.util.Random;
+
+import lotr.common.event.CompostingHelper;
+import lotr.common.init.LOTRBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.GlassBlock;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.LivingEntity;
@@ -24,11 +32,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
-
-import java.util.Random;
-
-import lotr.common.event.CompostingHelper;
-import lotr.common.init.LOTRBlocks;
 
 public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;

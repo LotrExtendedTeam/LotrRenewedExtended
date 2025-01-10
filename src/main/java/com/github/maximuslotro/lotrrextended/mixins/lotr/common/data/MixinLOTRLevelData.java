@@ -7,14 +7,13 @@ import java.util.UUID;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketSendServerSettings;
-
-import org.spongepowered.asm.mixin.injection.At;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedFellowshipDataModule;
@@ -33,7 +32,7 @@ import net.minecraft.world.server.ServerWorld;
 
 @Mixin(LOTRLevelData.class)
 public class MixinLOTRLevelData {
-	
+
 	@Inject(method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
 	public void saveFactionData(ServerWorld world, CallbackInfo info) {
 		ExtendedFellowshipHolderServer.saveAll(world);
@@ -47,7 +46,7 @@ public class MixinLOTRLevelData {
 	@Shadow(remap=false)
 	public LOTRPlayerData getData(PlayerEntity player) {return null;}
 
-	
+
 	@Inject(method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
 	public void sendLoginPacket(ServerPlayerEntity player, CallbackInfo ci) {
 		ExtendedSPacketSendServerSettings packet = new ExtendedSPacketSendServerSettings();
@@ -65,7 +64,7 @@ public class MixinLOTRLevelData {
 		MinecraftServer server = world.getServer();
 		boolean isOp = server.getPlayerList().isOp(targetPlayer.getGameProfile());
 		boolean creative = targetPlayer.abilities.instabuild;
-		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<ExtendedFellowship>();
+		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<>();
 		ExtendedFellowshipDataModule data = ((ExtendedLOTRPlayerData)getData(targetPlayer)).getFellowshipData();
 		for (UUID fsID : data.getFellowshipIDs()) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(world, fsID);

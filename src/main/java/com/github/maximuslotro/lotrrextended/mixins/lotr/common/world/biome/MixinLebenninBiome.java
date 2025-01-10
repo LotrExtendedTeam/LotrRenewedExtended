@@ -25,7 +25,7 @@ public class MixinLebenninBiome {
 				LOTRBiomeFeatures.beech(), 1500, LOTRBiomeFeatures.beechFancy(), 500, LOTRBiomeFeatures.beechBees(), 15,
 				LOTRBiomeFeatures.beechFancyBees(), 5, LOTRBiomeFeatures.maple(), 500, LOTRBiomeFeatures.mapleBees(), 5,
 				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1,
-				LOTRBiomeFeatures.pearBees(), 1, 
+				LOTRBiomeFeatures.pearBees(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1});
 		LOTRBiomeFeatures.addGrass((LebenninBiome)(Object)this, builder, 12, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 4, GrassBlends.DOUBLE_STANDARD);

@@ -1,6 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
+
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
+
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
@@ -14,11 +20,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class ExtendedCPacketOpenHiredEquipmentMenu {
     private final int entityId;
@@ -96,17 +97,11 @@ public class ExtendedCPacketOpenHiredEquipmentMenu {
         }
 
         // if either of the stacks is empty, they're not equal
-        if (stack1.isEmpty() || stack2.isEmpty()) {
-            return false;
-        }
+
 
         // check item type
-        if (!stack1.getItem().equals(stack2.getItem())) {
-            return false;
-        }
-
         // check stack size
-        if (stack1.getCount() != stack2.getCount()) {
+        if (stack1.isEmpty() || stack2.isEmpty() || !stack1.getItem().equals(stack2.getItem()) || (stack1.getCount() != stack2.getCount())) {
             return false;
         }
 

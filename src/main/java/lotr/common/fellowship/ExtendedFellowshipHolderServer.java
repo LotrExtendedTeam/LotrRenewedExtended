@@ -12,7 +12,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedFellowshipHolderServer {
-	private static Map<UUID, ExtendedFellowship> fellowshipMap = new HashMap<UUID, ExtendedFellowship>();
+	private static Map<UUID, ExtendedFellowship> fellowshipMap = new HashMap<>();
 	public static boolean needsLoad = true;
 
 	private static File getSaveDir(ServerWorld world) {

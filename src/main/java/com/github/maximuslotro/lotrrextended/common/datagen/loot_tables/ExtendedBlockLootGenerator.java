@@ -9,11 +9,10 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -24,11 +23,12 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
@@ -82,8 +82,10 @@ import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
@@ -140,11 +142,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), BlockLootTables::createSlabItemTable);
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWallBlock) {
-				dropSelf(block.getValue().get());
-				continue;
-			}
-			if(block.getValue().get() instanceof ExtendedAncientStoneRuneBlock) {
+			if((block.getValue().get() instanceof LOTRWallBlock) || (block.getValue().get() instanceof ExtendedAncientStoneRuneBlock)) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -320,7 +318,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedFullBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> {
-					return createSinglePropConditionTable(p_218569_0_, ExtendedFullBedBlock.PART, BedPart.HEAD);
+					return createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD);
 				});
 				continue;
 			}
@@ -414,17 +412,17 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(blok, (p_241171_0_) -> {
 					return LootTable.lootTable()
 							.withPool(LootPool.lootPool()
-									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 3)))
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3)))
 									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))
 									.apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
 							.withPool(LootPool.lootPool()
-									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 2)))
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2)))
 									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
 							.withPool(LootPool.lootPool()
-									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 1)))
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 1)))
 									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
 							.withPool(LootPool.lootPool()
-									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryPlantBlock.AGE, 0)))
+									.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 0)))
 									.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()));
 				}
 						);
@@ -476,10 +474,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	protected Iterable<Block> getKnownBlocks() {
 		List<RegistryObject<Block>> filtered = new ArrayList<>();
 		for(Entry<String, RegistryObject<Block>> bl : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(bl.getValue().get() instanceof ExtendedSpawnerBlock){
-				continue;
-			}
-			if(bl.getValue().get() instanceof ExtendedGroupSpawnerBlock){
+			if((bl.getValue().get() instanceof ExtendedSpawnerBlock) || (bl.getValue().get() instanceof ExtendedGroupSpawnerBlock)){
 				continue;
 			}
 			filtered.add(bl.getValue());
@@ -493,11 +488,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 
 	protected void createCakePool(Block block){
 		add(block, (lamdaBlock) -> {
-			return LootTable.lootTable().withPool(applyExplosionCondition(lamdaBlock, 
+			return LootTable.lootTable().withPool(applyExplosionCondition(lamdaBlock,
 					LootPool.lootPool().setRolls(ConstantRange.exactly(1))
 					.add(ItemLootEntry.lootTableItem(lamdaBlock)
 							.when(BlockStateProperty.hasBlockStateProperties(lamdaBlock)
-									.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedCakeBlock.BITES, 0))))));
+									.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CakeBlock.BITES, 0))))));
 		});
 	}
 
@@ -510,7 +505,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	}
 
 	protected static LootTable.Builder createBannerDrop(Block banner) {
-		return LootTable.lootTable().withPool(applyExplosionCondition(banner, 
+		return LootTable.lootTable().withPool(applyExplosionCondition(banner,
 				LootPool.lootPool().setRolls(ConstantRange.exactly(1))
 				.when(BlockStateProperty.hasBlockStateProperties(banner).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedMEBannerBlock.HALF, DoubleBlockHalf.LOWER)))
 				.add(ItemLootEntry.lootTableItem(banner)
@@ -519,7 +514,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	}
 
 	protected static LootTable.Builder createWallBannerDrop(Block banner) {
-		return LootTable.lootTable().withPool(applyExplosionCondition(banner, 
+		return LootTable.lootTable().withPool(applyExplosionCondition(banner,
 				LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(banner)
 						.apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("ProtectionData", "ProtectionData"))
 						)));

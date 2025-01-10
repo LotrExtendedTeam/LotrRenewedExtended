@@ -1,10 +1,16 @@
 package lotr.common.entity.npc;
 
-import lotr.common.entity.npc.data.ExtendedFoodPools;
-
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.entity.npc.ai.goal.ExtendedRangerMeleeAttackGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedRangerRangedAttackGoal;
+import lotr.common.entity.npc.ai.goal.FriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
+import lotr.common.entity.npc.ai.goal.NPCEatGoal;
+import lotr.common.entity.npc.ai.goal.StargazingGoal;
+import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
+import lotr.common.entity.npc.data.ExtendedFoodPools;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
@@ -17,7 +23,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -138,7 +149,8 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         super.swing(p_184609_1_);
     }
 
-    public void performRangedAttack(LivingEntity target, float charge) {
+    @Override
+	public void performRangedAttack(LivingEntity target, float charge) {
         this.rangerArrowAttack(target, charge);
     }
 
@@ -210,11 +222,13 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         return this.entityData.get(AUTO_DECLOAK_IN);
     }
 
-    protected NPCFoodPool getEatPool() {
+    @Override
+	protected NPCFoodPool getEatPool() {
         return ExtendedFoodPools.RANGER;
     }
 
-    protected NPCFoodPool getDrinkPool() {
+    @Override
+	protected NPCFoodPool getDrinkPool() {
         return ExtendedFoodPools.RANGER_DRINK;
     }
 

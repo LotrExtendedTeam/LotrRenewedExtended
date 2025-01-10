@@ -50,8 +50,8 @@ public class ExtendedModelMorgulHelmet<E extends LivingEntity> extends ExtendedS
         spikes[7].yRot = -0.3490658503988659F;
 
 
-        for (int i = 0; i < spikes.length; ++i) {
-            head.addChild(spikes[i]);
+        for (ModelRenderer spike : spikes) {
+            head.addChild(spike);
         }
     }
 }

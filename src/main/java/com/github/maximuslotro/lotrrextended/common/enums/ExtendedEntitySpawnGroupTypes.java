@@ -5,7 +5,8 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.group.*;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.group.ExtendedStructureGroupSpawnerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.spawners.group.RangerCampAnimalsGroupSpawnerTileEntity;
 
 import net.minecraft.util.IStringSerializable;
 
@@ -16,7 +17,7 @@ import net.minecraft.util.IStringSerializable;
  * */
 public enum ExtendedEntitySpawnGroupTypes implements IStringSerializable {
 	RANGER_CAMP_ANIMALS(RangerCampAnimalsGroupSpawnerTileEntity::new);
-	
+
 	private final Supplier<? extends ExtendedStructureGroupSpawnerTileEntity<?>> supplier;
 	public static final ExtendedEntitySpawnGroupTypes[] LIST=values();
 
@@ -37,7 +38,7 @@ public enum ExtendedEntitySpawnGroupTypes implements IStringSerializable {
 	public ExtendedStructureGroupSpawnerTileEntity<?> getSupplierObject() {
 		return supplier != null ? supplier.get() : null;
 	}
-	
+
 	@Override
 	public String getSerializedName() {
 		return name().toLowerCase(Locale.ROOT).replace(' ', '_');

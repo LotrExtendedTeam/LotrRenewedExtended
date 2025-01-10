@@ -15,8 +15,8 @@ public class MixinUmbarBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] umbarTrees() {
-		return new Object[] { LOTRBiomeFeatures.oakDesert(), 10000, LOTRBiomeFeatures.oakDesertBees(), 10, 
-				LOTRBiomeFeatures.cedar(), 3000, LOTRBiomeFeatures.cypress(), 5000, 
+		return new Object[] { LOTRBiomeFeatures.oakDesert(), 10000, LOTRBiomeFeatures.oakDesertBees(), 10,
+				LOTRBiomeFeatures.cedar(), 3000, LOTRBiomeFeatures.cypress(), 5000,
 				ExtendedBiomeFeatures.plum(), 20, ExtendedBiomeFeatures.plumBees(), 1 };
 	}
 }

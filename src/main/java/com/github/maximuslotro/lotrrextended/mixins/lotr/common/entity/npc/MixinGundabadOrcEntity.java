@@ -20,17 +20,17 @@ public class MixinGundabadOrcEntity{
 	@Final
 	@Mutable
 	@Shadow(remap=false)
-	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(Items.STONE_SWORD, Items.STONE_AXE, Items.STONE_PICKAXE, 
-			LOTRItems.STONE_DAGGER, LOTRItems.STONE_SPEAR, Items.IRON_SWORD, Items.IRON_AXE, Items.IRON_PICKAXE, LOTRItems.IRON_DAGGER, 
-			LOTRItems.IRON_SPEAR, LOTRItems.BRONZE_SWORD, LOTRItems.BRONZE_AXE, LOTRItems.BRONZE_PICKAXE, LOTRItems.BRONZE_DAGGER, 
-			LOTRItems.BRONZE_SPEAR, LOTRItems.MORDOR_SCIMITAR, LOTRItems.MORDOR_AXE, LOTRItems.MORDOR_PICKAXE, LOTRItems.MORDOR_DAGGER, 
-			LOTRItems.MORDOR_SPEAR, ExtendedItems.BONE_SWORD, ExtendedItems.BONE_AXE, ExtendedItems.BONE_PICKAXE, ExtendedItems.BONE_DAGGER, 
+	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(Items.STONE_SWORD, Items.STONE_AXE, Items.STONE_PICKAXE,
+			LOTRItems.STONE_DAGGER, LOTRItems.STONE_SPEAR, Items.IRON_SWORD, Items.IRON_AXE, Items.IRON_PICKAXE, LOTRItems.IRON_DAGGER,
+			LOTRItems.IRON_SPEAR, LOTRItems.BRONZE_SWORD, LOTRItems.BRONZE_AXE, LOTRItems.BRONZE_PICKAXE, LOTRItems.BRONZE_DAGGER,
+			LOTRItems.BRONZE_SPEAR, LOTRItems.MORDOR_SCIMITAR, LOTRItems.MORDOR_AXE, LOTRItems.MORDOR_PICKAXE, LOTRItems.MORDOR_DAGGER,
+			LOTRItems.MORDOR_SPEAR, ExtendedItems.BONE_SWORD, ExtendedItems.BONE_AXE, ExtendedItems.BONE_PICKAXE, ExtendedItems.BONE_DAGGER,
 			ExtendedItems.BONE_SPEAR);
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable HELMETS = SpawnEquipmentTable.of(
-		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET, 
+		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
@@ -40,17 +40,17 @@ public class MixinGundabadOrcEntity{
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable CHESTPLATES = SpawnEquipmentTable.of(
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, 
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
 		ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.SILVER_WARG_CHESTPLATE);
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable LEGGINGS = SpawnEquipmentTable.of(
-		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS, 
+		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
 		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
 		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
 		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
@@ -60,14 +60,14 @@ public class MixinGundabadOrcEntity{
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable BOOTS = SpawnEquipmentTable.of(
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS, 
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
 		ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.SILVER_WARG_BOOTS);
 
-	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;", 
+	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
 	private IItemProvider injected(IItemProvider regularItem) {
 	  return ExtendedItems.GUNDABAD_SHIELD.get();

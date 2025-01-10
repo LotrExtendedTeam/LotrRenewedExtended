@@ -22,6 +22,7 @@ public class ExtendedVineBlock extends VineBlock{
 	/**
 	 * make grow delay twice vanilla
 	 */
+	@Override
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
 		// Extended Start
@@ -50,7 +51,7 @@ public class ExtendedVineBlock extends VineBlock{
 								pLevel.setBlock(blockpos2, this.defaultBlockState().setValue(getPropertyForFace(direction1), Boolean.valueOf(true)), 2);
 							} else if (flag1 && pLevel.isEmptyBlock(blockpos3) && isAcceptableNeighbour(pLevel, pPos.relative(direction4), direction1)) {
 								pLevel.setBlock(blockpos3, this.defaultBlockState().setValue(getPropertyForFace(direction1), Boolean.valueOf(true)), 2);
-							} else if ((double)pLevel.random.nextFloat() < 0.05D && isAcceptableNeighbour(pLevel, blockpos4.above(), Direction.UP)) {
+							} else if (pLevel.random.nextFloat() < 0.05D && isAcceptableNeighbour(pLevel, blockpos4.above(), Direction.UP)) {
 								pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(UP, Boolean.valueOf(true)), 2);
 							}
 						}

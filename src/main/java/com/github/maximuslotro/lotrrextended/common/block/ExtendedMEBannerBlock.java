@@ -22,9 +22,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -60,9 +60,9 @@ public class ExtendedMEBannerBlock extends Block {
 	private final BannerTypes type;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
-		Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
-		Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D), 
-		Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D), 
+		Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
+		Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
+		Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D),
 		Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {

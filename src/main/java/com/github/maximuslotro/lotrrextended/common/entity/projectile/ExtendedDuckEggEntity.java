@@ -37,15 +37,16 @@ public class ExtendedDuckEggEntity extends ProjectileItemEntity {
 	 * Handles an entity event fired from
 	 * {@link net.minecraft.world.level.Level#broadcastEntityEvent}.
 	 */
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte pId) {
 		if (pId == 3) {
 			for (int i = 0; i < 8; ++i) {
 				this.level.addParticle(
 						new ItemParticleData(ParticleTypes.ITEM, this.getItem()), this.getX(), this.getY(), this.getZ(),
-						((double) this.random.nextFloat() - 0.5D) * 0.08D,
-						((double) this.random.nextFloat() - 0.5D) * 0.08D,
-						((double) this.random.nextFloat() - 0.5D) * 0.08D);
+						(this.random.nextFloat() - 0.5D) * 0.08D,
+						(this.random.nextFloat() - 0.5D) * 0.08D,
+						(this.random.nextFloat() - 0.5D) * 0.08D);
 			}
 		}
 	}

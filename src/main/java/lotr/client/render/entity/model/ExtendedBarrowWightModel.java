@@ -3,14 +3,14 @@ package lotr.client.render.entity.model;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> extends BipedModel<E> {
+public class ExtendedBarrowWightModel<E extends ExtendedBarrowWightEntity> extends BipedModel<E> {
 	private final ModelRenderer helmet;
 	private final ModelRenderer skirt_r1;
 	private final ModelRenderer skirt_r2;
@@ -33,7 +33,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 		//head.texOffs(32, 0).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 11.0F, 8.0F, 0.0F, false);
 		head.texOffs(64, 44).addBox(-3.0F, -5.0F, -3.01F, 6.0F, 1.0F, 0.0F, 0.0F, false);
 		head.texOffs(0, 25).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 12.0F, 8.0F, 0.25F, false);
-		
+
 		head_Normal_Piece = new ModelRenderer(this);
 		head_Normal_Piece.texOffs(32, 19).addBox(-4.0F, -9.0F, -3.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
 		head.addChild(head_Normal_Piece);
@@ -228,7 +228,8 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 	}
 
 
-	protected void setupAttackAnimation(ExtendedBarrowWrightEntity p_230486_1_, float p_230486_2_) {
+	@Override
+	protected void setupAttackAnimation(ExtendedBarrowWightEntity p_230486_1_, float p_230486_2_) {
 		if (!(this.attackTime <= 0.0F)) {
 			for (HandSide handSide : HandSide.values()) {
 				ModelRenderer modelrenderer = this.getArm(handSide);
@@ -252,7 +253,7 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWrightEntity> exte
 				f = 1.0F - f;
 				float f1 = MathHelper.sin(f * (float) Math.PI);
 				float f2 = MathHelper.sin(this.attackTime * (float) Math.PI) * -(this.head.xRot - 0.7F) * 0.75F;
-				modelrenderer.xRot = (float) ((double) modelrenderer.xRot - ((double) f1 * 1.2D + (double) f2));
+				modelrenderer.xRot = (float) (modelrenderer.xRot - (f1 * 1.2D + f2));
 				modelrenderer.yRot += this.body.yRot * 2.0F;
 				modelrenderer.zRot += MathHelper.sin(this.attackTime * (float) Math.PI) * -0.4F;
 			}

@@ -36,7 +36,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 		if (rendertype != null) {
 			IVertexBuilder ivertexbuilder = pBuffer.getBuffer(rendertype);
 			this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-			if (ExtendedClientConfig.enableDevMode.get() && !pEntity.getCMinBlockPos().equals(BlockPos.ZERO) && !pEntity.getCMaxBlockPos().equals(BlockPos.ZERO)&& 
+			if (ExtendedClientConfig.enableDevMode.get() && !pEntity.getCMinBlockPos().equals(BlockPos.ZERO) && !pEntity.getCMaxBlockPos().equals(BlockPos.ZERO)&&
 					!pEntity.getSMinBlockPos().equals(BlockPos.ZERO) && !pEntity.getSMaxBlockPos().equals(BlockPos.ZERO)) {
 				IVertexBuilder lineBuilder = pBuffer.getBuffer(RenderType.lines());
 				BlockPos minPosC = pEntity.getCMinBlockPos();

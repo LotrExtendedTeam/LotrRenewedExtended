@@ -1,7 +1,10 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
 
+import java.util.function.Supplier;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
@@ -10,8 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.function.Supplier;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedItemRenderHelper<T extends TileEntity> extends ItemStackTileEntityRenderer {

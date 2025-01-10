@@ -22,7 +22,7 @@ public class MixinLivingEntity {
 			if (CalendarUtil.isAprilFools()) {
 				return;
 			}
-			((LivingEntity)(Object)this).setPos((double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.25D, (double)blockPos.getZ() + 0.5D);
+			((LivingEntity)(Object)this).setPos(blockPos.getX() + 0.5D, blockPos.getY() + 0.25D, blockPos.getZ() + 0.5D);
 			cl.cancel();
 		}
 	}

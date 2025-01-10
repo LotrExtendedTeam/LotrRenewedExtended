@@ -1,6 +1,7 @@
 package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.render.entity.model.ManModel;
 import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
 import lotr.common.init.ExtendedItems;
@@ -18,7 +19,8 @@ public class OddmentCollectorHeldCoinLayer extends LayerRenderer<ExtendedOddment
         super(renderer);
     }
 
-    public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, ExtendedOddmentCollectorEntity man, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    @Override
+	public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, ExtendedOddmentCollectorEntity man, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         matStack.pushPose();
 
         this.getParentModel().translateToHand(HandSide.LEFT, matStack);
@@ -29,7 +31,7 @@ public class OddmentCollectorHeldCoinLayer extends LayerRenderer<ExtendedOddment
 
         matStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
         ItemStack heldItem = new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), 1);
-        matStack.translate((double)((float)(1) / 16.0F), -0.3D, -0.05D);
+        matStack.translate((1) / 16.0F, -0.3D, -0.05D);
         Minecraft.getInstance().getItemInHandRenderer().renderItem(man, heldItem, ItemCameraTransforms.TransformType.GROUND, false, matStack, buf, packedLight);
         matStack.popPose();
     }

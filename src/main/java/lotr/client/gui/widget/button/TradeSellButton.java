@@ -41,7 +41,7 @@ public class TradeSellButton extends ImageButton {
         }
 
         RenderSystem.enableDepthTest();
-        blit(p_230431_1_, this.x, this.y, (float)this.xTexStart, (float) yLocation, this.width, this.height, this.textureWidth, this.textureHeight);
+        blit(p_230431_1_, this.x, this.y, this.xTexStart, yLocation, this.width, this.height, this.textureWidth, this.textureHeight);
         if (this.isHovered()) {
             this.renderToolTip(p_230431_1_, p_230431_2_, p_230431_3_);
         }

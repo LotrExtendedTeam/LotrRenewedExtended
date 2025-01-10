@@ -118,15 +118,18 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 	   @OnlyIn(Dist.CLIENT)
 	   public static TileEntityMerger.ICallback<ChestTileEntity, Float2FloatFunction> opennessCombiner(final IChestLid p_226917_0_) {
 	      return new TileEntityMerger.ICallback<ChestTileEntity, Float2FloatFunction>() {
-	         public Float2FloatFunction acceptDouble(ChestTileEntity p_225539_1_, ChestTileEntity p_225539_2_) {
+	         @Override
+			public Float2FloatFunction acceptDouble(ChestTileEntity p_225539_1_, ChestTileEntity p_225539_2_) {
 	        	 return p_225539_1_::getOpenNess;
 	         }
 
-	         public Float2FloatFunction acceptSingle(ChestTileEntity p_225538_1_) {
+	         @Override
+			public Float2FloatFunction acceptSingle(ChestTileEntity p_225538_1_) {
 	            return p_225538_1_::getOpenNess;
 	         }
 
-	         public Float2FloatFunction acceptNone() {
+	         @Override
+			public Float2FloatFunction acceptNone() {
 	            return p_226917_0_::getOpenNess;
 	         }
 	      };

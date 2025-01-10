@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
@@ -170,6 +170,7 @@ public class ExtendedFactionShapedRecipeBuilder {
 			this.tableTypeOBJECXT = tableType;
 		}
 
+		@Override
 		public void serializeRecipeData(JsonObject p_218610_1_) {
 			if (!this.group.isEmpty()) {
 				p_218610_1_.addProperty("group", this.group);
@@ -199,19 +200,23 @@ public class ExtendedFactionShapedRecipeBuilder {
 			p_218610_1_.add("result", jsonobject1);
 		}
 
+		@Override
 		public IRecipeSerializer<?> getType() {
 			return LOTRRecipes.FACTION_SHAPED.get();
 		}
 
+		@Override
 		public ResourceLocation getId() {
 			return this.id;
 		}
 
+		@Override
 		@Nullable
 		public JsonObject serializeAdvancement() {
 			return this.advancement.serializeToJson();
 		}
 
+		@Override
 		@Nullable
 		public ResourceLocation getAdvancementId() {
 			return this.advancementId;

@@ -9,7 +9,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import lotr.client.render.RandomTextureVariants;
 import lotr.client.render.entity.layers.BarrowWightEyesLayer;
 import lotr.client.render.entity.model.ExtendedBarrowWightModel;
-import lotr.common.entity.npc.ExtendedBarrowWrightEntity;
+import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.BipedRenderer;
@@ -18,7 +18,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> {
+public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWightEntity, ExtendedBarrowWightModel<ExtendedBarrowWightEntity>> {
 	public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/barrow_wight"));
 
     public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
@@ -27,12 +27,12 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
     }
 
     @Override
-    public ResourceLocation getTextureLocation(ExtendedBarrowWrightEntity man) {
+    public ResourceLocation getTextureLocation(ExtendedBarrowWightEntity man) {
         return SKINS.getRandomSkin(man);
     }
 
     @Override
-	protected void scale(ExtendedBarrowWrightEntity entity, MatrixStack matStack, float f) {
+	protected void scale(ExtendedBarrowWightEntity entity, MatrixStack matStack, float f) {
 		super.scale(entity, matStack, f);
 		//matStack.scale(0.965f, 0.965F, 0.965F);
 		//matStack.scale(0.965f, 1.05F, 0.965f);
@@ -40,7 +40,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
 
 
     @Override
-    public void render(ExtendedBarrowWrightEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
+    public void render(ExtendedBarrowWightEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
 
         pMatrixStack.pushPose();
         this.model.attackTime = this.getAttackAnim(pEntity, pPartialTicks);
@@ -64,7 +64,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
         int i = getOverlayCoords(pEntity, this.getWhiteOverlayProgress(pEntity, pPartialTicks));
         this.model.renderToBuffer(pMatrixStack, ivertexbuilder, pPackedLight, i, 1.0F, 1.0F, 1.0F, 0.5f);
         if (!pEntity.isSpectator()) {
-            for(LayerRenderer<ExtendedBarrowWrightEntity, ExtendedBarrowWightModel<ExtendedBarrowWrightEntity>> layerrenderer : this.layers) {
+            for(LayerRenderer<ExtendedBarrowWightEntity, ExtendedBarrowWightModel<ExtendedBarrowWightEntity>> layerrenderer : this.layers) {
                 layerrenderer.render(pMatrixStack, pBuffer, pPackedLight, pEntity, f5, f8, pPartialTicks, f7, f2, f6);
             }
         }
@@ -73,7 +73,7 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWri
 
     @Override
     @Nullable
-    protected RenderType getRenderType(ExtendedBarrowWrightEntity ranger, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
+    protected RenderType getRenderType(ExtendedBarrowWightEntity ranger, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
         return RenderType.entityCutoutNoCull(getTextureLocation(ranger));
     }
 }

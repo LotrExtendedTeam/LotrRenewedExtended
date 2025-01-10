@@ -67,6 +67,7 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 	/**
 	 * Performs this provider's action.
 	 */
+	@Override
 	public void run(DirectoryCache pCache) {
 		this.builders.clear();
 		this.addTags();

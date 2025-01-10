@@ -18,7 +18,7 @@ public class ExtendedGroupSpawnerBlock extends Block {
 		super(p_i48440_1_);
 		this.entitySpawn = entitySpawn;
 	}
-	
+
 	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return entitySpawn.hasSupplier();

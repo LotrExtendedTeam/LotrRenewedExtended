@@ -8,6 +8,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -41,8 +43,8 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 		BlockState blockstate = flag ? rack.getBlockState() : ExtendedBlocks.WEAPON_RACK.get().defaultBlockState();
 		Block block = blockstate.getBlock();
 		if(block instanceof ExtendedWeaponRackBlock) {
-			Direction dir = blockstate.getValue(ExtendedWeaponRackBlock.FACING);
-			AttachFace face = blockstate.getValue(ExtendedWeaponRackBlock.FACE);
+			Direction dir = blockstate.getValue(HorizontalBlock.FACING);
+			AttachFace face = blockstate.getValue(HorizontalFaceBlock.FACE);
 			stack.pushPose();
 			if(face == AttachFace.WALL) {
 				if(dir==Direction.NORTH) {

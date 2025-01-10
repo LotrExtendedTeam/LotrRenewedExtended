@@ -1,5 +1,12 @@
 package lotr.client.render.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.render.GenderedRandomTextureVariants;
 import lotr.client.render.entity.layers.DunedainRangerArmorLayer;
 import lotr.client.render.entity.layers.DunedainRangerCapeLayer;
@@ -10,18 +17,12 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
-import javax.annotation.Nullable;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExtendedDunedainRangerRenderer extends LOTRBipedRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>> {
     public static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/dunedain_north/ranger");
 
     public ExtendedDunedainRangerRenderer(EntityRendererManager mgr) {
-        super(mgr, ExtendedRangerModel::new, new ExtendedRangerModel<ExtendedDunedainRangerEntity>(0.5F), new ExtendedRangerModel<ExtendedDunedainRangerEntity>(1.0F), 0.5F);
+        super(mgr, ExtendedRangerModel::new, new ExtendedRangerModel<>(0.5F), new ExtendedRangerModel<>(1.0F), 0.5F);
 
         // Identify the layers to remove
         List<LayerRenderer<ExtendedDunedainRangerEntity, ExtendedRangerModel<ExtendedDunedainRangerEntity>>> layersToRemove = new ArrayList<>();
@@ -35,7 +36,7 @@ public class ExtendedDunedainRangerRenderer extends LOTRBipedRenderer<ExtendedDu
             this.layers.remove(layer);
         }
 
-        this.addLayer(new DunedainRangerArmorLayer(this, new ExtendedRangerModel<ExtendedDunedainRangerEntity>(0.5F), new ExtendedRangerModel<ExtendedDunedainRangerEntity>(1.0F)));
+        this.addLayer(new DunedainRangerArmorLayer(this, new ExtendedRangerModel<>(0.5F), new ExtendedRangerModel<>(1.0F)));
         this.addLayer(new DunedainRangerCapeLayer(this));
     }
 

@@ -1,8 +1,19 @@
 package lotr.common.entity.npc;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.*;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
+import lotr.common.entity.npc.ai.goal.NPCEatGoal;
+import lotr.common.entity.npc.ai.goal.StargazingGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
@@ -22,7 +33,10 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -40,11 +54,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedTraderEntity {
 
@@ -89,7 +98,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31)
     });
 
-    protected NPCNameGenerator getNameGenerator() {
+    @Override
+	protected NPCNameGenerator getNameGenerator() {
         return NPCNameGenerators.SINDARIN;
     }
 
@@ -126,7 +136,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     private ArrayList<ExtendedTrade> itemsBoughtByTrader;
 
     // Remove, drink, smoke and eat AIs
-    protected void addNPCAI() {
+    @Override
+	protected void addNPCAI() {
         ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
         this.getNavigation().setCanFloat(true);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
@@ -164,7 +175,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
-    public boolean canTradeWith(PlayerEntity player) {
+    @Override
+	public boolean canTradeWith(PlayerEntity player) {
         return isFriendlyAndAlignedWithLevel(player, this, 100.0F);
     }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -376,6 +388,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;		
+		itemsSoldByTrader = trades;
 	}
 }

@@ -35,6 +35,7 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 		return null;
 	}
 
+	@Override
 	protected float getBob(ExtendedDuckEntity duck, float p_77044_2_) {
 		float f = MathHelper.lerp(p_77044_2_, duck.oFlap, duck.flap);
 		float f1 = MathHelper.lerp(p_77044_2_, duck.oFlapSpeed, duck.flapSpeed);

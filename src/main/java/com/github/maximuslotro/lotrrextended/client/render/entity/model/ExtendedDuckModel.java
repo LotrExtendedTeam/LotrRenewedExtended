@@ -66,14 +66,17 @@ public class ExtendedDuckModel<T extends Entity> extends AgeableModel<T> {
 		wing1_r1.texOffs(0, 14).addBox(3.0F, -10.0F, -4.0F, 1.0F, 4.0F, 7.0F, 0.0F, false);
 	}
 
+	@Override
 	protected Iterable<ModelRenderer> headParts() {
 		return ImmutableList.of(this.head, this.beak);
 	}
 
+	@Override
 	protected Iterable<ModelRenderer> bodyParts() {
 		return ImmutableList.of(this.body, this.leg0, this.leg1, this.wing0, this.wing1);
 	}
 
+	@Override
 	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
 		this.head.xRot = p_225597_6_ * ((float) Math.PI / 180F);
 		this.head.yRot = p_225597_5_ * ((float) Math.PI / 180F);

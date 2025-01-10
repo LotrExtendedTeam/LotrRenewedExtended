@@ -49,7 +49,7 @@ public class ExtendedStructuresV5 {
     public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_RUINS = STRUCTURE_REGISTRY.register("barrow_down_ruins", () -> new WeightedPoolStructure(StructureType.RUIN));
     public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new WeightedPoolStructure(StructureType.BARROW));
 
-    
+
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
@@ -77,7 +77,7 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 	}
-	
+
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
 		if(spacing-seperation<= 0) {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);
@@ -109,11 +109,11 @@ public class ExtendedStructuresV5 {
          * However, while it does propagate the spacing to some correct dimensions from this map,
          * it seems it doesn't always work for code made dimensions as they read from this list beforehand.
          *
-         * Instead, use the WorldEvent.Load event to add the structure spacing from this 
+         * Instead, use the WorldEvent.Load event to add the structure spacing from this
          * list into that dimension or to do dimension blacklisting properly.
          */
 		DimensionStructuresSettings.DEFAULTS = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.DEFAULTS).put(structure, SSsettings).build();
-		
+
 		/*
          * There are very few Mods that relies on seeing your structure in the noise settings registry before the world is made.
          *

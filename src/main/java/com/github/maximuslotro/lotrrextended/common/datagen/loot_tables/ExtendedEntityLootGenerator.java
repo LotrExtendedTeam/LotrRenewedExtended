@@ -23,9 +23,9 @@ import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.TableLootEntry;
-import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.conditions.EntityHasProperty;
 import net.minecraft.loot.conditions.KilledByPlayer;
 import net.minecraft.loot.conditions.RandomChance;
@@ -339,46 +339,46 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
-				.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(100).setCount(1))
+				.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(100).setExactly(1))
 				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
 				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
-				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(20).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(20).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1).setCount(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(20).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(20).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.COPPER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(Items.IRON_HELMET).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_CHESTPLATE).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_LEGGINGS).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_BOOTS).setWeight(10).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_SWORD).setWeight(25).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.IRON_SPEAR.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_CHESTPLATE.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_LEGGINGS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_BOOTS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SPEAR.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_HELMET.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setCount(1))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setDamageRange(0.6F, 0.8F).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setCount(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setCount(1))));
+				.add(EItemLootEntry.lootItem(Items.IRON_HELMET).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_CHESTPLATE).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_LEGGINGS).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_BOOTS).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(Items.IRON_SWORD).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.IRON_SPEAR.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_CHESTPLATE.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_LEGGINGS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_BOOTS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SPEAR.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_HELMET.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setDamageRange(0.6F, 0.8F).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.HIRED_BREE_GUARD, manBree);
 	}
@@ -421,7 +421,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	public LootPool.Builder makeQuickyPoolBuilder(int numRoles){
 		return LootPool.lootPool().setRolls(ConstantRange.exactly(numRoles));
 	}
-	
+
 	public LootPool.Builder genSingleQuickyBuilder(IItemProvider item, float minCount, float maxCount){
 		return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item, minCount, maxCount));
 	}
@@ -433,7 +433,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item){
 		return ItemLootEntry.lootTableItem(item);
 	}
-	
+
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount){
 		return genQuickyItemBuilder(item, minCount, maxCount, 0.0F, 1.0F);
 	}
@@ -441,13 +441,13 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	public LootPool.Builder addAnotherQuickyPoolRefrence(ResourceLocation quickyLocation) {
 		return makeQuickyPoolBuilder(1).add(TableLootEntry.lootTableReference(quickyLocation));
 	}
-	
+
 	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount, float minloot, float maxloot){
 		return genQuickyItemBuilder(item)
 				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(minloot, maxloot)))
 				.apply(SetCount.setCount(RandomValueRange.between(minCount, maxCount)));
 	}
-	
+
 	public LootPool.Builder createQuickyDrinkBuilder(IItemProvider item) {
 		if ((item.asItem() instanceof VesselDrinkItem) && ((VesselDrinkItem) item.asItem()).hasPotencies) {
 			return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item).apply(SetNPCDrinkPotency.setNPCDrinkPotencyBuilder()));

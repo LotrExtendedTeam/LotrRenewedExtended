@@ -11,7 +11,7 @@ public class PlumTree extends PartyableTree {
 	@Override
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random rand, boolean bees) {
 		if (rand.nextInt(10) == 0)
-			return bees ? ExtendedBiomeFeatures.plumFancyBees() : ExtendedBiomeFeatures.plumFancy(); 
+			return bees ? ExtendedBiomeFeatures.plumFancyBees() : ExtendedBiomeFeatures.plumFancy();
 		return bees ? ExtendedBiomeFeatures.plumBees() : ExtendedBiomeFeatures.plum();
 	}
 

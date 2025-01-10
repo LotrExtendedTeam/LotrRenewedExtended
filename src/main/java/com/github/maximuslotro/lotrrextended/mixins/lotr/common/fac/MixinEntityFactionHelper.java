@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.fac;
 import java.util.List;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
@@ -17,8 +17,8 @@ import net.minecraft.entity.player.PlayerEntity;
 
 @Mixin(EntityFactionHelper.class)
 public class MixinEntityFactionHelper {
-	
-	@Inject(method = "canPlayerCauseDamageToTarget(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/entity/Entity;Z)Z", 
+
+	@Inject(method = "canPlayerCauseDamageToTarget(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/entity/Entity;Z)Z",
 			at =@At("HEAD"),
 			remap=false,
 			cancellable = true)

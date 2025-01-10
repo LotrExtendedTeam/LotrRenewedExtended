@@ -118,11 +118,7 @@ public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock{
 						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.BOTTOM_LARGE.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_LARGE);
 					}
-					if(type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.SINGLE) {
-						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.BOTTOM_SMALL.getSerializedName());
-						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_SMALL);
-					}
-					if(type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.BOTTOM_LARGE) {
+					if((type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.SINGLE) || (type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.BOTTOM_LARGE)) {
 						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.BOTTOM_SMALL.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_SMALL);
 					}

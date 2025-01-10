@@ -20,7 +20,17 @@ import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
-import lotr.common.item.*;
+import lotr.common.item.DaggerItem;
+import lotr.common.item.FallenLeavesItem;
+import lotr.common.item.LOTRArmorItem;
+import lotr.common.item.LOTRAxeItem;
+import lotr.common.item.LOTRHoeItem;
+import lotr.common.item.LOTRPickaxeItem;
+import lotr.common.item.LOTRShieldItem;
+import lotr.common.item.LOTRShovelItem;
+import lotr.common.item.LOTRSwordItem;
+import lotr.common.item.SpearItem;
+import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BannerPatternItem;
@@ -57,15 +67,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) {
-				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock) {
-				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock) {
+			if((((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) || (((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock)
+					|| (((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock)) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
@@ -109,12 +112,12 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof LOTRArmorItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
-				
+
 			}
 			if(item.getValue().get() instanceof VesselDrinkItem) {
 				genDrink(item.getKey(), "item/"+item.getKey());
 				continue;
-				
+
 			}
 			if(item.getValue().get() instanceof BannerPatternItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
@@ -146,19 +149,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 
-			if(item.getValue().get() instanceof LOTRPickaxeItem) {
-				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(item.getValue().get() instanceof LOTRShovelItem) {
-				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(item.getValue().get() instanceof LOTRAxeItem) {
-				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(item.getValue().get() instanceof LOTRHoeItem ) {
+			if((item.getValue().get() instanceof LOTRPickaxeItem) || (item.getValue().get() instanceof LOTRShovelItem)
+					|| (item.getValue().get() instanceof LOTRAxeItem)
+					|| (item.getValue().get() instanceof LOTRHoeItem) ) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}

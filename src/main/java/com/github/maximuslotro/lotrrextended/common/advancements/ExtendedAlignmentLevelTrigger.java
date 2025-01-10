@@ -17,11 +17,13 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedAlignmentLevelTrigger extends AbstractCriterionTrigger<ExtendedAlignmentLevelTrigger.Instance> {
 	   private static final ResourceLocation ID = new ResourceLocation("lotrextended", "alignment_changed");
 
-	   public ResourceLocation getId() {
+	   @Override
+	public ResourceLocation getId() {
 	      return ID;
 	   }
 
-	   public ExtendedAlignmentLevelTrigger.Instance createInstance(JsonObject json, AndPredicate predicate, ConditionArrayParser p_230241_3_) {
+	   @Override
+	public ExtendedAlignmentLevelTrigger.Instance createInstance(JsonObject json, AndPredicate predicate, ConditionArrayParser p_230241_3_) {
 		  ExtendedAlignmentPredicate alignmentpredicate = ExtendedAlignmentPredicate.fromJson(json.get("alignment"));
 	      return new ExtendedAlignmentLevelTrigger.Instance(predicate, alignmentpredicate);
 	   }
@@ -48,7 +50,8 @@ public class ExtendedAlignmentLevelTrigger extends AbstractCriterionTrigger<Exte
 	         return this.alignment.matches(player, faction, level);
 	      }
 
-	      public JsonObject serializeToJson(ConditionArraySerializer p_230240_1_) {
+	      @Override
+		public JsonObject serializeToJson(ConditionArraySerializer p_230240_1_) {
 	         JsonObject jsonobject = super.serializeToJson(p_230240_1_);
 	         jsonobject.add("alignment", this.alignment.serializeToJson());
 	         return jsonobject;

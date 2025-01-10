@@ -1,5 +1,7 @@
 package lotr.common.entity.npc.ai.goal;
 
+import java.util.EnumSet;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
@@ -9,8 +11,6 @@ import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.passive.TameableEntity;
-
-import java.util.EnumSet;
 
 public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
     private final NPCEntity entity;
@@ -31,7 +31,8 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
         this.setFlags(EnumSet.of(Flag.TARGET));
     }
 
-    public boolean canUse() {
+    @Override
+	public boolean canUse() {
         if (this.hirable.isTame()) {
             LivingEntity livingentity = this.hirable.getOwner();
             if (livingentity == null) {
@@ -58,7 +59,8 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
         }
     }
 
-    public void start() {
+    @Override
+	public void start() {
         this.mob.setTarget(this.ownerLastHurt);
         LivingEntity livingentity = this.hirable.getOwner();
         if (livingentity != null) {

@@ -19,17 +19,17 @@ public class MixinBlackrootValeBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addTreesWithClusters((BlackrootValeBiome)(Object)this, builder, 0, 0.2F, TreeCluster.of(8, 20), 
-				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000, 
-				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10, 
-				LOTRBiomeFeatures.darkOak(), 5000, LOTRBiomeFeatures.fir(), 3000, 
-				LOTRBiomeFeatures.larch(), 3000, LOTRBiomeFeatures.aspen(), 1000, 
-				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 100, 
-				LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 1, 
-				ExtendedBiomeFeatures.chestnut(), 2000, ExtendedBiomeFeatures.chestnutFancy(), 500, 
+		LOTRBiomeFeatures.addTreesWithClusters((BlackrootValeBiome)(Object)this, builder, 0, 0.2F, TreeCluster.of(8, 20),
+				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
+				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
+				LOTRBiomeFeatures.darkOak(), 5000, LOTRBiomeFeatures.fir(), 3000,
+				LOTRBiomeFeatures.larch(), 3000, LOTRBiomeFeatures.aspen(), 1000,
+				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 100,
+				LOTRBiomeFeatures.birchBees(), 5, LOTRBiomeFeatures.birchFancyBees(), 1,
+				ExtendedBiomeFeatures.chestnut(), 2000, ExtendedBiomeFeatures.chestnutFancy(), 500,
 				ExtendedBiomeFeatures.chestnutBees(), 20, ExtendedBiomeFeatures.chestnutFancyBees(), 5,
-				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50, 
-				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1, 
+				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.pear(), 50,
+				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pearBees(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((BlackrootValeBiome)(Object)this, builder, 12, GrassBlends.STANDARD);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 3, GrassBlends.DOUBLE_STANDARD);

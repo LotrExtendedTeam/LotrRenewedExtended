@@ -70,15 +70,13 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @reason Need to change complex if statements
 	 * @author maximuslotro
 	 * */
+	@Override
 	@Overwrite
 	public boolean checkSpawnRules(IWorld iworld, SpawnReason reason) {
 		if (super.checkSpawnRules(iworld, reason)) {
 			if (reason == SpawnReason.NATURAL) {
-				if (this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) {
-					return false;
-				}
 				// Extended Start
-				if(ExtendedBannerProtectionManager.isBannerProtected(level, this.blockPosition(), new SingleProtectionInstance.EntityProtection(this), false, "checkSpawnRules")) {
+				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.isBannerProtected(level, this.blockPosition(), new SingleProtectionInstance.EntityProtection(this), false, "checkSpawnRules")) {
 					return false;
 				}
 				// Extended End

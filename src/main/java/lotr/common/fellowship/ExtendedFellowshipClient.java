@@ -15,15 +15,15 @@ public class ExtendedFellowshipClient {
 	private final UUID FellowshipId;
 	private String FellowshipName;
 	private UUID FellowshipOwner;
-	private Set<UUID> FellowshipMembers = new HashSet<UUID>();
-	private Set<UUID> FellowshipAdmins = new HashSet<UUID>();
+	private Set<UUID> FellowshipMembers = new HashSet<>();
+	private Set<UUID> FellowshipAdmins = new HashSet<>();
 	private boolean PreventHiredFF;
 	private boolean PreventPVP;
 	private boolean ShowMap;
 	private ItemStack icon;
 	private boolean isOwned;
 	private boolean isAdminned;
-	private Map<UUID, String> usernameMap = new HashMap<UUID, String>();
+	private Map<UUID, String> usernameMap = new HashMap<>();
 
 	public ExtendedFellowshipClient(UUID id, String name, boolean owned,
 			boolean admin, GameProfile owner, List<GameProfile> members) {
@@ -139,5 +139,5 @@ public class ExtendedFellowshipClient {
 	public boolean isAdminned() {
 		return isAdminned;
 	}
-	
+
 }

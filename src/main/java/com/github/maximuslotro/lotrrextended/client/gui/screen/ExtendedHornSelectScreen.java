@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 import org.lwjgl.opengl.GL11;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketSelectHorn;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.init.ExtendedItems;
@@ -45,8 +45,7 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.horn_select.title");
 		this.font.draw(matStack, title, leftPos + (88 - (font.width(title) / 2)), topPos + 11, 4210752);
 		super.render(matStack, mouseX, mouseY, tick);
-		for (int k = 0; k < this.buttons.size(); k++) {
-			Widget button = this.buttons.get(k);
+		for (Widget button : this.buttons) {
 			itemRenderer.renderGuiItem(new ItemStack(ExtendedItems.COMMANDHORN.get(), 1), button.x - 22, button.y + 2);
 		}
 	}

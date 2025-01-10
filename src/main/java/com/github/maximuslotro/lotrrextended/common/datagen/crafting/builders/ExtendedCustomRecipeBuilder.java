@@ -28,22 +28,27 @@ public class ExtendedCustomRecipeBuilder {
 
 	public void save(Consumer<IFinishedRecipe> p_200499_1_, final ResourceLocation location) {
 		p_200499_1_.accept(new IFinishedRecipe() {
+			@Override
 			public void serializeRecipeData(JsonObject p_218610_1_) {
 			}
 
+			@Override
 			public IRecipeSerializer<?> getType() {
 				return ExtendedCustomRecipeBuilder.this.serializer;
 			}
 
+			@Override
 			public ResourceLocation getId() {
 				return location;
 			}
 
+			@Override
 			@Nullable
 			public JsonObject serializeAdvancement() {
 				return null;
 			}
 
+			@Override
 			public ResourceLocation getAdvancementId() {
 				return new ResourceLocation("");
 			}

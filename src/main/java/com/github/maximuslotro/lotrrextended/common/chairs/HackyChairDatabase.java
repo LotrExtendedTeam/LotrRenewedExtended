@@ -44,10 +44,7 @@ public class HackyChairDatabase {
 
 	@SubscribeEvent(receiveCanceled = true)
 	public void extendedPlayerChairClick(RightClickBlock event) {
-		if(!ExtendedServerConfig.enableChairSlabSitting.get()) {
-			return;
-		}
-		if(event.isCanceled() && !ExtendedServerConfig.enableChairProtectionOverride.get()) {
+		if(!ExtendedServerConfig.enableChairSlabSitting.get() || (event.isCanceled() && !ExtendedServerConfig.enableChairProtectionOverride.get())) {
 			return;
 		}
 		// Check for valid player

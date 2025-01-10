@@ -1,6 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.inventory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mojang.datafixers.util.Pair;
+
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.item.SpearItem;
@@ -25,9 +29,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExtendedHiredUnitEquipmentContainer extends Container implements IContainerListener {
 
@@ -104,11 +105,13 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         for(int slot = 9; slot < 13; slot++) {
             final EquipmentSlotType equipmentSlotType = SLOT_IDS[slot - 9];
             armorSlots[slot - 9] = this.addSlot(new Slot(tempInventory, slot - 9, 8, yPos[slot - 9]) {
-                public int getMaxStackSize() {
+                @Override
+				public int getMaxStackSize() {
                     return 1;
                 }
 
-                public boolean mayPlace(ItemStack itemStack) {
+                @Override
+				public boolean mayPlace(ItemStack itemStack) {
                     if (itemStack.getItem() instanceof ArmorItem) {
                         ArmorItem item = (ArmorItem) itemStack.getItem();
                         return item.getSlot() == equipmentSlotType;
@@ -117,7 +120,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                     }
                 }
 
-                public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
+                @Override
+				public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
                     return Pair.of(PlayerContainer.BLOCK_ATLAS, TEXTURE_EMPTY_SLOTS[equipmentSlotType.getIndex()]);
                 }
             });
@@ -125,7 +129,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
         mainHand = this.addSlot(new Slot(tempInventory, 13 - 9,62,67));
         offHand = this.addSlot(new Slot(tempInventory, 14 - 9,62,85)  {
-            public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
+            @Override
+			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
                 return Pair.of(PlayerContainer.BLOCK_ATLAS, EMPTY_ARMOR_SLOT_SHIELD);
             }
         });

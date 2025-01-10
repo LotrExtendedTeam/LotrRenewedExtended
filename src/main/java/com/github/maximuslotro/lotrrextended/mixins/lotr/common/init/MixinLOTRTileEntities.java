@@ -64,13 +64,13 @@ public class MixinLOTRTileEntities {
 	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String key, Supplier<TileEntityType.Builder<T>> builderSup) {
 		Supplier<TileEntityType.Builder<T>> builderSupEXTENDED;
 		if("vessel_drink".equals(key)) {
-			builderSupEXTENDED = () -> (Builder<T>) Builder.of(VesselDrinkTileEntity::new, LOTRBlocks.WOODEN_MUG.get(), LOTRBlocks.CERAMIC_MUG.get(), 
-					LOTRBlocks.GOLDEN_GOBLET.get(), LOTRBlocks.SILVER_GOBLET.get(), LOTRBlocks.COPPER_GOBLET.get(), LOTRBlocks.WOODEN_CUP.get(), 
+			builderSupEXTENDED = () -> (Builder<T>) Builder.of(VesselDrinkTileEntity::new, LOTRBlocks.WOODEN_MUG.get(), LOTRBlocks.CERAMIC_MUG.get(),
+					LOTRBlocks.GOLDEN_GOBLET.get(), LOTRBlocks.SILVER_GOBLET.get(), LOTRBlocks.COPPER_GOBLET.get(), LOTRBlocks.WOODEN_CUP.get(),
 					LOTRBlocks.ALE_HORN.get(), LOTRBlocks.GOLDEN_ALE_HORN.get(), ExtendedBlocks.SKULL_GOBLET.get());
 		}else {
 			builderSupEXTENDED = builderSup;
 		}
-		
+
 		Type<?> datafixType = null;
 		try {
 			datafixType = DataFixesManager.getDataFixer().getSchema(DataFixUtils.makeKey(SharedConstants.getCurrentVersion().getWorldVersion())).getChoiceType(TypeReferences.BLOCK_ENTITY, key);
@@ -86,13 +86,13 @@ public class MixinLOTRTileEntities {
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
     	for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
-    		ExtendedTileEntities.SPAWNER_TILEENTITYS.put(type.getSerializedName(), 
-    				register(type.getSerializedName()+"_spawner_tileentity", 
+    		ExtendedTileEntities.SPAWNER_TILEENTITYS.put(type.getSerializedName(),
+    				register(type.getSerializedName()+"_spawner_tileentity",
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
     	for(ExtendedEntitySpawnGroupTypes type : ExtendedEntitySpawnGroupTypes.values()) {
-    		ExtendedTileEntities.SPAWNER_GROUP_TILEENTITYS.put(type.getSerializedName(), 
-    				register(type.getSerializedName()+"_group_spawner_tileentity", 
+    		ExtendedTileEntities.SPAWNER_GROUP_TILEENTITYS.put(type.getSerializedName(),
+    				register(type.getSerializedName()+"_group_spawner_tileentity",
     						() -> Builder.of(type.getSupplier(), ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.get(type.getSerializedName()).get())));
     	}
     	ExtendedTileEntities.STONE_CHEST = register("stone_chest_tileentity", () -> Builder.of(ExtendedStoneChestTileEntity::new, ExtendedBlocks.STONE_CHEST.get()));

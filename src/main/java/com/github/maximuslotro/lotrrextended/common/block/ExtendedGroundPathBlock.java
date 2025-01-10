@@ -22,7 +22,7 @@ public class ExtendedGroundPathBlock extends GrassPathBlock{
 		super(Properties.of(Material.DIRT, color).strength(0.65F).sound(sound).harvestTool(ToolType.SHOVEL));
 		this.base = baseBlockState;
 	}
-	
+
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
 		return !this.defaultBlockState().canSurvive(p_196258_1_.getLevel(), p_196258_1_.getClickedPos()) ? Block.pushEntitiesUp(this.defaultBlockState(), base.get().defaultBlockState(), p_196258_1_.getLevel(), p_196258_1_.getClickedPos()) : super.getStateForPlacement(p_196258_1_);

@@ -5,14 +5,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHiredUnitEquipmentScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHiredUnitScreen;
+
 import lotr.client.gui.inv.ContainerScreenHelper;
 import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.client.gui.inventory.ExtendedTradeScreen;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
-
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHiredUnitScreen;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHiredUnitEquipmentScreen;
 
 @Mixin(ContainerScreenHelper.class)
 public class MixinContainerScreenHelper {

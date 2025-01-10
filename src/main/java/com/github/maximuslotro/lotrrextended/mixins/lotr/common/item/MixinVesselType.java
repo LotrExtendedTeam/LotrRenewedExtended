@@ -34,22 +34,22 @@ public class MixinVesselType {
 	private static final Map<String, VesselType> NAME_LOOKUP;
 
 	private static final VesselType SKULL_GOBLET;
-	
+
 	static {
-		SKULL_GOBLET = lotrmaterialExpansion$addVariant("SKULL_GOBLET", () -> ExtendedItems.SKULL_GOBLET.get(), 
+		SKULL_GOBLET = lotrmaterialExpansion$addVariant("SKULL_GOBLET", () -> ExtendedItems.SKULL_GOBLET.get(),
 				"skull_goblet", "skull_goblet_drink", true);
 		NAME_LOOKUP = LOTRUtil.createKeyedEnumMap(MixinVesselType.$VALUES,
 				VesselType::getCodeName);
 	}
 
 	@Invoker("<init>")
-	public static VesselType lotrVesselType$invokeInit(String internalName, int internalId, Supplier<IItemProvider> item, 
+	public static VesselType lotrVesselType$invokeInit(String internalName, int internalId, Supplier<IItemProvider> item,
 			String name, String iconName, boolean place) {
 		throw new AssertionError();
 	}
 
 	private static VesselType lotrmaterialExpansion$addVariant(String internalName, Supplier<IItemProvider> item, String name, String iconName, boolean place) {
-		ArrayList<VesselType> variants = new ArrayList<VesselType>(Arrays.asList(MixinVesselType.$VALUES));
+		ArrayList<VesselType> variants = new ArrayList<>(Arrays.asList(MixinVesselType.$VALUES));
 		VesselType instrument = lotrVesselType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, item, name, iconName, place);
 		variants.add(instrument);
 		MixinVesselType.$VALUES = variants.toArray(new VesselType[0]);

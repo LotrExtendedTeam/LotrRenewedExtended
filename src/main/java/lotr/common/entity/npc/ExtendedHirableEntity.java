@@ -1,12 +1,13 @@
 package lotr.common.entity.npc;
 
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-
-import javax.annotation.Nullable;
-import java.util.UUID;
 
 public interface ExtendedHirableEntity {
     @Nullable

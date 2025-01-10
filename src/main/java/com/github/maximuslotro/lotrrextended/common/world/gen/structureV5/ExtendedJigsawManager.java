@@ -58,7 +58,7 @@ public class ExtendedJigsawManager {
 	      Rotation rotation = Rotation.getRandom(random);
 	      JigsawPattern jigsawpattern = structureConfig.startPool().get();
 	      JigsawPiece jigsawpiece = jigsawpattern.getRandomTemplate(random);
-	      // Extended start add 
+	      // Extended start add
 	      Optional<WoodPaletteProcessor> carryOverProcessor = Optional.empty();
 	      if(jigsawpiece instanceof SingleJigsawPiece) {
 	    	  List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)jigsawpiece).processors.get().list());
@@ -101,7 +101,7 @@ public class ExtendedJigsawManager {
 	      pieces.add(abstractvillagepiece);
 	      if (structureConfig.maxDepth() > 0) {
 	         int maxPlaceDistance = 80; // Max generation distance
-	         AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)(structureBBAverageX - maxPlaceDistance), (double)(structureStartHeight - maxPlaceDistance), (double)(structureBBAverageZ - maxPlaceDistance), (double)(structureBBAverageX + maxPlaceDistance + 1), (double)(structureStartHeight + maxPlaceDistance + 1), (double)(structureBBAverageZ + maxPlaceDistance + 1));
+	         AxisAlignedBB axisalignedbb = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
 	         ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, structureConfig.maxDepth(), villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
 	         jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
@@ -301,10 +301,10 @@ public class ExtendedJigsawManager {
 	                     }
 	                  }
 	               } else {
-	                  ExtendedJigsawManager.LOGGER.warn("Empty or none existent fallback pool: {}", (Object)jigsawPoolFallbackResourceLocation);
+	                  ExtendedJigsawManager.LOGGER.warn("Empty or none existent fallback pool: {}", jigsawPoolFallbackResourceLocation);
 	               }
 	            } else {
-	               ExtendedJigsawManager.LOGGER.warn("Empty or none existent pool: {}", (Object)jigsawPoolResourceLocation);
+	               ExtendedJigsawManager.LOGGER.warn("Empty or none existent pool: {}", jigsawPoolResourceLocation);
 	            }
 	         }
 

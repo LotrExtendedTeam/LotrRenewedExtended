@@ -17,6 +17,7 @@ public enum RopeType implements IStringSerializable {
 		this.name = pName;
 	}
 
+	@Override
 	public String getSerializedName() {
 		return this.name;
 	}

@@ -1,6 +1,7 @@
 package lotr.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;

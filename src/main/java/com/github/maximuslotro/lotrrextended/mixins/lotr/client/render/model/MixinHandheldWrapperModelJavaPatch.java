@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 @Mixin(targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
 public class MixinHandheldWrapperModelJavaPatch {
-	 
+
 	/**
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems

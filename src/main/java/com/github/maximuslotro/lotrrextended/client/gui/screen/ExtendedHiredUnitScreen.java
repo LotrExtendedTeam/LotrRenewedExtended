@@ -1,5 +1,10 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredEquipmentMenu;
@@ -7,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketSetHi
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import net.minecraft.client.gui.IHasContainer;
@@ -20,11 +26,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitContainer> implements IHasContainer<ExtendedHiredUnitContainer> {
 
@@ -75,7 +76,8 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.renderTooltip(p_98418_, p_98419_, p_98420_);
     }
 
-    protected void init() {
+    @Override
+	protected void init() {
         super.init();
         this.leftPos = (this.width - this.imageWidth) / 2;
         this.topPos = (this.height - this.imageHeight) / 2;
@@ -105,6 +107,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenHiredEquipmentMenu(companion.getHiredUnitId()));
     }
 
+	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
@@ -113,7 +116,8 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.blit(p_98413_, i, j, 0, 0, this.imageWidth, this.imageHeight);
     }
 
-    protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
+    @Override
+	protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
         this.font.draw(matrix, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
         this.font.draw(matrix, this.inventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
 

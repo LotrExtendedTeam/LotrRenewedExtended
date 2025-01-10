@@ -62,7 +62,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Shadow(remap = false)
 	@Final
 	private static final int[] SLOTS_WATER = { 6, 7, 8 };
-	
+
 	@Shadow(remap = false)
 	private KegTileEntity.KegMode kegMode;
 
@@ -124,7 +124,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
 					proxyInv, level);
 			if (opt.isPresent()) {
-				DrinkBrewingRecipe recipe = (DrinkBrewingRecipe) opt.get();
+				DrinkBrewingRecipe recipe = opt.get();
 				this.currentBrewingRecipe = recipe.getId();
 				ItemStack result = recipe.assemble(proxyInv);
 				result.setCount(16);
@@ -237,7 +237,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
