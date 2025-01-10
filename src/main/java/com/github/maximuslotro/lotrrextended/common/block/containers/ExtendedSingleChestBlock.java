@@ -62,11 +62,6 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 		return AABB;
 	}
 
-	public static Direction getExtendedConnectedDirection(BlockState p_196311_0_) {
-		Direction direction = p_196311_0_.getValue(FACING);
-		return p_196311_0_.getValue(TYPE) == ChestType.LEFT ? direction.getClockWise() : direction.getCounterClockWise();
-	}
-
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
 		FluidState fluidstate = p_196258_1_.getLevel().getFluidState(p_196258_1_.getClickedPos());

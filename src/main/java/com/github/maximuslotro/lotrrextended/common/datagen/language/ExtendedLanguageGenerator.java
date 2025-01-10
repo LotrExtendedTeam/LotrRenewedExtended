@@ -115,6 +115,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.hidden", "Hidden");
 		addD("gui.lotrextended.base.show", "Show");
 		addD("gui.lotrextended.base.hide", "Hide");
+		addD("gui.lotrextended.base.set", "Set");
 
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
