@@ -5,11 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
-import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
-import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
+import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.entity.npc.data.NPCGenderProvider;

@@ -7,13 +7,7 @@ import java.util.UUID;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
-import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
-import lotr.common.entity.npc.ai.goal.NPCEatGoal;
-import lotr.common.entity.npc.ai.goal.StargazingGoal;
-import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
+import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
