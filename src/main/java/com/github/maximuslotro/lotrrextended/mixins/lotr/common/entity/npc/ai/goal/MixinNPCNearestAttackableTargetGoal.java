@@ -19,11 +19,11 @@ public class MixinNPCNearestAttackableTargetGoal {
 	@Final
 	private NPCEntity theNPC;
 
-	@Overwrite(remap=false)
 	/**
 	 * @author maximuslotro
 	 * @reason Fix hostile aligned mobs not attacking players
 	 * */
+	@Overwrite(remap=false)
 	protected boolean isPlayerSuitableAlignmentTarget(PlayerEntity player) {
 		// Extended Start
 		if(FactionPointers.HOSTILE.matches(theNPC.getFaction())) {
