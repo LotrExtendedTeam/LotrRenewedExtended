@@ -59,14 +59,22 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 				ExtendedStoneChestTileEntity stoneTileEntity = (ExtendedStoneChestTileEntity)tileEntity;
 				// Logic for barrow downs
 				if (pWorld.getBiome(locPos).getRegistryName().toString().equals("lotr:barrow_downs")) {
+					// Run cursed spawn logic since chest has already spawned a Wight
 					if(stoneTileEntity.hasSpawnedWight()) {
 						spawned = spawnWightCursed(pWorld, locPos, pPlayerEntity, false);
 					}else {
-						if(pWorld.random.nextInt(100)>=ExtendedServerConfig.barrowWightChestFirstSpawnChance.get()) {
-							spawned = spawnWightCursed(pWorld, locPos, pPlayerEntity, true);
-							if(spawned) {
-								stoneTileEntity.setHasSpawnedWight(true);
+						// If server config is set to only accept cursed spawns, then remove from cursed spawn list
+						if(ExtendedServerConfig.barrowWightChestFirstSpawnChance.get()==0) {
+							spawned = spawnWightCursed(pWorld, locPos, pPlayerEntity, false);
+						}else {
+							// Otherwise check if random chance allows for entity spawning
+							if(pWorld.random.nextInt(100)>=ExtendedServerConfig.barrowWightChestFirstSpawnChance.get()) {
+								spawned = spawnWightCursed(pWorld, locPos, pPlayerEntity, true);
 							}
+						}
+						// Set chest spawned value if had forced spawned, or if server config is set to only accept cursed spawns
+						if(spawned) {
+							stoneTileEntity.setHasSpawnedWight(true);
 						}
 					}
 				}
