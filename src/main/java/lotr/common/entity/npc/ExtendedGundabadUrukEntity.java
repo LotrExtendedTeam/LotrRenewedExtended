@@ -15,7 +15,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGundabadUrukEntity extends GundabadOrcEntity{
+public class ExtendedGundabadUrukEntity extends GundabadOrcEntity {
 	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
 		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER, 
 		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER, 

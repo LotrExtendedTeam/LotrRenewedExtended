@@ -10,6 +10,7 @@ import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
+import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedMultitradeEntry;
@@ -112,12 +113,12 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
-    public void updatePlayerTradingWith(UUID uuid) {
+    public void updatePlayerInteractingWith(UUID uuid) {
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
 
     @Override
-    public Optional<UUID> getPlayerTradingWith() {
+    public Optional<UUID> getPlayerInteractingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
@@ -136,11 +137,11 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.addAttackGoal(2);
         this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(5, new ExtendedTraderTalkToCurrentGoal(this, this));
-        this.goalSelector.addGoal(6, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
+        this.goalSelector.addGoal(5, new ExtendedInteractableTalkToCurrentGoal(this, this));
+        this.goalSelector.addGoal(6, new ExtendedInteractableFriendlyNPCConversationGoal(this, this, 0.001F));
         this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.01F));
         this.goalSelector.addGoal(8, new StargazingGoal(this, 4.0E-4F));
-        this.goalSelector.addGoal(9, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this,1.0));
+        this.goalSelector.addGoal(9, new ExtendedInteractableWaterAvoidingRandomWalkingGoal(this, this,1.0));
         this.goalSelector.addGoal(10, new NPCEatGoal(this, this.getEatPool(), 12000));
         this.goalSelector.addGoal(10, new NPCDrinkGoal(this, this.getDrinkPool(), 8000));
         this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
@@ -211,12 +212,12 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
     @Override
     public boolean isInteractingWithPlayer() {
-        return ExtendedTraderHelper.isInteractingWithPlayer(getPlayerTradingWith());
+        return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
     }
 
     @Override
-    public void removePlayerFromTrading(PlayerEntity player) {
-    	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
+    public void removePlayerFromInteracting(PlayerEntity player) {
+    	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
     }
 
     @Override

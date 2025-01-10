@@ -35,7 +35,7 @@ public class ForgeInventoryEvents {
                 }
             }
 
-            container.trader.removePlayerFromTrading(event.getPlayer());
+            container.trader.removePlayerFromInteracting(event.getPlayer());
         } else if (event.getContainer() instanceof ExtendedTradeContainer) {
             ExtendedTradeContainer container = (ExtendedTradeContainer) event.getContainer();
 
@@ -53,7 +53,7 @@ public class ForgeInventoryEvents {
                 }
             }
 
-            container.trader.removePlayerFromTrading(event.getPlayer());
+            container.trader.removePlayerFromInteracting(event.getPlayer());
         }
     }
 

@@ -8,6 +8,7 @@ import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
+import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedMultitradeEntry;
@@ -114,10 +115,10 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.addAttackGoal(3);
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(10, new ExtendedTraderTalkToCurrentGoal(this, this));
-        this.goalSelector.addGoal(11, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 0.001F));
+        this.goalSelector.addGoal(10, new ExtendedInteractableTalkToCurrentGoal(this, this));
+        this.goalSelector.addGoal(11, new ExtendedInteractableFriendlyNPCConversationGoal(this, this, 0.001F));
         this.goalSelector.addGoal(12, new WatchSunriseSunsetGoal(this, 0.001F));
-        this.goalSelector.addGoal(13, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.0));
+        this.goalSelector.addGoal(13, new ExtendedInteractableWaterAvoidingRandomWalkingGoal(this, this, 1.0));
         this.goalSelector.addGoal(14, new NPCEatGoal(this, this.getEatPool(), 6000));
         this.goalSelector.addGoal(14, new NPCDrinkGoal(this, this.getDrinkPool(), 6000));
         this.goalSelector.addGoal(15, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
@@ -127,12 +128,12 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     }
 
     @Override
-    public void updatePlayerTradingWith(UUID uuid) {
+    public void updatePlayerInteractingWith(UUID uuid) {
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
 
     @Override
-    public Optional<UUID> getPlayerTradingWith() {
+    public Optional<UUID> getPlayerInteractingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
@@ -197,12 +198,12 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 
     @Override
     public boolean isInteractingWithPlayer() {
-        return ExtendedTraderHelper.isInteractingWithPlayer(getPlayerTradingWith());
+        return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
     }
 
     @Override
-    public void removePlayerFromTrading(PlayerEntity player) {
-    	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
+    public void removePlayerFromInteracting(PlayerEntity player) {
+    	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
     }
 
     public boolean canTradeWith(PlayerEntity player) {
