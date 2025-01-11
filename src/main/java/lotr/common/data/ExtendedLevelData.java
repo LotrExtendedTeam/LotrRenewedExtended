@@ -68,12 +68,15 @@ public class ExtendedLevelData {
                 if (!lotrDataFile.exists()) {
                     SaveUtil.saveNBTToFile(lotrDataFile, new CompoundNBT());
                 }
-
                 CompoundNBT levelData = new CompoundNBT();
-                levelData.putInt("timeUntilTrader", this.timeUntilTrader);
+
+                CompoundNBT traderData = new CompoundNBT();
+                traderData.putInt("timeUntilTrader", this.timeUntilTrader);
+                traderData.putBoolean("requireRandom", this.requireRandom);
+                levelData.put("traderData", traderData);
+
                 savePlayerTraderCooldowns(levelData);
                 saveSecondsInBarrows(levelData);
-                levelData.putBoolean("requireRandom", this.requireRandom);
 
                 SaveUtil.saveNBTToFile(lotrDataFile, levelData);
                 this.needsSave = false;
@@ -82,16 +85,17 @@ public class ExtendedLevelData {
             LOTRLog.error("Error saving Extended mod data!");
             e.printStackTrace();
         }
-
     }
 
     public void load(ServerWorld world) {
         try {
             CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
-            this.timeUntilTrader = levelData.getInt("timeUntilTrader");
+            CompoundNBT traderData = levelData.getCompound("traderData");
+            this.timeUntilTrader = traderData.getInt("timeUntilTrader");
+            this.requireRandom = traderData.getBoolean("requireRandom");
+
             loadPlayerTraderCooldownTimes(levelData);
             loadSecondsInBarrows(levelData);
-            this.requireRandom = levelData.getBoolean("requireRandom");
 
             this.needsLoad = false;
             this.needsSave = true;

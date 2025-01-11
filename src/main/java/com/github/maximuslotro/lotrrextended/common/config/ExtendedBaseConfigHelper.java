@@ -20,6 +20,18 @@ public class ExtendedBaseConfigHelper {
 		return builder.define(key, defaultValue);
 	}
 
+	protected static ForgeConfigSpec.IntValue createIntegerValue(Builder builder, String key, int defaultValue, int minValue, int maxValue, boolean needsWorldRestart, String comment){
+		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.configCommentHolders.put(transKey, comment);
+		}
+		builder.comment(comment).translation(transKey);
+		if (needsWorldRestart) {
+			builder.worldRestart();
+		}
+		return builder.defineInRange(transKey, defaultValue, minValue, maxValue);
+	}
+
 	protected static ForgeConfigSpec.ConfigValue<String> createStringValue(Builder builder, String key, String defaultValue, boolean needsWorldRestart, String comment){
 		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
 		if(DatagenModLoader.isRunningDataGen()) {

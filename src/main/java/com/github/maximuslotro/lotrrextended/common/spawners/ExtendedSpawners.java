@@ -61,6 +61,8 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_HAMLET_ANIMALS = register("bree_hamlet_animals_spawner");
 	public static final ResourceLocation BREE_HAMLET_FARMER = register("bree_hamlet_farmer_spawner");
 	public static final ResourceLocation BREE_HAMLET_GUARD_HOUSE = register("bree_hamlet_guard_house_spawner");
+	public static final ResourceLocation BREE_HAMLET_GUARD_HOUSE_SHERIFF = register("bree_hamlet_guard_house_sheriff_spawner");
+
 	public static final ResourceLocation BREE_HAMLET_POTTER = register("bree_hamlet_potter_spawner");
 
 	private static ResourceLocation register(String pId) {

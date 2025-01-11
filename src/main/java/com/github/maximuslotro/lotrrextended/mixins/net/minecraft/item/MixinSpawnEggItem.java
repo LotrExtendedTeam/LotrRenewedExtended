@@ -31,7 +31,7 @@ import net.minecraft.world.spawner.AbstractSpawner;
 @Mixin(SpawnEggItem.class)
 public class MixinSpawnEggItem {
 
-    @Shadow(remap = false)
+    @Shadow
     public EntityType<?> getType(@Nullable CompoundNBT nbt) {
         return null;
     }
@@ -40,7 +40,7 @@ public class MixinSpawnEggItem {
      * @author Richard
      * @reason more temporary measure
      * */
-    @Overwrite(remap = false)
+    @Overwrite
     public ActionResultType useOn(ItemUseContext context) {
         World world = context.getLevel();
         if (!(world instanceof ServerWorld)) {

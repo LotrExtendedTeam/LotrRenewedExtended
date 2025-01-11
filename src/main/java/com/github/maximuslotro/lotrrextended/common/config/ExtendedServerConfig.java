@@ -7,21 +7,26 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec SERVER_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 
+	// Gameplay settings
 	public static ForgeConfigSpec.BooleanValue enableFellowshipCreation;
 	public static ForgeConfigSpec.BooleanValue enableRenewedWaypointCreation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyWaypointCreation;
 	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
-
-	public static ForgeConfigSpec.BooleanValue enableFishingEnchantedItems;
-	public static ForgeConfigSpec.BooleanValue enableEnchantedLootDrops;
-
-	public static ForgeConfigSpec.BooleanValue enableDevMode;
-	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
-
 	public static ForgeConfigSpec.BooleanValue enableBannerProtection;
+	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
+
+	// Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
 	public static ForgeConfigSpec.BooleanValue enableChairSwapping;
 	public static ForgeConfigSpec.BooleanValue enableChairProtectionOverride;
+
+	// Vanilla patches
+	public static ForgeConfigSpec.BooleanValue enableFishingEnchantedItems;
+	public static ForgeConfigSpec.BooleanValue enableEnchantedLootDrops;
+
+	// Special Settings
+	public static ForgeConfigSpec.BooleanValue enableDevMode;
+	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
@@ -34,6 +39,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable legacy based waypoint creation");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable banner protection");
+		barrowWightChestFirstSpawnChance = createIntegerValue(builder, "barrowWightChestFirstSpawnChance", 50, 0, 100, false, "Should stone chests in the barrow downs spawn wight on first open. 0=only when cursed, 100=spawns on every first open like in legacy");
 		builder.pop();
 
 		builder.push("Chair settings");
