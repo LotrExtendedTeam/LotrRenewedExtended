@@ -167,19 +167,52 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					}
 					// Set spawn position
 					BlockPos footPos = new BlockPos(x, y, z);
-					// Check if spawn position is valid for boundary check spawns
-					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !spawnerInstance.insideSpawning()) {
-						BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
-						if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP)
-								|| !floorBlock.getMaterial().isSolid()) {
-							//System.out.println("Failed spawn check fullface+solid");
-							continue; // Try spawning again
-						}
-						BlockState footBlock = world.getBlockState(footPos);
-						BlockState headBlock = world.getBlockState(new BlockPos(x, y +1, z));
-						if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
-							//System.out.println("Failed spawn check isPossibleToRespawnInThis");
-							continue; // Try spawning again
+					// Check if spawn position is valid for boundary check spawns, or when inside spawning instead of bound spawning
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+						// Add check for inside spawning in a bounds check spawn type
+						if(spawnerInstance.insideSpawning()) {
+							BlockState potentialFloorBlock1 = world.getBlockState(footPos);
+							if(!Block.isFaceFull(potentialFloorBlock1.getCollisionShape(world, footPos, ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock1.getMaterial().isSolid()) {
+								BlockState potentialFloorBlock2 = world.getBlockState(footPos.below());
+								if(!Block.isFaceFull(potentialFloorBlock2.getCollisionShape(world, footPos.below(), ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock2.getMaterial().isSolid()) {
+									BlockState potentialFloorBlock3 = world.getBlockState(footPos.below().below());
+									if(!Block.isFaceFull(potentialFloorBlock3.getCollisionShape(world, footPos.below().below(), ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock3.getMaterial().isSolid()) {
+										continue; // Try spawning again
+									}else {
+										BlockState footBlock = world.getBlockState(footPos);
+										BlockState headBlock = world.getBlockState(footPos.above());
+										if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
+											continue; // Try spawning again
+										}
+									}
+								}
+								else {
+									BlockState footBlock = world.getBlockState(footPos.above());
+									BlockState headBlock = world.getBlockState(footPos.above().above());
+									if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
+										continue; // Try spawning again
+									}
+								}
+							}else {
+								BlockState footBlock = world.getBlockState(footPos);
+								BlockState headBlock = world.getBlockState(footPos.above());
+								if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
+									continue; // Try spawning again
+								}
+							}
+						} else {
+							BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
+							if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP)
+									|| !floorBlock.getMaterial().isSolid()) {
+								//System.out.println("Failed spawn check fullface+solid");
+								continue; // Try spawning again
+							}
+							BlockState footBlock = world.getBlockState(footPos);
+							BlockState headBlock = world.getBlockState(new BlockPos(x, y +1, z));
+							if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
+								//System.out.println("Failed spawn check isPossibleToRespawnInThis");
+								continue; // Try spawning again
+							}
 						}
 					}
 					//System.out.println("Successfully ran Spawn checks");
