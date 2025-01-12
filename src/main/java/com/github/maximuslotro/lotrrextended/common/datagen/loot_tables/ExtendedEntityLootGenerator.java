@@ -46,6 +46,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation wargHead;
 	ResourceLocation orcBones;
 	ResourceLocation manBones;
+	ResourceLocation manBreeLeatherIronSword;
 	ResourceLocation elfBones;
 	ResourceLocation hobbitBones;
 	ResourceLocation dwarfBones;
@@ -230,6 +231,19 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
 		);
+		manBreeLeatherIronSword = makeQuickyBasePart("man_bree_leather_iron_sword", LootTable.lootTable()
+				.withPool(addAnotherQuickyPoolRefrence(manBase))
+				.withPool(genSingleQuickyBuilder(Items.LEATHER_CHESTPLATE, 1, 1)
+						.when(KilledByPlayer.killedByPlayer())
+						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F)))
+				.withPool(genSingleQuickyBuilder(Items.LEATHER_LEGGINGS, 1, 1)
+						.when(KilledByPlayer.killedByPlayer())
+						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F)))
+				.withPool(genSingleQuickyBuilder(Items.IRON_SWORD, 1, 1)
+						.when(KilledByPlayer.killedByPlayer())
+						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F)))
+				);
+
 	}
 
 	private void makeFactionTables() {
@@ -314,6 +328,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
+		makeEntity(ExtendedEntities.BREE_SHERRIFF, manBreeLeatherIronSword);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()

@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.vector.Vector3f;
@@ -20,8 +21,10 @@ public class BreeManHeldCoinLayer extends LayerRenderer<BreeManEntity, ManModel<
         super(renderer);
     }
 
-        @Override
-		public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, BreeManEntity man, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    @Override
+    public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, BreeManEntity man, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (!man.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) return;
+
         matStack.pushPose();
 
         this.getParentModel().translateToHand(HandSide.LEFT, matStack);

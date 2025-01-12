@@ -4,15 +4,16 @@ import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
+import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -38,10 +39,11 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
     private static final SpawnEquipmentTable WEAPONS;
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return BreeManEntity.regAttrs();
+        return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
     }
 
     private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedBreelandSherriffEntity.class, DataSerializers.OPTIONAL_UUID);
+    private static final int[] SUIT_COLORS;
 
     @Override
     protected void addNPCAI() {
@@ -109,7 +111,8 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
 
     @Override
     protected Goal createAttackGoal() {
-        return new NPCMeleeAttackGoal(this, 1.3);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45,
+                new ItemStack(Items.SHIELD), ItemStack.EMPTY);
     }
 
     private boolean canHire(PlayerEntity player){
@@ -128,14 +131,20 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
+        this.npcItemsInv.setIdleItem(new ItemStack(Items.WRITABLE_BOOK));
+
+        this.setItemSlot(EquipmentSlotType.FEET, LeatherDyeUtil.dyeLeather(Items.LEATHER_BOOTS, 3354152));
+        this.setItemSlot(EquipmentSlotType.LEGS, LeatherDyeUtil.dyeLeather(Items.LEATHER_LEGGINGS, SUIT_COLORS, this.random));
+        this.setItemSlot(EquipmentSlotType.CHEST, LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, SUIT_COLORS, this.random));
 
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
-
+        this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
         return spawnData;
     }
 
     static {
         WEAPONS = SpawnEquipmentTable.of(Items.IRON_SWORD);
+        SUIT_COLORS = new int[]{11373426, 7823440, 5983041, 9535090};
     }
 
     protected NPCGenderProvider getGenderProvider() {
