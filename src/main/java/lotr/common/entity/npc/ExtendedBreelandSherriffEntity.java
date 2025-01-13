@@ -115,7 +115,8 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
                 new ItemStack(Items.SHIELD), ItemStack.EMPTY);
     }
 
-    private boolean canHire(PlayerEntity player){
+    @Override
+    public boolean canHire(PlayerEntity player){
         // TODO: Make sure this gets used when adding support for hiring
         return isFriendlyAndAlignedWithLevel(player, this, 100);
     }

@@ -341,6 +341,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
 		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
 
+		// hiring screen messages
+		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
+
 		// Hired Units related language entries
 		// entity shortnames
 		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s (Bree-land Guard)");
