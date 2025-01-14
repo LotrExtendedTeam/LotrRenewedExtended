@@ -1,5 +1,5 @@
 {
   "faction": "lotr:bree",
-  "speechbank": "lotr:bree/guard",
+  "speechbank": "lotr:bree/sherriff",
   "kill_bonus": 2
 }

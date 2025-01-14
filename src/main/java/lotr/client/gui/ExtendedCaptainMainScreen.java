@@ -34,10 +34,10 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
     @Override
     public void init() {
     	super.init();
-        this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
+        this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
         // 114 was 57
         // +5 was +63/then 32
-        hireButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) - 30, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
+        hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
     }
 
     private void talkWithNPC() {
