@@ -1,12 +1,11 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopTradingWithTrader;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopInteractingWithInteractable;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTalkWithTrader;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
@@ -36,11 +35,13 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
     public void init() {
     	super.init();
         this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
-        hireButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) + 63, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> tradeWithNPC()));
+        // 114 was 57
+        // +5 was +63/then 32
+        hireButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) - 30, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
     }
 
     private void talkWithNPC() {
-    	stopTradingClientServer();
+    	stopInteractingClientServer();
 
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketTalkWithTrader(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
@@ -49,14 +50,14 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
         }
     }
 
-	private void tradeWithNPC() {
+	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when traders can't be traded with
 		if (captainEntity.canHire(player)) {
             // TODO: Implement actual hiring code
             //captain.openTradeMenu(player);
 		} else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
-			stopTradingClientServer();
+			stopInteractingClientServer();
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.player != null) {
 				mc.player.closeContainer();
@@ -69,7 +70,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
         renderBackground(matStack);
 
         TextComponent title = new StringTextComponent(entity.getName().getString());
-        this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
+        this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
 
         super.render(matStack, mouseX, mouseY, tick);
     }
@@ -77,12 +78,12 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
     @Override
     public void onClose() {
         super.onClose();
-        stopTradingClientServer();
+        stopInteractingClientServer();
     }
 
-    public void stopTradingClientServer() {
+    public void stopInteractingClientServer() {
     	// notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopTradingWithTrader(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopInteractingWithInteractable(entity.getId()));
         captainEntity.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 }

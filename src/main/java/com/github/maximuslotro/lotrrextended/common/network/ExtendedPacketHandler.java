@@ -31,7 +31,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSPacketUpdateTradeQuantities.class, ExtendedSPacketUpdateTradeQuantities::encode, ExtendedSPacketUpdateTradeQuantities::decode, ExtendedSPacketUpdateTradeQuantities::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketNpcMarriageInfo.class, ExtendedSPacketNpcMarriageInfo::encode, ExtendedSPacketNpcMarriageInfo::decode, ExtendedSPacketNpcMarriageInfo::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketSendServerSettings.class, ExtendedSPacketSendServerSettings::encode, ExtendedSPacketSendServerSettings::decode, ExtendedSPacketSendServerSettings::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketStopTradingWithTrader.class, ExtendedCPacketStopTradingWithTrader::encode, ExtendedCPacketStopTradingWithTrader::decode, ExtendedCPacketStopTradingWithTrader::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketStopInteractingWithInteractable.class, ExtendedCPacketStopInteractingWithInteractable::encode, ExtendedCPacketStopInteractingWithInteractable::decode, ExtendedCPacketStopInteractingWithInteractable::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCBannerSaveInfoPacket.class, ExtendedCBannerSaveInfoPacket::encode, ExtendedCBannerSaveInfoPacket::decode, ExtendedCBannerSaveInfoPacket::handle);

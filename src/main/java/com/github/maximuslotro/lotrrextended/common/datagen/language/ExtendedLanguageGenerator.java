@@ -343,6 +343,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// hiring screen messages
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
+		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
+		addD("gui.lotrextended.hiring.hire_bree_guard", "Hired Bree-land Guard");
 
 		// Hired Units related language entries
 		// entity shortnames

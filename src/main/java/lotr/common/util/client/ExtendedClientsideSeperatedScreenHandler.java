@@ -7,7 +7,9 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenC
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
+import lotr.client.gui.ExtendedCaptainMainScreen;
 import lotr.client.gui.ExtendedTraderMainScreen;
+import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
@@ -21,6 +23,10 @@ public class ExtendedClientsideSeperatedScreenHandler {
 
 	public static void openTraderGui(NPCEntity entity, PlayerEntity player) {
 		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
+	}
+
+	public static void openCaptainGui(NPCEntity entity, PlayerEntity player) {
+		Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen(entity, (ExtendedCaptainEntity) entity, player));
 	}
 
 	public static void handleWargScreenOpen(ExtendedSOpenWargWindowPacket pPacket) {

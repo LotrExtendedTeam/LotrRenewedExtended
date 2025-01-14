@@ -6,7 +6,7 @@ import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
-import lotr.common.init.LOTRItems;
+import lotr.common.util.ExtendedCaptainHelper;
 import lotr.common.util.ExtendedInteractableHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -123,9 +123,7 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
 
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        // TODO: Write a mobInteract method for Captains
-        // return ExtendedTraderHelper.mobInteract(this, this, player, hand);
-        return ActionResultType.SUCCESS;
+        return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
     }
 
     @Override
