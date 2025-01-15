@@ -1,9 +1,7 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopInteractingWithInteractable;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTalkWithTrader;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -51,10 +49,9 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
     }
 
 	private void hireFromNPC() {
-		// Ensure the client does not disturb the server when traders can't be traded with
+		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
 		if (captainEntity.canHire(player)) {
-            // TODO: Implement actual hiring code
-            //captain.openTradeMenu(player);
+            ExtendedPacketHandler.sendToServer(new ExtendedCPacketHireUnit(entity.getId()));
 		} else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
 			stopInteractingClientServer();
