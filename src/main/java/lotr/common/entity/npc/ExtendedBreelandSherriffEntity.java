@@ -117,8 +117,17 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
 
     @Override
     public boolean canHire(PlayerEntity player){
-        // TODO: Make sure this gets used when adding support for hiring
         return isFriendlyAndAlignedWithLevel(player, this, 100);
+    }
+
+    @Override
+    public int getCost(String unitName, PlayerEntity player) {
+        // TODO: Use this eventually scale the pricing
+        if (unitName.equals("BREE_GUARD")) {
+            return 30;
+        }
+
+        return 0;
     }
 
     @Override

@@ -345,6 +345,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
 		addD("gui.lotrextended.hiring.hire_bree_guard", "Hire Bree-land Guard");
+		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
+		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
 		// Hired Units related language entries
 		// entity shortnames

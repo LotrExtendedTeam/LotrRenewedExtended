@@ -6,4 +6,6 @@ public interface ExtendedCaptainEntity extends ExtendedInteractableEntity {
 
     boolean canHire(PlayerEntity player);
 
+    int getCost(String unitName, PlayerEntity player);
+
 }
