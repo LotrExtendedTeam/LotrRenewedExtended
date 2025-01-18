@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import lotr.common.entity.npc.ExtendedInteractableEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -12,10 +11,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 /**
  * @author RichardB122
- *
- * This is a dual-use packet for both handling opening the Coin Exchange menu and for telling the
- * server that the trading main menu has been closed so that the trader can move again. The boolean
- * shouldOpen is used to distinguish this.
+ * This packet is used for telling the server that the trading main menu has been closed so that the trader can move again.
  */
 public class ExtendedCPacketStopInteractingWithInteractable {
 

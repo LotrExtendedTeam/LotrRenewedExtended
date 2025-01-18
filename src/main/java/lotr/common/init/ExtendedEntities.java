@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChair
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
-import lotr.client.render.entity.ExtendedBreeCaptainRenderer;
 import lotr.common.entity.npc.*;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;

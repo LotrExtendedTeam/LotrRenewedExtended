@@ -21,9 +21,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 /**
  * @author RichardB122
  *
- * This is a dual-use packet for both handling opening the Coin Exchange menu and for telling the
- * server that the trading main menu has been closed so that the trader can move again. The boolean
- * shouldOpen is used to distinguish this.
+ * This is a  packet for handling opening the Coin Exchange menu.
  */
 public class ExtendedCPacketOpenCoinExchange {
 

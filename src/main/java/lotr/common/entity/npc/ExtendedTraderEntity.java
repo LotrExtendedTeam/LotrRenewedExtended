@@ -2,11 +2,8 @@ package lotr.common.entity.npc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import lotr.common.data.LOTRLevelData;
-import lotr.common.fac.AlignmentPredicates;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
@@ -14,11 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
