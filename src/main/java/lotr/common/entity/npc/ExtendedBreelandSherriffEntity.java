@@ -6,7 +6,7 @@ import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
-import lotr.common.init.LOTRItems;
+import lotr.common.util.ExtendedCaptainHelper;
 import lotr.common.util.ExtendedInteractableHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -115,16 +115,24 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
                 new ItemStack(Items.SHIELD), ItemStack.EMPTY);
     }
 
-    private boolean canHire(PlayerEntity player){
-        // TODO: Make sure this gets used when adding support for hiring
+    @Override
+    public boolean canHire(PlayerEntity player){
         return isFriendlyAndAlignedWithLevel(player, this, 100);
     }
 
     @Override
+    public int getCost(String unitName, PlayerEntity player) {
+        // TODO: Use this eventually scale the pricing
+        if (unitName.equals("BREE_GUARD")) {
+            return 30;
+        }
+
+        return 0;
+    }
+
+    @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        // TODO: Write a mobInteract method for Captains
-        // return ExtendedTraderHelper.mobInteract(this, this, player, hand);
-        return ActionResultType.SUCCESS;
+        return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
     }
 
     @Override

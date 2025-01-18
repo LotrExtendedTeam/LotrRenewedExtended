@@ -31,7 +31,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSPacketUpdateTradeQuantities.class, ExtendedSPacketUpdateTradeQuantities::encode, ExtendedSPacketUpdateTradeQuantities::decode, ExtendedSPacketUpdateTradeQuantities::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketNpcMarriageInfo.class, ExtendedSPacketNpcMarriageInfo::encode, ExtendedSPacketNpcMarriageInfo::decode, ExtendedSPacketNpcMarriageInfo::handle);
 		CHANNEL.registerMessage(id++, ExtendedSPacketSendServerSettings.class, ExtendedSPacketSendServerSettings::encode, ExtendedSPacketSendServerSettings::decode, ExtendedSPacketSendServerSettings::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketStopTradingWithTrader.class, ExtendedCPacketStopTradingWithTrader::encode, ExtendedCPacketStopTradingWithTrader::decode, ExtendedCPacketStopTradingWithTrader::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketStopInteractingWithInteractable.class, ExtendedCPacketStopInteractingWithInteractable::encode, ExtendedCPacketStopInteractingWithInteractable::decode, ExtendedCPacketStopInteractingWithInteractable::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCBannerSaveInfoPacket.class, ExtendedCBannerSaveInfoPacket::encode, ExtendedCBannerSaveInfoPacket::decode, ExtendedCBannerSaveInfoPacket::handle);
@@ -39,6 +39,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCPacketOpenHiredMenu.class, ExtendedCPacketOpenHiredMenu::encode, ExtendedCPacketOpenHiredMenu::decode, ExtendedCPacketOpenHiredMenu::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketOpenHiredEquipmentMenu.class, ExtendedCPacketOpenHiredEquipmentMenu::encode, ExtendedCPacketOpenHiredEquipmentMenu::decode, ExtendedCPacketOpenHiredEquipmentMenu::handle);
 		CHANNEL.registerMessage(id++, ExtendedCPacketSetHiredUnitStationary.class, ExtendedCPacketSetHiredUnitStationary::encode, ExtendedCPacketSetHiredUnitStationary::decode, ExtendedCPacketSetHiredUnitStationary::handle);
+		CHANNEL.registerMessage(id++, ExtendedCPacketHireUnit.class, ExtendedCPacketHireUnit::encode, ExtendedCPacketHireUnit::decode, ExtendedCPacketHireUnit::handle);
 		if (id >= 255) {
 			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
 		}

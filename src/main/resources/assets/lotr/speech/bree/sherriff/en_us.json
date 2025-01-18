@@ -1,0 +1,38 @@
+{
+  "parent": "lotr:bree/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Ah, #p! How are things out there?",
+        "You need any assistance, #p?",
+        "Are those Southerners causing any issue?",
+        "Whatever is going on in the South, I hope it doesn't reach our community.",
+        "What is it? Do you need me to ring the town bell?",
+        "It's almost harvesting season, we could use a few more men to keep a look-out.",
+        "Pardon me for being blunt, #p, but I am glad that you aren't one of them Ruffians.",
+        "Keep an eye out for those Ruffians if you can.",
+        "Word's been getting around about them Black Riders, have you seen them?",
+        "Any troubling news you ought to tell me, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "We have no room for the likes of you in Bree!",
+        "Flee to the hills, to the rest of your kind!",
+        "We've dealt with Ruffians like you before, #p!",
+        "Begone, before we send the hounds after you!",
+        "I knew those Ruffians coming up the Greenway were up to no good!",
+        "Don't come bringing trouble to our peaceful village, why you.",
+        "There is no room for ill-folk such as you in Bree!",
+        "I don't even need my men to handle you.",
+        "The midges are more of a threat than you."
+      ]
+    }
+  ]
+}

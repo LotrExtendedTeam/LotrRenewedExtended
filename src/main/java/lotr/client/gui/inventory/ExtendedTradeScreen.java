@@ -3,7 +3,7 @@ package lotr.client.gui.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopTradingWithTrader;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopInteractingWithInteractable;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTradeSellItems;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -207,7 +207,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
     public void onClose() {
         super.onClose();
         // notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopTradingWithTrader(container.traderNPC.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopInteractingWithInteractable(container.traderNPC.getId()));
         container.trader.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 
