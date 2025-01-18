@@ -97,6 +97,6 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
     public void stopTradingClientServer() {
     	// notify the server that player is no longer interacting with this trader
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopTradingWithTrader(entity.getId()));
-        trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
+        trader.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 }

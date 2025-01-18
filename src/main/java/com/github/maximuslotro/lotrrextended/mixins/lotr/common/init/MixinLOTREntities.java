@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import lotr.common.entity.npc.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,20 +20,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChair
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
-import lotr.common.entity.npc.ExtendedBarrowWightEntity;
-import lotr.common.entity.npc.ExtendedBlueMountainsMerchantEntity;
-import lotr.common.entity.npc.ExtendedBreelandMerchantEntity;
-import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.ExtendedGaladhrimWandererEntity;
-import lotr.common.entity.npc.ExtendedGundabadOrcTraderEntity;
-import lotr.common.entity.npc.ExtendedGundabadUrukArcherEntity;
-import lotr.common.entity.npc.ExtendedGundabadUrukEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
-import lotr.common.entity.npc.ExtendedHobbitBartenderEntity;
-import lotr.common.entity.npc.ExtendedHobbitFarmerEntity;
-import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
-import lotr.common.entity.npc.ExtendedRivendellWandererEntity;
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
 import net.minecraft.entity.Entity;
@@ -167,6 +154,7 @@ public class MixinLOTREntities {
 			//builder.noSave();
 		});
 		ExtendedEntities.HIRED_BREE_GUARD = regNPCD("hired_bree_guard", ExtendedHiredBreeGuard::new, ExtendedHiredBreeGuard::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
+		ExtendedEntities.BREE_SHERRIFF = regNPCD("bree_sherriff", ExtendedBreelandSherriffEntity::new, ExtendedBreelandSherriffEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(9335640, 3681573));
 
 	}
 

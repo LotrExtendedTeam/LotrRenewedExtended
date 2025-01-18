@@ -6,16 +6,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderFriendlyNPCConversationGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderTalkToCurrentGoal;
-import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
-import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
-import lotr.common.entity.npc.ai.goal.NPCEatGoal;
+import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
+import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedMultitradeEntry;
@@ -128,9 +125,9 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.addAttackGoal(4);
 		this.goalSelector.addGoal(6, new OpenDoorGoal(this, true));
-		this.goalSelector.addGoal(7, new ExtendedTraderTalkToCurrentGoal(this, this));
-		this.goalSelector.addGoal(8, new ExtendedTraderFriendlyNPCConversationGoal(this, this, 2.0E-4F));
-		this.goalSelector.addGoal(9, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.0));
+		this.goalSelector.addGoal(7, new ExtendedInteractableTalkToCurrentGoal(this, this));
+		this.goalSelector.addGoal(8, new ExtendedInteractableFriendlyNPCConversationGoal(this, this, 2.0E-4F));
+		this.goalSelector.addGoal(9, new ExtendedInteractableWaterAvoidingRandomWalkingGoal(this, this, 1.0));
 		this.goalSelector.addGoal(10, new NPCEatGoal(this, NPCFoodPools.ORC, 6000));
 		this.goalSelector.addGoal(10, new NPCDrinkGoal(this, NPCFoodPools.ORC_DRINK, 6000));
 		this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.05F));
@@ -264,21 +261,21 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 
 	@Override
 	public boolean isInteractingWithPlayer() {
-		return ExtendedTraderHelper.isInteractingWithPlayer(getPlayerTradingWith());
+		return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
 	}
 
 	@Override
-	public void removePlayerFromTrading(PlayerEntity player) {
-		ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
+	public void removePlayerFromInteracting(PlayerEntity player) {
+		ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
 	}
 
 	@Override
-	public void updatePlayerTradingWith(UUID uuid) {
+	public void updatePlayerInteractingWith(UUID uuid) {
 		this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
 	}
 
 	@Override
-	public Optional<UUID> getPlayerTradingWith() {
+	public Optional<UUID> getPlayerInteractingWith() {
 		return this.entityData.get(PLAYER_TRADING_WITH);
 	}
 

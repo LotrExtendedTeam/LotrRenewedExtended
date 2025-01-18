@@ -15,7 +15,12 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public interface ExtendedTraderEntity {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
 	default void saveAllTrades(CompoundNBT tag) {
 		TradeUtils.saveAllTrades(ExtendedTradeEntries.TradeType.BOUGHT, getBuys(), tag);
@@ -38,13 +43,6 @@ public interface ExtendedTraderEntity {
 	}
 
 	void playTradeSound();
-
-	boolean isInteractingWithPlayer();
-
-	void removePlayerFromTrading(PlayerEntity player);
-
-	void updatePlayerTradingWith(UUID uuid);
-	Optional<UUID> getPlayerTradingWith();
 
 	void openCoinExchange(PlayerEntity player);
 
@@ -81,11 +79,6 @@ public interface ExtendedTraderEntity {
 	int getWanderingTraderTicksLeft();
 
 	void setWanderingTraderTicksLeft(int ticksLeft);
-
-	default public boolean isFriendlyAndAlignedWithLevel(PlayerEntity player, NPCEntity entity, float level) {
-		return entity.isNotFighting(player) && LOTRLevelData.getSidedData(player).getAlignmentData()
-				.hasAlignment(entity.getFaction(), AlignmentPredicates.greaterThanOrEqual(level));
-	}
 
 	TranslationTextComponent getDepartureLine(PlayerEntity player);
 

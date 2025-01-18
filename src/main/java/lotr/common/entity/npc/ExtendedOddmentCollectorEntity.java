@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import lotr.common.entity.npc.ai.goal.ExtendedTraderWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedInteractableWaterAvoidingRandomWalkingGoal;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
@@ -15,6 +15,7 @@ import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
+import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
@@ -121,7 +122,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         this.addAttackGoal(2);
         this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.005F));
-        this.goalSelector.addGoal(8, new ExtendedTraderWaterAvoidingRandomWalkingGoal(this, this, 1.0));
+        this.goalSelector.addGoal(8, new ExtendedInteractableWaterAvoidingRandomWalkingGoal(this, this, 1.0));
         this.addConsumingGoals(9);
         this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
@@ -130,12 +131,11 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     }
 
     @Override
-    public void updatePlayerTradingWith(UUID uuid) {
+    public void updatePlayerInteractingWith(UUID uuid) {
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
 
-    @Override
-    public Optional<UUID> getPlayerTradingWith() {
+    public Optional<UUID> getPlayerInteractingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
@@ -218,12 +218,12 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     @Override
     public boolean isInteractingWithPlayer() {
-        return ExtendedTraderHelper.isInteractingWithPlayer(getPlayerTradingWith());
+        return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
     }
 
     @Override
-    public void removePlayerFromTrading(PlayerEntity player) {
-    	ExtendedTraderHelper.removePlayerFromTrading(player, entityData, PLAYER_TRADING_WITH);
+    public void removePlayerFromInteracting(PlayerEntity player) {
+    	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
     }
 
     // TODO: Maybe some sort of negative reputation limit should prevent a player from trading but for now I don't want killing

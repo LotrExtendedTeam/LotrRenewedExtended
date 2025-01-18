@@ -20,8 +20,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -33,6 +31,15 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenTradeMenu;
+
 public class ExtendedTraderHelper {
 
     private ExtendedTraderHelper() {}
@@ -43,40 +50,30 @@ public class ExtendedTraderHelper {
 
     public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenCoinExchange(entity.getId()));
-        trader.updatePlayerTradingWith(player.getUUID());
+        trader.updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
     public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenTradeMenu(entity.getId()));
-        trader.updatePlayerTradingWith(player.getUUID());
+        trader.updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
     public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
-        if (trader.getPlayerTradingWith().isPresent()) {
+        if (trader.getPlayerInteractingWith().isPresent()) {
             if (!entity.level.isClientSide) {
             	player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), Util.NIL_UUID);
             }
             return ActionResultType.sidedSuccess(entity.level.isClientSide());
         }
 
-        trader.updatePlayerTradingWith(player.getUUID());
+        trader.updatePlayerInteractingWith(player.getUUID());
 
         if (entity.level.isClientSide()) {
             ExtendedClientsideSeperatedScreenHandler.openTraderGui(entity, player);
         }
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
-    }
-
-    public static void removePlayerFromTrading(PlayerEntity player, EntityDataManager eData, DataParameter<Optional<UUID>> pKey) {
-        if (eData.get(pKey).isPresent() && eData.get(pKey).get().equals(player.getUUID())) {
-            eData.set(pKey, Optional.empty());
-        }
-    }
-
-    public static boolean isInteractingWithPlayer(Optional<UUID> uuid) {
-        return uuid.isPresent();
     }
 
     public static String getTraderName(ITextComponent displayName) {

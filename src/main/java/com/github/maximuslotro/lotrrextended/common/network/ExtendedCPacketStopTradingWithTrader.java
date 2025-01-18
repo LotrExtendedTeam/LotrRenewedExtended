@@ -46,7 +46,7 @@ public class ExtendedCPacketStopTradingWithTrader {
             }
 
             ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
-            trader.removePlayerFromTrading(context.get().getSender());
+            trader.removePlayerFromInteracting(context.get().getSender());
         }
         context.get().setPacketHandled(true);
     }

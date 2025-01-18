@@ -132,7 +132,7 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
         super.onClose();
         // notify the server that player is no longer interacting with this trader
         ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopTradingWithTrader(container.traderNPC.getId()));
-        container.trader.removePlayerFromTrading(player); // remove the player from trading on the client side as well
+        container.trader.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 
 }
