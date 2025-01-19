@@ -341,7 +341,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
 		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
 
-		// hiring screen messages
+		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
 		addD("gui.lotrextended.hiring.hire_bree_guard", "Hire Bree-land Guard");
@@ -350,7 +350,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Hired Units related language entries
 		// entity shortnames
-		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s (Bree-land Guard)");
+		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s");
+		addD("entity_unit_type.lotrextended.hired_bree_guard", "Bree Guard");
 		addD("entity_title.lotrextended.hired_bree_guard", "%1$s the Bree-land Guard");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
@@ -362,6 +363,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// chat notifications
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
 		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
+		// hired unit tooltips in unit GUI
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_title", "Stationary: Off");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Hired NPC can move freely.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending themself.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_on_title", "Follows: On");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC follows you unless set to stationary.");
+
 	}
 
 	@Override

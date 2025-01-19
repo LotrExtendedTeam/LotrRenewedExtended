@@ -130,7 +130,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 4210752);
 
         if (companion instanceof ExtendedHiredBreeGuard) {
-            this.font.draw(matrix, "Bree Guard", sidebarX, this.titleLabelY + 22, 4210752);
+            this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_bree_guard"), sidebarX, this.titleLabelY + 22, 4210752);
         }
 
         this.font.draw(matrix, healthTitle.withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32,
@@ -152,14 +152,24 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         if (this.patrolButton.isHovered()) {
             List<ITextComponent> tooltips = new ArrayList<>();
             if (this.companion.isFollowing()) {
-                tooltips.add(new StringTextComponent("Follow"));
-                tooltips.add(new StringTextComponent("Follows you").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
+                tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_on_title"));
+                tooltips.add(
+                        new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_on_description")
+                                .withStyle(TextFormatting.GRAY)
+                                .withStyle(TextFormatting.ITALIC)
+                );
             } else if (this.companion.isPatrolling()){
+                // TODO: Note for now these features disabled
+                /*
                 tooltips.add(new StringTextComponent("Patrol"));
                 tooltips.add(new StringTextComponent("Patrols a 4 block radius").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
+                */
             } else {
+                // TODO: Note for now these features disabled
+                /*
                 tooltips.add(new StringTextComponent("Guard"));
                 tooltips.add(new StringTextComponent("Stands at its position ready for action").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
+                 */
             }
 
             this.renderComponentTooltip(stack, tooltips, x, y);
@@ -168,11 +178,20 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         if (this.stationaryButton.isHovered()) {
             List<ITextComponent> tooltips = new ArrayList<>();
             if (this.companion.isStationary()) {
-                tooltips.add(new StringTextComponent("Stationery: On"));
+                tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_on_title"));
+                tooltips.add(
+                        new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_on_description")
+                                .withStyle(TextFormatting.GRAY)
+                                .withStyle(TextFormatting.ITALIC)
+                );
             } else {
-                tooltips.add(new StringTextComponent("Stationery: Off"));
+                tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_off_title"));
+                tooltips.add(
+                        new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_off_description")
+                                .withStyle(TextFormatting.GRAY)
+                                .withStyle(TextFormatting.ITALIC)
+                );
             }
-            tooltips.add(new StringTextComponent("Companion will not move while attacking in guard mode").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
 
             this.renderComponentTooltip(stack, tooltips, x, y);
         }
@@ -194,7 +213,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
         @Override
         public void renderButton(MatrixStack p_94282_, int p_94283_, int p_94284_, float p_94285_) {
-            if (this.name.equals("alert")) {
+            /*if (this.name.equals("alert")) {
                 if (ExtendedHiredUnitScreen.this.companion.isAlert()) {
                     this.xTexStart = 0;
                 } else {
@@ -208,7 +227,10 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 } else {
                     this.xTexStart = 34;
                 }
-            } else if (this.name.equals("stationery")) {
+            } else*/
+            this.xTexStart = 0;
+            if (this.name.equals("stationary")) {
+                assert ExtendedHiredUnitScreen.this.companion != null;
                 if (ExtendedHiredUnitScreen.this.companion.isStationary()) {
                     this.xTexStart = 0;
                 } else {
@@ -216,7 +238,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 }
             }
             RenderSystem.enableBlend();
-            super.renderButton(p_94282_, p_94283_, p_94284_, p_94285_);
+            super.renderButton(p_94282_, xTexStart, p_94284_, p_94285_);
             RenderSystem.disableBlend();
         }
     }
