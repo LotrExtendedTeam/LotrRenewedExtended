@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
@@ -16,7 +15,6 @@ import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
-
 
 public class BreeAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> BREE_BIOMES = ImmutableList.of(LOTRBiomes.BREELAND, LOTRBiomes.CHETWOOD);
@@ -74,6 +72,14 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", false, FrameType.TASK, true, true, false)
 			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
 			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(theDead));
+
+		Advancement one_for_bill_ferny = build(true, data(Items.APPLE, "one_for_bill_ferny", false, FrameType.TASK, true, true, false)
+			.setTitle("One for Bill Ferny").setDescription("Buy an apple from a Bree-land Farmer."),
+			addTradeTrigger(make(), ExtendedEntities.BREE_FARMER.get(), true, Items.APPLE, LOTRItems.GREEN_APPLE.get()).parent(bree));
+
+		Advancement greenway_watch = build(true, data(Items.IRON_SWORD, "greenway_watch", false, FrameType.TASK, true, true, false)
+			.setTitle("The Greenway Watch").setDescription("Hire a unit from a Bree-land Sheriff."),
+			addUnitHireTrigger(make(), ExtendedEntities.BREE_SHERIFF.get()).parent(bree));
 	}
 
 	@Override

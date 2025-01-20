@@ -1,0 +1,47 @@
+{
+  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "display": {
+    "icon": {
+      "item": "minecraft:apple"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.bree.one_for_bill_ferny.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.bree.one_for_bill_ferny.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_bree_farmer_sell_apple": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_farmer",
+        "istraderselling": "true",
+        "item": {
+          "item": "minecraft:apple"
+        }
+      }
+    },
+    "trade_bree_farmer_sell_green_apple": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_farmer",
+        "istraderselling": "true",
+        "item": {
+          "item": "lotr:green_apple"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_bree_farmer_sell_apple",
+      "trade_bree_farmer_sell_green_apple"
+    ]
+  ]
+}

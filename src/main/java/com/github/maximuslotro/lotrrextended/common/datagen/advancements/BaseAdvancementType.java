@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedUnitHiredTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
@@ -129,8 +130,20 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
-	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item) {
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.ANY));
+	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item... items) {
+		int amount=0;
+		for(Item item: items){
+			amount+=1;
+		}
+		if(amount>1) {
+			for(Item item: items){
+				builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy")+"_"+item.getRegistryName().getPath(), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.ANY));
+			}
+		}
+		else {
+			builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, items[0], MinMaxBounds.IntBound.ANY));
+
+		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
@@ -148,6 +161,21 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item, int threshold) {
 		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.atLeast(threshold)));
 		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addUnitHireTrigger(Advancement.Builder builder, EntityType<?> captainType) {
+		builder.addCriterion("hire_units_from_"+captainType.getRegistryName().getPath(), ExtendedUnitHiredTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(captainType), EntityTypePredicate.ANY, MinMaxBounds.IntBound.ANY));
+		return builder;
+	}
+
+	public static Advancement.Builder addUnitHireTrigger(Advancement.Builder builder, EntityType<?> captainType, EntityType<?> unitType) {
+		builder.addCriterion("hire_"+unitType.getRegistryName().getPath()+"_from_"+captainType.getRegistryName().getPath(), ExtendedUnitHiredTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(captainType), EntityTypePredicate.of(unitType), MinMaxBounds.IntBound.ANY));
+		return builder;
+	}
+
+	public static Advancement.Builder addUnitHireTrigger(Advancement.Builder builder, EntityType<?> captainType, EntityType<?> unitType, int coinAmount) {
+		builder.addCriterion("hire_"+unitType.getRegistryName().getPath()+"_from_"+captainType.getRegistryName().getPath(), ExtendedUnitHiredTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(captainType), EntityTypePredicate.of(unitType), MinMaxBounds.IntBound.atLeast(coinAmount)));
+		return builder;
 	}
 
 	Consumer<Advancement> con;

@@ -1,6 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.init.ExtendedEntities;
@@ -75,6 +77,7 @@ public class ExtendedCPacketHireUnit {
             newEntity.tame(player);
             CoinUtils.removeCoins(player, player.inventory, cost);
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", "Bree-land Guard", cost), Util.NIL_UUID);
+            ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger((ServerPlayerEntity)player, entity.getType(), newEntity.getType(), cost);
         }
 
         context.get().setPacketHandled(true);

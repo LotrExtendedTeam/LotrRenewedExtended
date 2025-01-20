@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.bree.greenway_watch.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.bree.greenway_watch.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_bree_sheriff": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:bree_sheriff"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_bree_sheriff"
+    ]
+  ]
+}
