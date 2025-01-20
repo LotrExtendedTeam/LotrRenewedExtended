@@ -197,7 +197,16 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
 		for (Entry<String, String> entry : map.entrySet()) {
-			if (entry.getKey().contains("container.lotr") || entry.getKey().contains("stat.lotrextended") || entry.getKey().contains("config.lotrextended") || entry.getKey().contains("subtitles.lotrextended")) {
+			if (entry.getKey().contains("container.lotr")) {
+				continue;
+			}
+			if (entry.getKey().contains("stat.lotrextended")) {
+				continue;
+			}
+			if (entry.getKey().contains("config.lotrextended")) {
+				continue;
+			}
+			if (entry.getKey().contains("subtitles.lotrextended")) {
 				continue;
 			}
 			if (entry.getKey().contains("advancements.lotrextended")) {
@@ -213,6 +222,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 				continue;
 			}
 			if (entry.getKey().contains("speechbank.")) {
+				continue;
+			}
+			if (entry.getKey().contains("block.lotr.large_pot_")) {
 				continue;
 			}
 			existingStrings.put(entry.getKey(), entry.getValue());
