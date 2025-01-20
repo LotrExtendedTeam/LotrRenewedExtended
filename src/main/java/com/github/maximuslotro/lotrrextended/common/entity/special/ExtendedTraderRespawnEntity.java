@@ -12,6 +12,7 @@ import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
@@ -120,6 +121,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 			spawnedEntity.moveTo(getX(), getY(), getZ());
 			if(spawnedEntity instanceof NPCEntity) {
 				NPCEntity npcEntity = (NPCEntity) spawnedEntity;
+				npcEntity.finalizeSpawn(world, world.getCurrentDifficultyAt(this.getOnPos()), SpawnReason.SPAWNER, null, null);
 				npcEntity.setPersistenceRequired();
 				if(homeRadius > 0) {
 					npcEntity.restrictTo(homePos, homeRadius);
