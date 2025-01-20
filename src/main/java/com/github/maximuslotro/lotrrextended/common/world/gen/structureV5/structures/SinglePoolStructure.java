@@ -58,6 +58,8 @@ public class SinglePoolStructure extends ExtendedSurfaceStructuresV5<SinglePoolC
             ExtendedJigsawManager.addPieces(dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()),
                     AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+            
+            this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
             this.calculateBoundingBox();
     	}
 

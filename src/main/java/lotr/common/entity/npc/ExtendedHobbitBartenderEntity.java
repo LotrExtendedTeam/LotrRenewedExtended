@@ -81,7 +81,8 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CHOCOLATE_DRINK.get()), 3, 5, 20), new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_JUICE.get()), 5, 8, 20),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 5, 9, 32), new ExtendedTradeEntry(new ItemStack(Items.MUSHROOM_STEW), 8, 13, 8),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.FINE_PLATE.get()), 2, 3, 32), new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_MARRIAGE_RING.get()), 11, 18, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 30, 50, 2),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 30, 50, 2), new ExtendedTradeEntry(new ItemStack(LOTRItems.STONEWARE_PLATE.get()), 2, 3, 32),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_CRAFTING_TABLE.get()), 30, 50, 2), new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_PANCAKE.get()), 5, 8, 16),
             // multitrade entries for the drinks to keep the different levels of potency mutual exclusive
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.LIGHT), 5, 8, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.MODERATE), 6, 10, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.STRONG), 8, 13, 16)}),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.CIDER.get(), Potency.LIGHT), 5, 8, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.CIDER.get(), Potency.MODERATE), 6, 10, 16), new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.CIDER.get(), Potency.STRONG), 8, 13, 16)}),

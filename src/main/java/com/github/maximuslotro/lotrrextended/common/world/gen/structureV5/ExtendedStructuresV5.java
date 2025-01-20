@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.bree.SingleBreeHamletPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitHoleLargeStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitTavernLargeStructure;
 import com.google.common.collect.ImmutableList;
@@ -50,7 +51,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_RUINS = STRUCTURE_REGISTRY.register("barrow_down_ruins", () -> new WeightedPoolStructure(StructureType.RUIN));
 	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new WeightedPoolStructure(StructureType.BARROW));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(StructureType.BREE_HAMLET));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SingleBreeHamletPoolStructure(StructureType.BREE_HAMLET));
 
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
@@ -78,7 +79,7 @@ public class ExtendedStructuresV5 {
 		register(GUNDABAD_ENCAMPMENT.get(), true,      54, 40, 43456);
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
-		register(BREE_HAMLET.get(), true,              53, 35, 57854769);
+		register(BREE_HAMLET.get(), true,              60, 30, 57854769);
 	}
 
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
