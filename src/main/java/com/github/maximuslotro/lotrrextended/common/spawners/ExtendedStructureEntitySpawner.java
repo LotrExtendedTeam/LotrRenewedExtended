@@ -521,10 +521,16 @@ public class ExtendedStructureEntitySpawner {
 			this.enableInsideSpawningChance = enableInsideSpawningChance;
 		}
 
+		/**
+		 * Sets the ExtendedStructureEntitySpawner$Builder SpawnerType
+		 */
 		private Builder(SpawnerType spawnType) {
 			this.spawnType = spawnType;
 		}
 
+		/**
+		 * Set NPC home info
+		 */
 		public ExtendedStructureEntitySpawner.Builder setHomeInfo(boolean setHomeRandom, int homeRadius) {
 			this.setHomePositionOnSpawn = true;
 			this.setHomeRandom = setHomeRandom;
@@ -532,64 +538,101 @@ public class ExtendedStructureEntitySpawner {
 			return this;
 		}
 
+		/**
+		 * Set the minimum and maximum player distance for the spawner to be active
+		 */
 		public ExtendedStructureEntitySpawner.Builder setPlayerDistance(int min, int max) {
 			this.playerMinSpawnDistance = min;
 			this.playerMaxSpawnDistance = max;
 			return this;
 		}
 
+		/**
+		 * Set spawner boundries topYC,bottomYC,horizontalC as check boundries, should be >= topYS, bottomYS,horizontalS spawn boundries
+		 */
 		public ExtendedStructureEntitySpawner.Builder setBoundaries(int topYC, int bottomYC, int horizontalC, int topYS, int bottomYS, int horizontalS) {
 			checkBoundaries = new ExtendedSpawnerBoundsEntry(topYC, bottomYC, horizontalC);
 			spawnRegion = new ExtendedSpawnerBoundsEntry(topYS, bottomYS, horizontalS);
 			return this;
 		}
 
+		/**
+		 * Set the delay between spawn attempts (ticks)
+		 */
 		public ExtendedStructureEntitySpawner.Builder setEntitySpawnTickRate(int ticks) {
 			this.entitySpawnTickRate = ticks;
 			return this;
 		}
 
+		/**
+		 * Set the delay between spawn attempts (seconds)
+		 */
 		public ExtendedStructureEntitySpawner.Builder setEntitySpawnSeconds(int seconds) {
 			this.entitySpawnTickRate = seconds * 20;
 			return this;
 		}
 
+		/**
+		 * Set the delay between spawn attempts (minutes)
+		 */
 		public ExtendedStructureEntitySpawner.Builder setEntitySpawnMinutes(int minutes) {
 			this.entitySpawnTickRate = minutes * 60 * 20;
 			return this;
 		}
 
+		/**
+		 * Set number of rolls the spawner will run to spawn entities, upto the max local spawn cap
+		 */
 		public ExtendedStructureEntitySpawner.Builder setPoolRolls(int rolls) {
 			this.poolRolls = rolls;
 			return this;
 		}
 
+		/**
+		 * Set the maximum amount of same type entities that can be in the spawner boundries
+		 */
 		public ExtendedStructureEntitySpawner.Builder setlocalSpawnCap(int cap) {
 			this.localSpawnCap = cap;
 			return this;
 		}
 
+		/**
+		 * Set the chance for this spawner to skip spawning from a 0 to 100% chance to skip spawning
+		 */
 		public ExtendedStructureEntitySpawner.Builder setRandomDiscardChance(int chance) {
 			this.randomDiscardChance = chance;
 			return this;
 		}
 
+		/**
+		 * Disabled spawning to allow for spawning not yet added entities in the future
+		 */
 		public ExtendedStructureEntitySpawner.Builder disableForFutureSpawning() {
 			this.shouldDisableFutureSpawn = true;
 			return this;
 		}
 
+		/**
+		 * Spawn entities only at the spawner location
+		 */
 		public ExtendedStructureEntitySpawner.Builder enableNonRandomSpawning() {
 			this.enableInsideSpawning = true;
 			this.enableInsideSpawningChance = 100;
 			return this;
 		}
+
+		/**
+		 * Spawn entities only at the spawner location depending on a passed chance
+		 */
 		public ExtendedStructureEntitySpawner.Builder enableNonRandomSpawning(int chance) {
 			this.enableInsideSpawning = true;
 			this.enableInsideSpawningChance = chance;
 			return this;
 		}
 
+		/**
+		 * Generate a ExtendedStructureEntitySpawner
+		 */
 		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
 			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius,
 					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap, shouldDisableFutureSpawn,
@@ -598,10 +641,16 @@ public class ExtendedStructureEntitySpawner {
 			return spawner;
 		}
 
+		/**
+		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
+		 */
 		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, String pId) {
 			return save(pConsumer, new ResourceLocation(pId));
 		}
 
+		/**
+		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
+		 */
 		public ExtendedStructureEntitySpawner save(Consumer<ExtendedStructureEntitySpawner> pConsumer, ResourceLocation pId) {
 			ExtendedStructureEntitySpawner spawner = this.build(pId, false);
 			pConsumer.accept(spawner);

@@ -49,6 +49,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BARROW_DOWN_RUINS.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BARROW_DOWN_BARROWS.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.BREE_HAMLET.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -220,7 +221,9 @@ public class BiomeStructureAdder {
 			if(event.getName().equals(ExtendedBiomes.BARROW_DOWNS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWNS_RUINS);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BARROW_DOWN_BARROWS);
-
+			}
+			if(event.getName().equals(LOTRBiomes.BREELAND.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BREE_HAMLET);
 			}
 		}
 	}

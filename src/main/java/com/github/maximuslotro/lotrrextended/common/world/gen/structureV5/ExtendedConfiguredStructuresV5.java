@@ -24,6 +24,7 @@ public class ExtendedConfiguredStructuresV5 {
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_SMALL = register(ExtendedStructuresV5.HOBBIT_TAVERN_SMALL.get().configured(new SinglePoolConfig("hobbit/hobbit_tavern_small_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_LARGE = register(ExtendedStructuresV5.HOBBIT_TAVERN_LARGE.get().configured(IFeatureConfig.NONE));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_WINDMILL = register(ExtendedStructuresV5.HOBBIT_WINDMILL.get().configured(new SinglePoolConfig("hobbit/hobbit_windmill_pool")));
+
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_CAMP = register(ExtendedStructuresV5.RANGER_CAMP.get().configured(new SinglePoolConfig("ranger/camp_parts/firepit_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_ENCAMPMENT = register(ExtendedStructuresV5.RANGER_ENCAMPMENT.get().configured(new SinglePoolConfig("ranger/encampment_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_FORT = register(ExtendedStructuresV5.RANGER_FORT.get().configured(new SinglePoolConfig("ranger/fort_pool")));
@@ -37,12 +38,16 @@ public class ExtendedConfiguredStructuresV5 {
 			.addStructureToPool("ruins/arnor_ruins_pool", 50).addStructureToPool("ruins/general_ruins_pool", 50);
 	public static StructureFeature<?, ?> CONFIGURED_ARNOR_RUINS = register(ExtendedStructuresV5.ARNOR_RUINS.get().configured(arnorRuinsConfig));
 	public static StructureFeature<?, ?> CONFIGURED_RUINED_HOUSE = register(ExtendedStructuresV5.RANGER_HOUSE_RUIN.get().configured(new SinglePoolConfig("ranger/ruins_pool")));
+
 	public static StructureFeature<?, ?> CONFIGURED_GUNDABAD_CAMP = register(ExtendedStructuresV5.GUNDABAD_CAMP.get().configured(new SinglePoolConfig("gundabad/camp_parts/firepit_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_GUNDABAD_ENCAMPMENT = register(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get().configured(new SinglePoolConfig("gundabad/gundabad_encampment_pool")));
 	public static WeightedStructureConfig barrowDownsRuinsConfig = new WeightedStructureConfig().addStructureToPool("ruins/arnor_other_ruins_pool", 15)
 		.addStructureToPool("ruins/arnor_tower_ruins_pool", 5).addStructureToPool("ruins/general_ruins_pool", 80);
+
 	public static StructureFeature<?, ?> CONFIGURED_BARROW_DOWNS_RUINS = register(ExtendedStructuresV5.BARROW_DOWN_RUINS.get().configured(barrowDownsRuinsConfig));
 	public static StructureFeature<?, ?> CONFIGURED_BARROW_DOWN_BARROWS = register(ExtendedStructuresV5.BARROW_DOWN_BARROWS.get().configured(new WeightedStructureConfig().addStructureToPool("barrow_downs/barrow_pool", 1)));
+
+	public static StructureFeature<?, ?> CONFIGURED_BREE_HAMLET = register(ExtendedStructuresV5.BREE_HAMLET.get().configured(new SinglePoolConfig("bree/hamlet/well_pool")));
 
 	public static void registerConfiguredStructures(){}
 
