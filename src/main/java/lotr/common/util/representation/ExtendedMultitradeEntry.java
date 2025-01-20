@@ -2,6 +2,8 @@ package lotr.common.util.representation;
 
 import java.util.Random;
 
+import net.minecraft.item.ItemStack;
+
 /**
  * This class is meant to add support for multiple trades under a single entry. It allows the representation of trades
  * that are mutually exclusive with other trades. It extends ExtendedTradeEntry to allow it to be stored with other
@@ -15,8 +17,9 @@ public class ExtendedMultitradeEntry extends ExtendedTradeEntry {
 
     private ExtendedTradeEntry[] entries;
 
+    // Use ItemStack.EMPTY instead of null because of the slim chance a ExtendedMultitradeEntry getItem is called, so we don't crash, just show blank entries
     public ExtendedMultitradeEntry(ExtendedTradeEntry[] entries) {
-        super(null, -1, -1);
+        super(ItemStack.EMPTY, -1, -1);
         this.entries = entries;
     }
 

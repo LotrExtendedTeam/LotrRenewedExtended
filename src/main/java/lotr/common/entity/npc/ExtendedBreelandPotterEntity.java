@@ -8,10 +8,10 @@ import java.util.UUID;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
-
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
+import lotr.common.util.representation.ExtendedMultitradeEntry;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import lotr.common.util.representation.ExtendedTradeEntry;
@@ -54,18 +54,83 @@ public class ExtendedBreelandPotterEntity extends BreeManEntity implements Exten
     private List<UUID> escorts = new ArrayList<>();
 
     private final ExtendedTradeEntries BREE_POTTER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.CLAY_BALL, 3), 1, 2), new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SHOVEL.get()), 5, 8, 16),
-            new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16), new ExtendedTradeEntry(new ItemStack(Items.IRON_SHOVEL), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.STONE_SHOVEL), 1, 1, 32),
-            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 16)
+    		new ExtendedTradeEntry(new ItemStack(Items.CLAY_BALL, 4), 1, 1), 
+            new ExtendedTradeEntry(new ItemStack(Items.CLAY), 1, 1), 
+            new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16), 
+            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 16),
+            new ExtendedTradeEntry(new ItemStack(Items.WOODEN_SHOVEL), 1, 2, 32),
+            new ExtendedTradeEntry(new ItemStack(Items.STONE_SHOVEL), 1, 2, 32),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SHOVEL.get()), 2, 6, 16),
+            new ExtendedTradeEntry(new ItemStack(Items.IRON_SHOVEL), 2, 8, 16),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
+                    new ExtendedTradeEntry(new ItemStack(Items.BLACK_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.BLUE_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.BROWN_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.CYAN_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.GRAY_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.GREEN_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_BLUE_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_GRAY_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIME_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.MAGENTA_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.ORANGE_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.PINK_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.PURPLE_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.RED_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.WHITE_DYE), 1, 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.YELLOW_DYE), 1, 1)})
     });
 
     private final ExtendedTradeEntries BREE_POTTER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.TERRACOTTA), 2, 4, 32), new ExtendedTradeEntry(new ItemStack(Items.FLOWER_POT), 5, 9, 32),
-            new ExtendedTradeEntry(new ItemStack(Items.BRICK, 2), 3, 8, 16), new ExtendedTradeEntry(new ItemStack(ExtendedItems.LARGE_POT.get()), 6, 11, 16),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.LARGE_FLOWER_POT.get()), 6, 11, 16), new ExtendedTradeEntry(new ItemStack(Items.BRICKS), 7, 14, 32),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.WATTLE_AND_DAUB.get()), 3, 13, 32), new ExtendedTradeEntry(new ItemStack(LOTRItems.WATTLE_AND_DAUB_PILLAR.get()), 3, 13, 32),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get()), 3, 13, 32), new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_MUG.get()), 2, 3, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_PLATE.get()), 2, 3, 16)
+            new ExtendedTradeEntry(new ItemStack(Items.TERRACOTTA, 4), 4, 6),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
+                    new ExtendedTradeEntry(new ItemStack(Items.BLACK_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.BLUE_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.BROWN_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.CYAN_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.GRAY_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.GREEN_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_BLUE_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_GRAY_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIME_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.MAGENTA_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.ORANGE_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.PINK_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.PURPLE_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.RED_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.WHITE_TERRACOTTA, 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(Items.YELLOW_TERRACOTTA, 4), 4, 6)}),
+            new ExtendedTradeEntry(new ItemStack(Items.FLOWER_POT), 5, 8),
+            new ExtendedTradeEntry(new ItemStack(Items.BRICK, 2), 2, 4), 
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.LARGE_POT.get()), 6, 8),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.LARGE_FLOWER_POT.get()), 6, 8), 
+            new ExtendedTradeEntry(new ItemStack(Items.BRICKS, 4), 5, 7),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.WATTLE_AND_DAUB.get(), 4), 5, 8), 
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.WATTLE_AND_DAUB_PILLAR.get(), 3), 3, 6),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get(), 4), 6, 8), 
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_MUG.get()), 2, 4),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_PLATE.get(), 2), 1, 2),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.CERAMIC_MUG.get()), 3, 5),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.STONEWARE_PLATE.get(), 2), 2, 4),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_TILING.get(), 4), 4, 6),
+            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BLACK_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BROWN_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.CYAN_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.GRAY_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.GREEN_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.LIGHT_BLUE_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.LIGHT_GRAY_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.LIME_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.MAGENTA_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.ORANGE_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PINK_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PURPLE_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.RED_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.WHITE_CLAY_TILING.get(), 4), 4, 6),
+                    new ExtendedTradeEntry(new ItemStack(LOTRItems.YELLOW_CLAY_TILING.get(), 4), 4, 6)})
+            
     });
 
     private ArrayList<ExtendedTrade> itemsSoldByTrader;
