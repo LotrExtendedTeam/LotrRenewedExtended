@@ -1298,7 +1298,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
                     .build();
 		});
-		itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genLargeFlowerPotBlockItem(ExtendedLargeFlowerPotBlock pot, String key) {
@@ -1312,7 +1311,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
 	                    .build();
 			});
-			itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
 		}else {
 			BlockModelBuilder modelFile = null;
 			if(pot.getContent().getRegistryName().getNamespace().equals("minecraft")) {

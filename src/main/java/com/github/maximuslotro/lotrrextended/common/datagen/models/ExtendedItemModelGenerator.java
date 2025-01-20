@@ -6,6 +6,8 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -74,6 +76,14 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRSaplingBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedLargePotBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedLargeFlowerPotBlock && !item.getKey().contains("large_pot_")) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRStandingSignBlock) {
