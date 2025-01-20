@@ -26,7 +26,7 @@ public class SingleBreeHamletPoolStructure extends ExtendedSurfaceStructuresV5<S
 
 		@Override
 		public int maxDepth() {
-			return 5;
+			return 4;
 		}
     }
 }

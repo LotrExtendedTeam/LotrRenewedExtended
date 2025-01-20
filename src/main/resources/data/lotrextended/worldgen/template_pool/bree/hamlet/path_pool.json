@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:bree/hamlet/path_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:bree/hamlet/building_pool_road_alt",
 	"elements": [
 		{
 			"weight": 2,
@@ -75,7 +75,7 @@
 			}
 		},
 		{
-			"weight": 6,
+			"weight": 7,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
@@ -84,7 +84,7 @@
 			}
 		},
 		{
-			"weight": 6,
+			"weight": 7,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
@@ -93,7 +93,7 @@
 			}
 		},
 		{
-			"weight": 6,
+			"weight": 7,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
