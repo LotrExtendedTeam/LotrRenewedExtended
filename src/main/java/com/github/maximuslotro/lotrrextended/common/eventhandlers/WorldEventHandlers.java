@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBl
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
+import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -79,13 +80,14 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public static void handleWanderingTraderDeath(LivingDeathEvent event) {
-		if (!(event.getEntity() instanceof ExtendedTraderEntity && event.getEntity() instanceof NPCEntity)) {
+	public static void handleCaptainTraderDeath(LivingDeathEvent event) {
+		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
 			return;
 		}
 
-		ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
-		if(trader.isWanderingTrader()) {
+		// If an NPC is a wandering trader, no respawns, even it is a captain
+		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedTraderEntity) event.getEntity()).isWanderingTrader()) {
+			ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
 			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
 				return;
 			}
@@ -111,11 +113,18 @@ public class WorldEventHandlers {
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
 
 			//Set entity Type
-			respawnerEntity.setTraderType(npc.getType());
+			respawnerEntity.setEntityType(npc.getType());
+
 			//Save trader trades
 			CompoundNBT compound =  new CompoundNBT();
-			trader.saveAllTrades(compound);
-			respawnerEntity.setTraderType(compound);
+			if(event.getEntity() instanceof ExtendedTraderEntity) {
+				((ExtendedTraderEntity) event.getEntity()).saveAllTrades(compound);
+			}
+			if(event.getEntity() instanceof ExtendedCaptainEntity) {
+				// IDK maybe captains have data to save in the future
+			}
+			respawnerEntity.setEntityData(compound);
+
 			//Save Trader Home info
 			if(npc.hasRestriction()){
 				respawnerEntity.setHomeInfo(npc.getRestrictCenter(), (int)npc.getRestrictRadius());

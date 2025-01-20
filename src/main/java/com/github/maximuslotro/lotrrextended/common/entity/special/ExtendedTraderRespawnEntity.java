@@ -5,6 +5,7 @@ import java.util.Locale;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
 
+import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
@@ -51,7 +52,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	public boolean offTick = false;
 	// TRADER settings;
 	private CompoundNBT nbt = new CompoundNBT();
-	private String traderType;
+	private String entityType;
 	private BlockPos homePos = BlockPos.ZERO;
 	// if -1 assume no homeIsSet
 	private int homeRadius = -1;
@@ -70,12 +71,12 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		this.getEntityData().set(TICKPERCENTAGE, entityTickBacksRemaining);
 	}
 
-	public void setTraderType(EntityType<?> type) {
-		traderType = type.getRegistryName().toString();
-		this.getEntityData().set(DATA_SPAWNER_TYPE, traderType);
+	public void setEntityType(EntityType<?> type) {
+		entityType = type.getRegistryName().toString();
+		this.getEntityData().set(DATA_SPAWNER_TYPE, entityType);
 	}
 
-	public void setTraderType(CompoundNBT compund) {
+	public void setEntityData(CompoundNBT compund) {
 		nbt = compund;
 	}
 
@@ -113,25 +114,27 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	}
 
 	private void spawnTrader(ServerWorld world) {
-		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(traderType);
+		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(entityType);
 		if(traderEntityType!=null) {
-			Entity traderEntity = traderEntityType.create(world);
-			traderEntity.moveTo(getX(), getY(), getZ());
-			if(!(traderEntity instanceof ExtendedTraderEntity)) {
-				queueToRemove = false;
-				ExtendedLog.error("Trader Respawner tried spawning entity not of ExtendedTraderEntity! "+traderType +", with data: "+nbt.toString());
-				return;
+			Entity spawnedEntity = traderEntityType.create(world);
+			spawnedEntity.moveTo(getX(), getY(), getZ());
+			if(spawnedEntity instanceof NPCEntity) {
+				NPCEntity npcEntity = (NPCEntity) spawnedEntity;
+				npcEntity.setPersistenceRequired();
+				if(homeRadius > 0) {
+					npcEntity.restrictTo(homePos, homeRadius);
+				}
 			}
-			NPCEntity npcTrader = (NPCEntity) traderEntity;
-			npcTrader.setPersistenceRequired();
-			if(homeRadius != -1.0F) {
-				npcTrader.restrictTo(homePos, homeRadius);
+			if(spawnedEntity instanceof ExtendedTraderEntity) {
+				((ExtendedTraderEntity)spawnedEntity).loadAllTrades(nbt);
 			}
-			((ExtendedTraderEntity)npcTrader).loadAllTrades(nbt);
-			world.addFreshEntity(traderEntity);
+			if(spawnedEntity instanceof ExtendedCaptainEntity) {
+				// IDK maybe captains have data to save in the future
+			}
+			world.addFreshEntity(spawnedEntity);
 			queueToRemove = true;
 		}else {
-			ExtendedLog.error("Trader Respawner tried spawning unknown entity! "+traderType +", with data: "+nbt.toString());
+			ExtendedLog.error("Entity Respawner tried spawning unknown entity! "+entityType +", with data: "+nbt.toString());
 			queueToRemove = false;
 			return;
 		}
@@ -140,8 +143,8 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT pCompound) {
 		if(pCompound.contains("entityType")) {
-			traderType = pCompound.getString("entityType");
-			this.getEntityData().set(DATA_SPAWNER_TYPE, traderType);
+			entityType = pCompound.getString("entityType");
+			this.getEntityData().set(DATA_SPAWNER_TYPE, entityType);
 		}else {
 			queueToRemove=true;
 		}
@@ -157,7 +160,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		if(pCompound.contains("traderTrades")) {
 			nbt = pCompound.getCompound("traderTrades");
 		}else {
-			new CompoundNBT();
+			nbt = new CompoundNBT();
 		}
 		if(pCompound.contains("homeRadius")) {
 			homeRadius = pCompound.getInt("homeRadius");
@@ -169,8 +172,8 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
-		if(traderType !=null) {
-			pCompound.putString("entityType", traderType);
+		if(entityType !=null) {
+			pCompound.putString("entityType", entityType);
 		}else {
 			queueToRemove=true;
 		}
@@ -187,7 +190,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
 		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
 			pPlayer.sendMessage(new StringTextComponent("Spawner Entity: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(traderType!=null ? traderType : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(entityType!=null ? entityType : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			float percent = 1.0F -((float)entityTickBacksRemaining / (float)setEntityTickBackRate);
 			pPlayer.sendMessage(new StringTextComponent("Current spawn percentage: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.format(Locale.US,"%.2f", percent*100.0F)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
