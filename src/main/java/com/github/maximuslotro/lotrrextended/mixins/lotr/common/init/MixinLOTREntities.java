@@ -155,6 +155,7 @@ public class MixinLOTREntities {
 		});
 		ExtendedEntities.HIRED_BREE_GUARD = regNPCD("hired_bree_guard", ExtendedHiredBreeGuard::new, ExtendedHiredBreeGuard::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
 		ExtendedEntities.BREE_SHERIFF = regNPCD("bree_sheriff", ExtendedBreelandSheriffEntity::new, ExtendedBreelandSheriffEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(9335640, 3681573));
+		ExtendedEntities.BREE_FARMER = regNPCD("bree_farmer", ExtendedBreelandFarmerEntity::new, ExtendedBreelandFarmerEntity::regAttrs, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
 	}
 
 }

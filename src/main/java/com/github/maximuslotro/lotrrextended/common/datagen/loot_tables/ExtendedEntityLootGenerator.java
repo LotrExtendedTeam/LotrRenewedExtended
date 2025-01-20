@@ -396,6 +396,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.HIRED_BREE_GUARD, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

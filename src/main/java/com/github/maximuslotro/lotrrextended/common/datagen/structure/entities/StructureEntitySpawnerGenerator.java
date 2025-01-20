@@ -97,7 +97,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		// un-disable when bree hamlet potter is added
 		single(LOTREntities.BREE_MAN.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.BREE_HAMLET_POTTER);
 		// un-disable when bree hamlet farmer is added
-		single(LOTREntities.BREE_MAN.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.BREE_HAMLET_FARMER);
+		single(ExtendedEntities.BREE_FARMER.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FARMER);
 		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE);
 	}
 }

@@ -41,4 +41,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedChairEntity>> CHAIR;
 	public static RegistryObject<EntityType<ExtendedHiredBreeGuard>> HIRED_BREE_GUARD;
 	public static RegistryObject<EntityType<ExtendedBreelandSheriffEntity>> BREE_SHERIFF;
+	public static RegistryObject<EntityType<ExtendedBreelandFarmerEntity>> BREE_FARMER;
+	public static RegistryObject<EntityType<ExtendedBreelandSheriffEntity>> BREE_POTTER;
 }
