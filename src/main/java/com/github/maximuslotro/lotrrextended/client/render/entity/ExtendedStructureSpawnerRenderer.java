@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.client.render.entity.model.Extended
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import net.minecraft.client.Minecraft;
@@ -39,6 +40,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 			if (ExtendedClientConfig.enableDevMode.get() && !pEntity.getCMinBlockPos().equals(BlockPos.ZERO) && !pEntity.getCMaxBlockPos().equals(BlockPos.ZERO)&&
 					!pEntity.getSMinBlockPos().equals(BlockPos.ZERO) && !pEntity.getSMaxBlockPos().equals(BlockPos.ZERO)) {
 				IVertexBuilder lineBuilder = pBuffer.getBuffer(RenderType.lines());
+				RenderSystem.lineWidth(10.0f);
 				BlockPos minPosC = pEntity.getCMinBlockPos();
 				BlockPos maxPosC = pEntity.getCMaxBlockPos();
 				BlockPos minPosS = pEntity.getSMinBlockPos();
