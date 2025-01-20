@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ExtendedBreelandSherriffEntity extends BreeManEntity implements ExtendedCaptainEntity {
+public class ExtendedBreelandSheriffEntity extends BreeManEntity implements ExtendedCaptainEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
@@ -42,7 +42,7 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
         return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
     }
 
-    private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedBreelandSherriffEntity.class, DataSerializers.OPTIONAL_UUID);
+    private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedBreelandSheriffEntity.class, DataSerializers.OPTIONAL_UUID);
     private static final int[] SUIT_COLORS;
 
     @Override
@@ -68,7 +68,7 @@ public class ExtendedBreelandSherriffEntity extends BreeManEntity implements Ext
         this.goalSelector.addGoal(12, new LookRandomlyGoal(this));
     }
 
-    public ExtendedBreelandSherriffEntity(EntityType<? extends ExtendedBreelandSherriffEntity> type, World w) {
+    public ExtendedBreelandSheriffEntity(EntityType<? extends ExtendedBreelandSheriffEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
     }

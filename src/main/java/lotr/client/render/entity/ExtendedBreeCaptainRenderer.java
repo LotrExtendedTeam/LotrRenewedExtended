@@ -2,7 +2,7 @@ package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
 import lotr.client.render.entity.layers.BreeManHeldCoinLayer;
-import lotr.common.entity.npc.ExtendedBreelandMerchantEntity;
+import lotr.common.entity.npc.ExtendedBreelandSheriffEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,7 +14,7 @@ public class ExtendedBreeCaptainRenderer extends BreeManRenderer {
             this.addLayer(new BreeManHeldCoinLayer(this));
         }
 
-        public ResourceLocation getEntityTexture(ExtendedBreelandMerchantEntity man) {
+        public ResourceLocation getEntityTexture(ExtendedBreelandSheriffEntity man) {
             return SKINS.getRandomSkin(man);
         }
 }

@@ -93,7 +93,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.BREE_GUARD.get(), 20).addPool(LOTREntities.BREE_MAN.get(), 100)
 				.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 24, 8, -4, 14).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_AREA_SPAWNER);
-		single(ExtendedEntities.BREE_SHERRIFF.get()).setHomeInfo(false, 12).setRandomDiscardChance(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE_SHERIFF);
+		single(ExtendedEntities.BREE_SHERIFF.get()).setHomeInfo(false, 12).setRandomDiscardChance(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE_SHERIFF);
 		// un-disable when bree hamlet potter is added
 		single(LOTREntities.BREE_MAN.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.BREE_HAMLET_POTTER);
 		// un-disable when bree hamlet farmer is added
