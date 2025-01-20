@@ -3,6 +3,7 @@ package lotr.common.util;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 public class ExtendedHiredUnitHelper {
 
     public static final ItemStack BREE_GUARD_HEAD = new ItemStack(Items.IRON_HELMET).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_CHEST = new ItemStack(Items.LEATHER_CHESTPLATE).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_CHEST = LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
     public static final ItemStack BREE_GUARD_LEGS = new ItemStack(Items.CHAINMAIL_LEGGINGS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.leggings").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
     public static final ItemStack BREE_GUARD_FEET = new ItemStack(Items.CHAINMAIL_BOOTS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.boots").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
     public static final ItemStack BREE_GUARD_MAINHAND  = new ItemStack(LOTRItems.IRON_SPEAR.get()).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.weapon").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));

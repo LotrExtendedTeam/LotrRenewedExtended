@@ -201,7 +201,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
     class CompanionButton extends ImageButton {
 
         private String name;
-        private int xTexStart;
 
         public CompanionButton(String name, int p_94269_, int p_94270_, int p_94271_, int p_94272_, int p_94273_,
                                int p_94274_,
@@ -213,6 +212,9 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
         @Override
         public void renderButton(MatrixStack p_94282_, int p_94283_, int p_94284_, float p_94285_) {
+            // TODO: Ideally this would be nice to show the enabled vs disabled
+            //  stationary icon but currently doesn't work because xTexStart is private
+            //  - should fix this eventually
             /*if (this.name.equals("alert")) {
                 if (ExtendedHiredUnitScreen.this.companion.isAlert()) {
                     this.xTexStart = 0;
@@ -227,8 +229,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 } else {
                     this.xTexStart = 34;
                 }
-            } else*/
-            this.xTexStart = 0;
+            } else
             if (this.name.equals("stationary")) {
                 assert ExtendedHiredUnitScreen.this.companion != null;
                 if (ExtendedHiredUnitScreen.this.companion.isStationary()) {
@@ -236,9 +237,9 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 } else {
                     this.xTexStart = 17;
                 }
-            }
+            }*/
             RenderSystem.enableBlend();
-            super.renderButton(p_94282_, xTexStart, p_94284_, p_94285_);
+            super.renderButton(p_94282_, p_94283_, p_94284_, p_94285_);
             RenderSystem.disableBlend();
         }
     }
