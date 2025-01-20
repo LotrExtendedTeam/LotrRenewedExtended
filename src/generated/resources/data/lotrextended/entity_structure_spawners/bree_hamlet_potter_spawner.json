@@ -1,7 +1,6 @@
 {
   "id": "lotrextended:bree_hamlet_potter_spawner",
   "spawner_type": "single_use_spawner",
-  "disable_for_use_in_future": true,
   "setHomeOnSpawn": true,
   "homeRadius": 12,
   "pools": [
@@ -9,7 +8,7 @@
       "weight": 100,
       "minSpawnCount": 1,
       "maxSpawnCount": 1,
-      "entity_type": "lotr:bree_man"
+      "entity_type": "lotr:bree_potter"
     }
   ]
 }
