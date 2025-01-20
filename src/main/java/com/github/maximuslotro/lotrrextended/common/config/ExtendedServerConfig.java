@@ -14,6 +14,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
 	public static ForgeConfigSpec.BooleanValue enableBannerProtection;
 	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
+	public static ForgeConfigSpec.DoubleValue npcGlobalSpawnDampingCoefficient;
 
 	// Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
@@ -40,6 +41,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable banner protection");
 		barrowWightChestFirstSpawnChance = createIntegerValue(builder, "barrowWightChestFirstSpawnChance", 50, 0, 100, false, "Should stone chests in the barrow downs spawn wight on first open. 0=only when cursed, 100=spawns on every first open like in legacy");
+		npcGlobalSpawnDampingCoefficient = createDoubleValue(builder, "npcGlobalSpawnDampingCoefficient", 1.0D, 0.0D, 1.0D, false, "Reduce the global npc spawning rate, the lower the value, the less spawns. This is a linear setting, (1.0 is the default renewed spawn rate)");
 		builder.pop();
 
 		builder.push("Chair settings");

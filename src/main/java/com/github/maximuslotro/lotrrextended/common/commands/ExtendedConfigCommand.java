@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 
 import net.minecraft.command.CommandSource;
@@ -70,6 +71,15 @@ public class ExtendedConfigCommand
 								)
 						.executes(context -> retrieveIntValue(context.getSource(), "barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance.get()))
 						)
+				.then(Commands.literal("npcGlobalSpawnDampingCoefficient")
+					.then(Commands.argument("set", DoubleArgumentType.doubleArg(0.0D, 1.0D))
+							.executes(context -> {
+								ExtendedServerConfig.npcGlobalSpawnDampingCoefficient.set(DoubleArgumentType.getDouble(context, "set"));
+								setDoubleValue(context.getSource(), "npcGlobalSpawnDampingCoefficient", DoubleArgumentType.getDouble(context, "set"));
+								return Command.SINGLE_SUCCESS;})
+							)
+					.executes(context -> retrieveDoubleValue(context.getSource(), "npcGlobalSpawnDampingCoefficient", ExtendedServerConfig.npcGlobalSpawnDampingCoefficient.get()))
+					)
 				//Chair
 				.then(Commands.literal("enableChairSlabSitting")
 						.then(Commands.argument("set", BoolArgumentType.bool())
@@ -150,6 +160,13 @@ public class ExtendedConfigCommand
 				.append(new StringTextComponent(Integer.toString(value)).withStyle(TextFormatting.GOLD)), true);
 		return Command.SINGLE_SUCCESS;
 	}
+	public static int retrieveDoubleValue(CommandSource source, String name, double value) {
+		source.sendSuccess(new StringTextComponent("Current ").withStyle(TextFormatting.GREEN)
+				.append(new StringTextComponent(name).withStyle(TextFormatting.AQUA))
+				.append(new StringTextComponent(" value: ").withStyle(TextFormatting.GOLD))
+				.append(new StringTextComponent(Double.toString(value)).withStyle(TextFormatting.GOLD)), true);
+		return Command.SINGLE_SUCCESS;
+	}
 
 	public static int cantSetValue(CommandSource source, String name) {
 		source.sendSuccess(new StringTextComponent(name).withStyle(TextFormatting.AQUA)
@@ -173,6 +190,15 @@ public class ExtendedConfigCommand
 		text.withStyle(TextFormatting.GREEN);
 		text.append(" "+name+":").withStyle(TextFormatting.AQUA);
 		text.append(" "+Integer.toString(value)).withStyle(TextFormatting.GOLD);
+		source.sendSuccess(text, false);
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int setDoubleValue(CommandSource source, String name, double value) {
+		TextComponent text = new TranslationTextComponent("gui.lotrextended.base.set");
+		text.withStyle(TextFormatting.GREEN);
+		text.append(" "+name+":").withStyle(TextFormatting.AQUA);
+		text.append(" "+Double.toString(value)).withStyle(TextFormatting.GOLD);
 		source.sendSuccess(text, false);
 		return Command.SINGLE_SUCCESS;
 	}

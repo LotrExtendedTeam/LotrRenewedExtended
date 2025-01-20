@@ -74,6 +74,7 @@
 		"lotr.common.world.biome.MixinWilderlandBiome",
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
 		"lotr.common.world.gen.tree.MixinLOTRTrunkPlacersJavaPatch",
+		"lotr.common.world.spawning.MixinRenewedNPCSpawner",
 		"net.minecraft.block.MixinBlock",
 		"net.minecraft.block.MixinBlocks",
 		"net.minecraft.block.MixinFarmlandBlock",
