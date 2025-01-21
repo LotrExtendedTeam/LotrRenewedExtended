@@ -583,7 +583,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SHOVEL.get()).setWeight(60).setDamageRange(0.15F, 0.7F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(50).setDamageRange(0.15F, 0.6F).setExactly(1))
-						.add(EItemLootEntry.lootItem(ExtendedItems.ORC_BOW.get()).setWeight(40).setDamageRange(0.15F, 0.75F).setExactly(1))));
+						.add(EItemLootEntry.lootItem(ExtendedItems.ORC_BOW.get()).setWeight(40).setDamageRange(0.15F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.GUNDABAD_URUK_BOW.get()).setWeight(35).setDamageRange(0.15F, 0.75F).setExactly(1))));
 
 		consumer.accept(ExtendedLootTables.BARROW_DOWN_CHEST, LootTable.lootTable()
 				.withPool(LootPool.lootPool()

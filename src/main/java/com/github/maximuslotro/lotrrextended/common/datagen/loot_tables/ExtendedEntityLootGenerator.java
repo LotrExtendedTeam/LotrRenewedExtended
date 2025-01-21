@@ -59,6 +59,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation pouch;
 	ResourceLocation mugs;
 	ResourceLocation foodItems;
+	ResourceLocation gundabadUrukEquipment;
+	ResourceLocation gundabadUrukArcherEquipment;
 	//Bases
 	ResourceLocation orcBase;
 	ResourceLocation elfBase;
@@ -141,7 +143,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(genQuickyItemBuilder(ExtendedItems.BARROW_BLADE.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
 				.when(KilledByPlayer.killedByPlayer())
-				.when(RandomChance.randomChance(0.015F))));
+				.when(RandomChance.randomChance(0.05F))));
 		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
 				.add(genQuickyItemBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 1, 4).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.12F, 0.025F))));
@@ -165,6 +167,21 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(genQuickyItemBuilder(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 1).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
+		gundabadUrukEquipment = makeQuickyBasePart("gundabad_uruk_equipment", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_SHIELD.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+			.when(KilledByPlayer.killedByPlayer())
+			.when(RandomChance.randomChance(0.06F))));
+		gundabadUrukArcherEquipment = makeQuickyBasePart("gundabad_uruk_archer_equipment", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_SHIELD.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_BOW.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+			.when(KilledByPlayer.killedByPlayer())
+			.when(RandomChance.randomChance(0.06F))));
 	}
 
 	private void makeBaseTables() {
@@ -337,8 +354,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	    				.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
 	    						.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
-		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk);
-		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, arrows);
+		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk, gundabadUrukEquipment);
+		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, gundabadUrukArcherEquipment, arrows);
 		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(ConstantRange.exactly(1))

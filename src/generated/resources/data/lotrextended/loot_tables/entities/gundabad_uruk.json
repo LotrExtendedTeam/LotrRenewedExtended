@@ -9,6 +9,15 @@
           "name": "lotrextended:entities/common/faction_bases/gundabad_uruk"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/gundabad_uruk_equipment"
+        }
+      ]
     }
   ]
 }
