@@ -1,3 +1,77 @@
+(Beta 1.7.1)
+* Blocks
+  * Added Crossed Wattle and Daub
+  * Added Large Flower Pots (every vanilla/renewed/extended pot placeable plant compatible)
+  * Added Mordor Moss Vines
+  * Fixed packed/bundled/carpet fur not being shearable
+  * Made Fur carpets/slabs/stairs/walls flammable
+  * Made Moss Carpets only place on solid blocks (no floating moss now)
+* Entities
+  * Added Bree Guard Hired Unit 
+  * Added Breeland Potter
+  * Fixed Barrow Wights getting stuck in cobwebs
+  * Fixed Trader respawners spawning NPCs without giving them items they normally hold
+  * Made Barrow Wights have a 1.9 block tall collision box, but a 2.4 block tall hitbox
+  * Ported Bree-Land Sheriff
+  * Ported Breeland Farmer
+* Commands
+  * Fixed the confusing layout of the /fellowship command
+* Config
+  * Added a server config global NPC spawn dampening option, defaults to renewed spawn rates (configurable via the lotrExtendedConfig command)
+  * Added a server config option to adjust the one-time wight spawn chance
+  * Added a server config option to disable stair/slab sitting
+  * Added a server config option to disable stair/slab sitting in protected areas
+  * Added a server config option to disable stair/slab swapping
+* Features
+  * Added a chanced one-time forced wight spawn mechanic (kinda like legacy)
+  * Added ability for players to sit on stairs and slabs
+  * Added initial Hired Units implementation from LOTR:Companions (almost 1.5 years in works)
+  * Added proper light/extinguish ,mechanics for torches (Rclick water drink or bottle to extinguish, Rclick with match or flintNSteel to light)
+  * Disabled stone chest GUI opening if a wight spawned
+  * Fixed fellowship members not being able to leave the fellowship (only owners could remove people)
+  * Fixed fellowships not appearing in the fellowships list for the members
+* GUI
+  * Added Hired Unit Gui
+  * Added Unit Hiring Gui
+* Items
+  * Added Chisels to the list of weapon rack displayable items
+* Localization
+  * Fixed Fellowship command not being fully localized
+* Loot Tables
+  * Added Loot Tables for Cups,Mugs, Goblets, and Ale Horns (drinks will be randomized in structure vessels going forward)
+  * Added Loot Tables for Plates (food will be randomized in structure plates going forward)
+  * Added Loot Tables for Weapon Racks (weapons will be randomized in structure weapon racks going forward)
+  * Added Stoneware Plates, Hobbit Pancakes, and Hobbit Crafting Tables to Hobbit bartender potential sells
+  * Added duck eggs/meat and plums to shire and ranger loot-tables
+  * Fixed Butter and Hobbit Pancakes being missing from their respective chest loot-tables
+  * Fixed a bug not letting Weapon Racks store a loot-table
+  * Fixed the damage for all equipment, weapons, and tools being inverted
+* Misc
+  * Added 2 advancements from Legacy (33.1% currently)
+  * Changed save format of extended data file
+  * Fixed 1.7.0 making it impossible to left-click extinguish fire
+  * Fixed Orc Trapdoor and Orc Plating recipes conflicting
+  * Fixed boat crafting recipes giving four boats
+  * Fixed trading with Rivendell wanderer giving Hobbit farmer achievement
+  * Mossy Cobblestone can now be crafted using moss blocks and carpets
+* Sounds
+  * Added use sound for Conquest Tables
+* Structures
+  * Added Hamlets to Breeland
+  * Fixed Entity Spawners in structures bypassing safe spawning checks and raining down entities onto the ground (ranger watchtowers)
+  * Fixed a Gundabad Camp chest not having a loot-table
+  * Updated Barrow Downs structures with weapon rack loot-tables
+  * Updated Gundabad structures with weapon rack, plate and vessel loot-tables
+  * Updated Ranger structures with plate and vessel loot-tables
+  * Updated Shire structures with plate and vessel loot-tables
+* Textures
+  * Added a dedicated item texture for Large Pots and Large Flower Pots
+  * Added new Arnor helmet model
+  * Added new textures for Arnor armor (worn and items)
+  * Fixed Goofy breaking particles for the Reed Basket
+  * Removed very outdated legacy texture pack
+  * Updated Wildberry item and block textures
+
 (Beta 1.7.0)
 * Blocks
   * Added Ancient Rune block (two variants, use chisel to change)
