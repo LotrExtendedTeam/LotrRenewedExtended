@@ -10,7 +10,7 @@ public class ExtendedArnorHelmetModel<E extends LivingEntity> extends ExtendedSp
 	}
 
 	public ExtendedArnorHelmetModel(BipedModel<E> referenceBipedModel, float f) {
-		super(referenceBipedModel, f);
+		super(referenceBipedModel, f, 32, 32);
 		clearNonHelmetParts();
 		head = new ModelRenderer(this, 0, 0);
 		head.setPos(0.0F, 0.0F, 0.0F);
