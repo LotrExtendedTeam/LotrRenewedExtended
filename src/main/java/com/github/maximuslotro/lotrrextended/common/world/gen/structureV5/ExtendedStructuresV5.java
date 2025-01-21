@@ -76,7 +76,7 @@ public class ExtendedStructuresV5 {
 		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 34063920);
 		register(ARNOR_RUINS.get(), true,              29, 18, 365876386);
 		register(GUNDABAD_CAMP.get(), true,            45, 25, 967990477);
-		register(GUNDABAD_ENCAMPMENT.get(), true,      54, 40, 43456);
+		register(GUNDABAD_ENCAMPMENT.get(), true,      50, 35, 43757456);
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              60, 30, 57854769);
