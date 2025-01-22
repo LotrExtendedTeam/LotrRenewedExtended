@@ -776,7 +776,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 25
+              "count": 1
             },
             {
               "function": "minecraft:set_damage",
