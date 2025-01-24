@@ -81,9 +81,6 @@ public class ExtendedHiredUnitHelper {
     }
 
     public static ExtendedHirableEntity getExtendedHirableEntity(Entity entity) {
-        if (!isEntityHiredUnit(entity)) return null;
-
-        // attempt to cast to proper unit
         if (entity instanceof ExtendedHirableEntity) {
             return (ExtendedHirableEntity) entity;
         }
