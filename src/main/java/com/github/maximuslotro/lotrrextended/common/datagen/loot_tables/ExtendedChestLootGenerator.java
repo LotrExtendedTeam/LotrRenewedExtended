@@ -694,7 +694,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.STONE_DAGGER.get()).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.70f))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.75f))
 						.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.80f))
-						.add(EItemLootEntry.lootItem(Items.BOW).setWeight(10).setExactly(25).setDamageRange(0.1f, 0.65f))
+						.add(EItemLootEntry.lootItem(Items.BOW).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.65f))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(20).setExactly(1).setDamageRange(0.1f, 0.75f))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(10).setRange(2, 8))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(5).setExactly(1).setDamageRange(0.2f, 0.65f))
