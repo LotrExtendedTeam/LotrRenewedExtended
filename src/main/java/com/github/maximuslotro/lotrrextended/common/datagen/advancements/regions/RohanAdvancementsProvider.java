@@ -52,10 +52,10 @@ public class RohanAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Eorling-at-Arms").setDescription("Reach +100.0 alignment with the Rohirrim."),
 				addAlignmentTrigger(make(), FactionPointers.ROHAN, 100).parent(rohan_50));
 		Advancement rohan_250 = build(true, data(LOTRItems.GOLD_RING.get(), "rohan_250", false, FrameType.TASK, true, true, false)
-				.setTitle("Rider of Rohan").setDescription("Reach +250.0 alignment with the Rohirrim."),
+				.setTitle("Esquire of Rohan").setDescription("Reach +250.0 alignment with the Rohirrim."),
 				addAlignmentTrigger(make(), FactionPointers.ROHAN, 250).parent(rohan_100));
 		Advancement rohan_500 = build(true, data(LOTRItems.GOLD_RING.get(), "rohan_500", false, FrameType.TASK, true, true, false)
-				.setTitle("Esquire of Rohan").setDescription("Reach +500.0 alignment with the Rohirrim."),
+				.setTitle("Rider of Rohan").setDescription("Reach +500.0 alignment with the Rohirrim."),
 				addAlignmentTrigger(make(), FactionPointers.ROHAN, 500).parent(rohan_250));
 		Advancement rohan_1000 = build(true, data(LOTRItems.GOLD_RING.get(), "rohan_1000", false, FrameType.GOAL, true, true, false)
 				.setTitle("Eorling Captain").setDescription("Reach +1000.0 alignment with the Rohirrim."),
