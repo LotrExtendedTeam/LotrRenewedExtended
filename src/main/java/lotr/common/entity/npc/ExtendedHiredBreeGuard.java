@@ -549,9 +549,12 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
 	public void tick() {
         // heal
-        if (lastHealed == HEAL_RATE)  {
-            if (this.getHealth() < this.getMaxHealth()) this.setHealth(this.getHealth() + 1);
-            lastHealed = 0;
+        if (lastHealed >= HEAL_RATE)  {
+        	// Ensure that entity is not dead before healing
+            if (this.getHealth() < this.getMaxHealth() && !this.isAlive()) {
+            	this.setHealth(this.getHealth() + 1);
+            	lastHealed = 0;
+            }
         } else {
             lastHealed++;
         }
