@@ -6,6 +6,8 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 
+import lotr.common.data.LOTRLevelData;
+import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
@@ -84,17 +86,16 @@ public class HiredUnitEventHandlers {
         if (hired == null) return;
 
         UUID owner = hired.getOwnerUUID();
-        if (event.getSource() == null) return;
+        // We can't really protect a unit if even Minecraft does not know what hurt it!
+        if (event.getSource() == null || owner == null) return;
 
-        if (event.getSource() != null && event.getSource().getEntity() != null
-                && event.getSource().getEntity() instanceof PlayerEntity) {
-            // cancel a damage event if damage comes from owner
+        // Check for valid damage source and recipient
+        if (event.getSource() != null && event.getSource().getEntity() != null && event.getSource().getEntity() instanceof PlayerEntity) {
+            // Get offending player and LOTRPlayerData
             PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
-            if (owner == null) {
-                return;
-            }
-
-            if (owner.equals(player.getUUID())) {
+            LOTRPlayerData pd = LOTRLevelData.getSidedData(player);
+            // Check if player can do Friendly Fire to self-owned unit
+            if (owner.equals(player.getUUID()) && pd.getAlignmentData().isFriendlyFireEnabled()) {
                 event.setCanceled(true);
             }
         }
