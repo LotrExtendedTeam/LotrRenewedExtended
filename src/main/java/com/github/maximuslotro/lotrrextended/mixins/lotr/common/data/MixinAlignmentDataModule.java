@@ -82,6 +82,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 			if (!currentRegion.getDimension().equals(currentDimension)) {
 				updateCurrentViewedFactionToNewDimension(currentDimension);
 			}
+			// Extended Start
 			if(currentRegion.getName().toString().equals("lotr:special")) {
 				List<FactionRegion> dimensionRegions = currentFactionSettings().getRegionsForDimension(currentDimension);
 				int i = dimensionRegions.indexOf(currentRegion);
@@ -115,6 +116,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 					}
 				}
 			}
+			// Extended End
 		} else {
 			updateCurrentViewedFactionToNewDimension(currentDimension);
 		}

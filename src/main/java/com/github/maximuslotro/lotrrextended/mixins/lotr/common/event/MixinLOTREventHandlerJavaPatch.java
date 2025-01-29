@@ -39,7 +39,9 @@ public class MixinLOTREventHandlerJavaPatch {
 				}
 
 				if (newFoxType != initialFoxType) {
+					// Extended Start
 					fox.setFoxType(newFoxType);
+					// Extended End
 				}
 				fox.getPersistentData().putBoolean(biomeCheckKey, true);
 			}

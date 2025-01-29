@@ -62,7 +62,7 @@ public class MixinEntityFactionHelper {
 			ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
 			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships();
 			for (ExtendedFellowship fs : fellowships) {
-				if (fs.isPreventPVP() && fs.isInFellowship(((PlayerEntity) target).getUUID())) {
+				if (fs.isPreventPVP() && fs.isInFellowship(target.getUUID())) {
 					return false;
 				}
 			}

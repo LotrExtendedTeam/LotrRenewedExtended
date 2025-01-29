@@ -104,7 +104,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 
 	/**
 	 * Extended method to load in a loot table for plates, uses chest loot-table code
-	 * */
+	 */
 	private void unpackLootTablePlate(@Nullable PlayerEntity player) {
 		PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 		try {

@@ -64,6 +64,7 @@ public class MixinLOTRLevelData {
 		MinecraftServer server = world.getServer();
 		boolean isOp = server.getPlayerList().isOp(targetPlayer.getGameProfile());
 		boolean creative = targetPlayer.abilities.instabuild;
+		// Extended Start
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<>();
 		ExtendedFellowshipDataModule data = ((ExtendedLOTRPlayerData)getData(targetPlayer)).getFellowshipData();
 		for (UUID fsID : data.getFellowshipIDs()) {
@@ -71,6 +72,7 @@ public class MixinLOTRLevelData {
 			if (fs != null && fs.isHideMapLocation())
 				fellowshipsMapShow.add(fs);
 		}
+		// Extended End
 		for (PlayerEntity otherPlayer : world.players()) {
 			if (otherPlayer == targetPlayer)
 				continue;

@@ -21,7 +21,7 @@ import net.minecraft.util.IItemProvider;
 public class MixinVesselType {
 	/**
 	 * The field exists, just not until runtime
-	 * */
+	 */
 	@Shadow(remap = false)
 	@Final
 	@Mutable
