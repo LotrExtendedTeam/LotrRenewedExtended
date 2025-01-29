@@ -919,11 +919,21 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("PIP")
 		.pattern("PPP")
 		.pattern(" P ")
+		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_uruk_steel", has(ExtendedTags.Items.URUK_STEEL))
+		.unlockedBy("has_"+ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_SHIELD.get()))
+		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BREE_SHIELD.get(), LOTRRecipes.BREE_CRAFTING)
+		.pattern("PIP")
+		.pattern("PPP")
+		.pattern(" P ")
 		.define('I', Ingredient.of(Items.IRON_INGOT))
 		.define('P', Ingredient.of(PLANKS))
 		.unlockedBy("has_"+Items.IRON_INGOT.getRegistryName().getPath(), has(Items.IRON_INGOT))
-		.unlockedBy("has_"+ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_SHIELD.get()))
-		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.BREE_SHIELD.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath()));
 		//Banners
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_BANNER.get(), LOTRRecipes.RANGER_CRAFTING)
@@ -980,6 +990,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_wool", has(WOOL))
 		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.BREE_BANNER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BREE_BANNER.get(), LOTRRecipes.BREE_CRAFTING)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(WOOL))
+		.define('S', Ingredient.of(STICKS))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_wool", has(WOOL))
+		.unlockedBy("has_"+ExtendedItems.BREE_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BREE_BANNER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BREE_BANNER.get().getRegistryName().getPath()));
 		//Banner Patterns
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath());
 		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get(), LOTRRecipes.RANGER_CRAFTING)
@@ -1009,6 +1030,19 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
 		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get()))
 		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath());
+		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.HOBBIT_BANNER_PATTERN.get(), LOTRRecipes.HOBBIT_CRAFTING)
+		.requires(Items.PAPER)
+		.requires(ExtendedItems.HOBBIT_BANNER.get())
+		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER.get()))
+		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER_PATTERN.get()))
+		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath()));
+		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.BREE_BANNER_PATTERN.get(), LOTRRecipes.BREE_CRAFTING)
+		.requires(Items.PAPER)
+		.requires(ExtendedItems.BREE_BANNER.get())
+		.unlockedBy("has_"+ExtendedItems.BREE_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BREE_BANNER.get()))
+		.unlockedBy("has_"+ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.BREE_BANNER_PATTERN.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath()));
 		//Containers
 		GENERATEDRECIPES.add(ExtendedItems.REED_BASKET.get().getRegistryName().getPath());
 		ShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())

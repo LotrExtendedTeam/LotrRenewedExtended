@@ -72,6 +72,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemTier;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -545,6 +546,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DURINS_FOLK_BANNER = regItemB("durins_folk_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.DURINS_FOLK_BANNER.get(), ExtendedBlocks.DURINS_FOLK_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 		ExtendedItems.BLUE_MOUNTAINS_BANNER = regItemB("blue_mountains_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.BLUE_MOUNTAINS_BANNER.get(), ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 		ExtendedItems.GUNDABAD_ORC_BANNER = regItemB("gundabad_orc_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.GUNDABAD_ORC_BANNER.get(), ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
+		ExtendedItems.BREE_BANNER = regItemB("bree_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.BREE_BANNER.get(), ExtendedBlocks.BREE_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 
 		//########### BLOCK TYPES ##################
 		//Stone types
@@ -767,6 +769,9 @@ public class MixinLOTRItems {
 		ExtendedItems.PLUM_KVASS = regItemB("plum_kvass", () -> VesselDrinkItem.newAlcohol(0.2F, 4, 0.4F));
 		//#######################################################################EQUIPMENT##################################################
 
+		//Generic Orc Equipment
+		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
+
 		//Morgul Equipment
 		ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
 		ExtendedItems.MORGUL_CHESTPLATE = regItemB("morgul_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.CHEST));
@@ -845,11 +850,14 @@ public class MixinLOTRItems {
 		ExtendedItems.GUNDABAD_URUK_DAGGER = regItemB("gundabad_uruk_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_BOW = regItemB("gundabad_uruk_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.GUNDABAD_URUK));
 
-		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
-		ExtendedItems.DUNEDAIN_BOW = regItemB("dunedain_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.RANGER_NORTH));
+		
 		//Ranger of the North equipment
 		ExtendedItems.DUNEDAIN_SHIELD = regItemB("dunedain_shield", () -> new LOTRShieldItem(LOTRMaterial.RANGER_NORTH));
+		ExtendedItems.DUNEDAIN_BOW = regItemB("dunedain_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.RANGER_NORTH));
+
+		//Bree equipment
+		ExtendedItems.BREE_SHIELD = regItemB("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
@@ -880,6 +888,8 @@ public class MixinLOTRItems {
 		ExtendedItems.DURINS_FOLK_BANNER_PATTERN = regBannerPaternItem("durin_banner_pattern", ExtendedBannerPatterns.durin, () -> new BannerPatternItem(ExtendedBannerPatterns.durin, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.DUNEDAIN_BANNER_PATTERN = regBannerPaternItem("dunedain_banner_pattern", ExtendedBannerPatterns.dunedain, () -> new BannerPatternItem(ExtendedBannerPatterns.dunedain, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN = regBannerPaternItem("gundabad_orc_banner_pattern", ExtendedBannerPatterns.gundabad_orc, () -> new BannerPatternItem(ExtendedBannerPatterns.gundabad_orc, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.HOBBIT_BANNER_PATTERN = regBannerPaternItem("hobbit_banner_pattern", ExtendedBannerPatterns.hobbit, () -> new BannerPatternItem(ExtendedBannerPatterns.hobbit, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.BREE_BANNER_PATTERN = regBannerPaternItem("bree_banner_pattern", ExtendedBannerPatterns.bree, () -> new BannerPatternItem(ExtendedBannerPatterns.bree, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.ENTITY_SPAWNER = regItemB("structure_entity_spawner", () -> new ExtendedEntitySpawnerItem(new Properties().tab(LOTRItemGroups.MISC).fireResistant()));
 		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(64).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(new Properties().tab(LOTRItemGroups.MISC).defaultDurability(100)));

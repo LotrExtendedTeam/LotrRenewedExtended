@@ -844,6 +844,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER = registerB("blue_mountains_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BLUEMOUNTIANS));
 		ExtendedBlocks.GUNDABAD_ORC_BANNER = registerB("gundabad_orc_banner", () -> new ExtendedMEBannerBlock(BannerTypes.GUNDABAD_ORC));
 		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.GUNDABAD_ORC));
+		ExtendedBlocks.BREE_BANNER = registerB("bree_banner", () -> new ExtendedMEBannerBlock(BannerTypes.BREE));
+		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BREE));
 
 		ExtendedBlocks.MORDOR_MOSS_VINES = registerB("mordor_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 	}

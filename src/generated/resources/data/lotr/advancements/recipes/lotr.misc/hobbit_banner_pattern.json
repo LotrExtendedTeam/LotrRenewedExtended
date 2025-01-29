@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:hobbit_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_hobbit_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:hobbit_banner"
+          }
+        ]
+      }
+    },
+    "has_hobbit_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:hobbit_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:hobbit_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hobbit_banner",
+      "has_hobbit_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -16,7 +16,8 @@ public enum BannerTypes {
 	SHIRE(ExtendedBlocks.HOBBIT_BANNER, ExtendedBlocks.HOBBIT_WALL_BANNER, ExtendedItems.HOBBIT_BANNER, FactionPointers.HOBBITS),
 	BLUEMOUNTIANS(ExtendedBlocks.BLUE_MOUNTAINS_BANNER, ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER, ExtendedItems.BLUE_MOUNTAINS_BANNER, FactionPointers.BLUE_MOUNTAINS),
 	DURINSFOLK(ExtendedBlocks.DURINS_FOLK_BANNER, ExtendedBlocks.DURINS_FOLK_WALL_BANNER, ExtendedItems.DURINS_FOLK_BANNER, FactionPointers.DURINS_FOLK),
-	GUNDABAD_ORC(ExtendedBlocks.GUNDABAD_ORC_BANNER,ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER, ExtendedItems.GUNDABAD_ORC_BANNER, FactionPointers.NORTHERN_ORCS);
+	GUNDABAD_ORC(ExtendedBlocks.GUNDABAD_ORC_BANNER,ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER, ExtendedItems.GUNDABAD_ORC_BANNER, FactionPointers.NORTHERN_ORCS),
+	BREE(ExtendedBlocks.BREE_BANNER,ExtendedBlocks.BREE_WALL_BANNER, ExtendedItems.BREE_BANNER, FactionPointers.BREE);
 
 	private final RegistryObject<Block> standingBlock;
 	private final RegistryObject<Block> hangingBlock;
