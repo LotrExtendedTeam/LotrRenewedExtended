@@ -80,10 +80,10 @@ public class MixinEntityFactionHelper {
 		if(alignedTarget!=null && alignedTarget instanceof ExtendedHirableEntity) {
 			UUID hiredUnitOwnerUUID = ((ExtendedHirableEntity)alignedTarget).getOwnerUUID();
 			if(hiredUnitOwnerUUID!=null) {
-				// TODO add a setting in future to allow friendly fire against owned hired units 
-				if (hiredUnitOwnerUUID.equals(attacker.getUUID())){// && playerData.getAlignmentData().isFriendlyFireEnabled()) {
-	                return false;
-	            }
+				// Check if player can hurt their units
+				if (hiredUnitOwnerUUID.equals(attacker.getUUID())) {
+					return ((ExtendedLOTRPlayerData)playerData).getExtendedMiscData().canHurtHiredUnits();
+				}
 				else {
 					// Check if unit is owned by fellowship member and friendly fire is being protected
 					ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
