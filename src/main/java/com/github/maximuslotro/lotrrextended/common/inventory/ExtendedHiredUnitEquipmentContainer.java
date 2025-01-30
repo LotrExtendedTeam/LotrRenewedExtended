@@ -9,6 +9,7 @@ import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.item.SpearItem;
 import lotr.common.util.ExtendedHiredUnitHelper;
+import net.minecraft.block.AbstractSkullBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -18,7 +19,10 @@ import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundNBT;
@@ -228,7 +232,26 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                     slotUpdated = true;
                 }
             }
-
+            // Allow Skull and pumpkin blocks to be worn
+            if (itemstack1.getItem() instanceof BlockItem && ((BlockItem)itemstack1.getItem()).getBlock() instanceof AbstractSkullBlock ||
+            		itemstack1.getItem().equals(Items.PUMPKIN) || itemstack1.getItem().equals(Items.CARVED_PUMPKIN) || 
+            		itemstack1.getItem().equals(Items.JACK_O_LANTERN)) {
+            	if (!armorSlots[0].hasItem()) {
+            		armorSlots[0].set(itemstack1);
+            		armorSlots[0].setChanged();
+            		ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.HEAD, itemstack1);
+            		slotUpdated = true;
+            	}
+            }
+            // Allow Elytra to be equipped on the chest, as a visual thing only
+            if (itemstack1.getItem() instanceof ElytraItem) {
+            	if (!armorSlots[1].hasItem()) {
+            		armorSlots[1].set(itemstack1);
+            		armorSlots[1].setChanged();
+            		ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.CHEST, itemstack1);
+            		slotUpdated = true;
+            	}
+            }
             if ((itemstack1.getItem() instanceof SwordItem || itemstack1.getItem() instanceof SpearItem) && !mainHand.hasItem()) {
                 mainHand.set(itemstack1);
                 mainHand.setChanged();
