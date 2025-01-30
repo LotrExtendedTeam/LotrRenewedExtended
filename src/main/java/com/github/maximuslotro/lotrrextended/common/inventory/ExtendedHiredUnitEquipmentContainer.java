@@ -119,6 +119,12 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                     if (itemStack.getItem() instanceof ArmorItem) {
                         ArmorItem item = (ArmorItem) itemStack.getItem();
                         return item.getSlot() == equipmentSlotType;
+                    } else if (itemStack.getItem() instanceof BlockItem && ((BlockItem)itemStack.getItem()).getBlock() instanceof AbstractSkullBlock ||
+                    		itemStack.getItem().equals(Items.PUMPKIN) || itemStack.getItem().equals(Items.CARVED_PUMPKIN) || 
+                    		itemStack.getItem().equals(Items.JACK_O_LANTERN)) {
+                    	return EquipmentSlotType.HEAD.equals(equipmentSlotType);
+                    } else if (itemStack.getItem() instanceof ElytraItem) {
+                    	return EquipmentSlotType.CHEST.equals(equipmentSlotType);
                     } else {
                         return false;
                     }
