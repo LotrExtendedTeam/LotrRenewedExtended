@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.gui.screen;
+package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
