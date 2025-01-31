@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMenuScreen;
+import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fac.RankGender;
@@ -121,6 +122,11 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		Minecraft mc = Minecraft.getInstance();
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);
 		pd.getAlignmentData().toggleFriendlyFireEnabledAndSendToServer();
+	}
+	public void toggleUFF() {
+		Minecraft mc = Minecraft.getInstance();
+		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData) LOTRLevelData.clientInstance().getData(mc.player);
+		pd.getExtendedMiscData().toggleHurtHiredUnitsAndSendToServer();
 	}
 //	public void toggleHDM() {
 //		Minecraft mc = Minecraft.getInstance();
