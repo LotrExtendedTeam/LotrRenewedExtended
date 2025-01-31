@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketSendServerSettings;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSSendServerSettingsPacket;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedFellowshipDataModule;
@@ -49,7 +49,7 @@ public class MixinLOTRLevelData {
 
 	@Inject(method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
 	public void sendLoginPacket(ServerPlayerEntity player, CallbackInfo ci) {
-		ExtendedSPacketSendServerSettings packet = new ExtendedSPacketSendServerSettings();
+		ExtendedSSendServerSettingsPacket packet = new ExtendedSSendServerSettingsPacket();
 		packet.setMakeMetalDoorsRequirePower(ExtendedServerConfig.makeMetalDoorsRequirePower.get());
 		ExtendedPacketHandler.sendToClient(packet, player);
 	}

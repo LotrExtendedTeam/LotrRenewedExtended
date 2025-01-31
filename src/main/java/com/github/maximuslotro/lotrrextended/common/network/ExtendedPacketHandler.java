@@ -21,25 +21,25 @@ public class ExtendedPacketHandler {
 		// Packets starting with S are sent from the server to the client (originate at the server)
 		// Packets starting with C are sent from the client to the server (originate at the client)
 		// This naming scheme is shown in {@Link net.minecraft.network.ProtocolType}
-		CHANNEL.registerMessage(id++, ExtendedCPacketSelectHorn.class, ExtendedCPacketSelectHorn::encode, ExtendedCPacketSelectHorn::decode, ExtendedCPacketSelectHorn::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketExchangeCoins.class, ExtendedCPacketExchangeCoins::encode, ExtendedCPacketExchangeCoins::decode, ExtendedCPacketExchangeCoins::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketUpdateExchangeCoinContainer.class, ExtendedSPacketUpdateExchangeCoinContainer::encode, ExtendedSPacketUpdateExchangeCoinContainer::decode, ExtendedSPacketUpdateExchangeCoinContainer::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketOpenCoinExchange.class, ExtendedCPacketOpenCoinExchange::encode, ExtendedCPacketOpenCoinExchange::decode, ExtendedCPacketOpenCoinExchange::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketTalkWithTrader.class, ExtendedCPacketTalkWithTrader::encode, ExtendedCPacketTalkWithTrader::decode, ExtendedCPacketTalkWithTrader::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketOpenTradeMenu.class, ExtendedCPacketOpenTradeMenu::encode, ExtendedCPacketOpenTradeMenu::decode, ExtendedCPacketOpenTradeMenu::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketTradeSellItems.class, ExtendedCPacketTradeSellItems::encode, ExtendedCPacketTradeSellItems::decode, ExtendedCPacketTradeSellItems::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketUpdateTradeQuantities.class, ExtendedSPacketUpdateTradeQuantities::encode, ExtendedSPacketUpdateTradeQuantities::decode, ExtendedSPacketUpdateTradeQuantities::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketNpcMarriageInfo.class, ExtendedSPacketNpcMarriageInfo::encode, ExtendedSPacketNpcMarriageInfo::decode, ExtendedSPacketNpcMarriageInfo::handle);
-		CHANNEL.registerMessage(id++, ExtendedSPacketSendServerSettings.class, ExtendedSPacketSendServerSettings::encode, ExtendedSPacketSendServerSettings::decode, ExtendedSPacketSendServerSettings::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketStopInteractingWithInteractable.class, ExtendedCPacketStopInteractingWithInteractable::encode, ExtendedCPacketStopInteractingWithInteractable::decode, ExtendedCPacketStopInteractingWithInteractable::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSelectHornPacket.class, ExtendedCSelectHornPacket::encode, ExtendedCSelectHornPacket::decode, ExtendedCSelectHornPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCExchangeCoinsPacket.class, ExtendedCExchangeCoinsPacket::encode, ExtendedCExchangeCoinsPacket::decode, ExtendedCExchangeCoinsPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSUpdateExchangeCoinContainerPacket.class, ExtendedSUpdateExchangeCoinContainerPacket::encode, ExtendedSUpdateExchangeCoinContainerPacket::decode, ExtendedSUpdateExchangeCoinContainerPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenCoinExchangePacket.class, ExtendedCOpenCoinExchangePacket::encode, ExtendedCOpenCoinExchangePacket::decode, ExtendedCOpenCoinExchangePacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCTalkWithTraderPacket.class, ExtendedCTalkWithTraderPacket::encode, ExtendedCTalkWithTraderPacket::decode, ExtendedCTalkWithTraderPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenTradeMenuPacket.class, ExtendedCOpenTradeMenuPacket::encode, ExtendedCOpenTradeMenuPacket::decode, ExtendedCOpenTradeMenuPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCTradeSellItemsPacket.class, ExtendedCTradeSellItemsPacket::encode, ExtendedCTradeSellItemsPacket::decode, ExtendedCTradeSellItemsPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSUpdateTradeQuantitiesPacket.class, ExtendedSUpdateTradeQuantitiesPacket::encode, ExtendedSUpdateTradeQuantitiesPacket::decode, ExtendedSUpdateTradeQuantitiesPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSNpcMarriageInfoPacket.class, ExtendedSNpcMarriageInfoPacket::encode, ExtendedSNpcMarriageInfoPacket::decode, ExtendedSNpcMarriageInfoPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSSendServerSettingsPacket.class, ExtendedSSendServerSettingsPacket::encode, ExtendedSSendServerSettingsPacket::decode, ExtendedSSendServerSettingsPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCStopInteractingWithInteractablePacket.class, ExtendedCStopInteractingWithInteractablePacket::encode, ExtendedCStopInteractingWithInteractablePacket::decode, ExtendedCStopInteractingWithInteractablePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCBannerSaveInfoPacket.class, ExtendedCBannerSaveInfoPacket::encode, ExtendedCBannerSaveInfoPacket::decode, ExtendedCBannerSaveInfoPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketOpenHiredMenu.class, ExtendedCPacketOpenHiredMenu::encode, ExtendedCPacketOpenHiredMenu::decode, ExtendedCPacketOpenHiredMenu::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketOpenHiredEquipmentMenu.class, ExtendedCPacketOpenHiredEquipmentMenu::encode, ExtendedCPacketOpenHiredEquipmentMenu::decode, ExtendedCPacketOpenHiredEquipmentMenu::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketSetHiredUnitStationary.class, ExtendedCPacketSetHiredUnitStationary::encode, ExtendedCPacketSetHiredUnitStationary::decode, ExtendedCPacketSetHiredUnitStationary::handle);
-		CHANNEL.registerMessage(id++, ExtendedCPacketHireUnit.class, ExtendedCPacketHireUnit::encode, ExtendedCPacketHireUnit::decode, ExtendedCPacketHireUnit::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenHiredMenuPacket.class, ExtendedCOpenHiredMenuPacket::encode, ExtendedCOpenHiredMenuPacket::decode, ExtendedCOpenHiredMenuPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitStationaryPacket.class, ExtendedCSetHiredUnitStationaryPacket::encode, ExtendedCSetHiredUnitStationaryPacket::decode, ExtendedCSetHiredUnitStationaryPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCHireUnitPacket.class, ExtendedCHireUnitPacket::encode, ExtendedCHireUnitPacket::decode, ExtendedCHireUnitPacket::handle);
 		if (id >= 255) {
 			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
 		}

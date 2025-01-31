@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketUpdateTradeQuantities;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
@@ -489,7 +489,7 @@ public class ExtendedTradeContainer extends Container {
 
         // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
-        	ExtendedPacketHandler.sendToClient(new ExtendedSPacketUpdateTradeQuantities(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
+        	ExtendedPacketHandler.sendToClient(new ExtendedSUpdateTradeQuantitiesPacket(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }
 

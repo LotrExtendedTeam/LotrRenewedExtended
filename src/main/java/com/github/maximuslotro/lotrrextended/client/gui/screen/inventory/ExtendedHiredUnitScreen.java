@@ -7,8 +7,8 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredEquipmentMenu;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketSetHiredUnitStationary;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredEquipmentMenuPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitStationaryPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -96,7 +96,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
                 16, 12, 0, 0, 13,
                 STATIONARY_BUTTON,
                 btn -> {
-                    ExtendedPacketHandler.sendToServer(new ExtendedCPacketSetHiredUnitStationary(companion.getHiredUnitId()));
+                    ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitStationaryPacket(companion.getHiredUnitId()));
                 })
         );
 
@@ -104,7 +104,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
     }
 
     private void openEquipmentMenu() {
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenHiredEquipmentMenu(companion.getHiredUnitId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredEquipmentMenuPacket(companion.getHiredUnitId()));
     }
 
 	@Override

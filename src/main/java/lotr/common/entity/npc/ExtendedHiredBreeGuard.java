@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
@@ -321,7 +321,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         if (hand == Hand.MAIN_HAND) {
             if (this.isAlliedTo(player)) {
                 if (this.level.isClientSide()) {
-                    ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenHiredMenu(getId()));
+                    ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
                 }
             }
             return ActionResultType.sidedSuccess(this.level.isClientSide());

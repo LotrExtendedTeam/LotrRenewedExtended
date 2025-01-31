@@ -23,27 +23,27 @@ import net.minecraftforge.fml.network.NetworkHooks;
  *
  * This is a  packet for handling opening the Coin Exchange menu.
  */
-public class ExtendedCPacketOpenCoinExchange {
+public class ExtendedCOpenCoinExchangePacket {
 
     private int traderId;
 
-    public ExtendedCPacketOpenCoinExchange() {}
+    public ExtendedCOpenCoinExchangePacket() {}
 
-    public ExtendedCPacketOpenCoinExchange(int traderId) {
+    public ExtendedCOpenCoinExchangePacket(int traderId) {
         this.traderId = traderId;
     }
 
-    public static void encode(ExtendedCPacketOpenCoinExchange packet, PacketBuffer buf) {
+    public static void encode(ExtendedCOpenCoinExchangePacket packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
     }
 
-    public static ExtendedCPacketOpenCoinExchange decode(PacketBuffer buf) {
-        ExtendedCPacketOpenCoinExchange packet = new ExtendedCPacketOpenCoinExchange();
+    public static ExtendedCOpenCoinExchangePacket decode(PacketBuffer buf) {
+        ExtendedCOpenCoinExchangePacket packet = new ExtendedCOpenCoinExchangePacket();
         packet.traderId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedCPacketOpenCoinExchange packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCOpenCoinExchangePacket packet, Supplier<NetworkEvent.Context> context) {
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
     	if (!(entity instanceof ExtendedTraderEntity)) {
     		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());

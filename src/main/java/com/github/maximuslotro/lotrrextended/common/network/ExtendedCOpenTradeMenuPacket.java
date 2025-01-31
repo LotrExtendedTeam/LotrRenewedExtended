@@ -20,27 +20,27 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedCPacketOpenTradeMenu {
+public class ExtendedCOpenTradeMenuPacket {
 
     private int traderId;
 
-    public ExtendedCPacketOpenTradeMenu() {}
+    public ExtendedCOpenTradeMenuPacket() {}
 
-    public ExtendedCPacketOpenTradeMenu(int traderId) {
+    public ExtendedCOpenTradeMenuPacket(int traderId) {
         this.traderId = traderId;
     }
 
-    public static void encode(ExtendedCPacketOpenTradeMenu packet, PacketBuffer buf) {
+    public static void encode(ExtendedCOpenTradeMenuPacket packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
     }
 
-    public static ExtendedCPacketOpenTradeMenu decode(PacketBuffer buf) {
-        ExtendedCPacketOpenTradeMenu packet = new ExtendedCPacketOpenTradeMenu();
+    public static ExtendedCOpenTradeMenuPacket decode(PacketBuffer buf) {
+        ExtendedCOpenTradeMenuPacket packet = new ExtendedCOpenTradeMenuPacket();
         packet.traderId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedCPacketOpenTradeMenu packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
     	if (!(entity instanceof ExtendedTraderEntity)) {
     		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());

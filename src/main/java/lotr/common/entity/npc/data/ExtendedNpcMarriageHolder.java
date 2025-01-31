@@ -3,7 +3,7 @@ package lotr.common.entity.npc.data;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketNpcMarriageInfo;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcMarriageInfoPacket;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -145,14 +145,14 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 
 	@Override
 	public void sendDataToPlayer(ServerPlayerEntity player) {
-		ExtendedSPacketNpcMarriageInfo packet = new ExtendedSPacketNpcMarriageInfo(this);
+		ExtendedSNpcMarriageInfoPacket packet = new ExtendedSNpcMarriageInfoPacket(this);
 		ExtendedPacketHandler.sendToClient(packet, player);
 
 	}
 
 	@Override
 	public void sendDataToAllBeings() {
-		ExtendedSPacketNpcMarriageInfo packet = new ExtendedSPacketNpcMarriageInfo(this);
+		ExtendedSNpcMarriageInfoPacket packet = new ExtendedSNpcMarriageInfoPacket(this);
 		ExtendedPacketHandler.sendToAllTrackingEntity(packet, thisEntity);
 	}
 

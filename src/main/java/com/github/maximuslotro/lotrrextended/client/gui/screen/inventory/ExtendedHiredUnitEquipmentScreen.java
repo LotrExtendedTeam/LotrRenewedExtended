@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -132,7 +132,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
     }
 
     private void openMainMenu() {
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenHiredMenu(menu.getEntityId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(menu.getEntityId()));
     }
 
     private void renderBaseGearSlot(int slotX, int slotY, ItemStack item) {

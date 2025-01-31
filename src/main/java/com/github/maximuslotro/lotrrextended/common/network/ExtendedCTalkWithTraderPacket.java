@@ -15,27 +15,27 @@ import net.minecraftforge.fml.network.NetworkEvent;
 /**
  * @author RichardB122
  */
-public class ExtendedCPacketTalkWithTrader {
+public class ExtendedCTalkWithTraderPacket {
 
     private int traderId;
 
-    public ExtendedCPacketTalkWithTrader() {}
+    public ExtendedCTalkWithTraderPacket() {}
 
-    public ExtendedCPacketTalkWithTrader(int traderId) {
+    public ExtendedCTalkWithTraderPacket(int traderId) {
         this.traderId = traderId;
     }
 
-    public static void encode(ExtendedCPacketTalkWithTrader packet, PacketBuffer buf) {
+    public static void encode(ExtendedCTalkWithTraderPacket packet, PacketBuffer buf) {
         buf.writeInt(packet.traderId);
     }
 
-    public static ExtendedCPacketTalkWithTrader decode(PacketBuffer buf) {
-        ExtendedCPacketTalkWithTrader packet = new ExtendedCPacketTalkWithTrader();
+    public static ExtendedCTalkWithTraderPacket decode(PacketBuffer buf) {
+        ExtendedCTalkWithTraderPacket packet = new ExtendedCTalkWithTraderPacket();
         packet.traderId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedCPacketTalkWithTrader packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCTalkWithTraderPacket packet, Supplier<NetworkEvent.Context> context) {
         Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
         if (!(entity instanceof NPCEntity)) {
             return;
