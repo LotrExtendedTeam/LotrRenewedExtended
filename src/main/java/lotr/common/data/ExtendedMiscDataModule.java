@@ -2,12 +2,11 @@ package lotr.common.data;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedNetworkToggles;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedDualTogglePacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 
-public class ExtendedMiscDataModule extends PlayerDataModule {
+public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 
 	private boolean hiredUnitFriendlyFire;
 
@@ -43,12 +42,12 @@ public class ExtendedMiscDataModule extends PlayerDataModule {
 		if (this.hiredUnitFriendlyFire != canUnitFF) {
 			this.hiredUnitFriendlyFire = canUnitFF;
 			this.markDirty();
-			this.sendPacketToClient(new ExtendedDualTogglePacket(ExtendedNetworkToggles.UNITS_FRIENDLY_FIRE, hiredUnitFriendlyFire));
+			this.sendPacketToClientExtended(new ExtendedDualTogglePacket(ExtendedNetworkToggles.UNITS_FRIENDLY_FIRE, hiredUnitFriendlyFire));
 		}
 	}
 
 	public void toggleHurtHiredUnitsAndSendToServer() {
 		this.hiredUnitFriendlyFire = !this.hiredUnitFriendlyFire;
-		ExtendedPacketHandler.sendToServer(new ExtendedDualTogglePacket(ExtendedNetworkToggles.UNITS_FRIENDLY_FIRE, hiredUnitFriendlyFire));
+		this.sendPacketToServerExtended(new ExtendedDualTogglePacket(ExtendedNetworkToggles.UNITS_FRIENDLY_FIRE, hiredUnitFriendlyFire));
 	}
 }

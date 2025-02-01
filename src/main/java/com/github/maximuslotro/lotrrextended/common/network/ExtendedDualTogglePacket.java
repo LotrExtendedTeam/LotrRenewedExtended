@@ -17,6 +17,8 @@ public class ExtendedDualTogglePacket {
 	private boolean value;
 	private ExtendedNetworkToggles type;
 
+	public ExtendedDualTogglePacket() {}
+
 	public ExtendedDualTogglePacket(ExtendedNetworkToggles packetType, boolean value) {
 		this.type = packetType;
 		this.value = value;
