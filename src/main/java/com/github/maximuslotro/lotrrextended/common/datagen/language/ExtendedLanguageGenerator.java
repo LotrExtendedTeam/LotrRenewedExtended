@@ -209,8 +209,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
 		addD("gui.lotrextended.settings.usersettings", "User Settings");
 		addD("gui.lotrextended.settings.devsettings", "Client Dev Settings");
-		addD("gui.lotrextended.settings.friendlyFire.title", "Friendly Fire");
-		addD("gui.lotrextended.settings.friendlyFire.setting", "Friendly Fire: ");
+		addD("gui.lotrextended.settings.friendlyFire.title", "NPC Friendly Fire");
+		addD("gui.lotrextended.settings.friendlyFire.setting", "NPC Friendly Fire: ");
+		addD("gui.lotrextended.settings.friendlyFireUnit.title", "Units Friendly Fire");
+		addD("gui.lotrextended.settings.friendlyFireUnit.setting", "Units Friendly Fire: ");
 		addD("gui.lotrextended.settings.mapLocation.title", "Show Map Location");
 		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
 		addD("gui.lotrextended.settings.rankGender.title", "Feminine Rank Override");

@@ -25,6 +25,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		super(new StringTextComponent("OPTIONS"));
 	}
 	private Button buttonFriendlyFire;
+	private Button buttonFriendlyFireUnit;
 	//private Button buttonHiredDeathMessages;
 	//private Button buttonAlignment;
 	private Button buttonMapLocation;
@@ -48,8 +49,9 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		int x=guiLeft;
 		int y=guiTop+40;
 		addButton(buttonFriendlyFire = new Button(x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.title"), button -> toggleFF()));
-		addButton(buttonMapLocation = new Button(x, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.title"), button -> toggleML()));
-		addButton(buttonFeminineRank = new Button(x, y+72, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.title"), button -> toggleFRO()));
+		addButton(buttonFriendlyFireUnit = new Button(x, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFireUnit.title"), button -> toggleUFF()));
+		addButton(buttonMapLocation = new Button(x, y+48, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.title"), button -> toggleML()));
+		addButton(buttonFeminineRank = new Button(x, y+96, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.title"), button -> toggleFRO()));
 
 		//addButton(buttonHiredDeathMessages = new Button(x, y+24, 200, 20, new StringTextComponent("Hired Death Messages"), button -> toggleHDM()));
 		//addButton(buttonAlignment = new Button(x, y+48, 200, 20, new StringTextComponent("Show Alignment"), button -> toggleA()));
@@ -77,7 +79,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		title = new TranslationTextComponent("gui.lotrextended.settings.worldsettings");
 		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 30), 16777215);
 		title = new TranslationTextComponent("gui.lotrextended.settings.usersettings");
-		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 102), 16777215);
+		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 126), 16777215);
 		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 			title = new TranslationTextComponent("gui.lotrextended.settings.devsettings");
 			this.font.draw(matStack, title, guiLeft+(304-(this.font.width(title)/2)), (guiTop + 30), 16777215);
@@ -94,6 +96,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);
 		TextComponent ff = new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.setting");
 		buttonFriendlyFire.setMessage(ff.append(new TranslationTextComponent(pd.getAlignmentData().isFriendlyFireEnabled()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+		TextComponent ffu = new TranslationTextComponent("gui.lotrextended.settings.friendlyFireUnit.setting");
+		buttonFriendlyFireUnit.setMessage(ffu.append(new TranslationTextComponent(((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHurtHiredUnits()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
 		TextComponent map = new TranslationTextComponent("gui.lotrextended.settings.mapLocation.setting");
 		buttonMapLocation.setMessage(map.append(new TranslationTextComponent(pd.getMiscData().getShowMapLocation()? "gui.lotrextended.base.shown" : "gui.lotrextended.base.hidden")));
 		TextComponent rank = new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting");
@@ -125,7 +129,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	}
 	public void toggleUFF() {
 		Minecraft mc = Minecraft.getInstance();
-		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData) LOTRLevelData.clientInstance().getData(mc.player);
+		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)LOTRLevelData.clientInstance().getData(mc.player);
 		pd.getExtendedMiscData().toggleHurtHiredUnitsAndSendToServer();
 	}
 //	public void toggleHDM() {
