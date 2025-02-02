@@ -37,7 +37,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	@Override
 	public void onClose() {
 		structureBlockOutlineViewDistance.dragging=false;
-		setConfigStrBlockRenderDistance(structureBlockOutlineViewDistance.getValue());
+		setConfigStrBlockRenderDistance((int) structureBlockOutlineViewDistance.getValue());
 		super.onClose();
 	}
 
@@ -159,15 +159,15 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		@Override
 		public void onChangeSliderValue(Slider slider) {
 			if(slider.dragging) {
-				MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = slider.getValue();
+				MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = (int) slider.getValue();
 			}
 			if(!slider.dragging) {
-				setConfigStrBlockRenderDistance(slider.getValue());
+				setConfigStrBlockRenderDistance((int) slider.getValue());
 			}
 		}
 	}
 
-	public static void setConfigStrBlockRenderDistance(double value) {
+	public static void setConfigStrBlockRenderDistance(int value) {
 		ExtendedClientConfig.structureBlockOutlineViewDistance.set(value);
 		MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = value;
 	}
