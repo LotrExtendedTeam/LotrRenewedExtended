@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
+import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 import com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
@@ -486,11 +487,20 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	public String getSpawnerName() {
 		return this.getEntityData().get(DATA_SPAWNER_TYPE);
 	}
+
 	public void reCalculateBounds() {
 		this.getEntityData().set(DATA_SPAWNER_CBoundMin, spawnerInstance.getCheckBoundaries().getMinPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
 		this.getEntityData().set(DATA_SPAWNER_CBoundMax, spawnerInstance.getCheckBoundaries().getMaxPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
 		this.getEntityData().set(DATA_SPAWNER_SBoundMin, spawnerInstance.getSpawnBoundaries().getMinPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
 		this.getEntityData().set(DATA_SPAWNER_SBoundMax, spawnerInstance.getSpawnBoundaries().getMaxPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
+	}
+
+	public AxisAlignedBB getSpawnArea() {
+		return AxisAlignedBBUtils.makeCroppedBB(getSMinBlockPos(), 0, 0, getSMaxBlockPos(), 1, 1);
+	}
+
+	public AxisAlignedBB getCheckArea() {
+		return AxisAlignedBBUtils.makeCroppedBB(getCMinBlockPos(), 0, 0, getCMaxBlockPos(), 1, 1);
 	}
 
 	@Override
