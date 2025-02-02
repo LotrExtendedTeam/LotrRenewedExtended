@@ -394,7 +394,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         NonNullList<ItemStack> items = NonNullList.withSize(15, ItemStack.EMPTY);
         for (int i = 0; i < 15; i++) {
             ItemStack item = inventory.getItem(i);
-            if (!item.equals(ItemStack.EMPTY)) {
+            // Don't save base item to NBT, this is so loading can use up-to-date base items
+            if (!item.equals(ItemStack.EMPTY) && !(item.hasTag() && item.getTag().getBoolean("IsBaseArmor"))) {
                 items.set(i, item);
             } else {
                 items.set(i, ItemStack.EMPTY);
@@ -516,6 +517,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
             }
         }
 
+        // Since we didn't save base equipment, we need re-add it to the inventory
         initializeEquipmentServerSide();
 
         if (tag.contains("following")) {
