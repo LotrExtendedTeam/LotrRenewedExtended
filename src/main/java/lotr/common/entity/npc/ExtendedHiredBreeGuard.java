@@ -15,6 +15,7 @@ import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -393,7 +394,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         NonNullList<ItemStack> items = NonNullList.withSize(15, ItemStack.EMPTY);
         for (int i = 0; i < 15; i++) {
             ItemStack item = inventory.getItem(i);
-            if (item != null) {
+            if (!item.equals(ItemStack.EMPTY)) {
                 items.set(i, item);
             } else {
                 items.set(i, ItemStack.EMPTY);
@@ -716,5 +717,28 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
     public void giveExperiencePoints(float points) {
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
+    }
+
+    @Override 
+    protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
+    	// Disabled due to NPCEntity using new logic we don't want for unit drops
+    	//super.dropCustomDeathLoot(damageSource, looting, player);
+    	
+    	for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+    		ItemStack itemstack = this.getItemBySlot(slot);
+    		float dropChance = this.getEquipmentDropChance(slot);
+    		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+    		boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
+    		if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
+    			&& Math.max(this.random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
+    			if (!dropUndamaged && itemstack.isDamageableItem()) {
+    				itemstack.setDamageValue(itemstack.getMaxDamage() - this.random.nextInt(1 + this.random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
+    			}
+
+    			this.spawnAtLocation(itemstack);
+    			this.setItemSlot(slot, ItemStack.EMPTY);
+    		}
+    	}
+
     }
 }
