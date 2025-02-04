@@ -725,14 +725,14 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
     	// Disabled due to NPCEntity using new logic we don't want for unit drops
     	//super.dropCustomDeathLoot(damageSource, looting, player);
-    	
+
     	for (EquipmentSlotType slot : EquipmentSlotType.values()) {
     		ItemStack itemstack = this.getItemBySlot(slot);
     		float dropChance = this.getEquipmentDropChance(slot);
     		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
     		boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
     		if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
-    			&& Math.max(this.random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
+    				&& Math.max(this.random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
     			if (!dropUndamaged && itemstack.isDamageableItem()) {
     				itemstack.setDamageValue(itemstack.getMaxDamage() - this.random.nextInt(1 + this.random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
     			}
@@ -741,6 +741,10 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     			this.setItemSlot(slot, ItemStack.EMPTY);
     		}
     	}
-
+    	for (int i = 0; i < 9; ++i) {
+    		ItemStack itemstack = inventory.getItem(i).copy();
+    		this.spawnAtLocation(itemstack);
+    		inventory.setItem(i, ItemStack.EMPTY);
+    	}
     }
 }
