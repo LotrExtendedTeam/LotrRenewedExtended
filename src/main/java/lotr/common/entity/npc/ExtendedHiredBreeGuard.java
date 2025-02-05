@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenHiredMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
@@ -15,6 +15,7 @@ import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -321,7 +322,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         if (hand == Hand.MAIN_HAND) {
             if (this.isAlliedTo(player)) {
                 if (this.level.isClientSide()) {
-                    ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenHiredMenu(getId()));
+                    ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
                 }
             }
             return ActionResultType.sidedSuccess(this.level.isClientSide());
@@ -393,7 +394,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         NonNullList<ItemStack> items = NonNullList.withSize(15, ItemStack.EMPTY);
         for (int i = 0; i < 15; i++) {
             ItemStack item = inventory.getItem(i);
-            if (item != null) {
+            // Don't save base item to NBT, this is so loading can use up-to-date base items
+            if (!item.equals(ItemStack.EMPTY) && !(item.hasTag() && item.getTag().getBoolean("IsBaseArmor"))) {
                 items.set(i, item);
             } else {
                 items.set(i, ItemStack.EMPTY);
@@ -515,6 +517,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
             }
         }
 
+        // Since we didn't save base equipment, we need re-add it to the inventory
         initializeEquipmentServerSide();
 
         if (tag.contains("following")) {
@@ -549,9 +552,12 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
 	public void tick() {
         // heal
-        if (lastHealed == HEAL_RATE)  {
-            if (this.getHealth() < this.getMaxHealth()) this.setHealth(this.getHealth() + 1);
-            lastHealed = 0;
+        if (lastHealed >= HEAL_RATE)  {
+        	// Ensure that entity is not dead before healing
+            if (this.getHealth() < this.getMaxHealth() && this.isAlive()) {
+            	this.setHealth(this.getHealth() + 1);
+            	lastHealed = 0;
+            }
         } else {
             lastHealed++;
         }
@@ -713,5 +719,32 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
     public void giveExperiencePoints(float points) {
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
+    }
+
+    @Override 
+    protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
+    	// Disabled due to NPCEntity using new logic we don't want for unit drops
+    	//super.dropCustomDeathLoot(damageSource, looting, player);
+
+    	for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+    		ItemStack itemstack = this.getItemBySlot(slot);
+    		float dropChance = this.getEquipmentDropChance(slot);
+    		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+    		boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
+    		if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
+    				&& Math.max(this.random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
+    			if (!dropUndamaged && itemstack.isDamageableItem()) {
+    				itemstack.setDamageValue(itemstack.getMaxDamage() - this.random.nextInt(1 + this.random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
+    			}
+
+    			this.spawnAtLocation(itemstack);
+    			this.setItemSlot(slot, ItemStack.EMPTY);
+    		}
+    	}
+    	for (int i = 0; i < 9; ++i) {
+    		ItemStack itemstack = inventory.getItem(i).copy();
+    		this.spawnAtLocation(itemstack);
+    		inventory.setItem(i, ItemStack.EMPTY);
+    	}
     }
 }

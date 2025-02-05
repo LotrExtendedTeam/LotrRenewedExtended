@@ -7,18 +7,18 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public class ExtendedCPacketTradeSellItems {
-	public ExtendedCPacketTradeSellItems() {}
+public class ExtendedCTradeSellItemsPacket {
+	public ExtendedCTradeSellItemsPacket() {}
 
-	public static void encode(ExtendedCPacketTradeSellItems packet, PacketBuffer buf) {
+	public static void encode(ExtendedCTradeSellItemsPacket packet, PacketBuffer buf) {
 	}
 
-	public static ExtendedCPacketTradeSellItems decode(PacketBuffer buf) {
-		ExtendedCPacketTradeSellItems packet = new ExtendedCPacketTradeSellItems();
+	public static ExtendedCTradeSellItemsPacket decode(PacketBuffer buf) {
+		ExtendedCTradeSellItemsPacket packet = new ExtendedCTradeSellItemsPacket();
 		return packet;
 	}
 
-	public static void handle(ExtendedCPacketTradeSellItems packet, Supplier<Context> context) {
+	public static void handle(ExtendedCTradeSellItemsPacket packet, Supplier<Context> context) {
 		ServerPlayerEntity player = context.get().getSender();
 	    if (player.containerMenu instanceof ExtendedTradeContainer) {
 			ExtendedTradeContainer container = (ExtendedTradeContainer) player.containerMenu;

@@ -15,19 +15,19 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedCPacketOpenHiredMenu {
+public class ExtendedCOpenHiredMenuPacket {
 
     private final int entityId;
 
-    public ExtendedCPacketOpenHiredMenu(int entityId) {
+    public ExtendedCOpenHiredMenuPacket(int entityId) {
         this.entityId = entityId;
     }
 
-    public static ExtendedCPacketOpenHiredMenu decode(PacketBuffer buf) {
-        return new ExtendedCPacketOpenHiredMenu(buf.readInt());
+    public static ExtendedCOpenHiredMenuPacket decode(PacketBuffer buf) {
+        return new ExtendedCOpenHiredMenuPacket(buf.readInt());
     }
 
-    public static void encode(ExtendedCPacketOpenHiredMenu msg, PacketBuffer buf) {
+    public static void encode(ExtendedCOpenHiredMenuPacket msg, PacketBuffer buf) {
         buf.writeInt(msg.entityId);
     }
 
@@ -39,7 +39,7 @@ public class ExtendedCPacketOpenHiredMenu {
         return this.entityId;
     }
 
-    public static void handle(ExtendedCPacketOpenHiredMenu msg, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCOpenHiredMenuPacket msg, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
 

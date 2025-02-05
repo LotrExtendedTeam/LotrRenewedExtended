@@ -30,7 +30,9 @@ public class MixinSignSetupHelperJavaPatch {
 	public static void register(RegistryEvent.Register<Block> event) {
 		if (event.getRegistry() == ForgeRegistries.BLOCKS) {
 			TileEntityType<SignTileEntity> signType = TileEntityType.SIGN;
+			// Extended Start
 			Set<Block> validBlocks = signType.validBlocks;
+			// Extended End
 			Set<Block> newSet = new HashSet<>(validBlocks);
 			newSet.addAll(preparedSignBlocks);
 			signType.validBlocks = newSet;

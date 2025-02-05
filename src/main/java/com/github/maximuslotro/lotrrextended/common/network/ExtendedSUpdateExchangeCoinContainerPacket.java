@@ -8,30 +8,30 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public class ExtendedSPacketUpdateExchangeCoinContainer {
+public class ExtendedSUpdateExchangeCoinContainerPacket {
 	private int exchangedSide; // 0 is left, 1 is right
 	private boolean exchanged;
 
-	public ExtendedSPacketUpdateExchangeCoinContainer() {}
+	public ExtendedSUpdateExchangeCoinContainerPacket() {}
 
-	public ExtendedSPacketUpdateExchangeCoinContainer(boolean exchanged, int exchangedSide) {
+	public ExtendedSUpdateExchangeCoinContainerPacket(boolean exchanged, int exchangedSide) {
 		this.exchanged = exchanged;
 		this.exchangedSide = exchangedSide;
 	}
 
-	public static void encode(ExtendedSPacketUpdateExchangeCoinContainer packet, PacketBuffer buf) {
+	public static void encode(ExtendedSUpdateExchangeCoinContainerPacket packet, PacketBuffer buf) {
 		buf.writeBoolean(packet.exchanged);
 		buf.writeInt(packet.exchangedSide);
 	}
 
-	public static ExtendedSPacketUpdateExchangeCoinContainer decode(PacketBuffer buf) {
-		ExtendedSPacketUpdateExchangeCoinContainer packet = new ExtendedSPacketUpdateExchangeCoinContainer();
+	public static ExtendedSUpdateExchangeCoinContainerPacket decode(PacketBuffer buf) {
+		ExtendedSUpdateExchangeCoinContainerPacket packet = new ExtendedSUpdateExchangeCoinContainerPacket();
 		packet.exchanged = buf.readBoolean();
 		packet.exchangedSide = buf.readInt();
 		return packet;
 	}
 
-	public static void handle(ExtendedSPacketUpdateExchangeCoinContainer packet, Supplier<Context> context) {
+	public static void handle(ExtendedSUpdateExchangeCoinContainerPacket packet, Supplier<Context> context) {
 		Minecraft mc = Minecraft.getInstance();
 		ClientPlayerEntity player = mc.player;
 		assert player != null;

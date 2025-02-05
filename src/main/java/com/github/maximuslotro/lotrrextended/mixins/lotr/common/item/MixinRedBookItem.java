@@ -32,7 +32,7 @@ public class MixinRedBookItem {
 	/**
 	 * @reason Need to change waypoint Gamerule call
 	 * @author maximuslotro
-	 * */
+	 */
 	@Overwrite(remap = false)
 	public boolean createCustomWaypointStructure(World world, BlockPos pos, PlayerEntity player) {
 		if (!world.isClientSide) {

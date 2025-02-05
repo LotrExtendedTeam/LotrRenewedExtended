@@ -10,19 +10,19 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class ExtendedCPacketSetHiredUnitStationary {
+public class ExtendedCSetHiredUnitStationaryPacket {
 
     private final int entityId;
 
-    public ExtendedCPacketSetHiredUnitStationary (int entityId) {
+    public ExtendedCSetHiredUnitStationaryPacket (int entityId) {
         this.entityId = entityId;
     }
 
-    public static ExtendedCPacketSetHiredUnitStationary decode(PacketBuffer buf) {
-        return new ExtendedCPacketSetHiredUnitStationary(buf.readInt());
+    public static ExtendedCSetHiredUnitStationaryPacket decode(PacketBuffer buf) {
+        return new ExtendedCSetHiredUnitStationaryPacket(buf.readInt());
     }
 
-    public static void encode(ExtendedCPacketSetHiredUnitStationary msg, PacketBuffer buf) {
+    public static void encode(ExtendedCSetHiredUnitStationaryPacket msg, PacketBuffer buf) {
         buf.writeInt(msg.entityId);
     }
 
@@ -30,7 +30,7 @@ public class ExtendedCPacketSetHiredUnitStationary {
         return this.entityId;
     }
 
-    public static void handle(ExtendedCPacketSetHiredUnitStationary  msg, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCSetHiredUnitStationaryPacket  msg, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             if (msg != null) {
                 context.get().enqueueWork(() -> {

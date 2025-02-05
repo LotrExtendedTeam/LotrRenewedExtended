@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
-import java.util.UUID;
-
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
@@ -11,13 +9,10 @@ import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
-import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -77,27 +72,4 @@ public class HiredUnitEventHandlers {
             ((ExtendedHirableEntity) companion).setMobKills(((ExtendedHirableEntity) companion).getMobKills() + 1);
         }
     }
-
-    @SubscribeEvent
-    public static void preventFriendlyFireFromPlayerToCompanion(LivingAttackEvent event) {
-        ExtendedHirableEntity hired = ExtendedHiredUnitHelper.getExtendedHirableEntity(event.getEntity());
-        if (hired == null) return;
-
-        UUID owner = hired.getOwnerUUID();
-        if (event.getSource() == null) return;
-
-        if (event.getSource() != null && event.getSource().getEntity() != null
-                && event.getSource().getEntity() instanceof PlayerEntity) {
-            // cancel a damage event if damage comes from owner
-            PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
-            if (owner == null) {
-                return;
-            }
-
-            if (owner.equals(player.getUUID())) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
 }

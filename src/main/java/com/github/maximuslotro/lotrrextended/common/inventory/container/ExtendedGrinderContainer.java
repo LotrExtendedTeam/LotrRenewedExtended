@@ -33,7 +33,7 @@ public class ExtendedGrinderContainer extends Container {
 		this.data = pData;
 		this.level = pPlayerInventory.player.level;
 		this.addSlot(new Slot(pContainer, 0, 80, 16));
-		this.addSlot(new GrinderLubricationSlot(this, pContainer, 1, 114, 19));
+		this.addSlot(new ExtendedGrinderLubricationSlot(this, pContainer, 1, 114, 19));
 		this.addSlot(new ExtendedGrinderResultSlot(pPlayerInventory.player, pContainer, 2, 80, 58));
 
 		for(int i = 0; i < 3; ++i) {

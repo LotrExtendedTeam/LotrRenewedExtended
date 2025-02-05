@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenCoinExchange;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketOpenTradeMenu;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCoinExchangePacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenTradeMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
@@ -39,13 +39,13 @@ public class ExtendedTraderHelper {
     }
 
     public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenCoinExchange(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCOpenCoinExchangePacket(entity.getId()));
         trader.updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
 
     public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketOpenTradeMenu(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCOpenTradeMenuPacket(entity.getId()));
         trader.updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }

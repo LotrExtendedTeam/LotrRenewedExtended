@@ -11,6 +11,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -21,12 +22,12 @@ import net.minecraft.world.World;
 
 public class ExtendedHiredUnitHelper {
 
-    public static final ItemStack BREE_GUARD_HEAD = new ItemStack(Items.IRON_HELMET).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_CHEST = LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_LEGS = new ItemStack(Items.CHAINMAIL_LEGGINGS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.leggings").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_FEET = new ItemStack(Items.CHAINMAIL_BOOTS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.boots").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_MAINHAND  = new ItemStack(LOTRItems.IRON_SPEAR.get()).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.weapon").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
-    public static final ItemStack BREE_GUARD_OFFHAND = new ItemStack(Items.SHIELD).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.shield").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+    public static final ItemStack BREE_GUARD_HEAD = setBaseItem(new ItemStack(Items.IRON_HELMET).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
+    public static final ItemStack BREE_GUARD_CHEST = setBaseItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
+    public static final ItemStack BREE_GUARD_LEGS = setBaseItem(new ItemStack(Items.CHAINMAIL_LEGGINGS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.leggings").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
+    public static final ItemStack BREE_GUARD_FEET = setBaseItem(new ItemStack(Items.CHAINMAIL_BOOTS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.boots").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
+    public static final ItemStack BREE_GUARD_MAINHAND  = setBaseItem(new ItemStack(LOTRItems.IRON_SPEAR.get()).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.weapon").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
+    public static final ItemStack BREE_GUARD_OFFHAND = setBaseItem(new ItemStack(Items.SHIELD).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.shield").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
 
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
         if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getOwner() instanceof ServerPlayerEntity) {
@@ -143,4 +144,9 @@ public class ExtendedHiredUnitHelper {
         return baseGear;
     }
 
+    public static ItemStack setBaseItem(ItemStack stack) {
+    	CompoundNBT compoundnbt = stack.getOrCreateTag();
+    	compoundnbt.putBoolean("IsBaseArmor", true);
+		return stack;
+    }
 }

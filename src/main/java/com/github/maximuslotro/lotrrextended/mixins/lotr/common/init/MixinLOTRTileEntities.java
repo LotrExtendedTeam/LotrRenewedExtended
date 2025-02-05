@@ -58,7 +58,7 @@ public class MixinLOTRTileEntities {
 	/**
 	 * @author maximuslotro
 	 * @reason Need to change VesselTileEntityAppliedBlocks
-	 * */
+	 */
 	@SuppressWarnings("unchecked")
 	@Overwrite(remap=false)
 	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String key, Supplier<TileEntityType.Builder<T>> builderSup) {

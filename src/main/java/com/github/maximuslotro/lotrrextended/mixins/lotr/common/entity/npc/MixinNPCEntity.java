@@ -69,7 +69,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	/**
 	 * @reason Need to change complex if statements
 	 * @author maximuslotro
-	 * */
+	 */
 	@Override
 	@Overwrite
 	public boolean checkSpawnRules(IWorld iworld, SpawnReason reason) {
