@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
@@ -26,6 +27,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class StructureEntitySpawnersProvider implements IDataProvider {
+	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedStructureEntitySpawner> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
@@ -49,7 +51,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	            Path path1 = createPath(path, spawner);
 
 	            try {
-	               save(ExtendedStructureEntitySpawnManager.GSON_PRETTY_WRITER, pCache, spawner, path1);
+	               save(GSON_PRETTY_WRITER, pCache, spawner, path1);
 	            } catch (IOException ioexception) {
 	               LOGGER.error("Couldn't save advancement {}", path1, ioexception);
 	            }

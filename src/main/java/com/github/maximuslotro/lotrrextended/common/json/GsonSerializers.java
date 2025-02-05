@@ -25,4 +25,8 @@ public class GsonSerializers {
 			.registerTypeAdapter(ExtendedStructureEntitySpawner.class, new ExtendedStructureEntitySpawner.Serializer())
 			.registerTypeAdapter(ExtendedSpawnerBoundsEntry.class, new ExtendedSpawnerBoundsEntry.Serializer());
 	}
+
+	public static GsonBuilder createHiredUnitSerializer() {
+		return createConditionSerializer();
+	}
 }

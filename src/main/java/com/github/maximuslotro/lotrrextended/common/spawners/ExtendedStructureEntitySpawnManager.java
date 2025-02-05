@@ -31,7 +31,6 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
 	public static final ExtendedStructureEntitySpawnManager INSTANCE = new ExtendedStructureEntitySpawnManager();
 	public static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().create();
-	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "entity_structure_spawners";
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
