@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.json;
 
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
@@ -27,6 +28,6 @@ public class GsonSerializers {
 	}
 
 	public static GsonBuilder createHiredUnitSerializer() {
-		return createConditionSerializer();
+		return createConditionSerializer().registerTypeAdapter(ExtendedHiredUnitProfile.class, new ExtendedHiredUnitProfile.Serializer());
 	}
 }

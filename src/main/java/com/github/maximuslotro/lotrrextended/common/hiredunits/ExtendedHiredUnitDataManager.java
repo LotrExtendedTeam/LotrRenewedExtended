@@ -6,8 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,45 +30,52 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 	public static final ExtendedHiredUnitDataManager INSTANCE = new ExtendedHiredUnitDataManager();
 	public static final Gson GSON = GsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
-	private final String directory = "entity_structure_spawners";
-	private Map<ResourceLocation, ExtendedHiredUnitEntry> spawners = ImmutableMap.of();
-	private HashMap<String, List<String>> cachedSpawnLists = new HashMap<>();
+	private final String directory = "hired_unit_profiles";
+	private Map<ResourceLocation, ExtendedHiredUnitProfile> hiredUnitProfiles = ImmutableMap.of();
 
-	// Don't allow more than one instance than {@Link ExtendedStructureEntitySpawnManager#INSTANCE }
+	/*
+	 * Keep Private
+	 * Don't allow more than one instance than {@Link ExtendedHiredUnitDataManager#INSTANCE }
+	 * */
 	private ExtendedHiredUnitDataManager() {}
 
-	public ExtendedHiredUnitEntry get(ResourceLocation p_186521_1_) {
-		return this.spawners.getOrDefault(p_186521_1_, ExtendedHiredUnitEntry.EMPTY);
+	/*
+	 * Gets a {@Link ExtendedHiredUnitProfile} for a specified ResourceLocation
+	 * @param unitProfileId Id of the Profile
+	 * @return An instance of {@Link ExtendedHiredUnitProfile} if found, else {@Link ExtendedHiredUnitProfile#EMPTY}
+	 * */
+	public ExtendedHiredUnitProfile get(ResourceLocation unitProfileId) {
+		return this.hiredUnitProfiles.getOrDefault(unitProfileId, ExtendedHiredUnitProfile.EMPTY);
 	}
 
 	@Override
 	protected void apply(Map<ResourceLocation, JsonElement> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
-		Builder<ResourceLocation, ExtendedHiredUnitEntry> builder = ImmutableMap.builder();
+		Builder<ResourceLocation, ExtendedHiredUnitProfile> builder = ImmutableMap.builder();
 		JsonElement jsonelement = json.remove(ExtendedSpawners.EMPTY);
 		if (jsonelement != null) {
-			ExtendedLog.warn("Datapack tried to redefine {} loot table, ignoring", ExtendedHiredUnitEntry.EMPTY);
+			ExtendedLog.warn("Datapack tried to redefine {} loot table, ignoring", ExtendedHiredUnitProfile.EMPTY);
 		}
 		json.forEach((spawnName, spawnListJson) -> {
 			try {
-				ExtendedHiredUnitEntry spawnerData = deserialize(GSON, spawnListJson, ExtendedHiredUnitEntry.class);
-				if (spawnerData != null) {
-				//	if(spawnerData.isCustom) {
+				ExtendedHiredUnitProfile hiredUnitProfile = deserialize(GSON, spawnListJson, ExtendedHiredUnitProfile.class);
+				if (hiredUnitProfile != null) {
+				//	if(hiredUnitProfile.isCustom) {
 				//		ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled, THIS SHOULD NOT BE SET IN JSON! Disabling flag!", spawnName);
-				//		spawnerData.isCustom = false;
+				//		hiredUnitProfile.isCustom = false;
 				//	}
-					builder.put(spawnName, spawnerData);
+					builder.put(spawnName, hiredUnitProfile);
 				}
 			} catch (Exception exception) {
-				ExtendedLog.error("Failed to load Extended Entity Structure Spawner %s from file", spawnName);
+				ExtendedLog.error("Failed to load Hired Unit Profile %s from file", spawnName);
 				exception.printStackTrace();
 			}
 
 		});
-		builder.put(ExtendedSpawners.EMPTY, ExtendedHiredUnitEntry.EMPTY);
-		ImmutableMap<ResourceLocation, ExtendedHiredUnitEntry> immutablemap = builder.build();
+		builder.put(ExtendedSpawners.EMPTY, ExtendedHiredUnitProfile.EMPTY);
+		ImmutableMap<ResourceLocation, ExtendedHiredUnitProfile> immutablemap = builder.build();
 		// TODO validate loaded data if applicable
-		this.spawners = immutablemap;
-		ExtendedLog.info("Loaded Structure Entity Spawners from Json - %s spawners", spawners.size()-1);
+		this.hiredUnitProfiles = immutablemap;
+		ExtendedLog.info("Loaded Hired Unit Profile from Json - %s hiredUnitProfiles", hiredUnitProfiles.size()-1);
 	}
 
 	/**
@@ -111,7 +116,7 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 		return map;
 	}
 
-	public static String serialize(Gson gson, ExtendedHiredUnitEntry data) {
+	public static String serialize(Gson gson, ExtendedHiredUnitProfile data) {
 		return gson.toJson(data);
 	}
 
@@ -124,7 +129,6 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 	}
 
 	public Set<ResourceLocation> getIds() {
-		return this.spawners.keySet();
+		return this.hiredUnitProfiles.keySet();
 	}
-
 }
