@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:bree",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:bree_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:bree_banner_pattern"
+  }
+}

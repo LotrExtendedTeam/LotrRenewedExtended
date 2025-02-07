@@ -165,7 +165,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	/**
 	 * @author maximuslotro
 	 * @reason Needing to add Jump Attribute to Wargs
-	 * */
+	 */
 	@Overwrite(remap = false)
 	public static MutableAttribute regAttrs() {
 		return NPCEntity.registerBaseNPCAttributes().add(Attributes.FOLLOW_RANGE, 32.0D)

@@ -29,6 +29,9 @@ public class RenderHiredUnitHealthbars {
             }
 
             Minecraft minecraft = Minecraft.getInstance();
+            if(minecraft.options.hideGui) {
+            	return;
+            }
             MatrixStack matrixStackIn = event.getMatrixStack();
 
             double d0 = minecraft.getEntityRenderDispatcher().distanceToSqr(event.getEntity());

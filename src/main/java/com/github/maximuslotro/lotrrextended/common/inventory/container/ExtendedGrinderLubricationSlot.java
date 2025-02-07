@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
-public class GrinderLubricationSlot extends Slot {
+public class ExtendedGrinderLubricationSlot extends Slot {
 	public static final ResourceLocation EMPTY_BUCKET_TEXTURE = new ResourceLocation("lotr", "item/empty_keg_slot_bucket");
 	private final ExtendedGrinderContainer menu;
 
-	public GrinderLubricationSlot(ExtendedGrinderContainer grinderMenu, IInventory pFurnaceContainer, int pSlot, int pXPosition, int pYPosition) {
+	public ExtendedGrinderLubricationSlot(ExtendedGrinderContainer grinderMenu, IInventory pFurnaceContainer, int pSlot, int pXPosition, int pYPosition) {
 		super(pFurnaceContainer, pSlot, pXPosition, pYPosition);
 		this.menu = grinderMenu;
 		setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_BUCKET_TEXTURE);

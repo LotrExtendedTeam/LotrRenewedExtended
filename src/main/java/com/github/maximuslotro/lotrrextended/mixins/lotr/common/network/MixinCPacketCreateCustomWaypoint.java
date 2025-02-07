@@ -29,7 +29,7 @@ public class MixinCPacketCreateCustomWaypoint {
 	/**
 	 * @reason Need to change removed Gamerule call
 	 * @author maximuslotro
-	 * */
+	 */
 	@Overwrite(remap = false)
 	private static void doCreateCustomWaypoint(CPacketCreateCustomWaypoint packet, ServerPlayerEntity player, FastTravelDataModule ftData) {
 		ServerWorld world = player.getLevel();

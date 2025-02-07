@@ -262,7 +262,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 
 	/**
 	 * Extended method to load in a loot table for kegs, uses chest loot-table code
-	 * */
+	 */
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
 		try {

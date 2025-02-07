@@ -13,28 +13,28 @@ import net.minecraftforge.fml.network.NetworkEvent;
  * @author RichardB122
  * This packet is used for telling the server that the trading main menu has been closed so that the trader can move again.
  */
-public class ExtendedCPacketStopInteractingWithInteractable {
+public class ExtendedCStopInteractingWithInteractablePacket {
 
     private int interactableId;
 
 
-    public ExtendedCPacketStopInteractingWithInteractable() {}
+    public ExtendedCStopInteractingWithInteractablePacket() {}
 
-    public ExtendedCPacketStopInteractingWithInteractable(int interactableId) {
+    public ExtendedCStopInteractingWithInteractablePacket(int interactableId) {
         this.interactableId = interactableId;
     }
 
-    public static void encode(ExtendedCPacketStopInteractingWithInteractable packet, PacketBuffer buf) {
+    public static void encode(ExtendedCStopInteractingWithInteractablePacket packet, PacketBuffer buf) {
         buf.writeInt(packet.interactableId);
     }
 
-    public static ExtendedCPacketStopInteractingWithInteractable decode(PacketBuffer buf) {
-        ExtendedCPacketStopInteractingWithInteractable packet = new ExtendedCPacketStopInteractingWithInteractable();
+    public static ExtendedCStopInteractingWithInteractablePacket decode(PacketBuffer buf) {
+        ExtendedCStopInteractingWithInteractablePacket packet = new ExtendedCStopInteractingWithInteractablePacket();
         packet.interactableId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedCPacketStopInteractingWithInteractable packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCStopInteractingWithInteractablePacket packet, Supplier<NetworkEvent.Context> context) {
     	World level = Objects.requireNonNull(context.get().getSender()).level;
         if (level.getEntity(packet.interactableId) != null && level.getEntity(packet.interactableId) instanceof NPCEntity) {
             NPCEntity entity = (NPCEntity) level.getEntity(packet.interactableId);

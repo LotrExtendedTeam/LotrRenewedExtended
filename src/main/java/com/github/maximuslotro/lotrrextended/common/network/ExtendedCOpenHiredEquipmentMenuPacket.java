@@ -21,18 +21,18 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedCPacketOpenHiredEquipmentMenu {
+public class ExtendedCOpenHiredEquipmentMenuPacket {
     private final int entityId;
 
-    public ExtendedCPacketOpenHiredEquipmentMenu(int entityId) {
+    public ExtendedCOpenHiredEquipmentMenuPacket(int entityId) {
         this.entityId = entityId;
     }
 
-    public static ExtendedCPacketOpenHiredEquipmentMenu decode(PacketBuffer buf) {
-        return new ExtendedCPacketOpenHiredEquipmentMenu(buf.readInt());
+    public static ExtendedCOpenHiredEquipmentMenuPacket decode(PacketBuffer buf) {
+        return new ExtendedCOpenHiredEquipmentMenuPacket(buf.readInt());
     }
 
-    public static void encode(ExtendedCPacketOpenHiredEquipmentMenu msg, PacketBuffer buf) {
+    public static void encode(ExtendedCOpenHiredEquipmentMenuPacket msg, PacketBuffer buf) {
         buf.writeInt(msg.entityId);
     }
 
@@ -40,7 +40,7 @@ public class ExtendedCPacketOpenHiredEquipmentMenu {
         return this.entityId;
     }
 
-    public static void handle(ExtendedCPacketOpenHiredEquipmentMenu msg, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCOpenHiredEquipmentMenuPacket msg, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             // fill in equipment array list
             final List<ItemStack> equipment = new ArrayList<>(6);

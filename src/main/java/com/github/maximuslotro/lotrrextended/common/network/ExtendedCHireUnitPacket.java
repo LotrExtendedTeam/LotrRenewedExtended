@@ -20,27 +20,27 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class ExtendedCPacketHireUnit {
+public class ExtendedCHireUnitPacket {
 
     private int captainId;
 
-    public ExtendedCPacketHireUnit() {}
+    public ExtendedCHireUnitPacket() {}
 
-    public ExtendedCPacketHireUnit(int captainId) {
+    public ExtendedCHireUnitPacket(int captainId) {
        this.captainId = captainId;
     }
 
-    public static void encode(ExtendedCPacketHireUnit packet, PacketBuffer buf) {
+    public static void encode(ExtendedCHireUnitPacket packet, PacketBuffer buf) {
         buf.writeInt(packet.captainId);
     }
 
-    public static ExtendedCPacketHireUnit decode(PacketBuffer buf) {
-        ExtendedCPacketHireUnit packet = new ExtendedCPacketHireUnit();
+    public static ExtendedCHireUnitPacket decode(PacketBuffer buf) {
+        ExtendedCHireUnitPacket packet = new ExtendedCHireUnitPacket();
         packet.captainId = buf.readInt();
         return packet;
     }
 
-    public static void handle(ExtendedCPacketHireUnit packet, Supplier<NetworkEvent.Context> context) {
+    public static void handle(ExtendedCHireUnitPacket packet, Supplier<NetworkEvent.Context> context) {
         Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.captainId);
         if (!(entity instanceof ExtendedCaptainEntity)) {
             ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from %s", Objects.requireNonNull(context.get().getSender()).getName().getString());

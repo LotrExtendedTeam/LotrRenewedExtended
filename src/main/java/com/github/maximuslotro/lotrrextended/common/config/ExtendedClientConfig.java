@@ -16,7 +16,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	 * Do not set this value itself, set {@Link ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
 	 * to ensure {@Link MixinStructureBlockTileEntity} is updated with the non confg crashable value, since sliders can change values very quickly.
 	 * */
-	public static ForgeConfigSpec.DoubleValue structureBlockOutlineViewDistance;
+	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 
 	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;
 
@@ -28,12 +28,12 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 
 	private static ForgeConfigSpec.Builder setupConfig(ForgeConfigSpec.Builder builder) {
 		builder.push("Technical Settings");
-		structureBlockOutlineViewDistance = createDoubleValue(builder, "structureBlockOutlineViewDistance", 96.0D, 32.0D, MixinConstants.StructureLimit, false, "Change the distance at which structure block outlines render.");
+		structureBlockOutlineViewDistance = createIntegerValue(builder, "structureBlockOutlineDistance", 96, 32, (int) MixinConstants.StructureLimit, false, "Change the distance at which structure block outlines render.");
 		forceStructureBlockAirViewing = createBooleanValue(builder, "forceStructureBlockAirViewing", false, false, "Force Structure Voids to render inside of Structure Block Outline Rendering.");
 		builder.pop();
 
 		builder.push("Special settings");
-		enableDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
+		enableDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or debugging the mod!");
 		lastClientBootVersion = createStringValue(builder, "lastClientBootVersion", "null", true, "Last version this mod launched with. Don't touch! Value handled by extended.");
 		builder.pop();
 		return builder;

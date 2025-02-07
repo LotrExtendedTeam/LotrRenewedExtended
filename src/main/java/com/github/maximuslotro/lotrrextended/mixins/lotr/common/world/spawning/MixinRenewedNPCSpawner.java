@@ -41,9 +41,7 @@ public class MixinRenewedNPCSpawner {
 	private void runSpawnCycle(ServerWorld world) {
 		List<ChunkPos> chunks = gatherSpawnableChunks(world);
 		double sumDensity = chunks.stream().collect(Collectors.summingDouble(chunk -> getNPCDensityCapForChunk(world, chunk)));
-		// Extended Start
-		int cap = (int) (sumDensity * 0.51D * ExtendedServerConfig.npcGlobalSpawnDampingCoefficient.get());
-		// Extended End
+		int cap = (int) (sumDensity * 0.51D/*Extended Start*/ * ExtendedServerConfig.npcGlobalSpawnDampingCoefficient.get()/*Extended End*/);
 		double count = Streams.stream(world.getAllEntities()).filter(this::includeInNPCCount).map(e -> ((NPCEntity) e)).collect(Collectors.summingDouble(NPCEntity::getSpawnCountWeight));
 		if (count < cap) {
 			Collections.shuffle(chunks);

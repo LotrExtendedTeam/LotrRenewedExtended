@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_iron_ingot": {
+    "has_uruk_steel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:iron_ingot"
+            "tag": "forge:ingots/uruk_steel"
           }
         ]
       }
@@ -35,7 +35,7 @@
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_uruk_steel",
       "has_gundabad_shield",
       "has_the_recipe"
     ]

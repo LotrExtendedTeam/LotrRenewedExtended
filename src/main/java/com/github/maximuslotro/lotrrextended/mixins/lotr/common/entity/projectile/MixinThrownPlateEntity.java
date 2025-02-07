@@ -27,7 +27,7 @@ public abstract class MixinThrownPlateEntity extends ProjectileItemEntity{
 	/**
 	 * @reason Easy to replace method
 	 * @author maximuslotro
-	 * */
+	 */
 	@Overwrite(remap = false)
 	private boolean breakGlass(BlockPos pos) {
 		BlockState state = level.getBlockState(pos);

@@ -121,18 +121,38 @@ public class ExtendedFellowship {
 	public UUID getOwnerUUID() {
 		return fellowshipOwner;
 	}
+
+	/**
+	 * Check if a player is the fellowship owner
+	 */
 	public boolean isFellowshipOwner(UUID player) {
 		return fellowshipOwner.equals(player);
 	}
+
+	/**
+	 * Check if a player is a fellowship member, but the owner
+	 */
 	public boolean isFellowshipMember(UUID player) {
 		return fellowshipMembers.contains(player);
 	}
+
+	/**
+	 * Check if a player is a fellowship member and in the admin list, but not the owner
+	 */
 	public boolean isFellowshipAdmin(UUID player) {
 		return isFellowshipMember(player) && fellowshipAdmins.contains(player);
 	}
+
+	/**
+	 * Check if a player is a fellowship member or the owner
+	 */
 	public boolean isInFellowship(UUID player) {
 		return isFellowshipMember(player) || isFellowshipOwner(player);
 	}
+
+	/**
+	 * Check if a player is a fellowship admin or the owner
+	 */
 	public boolean hasEditPowers(UUID player) {
 		return (isFellowshipMember(player) && fellowshipAdmins.contains(player)) || fellowshipOwner.equals(player);
 	}

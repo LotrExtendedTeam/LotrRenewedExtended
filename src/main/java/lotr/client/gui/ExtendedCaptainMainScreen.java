@@ -41,7 +41,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
     private void talkWithNPC() {
     	stopInteractingClientServer();
 
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketTalkWithTrader(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
         if(mc.player != null) {
             mc.player.closeContainer();
@@ -51,7 +51,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
 		if (captainEntity.canHire(player)) {
-            ExtendedPacketHandler.sendToServer(new ExtendedCPacketHireUnit(entity.getId()));
+            ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
 		} else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
 			stopInteractingClientServer();
@@ -80,7 +80,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 
     public void stopInteractingClientServer() {
     	// notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopInteractingWithInteractable(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(entity.getId()));
         captainEntity.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 }

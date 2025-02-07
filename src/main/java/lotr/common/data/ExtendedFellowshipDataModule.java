@@ -21,7 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class ExtendedFellowshipDataModule extends PlayerDataModule {
+public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 
 	private List<UUID> fellowshipIDs = new ArrayList<>();
 

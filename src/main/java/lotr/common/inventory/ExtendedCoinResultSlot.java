@@ -1,7 +1,7 @@
 package lotr.common.inventory;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSPacketUpdateExchangeCoinContainer;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateExchangeCoinContainerPacket;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -39,7 +39,7 @@ public class ExtendedCoinResultSlot extends Slot {
 
             if (!player.level.isClientSide) {
                 System.out.println("player.level.isClientSide: false - attempting to send packet");
-                ExtendedPacketHandler.sendToClient(new ExtendedSPacketUpdateExchangeCoinContainer(false, container.sideExchanged), (ServerPlayerEntity) player);
+                ExtendedPacketHandler.sendToClient(new ExtendedSUpdateExchangeCoinContainerPacket(false, container.sideExchanged), (ServerPlayerEntity) player);
             }
             container.recalculateResultSlots(container.inputSlot.getItem());
         }

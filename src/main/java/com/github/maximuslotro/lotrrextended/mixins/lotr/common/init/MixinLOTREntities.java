@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import lotr.common.entity.npc.*;
+
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,6 +42,7 @@ import net.minecraftforge.fml.RegistryObject;
 @Mixin(LOTREntities.class)
 public class MixinLOTREntities {
 
+	@Final
 	@Shadow(remap = false)
 	private static final Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES = new HashMap<>();
 

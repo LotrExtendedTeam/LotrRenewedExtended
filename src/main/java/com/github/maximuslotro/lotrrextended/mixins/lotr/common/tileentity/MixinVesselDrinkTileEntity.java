@@ -119,7 +119,7 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 
 	/**
 	 * Extended method to load in a loot table for plates, uses chest loot-table code
-	 * */
+	 */
 	private void unpackLootTableVessel(@Nullable PlayerEntity player) {
 		VesselDrinkTileEntity entity = ((VesselDrinkTileEntity)(Object)(this));
 		try {

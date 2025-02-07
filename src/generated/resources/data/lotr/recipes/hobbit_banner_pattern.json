@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:hobbit",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:hobbit_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:hobbit_banner_pattern"
+  }
+}

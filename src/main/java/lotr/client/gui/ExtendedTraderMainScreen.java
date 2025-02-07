@@ -1,8 +1,8 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopInteractingWithInteractable;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketTalkWithTrader;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithTraderPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -43,7 +43,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
     private void talkWithNPC() {
     	stopTradingClientServer();
 
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketTalkWithTrader(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(entity.getId()));
         Minecraft mc = Minecraft.getInstance();
         if(mc.player != null) {
             mc.player.closeContainer();
@@ -96,7 +96,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 
     public void stopTradingClientServer() {
     	// notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopInteractingWithInteractable(entity.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(entity.getId()));
         trader.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 }

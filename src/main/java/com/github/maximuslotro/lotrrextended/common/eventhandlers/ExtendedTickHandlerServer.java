@@ -46,10 +46,8 @@ public class ExtendedTickHandlerServer {
 					// Save when needs saving
 					if (levelData.doesNeedSaving()) {
 						levelData.save(world);
-					}
-
-					// Save every 30 seconds
-					if (world.getGameTime() % 600L == 0L) {
+					} // Save every 30 seconds
+					else if (world.getGameTime() % 600L == 0L) {
 						levelData.save(world);
 					}
                 } else if (LOTRDimensions.isDimension(world, LOTRDimensions.MIDDLE_EARTH_WORLD_KEY)) {

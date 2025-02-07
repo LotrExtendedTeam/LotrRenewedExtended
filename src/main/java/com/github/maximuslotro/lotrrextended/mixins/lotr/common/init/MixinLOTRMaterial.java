@@ -65,6 +65,10 @@ public class MixinLOTRMaterial {
 
 	private static final LOTRMaterial EXT_BONE = lotrmaterialExpansion$addVariant("EXT_BONE", "ext_bone", 0, 150, 3.0F, 2.0F, 10, 0.3F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 									() -> Ingredient.of(Tags.Items.BONES));
+
+	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 250, 6.0F, 2.0F, 14, 0.6F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
+
 	@Invoker("<init>")
 	public static LOTRMaterial lotrmaterialExpansion$invokeInit(String internalName, int internalId, String name, int toolTeir, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 			float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {

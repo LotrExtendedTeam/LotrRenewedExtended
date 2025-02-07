@@ -22,7 +22,7 @@ public class MixinNPCNearestAttackableTargetGoal {
 	/**
 	 * @author maximuslotro
 	 * @reason Fix hostile aligned mobs not attacking players
-	 * */
+	 */
 	@Overwrite(remap=false)
 	protected boolean isPlayerSuitableAlignmentTarget(PlayerEntity player) {
 		// Extended Start

@@ -1,7 +1,7 @@
 package lotr.client.gui.inventory;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketExchangeCoins;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCPacketStopInteractingWithInteractable;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCExchangeCoinsPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -115,14 +115,14 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
                 this.menu.exchanged = true;
                 this.menu.sideExchanged = mode;
-                ExtendedPacketHandler.sendToServer(new ExtendedCPacketExchangeCoins(mode));
+                ExtendedPacketHandler.sendToServer(new ExtendedCExchangeCoinsPacket(mode));
             }
         } else if(mode == 1 && !this.menu.rightSlot.getItem().equals(ItemStack.EMPTY)) {
             // attempt to exchange right
             if (!this.menu.inputSlot.getItem().equals(ItemStack.EMPTY)) {
                 this.menu.exchanged = true;
                 this.menu.sideExchanged = mode;
-                ExtendedPacketHandler.sendToServer(new ExtendedCPacketExchangeCoins(mode));
+                ExtendedPacketHandler.sendToServer(new ExtendedCExchangeCoinsPacket(mode));
             }
         }
     }
@@ -131,7 +131,7 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
     public void onClose() {
         super.onClose();
         // notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCPacketStopInteractingWithInteractable(container.traderNPC.getId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(container.traderNPC.getId()));
         container.trader.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
     }
 
