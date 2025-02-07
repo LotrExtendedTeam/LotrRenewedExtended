@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.hiredunits;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -26,6 +27,15 @@ public class ExtendedHiredUnitEquipmentInstance {
 	private final List<ExtendedHiredUnitEquipmentEntry> weaponPool;
 	private final List<ExtendedHiredUnitEquipmentEntry> shieldPool;
 
+	public ExtendedHiredUnitEquipmentInstance() {
+		this.helmetPool = new ArrayList<>();
+		this.chestplatePool = new ArrayList<>();
+		this.leggingPool = new ArrayList<>();
+		this.bootsPool = new ArrayList<>();
+		this.weaponPool = new ArrayList<>();
+		this.shieldPool = new ArrayList<>();
+	}
+
 	public ExtendedHiredUnitEquipmentInstance(List<ExtendedHiredUnitEquipmentEntry> helmetPool, List<ExtendedHiredUnitEquipmentEntry> chestplatePool, 
 		List<ExtendedHiredUnitEquipmentEntry> leggingPool, List<ExtendedHiredUnitEquipmentEntry> bootsPool,
 		List<ExtendedHiredUnitEquipmentEntry> weaponPool, List<ExtendedHiredUnitEquipmentEntry> shieldPool) {
@@ -39,9 +49,6 @@ public class ExtendedHiredUnitEquipmentInstance {
 	}
 
 	public ItemStack getRandomHelmetStack(Random random) {
-		if(helmetPool==null || helmetPool.isEmpty()) {
-			return ItemStack.EMPTY;
-		}
 		return getRandomINTERNALStack(random, helmetPool);
 	}
 
@@ -70,6 +77,34 @@ public class ExtendedHiredUnitEquipmentInstance {
 			return ItemStack.EMPTY;
 		}
 		return WeightedRandom.getRandomItem(random, pool).getStack();
+	}
+
+	protected void addHelmetStack(ItemStack item, int weight) {
+		addINTERNALStack(item, weight, helmetPool);
+	}
+
+	protected void addChestplateStack(ItemStack item, int weight) {
+		addINTERNALStack(item, weight, chestplatePool);
+	}
+
+	protected void addLeggingStack(ItemStack item, int weight) {
+		addINTERNALStack(item, weight, leggingPool);
+	}
+
+	protected void addBootsStack(ItemStack item, int weight) {
+		addINTERNALStack(item, weight, bootsPool);
+	}
+
+	protected void addWeaponStack(ItemStack item, int weight) {
+		addINTERNALStack(item, weight, weaponPool);
+	}
+
+	protected void addShieldStack(ItemStack item, int weight) {
+		addINTERNALStack(item, weight, shieldPool);
+	}
+
+	private static void addINTERNALStack(ItemStack item, int weight, List<ExtendedHiredUnitEquipmentEntry> pool) {
+		pool.add(new ExtendedHiredUnitEquipmentEntry(item, weight));
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedHiredUnitEquipmentInstance>, JsonSerializer<ExtendedHiredUnitEquipmentInstance> {

@@ -53,7 +53,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	            try {
 	               save(GSON_PRETTY_WRITER, pCache, spawner, path1);
 	            } catch (IOException ioexception) {
-	               LOGGER.error("Couldn't save advancement {}", path1, ioexception);
+	               LOGGER.error("Couldn't save structure spawner {}", path1, ioexception);
 	            }
 
 	         }

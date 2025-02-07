@@ -15,4 +15,5 @@ public class DataGenValueHolder {
 	public static Map<String, String> advancementHolder = new HashMap<>();
 	public static Map<String, String> attributeNames = new HashMap<>();
 	public static List<String> biomeNames = new ArrayList<>();
+	public static Map<String, String> hiredUnitStrings = new HashMap<>();
 }

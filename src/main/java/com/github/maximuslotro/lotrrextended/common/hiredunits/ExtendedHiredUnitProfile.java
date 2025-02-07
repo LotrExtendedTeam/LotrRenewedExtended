@@ -14,6 +14,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
@@ -153,7 +154,7 @@ public class ExtendedHiredUnitProfile {
 		private String entity_title;
 		private String entity_shortname;
 		private String entity_unit_type;
-		private ExtendedHiredUnitEquipmentInstance equipmentPools = new ExtendedHiredUnitEquipmentInstance();;
+		private ExtendedHiredUnitEquipmentInstance equipmentPools = new ExtendedHiredUnitEquipmentInstance();
 		private int hiringCost;
 		private boolean hiringRequiresPledge;
 
@@ -191,7 +192,32 @@ public class ExtendedHiredUnitProfile {
 			this.hiringCost = cost;
 			return this;
 		}
-	
+
+		public ExtendedHiredUnitProfile.Builder addHelmetPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addHelmetStack(stack, weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addChestplatePoolItem(ItemStack stack, int weight) {
+			equipmentPools.addChestplateStack(stack, weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addLeggingPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addLeggingStack(stack, weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addBootsPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addBootsStack(stack, weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addWeaponPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addWeaponStack(stack, weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addShieldPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addShieldStack(stack, weight);
+			return this;
+		}
+
 		/**
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
