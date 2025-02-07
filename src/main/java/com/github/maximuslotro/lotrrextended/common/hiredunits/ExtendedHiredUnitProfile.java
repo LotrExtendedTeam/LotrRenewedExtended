@@ -1,9 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.hiredunits;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
+import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -16,18 +19,21 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(ExtendedSpawners.EMPTY, false, "", "", "");
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(ExtendedSpawners.EMPTY, false, "", "", "", new ArrayList<>());
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
 	private final String entity_shortname;
 	private final String entity_unit_type;
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type) {
+	private final List<ExtendedHiredUnitEquipmentEntry> items;
+
+	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, List<ExtendedHiredUnitEquipmentEntry> entries) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
 		this.entity_shortname = entity_shortname;
 		this.entity_unit_type = entity_unit_type;
+		this.items = entries;
 	}
 
 	/*
@@ -73,6 +79,10 @@ public class ExtendedHiredUnitProfile {
 		return this.equals(ExtendedHiredUnitProfile.EMPTY) || id.equals(ExtendedSpawners.EMPTY);
 	}
 
+	public List<ExtendedHiredUnitEquipmentEntry> getEntries() {
+		return new ArrayList<>(items);
+	}
+
 	/*
 	 * Serializer for ExtendedHiredUnitProfile
 	 * */
@@ -90,19 +100,21 @@ public class ExtendedHiredUnitProfile {
 			String entity_title = languageObject.get("entity_title").getAsString();
 			String entity_shortname = languageObject.get("entity_shortname").getAsString();
 			String entity_unit_type = languageObject.get("entity_unit_type").getAsString();
-			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type);
+			List<ExtendedHiredUnitEquipmentEntry> alootpool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "items", new ExtendedHiredUnitEquipmentEntry[0], context, ExtendedHiredUnitEquipmentEntry[].class));
+			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, alootpool);
 		}
 
 		@Override
-		public JsonElement serialize(ExtendedHiredUnitProfile entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
+		public JsonElement serialize(ExtendedHiredUnitProfile unitProfile, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("id", entitySpawner.getId().toString());
+			jsonobject.addProperty("id", unitProfile.getId().toString());
 			JsonObject languageObject = new JsonObject();
-			languageObject.addProperty("translateStrings", entitySpawner.areStringsTranslated());
-			languageObject.addProperty("entity_title", entitySpawner.getUnitTitle());
-			languageObject.addProperty("entity_shortname", entitySpawner.getUnitShorthandName());
-			languageObject.addProperty("entity_unit_type", entitySpawner.getUnitTypeName());
+			languageObject.addProperty("translateStrings", unitProfile.areStringsTranslated());
+			languageObject.addProperty("entity_title", unitProfile.getUnitTitle());
+			languageObject.addProperty("entity_shortname", unitProfile.getUnitShorthandName());
+			languageObject.addProperty("entity_unit_type", unitProfile.getUnitTypeName());
 			jsonobject.add("language", languageObject);
+			jsonobject.add("items", context.serialize(unitProfile.items));
 			return jsonobject;
 		}
 	}
