@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
@@ -53,16 +52,17 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 		Builder<ResourceLocation, ExtendedHiredUnitProfile> builder = ImmutableMap.builder();
 		JsonElement jsonelement = json.remove(ExtendedSpawners.EMPTY);
 		if (jsonelement != null) {
-			ExtendedLog.warn("Datapack tried to redefine {} loot table, ignoring", ExtendedHiredUnitProfile.EMPTY);
+			ExtendedLog.warn("Datapack tried to redefine {} hired unit pool, ignoring", ExtendedHiredUnitProfile.EMPTY);
 		}
 		json.forEach((spawnName, spawnListJson) -> {
 			try {
 				ExtendedHiredUnitProfile hiredUnitProfile = deserialize(GSON, spawnListJson, ExtendedHiredUnitProfile.class);
 				if (hiredUnitProfile != null) {
-				//	if(hiredUnitProfile.isCustom) {
-				//		ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled, THIS SHOULD NOT BE SET IN JSON! Disabling flag!", spawnName);
-				//		hiredUnitProfile.isCustom = false;
-				//	}
+					if(!hiredUnitProfile.getId().equals(spawnName)) {
+						ExtendedLog.warn("Loaded a Hired Unit Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! %1", spawnName);
+						hiredUnitProfile = new ExtendedHiredUnitProfile(spawnName, hiredUnitProfile.areStringsTranslated(), hiredUnitProfile.getUnitTitle(), 
+							hiredUnitProfile.getUnitShorthandName(), hiredUnitProfile.getUnitTypeName(), hiredUnitProfile.getEquipmentPools());
+					}
 					builder.put(spawnName, hiredUnitProfile);
 				}
 			} catch (Exception exception) {
@@ -72,9 +72,7 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 
 		});
 		builder.put(ExtendedSpawners.EMPTY, ExtendedHiredUnitProfile.EMPTY);
-		ImmutableMap<ResourceLocation, ExtendedHiredUnitProfile> immutablemap = builder.build();
-		// TODO validate loaded data if applicable
-		this.hiredUnitProfiles = immutablemap;
+		this.hiredUnitProfiles = builder.build();
 		ExtendedLog.info("Loaded Hired Unit Profile from Json - %s hiredUnitProfiles", hiredUnitProfiles.size()-1);
 	}
 
@@ -95,10 +93,10 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 			String s = resourcelocation.getPath();
 			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 			try (
-					IResource iresource = pResourceManager.getResource(resourcelocation);
-					InputStream inputstream = iresource.getInputStream();
-					Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
-					) {
+				IResource iresource = pResourceManager.getResource(resourcelocation);
+				InputStream inputstream = iresource.getInputStream();
+				Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+				) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
 					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
@@ -126,9 +124,5 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 
 	public static <T> T deserialize(Gson gson, String data, Class<T> classToConvert) {
 		return gson.fromJson(data, classToConvert);
-	}
-
-	public Set<ResourceLocation> getIds() {
-		return this.hiredUnitProfiles.keySet();
 	}
 }

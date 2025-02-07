@@ -25,9 +25,12 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 	public ExtendedHiredUnitEquipmentEntry(ItemStack stack, int weight) {
 		super(weight);
 		this.stack = stack;
-
 	}
 
+	/**
+	 * Gets the contained item
+	 * @return the contained item
+	 * */
 	public ItemStack getStack(){
 		return stack;
 	}
@@ -51,6 +54,9 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 	}
 
 	@SuppressWarnings("deprecation")
+	/**
+	 * Copied from {@Link DisplayInfo#serializeItem()}
+	 * */
 	private JsonObject serializeItem() {
 		JsonObject lvt_1_1_ = new JsonObject();
 		lvt_1_1_.addProperty("item", Registry.ITEM.getKey(this.stack.getItem()).toString());
@@ -61,18 +67,21 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 		return lvt_1_1_;
 	}
 
-	private static ItemStack getStack(JsonObject p_193221_0_) {
-		if (!p_193221_0_.has("item")) {
+	/**
+	 * Copied from {@Link DisplayInfo#getStack(JsonObject jsonObject)}
+	 * */
+	private static ItemStack getStack(JsonObject jsonObject) {
+		if (!jsonObject.has("item")) {
 			throw new JsonSyntaxException("Missing Equipment item type (add 'item' key)");
 		} else {
-			Item basicItem = JSONUtils.getAsItem(p_193221_0_, "item");
-			if (p_193221_0_.has("data")) {
+			Item basicItem = JSONUtils.getAsItem(jsonObject, "item");
+			if (jsonObject.has("data")) {
 				throw new JsonParseException("Disallowed data tag found");
 			} else {
 				ItemStack generatedItemStack = new ItemStack(basicItem);
-				if (p_193221_0_.has("nbt")) {
+				if (jsonObject.has("nbt")) {
 					try {
-						CompoundNBT nbt = JsonToNBT.parseTag(JSONUtils.convertToString(p_193221_0_.get("nbt"), "nbt"));
+						CompoundNBT nbt = JsonToNBT.parseTag(JSONUtils.convertToString(jsonObject.get("nbt"), "nbt"));
 						generatedItemStack.setTag(nbt);
 					} catch (CommandSyntaxException exception) {
 						throw new JsonSyntaxException("Invalid nbt tag: " + exception.getMessage());

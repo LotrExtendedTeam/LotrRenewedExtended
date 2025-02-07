@@ -70,7 +70,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 			try {
 				ExtendedStructureEntitySpawner spawnerData = deserialize(GSON, spawnListJson, ExtendedStructureEntitySpawner.class);
 				if(spawnerData.isCustom) {
-					ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled, THIS SHOULD NOT BE SET IN JSON! Disabling flag!", spawnName);
+					ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled, THIS SHOULD NOT BE SET IN JSON! Disabling flag! %s", spawnName);
 					spawnerData.isCustom = false;
 				}
 				if (spawnerData != null) {

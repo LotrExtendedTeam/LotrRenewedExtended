@@ -1,12 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.hiredunits;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
-import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -19,21 +16,21 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(ExtendedSpawners.EMPTY, false, "", "", "", new ArrayList<>());
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(ExtendedSpawners.EMPTY, false, "", "", "", ExtendedHiredUnitEquipmentInstance.EMPTY);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
 	private final String entity_shortname;
 	private final String entity_unit_type;
-	private final List<ExtendedHiredUnitEquipmentEntry> items;
+	private final ExtendedHiredUnitEquipmentInstance equipmentPools;
 
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, List<ExtendedHiredUnitEquipmentEntry> entries) {
+	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentInstance equipmentPools) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
 		this.entity_shortname = entity_shortname;
 		this.entity_unit_type = entity_unit_type;
-		this.items = entries;
+		this.equipmentPools = equipmentPools;
 	}
 
 	/*
@@ -79,8 +76,13 @@ public class ExtendedHiredUnitProfile {
 		return this.equals(ExtendedHiredUnitProfile.EMPTY) || id.equals(ExtendedSpawners.EMPTY);
 	}
 
-	public List<ExtendedHiredUnitEquipmentEntry> getEntries() {
-		return new ArrayList<>(items);
+	/**
+	 * Gets the eqquipment item pools for the unit profile
+	 * @return the pool
+	 * @see {@link ExtendedHiredUnitEquipmentInstance}
+	 * */
+	public ExtendedHiredUnitEquipmentInstance getEquipmentPools() {
+		return equipmentPools;
 	}
 
 	/*
@@ -92,7 +94,7 @@ public class ExtendedHiredUnitProfile {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedHiredUnitProfile");
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
-				ExtendedLog.warn("Failed to load structure spawner due to invalid id: %s!", id);
+				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: %s!", id);
 				return null;
 			}
 			JsonObject languageObject = jsonobject.get("language").getAsJsonObject();
@@ -100,8 +102,8 @@ public class ExtendedHiredUnitProfile {
 			String entity_title = languageObject.get("entity_title").getAsString();
 			String entity_shortname = languageObject.get("entity_shortname").getAsString();
 			String entity_unit_type = languageObject.get("entity_unit_type").getAsString();
-			List<ExtendedHiredUnitEquipmentEntry> alootpool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "items", new ExtendedHiredUnitEquipmentEntry[0], context, ExtendedHiredUnitEquipmentEntry[].class));
-			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, alootpool);
+			ExtendedHiredUnitEquipmentInstance equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentInstance.EMPTY, context, ExtendedHiredUnitEquipmentInstance.class);
+			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools);
 		}
 
 		@Override
@@ -114,7 +116,7 @@ public class ExtendedHiredUnitProfile {
 			languageObject.addProperty("entity_shortname", unitProfile.getUnitShorthandName());
 			languageObject.addProperty("entity_unit_type", unitProfile.getUnitTypeName());
 			jsonobject.add("language", languageObject);
-			jsonobject.add("items", context.serialize(unitProfile.items));
+			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;
 		}
 	}
