@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
@@ -25,7 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 
 public class ExtendedStructureEntitySpawner {
-	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(ExtendedSpawners.EMPTY, new ArrayList<>(), SpawnerType.UNKNOWN, ExtendedSpawnerBoundsEntry.DEFAULT, ExtendedSpawnerBoundsEntry.DEFAULT);
+	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(LotrExtendedMod.EMPTY, new ArrayList<>(), SpawnerType.UNKNOWN, ExtendedSpawnerBoundsEntry.DEFAULT, ExtendedSpawnerBoundsEntry.DEFAULT);
 	private static final int defaultEntitySpawnTickRate = 6000;
 	private static final int defaultPlayerMinSpawnDistance = 15;
 	private static final int defaultPlayerMaxSpawnDistance = 64;
@@ -83,7 +84,7 @@ public class ExtendedStructureEntitySpawner {
 	}
 
 	public boolean isEmptySpawner() {
-		return this.equals(ExtendedStructureEntitySpawner.EMPTY) || id.equals(ExtendedSpawners.EMPTY);
+		return this.equals(ExtendedStructureEntitySpawner.EMPTY) || id.equals(LotrExtendedMod.EMPTY);
 	}
 
 	public boolean shouldTick() {

@@ -35,6 +35,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
@@ -60,6 +61,7 @@ public class LotrExtendedMod{
 	private IEventBus modBus;
 	public static LotrExtendedMod INSTANCE;
 	public static ExtendedTickHandlerServer serverTickEventHandler;
+	public static final ResourceLocation EMPTY = new ResourceLocation(LotrExtendedMod.MODID, "empty");
 
 	public LotrExtendedMod() {
 		ExtendedLog.make();

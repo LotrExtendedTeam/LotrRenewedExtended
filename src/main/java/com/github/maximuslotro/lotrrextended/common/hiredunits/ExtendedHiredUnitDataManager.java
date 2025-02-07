@@ -9,8 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.Maps;
@@ -50,7 +50,7 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 	@Override
 	protected void apply(Map<ResourceLocation, JsonElement> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
 		Builder<ResourceLocation, ExtendedHiredUnitProfile> builder = ImmutableMap.builder();
-		JsonElement jsonelement = json.remove(ExtendedSpawners.EMPTY);
+		JsonElement jsonelement = json.remove(LotrExtendedMod.EMPTY);
 		if (jsonelement != null) {
 			ExtendedLog.warn("Datapack tried to redefine {} hired unit pool, ignoring", ExtendedHiredUnitProfile.EMPTY);
 		}
@@ -71,7 +71,7 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 			}
 
 		});
-		builder.put(ExtendedSpawners.EMPTY, ExtendedHiredUnitProfile.EMPTY);
+		builder.put(LotrExtendedMod.EMPTY, ExtendedHiredUnitProfile.EMPTY);
 		this.hiredUnitProfiles = builder.build();
 		ExtendedLog.info("Loaded Hired Unit Profile from Json - %s hiredUnitProfiles", hiredUnitProfiles.size()-1);
 	}

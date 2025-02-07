@@ -12,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
  */
 public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
-	public static final ResourceLocation EMPTY = register("empty");
 	// ANIMALS
 	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
 	// HOBBITS

@@ -5,9 +5,9 @@ import java.util.Locale;
 import java.util.function.Predicate;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
@@ -99,7 +99,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 				this.remove();
 			}else {
 				if (spawnerInstance.isEmptySpawner()) {
-					if (spawnerType!=null && !spawnerType.equals(ExtendedSpawners.EMPTY) && !ExtendedServerConfig.enableDevMode.get()) {
+					if (spawnerType!=null && !spawnerType.equals(LotrExtendedMod.EMPTY) && !ExtendedServerConfig.enableDevMode.get()) {
 						setSpawnerFromResourceLocation();
 					}
 				}
@@ -337,7 +337,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	private void setSpawnerFromResourceLocation() {
 		spawnerInstance = ExtendedStructureEntitySpawnManager.INSTANCE.get(spawnerType);
 		if(spawnerInstance.isEmptySpawner()) {
-			ExtendedLog.warn("Structure Spawner loaded and invalid SpawnerType %s, spawner has been set to default %s preset!", spawnerType.toString(), ExtendedSpawners.EMPTY.toString());
+			ExtendedLog.warn("Structure Spawner loaded and invalid SpawnerType %s, spawner has been set to default %s preset!", spawnerType.toString(), LotrExtendedMod.EMPTY.toString());
 		}
 		this.getEntityData().set(DATA_SPAWNER_TYPE, spawnerType.toString());
 		reCalculateBounds();
@@ -377,7 +377,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		} else if(spawnerInstance.isEmptySpawner() && spawnerType !=null){
 			pCompound.putString("setSpawnerType", spawnerType.toString());
 		}else {
-			pCompound.putString("setSpawnerType", ExtendedSpawners.EMPTY.toString());
+			pCompound.putString("setSpawnerType", LotrExtendedMod.EMPTY.toString());
 		}
 		if(!this.firstTick) {
 			pCompound.putBoolean("firstTick", false);
@@ -433,7 +433,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
 		ItemStack stack = new ItemStack(ExtendedItems.ENTITY_SPAWNER.get());
-		if(!getSpawnerName().equals(ExtendedSpawners.EMPTY.toString())) {
+		if(!getSpawnerName().equals(LotrExtendedMod.EMPTY.toString())) {
 			if(stack.hasTag()) {
 				CompoundNBT nbt = stack.getTag();
 				nbt.putString("setSpawnerType", getSpawnerName());
@@ -505,7 +505,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@Override
 	public ITextComponent getDisplayName() {
-		if(!getSpawnerName().equals(ExtendedSpawners.EMPTY.toString())) {
+		if(!getSpawnerName().equals(LotrExtendedMod.EMPTY.toString())) {
 			return new StringTextComponent("Spawner type: "+getSpawnerName());
 		}
 		return this.getName();
@@ -521,7 +521,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@Override
 	protected void defineSynchedData() {
-		this.getEntityData().define(DATA_SPAWNER_TYPE, ExtendedSpawners.EMPTY.toString());
+		this.getEntityData().define(DATA_SPAWNER_TYPE, LotrExtendedMod.EMPTY.toString());
 		this.getEntityData().define(DATA_SPAWNER_CBoundMin, BlockPos.ZERO);
 		this.getEntityData().define(DATA_SPAWNER_CBoundMax, BlockPos.ZERO);
 		this.getEntityData().define(DATA_SPAWNER_SBoundMin, BlockPos.ZERO);

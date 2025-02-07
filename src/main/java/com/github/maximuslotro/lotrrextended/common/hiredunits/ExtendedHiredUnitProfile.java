@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.hiredunits;
 import java.lang.reflect.Type;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -16,7 +16,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(ExtendedSpawners.EMPTY, false, "", "", "", ExtendedHiredUnitEquipmentInstance.EMPTY);
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "", "", "", ExtendedHiredUnitEquipmentInstance.EMPTY);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -73,7 +73,7 @@ public class ExtendedHiredUnitProfile {
 	 * Could mean some data corruption happened
 	 * */
 	public boolean isEmptyUnitType() {
-		return this.equals(ExtendedHiredUnitProfile.EMPTY) || id.equals(ExtendedSpawners.EMPTY);
+		return this.equals(ExtendedHiredUnitProfile.EMPTY) || id.equals(LotrExtendedMod.EMPTY);
 	}
 
 	/**
