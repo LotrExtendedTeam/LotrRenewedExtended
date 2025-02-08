@@ -1,5 +1,7 @@
 package lotr.common.util;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
@@ -79,33 +81,29 @@ public class ExtendedHiredUnitHelper {
         return null;
     }
 
-    public static boolean updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
-        boolean result = false;
-
+    /**
+     * Update a unit's equipment (currently from inventory container)
+     * @param companion The NPC unit to update
+     * @param slot The slot type to update
+     * @param item The new {@Link ItemStack} to be placed in the slot
+     * */
+    public static void updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {
             ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
 
             if (slot == EquipmentSlotType.FEET) {
                 hirable.updateFeetSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.HEAD) {
                 hirable.updateHeadSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.CHEST) {
                 hirable.updateChestSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.LEGS) {
                 hirable.updateLegsSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.MAINHAND) {
                 hirable.updateMainhandSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.OFFHAND) {
                 hirable.updateOffhandSlot(item);
-                result = true;
             }
         }
-
-        return result;
     }
 }

@@ -60,8 +60,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     // TODO: Update this
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.hired_unit_equipment");
 
-    Inventory tempInventory;
-
+    private Inventory tempInventory;
+    public Inventory baseInventory;
 
     public ExtendedHiredUnitEquipmentContainer(int p_39230_, PlayerInventory playerInventory, PacketBuffer extraData) {
         super(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), p_39230_);
@@ -87,6 +87,11 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         for (int i = 0; i < equipment.length && i < 6; i++) {
             tempInventory.setItem(i, equipment[i]);
         }
+        baseInventory = new Inventory(6);
+        for (int i = 6; i < equipment.length && i < 12; i++) {
+        	baseInventory.setItem(i-6, equipment[i]);
+        }
+
 
         player = playerInventory.player;
         this.level = player.level;
@@ -304,7 +309,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
         // write their equipment including empty slots
         ListNBT listnbt = new ListNBT();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 12; i++) {
             ItemStack stack = equipment.get(i);
 
             CompoundNBT compoundnbt = new CompoundNBT();

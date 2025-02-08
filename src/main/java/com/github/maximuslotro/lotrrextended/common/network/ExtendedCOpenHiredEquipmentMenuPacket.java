@@ -42,23 +42,15 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
     public static void handle(ExtendedCOpenHiredEquipmentMenuPacket msg, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             // fill in equipment array list
-            final List<ItemStack> equipment = new ArrayList<>(6);
+            final List<ItemStack> equipment = new ArrayList<>(12);
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
             Inventory inventory = null;
-            //ItemStack[] baseGear = ExtendedHiredUnitHelper.getBaseGear(entity);
             if (entity instanceof ExtendedHirableEntity) {
                 inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
             }
-            for (int i = 9; i < 15; i++) {
+            for (int i = 9; i < 21; i++) {
                 if (inventory != null) {
-                    ItemStack item = inventory.getItem(i);
-                    //if (baseGear[i - 9] != null) {
-                    //    if (msg.areItemStacksExactlyEqual(baseGear[i - 9], item)) {
-                    //        item = ItemStack.EMPTY;
-                    //    }
-                    //}
-
-                    equipment.add(item);
+                    equipment.add(inventory.getItem(i));
                 } else {
                     equipment.add(ItemStack.EMPTY);
                 }
