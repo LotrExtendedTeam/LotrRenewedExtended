@@ -25,8 +25,8 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
-	public static final ExtendedHiredUnitDataManager INSTANCE = new ExtendedHiredUnitDataManager();
+public class ExtendedHiredUnitProfileManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
+	public static final ExtendedHiredUnitProfileManager INSTANCE = new ExtendedHiredUnitProfileManager();
 	public static final Gson GSON = GsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "hired_unit_profiles";
@@ -34,9 +34,9 @@ public class ExtendedHiredUnitDataManager extends ReloadListener<Map<ResourceLoc
 
 	/*
 	 * Keep Private
-	 * Don't allow more than one instance than {@Link ExtendedHiredUnitDataManager#INSTANCE }
+	 * Don't allow more than one instance than {@Link ExtendedHiredUnitProfileManager#INSTANCE }
 	 * */
-	private ExtendedHiredUnitDataManager() {}
+	private ExtendedHiredUnitProfileManager() {}
 
 	/*
 	 * Gets a {@Link ExtendedHiredUnitProfile} for a specified ResourceLocation

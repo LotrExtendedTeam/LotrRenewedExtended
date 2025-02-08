@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitDataManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 
 import net.minecraft.entity.LivingEntity;
@@ -120,6 +120,6 @@ public interface ExtendedHirableEntity {
      * */
     @Nullable
     default ExtendedHiredUnitProfile getUnitProfile() {
-    	return ExtendedHiredUnitDataManager.INSTANCE.get(getProfileLocation());
+    	return ExtendedHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
     }
 }

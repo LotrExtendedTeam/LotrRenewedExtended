@@ -58,13 +58,13 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 	 * Copied from {@Link DisplayInfo#serializeItem()}
 	 * */
 	private JsonObject serializeItem() {
-		JsonObject lvt_1_1_ = new JsonObject();
-		lvt_1_1_.addProperty("item", Registry.ITEM.getKey(this.stack.getItem()).toString());
+		JsonObject itemJson = new JsonObject();
+		itemJson.addProperty("item", Registry.ITEM.getKey(this.stack.getItem()).toString());
 		if (this.stack.hasTag()) {
-			lvt_1_1_.addProperty("nbt", this.stack.getTag().toString());
+			itemJson.addProperty("nbt", this.stack.getTag().toString());
 		}
 
-		return lvt_1_1_;
+		return itemJson;
 	}
 
 	/**

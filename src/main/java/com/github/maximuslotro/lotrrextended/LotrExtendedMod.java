@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHa
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.HiredUnitEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
@@ -117,6 +118,7 @@ public class LotrExtendedMod{
 
 	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
+		event.addListener(ExtendedHiredUnitProfileManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

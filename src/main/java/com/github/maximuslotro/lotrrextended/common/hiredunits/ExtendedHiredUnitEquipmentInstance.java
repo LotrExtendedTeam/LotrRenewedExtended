@@ -104,6 +104,9 @@ public class ExtendedHiredUnitEquipmentInstance {
 	}
 
 	private static void addINTERNALStack(ItemStack item, int weight, List<ExtendedHiredUnitEquipmentEntry> pool) {
+		if(weight<=0) {
+			weight=1;
+		}
 		pool.add(new ExtendedHiredUnitEquipmentEntry(item, weight));
 	}
 
