@@ -1,7 +1,5 @@
 package lotr.common.util;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
-
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;

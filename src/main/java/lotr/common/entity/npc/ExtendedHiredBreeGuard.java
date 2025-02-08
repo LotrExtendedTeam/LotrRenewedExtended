@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -93,7 +92,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     // 9 inventory slots + 6 player equipment slots + 6 base equipment slots
     private Inventory internalUnitInventory = new Inventory(21);
-    private boolean inventoryNeedsSyncing = false;
+    // Use to initiate equipment sync. This is done on creation, nbt load, and on inventory change
+    private boolean inventoryNeedsSetupSyncing = false;
 
     public ExtendedHiredBreeGuard(EntityType<? extends BreeGuardEntity> type, World w) {
         super(type, w);
@@ -111,43 +111,45 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         internalUnitInventory.setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(random));
         internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomWeaponStack(random));
         internalUnitInventory.setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(random));
+        // Needed to sync unit equipment on unit creation
+        inventoryNeedsSetupSyncing=true;
     	return spawnData;
     }
 
     @Override
 	public void updateHeadSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(9, ItemStack.EMPTY);
-        inventoryNeedsSyncing=true;
+    	internalUnitInventory.setItem(9, stack);
+        inventoryNeedsSetupSyncing=true;
     }
 
     @Override
 	public void updateChestSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(10, ItemStack.EMPTY);
-        inventoryNeedsSyncing=true;
+    	internalUnitInventory.setItem(10, stack);
+        inventoryNeedsSetupSyncing=true;
     }
 
     @Override
 	public void updateLegsSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(11, ItemStack.EMPTY);
-        inventoryNeedsSyncing=true;
+    	internalUnitInventory.setItem(11, stack);
+        inventoryNeedsSetupSyncing=true;
     }
 
     @Override
 	public void updateFeetSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(12, ItemStack.EMPTY);
-        inventoryNeedsSyncing=true;
+    	internalUnitInventory.setItem(12, stack);
+        inventoryNeedsSetupSyncing=true;
     }
 
     @Override
 	public void updateMainhandSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(13, ItemStack.EMPTY);
-        inventoryNeedsSyncing=true;
+    	internalUnitInventory.setItem(13, stack);
+        inventoryNeedsSetupSyncing=true;
     }
 
     @Override
 	public void updateOffhandSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(14, ItemStack.EMPTY);
-        inventoryNeedsSyncing=true;
+    	internalUnitInventory.setItem(14, stack);
+        inventoryNeedsSetupSyncing=true;
     }
 
     /* Remove consuming goals since we have our own */
@@ -494,8 +496,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
             this.internalUnitInventory.setItem(i, itemsStacks.get(i));
         }
 
-        // Need to initalize equipment
-        initializeEquipmentServerSide();
+        // Need to setup equipment on NBT load
+        inventoryNeedsSetupSyncing = true;
 
         if (tag.contains("following")) {
             this.setFollowing(tag.getBoolean("following"));
@@ -568,48 +570,20 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     }
 
     /**
-     * This method should only run once after the inventory has been read from
-     * NBT data and then it uses the level information to only run on the server
-     * Note: 
-     */
-    public void initializeEquipmentServerSide() {
-    	// Only on server set the intial synced equipment parameters
-    	if (!level.isClientSide) {
-    		// Set synced equipment from base equipment if player equipment is not present
-    		entityData.set(EQUIPMENT_HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
-    		entityData.set(EQUIPMENT_CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
-    		entityData.set(EQUIPMENT_LEGS, internalUnitInventory.getItem(11).isEmpty() ? internalUnitInventory.getItem(17) : internalUnitInventory.getItem(11));
-    		entityData.set(EQUIPMENT_FEET, internalUnitInventory.getItem(12).isEmpty() ? internalUnitInventory.getItem(18) : internalUnitInventory.getItem(12));
-    		entityData.set(EQUIPMENT_MAINHAND, internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(19) : internalUnitInventory.getItem(13));
-    		entityData.set(EQUIPMENT_OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
-    	}
-
-    	// Set the {@Link MobEntity} equipment fields here, since the entityData fields 
-    	// are the correct values between player and base equipment, as sorted above
-    	setItemSlot(EquipmentSlotType.HEAD, entityData.get(EQUIPMENT_HEAD));
-    	setItemSlot(EquipmentSlotType.CHEST, entityData.get(EQUIPMENT_CHEST));
-    	setItemSlot(EquipmentSlotType.LEGS, entityData.get(EQUIPMENT_LEGS));
-    	setItemSlot(EquipmentSlotType.FEET, entityData.get(EQUIPMENT_FEET));
-    	setItemSlot(EquipmentSlotType.OFFHAND, entityData.get(EQUIPMENT_OFFHAND));
-    	setItemSlot(EquipmentSlotType.MAINHAND, entityData.get(EQUIPMENT_MAINHAND));
-    }
-
-    /**
      * This method is run every tick on both the client and server to synchronize equipment
      * Server will only sync equipment when changes are detected (peformance reasons)
      * Both will set the equipment slot values from their cached entityData values 
      */
     public void synchronizeEquipment() {
         // only sync inventory when it actualy needs syncing
-    	// THIS SHOULD ONLY BE DONE SERVER_SIDE
-    	if(inventoryNeedsSyncing) {
+    	if(!level.isClientSide && inventoryNeedsSetupSyncing) {
     		 entityData.set(EQUIPMENT_HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
         	 entityData.set(EQUIPMENT_CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
         	 entityData.set(EQUIPMENT_LEGS, internalUnitInventory.getItem(11).isEmpty() ? internalUnitInventory.getItem(17) : internalUnitInventory.getItem(11));
         	 entityData.set(EQUIPMENT_FEET, internalUnitInventory.getItem(12).isEmpty() ? internalUnitInventory.getItem(18) : internalUnitInventory.getItem(12));
         	 entityData.set(EQUIPMENT_MAINHAND, internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(19) : internalUnitInventory.getItem(13));
         	 entityData.set(EQUIPMENT_OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
-        	 inventoryNeedsSyncing=false;
+        	 inventoryNeedsSetupSyncing=false;
     	}
         // Set the {@Link MobEntity} equipment fields here, since the entityData fields 
         // are the correct values between player and base equipment, as sorted above
