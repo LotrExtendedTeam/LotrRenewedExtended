@@ -19,7 +19,9 @@ import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -46,6 +48,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedHirableEntity {
@@ -100,28 +104,23 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     // 9 inventory slots + 6 equipment slots
     public Inventory inventory = new Inventory(15);
 
-    private static ItemStack[] baseGear = new ItemStack[] {
-            ExtendedHiredUnitHelper.BREE_GUARD_HEAD,
-            ExtendedHiredUnitHelper.BREE_GUARD_CHEST,
-            ExtendedHiredUnitHelper.BREE_GUARD_LEGS,
-            ExtendedHiredUnitHelper.BREE_GUARD_FEET,
-            ExtendedHiredUnitHelper.BREE_GUARD_MAINHAND,
-            ExtendedHiredUnitHelper.BREE_GUARD_OFFHAND
-    };
 
     public ExtendedHiredBreeGuard(EntityType<? extends BreeGuardEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
-
-        // set initial entity data based on the baseGear
-        entityData.set(EQUIPMENT_HEAD, baseGear[0]);
-        entityData.set(EQUIPMENT_CHEST, baseGear[1]);
-        entityData.set(EQUIPMENT_LEGS, baseGear[2]);
-        entityData.set(EQUIPMENT_FEET, ItemStack.EMPTY);
-        entityData.set(EQUIPMENT_MAINHAND, baseGear[4]);
-        entityData.set(EQUIPMENT_OFFHAND, baseGear[5]);
-
         this.setTame(false);
+    }
+
+    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+    	spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+        // set initial entity data based on the eqquipment pools
+        entityData.set(EQUIPMENT_HEAD, getUnitProfile().getEquipmentPools().getRandomHelmetStack(random));
+        entityData.set(EQUIPMENT_CHEST, getUnitProfile().getEquipmentPools().getRandomChestplateStack(random));
+        entityData.set(EQUIPMENT_LEGS, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(random));
+        entityData.set(EQUIPMENT_FEET, getUnitProfile().getEquipmentPools().getRandomBootsStack(random));
+        entityData.set(EQUIPMENT_MAINHAND, getUnitProfile().getEquipmentPools().getRandomWeaponStack(random));
+        entityData.set(EQUIPMENT_OFFHAND, getUnitProfile().getEquipmentPools().getRandomOffhandStack(random));
+    	return spawnData;
     }
 
     @Override
@@ -585,32 +584,32 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         // only on server side update entityData to match inventory
         if (!level.isClientSide) {
             if (inventory.getItem(9).isEmpty()) {
-                entityData.set(EQUIPMENT_HEAD, baseGear[0]);
+                entityData.set(EQUIPMENT_HEAD, getUnitProfile().getEquipmentPools().getRandomHelmetStack(random));
             } else {
                 entityData.set(EQUIPMENT_HEAD, inventory.getItem(9));
             }
             if (inventory.getItem(10).isEmpty()) {
-                entityData.set(EQUIPMENT_CHEST, baseGear[1]);
+                entityData.set(EQUIPMENT_CHEST, getUnitProfile().getEquipmentPools().getRandomChestplateStack(random));
             } else {
                 entityData.set(EQUIPMENT_CHEST, inventory.getItem(10));
             }
             if (inventory.getItem(11).isEmpty()) {
-                entityData.set(EQUIPMENT_LEGS, baseGear[2]);
+                entityData.set(EQUIPMENT_LEGS, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(random));
             } else {
                 entityData.set(EQUIPMENT_LEGS, inventory.getItem(11));
             }
             if (inventory.getItem(12).isEmpty()) {
-                entityData.set(EQUIPMENT_FEET, baseGear[3]);
+                entityData.set(EQUIPMENT_FEET, getUnitProfile().getEquipmentPools().getRandomBootsStack(random));
             } else {
                 entityData.set(EQUIPMENT_FEET, inventory.getItem(12));
             }
             if (inventory.getItem(13).isEmpty()) {
-                entityData.set(EQUIPMENT_MAINHAND, baseGear[4]);
+                entityData.set(EQUIPMENT_MAINHAND, getUnitProfile().getEquipmentPools().getRandomWeaponStack(random));
             } else {
                 entityData.set(EQUIPMENT_MAINHAND, inventory.getItem(13));
             }
             if (inventory.getItem(14).isEmpty()) {
-                entityData.set(EQUIPMENT_OFFHAND, baseGear[5]);
+                entityData.set(EQUIPMENT_OFFHAND, getUnitProfile().getEquipmentPools().getRandomOffhandStack(random));
             } else {
                 entityData.set(EQUIPMENT_OFFHAND, inventory.getItem(14));
             }
@@ -632,7 +631,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     public void synchronizeEquipment() {
         // only on server side update entityData to match inventory
         if (entityData.get(EQUIPMENT_HEAD).isEmpty()) {
-            setItemSlot(EquipmentSlotType.HEAD, baseGear[0]);
+            setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
             inventory.setItem(9, ItemStack.EMPTY);
         } else {
             setItemSlot(EquipmentSlotType.HEAD, entityData.get(EQUIPMENT_HEAD));
@@ -640,7 +639,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
 
         if (entityData.get(EQUIPMENT_CHEST).isEmpty()) {
-            setItemSlot(EquipmentSlotType.CHEST, baseGear[1]);
+            setItemSlot(EquipmentSlotType.CHEST, ItemStack.EMPTY);
             inventory.setItem(10, ItemStack.EMPTY);
         } else {
             setItemSlot(EquipmentSlotType.CHEST, entityData.get(EQUIPMENT_CHEST));
@@ -648,7 +647,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
 
         if (entityData.get(EQUIPMENT_LEGS).isEmpty()) {
-            setItemSlot(EquipmentSlotType.LEGS, baseGear[2]);
+            setItemSlot(EquipmentSlotType.LEGS, ItemStack.EMPTY);
             inventory.setItem(11, ItemStack.EMPTY);
         } else {
             setItemSlot(EquipmentSlotType.LEGS, entityData.get(EQUIPMENT_LEGS));
@@ -656,7 +655,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
 
         if (entityData.get(EQUIPMENT_FEET).isEmpty()) {
-            setItemSlot(EquipmentSlotType.FEET, baseGear[3]);
+            setItemSlot(EquipmentSlotType.FEET, ItemStack.EMPTY);
             inventory.setItem(12, ItemStack.EMPTY);
         } else {
             setItemSlot(EquipmentSlotType.FEET, entityData.get(EQUIPMENT_FEET));
@@ -664,7 +663,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
 
         if (entityData.get(EQUIPMENT_MAINHAND).isEmpty()) {
-            setItemSlot(EquipmentSlotType.MAINHAND, baseGear[4]);
+            setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
             inventory.setItem(13, ItemStack.EMPTY);
         } else {
             setItemSlot(EquipmentSlotType.MAINHAND, entityData.get(EQUIPMENT_MAINHAND));
@@ -673,7 +672,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
         if (!getItemBySlot(EquipmentSlotType.OFFHAND).isEdible()) {
             if (entityData.get(EQUIPMENT_OFFHAND).isEmpty()) {
-                setItemSlot(EquipmentSlotType.OFFHAND, baseGear[5]);
+                setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
                 inventory.setItem(14, ItemStack.EMPTY);
             } else {
                 setItemSlot(EquipmentSlotType.OFFHAND, entityData.get(EQUIPMENT_OFFHAND));

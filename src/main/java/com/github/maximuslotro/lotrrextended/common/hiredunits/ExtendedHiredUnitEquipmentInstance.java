@@ -56,11 +56,11 @@ public class ExtendedHiredUnitEquipmentInstance {
 		return getRandomINTERNALStack(random, chestplatePool);
 	}
 
-	public ItemStack getRandomLeggingStack(Random random) {
+	public ItemStack getRandomLeggingsStack(Random random) {
 		return getRandomINTERNALStack(random, leggingPool);
 	}
 
-	public ItemStack getRandomBootStack(Random random) {
+	public ItemStack getRandomBootsStack(Random random) {
 		return getRandomINTERNALStack(random, bootsPool);
 	}
 
@@ -68,7 +68,7 @@ public class ExtendedHiredUnitEquipmentInstance {
 		return getRandomINTERNALStack(random, weaponPool);
 	}
 
-	public ItemStack getRandomShieldStack(Random random) {
+	public ItemStack getRandomOffhandStack(Random random) {
 		return getRandomINTERNALStack(random, shieldPool);
 	}
 
