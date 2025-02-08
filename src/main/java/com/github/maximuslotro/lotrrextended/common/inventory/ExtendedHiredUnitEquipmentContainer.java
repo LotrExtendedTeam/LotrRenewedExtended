@@ -75,7 +75,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         ListNBT list = nbt.getList("equipment", 10);
         for (int i = 0; i < list.size(); i++) {
             CompoundNBT node = list.getCompound(i);
-            if (node != null) {
+            if (!node.isEmpty()) {
                 ItemStack item = ItemStack.of(node.getCompound("item"));
                 items.add(item);
             }

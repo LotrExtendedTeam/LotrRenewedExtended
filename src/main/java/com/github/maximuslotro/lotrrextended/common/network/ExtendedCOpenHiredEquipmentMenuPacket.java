@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 
 import io.netty.buffer.Unpooled;
+import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
@@ -45,8 +46,8 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
             Inventory inventory = null;
             //ItemStack[] baseGear = ExtendedHiredUnitHelper.getBaseGear(entity);
-            if (entity instanceof ExtendedHiredBreeGuard) {
-                inventory = ((ExtendedHiredBreeGuard) entity).inventory;
+            if (entity instanceof ExtendedHirableEntity) {
+                inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
             }
             for (int i = 9; i < 15; i++) {
                 if (inventory != null) {

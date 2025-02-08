@@ -4,8 +4,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
@@ -36,12 +34,12 @@ public class HiredUnitEventHandlers {
 
         // make companion no longer stationary
         if (event.getContainer() instanceof ExtendedHiredUnitContainer) {
-            if (entity instanceof ExtendedHiredBreeGuard) {
-                ((ExtendedHiredBreeGuard) entity).setInventoryOpen(false);
+            if (entity instanceof ExtendedHirableEntity) {
+                ((ExtendedHirableEntity) entity).setInventoryOpen(false);
             }
         } else if (event.getContainer() instanceof ExtendedHiredUnitEquipmentContainer) {
-            if (entity instanceof ExtendedHiredBreeGuard) {
-                ((ExtendedHiredBreeGuard) entity).setEquipmentOpen(false);
+            if (entity instanceof ExtendedHirableEntity) {
+                ((ExtendedHirableEntity) entity).setEquipmentOpen(false);
             }
         }
     }
@@ -49,7 +47,7 @@ public class HiredUnitEventHandlers {
     @SubscribeEvent
     public static void giveExperience(final LivingDeathEvent event) {
         Entity companion = event.getSource().getEntity();
-        if (companion instanceof ExtendedHiredBreeGuard) {
+        if (companion instanceof ExtendedHirableEntity) {
             // base amount of xp off kill alignment bonus
             float xpPoints = 0;
             if (event.getEntity() instanceof NPCEntity) {
