@@ -15,8 +15,11 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitProfile {
 	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "", "", "", ExtendedHiredUnitEquipmentInstance.EMPTY, 0, false);
@@ -194,28 +197,34 @@ public class ExtendedHiredUnitProfile {
 		}
 
 		public ExtendedHiredUnitProfile.Builder addHelmetPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addHelmetStack(stack, weight);
+			equipmentPools.addHelmetStack(setBaseItem(stack, "item.lotrextended.base_gear.helmet"), weight);
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addChestplatePoolItem(ItemStack stack, int weight) {
-			equipmentPools.addChestplateStack(stack, weight);
+			equipmentPools.addChestplateStack(setBaseItem(stack, "item.lotrextended.base_gear.chestplate"), weight);
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addLeggingPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addLeggingStack(stack, weight);
+			equipmentPools.addLeggingStack(setBaseItem(stack, "item.lotrextended.base_gear.leggings"), weight);
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addBootsPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addBootsStack(stack, weight);
+			equipmentPools.addBootsStack(setBaseItem(stack, "item.lotrextended.base_gear.boots"), weight);
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addWeaponPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addWeaponStack(stack, weight);
+			equipmentPools.addWeaponStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addShieldPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addShieldStack(stack, weight);
+		public ExtendedHiredUnitProfile.Builder addShieldItem(ItemStack stack, int weight) {
+			equipmentPools.addShieldStack(setBaseItem(stack, "item.lotrextended.base_gear.shield"), weight);
 			return this;
+		}
+
+		private static ItemStack setBaseItem(ItemStack stack, String name) {
+			CompoundNBT compoundnbt = stack.getOrCreateTag();
+			compoundnbt.putBoolean("IsBaseArmor", true);
+			return stack.setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
 
 		/**

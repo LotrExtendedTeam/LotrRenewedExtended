@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedAdvancementProvider;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles.ExtendedHiredUnitProfileGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
@@ -33,6 +34,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 			generator.addProvider(new StructureEntitySpawnerGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedHiredUnitProfileGenerator(generator, LotrExtendedMod.MODID));
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
