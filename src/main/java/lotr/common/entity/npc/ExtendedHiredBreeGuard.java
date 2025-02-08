@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
@@ -44,9 +45,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedHirableEntity {
@@ -237,18 +236,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
 	public int getMobKills() {
         return this.entityData.get(KILLS);
-    }
-
-    @Override
-    public ITextComponent getHiredUnitName() {
-        return new TranslationTextComponent("entity_shortname.lotrextended.hired_bree_guard",
-                new StringTextComponent(getPersonalInfo().getName()));
-    }
-
-    @Override
-    public ITextComponent getHiredUnitNameAndTitle() {
-        return new TranslationTextComponent("entity_title.lotrextended.hired_bree_guard",
-                new StringTextComponent(getPersonalInfo().getName()));
     }
 
     @Override
@@ -747,4 +734,9 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     		inventory.setItem(i, ItemStack.EMPTY);
     	}
     }
+
+	@Override
+	public ResourceLocation getProfileLocation() {
+		return ExtendedHiredUnitTypes.BREE_GUARD;
+	}
 }

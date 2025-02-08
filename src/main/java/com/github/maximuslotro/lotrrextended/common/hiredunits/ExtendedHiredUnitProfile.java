@@ -22,7 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "", "", "", ExtendedHiredUnitEquipmentInstance.EMPTY, 0, false);
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentInstance.EMPTY, 0, false);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -53,7 +53,7 @@ public class ExtendedHiredUnitProfile {
 	/*
 	 * Check if the strings of this profile should be localized
 	 * */
-	public boolean areStringsTranslated() {
+	public boolean stringsAreTranslated() {
 		return translateStrings;
 	}
 
@@ -139,7 +139,7 @@ public class ExtendedHiredUnitProfile {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", unitProfile.getId().toString());
 			JsonObject languageObject = new JsonObject();
-			languageObject.addProperty("translateStrings", unitProfile.areStringsTranslated());
+			languageObject.addProperty("translateStrings", unitProfile.stringsAreTranslated());
 			languageObject.addProperty("entity_title", unitProfile.getUnitTitle());
 			languageObject.addProperty("entity_shortname", unitProfile.getUnitShorthandName());
 			languageObject.addProperty("entity_unit_type", unitProfile.getUnitTypeName());
