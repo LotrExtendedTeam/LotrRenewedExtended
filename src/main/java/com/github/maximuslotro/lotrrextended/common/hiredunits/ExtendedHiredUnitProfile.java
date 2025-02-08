@@ -224,7 +224,7 @@ public class ExtendedHiredUnitProfile {
 		private static ItemStack setBaseItem(ItemStack stack, String name) {
 			CompoundNBT compoundnbt = stack.getOrCreateTag();
 			compoundnbt.putBoolean("IsBaseArmor", true);
-			return stack.setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
 
 		/**

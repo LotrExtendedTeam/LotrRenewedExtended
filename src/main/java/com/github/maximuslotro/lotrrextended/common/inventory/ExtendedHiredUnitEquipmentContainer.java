@@ -36,9 +36,9 @@ import net.minecraft.world.World;
 
 public class ExtendedHiredUnitEquipmentContainer extends Container implements IContainerListener {
 
-    private Slot[] armorSlots = new Slot[4];
-    private Slot mainHand;
-    private Slot offHand;
+	private Slot[] armorSlots = new Slot[4];
+	private Slot mainHand;
+	private Slot offHand;
     private int entityId;
 
     public static final ResourceLocation EMPTY_ARMOR_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
@@ -61,7 +61,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.hired_unit_equipment");
 
     private Inventory tempInventory;
-    public Inventory baseInventory;
+    private Inventory baseInventory;
 
     public ExtendedHiredUnitEquipmentContainer(int p_39230_, PlayerInventory playerInventory, PacketBuffer extraData) {
         super(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), p_39230_);
@@ -349,4 +349,20 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     public void setContainerData(Container p_71112_1_, int p_71112_2_, int p_71112_3_) {
 
     }
+
+	public Slot[] getArmorSlots() {
+		return armorSlots;
+	}
+
+	public Slot getMainHand() {
+		return mainHand;
+	}
+
+	public Slot getOffHand() {
+		return offHand;
+	}
+
+	public Inventory getBaseInventory() {
+		return baseInventory;
+	}
 }

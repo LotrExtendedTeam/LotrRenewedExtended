@@ -55,13 +55,25 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         this.renderBackground(p_98418_);
         super.render(p_98418_, p_98419_, p_98420_, p_98421_);
 
-        if (getMenu().baseInventory != null) {
-            renderBaseGearSlot(leftPos + 25, topPos + 31, getMenu().baseInventory.getItem(0));
-            renderBaseGearSlot(leftPos + 25, topPos + 49, getMenu().baseInventory.getItem(1));
-            renderBaseGearSlot(leftPos + 25, topPos + 67, getMenu().baseInventory.getItem(2));
-            renderBaseGearSlot(leftPos + 25, topPos + 85, getMenu().baseInventory.getItem(3));
-            renderBaseGearSlot(leftPos + 61 + 18, topPos + 67, getMenu().baseInventory.getItem(4));
-            renderBaseGearSlot(leftPos + 61 + 18, topPos + 85, getMenu().baseInventory.getItem(5));
+        if (getMenu().getBaseInventory() != null) {
+        	if(getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem()) {
+        		renderBaseGearSlot(leftPos + 25, topPos + 31, getMenu().getBaseInventory().getItem(0));
+        	}
+        	if(getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem()) {
+        		renderBaseGearSlot(leftPos + 25, topPos + 49, getMenu().getBaseInventory().getItem(1));
+        	}
+        	if(getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem()) {
+        		renderBaseGearSlot(leftPos + 25, topPos + 67, getMenu().getBaseInventory().getItem(2));
+        	}
+        	if(getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem()) {
+        		renderBaseGearSlot(leftPos + 25, topPos + 85, getMenu().getBaseInventory().getItem(3));
+        	}
+        	if(getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem()) {
+        		renderBaseGearSlot(leftPos + 61 + 18, topPos + 67, getMenu().getBaseInventory().getItem(4));
+        	}
+        	if(getMenu().getOffHand()!=null && (!getMenu().getOffHand().hasItem())) {
+        		renderBaseGearSlot(leftPos + 61 + 18, topPos + 85, getMenu().getBaseInventory().getItem(5));
+        	}
         }
 
         this.renderTooltip(p_98418_, p_98419_, p_98420_);
@@ -106,23 +118,23 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         super.renderTooltip(stack, x, y);
 
         // render tooltips for base gear
-        if (isHovering(25, 31, x, y)) {
-            this.renderTooltip(stack, getMenu().baseInventory.getItem(0), x, y);
+        if (isHovering(25, 31, x, y) && getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(0), x, y);
         }
-        if (isHovering(25, 49, x, y)) {
-            this.renderTooltip(stack, getMenu().baseInventory.getItem(1), x, y);
+        if (isHovering(25, 49, x, y) && getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(1), x, y);
         }
-        if (isHovering(25, 67, x, y)) {
-            this.renderTooltip(stack, getMenu().baseInventory.getItem(2), x, y);
+        if (isHovering(25, 67, x, y) && getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(2), x, y);
         }
-        if (isHovering(25, 85, x, y)) {
-            this.renderTooltip(stack, getMenu().baseInventory.getItem(3), x, y);
+        if (isHovering(25, 85, x, y) && getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(3), x, y);
         }
-        if (isHovering(62 + 18, 67, x, y)) {
-            this.renderTooltip(stack, getMenu().baseInventory.getItem(4), x, y);
+        if (isHovering(62 + 18, 67, x, y) && getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), x, y);
         }
-        if (isHovering(62 + 18, 85, x, y)) {
-            this.renderTooltip(stack, getMenu().baseInventory.getItem(5), x, y);
+        if (isHovering(62 + 18, 85, x, y) && getMenu().getOffHand()!=null && !getMenu().getOffHand().hasItem()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(5), x, y);
         }
     }
 
