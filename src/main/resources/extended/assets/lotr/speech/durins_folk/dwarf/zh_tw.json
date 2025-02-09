@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "再給我幾個月待在鍛造場, 我就能做出一套裝備,我要把那些獸人殺的個片甲不留!"
+      ]
+    }
+  ]
+}

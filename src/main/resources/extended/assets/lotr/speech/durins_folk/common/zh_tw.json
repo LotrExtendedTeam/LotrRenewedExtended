@@ -1,0 +1,220 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "烈火升起! 酒香飄逸! 大口吃肉!",
+        "矮人麥酒是中土大陸上最頂級的酒!",
+        "沒有一個種族能與我們的財富匹敵。",
+        "你從人類那裡帶來了甚麼消息嗎, #p?",
+        "大家都羨慕我的鬍子。",
+        "矮人的鍛造技術無人能比!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "我們的女人聲音跟長相都太像男人，所以我們常常誤認。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "男人都說我們的聲音跟長相都太像他們! 他們該早一天離開他們的鐵匠鋪來好好認真看..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:iron_hills"
+      },
+      "lines": [
+        "歡迎來到鐵丘陵, #p! 這裡有許多金銀財寶等著你來。",
+        "這離含有滿山滿谷的鐵礦, 還有其他的礦物。",
+        "這座山有非常多的礦物喔。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "這裡對你來說可能有點太高了, #p! 哈! 哈!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "你有來自我們西方族人的消息嗎?",
+        "幸會阿!",
+        "幸會阿, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "讓我們好好大口暢飲!",
+        "要來喝一杯嗎, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend"
+      },
+      "lines": [
+        "你看起來不像是矮人, #p,但你看起來蠻友善的。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "雖然你不是我們矮人一族, #p, 但是我們仍歡迎你能再度光臨我們大廳。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home"
+      },
+      "lines": [
+        "我的天哪, 我這輩子還沒遇過人類! 歡迎來我家, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer"
+      },
+      "lines": [
+        "你雖有高大的身材, 卻沒有好看的鬍子!",
+        "你該好好打理那搓鬍子, #p.",
+        "看你的樣子應該是人類, #p, 但我聽說人類也會長鬍子如果他們想要的話! 那你的鬍子呢? 哈! 哈!",
+        "沒有鬍子? 我差點把你跟精靈搞混了。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander"
+      },
+      "lines": [
+        "看來你開始有在打理你的那搓鬍子, #p!",
+        "看來你開始有在你的那搓鬍子上下功夫. 祝他能在長長!",
+        "你開始有好看的鬍子了! 哈! 哈!",
+        "有高大的身材... 還有看起來正在長長的鬍子, 你還有在長長的空間!",
+        "別擔心, #p.。像我這樣的鬍子是需要花時間去長的!",
+        "你下巴開始長鬍子了, #p? 要給點建議嗎?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander"
+      },
+      "lines": [
+        "有高大的身材還有不錯看得鬍子! 幹得不錯啊, #p!",
+        "你的鬍子留的可好看阿, #p.。但還是稍微比我短一點! 哈! 哈!",
+        "我沒有想到我竟然能遇到有人類的鬍子能與我不相上下!",
+        "我的好兄弟阿 #p, 經然留了這麼大的鬍子? 我都差點認不出你了!",
+        "不錯的鬍子, #p, 願他能再長更長!",
+        "誰說人類長不出鬍子! 你就坐的很好呀, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "這裡有些不錯的石製品。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "別想打贏我,臭小子!",
+        "你不配跟都靈一族單挑!",
+        "這不是你該來的地方, #p!",
+        "我會把你那可悲的頭顱批成兩半!",
+        "來啊, 死小子! 讓我看看你有甚麼本事!",
+        "讓你嘗嘗矮人的憤怒, #p!",
+        "你來這只有被打的份?",
+        "好好珍惜你的最後一口氣阿, #p!",
+        "你別想喝矮人麥酒!",
+        "阿阿阿阿!",
+        "我會把你當成石頭敲爛!",
+        "別低估我們了, #p!",
+        "你只是一陀糞土, #p!",
+        "在想甚麼, 敢跟我打嗎? 蛤!",
+        "我要主咒你們全家, #p!",
+        "Khazâd ai-mênu(矮人駕到！)!",
+        "你應該給火龍燒死!",
+        "假使你有鬍子, 我會狠狠地從你的下巴拔下來!",
+        "一個沒毛的人怎能當上戰士呢?",
+        "來啊, 你這沒毛的渾蛋!",
+        "你永遠長不出鬍子!",
+        "你臭得如同那些獸人一樣!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "你竟敢踏入我們的領土?",
+        "你要為自己的非法入侵付出代價!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+      },
+      "lines": [
+        "滾出去, 黑暗奴才!",
+        "給我消失, 你這個人渣獸人!",
+        "滾回你那獸人老家!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home"
+      },
+      "lines": [
+        "你要為自己的非法入侵付出代價, 黑暗奴才!"
+      ]
+    }
+  ]
+}

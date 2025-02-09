@@ -1,0 +1,44 @@
+{
+  "parent": "lotr:lothlorien/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "我們保護那些中土上的自由之民.",
+        "敵人在這片土地上日益增長.",
+        "雖然精靈的勢力日益衰弱,但我們力量還未消失!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "我守護著精靈們的羅斯洛立安."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "願維拉守護著你.",
+        "今天殺了多少獸人啊, #p?",
+        "如果你為自由而戰,我與你同在."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=warden"
+      },
+      "lines": [
+        "很久以前,我們精靈與你們人民建立強大的聯盟. 你對於那次聯盟感到驕傲嗎?"
+      ]
+    }
+  ]
+}

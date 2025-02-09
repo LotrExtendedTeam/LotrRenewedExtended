@@ -1,0 +1,204 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "這是我們先祖的土地. 我們有義務去守護他.",
+        "這片土地有許多良馬, #p, 各個都是驍勇善戰.",
+        "在南蠻的領主在河流以南的地方日益增強.",
+        "在不久後, 我擔心我們需要親自上陣去擊殺那些殘冷的南方人."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "我們必須要把像瘟疫般的獸人趕出這片土地, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "你來洛汗有甚麼目的嗎, #p?",
+        "在這片草原上要注意安全. 盡些日子有許多敵人來訪."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "你有甚麼資格打斷我們商討戰爭! 等下才換你, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "嘿, #p! 我們是洛汗的騎兵.",
+        "很少有旅者來到我們這片土地. 你來這邊有甚麼目的呢?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "讓我們一起並肩作戰!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider"
+      },
+      "lines": [
+        "我們要一起前赴戰場作戰嗎, #p?",
+        "我們應該要像伊歐他們一樣並肩作戰."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "我的摯友, #p, 我會追隨你直到世界盡頭!",
+        "當那時來臨, #p, 我永遠與你在同條陣線上."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=marshal"
+      },
+      "lines": [
+        "當那時來臨, #p, 我會聽命於你."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "你現在效忠於伊歐家族嗎, #p.",
+        "你現在效忠於伊歐家族嗎. 期望你能在戰場上為我們帶來榮耀."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "一個從遠方來的外來人來這裡做甚麼,在夜晚的草原上閒晃?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "我一直希望有朝一日能騎到岩石之國.或許現在我們可以自行去蒙登堡?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "我無法忍受你出現在這邊!",
+        "在我的面前顫抖吧, #p!",
+        "我們對草原的敵人沒有任何同情!",
+        "我們對伊歐的敵人沒有任何同情!",
+        "滾出去, 或這面對你的死期!",
+        "你的罪刑終結於此!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "你竟然蠢到敢進我們的領地!",
+        "你別想玷汙我們的草原上!",
+        "從我們的領土消失, 或是面對我們那銳利的長矛!",
+        "你要是想多吸點空氣就快滾出這片草原!",
+        "滾出去, 別再回來!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "你應該去死一死, 艾辛格的奴僕!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "你該後悔效忠我們的敵人!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "爬回你那陰影之地去見你的主人!",
+        "空手回去見索倫!",
+        "不! 不給魔多任何一匹馬!",
+        "不! 不給黑暗領土上的領主任何一匹馬!",
+        "你與你的主人比我們有更多的黑馬!",
+        "是你把馬獻給魔多嗎, #p? 你別想再得到任何一匹!",
+        "沒有一匹洛汗馬會給你與你那墮落的主人!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "為洛汗而戰!為人民而戰!",
+        "讓我們一起並肩作戰, #p!",
+        "讓我們為洛汗而戰, #p!",
+        "為洛汗而戰!",
+        "我們的敵人將被粉碎殆盡!",
+        "我們應該並肩作戰在戰場帶來榮耀, #p.",
+        "那些草原上的敵人看到我們該顫抖了!",
+        "我們並肩作戰.為榮耀.為洛汗!",
+        "讓那些洛汗的敵人跪在我們面前顫抖!",
+        "沒有一個獸人跟野人能在我的監視下突襲洛汗!",
+        "讓我們獵幾隻獸人!",
+        "為洛汗王國而戰! 為伊多拉斯而戰!",
+        "讓我們並肩作戰, 殺了那些在草原上作惡的人!"
+      ]
+    }
+  ]
+}

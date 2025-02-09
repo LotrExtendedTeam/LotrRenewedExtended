@@ -1,0 +1,109 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "當我還年輕時,我曾想成為多爾安羅斯的天鵝騎士。回想起那已經是好久以前的事了。",
+        "我希望我的家人不要被剛鐸抓去徵兵。",
+        "現今是人類衰退的時期。似乎我的作物也跟著枯萎。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": []
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "最近發生一堆壞事。 多到我說不完。",
+        "我們盡可能的想辦法活下來, #p.但是如果敵人來的話我們可能就撐不過去了。",
+        "近年收穫不佳, #p。希望明年能有個好的豐收。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "剛鐸的勇士應該要來保護我們的, #p。",
+        "我該回去工作了, #p。這片田不會自主收割。",
+        "我不會講那些無聊的故事。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "你來自那個村莊, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "我是你忠心的朋友, #p,只要你與剛鐸站在同個陣線上。"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "你是剛鐸的勇士嗎?你是來保護大家的嗎?",
+        "嘿, #p, 為剛鐸爭取榮耀!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "你不是我的朋友, #p。",
+        "你這個壞蛋!",
+        "滾出我的視線, #p。",
+        "你只是一陀垃圾, #p。",
+        "滾出去!",
+        "這裡的人不會招待像你這樣的渾蛋!",
+        "剛鐸的英雄會把你擊倒, #p。",
+        "你豬狗不如, #p!",
+        "別用那種眼神看我。",
+        "你想怎樣,痞子?",
+        "我們對你這樣的人沒有容忍之地。",
+        "你這個廢物, #p, 這是無庸置疑的."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "快滾, #p, 不然我就要較守衛來抓人了。",
+        "我們這裡不歡迎你。",
+        "你給我小心點。這裡可不善待你們這種人。",
+        "趁你能離開剛鐸就快離開, #p。",
+        "我建議你趕快離開這裡, #p。",
+        "你最好快離開, #p。還是你想被強制驅離?",
+        "快滾, #p! 我們不歡迎你這廢物。"
+      ]
+    }
+  ]
+}
