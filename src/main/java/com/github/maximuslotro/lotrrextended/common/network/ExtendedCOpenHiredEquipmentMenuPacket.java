@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitE
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
@@ -62,8 +61,8 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 
             if (entity instanceof NPCEntity) {
                 NPCEntity npcEntity = (NPCEntity) entity;
-                if (npcEntity instanceof ExtendedHiredBreeGuard) {
-                    ((ExtendedHiredBreeGuard) npcEntity).setEquipmentOpen(true);
+                if (npcEntity instanceof ExtendedHirableEntity) {
+                    ((ExtendedHirableEntity) npcEntity).setEquipmentOpen(true);
                 }
             }
 

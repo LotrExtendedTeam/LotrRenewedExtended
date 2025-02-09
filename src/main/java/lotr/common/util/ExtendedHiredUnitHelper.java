@@ -1,7 +1,6 @@
 package lotr.common.util;
 
 import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -34,8 +33,8 @@ public class ExtendedHiredUnitHelper {
         ITextComponent killerName = new StringTextComponent("");
         if (killer != null) {
             killerName = killer.getDisplayName();
-            if (killer instanceof ExtendedHiredBreeGuard) {
-                killerName = ((ExtendedHiredBreeGuard) killer).getHiredUnitNameAndTitle();
+            if (killer instanceof ExtendedHirableEntity) {
+                killerName = ((ExtendedHirableEntity) killer).getHiredUnitNameAndTitle();
             }
         }
 
@@ -65,11 +64,13 @@ public class ExtendedHiredUnitHelper {
     }
 
     public static boolean isEntityHiredUnit(Entity entity) {
-        return entity instanceof ExtendedHiredBreeGuard;
+        return entity instanceof ExtendedHirableEntity;
     }
 
     public static ExtendedHirableEntity getExtendedHirableEntity(Entity entity) {
-        if (!isEntityHiredUnit(entity)) return null;
+        if (!isEntityHiredUnit(entity)) {
+        	return null;
+        }
 
         // attempt to cast to proper unit
         if (entity instanceof ExtendedHirableEntity) {
