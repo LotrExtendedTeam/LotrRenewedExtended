@@ -1,5 +1,7 @@
 package lotr.common.entity.npc;
 
+import lotr.common.data.LOTRLevelData;
+import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
@@ -27,12 +29,16 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import java.util.Optional;
 import java.util.UUID;
+
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 
 public class ExtendedBreelandSheriffEntity extends BreeManEntity implements ExtendedCaptainEntity {
 
@@ -117,17 +123,19 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
     @Override
     public boolean canHire(PlayerEntity player){
+    	// TODO: move pledge validation here maybe?
         return isFriendlyAndAlignedWithLevel(player, this, 100);
     }
 
     @Override
-    public int getCost(String unitName, PlayerEntity player) {
-        // TODO: Use this eventually scale the pricing
-        if (unitName.equals("BREE_GUARD")) {
-            return 30;
-        }
-
-        return 0;
+    public int getCost(ResourceLocation unitProfileId, PlayerEntity player) {
+        // TODO: add way to scale the pricing
+    	ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
+    	LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
+    	if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(getFaction())) {
+    		return 10000; //For now, due to the way this is coded, make pledge required units cost more than the player can spend
+    	}
+        return unitProfile.getHiringCost();
     }
 
     @Override

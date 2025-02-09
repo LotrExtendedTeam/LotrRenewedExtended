@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
@@ -31,7 +32,6 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
 	public static final ExtendedStructureEntitySpawnManager INSTANCE = new ExtendedStructureEntitySpawnManager();
 	public static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().create();
-	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "entity_structure_spawners";
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
@@ -63,9 +63,9 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	@Override
 	protected void apply(Map<ResourceLocation, JsonElement> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
 		Builder<ResourceLocation, ExtendedStructureEntitySpawner> builder = ImmutableMap.builder();
-		JsonElement jsonelement = json.remove(ExtendedSpawners.EMPTY);
+		JsonElement jsonelement = json.remove(LotrExtendedMod.EMPTY);
 		if (jsonelement != null) {
-			ExtendedLog.warn("Datapack tried to redefine {} loot table, ignoring", ExtendedSpawners.EMPTY);
+			ExtendedLog.warn("Datapack tried to redefine {} loot table, ignoring", LotrExtendedMod.EMPTY);
 		}
 		json.forEach((spawnName, spawnListJson) -> {
 			try {
@@ -83,7 +83,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 			}
 
 		});
-		builder.put(ExtendedSpawners.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
+		builder.put(LotrExtendedMod.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
 		ImmutableMap<ResourceLocation, ExtendedStructureEntitySpawner> immutablemap = builder.build();
 		// TODO validate loaded data if applicable
 		this.spawners = immutablemap;

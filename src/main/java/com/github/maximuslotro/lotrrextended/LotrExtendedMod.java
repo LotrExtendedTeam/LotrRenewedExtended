@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHa
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.HiredUnitEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
@@ -35,6 +36,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
@@ -60,6 +62,7 @@ public class LotrExtendedMod{
 	private IEventBus modBus;
 	public static LotrExtendedMod INSTANCE;
 	public static ExtendedTickHandlerServer serverTickEventHandler;
+	public static final ResourceLocation EMPTY = new ResourceLocation(LotrExtendedMod.MODID, "empty");
 
 	public LotrExtendedMod() {
 		ExtendedLog.make();
@@ -115,6 +118,7 @@ public class LotrExtendedMod{
 
 	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
+		event.addListener(ExtendedHiredUnitProfileManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
@@ -59,7 +60,7 @@ public class ExtendedCHireUnitPacket {
         }
 
         // verify the player has enough money
-        int cost = captain.getCost("BREE_GUARD", player);
+        int cost = captain.getCost(ExtendedHiredUnitTypes.BREE_GUARD, player);
         if (CoinUtils.totalValueInInventory(player.inventory) < cost) {
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", cost), Util.NIL_UUID);
             context.get().setPacketHandled(true);

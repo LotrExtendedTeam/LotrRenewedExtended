@@ -354,7 +354,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Hired Units related language entries
 		// entity shortnames
 		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s");
-		addD("entity_unit_type.lotrextended.hired_bree_guard", "Bree Guard");
+		addD("entity_unit_type.lotrextended.hired_bree_guard", "Bree-land Guard");
 		addD("entity_title.lotrextended.hired_bree_guard", "%1$s the Bree-land Guard");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");

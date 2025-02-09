@@ -1,0 +1,67 @@
+{
+  "id": "lotrextended:bree_guard",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity_title.lotrextended.hired_bree_guard",
+    "entity_shortname": "entity_shortname.lotrextended.hired_bree_guard",
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard",
+    "hiringCost": 30,
+    "hiringRequiresPledge": false
+  },
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:iron_helmet",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.helmet\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_chestplate",
+          "nbt": "{display:{color:7823440,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:chainmail_leggings",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:chainmail_boots",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.boots\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "weapons": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:iron_spear",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:shield",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.shield\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ]
+  }
+}

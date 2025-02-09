@@ -4,10 +4,16 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public interface ExtendedHirableEntity {
     @Nullable
@@ -33,8 +39,29 @@ public interface ExtendedHirableEntity {
 
     int getMobKills();
 
-    ITextComponent getHiredUnitName();
-    ITextComponent getHiredUnitNameAndTitle();
+    default ITextComponent getHiredUnitName() {
+    	if(getUnitProfile().stringsAreTranslated()) {
+    		if(this instanceof NPCEntity) {
+    			return new TranslationTextComponent(getUnitProfile().getUnitShorthandName(),
+    	            new StringTextComponent(((NPCEntity)this).getPersonalInfo().getName()));
+    		}
+    		return new TranslationTextComponent(getUnitProfile().getUnitShorthandName(),
+                new StringTextComponent("UNKNOWNNPC"));
+    	}
+    	return new StringTextComponent(getUnitProfile().getUnitShorthandName());
+    }
+
+    default ITextComponent getHiredUnitNameAndTitle() {
+    	if(getUnitProfile().stringsAreTranslated()) {
+    		if(this instanceof NPCEntity) {
+    			return new TranslationTextComponent(getUnitProfile().getUnitTitle(),
+    	            new StringTextComponent(((NPCEntity)this).getPersonalInfo().getName()));
+    		}
+    		return new TranslationTextComponent(getUnitProfile().getUnitTitle(),
+                new StringTextComponent("UNKNOWNNPC"));
+    	}
+    	return new StringTextComponent(getUnitProfile().getUnitShorthandName());
+    }
 
     boolean isPatrolling();
 
@@ -84,4 +111,15 @@ public interface ExtendedHirableEntity {
     void setEquipmentOpen(boolean isOpen);
 
     void setInventoryOpen(boolean isOpen);
+
+    ResourceLocation getProfileLocation();
+
+    /**
+     * Gets the {@Link ExtendedHiredUnitProfile} assoicated with this unit
+     * @Nullable
+     * */
+    @Nullable
+    default ExtendedHiredUnitProfile getUnitProfile() {
+    	return ExtendedHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
+    }
 }

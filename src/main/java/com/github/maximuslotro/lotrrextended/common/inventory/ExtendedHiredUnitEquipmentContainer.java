@@ -36,9 +36,9 @@ import net.minecraft.world.World;
 
 public class ExtendedHiredUnitEquipmentContainer extends Container implements IContainerListener {
 
-    private Slot[] armorSlots = new Slot[4];
-    private Slot mainHand;
-    private Slot offHand;
+	private Slot[] armorSlots = new Slot[4];
+	private Slot mainHand;
+	private Slot offHand;
     private int entityId;
 
     public static final ResourceLocation EMPTY_ARMOR_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
@@ -60,8 +60,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     // TODO: Update this
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.hired_unit_equipment");
 
-    Inventory tempInventory;
-
+    private Inventory tempInventory;
+    private Inventory baseInventory;
 
     public ExtendedHiredUnitEquipmentContainer(int p_39230_, PlayerInventory playerInventory, PacketBuffer extraData) {
         super(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), p_39230_);
@@ -75,7 +75,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         ListNBT list = nbt.getList("equipment", 10);
         for (int i = 0; i < list.size(); i++) {
             CompoundNBT node = list.getCompound(i);
-            if (node != null) {
+            if (!node.isEmpty()) {
                 ItemStack item = ItemStack.of(node.getCompound("item"));
                 items.add(item);
             }
@@ -87,6 +87,11 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         for (int i = 0; i < equipment.length && i < 6; i++) {
             tempInventory.setItem(i, equipment[i]);
         }
+        baseInventory = new Inventory(6);
+        for (int i = 6; i < equipment.length && i < 12; i++) {
+        	baseInventory.setItem(i-6, equipment[i]);
+        }
+
 
         player = playerInventory.player;
         this.level = player.level;
@@ -304,7 +309,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
         // write their equipment including empty slots
         ListNBT listnbt = new ListNBT();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 12; i++) {
             ItemStack stack = equipment.get(i);
 
             CompoundNBT compoundnbt = new CompoundNBT();
@@ -344,4 +349,20 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     public void setContainerData(Container p_71112_1_, int p_71112_2_, int p_71112_3_) {
 
     }
+
+	public Slot[] getArmorSlots() {
+		return armorSlots;
+	}
+
+	public Slot getMainHand() {
+		return mainHand;
+	}
+
+	public Slot getOffHand() {
+		return offHand;
+	}
+
+	public Inventory getBaseInventory() {
+		return baseInventory;
+	}
 }

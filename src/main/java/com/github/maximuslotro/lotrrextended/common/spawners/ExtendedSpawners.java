@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.spawners;
 
-import java.util.Collections;
 import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
@@ -13,8 +12,6 @@ import net.minecraft.util.ResourceLocation;
  */
 public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
-	private static final Set<ResourceLocation> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
-	public static final ResourceLocation EMPTY = register("empty");
 	// ANIMALS
 	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
 	// HOBBITS
@@ -78,6 +75,6 @@ public class ExtendedSpawners {
 	}
 
 	public static Set<ResourceLocation> all() {
-		return IMMUTABLE_LOCATIONS;
+		return LOCATIONS;
 	}
 }

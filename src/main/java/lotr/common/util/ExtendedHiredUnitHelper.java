@@ -1,34 +1,20 @@
 package lotr.common.util;
 
 import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.entity.npc.util.LeatherDyeUtil;
-import lotr.common.init.LOTRItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 public class ExtendedHiredUnitHelper {
-
-    public static final ItemStack BREE_GUARD_HEAD = setBaseItem(new ItemStack(Items.IRON_HELMET).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.helmet").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
-    public static final ItemStack BREE_GUARD_CHEST = setBaseItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.chestplate").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
-    public static final ItemStack BREE_GUARD_LEGS = setBaseItem(new ItemStack(Items.CHAINMAIL_LEGGINGS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.leggings").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
-    public static final ItemStack BREE_GUARD_FEET = setBaseItem(new ItemStack(Items.CHAINMAIL_BOOTS).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.boots").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
-    public static final ItemStack BREE_GUARD_MAINHAND  = setBaseItem(new ItemStack(LOTRItems.IRON_SPEAR.get()).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.weapon").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
-    public static final ItemStack BREE_GUARD_OFFHAND = setBaseItem(new ItemStack(Items.SHIELD).setHoverName(new TranslationTextComponent("item.lotrextended.base_gear.shield").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD)));
-
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
         if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getOwner() instanceof ServerPlayerEntity) {
             unit.getOwner().sendMessage(getCompanionDeathMessage(unit, source), unit.getOwnerUUID());
@@ -47,8 +33,8 @@ public class ExtendedHiredUnitHelper {
         ITextComponent killerName = new StringTextComponent("");
         if (killer != null) {
             killerName = killer.getDisplayName();
-            if (killer instanceof ExtendedHiredBreeGuard) {
-                killerName = ((ExtendedHiredBreeGuard) killer).getHiredUnitNameAndTitle();
+            if (killer instanceof ExtendedHirableEntity) {
+                killerName = ((ExtendedHirableEntity) killer).getHiredUnitNameAndTitle();
             }
         }
 
@@ -78,11 +64,13 @@ public class ExtendedHiredUnitHelper {
     }
 
     public static boolean isEntityHiredUnit(Entity entity) {
-        return entity instanceof ExtendedHiredBreeGuard;
+        return entity instanceof ExtendedHirableEntity;
     }
 
     public static ExtendedHirableEntity getExtendedHirableEntity(Entity entity) {
-        if (!isEntityHiredUnit(entity)) return null;
+        if (!isEntityHiredUnit(entity)) {
+        	return null;
+        }
 
         // attempt to cast to proper unit
         if (entity instanceof ExtendedHirableEntity) {
@@ -92,61 +80,29 @@ public class ExtendedHiredUnitHelper {
         return null;
     }
 
-    public static boolean updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
-        boolean result = false;
-
+    /**
+     * Update a unit's equipment (currently from inventory container)
+     * @param companion The NPC unit to update
+     * @param slot The slot type to update
+     * @param item The new {@Link ItemStack} to be placed in the slot
+     * */
+    public static void updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {
             ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
 
             if (slot == EquipmentSlotType.FEET) {
                 hirable.updateFeetSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.HEAD) {
                 hirable.updateHeadSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.CHEST) {
                 hirable.updateChestSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.LEGS) {
                 hirable.updateLegsSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.MAINHAND) {
                 hirable.updateMainhandSlot(item);
-                result = true;
             } else if (slot == EquipmentSlotType.OFFHAND) {
                 hirable.updateOffhandSlot(item);
-                result = true;
             }
         }
-
-        return result;
-    }
-
-    public static ItemStack[] getBaseGear(Entity entity) {
-        ItemStack[] baseGear = new ItemStack[6];
-
-        if (entity instanceof ExtendedHiredBreeGuard) {
-            baseGear[0] = BREE_GUARD_HEAD;
-            baseGear[1] = BREE_GUARD_CHEST;
-            baseGear[2] = BREE_GUARD_LEGS;
-            baseGear[3] = BREE_GUARD_FEET;
-            baseGear[4] = BREE_GUARD_MAINHAND;
-            baseGear[5] = BREE_GUARD_OFFHAND;
-        } else {
-            baseGear[0] = ItemStack.EMPTY;
-            baseGear[1] = ItemStack.EMPTY;
-            baseGear[2] = ItemStack.EMPTY;
-            baseGear[3] = ItemStack.EMPTY;
-            baseGear[4] = ItemStack.EMPTY;
-            baseGear[5] = ItemStack.EMPTY;
-        }
-
-        return baseGear;
-    }
-
-    public static ItemStack setBaseItem(ItemStack stack) {
-    	CompoundNBT compoundnbt = stack.getOrCreateTag();
-    	compoundnbt.putBoolean("IsBaseArmor", true);
-		return stack;
     }
 }
