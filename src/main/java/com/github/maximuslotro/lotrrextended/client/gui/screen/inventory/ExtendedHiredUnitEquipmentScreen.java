@@ -20,7 +20,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHiredUnitEquipmentContainer> implements IHasContainer<ExtendedHiredUnitEquipmentContainer> {
@@ -108,8 +107,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
             if (entity.getAttribute(Attributes.ARMOR) != null) {
                 armor = Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR)).getValue();
             }
-            StringTextComponent armorPoints = new StringTextComponent("Armor: " + armor);
-            this.font.draw(matrix, armorPoints, this.sidebarX, this.titleLabelY + 20, 4210752);
+            this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor", armor), this.sidebarX, this.titleLabelY + 20, 4210752);
         }
     }
 

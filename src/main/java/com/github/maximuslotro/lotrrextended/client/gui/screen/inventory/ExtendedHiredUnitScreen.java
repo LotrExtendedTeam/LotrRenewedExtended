@@ -121,28 +121,17 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.font.draw(matrix, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
         this.font.draw(matrix, this.inventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
 
-        StringTextComponent classTitle = new StringTextComponent("Companion:");
-        StringTextComponent healthTitle = new StringTextComponent("Health");
-        StringTextComponent health =
-                new StringTextComponent(df.format(companion.getHiredUnitHealth()) + "/" + (int) companion.getHiredUnitMaxHealth());
-
-        this.font.draw(matrix, classTitle.withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 12,
-                4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.companion").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 12, 4210752);
 
         if (companion instanceof ExtendedHiredBreeGuard) {
             this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_bree_guard"), sidebarX, this.titleLabelY + 22, 4210752);
         }
 
-        this.font.draw(matrix, healthTitle.withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32,
-                4210752);
-        this.font.draw(matrix, health, sidebarX, this.titleLabelY + 42, 4210752);
-
-        this.font.draw(matrix, "Level " + companion.getExpLvl(), sidebarX, this.titleLabelY + 56,
-                4210752);
-        this.font.draw(matrix, "Xp " + companion.getCurrentXp() + "/" + companion.getMaxXp(), sidebarX, this.titleLabelY + 64,
-                4210752);
-        this.font.draw(matrix, "Mob Kills: " + companion.getMobKills(), sidebarX, this.titleLabelY + 73,
-                4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32, 4210752);
+        this.font.draw(matrix, new StringTextComponent(df.format(companion.getHiredUnitHealth()) + "/" + (int) companion.getHiredUnitMaxHealth()), sidebarX, this.titleLabelY + 42, 4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", companion.getExpLvl()), sidebarX, this.titleLabelY + 56, 4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", companion.getCurrentXp() + "/" + companion.getMaxXp()), sidebarX, this.titleLabelY + 64, 4210752);
+        this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", companion.getMobKills()), sidebarX, this.titleLabelY + 73, 4210752);
     }
 
     @Override

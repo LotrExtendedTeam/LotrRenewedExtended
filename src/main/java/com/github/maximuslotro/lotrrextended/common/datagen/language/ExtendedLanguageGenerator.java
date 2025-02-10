@@ -367,6 +367,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
 		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
 		// hired unit tooltips in unit GUI
+		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
+
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_title", "Stationary: Off");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Hired NPC can move freely.");
