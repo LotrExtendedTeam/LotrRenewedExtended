@@ -1,6 +1,7 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
@@ -50,7 +51,8 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
-		if (captainEntity.canHire(player)) {
+		// TODO remove hardcoded in next update
+		if (captainEntity.canHire(ExtendedHiredUnitTypes.BREE_GUARD, player)) {
             ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
 		} else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);

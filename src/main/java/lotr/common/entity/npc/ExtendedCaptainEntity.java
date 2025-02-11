@@ -5,8 +5,8 @@ import net.minecraft.util.ResourceLocation;
 
 public interface ExtendedCaptainEntity extends ExtendedInteractableEntity {
 
-    boolean canHire(PlayerEntity player);
+    boolean canHire(ResourceLocation unitProfileId, PlayerEntity player);
 
-    int getCost(ResourceLocation breeGuard, PlayerEntity player);
+    int getCost(ResourceLocation unitProfileId, PlayerEntity player);
 
 }

@@ -6,7 +6,8 @@
     "entity_shortname": "entity_shortname.lotrextended.hired_bree_guard",
     "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard",
     "hiringCost": 30,
-    "hiringRequiresPledge": false
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 100
   },
   "equipmentPools": {
     "helmets": [

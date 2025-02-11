@@ -122,9 +122,14 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
     @Override
-    public boolean canHire(PlayerEntity player){
+    public boolean canHire(ResourceLocation unitProfileId, PlayerEntity player){
+    	// TODO allow proper clientside validation
+        if(player.level.isClientSide) {
+        	return isFriendlyAndAlignedWithLevel(player, this, 100);
+        }
     	// TODO: move pledge validation here maybe?
-        return isFriendlyAndAlignedWithLevel(player, this, 100);
+    	ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
+        return isFriendlyAndAlignedWithLevel(player, this, unitProfile.getHiringAlignmentRequired());
     }
 
     @Override

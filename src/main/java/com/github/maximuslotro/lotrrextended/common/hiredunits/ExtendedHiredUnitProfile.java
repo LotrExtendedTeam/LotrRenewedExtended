@@ -22,7 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentInstance.EMPTY, 100000, false);
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentInstance.EMPTY, 100000, false, 1000);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -31,8 +31,9 @@ public class ExtendedHiredUnitProfile {
 	private final ExtendedHiredUnitEquipmentInstance equipmentPools;
 	private final int hiringCost;
 	private final boolean hiringRequiresPledge;
+	private final int hiringAlignmentRequired;
 
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentInstance equipmentPools, int hiringCost, boolean hiringRequiresPledge) {
+	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentInstance equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -41,6 +42,7 @@ public class ExtendedHiredUnitProfile {
 		this.equipmentPools = equipmentPools;
 		this.hiringCost = hiringCost;
 		this.hiringRequiresPledge = hiringRequiresPledge;
+		this.hiringAlignmentRequired = hiringAlignmentRequired;
 	}
 
 	/*
@@ -111,6 +113,14 @@ public class ExtendedHiredUnitProfile {
 		return hiringRequiresPledge;
 	}
 
+	/**
+	 * Hiring aligment level for the unit
+	 * @return the alignment level
+	 * */
+	public int getHiringAlignmentRequired() {
+		return hiringAlignmentRequired;
+	}
+
 	/*
 	 * Serializer for ExtendedHiredUnitProfile
 	 * */
@@ -130,8 +140,13 @@ public class ExtendedHiredUnitProfile {
 			String entity_unit_type = languageObject.get("entity_unit_type").getAsString();
 			int hiringCost = languageObject.get("hiringCost").getAsInt();
 			boolean hiringRequiresPledge = languageObject.get("hiringRequiresPledge").getAsBoolean();
+			// TODO make required in the future
+			int hiringAlignmentRequired = 100;
+			if(languageObject.has("hiringAlignmentRequired")) {
+				hiringAlignmentRequired = languageObject.get("hiringAlignmentRequired").getAsInt();
+			}
 			ExtendedHiredUnitEquipmentInstance equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentInstance.EMPTY, context, ExtendedHiredUnitEquipmentInstance.class);
-			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge);
+			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
 		}
 
 		@Override
@@ -146,6 +161,7 @@ public class ExtendedHiredUnitProfile {
 			jsonobject.add("language", languageObject);
 			languageObject.addProperty("hiringCost", unitProfile.getHiringCost());
 			languageObject.addProperty("hiringRequiresPledge", unitProfile.isHiringRequiresPledge());
+			languageObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
 			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;
 		}
@@ -160,6 +176,7 @@ public class ExtendedHiredUnitProfile {
 		private ExtendedHiredUnitEquipmentInstance equipmentPools = new ExtendedHiredUnitEquipmentInstance();
 		private int hiringCost;
 		private boolean hiringRequiresPledge;
+		private int hiringAlignmentRequired;
 
 		public Builder() {
 		}
@@ -187,12 +204,16 @@ public class ExtendedHiredUnitProfile {
 		/**
 		 * Set Hired Unit purchase info
 		 */
-		public ExtendedHiredUnitProfile.Builder setPurchaseInfo(int cost, boolean pledgeRequired) {
+		public ExtendedHiredUnitProfile.Builder setPurchaseInfo(int cost, boolean pledgeRequired, int alignmnetRequired) {
 			this.hiringRequiresPledge = pledgeRequired;
 			if(cost<=0) {
 				cost=1;
 			}
 			this.hiringCost = cost;
+			if(alignmnetRequired<=0) {
+				alignmnetRequired=1;
+			}
+			this.hiringAlignmentRequired = alignmnetRequired;
 			return this;
 		}
 
@@ -231,7 +252,7 @@ public class ExtendedHiredUnitProfile {
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
 		public ExtendedHiredUnitProfile build(ResourceLocation id) {
-			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge);
+			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
 			return spawner;
 		}
 

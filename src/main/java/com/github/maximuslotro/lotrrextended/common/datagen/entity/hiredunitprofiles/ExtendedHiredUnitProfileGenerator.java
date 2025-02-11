@@ -20,7 +20,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedHiredUnitProfile> pConsumer) {
 		// BREE UNITS
-		make().setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false)
+		make().setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 0)
 		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440), 0)
 		.addLeggingPoolItem(new ItemStack(Items.CHAINMAIL_LEGGINGS), 0)

@@ -53,7 +53,7 @@ public class ExtendedCHireUnitPacket {
         ServerPlayerEntity player = Objects.requireNonNull(context.get().getSender());
 
         // verify the player has enough alignment
-        if (!captain.canHire(player)) {
+        if (!captain.canHire(ExtendedHiredUnitTypes.BREE_GUARD, player)) {
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
