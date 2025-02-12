@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +15,9 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.WalkNodeProcessor;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.world.IWorldReader;
 
 public class ExtendedHiredFollowPlayerGoal extends Goal {
@@ -141,8 +144,11 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
     }
 
     private boolean canTeleportTo(BlockPos teleportToPos) {
+    	BlockState teleportState = level.getBlockState(teleportToPos);
+    	boolean isSolid = Block.isFaceFull(teleportState.getCollisionShape(level, teleportToPos, ISelectionContext.empty()), Direction.UP) || !teleportState.getMaterial().isSolid();
+
         PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(this.level, teleportToPos.mutable());
-        if (pathnodetype != PathNodeType.WALKABLE) {
+        if (pathnodetype != PathNodeType.WALKABLE || !isSolid) {
             return false;
         } else {
             BlockState blockstate = this.level.getBlockState(teleportToPos.below());
