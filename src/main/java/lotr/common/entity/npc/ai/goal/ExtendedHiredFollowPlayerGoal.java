@@ -30,7 +30,7 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
     private float oldWaterCost;
     private final boolean canFly;
 
-    public ExtendedHiredFollowPlayerGoal(NPCEntity entity, double p_i225711_2_, float p_i225711_4_, float p_i225711_5_, boolean p_i225711_6_) {
+    public ExtendedHiredFollowPlayerGoal(NPCEntity entity, double speedModifier, float goalStartDistance, float goalEndDistance, boolean canFly) {
         this.entity = entity;
 
         ExtendedHirableEntity hirable = ExtendedHiredUnitHelper.getExtendedHirableEntity(entity);
@@ -40,11 +40,11 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
         this.hirable = hirable;
 
         this.level = entity.level;
-        this.speedModifier = p_i225711_2_;
+        this.speedModifier = speedModifier;
         this.navigation = entity.getNavigation();
-        this.startDistance = p_i225711_4_;
-        this.stopDistance = p_i225711_5_;
-        this.canFly = p_i225711_6_;
+        this.startDistance = goalStartDistance;
+        this.stopDistance = goalEndDistance;
+        this.canFly = canFly;
         this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         if (!(entity.getNavigation() instanceof GroundPathNavigator) && !(entity.getNavigation() instanceof FlyingPathNavigator)) {
             throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
@@ -116,43 +116,46 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
             int j = this.randomIntInclusive(-3, 3);
             int k = this.randomIntInclusive(-1, 1);
             int l = this.randomIntInclusive(-3, 3);
-            boolean flag = this.maybeTeleportTo(blockpos.getX() + j, blockpos.getY() + k, blockpos.getZ() + l);
-            if (flag) {
+            boolean teleported = this.maybeTeleportTo(blockpos.getX() + j, blockpos.getY() + k, blockpos.getZ() + l);
+            if (teleported) {
                 return;
             }
         }
 
     }
 
-    private boolean maybeTeleportTo(int p_226328_1_, int p_226328_2_, int p_226328_3_) {
-        if (Math.abs(p_226328_1_ - this.owner.getX()) < 2.0D && Math.abs(p_226328_3_ - this.owner.getZ()) < 2.0D) {
+    private boolean maybeTeleportTo(int x, int y, int z) {
+        if (Math.abs(x - this.owner.getX()) < 2.0D && Math.abs(z - this.owner.getZ()) < 2.0D) {
             return false;
-        } else if (!this.canTeleportTo(new BlockPos(p_226328_1_, p_226328_2_, p_226328_3_))) {
+        } else if (!this.canTeleportTo(new BlockPos(x, y, z)) || !canTeleportFrom()) {
             return false;
         } else {
-            this.entity.moveTo(p_226328_1_ + 0.5D, p_226328_2_, p_226328_3_ + 0.5D, this.entity.yRot, this.entity.xRot);
+            this.entity.moveTo(x + 0.5D, y, z + 0.5D, this.entity.yRot, this.entity.xRot);
             this.navigation.stop();
             return true;
         }
     }
 
+    private boolean canTeleportFrom() {
+        return this.entity.isOnGround() || this.entity.isInWaterOrBubble();
+    }
 
-    private boolean canTeleportTo(BlockPos p_226329_1_) {
-        PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(this.level, p_226329_1_.mutable());
+    private boolean canTeleportTo(BlockPos teleportToPos) {
+        PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(this.level, teleportToPos.mutable());
         if (pathnodetype != PathNodeType.WALKABLE) {
             return false;
         } else {
-            BlockState blockstate = this.level.getBlockState(p_226329_1_.below());
+            BlockState blockstate = this.level.getBlockState(teleportToPos.below());
             if (!this.canFly && blockstate.getBlock() instanceof LeavesBlock) {
                 return false;
             } else {
-                BlockPos blockpos = p_226329_1_.subtract(this.entity.blockPosition());
+                BlockPos blockpos = teleportToPos.subtract(this.entity.blockPosition());
                 return this.level.noCollision(this.entity, this.entity.getBoundingBox().move(blockpos));
             }
         }
     }
 
-    private int randomIntInclusive(int p_226327_1_, int p_226327_2_) {
-        return this.entity.getRandom().nextInt(p_226327_2_ - p_226327_1_ + 1) + p_226327_1_;
+    private int randomIntInclusive(int minRange, int maxRange) {
+        return this.entity.getRandom().nextInt(maxRange - minRange + 1) + minRange;
     }
 }
