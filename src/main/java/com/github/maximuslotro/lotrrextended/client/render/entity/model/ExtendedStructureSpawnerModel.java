@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ExtendedStructureSpawnerModel extends NonLivingModel<ExtendedStructureSpawnerEntity> {
+public class ExtendedStructureSpawnerModel extends ExtendedNonLivingModel<ExtendedStructureSpawnerEntity> {
 	private final ModelRenderer spawner;
 
 	public ExtendedStructureSpawnerModel() {

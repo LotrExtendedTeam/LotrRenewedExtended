@@ -11,12 +11,12 @@ import net.minecraft.client.renderer.model.Model;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class NonLivingModel<T extends Entity> extends Model {
-	protected NonLivingModel() {
+public abstract class ExtendedNonLivingModel<T extends Entity> extends Model {
+	protected ExtendedNonLivingModel() {
 		this(RenderType::entityCutoutNoCull);
 	}
 
-	protected NonLivingModel(Function<ResourceLocation, RenderType> p_i225945_1_) {
+	protected ExtendedNonLivingModel(Function<ResourceLocation, RenderType> p_i225945_1_) {
 		super(p_i225945_1_);
 	}
 
