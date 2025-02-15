@@ -1422,7 +1422,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneGrinderRecipe(consumer, ()->Blocks.LAPIS_ORE, ()->Items.LAPIS_LAZULI, 1, 3);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.REDSTONE_ORE, ()->Items.REDSTONE, 1, 3);
 		// Vanilla blocks to cracked
-		makeStoneGrinderRecipe(consumer, ()->Blocks.BRICKS, ()->Items.BRICKS, 3);
+		makeStoneGrinderRecipe(consumer, ()->Blocks.BRICKS, ()->Items.BRICK, 3);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.STONE_BRICKS, ()->Items.CRACKED_STONE_BRICKS);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.STONE_BRICK_SLAB, LOTRItems.CRACKED_STONE_BRICK_SLAB);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.STONE_BRICK_STAIRS, LOTRItems.CRACKED_STONE_BRICK_STAIRS);
