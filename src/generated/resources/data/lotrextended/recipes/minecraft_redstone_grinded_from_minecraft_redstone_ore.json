@@ -4,7 +4,7 @@
     "item": "minecraft:redstone_ore"
   },
   "result": "minecraft:redstone",
-  "countMin": 1,
-  "countMax": 3,
+  "countMin": 3,
+  "countMax": 5,
   "experience": 1.0
 }

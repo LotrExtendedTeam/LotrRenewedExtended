@@ -1411,16 +1411,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneGrinderRecipe(consumer, ExtendedBlocks.SAPPHIRE_ORE, ExtendedItems.SAPPHIRE, 1, 3);
 		makeStoneGrinderRecipe(consumer, ExtendedBlocks.TOPAZ_ORE, ExtendedItems.TOPAZ, 1, 3);
 		// Renewed Gemstone grinding recipes
-		makeStoneGrinderRecipe(consumer, LOTRBlocks.DURNOR_ORE, LOTRItems.DURNOR, 1, 3);
-		makeStoneGrinderRecipe(consumer, LOTRBlocks.EDHELVIR_ORE, LOTRItems.EDHELVIR, 1, 3);
+		makeStoneGrinderRecipe(consumer, LOTRBlocks.DURNOR_ORE, LOTRItems.DURNOR, 2, 5);
+		makeStoneGrinderRecipe(consumer, LOTRBlocks.EDHELVIR_ORE, LOTRItems.EDHELVIR, 2, 4);
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.GLOWSTONE_ORE, ()->Items.GLOWSTONE_DUST, 1, 3);
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.GULDURIL_ORE_MORDOR, LOTRItems.GULDURIL, 1, 3);
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.GULDURIL_ORE_STONE, LOTRItems.GULDURIL, 1, 3);
 		// Vanilla Gemstone grinding recipes
 		makeStoneGrinderRecipe(consumer, ()->Blocks.DIAMOND_ORE, ()->Items.DIAMOND, 1, 2);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.EMERALD_ORE, ()->Items.EMERALD, 1, 2);
-		makeStoneGrinderRecipe(consumer, ()->Blocks.LAPIS_ORE, ()->Items.LAPIS_LAZULI, 1, 3);
-		makeStoneGrinderRecipe(consumer, ()->Blocks.REDSTONE_ORE, ()->Items.REDSTONE, 1, 3);
+		makeStoneGrinderRecipe(consumer, ()->Blocks.LAPIS_ORE, ()->Items.LAPIS_LAZULI, 4, 9);
+		makeStoneGrinderRecipe(consumer, ()->Blocks.REDSTONE_ORE, ()->Items.REDSTONE, 3, 5);
 		// Vanilla blocks to cracked
 		makeStoneGrinderRecipe(consumer, ()->Blocks.BRICKS, ()->Items.BRICK, 3);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.STONE_BRICKS, ()->Items.CRACKED_STONE_BRICKS);

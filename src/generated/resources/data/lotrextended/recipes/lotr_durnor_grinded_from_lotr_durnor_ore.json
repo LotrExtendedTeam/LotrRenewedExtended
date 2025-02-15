@@ -4,7 +4,7 @@
     "item": "lotr:durnor_ore"
   },
   "result": "lotr:durnor",
-  "countMin": 1,
-  "countMax": 3,
+  "countMin": 2,
+  "countMax": 5,
   "experience": 1.0
 }

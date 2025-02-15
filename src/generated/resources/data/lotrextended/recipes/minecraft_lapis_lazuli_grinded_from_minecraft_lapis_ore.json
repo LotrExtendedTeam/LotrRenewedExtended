@@ -4,7 +4,7 @@
     "item": "minecraft:lapis_ore"
   },
   "result": "minecraft:lapis_lazuli",
-  "countMin": 1,
-  "countMax": 3,
+  "countMin": 4,
+  "countMax": 9,
   "experience": 1.0
 }
