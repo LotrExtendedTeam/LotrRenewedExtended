@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:opal_ore"
+  },
+  "result": "lotr:opal",
+  "countMin": 1,
+  "countMax": 3,
+  "experience": 1.0
+}

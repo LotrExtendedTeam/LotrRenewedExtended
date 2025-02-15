@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrinderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -43,12 +43,12 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ExtendedGrinderBlock extends ContainerBlock {
+public class ExtendedStoneGrinderBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
-	public ExtendedGrinderBlock(AbstractBlock.Properties p_i50000_1_) {
+	public ExtendedStoneGrinderBlock(AbstractBlock.Properties p_i50000_1_) {
 		super(p_i50000_1_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.valueOf(false)));
 	}
@@ -64,8 +64,8 @@ public class ExtendedGrinderBlock extends ContainerBlock {
 			return ActionResultType.SUCCESS;
 		} else {
 			TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			if (tileentity instanceof ExtendedGrinderTileEntity) {
-				pPlayer.openMenu((ExtendedGrinderTileEntity)tileentity);
+			if (tileentity instanceof ExtendedStoneGrinderTileEntity) {
+				pPlayer.openMenu((ExtendedStoneGrinderTileEntity)tileentity);
 				pPlayer.awardStat(ExtendedStats.INTERACT_WITH_MILLSTONE);
 			}
 			return ActionResultType.CONSUME;
@@ -107,8 +107,8 @@ public class ExtendedGrinderBlock extends ContainerBlock {
 	public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		if (pStack.hasCustomHoverName()) {
 			TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			if (tileentity instanceof ExtendedGrinderTileEntity) {
-				((ExtendedGrinderTileEntity)tileentity).setCustomName(pStack.getHoverName());
+			if (tileentity instanceof ExtendedStoneGrinderTileEntity) {
+				((ExtendedStoneGrinderTileEntity)tileentity).setCustomName(pStack.getHoverName());
 			}
 		}
 
@@ -119,9 +119,9 @@ public class ExtendedGrinderBlock extends ContainerBlock {
 	public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 		if (!pState.is(pNewState.getBlock())) {
 			TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			if (tileentity instanceof ExtendedGrinderTileEntity) {
-				InventoryHelper.dropContents(pLevel, pPos, (ExtendedGrinderTileEntity)tileentity);
-				((ExtendedGrinderTileEntity)tileentity).getRecipesToAwardAndPopExperience(pLevel, Vector3d.atCenterOf(pPos));
+			if (tileentity instanceof ExtendedStoneGrinderTileEntity) {
+				InventoryHelper.dropContents(pLevel, pPos, (ExtendedStoneGrinderTileEntity)tileentity);
+				((ExtendedStoneGrinderTileEntity)tileentity).getRecipesToAwardAndPopExperience(pLevel, Vector3d.atCenterOf(pPos));
 				pLevel.updateNeighbourForOutputSignal(pPos, this);
 			}
 
@@ -162,7 +162,7 @@ public class ExtendedGrinderBlock extends ContainerBlock {
 
 	@Override
 	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
-		return new ExtendedGrinderTileEntity();
+		return new ExtendedStoneGrinderTileEntity();
 	}
 
 	/**

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrinderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHangingBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
@@ -45,7 +45,7 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedWeaponRackTileEntity>> WEAPON_RACK;
 	public static RegistryObject<TileEntityType<ExtendedReedBasketTileEntity>> REED_BASKET;
 	public static RegistryObject<TileEntityType<ExtendedOrcBarrelTileEntity>> ORC_BARREL;
-	public static RegistryObject<TileEntityType<ExtendedGrinderTileEntity>> MILLSTONE;
+	public static RegistryObject<TileEntityType<ExtendedStoneGrinderTileEntity>> MILLSTONE;
 	public static RegistryObject<TileEntityType<ExtendedMEBannerTileEntity>> BANNER_STANDING;
 	public static RegistryObject<TileEntityType<ExtendedMEHangingBannerTileEntity>> BANNER_HANGING;
 }

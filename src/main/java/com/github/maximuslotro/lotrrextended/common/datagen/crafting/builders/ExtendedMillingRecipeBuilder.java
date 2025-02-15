@@ -18,7 +18,8 @@ public class ExtendedMillingRecipeBuilder {
 	private final String group = "";
 	private final Ingredient ingredient;
 	private final Item result;
-	private final int count;
+	private final int countMin;
+	private final int countMax;
 	/**
 	 * 1.0 is 100% chance to break, 0.0 is a 0% chance to break
 	 * */
@@ -27,34 +28,43 @@ public class ExtendedMillingRecipeBuilder {
 	private final int grindingTime;
 	private final IRecipeSerializer<?> serializer;
 
-	private ExtendedMillingRecipeBuilder(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, int time,  IRecipeSerializer<?> serializer) {
+	private ExtendedMillingRecipeBuilder(IItemProvider result, int countMin, int countMax, Ingredient ingredient, float breakChance, float xp, int time,  IRecipeSerializer<?> serializer) {
 		this.result = result.asItem();
 		this.experience = xp;
 		this.grindingTime = time;
 		this.serializer = serializer;
 		this.ingredient = ingredient;
-		this.count = count;
+		this.countMin = countMin;
+		this.countMax = countMax;
 		this.breakChance = breakChance;
 	}
 
 	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, Ingredient ingredient, IRecipeSerializer<?> serializer) {
-		return grinding(result, 1, ingredient, 0.0f, 1.0f, 200, serializer);
+		return grinding(result, 1, 1, ingredient, 0.0f, 1.0f, 200, serializer);
 	}
 
 	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
-		return grinding(result, 1, ingredient, breakChance, 1.0f, 200, serializer);
+		return grinding(result, 1, 1, ingredient, breakChance, 1.0f, 200, serializer);
 	}
 
-	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
-		return grinding(result, count, ingredient, breakChance, 1.0f, 200, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int countMin, int countMax, Ingredient ingredient, IRecipeSerializer<?> serializer) {
+		return grinding(result, countMin, countMax, ingredient, 0.0f, 1.0f, 200, serializer);
 	}
 
-	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, IRecipeSerializer<?> serializer) {
-		return grinding(result, count, ingredient, breakChance, xp, 200, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int countMax, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
+		return grinding(result, countMax, countMax, ingredient, breakChance, 1.0f, 200, serializer);
 	}
 
-	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int count, Ingredient ingredient, float breakChance, float xp, int time, IRecipeSerializer<?> serializer) {
-		return new ExtendedMillingRecipeBuilder(result, count, ingredient, breakChance, xp, time, serializer);
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int countMin, int countMax, Ingredient ingredient, float breakChance, IRecipeSerializer<?> serializer) {
+		return grinding(result, countMin, countMax, ingredient, breakChance, 1.0f, 200, serializer);
+	}
+
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int countMax, Ingredient ingredient, float breakChance, float xp, IRecipeSerializer<?> serializer) {
+		return grinding(result, countMax, countMax, ingredient, breakChance, xp, 200, serializer);
+	}
+
+	public static ExtendedMillingRecipeBuilder grinding(IItemProvider result, int countMin, int countMax, Ingredient ingredient, float breakChance, float xp, int time, IRecipeSerializer<?> serializer) {
+		return new ExtendedMillingRecipeBuilder(result, countMin, countMax, ingredient, breakChance, xp, time, serializer);
 	}
 
 	public void save(Consumer<IFinishedRecipe> p_218630_1_) {
@@ -73,7 +83,7 @@ public class ExtendedMillingRecipeBuilder {
 
 	public void save(Consumer<IFinishedRecipe> p_218635_1_, ResourceLocation outputLocation) {
 		this.ensureValid(outputLocation);
-		p_218635_1_.accept(new ExtendedMillingRecipeBuilder.Result(outputLocation, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, this.breakChance, this.experience, this.grindingTime, this.serializer));
+		p_218635_1_.accept(new ExtendedMillingRecipeBuilder.Result(outputLocation, this.group == null ? "" : this.group, this.ingredient, this.result, this.countMin, this.countMax, this.breakChance, this.experience, this.grindingTime, this.serializer));
 	}
 
 
@@ -90,11 +100,12 @@ public class ExtendedMillingRecipeBuilder {
 		private final Item result;
 		private final float experience;
 		private final int grindingTime;
-		private final int count;
+		private final int countMin;
+		private final int countMax;
 		private final float breakChance;
 		private final IRecipeSerializer<?> serializer;
 
-		public Result(ResourceLocation outputLocation, String group, Ingredient ingredient, Item result, int count, float breakChance, float experience, int grindingTime, IRecipeSerializer<?> serializer) {
+		public Result(ResourceLocation outputLocation, String group, Ingredient ingredient, Item result, int countMin, int countMax, float breakChance, float experience, int grindingTime, IRecipeSerializer<?> serializer) {
 			this.id = outputLocation;
 			this.group = group;
 			this.ingredient = ingredient;
@@ -102,7 +113,8 @@ public class ExtendedMillingRecipeBuilder {
 			this.experience = experience;
 			this.grindingTime = grindingTime;
 			this.serializer = serializer;
-			this.count = count;
+			this.countMin = countMin;
+			this.countMax = countMax;
 			this.breakChance = breakChance;
 		}
 
@@ -115,8 +127,11 @@ public class ExtendedMillingRecipeBuilder {
 			p_218610_1_.add("ingredient", ingredient.toJson());
 
 			p_218610_1_.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
-			if(count>1) {
-				p_218610_1_.addProperty("count", this.count);
+			if(countMin==countMax && countMin>1) {
+				p_218610_1_.addProperty("count", this.countMin);
+			}else if(countMin!=countMax){
+				p_218610_1_.addProperty("countMin", this.countMin);
+				p_218610_1_.addProperty("countMax", this.countMax);
 			}
 			if(grindingTime!=200) {
 				p_218610_1_.addProperty("grindingtime", this.grindingTime);

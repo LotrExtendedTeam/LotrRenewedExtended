@@ -16,25 +16,25 @@ import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
 import net.minecraft.world.World;
 
-public class ExtendedGrinderContainer extends Container {
+public class ExtendedStoneGrinderContainer extends Container {
 	private final IInventory container;
 	private final IIntArray data;
 	protected final World level;
 
-	public ExtendedGrinderContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
+	public ExtendedStoneGrinderContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		this(pContainerId, pPlayerInventory, new Inventory(3), new IntArray(3), extraData);
 	}
 
-	public ExtendedGrinderContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, IIntArray pData, PacketBuffer extraData) {
-		super(ExtendedContainers.MILLSTONE.get(), pContainerId);
+	public ExtendedStoneGrinderContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, IIntArray pData, PacketBuffer extraData) {
+		super(ExtendedContainers.STONE_GRINDER.get(), pContainerId);
 		checkContainerSize(pContainer, 3);
 		checkContainerDataCount(pData, 3);
 		this.container = pContainer;
 		this.data = pData;
 		this.level = pPlayerInventory.player.level;
 		this.addSlot(new Slot(pContainer, 0, 80, 16));
-		this.addSlot(new ExtendedGrinderLubricationSlot(this, pContainer, 1, 114, 19));
-		this.addSlot(new ExtendedGrinderResultSlot(pPlayerInventory.player, pContainer, 2, 80, 58));
+		this.addSlot(new ExtendedStoneGrinderLubricationSlot(this, pContainer, 1, 114, 19));
+		this.addSlot(new ExtendedStoneGrinderResultSlot(pPlayerInventory.player, pContainer, 2, 80, 58));
 
 		for(int i = 0; i < 3; ++i) {
 			for(int j = 0; j < 9; ++j) {

@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
+import java.util.Random;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -10,7 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class ExtendeGrinderRecipe implements IRecipe<IInventory> {
+public class ExtendeStoneGrinderRecipe implements IRecipe<IInventory> {
 	private final ResourceLocation id;
 	protected final String group;
 	protected final Ingredient ingredient;
@@ -18,8 +20,10 @@ public class ExtendeGrinderRecipe implements IRecipe<IInventory> {
 	protected final float experience;
 	protected final int grindingTime;
 	protected final float breakChance;
+	protected final int countMin;
+	protected final int countMax;
 
-	public ExtendeGrinderRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, float experience, int grindingTime, float breakChance) {
+	public ExtendeStoneGrinderRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, int countMin, int countMax, float experience, int grindingTime, float breakChance) {
 		this.id = id;
 		this.group = group;
 		this.ingredient = ingredient;
@@ -27,10 +31,8 @@ public class ExtendeGrinderRecipe implements IRecipe<IInventory> {
 		this.experience = experience;
 		this.grindingTime = grindingTime;
 		this.breakChance = breakChance;
-	}
-
-	public String getDataHash() {
-		return "[id:"+id.toString()+", ingredient:"+ingredient.toJson().toString()+", result:"+result.toString()+"]";
+		this.countMin = countMin;
+		this.countMax = countMax;
 	}
 
 	@Override
@@ -63,6 +65,15 @@ public class ExtendeGrinderRecipe implements IRecipe<IInventory> {
 		return this.breakChance;
 	}
 
+	public int getCount(Random rand) {
+		if(countMin==countMax) {
+			return countMin>0 ? countMin : 1;
+		}else {
+			int returning = countMin+rand.nextInt(countMax-countMin+1);
+			return returning>0 ? returning : 1;
+		}
+	}
+
 	@Override
 	public ItemStack getResultItem() {
 		return this.result;
@@ -89,6 +100,6 @@ public class ExtendeGrinderRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return ExtendedRecipes.MILLING_SERIALIZER.get();
+		return ExtendedRecipes.STONE_GRINDING_SERIALIZER.get();
 	}
 }

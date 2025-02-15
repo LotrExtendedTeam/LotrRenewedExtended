@@ -1645,23 +1645,26 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(ing.get()), output.get(), num).unlocks("has_"+name1, has(ing.get())).save(consumer, name2+"_from_"+name1);
 	}
 
-	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output) {
-		makeMillingRecipe(consumer, input, output, 0.0F, 1);
-
+	protected void makeStoneGrinderRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output) {
+		makeMillingRecipe(consumer, input, output, 0.0F, 1, 1);
 	}
 
-	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance) {
-		makeMillingRecipe(consumer, input, output, breakChance, 1);
+	protected void makeStoneGrinderRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance) {
+		makeMillingRecipe(consumer, input, output, breakChance, 1, 1);
 	}
 
-	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, int count) {
-		makeMillingRecipe(consumer, input, output, 0.0F, count);
+	protected void makeStoneGrinderRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, int count) {
+		makeMillingRecipe(consumer, input, output, 0.0F, count, count);
 	}
 
-	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int count) {
-		String name1 = output.get().getRegistryName().getPath();
-		String name2 = input.get().getRegistryName().getPath();
-		ExtendedMillingRecipeBuilder.grinding(output.get(), count, Ingredient.of(input.get()), breakChance, ExtendedRecipes.MILLING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
+	protected void makeStoneGrinderRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, int countMin, int countMax) {
+		makeMillingRecipe(consumer, input, output, 0.0F, countMin, countMax);
+	}
+
+	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int countMin, int countMax) {
+		String name1 = output.get().getRegistryName().getNamespace()+"_"+output.get().getRegistryName().getPath();
+		String name2 = input.get().getRegistryName().getNamespace()+"_"+input.get().getRegistryName().getPath();
+		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipes.STONE_GRINDING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
 	}
 
 	public void checkForMissingRecipes() {
