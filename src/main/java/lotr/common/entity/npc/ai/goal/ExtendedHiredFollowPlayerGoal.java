@@ -2,8 +2,6 @@ package lotr.common.entity.npc.ai.goal;
 
 import java.util.EnumSet;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
-
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
@@ -146,15 +144,11 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
     }
 
     private boolean canTeleportTo(BlockPos teleportToPos) {
-    	BlockState teleportState = level.getBlockState(teleportToPos);
-    	boolean full = Block.isFaceFull(teleportState.getCollisionShape(level, teleportToPos, ISelectionContext.empty()), Direction.UP);
-    	boolean isSolid = teleportState.getMaterial().isSolid();
-    	//boolean isSolid = Block.isFaceFull(teleportState.getCollisionShape(level, teleportToPos, ISelectionContext.empty()), Direction.UP) && teleportState.getMaterial().isSolid();
+    	BlockState belowTeleportState = level.getBlockState(teleportToPos.below());
+    	boolean full = Block.isFaceFull(belowTeleportState.getCollisionShape(level, teleportToPos, ISelectionContext.empty()), Direction.UP);
+    	boolean isSolid = belowTeleportState.getMaterial().isSolid();
     	
-        PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(this.level, teleportToPos.above().mutable());
-        if(!teleportState.isAir()) {
-        	ExtendedLog.info("Checking "+teleportState.toString()+":"+teleportToPos.toString()+":"+full+":"+isSolid+":"+pathnodetype.name());
-        }
+        PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(this.level, teleportToPos.mutable());
         if (pathnodetype != PathNodeType.WALKABLE || !(isSolid && full)) {
             return false;
         } else {
@@ -163,9 +157,8 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
                 return false;
             } else {
                 BlockPos blockpos = teleportToPos.subtract(this.entity.blockPosition());
-                boolean can = this.level.noCollision(this.entity, this.entity.getBoundingBox().move(blockpos));
-                ExtendedLog.info("noCollision "+can);
-                return can;
+            	//ExtendedLog.info("Checking "+teleportState.toString()+":"+teleportToPos.toString()+":full="+full+":isSolid="+isSolid+":coll="+can+":path="+pathnodetype.name());
+                return this.level.noCollision(this.entity, this.entity.getBoundingBox().move(blockpos));
             }
         }
     }
