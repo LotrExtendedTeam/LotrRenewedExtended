@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 
-public class BarRendererHelper {
+public class ExtendedBarRendererHelper {
 
         public static void bind(ResourceLocation res) {
             Minecraft.getInstance().getTextureManager().bind(res);

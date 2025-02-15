@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class ExtendedTraderRespawnModel extends NonLivingModel<ExtendedTraderRespawnEntity> {
+public class ExtendedTraderRespawnModel extends ExtendedNonLivingModel<ExtendedTraderRespawnEntity> {
 	private final ModelRenderer coin;
 
 	public ExtendedTraderRespawnModel() {

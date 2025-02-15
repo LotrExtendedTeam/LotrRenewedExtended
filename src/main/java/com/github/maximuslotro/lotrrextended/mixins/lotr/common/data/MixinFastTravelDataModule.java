@@ -8,10 +8,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import com.github.maximuslotro.lotrrextended.api.events.world.ExtendedFastTravelWaypointEvent;
+
 import lotr.common.LOTRLog;
 import lotr.common.data.FastTravelDataModule;
 import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.event.LOTRFastTravelWaypointEvent;
 import lotr.common.stat.LOTRStats;
 import lotr.common.util.UsernameHelper;
 import lotr.common.world.map.Waypoint;
@@ -33,7 +34,7 @@ public abstract class MixinFastTravelDataModule {
 //		BlockPos orig = new BlockPos(player.getX(), player.getY(), player.getZ());
 //		BlockPos travelPos = waypoint.getTravelPosition(world, player);
 //		if (travelPos != null) {
-//			LOTRFastTravelWaypointEvent event = new LOTRFastTravelWaypointEvent(player, world, orig, travelPos);
+//			ExtendedFastTravelWaypointEvent event = new ExtendedFastTravelWaypointEvent(player, world, orig, travelPos);
 //			MinecraftForge.EVENT_BUS.post(event);
 //		}
 //	}
@@ -72,7 +73,7 @@ public abstract class MixinFastTravelDataModule {
 		int startZ = MathHelper.floor(startZF);
 		// Extended Start
 		BlockPos origin = new BlockPos(player.getX(), player.getY(), player.getZ());
-		MinecraftForge.EVENT_BUS.post(new LOTRFastTravelWaypointEvent.Pre(player, world, origin, travelPos));
+		MinecraftForge.EVENT_BUS.post(new ExtendedFastTravelWaypointEvent.Pre(player, world, origin, travelPos));
 		// Extended End
 		List<MobEntity> surroundingEntities = world.getEntitiesOfClass(MobEntity.class, player.getBoundingBox().inflate(256.0));
 		HashSet<MobEntity> entitiesToTransport = new HashSet<>();
@@ -134,7 +135,7 @@ public abstract class MixinFastTravelDataModule {
 			player.awardStat(LOTRStats.FAST_TRAVEL_ONE_M, distanceInM);
 		}
 		// Extended Start
-		MinecraftForge.EVENT_BUS.post(new LOTRFastTravelWaypointEvent.Post(player, world, origin, travelPos));
+		MinecraftForge.EVENT_BUS.post(new ExtendedFastTravelWaypointEvent.Post(player, world, origin, travelPos));
 		// Extended End
 	}
 }

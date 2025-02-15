@@ -8,7 +8,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class HiredUnitHpBar {
+public class ExtendedHiredUnitHpBar {
 
     private static final float HEALTHBAR_OPACITY = 80 / 100f;
 
@@ -55,7 +55,7 @@ public class HiredUnitHpBar {
 
         matrixStackIn.translate(HB_POS_X_OFFSET, HB_POS_Y_OFFSET, 0.0D);
         matrixStackIn.scale(1.0F, 1.0F, 1.0F);
-        BarRendererHelper.bind(bar);
+        ExtendedBarRendererHelper.bind(bar);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
@@ -67,18 +67,18 @@ public class HiredUnitHpBar {
         } else {
             RenderSystem.color4f(HB_RED_R, HB_RED_G, HB_RED_B, HEALTHBAR_OPACITY);
         }
-        BarRendererHelper.blit(matrixStackIn, HB_POS_X, HB_POS_Y, 0, 19, endOfHealth, HB_HEIGHT);
+        ExtendedBarRendererHelper.blit(matrixStackIn, HB_POS_X, HB_POS_Y, 0, 19, endOfHealth, HB_HEIGHT);
 
         // render background
         if (endOfHealth < 100) {
             matrixStackIn.translate(HB_POS_X_OFFSET, HB_POS_Y_OFFSET, 0.0D);
             matrixStackIn.scale(1.0F, 1.0F, 1.0F);
-            BarRendererHelper.bind(bar);
+            ExtendedBarRendererHelper.bind(bar);
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
 
             RenderSystem.color4f(BACKGROUND_RED, BACKGROUND_GREEN, BACKGROUND_BLUE, HEALTHBAR_OPACITY);
-            BarRendererHelper.blit(matrixStackIn, HB_POS_X + endOfHealth, HB_POS_Y, 0, 19, HB_WIDTH - endOfHealth, HB_HEIGHT);
+            ExtendedBarRendererHelper.blit(matrixStackIn, HB_POS_X + endOfHealth, HB_POS_Y, 0, 19, HB_WIDTH - endOfHealth, HB_HEIGHT);
         }
 
         // render text
@@ -86,7 +86,7 @@ public class HiredUnitHpBar {
         matrixStackIn.translate(TEXT_POS_X, TEXT_POS_Y, -0.03D);
         matrixStackIn.scale(textScale, textScale, 1.0F);
         int color = ExtendedColorHelper.ARGB32.color(255, 255, 255, 255); // set black text color no opacity
-        BarRendererHelper.drawString(matrixStackIn, font, (int) hp + "/" + (int) vit, (int)hpWidth, 20, color, false);
+        ExtendedBarRendererHelper.drawString(matrixStackIn, font, (int) hp + "/" + (int) vit, (int)hpWidth, 20, color, false);
 
         RenderSystem.disableBlend();
         matrixStackIn.popPose();
