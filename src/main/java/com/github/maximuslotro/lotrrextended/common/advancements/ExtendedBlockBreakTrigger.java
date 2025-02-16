@@ -20,8 +20,8 @@ import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<ExtendedBlockBreakTrigger.Instance> {
 	private static final ResourceLocation ID = new ResourceLocation("extended", "break_block");
@@ -46,14 +46,11 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 		return new ExtendedBlockBreakTrigger.Instance(pEntityPredicate, block, statepropertiespredicate, locationpredicate, itempredicate);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Nullable
 	private static Block deserializeBlock(JsonObject pObject) {
 		if (pObject.has("block")) {
 			ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getAsString(pObject, "block"));
-			return Registry.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
-				return new JsonSyntaxException("Unknown block type '" + resourcelocation + "'");
-			});
+			return ForgeRegistries.BLOCKS.getValue(resourcelocation);
 		} else {
 			return null;
 		}
@@ -97,11 +94,10 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 		}
 
 		@Override
-		@SuppressWarnings("deprecation")
 		public JsonObject serializeToJson(ConditionArraySerializer pConditions) {
 			JsonObject jsonobject = super.serializeToJson(pConditions);
 			if (this.brokenBlock != null) {
-				jsonobject.addProperty("block", Registry.BLOCK.getKey(this.brokenBlock).toString());
+				jsonobject.addProperty("block", ForgeRegistries.BLOCKS.getKey(this.brokenBlock).toString());
 			}
 
 			jsonobject.add("state", this.brokenBlockState.serializeToJson());

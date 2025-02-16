@@ -10,7 +10,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mixin(EntityType.class)
 public class MixinEntityType {
@@ -18,12 +18,11 @@ public class MixinEntityType {
 	@Shadow
 	private ResourceLocation lootTable;
 
-	@SuppressWarnings({"rawtypes", "deprecation"})
 	@Inject(method = "getDefaultLootTable()Lnet/minecraft/util/ResourceLocation;", at = @At("HEAD"), cancellable = true)
 	public void getDefaultLootTable(CallbackInfoReturnable<ResourceLocation> ci) {
 		ResourceLocation resourcelocationtable;
 		if (lootTable == null) {
-			resourcelocationtable = Registry.ENTITY_TYPE.getKey((EntityType)(Object)this);
+			resourcelocationtable = ForgeRegistries.ENTITIES.getKey((EntityType<?>)(Object)this);
 		}
 		else {
 			resourcelocationtable = lootTable;
