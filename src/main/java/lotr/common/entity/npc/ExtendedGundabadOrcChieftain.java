@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.init.ExtendedItems;
+import lotr.common.util.ExtendedCaptainHelper;
 import lotr.common.util.ExtendedInteractableHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -18,6 +19,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -26,7 +29,7 @@ import net.minecraft.world.World;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ExtendedGundabadOrcChieftain extends GundabadOrcEntity implements ExtendedCaptainEntity {
+public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
     private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcChieftain.class, DataSerializers.OPTIONAL_UUID);
@@ -37,7 +40,7 @@ public class ExtendedGundabadOrcChieftain extends GundabadOrcEntity implements E
     }
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return OrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
+        return GundabadOrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
     }
 
     @Override
@@ -49,6 +52,11 @@ public class ExtendedGundabadOrcChieftain extends GundabadOrcEntity implements E
         // TODO: move pledge validation here maybe?
         ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
         return isFriendlyAndAlignedWithLevel(player, this, unitProfile.getHiringAlignmentRequired());
+    }
+
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(PLAYER_INTERACTING_WITH, Optional.empty());
     }
 
     @Override
@@ -82,19 +90,28 @@ public class ExtendedGundabadOrcChieftain extends GundabadOrcEntity implements E
         ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_INTERACTING_WITH);
     }
 
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
 
-        this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.GUNDABAD_URUK_BOOTS.get()));
-        this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()));
-        this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()));
+        setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.GUNDABAD_URUK_BOOTS.get()));
+        setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()));
+        setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()));
+        setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+        setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 
-        this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+        npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
+        npcItemsInv.setIdleItemsFromMeleeWeapons();
+
         return spawnData;
     }
 
     static {
         WEAPONS = SpawnEquipmentTable.of(ExtendedItems.GUNDABAD_URUK_CLEAVER);
+    }
+
+    @Override
+    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+        return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
     }
 }

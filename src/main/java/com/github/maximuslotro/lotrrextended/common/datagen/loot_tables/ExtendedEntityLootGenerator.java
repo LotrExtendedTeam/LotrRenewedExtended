@@ -348,6 +348,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
+		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
 	    		.withPool(makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(Items.FEATHER, 0.0F, 2.0F)))
 	    		.withPool(makeQuickyPoolBuilder(1)
