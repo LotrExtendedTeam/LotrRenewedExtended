@@ -1,32 +1,32 @@
 package com.github.maximuslotro.lotrrextended.client.codex;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.BiConsumer;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedBaseCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedUnknownCodexEntry;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.google.common.collect.ImmutableMap.Builder;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.text.LanguageMap;
+import net.minecraft.util.ResourceLocation;
 
 public class ExtendedCodexMap {
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -35,66 +35,11 @@ public class ExtendedCodexMap {
 	private static final Pattern UNSUPPORTED_FORMAT_PATTERN = Pattern.compile("%(\\d+\\$)?[\\d.]*[df]");
 	private final Map<String, ExtendedBaseCodexEntry> storage;
 	private static volatile ExtendedCodexMap instance = loadDefault();
-
+	   private static final int PATH_SUFFIX_LENGTH = ".json".length();
+	   private static final String directory = "codexdatabase";
+	  
 	public ExtendedCodexMap(Map<String, ExtendedBaseCodexEntry> pStorage) {
 		this.storage = pStorage;
-	}
-
-	/**
-	 * Return the ExtendedCodexMap singleton instance
-	 */
-	public static ExtendedCodexMap getInstance() {
-		return instance;
-	}
-
-	public static void inject(ExtendedCodexMap mapInstance) {
-		instance = mapInstance;
-	}
-
-	private static ExtendedCodexMap loadDefault() {
-		Builder<String, ExtendedBaseCodexEntry> builder = ImmutableMap.builder();
-//		try (InputStream inputstream = ExtendedCodexMap.class.getResourceAsStream("/assets/minecraft/lang/en_us.json")) {
-//			loadFromJson(inputstream, builder::put);
-//		} catch (JsonParseException | IOException ioexception) {
-//			LOGGER.error("Couldn't read strings from /assets/minecraft/lang/en_us.json", (Throwable)ioexception);
-//		}
-		return new ExtendedCodexMap(new HashMap<>(builder.build()));
-	}
-
-	public static ExtendedCodexMap loadFrom(IResourceManager pManager, List<String> list) {
-		Map<String, ExtendedBaseCodexEntry> dataMap = Maps.newHashMap();
-		for(String language : list) {
-//			String filePath = String.format("lang/%s.json", language);
-//
-//			for(String namespace : pManager.getNamespaces()) {
-//				try {
-//					ResourceLocation resourcelocation = new ResourceLocation(namespace, filePath);
-//					appendFrom(pManager.getResources(resourcelocation), dataMap);
-//				} catch (FileNotFoundException filenotfoundexception) {
-//				} catch (Exception exception) {
-//					LOGGER.warn("Skipped language file: {}:{} ({})", namespace, filePath, exception.toString());
-//				}
-//			}
-		}
-		return new ExtendedCodexMap(ImmutableMap.copyOf(dataMap));
-	}
-	public static void loadFromJson(InputStream p_240593_0_, BiConsumer<String, String> p_240593_1_) {
-		JsonObject jsonobject = GSON.fromJson(new InputStreamReader(p_240593_0_, StandardCharsets.UTF_8), JsonObject.class);
-		for(Entry<String, JsonElement> entry : jsonobject.entrySet()) {
-			String s = UNSUPPORTED_FORMAT_PATTERN.matcher(JSONUtils.convertToString(entry.getValue(), entry.getKey())).replaceAll("%$1s");
-			p_240593_1_.accept(entry.getKey(), s);
-		}
-
-	}
-	private static void appendFrom(List<IResource> pResources, Map<String, String> pStorage) {
-		for(IResource iresource : pResources) {
-			try (InputStream inputstream = iresource.getInputStream()) {
-				LanguageMap.loadFromJson(inputstream, pStorage::put);
-			} catch (IOException ioexception) {
-				LOGGER.warn("Failed to load translations from {}", iresource, ioexception);
-			}
-		}
-
 	}
 
 	public ExtendedBaseCodexEntry getOrDefault(String pId) {
@@ -104,4 +49,67 @@ public class ExtendedCodexMap {
 	public boolean has(String pId) {
 		return this.storage.containsKey(pId);
 	}
+
+	/**
+	 * Return the ExtendedCodexMap singleton instance
+	 * @return The ExtendedCodexMap singleton instance
+	 */
+	public static ExtendedCodexMap getInstance() {
+		return instance;
+	}
+
+	/**
+	 * Sets the ExtendedCodexMap singleton instance
+	 * @param mapInstance The new ExtendedCodexMap singleton instance
+	 */
+	public static void inject(ExtendedCodexMap mapInstance) {
+		instance = mapInstance;
+		for(Entry<String, ExtendedBaseCodexEntry> entry : mapInstance.storage.entrySet()) {
+			ExtendedLog.info(entry.getKey()+entry.getValue().getLocation().toString());
+		}
+	}
+
+	public static ExtendedCodexMap loadDefault() {
+		Minecraft mc = Minecraft.getInstance();
+		return loadFrom(mc.getResourceManager(), "en_us");
+	}
+
+	public static ExtendedCodexMap loadFrom(IResourceManager pManager, String selectedLang) {
+		Map<ResourceLocation, JsonElement> map = getJson(pManager);
+		Map<String, ExtendedBaseCodexEntry> dataMap = Maps.newHashMap();
+		// TODO finish data handeling
+		return new ExtendedCodexMap(ImmutableMap.copyOf(dataMap));
+	}
+
+	public static Map<ResourceLocation, JsonElement> getJson(IResourceManager pResourceManager) {
+	      Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
+	      int i = directory.length() + 1;
+
+	      for(ResourceLocation resourcelocation : pResourceManager.listResources(directory, (p_223379_0_) -> {
+	         return p_223379_0_.endsWith(".json");
+	      })) {
+	         String s = resourcelocation.getPath();
+	         ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
+
+	         try (
+	            IResource iresource = pResourceManager.getResource(resourcelocation);
+	            InputStream inputstream = iresource.getInputStream();
+	            Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+	         ) {
+	            JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
+	            if (jsonelement != null) {
+	               JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
+	               if (jsonelement1 != null) {
+	                  throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
+	               }
+	            } else {
+	               LOGGER.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
+	            }
+	         } catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
+	            LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+	         }
+	      }
+
+	      return map;
+	   }
 }

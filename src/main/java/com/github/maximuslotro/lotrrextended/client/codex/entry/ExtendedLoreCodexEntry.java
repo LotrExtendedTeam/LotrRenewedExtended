@@ -4,7 +4,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public abstract class ExtendedLoreCodexEntry extends ExtendedBaseCodexEntry{
+public class ExtendedLoreCodexEntry extends ExtendedBaseCodexEntry{
 
 	public ExtendedLoreCodexEntry(ResourceLocation location) {
 		super(location);
