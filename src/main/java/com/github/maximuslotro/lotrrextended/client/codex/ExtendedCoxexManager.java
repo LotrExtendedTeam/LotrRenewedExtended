@@ -11,8 +11,8 @@ import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
-public class CoxexManager implements ISelectiveResourceReloadListener {
-	public CoxexManager() {}
+public class ExtendedCoxexManager implements ISelectiveResourceReloadListener {
+	public ExtendedCoxexManager() {}
 
 	public void onResourceManagerReload(IResourceManager pResourceManager, Predicate<IResourceType> resourcePredicate) {
 		if(!resourcePredicate.test(getResourceType())) {

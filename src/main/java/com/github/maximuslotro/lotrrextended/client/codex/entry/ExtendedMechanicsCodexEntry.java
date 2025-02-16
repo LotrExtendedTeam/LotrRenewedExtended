@@ -1,0 +1,18 @@
+package com.github.maximuslotro.lotrrextended.client.codex.entry;
+
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+
+public abstract class ExtendedMechanicsCodexEntry extends ExtendedBaseCodexEntry{
+
+	public ExtendedMechanicsCodexEntry(ResourceLocation location) {
+		super(location);
+	}
+
+	@Override
+	public ITextComponent getTitle() {
+		return new TranslationTextComponent(location.toString());
+	}
+
+}
