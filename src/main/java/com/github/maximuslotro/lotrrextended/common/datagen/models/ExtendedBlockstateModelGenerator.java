@@ -12,7 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -221,8 +221,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genRopeBlock((ExtendedRopeBlock) block.getValue().get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedGrinderBlock) {
-					genMillstoneBlock((ExtendedGrinderBlock) block.getValue().get());
+				if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
+					genMillstoneBlock((ExtendedStoneGrinderBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof BranchBlock) {
@@ -995,7 +995,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         }, ExtendedRopeBlock.WATERLOGGED);
 	}
 
-	private void genMillstoneBlock(ExtendedGrinderBlock stone_grinder) {
+	private void genMillstoneBlock(ExtendedStoneGrinderBlock stone_grinder) {
 		registeredBlocks.add(stone_grinder);
 		ModelFile model = models().withExistingParent("lotrextended:"+stone_grinder.getRegistryName().getPath(), lotrExtendedLoc("block/template_millstone"))
                 .texture("toptexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_top"))
@@ -1008,11 +1008,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 		getVariantBuilder(stone_grinder)
 		.forAllStatesExcept(state -> {
-			boolean powered = state.getValue(ExtendedGrinderBlock.POWERED);
+			boolean powered = state.getValue(ExtendedStoneGrinderBlock.POWERED);
             return ConfiguredModel.builder()
                     .modelFile(powered ? modelPowered : model)
                     .build();
-        }, ExtendedGrinderBlock.FACING);
+        }, ExtendedStoneGrinderBlock.FACING);
 		itemModels().getBuilder("lotr:" + stone_grinder.getRegistryName().getPath()).parent(model);
 	}
 

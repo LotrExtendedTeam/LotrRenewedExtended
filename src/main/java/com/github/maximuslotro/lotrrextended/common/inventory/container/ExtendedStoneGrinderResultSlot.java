@@ -1,17 +1,17 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
-import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrinderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ExtendedGrinderResultSlot extends Slot {
+public class ExtendedStoneGrinderResultSlot extends Slot {
 	   private final PlayerEntity player;
 	   private int removeCount;
 
-	   public ExtendedGrinderResultSlot(PlayerEntity pPlayer, IInventory pContainer, int pSlot, int pXPosition, int pYPosition) {
+	   public ExtendedStoneGrinderResultSlot(PlayerEntity pPlayer, IInventory pContainer, int pSlot, int pXPosition, int pYPosition) {
 	      super(pContainer, pSlot, pXPosition, pYPosition);
 	      this.player = pPlayer;
 	   }
@@ -59,8 +59,8 @@ public class ExtendedGrinderResultSlot extends Slot {
 	   @Override
 	protected void checkTakeAchievements(ItemStack pStack) {
 	      pStack.onCraftedBy(this.player.level, this.player, this.removeCount);
-	      if (!this.player.level.isClientSide && this.container instanceof ExtendedGrinderTileEntity) {
-	         ((ExtendedGrinderTileEntity)this.container).awardUsedRecipesAndPopExperience(this.player);
+	      if (!this.player.level.isClientSide && this.container instanceof ExtendedStoneGrinderTileEntity) {
+	         ((ExtendedStoneGrinderTileEntity)this.container).awardUsedRecipesAndPopExperience(this.player);
 	      }
 
 	      this.removeCount = 0;

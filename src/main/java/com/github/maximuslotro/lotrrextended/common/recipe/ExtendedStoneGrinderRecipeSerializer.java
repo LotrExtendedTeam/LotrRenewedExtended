@@ -14,10 +14,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendeGrinderRecipe> {
+public class ExtendedStoneGrinderRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendeStoneGrinderRecipe> {
 
 	@Override
-	public ExtendeGrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+	public ExtendeStoneGrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 		String group = JSONUtils.getAsString(json, "group", "");
 		Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "ingredient"));
 		if (ingredient.isEmpty()) {
@@ -30,7 +30,15 @@ public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeS
 		float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
 		int grindingtime = JSONUtils.getAsInt(json, "grindingtime", 200);
 		float breakChance = JSONUtils.getAsFloat(json, "breakchance", 0.0F);
-		return new ExtendeGrinderRecipe(recipeId, group, ingredient, result, experience, grindingtime, breakChance);
+		int countMin;
+		int countMax;
+		if(json.has("countMin")&&json.has("countMax")){
+			countMin = JSONUtils.getAsInt(json, "countMin", 1);
+			countMax = JSONUtils.getAsInt(json, "countMax", 1);
+		}else {
+			countMin = countMax = JSONUtils.getAsInt(json, "count", 1);
+		}
+		return new ExtendeStoneGrinderRecipe(recipeId, group, ingredient, result, countMin, countMax, experience, grindingtime, breakChance);
 	}
 
 	public static ItemStack getItemStack(JsonObject json) {
@@ -39,27 +47,31 @@ public class ExtendedMillingRecipeSerializer extends ForgeRegistryEntry<IRecipeS
 		if (item == null) {
 			throw new JsonSyntaxException("Unknown item '" + itemName + "'");
 		}
-		return new ItemStack(item, JSONUtils.getAsInt(json, "count", 1));
+		return new ItemStack(item);
 	}
 
 	@Override
-	public ExtendeGrinderRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+	public ExtendeStoneGrinderRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 		String group = buffer.readUtf(32767);
 		Ingredient ingredient = Ingredient.fromNetwork(buffer);
 		ItemStack result = buffer.readItem();
 		float experience = buffer.readFloat();
 		int grindingtime = buffer.readVarInt();
 		float breakChance = buffer.readFloat();
-		return new ExtendeGrinderRecipe(recipeId, group, ingredient, result, experience, grindingtime, breakChance);
+		int countMin = buffer.readVarInt();
+		int countMax = buffer.readVarInt();
+		return new ExtendeStoneGrinderRecipe(recipeId, group, ingredient, result, countMin, countMax, experience, grindingtime, breakChance);
 	}
 
 	@Override
-	public void toNetwork(PacketBuffer buffer, ExtendeGrinderRecipe recipe) {
+	public void toNetwork(PacketBuffer buffer, ExtendeStoneGrinderRecipe recipe) {
 		buffer.writeUtf(recipe.group);
 		recipe.ingredient.toNetwork(buffer);
 		buffer.writeItem(recipe.result);
 		buffer.writeFloat(recipe.experience);
 		buffer.writeVarInt(recipe.grindingTime);
 		buffer.writeFloat(recipe.breakChance);
+		buffer.writeVarInt(recipe.countMin);
+		buffer.writeVarInt(recipe.countMax);
 	}
 }

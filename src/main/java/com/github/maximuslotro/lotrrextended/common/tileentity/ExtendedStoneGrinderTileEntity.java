@@ -5,10 +5,10 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeGrinderRecipe;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.google.common.collect.Lists;
 
@@ -50,7 +50,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
-public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity {
+public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity {
 	private static final int[] SLOTS_FOR_UP = new int[]{0};
 	private static final int[] SLOTS_FOR_DOWN = new int[]{2, 1};
 	private static final int[] SLOTS_FOR_SIDES = new int[]{0, 1};
@@ -64,11 +64,11 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 		public int get(int pIndex) {
 			switch(pIndex) {
 			case 0:
-				return ExtendedGrinderTileEntity.this.grindingProgress;
+				return ExtendedStoneGrinderTileEntity.this.grindingProgress;
 			case 1:
-				return ExtendedGrinderTileEntity.this.grindingTotalTime;
+				return ExtendedStoneGrinderTileEntity.this.grindingTotalTime;
 			case 2:
-				return ExtendedGrinderTileEntity.this.usingLubrication ? 1 : 0;
+				return ExtendedStoneGrinderTileEntity.this.usingLubrication ? 1 : 0;
 			default:
 				return 0;
 			}
@@ -77,13 +77,13 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 		public void set(int pIndex, int pValue) {
 			switch(pIndex) {
 			case 0:
-				ExtendedGrinderTileEntity.this.grindingProgress = pValue;
+				ExtendedStoneGrinderTileEntity.this.grindingProgress = pValue;
 				break;
 			case 1:
-				ExtendedGrinderTileEntity.this.grindingTotalTime = pValue;
+				ExtendedStoneGrinderTileEntity.this.grindingTotalTime = pValue;
 				break;
 			case 2:
-				ExtendedGrinderTileEntity.this.usingLubrication = pValue == 0 ? false : true;
+				ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue == 0 ? false : true;
 			}
 		}
 		@Override
@@ -94,16 +94,16 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
 	LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
-	private ExtendedGrinderTileEntity(TileEntityType<?> tileEntityType) {
+	private ExtendedStoneGrinderTileEntity(TileEntityType<?> tileEntityType) {
 		super(tileEntityType);
 	}
 
-	public ExtendedGrinderTileEntity() {
+	public ExtendedStoneGrinderTileEntity() {
 		this(ExtendedTileEntities.MILLSTONE.get());
 	}
 
 	private boolean isPowered() {
-		return this.getBlockState().getValue(ExtendedGrinderBlock.POWERED);
+		return this.getBlockState().getValue(ExtendedStoneGrinderBlock.POWERED);
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 				usingLubrication=false;
 			}
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
-				ExtendeGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
+				ExtendeStoneGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canGrind(irecipe)) {
 					++this.grindingProgress;
 					if (this.grindingProgress == this.grindingTotalTime) {
@@ -167,7 +167,7 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 		return ExtendedTags.Items.STONE_GRINDER_LUBRICANTS.contains(pStack.getItem());
 	}
 
-	protected boolean canGrind(@Nullable ExtendeGrinderRecipe recipe) {
+	protected boolean canGrind(@Nullable ExtendeStoneGrinderRecipe recipe) {
 		if (!this.items.get(0).isEmpty() && recipe != null) {
 			ItemStack itemstack = recipe.assemble(this);
 			if (itemstack.isEmpty()) {
@@ -189,25 +189,26 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 		}
 	}
 
-	private void grind(@Nullable ExtendeGrinderRecipe recipe) {
+	private void grind(@Nullable ExtendeStoneGrinderRecipe recipe) {
 		if (recipe != null && this.canGrind(recipe)) {
-			ItemStack itemstack = this.items.get(0);
-			ItemStack itemstack1 = recipe.assemble(this);
-			ItemStack itemstack2 = this.items.get(2);
+			ItemStack inputStack = this.items.get(0);
+			ItemStack resultStack = recipe.assemble(this);
+			ItemStack outputStack = this.items.get(2);
 			boolean needsLubeRemoving = false;
+			Random rand = this.level.random;
 			if(recipe.getBreakChance()>0.0f) {
-				Random rand = new Random();
 				if(rand.nextFloat()<recipe.getBreakChance()&&!this.usingLubrication) {
-					itemstack.shrink(1);
+					inputStack.shrink(1);
 					return;
 				}
 				needsLubeRemoving = true;
 
 			}
-			if (itemstack2.isEmpty()) {
-				this.items.set(2, itemstack1.copy());
-			} else if (itemstack2.getItem() == itemstack1.getItem()) {
-				itemstack2.grow(itemstack1.getCount());
+			resultStack.setCount(recipe.getCount(rand));
+			if (outputStack.isEmpty()) {
+				this.items.set(2, resultStack.copy());
+			} else if (ItemStack.isSame(resultStack, outputStack) && ItemStack.tagMatches(resultStack, outputStack)) {
+				outputStack.grow(resultStack.getCount());
 			}
 
 			if (!this.level.isClientSide) {
@@ -235,13 +236,12 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 			//if (itemstack.getItem() == Blocks.WET_SPONGE.asItem() && !this.items.get(1).isEmpty() && this.items.get(1).getItem() == Items.BUCKET) {
 			//	this.items.set(1, new ItemStack(Items.WATER_BUCKET));
 			//}
-
-			itemstack.shrink(1);
+			inputStack.shrink(1);
 		}
 	}
 
 	protected int getTotalMillingTime() {
-		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).map(ExtendeGrinderRecipe::getMillingTime).orElse(200);
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).map(ExtendeStoneGrinderRecipe::getMillingTime).orElse(200);
 	}
 
 	@Override
@@ -400,7 +400,7 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 		for(Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
 			p_235640_1_.getRecipeManager().byKey(entry.getKey()).ifPresent((p_235642_4_) -> {
 				list.add(p_235642_4_);
-				createExperience(p_235640_1_, p_235640_2_, entry.getIntValue(), ((ExtendeGrinderRecipe)p_235642_4_).getExperience());
+				createExperience(p_235640_1_, p_235640_2_, entry.getIntValue(), ((ExtendeStoneGrinderRecipe)p_235642_4_).getExperience());
 			});
 		}
 
@@ -457,6 +457,6 @@ public class ExtendedGrinderTileEntity extends LockableTileEntity implements ISi
 
 	@Override
 	protected Container createMenu(int pId, PlayerInventory pPlayer) {
-		return new ExtendedGrinderContainer(pId, pPlayer, this, this.dataAccess, null);
+		return new ExtendedStoneGrinderContainer(pId, pPlayer, this, this.dataAccess, null);
 	}
 }

@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:durnor_ore"
+  },
+  "result": "lotr:durnor",
+  "countMin": 2,
+  "countMax": 5,
+  "experience": 1.0
+}

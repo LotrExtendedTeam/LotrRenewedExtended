@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.eventhandlers.RenderHiredUnitHealthbars;
+import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedHiredUnitHealthbarRenderer;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
@@ -65,7 +65,7 @@ public class LotrExtendedModClient {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::login);
 		forgeBus.addListener(this::commandevent);
-		forgeBus.addListener(RenderHiredUnitHealthbars::renderHpBar);
+		forgeBus.addListener(ExtendedHiredUnitHealthbarRenderer::renderHpBar);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);

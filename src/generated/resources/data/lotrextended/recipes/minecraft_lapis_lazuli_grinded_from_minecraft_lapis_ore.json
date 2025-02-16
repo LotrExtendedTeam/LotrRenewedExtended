@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:lapis_ore"
+  },
+  "result": "minecraft:lapis_lazuli",
+  "countMin": 4,
+  "countMax": 9,
+  "experience": 1.0
+}

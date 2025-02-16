@@ -95,6 +95,7 @@ public interface ExtendedHirableEntity {
 
     void setStationary(boolean stationary);
 
+    //TODO combine into one method
     void updateFeetSlot(ItemStack stack);
 
     void updateHeadSlot(ItemStack stack);

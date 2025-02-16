@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -10,10 +10,10 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class ExtendedGrinderScreen extends ContainerScreen<ExtendedGrinderContainer> {
+public class ExtendedStoneGrinderScreen extends ContainerScreen<ExtendedStoneGrinderContainer> {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/stone_grinder.png");
 
-	public ExtendedGrinderScreen(ExtendedGrinderContainer pAbstractFurnaceMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
+	public ExtendedStoneGrinderScreen(ExtendedStoneGrinderContainer pAbstractFurnaceMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(pAbstractFurnaceMenu, pPlayerInventory, pTitle);
 	}
 

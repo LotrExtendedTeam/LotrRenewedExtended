@@ -150,6 +150,13 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShieldItem) {
+				try {
+					getExistingFile(lotrLoc("item/"+item.getKey()));
+					getExistingFile(lotrLoc("item/"+item.getKey()+"_blocking"));
+				}catch(IllegalStateException e) {
+					System.out.println("Missing shield model: "+item.getKey());
+					System.out.println("Missing shield model: "+item.getKey()+"_blocking");
+				}
 				continue;
 			}
 

@@ -85,7 +85,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
             new ExtendedTradeEntry(new ItemStack(LOTRItems.URUK_STEEL_INGOT.get()), 4, 6, 192),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.ORC_STEEL_INGOT.get()), 2, 4, 192),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31, 128),
-            new ExtendedTradeEntry(new ItemStack(Items.EMERALD, 8), 11, 19, 128),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.EMERALD.get(), 8), 11, 19, 128),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15, 128),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.RUBY.get()), 9, 15, 128),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13, 128),

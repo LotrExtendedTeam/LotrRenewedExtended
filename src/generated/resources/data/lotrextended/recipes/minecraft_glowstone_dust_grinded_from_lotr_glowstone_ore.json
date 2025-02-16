@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:glowstone_ore"
+  },
+  "result": "minecraft:glowstone_dust",
+  "countMin": 1,
+  "countMax": 3,
+  "experience": 1.0
+}

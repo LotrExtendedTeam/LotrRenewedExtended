@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:edhelvir_ore"
+  },
+  "result": "lotr:edhelvir",
+  "countMin": 2,
+  "countMax": 4,
+  "experience": 1.0
+}

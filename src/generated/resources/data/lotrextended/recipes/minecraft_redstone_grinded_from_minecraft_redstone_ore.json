@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:redstone_ore"
+  },
+  "result": "minecraft:redstone",
+  "countMin": 3,
+  "countMax": 5,
+  "experience": 1.0
+}

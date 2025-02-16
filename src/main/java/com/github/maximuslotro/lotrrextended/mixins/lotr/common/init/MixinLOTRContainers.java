@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedBookshelfContainer;
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrinderContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
 
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
@@ -44,8 +44,8 @@ public class MixinLOTRContainers {
 		ExtendedContainers.BOOKSHELF = registerExtended("bookshelf", "Bookshelf", () -> {
 			return IForgeContainerType.create(ExtendedBookshelfContainer::threeRows);
 		});
-		ExtendedContainers.MILLSTONE = registerExtended("stone_grinder", "Stone Grinder", () -> {
-			return IForgeContainerType.create(ExtendedGrinderContainer::new);
+		ExtendedContainers.STONE_GRINDER = registerExtended("stone_grinder", "Stone Grinder", () -> {
+			return IForgeContainerType.create(ExtendedStoneGrinderContainer::new);
 		});
 		ExtendedContainers.HIRED_UNIT_CONTAINER = register("hired_unit_menu", "Hired Unit Inventory", () -> {
 			return IForgeContainerType.create(ExtendedHiredUnitContainer::new);

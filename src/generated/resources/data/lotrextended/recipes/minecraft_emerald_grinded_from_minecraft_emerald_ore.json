@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "minecraft:emerald_ore"
+  },
+  "result": "minecraft:emerald",
+  "countMin": 1,
+  "countMax": 2,
+  "experience": 1.0
+}

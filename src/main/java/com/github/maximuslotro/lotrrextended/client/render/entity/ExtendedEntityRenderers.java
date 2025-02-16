@@ -29,7 +29,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BARROW_WIGHT.get(), ExtendedBarrowWightRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANNER_HOLDER.get(), ExtendedBannerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_MERCHANT.get(), ExtendedBreeMerchantRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), NullEntityRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_BREE_GUARD.get(), ExtendedHiredBreeGuardRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SHERIFF.get(), ExtendedBreeCaptainRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FARMER.get(), ExtendedBreeFarmerRenderer::new);
