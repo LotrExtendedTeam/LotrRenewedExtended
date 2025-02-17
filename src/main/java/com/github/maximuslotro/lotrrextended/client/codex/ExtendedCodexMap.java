@@ -16,11 +16,14 @@ import org.apache.logging.log4j.Logger;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedBaseCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedUnknownCodexEntry;
+import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedBaseSerializer;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IResource;
@@ -34,10 +37,10 @@ public class ExtendedCodexMap {
 	private static final Gson GSON = new Gson();
 	/** Pattern that matches numeric variable placeholders in a resource string, such as "%d", "%3$d", "%.2f" */
 	private static final Pattern UNSUPPORTED_FORMAT_PATTERN = Pattern.compile("%(\\d+\\$)?[\\d.]*[df]");
-	private final Map<String, ExtendedBaseCodexEntry> storage;
-	private static volatile ExtendedCodexMap instance = loadDefault();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private static final String directory = "codexdatabase";
+	private static volatile ExtendedCodexMap instance = loadDefault();
+	private final Map<String, ExtendedBaseCodexEntry> storage;
 
 	public ExtendedCodexMap(Map<String, ExtendedBaseCodexEntry> pStorage) {
 		this.storage = pStorage;
@@ -117,4 +120,26 @@ public class ExtendedCodexMap {
 
 		return map;
 	}
+    public static ExtendedBaseCodexEntry getCodexEntry(JsonElement json)
+    {
+    	if (!json.isJsonObject()) {
+            throw new JsonSyntaxException("Codex entry must be of JsonObjects");
+    	}
+        JsonObject jsonObject = json.getAsJsonObject();
+        String type = JSONUtils.getAsString(jsonObject, "type");
+        ExtendedBaseSerializer<?> serializer = ExtendedCodexManager.codexEntryTypes.get(type);
+        if (serializer == null)
+            throw new JsonSyntaxException("Unknown codex entry type: " + type.toString());
+        return serializer.deserializeCodexEntry(jsonObject);
+    }
+
+    public static <T extends ExtendedBaseCodexEntry> JsonObject serialize(T condition)
+    {
+        @SuppressWarnings("unchecked")
+        ExtendedBaseSerializer<T> serializer = (ExtendedBaseSerializer<T>) ExtendedCodexManager.codexEntryTypes.get(condition.getID());
+        if (serializer == null) {
+            throw new JsonSyntaxException("Unknown codex entry type: " + condition.getID().toString());
+        }
+        return serializer.serialize(condition);
+    }
 }

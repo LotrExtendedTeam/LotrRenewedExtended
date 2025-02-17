@@ -1,6 +1,8 @@
 package com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry;
 
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.ExtendedForgeRegistryBasedCodexEntry;
+import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedRegistrySerializer;
+import com.google.gson.JsonObject;
 
 import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
@@ -10,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ExtendedEffectCodexEntry extends ExtendedForgeRegistryBasedCodexEntry<Effect>{
+	public static final String ID = "effect";
 
 	public ExtendedEffectCodexEntry(ResourceLocation location) {
 		super(location);
@@ -24,4 +27,28 @@ public class ExtendedEffectCodexEntry extends ExtendedForgeRegistryBasedCodexEnt
 	public IForgeRegistry<Effect> getAsociatedForgeRegistry() {
 		return ForgeRegistries.POTIONS;
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
+
+    public static class Serializer implements ExtendedRegistrySerializer<ExtendedEffectCodexEntry>{
+        public static final Serializer INSTANCE = new Serializer();
+
+		@Override
+		public ExtendedEffectCodexEntry deserializeCodexEntry(JsonObject json) {
+			return new ExtendedEffectCodexEntry(getLocation(json));
+		}
+
+		@Override
+		public String getID() {
+			return ExtendedEffectCodexEntry.ID;
+		}
+
+		@Override
+		public JsonObject serializeRegistryCodexEntry(JsonObject json, ExtendedEffectCodexEntry entry) {
+			return json;
+		}
+    }
 }

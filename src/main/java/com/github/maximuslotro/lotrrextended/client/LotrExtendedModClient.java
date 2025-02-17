@@ -77,7 +77,6 @@ public class LotrExtendedModClient {
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
 
-		//DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::setupUsersUUID);
 	}
 
 	public LotrExtendedMod getParentInstance() {

@@ -1,6 +1,8 @@
 package com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry;
 
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.ExtendedForgeRegistryBasedCodexEntry;
+import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedRegistrySerializer;
+import com.google.gson.JsonObject;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -10,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ExtendedItemCodexEntry extends ExtendedForgeRegistryBasedCodexEntry<Item>{
+	public static final String ID = "item";
 
 	public ExtendedItemCodexEntry(ResourceLocation location) {
 		super(location);
@@ -24,4 +27,28 @@ public class ExtendedItemCodexEntry extends ExtendedForgeRegistryBasedCodexEntry
 	public IForgeRegistry<Item> getAsociatedForgeRegistry() {
 		return ForgeRegistries.ITEMS;
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
+
+    public static class Serializer implements ExtendedRegistrySerializer<ExtendedItemCodexEntry>{
+        public static final Serializer INSTANCE = new Serializer();
+
+		@Override
+		public ExtendedItemCodexEntry deserializeCodexEntry(JsonObject json) {
+			return new ExtendedItemCodexEntry(getLocation(json));
+		}
+
+		@Override
+		public String getID() {
+			return ExtendedItemCodexEntry.ID;
+		}
+
+		@Override
+		public JsonObject serializeRegistryCodexEntry(JsonObject json, ExtendedItemCodexEntry entry) {
+			return json;
+		}
+    }
 }

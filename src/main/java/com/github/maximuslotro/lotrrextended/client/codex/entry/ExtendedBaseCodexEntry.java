@@ -27,4 +27,6 @@ public abstract class ExtendedBaseCodexEntry {
 	public ResourceLocation getLocation() {
 		return location;
 	}
+
+	public abstract String getID();
 }
