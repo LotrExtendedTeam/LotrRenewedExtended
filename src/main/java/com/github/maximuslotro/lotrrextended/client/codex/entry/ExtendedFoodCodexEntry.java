@@ -8,7 +8,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedFoodCodexEntry extends ExtendedBaseCodexEntry{
-	public static final String ID = "food";
 
 	public ExtendedFoodCodexEntry(ResourceLocation location) {
 		super(location);
@@ -20,8 +19,8 @@ public class ExtendedFoodCodexEntry extends ExtendedBaseCodexEntry{
 	}
 
 	@Override
-	public String getID() {
-		return ID;
+	public ExtendedCodexEntryType getID() {
+		return ExtendedCodexEntryType.FOOD;
 	}
 
     public static class Serializer implements ExtendedBaseSerializer<ExtendedFoodCodexEntry>{
@@ -33,8 +32,8 @@ public class ExtendedFoodCodexEntry extends ExtendedBaseCodexEntry{
 		}
 
 		@Override
-		public String getID() {
-			return ExtendedFoodCodexEntry.ID;
+		public ExtendedCodexEntryType getID() {
+			return ExtendedCodexEntryType.FOOD;
 		}
 
 		@Override

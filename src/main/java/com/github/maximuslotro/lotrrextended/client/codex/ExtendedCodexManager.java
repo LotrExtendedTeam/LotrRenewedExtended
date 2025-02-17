@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedFoodCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedLoreCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedMechanicsCodexEntry;
@@ -23,7 +24,7 @@ import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
 public class ExtendedCodexManager implements ISelectiveResourceReloadListener {
-    public static final Map<String, ExtendedBaseSerializer<?>> codexEntryTypes = new HashMap<>();
+    public static final Map<ExtendedCodexEntryType, ExtendedBaseSerializer<?>> codexEntryTypes = new HashMap<>();
 
     static {
 		ExtendedCodexManager.register(ExtendedFoodCodexEntry.Serializer.INSTANCE);
@@ -42,7 +43,7 @@ public class ExtendedCodexManager implements ISelectiveResourceReloadListener {
 
     public static ExtendedBaseSerializer<?> register(ExtendedBaseSerializer<?> serializer)
     {
-        String key = serializer.getID();
+    	ExtendedCodexEntryType key = serializer.getID();
         if (codexEntryTypes.containsKey(key))
             throw new IllegalStateException("Duplicate codex serializer: " + key);
         codexEntryTypes.put(key, serializer);

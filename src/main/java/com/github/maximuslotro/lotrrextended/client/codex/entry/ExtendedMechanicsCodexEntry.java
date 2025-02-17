@@ -8,7 +8,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedMechanicsCodexEntry extends ExtendedBaseCodexEntry{
-	public static final String ID = "mechanics";
 
 	public ExtendedMechanicsCodexEntry(ResourceLocation location) {
 		super(location);
@@ -20,8 +19,8 @@ public class ExtendedMechanicsCodexEntry extends ExtendedBaseCodexEntry{
 	}
 
 	@Override
-	public String getID() {
-		return ID;
+	public ExtendedCodexEntryType getID() {
+		return ExtendedCodexEntryType.MECHANICS;
 	}
 
     public static class Serializer implements ExtendedBaseSerializer<ExtendedMechanicsCodexEntry>{
@@ -33,8 +32,8 @@ public class ExtendedMechanicsCodexEntry extends ExtendedBaseCodexEntry{
 		}
 
 		@Override
-		public String getID() {
-			return ExtendedMechanicsCodexEntry.ID;
+		public ExtendedCodexEntryType getID() {
+			return ExtendedCodexEntryType.MECHANICS;
 		}
 
 		@Override

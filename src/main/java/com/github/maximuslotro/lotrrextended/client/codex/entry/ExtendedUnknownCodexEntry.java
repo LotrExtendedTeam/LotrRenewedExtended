@@ -6,7 +6,6 @@ import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedUnknownCodexEntry extends ExtendedBaseCodexEntry{
 	public static final ExtendedUnknownCodexEntry UNKNOWN = new ExtendedUnknownCodexEntry(new ResourceLocation("empty"));
-	public static final String ID = "unknown";
 
 	public ExtendedUnknownCodexEntry(ResourceLocation location) {
 		super(location);
@@ -17,7 +16,7 @@ public class ExtendedUnknownCodexEntry extends ExtendedBaseCodexEntry{
 	}
 
 	@Override
-	public String getID() {
-		return ID;
+	public ExtendedCodexEntryType getID() {
+		return ExtendedCodexEntryType.UNKNOWN;
 	}
 }

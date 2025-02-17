@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.codex.serializers;
 
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedBaseCodexEntry;
+import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.google.gson.JsonObject;
 
 import net.minecraft.util.ResourceLocation;
@@ -15,12 +16,12 @@ public abstract interface ExtendedBaseSerializer<V extends ExtendedBaseCodexEntr
 
 	public default JsonObject serialize(V entry) {
 		JsonObject json = new JsonObject();
-		json.addProperty("type", getID());
+		json.addProperty("type", getID().name());
 		json.addProperty("value", entry.getLocation().toString());
 		return serializeCodexEntry(json, entry);
 	}
 
 	public abstract JsonObject serializeCodexEntry(JsonObject json, V entry);
 
-	public abstract String getID();
+	public abstract ExtendedCodexEntryType getID();
 }

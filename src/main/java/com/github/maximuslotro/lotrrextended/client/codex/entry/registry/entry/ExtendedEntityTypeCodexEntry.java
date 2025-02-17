@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry;
 
+import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.ExtendedForgeRegistryBasedCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedRegistrySerializer;
 import com.google.gson.JsonObject;
@@ -12,7 +13,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ExtendedEntityTypeCodexEntry extends ExtendedForgeRegistryBasedCodexEntry<EntityType<?>>{
-	public static final String ID = "entitytype";
 
 	public ExtendedEntityTypeCodexEntry(ResourceLocation location) {
 		super(location);
@@ -29,8 +29,8 @@ public class ExtendedEntityTypeCodexEntry extends ExtendedForgeRegistryBasedCode
 	}
 
 	@Override
-	public String getID() {
-		return ID;
+	public ExtendedCodexEntryType getID() {
+		return ExtendedCodexEntryType.ENTITYTYPE;
 	}
 
     public static class Serializer implements ExtendedRegistrySerializer<ExtendedEntityTypeCodexEntry>{
@@ -42,8 +42,8 @@ public class ExtendedEntityTypeCodexEntry extends ExtendedForgeRegistryBasedCode
 		}
 
 		@Override
-		public String getID() {
-			return ExtendedEntityTypeCodexEntry.ID;
+		public ExtendedCodexEntryType getID() {
+			return ExtendedCodexEntryType.ENTITYTYPE;
 		}
 
 		@Override

@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry;
 
+import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.ExtendedVanillaRegistryKeyBasedCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedRegistrySerializer;
 import com.google.gson.JsonObject;
@@ -12,7 +13,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ExtendedDimensionCodexEntry extends ExtendedVanillaRegistryKeyBasedCodexEntry<World, RegistryKey<World>>{
-	public static final String ID = "dimension";
 
 	public ExtendedDimensionCodexEntry(ResourceLocation location) {
 		super(location);
@@ -29,8 +29,8 @@ public class ExtendedDimensionCodexEntry extends ExtendedVanillaRegistryKeyBased
 	}
 
 	@Override
-	public String getID() {
-		return ID;
+	public ExtendedCodexEntryType getID() {
+		return ExtendedCodexEntryType.DIMENSION;
 	}
 
     public static class Serializer implements ExtendedRegistrySerializer<ExtendedDimensionCodexEntry>{
@@ -42,8 +42,8 @@ public class ExtendedDimensionCodexEntry extends ExtendedVanillaRegistryKeyBased
 		}
 
 		@Override
-		public String getID() {
-			return ExtendedDimensionCodexEntry.ID;
+		public ExtendedCodexEntryType getID() {
+			return ExtendedCodexEntryType.DIMENSION;
 		}
 
 		@Override

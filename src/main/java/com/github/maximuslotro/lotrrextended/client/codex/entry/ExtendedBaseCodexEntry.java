@@ -28,5 +28,5 @@ public abstract class ExtendedBaseCodexEntry {
 		return location;
 	}
 
-	public abstract String getID();
+	public abstract ExtendedCodexEntryType getID();
 }

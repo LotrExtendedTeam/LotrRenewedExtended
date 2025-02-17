@@ -8,7 +8,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedLoreCodexEntry extends ExtendedBaseCodexEntry{
-	public static final String ID = "lotr";
 
 	public ExtendedLoreCodexEntry(ResourceLocation location) {
 		super(location);
@@ -20,8 +19,8 @@ public class ExtendedLoreCodexEntry extends ExtendedBaseCodexEntry{
 	}
 
 	@Override
-	public String getID() {
-		return ID;
+	public ExtendedCodexEntryType getID() {
+		return ExtendedCodexEntryType.LORE;
 	}
 
     public static class Serializer implements ExtendedBaseSerializer<ExtendedLoreCodexEntry>{
@@ -33,8 +32,8 @@ public class ExtendedLoreCodexEntry extends ExtendedBaseCodexEntry{
 		}
 
 		@Override
-		public String getID() {
-			return ExtendedLoreCodexEntry.ID;
+		public ExtendedCodexEntryType getID() {
+			return ExtendedCodexEntryType.LORE;
 		}
 
 		@Override
