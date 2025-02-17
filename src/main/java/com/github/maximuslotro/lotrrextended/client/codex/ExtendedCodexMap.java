@@ -27,6 +27,7 @@ import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.ModList;
 
 public class ExtendedCodexMap {
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -88,6 +89,10 @@ public class ExtendedCodexMap {
 		for(ResourceLocation resourcelocation : pResourceManager.listResources(directory, (p_223379_0_) -> {
 			return p_223379_0_.endsWith(".json");
 		})) {
+			// Only load data for loaded mods
+			if(!ModList.get().isLoaded(resourcelocation.getNamespace())) {
+				continue;
+			}
 			String s = resourcelocation.getPath();
 			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 
