@@ -5,8 +5,6 @@ import java.lang.ref.WeakReference;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -14,11 +12,6 @@ public abstract class ExtendedForgeRegistryBasedCodexEntry<V extends IForgeRegis
 
 	public ExtendedForgeRegistryBasedCodexEntry(ResourceLocation location) {
 		super(location);
-	}
-
-	@Override
-	public ITextComponent getTitle() {
-		return new TranslationTextComponent(getInstanceObject().getRegistryName().toString());
 	}
 
 	/*

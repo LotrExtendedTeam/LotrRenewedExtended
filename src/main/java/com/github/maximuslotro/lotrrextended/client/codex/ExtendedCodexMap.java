@@ -35,9 +35,9 @@ public class ExtendedCodexMap {
 	private static final Pattern UNSUPPORTED_FORMAT_PATTERN = Pattern.compile("%(\\d+\\$)?[\\d.]*[df]");
 	private final Map<String, ExtendedBaseCodexEntry> storage;
 	private static volatile ExtendedCodexMap instance = loadDefault();
-	   private static final int PATH_SUFFIX_LENGTH = ".json".length();
-	   private static final String directory = "codexdatabase";
-	  
+	private static final int PATH_SUFFIX_LENGTH = ".json".length();
+	private static final String directory = "codexdatabase";
+
 	public ExtendedCodexMap(Map<String, ExtendedBaseCodexEntry> pStorage) {
 		this.storage = pStorage;
 	}
@@ -82,34 +82,34 @@ public class ExtendedCodexMap {
 	}
 
 	public static Map<ResourceLocation, JsonElement> getJson(IResourceManager pResourceManager) {
-	      Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
-	      int i = directory.length() + 1;
+		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
+		int i = directory.length() + 1;
 
-	      for(ResourceLocation resourcelocation : pResourceManager.listResources(directory, (p_223379_0_) -> {
-	         return p_223379_0_.endsWith(".json");
-	      })) {
-	         String s = resourcelocation.getPath();
-	         ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
+		for(ResourceLocation resourcelocation : pResourceManager.listResources(directory, (p_223379_0_) -> {
+			return p_223379_0_.endsWith(".json");
+		})) {
+			String s = resourcelocation.getPath();
+			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 
-	         try (
-	            IResource iresource = pResourceManager.getResource(resourcelocation);
-	            InputStream inputstream = iresource.getInputStream();
-	            Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
-	         ) {
-	            JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
-	            if (jsonelement != null) {
-	               JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
-	               if (jsonelement1 != null) {
-	                  throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
-	               }
-	            } else {
-	               LOGGER.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
-	            }
-	         } catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-	            LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
-	         }
-	      }
+			try (
+				IResource iresource = pResourceManager.getResource(resourcelocation);
+				InputStream inputstream = iresource.getInputStream();
+				Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+				) {
+				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
+				if (jsonelement != null) {
+					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
+					if (jsonelement1 != null) {
+						throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
+					}
+				} else {
+					LOGGER.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
+				}
+			} catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
+				LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+			}
+		}
 
-	      return map;
-	   }
+		return map;
+	}
 }

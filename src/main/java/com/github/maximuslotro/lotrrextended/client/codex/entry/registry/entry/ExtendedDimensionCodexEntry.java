@@ -17,7 +17,7 @@ public class ExtendedDimensionCodexEntry extends ExtendedVanillaRegistryKeyBased
 
 	@Override
 	public ITextComponent getTitle() {
-		return new TranslationTextComponent(getInstanceObject().location().toString());
+		return new TranslationTextComponent(location.toString());
 	}
 
 	@Override
