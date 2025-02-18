@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 
 public class ExtendedDimensionCodexEntry extends ExtendedVanillaRegistryKeyBasedCodexEntry<World, RegistryKey<World>>{
 
-	public ExtendedDimensionCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedDimensionCodexEntry(ResourceLocation locationID, ResourceLocation location) {
+		super(locationID, location);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class ExtendedDimensionCodexEntry extends ExtendedVanillaRegistryKeyBased
         public static final Serializer INSTANCE = new Serializer();
 
 		@Override
-		public ExtendedDimensionCodexEntry deserializeCodexEntry(JsonObject json) {
-			return new ExtendedDimensionCodexEntry(getLocation(json));
+		public ExtendedDimensionCodexEntry deserializeRegistryCodexEntry(ResourceLocation locationID, ResourceLocation location, JsonObject json) {
+			return new ExtendedDimensionCodexEntry(locationID, location);
 		}
 
 		@Override

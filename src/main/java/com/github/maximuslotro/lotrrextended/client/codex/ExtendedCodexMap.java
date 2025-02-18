@@ -67,7 +67,7 @@ public class ExtendedCodexMap {
 	public static void inject(ExtendedCodexMap mapInstance) {
 		instance = mapInstance;
 		for(Entry<String, ExtendedBaseCodexEntry> entry : mapInstance.storage.entrySet()) {
-			ExtendedLog.info(entry.getKey()+entry.getValue().getLocation().toString());
+			ExtendedLog.info(entry.getKey()+entry.getValue().getLocationID().toString());
 		}
 	}
 
@@ -98,10 +98,10 @@ public class ExtendedCodexMap {
 			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 
 			try (
-				IResource iresource = pResourceManager.getResource(resourcelocation);
-				InputStream inputstream = iresource.getInputStream();
-				Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
-				) {
+					IResource iresource = pResourceManager.getResource(resourcelocation);
+					InputStream inputstream = iresource.getInputStream();
+					Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+					) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
 					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
@@ -119,32 +119,41 @@ public class ExtendedCodexMap {
 		return map;
 	}
 
-    public static ExtendedBaseCodexEntry getCodexEntry(JsonElement json)
-    {
-    	if (!json.isJsonObject()) {
-            throw new JsonSyntaxException("Codex entry must be of JsonObjects");
-    	}
-        JsonObject jsonObject = json.getAsJsonObject();
-        String type = JSONUtils.getAsString(jsonObject, "type");
-        try {
-            ExtendedCodexEntryType cType = ExtendedCodexEntryType.valueOf(type);
-            ExtendedBaseSerializer<?> serializer = ExtendedCodexManager.codexEntryTypes.get(cType);
-            if (serializer == null) {
-                throw new JsonSyntaxException("Unknown codex entry data type: " + type.toString());
-            }
-            return serializer.deserializeCodexEntry(jsonObject);
-        }catch(IllegalArgumentException e) {
-        }
-        throw new JsonSyntaxException("Unknown codex entry type: " + type.toString());
-    }
+	/**
+	 * Deserializes the passed json information and returns a codex entry
+	 * @param locationID A {@Link ResourceLocation} id of the file
+	 * @param json The {@Link JsonElement} representation of the output to deserialize
+	 * @return {@Link ExtendedBaseCodexEntry} representation of the passed json information
+	 * */
+	public static ExtendedBaseCodexEntry getCodexEntry(ResourceLocation locationID, JsonElement json){
+		if (!json.isJsonObject()) {
+			throw new JsonSyntaxException("Codex entry must be of JsonObjects");
+		}
+		JsonObject jsonObject = json.getAsJsonObject();
+		String type = JSONUtils.getAsString(jsonObject, "type");
+		try {
+			ExtendedCodexEntryType cType = ExtendedCodexEntryType.valueOf(type);
+			ExtendedBaseSerializer<?> serializer = ExtendedCodexManager.codexEntryTypes.get(cType);
+			if (serializer == null) {
+				throw new JsonSyntaxException("Unknown codex entry data type: " + type.toString());
+			}
+			return serializer.deserializeCodexEntry(locationID, jsonObject);
+		}catch(IllegalArgumentException e) {
+		}
+		throw new JsonSyntaxException("Unknown codex entry type: " + type.toString());
+	}
 
-    public static <T extends ExtendedBaseCodexEntry> JsonObject serialize(T condition)
-    {
-        @SuppressWarnings("unchecked")
-        ExtendedBaseSerializer<T> serializer = (ExtendedBaseSerializer<T>) ExtendedCodexManager.codexEntryTypes.get(condition.getID());
-        if (serializer == null) {
-            throw new JsonSyntaxException("Unknown codex entry type: " + condition.getID().toString());
-        }
-        return serializer.serialize(condition);
-    }
+	/**
+	 * Serialize the passed {@Link ExtendedBaseCodexEntry} to json
+	 * @param entry the instance of {@Link ExtendedBaseCodexEntry} to serialize
+	 * @return {@Link JsonObject} of the entry
+	 * */
+	public static <T extends ExtendedBaseCodexEntry> JsonObject serialize(T condition){
+		@SuppressWarnings("unchecked")
+		ExtendedBaseSerializer<T> serializer = (ExtendedBaseSerializer<T>) ExtendedCodexManager.codexEntryTypes.get(condition.getID());
+		if (serializer == null) {
+			throw new JsonSyntaxException("Unknown codex entry type: " + condition.getID().toString());
+		}
+		return serializer.serialize(condition);
+	}
 }

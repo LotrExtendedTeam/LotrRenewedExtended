@@ -9,18 +9,19 @@ import net.minecraft.util.registry.Registry;
 
 public abstract class ExtendedVanillaRegistryBasedCodexEntry<V> extends ExtendedRegistryBasedCodexEntry<V>{
 
-	public ExtendedVanillaRegistryBasedCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedVanillaRegistryBasedCodexEntry(ResourceLocation locationID, ResourceLocation location) {
+		super(locationID, location);
 	}
 
-	/*
-	 * Used to retrieve an approprate registry for the Codex entry
-	 * Avoid using this method, by defaulting to getAsociatedVanillaRegistry
+	/**
+	 * Used to retrieve an appropriate registry for the Codex entry
+	 * @return {@Link Registry} to be used for looking up this codex data's type
 	 * */
 	public abstract Registry<V> getAsociatedVanillaRegistry();
 
-	/*
+	/**
 	 * Gets an instance of this codex's entry, using the Vanilla registry
+	 * @return The registry object defined by this codex entry
 	 * */
 	@Override
 	public V getInstanceObject() {

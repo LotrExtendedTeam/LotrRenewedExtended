@@ -14,8 +14,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ExtendedBiomeCodexEntry extends ExtendedForgeRegistryBasedCodexEntry<Biome>{
 
-	public ExtendedBiomeCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedBiomeCodexEntry(ResourceLocation locationID, ResourceLocation location) {
+		super(locationID, location);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class ExtendedBiomeCodexEntry extends ExtendedForgeRegistryBasedCodexEntr
         public static final Serializer INSTANCE = new Serializer();
 
 		@Override
-		public ExtendedBiomeCodexEntry deserializeCodexEntry(JsonObject json) {
-			return new ExtendedBiomeCodexEntry(getLocation(json));
+		public ExtendedBiomeCodexEntry deserializeRegistryCodexEntry(ResourceLocation locationID, ResourceLocation location, JsonObject json) {
+			return new ExtendedBiomeCodexEntry(locationID, location);
 		}
 
 		@Override

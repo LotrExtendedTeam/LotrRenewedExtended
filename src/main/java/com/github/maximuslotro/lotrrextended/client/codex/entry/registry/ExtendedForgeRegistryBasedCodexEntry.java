@@ -10,19 +10,19 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public abstract class ExtendedForgeRegistryBasedCodexEntry<V extends IForgeRegistryEntry<V>> extends ExtendedRegistryBasedCodexEntry<V>{
 
-	public ExtendedForgeRegistryBasedCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedForgeRegistryBasedCodexEntry(ResourceLocation locationID, ResourceLocation location) {
+		super(locationID, location);
 	}
 
-	/*
-	 * Used to retrieve an approprate registry for the Codex entry
-	 * Use this method as much as possable, only using getAsociatedVanillaRegistry
-	 * when there is no appropriate {@Link ForgeRegistries} available
+	/**
+	 * Used to retrieve an appropriate registry for the Codex entry
+	 * @return {@Link IForgeRegistry} to be used for looking up this codex data's type
 	 * */
 	public abstract IForgeRegistry<V> getAsociatedForgeRegistry();
 
-	/*
+	/**
 	 * Gets an instance of this codex's entry, using the Forge registry
+	 * @return The registry object defined by this codex entry
 	 * */
 	public V getInstanceObject() {
 		if(object.get()!=null) {

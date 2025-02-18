@@ -9,13 +9,13 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedFoodCodexEntry extends ExtendedBaseCodexEntry{
 
-	public ExtendedFoodCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedFoodCodexEntry(ResourceLocation locationID) {
+		super(locationID);
 	}
 
 	@Override
 	public ITextComponent getTitle() {
-		return new TranslationTextComponent(location.toString());
+		return new TranslationTextComponent("FOOD");
 	}
 
 	@Override
@@ -27,8 +27,8 @@ public class ExtendedFoodCodexEntry extends ExtendedBaseCodexEntry{
         public static final Serializer INSTANCE = new Serializer();
 
 		@Override
-		public ExtendedFoodCodexEntry deserializeCodexEntry(JsonObject json) {
-			return new ExtendedFoodCodexEntry(getLocation(json));
+		public ExtendedFoodCodexEntry deserializeCodexEntry(ResourceLocation locationID, JsonObject json) {
+			return new ExtendedFoodCodexEntry(locationID);
 		}
 
 		@Override

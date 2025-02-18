@@ -9,13 +9,13 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedMechanicsCodexEntry extends ExtendedBaseCodexEntry{
 
-	public ExtendedMechanicsCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedMechanicsCodexEntry(ResourceLocation locationID) {
+		super(locationID);
 	}
 
 	@Override
 	public ITextComponent getTitle() {
-		return new TranslationTextComponent(location.toString());
+		return new TranslationTextComponent("MECHANICS");
 	}
 
 	@Override
@@ -27,8 +27,8 @@ public class ExtendedMechanicsCodexEntry extends ExtendedBaseCodexEntry{
         public static final Serializer INSTANCE = new Serializer();
 
 		@Override
-		public ExtendedMechanicsCodexEntry deserializeCodexEntry(JsonObject json) {
-			return new ExtendedMechanicsCodexEntry(getLocation(json));
+		public ExtendedMechanicsCodexEntry deserializeCodexEntry(ResourceLocation locationID, JsonObject json) {
+			return new ExtendedMechanicsCodexEntry(locationID);
 		}
 
 		@Override

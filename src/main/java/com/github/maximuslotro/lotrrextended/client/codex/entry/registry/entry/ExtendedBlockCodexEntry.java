@@ -14,8 +14,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ExtendedBlockCodexEntry extends ExtendedForgeRegistryBasedCodexEntry<Block>{
 
-	public ExtendedBlockCodexEntry(ResourceLocation location) {
-		super(location);
+	public ExtendedBlockCodexEntry(ResourceLocation locationID, ResourceLocation location) {
+		super(locationID, location);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class ExtendedBlockCodexEntry extends ExtendedForgeRegistryBasedCodexEntr
         public static final Serializer INSTANCE = new Serializer();
 
 		@Override
-		public ExtendedBlockCodexEntry deserializeCodexEntry(JsonObject json) {
-			return new ExtendedBlockCodexEntry(getLocation(json));
+		public ExtendedBlockCodexEntry deserializeRegistryCodexEntry(ResourceLocation locationID, ResourceLocation location, JsonObject json) {
+			return new ExtendedBlockCodexEntry(locationID, location);
 		}
 
 		@Override

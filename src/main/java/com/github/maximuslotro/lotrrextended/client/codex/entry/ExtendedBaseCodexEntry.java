@@ -6,12 +6,12 @@ import net.minecraft.util.text.ITextComponent;
 public abstract class ExtendedBaseCodexEntry {
 
 	/*
-	 * Location of the codex entry
+	 * File/ID location of this codex entry
 	 * */
-	protected ResourceLocation location;
-
-	public ExtendedBaseCodexEntry(ResourceLocation location) {
-		this.location = location;
+	private final ResourceLocation locationID;
+	
+	public ExtendedBaseCodexEntry(ResourceLocation locationID) {
+		this.locationID = locationID;
 	}
 
 	/*
@@ -21,12 +21,16 @@ public abstract class ExtendedBaseCodexEntry {
 	public abstract ITextComponent getTitle();
 
 	/*
-	 * Get the locaion of this codex entry
+	 * Gets the {@Link ExtendedCodexEntryType} for this codex entry
+	 * @return A {@Link ExtendedCodexEntryType}
+	 * */
+	public abstract ExtendedCodexEntryType getID();
+
+	/*
+	 * Get the File/ID location of this codex entry
 	 * @return A {@Link ResourceLocation} address of the entry
 	 * */
-	public ResourceLocation getLocation() {
-		return location;
+	public ResourceLocation getLocationID() {
+		return locationID;
 	}
-
-	public abstract ExtendedCodexEntryType getID();
 }
