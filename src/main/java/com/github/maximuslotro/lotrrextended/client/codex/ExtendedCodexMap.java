@@ -9,9 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedBaseCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
@@ -20,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedBa
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -33,23 +31,46 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 
 public class ExtendedCodexMap {
-	private static final Logger LOGGER = LogManager.getLogger();
-	private static final Gson GSON = new Gson();
+	private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private static final String directory = "codexdatabase";
-	private static volatile ExtendedCodexMap instance = loadDefault();
-	private final Map<String, ExtendedBaseCodexEntry> storage;
 
-	public ExtendedCodexMap(Map<String, ExtendedBaseCodexEntry> pStorage) {
+	/**
+	 * Default language to load en_us
+	 * */
+	private static final String DEFAULTLANG = "en_us";
+
+	/**
+	 * Singleton instance of {@Link ExtendedCodexMap}
+	 * */
+	private static volatile ExtendedCodexMap instance = loadDefault();
+
+	/**
+	 * Internal client-side codex database
+	 * */
+	private final Map<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> storage;
+
+	public ExtendedCodexMap(Map<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> pStorage) {
 		this.storage = pStorage;
 	}
 
-	public ExtendedBaseCodexEntry getOrDefault(String pId) {
-		return this.storage.getOrDefault(pId, ExtendedUnknownCodexEntry.UNKNOWN);
+	/**
+	 * Gets the codex entry from the database
+	 * @param type The type of codex entry to search for
+	 * @param pId The codex entry's internal id
+	 * @return {@Link ExtendedBaseCodexEntry} present in the map, or ExtendedUnknownCodexEntry.UNKNOWN
+	 * */
+	public ExtendedBaseCodexEntry getOrDefault(ExtendedCodexEntryType type, String pId) {
+		return this.storage.containsKey(type) ? this.storage.get(type).getOrDefault(pId, ExtendedUnknownCodexEntry.UNKNOWN) : ExtendedUnknownCodexEntry.UNKNOWN;
 	}
 
-	public boolean has(String pId) {
-		return this.storage.containsKey(pId);
+	/**
+	 * Checks if the loaded client codex database contains the given entry
+	 * @param type The type of codex entry to search for
+	 * @param pId The codex entry's internal id
+	 * */
+	public boolean has(ExtendedCodexEntryType type, ResourceLocation pId) {
+		return this.storage.containsKey(type) && this.storage.get(type).containsKey(pId);
 	}
 
 	/**
@@ -66,53 +87,82 @@ public class ExtendedCodexMap {
 	 */
 	public static void inject(ExtendedCodexMap mapInstance) {
 		instance = mapInstance;
-		for(Entry<String, ExtendedBaseCodexEntry> entry : mapInstance.storage.entrySet()) {
-			ExtendedLog.info(entry.getKey()+entry.getValue().getLocationID().toString());
+		for(Entry<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> map : mapInstance.storage.entrySet()) {
+			ExtendedLog.info("######################"+map.getKey().name()+"######################");
+			for(Entry<ResourceLocation, ExtendedBaseCodexEntry> mapInside : map.getValue().entrySet()) {
+				ExtendedLog.info(mapInside.getKey().toString()+" : "+ mapInside.getValue().toString());
+			}
 		}
+		ExtendedLog.info(mapInstance.storage.toString());
 	}
 
+	/**
+	 * Loads the default codex map, defaults to en_us (American English)
+	 * @return A {@Link ExtendedCodexMap} instance
+	 * */
 	public static ExtendedCodexMap loadDefault() {
 		Minecraft mc = Minecraft.getInstance();
-		return loadFrom(mc.getResourceManager(), "en_us");
+		return loadFrom(mc.getResourceManager(), DEFAULTLANG);
 	}
 
+	/**
+	 * Loads the client-side Codex database given the selected language
+	 * Initials loads the en_us language map, then overrides it with the selected language map
+	 * This is the default behavior for Minecraft's language map
+	 * @param pManager A {@Link IResourceManager} for loading the client assets
+	 * @param selectedLang A {@Link String} code of the selected minecraft localization
+	 * @return A {@Link ExtendedCodexMap} instance of the loaded client-side codex database
+	 * */
 	public static ExtendedCodexMap loadFrom(IResourceManager pManager, String selectedLang) {
-		Map<ResourceLocation, JsonElement> map = getJson(pManager);
-		Map<String, ExtendedBaseCodexEntry> dataMap = Maps.newHashMap();
-		// TODO finish data handeling
+		Map<ResourceLocation, JsonElement> map = getJson(pManager, DEFAULTLANG);
+		// Check if should load from other languages
+		if(!DEFAULTLANG.equals(selectedLang)) {
+			map.putAll(getJson(pManager, selectedLang));
+		}
+		Map<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> dataMap = Maps.newHashMap();
+		for(Entry<ResourceLocation, JsonElement> entry : map.entrySet()) {
+			ExtendedBaseCodexEntry codexEntry = getCodexEntry(entry.getKey(), entry.getValue());
+			if(!dataMap.containsKey(codexEntry.getID())) {
+				dataMap.put(codexEntry.getID(), Maps.newHashMap());
+			}
+			dataMap.get(codexEntry.getID()).put(codexEntry.getLocationID(), codexEntry);
+		}
 		return new ExtendedCodexMap(ImmutableMap.copyOf(dataMap));
 	}
 
-	public static Map<ResourceLocation, JsonElement> getJson(IResourceManager pResourceManager) {
+	public static Map<ResourceLocation, JsonElement> getJson(IResourceManager pResourceManager, String selectedLang) {
 		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
+		// Get codex folder plus slash length
 		int i = directory.length() + 1;
+		// Get language code length plus underscore length
+		int langLength = selectedLang.length()+1;
 
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(directory, (p_223379_0_) -> {
-			return p_223379_0_.endsWith(".json");
+		for(ResourceLocation listedResource : pResourceManager.listResources(directory, (path) -> {
+			return path.endsWith(".json") && path.contains(selectedLang);
 		})) {
 			// Only load data for loaded mods
-			if(!ModList.get().isLoaded(resourcelocation.getNamespace())) {
+			if(!ModList.get().isLoaded(listedResource.getNamespace())) {
 				continue;
 			}
-			String s = resourcelocation.getPath();
-			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
-
+			String s = listedResource.getPath();
+			// Build internal id of the codex entry
+			ResourceLocation cleanedCodexFIlePath = new ResourceLocation(listedResource.getNamespace(), s.substring(i, s.length() - langLength - PATH_SUFFIX_LENGTH));
 			try (
-					IResource iresource = pResourceManager.getResource(resourcelocation);
+					IResource iresource = pResourceManager.getResource(listedResource);
 					InputStream inputstream = iresource.getInputStream();
 					Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
 					) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
-					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
-					if (jsonelement1 != null) {
-						throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
+					JsonElement existingJson = map.put(cleanedCodexFIlePath, jsonelement);
+					if (existingJson != null) {
+						throw new IllegalStateException("Duplicate data file ignored with ID " + cleanedCodexFIlePath);
 					}
 				} else {
-					LOGGER.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
+					ExtendedLog.error("Couldn't load codex data file {} from {} as it's null or empty", cleanedCodexFIlePath, listedResource);
 				}
 			} catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-				LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+				ExtendedLog.error("Couldn't parse codex data file {} from {}", cleanedCodexFIlePath, listedResource, jsonparseexception);
 			}
 		}
 

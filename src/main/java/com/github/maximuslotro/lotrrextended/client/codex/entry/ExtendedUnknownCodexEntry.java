@@ -19,4 +19,8 @@ public class ExtendedUnknownCodexEntry extends ExtendedBaseCodexEntry{
 	public ExtendedCodexEntryType getID() {
 		return ExtendedCodexEntryType.UNKNOWN;
 	}
+
+	public boolean isUnknown() {
+		return true;
+	}
 }

@@ -32,4 +32,9 @@ public abstract class ExtendedRegistryBasedCodexEntry<V> extends ExtendedBaseCod
 	 * @return The registry object defined by this codex entry
 	 * */
 	public abstract V getInstanceObject();
+
+	@Override
+	public String toString() {
+		return "[regLoc:"+location.toString()+","+super.toString()+"]";
+	}
 }

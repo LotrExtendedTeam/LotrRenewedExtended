@@ -33,4 +33,17 @@ public abstract class ExtendedBaseCodexEntry {
 	public ResourceLocation getLocationID() {
 		return locationID;
 	}
+
+	/**
+	 * Checks if this codex entry is an invalid or unknown type
+	 * @return True if unknown
+	 * */
+	public boolean isUnknown() {
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "[locID:"+locationID.toString()+"]";
+	}
 }

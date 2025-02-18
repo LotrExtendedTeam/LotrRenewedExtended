@@ -24,6 +24,9 @@ import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
 public class ExtendedCodexManager implements ISelectiveResourceReloadListener {
+	/**
+	 * A list of Codex entry serializers/deserializers
+	 * */
     public static final Map<ExtendedCodexEntryType, ExtendedBaseSerializer<?>> codexEntryTypes = new HashMap<>();
 
     static {
@@ -41,15 +44,19 @@ public class ExtendedCodexManager implements ISelectiveResourceReloadListener {
 
 	public ExtendedCodexManager() {}
 
-    public static ExtendedBaseSerializer<?> register(ExtendedBaseSerializer<?> serializer)
+	/**
+	 * Proper place to register new codex entry type serializers/deserializers
+	 * @param serializer The {@Link ExtendedBaseSerializer} instance to register
+	 * */
+    public static void register(ExtendedBaseSerializer<?> serializer)
     {
     	ExtendedCodexEntryType key = serializer.getID();
         if (codexEntryTypes.containsKey(key))
             throw new IllegalStateException("Duplicate codex serializer: " + key);
         codexEntryTypes.put(key, serializer);
-        return serializer;
     }
 
+    @Override
 	public void onResourceManagerReload(IResourceManager pResourceManager, Predicate<IResourceType> resourcePredicate) {
 		if(!resourcePredicate.test(getResourceType())) {
 			return;
