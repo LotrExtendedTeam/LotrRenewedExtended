@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.codex;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.codex.ExtendedCodexEntry;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCodexEntryType;
 

@@ -38,8 +38,8 @@ public class ExtendedDataGenerator {
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 			generator.addProvider(new StructureEntitySpawnerGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedHiredUnitProfileGenerator(generator, LotrExtendedMod.MODID));
-			//serverCodexProvider = new ExtendedServerCodexEntryGenerator(generator, existingFileHelper);
-			//generator.addProvider(serverCodexProvider);
+			serverCodexProvider = new ExtendedServerCodexEntryGenerator(generator, existingFileHelper);
+			generator.addProvider(serverCodexProvider);
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
