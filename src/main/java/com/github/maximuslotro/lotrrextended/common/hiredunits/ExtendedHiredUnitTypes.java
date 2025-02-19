@@ -14,6 +14,7 @@ public class ExtendedHiredUnitTypes {
 	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
 
 	public static final ResourceLocation BREE_GUARD = register("bree_guard");
+	public static final ResourceLocation GUNDABAD_ORC = register("gundabad_orc");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));
