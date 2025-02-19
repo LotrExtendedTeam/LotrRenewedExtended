@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
@@ -18,7 +18,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 
 
-public class LothlorienAdvancementsProvider extends BaseAdvancementType{
+public class LothlorienAdvancementsProvider extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> LOTHLORIEN_BIOMES = ImmutableList.of(LOTRBiomes.LOTHLORIEN, LOTRBiomes.LOTHLORIEN_EAVES);
 
 	@Override

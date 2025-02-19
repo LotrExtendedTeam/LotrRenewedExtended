@@ -5,7 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenerator;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.BannerEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
@@ -74,7 +74,7 @@ public class LotrExtendedMod{
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
 		modBus.addListener(this::extendedCommonSetup);
-		modBus.addListener(DataGeneratorExtended::gatherData);
+		modBus.addListener(ExtendedDataGenerator::gatherData);
 		forgeBus.addListener(this::extendedRegisterCommands);
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);

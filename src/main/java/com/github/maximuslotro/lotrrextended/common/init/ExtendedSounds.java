@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -44,7 +44,7 @@ public class ExtendedSounds {
 
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {
-			DataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);
+			ExtendedDataGenValueHolder.soundEventHolder.put("subtitles."+LotrExtendedMod.MODID+"."+name, defaultName);
 		}
 		return SOUNDS.register(name, () -> new SoundEvent(new ResourceLocation(LotrExtendedMod.MODID, name)));
 	}

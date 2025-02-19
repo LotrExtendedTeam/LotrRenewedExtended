@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
@@ -15,7 +15,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
 
 
-public class ForodwaithAdvancementsProvider extends BaseAdvancementType{
+public class ForodwaithAdvancementsProvider extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> FORODWAITH_BIOMES = ImmutableList.of(LOTRBiomes.FORODWAITH,
 			LOTRBiomes.FORODWAITH_MOUNTAINS, LOTRBiomes.FOROCHEL);
 

@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.language;
 import java.util.Map.Entry;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 
 import lotr.common.init.ExtendedBlocks;
@@ -43,7 +43,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add New Biome Names
-		for (String biome : DataGenValueHolder.biomeNames) {
+		for (String biome : ExtendedDataGenValueHolder.biomeNames) {
 			addD(biome);
 		}
 
@@ -53,7 +53,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 				addOverride("block.minecraft.banner." + entity.getFilename()+"."+col.getName(), TextChanger.getColorFullTextChnager(col) +" "+ ExtendedBannerPatterns.getHashtoname().get(entity.getFilename()));
 			}
 		}
-		for (Entry<String, String> entity : DataGenValueHolder.bannerPatternItemNameHolders.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.bannerPatternItemNameHolders.entrySet()) {
 			addOverride("item.lotr." + entity.getKey(), "Banner Pattern");
 			addOverride("item.lotr." + entity.getKey() + ".desc", ExtendedBannerPatterns.getHashtoname().get(entity.getValue()));
 		}
@@ -72,32 +72,32 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		}
 
 		// Try Add Container Titles
-		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.containerTitlesHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add New Config Value Names
-		for (Entry<String, String> entity : DataGenValueHolder.configCommentHolders.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.configCommentHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add New Attributes Names
-		for (Entry<String, String> entity : DataGenValueHolder.attributeNames.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.attributeNames.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add New Advancement Values
-		for (Entry<String, String> entity : DataGenValueHolder.advancementHolder.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.advancementHolder.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add Statistics titles
-		for (Entry<String, String> entity : DataGenValueHolder.statsHolders.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.statsHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
 		// Try Add New Subtitles
-		for (Entry<String, String> entity : DataGenValueHolder.soundEventHolder.entrySet()) {
+		for (Entry<String, String> entity : ExtendedDataGenValueHolder.soundEventHolder.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 

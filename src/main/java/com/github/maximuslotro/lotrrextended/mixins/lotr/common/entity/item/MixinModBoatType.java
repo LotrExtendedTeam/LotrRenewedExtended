@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 
 import lotr.common.entity.item.LOTRBoatEntity.ModBoatType;
 import lotr.common.init.ExtendedBlocks;
@@ -45,7 +45,7 @@ public class MixinModBoatType {
 		variants.add(instrument);
 		MixinModBoatType.$VALUES = variants.toArray(new ModBoatType[0]);
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.newWoodTypesHolder.add(s);
+			ExtendedDataGenValueHolder.newWoodTypesHolder.add(s);
 		}
 		return instrument;
 	}

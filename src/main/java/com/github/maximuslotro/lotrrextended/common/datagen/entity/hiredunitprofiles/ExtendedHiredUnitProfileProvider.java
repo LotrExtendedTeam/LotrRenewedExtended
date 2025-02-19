@@ -13,7 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.google.gson.Gson;
@@ -60,7 +59,7 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedHiredUnitProfile spawner, Path pPath) throws IOException {
 		try {
-			String s = ExtendedHiredUnitProfileManager.serialize(pGson, spawner);
+			String s = pGson.toJson(spawner);
 			String s1 = SHA1.hashUnencodedChars(s).toString();
 			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
 				Files.createDirectories(pPath.getParent());

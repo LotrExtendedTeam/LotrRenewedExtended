@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
@@ -20,7 +20,7 @@ public class ExtendedAttributes {
 
 	private static final RegistryObject<Attribute> registryAttribute(String name, String defaultName, double defaultValue, double min, double max) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.attributeNames.put("attribute.name.lotrextended." + name, defaultName);
+			ExtendedDataGenValueHolder.attributeNames.put("attribute.name.lotrextended." + name, defaultName);
 		}
 		return REGISTRY.register(name, () -> new RangedAttribute("attribute.name.lotrextended." + name, defaultValue, min, max));
 

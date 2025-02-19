@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.init.LOTRBiomes;
 import net.minecraft.advancements.Advancement;
@@ -8,7 +8,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
 
 
-public class EnedwaithAdvancementsProvider extends BaseAdvancementType{
+public class EnedwaithAdvancementsProvider extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {

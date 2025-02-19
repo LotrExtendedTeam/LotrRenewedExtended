@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 import com.google.common.collect.ImmutableList;
 
@@ -40,7 +40,7 @@ public class MixinLOTRRecipes {
 
 	private static FactionTableType registerFactionD(String s, String defaultName, Supplier<Block> blockSup) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.containerTitlesHolders.put("container.lotr."+s+"_crafting", defaultName);
+			ExtendedDataGenValueHolder.containerTitlesHolders.put("container.lotr."+s+"_crafting", defaultName);
 		}
 		return registerFaction(s, blockSup);
 	}

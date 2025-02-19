@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 
 import lotr.common.biome.BarrowDownsBiome;
 import lotr.common.init.ExtendedBiomes;
@@ -24,7 +24,7 @@ public class MixinLOTRBiomes {
 
 	private static PreRegisteredLOTRBiome prepareD(String name, NonNullSupplier<LOTRBiomeBase> wrapperSupplier) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.biomeNames.add("biome.lotr."+name);
+			ExtendedDataGenValueHolder.biomeNames.add("biome.lotr."+name);
 		}
 		return prepare(name, wrapperSupplier);
 	}

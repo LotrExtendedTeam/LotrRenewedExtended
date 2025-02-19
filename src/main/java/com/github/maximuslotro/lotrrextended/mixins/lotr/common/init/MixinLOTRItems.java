@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRenderHelper;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
@@ -94,7 +94,7 @@ public class MixinLOTRItems {
 	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern banner, Supplier<? extends Item> sup)  {
 		RegistryObject<Item> item = regItemB(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.bannerPatternItemNameHolders.put(name, banner.getFilename());
+			ExtendedDataGenValueHolder.bannerPatternItemNameHolders.put(name, banner.getFilename());
 		}
 		return item;
 	}

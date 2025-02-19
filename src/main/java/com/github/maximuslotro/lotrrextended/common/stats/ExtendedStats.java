@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.stats;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 
 import net.minecraft.stats.IStatFormatter;
 import net.minecraft.stats.Stats;
@@ -22,7 +22,7 @@ public class ExtendedStats {
 	public static void init() {}
 
 	private static ResourceLocation registerStat(String key, String defaultName, IStatFormatter formatter) {
-		if(DatagenModLoader.isRunningDataGen()) {DataGenValueHolder.statsHolders.put("stat.lotrextended."+key, defaultName);}
+		if(DatagenModLoader.isRunningDataGen()) {ExtendedDataGenValueHolder.statsHolders.put("stat.lotrextended."+key, defaultName);}
 		ResourceLocation res = new ResourceLocation("lotrextended", key);
 		Registry.register(Registry.CUSTOM_STAT, res.toString(), res);
 		Stats.CUSTOM.get(res, formatter);

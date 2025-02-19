@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.init.LOTRBiomes;
@@ -14,7 +14,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
 
 
-public class RhovanionAdvancementsProvider extends BaseAdvancementType{
+public class RhovanionAdvancementsProvider extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> Rhovanion_BIOMES = ImmutableList.of(LOTRBiomes.ANDUIN_HILLS, LOTRBiomes.VALES_OF_ANDUIN);
 
 	@Override

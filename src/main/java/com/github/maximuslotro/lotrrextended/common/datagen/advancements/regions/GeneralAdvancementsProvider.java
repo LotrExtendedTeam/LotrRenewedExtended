@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
@@ -22,7 +22,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.RegistryObject;
 
 
-public class GeneralAdvancementsProvider extends BaseAdvancementType{
+public class GeneralAdvancementsProvider extends ExtendedBaseAdvancementType{
 	private static final List<ResourceLocation> BIOMES;
 
 	static {

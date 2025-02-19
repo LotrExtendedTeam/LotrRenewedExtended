@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -168,7 +168,6 @@ public class ExtendedHiredUnitProfile {
 	}
 
 	public static class Builder {
-		private ResourceLocation id;
 		private boolean translateStrings;
 		private String entity_title;
 		private String entity_shortname;
@@ -188,11 +187,11 @@ public class ExtendedHiredUnitProfile {
 			this.translateStrings = translateStrings;
 			if(translateStrings) {
 				this.entity_title = "entity_title.lotrextended.hired_"+nameKey;
-				DataGenValueHolder.hiredUnitStrings.put(entity_title, "%1$s the "+name);
+				ExtendedDataGenValueHolder.hiredUnitStrings.put(entity_title, "%1$s the "+name);
 				this.entity_shortname = "entity_shortname.lotrextended.hired_"+nameKey;
-				DataGenValueHolder.hiredUnitStrings.put(entity_shortname, "%1$s");
+				ExtendedDataGenValueHolder.hiredUnitStrings.put(entity_shortname, "%1$s");
 				this.entity_unit_type = "entity_unit_type.lotrextended.hired_"+nameKey;
-				DataGenValueHolder.hiredUnitStrings.put(entity_unit_type, name);
+				ExtendedDataGenValueHolder.hiredUnitStrings.put(entity_unit_type, name);
 			}else {
 				this.entity_title = name;
 				this.entity_shortname = name;

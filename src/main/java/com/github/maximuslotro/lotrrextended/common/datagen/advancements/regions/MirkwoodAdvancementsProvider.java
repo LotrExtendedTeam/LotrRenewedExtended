@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
@@ -17,7 +17,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
 
 
-public class MirkwoodAdvancementsProvider extends BaseAdvancementType{
+public class MirkwoodAdvancementsProvider extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> MIRKWOOD_BIOMES = ImmutableList.of(LOTRBiomes.MIRKWOOD, LOTRBiomes.MIRKWOOD_MOUNTAINS,
 			LOTRBiomes.NORTHERN_MIRKWOOD, LOTRBiomes.WOODLAND_REALM);
 

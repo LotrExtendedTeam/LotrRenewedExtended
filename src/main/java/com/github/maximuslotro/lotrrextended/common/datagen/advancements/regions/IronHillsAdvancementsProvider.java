@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.LOTRBiomes;
@@ -12,7 +12,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
 
 
-public class IronHillsAdvancementsProvider extends BaseAdvancementType{
+public class IronHillsAdvancementsProvider extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {

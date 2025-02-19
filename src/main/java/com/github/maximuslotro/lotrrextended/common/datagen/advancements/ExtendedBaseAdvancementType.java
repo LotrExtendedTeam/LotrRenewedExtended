@@ -8,7 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBr
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedUnitHiredTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 
 import lotr.common.fac.FactionPointer;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -41,7 +41,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-public abstract class BaseAdvancementType implements Consumer<Consumer<Advancement>>{
+public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
 	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, List<PreRegisteredLOTRBiome> biomes) {
 		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
@@ -280,10 +280,10 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 				info.setLocation(x, y);
 			}
 			if(titleMain!=null) {
-				DataGenValueHolder.advancementHolder.put(titleString, titleMain);
+				ExtendedDataGenValueHolder.advancementHolder.put(titleString, titleMain);
 			}
 			if(descriptionMain!=null) {
-				DataGenValueHolder.advancementHolder.put(descriptionString, descriptionMain);
+				ExtendedDataGenValueHolder.advancementHolder.put(descriptionString, descriptionMain);
 			}
 			return info;
 		}

@@ -37,7 +37,7 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedRee
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
 import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
 
@@ -339,7 +339,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRFenceBlock) {
 					boolean didGen = false;
-					for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
+					for(String woodType : ExtendedDataGenValueHolder.newWoodTypesHolder) {
 						if(block.getKey().contains(woodType)) {
 							didGen = true;
 							genFenceBlockItem((LOTRFenceBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 6)+"_planks"));
@@ -352,7 +352,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof LOTRFenceGateBlock) {
 					boolean didGen = false;
-					for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
+					for(String woodType : ExtendedDataGenValueHolder.newWoodTypesHolder) {
 						if(block.getKey().contains(woodType)) {
 							didGen = true;
 							genFenceGateBlockItem((LOTRFenceGateBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 11)+"_planks"));
@@ -499,7 +499,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						boolean didGen = false;
-						for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
+						for(String woodType : ExtendedDataGenValueHolder.newWoodTypesHolder) {
 							if(block.getKey().contains(woodType)&&!block.getKey().contains("beam")) {
 								didGen = true;
 								genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_planks"));
@@ -604,7 +604,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						boolean didGen = false;
-						for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
+						for(String woodType : ExtendedDataGenValueHolder.newWoodTypesHolder) {
 							if(block.getKey().contains(woodType)) {
 								didGen = true;
 								genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_planks"));

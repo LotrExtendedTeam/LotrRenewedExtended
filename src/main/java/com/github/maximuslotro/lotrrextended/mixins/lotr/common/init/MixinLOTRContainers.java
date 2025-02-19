@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedBookshelfContainer;
@@ -57,13 +57,13 @@ public class MixinLOTRContainers {
 
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
-    		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
+    		ExtendedDataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
     	}
 		return CONTAINERS.register(name, sup);
 	}
 	private static <T extends Container> RegistryObject<ContainerType<T>> registerExtended(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
-    		DataGenValueHolder.containerTitlesHolders.put("container.lotrextended."+name, defaultName);
+    		ExtendedDataGenValueHolder.containerTitlesHolders.put("container.lotrextended."+name, defaultName);
     	}
 		return CONTAINERS.register(name, sup);
 	}
