@@ -14,7 +14,6 @@ public class ExtendedClientCodexEntryGenerator extends ExtendedClientCodexProvid
 	}
 
 	@Override
-	   public void registerClientCodexEntries(Consumer<ExtendedBaseCodexEntry> consumer, ExistingFileHelper fileHelper) {
-
+	public void registerClientCodexEntries(Consumer<ExtendedBaseCodexEntry> consumer, ExistingFileHelper fileHelper) {
 	}
 }

@@ -27,22 +27,22 @@ public class ExtendedServerCodexEntryGenerator extends ExtendedServerCodexProvid
 	@Override
 	public void registerServerCodexEntries(Consumer<ExtendedCodexEntry> consumer, ExistingFileHelper fileHelper) {
 		for(Entry<RegistryKey<Biome>, Biome> str : ForgeRegistries.BIOMES.getEntries()) {
-			make(ExtendedCodexEntryType.BIOME).save(consumer, str.getKey().location());
+			make(ExtendedCodexEntryType.BIOME).save(consumer, "biome", str.getKey().location());
 		}
 		for(Entry<RegistryKey<Block>, Block> str : ForgeRegistries.BLOCKS.getEntries()) {
-			make(ExtendedCodexEntryType.BLOCK).save(consumer, str.getKey().location());
+			make(ExtendedCodexEntryType.BLOCK).save(consumer, "block", str.getKey().location());
 		}
 		for(Entry<RegistryKey<Effect>, Effect> str : ForgeRegistries.POTIONS.getEntries()) {
-			make(ExtendedCodexEntryType.EFFECT).save(consumer, str.getKey().location());
+			make(ExtendedCodexEntryType.EFFECT).save(consumer, "effect", str.getKey().location());
 		}
 		for(Entry<RegistryKey<EntityType<?>>, EntityType<?>> str : ForgeRegistries.ENTITIES.getEntries()) {
-			make(ExtendedCodexEntryType.ENTITYTYPE).save(consumer, str.getKey().location());
+			make(ExtendedCodexEntryType.ENTITYTYPE).save(consumer, "entity", str.getKey().location());
 		}
 		for(Entry<RegistryKey<Item>, Item> str : ForgeRegistries.ITEMS.getEntries()) {
-			make(ExtendedCodexEntryType.ITEM).save(consumer, str.getKey().location());
+			make(ExtendedCodexEntryType.ITEM).save(consumer, "item", str.getKey().location());
 		}
 		for(Entry<RegistryKey<Structure<?>>, Structure<?>> str : ForgeRegistries.STRUCTURE_FEATURES.getEntries()) {
-			make(ExtendedCodexEntryType.STRUCTURE).save(consumer, str.getKey().location());
+			make(ExtendedCodexEntryType.STRUCTURE).save(consumer, "structure", str.getKey().location());
 		}
 	}
 }

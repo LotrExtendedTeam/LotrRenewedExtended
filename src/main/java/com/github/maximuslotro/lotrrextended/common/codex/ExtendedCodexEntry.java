@@ -86,15 +86,8 @@ public class ExtendedCodexEntry {
 		/**
 		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
 		 */
-		public ExtendedCodexEntry save(Consumer<ExtendedCodexEntry> pConsumer, String pId) {
-			return save(pConsumer, new ResourceLocation(pId));
-		}
-
-		/**
-		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
-		 */
-		public ExtendedCodexEntry save(Consumer<ExtendedCodexEntry> pConsumer, ResourceLocation pId) {
-			ExtendedCodexEntry spawner = this.build(pId);
+		public ExtendedCodexEntry save(Consumer<ExtendedCodexEntry> pConsumer, String TYPE, ResourceLocation pId) {
+			ExtendedCodexEntry spawner = this.build(new ResourceLocation(pId.getNamespace(), TYPE+"_"+pId.getPath()));
 			pConsumer.accept(spawner);
 			return spawner;
 		}
