@@ -11,9 +11,9 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedBaseCodexEntry;
-import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedUnknownCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedBaseSerializer;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCodexEntryType;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
@@ -30,7 +30,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 
-public class ExtendedCodexMap {
+public class ExtendedClientCodexMap {
 	private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private static final String directory = "codexdatabase";
@@ -43,14 +43,14 @@ public class ExtendedCodexMap {
 	/**
 	 * Singleton instance of {@Link ExtendedCodexMap}
 	 * */
-	private static volatile ExtendedCodexMap instance = loadDefault();
+	private static volatile ExtendedClientCodexMap instance = loadDefault();
 
 	/**
 	 * Internal client-side codex database
 	 * */
 	private final Map<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> storage;
 
-	public ExtendedCodexMap(Map<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> pStorage) {
+	public ExtendedClientCodexMap(Map<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> pStorage) {
 		this.storage = pStorage;
 	}
 
@@ -77,7 +77,7 @@ public class ExtendedCodexMap {
 	 * Return the ExtendedCodexMap singleton instance
 	 * @return The ExtendedCodexMap singleton instance
 	 */
-	public static ExtendedCodexMap getInstance() {
+	public static ExtendedClientCodexMap getInstance() {
 		return instance;
 	}
 
@@ -85,7 +85,7 @@ public class ExtendedCodexMap {
 	 * Sets the ExtendedCodexMap singleton instance
 	 * @param mapInstance The new ExtendedCodexMap singleton instance
 	 */
-	public static void inject(ExtendedCodexMap mapInstance) {
+	public static void inject(ExtendedClientCodexMap mapInstance) {
 		instance = mapInstance;
 		for(Entry<ExtendedCodexEntryType, Map<ResourceLocation, ExtendedBaseCodexEntry>> map : mapInstance.storage.entrySet()) {
 			ExtendedLog.info("######################"+map.getKey().name()+"######################");
@@ -100,7 +100,7 @@ public class ExtendedCodexMap {
 	 * Loads the default codex map, defaults to en_us (American English)
 	 * @return A {@Link ExtendedCodexMap} instance
 	 * */
-	public static ExtendedCodexMap loadDefault() {
+	public static ExtendedClientCodexMap loadDefault() {
 		Minecraft mc = Minecraft.getInstance();
 		return loadFrom(mc.getResourceManager(), DEFAULTLANG);
 	}
@@ -113,7 +113,7 @@ public class ExtendedCodexMap {
 	 * @param selectedLang A {@Link String} code of the selected minecraft localization
 	 * @return A {@Link ExtendedCodexMap} instance of the loaded client-side codex database
 	 * */
-	public static ExtendedCodexMap loadFrom(IResourceManager pManager, String selectedLang) {
+	public static ExtendedClientCodexMap loadFrom(IResourceManager pManager, String selectedLang) {
 		Map<ResourceLocation, JsonElement> map = getJson(pManager, DEFAULTLANG);
 		// Check if should load from other languages
 		if(!DEFAULTLANG.equals(selectedLang)) {
@@ -127,7 +127,7 @@ public class ExtendedCodexMap {
 			}
 			dataMap.get(codexEntry.getID()).put(codexEntry.getLocationID(), codexEntry);
 		}
-		return new ExtendedCodexMap(ImmutableMap.copyOf(dataMap));
+		return new ExtendedClientCodexMap(ImmutableMap.copyOf(dataMap));
 	}
 
 	public static Map<ResourceLocation, JsonElement> getJson(IResourceManager pResourceManager, String selectedLang) {
@@ -183,7 +183,7 @@ public class ExtendedCodexMap {
 		String type = JSONUtils.getAsString(jsonObject, "type");
 		try {
 			ExtendedCodexEntryType cType = ExtendedCodexEntryType.valueOf(type);
-			ExtendedBaseSerializer<?> serializer = ExtendedCodexManager.codexEntryTypes.get(cType);
+			ExtendedBaseSerializer<?> serializer = ExtendedClientCodexManager.codexEntryTypes.get(cType);
 			if (serializer == null) {
 				throw new JsonSyntaxException("Unknown codex entry data type: " + type.toString());
 			}
@@ -200,7 +200,7 @@ public class ExtendedCodexMap {
 	 * */
 	public static <T extends ExtendedBaseCodexEntry> JsonObject serialize(T condition){
 		@SuppressWarnings("unchecked")
-		ExtendedBaseSerializer<T> serializer = (ExtendedBaseSerializer<T>) ExtendedCodexManager.codexEntryTypes.get(condition.getID());
+		ExtendedBaseSerializer<T> serializer = (ExtendedBaseSerializer<T>) ExtendedClientCodexManager.codexEntryTypes.get(condition.getID());
 		if (serializer == null) {
 			throw new JsonSyntaxException("Unknown codex entry type: " + condition.getID().toString());
 		}

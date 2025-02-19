@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.codex.entry;
+package com.github.maximuslotro.lotrrextended.common.enums;
 
 public enum ExtendedCodexEntryType {
 	FOOD,

@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.codex.serializers;
 
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedBaseCodexEntry;
-import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCodexEntryType;
 import com.google.gson.JsonObject;
 
 import net.minecraft.util.ResourceLocation;

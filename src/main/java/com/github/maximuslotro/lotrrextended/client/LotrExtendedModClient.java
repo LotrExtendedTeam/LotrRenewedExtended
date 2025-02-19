@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.codex.ExtendedCodexManager;
+import com.github.maximuslotro.lotrrextended.client.codex.ExtendedClientCodexManager;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.RenderHiredUnitHealthbars;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
@@ -55,7 +55,7 @@ public class LotrExtendedModClient {
 
 	public static LotrExtendedModClient INSTANCE;
 	public static UUID usersUUID = null;
-	private final ExtendedCodexManager codexManager;
+	private final ExtendedClientCodexManager codexManager;
 	  
 	public LotrExtendedModClient() {
 		INSTANCE = this;
@@ -70,7 +70,7 @@ public class LotrExtendedModClient {
 		modBus.addListener(ExtendedColorHelper::makeBlockColors);
 		modBus.addListener(ExtendedColorHelper::makeItemsColors);
 		ExtendedClientConfig.register();
-		this.codexManager = new ExtendedCodexManager();
+		this.codexManager = new ExtendedClientCodexManager();
 		((IReloadableResourceManager)Minecraft.getInstance().getResourceManager()).registerReloadListener(codexManager);
 
 		//Moved to Mixin

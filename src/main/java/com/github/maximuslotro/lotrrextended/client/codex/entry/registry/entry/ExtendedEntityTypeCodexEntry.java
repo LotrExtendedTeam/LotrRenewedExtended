@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry;
 
-import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.ExtendedForgeRegistryBasedCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedRegistrySerializer;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCodexEntryType;
 import com.google.gson.JsonObject;
 
 import net.minecraft.entity.EntityType;

@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.codex.ExtendedCodexManager;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
@@ -119,6 +120,7 @@ public class LotrExtendedMod{
 	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
 		event.addListener(ExtendedHiredUnitProfileManager.INSTANCE);
+		event.addListener(ExtendedCodexManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

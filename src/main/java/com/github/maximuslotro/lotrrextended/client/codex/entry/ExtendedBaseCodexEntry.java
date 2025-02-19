@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.codex.entry;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCodexEntryType;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 

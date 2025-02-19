@@ -3,6 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedAdvancementProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.codex.ExtendedClientCodexEntryGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.codex.ExtendedServerCodexEntryGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles.ExtendedHiredUnitProfileGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
@@ -23,6 +25,7 @@ public class ExtendedDataGenerator {
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		ExtendedServerCodexEntryGenerator serverCodexProvider=null;
 		if (event.includeServer()) {
 			ExtendedLootTables.init();
 			ExtendedBlockTagProvider blocktags = new ExtendedBlockTagProvider(generator, LotrExtendedMod.MODID, existingFileHelper);
@@ -35,9 +38,14 @@ public class ExtendedDataGenerator {
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 			generator.addProvider(new StructureEntitySpawnerGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedHiredUnitProfileGenerator(generator, LotrExtendedMod.MODID));
+			serverCodexProvider = new ExtendedServerCodexEntryGenerator(generator, existingFileHelper);
+			generator.addProvider(serverCodexProvider);
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
+			if(serverCodexProvider!=null) {
+				generator.addProvider(new ExtendedClientCodexEntryGenerator(generator, existingFileHelper, serverCodexProvider));
+			}
 			generator.addProvider(new ExtendedBlockstateModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));

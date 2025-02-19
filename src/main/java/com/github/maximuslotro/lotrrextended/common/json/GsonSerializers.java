@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.json;
 
+import com.github.maximuslotro.lotrrextended.common.codex.ExtendedCodexEntry;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentEntry;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentInstance;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
@@ -34,5 +35,10 @@ public class GsonSerializers {
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentInstance.class, new ExtendedHiredUnitEquipmentInstance.Serializer())
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentEntry.class, new ExtendedHiredUnitEquipmentEntry.Serializer())
 			.registerTypeAdapter(ExtendedHiredUnitProfile.class, new ExtendedHiredUnitProfile.Serializer());
+	}
+
+	public static GsonBuilder createCodexSerializer() {
+		return new GsonBuilder()
+				.registerTypeAdapter(ExtendedCodexEntry.class, new ExtendedCodexEntry.Serializer());
 	}
 }

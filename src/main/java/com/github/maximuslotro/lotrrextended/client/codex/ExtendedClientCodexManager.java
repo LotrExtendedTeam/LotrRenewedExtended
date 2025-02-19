@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedCodexEntryType;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedFoodCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedLoreCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.ExtendedMechanicsCodexEntry;
@@ -16,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry.E
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry.ExtendedItemCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.entry.registry.entry.ExtendedStructureCodexEntry;
 import com.github.maximuslotro.lotrrextended.client.codex.serializers.ExtendedBaseSerializer;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCodexEntryType;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IResourceManager;
@@ -23,26 +23,26 @@ import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
-public class ExtendedCodexManager implements ISelectiveResourceReloadListener {
+public class ExtendedClientCodexManager implements ISelectiveResourceReloadListener {
 	/**
 	 * A list of Codex entry serializers/deserializers
 	 * */
     public static final Map<ExtendedCodexEntryType, ExtendedBaseSerializer<?>> codexEntryTypes = new HashMap<>();
 
     static {
-		ExtendedCodexManager.register(ExtendedFoodCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedLoreCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedMechanicsCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedBiomeCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedBlockCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedDimensionCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedEffectCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedEntityTypeCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedItemCodexEntry.Serializer.INSTANCE);
-		ExtendedCodexManager.register(ExtendedStructureCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedFoodCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedLoreCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedMechanicsCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedBiomeCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedBlockCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedDimensionCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedEffectCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedEntityTypeCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedItemCodexEntry.Serializer.INSTANCE);
+		ExtendedClientCodexManager.register(ExtendedStructureCodexEntry.Serializer.INSTANCE);
     }
 
-	public ExtendedCodexManager() {}
+	public ExtendedClientCodexManager() {}
 
 	/**
 	 * Proper place to register new codex entry type serializers/deserializers
@@ -62,8 +62,8 @@ public class ExtendedCodexManager implements ISelectiveResourceReloadListener {
 			return;
 		}
 		Minecraft mc = Minecraft.getInstance();
-		ExtendedCodexMap clientlanguagemap = ExtendedCodexMap.loadFrom(pResourceManager, mc.getLanguageManager().getSelected().getCode());
-		ExtendedCodexMap.inject(clientlanguagemap);
+		ExtendedClientCodexMap clientlanguagemap = ExtendedClientCodexMap.loadFrom(pResourceManager, mc.getLanguageManager().getSelected().getCode());
+		ExtendedClientCodexMap.inject(clientlanguagemap);
 	}
 
 	@Override
