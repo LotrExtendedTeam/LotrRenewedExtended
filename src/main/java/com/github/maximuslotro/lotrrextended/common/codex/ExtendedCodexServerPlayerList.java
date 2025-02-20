@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.extensions.entity.player.ExtendedServerPlayerEntity;
 import com.google.common.collect.Maps;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,11 +18,13 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  * */
 public class ExtendedCodexServerPlayerList {
 	public static final FolderName PLAYER_CODEXES_DIR = new FolderName("lotrextended/codexes");
-	private Map<UUID, ExtendedServerPlayerCodex> codexes = Maps.newHashMap();
+	private Map<UUID, ExtendedPlayerCodexes> codexes = Maps.newHashMap();
 
 	public void codexPlayerLoggedOut(PlayerLoggedOutEvent event) {
 		if(event.getPlayer() instanceof ServerPlayerEntity){
-			save((ServerPlayerEntity)event.getPlayer());
+			ServerPlayerEntity serverPlayer = (ServerPlayerEntity)event.getPlayer();
+			save(serverPlayer);
+			((ExtendedServerPlayerEntity)serverPlayer).getPlayerCodexes().stopListening();
 			codexes.remove(event.getPlayer().getUUID());
 		}
 	}
@@ -29,19 +32,19 @@ public class ExtendedCodexServerPlayerList {
 	public void codexDatapackSync(OnDatapackSyncEvent event) {
 		if(event.getPlayer()==null){
 			saveAll();
-			for(ExtendedServerPlayerCodex playerCodex : this.codexes.values()) {
+			for(ExtendedPlayerCodexes playerCodex : this.codexes.values()) {
 				playerCodex.reload(ExtendedCodexManager.INSTANCE);
 			}
 		}
 	}
 
-	public ExtendedServerPlayerCodex getPlayerCodex(ServerPlayerEntity serverPlayer) {
+	public ExtendedPlayerCodexes getPlayerCodex(ServerPlayerEntity serverPlayer) {
 		UUID uuid = serverPlayer.getUUID();
-		ExtendedServerPlayerCodex playeradvancements = codexes.get(uuid);
+		ExtendedPlayerCodexes playeradvancements = codexes.get(uuid);
 		if (playeradvancements == null) {
 			File file1 = ServerLifecycleHooks.getCurrentServer().getWorldPath(PLAYER_CODEXES_DIR).toFile();
 			File file2 = new File(file1, uuid + ".json");
-			playeradvancements = new ExtendedServerPlayerCodex(this, ExtendedCodexManager.INSTANCE, file2, serverPlayer);
+			playeradvancements = new ExtendedPlayerCodexes(this, ExtendedCodexManager.INSTANCE, file2, serverPlayer);
 			this.codexes.put(uuid, playeradvancements);
 		}
 
@@ -55,7 +58,7 @@ public class ExtendedCodexServerPlayerList {
 		if (pPlayer.connection == null) {
 			return;
 		}
-		ExtendedServerPlayerCodex playeradvancements = this.codexes.get(pPlayer.getUUID());
+		ExtendedPlayerCodexes playeradvancements = this.codexes.get(pPlayer.getUUID());
 		if (playeradvancements != null) {
 			playeradvancements.save();
 		}
