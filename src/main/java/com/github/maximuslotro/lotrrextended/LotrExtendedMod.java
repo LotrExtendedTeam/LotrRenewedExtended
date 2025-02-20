@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFix
 import com.github.maximuslotro.lotrrextended.common.datagen.ExtendedDataGenerator;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.BannerEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.HiredUnitEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
@@ -62,7 +61,6 @@ public class LotrExtendedMod{
 	public static final String MODID = "lotrextended";
 	private IEventBus modBus;
 	public static LotrExtendedMod INSTANCE;
-	public static ExtendedTickHandlerServer serverTickEventHandler;
 	public static final ResourceLocation EMPTY = new ResourceLocation(LotrExtendedMod.MODID, "empty");
 
 	public LotrExtendedMod() {
@@ -102,7 +100,6 @@ public class LotrExtendedMod{
 		ExtendedLootFunctions.setup();
 		ExtendedTags.init();
 		ExtendedEffects.register();
-		serverTickEventHandler = new ExtendedTickHandlerServer();
 	}
 
 	public void extendedCommonSetup(FMLCommonSetupEvent event) {

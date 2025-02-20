@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedModServer;
+
 import lotr.common.data.ExtendedLevelData;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.world.World;
@@ -8,6 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedTickHandlerServer {
 
@@ -15,7 +18,14 @@ public class ExtendedTickHandlerServer {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-    @SubscribeEvent
+	@SubscribeEvent
+	public void onServerTick(TickEvent.ServerTickEvent event) {
+		if(ServerLifecycleHooks.getCurrentServer().getTickCount() % 6000 == 0) {
+			LotrExtendedModServer.codexPlayerList.saveAll();
+		}
+	}
+
+	@SubscribeEvent
     public void onWorldTick(TickEvent.WorldTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             ServerWorld world = (ServerWorld) event.world;
