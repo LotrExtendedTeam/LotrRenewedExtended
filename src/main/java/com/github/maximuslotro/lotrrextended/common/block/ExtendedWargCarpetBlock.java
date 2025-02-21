@@ -5,24 +5,23 @@ import com.github.maximuslotro.lotrrextended.common.enums.WargFurType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CarpetBlock;
-import net.minecraft.block.FireBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.common.extensions.IForgeBlockState;
 
-public class ExtendedWargCarpetBlock extends CarpetBlock {
+public class ExtendedWargCarpetBlock extends CarpetBlock implements IForgeBlockState{
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 	private final WargFurType wargFurType;
 
 	public ExtendedWargCarpetBlock(WargFurType wargFurType) {
 		super(wargFurType.getDyeColor(), AbstractBlock.Properties.of(Material.CLOTH_DECORATION, wargFurType.getDyeColor()).strength(0.1F).sound(SoundType.WOOL));
 		this.wargFurType = wargFurType;
-		((FireBlock) Blocks.FIRE).setFlammable(this, 60, 20);
 	}
 
 	public WargFurType getWargFurType() {
@@ -34,4 +33,13 @@ public class ExtendedWargCarpetBlock extends CarpetBlock {
 		return SHAPE;
 	}
 
+	@Override
+	public int getFireSpreadSpeed(IBlockReader world, BlockPos pos, Direction face) {
+		return 60;
+	}
+
+	@Override
+	public int getFlammability(IBlockReader world, BlockPos pos, Direction face) {
+		return 20;
+	}
 }

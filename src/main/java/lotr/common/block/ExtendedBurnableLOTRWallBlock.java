@@ -3,13 +3,24 @@ package lotr.common.block;
 import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.common.extensions.IForgeBlockState;
 
-public class ExtendedBurnableLOTRWallBlock extends LOTRWallBlock{
+public class ExtendedBurnableLOTRWallBlock extends LOTRWallBlock implements IForgeBlockState{
 
 	public ExtendedBurnableLOTRWallBlock(Supplier<Block> block) {
 		super(block);
-		((FireBlock) Blocks.FIRE).setFlammable(this, 60, 20);
+	}
+
+	@Override
+	public int getFireSpreadSpeed(IBlockReader world, BlockPos pos, Direction face) {
+		return 60;
+	}
+
+	@Override
+	public int getFlammability(IBlockReader world, BlockPos pos, Direction face) {
+		return 20;
 	}
 }
