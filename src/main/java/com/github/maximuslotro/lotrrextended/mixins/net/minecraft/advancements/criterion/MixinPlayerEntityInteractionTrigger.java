@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.advancements.
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedBenchmarkTriggers;
 
@@ -15,7 +16,7 @@ import net.minecraft.item.ItemStack;
 public class MixinPlayerEntityInteractionTrigger {
 
 	@Inject(method = "trigger", at = @At("HEAD"))
-	public void injectExtendedTrigger(ServerPlayerEntity pPlayer, ItemStack pStack, Entity pEntity) {
+	public void injectExtendedTrigger(ServerPlayerEntity pPlayer, ItemStack pStack, Entity pEntity, CallbackInfo ci) {
 		ExtendedBenchmarkTriggers.PLAYER_INTERACTED_WITH_ENTITY.trigger(pPlayer, pStack, pEntity);
 	}
 }

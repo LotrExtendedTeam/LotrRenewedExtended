@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.advancements.
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedBenchmarkTriggers;
 
@@ -14,7 +15,7 @@ import net.minecraft.item.ItemStack;
 @Mixin(InventoryChangeTrigger.class)
 public class MixinInventoryChangeTrigger {
 	@Inject(method = "trigger", at = @At("HEAD"))
-	public void injectExtendedTrigger(ServerPlayerEntity pPlayer, PlayerInventory pInventory, ItemStack pStack) {
+	public void injectExtendedTrigger(ServerPlayerEntity pPlayer, PlayerInventory pInventory, ItemStack pStack, CallbackInfo ci) {
 		ExtendedBenchmarkTriggers.INVENTORY_CHANGE.trigger(pPlayer, pInventory, pStack);
 	}
 }

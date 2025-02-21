@@ -85,7 +85,7 @@ public class ExtendedCodexEntry {
 
 	public static class Builder {
 		private ExtendedCodexEntryType type;
-		private Map<String, ExtendedBenchmark> benchmarks;
+		private Map<String, ExtendedBenchmark> benchmarks = new HashMap<>();
 		private String[] requirements;
 
 		public Builder(ExtendedCodexEntryType type) {
@@ -116,6 +116,9 @@ public class ExtendedCodexEntry {
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
 		private ExtendedCodexEntry build(ResourceLocation id) {
+			if(benchmarks.size()<1) {
+				throw new IllegalArgumentException("Codex entry requires benchmarks tests to be present");
+			}
 			if (this.requirements == null) {
 				requirements = benchmarks.keySet().toArray(new String[benchmarks.keySet().size()]);
 			}
@@ -126,10 +129,13 @@ public class ExtendedCodexEntry {
 		/**
 		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
 		 */
-		public ExtendedCodexEntry save(Consumer<ExtendedCodexEntry> pConsumer, String TYPE, ResourceLocation pId) {
-			ExtendedCodexEntry spawner = this.build(new ResourceLocation(pId.getNamespace(), TYPE+"_"+pId.getPath()));
-			pConsumer.accept(spawner);
-			return spawner;
+		public void save(Consumer<ExtendedCodexEntry> pConsumer, String TYPE, ResourceLocation pId) {
+			try {
+				ExtendedCodexEntry spawner = this.build(new ResourceLocation(pId.getNamespace(), TYPE+"_"+pId.getPath()));
+				pConsumer.accept(spawner);
+			}catch(IllegalArgumentException e) {
+				ExtendedLog.error("Failed to build "+pId.toString()+", Due to "+e.getMessage());
+			}
 		}
 
 		public static ExtendedCodexEntry deserialize(JsonElement json, ConditionArrayParser contextParser) throws JsonParseException {

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.advancements.
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedBenchmarkTriggers;
 
@@ -14,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 @Mixin(PlacedBlockTrigger.class)
 public class MixinPlacedBlockTrigger {
 	@Inject(method = "trigger", at = @At("HEAD"))
-	public void injectExtendedTrigger(ServerPlayerEntity pPlayer, BlockPos pPos, ItemStack pItem) {
+	public void injectExtendedTrigger(ServerPlayerEntity pPlayer, BlockPos pPos, ItemStack pItem, CallbackInfo ci) {
 		ExtendedBenchmarkTriggers.PLACED_BLOCK.trigger(pPlayer, pPos, pItem);
 	}
 }
