@@ -24,7 +24,7 @@ public class ExtendedUnitHiredTrigger extends AbstractCriterionTrigger<ExtendedU
 	@Override
 	public ExtendedUnitHiredTrigger.Instance createInstance(JsonObject jsonObject, EntityPredicate.AndPredicate playerPredicate, ConditionArrayParser p_230241_3_) {
 		return new ExtendedUnitHiredTrigger.Instance(playerPredicate, EntityTypePredicate.fromJson(jsonObject.get("captain_type")),
-			EntityTypePredicate.fromJson(jsonObject.get("unit_type")), MinMaxBounds.IntBound.fromJson(jsonObject.get("coins_moved")));
+				EntityTypePredicate.fromJson(jsonObject.get("unit_type")), MinMaxBounds.IntBound.fromJson(jsonObject.get("coins_moved")));
 	}
 
 	public void trigger(ServerPlayerEntity player, EntityType<?> captainType, EntityType<?> unitType, int coinAmount) {

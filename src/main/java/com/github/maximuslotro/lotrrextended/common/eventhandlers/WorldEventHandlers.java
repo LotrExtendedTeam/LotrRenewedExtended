@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
+import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedBenchmarkTriggers;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
@@ -76,6 +77,7 @@ public class WorldEventHandlers {
 		if(event.getPlayer() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
+			ExtendedBenchmarkTriggers.BROKE_BLOCK.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
 		}
 	}
 

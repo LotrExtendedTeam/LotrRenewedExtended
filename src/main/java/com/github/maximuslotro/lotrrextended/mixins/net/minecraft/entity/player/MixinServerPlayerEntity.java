@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedModServer;
 import com.github.maximuslotro.lotrrextended.common.codex.ExtendedPlayerCodexes;
+import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedBenchmarkTriggers;
 import com.github.maximuslotro.lotrrextended.common.extensions.entity.player.ExtendedServerPlayerEntity;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -16,7 +17,7 @@ public class MixinServerPlayerEntity implements ExtendedServerPlayerEntity{
 
 	@Inject(method = "<init>", at = @At("TAIL"))
 	public void injectExtendedPlayerCodexInfo() {
-		this.playerCodex = LotrExtendedModServer.codexPlayerList.getPlayerCodex((ServerPlayerEntity)(Object)this);
+		this.playerCodex = LotrExtendedModServer.getCodexPlayerList().getPlayerCodex((ServerPlayerEntity)(Object)this);
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
@@ -27,5 +28,12 @@ public class MixinServerPlayerEntity implements ExtendedServerPlayerEntity{
 	@Override
 	public ExtendedPlayerCodexes getPlayerCodexes() {
 		return this.playerCodex;
+	}
+
+	@Inject(method = "doTick", at = @At("TAIL"))
+	public void injectExtendedCodexdoTick() {
+		if(((ServerPlayerEntity)(Object)this).tickCount %20==0) {
+			ExtendedBenchmarkTriggers.LOCATION.trigger((ServerPlayerEntity)(Object)this);
+		}
 	}
 }

@@ -21,7 +21,7 @@ public class ExtendedTickHandlerServer {
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
 		if(ServerLifecycleHooks.getCurrentServer().getTickCount() % 6000 == 0) {
-			LotrExtendedModServer.codexPlayerList.saveAll();
+			LotrExtendedModServer.getCodexPlayerList().saveAll();
 		}
 	}
 

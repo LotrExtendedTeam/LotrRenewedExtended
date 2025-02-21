@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.common.codex.ExtendedCodexManager;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
@@ -12,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandle
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.HiredUnitEventHandlers;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
@@ -25,7 +23,6 @@ import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootF
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
@@ -42,7 +39,6 @@ import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -75,7 +71,6 @@ public class LotrExtendedMod{
 		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(ExtendedDataGenerator::gatherData);
 		forgeBus.addListener(this::extendedRegisterCommands);
-		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
 		forgeBus.addListener(this::extendesAddDimensionalSpacing);
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
@@ -112,12 +107,6 @@ public class LotrExtendedMod{
 
 	public IEventBus getModBus() {
 		return modBus;
-	}
-
-	public void extendedRegisterDataPackListeners(AddReloadListenerEvent event) {
-		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
-		event.addListener(ExtendedHiredUnitProfileManager.INSTANCE);
-		event.addListener(ExtendedCodexManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

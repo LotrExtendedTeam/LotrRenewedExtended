@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedModServer;
 import com.github.maximuslotro.lotrrextended.common.extensions.entity.player.ExtendedServerPlayerEntity;
 import com.google.common.collect.Maps;
 
@@ -33,7 +34,7 @@ public class ExtendedCodexServerPlayerList {
 		if(event.getPlayer()==null){
 			saveAll();
 			for(ExtendedPlayerCodexes playerCodex : this.codexes.values()) {
-				playerCodex.reload(ExtendedCodexManager.INSTANCE);
+				playerCodex.reload(LotrExtendedModServer.getCodexManager());
 			}
 		}
 	}
@@ -44,7 +45,7 @@ public class ExtendedCodexServerPlayerList {
 		if (playeradvancements == null) {
 			File file1 = ServerLifecycleHooks.getCurrentServer().getWorldPath(PLAYER_CODEXES_DIR).toFile();
 			File file2 = new File(file1, uuid + ".json");
-			playeradvancements = new ExtendedPlayerCodexes(this, ExtendedCodexManager.INSTANCE, file2, serverPlayer);
+			playeradvancements = new ExtendedPlayerCodexes(this, LotrExtendedModServer.getCodexManager(), file2, serverPlayer);
 			this.codexes.put(uuid, playeradvancements);
 		}
 

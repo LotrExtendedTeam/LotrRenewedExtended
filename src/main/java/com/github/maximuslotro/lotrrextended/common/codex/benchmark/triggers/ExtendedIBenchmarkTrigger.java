@@ -1,24 +1,28 @@
-package com.github.maximuslotro.lotrrextended.common.codex.benchmarks;
+package com.github.maximuslotro.lotrrextended.common.codex.benchmark.triggers;
 
 import com.github.maximuslotro.lotrrextended.common.codex.ExtendedCodexEntry;
 import com.github.maximuslotro.lotrrextended.common.codex.ExtendedPlayerCodexes;
+import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedIBenchmarkInstance;
 import com.google.gson.JsonObject;
 
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.util.ResourceLocation;
 
-public interface IBenchmarkTrigger<T extends IBenchmarkInstance> {
+/**
+ * Codex implementation based upon {@Link ICriterionTrigger}'s logic 
+ * */
+public interface ExtendedIBenchmarkTrigger<T extends ExtendedIBenchmarkInstance> {
 	   ResourceLocation getId();
 
-	   void addPlayerListener(ExtendedPlayerCodexes pPlayerAdvancements, IBenchmarkTrigger.Listener<T> pListener);
+	   void addPlayerListener(ExtendedPlayerCodexes pPlayerAdvancements, ExtendedIBenchmarkTrigger.Listener<T> pListener);
 
-	   void removePlayerListener(ExtendedPlayerCodexes pPlayerAdvancements, IBenchmarkTrigger.Listener<T> pListener);
+	   void removePlayerListener(ExtendedPlayerCodexes pPlayerAdvancements, ExtendedIBenchmarkTrigger.Listener<T> pListener);
 
 	   void removePlayerListeners(ExtendedPlayerCodexes pPlayerAdvancements);
 
 	   T createInstance(JsonObject pObject, ConditionArrayParser pConditions);
 
-	   public static class Listener<T extends IBenchmarkInstance> {
+	   public static class Listener<T extends ExtendedIBenchmarkInstance> {
 	      private final T trigger;
 	      private final ExtendedCodexEntry codexEntry;
 	      private final String criterion;
@@ -41,7 +45,7 @@ public interface IBenchmarkTrigger<T extends IBenchmarkInstance> {
 	         if (this == object) {
 	            return true;
 	         } else if (object != null && this.getClass() == object.getClass()) {
-	            IBenchmarkTrigger.Listener<?> listener = (IBenchmarkTrigger.Listener<?>)object;
+	            ExtendedIBenchmarkTrigger.Listener<?> listener = (ExtendedIBenchmarkTrigger.Listener<?>)object;
 	            if (!this.trigger.equals(listener.trigger)) {
 	               return false;
 	            } else {

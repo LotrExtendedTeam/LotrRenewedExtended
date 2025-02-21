@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.codex.benchmark.ExtendedBenchmark;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonDeserializationContext;
@@ -20,7 +21,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.CriterionProgress;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
@@ -31,20 +31,20 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Codex implementation of {@Link AdvancementProgress}'s logic 
  * */
 public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> {
-	private final Map<String, CriterionProgress> criteria = Maps.newHashMap();
+	private final Map<String, CriterionProgress> benchmarks = Maps.newHashMap();
 	private String[] requirementIDs = new String[0];
 
 	/**
-	 * Update this AdvancementProgress' criteria and requirements
+	 * Update this AdvancementProgress' benchmarks and requirements
 	 */
-	public void update(Map<String, Criterion> pCriteria, String[] pRequirements) {
-		Set<String> newCriteriaSet = pCriteria.keySet();
-		this.criteria.entrySet().removeIf((entrySet) -> {
+	public void update(Map<String, ExtendedBenchmark> benchmarks, String[] pRequirements) {
+		Set<String> newCriteriaSet = benchmarks.keySet();
+		this.benchmarks.entrySet().removeIf((entrySet) -> {
 			return !newCriteriaSet.contains(entrySet.getKey());
 		});
-		for(String criteriaID : newCriteriaSet) {
-			if (!this.criteria.containsKey(criteriaID)) {
-				this.criteria.put(criteriaID, new CriterionProgress());
+		for(String benchmarkID : newCriteriaSet) {
+			if (!this.benchmarks.containsKey(benchmarkID)) {
+				this.benchmarks.put(benchmarkID, new CriterionProgress());
 			}
 		}
 		this.requirementIDs = pRequirements;
@@ -55,8 +55,8 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 			return false;
 		} else {
 			// Extended Start
-			for(String criteriaID: requirementIDs) {
-				CriterionProgress criterionprogress = this.getCriterion(criteriaID);
+			for(String benchmarkID: requirementIDs) {
+				CriterionProgress criterionprogress = this.getBenchmark(benchmarkID);
 				if (criterionprogress == null || criterionprogress.isDone()) {
 					return false;
 				}
@@ -67,7 +67,7 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 	}
 
 	public boolean hasProgress() {
-		for(CriterionProgress criterionprogress : this.criteria.values()) {
+		for(CriterionProgress criterionprogress : this.benchmarks.values()) {
 			if (criterionprogress.isDone()) {
 				return true;
 			}
@@ -75,8 +75,8 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 		return false;
 	}
 
-	public boolean grantProgress(String pCriterion) {
-		CriterionProgress criterionprogress = this.criteria.get(pCriterion);
+	public boolean grantProgress(String benchmarkID) {
+		CriterionProgress criterionprogress = this.benchmarks.get(benchmarkID);
 		if (criterionprogress != null && !criterionprogress.isDone()) {
 			criterionprogress.grant();
 			return true;
@@ -85,8 +85,8 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 		}
 	}
 
-	public boolean revokeProgress(String pCriterion) {
-		CriterionProgress criterionprogress = this.criteria.get(pCriterion);
+	public boolean revokeProgress(String benchmarkID) {
+		CriterionProgress criterionprogress = this.benchmarks.get(benchmarkID);
 		if (criterionprogress != null && criterionprogress.isDone()) {
 			criterionprogress.revoke();
 			return true;
@@ -96,12 +96,12 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 	}
 
 	public String toString() {
-		return "CodexProgress{criteria=" + this.criteria + ", requirements=" + Arrays.toString(this.requirementIDs) + '}';
+		return "CodexProgress{benchmarks=" + this.benchmarks + ", requirements=" + Arrays.toString(this.requirementIDs) + '}';
 	}
 
 	public void serializeToNetwork(PacketBuffer pBuffer) {
-		pBuffer.writeVarInt(this.criteria.size());
-		for(Entry<String, CriterionProgress> entry : this.criteria.entrySet()) {
+		pBuffer.writeVarInt(this.benchmarks.size());
+		for(Entry<String, CriterionProgress> entry : this.benchmarks.entrySet()) {
 			pBuffer.writeUtf(entry.getKey());
 			entry.getValue().serializeToNetwork(pBuffer);
 		}
@@ -111,19 +111,19 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 		ExtendedCodexProgress advancementprogress = new ExtendedCodexProgress();
 		int i = pBuffer.readVarInt();
 		for(int j = 0; j < i; ++j) {
-			advancementprogress.criteria.put(pBuffer.readUtf(32767), CriterionProgress.fromNetwork(pBuffer));
+			advancementprogress.benchmarks.put(pBuffer.readUtf(32767), CriterionProgress.fromNetwork(pBuffer));
 		}
 		return advancementprogress;
 	}
 
 	@Nullable
-	public CriterionProgress getCriterion(String pCriterion) {
-		return this.criteria.get(pCriterion);
+	public CriterionProgress getBenchmark(String benchmarkID) {
+		return this.benchmarks.get(benchmarkID);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public float getPercent() {
-		if (this.criteria.isEmpty()) {
+		if (this.benchmarks.isEmpty()) {
 			return 0.0F;
 		} else {
 			float f = (float)this.requirementIDs.length;
@@ -135,7 +135,7 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 	@Nullable
 	@OnlyIn(Dist.CLIENT)
 	public String getProgressText() {
-		if (this.criteria.isEmpty()) {
+		if (this.benchmarks.isEmpty()) {
 			return null;
 		} else {
 			int i = this.requirementIDs.length;
@@ -151,8 +151,8 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 	@OnlyIn(Dist.CLIENT)
 	private int countCompletedRequirements() {
 		int i = 0;
-		for(String criteriaID : this.requirementIDs) {
-			CriterionProgress criterionprogress = this.getCriterion(criteriaID);
+		for(String benchmarkID : this.requirementIDs) {
+			CriterionProgress criterionprogress = this.getBenchmark(benchmarkID);
 			if (criterionprogress != null && criterionprogress.isDone()) {
 				++i;
 			}
@@ -160,9 +160,9 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 		return i;
 	}
 
-	public Iterable<String> getRemainingCriteria() {
+	public Iterable<String> getRemainingBenchmarks() {
 		List<String> list = Lists.newArrayList();
-		for(Entry<String, CriterionProgress> entry : this.criteria.entrySet()) {
+		for(Entry<String, CriterionProgress> entry : this.benchmarks.entrySet()) {
 			if (!entry.getValue().isDone()) {
 				list.add(entry.getKey());
 			}
@@ -170,9 +170,9 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 		return list;
 	}
 
-	public Iterable<String> getCompletedCriteria() {
+	public Iterable<String> getCompletedBenchmarks() {
 		List<String> list = Lists.newArrayList();
-		for(Entry<String, CriterionProgress> entry : this.criteria.entrySet()) {
+		for(Entry<String, CriterionProgress> entry : this.benchmarks.entrySet()) {
 			if (entry.getValue().isDone()) {
 				list.add(entry.getKey());
 			}
@@ -184,7 +184,7 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 	public Date getFirstProgressDate() {
 		Date date = null;
 
-		for(CriterionProgress criterionprogress : this.criteria.values()) {
+		for(CriterionProgress criterionprogress : this.benchmarks.values()) {
 			if (criterionprogress.isDone() && (date == null || criterionprogress.getObtained().before(date))) {
 				date = criterionprogress.getObtained();
 			}
@@ -210,7 +210,7 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 			JsonObject jsonobject = new JsonObject();
 			JsonObject jsonobject1 = new JsonObject();
 
-			for(Entry<String, CriterionProgress> entry : codexProgress.criteria.entrySet()) {
+			for(Entry<String, CriterionProgress> entry : codexProgress.benchmarks.entrySet()) {
 				CriterionProgress criterionprogress = entry.getValue();
 				if (criterionprogress.isDone()) {
 					jsonobject1.add(entry.getKey(), criterionprogress.serializeToJson());
@@ -218,7 +218,7 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 			}
 
 			if (!jsonobject1.entrySet().isEmpty()) {
-				jsonobject.add("criteria", jsonobject1);
+				jsonobject.add("benchmarks", jsonobject1);
 			}
 
 			jsonobject.addProperty("done", codexProgress.isDone());
@@ -227,12 +227,12 @@ public class ExtendedCodexProgress implements Comparable<ExtendedCodexProgress> 
 
 		public ExtendedCodexProgress deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "codex");
-			JsonObject jsonobject1 = JSONUtils.getAsJsonObject(jsonobject, "criteria", new JsonObject());
+			JsonObject jsonobject1 = JSONUtils.getAsJsonObject(jsonobject, "benchmarks", new JsonObject());
 			ExtendedCodexProgress codexprogress = new ExtendedCodexProgress();
 
 			for(Entry<String, JsonElement> entry : jsonobject1.entrySet()) {
 				String s = entry.getKey();
-				codexprogress.criteria.put(s, CriterionProgress.fromJson(JSONUtils.convertToString(entry.getValue(), s)));
+				codexprogress.benchmarks.put(s, CriterionProgress.fromJson(JSONUtils.convertToString(entry.getValue(), s)));
 			}
 
 			return codexprogress;
