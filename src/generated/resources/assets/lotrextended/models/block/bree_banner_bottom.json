@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_banner_bottom",
+  "textures": {
+    "particle": "lotrextended:block/banner/bree_banner",
+    "1": "lotrextended:block/banner/bree_banner"
+  }
+}
