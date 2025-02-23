@@ -617,4 +617,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORDOR_MOSS_VINES;
 
 	public static RegistryObject<Item> CROSSED_WATTLE_AND_DAUB;
+
+	public static RegistryObject<Item> WOODEN_BIRDCAGE;
+	public static RegistryObject<Item> BRONZE_BIRDCAGE;
+	public static RegistryObject<Item> IRON_BIRDCAGE;
+	public static RegistryObject<Item> SILVER_BIRDCAGE;
+	public static RegistryObject<Item> GOLDEN_BIRDCAGE;
+	public static RegistryObject<Item> MITHRIL_BIRDCAGE;
 }

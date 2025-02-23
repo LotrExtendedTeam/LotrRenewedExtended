@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCheeseWheelBlock;
@@ -883,6 +884,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BREE));
 
 		ExtendedBlocks.MORDOR_MOSS_VINES = registerB("mordor_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+		// Birdcages
+		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F)));
+		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
+		ExtendedBlocks.IRON_BIRDCAGE = registerB("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
+		ExtendedBlocks.SILVER_BIRDCAGE = registerB("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
+		ExtendedBlocks.GOLDEN_BIRDCAGE = registerB("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
+		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
+
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)

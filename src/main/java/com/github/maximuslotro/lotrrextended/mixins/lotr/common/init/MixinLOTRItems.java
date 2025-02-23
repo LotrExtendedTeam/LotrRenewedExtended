@@ -525,6 +525,13 @@ public class MixinLOTRItems {
 		ExtendedItems.MORGUL_LANTERN = regBlockItemB(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
 		ExtendedItems.MORGUL_CHANDELIER = regBlockItemB(ExtendedBlocks.MORGUL_CHANDELIER, LOTRItemGroups.DECO);
 
+		ExtendedItems.WOODEN_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.WOODEN_BIRDCAGE);
+		ExtendedItems.BRONZE_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.BRONZE_BIRDCAGE);
+		ExtendedItems.IRON_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.IRON_BIRDCAGE);
+		ExtendedItems.SILVER_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.SILVER_BIRDCAGE);
+		ExtendedItems.GOLDEN_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.GOLDEN_BIRDCAGE);
+		ExtendedItems.MITHRIL_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.MITHRIL_BIRDCAGE);
+		
 		ExtendedItems.ORC_CHAIN = regBlockItemB(ExtendedBlocks.ORC_CHAIN, LOTRItemGroups.DECO);
 		ExtendedItems.ORC_CHANDELIER = regBlockItemB(ExtendedBlocks.ORC_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.URUK_CHANDELIER = regBlockItemB(ExtendedBlocks.URUK_CHANDELIER, LOTRItemGroups.DECO);
