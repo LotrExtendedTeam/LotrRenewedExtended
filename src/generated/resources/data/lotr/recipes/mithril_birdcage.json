@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "B B",
+    "III"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:mithril_bars"
+    },
+    "I": {
+      "tag": "forge:ingots/mithril"
+    }
+  },
+  "result": {
+    "item": "lotr:mithril_birdcage"
+  }
+}

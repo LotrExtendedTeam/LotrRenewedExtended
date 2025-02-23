@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "B B",
+    "III"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:silver_bars"
+    },
+    "I": {
+      "tag": "forge:ingots/silver"
+    }
+  },
+  "result": {
+    "item": "lotr:silver_birdcage"
+  }
+}

@@ -147,24 +147,24 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_CORAL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DURNOR)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
 
-		tag(ExtendedTags.Items.MORGUL_STEEL).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.ORC_STEEL).add(LOTRItems.ORC_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.MORGUL_INGOTS).add(ExtendedItems.MORGUL_STEEL_INGOT.get(),LOTRItems.ORC_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.GALVORN).add(ExtendedItems.GALVORN_INGOT.get());
-		tag(ExtendedTags.Items.BLACK_URUK_STEEL).add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.GILDED_IRON).add(ExtendedItems.GILDED_IRON_INGOT.get());
-		tag(ExtendedTags.Items.DWARVEN_STEEL).add(LOTRItems.DWARVEN_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.ELVEN_STEEL).add(LOTRItems.ELVEN_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.URUK_STEEL).add(LOTRItems.URUK_STEEL_INGOT.get());
-		tag(ExtendedTags.Items.MITHRIL).add(LOTRItems.MITHRIL_INGOT.get());
+		tag(ExtendedTags.Items.MORGUL_STEEL_INGOT).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.ORC_STEEL_INGOT).add(LOTRItems.ORC_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.MORGUL_INGOT).add(ExtendedItems.MORGUL_STEEL_INGOT.get(),LOTRItems.ORC_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.GALVORN_INGOT).add(ExtendedItems.GALVORN_INGOT.get());
+		tag(ExtendedTags.Items.BLACK_URUK_STEEL_INGOT).add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.GILDED_IRON_INGOT).add(ExtendedItems.GILDED_IRON_INGOT.get());
+		tag(ExtendedTags.Items.DWARVEN_STEEL_INGOT).add(LOTRItems.DWARVEN_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.ELVEN_STEEL_INGOT).add(LOTRItems.ELVEN_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.URUK_STEEL_INGOT).add(LOTRItems.URUK_STEEL_INGOT.get());
+		tag(ExtendedTags.Items.MITHRIL_INGOT).add(LOTRItems.MITHRIL_INGOT.get());
 
 		tag(ExtendedTags.Items.ORC_STEEL_NUGGET).add(ExtendedItems.ORC_STEEL_NUGGET.get());
 
-		tag(Tags.Items.INGOTS).addTag(ExtendedTags.Items.MORGUL_STEEL)
-		.addTag(ExtendedTags.Items.ORC_STEEL).addTag(ExtendedTags.Items.GALVORN)
-		.addTag(ExtendedTags.Items.BLACK_URUK_STEEL).addTag(ExtendedTags.Items.GILDED_IRON)
-		.addTag(ExtendedTags.Items.DWARVEN_STEEL).addTag(ExtendedTags.Items.ELVEN_STEEL)
-		.addTag(ExtendedTags.Items.URUK_STEEL).addTag(ExtendedTags.Items.MITHRIL);
+		tag(Tags.Items.INGOTS).addTag(ExtendedTags.Items.MORGUL_STEEL_INGOT)
+		.addTag(ExtendedTags.Items.ORC_STEEL_INGOT).addTag(ExtendedTags.Items.GALVORN_INGOT)
+		.addTag(ExtendedTags.Items.BLACK_URUK_STEEL_INGOT).addTag(ExtendedTags.Items.GILDED_IRON_INGOT)
+		.addTag(ExtendedTags.Items.DWARVEN_STEEL_INGOT).addTag(ExtendedTags.Items.ELVEN_STEEL_INGOT)
+		.addTag(ExtendedTags.Items.URUK_STEEL_INGOT).addTag(ExtendedTags.Items.MITHRIL_INGOT);
 
 		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET);
 

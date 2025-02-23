@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "B B",
+    "III"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:gold_bars"
+    },
+    "I": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result": {
+    "item": "lotr:golden_birdcage"
+  }
+}
