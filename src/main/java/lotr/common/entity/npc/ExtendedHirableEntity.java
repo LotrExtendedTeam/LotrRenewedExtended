@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -123,4 +124,6 @@ public interface ExtendedHirableEntity {
     default ExtendedHiredUnitProfile getUnitProfile() {
     	return ExtendedHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
     }
+
+    public float getHiredUnitEquipmentDropChance(EquipmentSlotType p_205712_1_);
 }

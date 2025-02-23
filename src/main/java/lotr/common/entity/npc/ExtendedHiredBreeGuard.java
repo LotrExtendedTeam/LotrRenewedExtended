@@ -16,7 +16,6 @@ import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -196,10 +195,10 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.entityData.define(PATROLLING, false);
         this.entityData.define(ALERT, false);
         this.entityData.define(STATIONARY, false);
-        this.entityData.define(BASE_HEALTH, 30);
+        this.entityData.define(BASE_HEALTH, 20);
         this.entityData.define(INVENTORY_OPEN, false);
         this.entityData.define(EQUIPMENT_OPEN, false);
-        this.entityData.define(TMP_LAST_HEALTH, 30f);
+        this.entityData.define(TMP_LAST_HEALTH, 20f);
 
         // equipment slots
         this.entityData.define(EQUIPMENT_CHEST, ItemStack.EMPTY);
@@ -614,8 +613,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         }
     }
 
-    // TODO: Make it so that hired units cannot be damaged by allied factions
-
     @Override
     public void giveExperiencePoints(float points) {
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
@@ -625,31 +622,28 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
     	// Disabled due to NPCEntity using new logic we don't want for unit drops
     	//super.dropCustomDeathLoot(damageSource, looting, player);
-
-    	for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-    		ItemStack itemstack = this.getItemBySlot(slot);
-    		float dropChance = this.getEquipmentDropChance(slot);
-    		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
-    		boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
-    		if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
-    				&& Math.max(this.random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
-    			if (!dropUndamaged && itemstack.isDamageableItem()) {
-    				itemstack.setDamageValue(itemstack.getMaxDamage() - this.random.nextInt(1 + this.random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
-    			}
-
-    			this.spawnAtLocation(itemstack);
-    			this.setItemSlot(slot, ItemStack.EMPTY);
-    		}
-    	}
-    	for (int i = 0; i < 9; ++i) {
-    		ItemStack itemstack = internalUnitInventory.getItem(i).copy();
-    		this.spawnAtLocation(itemstack);
-    		internalUnitInventory.setItem(i, ItemStack.EMPTY);
-    	}
+        ExtendedHiredUnitHelper.dropCustomDeathLoot(this, this, random, internalUnitInventory, looting, player);
     }
 
 	@Override
 	public ResourceLocation getProfileLocation() {
 		return ExtendedHiredUnitTypes.BREE_GUARD;
 	}
+
+    @Override
+    public float getHiredUnitEquipmentDropChance(EquipmentSlotType slotType) {
+        float f;
+        switch (slotType.getType()) {
+            case HAND:
+                f = this.handDropChances[slotType.getIndex()];
+                break;
+            case ARMOR:
+                f = this.armorDropChances[slotType.getIndex()];
+                break;
+            default:
+                f = 0.0F;
+        }
+
+        return f;
+    }
 }

@@ -2,10 +2,12 @@ package lotr.common.util;
 
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
@@ -13,6 +15,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class ExtendedHiredUnitHelper {
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
@@ -103,6 +107,30 @@ public class ExtendedHiredUnitHelper {
             } else if (slot == EquipmentSlotType.OFFHAND) {
                 hirable.updateOffhandSlot(item);
             }
+        }
+    }
+
+    public static void dropCustomDeathLoot(NPCEntity companion, ExtendedHirableEntity hirable, Random random, Inventory internalUnitInventory, int looting, boolean player) {
+
+        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+            ItemStack itemstack = companion.getItemBySlot(slot);
+            float dropChance = hirable.getHiredUnitEquipmentDropChance(slot);
+            boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+            boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
+            if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
+                    && Math.max(random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
+                if (!dropUndamaged && itemstack.isDamageableItem()) {
+                    itemstack.setDamageValue(itemstack.getMaxDamage() - random.nextInt(1 + random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
+                }
+
+                companion.spawnAtLocation(itemstack);
+                companion.setItemSlot(slot, ItemStack.EMPTY);
+            }
+        }
+        for (int i = 0; i < 9; ++i) {
+            ItemStack itemstack = internalUnitInventory.getItem(i).copy();
+            companion.spawnAtLocation(itemstack);
+            internalUnitInventory.setItem(i, ItemStack.EMPTY);
         }
     }
 }
