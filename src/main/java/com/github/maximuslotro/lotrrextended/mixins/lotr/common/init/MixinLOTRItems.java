@@ -47,6 +47,7 @@ import lotr.common.entity.item.LOTRBoatEntity;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItemGroups;
+import lotr.common.init.LOTRItemGroups.LOTRItemGroup;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
 import lotr.common.item.ExtendedDaggerItem;
@@ -705,7 +706,7 @@ public class MixinLOTRItems {
 		ExtendedItems.PEARL = regMaterialItemB("pearl");
 		ExtendedItems.CORAL = regMaterialItemB("coral");
 
-		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(ItemGroup.TAB_MATERIALS)));
+		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(LOTRItemGroup.TAB_FOOD)));
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
 		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));
@@ -891,7 +892,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BREE_BANNER_PATTERN = regBannerPaternItem("bree_banner_pattern", ExtendedBannerPatterns.bree, () -> new BannerPatternItem(ExtendedBannerPatterns.bree, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.ENTITY_SPAWNER = regItemB("structure_entity_spawner", () -> new ExtendedEntitySpawnerItem(new Properties().tab(LOTRItemGroups.MISC).fireResistant()));
 		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(64).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(new Properties().tab(LOTRItemGroups.MISC).defaultDurability(100)));
+		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
