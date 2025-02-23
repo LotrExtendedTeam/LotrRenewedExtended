@@ -34,13 +34,13 @@ public class MixinLOTRMaterial {
 	@Dynamic
 	private static LOTRMaterial[] $VALUES;
 
-	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 2.5F, 8, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(ExtendedItems.MORGUL_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
 
-	private static final LOTRMaterial TAURETHRIM = lotrmaterialExpansion$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial TAURETHRIM = lotrmaterialExpansion$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()),() -> Ingredient.of(LOTRItems.BRONZE_INGOT.get()), new LOTRMaterial.Specials[0]);
 
-	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.65F, SoundEvents.ARMOR_EQUIP_GOLD, 0,
+	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.6F, SoundEvents.ARMOR_EQUIP_GOLD, 0,
 									() -> Ingredient.of(Items.INGOTS_GOLD));
 
 	private static final LOTRMaterial BLACK_WARG = lotrmaterialExpansion$addVariant("BLACK_WARG", "black_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
@@ -66,7 +66,7 @@ public class MixinLOTRMaterial {
 	private static final LOTRMaterial EXT_BONE = lotrmaterialExpansion$addVariant("EXT_BONE", "ext_bone", 0, 150, 3.0F, 2.0F, 10, 0.3F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 									() -> Ingredient.of(Tags.Items.BONES));
 
-	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 250, 6.0F, 2.0F, 14, 0.6F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 300, 6.0F, 2.0F, 100, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 
 	@Invoker("<init>")
