@@ -243,6 +243,9 @@ public class ExtendedHiredUnitProfile {
 		}
 
 		private static ItemStack setBaseItem(ItemStack stack, String name) {
+			if(stack.isEmpty()) {
+				return stack;
+			}
 			CompoundNBT compoundnbt = stack.getOrCreateTag();
 			compoundnbt.putBoolean("IsBaseArmor", true);
 			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));

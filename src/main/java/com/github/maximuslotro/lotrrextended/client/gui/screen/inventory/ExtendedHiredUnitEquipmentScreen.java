@@ -55,22 +55,22 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         super.render(p_98418_, p_98419_, p_98420_, p_98421_);
 
         if (getMenu().getBaseInventory() != null) {
-        	if(getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem()) {
+        	if(getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem() && !getMenu().getBaseInventory().getItem(0).isEmpty()) {
         		renderBaseGearSlot(leftPos + 25, topPos + 31, getMenu().getBaseInventory().getItem(0));
         	}
-        	if(getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem()) {
+        	if(getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem() && !getMenu().getBaseInventory().getItem(1).isEmpty()) {
         		renderBaseGearSlot(leftPos + 25, topPos + 49, getMenu().getBaseInventory().getItem(1));
         	}
-        	if(getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem()) {
+        	if(getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem() && !getMenu().getBaseInventory().getItem(2).isEmpty()) {
         		renderBaseGearSlot(leftPos + 25, topPos + 67, getMenu().getBaseInventory().getItem(2));
         	}
-        	if(getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem()) {
+        	if(getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem() && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
         		renderBaseGearSlot(leftPos + 25, topPos + 85, getMenu().getBaseInventory().getItem(3));
         	}
-        	if(getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem()) {
+        	if(getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
         		renderBaseGearSlot(leftPos + 61 + 18, topPos + 67, getMenu().getBaseInventory().getItem(4));
         	}
-        	if(getMenu().getOffHand()!=null && (!getMenu().getOffHand().hasItem())) {
+        	if(getMenu().getOffHand()!=null && (!getMenu().getOffHand().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty())) {
         		renderBaseGearSlot(leftPos + 61 + 18, topPos + 85, getMenu().getBaseInventory().getItem(5));
         	}
         }
