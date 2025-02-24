@@ -116,22 +116,22 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         super.renderTooltip(stack, x, y);
 
         // render tooltips for base gear
-        if (isHovering(25, 31, x, y) && getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem()) {
+        if (isHovering(25, 31, x, y) && getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem() && !getMenu().getBaseInventory().getItem(0).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(0), x, y);
         }
-        if (isHovering(25, 49, x, y) && getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem()) {
+        if (isHovering(25, 49, x, y) && getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem() && !getMenu().getBaseInventory().getItem(1).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(1), x, y);
         }
-        if (isHovering(25, 67, x, y) && getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem()) {
+        if (isHovering(25, 67, x, y) && getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem() && !getMenu().getBaseInventory().getItem(2).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(2), x, y);
         }
-        if (isHovering(25, 85, x, y) && getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem()) {
+        if (isHovering(25, 85, x, y) && getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem() && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(3), x, y);
         }
-        if (isHovering(62 + 18, 67, x, y) && getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem()) {
+        if (isHovering(62 + 18, 67, x, y) && getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), x, y);
         }
-        if (isHovering(62 + 18, 85, x, y) && getMenu().getOffHand()!=null && !getMenu().getOffHand().hasItem()) {
+        if (isHovering(62 + 18, 85, x, y) && getMenu().getOffHand()!=null && !getMenu().getOffHand().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(5), x, y);
         }
     }

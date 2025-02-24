@@ -359,6 +359,31 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
+    public void addAdditionalSaveData(CompoundNBT tag) {
+    	super.addAdditionalSaveData(tag);
+    	if (this.getOwnerUUID() != null) {
+    		tag.putUUID("Owner", this.getOwnerUUID());
+    	}
+
+    	// create temp NonNullList to save inventory to
+    	NonNullList<ItemStack> items = NonNullList.withSize(21, ItemStack.EMPTY);
+    	for (int i = 0; i < 21; i++) {
+    		ItemStack item = internalUnitInventory.getItem(i);
+    		items.set(i, item);
+    	}
+    	ItemStackHelper.saveAllItems(tag, items);
+
+    	tag.putBoolean("following", this.isFollowing());
+    	tag.putBoolean("stationary", this.isStationary());
+    	tag.putInt("mob_kills", this.getMobKills());
+    	tag.putInt("xp_level", this.getExpLvl());
+    	tag.putFloat("current_xp", this.getCurrentXp());
+    	tag.putFloat("max_xp", this.getMaxXp());
+    	tag.putInt("base_health", this.getBaseHealth());
+    	tag.putFloat("tmp_last_health", this.getHealth());
+    }
+
+    @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
