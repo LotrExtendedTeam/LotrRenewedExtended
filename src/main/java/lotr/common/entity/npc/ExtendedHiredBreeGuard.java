@@ -564,7 +564,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     public void checkStats() {
         if ((int) this.getMaxHealth() != getBaseHealth()) {
-            modifyMaxHealth(getBaseHealth() - 30, "Base Health from current level", false);
+            modifyMaxHealth(getBaseHealth() - 20, "Base Health from current level", false);
         }
     }
 

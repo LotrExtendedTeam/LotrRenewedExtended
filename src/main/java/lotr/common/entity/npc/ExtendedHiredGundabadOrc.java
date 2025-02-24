@@ -3,12 +3,14 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -492,7 +494,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     public void checkStats() {
         if ((int) this.getMaxHealth() != getBaseHealth()) {
-            modifyMaxHealth(getBaseHealth() - 30, "Base Health from current level", false);
+            modifyMaxHealth(getBaseHealth() - 18, "Base Health from current level", false);
         }
     }
 
@@ -547,5 +549,23 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     @Override
     public void setStationary(boolean stationary) {
         this.entityData.set(STATIONARY, stationary);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new ExtendedHiredSitGoal(this));
+        this.goalSelector.addGoal(3, new ExtendedHiredFollowPlayerGoal( this,1.3D, 8.0F, 2.0F, false));
+        this.goalSelector.addGoal(5, new ExtendedHiredWaterAvoidingRandomWalkingGoal(this,1.0D));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(8, new OpenDoorGoal(this, true));
+        // TODO: Re-enable food eating one when I figure out how to get it to not mess up
+        //  their attack animations
+        //this.goalSelector.addGoal(9, new LowHealthGoal(this,this));
+        //this.goalSelector.addGoal(10, new EatGoal(this,this));
+        this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new ExtendedHiredPlayerHurtTargetGoal(this));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 }
