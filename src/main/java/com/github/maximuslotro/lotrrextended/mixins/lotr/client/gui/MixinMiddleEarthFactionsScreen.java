@@ -22,6 +22,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
+/**
+ * @reason need to hide special factions from rendering and stuff
+ * @Mixin (MiddleEarthFactionsScreen.class)
+ * */
 @Mixin(MiddleEarthFactionsScreen.class)
 public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 
@@ -29,36 +33,72 @@ public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 		super(titleComponent);
 	}
 
+	/**
+	 * Get current FactionRegion
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private static FactionRegion currentRegion;
-
+	/**
+	 * Get the current dimension
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private static RegistryKey<World> currentDimension;
-
+	/**
+	 * Get the current loaded factions
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private FactionSettings currentLoadedFactions;
-
+	/**
+	 * Get the current scrollPlane
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private ScrollPane scrollPaneAlliesEnemies;
-
+	/**
+	 * Get if player is pledged
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private boolean isPledging;
-
+	/**
+	 * Get the player is unpledging
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private boolean isUnpledging;
-
+	/**
+	 * Get the region button
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private Button buttonRegions;
-
+	/**
+	 * Get the current ScrollBar height
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private int scrollBarY;
-
+	/**
+	 * Get the parent class method for updating the faction data
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private void updateCurrentDimensionAndFaction() {}
-
+	/**
+	 * Get the parent class method for getting the current Faction from scroll
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private void setCurrentScrollFromFaction() {}
 
+	/**
+	 * @reason Need to remove special faction from view on client tick
+	 * @Inject (method = "tick()V", at = @At("TAIL"))
+	 * @param cl The associated CallbackInfo with this inject
+	 * */
 	@Inject(method = "tick()V", at = @At("TAIL"))
 	public void tick(CallbackInfo cl) {
 		if(currentRegion.getName().toString().equals("lotr:special")) {
@@ -75,6 +115,11 @@ public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 		}
 	}
 
+	/**
+	 * @reason Need to remove special faction from view on client tick
+	 * @Inject (method = "tick()V", at = @At("TAIL"))
+	 * @param cl The associated CallbackInfo with this inject
+	 * */
 	@Inject(method = "init()V", at = @At("TAIL"))
 	public void init(CallbackInfo cl) {
 		buttonRegions = this.addButton(new RedBookButton(guiLeft + xSize / 2 - 60, guiTop + scrollBarY + 20, 120, 20, StringTextComponent.EMPTY, button -> {

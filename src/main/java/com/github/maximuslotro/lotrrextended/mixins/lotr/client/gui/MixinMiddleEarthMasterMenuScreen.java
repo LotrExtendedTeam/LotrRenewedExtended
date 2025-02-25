@@ -19,19 +19,32 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+/**
+ * @reason Need to change layout of settings menu
+ * @Mixin (MiddleEarthMasterMenuScreen.class)
+ * */
 @Mixin(MiddleEarthMasterMenuScreen.class)
 public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
 	public MixinMiddleEarthMasterMenuScreen(ITextComponent titleIn) {
 		super(titleIn);
 	}
 
+	/**
+	 * @reason Helper method dealing with Renewed's menu rendering
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	public static void resetLastMenuScreen() {}
 
 	/**
-	 * @author maximuslotr
-	 * @reason injections were to hard
+	 * @author maximuslotro
+	 * @reason Need to re-work settings menu
+	 * @Overwrite Remapped since this is a vanilla method
 	 * */
 	@Override
 	@Overwrite

@@ -26,33 +26,81 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * @reason Need direct injection into renewed client rendering logic to add wight fog effects
+ * @Mixin (LOTRTickHandlerClient.class)
+ * */
 @Mixin(LOTRTickHandlerClient.class)
 public class MixinLOTRTickHandlerClient {
 
+	/**
+	 * Get the current partial render tick from parent class
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap=false)
 	public static float renderPartialTick;
-
+	/**
+	 * Get RainMist data from parent class
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private RainMist rainMist;
+	/**
+	 * Get MistyMountainsMist data from parent class
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private MistyMountainsMist mountainsMist;
+	/**
+	 * Get SandstormFog data from parent class
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private SandstormFog sandstormFog;
+	/**
+	 * Get AshfallFog data from parent class
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private AshfallFog ashfallFog;
+	/**
+	 * Get Minecraft from parent class
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private Minecraft mc;
 
+	/**
+	 * Variable for holding the current wight fog distance data
+	 * @Unique
+	 * */
 	@Unique
 	private float wightFogModifier;
+	/**
+	 * Variable for holding the previous wight fog distance data
+	 * Used for interpolating the fog movement
+	 * @Unique
+	 * */
 	@Unique
 	private float prevWightFogModifier;
 
+	/**
+	 * @author maximuslotro
+	 * @reason Need to get current wight distance from player to set wight fog data
+	 * @Inject (method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V", at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), remap=false)
+	 * @param event The captured ClientTickEvent from the parent method
+	 * @param ci An instance of CallbackInfo
+	 * */
 	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V",
 		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), remap=false)
 	public void injectWightFogLogic(ClientTickEvent event, CallbackInfo ci) {
@@ -73,6 +121,8 @@ public class MixinLOTRTickHandlerClient {
 	/**
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
+	 * @Overwrite (remap=false)
+	 * @param event The captured RenderFogEvent from the parent class to run fog modification from
 	 */
 	@Overwrite(remap=false)
 	@SubscribeEvent
