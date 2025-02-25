@@ -230,6 +230,11 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			if (entry.getKey().contains("block.lotr.large_pot_")) {
 				continue;
 			}
+			if (entry.getKey().contains("entity_shortname.lotrextended.")||
+					entry.getKey().contains("entity_unit_type.lotrextended.")||
+					entry.getKey().contains("entity_title.lotrextended.")) {
+				continue;
+			}
 			existingStrings.put(entry.getKey(), entry.getValue());
 		}
 	}

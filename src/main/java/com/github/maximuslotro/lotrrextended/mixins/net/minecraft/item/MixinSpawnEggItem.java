@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import lotr.common.entity.npc.ExtendedHiredGundabadOrc;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -79,6 +80,9 @@ public class MixinSpawnEggItem {
                 if (entityType.equals(ExtendedEntities.HIRED_BREE_GUARD.get())) {
                     ExtendedHiredBreeGuard guard = (ExtendedHiredBreeGuard) entity;
                     guard.tame(Objects.requireNonNull(context.getPlayer()));
+                } else if (entityType.equals(ExtendedEntities.HIRED_GUNDABAD_ORC.get())) {
+                    ExtendedHiredGundabadOrc orc = (ExtendedHiredGundabadOrc) entity;
+                    orc.tame(Objects.requireNonNull(context.getPlayer()));
                 }
 
                 itemstack.shrink(1);

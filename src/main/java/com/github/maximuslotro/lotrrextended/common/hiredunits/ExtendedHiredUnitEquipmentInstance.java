@@ -106,6 +106,7 @@ public class ExtendedHiredUnitEquipmentInstance {
 	private static void addINTERNALStack(ItemStack item, int weight, List<ExtendedHiredUnitEquipmentEntry> pool) {
 		if(weight<=0) {
 			weight=1;
+			System.out.println("UnitProfile stack weight should not be less than 1! Offender: "+item.toString());
 		}
 		pool.add(new ExtendedHiredUnitEquipmentEntry(item, weight));
 	}

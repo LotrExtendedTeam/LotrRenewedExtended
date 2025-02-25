@@ -1,0 +1,70 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=snaga"
+      },
+      "lines": [
+        "What do silver coins and Man-flesh have in common? I never have enough of them!",
+        "You want some mercenaries, #p? I want some coins.",
+        "Get your fighting Orcs here! Starting at just a few silver coins!",
+        "I want to get my stinking hands on some more silver coins!",
+        "The forces of evil are ready for hire, maggot!",
+        "I have many fine stinking Orcs for you to command!",
+        "You want to command my boys? Then give me some silver coins!",
+        "My boys will serve you well, for a dozen silver coins, of course!",
+        "Give me some coins and I'll give you some troops.",
+        "Come and get your Orcs here, maggot!",
+        "My fine Orcs can be yours for a few silver coins!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Have you not been driven out by our armies yet, scum?",
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "Looks like meat's back on the menu, boys!",
+        "You stink of fear!",
+        "Die, Man-scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Come any closer and I'll stick you like a fresh cut of meat!",
+        "We dine on Man-flesh tonight!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "friendly",
+            "rank": "<snaga"
+          }
+        ]
+      },
+      "lines": [
+        "You think I'd sell mercenaries to scum like you? Ha!",
+        "Only the foulest of Men can command Orcs, #p.",
+        "Work some more evil, and then perhaps I'll consider trading units with you.",
+        "Come back when you've proven your worth, maggot.",
+        "I'm not selling any Orcs to you until you kill some more filthy enemies!",
+        "We Orcs would never follow a weakling like you, #p!",
+        "What do you want, you filthy maggot?",
+        "You aren't getting any troops from me, worm!",
+        "Only true servants of the One may command my mighty Orcs!",
+        "Come back when you're not a miserable worm anymore!",
+        "I'm not giving you any of my boys until you prove yourself worthy to us!"
+      ]
+    }
+  ]
+}

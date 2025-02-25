@@ -4,7 +4,9 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbst
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import lotr.common.entity.npc.ExtendedBreelandSheriffEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedGundabadOrcChieftain;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
@@ -36,7 +38,11 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
         this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
         // 114 was 57
         // +5 was +63/then 32
-        hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
+        if (captainEntity instanceof ExtendedBreelandSheriffEntity) {
+            hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
+        } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
+            hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_gundabad_orc"), button -> hireFromNPC()));
+        }
     }
 
     private void talkWithNPC() {
@@ -52,16 +58,29 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
 		// TODO remove hardcoded in next update
-		if (captainEntity.canHire(ExtendedHiredUnitTypes.BREE_GUARD, player)) {
-            ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
-		} else {
-			player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
-			stopInteractingClientServer();
-			Minecraft mc = Minecraft.getInstance();
-			if(mc.player != null) {
-				mc.player.closeContainer();
-			}
-		}
+        if (captainEntity instanceof ExtendedBreelandSheriffEntity) {
+		    if (captainEntity.canHire(ExtendedHiredUnitTypes.BREE_GUARD, player)) {
+                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
+		    } else {
+			    player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
+			    stopInteractingClientServer();
+			    Minecraft mc = Minecraft.getInstance();
+			    if(mc.player != null) {
+				    mc.player.closeContainer();
+			    }
+		    }
+        } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
+            if (captainEntity.canHire(ExtendedHiredUnitTypes.GUNDABAD_ORC, player)) {
+                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
+            } else {
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
+                stopInteractingClientServer();
+                Minecraft mc = Minecraft.getInstance();
+                if(mc.player != null) {
+                    mc.player.closeContainer();
+                }
+            }
+        }
 	}
 
     @Override

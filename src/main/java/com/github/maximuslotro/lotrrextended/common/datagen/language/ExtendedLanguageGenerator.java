@@ -74,33 +74,38 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD("entity.lotr." + entity);
 		}
 
-		// Try Add Container Titles
+		// Generate Container Titles
 		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Config Value Names
+		// Generate Config Value Names
 		for (Entry<String, String> entity : DataGenValueHolder.configCommentHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Attributes Names
+		// Generate Attributes Names
 		for (Entry<String, String> entity : DataGenValueHolder.attributeNames.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Advancement Values
+		// Generate Advancement Values
 		for (Entry<String, String> entity : DataGenValueHolder.advancementHolder.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add Statistics titles
+		// Generate Statistics titles
 		for (Entry<String, String> entity : DataGenValueHolder.statsHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Subtitles
+		// Generate Subtitles
 		for (Entry<String, String> entity : DataGenValueHolder.soundEventHolder.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
+		}
+
+		// Generate Hired Unit Strings
+		for (Entry<String, String> entity : DataGenValueHolder.hiredUnitStrings.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
@@ -351,14 +356,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
 		addD("gui.lotrextended.hiring.hire_bree_guard", "Hire Bree-land Guard");
+		addD("gui.lotrextended.hiring.hire_gundabad_orc", "Hire Gundabad Orc");
 		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
-		// Hired Units related language entries
-		// entity shortnames
-		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s");
-		addD("entity_unit_type.lotrextended.hired_bree_guard", "Bree-land Guard");
-		addD("entity_title.lotrextended.hired_bree_guard", "%1$s the Bree-land Guard");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");
