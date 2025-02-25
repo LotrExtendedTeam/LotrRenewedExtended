@@ -74,7 +74,7 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 							blockstate, world, tileEntity.getBlockPos(),
 							(p_228846_0_, p_228846_1_) -> false);
 			int i = icallbackwrapper
-					.<Int2IntFunction>apply(new DualBrightnessCallback<>())
+					.apply(new DualBrightnessCallback<>())
 					.get(p_225616_5_);
 			this.renderPiece(p_225616_3_, p_225616_4_,
 					blockstate.getValue(BedBlock.PART) == BedPart.HEAD,

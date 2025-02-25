@@ -126,7 +126,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
                     else {
                         popResource(world, pos, toDrop);
                     }
-					world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
+					world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
                 }
 			}else {
                 ItemStack stack = player.getMainHandItem();
@@ -135,7 +135,7 @@ public class ExtendedWeaponRackBlock extends HorizontalFaceBlock {
                         ItemStack copy = stack.copy();
                         entity.setContainedItem(copy);
                         stack.shrink(1);
-    					world.playSound((PlayerEntity)null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
+    					world.playSound(null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 0.2F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 2.0F);
                         return ActionResultType.SUCCESS;
                     }
                     if (entity.hasItem() && stack.isEmpty()) {

@@ -55,8 +55,8 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 
 		public static ExtendedTraderTradedTrigger.Instance tradedWithAndItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, IItemProvider possableItem, MinMaxBounds.IntBound coinsTransphered) {
 			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, entityType, didPlayerBuyItemFromTrader,
-					new ItemPredicate((ITag<Item>) null, possableItem.asItem(), MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY,
-							EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, (Potion) null, NBTPredicate.ANY), coinsTransphered);
+					new ItemPredicate(null, possableItem.asItem(), MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY,
+							EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, null, NBTPredicate.ANY), coinsTransphered);
 		}
 
 		public static ExtendedTraderTradedTrigger.Instance tradedWithALLItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, MinMaxBounds.IntBound coinsTransphered) {

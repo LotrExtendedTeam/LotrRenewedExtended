@@ -34,100 +34,100 @@ public class ArnorBrickWeathererProcessor extends StructureProcessor {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK.get(), blockstate), null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK_SLAB.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_SLAB.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_SLAB.get(), blockstate), null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK_STAIRS.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_STAIRS.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_STAIRS.get(), blockstate), null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_BRICK_WALL.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_ARNOR_BRICK_WALL.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.MOSSY_ARNOR_BRICK_WALL.get(), blockstate), null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR.get(), blockstate), null);
 			}
 		}
 		if (blockstate.is(LOTRBlocks.ARNOR_PILLAR_SLAB.get())) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB.get(), blockstate), null);
 			}
 		}
 		if (blockstate.is(Blocks.STONE_BRICKS)) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.CRACKED_STONE_BRICKS, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.CRACKED_STONE_BRICKS, blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICKS, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICKS, blockstate), null);
 			}
 		}
 		if (blockstate.is(Blocks.STONE_BRICK_SLAB)) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_SLAB.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_SLAB.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_SLAB, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_SLAB, blockstate), null);
 			}
 		}
 		if (blockstate.is(Blocks.STONE_BRICK_STAIRS)) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_STAIRS.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_STAIRS.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_STAIRS, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_STAIRS, blockstate), null);
 			}
 		}
 		if (blockstate.is(Blocks.STONE_BRICK_WALL)) {
 			Random rand = new Random();
 			int num = rand.nextInt(8);
 			if(num==0) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_WALL.get(), blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(LOTRBlocks.CRACKED_STONE_BRICK_WALL.get(), blockstate), null);
 			}
 			else if (num<=2) {
-				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_WALL, blockstate), (CompoundNBT)null);
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_WALL, blockstate), null);
 			}
 		}
 //		if (blockstate.is(LOTRBlocks.STONE_PILLAR.get())) {

@@ -64,10 +64,10 @@ public class DunedainRangerArmorLayer extends BipedArmorLayer<ExtendedDunedainRa
                     float f = (i >> 16 & 255) / 255.0F;
                     float f1 = (i >> 8 & 255) / 255.0F;
                     float f2 = (i & 255) / 255.0F;
-                    this.renderModelRanger(p_241739_1_, p_241739_2_, p_241739_5_, flag1, armorModel, f, f1, f2, this.getArmorResource(p_241739_3_, itemstack, p_241739_4_, (String)null));
+                    this.renderModelRanger(p_241739_1_, p_241739_2_, p_241739_5_, flag1, armorModel, f, f1, f2, this.getArmorResource(p_241739_3_, itemstack, p_241739_4_, null));
                     this.renderModelRanger(p_241739_1_, p_241739_2_, p_241739_5_, flag1, armorModel, 1.0F, 1.0F, 1.0F, this.getArmorResource(p_241739_3_, itemstack, p_241739_4_, "overlay"));
                 } else {
-                    this.renderModelRanger(p_241739_1_, p_241739_2_, p_241739_5_, flag1, armorModel, 1.0F, 1.0F, 1.0F, this.getArmorResource(p_241739_3_, itemstack, p_241739_4_, (String)null));
+                    this.renderModelRanger(p_241739_1_, p_241739_2_, p_241739_5_, flag1, armorModel, 1.0F, 1.0F, 1.0F, this.getArmorResource(p_241739_3_, itemstack, p_241739_4_, null));
                 }
             }
         }

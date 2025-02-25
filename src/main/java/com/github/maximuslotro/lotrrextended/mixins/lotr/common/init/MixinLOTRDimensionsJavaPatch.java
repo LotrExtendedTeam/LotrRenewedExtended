@@ -59,7 +59,7 @@ public class MixinLOTRDimensionsJavaPatch {
 				ExtendedLog.error("Error unlocking final field " + dim_CODEC.toString());
 				exception.printStackTrace();
 			}
-			dim_CODEC.set((Object) null, stableCodec);
+			dim_CODEC.set(null, stableCodec);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			ExtendedLog.error("Java9+ Failed to set dimension generator settings codec to stable");

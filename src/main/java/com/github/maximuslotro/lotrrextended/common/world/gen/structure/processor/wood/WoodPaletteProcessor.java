@@ -117,7 +117,7 @@ public class WoodPaletteProcessor extends StructureProcessor{
 				return blockInfoWorld;
 			}
 			//ExtendedLog.info("Replaced "+blockstate.getBlock().getRegistryName().toString() +" with"+ pickedBlock.getRegistryName().toString());
-			return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(pickedBlock, blockstate), (CompoundNBT)null);
+			return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(pickedBlock, blockstate), null);
 		}
 		return blockInfoWorld;
 	}

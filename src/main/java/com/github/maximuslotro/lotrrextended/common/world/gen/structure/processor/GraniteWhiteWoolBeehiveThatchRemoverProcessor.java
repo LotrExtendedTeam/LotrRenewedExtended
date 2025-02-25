@@ -27,7 +27,7 @@ public class GraniteWhiteWoolBeehiveThatchRemoverProcessor extends StructureProc
 	public Template.BlockInfo processBlock(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData) {
 		BlockState blockstate = blockInfoWorld.state;
 		if (blockstate.is(Blocks.POLISHED_GRANITE)||blockstate.is(Blocks.BEEHIVE)||blockstate.is(Blocks.WHITE_WOOL)||blockstate.is(LOTRBlocks.THATCH.get())) {
-			return new Template.BlockInfo(blockInfoWorld.pos, Blocks.AIR.defaultBlockState(), (CompoundNBT)null);
+			return new Template.BlockInfo(blockInfoWorld.pos, Blocks.AIR.defaultBlockState(), null);
 		} else {
 			return blockInfoWorld;
 		}

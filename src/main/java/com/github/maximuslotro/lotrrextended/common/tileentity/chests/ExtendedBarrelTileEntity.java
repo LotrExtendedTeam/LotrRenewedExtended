@@ -140,6 +140,6 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 	      double d0 = this.worldPosition.getX() + 0.5D + vector3i.getX() / 2.0D;
 	      double d1 = this.worldPosition.getY() + 0.5D + vector3i.getY() / 2.0D;
 	      double d2 = this.worldPosition.getZ() + 0.5D + vector3i.getZ() / 2.0D;
-	      this.level.playSound((PlayerEntity)null, d0, d1, d2, p_213965_2_, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+	      this.level.playSound(null, d0, d1, d2, p_213965_2_, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
 	   }
 	}

@@ -73,10 +73,10 @@ public class ExtendedChestTileEntityRenderer<T extends TileEntity & IChestLid> e
 	            icallbackwrapper = TileEntityMerger.ICallback::acceptNone;
 	         }
 
-	         float f1 = icallbackwrapper.<Float2FloatFunction>apply(ExtendedSingleChestBlock.opennessCombiner(tileEntity)).get(p_225616_2_);
+	         float f1 = icallbackwrapper.apply(ExtendedSingleChestBlock.opennessCombiner(tileEntity)).get(p_225616_2_);
 	         f1 = 1.0F - f1;
 	         f1 = 1.0F - f1 * f1 * f1;
-	         int i = icallbackwrapper.<Int2IntFunction>apply(new DualBrightnessCallback<>()).applyAsInt(p_225616_5_);
+	         int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(p_225616_5_);
 
 	         RenderMaterial rendermaterial = getMaterial(tileEntity);
 	         IVertexBuilder ivertexbuilder = rendermaterial.buffer(p_225616_4_, RenderType::entityCutout);

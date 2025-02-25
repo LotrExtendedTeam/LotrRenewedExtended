@@ -18,7 +18,7 @@ public class ExtendedWargInventoryContainer extends Container {
 	   private final IInventory horseContainer;
 	   private final WargEntity warg;
 	   public ExtendedWargInventoryContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, final WargEntity pwarg) {
-	      super((ContainerType<?>)null, pContainerId);
+	      super(null, pContainerId);
 	      this.horseContainer = pContainer;
 	      this.warg = pwarg;
 	      int i = 3;

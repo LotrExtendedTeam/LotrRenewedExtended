@@ -189,7 +189,7 @@ public class MixinLOTRBlocks {
         switch (name) {
             case "blue_mallorn_torch":
                 // Override torch to add an on/off ability
-                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW}));
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(LOTRParticles.BLUE_ELVEN_GLOW));
                 break;
             case "blue_mallorn_wall_torch":
                 // Override torch to add an on/off ability
@@ -197,7 +197,7 @@ public class MixinLOTRBlocks {
                 break;
             case "green_mallorn_torch":
                 // Override torch to add an on/off ability
-                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GREEN_ELVEN_GLOW}));
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(LOTRParticles.GREEN_ELVEN_GLOW));
                 break;
             case "green_mallorn_wall_torch":
                 // Override torch to add an on/off ability
@@ -205,7 +205,7 @@ public class MixinLOTRBlocks {
                 break;
             case "gold_mallorn_torch":
                 // Override torch to add an on/off ability
-                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GOLD_ELVEN_GLOW}));
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(LOTRParticles.GOLD_ELVEN_GLOW));
                 break;
             case "gold_mallorn_wall_torch":
                 // Override torch to add an on/off ability
@@ -213,7 +213,7 @@ public class MixinLOTRBlocks {
                 break;
             case "silver_mallorn_torch":
                 // Override torch to add an on/off ability
-                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.SILVER_ELVEN_GLOW}));
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(LOTRParticles.SILVER_ELVEN_GLOW));
                 break;
             case "silver_mallorn_wall_torch":
                 // Override torch to add an on/off ability
@@ -221,7 +221,7 @@ public class MixinLOTRBlocks {
                 break;
             case "high_elven_torch":
                 // Override torch to add an on/off ability
-                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW}));
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(LOTRParticles.BLUE_ELVEN_GLOW));
                 break;
             case "high_elven_wall_torch":
                 // Override torch to add an on/off ability
