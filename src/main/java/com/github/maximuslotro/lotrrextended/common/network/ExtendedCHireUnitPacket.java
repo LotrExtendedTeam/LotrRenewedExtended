@@ -17,7 +17,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.Objects;
@@ -55,7 +54,7 @@ public class ExtendedCHireUnitPacket {
         ServerPlayerEntity player = Objects.requireNonNull(context.get().getSender());
 
         ResourceLocation unitType = ExtendedHiredUnitTypes.BREE_GUARD;
-        EntityType unitObject = ExtendedEntities.HIRED_BREE_GUARD.get();
+        EntityType<?> unitObject = ExtendedEntities.HIRED_BREE_GUARD.get();
         if (captain instanceof ExtendedGundabadOrcChieftain) {
             unitType = ExtendedHiredUnitTypes.GUNDABAD_ORC;
             unitObject = ExtendedEntities.HIRED_GUNDABAD_ORC.get();

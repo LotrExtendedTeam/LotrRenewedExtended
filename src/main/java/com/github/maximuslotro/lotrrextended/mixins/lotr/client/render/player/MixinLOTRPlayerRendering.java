@@ -18,13 +18,13 @@ public class MixinLOTRPlayerRendering {
 	@Shadow(remap=false)
 	private boolean shouldRenderPlayerHUD(PlayerEntity player) {return false;}
 
-	@Overwrite(remap=false)
 	/**
 	 * @author maximuslotro
 	 * @reason Need to add support for hiding alignment bar by Team
 	 * @param player The player we are rendering their alignment bar
 	 * @return if we should render their alignment bar
 	 */
+	@Overwrite(remap=false)
 	private boolean shouldRenderAlignment(PlayerEntity player) {
 		if (LOTRConfig.CLIENT.displayAlignmentAboveHead.get() && shouldRenderPlayerHUD(player)/*Extended Start*/ && shouldRenderTeam(player)/*Extended End*/) {
 			return LOTRLevelData.clientInstance().getData(player).getAlignmentData().displayAlignmentAboveHead();

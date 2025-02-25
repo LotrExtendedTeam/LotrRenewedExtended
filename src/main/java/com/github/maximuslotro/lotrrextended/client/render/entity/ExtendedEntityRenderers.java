@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
 import lotr.client.render.entity.*;
-import lotr.common.entity.npc.ExtendedHiredGundabadOrc;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
