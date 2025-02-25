@@ -20,7 +20,7 @@ public class MixinLamedonBiome {
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
-	@Overwrite
+	@Overwrite(remap=false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((LamedonBiome)(Object)this, builder, getLamedonBaseTreeRate(), 0.1F, TreeCluster.of(10, 20),
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,

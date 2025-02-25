@@ -16,7 +16,7 @@ public class MixinWilderlandBiome {
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
-	@Overwrite
+	@Overwrite(remap=false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((WilderlandBiome)(Object)this, builder, 0, 0.05F, TreeCluster.of(8, 20),
 				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,
