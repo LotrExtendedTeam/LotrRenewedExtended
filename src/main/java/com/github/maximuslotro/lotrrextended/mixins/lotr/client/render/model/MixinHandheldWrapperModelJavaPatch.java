@@ -15,13 +15,20 @@ import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+/**
+ * @reason Move code to Access Transformers for Java 9+ systems
+ * @Mixin (targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
+ */
 @Mixin(targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
 public class MixinHandheldWrapperModelJavaPatch {
 
 	/**
-	 * @author Maximuslotro
-	 * @reason Move code to Access Transformers for Java 9+ systems
-	 * Reflection is used, as I can't directly reference the inner private static class {@code lotr.client.render.model.HandheldItemModels$HandheldWrapperModel}
+	 * @author maximuslotro
+	 * @reason Move code to Access Transformers for Java 9+ systems. Reflection is still slightly used, as I can't directly reference the inner private static class {@code lotr.client.render.model.HandheldItemModels$HandheldWrapperModel}
+	 * @Overwrite(remap=false)
+	 * @param modelName A ResourceLocation with the name of the model
+	 * @param defaultModel The default IBakedModel to render
+	 * @param handheldModel The handheld IBakedModel to render
      */
 	@Overwrite(remap=false)
 	public static void remapHandheldModelOverrides(ResourceLocation modelName, IBakedModel defaultModel, IBakedModel handheldModel) {

@@ -29,6 +29,10 @@ import net.minecraft.world.World;
 @Mixin(MiddleEarthFactionsScreen.class)
 public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
 	public MixinMiddleEarthFactionsScreen(ITextComponent titleComponent) {
 		super(titleComponent);
 	}

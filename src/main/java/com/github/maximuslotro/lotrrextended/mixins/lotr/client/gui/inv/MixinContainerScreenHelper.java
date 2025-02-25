@@ -14,9 +14,17 @@ import lotr.client.gui.inventory.ExtendedTradeScreen;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
 
+/**
+ * @reason Need to register Extended's container screens
+ * @Mixin (ContainerScreenHelper.class)
+ * */
 @Mixin(ContainerScreenHelper.class)
 public class MixinContainerScreenHelper {
 
+	/**
+	 * @reason Registers Extended's Screens alongside Renewed's
+	 * @Inject (method = "registerScreens()V", at = @At("HEAD"), remap=false)
+	 * */
 	@Inject(method = "registerScreens()V", at = @At("HEAD"), remap=false)
     private static void addAdditionalScreens(CallbackInfo ci) {
 		ScreenManager.register(ExtendedContainers.COIN_TRADING.get(), ExtendedCoinExchangeScreen::new);

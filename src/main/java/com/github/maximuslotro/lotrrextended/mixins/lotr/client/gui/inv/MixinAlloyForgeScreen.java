@@ -16,14 +16,32 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
+/**
+ * @reason Need to add coin total to inventory
+ * @Mixin (AlloyForgeScreen.class)
+ * */
 @Mixin(AlloyForgeScreen.class)
 public abstract class MixinAlloyForgeScreen extends ContainerScreen<AbstractAlloyForgeContainer> {
 
-    public MixinAlloyForgeScreen(AbstractAlloyForgeContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent p_i51105_3_) {
-        super(p_i51105_1_, p_i51105_2_, p_i51105_3_);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param alloyContainter A placeholder variable instance of AbstractAlloyForgeContainer
+	 * @param inventory A placeholder variable instance of PlayerInventory
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
+    public MixinAlloyForgeScreen(AbstractAlloyForgeContainer alloyContainter, PlayerInventory inventory, ITextComponent titleIn) {
+        super(alloyContainter, inventory, titleIn);
     }
 
-    @Inject(method = "renderLabels", at = @At("TAIL"))
+	/**
+	 * @reason Adding a total coins display to the inventory
+	 * @Inject (method = "renderLabels(Lcom/mojang/blaze3d/matrix/MatrixStack;II)V", at = @At("TAIL"))
+	 * @param matStack The local MatrixStack to render to
+	 * @param x ? Does nothing in MC code
+	 * @param y ? Does nothing in MC code
+	 * @param info The local CallbackInfo instance for this injection
+	 * */
+    @Inject(method = "renderLabels(Lcom/mojang/blaze3d/matrix/MatrixStack;II)V", at = @At("TAIL"))
     protected void renderLabels(MatrixStack matStack, int x, int y, CallbackInfo info) {
         Minecraft mc = Minecraft.getInstance();
         assert mc.player != null;

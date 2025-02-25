@@ -11,20 +11,38 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 import net.minecraftforge.client.ForgeHooksClient;
 
+/**
+ * @reason Used to edit Renewed's model TransformTypes
+ * @Mixin (targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
+ * */
 @Mixin(targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
 public class MixinHandheldWrapperModel {
 
+	/**
+	 * Get the default model instance for this model
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap = false)
 	@Final
 	private IBakedModel defaultModel;
 
+	/**
+	 * Get the overriding model instance for this model
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap = false)
 	@Final
 	private IBakedModel handheldModel;
 
 	/**
 	 * @author maximuslotro
-	 * @reason Don't have mess with inject rn, I'm tired rn.
+	 * @reason Need to overwrite large view weapons to render on weaponracks
+	 * @Overwrite (remap = false)
+	 * @param transformType The TransformType this model is trying to be rendered as
+	 * @param mat The MatrixStack instance for this model
+	 * @return The selected IBakedModel instance to render
 	 * */
 	@Overwrite(remap = false)
 	public IBakedModel handlePerspective(TransformType transformType, MatrixStack mat) {
@@ -34,7 +52,6 @@ public class MixinHandheldWrapperModel {
 				|| transformType == TransformType.FIXED) {
 			modelToUse = handheldModel;
 		}
-
 		return ForgeHooksClient.handlePerspective(modelToUse, transformType, mat);
 	}
 }

@@ -12,9 +12,17 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Team;
 
+/**
+ * @reason Renewed does not respect entity team nameplate visibility
+ * @Mixin (LOTRPlayerRendering.class)
+ * */
 @Mixin(LOTRPlayerRendering.class)
 public class MixinLOTRPlayerRendering {
 
+	/**
+	 * Helper method to get if regular should nameplate render
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	private boolean shouldRenderPlayerHUD(PlayerEntity player) {return false;}
 

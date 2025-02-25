@@ -30,39 +30,65 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModelConfiguration;
 
+/**
+ * @reason Move code to Access Transformers for Java 9+ systems
+ * @Mixin (ConnectedTextureUnbakedModel.DeferredConnectedTextureModelBakery.class)
+ */
 @Mixin(ConnectedTextureUnbakedModel.DeferredConnectedTextureModelBakery.class)
 public class MixinDeferredConnectedTextureModelBakeryJavaPatch {
 
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	public IModelConfiguration owner;
-
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	public Function<RenderMaterial, TextureAtlasSprite> spriteGetter;
-
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	public IModelTransform modelTransform;
-
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	public ResourceLocation modelLocation;
-
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private List<BlockPart> elements;
-
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private Map<ResourceLocation, TextureConnectionProperties> texturesConnectionProperties;
-
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private Map<Integer, BlockModelQuadsHolder> createdBakedModelsFor3dContext;
 
 	/**
-     * @author Maximuslotro
+     * @author maximuslotro
      * @reason Java 9+ changes how computeIfAbsent works. If any map changes, not just on current key happens, a ConcurrentModificationException is thrown
      * This code changes the way the BlockModelQuadsHolder is generated to ensure non-concurrent changes
      * <p>
@@ -73,6 +99,9 @@ public class MixinDeferredConnectedTextureModelBakeryJavaPatch {
      * If any modification to the HashMap occurs during the execution of the computeIfAbsent method, a ConcurrentModificationException is thrown.
      *
      * This blog explains the issue: <a href="http://thisthread.blogspot.com/2017/12/hashmapcomputeifabsent-behavior-in-java.html">...</a>
+     * @Overwrite (remap=false)
+     * @param ctx3d The ConnectedTexture3DContext for this instance and surrounding block context
+     * @return A BlockModelQuadsHolder for the game to render
      */
     //@Inject(method = "getOrCreateBakedModelFor3DContext", at = @At("HEAD"), remap=false)
 	//public void getOrCreateBakedModelFor3DContext(ConnectedTexture3DContext ctx3d, CallbackInfoReturnable<BlockModelQuadsHolder> cir) {
