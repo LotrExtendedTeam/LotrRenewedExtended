@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -115,12 +116,8 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 		final ExtendedBannerProfileFellowship that = (ExtendedBannerProfileFellowship) o;
 
-		if ((id != null ? !id.equals(that.id) : that.id != null) || (name != null ? !name.equals(that.name) : that.name != null)) {
-			return false;
-		}
-
-		return true;
-	}
+        return (Objects.equals(id, that.id)) && (Objects.equals(name, that.name));
+    }
 
 	public static ExtendedBannerProfileFellowship readGameProfile(CompoundNBT pTag) {
 		try {
@@ -129,7 +126,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 			if(fellowship!=null) {
 				return new ExtendedBannerProfileFellowship(uuid);
 			}else {
-				ExtendedLog.info("Removed fellowship "+uuid.toString()+" from banner since it cannot be found!");
+				ExtendedLog.info("Removed fellowship "+ uuid +" from banner since it cannot be found!");
 				return null;
 			}
 		} catch (Throwable throwable) {

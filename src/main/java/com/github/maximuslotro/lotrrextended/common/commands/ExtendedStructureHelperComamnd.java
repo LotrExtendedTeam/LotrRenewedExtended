@@ -51,19 +51,13 @@ public class ExtendedStructureHelperComamnd {
 				);
 	}
 
-	public static final SuggestionProvider<CommandSource> LOCATIONS = (ctx, builder) -> {
-        return ISuggestionProvider.suggestResource(ExtendedLootTables.getLocations(), builder);
-    };
+	public static final SuggestionProvider<CommandSource> LOCATIONS = (ctx, builder) -> ISuggestionProvider.suggestResource(ExtendedLootTables.getLocations(), builder);
 
-	public static final SuggestionProvider<CommandSource> SPAWNERS = (ctx, builder) -> {
-        return ISuggestionProvider.suggestResource(ExtendedSpawners.all(), builder);
-    };
+	public static final SuggestionProvider<CommandSource> SPAWNERS = (ctx, builder) -> ISuggestionProvider.suggestResource(ExtendedSpawners.all(), builder);
 
     public static int executeEntity(CommandSource source, ResourceLocation resourceLocation, BlockPos pos) {
     	List<ExtendedStructureSpawnerEntity> entities = source.getLevel()
-    			.getEntities(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), source.getEntity().getBoundingBox(), (entitiyCheck) -> {
-    		return entitiyCheck instanceof ExtendedStructureSpawnerEntity;
-    	});
+    			.getEntities(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), source.getEntity().getBoundingBox(), (entitiyCheck) -> entitiyCheck instanceof ExtendedStructureSpawnerEntity);
     	ExtendedStructureSpawnerEntity entity;
     	if(!entities.isEmpty()) {
     		entity = entities.get(0);

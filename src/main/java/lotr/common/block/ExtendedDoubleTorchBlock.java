@@ -30,7 +30,7 @@ public class ExtendedDoubleTorchBlock extends DoubleTorchBlock{
 
 	public ExtendedDoubleTorchBlock(int light) {
 		super(Properties.of(Material.DECORATION).noCollission().strength(0.0F).lightLevel(getDoubleTorchLightLevel(light)).sound(SoundType.WOOD));
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)).setValue(HALF, DoubleBlockHalf.LOWER));
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.TRUE).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 	@Override
 	@OnlyIn(Dist.CLIENT)

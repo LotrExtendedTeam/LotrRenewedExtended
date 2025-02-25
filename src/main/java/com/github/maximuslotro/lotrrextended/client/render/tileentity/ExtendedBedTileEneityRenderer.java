@@ -72,9 +72,7 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 							BedBlock::getBlockType,
 							BedBlock::getConnectedDirection, ChestBlock.FACING,
 							blockstate, world, tileEntity.getBlockPos(),
-							(p_228846_0_, p_228846_1_) -> {
-								return false;
-							});
+							(p_228846_0_, p_228846_1_) -> false);
 			int i = icallbackwrapper
 					.<Int2IntFunction>apply(new DualBrightnessCallback<>())
 					.get(p_225616_5_);

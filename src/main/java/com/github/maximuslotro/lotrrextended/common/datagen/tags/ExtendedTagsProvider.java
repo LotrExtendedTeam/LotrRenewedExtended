@@ -72,12 +72,8 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 		this.builders.clear();
 		this.addTags();
 		ITag<T> itag = Tag.empty();
-		Function<ResourceLocation, ITag<T>> function = (tagLocation) -> {
-			return this.builders.containsKey(tagLocation) ? itag : null;
-		};
-		Function<ResourceLocation, T> function1 = (tagLocation) -> {
-			return this.registry.getOptional(tagLocation).orElse((T)null);
-		};
+		Function<ResourceLocation, ITag<T>> function = (tagLocation) -> this.builders.containsKey(tagLocation) ? itag : null;
+		Function<ResourceLocation, T> function1 = (tagLocation) -> this.registry.getOptional(tagLocation).orElse((T)null);
 		this.builders.forEach((tagLocation, tagBuilder) -> {
 			// FORGE: Add validation via existing resources
 			List<ITag.Proxy> list = tagBuilder.getUnresolvedEntries(function, function1).filter(this::missing).collect(Collectors.toList());
@@ -187,9 +183,7 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 
 		@SafeVarargs
 		public final ExtendedTagsProvider.Builder<T> add(T... pToAdd) {
-			Stream.<T>of(pToAdd).map(this.registry::getKey).forEach((p_240533_1_) -> {
-				this.builder.addElement(p_240533_1_, this.source);
-			});
+			Stream.<T>of(pToAdd).map(this.registry::getKey).forEach((p_240533_1_) -> this.builder.addElement(p_240533_1_, this.source));
 			return this;
 		}
 

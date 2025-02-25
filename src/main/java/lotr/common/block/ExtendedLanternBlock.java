@@ -24,7 +24,7 @@ public class ExtendedLanternBlock extends NonWaterloggableLanternBlock {
 
 	public ExtendedLanternBlock(int lightLevel) {
 		super(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(lightLevel)).noOcclusion());
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.TRUE));
 	}
 
 	@Override

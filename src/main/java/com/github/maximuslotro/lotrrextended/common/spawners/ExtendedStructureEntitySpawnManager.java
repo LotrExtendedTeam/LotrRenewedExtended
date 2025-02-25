@@ -100,9 +100,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
 		int i = this.directory.length() + 1;
 
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> {
-			return p_223379_0_.endsWith(".json");
-		})) {
+		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> p_223379_0_.endsWith(".json"))) {
 			String s = resourcelocation.getPath();
 			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 			try (

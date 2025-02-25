@@ -29,7 +29,7 @@ public class ExtendedLOTRWallTorchBlock extends LOTRWallTorchBlock{
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public ExtendedLOTRWallTorchBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.TRUE));
 	}
 
 	public ExtendedLOTRWallTorchBlock(SoundType sound, Supplier<Block> lootBlock) {

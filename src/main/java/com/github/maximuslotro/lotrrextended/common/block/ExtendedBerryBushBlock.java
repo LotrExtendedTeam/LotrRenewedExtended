@@ -59,7 +59,7 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
 	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
 	      int i = p_225542_1_.getValue(AGE);
 	      if (i < 3 && p_225542_2_.getRawBrightness(p_225542_3_.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_,p_225542_4_.nextInt(5) == 0)) {
-	         p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, Integer.valueOf(i + 1)), 2);
+	         p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, i + 1), 2);
 	         net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);
 	      }
 
@@ -88,7 +88,7 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
         } else if (i > 2) {
         	popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(6) + 1: 0));
            p_225533_2_.playSound((PlayerEntity)null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
-           p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, Integer.valueOf(1)), 2);
+           p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
            return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
         } else {
            return ActionResultType.PASS;
@@ -119,7 +119,7 @@ public class ExtendedBerryBushBlock extends GlassBlock implements IGrowable{
 	@Override
 	public void performBonemeal(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
 		int i = Math.min(3, p_225535_4_.getValue(AGE) + 1);
-	      p_225535_1_.setBlock(p_225535_3_, p_225535_4_.setValue(AGE, Integer.valueOf(i)), 2);
+	      p_225535_1_.setBlock(p_225535_3_, p_225535_4_.setValue(AGE, i), 2);
 	}
 
 	public Item getBerryItem() {

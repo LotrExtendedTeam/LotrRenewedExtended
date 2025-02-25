@@ -132,7 +132,7 @@ public abstract class ExtendedBarrelTileEntity extends LockableLootTileEntity {
 	   }
 
 	   private void updateBlockState(BlockState p_213963_1_, boolean p_213963_2_) {
-	      this.level.setBlock(this.getBlockPos(), p_213963_1_.setValue(ExtendedBarrelBlock.OPEN, Boolean.valueOf(p_213963_2_)), 3);
+	      this.level.setBlock(this.getBlockPos(), p_213963_1_.setValue(ExtendedBarrelBlock.OPEN, p_213963_2_), 3);
 	   }
 
 	   private void playSound(BlockState p_213965_1_, SoundEvent p_213965_2_) {

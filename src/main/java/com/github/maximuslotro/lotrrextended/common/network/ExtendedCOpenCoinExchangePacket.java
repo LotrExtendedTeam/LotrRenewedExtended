@@ -63,9 +63,7 @@ public class ExtendedCOpenCoinExchangePacket {
     	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
     	PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
     	ExtendedCoinExchangeContainer.writeContainerInitData(initData, packet.traderId);
-    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> {
-    		ExtendedCoinExchangeContainer.writeContainerInitData(buf, packet.traderId);
-    	});
+    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> ExtendedCoinExchangeContainer.writeContainerInitData(buf, packet.traderId));
     	context.get().setPacketHandled(true);
     }
 

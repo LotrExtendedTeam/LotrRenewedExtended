@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -104,7 +105,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 
 		final ExtendedBannerProfilePlayer that = (ExtendedBannerProfilePlayer) o;
 
-		if ((id != null ? !id.equals(that.id) : that.id != null) || (name != null ? !name.equals(that.name) : that.name != null)) {
+		if ((!Objects.equals(id, that.id)) || (!Objects.equals(name, that.name))) {
 			return false;
 		}
 

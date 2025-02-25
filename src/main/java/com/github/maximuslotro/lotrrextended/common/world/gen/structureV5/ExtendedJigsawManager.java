@@ -215,15 +215,9 @@ public class ExtendedJigsawManager {
 											} else {
 												ResourceLocation connectedPieceEXEesourceLocation = new ResourceLocation(blockInfo.nbt.getString("pool"));
 												Optional<JigsawPattern> connectedPieceEX = this.pools.getOptional(connectedPieceEXEesourceLocation);
-												Optional<JigsawPattern> connectedPieceFallbackEX = connectedPieceEX.flatMap((p_242843_1_) -> {
-													return this.pools.getOptional(p_242843_1_.getFallback());
-												});
-												int pieceMaxSize = connectedPieceEX.map((p_242842_1_) -> {
-													return p_242842_1_.getMaxSize(this.structureManager);
-												}).orElse(0);
-												int pieceFallbackMaxSize = connectedPieceFallbackEX.map((p_242840_1_) -> {
-													return p_242840_1_.getMaxSize(this.structureManager);
-												}).orElse(0);
+												Optional<JigsawPattern> connectedPieceFallbackEX = connectedPieceEX.flatMap((p_242843_1_) -> this.pools.getOptional(p_242843_1_.getFallback()));
+												int pieceMaxSize = connectedPieceEX.map((p_242842_1_) -> p_242842_1_.getMaxSize(this.structureManager)).orElse(0);
+												int pieceFallbackMaxSize = connectedPieceFallbackEX.map((p_242840_1_) -> p_242840_1_.getMaxSize(this.structureManager)).orElse(0);
 												return Math.max(pieceMaxSize, pieceFallbackMaxSize);
 											}
 										}).max().orElse(0);

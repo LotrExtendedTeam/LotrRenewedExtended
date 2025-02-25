@@ -160,9 +160,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
      * @param charge The power at which to shoot
      */
     private void rangerArrowAttack(LivingEntity target, float charge) {
-        ItemStack heldItem = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, (item) -> {
-            return item instanceof BowItem;
-        }));
+        ItemStack heldItem = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, (item) -> item instanceof BowItem));
         ItemStack ammoItem = this.getProjectile(heldItem);
         AbstractArrowEntity arrow = ProjectileHelper.getMobArrow(this, ammoItem, charge);
         if (heldItem.getItem() instanceof BowItem) {

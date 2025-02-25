@@ -23,7 +23,7 @@ public enum WargFurType implements IStringSerializable {
 
 	private static final WargFurType[] BY_ID = Arrays.stream(values())
 									.sorted(Comparator.comparingInt(WargFurType::getId))
-									.toArray((p_199795_0_) -> {return new WargFurType[p_199795_0_];});
+									.toArray(WargFurType[]::new);
 	private final int id;
 	private final String name;
 	private final DyeColor color;

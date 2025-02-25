@@ -37,7 +37,7 @@ public class ExtendedLOTRTorchBlock extends LOTRTorchBlock{
 
 	public ExtendedLOTRTorchBlock(ToIntFunction<BlockState> lightLevel, SoundType sound) {
 		super(Properties.of(Material.DECORATION).noCollission().strength(0.0F).lightLevel(lightLevel).sound(sound));
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.TRUE));
 	}
 
 	@Override

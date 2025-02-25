@@ -95,9 +95,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.stationaryButton = addButton(new CompanionButton("stationary", col1, row1 + 14,
                 16, 12, 0, 0, 13,
                 STATIONARY_BUTTON,
-                btn -> {
-                    ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitStationaryPacket(companion.getHiredUnitId()));
-                })
+                btn -> ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitStationaryPacket(companion.getHiredUnitId())))
         );
 
         equipmentButton = this.addButton(new Button(this.leftPos + 8, this.topPos + 18, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.equipment"), button -> openEquipmentMenu()));

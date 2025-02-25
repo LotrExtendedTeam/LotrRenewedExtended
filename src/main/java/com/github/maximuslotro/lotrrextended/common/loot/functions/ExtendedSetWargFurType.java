@@ -72,7 +72,7 @@ public class ExtendedSetWargFurType extends LootFunction {
 	}
 
 	public static Builder<?> setWargFurTypeBuilder() {
-		return simpleBuilder(conditions -> new ExtendedSetWargFurType(conditions));
+		return simpleBuilder(ExtendedSetWargFurType::new);
 	}
 
 	public static class Serializer extends net.minecraft.loot.LootFunction.Serializer<ExtendedSetWargFurType>  {

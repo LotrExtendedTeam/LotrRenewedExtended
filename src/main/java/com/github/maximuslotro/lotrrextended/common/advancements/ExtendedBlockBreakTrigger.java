@@ -51,9 +51,7 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 	private static Block deserializeBlock(JsonObject pObject) {
 		if (pObject.has("block")) {
 			ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getAsString(pObject, "block"));
-			return Registry.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
-				return new JsonSyntaxException("Unknown block type '" + resourcelocation + "'");
-			});
+			return Registry.BLOCK.getOptional(resourcelocation).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + resourcelocation + "'"));
 		} else {
 			return null;
 		}
@@ -61,9 +59,7 @@ public class ExtendedBlockBreakTrigger extends AbstractCriterionTrigger<Extended
 
 	public void trigger(ServerPlayerEntity pPlayer, BlockPos pPos, ItemStack pItem) {
 		BlockState blockstate = pPlayer.getLevel().getBlockState(pPos);
-		this.trigger(pPlayer, (p_226949_4_) -> {
-			return p_226949_4_.matches(blockstate, pPos, pPlayer.getLevel(), pItem);
-		});
+		this.trigger(pPlayer, (p_226949_4_) -> p_226949_4_.matches(blockstate, pPos, pPlayer.getLevel(), pItem));
 	}
 
 	public static class Instance extends CriterionInstance {

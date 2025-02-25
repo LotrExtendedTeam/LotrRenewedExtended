@@ -74,7 +74,7 @@ public abstract class MixinLOTRKeyHandler{
 		}
 
 		if (mc.screen == null && mc.player != null && (action == 1 || action == 2) && alignmentChangeTick <= 0) {
-			Optional<ExtendedAlignmentKeyAction> optAlignmentAction = ExtendedALIGNMENT_KEY_ACTIONS.entrySet().stream().filter(e -> (e.getKey()).matches(key, scancode)).map(e -> e.getValue()).findFirst();
+			Optional<ExtendedAlignmentKeyAction> optAlignmentAction = ExtendedALIGNMENT_KEY_ACTIONS.entrySet().stream().filter(e -> (e.getKey()).matches(key, scancode)).map(Map.Entry::getValue).findFirst();
 
 			optAlignmentAction.ifPresent(alignmentAction -> {
 				FactionSettings factionSettings = FactionSettingsManager.clientInstance().getCurrentLoadedFactions();

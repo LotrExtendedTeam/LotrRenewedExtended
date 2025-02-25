@@ -89,11 +89,9 @@ public class ExtendedCOpenTradeMenuPacket {
     	int[] finalBoughtOriginalQuantities = boughtOriginalQuantities;
     	int[] finalSoldOriginalQuantities = soldOriginalQuantities;
 
-    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> {
-    		ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
-    				finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
-    				soldItems);
-    	});
+    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
+                finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
+                soldItems));
 
     	context.get().setPacketHandled(true);
     }

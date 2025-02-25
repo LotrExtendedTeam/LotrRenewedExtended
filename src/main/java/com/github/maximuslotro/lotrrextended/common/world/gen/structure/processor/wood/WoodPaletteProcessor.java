@@ -31,12 +31,10 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class WoodPaletteProcessor extends StructureProcessor{
-	public static final Codec<WoodPaletteProcessor> CODEC = RecordCodecBuilder.create((processorInstance) -> {
-		return processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getBasePalletName),
-				Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName),
-				Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error))
-				.fieldOf("woodTypes").forGetter(WoodPaletteProcessor::getRawPallets)).apply(processorInstance, WoodPaletteProcessor::new);
-	});
+	public static final Codec<WoodPaletteProcessor> CODEC = RecordCodecBuilder.create((processorInstance) -> processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getBasePalletName),
+            Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName),
+            Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error))
+            .fieldOf("woodTypes").forGetter(WoodPaletteProcessor::getRawPallets)).apply(processorInstance, WoodPaletteProcessor::new));
 	private WoodPallet pickedPallet;
 	private final WoodPallet basePallet;
 	private final List<Pair<String, Integer>> rawPallets;

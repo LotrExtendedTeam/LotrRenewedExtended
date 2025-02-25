@@ -52,7 +52,7 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exten
 		}
 		int i = state.getValue(BITES);
 		if (i < 6) {
-			world.setBlock(pos, state.setValue(BITES, Integer.valueOf(i + 1)), 3);
+			world.setBlock(pos, state.setValue(BITES, i + 1), 3);
 		} else {
 			world.removeBlock(pos, false);
 		}

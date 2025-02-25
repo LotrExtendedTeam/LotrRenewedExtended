@@ -114,9 +114,7 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group, Consumer<Properties> extraPropsSetter) {return null;}
 	private static RegistryObject<Item> regBlockItemStackRenderer(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
-		RegistryObject<Item> item = regBlockItem(blockSup, group, (props) -> {
-			props.setISTER(ister);
-		});
+		RegistryObject<Item> item = regBlockItem(blockSup, group, (props) -> props.setISTER(ister));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
@@ -137,9 +135,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 	private static RegistryObject<Item> regHiddenBlockItemB(RegistryObject<Block> blockSup) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new LOTRBlockItem(b, new Properties());
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new LOTRBlockItem(b, new Properties()));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
@@ -148,15 +144,11 @@ public class MixinLOTRItems {
 
 	private static RegistryObject<Item> regArbitraryBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
 		String name = blockSup.getId().getPath();
-		return regItem(name, () -> {
-			return itemMaker.apply(blockSup.get());
-		});
+		return regItem(name, () -> itemMaker.apply(blockSup.get()));
 	}
 
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group));
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group)));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
@@ -164,9 +156,7 @@ public class MixinLOTRItems {
 	}
 
 	private static RegistryObject<Item> regFallenLeavesBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new FallenLeavesItem(b, (new Properties()).tab(group));
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new FallenLeavesItem(b, (new Properties()).tab(group)));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
@@ -174,9 +164,7 @@ public class MixinLOTRItems {
 	}
 
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group).setISTER(ister));
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group).setISTER(ister)));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
@@ -471,13 +459,13 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSSY_MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		//############################################################DECORATION##############################################################
-		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, () -> strawBedRenderer());
-		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, () -> orcBedRenderer());
-		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, () -> blackFurBedRenderer());
-		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, () -> furBedRenderer());
-		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, () -> grayFurBedRenderer());
-		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, () -> silverFurBedRenderer());
-		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, () -> whiteFurBedRenderer());
+		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, MixinLOTRItems::strawBedRenderer);
+		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, MixinLOTRItems::orcBedRenderer);
+		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::blackFurBedRenderer);
+		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::furBedRenderer);
+		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::grayFurBedRenderer);
+		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::silverFurBedRenderer);
+		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::whiteFurBedRenderer);
 		ExtendedItems.BEDROLL = regBedBlockItemD(ExtendedBlocks.BEDROLL, LOTRItemGroups.DECO);
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItemB(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);
@@ -738,7 +726,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_AXE = regItemB("dol_guldur_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_HOE = regItemB("dol_guldur_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
-		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", () -> new ExtendedBrandingIronItem());
+		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 		//######################################################################FOOD########################################################
 		//Berries
@@ -870,7 +858,7 @@ public class MixinLOTRItems {
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new LOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", () -> new ExtendedDaggerItem(LOTRMaterial.ARNOR));
-		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
+		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", ExtendedCommandHornItem::new);
 
 		//########################################################################UTIL##########################################################
 		//Crafting Tables

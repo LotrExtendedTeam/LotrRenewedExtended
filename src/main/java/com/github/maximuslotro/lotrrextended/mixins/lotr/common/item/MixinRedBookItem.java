@@ -58,9 +58,7 @@ public class MixinRedBookItem {
 					return true;
 				}
 
-				boolean isCompleteStructure = CustomWaypointStructureHandler.INSTANCE.isFocalPointOfCompletableStructure(sWorld, pos, msg -> {
-					LOTRUtil.sendMessage(player, msg);
-				});
+				boolean isCompleteStructure = CustomWaypointStructureHandler.INSTANCE.isFocalPointOfCompletableStructure(sWorld, pos, msg -> LOTRUtil.sendMessage(player, msg));
 				if (isCompleteStructure) {
 					CustomWaypointStructureHandler.INSTANCE.setPlayerClickedOnBlockToCreate(player, pos);
 					LOTRPacketHandler.sendTo(new SPacketOpenScreen(SPacketOpenScreen.Type.CREATE_CUSTOM_WAYPOINT), (ServerPlayerEntity) player);

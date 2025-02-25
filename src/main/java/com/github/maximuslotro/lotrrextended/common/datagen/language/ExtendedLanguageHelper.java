@@ -61,22 +61,22 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		addTranslations();
 		if (!dataHere.isEmpty()) {
 			List<String> sortedKeys = new ArrayList<>(dataHere.keySet());
-			Collections.sort(sortedKeys, new Comparator<String>() {
-				@Override
-				public int compare(String o1, String o2) {
-					if(o1.replaceAll("[0-9]","").equals(o2.replaceAll("[0-9]",""))) {
-						if(queryValue(o1)!=0 && queryValue(o2)!=0) {
-							return queryValue(o1) - queryValue(o2);
-						}
-					}
-					return o1.compareTo(o2);
-				}
+			sortedKeys.sort(new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    if (o1.replaceAll("[0-9]", "").equals(o2.replaceAll("[0-9]", ""))) {
+                        if (queryValue(o1) != 0 && queryValue(o2) != 0) {
+                            return queryValue(o1) - queryValue(o2);
+                        }
+                    }
+                    return o1.compareTo(o2);
+                }
 
-				int queryValue(String s) {
-					String num = s.replaceAll("\\D", "");
-					return num.isEmpty() ? 0 : Integer.parseInt(num);
-				}
-			});
+                int queryValue(String s) {
+                    String num = s.replaceAll("\\D", "");
+                    return num.isEmpty() ? 0 : Integer.parseInt(num);
+                }
+            });
 			Map<String, String> sortedData = new LinkedHashMap<>();
 			for(String key : sortedKeys) {
 				sortedData.put(key, dataHere.getOrDefault(key, "MISSING VALUE ON SORT!"));
@@ -178,7 +178,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			if (!newStrings.containsKey(key)) {
 				newStrings.put(key, value);
 			} else {
-				if (!value.equals("")) {
+				if (!value.isEmpty()) {
 					System.out.println("Discarding Duplicate Key Found in Language Map With Initialised text: " + key);
 				}
 			}

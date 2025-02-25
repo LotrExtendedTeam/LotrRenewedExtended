@@ -128,9 +128,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 		pCompound.putInt("GrindingTimeTotal", this.grindingTotalTime);
 		ItemStackHelper.saveAllItems(pCompound, this.items);
 		CompoundNBT compoundnbt = new CompoundNBT();
-		this.recipesUsed.forEach((p_235643_1_, p_235643_2_) -> {
-			compoundnbt.putInt(p_235643_1_.toString(), p_235643_2_);
-		});
+		this.recipesUsed.forEach((p_235643_1_, p_235643_2_) -> compoundnbt.putInt(p_235643_1_.toString(), p_235643_2_));
 		pCompound.put("RecipesUsed", compoundnbt);
 		return pCompound;
 	}

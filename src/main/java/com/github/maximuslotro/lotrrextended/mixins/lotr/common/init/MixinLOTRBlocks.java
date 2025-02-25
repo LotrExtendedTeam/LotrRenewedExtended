@@ -186,83 +186,82 @@ public class MixinLOTRBlocks {
 			target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
 	private static RegistryObject<Block> injectedBlockRegister(DeferredRegister<Block> register, String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> returnBlock = null;
-		if(name.equals("blue_mallorn_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW});});
-		}else if(name.equals("blue_mallorn_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(BLUE_MALLORN_TORCH);});
-		}else if(name.equals("green_mallorn_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GREEN_ELVEN_GLOW});});
-		}else if(name.equals("green_mallorn_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(GREEN_MALLORN_TORCH);});
-		}else if(name.equals("gold_mallorn_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GOLD_ELVEN_GLOW});});
-		}else if(name.equals("gold_mallorn_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(GOLD_MALLORN_TORCH);});
-		}else if(name.equals("silver_mallorn_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.SILVER_ELVEN_GLOW});});
-		}else if(name.equals("silver_mallorn_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(SILVER_MALLORN_TORCH);});
-		}else if(name.equals("high_elven_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW});});
-		}else if(name.equals("high_elven_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(HIGH_ELVEN_TORCH);});
-		}else if(name.equals("dwarven_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRTorchBlock(14);});
-		}else if(name.equals("dwarven_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(DWARVEN_TORCH);});
-		}else if(name.equals("blubber_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRTorchBlock(12);});
-		}else if(name.equals("blubber_wall_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedLOTRWallTorchBlock(BLUBBER_TORCH);});
-		}else if(name.equals("orc_torch")) {
-			// Override torch to add an on/off ability
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedDoubleTorchBlock(14);});
-		}else if(name.equals("white_sand")) {
-			//Fixes white sand not being mined faster with shovels.
-			//Also removes lotr.common.block.LOTRSandBlock from being used
-			returnBlock = BLOCKS.register(name, () -> {
-				return new SandBlock(15856113, Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).harvestTool(ToolType.SHOVEL).sound(SoundType.SAND));});
-		}
-		else if(name.equals("wattle_and_daub")) {
-			//Fixes wattle and daub not being mined faster with axes.
-			returnBlock = BLOCKS.register(name, () -> {
-				return new WattleAndDaubBlock(Properties.of(Material.GRASS, MaterialColor.QUARTZ).strength(1.0F).harvestTool(ToolType.AXE).sound(SoundType.SCAFFOLDING));});
-		}
-		else if(name.equals("wattle_and_daub_pillar")) {
-			//Fixes wattle and daub pillar not being mined faster with axes.
-			//Also removes lotr.common.block.WattleAndDaubPillarBlock from being used
-			returnBlock = BLOCKS.register(name, () -> {
-				return new ExtendedBurnableLOTRPillarBlock(WATTLE_AND_DAUB);});
-		}
+        switch (name) {
+            case "blue_mallorn_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW}));
+                break;
+            case "blue_mallorn_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(BLUE_MALLORN_TORCH));
+                break;
+            case "green_mallorn_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GREEN_ELVEN_GLOW}));
+                break;
+            case "green_mallorn_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(GREEN_MALLORN_TORCH));
+                break;
+            case "gold_mallorn_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GOLD_ELVEN_GLOW}));
+                break;
+            case "gold_mallorn_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(GOLD_MALLORN_TORCH));
+                break;
+            case "silver_mallorn_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.SILVER_ELVEN_GLOW}));
+                break;
+            case "silver_mallorn_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(SILVER_MALLORN_TORCH));
+                break;
+            case "high_elven_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW}));
+                break;
+            case "high_elven_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(HIGH_ELVEN_TORCH));
+                break;
+            case "dwarven_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRTorchBlock(14));
+                break;
+            case "dwarven_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(DWARVEN_TORCH));
+                break;
+            case "blubber_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRTorchBlock(12));
+                break;
+            case "blubber_wall_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedLOTRWallTorchBlock(BLUBBER_TORCH));
+                break;
+            case "orc_torch":
+                // Override torch to add an on/off ability
+                returnBlock = BLOCKS.register(name, () -> new ExtendedDoubleTorchBlock(14));
+                break;
+            case "white_sand":
+                //Fixes white sand not being mined faster with shovels.
+                //Also removes lotr.common.block.LOTRSandBlock from being used
+                returnBlock = BLOCKS.register(name, () -> new SandBlock(15856113, Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).harvestTool(ToolType.SHOVEL).sound(SoundType.SAND)));
+                break;
+            case "wattle_and_daub":
+                //Fixes wattle and daub not being mined faster with axes.
+                returnBlock = BLOCKS.register(name, () -> new WattleAndDaubBlock(Properties.of(Material.GRASS, MaterialColor.QUARTZ).strength(1.0F).harvestTool(ToolType.AXE).sound(SoundType.SCAFFOLDING)));
+                break;
+            case "wattle_and_daub_pillar":
+                //Fixes wattle and daub pillar not being mined faster with axes.
+                //Also removes lotr.common.block.WattleAndDaubPillarBlock from being used
+                returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRPillarBlock(WATTLE_AND_DAUB));
+                break;
+        }
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);
 		}else {
@@ -293,14 +292,10 @@ public class MixinLOTRBlocks {
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
 		//ORE STORAGE
-		ExtendedBlocks.GALVORN_BLOCK = registerB("galvorn_block", () ->{
-			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL), 2);});
-		ExtendedBlocks.BLACK_URUK_STEEL_BLOCK = registerB("black_uruk_steel_block", () ->{
-			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
-		ExtendedBlocks.GILDED_IRON_BLOCK = registerB("gilded_iron_block", () ->{
-			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
-		ExtendedBlocks.MORGUL_STEEL_BLOCK = registerB("morgul_steel_block", () ->{
-			return new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1);});
+		ExtendedBlocks.GALVORN_BLOCK = registerB("galvorn_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL), 2));
+		ExtendedBlocks.BLACK_URUK_STEEL_BLOCK = registerB("black_uruk_steel_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
+		ExtendedBlocks.GILDED_IRON_BLOCK = registerB("gilded_iron_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
+		ExtendedBlocks.MORGUL_STEEL_BLOCK = registerB("morgul_steel_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
 		//Wood Types
 		ExtendedBlocks.CHESTNUT_LOG = registerB("chestnut_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.PODZOL, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get()));
@@ -365,7 +360,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_BANANA_BRANCH = registerB("stripped_banana_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.FALLEN_BANANA_LEAVES = registerB("fallen_banana_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.BANANA_LEAVES));
-		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", () -> new ExtendedHangingBlock());
+		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", ExtendedHangingBlock::new);
 
 		ExtendedBlocks.PLUM_LOG = registerB("plum_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_PURPLE, () -> ExtendedBlocks.STRIPPED_PLUM_LOG.get()));
 		ExtendedBlocks.PLUM_WOOD = registerB("plum_wood", () -> new StrippableWoodBlock(ExtendedBlocks.PLUM_LOG, () -> ExtendedBlocks.STRIPPED_PLUM_WOOD.get()));
@@ -544,7 +539,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).harvestTool(ToolType.HOE).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 		ExtendedBlocks.MOSS_CARPET = registerB("moss_carpet", () -> new ExtendedMossCarpetBlock(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
-		ExtendedBlocks.ANCIENT_RUNE_BLOCK = registerB("ancient_rune_stone", () -> new ExtendedAncientStoneRuneBlock());
+		ExtendedBlocks.ANCIENT_RUNE_BLOCK = registerB("ancient_rune_stone", ExtendedAncientStoneRuneBlock::new);
 
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
@@ -742,8 +737,8 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
-		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", () -> new ChandelierBlock());
-		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", () -> new ChandelierBlock());
+		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", ChandelierBlock::new);
+		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", ChandelierBlock::new);
 
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
@@ -751,10 +746,8 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
-		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", () -> new ExtendedGreenHearthBlock());
-		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> {
-		      return 10;
-		   }).sound(SoundType.WOOL)));
+		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
+		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> 10).sound(SoundType.WOOL)));
 
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
@@ -767,7 +760,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.BANANA_CAKE = registerB("banana_cake", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F));
 
-		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedStoneChestBlock(()-> new ExtendedStoneChestTileEntity()));
+		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedStoneChestBlock(ExtendedStoneChestTileEntity::new));
 		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.ORC_BARREL = registerB("orc_barrel", () -> new ExtendedOrcBarrelBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.WEAPON_RACK = registerB("weapon_rack", () -> new ExtendedWeaponRackBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noCollission()));
@@ -787,7 +780,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 
 		// Large flower pot
-		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", () -> new ExtendedLargeFlowerPotBlock());
+		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", ExtendedLargeFlowerPotBlock::new);
 		registerPOT("large_pot_apple_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.APPLE_SAPLING));
 		registerPOT("large_pot_aspen_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ASPEN_SAPLING));
 		registerPOT("large_pot_asphodel", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.ASPHODEL));

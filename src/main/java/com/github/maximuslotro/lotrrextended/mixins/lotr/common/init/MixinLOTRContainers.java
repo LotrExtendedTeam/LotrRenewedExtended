@@ -35,24 +35,12 @@ public class MixinLOTRContainers {
 
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedContainers(CallbackInfo ci) {
-		ExtendedContainers.COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> {
-			return IForgeContainerType.create(ExtendedCoinExchangeContainer::new);
-		});
-		ExtendedContainers.TRADING = register("trading", "Trading", () -> {
-			return IForgeContainerType.create(ExtendedTradeContainer::new);
-		});
-		ExtendedContainers.BOOKSHELF = registerExtended("bookshelf", "Bookshelf", () -> {
-			return IForgeContainerType.create(ExtendedBookshelfContainer::threeRows);
-		});
-		ExtendedContainers.STONE_GRINDER = registerExtended("stone_grinder", "Stone Grinder", () -> {
-			return IForgeContainerType.create(ExtendedStoneGrinderContainer::new);
-		});
-		ExtendedContainers.HIRED_UNIT_CONTAINER = register("hired_unit_menu", "Hired Unit Inventory", () -> {
-			return IForgeContainerType.create(ExtendedHiredUnitContainer::new);
-		});
-		ExtendedContainers.HIRED_UNIT_EQUIPMENT = register("hired_unit_equipment", "Update Equipment", () -> {
-			return IForgeContainerType.create(ExtendedHiredUnitEquipmentContainer::new);
-		});
+		ExtendedContainers.COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> IForgeContainerType.create(ExtendedCoinExchangeContainer::new));
+		ExtendedContainers.TRADING = register("trading", "Trading", () -> IForgeContainerType.create(ExtendedTradeContainer::new));
+		ExtendedContainers.BOOKSHELF = registerExtended("bookshelf", "Bookshelf", () -> IForgeContainerType.create(ExtendedBookshelfContainer::threeRows));
+		ExtendedContainers.STONE_GRINDER = registerExtended("stone_grinder", "Stone Grinder", () -> IForgeContainerType.create(ExtendedStoneGrinderContainer::new));
+		ExtendedContainers.HIRED_UNIT_CONTAINER = register("hired_unit_menu", "Hired Unit Inventory", () -> IForgeContainerType.create(ExtendedHiredUnitContainer::new));
+		ExtendedContainers.HIRED_UNIT_EQUIPMENT = register("hired_unit_equipment", "Update Equipment", () -> IForgeContainerType.create(ExtendedHiredUnitEquipmentContainer::new));
 	}
 
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {

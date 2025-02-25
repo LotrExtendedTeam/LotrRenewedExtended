@@ -348,7 +348,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		}else {
 			type = RopeType.SINGLE; // Since we are not in the middle or below rope, we must be a single rat
 		}
-		return this.defaultBlockState().setValue(FACING, pickedDirection).setValue(SECTION_TYPE, type).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+		return this.defaultBlockState().setValue(FACING, pickedDirection).setValue(SECTION_TYPE, type).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 	}
 
 	@SuppressWarnings("deprecation")

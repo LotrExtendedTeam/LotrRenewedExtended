@@ -133,10 +133,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 			//System.out.println("Running Area Checks");
 			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos(), getCMaxBlockPos());
-			Predicate<LivingEntity> pred = (entity) ->{
-				return ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
-						.contains(entity.getType().getRegistryName().toString());
-			};
+			Predicate<LivingEntity> pred = (entity) -> ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
+                    .contains(entity.getType().getRegistryName().toString());
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
 		//System.out.println("Suscessfully Ran Area Checks: "+nearbyEntitySpawnCount);
@@ -405,7 +403,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getinsideSpawningChance())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			String str = "";
 			for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
-				if(str.equals("")) {
+				if(str.isEmpty()) {
 					str = entity;
 				}else {
 					str = str+ ", "+entity;

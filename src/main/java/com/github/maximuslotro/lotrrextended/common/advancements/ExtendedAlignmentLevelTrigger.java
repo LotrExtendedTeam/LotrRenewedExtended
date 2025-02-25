@@ -29,9 +29,7 @@ public class ExtendedAlignmentLevelTrigger extends AbstractCriterionTrigger<Exte
 	   }
 
 	   public void trigger(ServerPlayerEntity player, Faction faction, Float level) {
-	      this.trigger(player, (p_226627_1_) -> {
-	         return p_226627_1_.matches(player, faction, level);
-	      });
+	      this.trigger(player, (p_226627_1_) -> p_226627_1_.matches(player, faction, level));
 	   }
 
 	   public static class Instance extends CriterionInstance {

@@ -36,9 +36,7 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 	}
 
 	public void trigger(ServerPlayerEntity player, EntityType<?> entityType, boolean didPlayerBuyItemFromTrader, ItemStack stack, int coinAmount) {
-		this.trigger(player, (instance) -> {
-			return instance.matches(player, entityType, didPlayerBuyItemFromTrader, stack, coinAmount);
-		});
+		this.trigger(player, (instance) -> instance.matches(player, entityType, didPlayerBuyItemFromTrader, stack, coinAmount));
 	}
 
 	public static class Instance extends CriterionInstance {

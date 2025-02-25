@@ -69,7 +69,7 @@ public class MixinEntityFactionHelper {
 			// Extended End
 		}
 
-		Entity alignedTarget = isAlignedToSomeFaction(target) ? target : target.getPassengers().stream().filter((entity)->{ return isAlignedToSomeFaction(entity);}).findFirst().orElse((Entity) null);
+		Entity alignedTarget = isAlignedToSomeFaction(target) ? target : target.getPassengers().stream().filter(MixinEntityFactionHelper::isAlignedToSomeFaction).findFirst().orElse((Entity) null);
 		if (alignedTarget != null) {
 			Faction targetFaction = getFaction(alignedTarget);
 			if (alignedTarget instanceof MobEntity && !LOTRMod.PROXY.getSidedAttackTarget((MobEntity) alignedTarget).filter(Predicates.equalTo(attacker)).isPresent() && playerData.getAlignmentData().hasAlignment(targetFaction, AlignmentPredicates.POSITIVE)) {
@@ -77,7 +77,7 @@ public class MixinEntityFactionHelper {
 			}
 		}
 		// Extended Start
-		if(alignedTarget!=null && alignedTarget instanceof ExtendedHirableEntity) {
+		if(alignedTarget instanceof ExtendedHirableEntity) {
 			UUID hiredUnitOwnerUUID = ((ExtendedHirableEntity)alignedTarget).getOwnerUUID();
 			if(hiredUnitOwnerUUID!=null) {
 				// Check if player can hurt their units

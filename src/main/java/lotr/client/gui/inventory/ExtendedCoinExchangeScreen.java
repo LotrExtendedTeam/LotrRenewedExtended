@@ -92,18 +92,14 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
                 176, 0,
                 16,
                 GUI_TEXTURE,
-                btn -> {
-                    attemptToExchange(0);
-                })
+                btn -> attemptToExchange(0))
         );
         this.buttonRight = addButton(new ImageButton( i + 102,  j + 45,
                 32, 16,
                 208, 0,
                 16,
                 GUI_TEXTURE,
-                btn -> {
-                   attemptToExchange(1);
-                })
+                btn -> attemptToExchange(1))
         );
     }
 

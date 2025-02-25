@@ -62,9 +62,7 @@ public interface ExtendedChangingOverTimeBlock<T extends Enum<T>> {
 	      float f = (float)(k + 1) / (float)(k + j + 1);
 	      float f1 = f * f * this.getChanceModifier();
 	      if (p_153050_.nextFloat() < f1) {
-	         this.getNext(p_153047_).ifPresent((p_153039_) -> {
-	            p_153048_.setBlockAndUpdate(p_153049_, p_153039_);
-	         });
+	         this.getNext(p_153047_).ifPresent((p_153039_) -> p_153048_.setBlockAndUpdate(p_153049_, p_153039_));
 	      }
 
 	   }

@@ -21,9 +21,7 @@ public class EItemLootEntry extends ItemLootEntry{
 	}
 
 	public static StandaloneLootEntry.Builder<ExtendedBuilder> lootItem(IItemProvider pItem) {
-		return new EItemLootEntry.ExtendedBuilder((p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_) -> {
-			return new EItemLootEntry(pItem.asItem(), p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_);
-		}, pItem.asItem().canBeDepleted());
+		return new EItemLootEntry.ExtendedBuilder((p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_) -> new EItemLootEntry(pItem.asItem(), p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_), pItem.asItem().canBeDepleted());
 	}
 
 	public static class ExtendedBuilder extends StandaloneLootEntry.Builder<EItemLootEntry.ExtendedBuilder> {

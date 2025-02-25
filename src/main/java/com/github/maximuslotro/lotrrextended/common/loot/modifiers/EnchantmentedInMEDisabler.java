@@ -41,7 +41,7 @@ public class EnchantmentedInMEDisabler extends LootModifier {
 				if(generatedLoot.removeIf(item -> (item.getItem() == Items.ENCHANTED_BOOK))) {
 					ExtendedLog.info("Removed Enchanted Book from loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 				}
-				if(generatedLoot.removeIf(item -> (item.isEnchanted()))) {
+				if(generatedLoot.removeIf(ItemStack::isEnchanted)) {
 					ExtendedLog.info("Removed Enchanted Item from loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 				}
 				return generatedLoot;
@@ -55,7 +55,7 @@ public class EnchantmentedInMEDisabler extends LootModifier {
 					if(generatedLoot.removeIf(item -> (item.getItem() == Items.ENCHANTED_BOOK))) {
 						ExtendedLog.info("Removed Enchanted Book from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 					}
-					if(generatedLoot.removeIf(item -> (item.isEnchanted()))) {
+					if(generatedLoot.removeIf(ItemStack::isEnchanted)) {
 						ExtendedLog.info("Removed Enchanted Item from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 					}
 				}

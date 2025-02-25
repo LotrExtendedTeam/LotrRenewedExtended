@@ -132,9 +132,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 //				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"+(ExtendedBannerConfigurationScreen.this.canSelfProtect ? ".on" : ".off")), 200), pMouseX, pMouseY);
 //			}
 //		});
-		this.addButton(new TextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> {
-			showDefaultPerms = !showDefaultPerms;
-		}){
+		this.addButton(new TextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> showDefaultPerms = !showDefaultPerms){
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.showDefaultPerms;
@@ -227,9 +225,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			textField.setFocus(false);
 			textField.setCanLoseFocus(true);
 
-			IndexedButton permShowButton = new IndexedButton(this.leftPos + 29, this.topPos + 63 + (i*30), 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), i, button -> {
-				textField.togglePermVis();
-			}){
+			IndexedButton permShowButton = new IndexedButton(this.leftPos + 29, this.topPos + 63 + (i*30), 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), i, button -> textField.togglePermVis()){
 				@Override
 				public boolean shouldOffset() {
 					return ExtendedBannerConfigurationScreen.this.whitelistFields.get(this.id).showPerms;
@@ -407,7 +403,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		alignmentField.tick();
 		protectionTypeButton.setMessage(protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"));
 		update.active = needsUpdate;
-		whitelistFields.forEach((textField) -> textField.tick());
+		whitelistFields.forEach(TextFieldWidget::tick);
 		shownWhiteListButtonCount = calcWhiteListSize();
 	}
 
@@ -426,7 +422,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 		newValue=newValue.trim();
 		try {
-			alignmentLevel = Float.valueOf(newValue);
+			alignmentLevel = Float.parseFloat(newValue);
 		}catch(NumberFormatException e) {
 			alignmentLevel=1.0f;
 		}
