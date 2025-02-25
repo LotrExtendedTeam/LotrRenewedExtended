@@ -5,7 +5,6 @@ import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
@@ -30,7 +29,7 @@ public class ExtendedGuldurilItem extends Item {
 			if (state.getBlock() == Blocks.FIRE && belowState.getBlock() == LOTRBlocks.HEARTH_BLOCK.get()) {
 				world.setBlockAndUpdate(belowPos, ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get().defaultBlockState());
 				world.setBlockAndUpdate(pos, ExtendedBlocks.GREEN_FIRE_BLOCK.get().defaultBlockState());
-				world.playSound((PlayerEntity) null, pos, SoundEvents.BLAZE_SHOOT, SoundCategory.BLOCKS, 0.5F, MathHelper.nextFloat(world.random, 0.75F, 0.95F));
+				world.playSound(null, pos, SoundEvents.BLAZE_SHOOT, SoundCategory.BLOCKS, 0.5F, MathHelper.nextFloat(world.random, 0.75F, 0.95F));
 				entity.remove();
 			}
 		}

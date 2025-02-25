@@ -193,7 +193,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Nullable
 	public UUID getOwnerUUID() {
-		return this.entityData.get(DATA_ID_OWNER_UUID).orElse((UUID)null);
+		return this.entityData.get(DATA_ID_OWNER_UUID).orElse(null);
 	}
 
 	public void setOwnerUUID(@Nullable UUID pUuid) {
@@ -221,7 +221,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	public void equipSaddle(@Nullable SoundCategory pSource) {
 		this.inventory.setItem(0, new ItemStack(Items.SADDLE));
 		if (pSource != null) {
-			this.level.playSound((PlayerEntity)null, this, SoundEvents.HORSE_SADDLE, pSource, 0.5F, 1.0F);
+			this.level.playSound(null, this, SoundEvents.HORSE_SADDLE, pSource, 0.5F, 1.0F);
 		}
 
 	}
@@ -532,7 +532,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 					if (f1 > 0.0F) {
 						float f2 = MathHelper.sin(this.yRot * ((float)Math.PI / 180F));
 						float f3 = MathHelper.cos(this.yRot * ((float)Math.PI / 180F));
-						this.setDeltaMovement(this.getDeltaMovement().add((double)(-0.4F * f2 * this.playerJumpPendingScale), 0.0D, (double)(0.4F * f3 * this.playerJumpPendingScale)));
+						this.setDeltaMovement(this.getDeltaMovement().add(-0.4F * f2 * this.playerJumpPendingScale, 0.0D, 0.4F * f3 * this.playerJumpPendingScale));
 					}
 
 					this.playerJumpPendingScale = 0.0F;
@@ -541,7 +541,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				this.flyingSpeed = this.getSpeed() * 0.1F;
 				if (this.isControlledByLocalInstance()) {
 					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
-					super.travel(new Vector3d((double)f, pTravelVector.y, (double)f1));
+					super.travel(new Vector3d(f, pTravelVector.y, f1));
 				} else if (livingentity instanceof PlayerEntity) {
 					this.setDeltaMovement(Vector3d.ZERO);
 				}
@@ -762,12 +762,12 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public Vector3d getDismountLocationForPassenger(LivingEntity pLivingEntity) {
-		Vector3d vector3d = getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)pLivingEntity.getBbWidth(), this.yRot + (pLivingEntity.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
+		Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), pLivingEntity.getBbWidth(), this.yRot + (pLivingEntity.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
 		Vector3d vector3d1 = this.getDismountLocationInDirection(vector3d, pLivingEntity);
 		if (vector3d1 != null) {
 			return vector3d1;
 		} else {
-			Vector3d vector3d2 = getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)pLivingEntity.getBbWidth(), this.yRot + (pLivingEntity.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
+			Vector3d vector3d2 = getCollisionHorizontalEscapeVector(this.getBbWidth(), pLivingEntity.getBbWidth(), this.yRot + (pLivingEntity.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
 			Vector3d vector3d3 = this.getDismountLocationInDirection(vector3d2, pLivingEntity);
 			return vector3d3 != null ? vector3d3 : this.position();
 		}

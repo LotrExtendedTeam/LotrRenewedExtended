@@ -219,7 +219,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				if (itemstack3.hasContainerItem()) {
 					this.items.set(1, itemstack3.getContainerItem());
 				} else if (itemstack3.getItem() instanceof VesselDrinkItem) {
-					this.items.set(1, ((VesselDrinkItem)itemstack3.getItem()).getContainerItem(itemstack3));
+					this.items.set(1, itemstack3.getItem().getContainerItem(itemstack3));
 				} else if (itemstack3.getItem() instanceof PotionItem) {
 					this.items.set(1, new ItemStack(Items.GLASS_BOTTLE));
 				} else if (!itemstack3.isEmpty()) {

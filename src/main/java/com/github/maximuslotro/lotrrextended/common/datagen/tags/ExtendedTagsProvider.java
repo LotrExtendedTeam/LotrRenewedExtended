@@ -73,7 +73,7 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 		this.addTags();
 		ITag<T> itag = Tag.empty();
 		Function<ResourceLocation, ITag<T>> function = (tagLocation) -> this.builders.containsKey(tagLocation) ? itag : null;
-		Function<ResourceLocation, T> function1 = (tagLocation) -> this.registry.getOptional(tagLocation).orElse((T)null);
+		Function<ResourceLocation, T> function1 = (tagLocation) -> this.registry.getOptional(tagLocation).orElse(null);
 		this.builders.forEach((tagLocation, tagBuilder) -> {
 			// FORGE: Add validation via existing resources
 			List<ITag.Proxy> list = tagBuilder.getUnresolvedEntries(function, function1).filter(this::missing).collect(Collectors.toList());
@@ -85,7 +85,7 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 				if (path == null) return; //Forge: Allow running this data provider without writing it. Recipe provider needs valid tags.
 
 				try {
-					String s = GSON.toJson((JsonElement)jsonobject);
+					String s = GSON.toJson(jsonobject);
 					String s1 = SHA1.hashUnencodedChars(s).toString();
 					if (!Objects.equals(pCache.getHash(path), s1) || !Files.exists(path)) {
 						Files.createDirectories(path.getParent());
@@ -183,7 +183,7 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 
 		@SafeVarargs
 		public final ExtendedTagsProvider.Builder<T> add(T... pToAdd) {
-			Stream.<T>of(pToAdd).map(this.registry::getKey).forEach((p_240533_1_) -> this.builder.addElement(p_240533_1_, this.source));
+			Stream.of(pToAdd).map(this.registry::getKey).forEach((p_240533_1_) -> this.builder.addElement(p_240533_1_, this.source));
 			return this;
 		}
 

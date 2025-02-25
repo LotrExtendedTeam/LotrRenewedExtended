@@ -50,7 +50,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 			PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 			if (this.lootTable != null && entity.getLevel()!=null && !entity.getLevel().isClientSide() && !ticked) {
 				ticked=true;
-				unpackLootTablePlate((PlayerEntity)null);
+				unpackLootTablePlate(null);
 			}
 		}
 	}
@@ -84,7 +84,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 		// Extended Start
 		PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 		if(entity.hasLevel() && !entity.getLevel().isClientSide()) {
-			unpackLootTablePlate((PlayerEntity)null);
+			unpackLootTablePlate(null);
 		}
 		// Extended End
 		return foodItem;
@@ -97,7 +97,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	@Overwrite(remap = false)
 	private void writeFood(CompoundNBT nbt) {
 		// Extended Start
-		unpackLootTablePlate((PlayerEntity)null);
+		unpackLootTablePlate(null);
 		// Extended End
 		nbt.put("FoodItem", foodItem.save(new CompoundNBT()));
 	}

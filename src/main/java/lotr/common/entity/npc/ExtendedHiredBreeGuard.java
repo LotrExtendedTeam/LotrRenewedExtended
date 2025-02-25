@@ -340,7 +340,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
 	@Nullable
     public UUID getOwnerUUID() {
-        return this.entityData.get(DATA_OWNERUUID_ID).orElse((UUID)null);
+        return this.entityData.get(DATA_OWNERUUID_ID).orElse(null);
     }
 
     public void setOwnerUUID(@Nullable UUID p_184754_1_) {

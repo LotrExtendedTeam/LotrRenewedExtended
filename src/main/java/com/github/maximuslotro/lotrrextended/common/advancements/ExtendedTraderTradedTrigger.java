@@ -12,12 +12,9 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.NBTPredicate;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.loot.ConditionArraySerializer;
-import net.minecraft.potion.Potion;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -55,8 +52,8 @@ public class ExtendedTraderTradedTrigger extends AbstractCriterionTrigger<Extend
 
 		public static ExtendedTraderTradedTrigger.Instance tradedWithAndItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, IItemProvider possableItem, MinMaxBounds.IntBound coinsTransphered) {
 			return new ExtendedTraderTradedTrigger.Instance(EntityPredicate.AndPredicate.ANY, entityType, didPlayerBuyItemFromTrader,
-					new ItemPredicate((ITag<Item>) null, possableItem.asItem(), MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY,
-							EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, (Potion) null, NBTPredicate.ANY), coinsTransphered);
+					new ItemPredicate(null, possableItem.asItem(), MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY,
+							EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, null, NBTPredicate.ANY), coinsTransphered);
 		}
 
 		public static ExtendedTraderTradedTrigger.Instance tradedWithALLItem(EntityTypePredicate entityType, boolean didPlayerBuyItemFromTrader, MinMaxBounds.IntBound coinsTransphered) {

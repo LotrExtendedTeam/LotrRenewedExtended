@@ -32,7 +32,7 @@ public class ExtendedThrowableConkerItem extends Item{
 			conker.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 1.5F, 1.0F);
 			world.addFreshEntity(conker);
 		}
-		world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+		world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		player.awardStat(Stats.ITEM_USED.get(this));
 		if (!player.abilities.instabuild) {
 			heldItem.shrink(1);

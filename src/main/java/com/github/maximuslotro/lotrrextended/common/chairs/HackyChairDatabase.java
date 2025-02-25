@@ -156,9 +156,7 @@ public class HackyChairDatabase {
 
 	public void removeChairFromDatabase(World uniqueLevel, BlockPos pos) {
 		if(chairs.containsKey(uniqueLevel.dimension().location())) {
-			if(chairs.get(uniqueLevel.dimension().location()).containsKey(pos)) {
-				chairs.get(uniqueLevel.dimension().location()).remove(pos);
-			}
+			chairs.get(uniqueLevel.dimension().location()).remove(pos);
 		}
 	}
 

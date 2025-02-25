@@ -245,9 +245,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			}
 		}
 		for (String str : removeStrings) {
-			if(dataHere.containsKey(str)) {
-				dataHere.remove(str);
-			}
+			dataHere.remove(str);
 		}
 	}
 }

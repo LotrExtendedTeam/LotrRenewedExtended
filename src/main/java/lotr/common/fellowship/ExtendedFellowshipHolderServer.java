@@ -54,7 +54,7 @@ public class ExtendedFellowshipHolderServer {
 			fellowship.load(nbt);
 			return fellowship;
 		} catch (Exception e) {
-			ExtendedLog.error("Error loading LOTR fellowship data for %s", new Object[] { fsDat.getName() });
+			ExtendedLog.error("Error loading LOTR fellowship data for %s", fsDat.getName());
 			e.printStackTrace();
 			return null;
 		}
@@ -89,7 +89,7 @@ public class ExtendedFellowshipHolderServer {
 			fs.save(nbt);
 			SaveUtil.saveNBTToFile(getFellowshipDatafile(world, fs.getFellowshipId()), nbt);
 		} catch (Exception e) {
-			ExtendedLog.error("Error saving fellowship data for %s", new Object[] { fs.getFellowshipId() });
+			ExtendedLog.error("Error saving fellowship data for %s", fs.getFellowshipId());
 			e.printStackTrace();
 		}
 	}

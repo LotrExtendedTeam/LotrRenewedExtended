@@ -69,7 +69,7 @@ public class MixinEntityFactionHelper {
 			// Extended End
 		}
 
-		Entity alignedTarget = isAlignedToSomeFaction(target) ? target : target.getPassengers().stream().filter(MixinEntityFactionHelper::isAlignedToSomeFaction).findFirst().orElse((Entity) null);
+		Entity alignedTarget = isAlignedToSomeFaction(target) ? target : target.getPassengers().stream().filter(MixinEntityFactionHelper::isAlignedToSomeFaction).findFirst().orElse(null);
 		if (alignedTarget != null) {
 			Faction targetFaction = getFaction(alignedTarget);
 			if (alignedTarget instanceof MobEntity && !LOTRMod.PROXY.getSidedAttackTarget((MobEntity) alignedTarget).filter(Predicates.equalTo(attacker)).isPresent() && playerData.getAlignmentData().hasAlignment(targetFaction, AlignmentPredicates.POSITIVE)) {

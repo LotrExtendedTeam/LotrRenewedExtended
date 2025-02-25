@@ -39,7 +39,7 @@ public class ExtendedConquestTableBlock extends HorizontalBlock {
 
 	@Override
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
-		pLevel.playSound((PlayerEntity)null, pHit.getBlockPos(), ExtendedSounds.CONQUEST_TABLE_OPEN.get(), SoundCategory.BLOCKS, 2.0F, 1.0F);
+		pLevel.playSound(null, pHit.getBlockPos(), ExtendedSounds.CONQUEST_TABLE_OPEN.get(), SoundCategory.BLOCKS, 2.0F, 1.0F);
 		return ActionResultType.sidedSuccess(pLevel.isClientSide);
 	}
 }

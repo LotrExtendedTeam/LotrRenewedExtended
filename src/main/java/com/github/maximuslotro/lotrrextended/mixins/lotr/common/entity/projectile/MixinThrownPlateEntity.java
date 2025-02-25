@@ -12,7 +12,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +35,7 @@ public abstract class MixinThrownPlateEntity extends ProjectileItemEntity{
 			boolean bannerProtection = ExtendedBannerProtectionManager.isBannerProtected(level, pos, new SingleProtectionInstance.LaunchedProtection(this), true, "breakGlass");
 			// Extended End
 			if (!bannerProtection) {
-				level.levelEvent((PlayerEntity) null, 2001, pos, Block.getId(state));
+				level.levelEvent(null, 2001, pos, Block.getId(state));
 				level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 				return true;
 			}
