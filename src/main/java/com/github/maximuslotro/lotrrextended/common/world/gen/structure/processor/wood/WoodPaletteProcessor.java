@@ -19,7 +19,6 @@ import lotr.common.block.LOTRBlockStates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;

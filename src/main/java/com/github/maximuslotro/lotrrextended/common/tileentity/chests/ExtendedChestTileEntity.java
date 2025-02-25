@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity.chests;
 
 import net.minecraft.block.ChestBlock;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.properties.ChestType;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.TileEntityType;

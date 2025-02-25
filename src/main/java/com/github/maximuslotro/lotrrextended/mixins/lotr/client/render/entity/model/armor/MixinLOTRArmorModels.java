@@ -27,6 +27,7 @@ public class MixinLOTRArmorModels {
 	@Shadow(remap = false)
 	private static void addSpecialArmorModel(Supplier<Item> itemSup, SpecialArmorModelFactory factory) {}
 
+	@SuppressWarnings("unchecked")
 	@Inject(method = "setup()V", at = @At("RETURN"), remap = false)
 	private static void setup(CallbackInfo ci) {
 		// Overwrite renewed arnor helmet model
