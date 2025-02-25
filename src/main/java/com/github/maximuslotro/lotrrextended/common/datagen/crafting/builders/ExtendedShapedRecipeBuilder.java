@@ -114,10 +114,13 @@ public class ExtendedShapedRecipeBuilder {
 		p_200467_1_.accept(new ExtendedShapedRecipeBuilder.Result(p_200467_2_, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(p_200467_2_.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + p_200467_2_.getPath())));
 	}
 
-	public void saveNoAdvancement(Consumer<IFinishedRecipe> p_200467_1_, ResourceLocation p_200467_2_) {
-		this.ensureValid(p_200467_2_);
-		p_200467_1_.accept(new ExtendedShapedRecipeBuilder.Result(p_200467_2_, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, null, null));
+	// Extended Start
+	public void saveNoAdvancement(Consumer<IFinishedRecipe> p_200467_1_, ResourceLocation resourceName) {
+		this.ensureValid(resourceName);
+		p_200467_1_.accept(new ExtendedShapedRecipeBuilder.Result(resourceName, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, null, null));
+		System.out.println("Saved "+resourceName.toString()+" without an advancement");
 	}
+	// Extended End
 
 	private void ensureValid(ResourceLocation p_200463_1_) {
 		if (this.rows.isEmpty()) {
@@ -210,9 +213,11 @@ public class ExtendedShapedRecipeBuilder {
 		@Override
 		@Nullable
 		public JsonObject serializeAdvancement() {
+			// Extended Start
 			if(advancement == null) {
 				return null;
 			}
+			// Extended End
 			return this.advancement.serializeToJson();
 		}
 

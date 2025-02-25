@@ -3,22 +3,29 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Random;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.extensions.IForgeBlockState;
 
-public class ExtendedVineBlock extends VineBlock{
+public class ExtendedVineBlock extends VineBlock implements IForgeBlockState{
 
 	public ExtendedVineBlock(Properties p_i48303_1_) {
 		super(p_i48303_1_);
-		((FireBlock) Blocks.FIRE).setFlammable(this, 15, 100);
 	}
 
+	@Override
+	public int getFireSpreadSpeed(IBlockReader world, BlockPos pos, Direction face) {
+		return 15;
+	}
+
+	@Override
+	public int getFlammability(IBlockReader world, BlockPos pos, Direction face) {
+		return 100;
+	}
 	/**
 	 * make grow delay twice vanilla
 	 */

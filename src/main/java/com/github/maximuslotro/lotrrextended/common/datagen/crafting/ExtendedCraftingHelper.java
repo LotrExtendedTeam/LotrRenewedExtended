@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
@@ -31,7 +32,6 @@ import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
-import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.Item;
@@ -47,13 +47,11 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	public static List<String> GENERATEDRECIPES = new ArrayList<>();
 
+    public static final ITag.INamedTag<Item> LOGS = ItemTags.LOGS;
     public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
     public static final ITag.INamedTag<Item> PLANKS = ItemTags.bind("minecraft:planks");
     public static final ITag.INamedTag<Item> HORNS = ItemTags.bind("forge:horns");
     public static final ITag.INamedTag<Item> WOOL = ItemTags.bind("minecraft:wool");
-    public static final ITag.INamedTag<Item> BRONZE_INGOT = ItemTags.bind("forge:ingots/bronze");
-    public static final ITag.INamedTag<Item> IRON_ORE = ItemTags.bind("forge:ores/iron");
-    public static final ITag.INamedTag<Item> IRON_INGOT = ItemTags.bind("forge:ingots/iron");
 
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
@@ -110,7 +108,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = boatOnject.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(boatOnject.get())
+			ExtendedShapedRecipeBuilder.shaped(boatOnject.get())
 			.pattern("# #")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
@@ -133,7 +131,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = pressurePlate.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(pressurePlate.get())
+			ExtendedShapedRecipeBuilder.shaped(pressurePlate.get())
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(pressurePlate.get()))
@@ -154,7 +152,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = trapdoor.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(trapdoor.get(), 2)
+			ExtendedShapedRecipeBuilder.shaped(trapdoor.get(), 2)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
@@ -177,7 +175,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = trapdoor.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(trapdoor.get(), 2)
+			ExtendedShapedRecipeBuilder.shaped(trapdoor.get(), 2)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
@@ -200,7 +198,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = trapdoor.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(trapdoor.get(), 2)
+			ExtendedShapedRecipeBuilder.shaped(trapdoor.get(), 2)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
@@ -223,7 +221,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = chain.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(chain.get())
+			ExtendedShapedRecipeBuilder.shaped(chain.get())
 			.pattern("N")
 			.pattern("#")
 			.pattern("N")
@@ -250,7 +248,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(bed.get())
+			ExtendedShapedRecipeBuilder.shaped(bed.get())
 			.pattern("###")
 			.pattern("XXX")
 			.define('#', Ingredient.of(reasource))
@@ -275,7 +273,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = carpet.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(carpet.get())
+			ExtendedShapedRecipeBuilder.shaped(carpet.get())
 			.pattern("##")
 			.define('#', Ingredient.of(reasource.get()))
 			.unlockedBy("has_"+name, has(carpet.get()))
@@ -296,7 +294,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(bed.get())
+			ExtendedShapedRecipeBuilder.shaped(bed.get())
 			.pattern("###")
 			.pattern("XXX")
 			.define('#', reasource)
@@ -319,7 +317,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = door.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(door.get(), 3)
+			ExtendedShapedRecipeBuilder.shaped(door.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.pattern("##")
@@ -485,7 +483,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(fenceName);
 		GENERATEDRECIPES.add(gateName);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(fence.get(), 3)
+			ExtendedShapedRecipeBuilder.shaped(fence.get(), 3)
 			.pattern("#I#")
 			.pattern("#I#")
 			.define('#', Ingredient.of(resource.get()))
@@ -493,7 +491,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+fenceName, has(fence.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(fenceName));
-			ShapedRecipeBuilder.shaped(gate.get())
+			ExtendedShapedRecipeBuilder.shaped(gate.get())
 			.pattern("I#I")
 			.pattern("I#I")
 			.define('#', Ingredient.of(resource.get()))
@@ -527,7 +525,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(signName);
 		GENERATEDRECIPES.add(wallSign.get().getRegistryName().getPath());
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(sign.get(), 3)
+ExtendedShapedRecipeBuilder.shaped(sign.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.pattern(" I ")
@@ -554,7 +552,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = objectToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
+ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
@@ -577,7 +575,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = objectToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 4)
+			ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 4)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
@@ -600,7 +598,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = objectToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(objectToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get())
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource1.get()))
@@ -625,7 +623,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = objectToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(objectToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get())
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource2.get()))
@@ -646,7 +644,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 
 	protected void makeCarvedBlockRecipeVanilla(Consumer<IFinishedRecipe> consumer, Block objectToBeCrafted, Block resource1, Block resource2) {
 		String name = objectToBeCrafted.getRegistryName().getPath();
-		ShapedRecipeBuilder.shaped(objectToBeCrafted)
+		ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted)
 		.pattern("##")
 		.pattern("##")
 		.define('#', Ingredient.of(resource1))
@@ -659,7 +657,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	protected void makeCarvedBlockRecipeOnlySlabsVanilla(Consumer<IFinishedRecipe> consumer, Block objectToBeCrafted, Block resource2) {
 		if(resource2!=null) {
 			String name = objectToBeCrafted.getRegistryName().getPath();
-			ShapedRecipeBuilder.shaped(objectToBeCrafted)
+			ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted)
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource2))
@@ -677,7 +675,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = objectToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 9)
+			ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 9)
 			.pattern("###")
 			.pattern("###")
 			.pattern("###")
@@ -768,7 +766,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 3)
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 3)
 			.pattern("#")
 			.pattern("#")
 			.pattern("#")
@@ -797,10 +795,10 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
 			.pattern("##")
 			.pattern("XX")
-			.define('#', Ingredient.of(ItemTags.PLANKS))
+			.define('#', Ingredient.of(PLANKS))
 			.define('X', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
@@ -810,7 +808,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
 			.pattern("##")
 			.pattern("XX")
-			.define('#', Ingredient.of(ItemTags.PLANKS))
+			.define('#', Ingredient.of(PLANKS))
 			.define('X', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
@@ -823,7 +821,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(name);
 		GENERATEDRECIPES.add(name+"_wall");
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
 			.pattern("#")
 			.pattern("I")
 			.define('#', Ingredient.of(resource.get()))
@@ -844,11 +842,38 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeBirdcageRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> bars, Supplier<? extends Item> base, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
+			.pattern("BBB")
+			.pattern("B B")
+			.pattern("III")
+			.define('B', Ingredient.of(bars.get()))
+			.define('I', Ingredient.of(base.get()))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+bars.get().getRegistryName().getPath(), has(bars.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
+			.pattern("BBB")
+			.pattern("B B")
+			.pattern("III")
+			.define('B', Ingredient.of(bars.get()))
+			.define('I', Ingredient.of(base.get()))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+bars.get().getRegistryName().getPath(), has(bars.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeStairRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 4)
 			.pattern("  #")
 			.pattern(" ##")
 			.pattern("###")
@@ -873,7 +898,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 16)
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 16)
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
@@ -894,7 +919,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
@@ -917,7 +942,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
@@ -956,7 +981,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
@@ -979,7 +1004,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("# #")
 			.pattern("###")
 			.pattern("###")
@@ -1003,7 +1028,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
 			.pattern("# #")
 			.pattern("# #")
@@ -1027,7 +1052,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("# #")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
@@ -1051,7 +1076,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
 			.pattern("#")
 			.pattern("X")
@@ -1078,7 +1103,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
 			.pattern("#")
 			.pattern("X")
@@ -1105,7 +1130,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("  #")
 			.pattern(" X ")
 			.pattern("X  ")
@@ -1131,7 +1156,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("  #")
 			.pattern(" X ")
 			.pattern("X  ")
@@ -1157,7 +1182,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
 			.pattern("X")
 			.define('X', STICKS)
@@ -1181,7 +1206,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
 			.pattern("X")
 			.define('X', STICKS)
@@ -1205,7 +1230,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern(" X#")
 			.pattern("X #")
 			.pattern(" X#")
@@ -1242,7 +1267,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
 			.pattern(" X ")
 			.pattern(" X ")
@@ -1268,7 +1293,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
 			.pattern("X")
 			.pattern("X")
@@ -1294,7 +1319,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("##")
 			.pattern("#X")
 			.pattern(" X")
@@ -1320,7 +1345,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("##")
 			.pattern(" X")
 			.pattern(" X")
@@ -1355,7 +1380,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("###")
 			.pattern(" X ")
 			.pattern(" X ")
@@ -1381,7 +1406,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("#")
 			.pattern("X")
 			.pattern("X")
@@ -1407,7 +1432,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("##")
 			.pattern("#X")
 			.pattern(" X")
@@ -1433,7 +1458,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("##")
 			.pattern(" X")
 			.pattern(" X")
@@ -1479,7 +1504,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(toItem.get(), conversionFactor)
+			ExtendedShapedRecipeBuilder.shaped(toItem.get(), conversionFactor)
 			.pattern(" T ")
 			.pattern("TMT")
 			.pattern(" T ")
@@ -1506,7 +1531,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
 		if(table==null) {
-			ShapedRecipeBuilder.shaped(toItem.get(), conversionFactor)
+			ExtendedShapedRecipeBuilder.shaped(toItem.get(), conversionFactor)
 			.pattern(" T ")
 			.pattern("TMT")
 			.pattern(" T ")
@@ -1539,7 +1564,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			ShapedRecipeBuilder.shaped(block.get())
+			ExtendedShapedRecipeBuilder.shaped(block.get())
 			.pattern("###")
 			.pattern("###")
 			.pattern("###")
@@ -1575,7 +1600,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			ShapedRecipeBuilder.shaped(block.get())
+			ExtendedShapedRecipeBuilder.shaped(block.get())
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(item.get()))
@@ -1609,7 +1634,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name1, has(ingot.get()))
 			.unlockedBy("has_"+name2, has(nugget.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
-			ShapedRecipeBuilder.shaped(ingot.get())
+			ExtendedShapedRecipeBuilder.shaped(ingot.get())
 			.pattern("###")
 			.pattern("###")
 			.pattern("###")

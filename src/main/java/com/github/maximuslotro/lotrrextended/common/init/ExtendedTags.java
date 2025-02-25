@@ -75,20 +75,25 @@ public class ExtendedTags {
 
 	public static class Items {
 		public static void init() {}
-		public static final ITag.INamedTag<Item> MORGUL_STEEL = ItemTags.bind("forge:ingots/morgul_steel");
-		public static final ITag.INamedTag<Item> ORC_STEEL = ItemTags.bind("forge:ingots/orc_steel");
-		public static final ITag.INamedTag<Item> MORGUL_INGOTS = ItemTags.bind("forge:ingots/morgul_ingots");
-		public static final ITag.INamedTag<Item> GALVORN = ItemTags.bind("forge:ingots/galvorn");
-		public static final ITag.INamedTag<Item> BLACK_URUK_STEEL = ItemTags.bind("forge:ingots/black_uruk_steel");
-		public static final ITag.INamedTag<Item> GILDED_IRON = ItemTags.bind("forge:ingots/gilded_iron");
-		public static final ITag.INamedTag<Item> DWARVEN_STEEL = ItemTags.bind("forge:ingots/dwarven_steel");
-		public static final ITag.INamedTag<Item> ELVEN_STEEL = ItemTags.bind("forge:ingots/elven_steel");
-		public static final ITag.INamedTag<Item> URUK_STEEL = ItemTags.bind("forge:ingots/uruk_steel");
+		public static final ITag.INamedTag<Item> COPPER_INGOTS = ItemTags.bind("forge:ingots/copper");
+		public static final ITag.INamedTag<Item> TIN_INGOT = ItemTags.bind("forge:ingots/tin");
+		public static final ITag.INamedTag<Item> BRONZE_INGOT = ItemTags.bind("forge:ingots/bronze");
+		public static final ITag.INamedTag<Item> MORGUL_STEEL_INGOT = ItemTags.bind("forge:ingots/morgul_steel");
+		public static final ITag.INamedTag<Item> ORC_STEEL_INGOT = ItemTags.bind("forge:ingots/orc_steel");
+		public static final ITag.INamedTag<Item> MORGUL_INGOT = ItemTags.bind("forge:ingots/morgul_ingots");
+		public static final ITag.INamedTag<Item> GALVORN_INGOT = ItemTags.bind("forge:ingots/galvorn");
+		public static final ITag.INamedTag<Item> BLACK_URUK_STEEL_INGOT = ItemTags.bind("forge:ingots/black_uruk_steel");
+		public static final ITag.INamedTag<Item> GILDED_IRON_INGOT = ItemTags.bind("forge:ingots/gilded_iron");
+		public static final ITag.INamedTag<Item> DWARVEN_STEEL_INGOT = ItemTags.bind("forge:ingots/dwarven_steel");
+		public static final ITag.INamedTag<Item> ELVEN_STEEL_INGOT = ItemTags.bind("forge:ingots/elven_steel");
+		public static final ITag.INamedTag<Item> URUK_STEEL_INGOT = ItemTags.bind("forge:ingots/uruk_steel");
 		public static final ITag.INamedTag<Item> SILVER_INGOT = ItemTags.bind("forge:ingots/silver");
-		public static final ITag.INamedTag<Item> MITHRIL = ItemTags.bind("forge:ingots/mithril");
+		public static final ITag.INamedTag<Item> MITHRIL_INGOT = ItemTags.bind("forge:ingots/mithril");
 
 		public static final ITag.INamedTag<Item> ORC_STEEL_NUGGET = ItemTags.bind("forge:nuggets/orc_steel");
-
+		public static final ITag.INamedTag<Item> BRONZE_NUGGET = ItemTags.bind("forge:nuggets/bronze");
+		public static final ITag.INamedTag<Item> SILVER_NUGGET = ItemTags.bind("forge:nuggets/silver");
+		
 		public static final ITag.INamedTag<Item> TOPAZ_GEMS = ItemTags.bind("forge:gems/lotr_topaz");
 		public static final ITag.INamedTag<Item> AMETHYST_GEMS = ItemTags.bind("forge:gems/lotr_amethyst");
 		public static final ITag.INamedTag<Item> SAPPHIRE_GEMS = ItemTags.bind("forge:gems/lotr_sapphire");

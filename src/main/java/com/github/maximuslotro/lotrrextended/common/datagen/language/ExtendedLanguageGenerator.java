@@ -33,7 +33,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Try Add New Block Names
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getKey().contains("block.lotr.large_pot_"))
+			if(block.getKey().contains("large_pot_")) {
+				// Skip adding all variations of large pots
+				continue;
+			}
 			addBlock(block.getValue(), "");
 		}
 

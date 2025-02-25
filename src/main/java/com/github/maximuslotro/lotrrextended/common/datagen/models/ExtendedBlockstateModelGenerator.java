@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
@@ -153,6 +154,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
 					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
+					genBirdcageBlockItem((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof VesselDrinkBlock) {
@@ -1192,6 +1197,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 									.texture("0", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
 		simpleBlock(carpet, modelFile);
 		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String name) {
+		registeredBlocks.add(birdcage);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
+									.texture("cage", lotrExtendedLoc("block/wooden_birdcage"));
+		simpleBlock(birdcage, modelFile);
+		itemModels().getBuilder("lotr:"+birdcage.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {

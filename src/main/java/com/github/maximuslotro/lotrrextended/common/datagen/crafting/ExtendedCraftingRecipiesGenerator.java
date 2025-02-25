@@ -22,14 +22,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -67,7 +65,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCarpetRecipe(consumer, ExtendedBlocks.SILVER_FUR_CARPET, ExtendedItems.SILVER_FUR, LOTRRecipes.ANY_ORC);
 		makeCarpetRecipe(consumer, ExtendedBlocks.WHITE_FUR_CARPET, ExtendedItems.WHITE_FUR, LOTRRecipes.ANY_ORC);
 		GENERATEDRECIPES.add(ExtendedItems.BEDROLL.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.BEDROLL.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BEDROLL.get())
 		.pattern("LLF")
 		.define('L', Ingredient.of(Tags.Items.LEATHER))
 		.define('F', Ingredient.of(ExtendedTags.Items.FURS))
@@ -165,8 +163,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("X")
 		.pattern("X")
 		.pattern("X")
-		.define('X', Ingredient.of(ItemTags.LOGS))
-		.unlockedBy("has_logs", has(ItemTags.LOGS))
+		.define('X', Ingredient.of(LOGS))
+		.unlockedBy("has_logs", has(LOGS))
 		.unlockedBy("has_"+ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath(), has(ExtendedItems.ROHAN_BEAM.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.ORNATE_ROHAN_BEAM.get().getRegistryName().getPath());
@@ -227,7 +225,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("YYY")
 		.pattern("ZZZ")
 		.define('X', Ingredient.of(Items.PAPER))
-		.define('Y', Ingredient.of(ItemTags.PLANKS))
+		.define('Y', Ingredient.of(PLANKS))
 		.define('Z', Ingredient.of(LOTRTags.Items.INGOTS_BRONZE))
 		.unlockedBy("has_"+LOTRItems.BRONZE_INGOT.get().getRegistryName().getPath(), has(LOTRItems.BRONZE_INGOT.get()))
 		.unlockedBy("has_"+ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath(), has(ExtendedItems.CONQUEST_TABLE.get()))
@@ -242,7 +240,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('Z', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_"+ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath(), has(ExtendedItems.STONE_GRINDER.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK, null);
@@ -352,7 +350,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("CIC")
 		.define('N', Ingredient.of(Items.IRON_NUGGET))
 		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
-		.define('I', Ingredient.of(ExtendedTags.Items.MORGUL_STEEL))
+		.define('I', Ingredient.of(ExtendedTags.Items.MORGUL_STEEL_INGOT))
 		.unlockedBy("has_"+ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_CHANDELIER.get()))
 		.unlockedBy("has_"+ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_STEEL_INGOT.get()))
 		.save(consumer, lotrLoc(ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath()));
@@ -416,7 +414,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("CIC")
 		.define('N', Ingredient.of(ExtendedTags.Items.ORC_STEEL_NUGGET))
 		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
-		.define('I', Ingredient.of(ExtendedTags.Items.ORC_STEEL))
+		.define('I', Ingredient.of(ExtendedTags.Items.ORC_STEEL_INGOT))
 		.unlockedBy("has_"+ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.ORC_CHANDELIER.get()))
 		.unlockedBy("has_"+LOTRItems.ORC_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.ORC_STEEL_INGOT.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ORC_CHANDELIER.get().getRegistryName().getPath()));
@@ -426,7 +424,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("CIC")
 		.define('N', Ingredient.of(Items.IRON_NUGGET))
 		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
-		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL))
+		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL_INGOT))
 		.unlockedBy("has_"+ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.URUK_CHANDELIER.get()))
 		.unlockedBy("has_"+LOTRItems.URUK_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.URUK_STEEL_INGOT.get()))
 		.save(consumer, lotrLoc(ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath()));
@@ -444,10 +442,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.GUNDABAD_URUK_LEGGINGS,
 			ExtendedItems.GUNDABAD_URUK_BOOTS,
 			LOTRItems.URUK_STEEL_INGOT, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeSwordRecipe(consumer, ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeSpearRecipe(consumer, ExtendedItems.GUNDABAD_URUK_SPEAR, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeDaggerRecipe(consumer, ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.URUK_STEEL, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeSwordRecipe(consumer, ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeSpearRecipe(consumer, ExtendedItems.GUNDABAD_URUK_SPEAR, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeDaggerRecipe(consumer, ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		//WARG
 		makeArmorRecipe(consumer, ExtendedItems.BLACK_WARG_CHESTPLATE,
 			ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_BOOTS,
@@ -697,18 +695,18 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc("orc_torch_from_torch"));
 
 		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
 		.pattern("  #")
 		.pattern(" X ")
 		.pattern("#  ")
-		.define('#', Ingredient.of(IRON_INGOT))
+		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.define('X', Ingredient.of(Tags.Items.LEATHER))
 		.unlockedBy("has_"+ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath(), has(ExtendedItems.BRANDING_IRON.get()))
-		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
+		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.ROPE.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.ROPE.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.ROPE.get())
 		.pattern("S")
 		.pattern("S")
 		.pattern("S")
@@ -717,10 +715,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ROPE.get().getRegistryName().getPath(), has(ExtendedItems.ROPE.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
 
-		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.ORC_STEEL, "orc_steel", LOTRRecipes.ANY_ORC);
+		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel", LOTRRecipes.ANY_ORC);
 
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
 		.pattern("XXX")
 		.pattern("X #")
 		.pattern("X##")
@@ -738,22 +736,22 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.SKULL_GOBLET.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.SKULL_GOBLET.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.SKULL_GOBLET.get())
 		.pattern("S")
 		.pattern("T")
 		.define('S', Ingredient.of(Items.SKELETON_SKULL))
-		.define('T', Ingredient.of(LOTRTags.Items.INGOTS_TIN))
+		.define('T', Ingredient.of(ExtendedTags.Items.TIN_INGOT))
 		.unlockedBy("has_"+Items.SKELETON_SKULL.getRegistryName().getPath(), has(Items.SKELETON_SKULL))
 		.save(consumer, lotrLoc(ExtendedItems.SKULL_GOBLET.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())
 		.pattern("SI")
 		.define('S', Ingredient.of(STICKS))
-		.define('I', Ingredient.of(IRON_INGOT))
-		.unlockedBy("has_iron_ingot", has(IRON_INGOT))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, lotrLoc(ExtendedItems.CHISEL.get().getRegistryName().getPath()));
 		//Vanilla egg fixes
-		ShapedRecipeBuilder.shaped(Items.CAKE)
+		ExtendedShapedRecipeBuilder.shaped(Items.CAKE)
 		.pattern("MMM")
 		.pattern("SES")
 		.pattern("WWW")
@@ -771,7 +769,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, mcLoc(Items.PUMPKIN_PIE.getRegistryName().getPath()));
 		// Extended cheese
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
 		.pattern("###")
 		.pattern("XSX")
 		.pattern("###")
@@ -781,7 +779,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_WHEEL.get()))
 		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
 		.save(consumer, lotrLoc(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath()));
-		ShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
 		.pattern("XXX")
 		.pattern("#X#")
 		.pattern("XXX")
@@ -791,7 +789,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.CHEESE_SLICE.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_SLICE.get()))
 		.save(consumer, lotrLoc(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath()+"_from_slices"));
 		GENERATEDRECIPES.add(ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.BANANA_CAKE.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BANANA_CAKE.get())
 		.pattern("###")
 		.pattern("XSX")
 		.pattern("ZZZ")
@@ -803,7 +801,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BANANA_CAKE.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.BANANA_BREAD.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.BANANA_BREAD.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BANANA_BREAD.get())
 		.pattern("XSX")
 		.define('S', Ingredient.of(ExtendedItems.BANANA.get()))
 		.define('X', Ingredient.of(Items.WHEAT))
@@ -812,7 +810,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.BANANA_BREAD.get().getRegistryName().getPath()));
 
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.SILVER_COIN_ONE.get(), 4)
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.SILVER_COIN_ONE.get(), 4)
 		.pattern("##")
 		.pattern("##")
 		.define('#', Ingredient.of(LOTRItems.SILVER_NUGGET.get()))
@@ -834,9 +832,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath(), has(ExtendedItems.BOTTLE_OF_POISON.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.COMMANDHORN.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.COMMANDHORN.get())
 		.pattern("#X#")
-		.define('#', Ingredient.of(BRONZE_INGOT))
+		.define('#', Ingredient.of(ExtendedTags.Items.BRONZE_INGOT))
 		.define('X', Ingredient.of(HORNS))
 		.unlockedBy("has_"+ExtendedItems.COMMANDHORN.get().getRegistryName().getPath(), has(ExtendedItems.COMMANDHORN.get()))
 		.unlockedBy("has_horn", has(HORNS))
@@ -844,7 +842,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipes.EXTENDED_TIPPED_ARROW.get()).save(consumer, lotrLoc("tipped_arrow_poison"));
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
-		.requires(ExtendedTags.Items.ORC_STEEL)
+		.requires(ExtendedTags.Items.ORC_STEEL_INGOT)
 		.requires(ExtendedTags.Items.MORGUL_IRON_ORE)
 		.requiresAlloy(LOTRItems.DURNOR.get())
 		.unlockedBy("has_"+ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.BLACK_URUK_STEEL_INGOT.get()))
@@ -852,22 +850,22 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GALVORN_INGOT.get(), LOTRRecipes.DWARVEN_FORGE_ALLOY_SERIALIZER.get())
-		.requires(ExtendedTags.Items.ELVEN_STEEL)
+		.requires(ExtendedTags.Items.ELVEN_STEEL_INGOT)
 		.requiresAlloy(LOTRItems.EDHELVIR.get())
 		.unlockedBy("has_"+ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.GALVORN_INGOT.get()))
 		.unlockedBy("has_"+LOTRItems.EDHELVIR.get().getRegistryName().getPath(), has(LOTRItems.EDHELVIR.get()))
 		.save(consumer, lotrLoc(ExtendedItems.GALVORN_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.GILDED_IRON_INGOT.get(), LOTRRecipes.ALLOY_SERIALIZER.get())
-		.requires(IRON_ORE)
-		.requires(IRON_INGOT)
+		.requires(Tags.Items.ORES_IRON)
+		.requires(Tags.Items.INGOTS_IRON)
 		.requiresAlloy(Items.GOLD_NUGGET)
 		.unlockedBy("has_"+ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.GILDED_IRON_INGOT.get()))
 		.unlockedBy("has_"+Items.GOLD_NUGGET.getRegistryName().getPath(), has(Items.GOLD_NUGGET))
 		.save(consumer, lotrLoc(ExtendedItems.GILDED_IRON_INGOT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.MORGUL_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
-		.requires(ExtendedTags.Items.ORC_STEEL)
+		.requires(ExtendedTags.Items.ORC_STEEL_INGOT)
 		.requires(ExtendedTags.Items.MORGUL_IRON_ORE)
 		.requiresAlloy(LOTRItems.GULDURIL.get())
 		.unlockedBy("has_"+ExtendedItems.MORGUL_STEEL_INGOT.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_STEEL_INGOT.get()))
@@ -889,7 +887,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB,
 			LOTRItems.MOSSY_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.LARGE_POT.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.LARGE_POT.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LARGE_POT.get())
 		.pattern("# #")
 		.pattern("# #")
 		.pattern("###")
@@ -897,7 +895,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_bricks", has(Items.BRICKS))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_POT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.LARGE_FLOWER_POT.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LARGE_FLOWER_POT.get())
 		.pattern("# #")
 		.pattern("###")
 		.define('#', Ingredient.of(Items.BRICKS))
@@ -919,9 +917,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("PIP")
 		.pattern("PPP")
 		.pattern(" P ")
-		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL))
+		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL_INGOT))
 		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_uruk_steel", has(ExtendedTags.Items.URUK_STEEL))
+		.unlockedBy("has_uruk_steel", has(ExtendedTags.Items.URUK_STEEL_INGOT))
 		.unlockedBy("has_"+ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_SHIELD.get()))
 		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath());
@@ -1037,6 +1035,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER.get()))
 		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER_PATTERN.get()))
 		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath());
 		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.BREE_BANNER_PATTERN.get(), LOTRRecipes.BREE_CRAFTING)
 		.requires(Items.PAPER)
 		.requires(ExtendedItems.BREE_BANNER.get())
@@ -1045,7 +1044,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath()));
 		//Containers
 		GENERATEDRECIPES.add(ExtendedItems.REED_BASKET.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
 		.pattern("LLL")
 		.pattern("L L")
 		.pattern("LLL")
@@ -1065,7 +1064,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ORC_BARREL.get().getRegistryName().getPath(), has(ExtendedItems.ORC_BARREL.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ORC_BARREL.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedBlocks.WEAPON_RACK.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.WEAPON_RACK.get())
 		.pattern("X X")
 		.pattern("###")
 		.define('#', Ingredient.of(PLANKS))
@@ -1073,9 +1072,70 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_planks", has(PLANKS))
 		.unlockedBy("has_"+ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath(), has(ExtendedBlocks.WEAPON_RACK.get()))
 		.save(consumer, lotrLoc(ExtendedBlocks.WEAPON_RACK.get().getRegistryName().getPath()));
+		//Birdcages
+		GENERATEDRECIPES.add(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.WOODEN_BIRDCAGE.get())
+		.pattern("BBB")
+		.pattern("B B")
+		.pattern("III")
+		.define('B', Ingredient.of(STICKS))
+		.define('I', Ingredient.of(PLANKS))
+		.unlockedBy("has_"+ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.WOODEN_BIRDCAGE.get()))
+		.unlockedBy("has_sticks", has(STICKS))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedBlocks.IRON_BIRDCAGE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.IRON_BIRDCAGE.get())
+		.pattern("BBB")
+		.pattern("B B")
+		.pattern("III")
+		.define('B', Ingredient.of(Items.IRON_BARS))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+ExtendedBlocks.IRON_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.IRON_BIRDCAGE.get()))
+		.unlockedBy("has_iron_bars", has(Items.IRON_BARS))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.IRON_BIRDCAGE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedBlocks.BRONZE_BIRDCAGE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BRONZE_BIRDCAGE.get())
+		.pattern("BBB")
+		.pattern("B B")
+		.pattern("III")
+		.define('B', Ingredient.of(LOTRBlocks.BRONZE_BARS.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.BRONZE_INGOT))
+		.unlockedBy("has_"+ExtendedBlocks.BRONZE_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.BRONZE_BIRDCAGE.get()))
+		.unlockedBy("has_"+LOTRBlocks.BRONZE_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.BRONZE_BARS.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.BRONZE_BIRDCAGE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedBlocks.SILVER_BIRDCAGE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.SILVER_BIRDCAGE.get())
+		.pattern("BBB")
+		.pattern("B B")
+		.pattern("III")
+		.define('B', Ingredient.of(LOTRBlocks.SILVER_BARS.get()))
+		.define('I', Ingredient.of(LOTRTags.Items.INGOTS_SILVER))
+		.unlockedBy("has_"+ExtendedBlocks.SILVER_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.SILVER_BIRDCAGE.get()))
+		.unlockedBy("has_"+LOTRBlocks.SILVER_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.SILVER_BARS.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.SILVER_BIRDCAGE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedBlocks.GOLDEN_BIRDCAGE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.GOLDEN_BIRDCAGE.get())
+		.pattern("BBB")
+		.pattern("B B")
+		.pattern("III")
+		.define('B', Ingredient.of(LOTRBlocks.GOLD_BARS.get()))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_GOLD))
+		.unlockedBy("has_"+ExtendedBlocks.GOLDEN_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.GOLDEN_BIRDCAGE.get()))
+		.unlockedBy("has_"+LOTRBlocks.GOLD_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.GOLD_BARS.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.GOLDEN_BIRDCAGE.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedBlocks.MITHRIL_BIRDCAGE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.MITHRIL_BIRDCAGE.get())
+		.pattern("BBB")
+		.pattern("B B")
+		.pattern("III")
+		.define('B', Ingredient.of(LOTRBlocks.MITHRIL_BARS.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.MITHRIL_INGOT))
+		.unlockedBy("has_"+ExtendedBlocks.MITHRIL_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.MITHRIL_BIRDCAGE.get()))
+		.unlockedBy("has_"+LOTRBlocks.MITHRIL_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.MITHRIL_BARS.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.MITHRIL_BIRDCAGE.get().getRegistryName().getPath()));
 		//Dirts
 		GENERATEDRECIPES.add(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get())
 		.pattern("###")
 		.pattern("#X#")
 		.pattern("###")
@@ -1156,7 +1216,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.MOSSY_DRYSTONE_WALL,
 			()->ExtendedBlocks.MOSSY_DRYSTONE.get().asItem(), null);
 		GENERATEDRECIPES.add(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get(), 4)
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get(), 4)
 		.pattern("SDS")
 		.pattern("DSD")
 		.pattern("SDS")
@@ -1191,7 +1251,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.CRACKED_MUD_BRICK_WALL,
 			()->ExtendedBlocks.CRACKED_MUD_BRICK.get().asItem(), null);
 		GENERATEDRECIPES.add(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath());
-		ShapedRecipeBuilder.shaped(ExtendedItems.MOSS_CARPET.get(), 3)
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.MOSS_CARPET.get(), 3)
 		.pattern("XX")
 		.define('X', Ingredient.of(ExtendedItems.MOSS_BLOCK.get()))
 		.unlockedBy("has_"+ExtendedItems.MOSS_BLOCK.get().getRegistryName().getPath(), has(ExtendedItems.MOSS_BLOCK.get()))
@@ -2081,6 +2141,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
 		}
 		GENERATEDRECIPES.add(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());
 	}
 
 	@Override

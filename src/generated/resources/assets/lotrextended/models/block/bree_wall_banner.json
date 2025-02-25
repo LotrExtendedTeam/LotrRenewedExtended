@@ -1,3 +1,7 @@
 {
-  "parent": "lotrextended:block/template_banner_wall"
+  "parent": "lotrextended:block/template_banner_wall",
+  "textures": {
+    "particle": "lotrextended:block/banner/bree_wall_banner",
+    "banner": "lotrextended:block/banner/bree_wall_banner"
+  }
 }

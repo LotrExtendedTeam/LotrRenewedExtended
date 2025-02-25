@@ -197,6 +197,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 		final Map<String, String> map = new java.util.HashMap<>(builder.build());
 		for (Entry<String, String> entry : map.entrySet()) {
+			if (entry.getValue().isEmpty()) {
+				continue;
+			}
 			if (entry.getKey().contains("container.lotr")) {
 				continue;
 			}

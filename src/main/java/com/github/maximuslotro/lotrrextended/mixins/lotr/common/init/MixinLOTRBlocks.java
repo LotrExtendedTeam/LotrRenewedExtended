@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
-
 import java.util.function.Supplier;
 
 import org.spongepowered.asm.mixin.Final;
@@ -16,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCheeseWheelBlock;
@@ -72,6 +72,7 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedBurnableAxialSlabBlock;
+import lotr.common.block.ExtendedBurnableLOTRPillarBlock;
 import lotr.common.block.ExtendedBurnableLOTRStairsBlock;
 import lotr.common.block.ExtendedBurnableLOTRWallBlock;
 import lotr.common.block.ExtendedChandelierBlock;
@@ -112,6 +113,7 @@ import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableLogStairsBlock;
 import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.WattleAndDaubBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
@@ -170,6 +172,14 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUBBER_TORCH;
 
+	@Final
+	@Shadow(remap=false)
+	public static RegistryObject<Block> WATTLE_AND_DAUB;
+
+	/**
+	 * Overrides the default registration of Renewed's block to fix things, override registrations, and replace functionality
+	 * Used for toggleable torches, axe mineable wattle and daub, shovel mineable white sand
+	 * */
 	@SuppressWarnings("unchecked")
 	@Redirect(method = "<clinit>",
 			at = @At(value = "INVOKE",
@@ -177,48 +187,63 @@ public class MixinLOTRBlocks {
 	private static RegistryObject<Block> injectedBlockRegister(DeferredRegister<Block> register, String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> returnBlock = null;
 		if(name.equals("blue_mallorn_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW});});
 		}else if(name.equals("blue_mallorn_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(BLUE_MALLORN_TORCH);});
 		}else if(name.equals("green_mallorn_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GREEN_ELVEN_GLOW});});
 		}else if(name.equals("green_mallorn_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(GREEN_MALLORN_TORCH);});
 		}else if(name.equals("gold_mallorn_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.GOLD_ELVEN_GLOW});});
 		}else if(name.equals("gold_mallorn_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(GOLD_MALLORN_TORCH);});
 		}else if(name.equals("silver_mallorn_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.SILVER_ELVEN_GLOW});});
 		}else if(name.equals("silver_mallorn_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(SILVER_MALLORN_TORCH);});
 		}else if(name.equals("high_elven_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return (new ExtendedLOTRTorchBlock(14)).setParticles(new Supplier[]{LOTRParticles.BLUE_ELVEN_GLOW});});
 		}else if(name.equals("high_elven_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(HIGH_ELVEN_TORCH);});
 		}else if(name.equals("dwarven_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRTorchBlock(14);});
 		}else if(name.equals("dwarven_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(DWARVEN_TORCH);});
 		}else if(name.equals("blubber_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRTorchBlock(12);});
 		}else if(name.equals("blubber_wall_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedLOTRWallTorchBlock(BLUBBER_TORCH);});
 		}else if(name.equals("orc_torch")) {
+			// Override torch to add an on/off ability
 			returnBlock = BLOCKS.register(name, () -> {
 				return new ExtendedDoubleTorchBlock(14);});
 		}else if(name.equals("white_sand")) {
@@ -226,6 +251,17 @@ public class MixinLOTRBlocks {
 			//Also removes lotr.common.block.LOTRSandBlock from being used
 			returnBlock = BLOCKS.register(name, () -> {
 				return new SandBlock(15856113, Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).harvestTool(ToolType.SHOVEL).sound(SoundType.SAND));});
+		}
+		else if(name.equals("wattle_and_daub")) {
+			//Fixes wattle and daub not being mined faster with axes.
+			returnBlock = BLOCKS.register(name, () -> {
+				return new WattleAndDaubBlock(Properties.of(Material.GRASS, MaterialColor.QUARTZ).strength(1.0F).harvestTool(ToolType.AXE).sound(SoundType.SCAFFOLDING));});
+		}
+		else if(name.equals("wattle_and_daub_pillar")) {
+			//Fixes wattle and daub pillar not being mined faster with axes.
+			//Also removes lotr.common.block.WattleAndDaubPillarBlock from being used
+			returnBlock = BLOCKS.register(name, () -> {
+				return new ExtendedBurnableLOTRPillarBlock(WATTLE_AND_DAUB);});
 		}
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);
@@ -665,7 +701,7 @@ public class MixinLOTRBlocks {
 		//Mordor
 		ExtendedBlocks.SMOOTH_MORDOR_ROCK_STAIRS = registerB("smooth_mordor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_MORDOR_ROCK));
 
-		ExtendedBlocks.CROSSED_WATTLE_AND_DAUB = registerB("crossed_wattle_and_daub", () -> new ExtendedThreeTallPillarBlock(Properties.of(Material.GRASS, MaterialColor.QUARTZ).sound(SoundType.SCAFFOLDING).strength(1.0F)));
+		ExtendedBlocks.CROSSED_WATTLE_AND_DAUB = registerB("crossed_wattle_and_daub", () -> new ExtendedThreeTallPillarBlock(Properties.of(Material.GRASS, MaterialColor.QUARTZ).harvestTool(ToolType.AXE).sound(SoundType.SCAFFOLDING).strength(1.0F)));
 		//Drytone/stone
 		ExtendedBlocks.DRYSTONE_SLAB = registerB("drystone_slab", () -> new AxialSlabBlock(LOTRBlocks.DRYSTONE));
 		ExtendedBlocks.DRYSTONE_STAIRS = registerB("drystone_stairs", () -> new LOTRStairsBlock(LOTRBlocks.DRYSTONE));
@@ -848,6 +884,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BREE));
 
 		ExtendedBlocks.MORDOR_MOSS_VINES = registerB("mordor_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+		// Birdcages
+		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F)));
+		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
+		ExtendedBlocks.IRON_BIRDCAGE = registerB("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
+		ExtendedBlocks.SILVER_BIRDCAGE = registerB("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
+		ExtendedBlocks.GOLDEN_BIRDCAGE = registerB("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
+		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
+
 	}
 
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)

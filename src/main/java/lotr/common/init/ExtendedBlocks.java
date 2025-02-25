@@ -473,4 +473,11 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORDOR_MOSS_VINES;
 
 	public static RegistryObject<Block> CROSSED_WATTLE_AND_DAUB;
+
+	public static RegistryObject<Block> WOODEN_BIRDCAGE;
+	public static RegistryObject<Block> BRONZE_BIRDCAGE;
+	public static RegistryObject<Block> IRON_BIRDCAGE;
+	public static RegistryObject<Block> SILVER_BIRDCAGE;
+	public static RegistryObject<Block> GOLDEN_BIRDCAGE;
+	public static RegistryObject<Block> MITHRIL_BIRDCAGE;
 }
