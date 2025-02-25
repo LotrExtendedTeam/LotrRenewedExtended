@@ -604,8 +604,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
                 }
             }
         }
-        AttributeModifier HEALTH_MODIFIER = new AttributeModifier(name,
-                change, AttributeModifier.Operation.ADDITION);
+        AttributeModifier HEALTH_MODIFIER = new AttributeModifier(name, change, AttributeModifier.Operation.ADDITION);
         if (permanent) {
             attributeInstance.addPermanentModifier(HEALTH_MODIFIER);
         } else {
@@ -632,18 +631,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     @Override
     public float getHiredUnitEquipmentDropChance(EquipmentSlotType slotType) {
-        float f;
-        switch (slotType.getType()) {
-            case HAND:
-                f = this.handDropChances[slotType.getIndex()];
-                break;
-            case ARMOR:
-                f = this.armorDropChances[slotType.getIndex()];
-                break;
-            default:
-                f = 0.0F;
-        }
-
-        return f;
+    	return getEquipmentDropChance(slotType);
     }
 }
