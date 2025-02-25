@@ -157,7 +157,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner's protection level
-	 * @param BannerProtectionLevel
+	 * @param {@Link BannerProtectionLevel} to be set
 	 * */
 	public void setProtectionLevel(BannerProtectionLevel protectionLevel) {
 		this.protectionLevel = protectionLevel;
@@ -168,7 +168,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner protection type
-	 * @param BannerProtectionType
+	 * @param {@Link BannerProtectionType} to be set
 	 * */
 	public void setProtectionType(BannerProtectionType protectionType) {
 		this.protectionType = protectionType;
@@ -220,7 +220,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the Faction protecting alignment level
-	 * @param float
+	 * @param {@Link float} alignment level to be set
 	 * */
 	public void setAlignmentLevel(float level) {
 		this.alignmentLevel = level;

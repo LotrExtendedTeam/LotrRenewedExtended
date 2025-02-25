@@ -5,10 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -52,7 +49,9 @@ import net.minecraft.world.server.ServerWorld;
 public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 
 	@Nullable
+	@Unique
 	public ResourceLocation lootTable;
+	@Unique
 	protected long lootTableSeed;
 
 	@Shadow(remap = false)
@@ -263,6 +262,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	/**
 	 * Extended method to load in a loot table for kegs, uses chest loot-table code
 	 */
+	@Unique
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
 		try {

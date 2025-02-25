@@ -18,11 +18,11 @@ public class BiomeStructureAdder {
 	/**
      * Will go into the world's ChunkGenerator and manually add our structure spacing.
      * If the spacing is not added, the structure doesn't spawn.
-     *
+     * <p>
      * Use this for dimension blacklisting a structure.
      * (Don't forget to attempt to remove your structure too from the map if you are blacklisting a dimension!)
      * (It might have your structure in it already.)
-     *
+     * <p>
      * Basically use this to make absolutely sure the ChunkGenerator can or cannot spawn our structures.
      */
 	public static void addDimensionalSpacing(ServerChunkProvider provider) {

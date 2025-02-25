@@ -45,8 +45,8 @@ public class EItemLootEntry extends ItemLootEntry{
 		}
 
 		/**
-		 * minDamagePercent is the smallest damage percent. ie. 0.90 is the item is at least 90% damaged
-		 * maxDamagePercent is the largest  damage percent. ie. 0.95 is the item is at most  95% damaged
+		 * minDamagePercent is the smallest damage percent. i.e. 0.90 is the item is at least 90% damaged
+		 * maxDamagePercent is the largest  damage percent. i.e. 0.95 is the item is at most  95% damaged
 		 * */
 		public ExtendedBuilder setDamageRange(float minDamagePercent, float maxDamagePercent) {
 			float modifiedMin = (100-(int)(maxDamagePercent*100)) / 100.0f;

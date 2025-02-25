@@ -165,9 +165,9 @@ public class WanderingTradersList {
      * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
      * and if it is pick a random wandering trader from it's list and return the entity name. If no wandering traders
      * spawn in that biome it returns null. If it is not a valid biome it throws an IllegalArgumentException
-     *
-     * @param biomeName
-     * @return
+     * @param world the {@Link World} to check
+     * @param biomeName the name of the biome to query
+     * @return The {@Link String} name of the trader to spawn, null if no traders can spawn
      * @throws IllegalArgumentException
      */
     public static String pickTraderFromBiomeName(World world, String biomeName) throws IllegalArgumentException {

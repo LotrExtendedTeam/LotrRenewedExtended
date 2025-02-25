@@ -94,7 +94,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	 * Code copied from {@Link JsonReloadListener} due to if this class extended it, it would cause server crashes
 	 * when running a reload since all data files would disappear?
 	 * Extending {@Link ReloadListener} and copying the method fixes this data corruption
-	 * @version Minecraft 1.16.5
+	 * From Minecraft 1.16.5
 	 * */
 	@Override
 	protected Map<ResourceLocation, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {

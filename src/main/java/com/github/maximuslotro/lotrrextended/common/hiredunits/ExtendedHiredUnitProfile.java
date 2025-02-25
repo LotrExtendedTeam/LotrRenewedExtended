@@ -89,9 +89,9 @@ public class ExtendedHiredUnitProfile {
 	}
 
 	/**
-	 * Gets the eqquipment item pools for the unit profile
+	 * Gets the equipment item pools for the unit profile
 	 * @return the pool
-	 * @see {@link ExtendedHiredUnitEquipmentInstance}
+	 * @see ExtendedHiredUnitEquipmentInstance
 	 * */
 	public ExtendedHiredUnitEquipmentInstance getEquipmentPools() {
 		return equipmentPools;

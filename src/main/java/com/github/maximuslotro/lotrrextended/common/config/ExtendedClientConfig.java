@@ -14,7 +14,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 
 	/**
 	 * Do not set this value itself, set {@Link ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
-	 * to ensure {@Link MixinStructureBlockTileEntity} is updated with the non confg crashable value, since sliders can change values very quickly.
+	 * to ensure {@Link MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 

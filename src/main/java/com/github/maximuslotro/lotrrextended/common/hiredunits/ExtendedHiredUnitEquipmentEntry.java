@@ -53,10 +53,10 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	/**
 	 * Copied from {@Link DisplayInfo#serializeItem()}
 	 * */
+	@SuppressWarnings("deprecation")
 	private JsonObject serializeItem() {
 		JsonObject itemJson = new JsonObject();
 		itemJson.addProperty("item", Registry.ITEM.getKey(this.stack.getItem()).toString());

@@ -25,7 +25,7 @@ public class MixinHandheldWrapperModel {
 	/**
 	 * @author maximuslotro
 	 * @reason Don't have mess with inject rn, I'm tired rn.
-	 * @*/
+	 * */
 	@Overwrite(remap = false)
 	public IBakedModel handlePerspective(TransformType transformType, MatrixStack mat) {
 		IBakedModel modelToUse = defaultModel;

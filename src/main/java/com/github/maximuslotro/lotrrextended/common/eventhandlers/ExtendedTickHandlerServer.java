@@ -27,7 +27,7 @@ public class ExtendedTickHandlerServer {
 
 				/**
 				 * Ensure we only load level data when the main dimension ticks
-				 */
+				 * */
 				if (LOTRDimensions.isDimension(world, World.OVERWORLD)) {
 					if (levelData.needsLoad()) {
 						levelData.load(world);
@@ -40,7 +40,7 @@ public class ExtendedTickHandlerServer {
 
 				/**
 				 * Ensure we only save level data when the main dimension ticks
-				 */
+				 * */
 				if (LOTRDimensions.isDimension(world, World.OVERWORLD)) {
 
 					// Save when needs saving

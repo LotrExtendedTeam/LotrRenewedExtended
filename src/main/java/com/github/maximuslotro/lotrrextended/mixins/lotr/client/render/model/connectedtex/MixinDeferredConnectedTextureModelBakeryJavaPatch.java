@@ -65,7 +65,7 @@ public class MixinDeferredConnectedTextureModelBakeryJavaPatch {
 	 * @author Maximuslotro
 	 * @reason Java 9+ changes how computeIfAbsent works. If any map changes, not just on current key happens, a ConcurrentModificationException is thrown
 	 * This code changes the way the BlockModelQuadsHolder is generated to ensure non-concurrent changes
-	 * 
+	 * <p>
 	 * A ConcurrentModificationException in HashMap.computeIfAbsent can occur when the map is structurally modified by another thread while computeIfAbsent is in progress.
 	 * This behavior changed between Java 8 and Java 9 due to a fix for JDK-8071667.
 	 * In Java 8, computeIfAbsent might not throw a ConcurrentModificationException if the modification happens during the computation but doesn't interfere with the specific key being computed. 

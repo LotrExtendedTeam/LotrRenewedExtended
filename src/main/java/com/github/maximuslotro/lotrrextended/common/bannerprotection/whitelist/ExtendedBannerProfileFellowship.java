@@ -20,7 +20,6 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	 * Constructs a new Banner Profile with the specified ID and name.
 	 *
 	 * @param id Unique ID of the profile
-	 * @param name Display name of the profile
 	 * @throws java.lang.IllegalArgumentException Both ID and name are either null or empty
 	 */
 	public ExtendedBannerProfileFellowship(final UUID id) {
