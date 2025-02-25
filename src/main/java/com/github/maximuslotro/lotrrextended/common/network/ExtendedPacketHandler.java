@@ -20,7 +20,7 @@ public class ExtendedPacketHandler {
 		int id = 0;
 		// Packets starting with S are sent from the server to the client (originate at the server)
 		// Packets starting with C are sent from the client to the server (originate at the client)
-		// This naming scheme is shown in {@Link net.minecraft.network.ProtocolType}
+		// This naming scheme is shown in {@see net.minecraft.network.ProtocolType}
 		CHANNEL.registerMessage(id++, ExtendedCSelectHornPacket.class, ExtendedCSelectHornPacket::encode, ExtendedCSelectHornPacket::decode, ExtendedCSelectHornPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCExchangeCoinsPacket.class, ExtendedCExchangeCoinsPacket::encode, ExtendedCExchangeCoinsPacket::decode, ExtendedCExchangeCoinsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSUpdateExchangeCoinContainerPacket.class, ExtendedSUpdateExchangeCoinContainerPacket::encode, ExtendedSUpdateExchangeCoinContainerPacket::decode, ExtendedSUpdateExchangeCoinContainerPacket::handle);

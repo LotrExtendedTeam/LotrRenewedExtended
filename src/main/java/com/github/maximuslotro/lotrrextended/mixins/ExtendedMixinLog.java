@@ -7,7 +7,7 @@ public class ExtendedMixinLog {
 	private static Logger LOGGER;
 
 	public static void error(String s) {
-		LOGGER.error("lotrExtendedMixin: " + s);
+		LOGGER.error("lotrExtendedMixin: {}", s);
 	}
 
 	public static void error(String s, Object... params) {
@@ -19,7 +19,7 @@ public class ExtendedMixinLog {
 	}
 
 	public static void info(String s) {
-		LOGGER.info("lotrExtendedMixin: " + s);
+		LOGGER.info("lotrExtendedMixin: {}", s);
 	}
 
 	public static void info(String s, Object... params) {
@@ -27,7 +27,7 @@ public class ExtendedMixinLog {
 	}
 
 	public static void warn(String s) {
-		LOGGER.warn("lotrExtendedMixin: " + s);
+		LOGGER.warn("lotrExtendedMixin: {}", s);
 	}
 
 	public static void warn(String s, Object... params) {
@@ -35,7 +35,7 @@ public class ExtendedMixinLog {
 	}
 
 	public static void debug(String s) {
-		LOGGER.debug("lotrExtendedMixin: " + s);
+		LOGGER.debug("lotrExtendedMixin: {}", s);
 	}
 
 	public static void debug(String s, Object... params) {

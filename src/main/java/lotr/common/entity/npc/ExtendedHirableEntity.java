@@ -116,8 +116,7 @@ public interface ExtendedHirableEntity {
     ResourceLocation getProfileLocation();
 
     /**
-     * Gets the {@Link ExtendedHiredUnitProfile} assoicated with this unit
-     * @Nullable
+     * Gets the {@see ExtendedHiredUnitProfile} associated with this unit
      * */
     @Nullable
     default ExtendedHiredUnitProfile getUnitProfile() {

@@ -585,7 +585,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         	 entityData.set(EQUIPMENT_OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
         	 inventoryNeedsSetupSyncing=false;
     	}
-        // Set the {@Link MobEntity} equipment fields here, since the entityData fields 
+        // Set the {@see MobEntity} equipment fields here, since the entityData fields 
         // are the correct values between player and base equipment, as sorted above
         setItemSlot(EquipmentSlotType.HEAD, entityData.get(EQUIPMENT_HEAD));
         setItemSlot(EquipmentSlotType.CHEST, entityData.get(EQUIPMENT_CHEST));

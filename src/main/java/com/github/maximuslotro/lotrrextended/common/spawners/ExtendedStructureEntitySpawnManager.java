@@ -37,7 +37,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
 	private HashMap<String, List<String>> cachedSpawnLists = new HashMap<>();
 
-	// Don't allow more than one instance than {@Link ExtendedStructureEntitySpawnManager#INSTANCE }
+	// Don't allow more than one instance than {@see ExtendedStructureEntitySpawnManager#INSTANCE }
 	private ExtendedStructureEntitySpawnManager() {}
 
 	public ExtendedStructureEntitySpawner get(ResourceLocation p_186521_1_) {
@@ -84,16 +84,15 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
-		ImmutableMap<ResourceLocation, ExtendedStructureEntitySpawner> immutablemap = builder.build();
-		// TODO validate loaded data if applicable
-		this.spawners = immutablemap;
+        // TODO validate loaded data if applicable
+		this.spawners = builder.build();
 		ExtendedLog.info("Loaded Structure Entity Spawners from Json - %s spawners", spawners.size()-1);
 	}
 
 	/**
-	 * Code copied from {@Link JsonReloadListener} due to if this class extended it, it would cause server crashes
+	 * Code copied from {@see JsonReloadListener} due to if this class extended it, it would cause server crashes
 	 * when running a reload since all data files would disappear?
-	 * Extending {@Link ReloadListener} and copying the method fixes this data corruption
+	 * Extending {@see ReloadListener} and copying the method fixes this data corruption
 	 * From Minecraft 1.16.5
 	 * */
 	@Override

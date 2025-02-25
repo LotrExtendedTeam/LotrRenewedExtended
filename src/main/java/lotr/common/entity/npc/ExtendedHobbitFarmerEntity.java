@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.entity.npc.ai.goal.ExtendedInteractableTalkToCurrentGoal;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 

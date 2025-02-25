@@ -22,7 +22,7 @@ public class HobbitOutfitLayer<E extends HobbitEntity> extends NPCOutfitLayer<E,
         super(renderer, newHobbitOutfitModel(), skins, slot, prop, gender);
     }
 
-    private static final <E extends HobbitEntity> ArmsStyleModelProvider<E, HobbitModel<E>> newHobbitOutfitModel() {
+    private static <E extends HobbitEntity> ArmsStyleModelProvider<E, HobbitModel<E>> newHobbitOutfitModel() {
         return (smallArms) -> {
             return new HobbitModel<>(0F, false, smallArms);
         };

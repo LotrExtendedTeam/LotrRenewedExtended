@@ -138,7 +138,7 @@ public class WoodPallet {
 
 	@Override
 	public boolean equals(Object pallet) {
-		return super.equals(pallet) || (pallet instanceof WoodPallet ? this.name.equals(((WoodPallet)pallet).name) : false);
+		return super.equals(pallet) || (pallet instanceof WoodPallet && this.name.equals(((WoodPallet) pallet).name));
 	}
 
 	public Map<String, ResourceLocation> getBlockMap() {

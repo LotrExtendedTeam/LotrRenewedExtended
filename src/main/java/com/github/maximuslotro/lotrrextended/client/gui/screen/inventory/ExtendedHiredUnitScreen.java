@@ -187,7 +187,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
     }
 
 
-    class CompanionButton extends ImageButton {
+    private static class CompanionButton extends ImageButton {
 
         private String name;
 

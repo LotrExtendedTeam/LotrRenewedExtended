@@ -49,7 +49,7 @@ public class MixinLOTRRecipes {
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		ExtendedRecipes.TAURETHRIM_CRAFTING = registerFactionD("taurethrim", "Taurethrim Crafting", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE);
 		ExtendedRecipes.DOL_GULDUR_CRAFTING = registerFactionD("dol_guldur", "Dol Guldur Crafting", ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE);
-		ExtendedRecipes.RHUNIC_CRAFTING = registerFactionD("rhunic", "Rh\u00FBnic Crafting", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
+		ExtendedRecipes.RHUNIC_CRAFTING = registerFactionD("rhunic", "Rhûnic Crafting", ExtendedBlocks.RHUNIC_CRAFTING_TABLE);
 		ExtendedRecipes.MORWAITH_CRAFTING = registerFactionD("morwaith", "Morwaith Crafting", ExtendedBlocks.MORWAITH_CRAFTING_TABLE);
 		ExtendedRecipes.HALF_TROLL_CRAFTING = registerFactionD("half_troll", "Half Troll Crafting", ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE);
 		ExtendedRecipes.NORTHERN_ORC_CRAFTING = registerFactionD("northern_orc", "Gundabad Crafting", ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE);

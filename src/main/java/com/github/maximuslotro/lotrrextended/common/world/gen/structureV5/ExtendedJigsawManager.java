@@ -46,7 +46,7 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 /**
- * Copied from {@Link JigsawManager} and modified to add needed functionality
+ * Copied from {@see JigsawManager} and modified to add needed functionality
  * @version 1.16.5
  * */
 public class ExtendedJigsawManager {

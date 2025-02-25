@@ -109,17 +109,15 @@ public class MixinLOTREntities {
 		return entity;
 	}
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height) {
-		RegistryObject<EntityType<T>> entity = regEntityExpanded(key, factory, classif, width, height, 5, 3);
-		return entity;
+        return regEntityExpanded(key, factory, classif, width, height, 5, 3);
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
-		RegistryObject<EntityType<T>> entity = regEntityExpanded(key, factory, classif, width, height, trackRange, updateFreq, (builder) -> {
-			builder.canSpawnFarFromPlayer();
-			builder.fireImmune();
-			builder.noSummon();
-		});
-		return entity;
+        return regEntityExpanded(key, factory, classif, width, height, trackRange, updateFreq, (builder) -> {
+            builder.canSpawnFarFromPlayer();
+            builder.fireImmune();
+            builder.noSummon();
+        });
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {

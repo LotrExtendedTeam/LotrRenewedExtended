@@ -12,7 +12,7 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * Code Copied from {@link net.minecraft.data.CustomRecipeBuilder}
+ * Code Copied from {@see net.minecraft.data.CustomRecipeBuilder}
  * to add namespace setting capability to getId
  * */
 public class ExtendedCustomRecipeBuilder {

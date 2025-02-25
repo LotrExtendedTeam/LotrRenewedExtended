@@ -83,7 +83,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				ExtendedStoneGrinderTileEntity.this.grindingTotalTime = pValue;
 				break;
 			case 2:
-				ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue == 0 ? false : true;
+				ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue != 0;
 			}
 		}
 		@Override

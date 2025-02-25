@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.world.biome;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.common.world.biome.ExtendedBiomeFeatures;
@@ -19,6 +20,7 @@ public class MixinLamedonBiome {
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
+	@Overwrite
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((LamedonBiome)(Object)this, builder, getLamedonBaseTreeRate(), 0.1F, TreeCluster.of(10, 20),
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,

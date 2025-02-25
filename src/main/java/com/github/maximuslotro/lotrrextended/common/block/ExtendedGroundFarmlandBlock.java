@@ -53,7 +53,7 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 	@Override
 	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
 	      BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.above());
-	      return blockstate.getBlock() instanceof ExtendedBerryBushBlock ? true : super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
+	      return blockstate.getBlock() instanceof ExtendedBerryBushBlock || super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
 	   }
 
 	@Override

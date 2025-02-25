@@ -84,7 +84,7 @@ public class ExtendedHiredUnitHelper {
      * Update a unit's equipment (currently from inventory container)
      * @param companion The NPC unit to update
      * @param slot The slot type to update
-     * @param item The new {@Link ItemStack} to be placed in the slot
+     * @param item The new {@see ItemStack} to be placed in the slot
      * */
     public static void updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {

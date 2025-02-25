@@ -34,14 +34,14 @@ public class ExtendedHiredUnitProfileManager extends ReloadListener<Map<Resource
 
 	/*
 	 * Keep Private
-	 * Don't allow more than one instance than {@Link ExtendedHiredUnitProfileManager#INSTANCE }
+	 * Don't allow more than one instance than {@see ExtendedHiredUnitProfileManager#INSTANCE }
 	 * */
 	private ExtendedHiredUnitProfileManager() {}
 
 	/*
-	 * Gets a {@Link ExtendedHiredUnitProfile} for a specified ResourceLocation
+	 * Gets a {@see ExtendedHiredUnitProfile} for a specified ResourceLocation
 	 * @param unitProfileId Id of the Profile
-	 * @return An instance of {@Link ExtendedHiredUnitProfile} if found, else {@Link ExtendedHiredUnitProfile#EMPTY}
+	 * @return An instance of {@see ExtendedHiredUnitProfile} if found, else {@see ExtendedHiredUnitProfile#EMPTY}
 	 * */
 	public ExtendedHiredUnitProfile get(ResourceLocation unitProfileId) {
 		return this.hiredUnitProfiles.getOrDefault(unitProfileId, ExtendedHiredUnitProfile.EMPTY);
@@ -78,21 +78,19 @@ public class ExtendedHiredUnitProfileManager extends ReloadListener<Map<Resource
 	}
 
 	/**
-	 * Code copied from {@Link JsonReloadListener} due to if this class extended it, it would cause server crashes
+	 * Code copied from {@see JsonReloadListener} due to if this class extended it, it would cause server crashes
 	 * when running a reload since all data files would disappear?
-	 * Extending {@Link ReloadListener} and copying the method fixes this data corruption
-	 * @version Minecraft 1.16.5
+	 * Extending {@see ReloadListener} and copying the method fixes this data corruption
+	 * For Minecraft version 1.16.5
 	 * */
 	@Override
 	protected Map<ResourceLocation, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {
 		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
 		int i = this.directory.length() + 1;
 
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> {
-			return p_223379_0_.endsWith(".json");
-		})) {
+		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (path) -> path.endsWith(".json"))) {
 			String s = resourcelocation.getPath();
-			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
+			ResourceLocation profileSpecificLocation = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 			try (
 				IResource iresource = pResourceManager.getResource(resourcelocation);
 				InputStream inputstream = iresource.getInputStream();
@@ -100,15 +98,15 @@ public class ExtendedHiredUnitProfileManager extends ReloadListener<Map<Resource
 				) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
-					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
-					if (jsonelement1 != null) {
-						throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
+					JsonElement nullCheck = map.put(profileSpecificLocation, jsonelement);
+					if (nullCheck != null) {
+						throw new IllegalStateException("Duplicate data file ignored with ID " + profileSpecificLocation);
 					}
 				} else {
-					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
+					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", profileSpecificLocation, resourcelocation);
 				}
 			} catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-				ExtendedLog.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+				ExtendedLog.error("Couldn't parse data file {} from {}", profileSpecificLocation, resourcelocation, jsonparseexception);
 			}
 		}
 

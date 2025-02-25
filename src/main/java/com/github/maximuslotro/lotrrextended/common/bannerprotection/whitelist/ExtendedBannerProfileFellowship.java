@@ -91,7 +91,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	@Override
 	public boolean isPlayerContained(PlayerEntity player) {
 		ExtendedFellowship fellowship = getFellowshipFromID(id);
-		return fellowship!=null ? fellowship.isInFellowship(player.getUUID()) : false;
+		return fellowship != null && fellowship.isInFellowship(player.getUUID());
 	}
 
 	@Override

@@ -623,7 +623,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	}
 
 	/**
-	 * Handles an entity event fired from {@link net.minecraft.world.level.Level#broadcastEntityEvent}.
+	 * Handles an entity event fired from net.minecraft.world.level.Level#broadcastEntityEvent
 	 */
 	@OnlyIn(Dist.CLIENT)
 	@Override

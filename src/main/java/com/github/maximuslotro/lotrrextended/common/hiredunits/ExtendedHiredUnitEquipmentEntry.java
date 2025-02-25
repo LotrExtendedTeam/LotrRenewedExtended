@@ -54,7 +54,7 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 	}
 
 	/**
-	 * Copied from {@Link DisplayInfo#serializeItem()}
+	 * Copied from {@see DisplayInfo#serializeItem()}
 	 * */
 	@SuppressWarnings("deprecation")
 	private JsonObject serializeItem() {
@@ -68,7 +68,7 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 	}
 
 	/**
-	 * Copied from {@Link DisplayInfo#getStack(JsonObject jsonObject)}
+	 * Copied from {@see DisplayInfo#getStack(JsonObject jsonObject)}
 	 * */
 	private static ItemStack getStack(JsonObject jsonObject) {
 		if (!jsonObject.has("item")) {

@@ -1,13 +1,9 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.client.event;
 
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -52,12 +48,13 @@ public class MixinLOTRTickHandlerClient {
 	@Final
 	private Minecraft mc;
 
+	@Unique
 	private float wightFogModifier;
+	@Unique
 	private float prevWightFogModifier;
 
 	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V",
-		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER),
-		locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
+		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), remap=false)
 	public void injectWightFogLogic(ClientTickEvent event, CallbackInfo ci) {
 		ClientPlayerEntity player = this.mc.player;
 		Entity viewer = this.mc.cameraEntity;

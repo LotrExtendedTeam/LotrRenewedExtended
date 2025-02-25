@@ -123,8 +123,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 		}
 
 		try {
-			ExtendedBannerProfilePlayer gameprofile = new ExtendedBannerProfilePlayer(uuid, s);
-			return gameprofile;
+            return new ExtendedBannerProfilePlayer(uuid, s);
 		} catch (Throwable throwable) {
 			return null;
 		}

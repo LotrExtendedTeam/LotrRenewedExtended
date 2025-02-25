@@ -62,13 +62,13 @@ public class ExtendedStructureHelperComamnd {
     public static int executeEntity(CommandSource source, ResourceLocation resourceLocation, BlockPos pos) {
     	List<ExtendedStructureSpawnerEntity> entities = source.getLevel()
     			.getEntities(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), source.getEntity().getBoundingBox(), (entitiyCheck) -> {
-    		return entitiyCheck instanceof  ExtendedStructureSpawnerEntity ? true : false;
+    		return entitiyCheck instanceof ExtendedStructureSpawnerEntity;
     	});
     	ExtendedStructureSpawnerEntity entity;
     	if(!entities.isEmpty()) {
     		entity = entities.get(0);
     	}else {
-        	source.sendFailure(new StringTextComponent("Destanation is not a Entity Spawner!"));
+        	source.sendFailure(new StringTextComponent("Destination is not a Entity Spawner!"));
         	return Command.SINGLE_SUCCESS;
     	}
 
@@ -109,7 +109,7 @@ public class ExtendedStructureHelperComamnd {
 			source.sendSuccess(new StringTextComponent("Set Chest/Barrel Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
-		source.sendFailure(new StringTextComponent("Destanation is not instanceof supported tile entities!"));
+		source.sendFailure(new StringTextComponent("Destination is not instanceof supported tile entities!"));
         return Command.SINGLE_SUCCESS;
     }
 

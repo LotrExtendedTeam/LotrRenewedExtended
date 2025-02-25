@@ -400,8 +400,7 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     @Override
     public NPCEntity createEscort() {
-        NPCEntity entity = LOTREntities.BREE_GUARD.get().create(level);
-        return entity;
+        return LOTREntities.BREE_GUARD.get().create(level);
     }
 
 	@Override

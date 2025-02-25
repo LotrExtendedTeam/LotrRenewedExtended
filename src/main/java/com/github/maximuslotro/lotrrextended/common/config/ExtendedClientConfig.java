@@ -13,8 +13,8 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ConfigValue<String> lastClientBootVersion;
 
 	/**
-	 * Do not set this value itself, set {@Link ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
-	 * to ensure {@Link MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
+	 * Do not set this value itself, set {@see ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
+	 * to ensure {@see MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 

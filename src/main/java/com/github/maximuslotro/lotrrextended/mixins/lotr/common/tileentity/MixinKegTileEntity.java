@@ -111,7 +111,8 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 			KegTileEntity entity = ((KegTileEntity)(Object)(this));
 			// Extended Start
 			//Fix structure generation null-pointer exception. Level is null before chunk creation baking
-			if(!entity.hasLevel()) {
+			World level = entity.getLevel();
+			if(level==null) {
 				currentBrewingRecipe = null;
 				setItem(9, ItemStack.EMPTY);
 				brewTimeTotal = 0;
@@ -119,7 +120,6 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 				return;
 			}
 			//Extended End
-			World level = entity.getLevel();
 			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
 					proxyInv, level);
 			if (opt.isPresent()) {
@@ -181,7 +181,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public ItemStack getItem(int index) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		return inventory.get(index);
 	}
@@ -193,7 +193,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public ItemStack removeItem(int index, int count) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		ItemStack ret = ItemStackHelper.removeItem(inventory, index, count);
 		if (isIngredientOrWaterSlot(index)) {
@@ -210,7 +210,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public ItemStack removeItemNoUpdate(int index) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		ItemStack ret = ItemStackHelper.takeItem(inventory, index);
 		if (isIngredientOrWaterSlot(index)) {
@@ -227,7 +227,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public boolean isEmpty() {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		for(ItemStack itemstack : inventory) {
 			if(!itemstack.isEmpty()) {
@@ -244,7 +244,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public void setItem(int index, ItemStack stack) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		inventory.get(index);
 		inventory.set(index, stack);

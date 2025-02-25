@@ -14,8 +14,7 @@ public class ExtendedCTradeSellItemsPacket {
 	}
 
 	public static ExtendedCTradeSellItemsPacket decode(PacketBuffer buf) {
-		ExtendedCTradeSellItemsPacket packet = new ExtendedCTradeSellItemsPacket();
-		return packet;
+        return new ExtendedCTradeSellItemsPacket();
 	}
 
 	public static void handle(ExtendedCTradeSellItemsPacket packet, Supplier<Context> context) {

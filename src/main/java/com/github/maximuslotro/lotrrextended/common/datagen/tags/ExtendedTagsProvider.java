@@ -33,7 +33,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 /**
- * Copied from {@Link TagsProvider} to provide more functionality
+ * Copied from {@see TagsProvider} to provide more functionality
  * @version Minecraft 1.16.5
  * */
 public abstract class ExtendedTagsProvider<T> implements IDataProvider {

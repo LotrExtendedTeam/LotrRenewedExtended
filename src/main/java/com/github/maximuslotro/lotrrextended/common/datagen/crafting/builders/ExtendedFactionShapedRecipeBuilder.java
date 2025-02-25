@@ -35,11 +35,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
- * Code Copied from {@link net.minecraft.data.ShapedRecipeBuilder}
+ * Code Copied from {@see net.minecraft.data.ShapedRecipeBuilder}
  * to add a table type for faction table types
  * */
 public class ExtendedFactionShapedRecipeBuilder {
-	private static final Logger LOGGER = LogManager.getLogger();
 	private final Item result;
 	private final int count;
 	private final List<String> rows = Lists.newArrayList();
@@ -147,7 +146,7 @@ public class ExtendedFactionShapedRecipeBuilder {
 		}
 	}
 
-	public class Result implements IFinishedRecipe {
+	public static class Result implements IFinishedRecipe {
 		private final ResourceLocation id;
 		private final Item result;
 		private final int count;

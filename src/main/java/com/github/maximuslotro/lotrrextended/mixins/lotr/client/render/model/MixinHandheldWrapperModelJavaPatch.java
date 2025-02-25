@@ -21,8 +21,8 @@ public class MixinHandheldWrapperModelJavaPatch {
 	/**
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
-	 * Reflection is used, as I can't directly reference the inner private static class {@Link lotr.client.render.model.HandheldItemModels$HandheldWrapperModel"}
-	 */
+	 * Reflection is used, as I can't directly reference the inner private static class {@code lotr.client.render.model.HandheldItemModels$HandheldWrapperModel}
+     */
 	@Overwrite(remap=false)
 	public static void remapHandheldModelOverrides(ResourceLocation modelName, IBakedModel defaultModel, IBakedModel handheldModel) {
 		try {

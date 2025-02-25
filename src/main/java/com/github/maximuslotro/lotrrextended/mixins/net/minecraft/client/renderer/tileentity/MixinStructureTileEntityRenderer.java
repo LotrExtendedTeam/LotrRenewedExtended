@@ -14,8 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 @Mixin(StructureTileEntityRenderer.class)
 public class MixinStructureTileEntityRenderer {
-
-	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/tileentity/StructureBlockTileEntity;getShowAir()Z"))
+	@Redirect(method = "render(Lnet/minecraft/tileentity/StructureBlockTileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/tileentity/StructureBlockTileEntity;getShowAir()Z"))
 	private boolean injected(StructureBlockTileEntity tileEntity) {
 		return tileEntity.getShowAir() || ExtendedClientConfig.forceStructureBlockAirViewing.get();
 	}

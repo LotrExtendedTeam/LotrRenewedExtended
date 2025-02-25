@@ -57,7 +57,7 @@ public abstract class ExtendedBannerProfileBase {
 
 	/**
 	 * Checks of the passed ServerPlayerEntity has permissions in this entry
-	 * @param {@Link ServerPlayerEntity} instance to be checked
+	 * @param player {@see ServerPlayerEntity} instance to be checked
 	 * @return boolean
 	 *
 	 */
@@ -65,15 +65,15 @@ public abstract class ExtendedBannerProfileBase {
 
 	/**
 	 * Saves the profile data to the passed CompoundNBT, returns the modified CompoundNBT
-	 * @param {@Link CompoundNBT} to be written to
+	 * @param pTag {@see net.minecraft.nbt.CompoundNBT} to be written to
 	 * @return CompoundNBT
 	 */
 	public abstract CompoundNBT writeProfileData(CompoundNBT pTag);
 
 	/**
 	 * Saves the profile entry to the passed CompoundNBT, returns the modified CompoundNBT
-	 * Don't call this method, instead call {@Link writeProfileData}
-	 * @param {@Link CompoundNBT} to be written to
+	 * Don't call this method, instead call {@see writeProfileData}
+	 * @param pTag {@see CompoundNBT} to be written to
 	 * @return CompoundNBT
 	 */
 	public CompoundNBT writeGameProfile(CompoundNBT pTag) {

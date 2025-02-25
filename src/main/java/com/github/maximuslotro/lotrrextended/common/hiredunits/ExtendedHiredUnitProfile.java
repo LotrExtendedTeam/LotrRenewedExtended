@@ -252,8 +252,7 @@ public class ExtendedHiredUnitProfile {
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
 		public ExtendedHiredUnitProfile build(ResourceLocation id) {
-			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
-			return spawner;
+            return new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
 		}
 
 		/**
