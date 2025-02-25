@@ -79,7 +79,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 					AxisAlignedBB checkBox = AxisAlignedBBUtils.makeCroppedBB(this.getBlockPos());
 					Predicate<ExtendedBannerEntity> predicate = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
 					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, predicate);
-					if(banners.size()<=0) {
+					if(banners.size() == 0) {
 						createAndSetBannerEntity();
 					}else if(banners.size()>1){
 						for(ExtendedBannerEntity banner : banners) {

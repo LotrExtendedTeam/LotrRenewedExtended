@@ -377,19 +377,19 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedStoneBlock) {
-					if(block.getKey()=="cobbled_drystone") {
+					if(block.getKey().equals("cobbled_drystone")) {
 						genCubeBlockItem(block.getValue().get(), lotrLoc("block/drystone"));
 						continue;
 					}
-					if(block.getKey()=="scorched_stone") {
+					if(block.getKey().equals("scorched_stone")) {
 						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 						continue;
 					}
-					if(block.getKey()=="gneiss") {
+					if(block.getKey().equals("gneiss")) {
 						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}
-					if(block.getKey()=="polished_limestone") {
+					if(block.getKey().equals("polished_limestone")) {
 						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}

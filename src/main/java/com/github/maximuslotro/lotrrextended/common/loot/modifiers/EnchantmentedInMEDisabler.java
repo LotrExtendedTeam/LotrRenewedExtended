@@ -23,14 +23,17 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
+import javax.annotation.Nonnull;
+
 public class EnchantmentedInMEDisabler extends LootModifier {
 	List<ResourceLocation> fishingRods;
 
-	public EnchantmentedInMEDisabler(ILootCondition[] conds, List<ResourceLocation> fishingRods) {
-		super(conds);
+	public EnchantmentedInMEDisabler(ILootCondition[] conditions, List<ResourceLocation> fishingRods) {
+		super(conditions);
 		this.fishingRods = fishingRods;
 	}
 
+	@Nonnull
 	@Override
 	public List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
 		ServerWorld world = context.getLevel();
@@ -50,7 +53,7 @@ public class EnchantmentedInMEDisabler extends LootModifier {
 				ItemStack tool = context.getParamOrNull(LootParameters.TOOL);
 				Vector3d location = context.getParamOrNull(LootParameters.ORIGIN);
 				Entity entity = context.getParamOrNull(LootParameters.THIS_ENTITY);
-				if ((tool != null && fishingRods.contains(tool.getItem().getRegistryName())) || (entity != null && entity instanceof FishingBobberEntity)) {
+				if ((tool != null && fishingRods.contains(tool.getItem().getRegistryName())) || (entity instanceof FishingBobberEntity)) {
 					if(location==null) {location = new Vector3d(0d, 0d, 0d);} //Fix a crash with null locations of piglin bartering
 					if(generatedLoot.removeIf(item -> (item.getItem() == Items.ENCHANTED_BOOK))) {
 						ExtendedLog.info("Removed Enchanted Book from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());

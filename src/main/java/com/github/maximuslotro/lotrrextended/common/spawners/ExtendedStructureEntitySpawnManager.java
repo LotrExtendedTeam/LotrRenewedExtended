@@ -102,7 +102,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 
 		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> p_223379_0_.endsWith(".json"))) {
 			String s = resourcelocation.getPath();
-			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
+			ResourceLocation localPathLocation = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 			try (
 					IResource iresource = pResourceManager.getResource(resourcelocation);
 					InputStream inputstream = iresource.getInputStream();
@@ -110,15 +110,15 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 					) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
-					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
-					if (jsonelement1 != null) {
-						throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
+					JsonElement nullChecker = map.put(localPathLocation, jsonelement);
+					if (nullChecker != null) {
+						throw new IllegalStateException("Duplicate data file ignored with ID " + localPathLocation);
 					}
 				} else {
-					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
+					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", localPathLocation, resourcelocation);
 				}
-			} catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-				ExtendedLog.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+			} catch (IllegalArgumentException | IOException | JsonParseException jsonParseException) {
+				ExtendedLog.error("Couldn't parse data file {} from {}", localPathLocation, resourcelocation, jsonParseException);
 			}
 		}
 

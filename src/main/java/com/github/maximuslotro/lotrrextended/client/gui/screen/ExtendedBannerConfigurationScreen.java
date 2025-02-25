@@ -68,7 +68,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		updateWhitelist = true;
 	}
 
-	public void updatefromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
+	public void updateFromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
 		needsUpdate = false;
 		this.defaultPerms = serverData.defaultPerms;
 		this.alignmentLevel = Math.round(serverData.alignmentLevel * 10) / 10f;
@@ -138,7 +138,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				return ExtendedBannerConfigurationScreen.this.showDefaultPerms;
 			}
 			@Override
-			public boolean shouldDoDiffrentOffset() {
+			public boolean shouldDoDifferentOffset() {
 				return !defaultPerms.isEmpty();
 			}
 			@Override
@@ -231,7 +231,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 					return ExtendedBannerConfigurationScreen.this.whitelistFields.get(this.id).showPerms;
 				}
 				@Override
-				public boolean shouldDoDiffrentOffset() {
+				public boolean shouldDoDifferentOffset() {
 					if(ExtendedBannerConfigurationScreen.this.whitelist.size()> convertWhitelistOffset(this.id)) {
 						return !(ExtendedBannerConfigurationScreen.this.whitelist.get(convertWhitelistOffset(this.id)).getEntryPerms().size()==1 && ExtendedBannerConfigurationScreen.this.whitelist.get(convertWhitelistOffset(this.id)).getEntryPerms().contains(BannerPermission.EVERYTHING));
 					}
@@ -485,7 +485,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			Minecraft minecraft = Minecraft.getInstance();
 			minecraft.getTextureManager().bind(guiTexture);
 			int amount = shouldOffset() ? this.height + hoverOffset() + (this.isHovered() ? hoverOffset() : 0): (this.isHovered() ? hoverOffset() : 0);
-			if(shouldDoDiffrentOffset()){
+			if(shouldDoDifferentOffset()){
 				amount = this.height + additionalOffset() + (this.shouldOffset() ? additionalOffset() : 0);
 			}
 			this.blit(pMatrixStack, this.x, this.y, xLoc, yLoc+amount, this.width, this.height);
@@ -501,7 +501,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			return false;
 		}
 
-		public boolean shouldDoDiffrentOffset() {
+		public boolean shouldDoDifferentOffset() {
 			return false;
 		}
 

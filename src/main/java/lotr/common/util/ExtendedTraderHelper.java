@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
+import lotr.common.util.client.ExtendedClientsideSeparatedScreenHandler;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SpawnEggItem;
@@ -61,7 +61,7 @@ public class ExtendedTraderHelper {
         trader.updatePlayerInteractingWith(player.getUUID());
 
         if (entity.level.isClientSide()) {
-            ExtendedClientsideSeperatedScreenHandler.openTraderGui(entity, player);
+            ExtendedClientsideSeparatedScreenHandler.openTraderGui(entity, player);
         }
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
