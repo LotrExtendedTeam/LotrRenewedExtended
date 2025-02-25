@@ -28,11 +28,11 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addBootsPoolItem(new ItemStack(Items.CHAINMAIL_BOOTS), 1)
 		.addWeaponPoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
 		.addWeaponPoolItem(new ItemStack(Items.IRON_SWORD), 1)
-		.addShieldItem(new ItemStack(Items.SHIELD), 1)
-		.addShieldItem(ItemStack.EMPTY, 1).save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
+		.addShieldItem(new ItemStack(ExtendedItems.BREE_SHIELD.get()), 1)
+		.save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
 
 		// Gundabad Units
-		make().setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(30, false, 100)
+		make().setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(25, false, 100)
 			.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 			.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 			.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)

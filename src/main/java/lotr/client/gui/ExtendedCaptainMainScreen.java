@@ -70,7 +70,16 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 			    }
 		    }
         } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
-            // TODO: Allow for hiring Gundabad Orcs
+            if (captainEntity.canHire(ExtendedHiredUnitTypes.GUNDABAD_ORC, player)) {
+                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
+            } else {
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
+                stopInteractingClientServer();
+                Minecraft mc = Minecraft.getInstance();
+                if(mc.player != null) {
+                    mc.player.closeContainer();
+                }
+            }
         }
 	}
 

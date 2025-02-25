@@ -4,18 +4,20 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
-import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
+import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.util.CoinUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.Objects;
@@ -52,34 +54,46 @@ public class ExtendedCHireUnitPacket {
         ExtendedCaptainEntity captain = (ExtendedCaptainEntity) entity;
         ServerPlayerEntity player = Objects.requireNonNull(context.get().getSender());
 
+        ResourceLocation unitType = ExtendedHiredUnitTypes.BREE_GUARD;
+        EntityType unitObject = ExtendedEntities.HIRED_BREE_GUARD.get();
+        if (captain instanceof ExtendedGundabadOrcChieftain) {
+            unitType = ExtendedHiredUnitTypes.GUNDABAD_ORC;
+            unitObject = ExtendedEntities.HIRED_GUNDABAD_ORC.get();
+        }
+
         // verify the player has enough alignment
-        if (!captain.canHire(ExtendedHiredUnitTypes.BREE_GUARD, player)) {
+        if (!captain.canHire(unitType, player)) {
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
         }
 
         // verify the player has enough money
-        int cost = captain.getCost(ExtendedHiredUnitTypes.BREE_GUARD, player);
+        int cost = captain.getCost(unitType, player);
         if (CoinUtils.totalValueInInventory(player.inventory) < cost) {
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", cost), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
         }
 
-        // spawn the actual bree-guard
-        ExtendedHiredBreeGuard newEntity = (ExtendedHiredBreeGuard) ExtendedEntities.HIRED_BREE_GUARD.get().spawn(
+        // spawn the actual NPC
+        NPCEntity newEntity = (NPCEntity) unitObject.spawn(
                 (ServerWorld) entity.level, null,
                 player, new BlockPos(entity.getX(), entity.getY(), entity.getZ()),
                 SpawnReason.NATURAL, false, false
         );
 
         if (newEntity != null) {
-            newEntity.tame(player);
+            if (newEntity instanceof ExtendedHiredBreeGuard) {
+                ((ExtendedHiredBreeGuard) newEntity).tame(player);
+            } else if (newEntity instanceof ExtendedHiredGundabadOrc) {
+                ((ExtendedHiredGundabadOrc) newEntity).tame(player);
+            }
             CoinUtils.removeCoins(player, player.inventory, cost);
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", "Bree-land Guard", cost), Util.NIL_UUID);
-            ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger((ServerPlayerEntity)player, entity.getType(), newEntity.getType(), cost);
+            ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entity.getType(), newEntity.getType(), cost);
         }
+
 
         context.get().setPacketHandled(true);
     }
