@@ -30,19 +30,40 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * @reason Need to add more server managed data
+ * @Mixin (LOTRLevelData.class)
+ * */
 @Mixin(LOTRLevelData.class)
 public class MixinLOTRLevelData {
 
+	/**
+	 * @reason Need to add more level saved data, in this case Fellowships
+	 * @Inject (method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
+	 * @param world The ServerWorld to query for data
+	 * @param info The local CallbackInfo for this Injection
+	 * */
 	@Inject(method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
 	public void saveFactionData(ServerWorld world, CallbackInfo info) {
 		ExtendedFellowshipHolderServer.saveAll(world);
 	}
 
-	@Inject(method = "save(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
+	/**
+	 * @reason Need to load data from saved data, in this case Fellowships
+	 * @Inject (method = "load(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
+	 * @param world The ServerWorld to query for data
+	 * @param info The local CallbackInfo for this Injection
+	 * */
+	@Inject(method = "load(Lnet/minecraft/world/server/ServerWorld;)V", at = @At("HEAD"), remap=false)
 	public void loadFactionData(ServerWorld world, CallbackInfo info) {
 		ExtendedFellowshipHolderServer.loadAll(world);
 	}
 
+	/**
+	 * @reason
+	 * @Shadow (remap=false)
+	 * @param player A PlayerEntity
+	 * */
 	@Shadow(remap=false)
 	public LOTRPlayerData getData(PlayerEntity player) {return null;}
 
@@ -55,8 +76,11 @@ public class MixinLOTRLevelData {
 	}
 
 	/**
-	 * @reason Needed to inject into an if statement tree
 	 * @author maximuslotro
+	 * @reason Needed to inject into an if statement tree
+	 * @Overwrite (remap = false)
+	 * @param targetPlayer The PlayerEntity to send player locations to
+	 * @param world The current ServerWorld to query for players
 	 */
 	@Overwrite(remap = false)
 	public void sendPlayerLocationsToPlayer(PlayerEntity targetPlayer, ServerWorld world) {
