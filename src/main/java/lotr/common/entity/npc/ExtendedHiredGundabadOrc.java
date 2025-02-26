@@ -116,6 +116,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         return this.entityData.get(PATROLLING);
     }
 
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         // set initial entity base equipment based upon pools
@@ -208,8 +209,8 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public void setHiredUnitHealth(float p_70606_1_) {
-        setHealth(p_70606_1_);
+    public void setHiredUnitHealth(float health) {
+        setHealth(health);
     }
 
     @Override
