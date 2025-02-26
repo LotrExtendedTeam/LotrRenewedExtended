@@ -74,6 +74,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * @reason This class is currently unused, and its purpose is to implement make Wargs rideable again (mwra) 
+ * @Mixin (WargEntity.class)
+ * This class is not documented on purpose as it is unused and subject to re-write or deletion
+ * */
 @Mixin(WargEntity.class)
 public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);

@@ -47,24 +47,24 @@ public class MixinLOTRPlayerRendering {
 	 */
 	private boolean shouldRenderTeam(PlayerEntity player) {
 		Minecraft minecraft = Minecraft.getInstance();
-        ClientPlayerEntity clientplayerentity = minecraft.player;
+		ClientPlayerEntity clientplayerentity = minecraft.player;
 		if (clientplayerentity!=null && player != clientplayerentity) {
-            Team team = player.getTeam();
-            Team team1 = clientplayerentity.getTeam();
-            if (team != null) {
-               Team.Visible nameViability = team.getNameTagVisibility();
-               switch(nameViability) {
-               case NEVER:
-                  return false;
-               case HIDE_FOR_OTHER_TEAMS:
-                  return team1 == null || team.isAlliedTo(team1) && team.canSeeFriendlyInvisibles();
-               case HIDE_FOR_OWN_TEAM:
-                  return team1 == null || !team.isAlliedTo(team1);
-               default:
-                  return true;
-               }
-            }
-         }
+			Team team = player.getTeam();
+			Team team1 = clientplayerentity.getTeam();
+			if (team != null) {
+				Team.Visible nameViability = team.getNameTagVisibility();
+				switch(nameViability) {
+					case NEVER:
+						return false;
+					case HIDE_FOR_OTHER_TEAMS:
+						return team1 == null || team.isAlliedTo(team1) && team.canSeeFriendlyInvisibles();
+					case HIDE_FOR_OWN_TEAM:
+						return team1 == null || !team.isAlliedTo(team1);
+					default:
+						return true;
+				}
+			}
+		}
 		return true;
 	}
 }

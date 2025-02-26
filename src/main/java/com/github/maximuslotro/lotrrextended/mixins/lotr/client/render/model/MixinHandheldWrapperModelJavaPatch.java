@@ -29,7 +29,7 @@ public class MixinHandheldWrapperModelJavaPatch {
 	 * @param modelName A ResourceLocation with the name of the model
 	 * @param defaultModel The default IBakedModel to render
 	 * @param handheldModel The handheld IBakedModel to render
-     */
+	 */
 	@Overwrite(remap=false)
 	public static void remapHandheldModelOverrides(ResourceLocation modelName, IBakedModel defaultModel, IBakedModel handheldModel) {
 		try {
@@ -37,25 +37,25 @@ public class MixinHandheldWrapperModelJavaPatch {
 			List<IBakedModel> overrideModels = overrides.overrideModels;
 
 			// Get the HandheldWrapperModel class
-            Class<?> handheldWrapperModelClass = Class.forName("lotr.client.render.model.HandheldItemModels$HandheldWrapperModel");
+			Class<?> handheldWrapperModelClass = Class.forName("lotr.client.render.model.HandheldItemModels$HandheldWrapperModel");
 
-            // Get the constructor
-            Constructor<?> constructor = handheldWrapperModelClass.getDeclaredConstructor(IBakedModel.class, IBakedModel.class);
-            constructor.setAccessible(true);
+			// Get the constructor
+			Constructor<?> constructor = handheldWrapperModelClass.getDeclaredConstructor(IBakedModel.class, IBakedModel.class);
+			constructor.setAccessible(true);
 
-            // Map override models to HandheldWrapperModel instances using reflection
-            List<Object> remappedOverrideModels = overrideModels.stream().map(handheldOverride -> {
-                try {
-                    return constructor.newInstance(defaultModel, handheldOverride);
-                } catch (Exception e) {
-                    throw new RuntimeException("Failed to instantiate HandheldWrapperModel", e);
-                }
-            }).collect(Collectors.toList());
+			// Map override models to HandheldWrapperModel instances using reflection
+			List<Object> remappedOverrideModels = overrideModels.stream().map(handheldOverride -> {
+				try {
+					return constructor.newInstance(defaultModel, handheldOverride);
+				} catch (Exception e) {
+					throw new RuntimeException("Failed to instantiate HandheldWrapperModel", e);
+				}
+			}).collect(Collectors.toList());
 
-            // Set the new override models
-            Field overrideModelsField = ObfuscationReflectionHelper.findField(ItemOverrideList.class, "field_209582_c");
-            overrideModelsField.setAccessible(true);
-            overrideModelsField.set(overrides, remappedOverrideModels);
+			// Set the new override models
+			Field overrideModelsField = ObfuscationReflectionHelper.findField(ItemOverrideList.class, "field_209582_c");
+			overrideModelsField.setAccessible(true);
+			overrideModelsField.set(overrides, remappedOverrideModels);
 		} catch (Exception exception) {
 			ExtendedLog.error("Java9+ Failed to remap handheld model overrides for model %s", modelName);
 			exception.printStackTrace();

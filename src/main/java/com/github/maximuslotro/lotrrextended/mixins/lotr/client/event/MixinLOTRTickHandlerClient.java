@@ -82,16 +82,12 @@ public class MixinLOTRTickHandlerClient {
 
 	/**
 	 * Variable for holding the current wight fog distance data
-	 * @Unique
 	 * */
-	@Unique
 	private float wightFogModifier;
 	/**
 	 * Variable for holding the previous wight fog distance data
 	 * Used for interpolating the fog movement
-	 * @Unique
 	 * */
-	@Unique
 	private float prevWightFogModifier;
 
 	/**
@@ -102,7 +98,7 @@ public class MixinLOTRTickHandlerClient {
 	 * @param ci An instance of CallbackInfo
 	 * */
 	@Inject(method = "onClientTick(Lnet/minecraftforge/event/TickEvent$ClientTickEvent;)V",
-		at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), remap=false)
+			at = @At(value = "INVOKE", target = "Llotr/client/event/DateDisplay;update()V", shift = At.Shift.AFTER), remap=false)
 	public void injectWightFogLogic(ClientTickEvent event, CallbackInfo ci) {
 		ClientPlayerEntity player = this.mc.player;
 		Entity viewer = this.mc.cameraEntity;

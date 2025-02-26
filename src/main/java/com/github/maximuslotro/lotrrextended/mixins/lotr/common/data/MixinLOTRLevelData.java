@@ -60,14 +60,20 @@ public class MixinLOTRLevelData {
 	}
 
 	/**
-	 * @reason
+	 * @reason Need to get the LOTRPlayerData instance associated with a given player
 	 * @Shadow (remap=false)
-	 * @param player A PlayerEntity
+	 * @param player A PlayerEntity to retrieve data for
+	 * @return An instance of LOTRPlayerData
 	 * */
 	@Shadow(remap=false)
 	public LOTRPlayerData getData(PlayerEntity player) {return null;}
 
-
+	/**
+	 * @reason On player login, send additional server settings information
+	 * @Inject (method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
+	 * @param player The ServerPlayerEntity to send to
+	 * @param ci The local CallbackInfo instance of this Inject
+	 * */
 	@Inject(method = "sendLoginPacket(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap=false)
 	public void sendLoginPacket(ServerPlayerEntity player, CallbackInfo ci) {
 		ExtendedSSendServerSettingsPacket packet = new ExtendedSSendServerSettingsPacket();

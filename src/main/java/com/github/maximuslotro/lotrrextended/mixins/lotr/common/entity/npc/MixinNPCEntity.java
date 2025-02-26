@@ -21,54 +21,116 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+/**
+ * @reason We need to add additional data modules to NPCs, and we need to change spawn logic
+ * @Mixin(NPCEntity.class)
+ * */
 @Mixin(NPCEntity.class)
 public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity{
-	protected MixinNPCEntity(EntityType<? extends CreatureEntity> p_i48575_1_, World p_i48575_2_) {
-		super(p_i48575_1_, p_i48575_2_);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param type A placeholder variable instance of CreatureEntity
+	 * @param world A placeholder variable instance of World
+	 * */
+	protected MixinNPCEntity(EntityType<? extends CreatureEntity> type, World world) {
+		super(type, world);
 	}
 
+	/**
+	 * @reason A private data holder for the ExtendedNpcMarriageHolder module
+	 * */
 	private ExtendedNpcMarriageHolder marriageInfo = new ExtendedNpcMarriageHolder((NPCEntity)(Object)this);
 
+	/**
+	 * Get if this NPC requires surface to spawn
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresSurfaceBlock;
-
+	/**
+	 * Get if this NPC requires darkness to spawn
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresDarkness;
-
+	/**
+	 * Check if NPC can spawn on a block
+	 * @Shadow (remap = false)
+	 * @param iworld The current IWorld instance
+	 * @param reason The SpawnReason for this check
+	 * @return True if the NPC can spawn
+	 * */
 	@Shadow(remap = false)
 	private boolean checkSpawningOnSurfaceBlock(IWorld iworld, SpawnReason reason) {return false;}
+	/**
+	 * Check if the current light level is valid to spawn at
+	 * @Shadow (remap = false)
+	 * @param iworld The current IWorld instance
+	 * @return True if the NPC can spawn
+	 * */
 	@Shadow(remap = false)
 	private boolean isValidLightLevelForDarkSpawn(IWorld iworld) {return false;}
 
+	/**
+	 * @reason Save additional entity data modules
+	 * @Inject (method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+	 * @param nbt The CompoundNBT to be saved to
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void addAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.writeToNbt(nbt);
 
 	}
 
+	/**
+	 * @reason Load additional entity data modules
+	 * @Inject (method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+	 * @param nbt The CompoundNBT to be loaded from
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void readAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.loadFromNbt(nbt);
 	}
 
+	/**
+	 * @reason Send additional entity information to the client
+	 * @Inject (method = "onPlayerStartTrackingNPC(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap = false)
+	 * @param player The ServerPlayerEntity that the data will be sent to
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "onPlayerStartTrackingNPC(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap = false)
 	public void onPlayerStartTrackingNPC(ServerPlayerEntity player, CallbackInfo ci) {
 		marriageInfo.sendDataToPlayer(player);
 	}
 
+	/**
+	 * @reason Tick logic in additional entity data modules
+	 * @Inject (method = "tick()V", at = @At("TAIL"))
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "tick()V", at = @At("TAIL"))
 	public void tick(CallbackInfo ci) {
 		marriageInfo.tick();
 	}
 
+	/**
+	 * Gets the ExtendedNpcMarriageHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcMarriageHolder of this NPCEntity instance
+	 * */
 	@Override
 	public ExtendedNpcMarriageHolder getMarriageInfo() {
 		return marriageInfo;
 	}
 
 	/**
-	 * @reason Need to change complex if statements
 	 * @author maximuslotro
+	 * @reason Need to implement banner protection spawn checks to entity spawns
+	 * @author maximuslotro
+	 * @param iworld The current IWorld instance
+	 * @param reason The SpawnReason for this check
+	 * @return True if the NPC can spawn
 	 */
 	@Override
 	@Overwrite

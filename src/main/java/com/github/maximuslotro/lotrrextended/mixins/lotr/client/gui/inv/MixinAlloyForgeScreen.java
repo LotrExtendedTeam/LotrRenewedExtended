@@ -29,9 +29,9 @@ public abstract class MixinAlloyForgeScreen extends ContainerScreen<AbstractAllo
 	 * @param inventory A placeholder variable instance of PlayerInventory
 	 * @param titleIn A placeholder variable instance of ITextComponent
 	 * */
-    public MixinAlloyForgeScreen(AbstractAlloyForgeContainer alloyContainter, PlayerInventory inventory, ITextComponent titleIn) {
-        super(alloyContainter, inventory, titleIn);
-    }
+	public MixinAlloyForgeScreen(AbstractAlloyForgeContainer alloyContainter, PlayerInventory inventory, ITextComponent titleIn) {
+		super(alloyContainter, inventory, titleIn);
+	}
 
 	/**
 	 * @reason Adding a total coins display to the inventory
@@ -41,18 +41,18 @@ public abstract class MixinAlloyForgeScreen extends ContainerScreen<AbstractAllo
 	 * @param y ? Does nothing in MC code
 	 * @param info The local CallbackInfo instance for this injection
 	 * */
-    @Inject(method = "renderLabels(Lcom/mojang/blaze3d/matrix/MatrixStack;II)V", at = @At("TAIL"))
-    protected void renderLabels(MatrixStack matStack, int x, int y, CallbackInfo info) {
-        Minecraft mc = Minecraft.getInstance();
-        assert mc.player != null;
+	@Inject(method = "renderLabels(Lcom/mojang/blaze3d/matrix/MatrixStack;II)V", at = @At("TAIL"))
+	protected void renderLabels(MatrixStack matStack, int x, int y, CallbackInfo info) {
+		Minecraft mc = Minecraft.getInstance();
+		assert mc.player != null;
 
-        int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
-        if (amount > 0) {
-            String amountStr = String.valueOf(amount);
-            fill(matStack, 180, 14 + 135, 180 + 19 + mc.font.width(amountStr), 29 + 135, 0x99000000);
-            mc.font.draw(matStack, amountStr, 196, 18 + 135, 0xFFFFFF);
-            mc.getTextureManager().bind(ExtendedCoinExchangeScreen.GUI_TEXTURE);
-            blit(matStack, 179, 13 + 135, 176, 77, 18, 18);
-        }
-    }
+		int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
+		if (amount > 0) {
+			String amountStr = String.valueOf(amount);
+			fill(matStack, 180, 14 + 135, 180 + 19 + mc.font.width(amountStr), 29 + 135, 0x99000000);
+			mc.font.draw(matStack, amountStr, 196, 18 + 135, 0xFFFFFF);
+			mc.getTextureManager().bind(ExtendedCoinExchangeScreen.GUI_TEXTURE);
+			blit(matStack, 179, 13 + 135, 176, 77, 18, 18);
+		}
+	}
 }
