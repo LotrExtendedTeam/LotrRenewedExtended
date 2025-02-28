@@ -33,7 +33,6 @@ public class ExtendedCopperIngotItem extends Item {
 				entity.remove();
 			}
 		}
-
 		return false;
 	}
 }

@@ -26,13 +26,26 @@ import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
+/**
+ * @reason Used to register new containers added by Extended
+ * @Mixin (LOTRContainers.class)
+ * */
 @Mixin(LOTRContainers.class)
 public class MixinLOTRContainers {
-
+	/**
+	 * @reason Get the block DeferredRegister for Renewed's containers
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap = false)
 	@Final
 	public static DeferredRegister<ContainerType<?>> CONTAINERS;
 
+	/**
+	 * @reason Register Extended's containers after Renewed's static registering is done, but before the container differed register is registered
+	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
+	 * @param The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedContainers(CallbackInfo ci) {
 		ExtendedContainers.COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> IForgeContainerType.create(ExtendedCoinExchangeContainer::new));
@@ -43,12 +56,26 @@ public class MixinLOTRContainers {
 		ExtendedContainers.HIRED_UNIT_EQUIPMENT = register("hired_unit_equipment", "Update Equipment", () -> IForgeContainerType.create(ExtendedHiredUnitEquipmentContainer::new));
 	}
 
+	/**
+	 * @reason Register our own containers under the lotr namespace, with dataGen handling
+	 * @param name A String name of the container
+	 * @param defaultName A String English Localized name of the container for dataGen
+	 * @param sup A ContainerType supplier to build
+	 * @return A built RegistryObject for the container 
+	 * */
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
     		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
     	}
 		return CONTAINERS.register(name, sup);
 	}
+	/**
+	 * @reason Register our own containers under the lotrextended namespace, with dataGen handling
+	 * @param name A String name of the container
+	 * @param defaultName A String English Localized name of the container for dataGen
+	 * @param sup A ContainerType supplier to build
+	 * @return A built RegistryObject for the container 
+	 * */
 	private static <T extends Container> RegistryObject<ContainerType<T>> registerExtended(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
     		DataGenValueHolder.containerTitlesHolders.put("container.lotrextended."+name, defaultName);

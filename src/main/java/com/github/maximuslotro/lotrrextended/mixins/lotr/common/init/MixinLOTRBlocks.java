@@ -136,49 +136,93 @@ import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
+/**
+ * @reason Used to register new blocks added by Extended
+ * @Mixin (LOTRBlocks.class)
+ * */
 @SuppressWarnings("deprecation")
 @Mixin(LOTRBlocks.class)
 public class MixinLOTRBlocks {
 
+	/**
+	 * @reason Get the block DeferredRegister for Renewed's blocks
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static DeferredRegister<Block> BLOCKS;
-
+	/**
+	 * @reason Referencing we we can register new Blue Mallorn Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUE_MALLORN_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new Green Mallorn Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> GREEN_MALLORN_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new Gold Mallorn Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> GOLD_MALLORN_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new Silver Mallorn Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> SILVER_MALLORN_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new High Elven Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> HIGH_ELVEN_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new Dwarven Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> DWARVEN_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new Blubber Wall Torches
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUBBER_TORCH;
-
+	/**
+	 * @reason Referencing we we can register new Wattle And Daub Pillar block
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static RegistryObject<Block> WATTLE_AND_DAUB;
 
 	/**
-	 * Overrides the default registration of Renewed's block to fix things, override registrations, and replace functionality
-	 * Used for toggleable torches, axe mineable wattle and daub, shovel mineable white sand
+	 * @reason Overrides the default registration of Renewed's block to fix things, override registrations, and replace functionalityUsed for toggleable torches, axe mineable wattle and daub, shovel mineable white sand
+	 * @Redirect (method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
+	 * @param register The DeferredRegister instance to register to
+	 * @param name The name of the block to register, is used in the registry name
+	 * @param sup The Block supplier for the block instance to be registered
 	 * */
 	@SuppressWarnings("unchecked")
 	@Redirect(method = "<clinit>",
@@ -271,6 +315,12 @@ public class MixinLOTRBlocks {
 		return returnBlock;
 	}
 
+	/**
+	 * @reason Register our own blocks, with dataGen handling
+	 * @param name A String name of the block
+	 * @param sup A Block supplier to build
+	 * @return A built RegistryObject for the Block 
+	 * */
 	private static RegistryObject<Block> registerB(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -279,6 +329,12 @@ public class MixinLOTRBlocks {
 		return block;
     }
 
+	/**
+	 * @reason Register our own blocks, with dataGen handling, specifically for pot blocks
+	 * @param name A String name of the block
+	 * @param sup A Block supplier to build
+	 * @return A built RegistryObject for the Block 
+	 * */
 	private static RegistryObject<Block> registerPOT(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -288,6 +344,11 @@ public class MixinLOTRBlocks {
 		return block;
     }
 
+	/**
+	 * @reason Register Extended's blocks after Renewed's static registering is done, but before the block differed register is registered
+	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
+	 * @param The local CallbackInfo instance for this Inject
+	 * */
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
@@ -887,6 +948,12 @@ public class MixinLOTRBlocks {
 
 	}
 
+	/**
+	 * @reason Need to setup biome features when/after block registration
+	 * @Inject (method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * @param bus A buss to use for registration
+	 * */
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
 	private static void bootstrapExtendedBiomeFeatures(CallbackInfo ci, IEventBus bus) {
 		bus.addGenericListener(Block.class, ExtendedBiomeFeatures::setup);

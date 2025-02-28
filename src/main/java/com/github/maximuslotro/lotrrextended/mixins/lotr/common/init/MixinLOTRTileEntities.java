@@ -47,17 +47,29 @@ import net.minecraft.util.datafix.TypeReferences;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
+/**
+ * @reason Used to register new recipe handlers added by Extended
+ * @Mixin (LOTRTileEntities.class)
+ * */
 @SuppressWarnings("deprecation")
 @Mixin(LOTRTileEntities.class)
 public class MixinLOTRTileEntities {
-
+	/**
+	 * @reason Get the tileEntity DeferredRegister for Renewed's tileEntities
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap=false)
 	public static DeferredRegister<TileEntityType<?>> TILE_ENTITIES;
 
 	/**
 	 * @author maximuslotro
-	 * @reason Need to change VesselTileEntityAppliedBlocks
+	 * @reason Need to change VesselTileEntityAppliedBlocks to add more drink container types
+	 * @Overwrite (remap=false)
+	 * @param key The id of the tileEntity
+	 * @param builderSup A list of blocks to bind the tileEntity to
+	 * @return A RegistryObject instance for the tileEntity
 	 */
 	@SuppressWarnings("unchecked")
 	@Overwrite(remap=false)
@@ -82,7 +94,11 @@ public class MixinLOTRTileEntities {
 		final Type<?> datafixType2 = datafixType;
 		return TILE_ENTITIES.register(key, () -> builderSupEXTENDED.get().build(datafixType2));
 	}
-
+	/**
+	 * @reason Register Extended's tileEntities after Renewed's static registering is done, but before the differed register is registered
+	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
     private static void bootstrapExtendedItems(CallbackInfo ci) {
     	for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {

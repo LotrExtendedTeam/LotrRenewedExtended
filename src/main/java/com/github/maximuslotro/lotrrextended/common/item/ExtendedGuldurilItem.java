@@ -33,7 +33,6 @@ public class ExtendedGuldurilItem extends Item {
 				entity.remove();
 			}
 		}
-
 		return false;
 	}
 }

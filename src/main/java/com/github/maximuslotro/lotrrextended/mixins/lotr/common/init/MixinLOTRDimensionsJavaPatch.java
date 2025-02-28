@@ -17,12 +17,17 @@ import com.mojang.serialization.Lifecycle;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.world.gen.settings.DimensionGeneratorSettings;
 
+/**
+ * @reason Renewed used reflection to replace Final CODEC and this breaks in Java 9+
+ * @Mixin (LOTRDimensions.class)
+ * */
 @Mixin(LOTRDimensions.class)
 public class MixinLOTRDimensionsJavaPatch {
 
 	/**
 	 * @author Maximuslotro
-	 * @reason Move code to Access Transformers for Java 9+ systems
+	 * @reason This code should unlock the final field of the DimensionGeneratorSettings.CODEC, but ATs interestingly fail, so skip code if on Java 9+. If on Java 8, still do sketchy final field modification
+	 * @Overwrite (remap=false)
 	 */
 	@Overwrite(remap=false)
 	public static void replaceDimensionCodecToForceStability() {
@@ -31,7 +36,7 @@ public class MixinLOTRDimensionsJavaPatch {
 				ExtendedLog.info("Java9+ bypassing replaceDimensionCodecToForceStability patch due to inability to unlock final fields.");
 				return;
 			}
-			//TODO replace with AT later if possable
+			//TODO replace with AT later if possible
 			final Codec<DimensionGeneratorSettings> codec = DimensionGeneratorSettings.CODEC;
 			Codec<DimensionGeneratorSettings> stableCodec = new Codec<DimensionGeneratorSettings>() {
 				@Override

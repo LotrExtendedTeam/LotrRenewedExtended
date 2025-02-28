@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -30,7 +29,6 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityType.Builder;
-import net.minecraft.entity.EntityType.IFactory;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
@@ -39,17 +37,43 @@ import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 
+/**
+ * @reason Used to register new entities added by Extended
+ * @Mixin (LOTRBiomes.class)
+ * */
 @Mixin(LOTREntities.class)
 public class MixinLOTREntities {
 
+	/**
+	 * @reason Get the Entity Attribute Factory for Renewed/Extended entities if needed, currently unused
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap = false)
-	private static final Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES = new HashMap<>();
+	private static Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES;
 
+	/**
+	 * @reason Get the base NPC register method from parent class
+	 * @Shadow (remap=false)
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param attribFactory An AttributeModifierMap for the registered entity
+	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
 	@Shadow(remap=false)
 	private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPC(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
 		return null;
 	}
+	/**
+	 * @reason Exteded's base NPC registering method, used for handling dataGen stuff
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param attribFactory An AttributeModifierMap for the registered entity
+	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
 	private static <T extends NPCEntity> RegistryObject<EntityType<T>> regNPCD(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, LOTREntities.EntitySizeHolder size, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
 		RegistryObject<EntityType<T>> entity = regNPC(key, factory, attribFactory, size, eggColors);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -57,15 +81,39 @@ public class MixinLOTREntities {
 		}
 		return entity;
 	}
-
+	/**
+	 * @reason Get the base animal register method from parent class
+	 * @Shadow (remap=false)
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param attribFactory An AttributeModifierMap for the registered entity
+	 * @param size The EntitySizeHolder for setting the entity's size
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
+	 * @param placementType Set the PlacementTypenatural spawn position for the entity (PlacementType)
+	 * @param heightmapType Set the heightmap spawn settings for the entity (Type)
+	 * @param placementPredicate Adds additional IPlacementPredicate spawn rules for the entity
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
 	@Shadow(remap=false)
-	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
+	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimal(String key, EntityType.IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
 									LOTREntities.EntitySizeHolder size, int trackRange, int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors,
 									PlacementType placementType, Type heightmapType, IPlacementPredicate<T> placementPredicate) {
 		return null;
 	}
-
-	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
+	/**
+	 * @reason Extended's animal register method, with default animal spawn rules, and dataGen handling
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param attribFactory An AttributeModifierMap for the registered entity
+	 * @param size The EntitySizeHolder for setting the entity's size
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
+	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, EntityType.IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
 									LOTREntities.EntitySizeHolder size, int trackRange,int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors) {
 		RegistryObject<EntityType<T>> entity = regAnimal(key, factory, attribFactory, size, trackRange, updateFreq, eggColors, PlacementType.ON_GROUND,
 										Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
@@ -74,8 +122,19 @@ public class MixinLOTREntities {
 		}
 		return entity;
 	}
-
-	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
+	/**
+	 * @reason Extended's animal register method, with default animal spawn rules, and dataGen handling
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param attribFactory An AttributeModifierMap for the registered entity
+	 * @param size The EntitySizeHolder for setting the entity's size
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
+	 * @param placementPredicate Adds additional IPlacementPredicate spawn rules for the entity
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
+	private static <T extends AnimalEntity> RegistryObject<EntityType<T>> regAnimalD(String key, EntityType.IFactory<T> factory,Supplier<MutableAttribute> attribFactory,
 									LOTREntities.EntitySizeHolder size, int trackRange,int updateFreq, LOTREntities.SpawnEggInfo.SpawnEggColors eggColors,
 									IPlacementPredicate<T> placementPredicate) {
 		RegistryObject<EntityType<T>> entity = regAnimal(key, factory, attribFactory, size, trackRange, updateFreq, eggColors, PlacementType.ON_GROUND,
@@ -86,48 +145,127 @@ public class MixinLOTREntities {
 		return entity;
 	}
 
+	/**
+	 * @reason Get the base entity register method from parent class
+	 * @Shadow (remap=false)
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
 	@Shadow(remap=false)
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
 		return null;
 	}
-
+	/**
+	 * @reason Get the base entity register method from parent class
+	 * @Shadow (remap=false)
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @param extraProps Extra EntityType properties builder
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
 	@Shadow(remap=false)
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
 		return null;
 	}
-
+	/**
+	 * @reason Get the base entity register method from parent class
+	 * @Shadow (remap=false)
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @param extraProps Extra EntityType properties builder
+	 * @param builtTypeConsumer An EntityType builder consumer
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
 	@Shadow(remap = false)
 	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, Consumer<EntityType.Builder<T>> extraProps, Consumer<EntityType<T>> builtTypeConsumer) {
 		return null;
 	}
-
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityNOND(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
+	/**
+	 * @reason Extended's base entity register method, handling dataGen, used for throwables currently
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityNOND(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
 		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, trackRange, updateFreq);
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedEntities.REGISTEREDNONMOBENTITIES.add(key);
 		}
 		return entity;
 	}
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height) {
+	/**
+	 * @reason Extended's static entity register method, setting default tracking and update range
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height) {
         return regEntityExpanded(key, factory, classif, width, height, 5, 3);
 	}
-
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
+	/**
+	 * @reason Extended's static entity register method, setting entity settings, with option for different tracking/update ranges
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
         return regEntityExpanded(key, factory, classif, width, height, trackRange, updateFreq, (builder) -> {
             builder.canSpawnFarFromPlayer();
             builder.fireImmune();
             builder.noSummon();
         });
 	}
-
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
+	/**
+	 * @reason Extended's base register method, handling dataGen, and allowing for custom entity properties
+	 * @param key A String name of the entity
+	 * @param factory A builder function for the entitie's EntityType
+	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param width The entity's hitbox's width
+	 * @param height The entity's hitbox's height
+	 * @param trackRange Value to set the entitie's tracking range to
+	 * @param updateFreq Value to set the entitie's update frequency to
+	 * @param extraProps Extra EntityType properties builder
+	 * @return A RegistryObject instance for the supplied EntityType
+	 * */
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
 		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, trackRange, updateFreq, extraProps);
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedEntities.REGISTEREDNONMOBENTITIES.add(key);
 		}
 		return entity;
 	}
-
+	/**
+	 * @reason Register Extended's entities after Renewed's static registering is done, but before the entities differed register is registered
+	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
+	 * @param The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		ExtendedEntities.DUNEDAIN_RANGER = regNPCD("dunedain_ranger", ExtendedDunedainRangerEntity::new, ExtendedDunedainRangerEntity::regAttrs, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));

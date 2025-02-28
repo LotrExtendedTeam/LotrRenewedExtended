@@ -20,12 +20,22 @@ import lotr.common.fac.TechnicalFactions;
 import lotr.common.world.map.MapSettings;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * @reason Need to fix hostile faction mobs not attacking civilians
+ * @Mixin (TechnicalFactions.class)
+ * */
 @Mixin(TechnicalFactions.class)
 public class MixinTechnicalFactions {
 
 	/**
 	 * @author maximuslotro
 	 * @reason Fix hostile aligned mobs not attacking everyone
+	 * @Overwrite (remap=false)
+	 * @param facSettings The loaded FactionSettings instance
+	 * @param mapSettings The loaded MapSettings instance
+	 * @param facPointer The Unique FactionPointer for this faction
+	 * @param id The assigned ID for this Faction
+	 * @return The built Faction for passed settings
 	 * */
 	@Overwrite(remap=false)
 	private static Faction createTechnicalFaction(FactionSettings facSettings, MapSettings mapSettings, FactionPointer facPointer, int id) {

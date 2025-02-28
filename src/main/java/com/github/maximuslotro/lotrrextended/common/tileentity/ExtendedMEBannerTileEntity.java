@@ -124,7 +124,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Checks if this instance of a banner is the "main" banner block
-	 * Not a top block or a handing block
+	 * Not a top block or a handling block
 	 * @return boolean
 	 * */
 	public boolean isActiveHalf() {
