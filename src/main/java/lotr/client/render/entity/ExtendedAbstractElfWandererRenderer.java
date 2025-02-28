@@ -2,9 +2,9 @@ package lotr.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.render.entity.layers.ElfHeldCoinLayer;
 import lotr.client.render.entity.layers.ElfWandererCapeLayer;
 import lotr.client.render.entity.layers.ElfWandererCloakLayer;
+import lotr.client.render.entity.layers.coinlayers.ElfHeldCoinLayer;
 import lotr.client.render.entity.model.ExtendedElfWandererModel;
 import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
 import lotr.common.util.CalendarUtil;

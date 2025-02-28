@@ -1,7 +1,7 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
-import lotr.client.render.entity.layers.BreeManHeldCoinLayer;
+import lotr.client.render.entity.layers.coinlayers.BreeManHeldCoinLayer;
 import lotr.common.entity.npc.ExtendedBreelandFarmerEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

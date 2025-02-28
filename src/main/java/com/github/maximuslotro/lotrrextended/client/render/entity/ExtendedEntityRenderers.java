@@ -36,7 +36,6 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FARMER.get(), ExtendedBreeFarmerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_POTTER.get(), ExtendedBreePotterRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
-
-
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_CAPTAIN.get(), ExtendedDunedainRangerCaptainRenderer::new);
 	}
 }

@@ -58,7 +58,7 @@ public class ExtendedCHireUnitPacket {
         if (captain instanceof ExtendedGundabadOrcChieftain) {
             unitType = ExtendedHiredUnitTypes.GUNDABAD_ORC;
             unitObject = ExtendedEntities.HIRED_GUNDABAD_ORC.get();
-        } else if (captain instanceof ExtendedGundabadOrcChieftain) {
+        } else if (captain instanceof ExtendedDunedainRangerCaptainEntity) {
             unitType = ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
             unitObject = ExtendedEntities.HIRED_DUNEDAIN_RANGER.get();
         }
