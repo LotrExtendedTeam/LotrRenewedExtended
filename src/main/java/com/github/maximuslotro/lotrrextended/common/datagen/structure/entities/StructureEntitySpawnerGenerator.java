@@ -47,23 +47,22 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
 		// un-disable when ranger captain is added
-		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT_CAPTAIN);
+		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT_CAPTAIN);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 1, false, 18, 2).setBoundaries(12, -12, 10, 4, -4, 6).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
 		// un-disable when ranger captain is added
-		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
-		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN_PERMANENT);
+		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
+		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN_PERMANENT);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).addSinglePool(EntityType.HORSE, 100, 1, 2).setPoolRolls(3).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_ANIMALS);
-		//GUNDABAD ORCS
+		//Gundabad
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
 				.build(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_ORC);
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
 				.build(), 1, 4, false, 10, 4).enableNonRandomSpawning().setEntitySpawnTickRate(24000).save(pConsumer, ExtendedSpawners.GUNDABAD_ORC_RUIN);
-		// un-disable when gundabad captain is added
-		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
-		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 10).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN_PERMANENT);
+		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
+		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN_PERMANENT);
 		single(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
 				.addPool(LOTREntities.BREE_MAN.get(), 90).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 50)
@@ -73,8 +72,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
 				.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning(70).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
-		// un-disable when gundabad captain is added
-		single(LOTREntities.GUNDABAD_ORC.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
+		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
 		single(ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_TRADER);
 		single(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
@@ -86,7 +84,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).setPoolRolls(2).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ANIMAL);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.GUNDABAD_WARG.get(), 100).build(), 2, 3, true, 26, 8)
 		.setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_WARG);
-
+		// Bree
 		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FAMILY_SPAWNER);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.BREE_HAMLET_ANIMALS);

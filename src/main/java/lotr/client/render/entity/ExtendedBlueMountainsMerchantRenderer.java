@@ -1,7 +1,7 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
-import lotr.client.render.entity.layers.DwarfHeldCoinLayer;
+import lotr.client.render.entity.layers.coinlayers.DwarfHeldCoinLayer;
 import lotr.common.entity.npc.DwarfEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

@@ -20,7 +20,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedHiredUnitProfile> pConsumer) {
-		// BREE UNITS
+		// Bree Units
 		make().setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)
 		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440), 1)
@@ -81,7 +81,20 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 			.addWeaponPoolItem(new ItemStack(ExtendedItems.ANGMAR_DAGGER.get()), 1)
 			.addShieldItem(new ItemStack(LOTRItems.MORDOR_SHIELD.get()), 3)
 			.addShieldItem(new ItemStack(ExtendedItems.GUNDABAD_SHIELD.get()), 1)
-			.addShieldItem(ItemStack.EMPTY, 2).save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
+			.addShieldItem(ItemStack.EMPTY, 2)
+			.save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
+		
+		//Dunedain Units
+		make().setLocal(true, "dunedain_ranger", "Dúnedain Ranger").setPurchaseInfo(40, false, 100)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()), 1)
+		.addWeaponPoolItem(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()), 1)
+		.addWeaponPoolItem(new ItemStack(Items.IRON_SWORD), 1)
+		.addShieldItem(new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 2)
+		.save(pConsumer, ExtendedHiredUnitTypes.DUNEDAIN_RANGER);
 	}
 
 }

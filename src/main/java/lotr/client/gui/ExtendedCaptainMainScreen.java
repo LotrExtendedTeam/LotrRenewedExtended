@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.common.entity.npc.ExtendedBreelandSheriffEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedDunedainRangerCaptainEntity;
 import lotr.common.entity.npc.ExtendedGundabadOrcChieftain;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
@@ -42,6 +43,8 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
             hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
         } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
             hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_gundabad_orc"), button -> hireFromNPC()));
+        }else if (captainEntity instanceof ExtendedDunedainRangerCaptainEntity) {
+            hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_dunedain_ranger"), button -> hireFromNPC()));
         }
     }
 
@@ -71,6 +74,17 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		    }
         } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
             if (captainEntity.canHire(ExtendedHiredUnitTypes.GUNDABAD_ORC, player)) {
+                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
+            } else {
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
+                stopInteractingClientServer();
+                Minecraft mc = Minecraft.getInstance();
+                if(mc.player != null) {
+                    mc.player.closeContainer();
+                }
+            }
+        } else if (captainEntity instanceof ExtendedDunedainRangerCaptainEntity) {
+            if (captainEntity.canHire(ExtendedHiredUnitTypes.DUNEDAIN_RANGER, player)) {
                 ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
             } else {
                 player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);

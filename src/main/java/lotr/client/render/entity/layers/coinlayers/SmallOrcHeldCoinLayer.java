@@ -1,6 +1,7 @@
-package lotr.client.render.entity.layers;
+package lotr.client.render.entity.layers.coinlayers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import lotr.client.render.entity.model.OrcModel;
 import lotr.common.entity.npc.OrcEntity;
 import lotr.common.init.ExtendedItems;
@@ -13,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class LargeOrcHeldCoinLayer extends LayerRenderer<OrcEntity, OrcModel<OrcEntity>> {
-    public LargeOrcHeldCoinLayer(IEntityRenderer<OrcEntity, OrcModel<OrcEntity>> renderer) {
+public class SmallOrcHeldCoinLayer extends LayerRenderer<OrcEntity, OrcModel<OrcEntity>> {
+    public SmallOrcHeldCoinLayer(IEntityRenderer<OrcEntity, OrcModel<OrcEntity>> renderer) {
         super(renderer);
     }
 

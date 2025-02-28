@@ -1,6 +1,6 @@
 package lotr.client.render.entity;
 
-import lotr.client.render.entity.layers.SmallOrcHeldCoinLayer;
+import lotr.client.render.entity.layers.coinlayers.SmallOrcHeldCoinLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 
 public class ExtendedGundabadOrcChieftainRenderer extends ExtendedGundabadUrukRenderer {

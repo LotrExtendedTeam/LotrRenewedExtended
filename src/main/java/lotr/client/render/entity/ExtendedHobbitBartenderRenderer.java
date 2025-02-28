@@ -2,8 +2,8 @@ package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
 import lotr.client.render.RandomTextureVariants;
-import lotr.client.render.entity.layers.HobbitHeldCoinLayer;
 import lotr.client.render.entity.layers.HobbitOutfitLayer;
+import lotr.client.render.entity.layers.coinlayers.HobbitHeldCoinLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.inventory.EquipmentSlotType;
 

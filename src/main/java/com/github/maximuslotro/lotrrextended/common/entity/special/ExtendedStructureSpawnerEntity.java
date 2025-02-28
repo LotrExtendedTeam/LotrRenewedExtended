@@ -76,10 +76,17 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	public double spinO = 0;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
+		this.noCulling = true;
 	}
 
 	public ExtendedStructureSpawnerEntity(World pLevel) {
 		this(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), pLevel);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public boolean shouldRender(double pX, double pY, double pZ) {
+		return true;
 	}
 
 	@Override

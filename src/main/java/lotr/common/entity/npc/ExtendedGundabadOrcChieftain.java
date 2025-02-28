@@ -31,7 +31,6 @@ import java.util.UUID;
 
 public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
 
-    private static final SpawnEquipmentTable WEAPONS;
     private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcChieftain.class, DataSerializers.OPTIONAL_UUID);
 
     public ExtendedGundabadOrcChieftain(EntityType<? extends ExtendedGundabadOrcChieftain> type, World w) {
@@ -54,6 +53,7 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
         return isFriendlyAndAlignedWithLevel(player, this, unitProfile.getHiringAlignmentRequired());
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_INTERACTING_WITH, Optional.empty());
@@ -100,14 +100,11 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
         setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
         setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 
-        npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
+        npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_BOW.get()));
+        npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get()));
         npcItemsInv.setIdleItemsFromMeleeWeapons();
 
         return spawnData;
-    }
-
-    static {
-        WEAPONS = SpawnEquipmentTable.of(ExtendedItems.GUNDABAD_URUK_CLEAVER);
     }
 
     @Override
