@@ -43,6 +43,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -108,6 +110,18 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
    
     @Override
     protected void addNPCAI() {
+        // reimplement only minimum AI and attack Goals - the rest are added in the register method
+        ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
+        this.getNavigation().setCanFloat(true);
+        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
+        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
+        this.initialiseAttackGoals(getAttackGoalsHolder());
+        this.addNPCTargetingAI();
+        this.addAttackGoal(2);
+    }
+
+    @Override
+    protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new ExtendedHiredSitGoal(this));
         this.goalSelector.addGoal(3, new ExtendedHiredFollowPlayerGoal( this,1.3D, 8.0F, 2.0F, false));
@@ -175,11 +189,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
     protected Goal createRangerMeleeAttackGoal() {
         return new ExtendedRangerMeleeAttackGoal(this, 1.4);
-    }
-
-    @Override
-    protected void addNPCTargetingAI() {
-        this.addAggressiveTargetingGoals();
     }
 
     @Override

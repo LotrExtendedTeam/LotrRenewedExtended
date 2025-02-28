@@ -58,6 +58,9 @@ public class ExtendedCHireUnitPacket {
         if (captain instanceof ExtendedGundabadOrcChieftain) {
             unitType = ExtendedHiredUnitTypes.GUNDABAD_ORC;
             unitObject = ExtendedEntities.HIRED_GUNDABAD_ORC.get();
+        } else if (captain instanceof ExtendedGundabadOrcChieftain) {
+            unitType = ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
+            unitObject = ExtendedEntities.HIRED_DUNEDAIN_RANGER.get();
         }
 
         // verify the player has enough alignment
@@ -87,6 +90,8 @@ public class ExtendedCHireUnitPacket {
                 ((ExtendedHiredBreeGuard) newEntity).tame(player);
             } else if (newEntity instanceof ExtendedHiredGundabadOrc) {
                 ((ExtendedHiredGundabadOrc) newEntity).tame(player);
+            }else if (newEntity instanceof ExtendedHiredDunedainRangerEntity) {
+                ((ExtendedHiredDunedainRangerEntity) newEntity).tame(player);
             }
             CoinUtils.removeCoins(player, player.inventory, cost);
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", "Bree-land Guard", cost), Util.NIL_UUID);

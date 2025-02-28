@@ -80,6 +80,17 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
                     mc.player.closeContainer();
                 }
             }
+        } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
+            if (captainEntity.canHire(ExtendedHiredUnitTypes.DUNEDAIN_RANGER, player)) {
+                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
+            } else {
+                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
+                stopInteractingClientServer();
+                Minecraft mc = Minecraft.getInstance();
+                if(mc.player != null) {
+                    mc.player.closeContainer();
+                }
+            }
         }
 	}
 
