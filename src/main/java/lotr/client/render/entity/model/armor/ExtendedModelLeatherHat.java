@@ -23,7 +23,7 @@ public class ExtendedModelLeatherHat<E extends LivingEntity> extends ExtendedSpe
 		//head.texOffs(0,14).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 4.0F, 8.0F, f);
 		// New model code
 		head.texOffs(0, 13).addBox(-4.0F, -12.31F, -4.0F, 8.0F, 4.0F, 8.0F, f+0.2F);
-		head.texOffs(0, 0).addBox(-6.0F, -8.0F, -6.0F, 12.0F, 0.25F, 12.0F, f);
+		head.texOffs(0, 0).addBox(-6.0F, -7.0F, -6.0F, 12.0F, 0.5F, 12.0F, f);
 		head.texOffs(0, 25).addBox(-4.5F, -10.0F, -4.5F, 9.0F, 2.0F, 9.0F, f);
 
 	}
