@@ -29,9 +29,16 @@ public class ExtendedLootTables {
 
 	public static final ResourceLocation BARROW_DOWN_CHEST = register("chests/barrow_downs");
 
+	public static final ResourceLocation BREE_HAMLET_GUARD_HOUSE = register("chests/bree_hamlet_guard_house");
 	public static final ResourceLocation BREE_HAMLET_HOUSE = register("chests/bree_hamlet_house");
 	public static final ResourceLocation BREE_HAMLET_FARM = register("chests/bree_hamlet_farm");
 	public static final ResourceLocation BREE_HAMLET_POTTER = register("chests/bree_hamlet_potter");
+
+	public static final ResourceLocation BREE_VILLAGE_GUARD_HOUSE = register("chests/bree_village_guard_house");
+	public static final ResourceLocation BREE_VILLAGE_HOUSE = register("chests/bree_village_house");
+	public static final ResourceLocation BREE_VILLAGE_FARM = register("chests/bree_village_farm");
+	public static final ResourceLocation BREE_VILLAGE_GARDENING = register("chests/bree_village_gardening");
+	public static final ResourceLocation BREE_VILLAGE_POTTER = register("chests/bree_village_potter");
 
 	public static final ResourceLocation BREE_TOWN_HOUSE = register("chests/bree_town_house");
 	public static final ResourceLocation BREE_TOWN_FARM = register("chests/bree_town_farm");
