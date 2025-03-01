@@ -23,6 +23,7 @@ import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
+import lotr.common.item.ExtendedDyeableLOTRArmorItem;
 import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
@@ -115,6 +116,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof ExtendedEntitySpawnerItem) {
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedDyeableLOTRArmorItem) {
+				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_overlay"));
+				continue;
+			}
 			if(item.getKey().contains("torch")) {
 				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
 				continue;
@@ -160,7 +166,6 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 
-			// ignore bows as they have their own custom models
 			if(item.getValue().get() instanceof ExtendedBowItem) {
 				genBow(item.getKey());
 				continue;
@@ -172,19 +177,19 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedCommandHornItem ) {
+			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
 				genCommandHorn(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedBrandingIronItem ) {
+			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedMCBannerItem ) {
+			if(item.getValue().get() instanceof ExtendedMCBannerItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/banner/"+item.getKey()));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedSilverCoin ) {
+			if(item.getValue().get() instanceof ExtendedSilverCoin) {
 				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
 				builder.texture("layer0", lotrExtendedLoc("item/"+item.getKey()));
 				continue;
