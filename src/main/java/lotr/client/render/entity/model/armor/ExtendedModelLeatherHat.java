@@ -17,15 +17,9 @@ public class ExtendedModelLeatherHat<E extends LivingEntity> extends ExtendedSpe
 
 		head = new ModelRenderer(this, 0, 0);
 		head.setPos(0.0F, 0.0F, 0.0F);
-
-		//  below is reference from legacy code but for some reason it seems too big
-		//head.addBox(-6.0F, -9.0F, -6.0F, 12.0F, 1.0F, 12.0F, f);
-		//head.texOffs(0,14).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 4.0F, 8.0F, f);
-		// New model code
-		head.texOffs(0, 13).addBox(-4.0F, -12.31F, -4.0F, 8.0F, 4.0F, 8.0F, f+0.2F);
-		head.texOffs(0, 0).addBox(-6.0F, -7.0F, -6.0F, 12.0F, 0.5F, 12.0F, f);
-		head.texOffs(0, 25).addBox(-4.5F, -10.0F, -4.5F, 9.0F, 2.0F, 9.0F, f);
-
+		head.texOffs(0, 13).addBox(-4.0F, -11.31F, -4.0F, 8.0F, 4.0F, 8.0F, 0.51F, false);
+		head.texOffs(0, 0).addBox(-6.0F, -7.0F, -6.0F, 12.0F, 0.25F, 12.0F, 0.0F, false);
+		head.texOffs(0, 25).addBox(-4.5F, -9.0F, -4.5F, 9.0F, 2.0F, 9.0F, 0.2F, false);
 	}
 
 	// TODO: Add feather as option to render based on item NBT data (will require adding a new class
