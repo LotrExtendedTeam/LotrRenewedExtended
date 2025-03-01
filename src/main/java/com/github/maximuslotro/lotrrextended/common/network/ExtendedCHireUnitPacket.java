@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.*;
@@ -86,6 +88,7 @@ public class ExtendedCHireUnitPacket {
         );
 
         if (newEntity != null) {
+        	ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitType);
             if (newEntity instanceof ExtendedHiredBreeGuard) {
                 ((ExtendedHiredBreeGuard) newEntity).tame(player);
             } else if (newEntity instanceof ExtendedHiredGundabadOrc) {
@@ -94,7 +97,7 @@ public class ExtendedCHireUnitPacket {
                 ((ExtendedHiredDunedainRangerEntity) newEntity).tame(player);
             }
             CoinUtils.removeCoins(player, player.inventory, cost);
-            player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", "Bree-land Guard", cost), Util.NIL_UUID);
+            player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getUnitTypeName()), cost), Util.NIL_UUID);
             ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entity.getType(), newEntity.getType(), cost);
         }
 
