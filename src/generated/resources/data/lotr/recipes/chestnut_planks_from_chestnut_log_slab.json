@@ -2,12 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "group": "planks",
   "ingredients": [
-    {
-      "item": "lotr:chestnut_log_slab"
-    },
-    {
-      "item": "lotr:stripped_chestnut_log_slab"
-    }
+    [
+      {
+        "item": "lotr:chestnut_log_slab"
+      },
+      {
+        "item": "lotr:stripped_chestnut_log_slab"
+      }
+    ]
   ],
   "result": {
     "item": "lotr:chestnut_planks",

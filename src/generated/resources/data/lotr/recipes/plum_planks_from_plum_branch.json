@@ -2,12 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "group": "planks",
   "ingredients": [
-    {
-      "item": "lotr:plum_branch"
-    },
-    {
-      "item": "lotr:stripped_plum_branch"
-    }
+    [
+      {
+        "item": "lotr:plum_branch"
+      },
+      {
+        "item": "lotr:stripped_plum_branch"
+      }
+    ]
   ],
   "result": {
     "item": "lotr:plum_planks",
