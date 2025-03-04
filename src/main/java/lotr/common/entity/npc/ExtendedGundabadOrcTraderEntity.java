@@ -102,6 +102,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 			new ExtendedTradeEntry(new ItemStack(Items.BONE), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.MAN_FLESH.get()), 2, 4),
     });
 
+	@SuppressWarnings("unchecked")
 	public ExtendedGundabadOrcTraderEntity(EntityType<? extends GundabadOrcEntity> type, World w) {
 		super(type, w);
 

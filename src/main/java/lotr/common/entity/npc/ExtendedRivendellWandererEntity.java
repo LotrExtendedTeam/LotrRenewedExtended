@@ -97,6 +97,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         return NPCNameGenerators.SINDARIN;
     }
 
+	@SuppressWarnings("unchecked")
 	public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();

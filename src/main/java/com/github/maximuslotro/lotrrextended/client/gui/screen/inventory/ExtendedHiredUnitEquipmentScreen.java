@@ -87,6 +87,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         backButton = this.addButton(new Button(this.leftPos + 7, this.topPos + 105, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.back"), button -> openMainMenu()));
     }
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

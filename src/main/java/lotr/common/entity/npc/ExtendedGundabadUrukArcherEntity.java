@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 
 public class ExtendedGundabadUrukArcherEntity extends ExtendedGundabadUrukEntity{
 
+	@SuppressWarnings("unchecked")
 	public ExtendedGundabadUrukArcherEntity(EntityType<? extends ExtendedGundabadUrukEntity> type, World w) {
 		super(type, w);
 		getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeRangedSwitching());
