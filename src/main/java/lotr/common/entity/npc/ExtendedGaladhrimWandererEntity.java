@@ -109,7 +109,6 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         return NPCNameGenerators.SINDARIN;
     }
 
-    @SuppressWarnings("unchecked")
 	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();

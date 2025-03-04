@@ -8,14 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedRivendellWandererRenderer extends ExtendedAbstractElfWandererRenderer<ExtendedRivendellWandererEntity> {
 
-    private static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/elf/high_elf");
+	private static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/elf/high_elf");
 
-    public ExtendedRivendellWandererRenderer(EntityRendererManager mgr) {
-        super(mgr);
-    }
+	public ExtendedRivendellWandererRenderer(EntityRendererManager mgr) {
+		super(mgr);
+	}
 
-    @Override
+	@Override
 	public ResourceLocation getTextureLocation(ExtendedAbstractElfWandererEntity elf) {
-        return SKINS.getRandomSkin(elf);
-    }
+		return SKINS.getRandomSkin(elf);
+	}
 }
