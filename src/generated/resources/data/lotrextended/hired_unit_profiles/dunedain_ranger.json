@@ -4,7 +4,9 @@
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_dunedain_ranger",
     "entity_shortname": "entity_shortname.lotrextended.hired_dunedain_ranger",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_dunedain_ranger",
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_dunedain_ranger"
+  },
+  "hiring": {
     "hiringCost": 40,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100

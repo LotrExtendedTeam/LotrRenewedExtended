@@ -4,7 +4,9 @@
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_bree_guard",
     "entity_shortname": "entity_shortname.lotrextended.hired_bree_guard",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard",
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard"
+  },
+  "hiring": {
     "hiringCost": 30,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100

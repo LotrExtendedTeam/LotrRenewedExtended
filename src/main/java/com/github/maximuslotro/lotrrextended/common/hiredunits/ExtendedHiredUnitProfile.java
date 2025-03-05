@@ -133,18 +133,18 @@ public class ExtendedHiredUnitProfile {
 				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: %s!", id);
 				return null;
 			}
+			// Language
 			JsonObject languageObject = jsonobject.get("language").getAsJsonObject();
 			boolean translateStrings = languageObject.get("translateStrings").getAsBoolean();
 			String entity_title = languageObject.get("entity_title").getAsString();
 			String entity_shortname = languageObject.get("entity_shortname").getAsString();
 			String entity_unit_type = languageObject.get("entity_unit_type").getAsString();
-			int hiringCost = languageObject.get("hiringCost").getAsInt();
-			boolean hiringRequiresPledge = languageObject.get("hiringRequiresPledge").getAsBoolean();
-			// TODO make required in the future
-			int hiringAlignmentRequired = 100;
-			if(languageObject.has("hiringAlignmentRequired")) {
-				hiringAlignmentRequired = languageObject.get("hiringAlignmentRequired").getAsInt();
-			}
+			// Hiring
+			JsonObject hiringObject = jsonobject.get("hiring").getAsJsonObject();
+			int hiringCost = hiringObject.get("hiringCost").getAsInt();
+			boolean hiringRequiresPledge = hiringObject.get("hiringRequiresPledge").getAsBoolean();
+			int hiringAlignmentRequired = hiringObject.get("hiringAlignmentRequired").getAsInt();
+			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
 			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
 		}
@@ -153,15 +153,20 @@ public class ExtendedHiredUnitProfile {
 		public JsonElement serialize(ExtendedHiredUnitProfile unitProfile, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", unitProfile.getId().toString());
+			// Language
 			JsonObject languageObject = new JsonObject();
 			languageObject.addProperty("translateStrings", unitProfile.stringsAreTranslated());
 			languageObject.addProperty("entity_title", unitProfile.getUnitTitle());
 			languageObject.addProperty("entity_shortname", unitProfile.getUnitShorthandName());
 			languageObject.addProperty("entity_unit_type", unitProfile.getUnitTypeName());
 			jsonobject.add("language", languageObject);
-			languageObject.addProperty("hiringCost", unitProfile.getHiringCost());
-			languageObject.addProperty("hiringRequiresPledge", unitProfile.isHiringRequiresPledge());
-			languageObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
+			// Hiring
+			JsonObject hiringObject = new JsonObject();
+			hiringObject.addProperty("hiringCost", unitProfile.getHiringCost());
+			hiringObject.addProperty("hiringRequiresPledge", unitProfile.isHiringRequiresPledge());
+			hiringObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
+			jsonobject.add("hiring", hiringObject);
+			// Equipment
 			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;
 		}

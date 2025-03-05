@@ -4,7 +4,9 @@
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_gundabad_orc",
     "entity_shortname": "entity_shortname.lotrextended.hired_gundabad_orc",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_gundabad_orc",
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_gundabad_orc"
+  },
+  "hiring": {
     "hiringCost": 25,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100
