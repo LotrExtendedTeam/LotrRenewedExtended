@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -19,7 +20,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.WeightedRandom;
 
 public class ExtendedHiredUnitEquipmentPool {
-	public final static ExtendedHiredUnitEquipmentPool EMPTY = new ExtendedHiredUnitEquipmentPool(null, null, null, null, null, null, null, null, null, null);
+	public final static ExtendedHiredUnitEquipmentPool EMPTY = new ExtendedHiredUnitEquipmentPool(null, null, null, null, null, null, null, null, null, null, false, false);
 	// Armor pools
 	private final List<ExtendedHiredUnitEquipmentItem> helmetPool;
 	private final List<ExtendedHiredUnitEquipmentItem> chestplatePool;
@@ -33,7 +34,8 @@ public class ExtendedHiredUnitEquipmentPool {
 	private final List<ExtendedHiredUnitEquipmentItem> idleMountedPool;
 	// Offhand pool
 	private final List<ExtendedHiredUnitEquipmentItem> offhandPool;
-
+	private boolean setIdleFromMelee;
+	private boolean setIdleFromRanged;
 	public ExtendedHiredUnitEquipmentPool() {
 		this.helmetPool = new ArrayList<>();
 		this.chestplatePool = new ArrayList<>();
@@ -45,13 +47,15 @@ public class ExtendedHiredUnitEquipmentPool {
 		this.idlePool = new ArrayList<>();
 		this.idleMountedPool = new ArrayList<>();
 		this.offhandPool = new ArrayList<>();
+		this.setIdleFromMelee = false;
+		this.setIdleFromRanged = false;
 	}
 
 	public ExtendedHiredUnitEquipmentPool(List<ExtendedHiredUnitEquipmentItem> helmetPool, List<ExtendedHiredUnitEquipmentItem> chestplatePool, 
 		List<ExtendedHiredUnitEquipmentItem> leggingPool, List<ExtendedHiredUnitEquipmentItem> bootsPool,
 		List<ExtendedHiredUnitEquipmentItem> weaponPool, List<ExtendedHiredUnitEquipmentItem> rangedPool, 
 		List<ExtendedHiredUnitEquipmentItem> mountedPool, List<ExtendedHiredUnitEquipmentItem> idleWeaponPool, 
-		List<ExtendedHiredUnitEquipmentItem> idleMountedPool, List<ExtendedHiredUnitEquipmentItem> shieldPool) {
+		List<ExtendedHiredUnitEquipmentItem> idleMountedPool, List<ExtendedHiredUnitEquipmentItem> shieldPool, boolean setIdleFromMelee, boolean setIdleFromRanged) {
 		this.helmetPool = helmetPool;
 		this.chestplatePool = chestplatePool;
 		this.leggingPool = leggingPool;
@@ -62,7 +66,14 @@ public class ExtendedHiredUnitEquipmentPool {
 		this.idlePool = idleWeaponPool;
 		this.idleMountedPool = idleMountedPool;
 		this.offhandPool = shieldPool;
-
+		if(setIdleFromMelee && setIdleFromRanged) {
+			ExtendedLog.warn("Both setIdleFromMelee && setIdleFromRanged are both enabled for a loaded unit profile, THIS IS NOT ALLOWED! Disabling both, please fix your error!");
+			this.setIdleFromMelee = false;
+			this.setIdleFromRanged = false;
+		}else {
+			this.setIdleFromMelee = setIdleFromMelee;
+			this.setIdleFromRanged = setIdleFromRanged;
+		}
 	}
 
 	public ItemStack getRandomHelmetStack(Random random) {
@@ -160,6 +171,21 @@ public class ExtendedHiredUnitEquipmentPool {
 		pool.add(new ExtendedHiredUnitEquipmentItem(item, weight));
 	}
 
+	protected void setIdlePoolFromMeleePool() {
+		this.setIdleFromMelee = true;
+		this.setIdleFromRanged = false;
+	}
+
+	protected void setIdlePoolFromRangedPool() {
+		this.setIdleFromMelee = false;
+		this.setIdleFromRanged = true;
+	}
+
+	protected void disableIdleWeaponUsingOtherPools() {
+		this.setIdleFromMelee = false;
+		this.setIdleFromRanged = false;
+	}
+
 	public static class Serializer implements JsonDeserializer<ExtendedHiredUnitEquipmentPool>, JsonSerializer<ExtendedHiredUnitEquipmentPool> {
 		@Override
 		public ExtendedHiredUnitEquipmentPool deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
@@ -174,7 +200,9 @@ public class ExtendedHiredUnitEquipmentPool {
 			List<ExtendedHiredUnitEquipmentItem> idlePool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "idle", new ExtendedHiredUnitEquipmentItem[0], context, ExtendedHiredUnitEquipmentItem[].class));
 			List<ExtendedHiredUnitEquipmentItem> idleMountedPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "idle_mounted", new ExtendedHiredUnitEquipmentItem[0], context, ExtendedHiredUnitEquipmentItem[].class));
 			List<ExtendedHiredUnitEquipmentItem> offhandPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "offhand", new ExtendedHiredUnitEquipmentItem[0], context, ExtendedHiredUnitEquipmentItem[].class));
-			return new ExtendedHiredUnitEquipmentPool(helmetPool, chestplatePool, leggingPool, bootsPool, weaponPool, rangedPool, mountedPool, idlePool, idleMountedPool, offhandPool);
+			boolean setIdleFromMelee = JSONUtils.getAsBoolean(jsonobject, "setIdleFromMelee", false);
+			boolean setIdleFromRanged = JSONUtils.getAsBoolean(jsonobject, "setIdleFromRanged", false);
+			return new ExtendedHiredUnitEquipmentPool(helmetPool, chestplatePool, leggingPool, bootsPool, weaponPool, rangedPool, mountedPool, idlePool, idleMountedPool, offhandPool, setIdleFromMelee, setIdleFromRanged);
 		}
 
 		@Override
@@ -187,6 +215,8 @@ public class ExtendedHiredUnitEquipmentPool {
 			jsonobject.add("melee", context.serialize(unitEquipmentInstance.meleePool));
 			jsonobject.add("ranged", context.serialize(unitEquipmentInstance.rangedPool));
 			jsonobject.add("mounted", context.serialize(unitEquipmentInstance.mountedPool));
+			jsonobject.addProperty("setIdleFromMelee", unitEquipmentInstance.setIdleFromMelee);
+			jsonobject.addProperty("setIdleFromRanged", unitEquipmentInstance.setIdleFromRanged);
 			jsonobject.add("idle", context.serialize(unitEquipmentInstance.idlePool));
 			jsonobject.add("idle_mounted", context.serialize(unitEquipmentInstance.idleMountedPool));
 			jsonobject.add("offhand", context.serialize(unitEquipmentInstance.offhandPool));

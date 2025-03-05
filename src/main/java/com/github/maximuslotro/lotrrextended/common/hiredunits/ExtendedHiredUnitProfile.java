@@ -257,7 +257,6 @@ public class ExtendedHiredUnitProfile {
 			equipmentPools.addOffhandStack(setBaseItem(stack, "item.lotrextended.base_gear.shield"), weight);
 			return this;
 		}
-
 		private static ItemStack setBaseItem(ItemStack stack, String name) {
 			if(stack.isEmpty()) {
 				return stack;
@@ -266,7 +265,18 @@ public class ExtendedHiredUnitProfile {
 			compoundnbt.putBoolean("IsBaseArmor", true);
 			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
-
+		public ExtendedHiredUnitProfile.Builder setIdlePoolFromMeleePool() {
+			equipmentPools.setIdlePoolFromRangedPool();
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder setIdlePoolFromRangedPool() {
+			equipmentPools.setIdlePoolFromRangedPool();
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder disableIdleWeaponUsingOtherPools() {
+			equipmentPools.disableIdleWeaponUsingOtherPools();
+			return this;
+		}
 		/**
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
