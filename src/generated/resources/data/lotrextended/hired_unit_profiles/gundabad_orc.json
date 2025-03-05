@@ -242,7 +242,7 @@
         }
       }
     ],
-    "weapons": [
+    "melee": [
       {
         "weight": 1,
         "equipmentItem": {
@@ -342,6 +342,10 @@
         }
       }
     ],
+    "ranged": [],
+    "mounted": [],
+    "idle": [],
+    "idle_mounted": [],
     "offhand": [
       {
         "weight": 3,

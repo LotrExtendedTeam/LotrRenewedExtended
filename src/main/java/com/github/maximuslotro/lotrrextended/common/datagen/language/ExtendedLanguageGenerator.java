@@ -366,7 +366,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");
 		addD("item.lotrextended.base_gear.leggings", "Base Leggings");
 		addD("item.lotrextended.base_gear.boots", "Base Boots");
-		addD("item.lotrextended.base_gear.weapon", "Base Weapon");
+		addD("item.lotrextended.base_gear.weapon", "Base Melee Weapon");
+		addD("item.lotrextended.base_gear.weapon_ranged", "Base Ranged Weapon");
+		addD("item.lotrextended.base_gear.weapon_mounted", "Base Mounted Weapon");
+		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
+		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
 		// chat notifications
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");

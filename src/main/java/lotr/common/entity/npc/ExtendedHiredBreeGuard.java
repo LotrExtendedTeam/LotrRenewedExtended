@@ -108,7 +108,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         internalUnitInventory.setItem(16, getUnitProfile().getEquipmentPools().getRandomChestplateStack(random));
         internalUnitInventory.setItem(17, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(random));
         internalUnitInventory.setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(random));
-        internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomWeaponStack(random));
+        internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomMeleeStack(random));
         internalUnitInventory.setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(random));
         // Needed to sync unit equipment on unit creation
         inventoryNeedsSetupSyncing=true;

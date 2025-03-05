@@ -20,9 +20,9 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.registry.Registry;
 
-public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
+public class ExtendedHiredUnitEquipmentItem extends WeightedRandom.Item {
 	private final ItemStack stack;
-	public ExtendedHiredUnitEquipmentEntry(ItemStack stack, int weight) {
+	public ExtendedHiredUnitEquipmentItem(ItemStack stack, int weight) {
 		super(weight);
 		this.stack = stack;
 	}
@@ -35,17 +35,17 @@ public class ExtendedHiredUnitEquipmentEntry extends WeightedRandom.Item {
 		return stack;
 	}
 
-	public static class Serializer implements JsonDeserializer<ExtendedHiredUnitEquipmentEntry>, JsonSerializer<ExtendedHiredUnitEquipmentEntry> {
+	public static class Serializer implements JsonDeserializer<ExtendedHiredUnitEquipmentItem>, JsonSerializer<ExtendedHiredUnitEquipmentItem> {
 		@Override
-		public ExtendedHiredUnitEquipmentEntry deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
-			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedHiredUnitEquipmentEntry");
+		public ExtendedHiredUnitEquipmentItem deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
+			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedHiredUnitEquipmentItem");
 			int weight = jsonobject.get("weight").getAsInt();
 			ItemStack stack = getStack(JSONUtils.getAsJsonObject(jsonobject, "equipmentItem"));
-			return new ExtendedHiredUnitEquipmentEntry(stack, weight);
+			return new ExtendedHiredUnitEquipmentItem(stack, weight);
 		}
 
 		@Override
-		public JsonElement serialize(ExtendedHiredUnitEquipmentEntry entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
+		public JsonElement serialize(ExtendedHiredUnitEquipmentItem entitySpawner, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("weight", entitySpawner.weight);
 			jsonobject.add("equipmentItem", entitySpawner.serializeItem());

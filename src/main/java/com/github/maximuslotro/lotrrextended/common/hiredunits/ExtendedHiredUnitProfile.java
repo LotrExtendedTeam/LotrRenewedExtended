@@ -22,18 +22,18 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentInstance.EMPTY, 100000, false, 1000);
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
 	private final String entity_shortname;
 	private final String entity_unit_type;
-	private final ExtendedHiredUnitEquipmentInstance equipmentPools;
+	private final ExtendedHiredUnitEquipmentPool equipmentPools;
 	private final int hiringCost;
 	private final boolean hiringRequiresPledge;
 	private final int hiringAlignmentRequired;
 
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentInstance equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired) {
+	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -91,9 +91,9 @@ public class ExtendedHiredUnitProfile {
 	/**
 	 * Gets the eqquipment item pools for the unit profile
 	 * @return the pool
-	 * @see {@link ExtendedHiredUnitEquipmentInstance}
+	 * @see {@link ExtendedHiredUnitEquipmentPool}
 	 * */
-	public ExtendedHiredUnitEquipmentInstance getEquipmentPools() {
+	public ExtendedHiredUnitEquipmentPool getEquipmentPools() {
 		return equipmentPools;
 	}
 
@@ -145,7 +145,7 @@ public class ExtendedHiredUnitProfile {
 			if(languageObject.has("hiringAlignmentRequired")) {
 				hiringAlignmentRequired = languageObject.get("hiringAlignmentRequired").getAsInt();
 			}
-			ExtendedHiredUnitEquipmentInstance equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentInstance.EMPTY, context, ExtendedHiredUnitEquipmentInstance.class);
+			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
 			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
 		}
 
@@ -173,7 +173,7 @@ public class ExtendedHiredUnitProfile {
 		private String entity_title;
 		private String entity_shortname;
 		private String entity_unit_type;
-		private ExtendedHiredUnitEquipmentInstance equipmentPools = new ExtendedHiredUnitEquipmentInstance();
+		private ExtendedHiredUnitEquipmentPool equipmentPools = new ExtendedHiredUnitEquipmentPool();
 		private int hiringCost;
 		private boolean hiringRequiresPledge;
 		private int hiringAlignmentRequired;
@@ -233,12 +233,28 @@ public class ExtendedHiredUnitProfile {
 			equipmentPools.addBootsStack(setBaseItem(stack, "item.lotrextended.base_gear.boots"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addWeaponPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addWeaponStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon"), weight);
+		public ExtendedHiredUnitProfile.Builder addMeleePoolItem(ItemStack stack, int weight) {
+			equipmentPools.addMeleeStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon"), weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addRangedPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addRangedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_ranged"), weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addMountedPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addMountedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_mounted"), weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addIdlePoolItem(ItemStack stack, int weight) {
+			equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle"), weight);
+			return this;
+		}
+		public ExtendedHiredUnitProfile.Builder addIdleMountedPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle_mounted"), weight);
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addShieldItem(ItemStack stack, int weight) {
-			equipmentPools.addShieldStack(setBaseItem(stack, "item.lotrextended.base_gear.shield"), weight);
+			equipmentPools.addOffhandStack(setBaseItem(stack, "item.lotrextended.base_gear.shield"), weight);
 			return this;
 		}
 

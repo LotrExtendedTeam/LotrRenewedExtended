@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.json;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentEntry;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentInstance;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentItem;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
@@ -31,8 +31,8 @@ public class GsonSerializers {
 
 	public static GsonBuilder createHiredUnitSerializer() {
 		return createConditionSerializer()
-			.registerTypeAdapter(ExtendedHiredUnitEquipmentInstance.class, new ExtendedHiredUnitEquipmentInstance.Serializer())
-			.registerTypeAdapter(ExtendedHiredUnitEquipmentEntry.class, new ExtendedHiredUnitEquipmentEntry.Serializer())
+			.registerTypeAdapter(ExtendedHiredUnitEquipmentPool.class, new ExtendedHiredUnitEquipmentPool.Serializer())
+			.registerTypeAdapter(ExtendedHiredUnitEquipmentItem.class, new ExtendedHiredUnitEquipmentItem.Serializer())
 			.registerTypeAdapter(ExtendedHiredUnitProfile.class, new ExtendedHiredUnitProfile.Serializer());
 	}
 }
