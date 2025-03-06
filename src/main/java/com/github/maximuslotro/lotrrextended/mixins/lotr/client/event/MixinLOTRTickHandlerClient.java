@@ -77,7 +77,6 @@ public class MixinLOTRTickHandlerClient {
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
 	 */
-	@SuppressWarnings("deprecation")
 	@Overwrite(remap=false)
 	@SubscribeEvent
 	public void onRenderFog(RenderFogEvent event) {

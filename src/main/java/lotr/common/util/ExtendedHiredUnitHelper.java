@@ -20,8 +20,8 @@ import java.util.Random;
 
 public class ExtendedHiredUnitHelper {
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
-        if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getOwner() instanceof ServerPlayerEntity) {
-            unit.getOwner().sendMessage(getCompanionDeathMessage(unit, source), unit.getOwnerUUID());
+        if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getUnitOwner() instanceof ServerPlayerEntity) {
+            unit.getUnitOwner().sendMessage(getCompanionDeathMessage(unit, source), unit.getOwnerUUID());
         }
     }
 
@@ -56,8 +56,8 @@ public class ExtendedHiredUnitHelper {
             unit.setHiredUnitHealth(unit.getHiredUnitHealth() + 2);
             unit.setBaseHealth(unit.getBaseHealth() + 2);
 
-            if (unit.getOwner() != null) {
-                unit.getOwner().sendMessage(
+            if (unit.getUnitOwner() != null) {
+                unit.getUnitOwner().sendMessage(
                         new TranslationTextComponent("chat.lotrextended.hired_companion_levelup",
                                 unit.getHiredUnitNameAndTitle(), unit.getExpLvl()),
                         unit.getOwnerUUID());
@@ -93,20 +93,7 @@ public class ExtendedHiredUnitHelper {
     public static void updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {
             ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
-
-            if (slot == EquipmentSlotType.FEET) {
-                hirable.updateFeetSlot(item);
-            } else if (slot == EquipmentSlotType.HEAD) {
-                hirable.updateHeadSlot(item);
-            } else if (slot == EquipmentSlotType.CHEST) {
-                hirable.updateChestSlot(item);
-            } else if (slot == EquipmentSlotType.LEGS) {
-                hirable.updateLegsSlot(item);
-            } else if (slot == EquipmentSlotType.MAINHAND) {
-                hirable.updateMainhandSlot(item);
-            } else if (slot == EquipmentSlotType.OFFHAND) {
-                hirable.updateOffhandSlot(item);
-            }
+            hirable.updateSlot(item, slot);
         }
     }
 

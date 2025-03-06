@@ -37,7 +37,7 @@ public class ExtendedHiredSitGoal extends Goal {
         } else if (!this.entity.isOnGround()) {
             return false;
         } else {
-            LivingEntity livingentity = hirable.getOwner();
+            LivingEntity livingentity = hirable.getUnitOwner();
             if (livingentity == null) {
                 return true;
             } else {

@@ -107,7 +107,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         this.setOwnerUUID(p_193101_1_.getUUID());
         this.setFollowing(true);
     }
-   
+
     @Override
     protected void addNPCAI() {
         // reimplement only minimum AI and attack Goals - the rest are added in the register method
@@ -165,7 +165,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         this.entityData.define(EQUIPMENT_MAINHAND, ItemStack.EMPTY);
         this.entityData.define(EQUIPMENT_OFFHAND, ItemStack.EMPTY);
     }
-    
+
     @Override
     protected void initialiseAttackGoals(AttackGoalsHolder holder) {
         holder.setMeleeAttackGoal(this.createRangerMeleeAttackGoal());
@@ -183,11 +183,13 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     }
 
     // TODO: Make sure these values match Legacy
-    protected Goal createRangerRangedAttackGoal() {
+    @Override
+	protected Goal createRangerRangedAttackGoal() {
         return new ExtendedRangerRangedAttackGoal(this, 1.25, 20, 16.0F);
     }
 
-    protected Goal createRangerMeleeAttackGoal() {
+    @Override
+	protected Goal createRangerMeleeAttackGoal() {
         return new ExtendedRangerMeleeAttackGoal(this, 1.4);
     }
 
@@ -206,7 +208,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         inventoryNeedsSetupSyncing=true;
         return spawnData;
     }
-   
+
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (hand == Hand.MAIN_HAND) {
@@ -219,7 +221,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         }
         return super.mobInteract(player, hand);
     }
-   
+
     public void setTame(boolean isTamed) {
         byte b0 = this.entityData.get(DATA_FLAGS_ID);
         if (isTamed) {
@@ -232,11 +234,11 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     public void setFollowing(boolean following) {
         this.entityData.set(FOLLOWING, following);
     }
-   
+
     @Override
     public boolean isAlliedTo(Entity p_184191_1_) {
         if (this.isTame()) {
-            LivingEntity livingentity = this.getOwner();
+            LivingEntity livingentity = this.getUnitOwner();
             if (p_184191_1_ == livingentity) {
                 return true;
             }
@@ -247,7 +249,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         }
         return super.isAlliedTo(p_184191_1_);
     }
-    
+
     @Override
     public void addAdditionalSaveData(CompoundNBT tag) {
     	super.addAdditionalSaveData(tag);
@@ -272,7 +274,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     	tag.putInt("base_health", this.getBaseHealth());
     	tag.putFloat("tmp_last_health", this.getHealth());
     }
-   
+
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
@@ -355,7 +357,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
         super.tick();
     }
-   
+
     private float getTmpLastHealth() {
         return this.entityData.get(TMP_LAST_HEALTH);
     }
@@ -385,28 +387,17 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         setItemSlot(EquipmentSlotType.MAINHAND, entityData.get(EQUIPMENT_MAINHAND));
         setItemSlot(EquipmentSlotType.OFFHAND, entityData.get(EQUIPMENT_OFFHAND));
     }
-    
-    @Override
-    @Nullable
-    public LivingEntity getOwner() {
-        try {
-            UUID uuid = this.getOwnerUUID();
-            return uuid == null ? null : this.level.getPlayerByUUID(uuid);
-        } catch (IllegalArgumentException illegalargumentexception) {
-            return null;
-        }
-    }
 
     public void setOwnerUUID(@Nullable UUID p_184754_1_) {
         this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(p_184754_1_));
     }
-    
+
     public void checkStats() {
         if ((int) this.getMaxHealth() != getBaseHealth()) {
             modifyMaxHealth(getBaseHealth() - 18, "Base Health from current level", false);
         }
     }
-    
+
     public void modifyMaxHealth(int change, String name, boolean permanent) {
         ModifiableAttributeInstance attributeInstance = this.getAttribute(Attributes.MAX_HEALTH);
         Set<AttributeModifier> modifiers = attributeInstance.getModifiers();
@@ -424,7 +415,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
             attributeInstance.addTransientModifier(HEALTH_MODIFIER);
         }
     }
-    
+
 	@Override
 	public boolean isFollowing() {
 		return this.entityData.get(FOLLOWING);
@@ -563,42 +554,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	}
 
 	@Override
-    public void updateHeadSlot(ItemStack stack) {
-        internalUnitInventory.setItem(9, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateChestSlot(ItemStack stack) {
-        internalUnitInventory.setItem(10, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateLegsSlot(ItemStack stack) {
-        internalUnitInventory.setItem(11, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateFeetSlot(ItemStack stack) {
-        internalUnitInventory.setItem(12, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateMainhandSlot(ItemStack stack) {
-        internalUnitInventory.setItem(13, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateOffhandSlot(ItemStack stack) {
-        internalUnitInventory.setItem(14, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-	@Override
 	public boolean isEquipmentOpen() {
 		 return this.entityData.get(EQUIPMENT_OPEN);
 	}
@@ -629,4 +584,14 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         //super.dropCustomDeathLoot(damageSource, looting, player);
         ExtendedHiredUnitHelper.dropCustomDeathLoot(this, this, random, internalUnitInventory, looting, player);
     }
+
+	@Override
+	public NPCEntity getThis() {
+		return this;
+	}
+
+	@Override
+	public void setNeedsSyncing() {
+		this.inventoryNeedsSetupSyncing=true;
+	}
 }

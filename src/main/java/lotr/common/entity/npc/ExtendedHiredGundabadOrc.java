@@ -1,16 +1,35 @@
 package lotr.common.entity.npc;
 
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import lotr.common.entity.npc.ai.goal.*;
+
+import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtByTargetGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -21,15 +40,14 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.server.management.PreYggdrasilConverter;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
 
 public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements ExtendedHirableEntity {
 
@@ -288,42 +306,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         this.entityData.define(EQUIPMENT_OFFHAND, ItemStack.EMPTY);
     }
 
-    @Override
-    public void updateHeadSlot(ItemStack stack) {
-        internalUnitInventory.setItem(9, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateChestSlot(ItemStack stack) {
-        internalUnitInventory.setItem(10, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateLegsSlot(ItemStack stack) {
-        internalUnitInventory.setItem(11, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateFeetSlot(ItemStack stack) {
-        internalUnitInventory.setItem(12, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateMainhandSlot(ItemStack stack) {
-        internalUnitInventory.setItem(13, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateOffhandSlot(ItemStack stack) {
-        internalUnitInventory.setItem(14, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return OrcEntity.regAttrs()
                 .add(Attributes.FOLLOW_RANGE, 20.0D)
@@ -346,7 +328,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     @Override
     public boolean isAlliedTo(Entity p_184191_1_) {
         if (this.isTame()) {
-            LivingEntity livingentity = this.getOwner();
+            LivingEntity livingentity = this.getUnitOwner();
             if (p_184191_1_ == livingentity) {
                 return true;
             }
@@ -497,17 +479,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         setItemSlot(EquipmentSlotType.OFFHAND, entityData.get(EQUIPMENT_OFFHAND));
     }
 
-    @Override
-    @Nullable
-    public LivingEntity getOwner() {
-        try {
-            UUID uuid = this.getOwnerUUID();
-            return uuid == null ? null : this.level.getPlayerByUUID(uuid);
-        } catch (IllegalArgumentException illegalargumentexception) {
-            return null;
-        }
-    }
-
     public void setOwnerUUID(@Nullable UUID p_184754_1_) {
         this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(p_184754_1_));
     }
@@ -581,4 +552,14 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         this.targetSelector.addGoal(2, new ExtendedHiredPlayerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
     }
+
+	@Override
+	public NPCEntity getThis() {
+		return this;
+	}
+
+	@Override
+	public void setNeedsSyncing() {
+		this.inventoryNeedsSetupSyncing=true;
+	}
 }

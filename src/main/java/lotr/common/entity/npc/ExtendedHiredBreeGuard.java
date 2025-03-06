@@ -100,7 +100,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.setTame(false);
     }
 
-    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+    @Override
+	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
     	spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         // set initial entity base equipment based upon pools
     	// Also indicates if unit was spawned incorrectly if it spawns with no base equipment
@@ -113,42 +114,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         // Needed to sync unit equipment on unit creation
         inventoryNeedsSetupSyncing=true;
     	return spawnData;
-    }
-
-    @Override
-	public void updateHeadSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(9, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-	public void updateChestSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(10, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-	public void updateLegsSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(11, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-	public void updateFeetSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(12, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-	public void updateMainhandSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(13, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-	public void updateOffhandSlot(ItemStack stack) {
-    	internalUnitInventory.setItem(14, stack);
-        inventoryNeedsSetupSyncing=true;
     }
 
     /* Remove consuming goals since we have our own */
@@ -173,8 +138,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     }
 
     @Override
-    public ItemStack eat(World world, ItemStack stack) { 
-    	if (stack.isEdible()) { 
+    public ItemStack eat(World world, ItemStack stack) {
+    	if (stack.isEdible()) {
     		this.heal(stack.getItem().getFoodProperties().getNutrition());
         }
         super.eat(world, stack);
@@ -323,7 +288,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     @Override
 	public boolean isAlliedTo(Entity p_184191_1_) {
         if (this.isTame()) {
-            LivingEntity livingentity = this.getOwner();
+            LivingEntity livingentity = this.getUnitOwner();
             if (p_184191_1_ == livingentity) {
                 return true;
             }
@@ -458,17 +423,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     }
 
     @Override
-	@Nullable
-    public LivingEntity getOwner() {
-        try {
-            UUID uuid = this.getOwnerUUID();
-            return uuid == null ? null : this.level.getPlayerByUUID(uuid);
-        } catch (IllegalArgumentException illegalargumentexception) {
-            return null;
-        }
-    }
-
-    @Override
 	public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
@@ -571,7 +525,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     /**
      * This method is run every tick on both the client and server to synchronize equipment
      * Server will only sync equipment when changes are detected (peformance reasons)
-     * Both will set the equipment slot values from their cached entityData values 
+     * Both will set the equipment slot values from their cached entityData values
      */
     public void synchronizeEquipment() {
         // only sync inventory when it actualy needs syncing
@@ -584,7 +538,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         	 entityData.set(EQUIPMENT_OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
         	 inventoryNeedsSetupSyncing=false;
     	}
-        // Set the {@Link MobEntity} equipment fields here, since the entityData fields 
+        // Set the {@Link MobEntity} equipment fields here, since the entityData fields
         // are the correct values between player and base equipment, as sorted above
         setItemSlot(EquipmentSlotType.HEAD, entityData.get(EQUIPMENT_HEAD));
         setItemSlot(EquipmentSlotType.CHEST, entityData.get(EQUIPMENT_CHEST));
@@ -617,7 +571,7 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
     }
 
-    @Override 
+    @Override
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
     	// Disabled due to NPCEntity using new logic we don't want for unit drops
     	//super.dropCustomDeathLoot(damageSource, looting, player);
@@ -633,4 +587,14 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     public float getHiredUnitEquipmentDropChance(EquipmentSlotType slotType) {
     	return getEquipmentDropChance(slotType);
     }
+
+	@Override
+	public NPCEntity getThis() {
+		return this;
+	}
+
+	@Override
+	public void setNeedsSyncing() {
+		this.inventoryNeedsSetupSyncing=true;
+	}
 }

@@ -59,7 +59,7 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
             return false;
         }
 
-        LivingEntity livingentity = this.hirable.getOwner();
+        LivingEntity livingentity = this.hirable.getUnitOwner();
         if (livingentity == null) {
             return false;
         } else if (livingentity.isSpectator()) {

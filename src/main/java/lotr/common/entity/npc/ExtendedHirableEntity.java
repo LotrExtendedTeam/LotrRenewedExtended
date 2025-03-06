@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -17,8 +17,20 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public interface ExtendedHirableEntity {
+
+	NPCEntity getThis();
+
+	boolean isTame();
+
     @Nullable
-    LivingEntity getOwner();
+    default public LivingEntity getUnitOwner() {
+        try {
+            UUID uuid = this.getOwnerUUID();
+            return uuid == null ? null : getThis().level.getPlayerByUUID(uuid);
+        } catch (IllegalArgumentException illegalargumentexception) {
+            return null;
+        }
+    }
 
     boolean isFollowing();
 
@@ -27,8 +39,6 @@ public interface ExtendedHirableEntity {
     ItemStack checkFood();
 
     Inventory getCustomInventory();
-
-    boolean isTame();
 
     boolean wantsToAttack(LivingEntity p_142018_1_, LivingEntity p_142018_2_);
 
@@ -96,18 +106,29 @@ public interface ExtendedHirableEntity {
 
     void setStationary(boolean stationary);
 
-    //TODO combine into one method
-    void updateFeetSlot(ItemStack stack);
+    default void updateSlot(ItemStack stack, EquipmentSlotType slot) {
+    	if (slot == EquipmentSlotType.HEAD) {
+    		getCustomInventory().setItem(9, stack);
+    		setNeedsSyncing();
+        } else if (slot == EquipmentSlotType.CHEST) {
+        	getCustomInventory().setItem(10, stack);
+        	setNeedsSyncing();
+        } else if (slot == EquipmentSlotType.LEGS) {
+        	getCustomInventory().setItem(11, stack);
+        	setNeedsSyncing();
+        } else if (slot == EquipmentSlotType.FEET) {
+        	getCustomInventory().setItem(12, stack);
+        	setNeedsSyncing();
+        } else if (slot == EquipmentSlotType.MAINHAND) {
+        	getCustomInventory().setItem(13, stack);
+        	setNeedsSyncing();
+        } else if (slot == EquipmentSlotType.OFFHAND) {
+        	getCustomInventory().setItem(14, stack);
+        	setNeedsSyncing();
+        }
+    }
 
-    void updateHeadSlot(ItemStack stack);
-
-    void updateChestSlot(ItemStack stack);
-
-    void updateLegsSlot(ItemStack stack);
-
-    void updateMainhandSlot(ItemStack stack);
-
-    void updateOffhandSlot(ItemStack stack);
+    void setNeedsSyncing();
 
     boolean isEquipmentOpen();
     void setEquipmentOpen(boolean isOpen);

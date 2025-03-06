@@ -37,7 +37,6 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 	@Shadow(remap=false)
 	private Direction getRotationToMatchBlockstateJson(Direction stateFacing) {return null;}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void render(T vessel, float partialTicks, MatrixStack matStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
 		if (!vessel.isEmpty()) {

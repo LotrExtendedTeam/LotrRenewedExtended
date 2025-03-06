@@ -87,7 +87,7 @@ public abstract class MixinFastTravelDataModule {
 				continue;
 			}
 			// Extended Start
-			if (entity instanceof ExtendedHirableEntity && ((ExtendedHirableEntity) entity).getOwner() == player && !((ExtendedHirableEntity) entity).isStationary()) {
+			if (entity instanceof ExtendedHirableEntity && ((ExtendedHirableEntity) entity).getUnitOwner() == player && !((ExtendedHirableEntity) entity).isStationary()) {
 				entitiesToTransport.add(entity);
 				continue;
 			}

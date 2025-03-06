@@ -107,7 +107,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredEquipmentMenuPacket(companion.getHiredUnitId()));
     }
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
