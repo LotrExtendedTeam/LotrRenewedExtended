@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitE
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.Inventory;
@@ -43,28 +42,20 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
             // fill in equipment array list
             final List<ItemStack> equipment = new ArrayList<>(12);
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
-            Inventory inventory = null;
-            if (entity instanceof ExtendedHirableEntity) {
-                inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
+            if(!(entity instanceof ExtendedHirableEntity)) {
+            	context.get().setPacketHandled(true);
+            	return;
             }
+            Inventory inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
             for (int i = 9; i < 21; i++) {
-                if (inventory != null) {
-                    equipment.add(inventory.getItem(i));
-                } else {
-                    equipment.add(ItemStack.EMPTY);
-                }
+            	equipment.add(inventory.getItem(i));
             }
 
             // Prepare PacketBuffer with initialization data
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
             ExtendedHiredUnitEquipmentContainer.writeContainerInitData(initData, msg.entityId, equipment);
 
-            if (entity instanceof NPCEntity) {
-                NPCEntity npcEntity = (NPCEntity) entity;
-                if (npcEntity instanceof ExtendedHirableEntity) {
-                    ((ExtendedHirableEntity) npcEntity).setEquipmentOpen(true);
-                }
-            }
+            ((ExtendedHirableEntity) entity).setEquipmentOpen(true);
 
             // Open GUI on client side
             NetworkHooks.openGui(context.get().getSender(),
