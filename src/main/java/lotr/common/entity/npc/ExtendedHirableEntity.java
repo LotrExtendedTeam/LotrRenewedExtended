@@ -10,7 +10,10 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -138,7 +141,7 @@ public interface ExtendedHirableEntity {
     ResourceLocation getProfileLocation();
 
     /**
-     * Gets the {@Link ExtendedHiredUnitProfile} assoicated with this unit
+     * Gets the {@Link ExtendedHiredUnitProfile} associated with this unit
      * @Nullable
      * */
     @Nullable
@@ -147,4 +150,38 @@ public interface ExtendedHirableEntity {
     }
 
     public float getHiredUnitEquipmentDropChance(EquipmentSlotType p_205712_1_);
+
+    default void setupBaseEquipment() {
+    	// set initial entity base equipment based upon pools
+    	// Also indicates if unit was spawned incorrectly if it spawns with no base equipment
+    	getCustomInventory().setItem(15, getUnitProfile().getEquipmentPools().getRandomHelmetStack(getThis().getRandom()));
+    	getCustomInventory().setItem(16, getUnitProfile().getEquipmentPools().getRandomChestplateStack(getThis().getRandom()));
+    	getCustomInventory().setItem(17, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(getThis().getRandom()));
+    	getCustomInventory().setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(getThis().getRandom()));
+    	getCustomInventory().setItem(19, getUnitProfile().getEquipmentPools().getRandomMeleeStack(getThis().getRandom()));
+    	getCustomInventory().setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(getThis().getRandom()));
+    	// Needed to sync unit equipment on unit creation
+    	setNeedsSyncing();
+    }
+
+    default void loadHiredUnitInventory(CompoundNBT tag) {
+    	NonNullList<ItemStack> itemsStacks = NonNullList.withSize(21, ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(tag, itemsStacks);
+        for (int i = 0; i < 21; i++) {
+        	getCustomInventory().setItem(i, itemsStacks.get(i));
+        }
+
+        // Need to setup equipment on NBT load
+        setNeedsSyncing();
+    }
+
+    default void saveHiredUnitInventory(CompoundNBT tag) {
+    	// create temp NonNullList to save inventory to
+    	NonNullList<ItemStack> items = NonNullList.withSize(21, ItemStack.EMPTY);
+    	for (int i = 0; i < 21; i++) {
+    		ItemStack item = getCustomInventory().getItem(i);
+    		items.set(i, item);
+    	}
+    	ItemStackHelper.saveAllItems(tag, items);
+    }
 }

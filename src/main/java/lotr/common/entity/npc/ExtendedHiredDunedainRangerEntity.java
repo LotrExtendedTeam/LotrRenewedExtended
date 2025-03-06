@@ -37,7 +37,6 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -49,7 +48,6 @@ import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -196,16 +194,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        // set initial entity base equipment based upon pools
-        // Also indicates if unit was spawned incorrectly if it spawns with no base equipment
-        internalUnitInventory.setItem(15, getUnitProfile().getEquipmentPools().getRandomHelmetStack(random));
-        internalUnitInventory.setItem(16, getUnitProfile().getEquipmentPools().getRandomChestplateStack(random));
-        internalUnitInventory.setItem(17, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(random));
-        internalUnitInventory.setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(random));
-        internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomMeleeStack(random));
-        internalUnitInventory.setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(random));
-        // Needed to sync unit equipment on unit creation
-        inventoryNeedsSetupSyncing=true;
+        setupBaseEquipment();
         return spawnData;
     }
 
@@ -257,13 +246,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     		tag.putUUID("Owner", this.getOwnerUUID());
     	}
 
-    	// create temp NonNullList to save inventory to
-    	NonNullList<ItemStack> items = NonNullList.withSize(21, ItemStack.EMPTY);
-    	for (int i = 0; i < 21; i++) {
-    		ItemStack item = internalUnitInventory.getItem(i);
-    		items.set(i, item);
-    	}
-    	ItemStackHelper.saveAllItems(tag, items);
+        saveHiredUnitInventory(tag);
 
     	tag.putBoolean("following", this.isFollowing());
     	tag.putBoolean("stationary", this.isStationary());
@@ -296,14 +279,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
             }
         }
 
-        NonNullList<ItemStack> itemsStacks = NonNullList.withSize(21, ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(tag, itemsStacks);
-        for (int i = 0; i < 21; i++) {
-            this.internalUnitInventory.setItem(i, itemsStacks.get(i));
-        }
-
-        // Need to setup equipment on NBT load
-        inventoryNeedsSetupSyncing = true;
+        loadHiredUnitInventory(tag);
 
         if (tag.contains("following")) {
             this.setFollowing(tag.getBoolean("following"));
