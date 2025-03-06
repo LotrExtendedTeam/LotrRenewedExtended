@@ -372,11 +372,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     }
 
     @Override
-    public int getHiredUnitId() {
-        return getId();
-    }
-
-    @Override
 	public boolean isStationary() {
         return this.entityData.get(STATIONARY);
     }

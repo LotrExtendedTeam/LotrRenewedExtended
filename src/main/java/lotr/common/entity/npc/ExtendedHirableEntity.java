@@ -91,7 +91,9 @@ public interface ExtendedHirableEntity {
 
     boolean isAlert();
 
-    int getHiredUnitId();
+    default int getHiredUnitId() {
+    	return getThis().getId();
+    }
 
     UUID getOwnerUUID();
 
@@ -134,6 +136,7 @@ public interface ExtendedHirableEntity {
     void setNeedsSyncing();
 
     boolean isEquipmentOpen();
+   
     void setEquipmentOpen(boolean isOpen);
 
     void setInventoryOpen(boolean isOpen);

@@ -118,11 +118,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public int getHiredUnitId() {
-        return getId();
-    }
-
-    @Override
     public boolean isStationary() {
         return this.entityData.get(STATIONARY);
     }

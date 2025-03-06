@@ -484,11 +484,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	}
 
 	@Override
-	public int getHiredUnitId() {
-		return getId();
-	}
-
-	@Override
     @Nullable
     public UUID getOwnerUUID() {
         return this.entityData.get(DATA_OWNERUUID_ID).orElse((UUID)null);
