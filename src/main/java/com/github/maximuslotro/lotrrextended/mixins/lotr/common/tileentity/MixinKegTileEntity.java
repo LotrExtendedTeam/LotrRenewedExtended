@@ -155,7 +155,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
-	public void load(BlockState state, CompoundNBT nbt, CallbackInfo info) {
+	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
 	         this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
 	         this.lootTableSeed = nbt.getLong("LootTableSeed");
@@ -175,8 +175,10 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
-	 * @reason Inject loot-tables
+	 * @reason Inject loot-table unpackCall
 	 * @author maximuslotro
+	 * @param index Index for item to get
+	 * @return An ItemsStack for the given index
 	 */
 	@Overwrite
 	public ItemStack getItem(int index) {

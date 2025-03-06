@@ -68,7 +68,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 
 	//Handle loading loot-tables
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
-	public void load(BlockState state, CompoundNBT nbt, CallbackInfo info) {
+	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
 	         this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
 	         this.lootTableSeed = nbt.getLong("LootTableSeed");

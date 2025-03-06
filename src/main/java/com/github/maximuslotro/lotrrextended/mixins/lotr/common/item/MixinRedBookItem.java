@@ -20,18 +20,38 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * @reason Removed waypoint gamerule reference to add split-type waypoint config settings
+ * @Mixin (RedBookItem.class)
+ * */
 @Mixin(RedBookItem.class)
 public class MixinRedBookItem {
 
+	/**
+	 * @reason Plays the failed sound when waypoint creation is denied
+	 * @Shadow (remap = false)
+	 * @param world The world for the sound to be played at
+	 * @param pos The position at which the sound will be played at
+	 * */
 	@Shadow(remap = false)
 	private void playFailedSound(World world, BlockPos pos) {}
-
+	/**
+	 * @reason Plays the open book sound
+	 * @Shadow (remap = false)
+	 * @param world The world for the sound to be played at
+	 * @param pos The position at which the sound will be played at
+	 * */
 	@Shadow(remap = false)
 	private void playOpenScreenSound(World world, BlockPos pos) {}
 
 	/**
 	 * @reason Need to change waypoint Gamerule call
 	 * @author maximuslotro
+	 * @Overwrite (remap = false)
+	 * @param world The world for the waypoint to be generated at
+	 * @param pos The position at which the waypoint will be generated at
+	 * @param player The player that is initiating the waypoint creation
+	 * @return Returns TRUE if the waypoint was successfully created
 	 */
 	@Overwrite(remap = false)
 	public boolean createCustomWaypointStructure(World world, BlockPos pos, PlayerEntity player) {
@@ -50,14 +70,12 @@ public class MixinRedBookItem {
 					playFailedSound(world, pos);
 					return true;
 				}
-
 				FastTravelDataModule ftData = LOTRLevelData.sidedInstance(world).getData(player).getFastTravelData();
 				if (!ftData.canCreateOrAdoptMoreCustomWaypoints()) {
 					LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.limit"));
 					playFailedSound(world, pos);
 					return true;
 				}
-
 				boolean isCompleteStructure = CustomWaypointStructureHandler.INSTANCE.isFocalPointOfCompletableStructure(sWorld, pos, msg -> LOTRUtil.sendMessage(player, msg));
 				if (isCompleteStructure) {
 					CustomWaypointStructureHandler.INSTANCE.setPlayerClickedOnBlockToCreate(player, pos);
@@ -66,11 +84,9 @@ public class MixinRedBookItem {
 				} else {
 					playFailedSound(world, pos);
 				}
-
 				return true;
 			}
 		}
-
 		return false;
 	}
 }
