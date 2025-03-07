@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 
+import lotr.common.entity.npc.ai.ExtendedNPCCombatUpdater;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -193,7 +194,7 @@ public interface ExtendedHirableEntity {
         	getThis().npcItemsInv.setIdleItem(ItemStack.EMPTY);
         	getThis().npcItemsInv.setIdleItemMounted(ItemStack.EMPTY);
     	}
-    	// TODO Add method to trigger NPCCombatUpdater to switch hand items for idle/melee/ranged automaticaly
+    	((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
     	// Needed to sync unit equipment on unit creation
     	setNeedsSyncing();
     }

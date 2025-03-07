@@ -36,6 +36,7 @@ public class ExtendedHiredUnitEquipmentPool {
 	private final List<ExtendedHiredUnitEquipmentItem> offhandPool;
 	private boolean setIdleFromMelee;
 	private boolean setIdleFromRanged;
+
 	public ExtendedHiredUnitEquipmentPool() {
 		this.helmetPool = new ArrayList<>();
 		this.chestplatePool = new ArrayList<>();

@@ -86,6 +86,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     private Inventory internalUnitInventory = new Inventory(21);
     // Use to initiate equipment sync. This is done on creation, nbt load, and on inventory change
     private boolean inventoryNeedsSetupSyncing = false;
+
 	public ExtendedHiredDunedainRangerEntity(EntityType<? extends ExtendedHiredDunedainRangerEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
@@ -327,7 +328,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
      * Server will only sync equipment when changes are detected
      */
     public void synchronizeEquipment() {
-        // only sync inventory when it actualy needs syncing
+        // only sync inventory when it actually needs syncing
         if(!level.isClientSide && inventoryNeedsSetupSyncing) {
         	setItemSlot(EquipmentSlotType.HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
             setItemSlot(EquipmentSlotType.CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
