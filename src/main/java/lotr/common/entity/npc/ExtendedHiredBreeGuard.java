@@ -79,14 +79,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
 
     private static final DataParameter<Boolean> EQUIPMENT_OPEN = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.BOOLEAN);
 
-    // Data Parameters for all equipment so it can be automatically synced
-    private static final DataParameter<ItemStack> EQUIPMENT_CHEST = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_HEAD = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_LEGS = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_FEET = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_MAINHAND = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_OFFHAND = EntityDataManager.defineId(ExtendedHiredBreeGuard.class, DataSerializers.ITEM_STACK);
-
     // 9 inventory slots + 6 player equipment slots + 6 base equipment slots
     private Inventory internalUnitInventory = new Inventory(21);
     // Use to initiate equipment sync. This is done on creation, nbt load, and on inventory change
@@ -153,14 +145,6 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.entityData.define(INVENTORY_OPEN, false);
         this.entityData.define(EQUIPMENT_OPEN, false);
         this.entityData.define(TMP_LAST_HEALTH, 20f);
-
-        // equipment slots
-        this.entityData.define(EQUIPMENT_CHEST, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_HEAD, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_LEGS, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_FEET, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_MAINHAND, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_OFFHAND, ItemStack.EMPTY);
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -494,29 +478,20 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
     }
 
     /**
-     * This method is run every tick on both the client and server to synchronize equipment
-     * Server will only sync equipment when changes are detected (peformance reasons)
-     * Both will set the equipment slot values from their cached entityData values
+     * This method is run every tick on both the server to synchronize equipment
+     * Server will only sync equipment when changes are detected
      */
     public void synchronizeEquipment() {
         // only sync inventory when it actualy needs syncing
-    	if(!level.isClientSide && inventoryNeedsSetupSyncing) {
-    		 entityData.set(EQUIPMENT_HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
-        	 entityData.set(EQUIPMENT_CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
-        	 entityData.set(EQUIPMENT_LEGS, internalUnitInventory.getItem(11).isEmpty() ? internalUnitInventory.getItem(17) : internalUnitInventory.getItem(11));
-        	 entityData.set(EQUIPMENT_FEET, internalUnitInventory.getItem(12).isEmpty() ? internalUnitInventory.getItem(18) : internalUnitInventory.getItem(12));
-        	 entityData.set(EQUIPMENT_MAINHAND, internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(19) : internalUnitInventory.getItem(13));
-        	 entityData.set(EQUIPMENT_OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
-        	 inventoryNeedsSetupSyncing=false;
-    	}
-        // Set the {@Link MobEntity} equipment fields here, since the entityData fields
-        // are the correct values between player and base equipment, as sorted above
-        setItemSlot(EquipmentSlotType.HEAD, entityData.get(EQUIPMENT_HEAD));
-        setItemSlot(EquipmentSlotType.CHEST, entityData.get(EQUIPMENT_CHEST));
-        setItemSlot(EquipmentSlotType.LEGS, entityData.get(EQUIPMENT_LEGS));
-        setItemSlot(EquipmentSlotType.FEET, entityData.get(EQUIPMENT_FEET));
-        setItemSlot(EquipmentSlotType.MAINHAND, entityData.get(EQUIPMENT_MAINHAND));
-        setItemSlot(EquipmentSlotType.OFFHAND, entityData.get(EQUIPMENT_OFFHAND));
+        if(!level.isClientSide && inventoryNeedsSetupSyncing) {
+        	setItemSlot(EquipmentSlotType.HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
+            setItemSlot(EquipmentSlotType.CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
+            setItemSlot(EquipmentSlotType.LEGS, internalUnitInventory.getItem(11).isEmpty() ? internalUnitInventory.getItem(17) : internalUnitInventory.getItem(11));
+            setItemSlot(EquipmentSlotType.FEET, internalUnitInventory.getItem(12).isEmpty() ? internalUnitInventory.getItem(18) : internalUnitInventory.getItem(12));
+            setItemSlot(EquipmentSlotType.MAINHAND, internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(19) : internalUnitInventory.getItem(13));
+            setItemSlot(EquipmentSlotType.OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
+            inventoryNeedsSetupSyncing=false;
+        }
     }
 
     public void modifyMaxHealth(int change, String name, boolean permanent) {
