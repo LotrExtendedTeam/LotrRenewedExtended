@@ -130,7 +130,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        setupBaseEquipment();
+        setupUnitEquipment();
         return spawnData;
     }
 
