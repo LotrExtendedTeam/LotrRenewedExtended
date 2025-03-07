@@ -181,6 +181,19 @@ public interface ExtendedHirableEntity {
     	getCustomInventory().setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(getThis().getRandom()));
     	getCustomInventory().setItem(19, getUnitProfile().getEquipmentPools().getRandomMeleeStack(getThis().getRandom()));
     	getCustomInventory().setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(getThis().getRandom()));
+    	getThis().npcItemsInv.clearContent();
+    	getThis().npcItemsInv.setMeleeWeapon(ItemStack.EMPTY);
+    	getThis().npcItemsInv.setRangedWeapon(ItemStack.EMPTY);
+    	getThis().npcItemsInv.setMeleeWeaponMounted(ItemStack.EMPTY);
+    	if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+    		getThis().npcItemsInv.setIdleItemsFromMeleeWeapons();
+    	}else if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()){
+    		getThis().npcItemsInv.setIdleItemsFromRangedWeapons();
+    	}else {
+        	getThis().npcItemsInv.setIdleItem(ItemStack.EMPTY);
+        	getThis().npcItemsInv.setIdleItemMounted(ItemStack.EMPTY);
+    	}
+    	// TODO Add method to trigger NPCCombatUpdater to switch hand items for idle/melee/ranged automaticaly
     	// Needed to sync unit equipment on unit creation
     	setNeedsSyncing();
     }
