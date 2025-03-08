@@ -143,24 +143,36 @@ public interface ExtendedHirableEntity {
         } else if (slot == ExtendedEquipmentSlotType.MELEE) {
         	getCustomInventory().setItem(13, stack);
         	getThis().npcItemsInv.setMeleeWeapon(stack);
+        	if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+        		getCustomInventory().setItem(16, stack);
+        	}
         } else if (slot == ExtendedEquipmentSlotType.RANGED) {
         	getCustomInventory().setItem(14, stack);
         	getThis().npcItemsInv.setRangedWeapon(stack);
+        	if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()) {
+        		getCustomInventory().setItem(16, stack);
+        		getCustomInventory().setItem(17, stack);
+        	}
         } else if (slot == ExtendedEquipmentSlotType.MOUNTED) {
         	getCustomInventory().setItem(15, stack);
         	getThis().npcItemsInv.setMeleeWeaponMounted(stack);
+        	if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+        		getCustomInventory().setItem(17, stack);
+        	}
         } else if (slot == ExtendedEquipmentSlotType.IDLE) {
-        	getCustomInventory().setItem(16, stack);
-        	getThis().npcItemsInv.setIdleItem(stack);
+        	//getCustomInventory().setItem(16, stack);
+        	//getThis().npcItemsInv.setIdleItem(stack);
         } else if (slot == ExtendedEquipmentSlotType.IDLE_MOUNTED) {
-        	getCustomInventory().setItem(17, stack);
-        	getThis().npcItemsInv.setIdleItemMounted(stack);
+        	//getCustomInventory().setItem(17, stack);
+        	//getThis().npcItemsInv.setIdleItemMounted(stack);
         }  else if (slot == ExtendedEquipmentSlotType.OFFHAND) {
         	getCustomInventory().setItem(18, stack);
         	getThis().setItemSlot(EquipmentSlotType.OFFHAND, stack);
         }
     	if(slot.isRenewedHandling()) {
-    		((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
+    		getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(16).isEmpty() ? getCustomInventory().getItem(26) : getCustomInventory().getItem(16));
+            getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(17).isEmpty() ? getCustomInventory().getItem(27) : getCustomInventory().getItem(17));
+    		getThis().getNPCCombatUpdater().refreshCurrentAttackMode();
     	}
     }
 

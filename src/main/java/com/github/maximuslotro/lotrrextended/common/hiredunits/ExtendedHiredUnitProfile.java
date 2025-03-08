@@ -271,7 +271,7 @@ public class ExtendedHiredUnitProfile {
 			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
 		public ExtendedHiredUnitProfile.Builder setIdlePoolFromMeleePool() {
-			equipmentPools.setIdlePoolFromRangedPool();
+			equipmentPools.setIdlePoolFromMeleePool();
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder setIdlePoolFromRangedPool() {

@@ -13,8 +13,10 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.ExtendedHiredBreeGuard;
+import lotr.common.entity.npc.ExtendedHiredGundabadOrc;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -125,6 +127,12 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
         if (companion instanceof ExtendedHiredBreeGuard) {
             this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_bree_guard"), sidebarX, this.titleLabelY + 22, 4210752);
+        }
+        if (companion instanceof ExtendedDunedainRangerEntity) {
+            this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_dunedain_ranger"), sidebarX, this.titleLabelY + 22, 4210752);
+        }
+        if (companion instanceof ExtendedHiredGundabadOrc) {
+            this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_gundabad_orc"), sidebarX, this.titleLabelY + 22, 4210752);
         }
 
         this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32, 4210752);

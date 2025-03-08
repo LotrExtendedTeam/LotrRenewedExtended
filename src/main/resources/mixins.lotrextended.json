@@ -21,7 +21,6 @@
 		"lotr.common.entity.npc.MixinNPCEntity",
 		"lotr.common.entity.npc.MixinNPCEntityInvoker",
 		"lotr.common.entity.npc.MixinUrukArcherEntity",
-		"lotr.common.entity.npc.ai.MixinNPCCombatUpdater",
 		"lotr.common.entity.npc.ai.goal.MixinNPCNearestAttackableTargetGoal",
 		"lotr.common.entity.projectile.MixinThrownPlateEntity",
 		"lotr.common.event.MixinLOTREventHandlerJavaPatch",

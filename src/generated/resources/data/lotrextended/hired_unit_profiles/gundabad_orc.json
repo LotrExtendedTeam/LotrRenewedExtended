@@ -346,7 +346,7 @@
     ],
     "ranged": [],
     "mounted": [],
-    "setIdleFromRanged": true,
+    "setIdleFromMelee": true,
     "idle": [],
     "idle_mounted": [],
     "offhand": [
