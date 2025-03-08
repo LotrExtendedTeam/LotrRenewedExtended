@@ -6,7 +6,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -100,26 +99,31 @@ public class ExtendedHiredUnitHelper {
     }
 
     public static void dropCustomDeathLoot(NPCEntity companion, ExtendedHirableEntity hirable, Random random, Inventory internalUnitInventory, int looting, boolean player) {
-
-        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-            ItemStack itemstack = companion.getItemBySlot(slot);
-            float dropChance = hirable.getHiredUnitEquipmentDropChance(slot);
-            boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
-            boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
-            if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
-                    && Math.max(random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
-                if (!dropUndamaged && itemstack.isDamageableItem()) {
-                    itemstack.setDamageValue(itemstack.getMaxDamage() - random.nextInt(1 + random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
-                }
-
-                companion.spawnAtLocation(itemstack);
-                companion.setItemSlot(slot, ItemStack.EMPTY);
-            }
-        }
-        for (int i = 0; i < 9; ++i) {
-            ItemStack itemstack = internalUnitInventory.getItem(i).copy();
-            companion.spawnAtLocation(itemstack);
-            internalUnitInventory.setItem(i, ItemStack.EMPTY);
+//        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+//            ItemStack itemstack = companion.getItemBySlot(slot);
+//            float dropChance = hirable.getHiredUnitEquipmentDropChance(slot);
+//            boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+//            boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
+//            if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
+//                    && Math.max(random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
+//                if (!dropUndamaged && itemstack.isDamageableItem()) {
+//                    itemstack.setDamageValue(itemstack.getMaxDamage() - random.nextInt(1 + random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
+//                }
+//
+//                companion.spawnAtLocation(itemstack);
+//                companion.setItemSlot(slot, ItemStack.EMPTY);
+//            }
+//        }
+    	// Only try dropping player equipment and general inventory space
+        for (int i = 0; i < 19; ++i) {
+        	if(!internalUnitInventory.getItem(i).isEmpty()) {
+        		ItemStack itemstack = internalUnitInventory.getItem(i).copy();
+        		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+        		if(isEquipedItem && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
+        			companion.spawnAtLocation(itemstack);
+                    internalUnitInventory.setItem(i, ItemStack.EMPTY);
+        		}
+        	}
         }
     }
 }

@@ -194,8 +194,6 @@ public interface ExtendedHirableEntity {
     	return ExtendedHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
     }
 
-    public float getHiredUnitEquipmentDropChance(EquipmentSlotType p_205712_1_);
-
     default public Inventory makeUnitInventory() {
     	// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
         return new Inventory(INVENTORY_SIZE);

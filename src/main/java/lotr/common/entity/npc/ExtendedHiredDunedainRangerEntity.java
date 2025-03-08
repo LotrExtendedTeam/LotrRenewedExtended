@@ -35,7 +35,6 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -498,11 +497,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	public ResourceLocation getProfileLocation() {
 		return ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
 	}
-
-	@Override
-    public float getHiredUnitEquipmentDropChance(EquipmentSlotType slotType) {
-    	return getEquipmentDropChance(slotType);
-    }
 
     @Override
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {

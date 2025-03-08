@@ -31,7 +31,6 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -443,11 +442,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         } else {
             attributeInstance.addTransientModifier(HEALTH_MODIFIER);
         }
-    }
-
-    @Override
-    public float getHiredUnitEquipmentDropChance(EquipmentSlotType slotType) {
-    	return getEquipmentDropChance(slotType);
     }
 
     @Override
