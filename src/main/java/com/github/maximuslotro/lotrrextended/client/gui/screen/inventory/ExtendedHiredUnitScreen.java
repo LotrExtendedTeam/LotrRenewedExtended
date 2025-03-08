@@ -67,7 +67,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
         this.inventoryLabelY = 130;
         this.imageWidth = 226;
         df.setRoundingMode(RoundingMode.CEILING);
-        sidebarX = 90;
+        sidebarX = 80;
     }
 
     @Override
@@ -81,8 +81,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
     @Override
 	protected void init() {
         super.init();
-        this.leftPos = (this.width - this.imageWidth) / 2;
-        this.topPos = (this.height - this.imageHeight) / 2;
 
         row1 = topPos + 42;
         col1 = leftPos + sidebarX + 62;

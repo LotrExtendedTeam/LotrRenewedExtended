@@ -349,7 +349,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
-		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
+		addD("container.lotrextended.hired_unit_equipment", "Unit Equipment");
 		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
 
 		// hired unit messages and tooltips for captains
@@ -378,9 +378,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");
-		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor_points", "Points: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", "Toughness: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack", "Attack:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack_damage", "Damage: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack_speed", "Speed: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
 
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");

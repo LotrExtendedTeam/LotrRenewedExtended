@@ -19,15 +19,14 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHiredUnitEquipmentContainer> implements IHasContainer<ExtendedHiredUnitEquipmentContainer> {
 
-    private Button backButton;
-
     private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_upgrade_equipment_menu.png");
-    DecimalFormat df = new DecimalFormat("#.#");
-    int sidebarX;
+    DecimalFormat df = new DecimalFormat("0.0");
 
     private final NPCEntity entity;
 
@@ -35,11 +34,10 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         super(container, playerInventory, title);
 
         this.passEvents = false;
-        this.imageHeight = 256;
+        this.imageHeight = 222;
         this.inventoryLabelY = 130;
-        this.imageWidth = 226;
+        this.imageWidth = 176;
         df.setRoundingMode(RoundingMode.CEILING);
-        sidebarX = 90;
 
         entity = menu.getCompanion();
     }
@@ -66,10 +64,10 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         		renderBaseGearSlot(leftPos + 44, topPos + 67, getMenu().getBaseInventory().getItem(4));
         	}
         	if(getMenu().getRangedSlot()!=null && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
-        		renderBaseGearSlot(leftPos + 79, topPos + 49, getMenu().getBaseInventory().getItem(5));
+        		renderBaseGearSlot(leftPos + 44, topPos + 49, getMenu().getBaseInventory().getItem(5));
         	}
         	if(getMenu().getOffhandSlot()!=null && (!getMenu().getOffhandSlot().hasItem() && !getMenu().getBaseInventory().getItem(9).isEmpty())) {
-        		renderBaseGearSlot(leftPos + 79, topPos + 85, getMenu().getBaseInventory().getItem(9));
+        		renderBaseGearSlot(leftPos + 44, topPos + 85, getMenu().getBaseInventory().getItem(9));
         	}
         }
 
@@ -79,33 +77,34 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
     @Override
 	protected void init() {
         super.init();
-        this.leftPos = (this.width - this.imageWidth) / 2;
-        this.topPos = (this.height - this.imageHeight) / 2;
 
-        backButton = this.addButton(new Button(this.leftPos + 7, this.topPos + 105, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.back"), button -> openMainMenu()));
+        addButton(new Button(this.leftPos -57, this.topPos+6, 57, 20,  new TranslationTextComponent("gui.lotrextended.menu.back"), button -> openMainMenu()));
     }
 
 	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
-        int i = (this.width - this.imageWidth) / 2;
-        int j = ((this.height - this.imageHeight) / 2) + 2;
-        this.blit(p_98413_, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        this.blit(p_98413_, leftPos, topPos+2, 0, 0, imageWidth, imageHeight);
     }
 
     @Override
     protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
-        this.font.draw(matrix, this.title, this.titleLabelX, this.titleLabelY, 4210752);
+        this.font.draw(matrix, title, (48 - (font.width(title) / 2)), 6, 4210752);
         this.font.draw(matrix, this.inventory.getDisplayName(), this.inventoryLabelX, this.inventoryLabelY, 4210752);
 
         // show armor points
         if (this.entity != null) {
-            double armor = 0.0;
-            if (entity.getAttribute(Attributes.ARMOR) != null) {
-                armor = Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR)).getValue();
-            }
-            this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor", armor), this.sidebarX, this.titleLabelY + 20, 4210752);
+            double armor = entity.getAttributeValue(Attributes.ARMOR);
+            double armorT = entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS);
+            //double attackD = entity.getAttributeValue(Attributes.ATTACK_DAMAGE);
+            //double attackS = entity.getAttributeValue(Attributes.ATTACK_SPEED);
+            TextComponent armorTitle= new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor");
+            this.font.draw(matrix, armorTitle.withStyle(TextFormatting.BLUE).withStyle(TextFormatting.ITALIC), 90, 50, 4210752);
+            this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_points", df.format(armor)), 93, 60, 4210752);
+            this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", df.format(armorT)), 92, 68, 4210752);
+            //this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
+            //this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
         }
     }
 
@@ -126,13 +125,13 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         if (isHovering(25, 85, x, y) && !getMenu().getArmorSlots()[3].hasItem() && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(3), x, y);
         }
-        if (isHovering(79, 67, x, y) && !getMenu().getMeleeSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
+        if (isHovering(44, 67, x, y) && !getMenu().getMeleeSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), x, y);
         }
-        if (isHovering(79, 49, x, y) && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
+        if (isHovering(44, 49, x, y) && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(5), x, y);
         }
-        if (isHovering(79, 85, x, y) && !getMenu().getOffhandSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
+        if (isHovering(44, 85, x, y) && !getMenu().getOffhandSlot().hasItem() && !getMenu().getBaseInventory().getItem(9).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(9), x, y);
         }
     }
