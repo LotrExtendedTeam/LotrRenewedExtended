@@ -195,6 +195,10 @@ public class ExtendedHiredUnitEquipmentPool {
 		return setIdleFromRanged;
 	}
 
+	public boolean isSetIdleFromPool() {
+		return !(setIdleFromRanged || setIdleFromMelee);
+	}
+
 	public static class Serializer implements JsonDeserializer<ExtendedHiredUnitEquipmentPool>, JsonSerializer<ExtendedHiredUnitEquipmentPool> {
 		@Override
 		public ExtendedHiredUnitEquipmentPool deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {

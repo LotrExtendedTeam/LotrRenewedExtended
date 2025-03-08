@@ -3,10 +3,12 @@ package com.github.maximuslotro.lotrrextended.common.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 import com.mojang.datafixers.util.Pair;
 
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
+import lotr.common.item.HammerItem;
 import lotr.common.item.SpearItem;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.block.AbstractSkullBlock;
@@ -164,7 +166,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 player.addItem(slot.getItem());
                 mainHand.set(ItemStack.EMPTY);
                 mainHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.MELEE, ItemStack.EMPTY);
             } else {
                 return ItemStack.EMPTY;
             }
@@ -174,7 +176,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 player.addItem(slot.getItem());
                 offHand.set(ItemStack.EMPTY);
                 offHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.OFFHAND, ItemStack.EMPTY);
             } else {
                 return ItemStack.EMPTY;
             }
@@ -183,7 +185,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 player.addItem(slot.getItem());
                 offHand.set(ItemStack.EMPTY);
                 offHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.HEAD, ItemStack.EMPTY);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.HEAD, ItemStack.EMPTY);
             } else {
                 return ItemStack.EMPTY;
             }
@@ -192,7 +194,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 player.addItem(slot.getItem());
                 offHand.set(ItemStack.EMPTY);
                 offHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.CHEST, ItemStack.EMPTY);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.CHEST, ItemStack.EMPTY);
             } else {
                 return ItemStack.EMPTY;
             }
@@ -201,7 +203,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 player.addItem(slot.getItem());
                 offHand.set(ItemStack.EMPTY);
                 offHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.LEGS, ItemStack.EMPTY);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.LEGS, ItemStack.EMPTY);
             } else {
                 return ItemStack.EMPTY;
             }
@@ -210,7 +212,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 player.addItem(slot.getItem());
                 offHand.set(ItemStack.EMPTY);
                 offHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.FEET, ItemStack.EMPTY);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.FEET, ItemStack.EMPTY);
             } else {
                 return ItemStack.EMPTY;
             }
@@ -224,22 +226,22 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
                 if (armor.getSlot() == EquipmentSlotType.HEAD && !armorSlots[0].hasItem()) {
                     armorSlots[0].set(itemstack1);
                     armorSlots[0].setChanged();
-                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.HEAD, itemstack1);
+                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.HEAD, itemstack1);
                     slotUpdated = true;
                 } else if (armor.getSlot() == EquipmentSlotType.CHEST && !armorSlots[1].hasItem()) {
                     armorSlots[1].set(itemstack1);
                     armorSlots[1].setChanged();
-                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.CHEST, itemstack1);
+                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.CHEST, itemstack1);
                     slotUpdated = true;
                 } else if (armor.getSlot() == EquipmentSlotType.LEGS && !armorSlots[2].hasItem()) {
                     armorSlots[2].set(itemstack1);
                     armorSlots[2].setChanged();
-                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.LEGS, itemstack1);
+                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.LEGS, itemstack1);
                     slotUpdated = true;
                 } else if (armor.getSlot() == EquipmentSlotType.FEET && !armorSlots[3].hasItem()) {
                     armorSlots[3].set(itemstack1);
                     armorSlots[3].setChanged();
-                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.FEET, itemstack1);
+                    ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.FEET, itemstack1);
                     slotUpdated = true;
                 }
             }
@@ -250,7 +252,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
             	if (!armorSlots[0].hasItem()) {
             		armorSlots[0].set(itemstack1);
             		armorSlots[0].setChanged();
-            		ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.HEAD, itemstack1);
+            		ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.HEAD, itemstack1);
             		slotUpdated = true;
             	}
             }
@@ -259,21 +261,21 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
             	if (!armorSlots[1].hasItem()) {
             		armorSlots[1].set(itemstack1);
             		armorSlots[1].setChanged();
-            		ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.CHEST, itemstack1);
+            		ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.CHEST, itemstack1);
             		slotUpdated = true;
             	}
             }
-            if ((itemstack1.getItem() instanceof SwordItem || itemstack1.getItem() instanceof SpearItem) && !mainHand.hasItem()) {
+            if ((itemstack1.getItem() instanceof SwordItem || itemstack1.getItem() instanceof HammerItem || itemstack1.getItem() instanceof SpearItem) && !mainHand.hasItem()) {
                 mainHand.set(itemstack1);
                 mainHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.MAINHAND, itemstack1);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.MELEE, itemstack1);
                 slotUpdated = true;
             }
 
             if (itemstack1.getItem() instanceof ShieldItem && !offHand.hasItem()) {
                 offHand.set(itemstack1);
                 offHand.setChanged();
-                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.OFFHAND, itemstack1);
+                ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.OFFHAND, itemstack1);
                 slotUpdated = true;
             }
 
@@ -331,17 +333,17 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     @Override
     public void slotChanged(Container p_71111_1_, int slot, ItemStack itemStack) {
         if (slot == mainHand.index) {
-            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.MAINHAND, itemStack);
+            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.MELEE, itemStack);
         } else if (slot == offHand.index) {
-            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.OFFHAND, itemStack);
+            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.OFFHAND, itemStack);
         } else if (slot == armorSlots[0].index) {
-            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.HEAD, itemStack);
+            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.HEAD, itemStack);
         } else if (slot == armorSlots[1].index) {
-            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.CHEST, itemStack);
+            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.CHEST, itemStack);
         } else if (slot == armorSlots[2].index) {
-            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.LEGS, itemStack);
+            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.LEGS, itemStack);
         } else if (slot == armorSlots[3].index) {
-            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, EquipmentSlotType.FEET, itemStack);
+            ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ExtendedEquipmentSlotType.FEET, itemStack);
         }
     }
 

@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+
 public class ExtendedHiredUnitHelper {
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
         if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getUnitOwner() instanceof ServerPlayerEntity) {
@@ -90,7 +92,7 @@ public class ExtendedHiredUnitHelper {
      * @param slot The slot type to update
      * @param item The new {@Link ItemStack} to be placed in the slot
      * */
-    public static void updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
+    public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {
             ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
             hirable.updateSlot(item, slot);

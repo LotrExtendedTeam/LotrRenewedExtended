@@ -5,6 +5,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 
@@ -29,6 +30,7 @@ public interface ExtendedHirableEntity {
 	 * 1 for 1.7.3->?.?.?
 	 * */
 	public static final int UNIT_INVENTORY_VERSION = 1;
+	public static final int INVENTORY_SIZE = 29;
 
 	/**
 	 * Gets the implementing NPCEntity using this ExtendedHirableEntity so we can use entity methods inside here
@@ -124,29 +126,42 @@ public interface ExtendedHirableEntity {
 
     void setStationary(boolean stationary);
 
-    default void updateSlot(ItemStack stack, EquipmentSlotType slot) {
-    	if (slot == EquipmentSlotType.HEAD) {
+    default void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {
+    	if (slot == ExtendedEquipmentSlotType.HEAD) {
     		getCustomInventory().setItem(9, stack);
-    		setNeedsSyncing();
-        } else if (slot == EquipmentSlotType.CHEST) {
+    		getThis().setItemSlot(EquipmentSlotType.HEAD, stack);
+        } else if (slot == ExtendedEquipmentSlotType.CHEST) {
         	getCustomInventory().setItem(10, stack);
-        	setNeedsSyncing();
-        } else if (slot == EquipmentSlotType.LEGS) {
+        	getThis().setItemSlot(EquipmentSlotType.CHEST, stack);
+        } else if (slot == ExtendedEquipmentSlotType.LEGS) {
         	getCustomInventory().setItem(11, stack);
-        	setNeedsSyncing();
-        } else if (slot == EquipmentSlotType.FEET) {
+        	getThis().setItemSlot(EquipmentSlotType.LEGS, stack);
+        } else if (slot == ExtendedEquipmentSlotType.FEET) {
         	getCustomInventory().setItem(12, stack);
-        	setNeedsSyncing();
-        } else if (slot == EquipmentSlotType.MAINHAND) {
+        	getThis().setItemSlot(EquipmentSlotType.FEET, stack);
+        } else if (slot == ExtendedEquipmentSlotType.MELEE) {
         	getCustomInventory().setItem(13, stack);
-        	setNeedsSyncing();
-        } else if (slot == EquipmentSlotType.OFFHAND) {
+        	getThis().npcItemsInv.setMeleeWeapon(stack);
+        } else if (slot == ExtendedEquipmentSlotType.RANGED) {
         	getCustomInventory().setItem(14, stack);
-        	setNeedsSyncing();
+        	getThis().npcItemsInv.setRangedWeapon(stack);
+        } else if (slot == ExtendedEquipmentSlotType.MOUNTED) {
+        	getCustomInventory().setItem(15, stack);
+        	getThis().npcItemsInv.setMeleeWeaponMounted(stack);
+        } else if (slot == ExtendedEquipmentSlotType.IDLE) {
+        	getCustomInventory().setItem(16, stack);
+        	getThis().npcItemsInv.setIdleItem(stack);
+        } else if (slot == ExtendedEquipmentSlotType.IDLE_MOUNTED) {
+        	getCustomInventory().setItem(17, stack);
+        	getThis().npcItemsInv.setIdleItemMounted(stack);
+        }  else if (slot == ExtendedEquipmentSlotType.OFFHAND) {
+        	getCustomInventory().setItem(18, stack);
+        	getThis().setItemSlot(EquipmentSlotType.OFFHAND, stack);
         }
+    	if(slot.isRenewedHandling()) {
+    		((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
+    	}
     }
-
-    void setNeedsSyncing();
 
     boolean isEquipmentOpen();
    
@@ -168,6 +183,10 @@ public interface ExtendedHirableEntity {
 
     public float getHiredUnitEquipmentDropChance(EquipmentSlotType p_205712_1_);
 
+    default public Inventory makeUnitInventory() {
+    	// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
+        return new Inventory(INVENTORY_SIZE);
+    }
     /**
      * Generated the base equipment for a hired unit from a hired unit equipment pool.
      * Don't impliment this method, instead call it in your entity finalize spawn method
@@ -176,27 +195,34 @@ public interface ExtendedHirableEntity {
 	default void setupUnitEquipment() {
     	// set initial entity base equipment based upon pools
     	// Also indicates if unit was spawned incorrectly if it spawns with no base equipment
-    	getCustomInventory().setItem(15, getUnitProfile().getEquipmentPools().getRandomHelmetStack(getThis().getRandom()));
-    	getCustomInventory().setItem(16, getUnitProfile().getEquipmentPools().getRandomChestplateStack(getThis().getRandom()));
-    	getCustomInventory().setItem(17, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(getThis().getRandom()));
-    	getCustomInventory().setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(getThis().getRandom()));
-    	getCustomInventory().setItem(19, getUnitProfile().getEquipmentPools().getRandomMeleeStack(getThis().getRandom()));
-    	getCustomInventory().setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(getThis().getRandom()));
+    	getCustomInventory().setItem(19, getUnitProfile().getEquipmentPools().getRandomHelmetStack(getThis().getRandom()));
+    	getCustomInventory().setItem(20, getUnitProfile().getEquipmentPools().getRandomChestplateStack(getThis().getRandom()));
+    	getCustomInventory().setItem(21, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(getThis().getRandom()));
+    	getCustomInventory().setItem(22, getUnitProfile().getEquipmentPools().getRandomBootsStack(getThis().getRandom()));
+    	getCustomInventory().setItem(23, getUnitProfile().getEquipmentPools().getRandomMeleeStack(getThis().getRandom()));
+    	getCustomInventory().setItem(24, getUnitProfile().getEquipmentPools().getRandomRangedStack(getThis().getRandom()));
+    	getCustomInventory().setItem(25, getUnitProfile().getEquipmentPools().getRandomMountedStack(getThis().getRandom()));
+    	getCustomInventory().setItem(26, getUnitProfile().getEquipmentPools().getRandomIdleStack(getThis().getRandom()));
+    	getCustomInventory().setItem(27, getUnitProfile().getEquipmentPools().getRandomIdleMountedStack(getThis().getRandom()));
+    	getCustomInventory().setItem(28, getUnitProfile().getEquipmentPools().getRandomOffhandStack(getThis().getRandom()));
+    	getThis().setItemSlot(EquipmentSlotType.HEAD, getCustomInventory().getItem(19));
+    	getThis().setItemSlot(EquipmentSlotType.CHEST, getCustomInventory().getItem(20));
+    	getThis().setItemSlot(EquipmentSlotType.LEGS, getCustomInventory().getItem(21));
+    	getThis().setItemSlot(EquipmentSlotType.FEET, getCustomInventory().getItem(22));
     	getThis().npcItemsInv.clearContent();
-    	getThis().npcItemsInv.setMeleeWeapon(ItemStack.EMPTY);
-    	getThis().npcItemsInv.setRangedWeapon(ItemStack.EMPTY);
-    	getThis().npcItemsInv.setMeleeWeaponMounted(ItemStack.EMPTY);
-    	if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+    	getThis().npcItemsInv.setMeleeWeapon(getCustomInventory().getItem(23));
+    	getThis().npcItemsInv.setRangedWeapon(getCustomInventory().getItem(24));
+    	getThis().npcItemsInv.setMeleeWeaponMounted(getCustomInventory().getItem(25));
+    	if(getUnitProfile().getEquipmentPools().isSetIdleFromPool()) {
+    		getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(26));
+    		getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(27));
+    	}else if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()){
     		getThis().npcItemsInv.setIdleItemsFromMeleeWeapons();
-    	}else if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()){
-    		getThis().npcItemsInv.setIdleItemsFromRangedWeapons();
     	}else {
-        	getThis().npcItemsInv.setIdleItem(ItemStack.EMPTY);
-        	getThis().npcItemsInv.setIdleItemMounted(ItemStack.EMPTY);
+    		getThis().npcItemsInv.setIdleItemsFromRangedWeapons();
     	}
+    	getThis().setItemSlot(EquipmentSlotType.OFFHAND, getCustomInventory().getItem(28));
     	((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
-    	// Needed to sync unit equipment on unit creation
-    	setNeedsSyncing();
     }
 
     /**
@@ -205,16 +231,25 @@ public interface ExtendedHirableEntity {
      * @param tag A CompoundNBT containing the saved inventory
      * */
 	default void loadHiredUnitInventory(CompoundNBT tag) {
-    	if(tag.contains("unit_inventory_version")) {
-    		if(tag.getInt("unit_inventory_version")==UNIT_INVENTORY_VERSION) {
-    			NonNullList<ItemStack> itemsStacks = NonNullList.withSize(21, ItemStack.EMPTY);
-    			ItemStackHelper.loadAllItems(tag, itemsStacks);
-    			for (int i = 0; i < 21; i++) {
+    	if(tag.contains("HiredUnitInventory")) {
+    		CompoundNBT unitInventory = tag.getCompound("HiredUnitInventory");
+    		if(unitInventory.isEmpty()) {
+    			ExtendedLog.error("Tried loading a Hired Unit Inventory with a empty inventory, dumping nbt and loading default base inventory!");
+    			ExtendedLog.error(tag.toString());
+    			setupUnitEquipment();
+    			return;
+    		}
+    		if(unitInventory.getInt("unit_inventory_version")==UNIT_INVENTORY_VERSION) {
+    			// 1.7.3 Added ranged, mounted, idle and idle mounted slots
+        		// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
+    			NonNullList<ItemStack> itemsStacks = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+    			ItemStackHelper.loadAllItems(unitInventory, itemsStacks);
+    			for (int i = 0; i < INVENTORY_SIZE; i++) {
     				getCustomInventory().setItem(i, itemsStacks.get(i));
     			}
     		}else {
     			ExtendedLog.error("Tried loading a Hired Unit Inventory with a malformed/unknown version number, dumping nbt and loading default base inventory!");
-    			ExtendedLog.error(tag.toString());
+    			ExtendedLog.error(unitInventory.toString());
     			setupUnitEquipment();
     			return;
     		}
@@ -242,17 +277,32 @@ public interface ExtendedHirableEntity {
     		getCustomInventory().setItem(11, itemsStacks.get(11));
     		getCustomInventory().setItem(12, itemsStacks.get(12));
     		getCustomInventory().setItem(13, itemsStacks.get(13));
-    		getCustomInventory().setItem(14, itemsStacks.get(14));
+    		// Leave player 14-17 (14:ranged, 15:mounted, 16:idle, 17:idle_mounted empty for player equipment)
+    		getCustomInventory().setItem(18, itemsStacks.get(14));
 
-    		getCustomInventory().setItem(15, itemsStacks.get(15));
-    		getCustomInventory().setItem(16, itemsStacks.get(16));
-    		getCustomInventory().setItem(17, itemsStacks.get(17));
-    		getCustomInventory().setItem(18, itemsStacks.get(18));
-    		getCustomInventory().setItem(19, itemsStacks.get(19));
-    		getCustomInventory().setItem(20, itemsStacks.get(20));
+    		getCustomInventory().setItem(19, itemsStacks.get(15));
+    		getCustomInventory().setItem(20, itemsStacks.get(16));
+    		getCustomInventory().setItem(21, itemsStacks.get(17));
+    		getCustomInventory().setItem(22, itemsStacks.get(18));
+    		getCustomInventory().setItem(23, itemsStacks.get(19));
+    		getCustomInventory().setItem(24, getUnitProfile().getEquipmentPools().getRandomRangedStack(getThis().getRandom()));
+    		getCustomInventory().setItem(25, getUnitProfile().getEquipmentPools().getRandomMountedStack(getThis().getRandom()));
+    		getCustomInventory().setItem(26, getUnitProfile().getEquipmentPools().getRandomIdleStack(getThis().getRandom()));
+    		getCustomInventory().setItem(27, getUnitProfile().getEquipmentPools().getRandomIdleMountedStack(getThis().getRandom()));
+    		getCustomInventory().setItem(28, itemsStacks.get(20));
     	}
-    	// Need to setup equipment on NBT load
-    	setNeedsSyncing();
+    	getThis().setItemSlot(EquipmentSlotType.HEAD, getCustomInventory().getItem(9).isEmpty() ? getCustomInventory().getItem(19) : getCustomInventory().getItem(9));
+    	getThis().setItemSlot(EquipmentSlotType.CHEST, getCustomInventory().getItem(10).isEmpty() ? getCustomInventory().getItem(20) : getCustomInventory().getItem(10));
+    	getThis().setItemSlot(EquipmentSlotType.LEGS, getCustomInventory().getItem(11).isEmpty() ? getCustomInventory().getItem(21) : getCustomInventory().getItem(11));
+    	getThis().setItemSlot(EquipmentSlotType.FEET, getCustomInventory().getItem(12).isEmpty() ? getCustomInventory().getItem(22) : getCustomInventory().getItem(12));
+    	getThis().npcItemsInv.clearContent();
+    	getThis().npcItemsInv.setMeleeWeapon(getCustomInventory().getItem(13).isEmpty() ? getCustomInventory().getItem(23) : getCustomInventory().getItem(13));
+    	getThis().npcItemsInv.setRangedWeapon(getCustomInventory().getItem(14).isEmpty() ? getCustomInventory().getItem(24) : getCustomInventory().getItem(14));
+    	getThis().npcItemsInv.setMeleeWeaponMounted(getCustomInventory().getItem(15).isEmpty() ? getCustomInventory().getItem(25) : getCustomInventory().getItem(15));
+    	getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(16).isEmpty() ? getCustomInventory().getItem(26) : getCustomInventory().getItem(16));
+        getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(17).isEmpty() ? getCustomInventory().getItem(27) : getCustomInventory().getItem(17));
+    	getThis().setItemSlot(EquipmentSlotType.OFFHAND, getCustomInventory().getItem(18).isEmpty() ? getCustomInventory().getItem(28) : getCustomInventory().getItem(18));
+    	((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
     }
 
     /**
@@ -261,13 +311,15 @@ public interface ExtendedHirableEntity {
      * @param tag A CompoundNBT to be saved to
      * */
     default void saveHiredUnitInventory(CompoundNBT tag) {
-    	tag.putInt("unit_inventory_version", UNIT_INVENTORY_VERSION);
     	// create temp NonNullList to save inventory to
-    	NonNullList<ItemStack> items = NonNullList.withSize(21, ItemStack.EMPTY);
-    	for (int i = 0; i < 21; i++) {
+    	NonNullList<ItemStack> items = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+    	for (int i = 0; i < INVENTORY_SIZE; i++) {
     		ItemStack item = getCustomInventory().getItem(i);
     		items.set(i, item);
     	}
-    	ItemStackHelper.saveAllItems(tag, items);
+    	CompoundNBT unitInventory = new CompoundNBT();
+    	unitInventory.putInt("unit_inventory_version", UNIT_INVENTORY_VERSION);
+    	ItemStackHelper.saveAllItems(unitInventory, items);
+    	tag.put("HiredUnitInventory", unitInventory);
     }
 }

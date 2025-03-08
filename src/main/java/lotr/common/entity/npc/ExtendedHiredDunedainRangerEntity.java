@@ -82,10 +82,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
     private static final DataParameter<Boolean> EQUIPMENT_OPEN = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class, DataSerializers.BOOLEAN);
 
-    // 9 inventory slots + 6 player equipment slots + 6 base equipment slots
-    private Inventory internalUnitInventory = new Inventory(21);
-    // Use to initiate equipment sync. This is done on creation, nbt load, and on inventory change
-    private boolean inventoryNeedsSetupSyncing = false;
+    private Inventory internalUnitInventory = makeUnitInventory();
 
 	public ExtendedHiredDunedainRangerEntity(EntityType<? extends ExtendedHiredDunedainRangerEntity> type, World w) {
         super(type, w);
@@ -309,7 +306,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         }
 
         checkStats();
-        synchronizeEquipment();
 
         if (tmpHealthLoaded && !healthUpdateFromTmpHealth) {
             this.setHealth(getTmpLastHealth());
@@ -321,23 +317,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
     private float getTmpLastHealth() {
         return this.entityData.get(TMP_LAST_HEALTH);
-    }
-
-    /**
-     * This method is run every tick on both the server to synchronize equipment
-     * Server will only sync equipment when changes are detected
-     */
-    public void synchronizeEquipment() {
-        // only sync inventory when it actually needs syncing
-        if(!level.isClientSide && inventoryNeedsSetupSyncing) {
-        	setItemSlot(EquipmentSlotType.HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
-            setItemSlot(EquipmentSlotType.CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
-            setItemSlot(EquipmentSlotType.LEGS, internalUnitInventory.getItem(11).isEmpty() ? internalUnitInventory.getItem(17) : internalUnitInventory.getItem(11));
-            setItemSlot(EquipmentSlotType.FEET, internalUnitInventory.getItem(12).isEmpty() ? internalUnitInventory.getItem(18) : internalUnitInventory.getItem(12));
-            setItemSlot(EquipmentSlotType.MAINHAND, internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(19) : internalUnitInventory.getItem(13));
-            setItemSlot(EquipmentSlotType.OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
-            inventoryNeedsSetupSyncing=false;
-        }
     }
 
     public void setOwnerUUID(@Nullable UUID p_184754_1_) {
@@ -535,10 +514,5 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	@Override
 	public NPCEntity getThis() {
 		return this;
-	}
-
-	@Override
-	public void setNeedsSyncing() {
-		this.inventoryNeedsSetupSyncing=true;
 	}
 }

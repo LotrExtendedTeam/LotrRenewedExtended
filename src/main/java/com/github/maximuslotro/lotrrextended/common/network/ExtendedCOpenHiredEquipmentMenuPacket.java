@@ -47,8 +47,10 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
             	return;
             }
             Inventory inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
-            for (int i = 9; i < 21; i++) {
-            	equipment.add(inventory.getItem(i));
+            for (int i = 9; i < 29; i++) {
+            	if(i<14 || (i>17 && i<24) || i==28) {
+            		equipment.add(inventory.getItem(i));
+            	}
             }
 
             // Prepare PacketBuffer with initialization data
