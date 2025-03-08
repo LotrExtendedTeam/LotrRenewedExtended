@@ -23,12 +23,22 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		// Bree Units
 		make().setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)
+		.addChestplatePoolItem(new ItemStack(Items.CHAINMAIL_CHESTPLATE), 2)
+		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 11373426), 1)
 		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 7823440), 1)
-		.addLeggingPoolItem(new ItemStack(Items.CHAINMAIL_LEGGINGS), 1)
+		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 5983041), 1)
+		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 9535090), 1)
+		.addLeggingPoolItem(new ItemStack(Items.CHAINMAIL_LEGGINGS), 2)
+		.addLeggingPoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_LEGGINGS, 11373426), 1)
+		.addLeggingPoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_LEGGINGS, 7823440), 1)
+		.addLeggingPoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_LEGGINGS, 5983041), 1)
+		.addLeggingPoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_LEGGINGS, 9535090), 1)
 		.addBootsPoolItem(new ItemStack(Items.CHAINMAIL_BOOTS), 1)
+		.addBootsPoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_BOOTS, 7823440), 2)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(Items.IRON_SWORD), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.BREE_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool()
 		.save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
 
 		// Gundabad Units
@@ -82,6 +92,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 			.addShieldItem(new ItemStack(LOTRItems.MORDOR_SHIELD.get()), 3)
 			.addShieldItem(new ItemStack(ExtendedItems.GUNDABAD_SHIELD.get()), 1)
 			.addShieldItem(ItemStack.EMPTY, 2)
+			.setIdlePoolFromMeleePool()
 			.save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
 		
 		//Dunedain Units
@@ -90,10 +101,17 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.addChestplatePoolItem(new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()), 1)
 		.addBootsPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()), 1)
-		.addMeleePoolItem(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 4)
+		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 2)
+		.addMeleePoolItem(new ItemStack(ExtendedItems.BARROW_BLADE.get()), 2)
 		.addMeleePoolItem(new ItemStack(Items.IRON_SWORD), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 2)
+		.setIdlePoolFromRangedPool()
 		.save(pConsumer, ExtendedHiredUnitTypes.DUNEDAIN_RANGER);
 	}
 

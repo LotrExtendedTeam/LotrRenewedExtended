@@ -14,6 +14,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
@@ -217,8 +218,12 @@ public interface ExtendedHirableEntity {
     		getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(26));
     		getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(27));
     	}else if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()){
+    		getCustomInventory().setItem(26, getCustomInventory().getItem(23));
+        	getCustomInventory().setItem(27, getCustomInventory().getItem(25));
     		getThis().npcItemsInv.setIdleItemsFromMeleeWeapons();
     	}else {
+    		getCustomInventory().setItem(26, getCustomInventory().getItem(24));
+        	getCustomInventory().setItem(27, getCustomInventory().getItem(24));
     		getThis().npcItemsInv.setIdleItemsFromRangedWeapons();
     	}
     	getThis().setItemSlot(EquipmentSlotType.OFFHAND, getCustomInventory().getItem(28));
@@ -262,6 +267,8 @@ public interface ExtendedHirableEntity {
     		ExtendedLog.error("Loaded Hired Unit Inventory in format [0]. Upgrading inventory to format ["+UNIT_INVENTORY_VERSION+"]");
     		NonNullList<ItemStack> itemsStacks = NonNullList.withSize(21, ItemStack.EMPTY);
     		ItemStackHelper.loadAllItems(tag, itemsStacks);
+    		// Load old item slot index into new positions
+    		// Food
     		getCustomInventory().setItem(0, itemsStacks.get(0));
     		getCustomInventory().setItem(1, itemsStacks.get(1));
     		getCustomInventory().setItem(2, itemsStacks.get(2));
@@ -271,26 +278,47 @@ public interface ExtendedHirableEntity {
     		getCustomInventory().setItem(6, itemsStacks.get(6));
     		getCustomInventory().setItem(7, itemsStacks.get(7));
     		getCustomInventory().setItem(8, itemsStacks.get(8));
-
-    		getCustomInventory().setItem(9, itemsStacks.get(9));
-    		getCustomInventory().setItem(10, itemsStacks.get(10));
-    		getCustomInventory().setItem(11, itemsStacks.get(11));
-    		getCustomInventory().setItem(12, itemsStacks.get(12));
-    		getCustomInventory().setItem(13, itemsStacks.get(13));
-    		// Leave player 14-17 (14:ranged, 15:mounted, 16:idle, 17:idle_mounted empty for player equipment)
-    		getCustomInventory().setItem(18, itemsStacks.get(14));
-
-    		getCustomInventory().setItem(19, itemsStacks.get(15));
-    		getCustomInventory().setItem(20, itemsStacks.get(16));
-    		getCustomInventory().setItem(21, itemsStacks.get(17));
-    		getCustomInventory().setItem(22, itemsStacks.get(18));
-    		getCustomInventory().setItem(23, itemsStacks.get(19));
+    		// Equipment
+    		getCustomInventory().setItem(9, itemsStacks.get(9)); //Player Helmet
+    		getCustomInventory().setItem(10, itemsStacks.get(10)); //Player Chestplate
+    		getCustomInventory().setItem(11, itemsStacks.get(11)); //Player Leggings
+    		getCustomInventory().setItem(12, itemsStacks.get(12)); //Player Boots
+    		getCustomInventory().setItem(13, itemsStacks.get(13)); //Player Melee
+    		// Player 14-17 (14:ranged, 15:mounted, 16:idle, 17:idle_mounted empty for player equipment)
+    		// Catch bows in melee slot from 1.7.2 and before and put in ranged slot
+    		if(getCustomInventory().getItem(13).getItem() instanceof BowItem) {
+    			getCustomInventory().setItem(14, getCustomInventory().getItem(13)); //Player Ranged
+    			getCustomInventory().setItem(13, ItemStack.EMPTY);
+    		}
+    		// Move player offhand item to new index
+    		getCustomInventory().setItem(18, itemsStacks.get(14)); //Player Offhand
+    		// Try to catch updaing unit inventory from 1.7.1 when base equipment will just be empty
+    		getCustomInventory().setItem(19, itemsStacks.get(15).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomHelmetStack(getThis().getRandom()) : itemsStacks.get(15));
+    		getCustomInventory().setItem(20, itemsStacks.get(16).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomChestplateStack(getThis().getRandom()) : itemsStacks.get(16));
+    		getCustomInventory().setItem(21, itemsStacks.get(17).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomLeggingsStack(getThis().getRandom()) : itemsStacks.get(17));
+    		getCustomInventory().setItem(22, itemsStacks.get(18).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomBootsStack(getThis().getRandom()) : itemsStacks.get(18));
+    		getCustomInventory().setItem(23, itemsStacks.get(19).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomMeleeStack(getThis().getRandom()) : itemsStacks.get(19));
+    		// Catch base bows in base melee slot from 1.7.2 and update
+    		if(getCustomInventory().getItem(23).getItem() instanceof BowItem) {
+    			getCustomInventory().setItem(23, getUnitProfile().getEquipmentPools().getRandomMeleeStack(getThis().getRandom()));
+    		}
+    		// Update inventory from 1.7.2 by generating missing fields
     		getCustomInventory().setItem(24, getUnitProfile().getEquipmentPools().getRandomRangedStack(getThis().getRandom()));
     		getCustomInventory().setItem(25, getUnitProfile().getEquipmentPools().getRandomMountedStack(getThis().getRandom()));
     		getCustomInventory().setItem(26, getUnitProfile().getEquipmentPools().getRandomIdleStack(getThis().getRandom()));
     		getCustomInventory().setItem(27, getUnitProfile().getEquipmentPools().getRandomIdleMountedStack(getThis().getRandom()));
+    		// Handle idle item logic
+    		if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()){
+    			getCustomInventory().setItem(26, getCustomInventory().getItem(23));
+    			getCustomInventory().setItem(27, getCustomInventory().getItem(25));
+    		}else if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()){
+    			getCustomInventory().setItem(26, getCustomInventory().getItem(24));
+    			getCustomInventory().setItem(27, getCustomInventory().getItem(24));
+    		}
+    		// Finally move base offhand item to new index
     		getCustomInventory().setItem(28, itemsStacks.get(20));
     	}
+    	// Lastly update the entity's equipment slots and renewed item inventory with upgraded inventory layout
     	getThis().setItemSlot(EquipmentSlotType.HEAD, getCustomInventory().getItem(9).isEmpty() ? getCustomInventory().getItem(19) : getCustomInventory().getItem(9));
     	getThis().setItemSlot(EquipmentSlotType.CHEST, getCustomInventory().getItem(10).isEmpty() ? getCustomInventory().getItem(20) : getCustomInventory().getItem(10));
     	getThis().setItemSlot(EquipmentSlotType.LEGS, getCustomInventory().getItem(11).isEmpty() ? getCustomInventory().getItem(21) : getCustomInventory().getItem(11));

@@ -23,19 +23,75 @@
     ],
     "chestplates": [
       {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "minecraft:chainmail_chestplate",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_chestplate",
+          "nbt": "{display:{color:11373426,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
         "weight": 1,
         "equipmentItem": {
           "item": "minecraft:leather_chestplate",
           "nbt": "{display:{color:7823440,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
         }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_chestplate",
+          "nbt": "{display:{color:5983041,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_chestplate",
+          "nbt": "{display:{color:9535090,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
       }
     ],
     "leggings": [
       {
-        "weight": 1,
+        "weight": 2,
         "equipmentItem": {
           "item": "minecraft:chainmail_leggings",
           "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_leggings",
+          "nbt": "{display:{color:11373426,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_leggings",
+          "nbt": "{display:{color:7823440,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_leggings",
+          "nbt": "{display:{color:5983041,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:leather_leggings",
+          "nbt": "{display:{color:9535090,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
         }
       }
     ],
@@ -45,6 +101,13 @@
         "equipmentItem": {
           "item": "minecraft:chainmail_boots",
           "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.boots\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "minecraft:leather_boots",
+          "nbt": "{display:{color:7823440,Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.boots\"}'},Damage:0,IsBaseArmor:1b}"
         }
       }
     ],
@@ -66,6 +129,7 @@
     ],
     "ranged": [],
     "mounted": [],
+    "setIdleFromRanged": true,
     "idle": [],
     "idle_mounted": [],
     "offhand": [
