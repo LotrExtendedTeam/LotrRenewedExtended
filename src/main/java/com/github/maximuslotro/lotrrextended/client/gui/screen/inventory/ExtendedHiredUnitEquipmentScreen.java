@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.Objects;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
@@ -11,10 +10,10 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -30,7 +29,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
     DecimalFormat df = new DecimalFormat("#.#");
     int sidebarX;
 
-    private LivingEntity entity = null;
+    private final NPCEntity entity;
 
     public ExtendedHiredUnitEquipmentScreen(ExtendedHiredUnitEquipmentContainer container, PlayerInventory playerInventory, ITextComponent title) {
         super(container, playerInventory, title);
@@ -42,11 +41,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         df.setRoundingMode(RoundingMode.CEILING);
         sidebarX = 90;
 
-        if (playerInventory.player.level.getEntity(container.getEntityId()) != null) {
-           if (playerInventory.player.level.getEntity(container.getEntityId()) instanceof LivingEntity) {
-               this.entity = (LivingEntity) playerInventory.player.level.getEntity(container.getEntityId());
-           }
-        }
+        entity = menu.getCompanion();
     }
 
     @Override
@@ -67,11 +62,14 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         	if(getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem() && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
         		renderBaseGearSlot(leftPos + 25, topPos + 85, getMenu().getBaseInventory().getItem(3));
         	}
-        	if(getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
-        		renderBaseGearSlot(leftPos + 61 + 18, topPos + 67, getMenu().getBaseInventory().getItem(4));
+        	if(getMenu().getMeleeSlot()!=null && !getMenu().getMeleeSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
+        		renderBaseGearSlot(leftPos + 79, topPos + 67, getMenu().getBaseInventory().getItem(4));
         	}
-        	if(getMenu().getOffHand()!=null && (!getMenu().getOffHand().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty())) {
-        		renderBaseGearSlot(leftPos + 61 + 18, topPos + 85, getMenu().getBaseInventory().getItem(5));
+        	if(getMenu().getRangedSlot()!=null && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
+        		renderBaseGearSlot(leftPos + 79, topPos + 49, getMenu().getBaseInventory().getItem(5));
+        	}
+        	if(getMenu().getOffhandSlot()!=null && (!getMenu().getOffhandSlot().hasItem() && !getMenu().getBaseInventory().getItem(9).isEmpty())) {
+        		renderBaseGearSlot(leftPos + 79, topPos + 85, getMenu().getBaseInventory().getItem(9));
         	}
         }
 
@@ -116,28 +114,31 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         super.renderTooltip(stack, x, y);
 
         // render tooltips for base gear
-        if (isHovering(25, 31, x, y) && getMenu().getArmorSlots()[0]!=null && !getMenu().getArmorSlots()[0].hasItem() && !getMenu().getBaseInventory().getItem(0).isEmpty()) {
+        if (isHovering(25, 31, x, y) && !getMenu().getArmorSlots()[0].hasItem() && !getMenu().getBaseInventory().getItem(0).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(0), x, y);
         }
-        if (isHovering(25, 49, x, y) && getMenu().getArmorSlots()[1]!=null && !getMenu().getArmorSlots()[1].hasItem() && !getMenu().getBaseInventory().getItem(1).isEmpty()) {
+        if (isHovering(25, 49, x, y) && !getMenu().getArmorSlots()[1].hasItem() && !getMenu().getBaseInventory().getItem(1).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(1), x, y);
         }
-        if (isHovering(25, 67, x, y) && getMenu().getArmorSlots()[2]!=null && !getMenu().getArmorSlots()[2].hasItem() && !getMenu().getBaseInventory().getItem(2).isEmpty()) {
+        if (isHovering(25, 67, x, y) && !getMenu().getArmorSlots()[2].hasItem() && !getMenu().getBaseInventory().getItem(2).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(2), x, y);
         }
-        if (isHovering(25, 85, x, y) && getMenu().getArmorSlots()[3]!=null && !getMenu().getArmorSlots()[3].hasItem() && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
+        if (isHovering(25, 85, x, y) && !getMenu().getArmorSlots()[3].hasItem() && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(3), x, y);
         }
-        if (isHovering(62 + 18, 67, x, y) && getMenu().getMainHand()!=null && !getMenu().getMainHand().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
+        if (isHovering(79, 67, x, y) && !getMenu().getMeleeSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), x, y);
         }
-        if (isHovering(62 + 18, 85, x, y) && getMenu().getOffHand()!=null && !getMenu().getOffHand().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
+        if (isHovering(79, 49, x, y) && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(5), x, y);
+        }
+        if (isHovering(79, 85, x, y) && !getMenu().getOffhandSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
+            this.renderTooltip(stack, getMenu().getBaseInventory().getItem(9), x, y);
         }
     }
 
     private void openMainMenu() {
-        ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(menu.getEntityId()));
+        ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(menu.entityId));
     }
 
     private void renderBaseGearSlot(int slotX, int slotY, ItemStack item) {

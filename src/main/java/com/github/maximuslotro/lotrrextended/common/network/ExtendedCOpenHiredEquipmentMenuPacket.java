@@ -40,7 +40,7 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
     public static void handle(ExtendedCOpenHiredEquipmentMenuPacket msg, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             // fill in equipment array list
-            final List<ItemStack> equipment = new ArrayList<>(12);
+            final List<ItemStack> equipment = new ArrayList<>(20);
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
             if(!(entity instanceof ExtendedHirableEntity)) {
             	context.get().setPacketHandled(true);
@@ -48,9 +48,7 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
             }
             Inventory inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
             for (int i = 9; i < 29; i++) {
-            	if(i<14 || (i>17 && i<24) || i==28) {
-            		equipment.add(inventory.getItem(i));
-            	}
+            	equipment.add(inventory.getItem(i));
             }
 
             // Prepare PacketBuffer with initialization data
