@@ -133,7 +133,8 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
 
-    public Optional<UUID> getPlayerInteractingWith() {
+    @Override
+	public Optional<UUID> getPlayerInteractingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 

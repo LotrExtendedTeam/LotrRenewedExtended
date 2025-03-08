@@ -63,7 +63,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         		renderBaseGearSlot(leftPos + 25, topPos + 85, getMenu().getBaseInventory().getItem(3));
         	}
         	if(getMenu().getMeleeSlot()!=null && !getMenu().getMeleeSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
-        		renderBaseGearSlot(leftPos + 79, topPos + 67, getMenu().getBaseInventory().getItem(4));
+        		renderBaseGearSlot(leftPos + 44, topPos + 67, getMenu().getBaseInventory().getItem(4));
         	}
         	if(getMenu().getRangedSlot()!=null && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
         		renderBaseGearSlot(leftPos + 79, topPos + 49, getMenu().getBaseInventory().getItem(5));

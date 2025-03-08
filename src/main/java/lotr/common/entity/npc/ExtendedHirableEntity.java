@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotT
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 
-import lotr.common.entity.npc.ai.ExtendedNPCCombatUpdater;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -237,7 +236,7 @@ public interface ExtendedHirableEntity {
     		getThis().npcItemsInv.setIdleItemsFromRangedWeapons();
     	}
     	getThis().setItemSlot(EquipmentSlotType.OFFHAND, getCustomInventory().getItem(28));
-    	((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
+    	getThis().getNPCCombatUpdater().refreshCurrentAttackMode();
     }
 
     /**
@@ -340,7 +339,7 @@ public interface ExtendedHirableEntity {
     	getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(16).isEmpty() ? getCustomInventory().getItem(26) : getCustomInventory().getItem(16));
         getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(17).isEmpty() ? getCustomInventory().getItem(27) : getCustomInventory().getItem(17));
     	getThis().setItemSlot(EquipmentSlotType.OFFHAND, getCustomInventory().getItem(18).isEmpty() ? getCustomInventory().getItem(28) : getCustomInventory().getItem(18));
-    	((ExtendedNPCCombatUpdater)getThis().getNPCCombatUpdater()).refreshHand();
+    	getThis().getNPCCombatUpdater().refreshCurrentAttackMode();
     }
 
     /**

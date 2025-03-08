@@ -1,13 +1,16 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 
 import lotr.common.init.ExtendedItems;
+import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 
 public class ExtendedItemModelsProperties {
 
@@ -16,6 +19,13 @@ public class ExtendedItemModelsProperties {
 	public static ResourceLocation poisoned = new ResourceLocation("lotrextended", "poisoned");
 	public static ResourceLocation pull = new ResourceLocation("lotrextended", "pull");
 	public static ResourceLocation pulling = new ResourceLocation("lotrextended", "pulling");
+
+	public static void addGuiItemSprites(TextureStitchEvent.Pre event) {
+		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
+			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_BOW);
+			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_SWORD);
+		}
+	}
 
 	public static void registerAlternativeHandheldTextures() {
 		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> {

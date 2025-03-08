@@ -8,14 +8,12 @@ import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipment
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.RangedSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.MeleeSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.OffhandSlot;
-import com.mojang.datafixers.util.Pair;
 
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
@@ -37,16 +35,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 	private OffhandSlot offhandSlot;
 	private RangedSlot rangedSlot;
     public final int entityId;
-
-    public static final ResourceLocation EMPTY_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
-    public static final ResourceLocation EMPTY_SLOT_CHESTPLATE = new ResourceLocation("item/empty_armor_slot_chestplate");
-    public static final ResourceLocation EMPTY_SLOT_LEGGINGS = new ResourceLocation("item/empty_armor_slot_leggings");
-    public static final ResourceLocation EMPTY_SLOT_BOOTS = new ResourceLocation("item/empty_armor_slot_boots");
-    public static final ResourceLocation EMPTY_SLOT_SHIELD = new ResourceLocation("item/empty_armor_slot_shield");
-    public static final ResourceLocation EMPTY_SLOT_BOW = new ResourceLocation("lotrextended"+"item/empty_equipment_slot_bow");
-    public static final ResourceLocation EMPTY_SLOT_SWORD = new ResourceLocation("lotrextended"+"item/empty_equipment_slot_sword");
-    private static final ResourceLocation[] TEXTURE_EMPTY_SLOTS = new ResourceLocation[]{EMPTY_SLOT_BOOTS, EMPTY_SLOT_LEGGINGS, EMPTY_SLOT_CHESTPLATE, EMPTY_SLOT_HELMET};
-    private static final EquipmentSlotType[] SLOT_IDS = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
+    public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation("lotrextended", "item/empty_armor_slot_bow");
+    public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation("lotrextended", "item/empty_armor_slot_sword");
 
     private NPCEntity companion;
 
@@ -101,30 +91,15 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         }
 
         // setup 4 custom armor slots
-        armorSlots[0]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 0, 8, 31, ExtendedEquipmentSlotType.HEAD, EMPTY_SLOT_HELMET));
-        armorSlots[1]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 1, 8, 49, ExtendedEquipmentSlotType.CHEST, EMPTY_SLOT_CHESTPLATE));
-        armorSlots[2]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 2, 8, 67, ExtendedEquipmentSlotType.LEGS, EMPTY_SLOT_LEGGINGS));
-        armorSlots[3]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 3, 8, 85, ExtendedEquipmentSlotType.FEET, EMPTY_SLOT_BOOTS));
+        armorSlots[0]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 0, 8, 31, ExtendedEquipmentSlotType.HEAD, PlayerContainer.EMPTY_ARMOR_SLOT_HELMET));
+        armorSlots[1]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 1, 8, 49, ExtendedEquipmentSlotType.CHEST, PlayerContainer.EMPTY_ARMOR_SLOT_CHESTPLATE));
+        armorSlots[2]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 2, 8, 67, ExtendedEquipmentSlotType.LEGS, PlayerContainer.EMPTY_ARMOR_SLOT_LEGGINGS));
+        armorSlots[3]=(ArmorSlot)this.addSlot(new CompanionEquipmentSlot.ArmorSlot(playerEquipment, 3, 8, 85, ExtendedEquipmentSlotType.FEET, PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS));
 
         // Setup hand slots
-        meleeSlot = (MeleeSlot)this.addSlot(new CompanionEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67)  {
-            @Override
-			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                return Pair.of(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_SWORD);
-            }
-        });
-        rangedSlot = (RangedSlot)this.addSlot(new CompanionEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49)  {
-            @Override
-			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                return Pair.of(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_BOW);
-            }
-        });
-        offhandSlot = (OffhandSlot)this.addSlot(new CompanionEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85)  {
-            @Override
-			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                return Pair.of(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_SHIELD);
-            }
-        });
+        meleeSlot = (MeleeSlot)this.addSlot(new CompanionEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67, EMPTY_ARMOR_SLOT_SWORD));
+        rangedSlot = (RangedSlot)this.addSlot(new CompanionEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_ARMOR_SLOT_BOW));
+        offhandSlot = (OffhandSlot)this.addSlot(new CompanionEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
 
         this.addSlotListener(this);
     }
@@ -148,7 +123,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     			// Handle shift-clicking equipment and sending it to the unit's inventory
     			ItemStack shiftingItem = slot.getItem();
 
-    			CompanionEquipmentSlot[] equipmentslots = new CompanionEquipmentSlot[4];
+    			CompanionEquipmentSlot[] equipmentslots = new CompanionEquipmentSlot[7];
     			equipmentslots[0] = armorSlots[0];
     			equipmentslots[1] = armorSlots[1];
     			equipmentslots[2] = armorSlots[2];
@@ -245,5 +220,9 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
 	public NPCEntity getCompanion() {
 		return companion;
+	}
+
+	public int getEntityId() {
+		return entityId;
 	}
 }

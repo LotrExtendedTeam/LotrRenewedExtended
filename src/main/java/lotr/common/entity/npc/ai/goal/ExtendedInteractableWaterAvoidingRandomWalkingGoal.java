@@ -14,7 +14,8 @@ public class ExtendedInteractableWaterAvoidingRandomWalkingGoal extends WaterAvo
         this.interactableEntity = interactableEntity;
     }
 
-    public boolean canUse() {
+    @Override
+	public boolean canUse() {
         if (!interactableEntity.isInteractingWithPlayer()) {
             return super.canUse();
         } else {
@@ -22,7 +23,8 @@ public class ExtendedInteractableWaterAvoidingRandomWalkingGoal extends WaterAvo
         }
     }
 
-    public boolean canContinueToUse() {
+    @Override
+	public boolean canContinueToUse() {
         if (!interactableEntity.isInteractingWithPlayer()) {
             return super.canContinueToUse();
         } else {

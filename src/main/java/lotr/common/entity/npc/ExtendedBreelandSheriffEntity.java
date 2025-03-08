@@ -168,7 +168,8 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
         SUIT_COLORS = new int[]{11373426, 7823440, 5983041, 9535090};
     }
 
-    protected NPCGenderProvider getGenderProvider() {
+    @Override
+	protected NPCGenderProvider getGenderProvider() {
         return NPCGenderProvider.MALE;
     }
 

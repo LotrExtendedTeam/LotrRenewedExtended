@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.inventory;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
-import com.mojang.datafixers.util.Pair;
 
 import lotr.common.item.HammerItem;
 import lotr.common.item.SpearItem;
@@ -33,10 +32,9 @@ public abstract class CompanionEquipmentSlot extends Slot{
 	public abstract boolean mayPlaceShifting(ItemStack itemStack);
 
 	public static class ArmorSlot extends CompanionEquipmentSlot{
-		private final ResourceLocation EMPTY_SLOT_LOCATION;
 		public ArmorSlot(IInventory pContainer, int pIndex, int pX, int pY, ExtendedEquipmentSlotType equipmentSlotType, ResourceLocation empty_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, equipmentSlotType);
-			this.EMPTY_SLOT_LOCATION = empty_SLOT_LOCATION;
+			setBackground(PlayerContainer.BLOCK_ATLAS, empty_SLOT_LOCATION);
 		}
 
 		@Override
@@ -62,19 +60,15 @@ public abstract class CompanionEquipmentSlot extends Slot{
 		}
 
 		@Override
-		public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-			return Pair.of(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
-		}
-
-		@Override
 		public boolean mayPlaceShifting(ItemStack itemStack) {
 			return mayPlace(itemStack);
 		}
 	}
 
 	public static class RangedSlot extends CompanionEquipmentSlot{
-		public RangedSlot(IInventory pContainer, int pIndex, int pX, int pY) {
+		public RangedSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.RANGED);
+			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
 		}
 
 		@Override
@@ -89,8 +83,9 @@ public abstract class CompanionEquipmentSlot extends Slot{
 	}
 
 	public static class MeleeSlot extends CompanionEquipmentSlot{
-		public MeleeSlot(IInventory pContainer, int pIndex, int pX, int pY) {
+		public MeleeSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.MELEE);
+			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
 		}
 
 		@Override
@@ -105,8 +100,9 @@ public abstract class CompanionEquipmentSlot extends Slot{
 	}
 
 	public static class OffhandSlot extends CompanionEquipmentSlot{
-		public OffhandSlot(IInventory pContainer, int pIndex, int pX, int pY) {
+		public OffhandSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.OFFHAND);
+			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
 		}
 
 		@Override

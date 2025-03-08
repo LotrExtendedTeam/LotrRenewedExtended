@@ -70,6 +70,7 @@ public class LotrExtendedModClient {
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 		modBus.addListener(ExtendedColorHelper::makeBlockColors);
+		modBus.addListener(ExtendedItemModelsProperties::addGuiItemSprites);
 		modBus.addListener(ExtendedColorHelper::makeItemsColors);
 		ExtendedClientConfig.register();
 		//Moved to Mixin
