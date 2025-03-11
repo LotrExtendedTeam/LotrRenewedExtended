@@ -4,6 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -26,6 +27,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHiredUnitEquipmentContainer> implements IHasContainer<ExtendedHiredUnitEquipmentContainer> {
 
     private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_upgrade_equipment_menu.png");
+    private static final ResourceLocation CONTAINER_BACKGROUND_MELEE = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_upgrade_equipment_menu_melee.png");
+
     DecimalFormat df = new DecimalFormat("0.0");
 
     private final NPCEntity entity;
@@ -84,7 +87,11 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
 	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
+        if(menu.menuType==ExtendedUnitAttackType.RANGED) {
+            this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
+        }else {
+            this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND_MELEE);
+        }
         this.blit(p_98413_, leftPos, topPos+2, 0, 0, imageWidth, imageHeight);
     }
 
@@ -128,7 +135,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
         if (isHovering(44, 67, x, y) && !getMenu().getMeleeSlot().hasItem() && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), x, y);
         }
-        if (isHovering(44, 49, x, y) && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
+        if (getMenu().getRangedSlot()!=null && isHovering(44, 49, x, y) && !getMenu().getRangedSlot().hasItem() && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
             this.renderTooltip(stack, getMenu().getBaseInventory().getItem(5), x, y);
         }
         if (isHovering(44, 85, x, y) && !getMenu().getOffhandSlot().hasItem() && !getMenu().getBaseInventory().getItem(9).isEmpty()) {

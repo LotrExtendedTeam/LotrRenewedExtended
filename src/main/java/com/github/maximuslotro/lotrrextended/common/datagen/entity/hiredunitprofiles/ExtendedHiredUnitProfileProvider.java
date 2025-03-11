@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.google.gson.Gson;
@@ -85,8 +86,8 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 		return "Extended Hired Unit Profile Provider";
 	}
 
-	public ExtendedHiredUnitProfile.Builder make() {
-		return new ExtendedHiredUnitProfile.Builder();
+	public ExtendedHiredUnitProfile.Builder make(ExtendedUnitAttackType pAttackType) {
+		return new ExtendedHiredUnitProfile.Builder(pAttackType);
 	}
 
 }

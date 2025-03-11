@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -22,7 +23,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000);
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitAttackType.MELEE);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -32,8 +33,9 @@ public class ExtendedHiredUnitProfile {
 	private final int hiringCost;
 	private final boolean hiringRequiresPledge;
 	private final int hiringAlignmentRequired;
+	private final ExtendedUnitAttackType attackType;
 
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired) {
+	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitAttackType attackType) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -43,6 +45,7 @@ public class ExtendedHiredUnitProfile {
 		this.hiringCost = hiringCost;
 		this.hiringRequiresPledge = hiringRequiresPledge;
 		this.hiringAlignmentRequired = hiringAlignmentRequired;
+		this.attackType = attackType;
 	}
 
 	/*
@@ -121,6 +124,15 @@ public class ExtendedHiredUnitProfile {
 		return hiringAlignmentRequired;
 	}
 
+	/**
+	 * Gets the attack type enum for this profile
+	 * @see ExtendedUnitAttackType
+	 * @return The attack type enum instance
+	 * */
+	public ExtendedUnitAttackType getAttackType() {
+		return attackType;
+	}
+	
 	/*
 	 * Serializer for ExtendedHiredUnitProfile
 	 * */
@@ -144,9 +156,11 @@ public class ExtendedHiredUnitProfile {
 			int hiringCost = hiringObject.get("hiringCost").getAsInt();
 			boolean hiringRequiresPledge = hiringObject.get("hiringRequiresPledge").getAsBoolean();
 			int hiringAlignmentRequired = hiringObject.get("hiringAlignmentRequired").getAsInt();
+			// Attack information
+			ExtendedUnitAttackType attackType = ExtendedUnitAttackType.byName(languageObject.get("attack_type").getAsString());
 			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
-			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
+			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType);
 		}
 
 		@Override
@@ -166,6 +180,8 @@ public class ExtendedHiredUnitProfile {
 			hiringObject.addProperty("hiringRequiresPledge", unitProfile.isHiringRequiresPledge());
 			hiringObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
 			jsonobject.add("hiring", hiringObject);
+			// Attack information
+			languageObject.addProperty("attack_type", unitProfile.getAttackType().getAttackTypeName());
 			// Equipment
 			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;
@@ -182,8 +198,10 @@ public class ExtendedHiredUnitProfile {
 		private int hiringCost;
 		private boolean hiringRequiresPledge;
 		private int hiringAlignmentRequired;
+		private ExtendedUnitAttackType attackType;
 
-		public Builder() {
+		public Builder(ExtendedUnitAttackType pAttackType) {
+			this.attackType = pAttackType;
 		}
 
 		/**
@@ -243,11 +261,15 @@ public class ExtendedHiredUnitProfile {
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addRangedPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addRangedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_ranged"), weight);
+			if(attackType.isCanBeRanged()) {
+				equipmentPools.addRangedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_ranged"), weight);
+			}
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addMountedPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addMountedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_mounted"), weight);
+			if(attackType.isMounted()) {
+				equipmentPools.addMountedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_mounted"), weight);
+			}
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addIdlePoolItem(ItemStack stack, int weight) {
@@ -255,7 +277,9 @@ public class ExtendedHiredUnitProfile {
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addIdleMountedPoolItem(ItemStack stack, int weight) {
-			equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle_mounted"), weight);
+			if(attackType.isMounted()) {
+				equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle_mounted"), weight);
+			}
 			return this;
 		}
 		public ExtendedHiredUnitProfile.Builder addShieldItem(ItemStack stack, int weight) {
@@ -286,7 +310,7 @@ public class ExtendedHiredUnitProfile {
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
 		public ExtendedHiredUnitProfile build(ResourceLocation id) {
-			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired);
+			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType);
 			return spawner;
 		}
 

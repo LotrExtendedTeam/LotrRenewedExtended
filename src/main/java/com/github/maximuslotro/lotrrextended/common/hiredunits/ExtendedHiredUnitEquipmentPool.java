@@ -225,18 +225,36 @@ public class ExtendedHiredUnitEquipmentPool {
 			jsonobject.add("chestplates", context.serialize(unitEquipmentInstance.chestplatePool));
 			jsonobject.add("leggings", context.serialize(unitEquipmentInstance.leggingPool));
 			jsonobject.add("boots", context.serialize(unitEquipmentInstance.bootsPool));
-			jsonobject.add("melee", context.serialize(unitEquipmentInstance.meleePool));
-			jsonobject.add("ranged", context.serialize(unitEquipmentInstance.rangedPool));
-			jsonobject.add("mounted", context.serialize(unitEquipmentInstance.mountedPool));
 			if(unitEquipmentInstance.setIdleFromMelee) {
 				jsonobject.addProperty("setIdleFromMelee", unitEquipmentInstance.setIdleFromMelee);
 			}
 			if(unitEquipmentInstance.setIdleFromRanged) {
 				jsonobject.addProperty("setIdleFromRanged", unitEquipmentInstance.setIdleFromRanged);
 			}
-			jsonobject.add("idle", context.serialize(unitEquipmentInstance.idlePool));
-			jsonobject.add("idle_mounted", context.serialize(unitEquipmentInstance.idleMountedPool));
-			jsonobject.add("offhand", context.serialize(unitEquipmentInstance.offhandPool));
+			if(!unitEquipmentInstance.meleePool.isEmpty()) {
+				jsonobject.add("melee", context.serialize(unitEquipmentInstance.meleePool));
+
+			}
+			if(!unitEquipmentInstance.rangedPool.isEmpty()) {
+				jsonobject.add("ranged", context.serialize(unitEquipmentInstance.rangedPool));
+
+			}
+			if(!unitEquipmentInstance.mountedPool.isEmpty()) {
+				jsonobject.add("mounted", context.serialize(unitEquipmentInstance.mountedPool));
+
+			}
+			if(!unitEquipmentInstance.idlePool.isEmpty()) {
+				jsonobject.add("idle", context.serialize(unitEquipmentInstance.idlePool));
+
+			}
+			if(!unitEquipmentInstance.idleMountedPool.isEmpty()) {
+				jsonobject.add("idle_mounted", context.serialize(unitEquipmentInstance.idleMountedPool));
+
+			}
+			if(!unitEquipmentInstance.offhandPool.isEmpty()) {
+				jsonobject.add("offhand", context.serialize(unitEquipmentInstance.offhandPool));
+
+			}
 			return jsonobject;
 		}
 	}

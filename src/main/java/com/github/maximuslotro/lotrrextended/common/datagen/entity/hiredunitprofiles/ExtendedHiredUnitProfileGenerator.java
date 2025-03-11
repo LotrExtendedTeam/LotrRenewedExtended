@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitpro
 
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
@@ -21,7 +22,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedHiredUnitProfile> pConsumer) {
 		// Bree Units
-		make().setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
+		make(ExtendedUnitAttackType.MELEE).setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)
 		.addChestplatePoolItem(new ItemStack(Items.CHAINMAIL_CHESTPLATE), 2)
 		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 11373426), 1)
@@ -42,7 +43,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
 
 		// Gundabad Units
-		make().setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(25, false, 100)
+		make(ExtendedUnitAttackType.MELEE).setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(25, false, 100)
 			.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 			.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 			.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)
@@ -96,7 +97,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 			.save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
 		
 		//Dunedain Units
-		make().setLocal(true, "dunedain_ranger", "Dúnedain Ranger").setPurchaseInfo(40, false, 100)
+		make(ExtendedUnitAttackType.RANGED).setLocal(true, "dunedain_ranger", "Dúnedain Ranger").setPurchaseInfo(40, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()), 1)

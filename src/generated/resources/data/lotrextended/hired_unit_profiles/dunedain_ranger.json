@@ -4,7 +4,8 @@
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_dunedain_ranger",
     "entity_shortname": "entity_shortname.lotrextended.hired_dunedain_ranger",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_dunedain_ranger"
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_dunedain_ranger",
+    "attack_type": "ranged"
   },
   "hiring": {
     "hiringCost": 40,
@@ -48,6 +49,7 @@
         }
       }
     ],
+    "setIdleFromRanged": true,
     "melee": [
       {
         "weight": 4,
@@ -108,10 +110,6 @@
         }
       }
     ],
-    "mounted": [],
-    "setIdleFromRanged": true,
-    "idle": [],
-    "idle_mounted": [],
     "offhand": [
       {
         "weight": 1,

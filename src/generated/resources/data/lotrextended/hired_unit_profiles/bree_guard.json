@@ -4,7 +4,8 @@
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_bree_guard",
     "entity_shortname": "entity_shortname.lotrextended.hired_bree_guard",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard"
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard",
+    "attack_type": "melee"
   },
   "hiring": {
     "hiringCost": 30,
@@ -111,6 +112,7 @@
         }
       }
     ],
+    "setIdleFromMelee": true,
     "melee": [
       {
         "weight": 1,
@@ -127,11 +129,6 @@
         }
       }
     ],
-    "ranged": [],
-    "mounted": [],
-    "setIdleFromMelee": true,
-    "idle": [],
-    "idle_mounted": [],
     "offhand": [
       {
         "weight": 1,

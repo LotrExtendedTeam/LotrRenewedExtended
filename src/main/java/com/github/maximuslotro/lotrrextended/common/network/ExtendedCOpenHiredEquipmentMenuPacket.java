@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 
 import io.netty.buffer.Unpooled;
@@ -50,10 +51,11 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
             for (int i = 9; i < 29; i++) {
             	equipment.add(inventory.getItem(i));
             }
+            ExtendedUnitAttackType attackType = ((ExtendedHirableEntity) entity).getUnitProfile().getAttackType();
 
             // Prepare PacketBuffer with initialization data
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-            ExtendedHiredUnitEquipmentContainer.writeContainerInitData(initData, msg.entityId, equipment);
+            ExtendedHiredUnitEquipmentContainer.writeContainerInitData(initData, msg.entityId, attackType, equipment);
 
             ((ExtendedHirableEntity) entity).setEquipmentOpen(true);
 
@@ -64,7 +66,7 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
                                     ExtendedContainers.HIRED_UNIT_EQUIPMENT.get().create(windowId, playerInventory, initData),
                             ExtendedHiredUnitEquipmentContainer.CONTAINER_TITLE
                     ),
-                    buf -> ExtendedHiredUnitEquipmentContainer.writeContainerInitData(buf, msg.entityId, equipment)
+                    buf -> ExtendedHiredUnitEquipmentContainer.writeContainerInitData(buf, msg.entityId, attackType, equipment)
             );
 
             context.get().setPacketHandled(true);

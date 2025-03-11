@@ -3,7 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.ArmorSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.RangedSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.MeleeSlot;
@@ -35,6 +38,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 	private OffhandSlot offhandSlot;
 	private RangedSlot rangedSlot;
     public final int entityId;
+    public final ExtendedUnitAttackType menuType;
+
     public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation("lotrextended", "item/empty_armor_slot_bow");
     public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation("lotrextended", "item/empty_armor_slot_sword");
 
@@ -52,6 +57,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         // Read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();
         this.entityId = nbt.getInt("entityId");
+        this.menuType = ExtendedUnitAttackType.byName(nbt.getString("menuType"));
 
         // Read equipment from NBT
         List<ItemStack> items = new ArrayList<>();
@@ -98,7 +104,9 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
         // Setup hand slots
         meleeSlot = (MeleeSlot)this.addSlot(new CompanionEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67, EMPTY_ARMOR_SLOT_SWORD));
-        rangedSlot = (RangedSlot)this.addSlot(new CompanionEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_ARMOR_SLOT_BOW));
+        if(menuType==ExtendedUnitAttackType.RANGED) {
+            rangedSlot = (RangedSlot)this.addSlot(new CompanionEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_ARMOR_SLOT_BOW));
+        }
         offhandSlot = (OffhandSlot)this.addSlot(new CompanionEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
 
         this.addSlotListener(this);
@@ -123,14 +131,16 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     			// Handle shift-clicking equipment and sending it to the unit's inventory
     			ItemStack shiftingItem = slot.getItem();
 
-    			CompanionEquipmentSlot[] equipmentslots = new CompanionEquipmentSlot[7];
-    			equipmentslots[0] = armorSlots[0];
-    			equipmentslots[1] = armorSlots[1];
-    			equipmentslots[2] = armorSlots[2];
-    			equipmentslots[3] = armorSlots[3];
-    			equipmentslots[4] = meleeSlot;
-    			equipmentslots[5] = rangedSlot;
-    			equipmentslots[6] = offhandSlot;
+    			List<CompanionEquipmentSlot> equipmentslots = new ArrayList<>();
+    			equipmentslots.add(armorSlots[0]);
+    			equipmentslots.add(armorSlots[1]);
+    			equipmentslots.add(armorSlots[2]);
+    			equipmentslots.add(armorSlots[3]);
+    			equipmentslots.add(meleeSlot);
+    			if(rangedSlot!=null) {
+        			equipmentslots.add(rangedSlot);
+    			}
+    			equipmentslots.add(offhandSlot);
     			for(CompanionEquipmentSlot equipmentslot : equipmentslots) {
     				if(!equipmentslot.hasItem() && equipmentslot.mayPlaceShifting(shiftingItem)) {
     					equipmentslot.set(shiftingItem);
@@ -159,9 +169,10 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         return true;
     }
 
-    public static void writeContainerInitData(PacketBuffer extraData, int entityId, List<ItemStack> equipment) {
+    public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedUnitAttackType menuType, List<ItemStack> equipment) {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putInt("entityId", entityId); // write the entity Id
+        nbt.putString("menuType", menuType.getAttackTypeName());
 
         // write their equipment including empty slots
         ListNBT listnbt = new ListNBT();
@@ -202,6 +213,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 		return armorSlots;
 	}
 
+	@Nullable
 	public RangedSlot getRangedSlot() {
 		return rangedSlot;
 	}
