@@ -1,9 +1,5 @@
 package lotr.common.entity.npc;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
-import lotr.common.data.LOTRLevelData;
-import lotr.common.data.LOTRPlayerData;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.ExtendedCaptainHelper;
 import lotr.common.util.ExtendedInteractableHelper;
@@ -29,6 +25,8 @@ import net.minecraft.world.World;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+
 public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
 
     private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcChieftain.class, DataSerializers.OPTIONAL_UUID);
@@ -40,34 +38,6 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
         return GundabadOrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
-    }
-
-    @Override
-    public boolean canHire(ResourceLocation unitProfileId, PlayerEntity player) {
-        // TODO allow proper clientside validation
-        if(player.level.isClientSide) {
-            return isFriendlyAndAlignedWithLevel(player, this, 100);
-        }
-        // TODO: move pledge validation here maybe?
-        ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
-        return isFriendlyAndAlignedWithLevel(player, this, unitProfile.getHiringAlignmentRequired());
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PLAYER_INTERACTING_WITH, Optional.empty());
-    }
-
-    @Override
-    public int getCost(ResourceLocation unitProfileId, PlayerEntity player) {
-        // TODO: add way to scale the pricing
-        ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
-        LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
-        if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(getFaction())) {
-            return 10000; //For now, due to the way this is coded, make pledge required units cost more than the player can spend
-        }
-        return unitProfile.getHiringCost();
     }
 
     @Override
@@ -111,4 +81,9 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
     }
+
+	@Override
+	public ResourceLocation getHireableProfile() {
+		return ExtendedHiredUnitTypes.GUNDABAD_ORC;
+	}
 }

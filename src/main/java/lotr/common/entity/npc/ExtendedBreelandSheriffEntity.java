@@ -1,8 +1,15 @@
 package lotr.common.entity.npc;
 
-import lotr.common.data.LOTRLevelData;
-import lotr.common.data.LOTRPlayerData;
-import lotr.common.entity.npc.ai.goal.*;
+import java.util.Optional;
+import java.util.UUID;
+
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+
+import lotr.common.entity.npc.ai.goal.ExtendedInteractableFriendlyNPCConversationGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedInteractableTalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedInteractableWaterAvoidingRandomWalkingGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
@@ -16,7 +23,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -34,18 +45,12 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
-
 public class ExtendedBreelandSheriffEntity extends BreeManEntity implements ExtendedCaptainEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
+        return AbstractMannishEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
     }
 
     private static final DataParameter<Optional<UUID>> PLAYER_INTERACTING_WITH = EntityDataManager.defineId(ExtendedBreelandSheriffEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -122,28 +127,6 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
     @Override
-    public boolean canHire(ResourceLocation unitProfileId, PlayerEntity player){
-    	// TODO allow proper clientside validation
-        if(player.level.isClientSide) {
-        	return isFriendlyAndAlignedWithLevel(player, this, 100);
-        }
-    	// TODO: move pledge validation here maybe?
-    	ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
-        return isFriendlyAndAlignedWithLevel(player, this, unitProfile.getHiringAlignmentRequired());
-    }
-
-    @Override
-    public int getCost(ResourceLocation unitProfileId, PlayerEntity player) {
-        // TODO: add way to scale the pricing
-    	ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
-    	LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
-    	if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(getFaction())) {
-    		return 10000; //For now, due to the way this is coded, make pledge required units cost more than the player can spend
-    	}
-        return unitProfile.getHiringCost();
-    }
-
-    @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
     }
@@ -173,5 +156,8 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
         return NPCGenderProvider.MALE;
     }
 
+	@Override
+	public ResourceLocation getHireableProfile() {
+		return ExtendedHiredUnitTypes.BREE_GUARD;
+	}
 }
-

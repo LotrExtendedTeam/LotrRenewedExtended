@@ -62,9 +62,8 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
             // Open GUI on client side
             NetworkHooks.openGui(context.get().getSender(),
                     new SimpleNamedContainerProvider(
-                            (windowId, playerInventory, player) ->
-                                    ExtendedContainers.HIRED_UNIT_EQUIPMENT.get().create(windowId, playerInventory, initData),
-                            ExtendedHiredUnitEquipmentContainer.CONTAINER_TITLE
+                    		(windowId, playerInventory, player) -> ExtendedContainers.HIRED_UNIT_EQUIPMENT.get().create(windowId, playerInventory, initData),
+                    		ExtendedHiredUnitEquipmentContainer.CONTAINER_TITLE
                     ),
                     buf -> ExtendedHiredUnitEquipmentContainer.writeContainerInitData(buf, msg.entityId, attackType, equipment)
             );

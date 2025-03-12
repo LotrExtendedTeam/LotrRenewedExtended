@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.util.LeatherDyeUtil;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.DataGenerator;
@@ -22,7 +23,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedHiredUnitProfile> pConsumer) {
 		// Bree Units
-		make(ExtendedUnitAttackType.MELEE).setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
+		make(ExtendedEntities.HIRED_BREE_GUARD.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)
 		.addChestplatePoolItem(new ItemStack(Items.CHAINMAIL_CHESTPLATE), 2)
 		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 11373426), 1)
@@ -43,7 +44,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 		.save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
 
 		// Gundabad Units
-		make(ExtendedUnitAttackType.MELEE).setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(25, false, 100)
+		make(ExtendedEntities.HIRED_GUNDABAD_ORC.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(25, false, 100)
 			.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 			.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 			.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)
@@ -97,7 +98,7 @@ public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileP
 			.save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
 		
 		//Dunedain Units
-		make(ExtendedUnitAttackType.RANGED).setLocal(true, "dunedain_ranger", "Dúnedain Ranger").setPurchaseInfo(40, false, 100)
+		make(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedUnitAttackType.RANGED).setLocal(true, "dunedain_ranger", "Dúnedain Ranger").setPurchaseInfo(40, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()), 1)

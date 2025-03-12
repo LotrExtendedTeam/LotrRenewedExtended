@@ -84,7 +84,8 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         setTame(false);
     }
 
-    public void tame(PlayerEntity p_193101_1_) {
+    @Override
+	public void tame(PlayerEntity p_193101_1_) {
         this.setTame(true);
         this.setOwnerUUID(p_193101_1_.getUUID());
         this.setFollowing(true);

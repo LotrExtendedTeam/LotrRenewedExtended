@@ -365,7 +365,8 @@ public class ExtendedHiredBreeGuard extends BreeGuardEntity implements ExtendedH
         this.entityData.set(FOLLOWING, following);
     }
 
-    public void tame(PlayerEntity p_193101_1_) {
+    @Override
+	public void tame(PlayerEntity p_193101_1_) {
         this.setTame(true);
         this.setOwnerUUID(p_193101_1_.getUUID());
         this.setFollowing(true);

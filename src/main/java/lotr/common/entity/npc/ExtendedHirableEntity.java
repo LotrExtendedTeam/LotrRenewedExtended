@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -39,6 +40,8 @@ public interface ExtendedHirableEntity {
 	NPCEntity getThis();
 
 	boolean isTame();
+
+	public void tame(PlayerEntity p_193101_1_);
 
     @Nullable
     default public LivingEntity getUnitOwner() {

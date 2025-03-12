@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider {
@@ -86,8 +87,8 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 		return "Extended Hired Unit Profile Provider";
 	}
 
-	public ExtendedHiredUnitProfile.Builder make(ExtendedUnitAttackType pAttackType) {
-		return new ExtendedHiredUnitProfile.Builder(pAttackType);
+	public ExtendedHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
+		return new ExtendedHiredUnitProfile.Builder(unitEntityType, pAttackType);
 	}
 
 }

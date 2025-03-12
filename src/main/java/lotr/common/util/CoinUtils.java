@@ -49,6 +49,12 @@ public class CoinUtils {
         return totalValue;
     }
 
+    /**
+     * Gets the value of all the coins in the inventory
+     * This is called on both the server and client
+     * @param inventory An instance of IInventory to check
+     * @return The total coin value of the inventory
+     * */
     public static int totalValueInInventory(IInventory inventory) {
         int totalValue = 0;
 

@@ -3,6 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.hiredunits;
 import java.lang.reflect.Type;
 import java.util.function.Consumer;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
@@ -15,15 +17,17 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitAttackType.MELEE);
+	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitAttackType.MELEE, EntityType.PIG);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -34,8 +38,9 @@ public class ExtendedHiredUnitProfile {
 	private final boolean hiringRequiresPledge;
 	private final int hiringAlignmentRequired;
 	private final ExtendedUnitAttackType attackType;
+	private final EntityType<?> unitEntityType;
 
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitAttackType attackType) {
+	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitAttackType attackType, EntityType<?> unitEntityType) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -46,6 +51,7 @@ public class ExtendedHiredUnitProfile {
 		this.hiringRequiresPledge = hiringRequiresPledge;
 		this.hiringAlignmentRequired = hiringAlignmentRequired;
 		this.attackType = attackType;
+		this.unitEntityType = unitEntityType;
 	}
 
 	/*
@@ -132,7 +138,16 @@ public class ExtendedHiredUnitProfile {
 	public ExtendedUnitAttackType getAttackType() {
 		return attackType;
 	}
-	
+
+	/**
+	 * Gets the unit entity type for this profile
+	 * @see EntityType
+	 * @return The EntityType instance for this profile
+	 * */
+	public EntityType<?> getUnitEntityType() {
+		return unitEntityType;
+	}
+
 	/*
 	 * Serializer for ExtendedHiredUnitProfile
 	 * */
@@ -143,6 +158,11 @@ public class ExtendedHiredUnitProfile {
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
 				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: %s!", id);
+				return null;
+			}
+			EntityType<?> entityType = getEntityTypeFromString(jsonobject.get("entity_type").getAsString());
+			if (entityType == null) {
+				ExtendedLog.warn("Failed to load unit entity type: "+jsonobject.get("entity_type").getAsString());
 				return null;
 			}
 			// Language
@@ -160,13 +180,14 @@ public class ExtendedHiredUnitProfile {
 			ExtendedUnitAttackType attackType = ExtendedUnitAttackType.byName(languageObject.get("attack_type").getAsString());
 			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
-			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType);
+			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, entityType);
 		}
 
 		@Override
 		public JsonElement serialize(ExtendedHiredUnitProfile unitProfile, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", unitProfile.getId().toString());
+			jsonobject.addProperty("entity_type", unitProfile.unitEntityType.getRegistryName().toString());
 			// Language
 			JsonObject languageObject = new JsonObject();
 			languageObject.addProperty("translateStrings", unitProfile.stringsAreTranslated());
@@ -199,9 +220,11 @@ public class ExtendedHiredUnitProfile {
 		private boolean hiringRequiresPledge;
 		private int hiringAlignmentRequired;
 		private ExtendedUnitAttackType attackType;
+		private final EntityType<?> unitEntityType;
 
-		public Builder(ExtendedUnitAttackType pAttackType) {
+		public Builder(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
 			this.attackType = pAttackType;
+			this.unitEntityType = unitEntityType;
 		}
 
 		/**
@@ -310,7 +333,7 @@ public class ExtendedHiredUnitProfile {
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
 		public ExtendedHiredUnitProfile build(ResourceLocation id) {
-			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType);
+			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, unitEntityType);
 			return spawner;
 		}
 
@@ -329,5 +352,11 @@ public class ExtendedHiredUnitProfile {
 			pConsumer.accept(spawner);
 			return spawner;
 		}
+	}
+
+	@Nullable
+	public static EntityType<?> getEntityTypeFromString(String str) {
+		ResourceLocation entityReasourceName = new ResourceLocation(str);
+		return ForgeRegistries.ENTITIES.getValue(entityReasourceName);
 	}
 }

@@ -355,10 +355,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
-		addD("gui.lotrextended.hiring.hire_bree_guard", "Hire Bree-land Guard");
-		addD("gui.lotrextended.hiring.hire_gundabad_orc", "Hire Gundabad Orc");
-		addD("gui.lotrextended.hiring.hire_dunedain_ranger", "Hire Dúnedain Ranger");
+		addD("gui.lotrextended.hiring.hire", "Hire: ");
 		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
+		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
+		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
 		// item names for base gear

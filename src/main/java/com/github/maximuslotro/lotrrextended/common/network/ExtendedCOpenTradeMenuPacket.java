@@ -24,8 +24,6 @@ public class ExtendedCOpenTradeMenuPacket {
 
     private int traderId;
 
-    public ExtendedCOpenTradeMenuPacket() {}
-
     public ExtendedCOpenTradeMenuPacket(int traderId) {
         this.traderId = traderId;
     }
@@ -35,9 +33,7 @@ public class ExtendedCOpenTradeMenuPacket {
     }
 
     public static ExtendedCOpenTradeMenuPacket decode(PacketBuffer buf) {
-        ExtendedCOpenTradeMenuPacket packet = new ExtendedCOpenTradeMenuPacket();
-        packet.traderId = buf.readInt();
-        return packet;
+        return new ExtendedCOpenTradeMenuPacket(buf.readInt());
     }
 
     public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {

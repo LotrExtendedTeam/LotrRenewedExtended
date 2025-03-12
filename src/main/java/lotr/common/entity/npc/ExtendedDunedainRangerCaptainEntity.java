@@ -3,11 +3,8 @@ package lotr.common.entity.npc;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
-import lotr.common.data.LOTRLevelData;
-import lotr.common.data.LOTRPlayerData;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedCaptainHelper;
@@ -41,7 +38,7 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 	}
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return GundabadOrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
+        return OrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
     }
 
 	@Override
@@ -64,28 +61,6 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 		ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_INTERACTING_WITH);
 	}
 
-	@Override
-    public boolean canHire(ResourceLocation unitProfileId, PlayerEntity player) {
-        // TODO allow proper clientside validation
-        if(player.level.isClientSide) {
-            return isFriendlyAndAlignedWithLevel(player, this, 100);
-        }
-        // TODO: move pledge validation here maybe?
-        ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
-        return isFriendlyAndAlignedWithLevel(player, this, unitProfile.getHiringAlignmentRequired());
-    }
-
-	@Override
-    public int getCost(ResourceLocation unitProfileId, PlayerEntity player) {
-        // TODO: add way to scale the pricing
-        ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(unitProfileId);
-        LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
-        if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(getFaction())) {
-            return 10000; //For now, due to the way this is coded, make pledge required units cost more than the player can spend
-        }
-        return unitProfile.getHiringCost();
-    }
-
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
@@ -107,10 +82,15 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 
         return spawnData;
     }
-   
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_INTERACTING_WITH, Optional.empty());
     }
+
+	@Override
+	public ResourceLocation getHireableProfile() {
+		return ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
+	}
 }

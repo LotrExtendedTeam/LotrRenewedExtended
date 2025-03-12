@@ -1,14 +1,16 @@
 package lotr.client.gui;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import lotr.common.entity.npc.ExtendedBreelandSheriffEntity;
+
+import lotr.common.data.AlignmentDataModule;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedDunedainRangerCaptainEntity;
-import lotr.common.entity.npc.ExtendedGundabadOrcChieftain;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.fac.Faction;
+import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,103 +21,91 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 
-    private NPCEntity entity;
-    private final ExtendedCaptainEntity captainEntity;
-    private final PlayerEntity player;
+	private NPCEntity npcEntity;
+	private final PlayerEntity player;
+	private final ExtendedClientHiredUnitProfile unitprofile;
+	private Button hireButton;
 
-    private Button hireButton;
+	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, ExtendedClientHiredUnitProfile profile) {
+		super(new StringTextComponent("Captain Menu"), 176, 256);
 
-    public ExtendedCaptainMainScreen(NPCEntity entity, ExtendedCaptainEntity captainEntity, PlayerEntity player) {
-        super(new StringTextComponent("Captain Menu"), 176, 256);
+		this.npcEntity = entity;
+		this.player = player;
+		this.unitprofile = profile;
+	}
 
-        this.entity = entity;
-        this.captainEntity = captainEntity;
-        this.player = player;
-    }
+	@Override
+	public void init() {
+		super.init();
+		this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
+		// 114 was 57
+		// +5 was +63/then 32
+		TextComponent start = new TranslationTextComponent("gui.lotrextended.hiring.hire");
+		if(unitprofile.stringsAreTranslated()) {
+			start.append(new TranslationTextComponent(unitprofile.getUnitTypeName()));
+		}else {
+			start.append(new StringTextComponent(unitprofile.getUnitTypeName()));
+		}
+		hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, start, button -> hireFromNPC()));
+	}
 
-    @Override
-    public void init() {
-    	super.init();
-        this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
-        // 114 was 57
-        // +5 was +63/then 32
-        if (captainEntity instanceof ExtendedBreelandSheriffEntity) {
-            hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_bree_guard"), button -> hireFromNPC()));
-        } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
-            hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_gundabad_orc"), button -> hireFromNPC()));
-        }else if (captainEntity instanceof ExtendedDunedainRangerCaptainEntity) {
-            hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_dunedain_ranger"), button -> hireFromNPC()));
-        }
-    }
+	private void talkWithNPC() {
+		stopInteractingClientServer();
 
-    private void talkWithNPC() {
-    	stopInteractingClientServer();
-
-        ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(entity.getId()));
-        Minecraft mc = Minecraft.getInstance();
-        if(mc.player != null) {
-            mc.player.closeContainer();
-        }
-    }
+		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(npcEntity.getId()));
+		Minecraft mc = Minecraft.getInstance();
+		if(mc.player != null) {
+			mc.player.closeContainer();
+		}
+	}
 
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
-		// TODO remove hardcoded in next update
-        if (captainEntity instanceof ExtendedBreelandSheriffEntity) {
-		    if (captainEntity.canHire(ExtendedHiredUnitTypes.BREE_GUARD, player)) {
-                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
-		    } else {
-			    player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
-			    stopInteractingClientServer();
-			    Minecraft mc = Minecraft.getInstance();
-			    if(mc.player != null) {
-				    mc.player.closeContainer();
-			    }
-		    }
-        } else if (captainEntity instanceof ExtendedGundabadOrcChieftain) {
-            if (captainEntity.canHire(ExtendedHiredUnitTypes.GUNDABAD_ORC, player)) {
-                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
-            } else {
-                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
-                stopInteractingClientServer();
-                Minecraft mc = Minecraft.getInstance();
-                if(mc.player != null) {
-                    mc.player.closeContainer();
-                }
-            }
-        } else if (captainEntity instanceof ExtendedDunedainRangerCaptainEntity) {
-            if (captainEntity.canHire(ExtendedHiredUnitTypes.DUNEDAIN_RANGER, player)) {
-                ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(entity.getId()));
-            } else {
-                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
-                stopInteractingClientServer();
-                Minecraft mc = Minecraft.getInstance();
-                if(mc.player != null) {
-                    mc.player.closeContainer();
-                }
-            }
-        }
+		if(npcEntity instanceof ExtendedCaptainEntity) {
+			Faction fac = npcEntity.getFaction();
+			AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
+			if(unitprofile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
+				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_pledged"), Util.NIL_UUID);
+				closeConnection();
+			}else if(unitprofile.getHiringAlignmentRequired()>alignData.getAlignment(fac)) {
+				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_alignment", unitprofile.getHiringAlignmentRequired()), Util.NIL_UUID);
+				closeConnection();
+			}else if(unitprofile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
+				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", unitprofile.getHiringCost()), Util.NIL_UUID);
+				closeConnection();
+			}else {
+				ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(npcEntity.getId(), unitprofile.getId()));
+			}
+		}
 	}
 
-    @Override
-    public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
-        renderBackground(matStack);
+	private void closeConnection() {
+		stopInteractingClientServer();
+		Minecraft mc = Minecraft.getInstance();
+		if(mc.player != null) {
+			mc.player.closeContainer();
+		}
+	}
 
-        TextComponent title = new StringTextComponent(entity.getName().getString());
-        this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
+	@Override
+	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
+		renderBackground(matStack);
+		TextComponent title = new StringTextComponent(npcEntity.getName().getString());
+		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
+		super.render(matStack, mouseX, mouseY, tick);
+	}
 
-        super.render(matStack, mouseX, mouseY, tick);
-    }
+	@Override
+	public void onClose() {
+		super.onClose();
+		stopInteractingClientServer();
+	}
 
-    @Override
-    public void onClose() {
-        super.onClose();
-        stopInteractingClientServer();
-    }
-
-    public void stopInteractingClientServer() {
-    	// notify the server that player is no longer interacting with this trader
-        ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(entity.getId()));
-        captainEntity.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
-    }
+	public void stopInteractingClientServer() {
+		// notify the server that player is no longer interacting with this trader
+		ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(npcEntity.getId()));
+		if(npcEntity instanceof ExtendedCaptainEntity) {
+			((ExtendedCaptainEntity)npcEntity).removePlayerFromInteracting(player); // remove the player from trading on the client side as well
+		}
+	}
 }

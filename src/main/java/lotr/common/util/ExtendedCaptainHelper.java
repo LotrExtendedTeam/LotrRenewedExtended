@@ -1,9 +1,11 @@
 package lotr.common.util;
 
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ActionResultType;
@@ -32,7 +34,7 @@ public class ExtendedCaptainHelper {
         captain.updatePlayerInteractingWith(player.getUUID());
 
         if (entity.level.isClientSide()) {
-            ExtendedClientsideSeperatedScreenHandler.openCaptainGui(entity, player);
+        	ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(entity.getId()));
         }
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
