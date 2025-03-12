@@ -29,31 +29,36 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 		setPersistenceRequired();
 	}
 
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return ExtendedDunedainRangerEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
-    }
+	public static AttributeModifierMap.MutableAttribute regAttrs() {
+		return ExtendedDunedainRangerEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
+	}
 
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
-    }
+	@Override
+	protected void addNPCTargetingAI() {
+		this.addNonAggressiveTargetingGoals();
+	}
 
-    @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
-        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+	@Override
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+		return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
+	}
 
-        setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()));
-        setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()));
-        setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()));
-        setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-        setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 
-        npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_SWORD));
-        npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
-        npcItemsInv.setIdleItemsFromMeleeWeapons();
+		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RANGER_NORTH_BOOTS.get()));
+		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()));
+		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()));
+		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 
-        return spawnData;
-    }
+		npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_SWORD));
+		npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
+		npcItemsInv.setIdleItemsFromMeleeWeapons();
+
+		return spawnData;
+	}
 
 	@Override
 	public ResourceLocation getHireableProfile() {

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * This custom AI class is used for entities who can switch between shields on their back and in their hands when they
- * fight. The main entity that can do this so far is the Bree-land Sherriff.
+ * fight. The main entity that can do this so far is the Bree-land Sheriff.
  */
 public class ExtendedShieldSwapMeleeAttackGoal extends NPCMeleeAttackGoal {
 

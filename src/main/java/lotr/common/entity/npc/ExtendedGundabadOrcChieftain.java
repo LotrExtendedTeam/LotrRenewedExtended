@@ -22,36 +22,41 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 
 public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
 
-    public ExtendedGundabadOrcChieftain(EntityType<? extends ExtendedGundabadOrcChieftain> type, World w) {
-        super(type, w);
-        setPersistenceRequired();
-    }
+	public ExtendedGundabadOrcChieftain(EntityType<? extends ExtendedGundabadOrcChieftain> type, World w) {
+		super(type, w);
+		setPersistenceRequired();
+	}
 
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return GundabadOrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
-    }
+	public static AttributeModifierMap.MutableAttribute regAttrs() {
+		return GundabadOrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
+	}
 
-    @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
-        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+	@Override
+	protected void addNPCTargetingAI() {
+		this.addNonAggressiveTargetingGoals();
+	}
 
-        setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.GUNDABAD_URUK_BOOTS.get()));
-        setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()));
-        setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()));
-        setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-        setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 
-        npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_BOW.get()));
-        npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get()));
-        npcItemsInv.setIdleItemsFromMeleeWeapons();
+		setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.GUNDABAD_URUK_BOOTS.get()));
+		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()));
+		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()));
+		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 
-        return spawnData;
-    }
+		npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_BOW.get()));
+		npcItemsInv.setMeleeWeapon(new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get()));
+		npcItemsInv.setIdleItemsFromMeleeWeapons();
 
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
-    }
+		return spawnData;
+	}
+
+	@Override
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+		return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
+	}
 
 	@Override
 	public ResourceLocation getHireableProfile() {

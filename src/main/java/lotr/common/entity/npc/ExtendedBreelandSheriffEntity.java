@@ -3,9 +3,6 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
-import lotr.common.entity.npc.ai.goal.FriendlyNPCConversationGoal;
-import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
-import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
@@ -14,23 +11,15 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.util.ExtendedCaptainHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.OpenDoorGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.pathfinding.GroundPathNavigator;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -45,29 +34,6 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
     private static final int[] SUIT_COLORS = new int[]{11373426, 7823440, 5983041, 9535090};
-
-    @Override
-    protected void addNPCAI() {
-        ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
-        this.getNavigation().setCanFloat(true);
-        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
-        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
-        this.initialiseAttackGoals(this.getAttackGoalsHolder());
-        this.addNPCTargetingAI();
-
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.addAttackGoal(2);
-        this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(5, new TalkToCurrentGoal(this));
-        this.goalSelector.addGoal(6, new FriendlyNPCConversationGoal(this, 5.0E-4F));
-        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.005F));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0));
-        this.addConsumingGoals(9);
-        this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(10, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(12, new LookRandomlyGoal(this));
-    }
 
     public ExtendedBreelandSheriffEntity(EntityType<? extends ExtendedBreelandSheriffEntity> type, World w) {
         super(type, w);
@@ -86,8 +52,7 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
     @Override
     protected Goal createAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45,
-                new ItemStack(Items.SHIELD), ItemStack.EMPTY);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45, new ItemStack(Items.SHIELD), ItemStack.EMPTY);
     }
 
     @Override
