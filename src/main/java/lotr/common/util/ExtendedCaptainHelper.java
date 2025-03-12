@@ -10,8 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedCaptainHelper {
 
@@ -24,15 +22,6 @@ public class ExtendedCaptainHelper {
     }
 
     public static ActionResultType openCaptainGui(NPCEntity entity, PlayerEntity player, ExtendedCaptainEntity captain) {
-        if (captain.getPlayerInteractingWith().isPresent()) {
-            if (!entity.level.isClientSide) {
-                player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_busy"), Util.NIL_UUID);
-            }
-            return ActionResultType.sidedSuccess(entity.level.isClientSide());
-        }
-
-        captain.updatePlayerInteractingWith(player.getUUID());
-
         if (entity.level.isClientSide()) {
         	ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(entity.getId()));
         }

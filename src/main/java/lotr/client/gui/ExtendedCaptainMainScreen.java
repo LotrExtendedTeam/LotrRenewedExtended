@@ -50,13 +50,8 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	}
 
 	private void talkWithNPC() {
-		stopInteractingClientServer();
-
 		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(npcEntity.getId()));
-		Minecraft mc = Minecraft.getInstance();
-		if(mc.player != null) {
-			mc.player.closeContainer();
-		}
+		closeConnection();
 	}
 
 	private void hireFromNPC() {
@@ -80,7 +75,6 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	}
 
 	private void closeConnection() {
-		stopInteractingClientServer();
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.player != null) {
 			mc.player.closeContainer();
@@ -93,19 +87,5 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		TextComponent title = new StringTextComponent(npcEntity.getName().getString());
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
 		super.render(matStack, mouseX, mouseY, tick);
-	}
-
-	@Override
-	public void onClose() {
-		super.onClose();
-		stopInteractingClientServer();
-	}
-
-	public void stopInteractingClientServer() {
-		// notify the server that player is no longer interacting with this trader
-		ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(npcEntity.getId()));
-		if(npcEntity instanceof ExtendedCaptainEntity) {
-			((ExtendedCaptainEntity)npcEntity).removePlayerFromInteracting(player); // remove the player from trading on the client side as well
-		}
 	}
 }
