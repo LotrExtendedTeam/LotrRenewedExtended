@@ -53,8 +53,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     private Inventory playerEquipment;
     private Inventory baseEquipment;
 
-    public ExtendedHiredUnitEquipmentContainer(int p_39230_, PlayerInventory playerInventory, PacketBuffer extraData) {
-        super(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), p_39230_);
+    public ExtendedHiredUnitEquipmentContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
+        super(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), pContainerId);
 
         // Read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();
@@ -83,19 +83,19 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         }
 
         // Get companion from this container
-        this.companion = (NPCEntity) playerInventory.player.level.getEntity(entityId);
+        this.companion = (NPCEntity) pPlayerInventory.player.level.getEntity(entityId);
 
 
         // add the 3 rows of player inventory
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(playerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
+                this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
             }
         }
 
         // add the player's hotbar
         for (int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(playerInventory, i1, 8 + i1 * 18, 200));
+            this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 200));
         }
 
         // setup 4 custom armor slots

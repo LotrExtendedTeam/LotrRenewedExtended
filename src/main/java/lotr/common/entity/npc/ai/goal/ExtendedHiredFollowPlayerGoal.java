@@ -55,7 +55,7 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
     }
     @Override
     public boolean canUse() {
-        if (!hirable.isFollowing()) {
+        if (!hirable.getOrders().isFollowingPlayer()) {
             return false;
         }
 

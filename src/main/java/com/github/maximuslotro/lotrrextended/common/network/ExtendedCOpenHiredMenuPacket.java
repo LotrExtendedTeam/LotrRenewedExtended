@@ -42,9 +42,10 @@ public class ExtendedCOpenHiredMenuPacket {
         context.get().enqueueWork(() -> {
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
 
+            ExtendedHirableEntity unit = ((ExtendedHirableEntity) entity);
             // Prepare PacketBuffer with initialization data
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-            ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId, ((ExtendedHirableEntity) entity).getUnitProfile());
+            ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId, unit.getUnitProfile(), unit.getOrders());
 
             if(!(entity instanceof ExtendedHirableEntity)) {
             	context.get().setPacketHandled(true);
@@ -59,7 +60,7 @@ public class ExtendedCOpenHiredMenuPacket {
                                     ExtendedContainers.HIRED_UNIT_CONTAINER.get().create(windowId, playerInventory, initData),
                                     ((ExtendedHirableEntity) entity).getHiredUnitName()
                     ),
-                    buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId,((ExtendedHirableEntity) entity).getUnitProfile())
+                    buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId, unit.getUnitProfile(), unit.getOrders())
             );
 
             context.get().setPacketHandled(true);

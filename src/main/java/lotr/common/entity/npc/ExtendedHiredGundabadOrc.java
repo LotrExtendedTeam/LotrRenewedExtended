@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -61,13 +62,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     private static final DataParameter<Integer> KILLS = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.INT);
 
-    private static final DataParameter<Boolean> FOLLOWING = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-
-    private static final DataParameter<Boolean> STATIONARY = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> PATROLLING = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ALERT = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> GUARDING = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-
     private static final DataParameter<Float> TMP_LAST_HEALTH = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.FLOAT);
     private boolean tmpHealthLoaded = false;
     private boolean healthUpdateFromTmpHealth = false;
@@ -77,6 +71,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     private static final DataParameter<Boolean> EQUIPMENT_OPEN = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.BOOLEAN);
 
     private Inventory internalUnitInventory = makeUnitInventory();
+    private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
 
     public ExtendedHiredGundabadOrc(EntityType<? extends GundabadOrcEntity> type, World w) {
         super(type, w);
@@ -88,7 +83,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 	public void tame(PlayerEntity p_193101_1_) {
         this.setTame(true);
         this.setOwnerUUID(p_193101_1_.getUUID());
-        this.setFollowing(true);
+        this.setOrders(ExtendedUnitOrders.PATROL_PLAYER);
     }
 
     @Override
@@ -99,21 +94,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     @Override
     public float getHiredUnitHealth() {
         return getHealth();
-    }
-
-    @Override
-    public boolean isAlert() {
-        return this.entityData.get(ALERT);
-    }
-
-    @Override
-    public boolean isStationary() {
-        return this.entityData.get(STATIONARY);
-    }
-
-    @Override
-    public boolean isPatrolling() {
-        return this.entityData.get(PATROLLING);
     }
 
     @Override
@@ -230,11 +210,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public boolean isFollowing() {
-        return this.entityData.get(FOLLOWING);
-    }
-
-    @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (hand == Hand.MAIN_HAND) {
             if (this.isAlliedTo(player)) {
@@ -247,10 +222,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         return super.mobInteract(player, hand);
     }
 
-    private void setPatrolling(boolean patrolling) {
-        this.entityData.set(PATROLLING, patrolling);
-    }
-
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -260,11 +231,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         this.entityData.define(CURRENT_XP, 0f);
         this.entityData.define(MAX_XP, 1f);
         this.entityData.define(KILLS, 0);
-        this.entityData.define(FOLLOWING, false);
-        this.entityData.define(GUARDING, false);
-        this.entityData.define(PATROLLING, false);
-        this.entityData.define(ALERT, false);
-        this.entityData.define(STATIONARY, false);
         this.entityData.define(BASE_HEALTH, 18);
         this.entityData.define(INVENTORY_OPEN, false);
         this.entityData.define(EQUIPMENT_OPEN, false);
@@ -284,10 +250,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         } else {
             this.entityData.set(DATA_FLAGS_ID, (byte)(b0 & -5));
         }
-    }
-
-    public void setFollowing(boolean following) {
-        this.entityData.set(FOLLOWING, following);
     }
 
     @Override
@@ -315,8 +277,7 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
         saveHiredUnitInventory(tag);
 
-    	tag.putBoolean("following", this.isFollowing());
-    	tag.putBoolean("stationary", this.isStationary());
+        tag.putInt("unit_orders", this.getOrders().getUnchangingIndex());
     	tag.putInt("mob_kills", this.getMobKills());
     	tag.putInt("xp_level", this.getExpLvl());
     	tag.putFloat("current_xp", this.getCurrentXp());
@@ -348,9 +309,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
         loadHiredUnitInventory(tag);
 
-        if (tag.contains("following")) {
-            this.setFollowing(tag.getBoolean("following"));
-        }
         if (tag.contains("xp_level")) {
             this.setExpLvl(tag.getInt("xp_level"));
         }
@@ -372,8 +330,15 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
             tmpHealthLoaded = true;
         }
 
-        if (tag.contains("stationary")) {
-            this.setStationary(tag.getBoolean("stationary"));
+        if(tag.contains("unit_orders")) {
+        	unitOrders = ExtendedUnitOrders.getByUnchangingIndex(tag.getInt("unit_orders"));
+        }else {
+        	// Ensure update compatibility from versions 1.7.1->1.7.2
+        	if (tag.contains("following")&&tag.getBoolean("following")) {
+        		unitOrders = ExtendedUnitOrders.PATROL_PLAYER;
+            }else {
+            	unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+            }
         }
     }
 
@@ -422,8 +387,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     @Override
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
-        // Disabled due to NPCEntity using new logic we don't want for unit drops
-        //super.dropCustomDeathLoot(damageSource, looting, player);
         ExtendedHiredUnitHelper.dropCustomDeathLoot(this, this, random, internalUnitInventory, looting, player);
     }
 
@@ -451,11 +414,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public void setStationary(boolean stationary) {
-        this.entityData.set(STATIONARY, stationary);
-    }
-
-    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new ExtendedHiredSitGoal(this));
@@ -476,5 +434,16 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 	@Override
 	public NPCEntity getThis() {
 		return this;
+	}
+
+
+	@Override
+	public ExtendedUnitOrders getOrders() {
+		return unitOrders;
+	}
+
+	@Override
+	public void setOrders(ExtendedUnitOrders orders) {
+		unitOrders = orders;
 	}
 }

@@ -68,6 +68,11 @@ public class ExtendedHiredUnitHelper {
         }
     }
 
+    /**
+     * Checks if an entity is a hired unit, also handles checks where the entity is null
+     * @param entity The Entity to check
+     * @return True if the entity is instance of ExtendedHirableEntity
+     * */
     public static boolean isEntityHiredUnit(Entity entity) {
         return entity instanceof ExtendedHirableEntity;
     }
@@ -89,7 +94,7 @@ public class ExtendedHiredUnitHelper {
      * Update a unit's equipment (currently from inventory container)
      * @param companion The NPC unit to update
      * @param slot The slot type to update
-     * @param item The new {@Link ItemStack} to be placed in the slot
+     * @param item The new ItemStack to be placed in the slot
      * */
     public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {
@@ -114,6 +119,8 @@ public class ExtendedHiredUnitHelper {
 //                companion.setItemSlot(slot, ItemStack.EMPTY);
 //            }
 //        }
+    	// Disabled due to NPCEntity using new logic we don't want for unit drops
+        //super.dropCustomDeathLoot(damageSource, looting, player);
     	// Only try dropping player equipment and general inventory space
         for (int i = 0; i < 19; ++i) {
         	if(!internalUnitInventory.getItem(i).isEmpty()) {

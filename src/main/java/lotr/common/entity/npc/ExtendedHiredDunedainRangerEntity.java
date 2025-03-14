@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -66,13 +67,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
     private static final DataParameter<Integer> KILLS = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class, DataSerializers.INT);
 
-    private static final DataParameter<Boolean> FOLLOWING = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class,DataSerializers.BOOLEAN);
-
-    private static final DataParameter<Boolean> STATIONARY = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> PATROLLING = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ALERT = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> GUARDING = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class,DataSerializers.BOOLEAN);
-
     private static final DataParameter<Float> TMP_LAST_HEALTH = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class,DataSerializers.FLOAT);
     private boolean tmpHealthLoaded = false;
     private boolean healthUpdateFromTmpHealth = false;
@@ -82,6 +76,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     private static final DataParameter<Boolean> EQUIPMENT_OPEN = EntityDataManager.defineId(ExtendedHiredDunedainRangerEntity.class, DataSerializers.BOOLEAN);
 
     private Inventory internalUnitInventory = makeUnitInventory();
+    private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
 
 	public ExtendedHiredDunedainRangerEntity(EntityType<? extends ExtendedHiredDunedainRangerEntity> type, World w) {
         super(type, w);
@@ -93,7 +88,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	public void tame(PlayerEntity p_193101_1_) {
         this.setTame(true);
         this.setOwnerUUID(p_193101_1_.getUUID());
-        this.setFollowing(true);
+        this.setOrders(ExtendedUnitOrders.PATROL_PLAYER);
     }
 
     @Override
@@ -135,11 +130,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         this.entityData.define(CURRENT_XP, 0f);
         this.entityData.define(MAX_XP, 1f);
         this.entityData.define(KILLS, 0);
-        this.entityData.define(FOLLOWING, false);
-        this.entityData.define(GUARDING, false);
-        this.entityData.define(PATROLLING, false);
-        this.entityData.define(ALERT, false);
-        this.entityData.define(STATIONARY, false);
         this.entityData.define(BASE_HEALTH, 18);
         this.entityData.define(INVENTORY_OPEN, false);
         this.entityData.define(EQUIPMENT_OPEN, false);
@@ -202,10 +192,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
         }
     }
 
-    public void setFollowing(boolean following) {
-        this.entityData.set(FOLLOWING, following);
-    }
-
     @Override
     public boolean isAlliedTo(Entity p_184191_1_) {
         if (this.isTame()) {
@@ -230,8 +216,7 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
         saveHiredUnitInventory(tag);
 
-    	tag.putBoolean("following", this.isFollowing());
-    	tag.putBoolean("stationary", this.isStationary());
+        tag.putInt("unit_orders", this.getOrders().getUnchangingIndex());
     	tag.putInt("mob_kills", this.getMobKills());
     	tag.putInt("xp_level", this.getExpLvl());
     	tag.putFloat("current_xp", this.getCurrentXp());
@@ -263,9 +248,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
         loadHiredUnitInventory(tag);
 
-        if (tag.contains("following")) {
-            this.setFollowing(tag.getBoolean("following"));
-        }
         if (tag.contains("xp_level")) {
             this.setExpLvl(tag.getInt("xp_level"));
         }
@@ -287,8 +269,15 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
             tmpHealthLoaded = true;
         }
 
-        if (tag.contains("stationary")) {
-            this.setStationary(tag.getBoolean("stationary"));
+        if(tag.contains("unit_orders")) {
+        	unitOrders = ExtendedUnitOrders.getByUnchangingIndex(tag.getInt("unit_orders"));
+        }else {
+        	// Ensure update compatibility from versions 1.7.1->1.7.2
+        	if (tag.contains("following")&&tag.getBoolean("following")) {
+        		unitOrders = ExtendedUnitOrders.PATROL_PLAYER;
+            }else {
+            	unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+            }
         }
     }
 
@@ -348,11 +337,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
     }
 
 	@Override
-	public boolean isFollowing() {
-		return this.entityData.get(FOLLOWING);
-	}
-
-	@Override
 	public boolean isInventoryOpen() {
 		return this.entityData.get(INVENTORY_OPEN);
 	}
@@ -384,11 +368,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	}
 
 	@Override
-	public boolean isStationary() {
-		return this.entityData.get(STATIONARY);
-	}
-
-	@Override
 	public void setMobKills(int kills) {
 		 this.entityData.set(KILLS, kills);
 	}
@@ -401,11 +380,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	@Override
 	public int getMobKills() {
 		return this.entityData.get(KILLS);
-	}
-
-	@Override
-	public boolean isPatrolling() {
-		return this.entityData.get(PATROLLING);
 	}
 
 	@Override
@@ -431,11 +405,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	@Override
 	public float getCurrentXp() {
 		return this.entityData.get(CURRENT_XP);
-	}
-
-	@Override
-	public boolean isAlert() {
-		return this.entityData.get(ALERT);
 	}
 
 	@Override
@@ -475,11 +444,6 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 	}
 
 	@Override
-	public void setStationary(boolean stationary) {
-		this.entityData.set(STATIONARY, stationary);
-	}
-
-	@Override
 	public boolean isEquipmentOpen() {
 		 return this.entityData.get(EQUIPMENT_OPEN);
 	}
@@ -501,13 +465,21 @@ public class ExtendedHiredDunedainRangerEntity extends ExtendedDunedainRangerEnt
 
     @Override
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
-        // Disabled due to NPCEntity using new logic we don't want for unit drops
-        //super.dropCustomDeathLoot(damageSource, looting, player);
         ExtendedHiredUnitHelper.dropCustomDeathLoot(this, this, random, internalUnitInventory, looting, player);
     }
 
 	@Override
 	public NPCEntity getThis() {
 		return this;
+	}
+
+	@Override
+	public ExtendedUnitOrders getOrders() {
+		return unitOrders;
+	}
+
+	@Override
+	public void setOrders(ExtendedUnitOrders orders) {
+		unitOrders = orders;
 	}
 }
