@@ -446,4 +446,10 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 	public void setOrders(ExtendedUnitOrders orders) {
 		unitOrders = orders;
 	}
+
+    @Override
+	public void die(DamageSource p_70645_1_) {
+        ExtendedHiredUnitHelper.die(this.level, p_70645_1_, this);
+        super.die(p_70645_1_);
+    }
 }

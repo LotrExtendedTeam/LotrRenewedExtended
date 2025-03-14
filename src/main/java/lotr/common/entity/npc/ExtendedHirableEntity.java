@@ -206,7 +206,7 @@ public interface ExtendedHirableEntity {
 
 	/**
 	 * Generated the base equipment for a hired unit from a hired unit equipment pool.
-	 * Don't impliment this method, instead call it in your entity finalize spawn method
+	 * Don't Implement this method, instead call it in your entity finalize spawn method
 	 * @see ExtendedHiredUnitEquipmentPool 
 	 * */
 	default void setupUnitEquipment() {
@@ -248,14 +248,14 @@ public interface ExtendedHirableEntity {
 
 	/**
 	 * Loads the hired unit's inventory from nbt, and handles inventory changes between versions
-	 * Don't impliment this method, instead call it in your entity load data method
+	 * Don't Implement this method, instead call it in your entity load data method
 	 * @param tag A CompoundNBT containing the saved inventory
 	 * */
 	default void loadHiredUnitInventory(CompoundNBT tag) {
 		if(tag.contains("HiredUnitInventory")) {
 			CompoundNBT unitInventory = tag.getCompound("HiredUnitInventory");
 			if(unitInventory.isEmpty()) {
-				ExtendedLog.error("Tried loading a Hired Unit Inventory with a empty inventory, dumping nbt and loading default base inventory!");
+				ExtendedLog.error("Tried loading a Hired Unit Inventory with a empty inventory, dumping nbt to logs and loading default base inventory!");
 				ExtendedLog.error(tag.toString());
 				setupUnitEquipment();
 				return;
@@ -269,14 +269,14 @@ public interface ExtendedHirableEntity {
 					getCustomInventory().setItem(i, itemsStacks.get(i));
 				}
 			}else {
-				ExtendedLog.error("Tried loading a Hired Unit Inventory with a malformed/unknown version number, dumping nbt and loading default base inventory!");
+				ExtendedLog.error("Tried loading a Hired Unit Inventory with a malformed/unknown version number, dumping nbt to logs and loading default base inventory!");
 				ExtendedLog.error(unitInventory.toString());
 				setupUnitEquipment();
 				return;
 			}
 		}else {
 			// Handle version 1.7.2 and before
-			// 1.7.1 can't properly upgrage with logic, just going to dump combined equipment into the player equipment slots
+			// 1.7.1 can't properly upgrade with logic, just going to dump combined equipment into the player equipment slots
 			// 9 inventory slots + 6 combined equipment slots
 			// 1.7.2 Added split base and player equipment slots
 			// 9 inventory slots + 6 player equipment slots + 6 base equipment slots
@@ -306,9 +306,9 @@ public interface ExtendedHirableEntity {
 				getCustomInventory().setItem(14, getCustomInventory().getItem(13)); //Player Ranged
 				getCustomInventory().setItem(13, ItemStack.EMPTY);
 			}
-			// Move player offhand item to new index
+			// Move player offend item to new index
 			getCustomInventory().setItem(18, itemsStacks.get(14)); //Player Offhand
-			// Try to catch updaing unit inventory from 1.7.1 when base equipment will just be empty
+			// Try to catch updating unit inventory from 1.7.1 when base equipment will just be empty
 			getCustomInventory().setItem(19, itemsStacks.get(15).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomHelmetStack(getThis().getRandom()) : itemsStacks.get(15));
 			getCustomInventory().setItem(20, itemsStacks.get(16).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomChestplateStack(getThis().getRandom()) : itemsStacks.get(16));
 			getCustomInventory().setItem(21, itemsStacks.get(17).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomLeggingsStack(getThis().getRandom()) : itemsStacks.get(17));
@@ -351,7 +351,7 @@ public interface ExtendedHirableEntity {
 
 	/**
 	 * Saves a hired unit's inventory to nbt, no need to handle version changes here, since its corrected by the time this is saved
-	 * Don't impliment this method, instead call it in your entity save data method
+	 * Don't Implement this method, instead call it in your entity save data method
 	 * @param tag A CompoundNBT to be saved to
 	 * */
 	default void saveHiredUnitInventory(CompoundNBT tag) {
