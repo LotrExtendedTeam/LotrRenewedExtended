@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.inventory;
 
+import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
@@ -18,23 +21,20 @@ public class ExtendedHiredUnitContainer extends Container {
     private final int containerRows = 1;
 
     private int entityId;
-
     private NPCEntity companion;
 
-    private PlayerEntity player;
+    public final ExtendedClientHiredUnitProfile profile;
 
-    public PlayerEntity getPlayer() {
-        return player;
-    }
+    
     public ExtendedHiredUnitContainer(int p_39230_, PlayerInventory playerInventory, PacketBuffer extraData) {
         super(ExtendedContainers.HIRED_UNIT_CONTAINER.get(), p_39230_);
 
         // read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();
         this.entityId = nbt.getInt("entityId");
-
-        this.player = playerInventory.player;
-        this.companion = (NPCEntity) this.player.level.getEntity(entityId);
+        this.profile = ExtendedClientHiredUnitProfile.fromNetwork(nbt);
+       
+        this.companion = (NPCEntity) playerInventory.player.level.getEntity(entityId);
 
         IInventory companionInv = new Inventory(9);
         if (companion instanceof ExtendedHirableEntity) {
@@ -109,10 +109,14 @@ public class ExtendedHiredUnitContainer extends Container {
         return this.containerRows;
     }
 
-    public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
+    public NPCEntity getCompanion() {
+    	return companion;
+    }
+
+    public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile) {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putInt("entityId", entityId); // write the entity Id
-
+        ExtendedClientHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write server unit profile to client
         extraData.writeNbt(nbt);
     }
 }

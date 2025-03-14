@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.ArmorSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.RangedSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.CompanionEquipmentSlot.MeleeSlot;
@@ -38,7 +40,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 	private OffhandSlot offhandSlot;
 	private RangedSlot rangedSlot;
     public final int entityId;
-    public final ExtendedUnitAttackType menuType;
+    public final ExtendedClientHiredUnitProfile profile;
 
     public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation("lotrextended", "item/empty_armor_slot_bow");
     public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation("lotrextended", "item/empty_armor_slot_sword");
@@ -57,7 +59,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         // Read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();
         this.entityId = nbt.getInt("entityId");
-        this.menuType = ExtendedUnitAttackType.byName(nbt.getString("menuType"));
+        this.profile = ExtendedClientHiredUnitProfile.fromNetwork(nbt);
 
         // Read equipment from NBT
         List<ItemStack> items = new ArrayList<>();
@@ -104,7 +106,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
         // Setup hand slots
         meleeSlot = (MeleeSlot)this.addSlot(new CompanionEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67, EMPTY_ARMOR_SLOT_SWORD));
-        if(menuType==ExtendedUnitAttackType.RANGED) {
+        if(profile.getAttackType()==ExtendedUnitAttackType.RANGED) {
             rangedSlot = (RangedSlot)this.addSlot(new CompanionEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_ARMOR_SLOT_BOW));
         }
         offhandSlot = (OffhandSlot)this.addSlot(new CompanionEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
@@ -169,10 +171,10 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         return true;
     }
 
-    public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedUnitAttackType menuType, List<ItemStack> equipment) {
+    public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile, List<ItemStack> equipment) {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putInt("entityId", entityId); // write the entity Id
-        nbt.putString("menuType", menuType.getAttackTypeName());
+        ExtendedClientHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write server unit profile to client
 
         // write their equipment including empty slots
         ListNBT listnbt = new ListNBT();

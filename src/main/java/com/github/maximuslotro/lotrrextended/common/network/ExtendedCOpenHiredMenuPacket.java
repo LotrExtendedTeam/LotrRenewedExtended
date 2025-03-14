@@ -44,7 +44,7 @@ public class ExtendedCOpenHiredMenuPacket {
 
             // Prepare PacketBuffer with initialization data
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-            ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId);
+            ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId, ((ExtendedHirableEntity) entity).getUnitProfile());
 
             if(!(entity instanceof ExtendedHirableEntity)) {
             	context.get().setPacketHandled(true);
@@ -59,7 +59,7 @@ public class ExtendedCOpenHiredMenuPacket {
                                     ExtendedContainers.HIRED_UNIT_CONTAINER.get().create(windowId, playerInventory, initData),
                                     ((ExtendedHirableEntity) entity).getHiredUnitName()
                     ),
-                    buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId)
+                    buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId,((ExtendedHirableEntity) entity).getUnitProfile())
             );
 
             context.get().setPacketHandled(true);

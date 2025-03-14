@@ -6,7 +6,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 
 import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
 
@@ -15,9 +15,9 @@ public class ExtendedSOpenCaptainPacket {
     private int captainId;
     private ExtendedClientHiredUnitProfile clientProfile;
     // Only used on the server!!!!
-    private ExtendedHiredUnitProfile serverProfile;
+    private ExtendedServerHiredUnitProfile serverProfile;
     
-    public ExtendedSOpenCaptainPacket(int captainId, ExtendedClientHiredUnitProfile profile, ExtendedHiredUnitProfile serverProfile) {
+    public ExtendedSOpenCaptainPacket(int captainId, ExtendedClientHiredUnitProfile profile, ExtendedServerHiredUnitProfile serverProfile) {
        this.captainId = captainId;
        this.clientProfile = profile;
        this.serverProfile = serverProfile;

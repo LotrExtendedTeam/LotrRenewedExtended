@@ -26,8 +26,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ExtendedHiredUnitProfile {
-	public static final ExtendedHiredUnitProfile EMPTY = new ExtendedHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitAttackType.MELEE, EntityType.PIG);
+public class ExtendedServerHiredUnitProfile {
+	public static final ExtendedServerHiredUnitProfile EMPTY = new ExtendedServerHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitAttackType.MELEE, EntityType.PIG);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -40,7 +40,7 @@ public class ExtendedHiredUnitProfile {
 	private final ExtendedUnitAttackType attackType;
 	private final EntityType<?> unitEntityType;
 
-	public ExtendedHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitAttackType attackType, EntityType<?> unitEntityType) {
+	public ExtendedServerHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitAttackType attackType, EntityType<?> unitEntityType) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -55,7 +55,7 @@ public class ExtendedHiredUnitProfile {
 	}
 
 	/*
-	 * Get the id of this ExtendedHiredUnitProfile
+	 * Get the id of this ExtendedServerHiredUnitProfile
 	 * */
 	public ResourceLocation getId() {
 		return id;
@@ -71,21 +71,21 @@ public class ExtendedHiredUnitProfile {
 	/*
 	 * Gets the string or key for the unit's title
 	 * */
-	public String getUnitTitle() {
+	public String getEntityUnitTitle() {
 		return entity_title;
 	}
 
 	/*
 	 * Gets the string or key for the unit's shorthand name
 	 * */
-	public String getUnitShorthandName() {
+	public String getEntityUnitShorthandName() {
 		return entity_shortname;
 	}
 
 	/*
 	 * Gets the string or key for the unit's type name
 	 * */
-	public String getUnitTypeName() {
+	public String getEntityUnitTypeName() {
 		return entity_unit_type;
 	}
 
@@ -94,7 +94,7 @@ public class ExtendedHiredUnitProfile {
 	 * Could mean some data corruption happened
 	 * */
 	public boolean isEmptyUnitType() {
-		return this.equals(ExtendedHiredUnitProfile.EMPTY) || id.equals(LotrExtendedMod.EMPTY);
+		return this.equals(ExtendedServerHiredUnitProfile.EMPTY) || id.equals(LotrExtendedMod.EMPTY);
 	}
 
 	/**
@@ -149,12 +149,12 @@ public class ExtendedHiredUnitProfile {
 	}
 
 	/*
-	 * Serializer for ExtendedHiredUnitProfile
+	 * Serializer for ExtendedServerHiredUnitProfile
 	 * */
-	public static class Serializer implements JsonDeserializer<ExtendedHiredUnitProfile>, JsonSerializer<ExtendedHiredUnitProfile> {
+	public static class Serializer implements JsonDeserializer<ExtendedServerHiredUnitProfile>, JsonSerializer<ExtendedServerHiredUnitProfile> {
 		@Override
-		public ExtendedHiredUnitProfile deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
-			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedHiredUnitProfile");
+		public ExtendedServerHiredUnitProfile deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
+			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedServerHiredUnitProfile");
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
 				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: %s!", id);
@@ -180,20 +180,20 @@ public class ExtendedHiredUnitProfile {
 			ExtendedUnitAttackType attackType = ExtendedUnitAttackType.byName(languageObject.get("attack_type").getAsString());
 			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
-			return new ExtendedHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, entityType);
+			return new ExtendedServerHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, entityType);
 		}
 
 		@Override
-		public JsonElement serialize(ExtendedHiredUnitProfile unitProfile, Type p_serialize_2_, JsonSerializationContext context) {
+		public JsonElement serialize(ExtendedServerHiredUnitProfile unitProfile, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", unitProfile.getId().toString());
 			jsonobject.addProperty("entity_type", unitProfile.unitEntityType.getRegistryName().toString());
 			// Language
 			JsonObject languageObject = new JsonObject();
 			languageObject.addProperty("translateStrings", unitProfile.stringsAreTranslated());
-			languageObject.addProperty("entity_title", unitProfile.getUnitTitle());
-			languageObject.addProperty("entity_shortname", unitProfile.getUnitShorthandName());
-			languageObject.addProperty("entity_unit_type", unitProfile.getUnitTypeName());
+			languageObject.addProperty("entity_title", unitProfile.getEntityUnitTitle());
+			languageObject.addProperty("entity_shortname", unitProfile.getEntityUnitShorthandName());
+			languageObject.addProperty("entity_unit_type", unitProfile.getEntityUnitTypeName());
 			jsonobject.add("language", languageObject);
 			// Hiring
 			JsonObject hiringObject = new JsonObject();
@@ -230,7 +230,7 @@ public class ExtendedHiredUnitProfile {
 		/**
 		 * Set Hired Unit string localization
 		 */
-		public ExtendedHiredUnitProfile.Builder setLocal(boolean translateStrings, String nameKey, String name) {
+		public ExtendedServerHiredUnitProfile.Builder setLocal(boolean translateStrings, String nameKey, String name) {
 			this.translateStrings = translateStrings;
 			if(translateStrings) {
 				this.entity_title = "entity_title.lotrextended.hired_"+nameKey;
@@ -250,7 +250,7 @@ public class ExtendedHiredUnitProfile {
 		/**
 		 * Set Hired Unit purchase info
 		 */
-		public ExtendedHiredUnitProfile.Builder setPurchaseInfo(int cost, boolean pledgeRequired, int alignmnetRequired) {
+		public ExtendedServerHiredUnitProfile.Builder setPurchaseInfo(int cost, boolean pledgeRequired, int alignmnetRequired) {
 			this.hiringRequiresPledge = pledgeRequired;
 			if(cost<=0) {
 				cost=1;
@@ -263,49 +263,49 @@ public class ExtendedHiredUnitProfile {
 			return this;
 		}
 
-		public ExtendedHiredUnitProfile.Builder addHelmetPoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addHelmetPoolItem(ItemStack stack, int weight) {
 			equipmentPools.addHelmetStack(setBaseItem(stack, "item.lotrextended.base_gear.helmet"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addChestplatePoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addChestplatePoolItem(ItemStack stack, int weight) {
 			equipmentPools.addChestplateStack(setBaseItem(stack, "item.lotrextended.base_gear.chestplate"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addLeggingPoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addLeggingPoolItem(ItemStack stack, int weight) {
 			equipmentPools.addLeggingStack(setBaseItem(stack, "item.lotrextended.base_gear.leggings"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addBootsPoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addBootsPoolItem(ItemStack stack, int weight) {
 			equipmentPools.addBootsStack(setBaseItem(stack, "item.lotrextended.base_gear.boots"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addMeleePoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addMeleePoolItem(ItemStack stack, int weight) {
 			equipmentPools.addMeleeStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addRangedPoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addRangedPoolItem(ItemStack stack, int weight) {
 			if(attackType.isCanBeRanged()) {
 				equipmentPools.addRangedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_ranged"), weight);
 			}
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addMountedPoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addMountedPoolItem(ItemStack stack, int weight) {
 			if(attackType.isMounted()) {
 				equipmentPools.addMountedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_mounted"), weight);
 			}
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addIdlePoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addIdlePoolItem(ItemStack stack, int weight) {
 			equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle"), weight);
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addIdleMountedPoolItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addIdleMountedPoolItem(ItemStack stack, int weight) {
 			if(attackType.isMounted()) {
 				equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle_mounted"), weight);
 			}
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder addShieldItem(ItemStack stack, int weight) {
+		public ExtendedServerHiredUnitProfile.Builder addShieldItem(ItemStack stack, int weight) {
 			equipmentPools.addOffhandStack(setBaseItem(stack, "item.lotrextended.base_gear.shield"), weight);
 			return this;
 		}
@@ -317,38 +317,38 @@ public class ExtendedHiredUnitProfile {
 			compoundnbt.putBoolean("IsBaseArmor", true);
 			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
-		public ExtendedHiredUnitProfile.Builder setIdlePoolFromMeleePool() {
+		public ExtendedServerHiredUnitProfile.Builder setIdlePoolFromMeleePool() {
 			equipmentPools.setIdlePoolFromMeleePool();
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder setIdlePoolFromRangedPool() {
+		public ExtendedServerHiredUnitProfile.Builder setIdlePoolFromRangedPool() {
 			equipmentPools.setIdlePoolFromRangedPool();
 			return this;
 		}
-		public ExtendedHiredUnitProfile.Builder disableIdleWeaponUsingOtherPools() {
+		public ExtendedServerHiredUnitProfile.Builder disableIdleWeaponUsingOtherPools() {
 			equipmentPools.disableIdleWeaponUsingOtherPools();
 			return this;
 		}
 		/**
 		 * Generate a ExtendedStructureEntitySpawner
 		 */
-		public ExtendedHiredUnitProfile build(ResourceLocation id) {
-			ExtendedHiredUnitProfile spawner = new ExtendedHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, unitEntityType);
+		public ExtendedServerHiredUnitProfile build(ResourceLocation id) {
+			ExtendedServerHiredUnitProfile spawner = new ExtendedServerHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, unitEntityType);
 			return spawner;
 		}
 
 		/**
 		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
 		 */
-		public ExtendedHiredUnitProfile save(Consumer<ExtendedHiredUnitProfile> pConsumer, String pId) {
+		public ExtendedServerHiredUnitProfile save(Consumer<ExtendedServerHiredUnitProfile> pConsumer, String pId) {
 			return save(pConsumer, new ResourceLocation(pId));
 		}
 
 		/**
 		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
 		 */
-		public ExtendedHiredUnitProfile save(Consumer<ExtendedHiredUnitProfile> pConsumer, ResourceLocation pId) {
-			ExtendedHiredUnitProfile spawner = this.build(pId);
+		public ExtendedServerHiredUnitProfile save(Consumer<ExtendedServerHiredUnitProfile> pConsumer, ResourceLocation pId) {
+			ExtendedServerHiredUnitProfile spawner = this.build(pId);
 			pConsumer.accept(spawner);
 			return spawner;
 		}

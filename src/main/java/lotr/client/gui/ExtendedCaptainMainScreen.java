@@ -42,9 +42,9 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		// +5 was +63/then 32
 		TextComponent start = new TranslationTextComponent("gui.lotrextended.hiring.hire");
 		if(unitprofile.stringsAreTranslated()) {
-			start.append(new TranslationTextComponent(unitprofile.getUnitTypeName()));
+			start.append(new TranslationTextComponent(unitprofile.getEntityUnitTypeName()));
 		}else {
-			start.append(new StringTextComponent(unitprofile.getUnitTypeName()));
+			start.append(new StringTextComponent(unitprofile.getEntityUnitTypeName()));
 		}
 		hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, start, button -> hireFromNPC()));
 	}

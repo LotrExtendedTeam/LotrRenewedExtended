@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -74,25 +74,25 @@ public interface ExtendedHirableEntity {
     default ITextComponent getHiredUnitName() {
     	if(getUnitProfile().stringsAreTranslated()) {
     		if(this instanceof NPCEntity) {
-    			return new TranslationTextComponent(getUnitProfile().getUnitShorthandName(),
+    			return new TranslationTextComponent(getUnitProfile().getEntityUnitShorthandName(),
     	            new StringTextComponent(((NPCEntity)this).getPersonalInfo().getName()));
     		}
-    		return new TranslationTextComponent(getUnitProfile().getUnitShorthandName(),
+    		return new TranslationTextComponent(getUnitProfile().getEntityUnitShorthandName(),
                 new StringTextComponent("UNKNOWNNPC"));
     	}
-    	return new StringTextComponent(getUnitProfile().getUnitShorthandName());
+    	return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
     }
 
     default ITextComponent getHiredUnitNameAndTitle() {
     	if(getUnitProfile().stringsAreTranslated()) {
     		if(this instanceof NPCEntity) {
-    			return new TranslationTextComponent(getUnitProfile().getUnitTitle(),
+    			return new TranslationTextComponent(getUnitProfile().getEntityUnitTitle(),
     	            new StringTextComponent(((NPCEntity)this).getPersonalInfo().getName()));
     		}
-    		return new TranslationTextComponent(getUnitProfile().getUnitTitle(),
+    		return new TranslationTextComponent(getUnitProfile().getEntityUnitTitle(),
                 new StringTextComponent("UNKNOWNNPC"));
     	}
-    	return new StringTextComponent(getUnitProfile().getUnitShorthandName());
+    	return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
     }
 
     boolean isPatrolling();
@@ -188,12 +188,12 @@ public interface ExtendedHirableEntity {
 
     /**
      * Gets the unit profile associated with this unit
-     * @see ExtendedHiredUnitProfile
+     * @see ExtendedServerHiredUnitProfile
      * @Nullable
      * */
     @Nullable
-    default ExtendedHiredUnitProfile getUnitProfile() {
-    	return ExtendedHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
+    default ExtendedServerHiredUnitProfile getUnitProfile() {
+    	return ExtendedServerHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
     }
 
     default public Inventory makeUnitInventory() {

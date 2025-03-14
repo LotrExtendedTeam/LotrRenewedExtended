@@ -87,7 +87,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
 	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        if(menu.menuType==ExtendedUnitAttackType.RANGED) {
+        if(menu.profile.getAttackType()==ExtendedUnitAttackType.RANGED) {
             this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
         }else {
             this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND_MELEE);

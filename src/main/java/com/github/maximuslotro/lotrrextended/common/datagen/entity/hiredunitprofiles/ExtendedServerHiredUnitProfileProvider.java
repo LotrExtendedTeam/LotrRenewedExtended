@@ -13,9 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.google.gson.Gson;
 
@@ -25,24 +25,24 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider {
+public abstract class ExtendedServerHiredUnitProfileProvider implements IDataProvider {
 	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
-	private final Map<ResourceLocation, ExtendedHiredUnitProfile> dataHere = new TreeMap<>();
+	private final Map<ResourceLocation, ExtendedServerHiredUnitProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
 	protected final String modId;
 
-	ExtendedHiredUnitProfileProvider(DataGenerator pDataGenerator, String pModId) {
+	public ExtendedServerHiredUnitProfileProvider(DataGenerator pDataGenerator, String pModId) {
 		this.dataGenerator = pDataGenerator;
 		this.modId = pModId;
 	}
 
-	public abstract void makeStructureSpawnPools(Consumer<ExtendedHiredUnitProfile> pConsumer);
+	public abstract void makeStructureSpawnPools(Consumer<ExtendedServerHiredUnitProfile> pConsumer);
 
 	@Override
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
-		Consumer<ExtendedHiredUnitProfile> consumer = (spawner) -> {
+		Consumer<ExtendedServerHiredUnitProfile> consumer = (spawner) -> {
 	         if (dataHere.put(spawner.getId(), spawner)!=null) {
 	            throw new IllegalStateException("Duplicate hired unit profile " + spawner.getId().toString());
 	         } else {
@@ -60,9 +60,9 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
 	}
 
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedHiredUnitProfile spawner, Path pPath) throws IOException {
+	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile spawner, Path pPath) throws IOException {
 		try {
-			String s = ExtendedHiredUnitProfileManager.serialize(pGson, spawner);
+			String s = ExtendedServerHiredUnitProfileManager.serialize(pGson, spawner);
 			String s1 = SHA1.hashUnencodedChars(s).toString();
 			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
 				Files.createDirectories(pPath.getParent());
@@ -78,7 +78,7 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 		}
 	}
 
-	private static Path createPath(Path pPath, ExtendedHiredUnitProfile profile) {
+	private static Path createPath(Path pPath, ExtendedServerHiredUnitProfile profile) {
 		return pPath.resolve("data/" + profile.getId().getNamespace()+ "/hired_unit_profiles/" + profile.getId().getPath() + ".json");
 	}
 
@@ -87,8 +87,8 @@ public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider 
 		return "Extended Hired Unit Profile Provider";
 	}
 
-	public ExtendedHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
-		return new ExtendedHiredUnitProfile.Builder(unitEntityType, pAttackType);
+	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
+		return new ExtendedServerHiredUnitProfile.Builder(unitEntityType, pAttackType);
 	}
 
 }

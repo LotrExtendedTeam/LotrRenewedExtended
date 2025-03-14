@@ -13,10 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedHirableEntity;
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
-import lotr.common.entity.npc.ExtendedHiredGundabadOrc;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -52,12 +49,8 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
     public ExtendedHiredUnitScreen(ExtendedHiredUnitContainer container, PlayerInventory p_98410_, ITextComponent title) {
         super(container, p_98410_, title);
 
-        if (p_98410_.player.level.getEntity(container.getEntityId()) != null) {
-            if (p_98410_.player.level.getEntity(container.getEntityId()) instanceof ExtendedHirableEntity) {
-                this.companion = (ExtendedHirableEntity) p_98410_.player.level.getEntity(container.getEntityId());
-            } else {
-                companion = null;
-            }
+        if (menu.getCompanion() instanceof ExtendedHirableEntity) {
+        	companion = (ExtendedHirableEntity)menu.getCompanion();
         } else {
             companion = null;
         }
@@ -123,15 +116,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
         this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.companion").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 12, 4210752);
 
-        if (companion instanceof ExtendedHiredBreeGuard) {
-            this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_bree_guard"), sidebarX, this.titleLabelY + 22, 4210752);
-        }
-        if (companion instanceof ExtendedDunedainRangerEntity) {
-            this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_dunedain_ranger"), sidebarX, this.titleLabelY + 22, 4210752);
-        }
-        if (companion instanceof ExtendedHiredGundabadOrc) {
-            this.font.draw(matrix, new TranslationTextComponent("entity_unit_type.lotrextended.hired_gundabad_orc"), sidebarX, this.titleLabelY + 22, 4210752);
-        }
+        this.font.draw(matrix, new TranslationTextComponent(menu.profile.getEntityUnitTypeName()), sidebarX, this.titleLabelY + 22, 4210752);
 
         this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32, 4210752);
         this.font.draw(matrix, new StringTextComponent(df.format(companion.getHiredUnitHealth()) + "/" + (int) companion.getHiredUnitMaxHealth()), sidebarX, this.titleLabelY + 42, 4210752);

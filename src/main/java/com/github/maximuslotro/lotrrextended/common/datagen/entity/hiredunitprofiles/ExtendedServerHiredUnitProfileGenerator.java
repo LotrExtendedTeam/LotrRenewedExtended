@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitpro
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.util.LeatherDyeUtil;
@@ -14,14 +14,14 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileProvider{
+public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHiredUnitProfileProvider{
 
-	public ExtendedHiredUnitProfileGenerator(DataGenerator pDataGenerator, String pModId) {
+	public ExtendedServerHiredUnitProfileGenerator(DataGenerator pDataGenerator, String pModId) {
 		super(pDataGenerator, pModId);
 	}
 
 	@Override
-	public void makeStructureSpawnPools(Consumer<ExtendedHiredUnitProfile> pConsumer) {
+	public void makeStructureSpawnPools(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
 		// Bree Units
 		make(ExtendedEntities.HIRED_BREE_GUARD.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)

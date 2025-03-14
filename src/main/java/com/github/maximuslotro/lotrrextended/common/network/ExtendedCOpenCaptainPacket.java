@@ -9,8 +9,8 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -43,7 +43,7 @@ public class ExtendedCOpenCaptainPacket {
     		context.get().setPacketHandled(true);
     		return;
     	}
-    	ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(((ExtendedCaptainEntity)entity).getHireableProfile());
+    	ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(((ExtendedCaptainEntity)entity).getHireableProfile());
 
         if(unitProfile.isEmptyUnitType()) {
         	ExtendedLog.error("Tried loading an unknown unit profile for captain entity! "+((ExtendedCaptainEntity)entity).getHireableProfile());

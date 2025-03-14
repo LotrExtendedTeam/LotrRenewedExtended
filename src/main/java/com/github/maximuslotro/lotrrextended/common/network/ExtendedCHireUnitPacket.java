@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
@@ -54,7 +54,7 @@ public class ExtendedCHireUnitPacket {
         NPCEntity npc = (NPCEntity)captain;
         ServerPlayerEntity player = Objects.requireNonNull(context.get().getSender());
 
-        ExtendedHiredUnitProfile unitProfile = ExtendedHiredUnitProfileManager.INSTANCE.get(packet.unitProfileID);
+        ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(packet.unitProfileID);
         LOTRPlayerData playerData = LOTRLevelData.getSidedData(player);
 
         if(unitProfile.isEmptyUnitType()) {
@@ -91,7 +91,7 @@ public class ExtendedCHireUnitPacket {
                 ((ExtendedHirableEntity) newEntity).tame(player);
             }
             CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
-            player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getUnitTypeName()), unitProfile.getHiringCost()), Util.NIL_UUID);
+            player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getEntityUnitTypeName()), unitProfile.getHiringCost()), Util.NIL_UUID);
             ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entity.getType(), newEntity.getType(), unitProfile.getHiringCost());
         }
 
