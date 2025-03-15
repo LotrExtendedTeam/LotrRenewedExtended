@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.inventory;
 
+import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
@@ -18,23 +22,22 @@ public class ExtendedHiredUnitContainer extends Container {
     private final int containerRows = 1;
 
     private int entityId;
-
     private NPCEntity companion;
 
-    private PlayerEntity player;
-
-    public PlayerEntity getPlayer() {
-        return player;
-    }
-    public ExtendedHiredUnitContainer(int p_39230_, PlayerInventory playerInventory, PacketBuffer extraData) {
-        super(ExtendedContainers.HIRED_UNIT_CONTAINER.get(), p_39230_);
+    public final ExtendedClientHiredUnitProfile profile;
+    
+    public final ExtendedUnitOrders initialOrders;
+    
+    public ExtendedHiredUnitContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
+        super(ExtendedContainers.HIRED_UNIT_CONTAINER.get(), pContainerId);
 
         // read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();
         this.entityId = nbt.getInt("entityId");
-
-        this.player = playerInventory.player;
-        this.companion = (NPCEntity) this.player.level.getEntity(entityId);
+        this.profile = ExtendedClientHiredUnitProfile.fromNetwork(nbt);
+        this.initialOrders = ExtendedUnitOrders.getByUnchangingIndex(nbt.getInt("orders_id"));
+       
+        this.companion = (NPCEntity) pPlayerInventory.player.level.getEntity(entityId);
 
         IInventory companionInv = new Inventory(9);
         if (companion instanceof ExtendedHirableEntity) {
@@ -43,7 +46,7 @@ public class ExtendedHiredUnitContainer extends Container {
 
         checkContainerSize(companionInv, companionInv.getContainerSize());
         this.container = companionInv;
-        companionInv.startOpen(playerInventory.player);
+        companionInv.startOpen(pPlayerInventory.player);
 
         // add the 9 companion inventory slots
         for (int k = 0; k < 9; ++k) {
@@ -53,13 +56,13 @@ public class ExtendedHiredUnitContainer extends Container {
         // add the 3 rows of player inventory
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(playerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
+                this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
             }
         }
 
         // add the player's hotbar
         for (int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(playerInventory, i1, 8 + i1 * 18, 200));
+            this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 200));
         }
     }
 
@@ -109,10 +112,15 @@ public class ExtendedHiredUnitContainer extends Container {
         return this.containerRows;
     }
 
-    public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
+    public NPCEntity getCompanion() {
+    	return companion;
+    }
+
+    public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile, ExtendedUnitOrders currentOrders) {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putInt("entityId", entityId); // write the entity Id
-
+        ExtendedClientHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write server unit profile to client
+        nbt.putInt("orders_id", currentOrders.getUnchangingIndex()); // write initial entity orders
         extraData.writeNbt(nbt);
     }
 }

@@ -349,16 +349,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
-		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
+		addD("container.lotrextended.hired_unit_equipment", "Unit Equipment");
 		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
-		addD("gui.lotrextended.hiring.hire_bree_guard", "Hire Bree-land Guard");
-		addD("gui.lotrextended.hiring.hire_gundabad_orc", "Hire Gundabad Orc");
-		addD("gui.lotrextended.hiring.hire_dunedain_ranger", "Hire Dúnedain Ranger");
+		addD("gui.lotrextended.hiring.hire", "Hire: ");
 		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
+		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
+		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
 		// item names for base gear
@@ -366,7 +366,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");
 		addD("item.lotrextended.base_gear.leggings", "Base Leggings");
 		addD("item.lotrextended.base_gear.boots", "Base Boots");
-		addD("item.lotrextended.base_gear.weapon", "Base Weapon");
+		addD("item.lotrextended.base_gear.weapon", "Base Melee Weapon");
+		addD("item.lotrextended.base_gear.weapon_ranged", "Base Ranged Weapon");
+		addD("item.lotrextended.base_gear.weapon_mounted", "Base Mounted Weapon");
+		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
+		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
 		// chat notifications
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
@@ -374,18 +378,24 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");
-		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor_points", "Points: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", "Toughness: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack", "Attack:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack_damage", "Damage: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack_speed", "Speed: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
 
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_title", "Stationary: Off");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Hired NPC can move freely.");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending themself.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending itself.");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_title", "Follows: On");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC follows you unless set to stationary.");
-
+		addD("gui.lotrextended.hired_unit_tooltip.follows_off_title", "Follows: Off");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
 	}
 
 	@Override

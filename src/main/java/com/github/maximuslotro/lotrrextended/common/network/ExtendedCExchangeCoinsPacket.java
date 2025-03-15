@@ -10,8 +10,6 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
 public class ExtendedCExchangeCoinsPacket {
 	private int side; // 0 is left, 1 is right
 
-	public ExtendedCExchangeCoinsPacket() {}
-
 	public ExtendedCExchangeCoinsPacket(int side) {
 		this.side = side;
 	}
@@ -21,9 +19,7 @@ public class ExtendedCExchangeCoinsPacket {
 	}
 
 	public static ExtendedCExchangeCoinsPacket decode(PacketBuffer buf) {
-		ExtendedCExchangeCoinsPacket packet = new ExtendedCExchangeCoinsPacket();
-		packet.side = buf.readInt();
-		return packet;
+		return new ExtendedCExchangeCoinsPacket(buf.readInt());
 	}
 
 	public static void handle(ExtendedCExchangeCoinsPacket packet, Supplier<Context> context) {

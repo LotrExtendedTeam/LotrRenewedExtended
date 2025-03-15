@@ -61,7 +61,7 @@ public class ExtendedTraderHelper {
         trader.updatePlayerInteractingWith(player.getUUID());
 
         if (entity.level.isClientSide()) {
-            ExtendedClientsideSeperatedScreenHandler.openTraderGui(entity, player);
+            ExtendedClientsideSeperatedScreenHandler.openTraderMainMenuGui(entity, player);
         }
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }

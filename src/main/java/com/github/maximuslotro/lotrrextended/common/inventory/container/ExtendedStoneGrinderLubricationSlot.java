@@ -11,8 +11,8 @@ public class ExtendedStoneGrinderLubricationSlot extends Slot {
 	public static final ResourceLocation EMPTY_BUCKET_TEXTURE = new ResourceLocation("lotr", "item/empty_keg_slot_bucket");
 	private final ExtendedStoneGrinderContainer menu;
 
-	public ExtendedStoneGrinderLubricationSlot(ExtendedStoneGrinderContainer grinderMenu, IInventory pFurnaceContainer, int pSlot, int pXPosition, int pYPosition) {
-		super(pFurnaceContainer, pSlot, pXPosition, pYPosition);
+	public ExtendedStoneGrinderLubricationSlot(ExtendedStoneGrinderContainer grinderMenu, IInventory pContainer, int pSlot, int pXPosition, int pYPosition) {
+		super(pContainer, pSlot, pXPosition, pYPosition);
 		this.menu = grinderMenu;
 		setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_BUCKET_TEXTURE);
 	}

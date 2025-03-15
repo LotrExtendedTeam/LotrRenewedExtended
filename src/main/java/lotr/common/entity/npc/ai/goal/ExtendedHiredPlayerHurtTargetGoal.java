@@ -34,7 +34,7 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
     @Override
 	public boolean canUse() {
         if (this.hirable.isTame()) {
-            LivingEntity livingentity = this.hirable.getOwner();
+            LivingEntity livingentity = this.hirable.getUnitOwner();
             if (livingentity == null) {
                 return false;
             } else {
@@ -42,7 +42,7 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
                 if (this.ownerLastHurt instanceof TameableEntity) {
                     if (((TameableEntity) this.ownerLastHurt).isTame()) {
                         LivingEntity owner1 = ((TameableEntity) this.ownerLastHurt).getOwner();
-                        LivingEntity owner2 = this.hirable.getOwner();
+                        LivingEntity owner2 = this.hirable.getUnitOwner();
                         // prevent hired units of the same player from fighting each other
                         if (owner1 != null && owner1.equals(owner2)) {
                             return false;
@@ -62,7 +62,7 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
     @Override
 	public void start() {
         this.mob.setTarget(this.ownerLastHurt);
-        LivingEntity livingentity = this.hirable.getOwner();
+        LivingEntity livingentity = this.hirable.getUnitOwner();
         if (livingentity != null) {
             this.timestamp = livingentity.getLastHurtMobTimestamp();
         }

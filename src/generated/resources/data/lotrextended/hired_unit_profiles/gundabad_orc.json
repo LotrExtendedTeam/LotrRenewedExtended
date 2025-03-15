@@ -1,10 +1,14 @@
 {
   "id": "lotrextended:gundabad_orc",
+  "entity_type": "lotr:hired_gundabad_orc",
   "language": {
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_gundabad_orc",
     "entity_shortname": "entity_shortname.lotrextended.hired_gundabad_orc",
     "entity_unit_type": "entity_unit_type.lotrextended.hired_gundabad_orc",
+    "attack_type": "melee"
+  },
+  "hiring": {
     "hiringCost": 25,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100
@@ -242,7 +246,8 @@
         }
       }
     ],
-    "weapons": [
+    "setIdleFromMelee": true,
+    "melee": [
       {
         "weight": 1,
         "equipmentItem": {

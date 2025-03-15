@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.Extende
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenCaptainPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
 import lotr.client.gui.ExtendedCaptainMainScreen;
@@ -21,12 +22,17 @@ import net.minecraft.inventory.Inventory;
 
 public class ExtendedClientsideSeperatedScreenHandler {
 
-	public static void openTraderGui(NPCEntity entity, PlayerEntity player) {
+	public static void openTraderMainMenuGui(NPCEntity entity, PlayerEntity player) {
 		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
 	}
 
-	public static void openCaptainGui(NPCEntity entity, PlayerEntity player) {
-		Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen(entity, (ExtendedCaptainEntity) entity, player));
+	public static void openCaptainGui(ExtendedSOpenCaptainPacket packet) {
+		Minecraft mc = Minecraft.getInstance();
+		ClientPlayerEntity player = mc.player;
+		Entity entity = mc.level.getEntity(packet.getCaptainId());
+		if (entity instanceof ExtendedCaptainEntity && entity instanceof NPCEntity) {
+			Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen((NPCEntity) entity, player, packet.getClientProfile()));
+		}
 	}
 
 	public static void handleWargScreenOpen(ExtendedSOpenWargWindowPacket pPacket) {

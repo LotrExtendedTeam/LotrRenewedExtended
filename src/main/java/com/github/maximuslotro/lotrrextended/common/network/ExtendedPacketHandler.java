@@ -11,7 +11,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class ExtendedPacketHandler {
 
-	private static final String PROTOCOL_VERSION = "7";
+	private static final String PROTOCOL_VERSION = "8";
 
 	private static SimpleChannel CHANNEL;
 
@@ -38,11 +38,15 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredMenuPacket.class, ExtendedCOpenHiredMenuPacket::encode, ExtendedCOpenHiredMenuPacket::decode, ExtendedCOpenHiredMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitStationaryPacket.class, ExtendedCSetHiredUnitStationaryPacket::encode, ExtendedCSetHiredUnitStationaryPacket::decode, ExtendedCSetHiredUnitStationaryPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitOrdersPacket.class, ExtendedCSetHiredUnitOrdersPacket::encode, ExtendedCSetHiredUnitOrdersPacket::decode, ExtendedCSetHiredUnitOrdersPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCHireUnitPacket.class, ExtendedCHireUnitPacket::encode, ExtendedCHireUnitPacket::decode, ExtendedCHireUnitPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedDualTogglePacket.class, ExtendedDualTogglePacket::encode, ExtendedDualTogglePacket::decode, ExtendedDualTogglePacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenCaptainPacket.class, ExtendedCOpenCaptainPacket::encode, ExtendedCOpenCaptainPacket::decode, ExtendedCOpenCaptainPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSOpenCaptainPacket.class, ExtendedSOpenCaptainPacket::encode, ExtendedSOpenCaptainPacket::decode, ExtendedSOpenCaptainPacket::handle);
 		if (id >= 255) {
-			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel (Max number of packets reached %d). ()_()", id);
+			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);
+			// And 0xFF is 255, so using one byte for index, max messages for one channel is 255
+			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel. ()_()", id);
 		}
 	}
 
@@ -55,7 +59,7 @@ public class ExtendedPacketHandler {
 	}
 
 	public static void sendToServer(Object msg) {
-	  CHANNEL.send(PacketDistributor.SERVER.noArg(), msg);
+		CHANNEL.send(PacketDistributor.SERVER.noArg(), msg);
 	}
 
 	public static void sendToAllTrackingEntity(Object msg, Entity entity) {
