@@ -1,292 +1,333 @@
 package lotr.common.inventory;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.ClickType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 
 /**
  * @author RichardB122
  */
 public class ExtendedCoinExchangeContainer extends Container implements IContainerListener {
-    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.coin_exchange");
+	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.coin_exchange");
 
-    private World level;
+	public Slot inputSlot;
+	public Slot leftVisualOutputSlot;
+	public Slot rightVisualOutputSlot;
+	public Slot leftOutputSlot;
+	public Slot rightOutputSlot;
 
-    public NPCEntity traderNPC;
+	// 0->Input, 1-> Left Visual Output, 2-> Right Visual Output, 3-> Left output, 4-> Right output
+	public Inventory coinSlots = new Inventory(5);
 
-    public boolean exchanged = false;
-    public int sideExchanged;
+	public final ExtendedTraderEntity trader;
 
-    private PlayerEntity player;
+	public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
+		super(ExtendedContainers.COIN_TRADING.get(), containerId);
 
-    private IInventory coinInputInv = new ExtendedCoinExchangeInventory(this, 1);
+		this.trader = (ExtendedTraderEntity) inventory.player.level.getEntity(extraData.readVarInt());
 
-    private IInventory exchangeInv = new ExtendedCoinExchangeInventory(this, 2);
+		inputSlot = addSlot(new ExtendedInputCoinSlot(this.coinSlots, 0, 80, 46));
+		leftVisualOutputSlot = addSlot(new ExtendedVisualCoinSlot(coinSlots, 1, 26, 46));
+		rightVisualOutputSlot = addSlot(new ExtendedVisualCoinSlot(coinSlots, 2, 134, 46));
+		leftOutputSlot = addSlot(new ExtendedOutputCoinSlot(coinSlots, 3, 26, 46));
+		rightOutputSlot = addSlot(new ExtendedOutputCoinSlot(coinSlots, 4, 134, 46));
 
-    public Slot inputSlot;
-    public Slot leftSlot;
-    public Slot rightSlot;
-    private ItemStack lastInputSlot = null;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 9; j++)
+				addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 106 + i * 18));
+		}
+		for (int i = 0; i < 9; i++) {
+			addSlot(new Slot(inventory, i, 8 + i * 18, 164));
+		}
 
-    public final ExtendedTraderEntity trader;
+		// the slotChanged method is used to help recalculate the preview for the coin exchanges
+		addSlotListener(this);
+	}
 
-    public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
-        super(ExtendedContainers.COIN_TRADING.get(), containerId);
+	/**
+	 * 
+	 * @param side An integer representing left coin slot if 0, and right coin slot if 1
+	 * */
+	public void handleExchange(int side) {
+		boolean converted = false;
+		// Check for valid input item during exchange
+		if (CoinUtils.isValidCoin(inputSlot.getItem())) {
+			// Check side for transfer and if valid item
+			if (side==1 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_ONE.get()) {
+				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_ONE.get(), ExtendedItems.SILVER_COIN_TEN.get());
+			} else if (side==1 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_TEN.get()) {
+				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_HUNDRED.get());
+			} else if (side==0 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_TEN.get()) {
+				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_ONE.get());
+			} else if (side==0 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get()) {
+				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_HUNDRED.get(), ExtendedItems.SILVER_COIN_TEN.get());
+			}
+			if(converted) {
+				trader.playTradeSound(); // attempt to play sound due to successful convert
+			}
+		}
+	}
 
-        this.player = inventory.player;
-        this.level = inventory.player.level;
-        this.traderNPC = (NPCEntity) this.level.getEntity(extraData.readVarInt());
-        this.trader = (ExtendedTraderEntity) traderNPC;
+	public boolean convertCurrencyDown(Item fromItem, Item toItem){
+		int newLowerCoins = inputSlot.getItem().getCount() * 10;
+		if (newLowerCoins > 64) {
+			// Cap maximum transfer amount due to down converting
+			newLowerCoins = 60;
+		}
+		if(leftOutputSlot.getItem().isEmpty()) {
+			leftVisualOutputSlot.set(ItemStack.EMPTY);
+			leftOutputSlot.set(new ItemStack(toItem, newLowerCoins));
+			inputSlot.set(new ItemStack(fromItem, inputSlot.getItem().getCount() - (newLowerCoins/ 10)));
+			return true;
+		}else {
+			leftVisualOutputSlot.set(ItemStack.EMPTY);
+			if(leftOutputSlot.getItem().getItem().equals(toItem)) {
+				int currentHigherCoinsCount = leftOutputSlot.getItem().getCount();
+				int numberOfHigherToRemove = 0;
+				for(int i = 1; i < 7; i++) {
+					if(currentHigherCoinsCount + (10*i)<=64) {
+						numberOfHigherToRemove = i;
+					}
+				}
+				if(numberOfHigherToRemove * 10 > newLowerCoins) {
+					ExtendedLog.warn("DEVELOPMENT ERROR IN "+fromItem.getRegistryName().toString()+" DOWN COIN EXCHANGE CALCULATION " + inputSlot.getItem().getCount() + ":" + leftOutputSlot.getItem().getCount());
+					ExtendedLog.warn("PLEASE REPORT THIS MESSAGE AND MESSAGE DATA!");
+					numberOfHigherToRemove = 6;
+				}
+				if(numberOfHigherToRemove!=0) {
+					leftOutputSlot.set(new ItemStack(toItem, currentHigherCoinsCount + (numberOfHigherToRemove * 10)));
+					inputSlot.set(new ItemStack(fromItem, inputSlot.getItem().getCount() - numberOfHigherToRemove));
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
-        inputSlot = addSlot(new Slot(this.coinInputInv, 0, 80, 46) {
-            @Override
-			public boolean mayPlace(ItemStack stack) {
-                return super.mayPlace(stack) && CoinUtils.isValidCoin(stack);
-            }
+	public boolean convertCurrencyUp(Item fromItem, Item toItem){
+		if (inputSlot.getItem().getCount() >= 10) {
+			// Since max stack size is 64, 64/10 will always be less than 64
+			int newHigherCoins = inputSlot.getItem().getCount() / 10;
+			int lowerCoinsRemainder = inputSlot.getItem().getCount() % 10;
+			if(rightOutputSlot.getItem().isEmpty()) {
+				//Since max stack is less than 64, don't do checking
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				rightOutputSlot.set(new ItemStack(toItem, newHigherCoins));
+				inputSlot.set(new ItemStack(fromItem, lowerCoinsRemainder));
+				return true;
+			}else {
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				if(rightOutputSlot.getItem().getItem().equals(toItem)) {
+					if(rightOutputSlot.getItem().getCount()==64) {
+						return false;
+					}
+					int addedHigherCoinsCount = newHigherCoins+ rightOutputSlot.getItem().getCount();
+					// Check for max stack size because of additional stacks
+					if(addedHigherCoinsCount>64) {
+						rightOutputSlot.set(new ItemStack(toItem, 64));
+						inputSlot.set(new ItemStack(fromItem, (addedHigherCoinsCount-64) * 10 + lowerCoinsRemainder));
+						return true;
+					}
+					else {
+						rightOutputSlot.set(new ItemStack(toItem, addedHigherCoinsCount));
+						inputSlot.set(new ItemStack(fromItem, lowerCoinsRemainder));
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 
-            @Override
-			public boolean mayPickup(PlayerEntity p_82869_1_) {
-                return !exchanged;
-            }
-
-            @Override
-            public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-                recalculateResultSlots(stack);
-                return stack;
-            }
-        });
-
-        // the slotChanged method is used to help recalculate the preview for the coin exchanges
-        addSlotListener(this);
-        // 35
-        leftSlot = addSlot(new ExtendedCoinResultSlot(this, exchangeInv, 0, 26, 46));
-        rightSlot = addSlot(new ExtendedCoinResultSlot(this, exchangeInv, 1, 134, 46));
-
-        int i;
-        for (i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++)
-                addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 106 + i * 18));
-        }
-        for (i = 0; i < 9; i++) {
-            addSlot(new Slot(inventory, i, 8 + i * 18, 164));
-        }
-    }
-
-    public void recalculateResultSlots(ItemStack itemStack) {
-        if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_ONE.get()) {
-            leftSlot.set(ItemStack.EMPTY);
-            exchangeInv.setItem(0, ItemStack.EMPTY);
-            leftSlot.setChanged();
-
-            if (inputSlot.getItem().getCount() >= 10) {
-                int tenCoins = inputSlot.getItem().getCount() / 10;
-                rightSlot.set(new ItemStack(ExtendedItems.SILVER_COIN_TEN.get(), tenCoins));
-                rightSlot.setChanged();
-                exchangeInv.setItem(1, new ItemStack(ExtendedItems.SILVER_COIN_TEN.get(), tenCoins));
-            }
-        } else if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_TEN.get()) {
-            int oneCoins = inputSlot.getItem().getCount() * 10;
-            if (oneCoins > 64) oneCoins = 60;
-            leftSlot.set(new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), oneCoins));
-            leftSlot.setChanged();
-            exchangeInv.setItem(0, new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), oneCoins));
-
-            if (inputSlot.getItem().getCount() >= 10) {
-                int hundredCoins = inputSlot.getItem().getCount() / 10;
-                rightSlot.set(new ItemStack(ExtendedItems.SILVER_COIN_HUNDRED.get(), hundredCoins));
-                rightSlot.setChanged();
-                exchangeInv.setItem(1, new ItemStack(ExtendedItems.SILVER_COIN_HUNDRED.get(), hundredCoins));
-            } else {
-                rightSlot.set(ItemStack.EMPTY);
-                exchangeInv.setItem(1, ItemStack.EMPTY);
-                rightSlot.setChanged();
-            }
-        } else if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get()) {
-            int tenCoins = inputSlot.getItem().getCount() * 10;
-            if (tenCoins > 64) tenCoins = 60;
-            leftSlot.set(new ItemStack(ExtendedItems.SILVER_COIN_TEN.get(), tenCoins));
-            leftSlot.setChanged();
-            exchangeInv.setItem(0, new ItemStack(ExtendedItems.SILVER_COIN_TEN.get(), tenCoins));
-
-            rightSlot.set(ItemStack.EMPTY);
-            rightSlot.setChanged();
-            exchangeInv.setItem(1, ItemStack.EMPTY);
-        } else if (inputSlot.getItem().equals(ItemStack.EMPTY)) {
-            exchangeInv.setItem(0, ItemStack.EMPTY);
-            exchangeInv.setItem(1, ItemStack.EMPTY);
-            leftSlot.set(ItemStack.EMPTY);
-            leftSlot.setChanged();
-            rightSlot.set(ItemStack.EMPTY);
-            rightSlot.setChanged();
-        }
-    }
-
-    public void handleExchange(int side) {
-        if (!exchanged && CoinUtils.isValidCoin(inputSlot.getItem())) {
-            exchanged = true;
-            sideExchanged = side;
-            int difference = CoinUtils.value(inputSlot.getItem()) - CoinUtils.value(exchangeInv.getItem(side));
-            int value = CoinUtils.valueOfItem(inputSlot.getItem().getItem());
-            if (difference > 0 && value > 0) {
-                int amount = difference / value;
-                inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), amount));
-                inputSlot.setChanged();
-            } else {
-                inputSlot.set(ItemStack.EMPTY);
-                inputSlot.setChanged();
-            }
-
-            trader.playTradeSound(); // attempt to play sound
-
-            // clear out the other side of the converter
-            // i.e. if we convert left clear the right side
-            if (side == 0) {
-                rightSlot.set(ItemStack.EMPTY);
-                exchangeInv.setItem(1, ItemStack.EMPTY);
-                rightSlot.setChanged();
-            } else if (side == 1) {
-                leftSlot.set(ItemStack.EMPTY);
-                exchangeInv.setItem(0, ItemStack.EMPTY);
-                leftSlot.setChanged();
-            }
-        }
-    }
-
-    @Override
+	@Override
 	public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
-        Slot slot = this.slots.get(slotId);
-        ItemStack itemstack = slot.getItem();
+		Slot slot = this.slots.get(slotId);
+		// From slot item
+		ItemStack itemstack = slot.getItem();
 
-        if (slot == inputSlot) {
-            if (player.inventory.add(inputSlot.getItem())) {
-                inputSlot.set(ItemStack.EMPTY);
-                inputSlot.setChanged();
-                slotsChanged(player.inventory);
-            }
-            return ItemStack.EMPTY;
-        }
+		// Moving from input slot
+		if (slot == inputSlot) {
+			if (player.inventory.add(inputSlot.getItem())) {
+				inputSlot.set(ItemStack.EMPTY);
+				inputSlot.setChanged();
+				slotsChanged(player.inventory);
+			}
+			return ItemStack.EMPTY;
+		}
 
-        if (slot == leftSlot) {
-            if (exchanged && sideExchanged == 0 && (player.inventory.add(leftSlot.getItem()))) {
-                leftSlot.set(ItemStack.EMPTY);
-                leftSlot.setChanged();
-                slotsChanged(player.inventory);
-                exchanged = false;
-                sideExchanged = -1;
-                recalculateResultSlots(inputSlot.getItem());
-            }
-            return ItemStack.EMPTY;
-        }
+		// Moving from lower output slot
+		if (slot == leftOutputSlot) {
+			if (player.inventory.add(leftOutputSlot.getItem())) {
+				leftOutputSlot.set(ItemStack.EMPTY);
+				leftOutputSlot.setChanged();
+				slotsChanged(player.inventory);
+			}
+			return ItemStack.EMPTY;
+		}
 
-        if (slot == rightSlot) {
-            if (exchanged && sideExchanged == 1 && (player.inventory.add(rightSlot.getItem()))) {
-                rightSlot.set(ItemStack.EMPTY);
-                rightSlot.setChanged();
-                slotsChanged(player.inventory);
-                exchanged = false;
-                sideExchanged = -1;
-                recalculateResultSlots(inputSlot.getItem());
-            }
-            return ItemStack.EMPTY;
-        }
+		// Moving from higher output slot
+		if (slot == rightOutputSlot) {
+			if (player.inventory.add(rightOutputSlot.getItem())) {
+				rightOutputSlot.set(ItemStack.EMPTY);
+				rightOutputSlot.setChanged();
+				slotsChanged(player.inventory);
+			}
+			return ItemStack.EMPTY;
+		}
 
-        // verify the item is a coin
-        if (!(CoinUtils.isValidCoin(itemstack))) {
-            return ItemStack.EMPTY;
-        }
+		// Disable shifting from visual slots
+		if (slot == leftVisualOutputSlot || slot == rightVisualOutputSlot) {
+			return ItemStack.EMPTY;
+		}
 
-        // handle moving from any other slot
-        if (itemstack.getItem().equals(inputSlot.getItem().getItem()) && inputSlot.getItem().getCount() <= 64) {
-            int newAmount = inputSlot.getItem().getCount() + itemstack.getCount();
-            if (newAmount > 64) {
-                itemstack.setCount(newAmount - 64);
-                inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), 64));
-                coinInputInv.setItem(0, new ItemStack(inputSlot.getItem().getItem(), 64));
-                inputSlot.setChanged();
-                slot.set(itemstack);
-                slot.setChanged();
-                return ItemStack.EMPTY;
-            } else {
-                inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), newAmount));
-                coinInputInv.setItem(0, new ItemStack(inputSlot.getItem().getItem(), newAmount));
-                inputSlot.setChanged();
-                slot.set(ItemStack.EMPTY);
-                slot.setChanged();
-                return ItemStack.EMPTY;
-            }
-        } else if (!inputSlot.getItem().equals(ItemStack.EMPTY) && !inputSlot.getItem().getItem().equals(itemstack.getItem())) {
-            // we need to return ItemStack.EMPTY if the item cannot be put in this slot or it will infinitely loop
-            return ItemStack.EMPTY;
-        } else if (inputSlot.getItem().equals(ItemStack.EMPTY)) {
-            inputSlot.set(itemstack);
-            coinInputInv.setItem(0, itemstack);
-            inputSlot.setChanged();
-            slot.set(ItemStack.EMPTY);
-            slot.setChanged();
-            return ItemStack.EMPTY;
-        }
+		
+		// verify the shifted item is a coin
+		if (!(CoinUtils.isValidCoin(itemstack))) {
+			return ItemStack.EMPTY;
+		}
 
-        return itemstack;
-    }
+		// handle moving from any other (probably inventory) slot into input slot if matching items
+		if (itemstack.getItem().equals(inputSlot.getItem().getItem()) && inputSlot.getItem().getCount() <= 64) {
+			int newAmount = inputSlot.getItem().getCount() + itemstack.getCount();
+			if (newAmount > 64) {
+				itemstack.setCount(newAmount - 64);
+				inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), 64));
+				slot.set(itemstack);
+				return ItemStack.EMPTY;
+			} else {
+				inputSlot.set(new ItemStack(inputSlot.getItem().getItem(), newAmount));
+				slot.set(ItemStack.EMPTY);
+				return ItemStack.EMPTY;
+			}
+		} else if (!inputSlot.getItem().isEmpty() && !inputSlot.getItem().getItem().equals(itemstack.getItem())) {
+			// We need to return ItemStack.EMPTY if the item cannot be put in this slot or it will infinitely loop
+			return ItemStack.EMPTY;
+		} else if (inputSlot.getItem().isEmpty()) {
+			// Directly place item in input slot since it is empty and we already validated it as a coin
+			inputSlot.set(itemstack);
+			slot.set(ItemStack.EMPTY);
+			return ItemStack.EMPTY;
+		}
 
-    /* PICKUP clicks that stack an item on the inputSlot do not sync with the server. This method makes that happen
+		return itemstack;
+	}
+
+	/* PICKUP clicks that stack an item on the inputSlot do not sync with the server. This method makes that happen
        by determining if that type of click has occurred in the input slot, supering the action and then marking the
        input slot has updated. */
-    @Override
-	public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
-        Slot s1 = null;
-        if (slot1 >= 0 && slot1 < player.inventory.getContainerSize()) s1 = slots.get(slot1);
-        boolean s1Equal = s1 == inputSlot;
+//	@Override
+//	public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
+//		Slot s1 = null;
+//		if (slot1 >= 0 && slot1 < player.inventory.getContainerSize()) { 
+//			s1 = slots.get(slot1);
+//		}
+//		boolean s1Equal = s1 == inputSlot;
+//
+//		ItemStack result = super.clicked(slot1, slot2, click, player);
+//
+//		// check if they clicked on the inputSlot
+//		if (s1Equal && click.equals(ClickType.PICKUP)) {
+//			inputSlot.setChanged();
+//			lastInputSlot = null;
+//			recalculateResultSlots(inputSlot.getItem());
+//		}
+//
+//		return result;
+//	}
 
-        ItemStack result = super.clicked(slot1, slot2, click, player);
+	@Override
+	public boolean stillValid(PlayerEntity p_75145_1_) {
+		return true;
+	}
 
-        // check if they clicked on the inputSlot
-        if (s1Equal && click.equals(ClickType.PICKUP)) {
-            inputSlot.setChanged();
-            lastInputSlot = null;
-            recalculateResultSlots(inputSlot.getItem());
-        }
+	public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
+		extraData.writeVarInt(entityId);
+	}
 
-        return result;
-    }
+	@Override
+	public void slotChanged(Container pContainerToSend, int pSlotInd, ItemStack pStack) {
+		//if (!inputSlot.getItem().equals(lastInputSlot) && !exchanged) {
+		//	recalculateResultSlots(inputSlot.getItem());
+		//	lastInputSlot = inputSlot.getItem();
+		//}
+	}
+	@Override
+	public void setContainerData(Container p_71111_1_, int p_71112_2_, int p_71112_3_) {
+		// This method is not needed
+	}
 
-    @Override
-    public boolean stillValid(PlayerEntity p_75145_1_) {
-        return true;
-    }
+	@Override
+	public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
+		// This method is not needed
+	}
 
-    public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
-        extraData.writeVarInt(entityId);
-    }
+	public static class ExtendedVisualCoinSlot extends Slot {
+		public ExtendedVisualCoinSlot(IInventory pContainer, int pIndex, int pX, int pY) {
+			super(pContainer, pIndex, pX, pY);
+		}
 
-    @Override
-    public void slotChanged(Container p_71111_1_, int p_71111_2_, ItemStack p_71111_3_) {
-        if (!inputSlot.getItem().equals(lastInputSlot) && !exchanged) {
-            recalculateResultSlots(inputSlot.getItem());
-            lastInputSlot = inputSlot.getItem();
-        }
-    }
-    @Override
-    public void setContainerData(Container p_71111_1_, int p_71112_2_, int p_71112_3_) {
-        // this method is not needed
-    }
-    @Override
-    public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
-        // this method is not needed
-    }
+		@Override
+		public boolean mayPlace(ItemStack stack) {
+			return false;
+		}
+
+		@Override
+		public boolean mayPickup(PlayerEntity p_82869_1_) {
+			return false;
+		}
+
+		@Override
+		public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+			return null;
+		}
+
+		@Override
+		public boolean isActive() {
+			return !getItem().isEmpty();
+		}
+	}
+
+	public static class ExtendedOutputCoinSlot extends Slot {
+		public ExtendedOutputCoinSlot(IInventory pContainer, int pIndex, int pX, int pY) {
+			super(pContainer, pIndex, pX, pY);
+		}
+
+		@Override
+		public boolean mayPlace(ItemStack stack) {
+			return false;
+		}
+	}
+
+	public static class ExtendedInputCoinSlot extends Slot {
+		public ExtendedInputCoinSlot(IInventory pContainer, int pIndex, int pX, int pY) {
+			super(pContainer, pIndex, pX, pY);
+		}
+
+		@Override
+		public boolean mayPlace(ItemStack stack) {
+			return CoinUtils.isValidCoin(stack);
+		}
+
+		@Override
+		public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+			//recalculateResultSlots(stack);
+			return stack;
+		}
+	}
 }

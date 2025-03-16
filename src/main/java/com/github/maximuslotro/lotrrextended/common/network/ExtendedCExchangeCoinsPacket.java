@@ -7,8 +7,11 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
+/**
+ * Tells the server that the coin exchange button was pressed and which option it was
+ * */
 public class ExtendedCExchangeCoinsPacket {
-	private int side; // 0 is left, 1 is right
+	private int side; // 0 is left coin slot, 1 is right coin slot
 
 	public ExtendedCExchangeCoinsPacket(int side) {
 		this.side = side;

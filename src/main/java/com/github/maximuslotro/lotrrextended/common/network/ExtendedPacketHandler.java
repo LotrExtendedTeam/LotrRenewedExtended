@@ -23,7 +23,6 @@ public class ExtendedPacketHandler {
 		// This naming scheme is shown in {@Link net.minecraft.network.ProtocolType}
 		CHANNEL.registerMessage(id++, ExtendedCSelectHornPacket.class, ExtendedCSelectHornPacket::encode, ExtendedCSelectHornPacket::decode, ExtendedCSelectHornPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCExchangeCoinsPacket.class, ExtendedCExchangeCoinsPacket::encode, ExtendedCExchangeCoinsPacket::decode, ExtendedCExchangeCoinsPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedSUpdateExchangeCoinContainerPacket.class, ExtendedSUpdateExchangeCoinContainerPacket::encode, ExtendedSUpdateExchangeCoinContainerPacket::decode, ExtendedSUpdateExchangeCoinContainerPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenCoinExchangePacket.class, ExtendedCOpenCoinExchangePacket::encode, ExtendedCOpenCoinExchangePacket::decode, ExtendedCOpenCoinExchangePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCTalkWithTraderPacket.class, ExtendedCTalkWithTraderPacket::encode, ExtendedCTalkWithTraderPacket::decode, ExtendedCTalkWithTraderPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenTradeMenuPacket.class, ExtendedCOpenTradeMenuPacket::encode, ExtendedCOpenTradeMenuPacket::decode, ExtendedCOpenTradeMenuPacket::handle);
