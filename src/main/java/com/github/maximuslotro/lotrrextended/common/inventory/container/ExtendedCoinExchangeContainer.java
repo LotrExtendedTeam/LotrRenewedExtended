@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedInputCoinSlot;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedOutputCoinSlot;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedVisualCoinSlot;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.init.ExtendedContainers;
@@ -8,7 +11,6 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
@@ -275,59 +277,5 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	@Override
 	public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
 		// This method is not needed
-	}
-
-	public static class ExtendedVisualCoinSlot extends Slot {
-		public ExtendedVisualCoinSlot(IInventory pContainer, int pIndex, int pX, int pY) {
-			super(pContainer, pIndex, pX, pY);
-		}
-
-		@Override
-		public boolean mayPlace(ItemStack stack) {
-			return false;
-		}
-
-		@Override
-		public boolean mayPickup(PlayerEntity p_82869_1_) {
-			return false;
-		}
-
-		@Override
-		public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-			return null;
-		}
-
-		@Override
-		public boolean isActive() {
-			return !getItem().isEmpty();
-		}
-	}
-
-	public static class ExtendedOutputCoinSlot extends Slot {
-		public ExtendedOutputCoinSlot(IInventory pContainer, int pIndex, int pX, int pY) {
-			super(pContainer, pIndex, pX, pY);
-		}
-
-		@Override
-		public boolean mayPlace(ItemStack stack) {
-			return false;
-		}
-	}
-
-	public static class ExtendedInputCoinSlot extends Slot {
-		public ExtendedInputCoinSlot(IInventory pContainer, int pIndex, int pX, int pY) {
-			super(pContainer, pIndex, pX, pY);
-		}
-
-		@Override
-		public boolean mayPlace(ItemStack stack) {
-			return CoinUtils.isValidCoin(stack);
-		}
-
-		@Override
-		public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-			//recalculateResultSlots(stack);
-			return stack;
-		}
 	}
 }
