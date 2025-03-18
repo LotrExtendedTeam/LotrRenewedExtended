@@ -5,10 +5,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedCoinExchangeScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.inv.FactionCraftingScreen;
-import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.inv.FactionCraftingContainer;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;

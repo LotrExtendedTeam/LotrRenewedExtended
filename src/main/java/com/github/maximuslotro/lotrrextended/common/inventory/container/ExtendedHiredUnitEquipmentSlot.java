@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.inventory;
+package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 
@@ -18,9 +18,9 @@ import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class CompanionEquipmentSlot extends Slot{
+public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 	private final ExtendedEquipmentSlotType equipmentSlotType;
-	private CompanionEquipmentSlot(IInventory pContainer, int pIndex, int pX, int pY, ExtendedEquipmentSlotType equipmentSlotType) {
+	private ExtendedHiredUnitEquipmentSlot(IInventory pContainer, int pIndex, int pX, int pY, ExtendedEquipmentSlotType equipmentSlotType) {
 		super(pContainer, pIndex, pX, pY);
 		this.equipmentSlotType = equipmentSlotType;
 	}
@@ -31,7 +31,7 @@ public abstract class CompanionEquipmentSlot extends Slot{
 
 	public abstract boolean mayPlaceShifting(ItemStack itemStack);
 
-	public static class ArmorSlot extends CompanionEquipmentSlot{
+	public static class ArmorSlot extends ExtendedHiredUnitEquipmentSlot{
 		public ArmorSlot(IInventory pContainer, int pIndex, int pX, int pY, ExtendedEquipmentSlotType equipmentSlotType, ResourceLocation empty_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, equipmentSlotType);
 			setBackground(PlayerContainer.BLOCK_ATLAS, empty_SLOT_LOCATION);
@@ -65,7 +65,7 @@ public abstract class CompanionEquipmentSlot extends Slot{
 		}
 	}
 
-	public static class RangedSlot extends CompanionEquipmentSlot{
+	public static class RangedSlot extends ExtendedHiredUnitEquipmentSlot{
 		public RangedSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.RANGED);
 			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
@@ -82,7 +82,7 @@ public abstract class CompanionEquipmentSlot extends Slot{
 		}
 	}
 
-	public static class MeleeSlot extends CompanionEquipmentSlot{
+	public static class MeleeSlot extends ExtendedHiredUnitEquipmentSlot{
 		public MeleeSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.MELEE);
 			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
@@ -99,7 +99,7 @@ public abstract class CompanionEquipmentSlot extends Slot{
 		}
 	}
 
-	public static class OffhandSlot extends CompanionEquipmentSlot{
+	public static class OffhandSlot extends ExtendedHiredUnitEquipmentSlot{
 		public OffhandSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
 			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.OFFHAND);
 			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);

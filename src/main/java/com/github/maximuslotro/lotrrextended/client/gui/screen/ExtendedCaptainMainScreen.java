@@ -1,6 +1,5 @@
-package lotr.client.gui;
+package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.network.*;
 import com.mojang.blaze3d.matrix.MatrixStack;

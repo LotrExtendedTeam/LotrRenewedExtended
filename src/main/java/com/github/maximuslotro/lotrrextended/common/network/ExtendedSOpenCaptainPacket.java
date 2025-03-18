@@ -7,8 +7,7 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-
-import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeperatedScreenHandler;
 
 public class ExtendedSOpenCaptainPacket {
 

@@ -1,6 +1,8 @@
-package lotr.common.util.client;
+package com.github.maximuslotro.lotrrextended.common.utils.client;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
@@ -8,8 +10,6 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenS
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenCaptainPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
-import lotr.client.gui.ExtendedCaptainMainScreen;
-import lotr.client.gui.ExtendedTraderMainScreen;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;

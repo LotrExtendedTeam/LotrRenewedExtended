@@ -1,4 +1,4 @@
-package lotr.common.inventory;
+package com.github.maximuslotro.lotrrextended.common.inventory;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;

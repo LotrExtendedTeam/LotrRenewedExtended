@@ -1,5 +1,6 @@
-package lotr.client.gui.inventory;
+package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCExchangeCoinsPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -7,7 +8,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.inventory.ExtendedCoinExchangeContainer;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;

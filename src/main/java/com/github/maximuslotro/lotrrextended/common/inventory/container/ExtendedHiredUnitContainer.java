@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.inventory;
+package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;

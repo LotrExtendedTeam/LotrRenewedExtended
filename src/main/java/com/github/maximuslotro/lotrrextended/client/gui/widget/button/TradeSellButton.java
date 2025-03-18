@@ -1,9 +1,9 @@
-package lotr.client.gui.widget.button;
+package com.github.maximuslotro.lotrrextended.client.gui.widget.button;
 
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;

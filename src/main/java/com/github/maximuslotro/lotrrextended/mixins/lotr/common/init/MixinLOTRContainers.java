@@ -10,15 +10,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.LOTRContainers;
-import lotr.common.inventory.ExtendedCoinExchangeContainer;
-import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;

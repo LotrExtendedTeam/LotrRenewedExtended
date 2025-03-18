@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedHirableEntity;

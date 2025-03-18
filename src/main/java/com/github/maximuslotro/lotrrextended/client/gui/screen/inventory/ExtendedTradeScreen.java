@@ -1,16 +1,16 @@
-package lotr.client.gui.inventory;
+package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.TradeSellButton;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTradeSellItemsPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.client.gui.widget.button.TradeSellButton;
-import lotr.common.inventory.ExtendedTradeContainer;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerEntity;

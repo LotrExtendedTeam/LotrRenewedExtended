@@ -1,4 +1,4 @@
-package lotr.common.inventory;
+package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import java.util.ArrayList;
 import java.util.HashMap;
