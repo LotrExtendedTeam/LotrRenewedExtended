@@ -22,6 +22,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public interface ExtendedHirableEntity {
@@ -89,7 +90,7 @@ public interface ExtendedHirableEntity {
 		return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
 	}
 
-	default ITextComponent getHiredUnitNameAndTitle() {
+	default TextComponent getHiredUnitNameAndTitle() {
 		if(getUnitProfile().stringsAreTranslated()) {
 			if(this instanceof NPCEntity) {
 				return new TranslationTextComponent(getUnitProfile().getEntityUnitTitle(),

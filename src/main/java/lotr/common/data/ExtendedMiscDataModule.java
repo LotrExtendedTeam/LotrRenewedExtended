@@ -52,7 +52,7 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 		return hiredUnitFriendlyFire;
 	}
 
-	public boolean canHiredUnitDeathMessages() {
+	public boolean shouldShowHiredUnitDeathMessages() {
 		return hiredUnitDeathMessages;
 	}
 

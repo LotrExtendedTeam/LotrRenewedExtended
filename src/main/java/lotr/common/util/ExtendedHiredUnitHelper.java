@@ -1,16 +1,21 @@
 package lotr.common.util;
 
+import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -22,11 +27,14 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotT
 public class ExtendedHiredUnitHelper {
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
         if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getUnitOwner() instanceof ServerPlayerEntity) {
-            unit.getUnitOwner().sendMessage(getCompanionDeathMessage(unit, source), unit.getOwnerUUID());
+        	if (((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().shouldShowHiredUnitDeathMessages()){
+        		boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+        		unit.getUnitOwner().sendMessage(getCompanionDeathMessage(unit, source, fancy), unit.getOwnerUUID());
+        	}
         }
     }
 
-    private static TranslationTextComponent getCompanionDeathMessage(ExtendedHirableEntity unit, DamageSource source) {
+    private static TranslationTextComponent getCompanionDeathMessage(ExtendedHirableEntity unit, DamageSource source, boolean fancy) {
         LivingEntity killer = null;
         if (unit instanceof LivingEntity) {
             killer = ((LivingEntity) unit).getKillCredit();
@@ -34,12 +42,16 @@ public class ExtendedHiredUnitHelper {
         String s = "death.attack." + source.msgId;
 
         TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unit.getHiredUnitNameAndTitle());
+        if(fancy) {
+        	companionName.withStyle(TextFormatting.AQUA);
+        }
 
         ITextComponent killerName = new StringTextComponent("");
         if (killer != null) {
             killerName = killer.getDisplayName();
             if (killer instanceof ExtendedHirableEntity) {
                 killerName = ((ExtendedHirableEntity) killer).getHiredUnitNameAndTitle();
+                companionName.withStyle(TextFormatting.RED);
             }
         }
 
@@ -58,10 +70,13 @@ public class ExtendedHiredUnitHelper {
             unit.setBaseHealth(unit.getBaseHealth() + 2);
 
             if (unit.getUnitOwner() != null) {
-                unit.getUnitOwner().sendMessage(
-                        new TranslationTextComponent("chat.lotrextended.hired_companion_levelup",
-                                unit.getHiredUnitNameAndTitle(), unit.getExpLvl()),
-                        unit.getOwnerUUID());
+            	TextComponent unitName = unit.getHiredUnitNameAndTitle();
+            	TextComponent newlevel = new StringTextComponent(Integer.toString(unit.getExpLvl()));
+            	if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().doHighContrastMessages()) {
+            		unitName.withStyle(TextFormatting.AQUA);
+            		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
+                }
+                unit.getUnitOwner().sendMessage(new TranslationTextComponent("chat.lotrextended.hired_companion_levelup", unitName, newlevel), unit.getOwnerUUID());
             }
         } else {
             unit.setCurrentXp(newExperience);
