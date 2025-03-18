@@ -22,7 +22,8 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.global.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
@@ -99,6 +100,7 @@ public class LotrExtendedMod{
 		ExtendedSounds.register(modBus);
 		ExtendedGlobalLootModifiers.register(modBus);
 		ExtendedLootFunctions.setup();
+		ExtendedLootModifiers.setup();
 		ExtendedTags.init();
 		ExtendedEffects.register();
 		serverTickEventHandler = new ExtendedTickHandlerServer();
