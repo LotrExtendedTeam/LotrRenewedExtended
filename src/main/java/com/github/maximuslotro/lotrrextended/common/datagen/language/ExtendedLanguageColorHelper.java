@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.language;
 
 import net.minecraft.item.DyeColor;
 
-public class TextChanger {
+public class ExtendedLanguageColorHelper {
 	public static String getColorFullTextChnager(DyeColor form) {
 		switch(form) {
 			case WHITE:
@@ -38,7 +38,7 @@ public class TextChanger {
 			case BLACK:
 				return "Black";
 			default:
-				return "";
+				return "INVALID_DYE_COLOR";
 		}
 	}
 }

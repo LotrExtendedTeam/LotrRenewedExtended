@@ -49,6 +49,7 @@ public class ExtendedImageButton extends Button {
 		this.y = pY;
 	}
 
+	@Override
 	public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		Minecraft minecraft = Minecraft.getInstance();
 		minecraft.getTextureManager().bind(this.resourceLocation);

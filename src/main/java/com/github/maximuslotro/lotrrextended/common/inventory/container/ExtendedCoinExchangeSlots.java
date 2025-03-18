@@ -28,8 +28,8 @@ public class ExtendedCoinExchangeSlots {
 		}
 
 		@Override
-		public boolean isActive() {
-			return !getItem().isEmpty();
+		public void setChanged() {
+			
 		}
 	}
 
@@ -52,12 +52,6 @@ public class ExtendedCoinExchangeSlots {
 		@Override
 		public boolean mayPlace(ItemStack stack) {
 			return CoinUtils.isValidCoin(stack);
-		}
-
-		@Override
-		public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-			//recalculateResultSlots(stack);
-			return stack;
 		}
 	}
 }

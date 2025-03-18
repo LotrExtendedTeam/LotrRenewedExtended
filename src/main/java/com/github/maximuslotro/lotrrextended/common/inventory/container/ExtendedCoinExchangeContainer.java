@@ -6,12 +6,15 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedVisualCoinSlot;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
@@ -24,6 +27,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * @author RichardB122
+ * @author maximuslotro
  */
 public class ExtendedCoinExchangeContainer extends Container implements IContainerListener {
 	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.coin_exchange");
@@ -44,11 +48,44 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 
 		this.trader = (ExtendedTraderEntity) inventory.player.level.getEntity(extraData.readVarInt());
 
-		inputSlot = addSlot(new ExtendedInputCoinSlot(this.coinSlots, 0, 80, 46));
+		inputSlot = addSlot(new ExtendedInputCoinSlot(this.coinSlots, 0, 80, 46) {
+			@Override
+			public void setChanged() {
+				super.setChanged();
+				reCheckVirtual();
+			}
+			@Override
+			public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+				reCheckVirtual();
+				return super.onTake(player, stack);
+			}
+		});
+		leftOutputSlot = addSlot(new ExtendedOutputCoinSlot(coinSlots, 3, 26, 46) {
+			@Override
+			public void setChanged() {
+				super.setChanged();
+				reCheckVirtual();
+			}
+			@Override
+			public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+				reCheckVirtual();
+				return super.onTake(player, stack);
+			}
+		});
+		rightOutputSlot = addSlot(new ExtendedOutputCoinSlot(coinSlots, 4, 134, 46) {
+			@Override
+			public void setChanged() {
+				super.setChanged();
+				reCheckVirtual();
+			}
+			@Override
+			public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+				reCheckVirtual();
+				return super.onTake(player, stack);
+			}
+		});
 		leftVisualOutputSlot = addSlot(new ExtendedVisualCoinSlot(coinSlots, 1, 26, 46));
 		rightVisualOutputSlot = addSlot(new ExtendedVisualCoinSlot(coinSlots, 2, 134, 46));
-		leftOutputSlot = addSlot(new ExtendedOutputCoinSlot(coinSlots, 3, 26, 46));
-		rightOutputSlot = addSlot(new ExtendedOutputCoinSlot(coinSlots, 4, 134, 46));
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++)
@@ -63,22 +100,22 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	}
 
 	/**
-	 * 
+	 * Calculates and exchanges coins according to which button was pressed
 	 * @param side An integer representing left coin slot if 0, and right coin slot if 1
 	 * */
 	public void handleExchange(int side) {
 		boolean converted = false;
 		// Check for valid input item during exchange
-		if (CoinUtils.isValidCoin(inputSlot.getItem())) {
+		if (!((NPCEntity)trader).level.isClientSide() && CoinUtils.isValidCoin(inputSlot.getItem())) {
 			// Check side for transfer and if valid item
 			if (side==1 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_ONE.get()) {
-				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_ONE.get(), ExtendedItems.SILVER_COIN_TEN.get());
+				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_ONE.get(), ExtendedItems.SILVER_COIN_TEN.get(), false);
 			} else if (side==1 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_TEN.get()) {
-				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_HUNDRED.get());
+				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_HUNDRED.get(), false);
 			} else if (side==0 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_TEN.get()) {
-				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_ONE.get());
+				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_ONE.get(), false);
 			} else if (side==0 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get()) {
-				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_HUNDRED.get(), ExtendedItems.SILVER_COIN_TEN.get());
+				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_HUNDRED.get(), ExtendedItems.SILVER_COIN_TEN.get(), false);
 			}
 			if(converted) {
 				trader.playTradeSound(); // attempt to play sound due to successful convert
@@ -86,19 +123,61 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 		}
 	}
 
-	public boolean convertCurrencyDown(Item fromItem, Item toItem){
+	/**
+	 * Re-checks if virtual coins can be generated
+	 * */
+	public void reCheckVirtual() {
+		// Check for valid input item during exchange
+		if (CoinUtils.isValidCoin(inputSlot.getItem())) {
+			if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_ONE.get()) {
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				leftVisualOutputSlot.set(ItemStack.EMPTY);
+				convertCurrencyUp(ExtendedItems.SILVER_COIN_ONE.get(), ExtendedItems.SILVER_COIN_TEN.get(), true);
+			} else if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_TEN.get()) {
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				leftVisualOutputSlot.set(ItemStack.EMPTY);
+				convertCurrencyUp(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_HUNDRED.get(), true);
+				convertCurrencyDown(ExtendedItems.SILVER_COIN_TEN.get(), ExtendedItems.SILVER_COIN_ONE.get(), true);
+			} else if (inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_HUNDRED.get()) {
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				leftVisualOutputSlot.set(ItemStack.EMPTY);
+				convertCurrencyDown(ExtendedItems.SILVER_COIN_HUNDRED.get(), ExtendedItems.SILVER_COIN_TEN.get(), true);
+			}
+		}
+	}
+	
+	/**
+	 * Converts a higher denomination currency into a lower denomination currency
+	 * @param fromItem The Item to convert from
+	 * @param toItem The Item to convert to
+	 * @param virtual Should calculations only update the virtial slot
+	 * @return True if currency was converted
+	 * */
+	public boolean convertCurrencyDown(Item fromItem, Item toItem, boolean virtual){
 		int newLowerCoins = inputSlot.getItem().getCount() * 10;
 		if (newLowerCoins > 64) {
 			// Cap maximum transfer amount due to down converting
 			newLowerCoins = 60;
 		}
 		if(leftOutputSlot.getItem().isEmpty()) {
-			leftVisualOutputSlot.set(ItemStack.EMPTY);
+			if(virtual) {
+				leftVisualOutputSlot.set(new ItemStack(toItem, newLowerCoins));
+				this.broadcastChanges();
+				return false;
+			}else {
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				leftVisualOutputSlot.set(ItemStack.EMPTY);
+			}
 			leftOutputSlot.set(new ItemStack(toItem, newLowerCoins));
 			inputSlot.set(new ItemStack(fromItem, inputSlot.getItem().getCount() - (newLowerCoins/ 10)));
 			return true;
 		}else {
-			leftVisualOutputSlot.set(ItemStack.EMPTY);
+			if(virtual) {
+				return false;
+			}else {
+				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				leftVisualOutputSlot.set(ItemStack.EMPTY);
+			}
 			if(leftOutputSlot.getItem().getItem().equals(toItem)) {
 				int currentHigherCoinsCount = leftOutputSlot.getItem().getCount();
 				int numberOfHigherToRemove = 0;
@@ -122,19 +201,37 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 		return false;
 	}
 
-	public boolean convertCurrencyUp(Item fromItem, Item toItem){
+	/**
+	 * Converts a lower denomination currency into a higher denomination currency
+	 * @param fromItem The Item to convert from
+	 * @param toItem The Item to convert to
+	 * @param virtual Should calculations only update the virtial slot
+	 * @return True if currency was converted
+	 * */
+	public boolean convertCurrencyUp(Item fromItem, Item toItem, boolean virtual){
 		if (inputSlot.getItem().getCount() >= 10) {
 			// Since max stack size is 64, 64/10 will always be less than 64
 			int newHigherCoins = inputSlot.getItem().getCount() / 10;
 			int lowerCoinsRemainder = inputSlot.getItem().getCount() % 10;
 			if(rightOutputSlot.getItem().isEmpty()) {
+				if(virtual) {
+					rightVisualOutputSlot.set(new ItemStack(toItem, newHigherCoins));
+					return false;
+				}else {
+					rightVisualOutputSlot.set(ItemStack.EMPTY);
+					leftVisualOutputSlot.set(ItemStack.EMPTY);
+				}
 				//Since max stack is less than 64, don't do checking
-				rightVisualOutputSlot.set(ItemStack.EMPTY);
 				rightOutputSlot.set(new ItemStack(toItem, newHigherCoins));
 				inputSlot.set(new ItemStack(fromItem, lowerCoinsRemainder));
 				return true;
 			}else {
-				rightVisualOutputSlot.set(ItemStack.EMPTY);
+				if(virtual) {
+					return false;
+				}else {
+					rightVisualOutputSlot.set(ItemStack.EMPTY);
+					leftVisualOutputSlot.set(ItemStack.EMPTY);
+				}
 				if(rightOutputSlot.getItem().getItem().equals(toItem)) {
 					if(rightOutputSlot.getItem().getCount()==64) {
 						return false;
@@ -162,12 +259,10 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 		Slot slot = this.slots.get(slotId);
 		// From slot item
 		ItemStack itemstack = slot.getItem();
-
 		// Moving from input slot
 		if (slot == inputSlot) {
 			if (player.inventory.add(inputSlot.getItem())) {
 				inputSlot.set(ItemStack.EMPTY);
-				inputSlot.setChanged();
 				slotsChanged(player.inventory);
 			}
 			return ItemStack.EMPTY;
@@ -177,7 +272,6 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 		if (slot == leftOutputSlot) {
 			if (player.inventory.add(leftOutputSlot.getItem())) {
 				leftOutputSlot.set(ItemStack.EMPTY);
-				leftOutputSlot.setChanged();
 				slotsChanged(player.inventory);
 			}
 			return ItemStack.EMPTY;
@@ -187,7 +281,6 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 		if (slot == rightOutputSlot) {
 			if (player.inventory.add(rightOutputSlot.getItem())) {
 				rightOutputSlot.set(ItemStack.EMPTY);
-				rightOutputSlot.setChanged();
 				slotsChanged(player.inventory);
 			}
 			return ItemStack.EMPTY;
@@ -226,32 +319,8 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 			slot.set(ItemStack.EMPTY);
 			return ItemStack.EMPTY;
 		}
-
 		return itemstack;
 	}
-
-	/* PICKUP clicks that stack an item on the inputSlot do not sync with the server. This method makes that happen
-       by determining if that type of click has occurred in the input slot, supering the action and then marking the
-       input slot has updated. */
-//	@Override
-//	public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
-//		Slot s1 = null;
-//		if (slot1 >= 0 && slot1 < player.inventory.getContainerSize()) { 
-//			s1 = slots.get(slot1);
-//		}
-//		boolean s1Equal = s1 == inputSlot;
-//
-//		ItemStack result = super.clicked(slot1, slot2, click, player);
-//
-//		// check if they clicked on the inputSlot
-//		if (s1Equal && click.equals(ClickType.PICKUP)) {
-//			inputSlot.setChanged();
-//			lastInputSlot = null;
-//			recalculateResultSlots(inputSlot.getItem());
-//		}
-//
-//		return result;
-//	}
 
 	@Override
 	public boolean stillValid(PlayerEntity p_75145_1_) {
@@ -263,11 +332,25 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	}
 
 	@Override
+	public ItemStack clicked(int slot1, int slot2, ClickType click, PlayerEntity player) {
+		if(slot1==this.leftVisualOutputSlot.index || slot1==this.rightVisualOutputSlot.index) {
+			return super.clicked(slot1, slot2, click, player);
+		}
+		ItemStack stack = super.clicked(slot1, slot2, click, player);
+		reCheckVirtual();
+		if(player.inventory.getCarried()==this.inputSlot.getItem() || inputSlot.getItem().isEmpty()) {
+			rightVisualOutputSlot.set(ItemStack.EMPTY);
+			leftVisualOutputSlot.set(ItemStack.EMPTY);
+		}
+		return stack;
+	}
+	
+	@Override
 	public void slotChanged(Container pContainerToSend, int pSlotInd, ItemStack pStack) {
-		//if (!inputSlot.getItem().equals(lastInputSlot) && !exchanged) {
-		//	recalculateResultSlots(inputSlot.getItem());
-		//	lastInputSlot = inputSlot.getItem();
-		//}
+		if(pSlotInd==this.leftVisualOutputSlot.index || pSlotInd==this.rightVisualOutputSlot.index) {
+			return;
+		}
+		reCheckVirtual();
 	}
 	@Override
 	public void setContainerData(Container p_71111_1_, int p_71112_2_, int p_71112_3_) {
@@ -277,5 +360,24 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	@Override
 	public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
 		// This method is not needed
+	}
+
+	@Override
+	public void removed(PlayerEntity pPlayer) {
+		super.removed(pPlayer);
+		if (!leftOutputSlot.getItem().isEmpty()) {
+			pPlayer.drop(leftOutputSlot.getItem(), false);
+		}
+		if (!rightOutputSlot.getItem().isEmpty()) {
+			pPlayer.drop(rightOutputSlot.getItem(), false);
+		}
+		if (!inputSlot.getItem().isEmpty()) {
+			pPlayer.drop(inputSlot.getItem(), false);
+		}
+	}
+
+	@Override
+	public void slotsChanged(IInventory pInventory) {
+		super.slotsChanged(pInventory);
 	}
 }

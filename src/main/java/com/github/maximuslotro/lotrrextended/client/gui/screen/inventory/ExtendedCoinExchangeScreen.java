@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCExchangeCoinsPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
@@ -15,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * @author RichardB122
@@ -26,6 +30,9 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 	ExtendedCoinExchangeContainer container;
 
 	PlayerEntity player;
+
+	ImageButton convertUpButton;
+	ImageButton convertDownButton;
 
 	public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer container, PlayerInventory p_i51105_2_, ITextComponent title) {
 		super(container, p_i51105_2_, title);
@@ -84,8 +91,23 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 		int i = (this.width - this.imageWidth) / 2;
 		int j = ((this.height - this.imageHeight) / 2);
 
-		addButton(new ImageButton(i + 44,  j + 45, 32, 16, 176, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(0);}));
-		addButton(new ImageButton( i + 102,  j + 45, 32, 16, 208, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(1);}));
+		convertUpButton = addButton(new ImageButton(i + 44,  j + 45, 32, 16, 176, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(0);}));
+		convertDownButton = addButton(new ImageButton( i + 102,  j + 45, 32, 16, 208, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(1);}));
+	}
+
+	@Override
+	protected void renderTooltip(MatrixStack stack, int x, int y) {
+		super.renderTooltip(stack, x, y);
+		if (this.convertUpButton.isHovered() && !this.menu.rightOutputSlot.hasItem()) {
+			List<ITextComponent> tooltips = new ArrayList<>();
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.trading.coin_exchange.tooltip.up"));
+			this.renderComponentTooltip(stack, tooltips, x, y);
+		}
+		if (this.convertDownButton.isHovered() && !this.menu.leftOutputSlot.hasItem()) {
+			List<ITextComponent> tooltips = new ArrayList<>();
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.trading.coin_exchange.tooltip.down"));
+			this.renderComponentTooltip(stack, tooltips, x, y);
+		}
 	}
 
 	private void attemptToExchange(int mode) {

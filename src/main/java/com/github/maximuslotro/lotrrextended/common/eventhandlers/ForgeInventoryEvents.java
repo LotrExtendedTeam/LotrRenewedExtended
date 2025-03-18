@@ -20,21 +20,6 @@ public class ForgeInventoryEvents {
 		if (event.getContainer() instanceof ExtendedCoinExchangeContainer) {
 			ExtendedCoinExchangeContainer container = (ExtendedCoinExchangeContainer) event.getContainer();
 
-			if (!event.getPlayer().level.isClientSide) {
-				PlayerEntity player = event.getPlayer();
-				World world = player.level;
-
-				if (!container.leftOutputSlot.getItem().isEmpty()) {
-					world.addFreshEntity(new ItemEntity(world, player.getX(), player.getY(), player.getZ(), container.leftOutputSlot.getItem()));
-				}
-				if (!container.rightOutputSlot.getItem().isEmpty()) {
-					world.addFreshEntity(new ItemEntity(world, player.getX(), player.getY(), player.getZ(), container.rightOutputSlot.getItem()));
-				}
-				if (!container.inputSlot.getItem().isEmpty()) {
-					world.addFreshEntity(new ItemEntity(world, player.getX(), player.getY(), player.getZ(), container.inputSlot.getItem()));
-				}
-			}
-
 			container.trader.removePlayerFromInteracting(event.getPlayer());
 		} else if (event.getContainer() instanceof ExtendedTradeContainer) {
 			ExtendedTradeContainer container = (ExtendedTradeContainer) event.getContainer();

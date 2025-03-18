@@ -1214,6 +1214,8 @@
   "gui.lotrextended.settings.usersettings": "User Settings",
   "gui.lotrextended.settings.worldsettings": "World Settings",
   "gui.lotrextended.trading.buy": "Buy",
+  "gui.lotrextended.trading.coin_exchange.tooltip.down": "Break a higher denomination coin into lower denomination coins",
+  "gui.lotrextended.trading.coin_exchange.tooltip.up": "Convert lower denomination coins into a higher denomination coin",
   "gui.lotrextended.trading.exchange_button": "Exchange Coins",
   "gui.lotrextended.trading.sell": "Sell",
   "gui.lotrextended.trading.sell_offers": "Sell Offers",
