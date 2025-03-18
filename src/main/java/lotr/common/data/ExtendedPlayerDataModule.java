@@ -5,7 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 
 import net.minecraftforge.fml.LogicalSide;
 
-public abstract class ExtendedPlayerDataModule extends PlayerDataModule{
+public abstract class ExtendedPlayerDataModule extends PlayerDataModule {
 
 	protected ExtendedPlayerDataModule(LOTRPlayerData pd) {
 		super(pd);
