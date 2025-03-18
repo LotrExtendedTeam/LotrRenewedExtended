@@ -12,7 +12,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -41,22 +41,36 @@ public class ExtendedHiredUnitHelper {
         }
         String s = "death.attack." + source.msgId;
 
-        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unit.getHiredUnitNameAndTitle());
+        TextComponent unitName = unit.getHiredUnitNameAndTitle();
         if(fancy) {
-        	companionName.withStyle(TextFormatting.AQUA);
+        	unitName.withStyle(TextFormatting.AQUA);
+        }
+        TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unitName);
+        if(fancy) {
+        	companionName.withStyle(TextFormatting.YELLOW);
         }
 
-        ITextComponent killerName = new StringTextComponent("");
+        IFormattableTextComponent killerName = new StringTextComponent("");
         if (killer != null) {
-            killerName = killer.getDisplayName();
-            if (killer instanceof ExtendedHirableEntity) {
+        	if (killer instanceof ExtendedHirableEntity) {
                 killerName = ((ExtendedHirableEntity) killer).getHiredUnitNameAndTitle();
-                companionName.withStyle(TextFormatting.RED);
+            }
+        	else {
+        		if(killer.getDisplayName() instanceof IFormattableTextComponent) {
+            		killerName = (IFormattableTextComponent) killer.getDisplayName();
+            	}else {
+            		killerName = new StringTextComponent(killer.getDisplayName().getString());
+            	}
+        	}
+        	if(fancy) {
+            	killerName.withStyle(TextFormatting.RED);
             }
         }
-
-
-        return killer != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
+        TranslationTextComponent output = killer != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
+        if(fancy) {
+        	output.withStyle(TextFormatting.YELLOW);
+        }
+        return output;
     }
 
     public static void giveExperiencePoints(ExtendedHirableEntity unit, float points) {
@@ -70,13 +84,18 @@ public class ExtendedHiredUnitHelper {
             unit.setBaseHealth(unit.getBaseHealth() + 2);
 
             if (unit.getUnitOwner() != null) {
+            	boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
             	TextComponent unitName = unit.getHiredUnitNameAndTitle();
             	TextComponent newlevel = new StringTextComponent(Integer.toString(unit.getExpLvl()));
-            	if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().doHighContrastMessages()) {
+            	if(fancy) {
             		unitName.withStyle(TextFormatting.AQUA);
             		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
                 }
-                unit.getUnitOwner().sendMessage(new TranslationTextComponent("chat.lotrextended.hired_companion_levelup", unitName, newlevel), unit.getOwnerUUID());
+            	TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_companion_levelup", unitName, newlevel);
+                if(fancy) {
+                	output.withStyle(TextFormatting.YELLOW);
+                }
+                unit.getUnitOwner().sendMessage(output, unit.getOwnerUUID());
             }
         } else {
             unit.setCurrentXp(newExperience);
@@ -119,21 +138,6 @@ public class ExtendedHiredUnitHelper {
     }
 
     public static void dropCustomDeathLoot(NPCEntity companion, ExtendedHirableEntity hirable, Random random, Inventory internalUnitInventory, int looting, boolean player) {
-//        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-//            ItemStack itemstack = companion.getItemBySlot(slot);
-//            float dropChance = hirable.getHiredUnitEquipmentDropChance(slot);
-//            boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
-//            boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
-//            if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
-//                    && Math.max(random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
-//                if (!dropUndamaged && itemstack.isDamageableItem()) {
-//                    itemstack.setDamageValue(itemstack.getMaxDamage() - random.nextInt(1 + random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
-//                }
-//
-//                companion.spawnAtLocation(itemstack);
-//                companion.setItemSlot(slot, ItemStack.EMPTY);
-//            }
-//        }
     	// Disabled due to NPCEntity using new logic we don't want for unit drops
         //super.dropCustomDeathLoot(damageSource, looting, player);
     	// Only try dropping player equipment and general inventory space

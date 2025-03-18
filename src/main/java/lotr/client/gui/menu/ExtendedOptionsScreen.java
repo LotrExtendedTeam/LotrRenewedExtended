@@ -1,5 +1,6 @@
 package lotr.client.gui.menu;
 
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
@@ -11,7 +12,6 @@ import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.fac.RankGender;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -24,17 +24,18 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	public ExtendedOptionsScreen() {
 		super(new StringTextComponent("OPTIONS"));
 	}
-	private Button buttonFriendlyFire;
-	private Button buttonFriendlyFireUnit;
-	//private Button buttonHiredDeathMessages;
+	private ExtendedTogglableTitleButton buttonFriendlyFire;
+	private ExtendedTogglableTitleButton buttonFriendlyFireUnit;
 	//private Button buttonAlignment;
-	private Button buttonMapLocation;
+	private ExtendedTogglableTitleButton buttonMapLocation;
 	//private Button buttonConquest;
-	private Button buttonFeminineRank;
+	private ExtendedTogglableTitleButton buttonFeminineRank;
+	private ExtendedTogglableTitleButton buttonHiredUnitDeathMessages;
+	private ExtendedTogglableTitleButton buttonHighContrastMessages;
 
-	private Button forceStructureBlockAirViewing;
+	private ExtendedTogglableTitleButton forceStructureBlockAirViewing;
 	private Slider structureBlockOutlineViewDistance;
-	private Button enableClientDevMode;
+	private ExtendedTogglableTitleButton enableClientDevMode;
 
 	@Override
 	public void onClose() {
@@ -48,17 +49,25 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		super.init();
 		int x=guiLeft;
 		int y=guiTop+40;
-		addButton(buttonFriendlyFire = new Button(x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.title"), button -> toggleFF()));
-		addButton(buttonFriendlyFireUnit = new Button(x, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFireUnit.title"), button -> toggleUFF()));
-		addButton(buttonMapLocation = new Button(x, y+48, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.title"), button -> toggleML()));
-		addButton(buttonFeminineRank = new Button(x, y+96, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.title"), button -> toggleFRO()));
-
-		//addButton(buttonHiredDeathMessages = new Button(x, y+24, 200, 20, new StringTextComponent("Hired Death Messages"), button -> toggleHDM()));
+		addButton(buttonFriendlyFire = new ExtendedTogglableTitleButton(x, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.setting"), 
+				button -> toggleFF(), "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(buttonFriendlyFireUnit = new ExtendedTogglableTitleButton(x, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.friendlyFireUnit.setting"), 
+				button -> toggleHUFF(), "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(buttonMapLocation = new ExtendedTogglableTitleButton(x, y+48, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.mapLocation.setting"), 
+				button -> toggleML(), "gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
+		addButton(buttonFeminineRank = new ExtendedTogglableTitleButton(x, y+96, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting"), 
+				button -> toggleFRO(), "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(buttonHiredUnitDeathMessages = new ExtendedTogglableTitleButton(x, y+120, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.hired_unit_death.setting"), 
+				button -> toggleHUDM(), "gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
+		addButton(buttonHighContrastMessages = new ExtendedTogglableTitleButton(x, y+144, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.high_contrast_messages.setting"), 
+				button -> toggleHCM(), "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		//addButton(buttonAlignment = new Button(x, y+48, 200, 20, new StringTextComponent("Show Alignment"), button -> toggleA()));
 		//addButton(buttonConquest = new Button(x, y+96, 200, 20, new StringTextComponent("Conquest Kills"), button -> toggleCK()));
 
-		addButton(enableClientDevMode = new Button(x+204, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.devtoggle.title"), button -> toggleForgeConfigValue(ExtendedClientConfig.enableDevMode)));
-		addButton(forceStructureBlockAirViewing = new Button(x+204, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.fsbr.title"), button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing)));
+		addButton(enableClientDevMode = new ExtendedTogglableTitleButton(x+204, y, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting"), 
+				button -> toggleForgeConfigValue(ExtendedClientConfig.enableDevMode), "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(forceStructureBlockAirViewing = new ExtendedTogglableTitleButton(x+204, y+24, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.fsbr.setting"), 
+				button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing), "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(structureBlockOutlineViewDistance = new Slider(x+204, y+48, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix"), new TranslationTextComponent("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix"), 32.0D, MixinConstants.StructureLimit, ExtendedClientConfig.structureBlockOutlineViewDistance.get(), false, true , button -> {}, new ExtendedRenderDistanceSliderHandler()));
 		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 			enableClientDevMode.visible = true;
@@ -84,7 +93,6 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			title = new TranslationTextComponent("gui.lotrextended.settings.devsettings");
 			this.font.draw(matStack, title, guiLeft+(304-(this.font.width(title)/2)), (guiTop + 30), 16777215);
 		}
-		super.render(matStack, mouseX, mouseY, tick);
 //		for (Widget widget : this.buttons) {
 //			if (widget instanceof ExtendedGuiOptionsButton) {
 //				ExtendedGuiOptionsButton menuButton = (ExtendedGuiOptionsButton) widget;
@@ -94,15 +102,13 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 //		}
 		Minecraft mc = Minecraft.getInstance();
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);
-		TextComponent ff = new TranslationTextComponent("gui.lotrextended.settings.friendlyFire.setting");
-		buttonFriendlyFire.setMessage(ff.append(new TranslationTextComponent(pd.getAlignmentData().isFriendlyFireEnabled()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
-		TextComponent ffu = new TranslationTextComponent("gui.lotrextended.settings.friendlyFireUnit.setting");
-		buttonFriendlyFireUnit.setMessage(ffu.append(new TranslationTextComponent(((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHurtHiredUnits()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
-		TextComponent map = new TranslationTextComponent("gui.lotrextended.settings.mapLocation.setting");
-		buttonMapLocation.setMessage(map.append(new TranslationTextComponent(pd.getMiscData().getShowMapLocation()? "gui.lotrextended.base.shown" : "gui.lotrextended.base.hidden")));
-		TextComponent rank = new TranslationTextComponent("gui.lotrextended.settings.rankGender.setting");
-		buttonFeminineRank.setMessage(rank.append(new TranslationTextComponent(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE)? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
-
+		buttonFriendlyFire.tickTitle(pd.getAlignmentData().isFriendlyFireEnabled());
+		buttonFriendlyFireUnit.tickTitle(((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHurtHiredUnits());
+		buttonMapLocation.tickTitle(pd.getMiscData().getShowMapLocation());
+		buttonFeminineRank.tickTitle(pd.getMiscData().getPreferredRankGender().equals(RankGender.FEMININE));
+		buttonHiredUnitDeathMessages.tickTitle(((ExtendedLOTRPlayerData)pd).getExtendedMiscData().shouldShowHiredUnitDeathMessages());
+		buttonHighContrastMessages.tickTitle(((ExtendedLOTRPlayerData)pd).getExtendedMiscData().doHighContrastMessages());
+		
 		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 			enableClientDevMode.visible = true;
 			forceStructureBlockAirViewing.visible = true;
@@ -110,16 +116,15 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			if(ExtendedServerConfig.enableDevMode.get()) {
 				enableClientDevMode.setMessage(new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting.forced"));
 			}else {
-				TextComponent ecdm = new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting");
-				enableClientDevMode.setMessage(ecdm.append(new TranslationTextComponent(ExtendedClientConfig.enableDevMode.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+				enableClientDevMode.tickTitle(ExtendedClientConfig.enableDevMode.get());
 			}
-			TextComponent fsbr = new TranslationTextComponent("gui.lotrextended.settings.fsbr.setting");
-			forceStructureBlockAirViewing.setMessage(fsbr.append(new TranslationTextComponent(ExtendedClientConfig.forceStructureBlockAirViewing.get()? "gui.lotrextended.base.enabled" : "gui.lotrextended.base.disabled")));
+			forceStructureBlockAirViewing.tickTitle(ExtendedClientConfig.forceStructureBlockAirViewing.get());
 		}else {
 			enableClientDevMode.visible = false;
 			forceStructureBlockAirViewing.visible = false;
 			structureBlockOutlineViewDistance.visible = false;
 		}
+		super.render(matStack, mouseX, mouseY, tick);
 	}
 
 	public void toggleFF() {
@@ -127,15 +132,21 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		LOTRPlayerData pd = LOTRLevelData.clientInstance().getData(mc.player);
 		pd.getAlignmentData().toggleFriendlyFireEnabledAndSendToServer();
 	}
-	public void toggleUFF() {
+	public void toggleHUFF() {
 		Minecraft mc = Minecraft.getInstance();
 		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)LOTRLevelData.clientInstance().getData(mc.player);
 		pd.getExtendedMiscData().toggleHurtHiredUnitsAndSendToServer();
 	}
-//	public void toggleHDM() {
-//		Minecraft mc = Minecraft.getInstance();
-//		mc.gui.getChat().addMessage(new StringTextComponent("Hired Units haven't been added yet"));
-//	}
+	public void toggleHUDM() {
+		Minecraft mc = Minecraft.getInstance();
+		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)LOTRLevelData.clientInstance().getData(mc.player);
+		pd.getExtendedMiscData().toggleHiredUnitDeathMessagesAndSendToServer();
+	}
+	public void toggleHCM() {
+		Minecraft mc = Minecraft.getInstance();
+		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)LOTRLevelData.clientInstance().getData(mc.player);
+		pd.getExtendedMiscData().toggleHighContrastMessagesAndSendToServer();
+	}
 //	public void toggleA() {
 //		Minecraft mc = Minecraft.getInstance();
 //		mc.gui.getChat().addMessage(new StringTextComponent("Not implimented"));
