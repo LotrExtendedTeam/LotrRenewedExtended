@@ -140,10 +140,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 			//System.out.println("Running Area Checks");
 			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos(), getCMaxBlockPos());
-			Predicate<LivingEntity> pred = (entity) ->{
-				return ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
-						.contains(entity.getType().getRegistryName().toString());
-			};
+			Predicate<LivingEntity> pred = (entity) -> ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
+                    .contains(entity.getType().getRegistryName().toString());
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
 		//System.out.println("Suscessfully Ran Area Checks: "+nearbyEntitySpawnCount);
@@ -421,7 +419,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getinsideSpawningChance())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 			String str = "";
 			for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
-				if(str.equals("")) {
+				if(str.isEmpty()) {
 					str = entity;
 				}else {
 					str = str+ ", "+entity;
@@ -530,7 +528,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	public void remove() {
 		if(!queueToRemove) {
-			this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+			this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		}
 		super.remove();
 	}
@@ -576,7 +574,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		} else {
 			Entity entity = pSource.getEntity();
 			if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
-				if(((PlayerEntity)entity).isCrouching()) {
+				if(entity.isCrouching()) {
 					this.remove();
 				}
 			}else {

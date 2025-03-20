@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,7 +17,7 @@ public class ExtendedWargInventoryContainer extends Container {
 	   private final IInventory horseContainer;
 	   private final WargEntity warg;
 	   public ExtendedWargInventoryContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, final WargEntity pwarg) {
-	      super((ContainerType<?>)null, pContainerId);
+	      super(null, pContainerId);
 	      this.horseContainer = pContainer;
 	      this.warg = pwarg;
 	      int i = 3;
@@ -81,7 +80,7 @@ public class ExtendedWargInventoryContainer extends Container {
 
 	      for(int i1 = 0; i1 < 3; ++i1) {
 	         for(int k1 = 0; k1 < 9; ++k1) {
-	            this.addSlot(new Slot(pPlayerInventory, k1 + i1 * 9 + 9, 8 + k1 * 18, 102 + i1 * 18 + -18));
+	            this.addSlot(new Slot(pPlayerInventory, k1 + i1 * 9 + 9, 8 + k1 * 18, 102 + i1 * 18 - 18));
 	         }
 	      }
 

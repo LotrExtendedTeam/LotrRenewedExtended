@@ -48,12 +48,12 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
 	private boolean isActiveHalf = false;
 	//Use for user whitelist
-	private List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
+	private final List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	//Use for faction alignment level
 	private float alignmentLevel = 1;
 	private BannerProtectionType protectionType = BannerProtectionType.FACTION;
 	//Default perms for everyone in faction mode
-	private List<BannerPermission> defaultPerms = new ArrayList<>();
+	private final List<BannerPermission> defaultPerms = new ArrayList<>();
 	//Should protect myself from destruction besides faction member or player placed
 	private boolean canProtectSelf = true;
 	//Should add NBT to dropped items?
@@ -77,9 +77,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 					createAndSetBannerEntity();
 				}else {
 					AxisAlignedBB checkBox = AxisAlignedBBUtils.makeCroppedBB(this.getBlockPos());
-					Predicate<ExtendedBannerEntity> pred = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
-					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, pred);
-					if(banners.size()<=0) {
+					Predicate<ExtendedBannerEntity> predicate = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
+					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, predicate);
+					if(banners.size() == 0) {
 						createAndSetBannerEntity();
 					}else if(banners.size()>1){
 						for(ExtendedBannerEntity banner : banners) {
@@ -111,7 +111,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Creates a new ExtendedBannerEntity for this banner
 	 * */
 	private void createAndSetBannerEntity() {
-		if(!level.isClientSide) {
+		if(level!=null && !level.isClientSide) {
 			EntityType<ExtendedBannerEntity> newBannerEntity = ExtendedEntities.BANNER_HOLDER.get();
 			ExtendedBannerEntity banner = newBannerEntity.create(level);
 			if(banner!=null) {
@@ -124,7 +124,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Checks if this instance of a banner is the "main" banner block
-	 * Not a top block or a handing block
+	 * Not a top block or a handling block
 	 * @return boolean
 	 * */
 	public boolean isActiveHalf() {
@@ -157,7 +157,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner's protection level
-	 * @param BannerProtectionLevel
+	 * @param protectionLevel {@see BannerProtectionLevel} to be set
 	 * */
 	public void setProtectionLevel(BannerProtectionLevel protectionLevel) {
 		this.protectionLevel = protectionLevel;
@@ -168,7 +168,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner protection type
-	 * @param BannerProtectionType
+	 * @param protectionType {@see BannerProtectionType} to be set
 	 * */
 	public void setProtectionType(BannerProtectionType protectionType) {
 		this.protectionType = protectionType;
@@ -220,7 +220,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the Faction protecting alignment level
-	 * @param float
+	 * @param level{@see float} alignment level to be set
 	 * */
 	public void setAlignmentLevel(float level) {
 		this.alignmentLevel = level;
@@ -252,8 +252,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				placedPlayerName="UNKNOWN";
 				return placedPlayerName;
 			}
-			String lastKnownUsername = UsernameCache.getLastKnownUsername(placedPlayerUUID);
-			placedPlayerName = lastKnownUsername;
+            placedPlayerName = UsernameCache.getLastKnownUsername(placedPlayerUUID);
 			ExtendedLog.warn("Fixed missing banner player username!");
 		}
 		return placedPlayerName;
@@ -356,11 +355,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				}else {
 					// General username updating
 					String lastKnownUsername = UsernameCache.getLastKnownUsername(entry.getProfile().getId());
-					if(!lastKnownUsername.equals(entry.getProfile().getName())) {
-						entry.updateProfile(new ExtendedBannerProfilePlayer(entry.getProfile().getId(), lastKnownUsername));
-						fixedBroken = true;
-					}
-				}
+                    if (lastKnownUsername != null && !lastKnownUsername.equals(entry.getProfile().getName())) {
+                        entry.updateProfile(new ExtendedBannerProfilePlayer(entry.getProfile().getId(), lastKnownUsername));
+                        fixedBroken = true;
+                    }
+                }
 			}else if(entry.getProfile() instanceof ExtendedBannerProfileFellowship) {
 				if(entry.getProfile().getId().equals(Util.NIL_UUID) && serverPlayer!=null) {
 					ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)LOTRLevelData.getSidedData(serverPlayer)).getFellowshipData();
@@ -574,7 +573,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				data.putByteArray("perms", ordinalValues);
 			}
 			// Serialize the ExtendedBannerProfile and add it to the CompoundNBT
-			profile.writeGameProfile(data);
+			data = profile.writeGameProfile(data);
 			// Return the populated CompoundNBT containing all serialized data
 			return data;
 		}

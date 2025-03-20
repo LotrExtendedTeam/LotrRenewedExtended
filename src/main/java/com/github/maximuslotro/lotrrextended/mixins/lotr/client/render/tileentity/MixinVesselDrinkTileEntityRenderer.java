@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.client.render.tileentity;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -21,23 +22,49 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 
+/**
+ * @reason Adds support for custom and new drink renderer types
+ * @Mixin (VesselDrinkTileEntityRenderer.class)
+ * */
 @Mixin(VesselDrinkTileEntityRenderer.class)
 public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTileEntity> extends TileEntityRenderer<T> {
 
-	public MixinVesselDrinkTileEntityRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-		super(p_i226006_1_);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param dispatcher A placeholder variable instance of TileEntityRendererDispatcher
+	 * */
+	public MixinVesselDrinkTileEntityRenderer(TileEntityRendererDispatcher dispatcher) {
+		super(dispatcher);
 	}
 
+	/**
+	 * Renders a liquid texture at a horizontal position
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	private void renderLiquidSurface(MatrixStack matStack, IVertexBuilder vb, TextureAtlasSprite icon, int uvMin, int uvMax, float x0, float z0, float x1, float z1, float y, int light, int overlay) {}
 
+	/**
+	 * Renders a liquid texture at a non-horizontal position
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	private void renderLiquidSurface(MatrixStack matStack, IVertexBuilder vb, TextureAtlasSprite icon, int uvMin, int uvMax, float width, float y, int light, int overlay) {}
 
+	/**
+	 * Gets the current rotation of this associated drink container
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	private Direction getRotationToMatchBlockstateJson(Direction stateFacing) {return null;}
 
+	/**
+	 * @author maximuslotro
+	 * @reason Adds logic for rendering new drink containers, as VesselType is hardcoded
+	 * @Overwrite (remap=false)
+	 * */
 	@Override
+	@Overwrite(remap=false)
 	public void render(T vessel, float partialTicks, MatrixStack matStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
 		if (!vessel.isEmpty()) {
 			ItemStack vesselItem = vessel.getVesselItem();

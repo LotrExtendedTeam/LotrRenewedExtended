@@ -23,9 +23,7 @@ public class ExtendedVegetationPatchFeature extends Feature<ExtendedVegetationPa
 
 	@Override
 	public boolean place(ISeedReader worldgenlevel, ChunkGenerator chunkGenerator, Random random, BlockPos blockpos, ExtendedVegetationPatchConfig vegetationpatchconfiguration) {
-		Predicate<BlockState> predicate = (blockState) -> {
-			return blockState.is(vegetationpatchconfiguration.replaceable);
-		};
+		Predicate<BlockState> predicate = (blockState) -> blockState.is(vegetationpatchconfiguration.replaceable);
 		int i = vegetationpatchconfiguration.samplexzRadius(random) + 1;
 		int j = vegetationpatchconfiguration.samplexzRadius(random) + 1;
 		Set<BlockPos> set = this.placeGroundPatch(worldgenlevel, vegetationpatchconfiguration, random, blockpos, predicate, i, j);
@@ -55,9 +53,7 @@ public class ExtendedVegetationPatchFeature extends Feature<ExtendedVegetationPa
 						blockpos$mutableblockpos.move(direction);
 					}
 
-					for(int i1 = 0; worldgenlevel.isStateAtPosition(blockpos$mutableblockpos, (p_204784_) -> {
-						return !p_204784_.isAir();
-					}) && i1 < vegetationpatchconfiguration.verticalRange; ++i1) {
+					for(int i1 = 0; worldgenlevel.isStateAtPosition(blockpos$mutableblockpos, (p_204784_) -> !p_204784_.isAir()) && i1 < vegetationpatchconfiguration.verticalRange; ++i1) {
 						blockpos$mutableblockpos.move(direction1);
 					}
 

@@ -23,12 +23,20 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * @reason Removed waypoint gamerule reference to add split-type waypoint config settings
+ * @Mixin (CPacketCreateCustomWaypoint.class)
+ * */
 @Mixin(CPacketCreateCustomWaypoint.class)
 public class MixinCPacketCreateCustomWaypoint {
 
 	/**
-	 * @reason Need to change removed Gamerule call
+	 * @reason Need to change waypoint Gamerule call
 	 * @author maximuslotro
+	 * @Overwrite (remap = false)
+	 * @param packet The custom waypoint packet for generating waypoints
+	 * @param player The player that is generating the waypoint
+	 * @param ftData The fast travel data information for the given player
 	 */
 	@Overwrite(remap = false)
 	private static void doCreateCustomWaypoint(CPacketCreateCustomWaypoint packet, ServerPlayerEntity player, FastTravelDataModule ftData) {

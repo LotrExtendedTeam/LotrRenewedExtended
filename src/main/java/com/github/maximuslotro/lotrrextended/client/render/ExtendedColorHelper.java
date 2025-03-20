@@ -16,9 +16,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 public class ExtendedColorHelper {
 	public static void makeBlockColors(ColorHandlerEvent.Block event) {
 		BlockColors colors = event.getBlockColors();
-		IBlockColor naturalTint = (state, lightReader, pos, tintIndex) -> {
-			return tintIndex != 0 ? -1 : (lightReader != null && pos != null) ? BiomeColors.getAverageGrassColor(lightReader, pos) : GrassColors.get(0.5D, 1.0D);
-		};
+		IBlockColor naturalTint = (state, lightReader, pos, tintIndex) -> tintIndex != 0 ? -1 : (lightReader != null && pos != null) ? BiomeColors.getAverageGrassColor(lightReader, pos) : GrassColors.get(0.5D, 1.0D);
 		colors.register(naturalTint, ExtendedBlocks.GRASS_BLOCK_SLAB.get());
 		colors.register(naturalTint, ExtendedBlocks.MOSS_BLOCK.get());
 		colors.register(naturalTint, ExtendedBlocks.MOSS_CARPET.get());

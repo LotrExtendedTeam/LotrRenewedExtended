@@ -25,38 +25,63 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 
+/**
+ * @reason Adds logic to Fast Travel teleporting to teleport Hired Units with the player
+ * @Mixin (FastTravelDataModule.class)
+ * */
 @Mixin(FastTravelDataModule.class)
 public abstract class MixinFastTravelDataModule {
-
-//	@Inject(at = @At(value = "HEAD"), method="fastTravelTo", remap = false)
-//	private void fastTravelTo(ServerPlayerEntity player, Waypoint waypoint, CallbackInfo info) {
-//		ServerWorld world = player.getLevel();
-//		BlockPos orig = new BlockPos(player.getX(), player.getY(), player.getZ());
-//		BlockPos travelPos = waypoint.getTravelPosition(world, player);
-//		if (travelPos != null) {
-//			ExtendedFastTravelWaypointEvent event = new ExtendedFastTravelWaypointEvent(player, world, orig, travelPos);
-//			MinecraftForge.EVENT_BUS.post(event);
-//		}
-//	}
-
+	/**
+	 * Helper method for teleporting entities
+	 * @Shadow (remap=false)
+	 * @param world The ServerWorld to teleport the entity to
+	 * @param entity A MobEntity instance of the entity to teleport
+	 * @param x X coordinate to teleport to
+	 * @param y Y coordinate to teleport to
+	 * @param z Z coordinate to teleport to
+	 * @return An instance of MobEntity
+	 * */
 	@Shadow(remap=false)
 	private MobEntity fastTravelEntity(ServerWorld world, MobEntity entity, double x, double y, double z) {return null;}
 
+	/**
+	 * Sets a UUID, of a mount, for the player to try mounting at the destination FastTravel point
+	 * @Shadow (remap=false)
+	 * @param uuid The UUID to set
+	 * */
 	@Shadow(remap=false)
 	private void setUUIDToMount(UUID uuid) {}
-
+	/**
+	 * Send the FastTravel pack to the player
+	 * @Shadow (remap=false)
+	 * @param player The ServerPlayerEntity to teleport
+	 * @param waypoint The Waypoint instance to teleport to
+	 * @param startX The initial x coordinate teleporting from 
+	 * @param startZ The initial z coordinate teleporting from 
+	 * */
 	@Shadow(remap=false)
 	private void sendFTScreenPacket(ServerPlayerEntity player, Waypoint waypoint, int startX, int startZ) {}
-
+	/**
+	 * Sets the players FastTravel cooldown counter
+	 * @Shadow (remap=false)
+	 * @param i The time since player FastTraveled
+	 * */
 	@Shadow(remap=false)
 	public void setTimeSinceFTWithUpdate(int i) {}
-
+	/**
+	 * Records the number of times the player has used the Waypoint
+	 * @Shadow (remap=false)
+	 * @param waypoint The waypoint to update count data
+	 * */
 	@Shadow(remap=false)
 	public void incrementWPUseCount(Waypoint waypoint) {}
 
 	/**
 	 * @author maximuslotro
-	 * @reason because injecting into a code tree is hard
+	 * @reason Needed to allow Hired Units to travel with the player, like leashed entities and mounts do
+	 * @Overwrite (remap=false)
+	 * @param player The ServerPlayerEntity to teleport
+	 * @param waypoint The Waypoint to teleport to
 	 * */
 	@Overwrite(remap=false)
 	private void fastTravelTo(ServerPlayerEntity player, Waypoint waypoint) {

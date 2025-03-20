@@ -83,7 +83,7 @@ public class ExtendedGroundGrassBlock extends SpreadableSnowyDirtBlock implement
 				for (int i = 0; i < 4; ++i) {
 					BlockPos blockpos = p_225542_3_.offset(p_225542_4_.nextInt(3) - 1, p_225542_4_.nextInt(5) - 3, p_225542_4_.nextInt(3) - 1);
 					if (p_225542_2_.getBlockState(blockpos).is(base.get()) && canPropagate(blockstate, p_225542_2_, blockpos)) {
-						p_225542_2_.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, Boolean.valueOf(p_225542_2_.getBlockState(blockpos.above()).is(Blocks.SNOW))));
+						p_225542_2_.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, p_225542_2_.getBlockState(blockpos.above()).is(Blocks.SNOW)));
 					}
 				}
 			}

@@ -125,7 +125,7 @@ public class ExtendedConfigCommand {
 		TextComponent text = new TranslationTextComponent("gui.lotrextended.base.set");
 		text.withStyle(TextFormatting.GREEN);
 		text.append(" "+name+":").withStyle(TextFormatting.AQUA);
-		text.append(" "+Integer.toString(value)).withStyle(TextFormatting.GOLD);
+		text.append(" "+ value).withStyle(TextFormatting.GOLD);
 		source.sendSuccess(text, false);
 		return Command.SINGLE_SUCCESS;
 	}
@@ -134,7 +134,7 @@ public class ExtendedConfigCommand {
 		TextComponent text = new TranslationTextComponent("gui.lotrextended.base.set");
 		text.withStyle(TextFormatting.GREEN);
 		text.append(" "+name+":").withStyle(TextFormatting.AQUA);
-		text.append(" "+Double.toString(value)).withStyle(TextFormatting.GOLD);
+		text.append(" "+ value).withStyle(TextFormatting.GOLD);
 		source.sendSuccess(text, false);
 		return Command.SINGLE_SUCCESS;
 	}

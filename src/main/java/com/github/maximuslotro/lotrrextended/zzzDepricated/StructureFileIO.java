@@ -1,14 +1,7 @@
 package com.github.maximuslotro.lotrrextended.zzzDepricated;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.resources.IResource;
@@ -17,6 +10,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.FolderName;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.util.List;
 
 /**
  * Cool code to get internal file from mod
@@ -69,9 +68,9 @@ public class StructureFileIO {
 		try {
 			File structureGen = getStructureScanDataFile(fileName, server);
 			if (!structureGen.exists()) {
-				CompressedStreamTools.writeCompressed(new CompoundNBT(), new FileOutputStream(structureGen));
+				CompressedStreamTools.writeCompressed(new CompoundNBT(), Files.newOutputStream(structureGen.toPath()));
 			}
-			CompressedStreamTools.writeCompressed(compound, new FileOutputStream(structureGen));
+			CompressedStreamTools.writeCompressed(compound, Files.newOutputStream(structureGen.toPath()));
 		} catch (Exception var3) {
 			ExtendedLog.error("Error saving structure: "+fileName);
 			var3.printStackTrace();

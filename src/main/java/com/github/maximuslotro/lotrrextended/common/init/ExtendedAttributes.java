@@ -18,7 +18,7 @@ public class ExtendedAttributes {
 		REGISTRY.register(modBus);
 	}
 
-	private static final RegistryObject<Attribute> registryAttribute(String name, String defaultName, double defaultValue, double min, double max) {
+	private static RegistryObject<Attribute> registryAttribute(String name, String defaultName, double defaultValue, double min, double max) {
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.attributeNames.put("attribute.name.lotrextended." + name, defaultName);
 		}

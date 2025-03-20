@@ -1,30 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.utils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRWallTorchBlock;
-import lotr.common.data.PlayerDataModule;
 
 public class ExtendedReflectionHelper {
-
-	public static UUID getAlignmentData(PlayerDataModule data) {
-		UUID underlyingPlayerUUID = null;
-		try {
-			Method fooMethod = PlayerDataModule.class.getDeclaredMethod("getPlayerUUID");
-			fooMethod.setAccessible(true);
-			underlyingPlayerUUID = (UUID) fooMethod.invoke(data);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			ExtendedLog.error("Reflection failed to get PlayerDataModule UUID");
-		}
-		return underlyingPlayerUUID;
-	}
 
 	public static void setTorchValues(Object obj, LOTRTorchBlock copyFromBlock) {
 		try {

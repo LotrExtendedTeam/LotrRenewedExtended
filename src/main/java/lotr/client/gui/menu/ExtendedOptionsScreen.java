@@ -138,7 +138,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 //	}
 //	public void toggleA() {
 //		Minecraft mc = Minecraft.getInstance();
-//		mc.gui.getChat().addMessage(new StringTextComponent("Not implimented"));
+//		mc.gui.getChat().addMessage(new StringTextComponent("Not implemented"));
 //	}
 	public void toggleML() {
 		Minecraft mc = Minecraft.getInstance();
@@ -165,7 +165,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		value.set(!value.get());
 	}
 
-	public class ExtendedRenderDistanceSliderHandler implements ISlider {
+	public static class ExtendedRenderDistanceSliderHandler implements ISlider {
 		@Override
 		public void onChangeSliderValue(Slider slider) {
 			if(slider.dragging) {

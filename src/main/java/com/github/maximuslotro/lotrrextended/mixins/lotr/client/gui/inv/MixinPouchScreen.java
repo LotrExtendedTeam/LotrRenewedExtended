@@ -18,6 +18,10 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
+/**
+ * @reason Need to add coin total to inventory
+ * @Mixin (PouchScreen.class)
+ * */
 @Mixin(PouchScreen.class)
 public abstract class MixinPouchScreen extends ContainerScreen<PouchContainer> {
 
@@ -25,11 +29,25 @@ public abstract class MixinPouchScreen extends ContainerScreen<PouchContainer> {
 	@Final
 	private int pouchRows;
 
-	public MixinPouchScreen(PouchContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent p_i51105_3_) {
-		super(p_i51105_1_, p_i51105_2_, p_i51105_3_);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param pouchContainer A placeholder variable instance of PouchContainer
+	 * @param inventory A placeholder variable instance of PlayerInventory
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
+	public MixinPouchScreen(PouchContainer pouchContainer, PlayerInventory inventory, ITextComponent titleIn) {
+		super(pouchContainer, inventory, titleIn);
 	}
 
-	@Inject(method = "renderLabels", at = @At("TAIL"))
+	/**
+	 * @reason Adding a total coins display to the inventory
+	 * @Inject (method = "renderLabels(Lcom/mojang/blaze3d/matrix/MatrixStack;II)V", at = @At("TAIL"))
+	 * @param matStack The local MatrixStack to render to
+	 * @param mouseX ? Does nothing in MC code
+	 * @param mouseY ? Does nothing in MC code
+	 * @param ci The local CallbackInfo instance for this injection
+	 * */
+	@Inject(method = "renderLabels(Lcom/mojang/blaze3d/matrix/MatrixStack;II)V", at = @At("TAIL"))
 	protected void renderLabels(MatrixStack matStack, int mouseX, int mouseY, CallbackInfo ci) {
 		Minecraft mc = Minecraft.getInstance();
 

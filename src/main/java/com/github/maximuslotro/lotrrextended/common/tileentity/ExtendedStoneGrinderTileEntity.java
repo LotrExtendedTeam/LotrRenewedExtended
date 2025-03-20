@@ -83,7 +83,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				ExtendedStoneGrinderTileEntity.this.grindingTotalTime = pValue;
 				break;
 			case 2:
-				ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue == 0 ? false : true;
+				ExtendedStoneGrinderTileEntity.this.usingLubrication = pValue != 0;
 			}
 		}
 		@Override
@@ -128,9 +128,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 		pCompound.putInt("GrindingTimeTotal", this.grindingTotalTime);
 		ItemStackHelper.saveAllItems(pCompound, this.items);
 		CompoundNBT compoundnbt = new CompoundNBT();
-		this.recipesUsed.forEach((p_235643_1_, p_235643_2_) -> {
-			compoundnbt.putInt(p_235643_1_.toString(), p_235643_2_);
-		});
+		this.recipesUsed.forEach((p_235643_1_, p_235643_2_) -> compoundnbt.putInt(p_235643_1_.toString(), p_235643_2_));
 		pCompound.put("RecipesUsed", compoundnbt);
 		return pCompound;
 	}
@@ -221,7 +219,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				if (itemstack3.hasContainerItem()) {
 					this.items.set(1, itemstack3.getContainerItem());
 				} else if (itemstack3.getItem() instanceof VesselDrinkItem) {
-					this.items.set(1, ((VesselDrinkItem)itemstack3.getItem()).getContainerItem(itemstack3));
+					this.items.set(1, itemstack3.getItem().getContainerItem(itemstack3));
 				} else if (itemstack3.getItem() instanceof PotionItem) {
 					this.items.set(1, new ItemStack(Items.GLASS_BOTTLE));
 				} else if (!itemstack3.isEmpty()) {

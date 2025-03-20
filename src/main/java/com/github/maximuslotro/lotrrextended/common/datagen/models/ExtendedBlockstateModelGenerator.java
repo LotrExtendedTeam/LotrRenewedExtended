@@ -323,7 +323,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
-					genPottedSapplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7, block.getKey().length())));
+					genPottedSapplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7)));
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
@@ -377,19 +377,19 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedStoneBlock) {
-					if(block.getKey()=="cobbled_drystone") {
+					if(block.getKey().equals("cobbled_drystone")) {
 						genCubeBlockItem(block.getValue().get(), lotrLoc("block/drystone"));
 						continue;
 					}
-					if(block.getKey()=="scorched_stone") {
+					if(block.getKey().equals("scorched_stone")) {
 						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 						continue;
 					}
-					if(block.getKey()=="gneiss") {
+					if(block.getKey().equals("gneiss")) {
 						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}
-					if(block.getKey()=="polished_limestone") {
+					if(block.getKey().equals("polished_limestone")) {
 						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}
@@ -1239,7 +1239,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(extendedMEBannerBlock).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
 			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);
-			Boolean small = state.getValue(ExtendedMEBannerBlock.SMALL);
+			boolean small = state.getValue(ExtendedMEBannerBlock.SMALL);
 			return ConfiguredModel.builder()
                     .modelFile(small&&half==DoubleBlockHalf.LOWER ? modelFileSmallBottom :
                     	(small&&half==DoubleBlockHalf.UPPER ? modelFileSmallTop :
@@ -1509,11 +1509,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genTorchBlockItem(ExtendedLOTRTorchBlock torch, ResourceLocation texture) {
 		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torch("lotrextended:"+torch.getRegistryName().getPath(), texture);
-		getVariantBuilder(torch).forAllStates(state -> {
-			return ConfiguredModel.builder()
-                    .modelFile(cubeModel)
-                    .build();
-		});
+		getVariantBuilder(torch).forAllStates(state -> ConfiguredModel.builder()
+.modelFile(cubeModel)
+.build());
 	}
 
 	private void genTorchWallBlock(ExtendedLOTRWallTorchBlock torch, ResourceLocation texture) {

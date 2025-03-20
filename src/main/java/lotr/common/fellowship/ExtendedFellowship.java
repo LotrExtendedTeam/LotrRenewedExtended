@@ -18,11 +18,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedFellowship {
-	private UUID fellowshipId;
+	private final UUID fellowshipId;
 	private String fellowshipName;
 	private UUID fellowshipOwner;
-	private Set<UUID> fellowshipMembers = new HashSet<>();
-	private Set<UUID> fellowshipAdmins = new HashSet<>();
+	private final Set<UUID> fellowshipMembers = new HashSet<>();
+	private final Set<UUID> fellowshipAdmins = new HashSet<>();
 	private boolean preventHiredFF = true;
 	private boolean preventPVP = true;
 	private boolean showMap = true;
@@ -159,13 +159,10 @@ public class ExtendedFellowship {
 	public void setOwnerUUID(UUID ownerUUID) {
 		UUID prevOwner = fellowshipOwner;
 		if (prevOwner != null)
-			if (!fellowshipMembers.contains(prevOwner))
-				fellowshipMembers.add(prevOwner);
+			fellowshipMembers.add(prevOwner);
 		fellowshipOwner = ownerUUID;
-		if (fellowshipMembers.contains(ownerUUID))
-			fellowshipMembers.remove(ownerUUID);
-		if (fellowshipAdmins.contains(ownerUUID))
-			fellowshipAdmins.remove(ownerUUID);
+		fellowshipMembers.remove(ownerUUID);
+		fellowshipAdmins.remove(ownerUUID);
 		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, fellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}
@@ -179,7 +176,6 @@ public class ExtendedFellowship {
 	public void removeFellowshipMember(UUID player) {
 		if (fellowshipMembers.contains(player)) {
 			fellowshipMembers.remove(player);
-		if (fellowshipAdmins.contains(player))
 			fellowshipAdmins.remove(player);
 		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(null, fellowshipOwner)).getFellowshipData().removeFellowship(this);
 		markDirty();

@@ -7,6 +7,7 @@ import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.biome.WilderlandBiome;
 import lotr.common.world.gen.feature.TreeCluster;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
+import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(WilderlandBiome.class)
 public class MixinWilderlandBiome {
@@ -15,6 +16,7 @@ public class MixinWilderlandBiome {
 	 * @author maximuslotro
 	 * @reason don't want to replace class
 	 * */
+	@Overwrite(remap=false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((WilderlandBiome)(Object)this, builder, 0, 0.05F, TreeCluster.of(8, 20),
 				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,

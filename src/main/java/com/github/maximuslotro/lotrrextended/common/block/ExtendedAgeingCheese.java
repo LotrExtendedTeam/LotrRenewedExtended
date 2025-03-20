@@ -14,12 +14,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 
 public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<ExtendedCheeseState> {
-	   Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> {
-	      return ImmutableBiMap.<Block, Block>builder().put(ExtendedBlocks.CHEESE_WHEEL.get(), ExtendedBlocks.AGED_CHEESE_WHEEL.get()).build();
-	   });
-	   Supplier<BiMap<Block, Block>> PREVIOUS_BY_BLOCK = Suppliers.memoize(() -> {
-	      return NEXT_BY_BLOCK.get().inverse();
-	   });
+	   Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder().put(ExtendedBlocks.CHEESE_WHEEL.get(), ExtendedBlocks.AGED_CHEESE_WHEEL.get()).build());
+	   Supplier<BiMap<Block, Block>> PREVIOUS_BY_BLOCK = Suppliers.memoize(() -> NEXT_BY_BLOCK.get().inverse());
 
 	   static Optional<Block> getPrevious(Block p_154891_) {
 	      return Optional.ofNullable(PREVIOUS_BY_BLOCK.get().get(p_154891_));
@@ -36,9 +32,7 @@ public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<Exte
 	   }
 
 	   static Optional<BlockState> getPrevious(BlockState p_154900_) {
-	      return getPrevious(p_154900_.getBlock()).map((p_154903_) -> {
-	         return BlockStateUtils.copyBlockStateToBlock(p_154903_, p_154900_);
-	      });
+	      return getPrevious(p_154900_.getBlock()).map((p_154903_) -> BlockStateUtils.copyBlockStateToBlock(p_154903_, p_154900_));
 	   }
 
 	   static Optional<Block> getNext(Block p_154905_) {
@@ -47,9 +41,7 @@ public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<Exte
 
 	   @Override
 	default Optional<BlockState> getNext(BlockState p_154893_) {
-	      return getNext(p_154893_.getBlock()).map((p_154896_) -> {
-	         return BlockStateUtils.copyBlockStateToBlock(p_154896_, p_154893_);
-	      });
+	      return getNext(p_154893_.getBlock()).map((p_154896_) -> BlockStateUtils.copyBlockStateToBlock(p_154896_, p_154893_));
 	   }
 
 	   @Override

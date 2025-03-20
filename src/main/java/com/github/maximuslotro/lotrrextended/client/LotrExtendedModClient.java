@@ -125,7 +125,7 @@ public class LotrExtendedModClient {
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
 		ExtendedBlockRenderer.setupBlockRenderers();
 		event.enqueueWork(()->{
-			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
+			ExtendedSignTypes.forEach(Atlases::addWoodType);
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 			setupUsersUUID();
 		});
@@ -178,7 +178,7 @@ public class LotrExtendedModClient {
 
 	private void setupUsersUUID() {
 		String userUUIDString = Minecraft.getInstance().getUser().getUuid();
-		if (!userUUIDString.equals("")) userUUIDString = addDashesToUUID(userUUIDString);
+		if (!userUUIDString.isEmpty()) userUUIDString = addDashesToUUID(userUUIDString);
 		try {
 			usersUUID = UUID.fromString(userUUIDString);
 		} catch (IllegalArgumentException ex) {

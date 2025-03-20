@@ -64,7 +64,7 @@ public class ExtendedBrandingIronItem extends Item {
 						player.getMainHandItem().setDamageValue(player.getMainHandItem().getDamageValue()+1);
 					}
 					player.awardStat(ExtendedStats.ANIMALS_BRANDED);
-					ActionResultType.sidedSuccess(entity.level.isClientSide);
+					return ActionResultType.sidedSuccess(entity.level.isClientSide);
 				}
 			}
 		}

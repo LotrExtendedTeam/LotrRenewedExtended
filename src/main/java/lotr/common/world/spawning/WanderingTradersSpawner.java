@@ -100,18 +100,19 @@ public class WanderingTradersSpawner {
     }
 
     private static EntityType<?> getTraderFromName(String name) {
-        if (name.equals("lotr:galadhrim_wanderer")) {
-            return ExtendedEntities.GALADHRIM_WANDERER.get();
-        } else if (name.equals("lotr:rivendell_wanderer")) {
-            return ExtendedEntities.RIVENDELL_WANDERER.get();
-        } else if (name.equals("lotr:oddment_collector")) {
-            return ExtendedEntities.ODDMENT_COLLECTOR.get();
-        } else if (name.equals("lotr:blue_mountains_merchant")) {
-           return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
-        } else if (name.equals("lotr:bree_merchant")) {
-            return ExtendedEntities.BREE_MERCHANT.get();
-        } else {
-            return null;
+        switch (name) {
+            case "lotr:galadhrim_wanderer":
+                return ExtendedEntities.GALADHRIM_WANDERER.get();
+            case "lotr:rivendell_wanderer":
+                return ExtendedEntities.RIVENDELL_WANDERER.get();
+            case "lotr:oddment_collector":
+                return ExtendedEntities.ODDMENT_COLLECTOR.get();
+            case "lotr:blue_mountains_merchant":
+                return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
+            case "lotr:bree_merchant":
+                return ExtendedEntities.BREE_MERCHANT.get();
+            default:
+                return null;
         }
     }
 

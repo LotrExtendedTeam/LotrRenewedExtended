@@ -41,7 +41,7 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 	private final Supplier<ChestTileEntity> tileentityholder;
 	public ExtendedSingleChestBlock(Supplier<ChestTileEntity> tileentityholder) {
 		super(AbstractBlock.Properties.of(Material.STONE).strength(4.0F).sound(SoundType.STONE), ()-> ExtendedTileEntities.STONE_CHEST.get());
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, Boolean.FALSE));
 		this.tileentityholder = tileentityholder;
 	}
 
@@ -65,7 +65,7 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
 		FluidState fluidstate = p_196258_1_.getLevel().getFluidState(p_196258_1_.getClickedPos());
-		return this.defaultBlockState().setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite()).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+		return this.defaultBlockState().setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite()).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 	}
 
 	@Override
@@ -89,9 +89,7 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 	public TileEntityMerger.ICallbackWrapper<? extends ExtendedChestTileEntity> combine(BlockState p_225536_1_, World world, BlockPos blockPos, boolean p_225536_4_) {
 		BiPredicate<IWorld, BlockPos> bipredicate;
 		if (p_225536_4_) {
-			bipredicate = (p_226918_0_, p_226918_1_) -> {
-				return false;
-			};
+			bipredicate = (p_226918_0_, p_226918_1_) -> false;
 		} else {
 			bipredicate = ChestBlock::isChestBlockedAt;
 		}

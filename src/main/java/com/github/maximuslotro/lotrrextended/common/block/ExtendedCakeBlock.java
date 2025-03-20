@@ -45,7 +45,7 @@ public class ExtendedCakeBlock extends CakeBlock{
 			int i = p_226911_3_.getValue(BITES);
 			if (i < 6) {
 				p_226911_1_.setBlock(p_226911_2_,
-						p_226911_3_.setValue(BITES, Integer.valueOf(i + 1)), 3);
+						p_226911_3_.setValue(BITES, i + 1), 3);
 			} else {
 				p_226911_1_.removeBlock(p_226911_2_, false);
 			}

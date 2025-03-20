@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhit
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -72,11 +71,9 @@ public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEnt
 							BedBlock::getBlockType,
 							BedBlock::getConnectedDirection, ChestBlock.FACING,
 							blockstate, world, tileEntity.getBlockPos(),
-							(p_228846_0_, p_228846_1_) -> {
-								return false;
-							});
+							(p_228846_0_, p_228846_1_) -> false);
 			int i = icallbackwrapper
-					.<Int2IntFunction>apply(new DualBrightnessCallback<>())
+					.apply(new DualBrightnessCallback<>())
 					.get(p_225616_5_);
 			this.renderPiece(p_225616_3_, p_225616_4_,
 					blockstate.getValue(BedBlock.PART) == BedPart.HEAD,

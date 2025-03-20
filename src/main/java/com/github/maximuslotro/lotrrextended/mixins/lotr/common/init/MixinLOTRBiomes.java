@@ -16,12 +16,29 @@ import lotr.common.world.biome.LOTRBiomeBase;
 import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.fml.DatagenModLoader;
 
+/**
+ * @reason Used to register new biomes added by Extended
+ * @Mixin (LOTRBiomes.class)
+ * */
 @Mixin(LOTRBiomes.class)
 public class MixinLOTRBiomes {
 
+	/**
+	 * @reason Get the biome register method from parent class
+	 * @Shadow (remap=false)
+	 * @param name A String name of the biome
+	 * @param wrapperSupplier A LOTRBiomeBase supplier to build
+	 * @return A built PreRegisteredLOTRBiome 
+	 * */
 	@Shadow(remap=false)
 	private static PreRegisteredLOTRBiome prepare(String name, NonNullSupplier<LOTRBiomeBase> wrapperSupplier) {return null;}
 
+	/**
+	 * @reason Register our own biomes, with dataGen handling
+	 * @param name A String name of the biome
+	 * @param wrapperSupplier A LOTRBiomeBase supplier to build
+	 * @return A built PreRegisteredLOTRBiome 
+	 * */
 	private static PreRegisteredLOTRBiome prepareD(String name, NonNullSupplier<LOTRBiomeBase> wrapperSupplier) {
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.biomeNames.add("biome.lotr."+name);
@@ -29,6 +46,11 @@ public class MixinLOTRBiomes {
 		return prepare(name, wrapperSupplier);
 	}
 
+	/**
+	 * @reason We need to register our biomes after Renewed
+	 * @Inject (method = "register()V", at = @At("HEAD"), remap = false)
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedBiomes(CallbackInfo ci) {
 		ExtendedBiomes.BARROW_DOWNS = prepareD("barrow_downs", () -> new BarrowDownsBiome(true));

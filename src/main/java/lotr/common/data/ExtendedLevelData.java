@@ -111,11 +111,7 @@ public class ExtendedLevelData {
     }
 
     public int getPlayersTraderCooldown(UUID uuid) {
-       if (playerTraderSpawnCooldowns.containsKey(uuid)) {
-           return playerTraderSpawnCooldowns.get(uuid);
-       } else {
-           return -1;
-       }
+        return playerTraderSpawnCooldowns.getOrDefault(uuid, -1);
     }
 
     public boolean isPlayerBarrowCursed(PlayerEntity player) {

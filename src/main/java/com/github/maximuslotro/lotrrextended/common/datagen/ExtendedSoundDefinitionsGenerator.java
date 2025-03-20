@@ -72,7 +72,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, boolean useSub) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+(Integer.toString(i+1)))));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+((i + 1)))));
 		}if(useSub) {
 			return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sounds.toArray(new Sound[0]));
 		}
@@ -82,7 +82,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, int distance) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+(Integer.toString(i+1)))).attenuationDistance(distance));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+((i + 1)))).attenuationDistance(distance));
 		}
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
 		  .with(sounds.toArray(new Sound[0]));
@@ -91,7 +91,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createCustomSub(String name, int variants, String subKey) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+(Integer.toString(i+1)))));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+((i + 1)))));
 		}
 		if(subKey!=null) {
 			return definition().subtitle(subKey).with(sounds.toArray(new Sound[0]));
@@ -102,7 +102,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createFull(String name, int variants, float vol, float pitch, int distance, String subKey) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+(Integer.toString(i+1)))).volume(vol).pitch(pitch).attenuationDistance(distance));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+((i + 1)))).volume(vol).pitch(pitch).attenuationDistance(distance));
 		}
 		if(subKey!=null) {
 			return definition().subtitle(subKey).with(sounds.toArray(new Sound[0]));

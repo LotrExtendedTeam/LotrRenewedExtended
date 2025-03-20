@@ -80,11 +80,27 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 
+/**
+ * @reason Used to register new items added by Extended
+ * @Mixin (LOTRItems.class)
+ * */
 @Mixin(LOTRItems.class)
 public class MixinLOTRItems {
-
+	/**
+	 * @reason Get Renewed's very base method for registering items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param name A String name of the entity
+	 * @param sup A supplier for the item
+	 * @return A RegistryObject instance for the item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {return null;}
+	/**
+	 * @reason Extended's base method for registering items, handling dataGen
+	 * @param name A String name of the entity
+	 * @param sup A supplier for the item
+	 * @return A RegistryObject instance for the item
+	 * */
 	private static RegistryObject<Item> regItemB(String name, Supplier<? extends Item> sup)  {
 		RegistryObject<Item> item = regItem(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -92,17 +108,35 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
-
-	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern banner, Supplier<? extends Item> sup)  {
+	/**
+	 * @reason Extended's method for registering banner pattern items, handling their unique dataGen needs
+	 * @param name A String name of the entity
+	 * @param bannerPattern The BannerPattern instance for this item
+	 * @param sup A supplier for the item
+	 * @return A RegistryObject instance for the item
+	 * */
+	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<? extends Item> sup)  {
 		RegistryObject<Item> item = regItemB(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.bannerPatternItemNameHolders.put(name, banner.getFilename());
+			DataGenValueHolder.bannerPatternItemNameHolders.put(name, bannerPattern.getFilename());
 		}
 		return item;
 	}
-
+	/**
+	 * @reason Get Renewed's base method for registering cake-like items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param blockSup A block supplier for the cake-like block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the cake-like item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regCakeBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
+	/**
+	 * @reason Extended's method for registering cake-like item, handling dataGen 
+	 * @param blockSup A block supplier for the cake-like block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the cake-like item
+	 * */
 	private static RegistryObject<Item> regCakeBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regCakeBlockItem(blockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -110,19 +144,45 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+	/**
+	 * @reason Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param blockSup A block supplier for the block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the block item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
+	/**
+	 * @reason Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param blockSup A block supplier for the block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @param extraPropsSetter More Item.Properties to be registered for this item's instance
+	 * @return A RegistryObject instance for the block item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group, Consumer<Properties> extraPropsSetter) {return null;}
+	/**
+	 * @reason Extended's method for registering tileEntity-based block items, handles dataGen 
+	 * @param blockSup A block supplier for the block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @param ister A TileEntityRenderer instance to be used for rendering
+	 * @return A RegistryObject instance for the block item
+	 * */
 	private static RegistryObject<Item> regBlockItemStackRenderer(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
-		RegistryObject<Item> item = regBlockItem(blockSup, group, (props) -> {
-			props.setISTER(ister);
-		});
+		RegistryObject<Item> item = regBlockItem(blockSup, group, (props) -> props.setISTER(ister));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
 		return item;
 	}
+	/**
+	 * @reason Extended's base method for registering block items, handling dataGen
+	 * @param blockSup A block supplier for the block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the block item
+	 * */
 	private static RegistryObject<Item> regBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regBlockItem(blockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -130,6 +190,12 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+	/**
+	 * @reason Extended's method for registering custom block items, handling dataGen
+	 * @param blockSup A block supplier for the block
+	 * @param itemMaker The Function for creating a custom BlockItem
+	 * @return A RegistryObject instance for the block item
+	 * */
 	private static RegistryObject<Item> regExtendedBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, itemMaker);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -137,55 +203,83 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
+	/**
+	 * @reason Extended's method for registering hidden block items so they don't show in the creative menu, handling dataGen
+	 * @param blockSup A block supplier for the block
+	 * @return A RegistryObject instance for the block item
+	 * */
 	private static RegistryObject<Item> regHiddenBlockItemB(RegistryObject<Block> blockSup) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new LOTRBlockItem(b, new Properties());
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new LOTRBlockItem(b, new Properties()));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
 		return item;
 	}
-
+	/**
+	 * @reason Extended's base method for registering block items, NO DATAGEN DONE HERE. DO NOT CALL DIRECTLY, USE HELPER METHODS
+	 * @param blockSup A block supplier for the block
+	 * @param itemMaker A Function to build the block item
+	 * @return A RegistryObject instance for the block item
+	 * */
 	private static RegistryObject<Item> regArbitraryBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
 		String name = blockSup.getId().getPath();
-		return regItem(name, () -> {
-			return itemMaker.apply(blockSup.get());
-		});
+		return regItem(name, () -> itemMaker.apply(blockSup.get()));
 	}
-
+	/**
+	 * @reason Extended's method for registering model-based bed items, handles dataGen 
+	 * @param blockSup A block supplier for the bed
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the bed item
+	 * */
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group));
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group)));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
 		return item;
 	}
-
-	private static RegistryObject<Item> regFallenLeavesBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new FallenLeavesItem(b, (new Properties()).tab(group));
-		});
-		if(DatagenModLoader.isRunningDataGen()) {
-			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
-		}
-		return item;
-	}
-
+	/**
+	 * @reason Extended's method for registering tileEntity-based bed items, handles dataGen 
+	 * @param blockSup A block supplier for the bed
+	 * @param group The ItemGroup for this item to be placed in
+	 * @param ister A TileEntityRenderer instance to be used for rendering
+	 * @return A RegistryObject instance for the bed item
+	 * */
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
-		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> {
-			return new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group).setISTER(ister));
-		});
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group).setISTER(ister)));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
 		}
 		return item;
 	}
+	/**
+	 * @reason Extended's method for registering fallen leaves block items, handles dataGen 
+	 * @param blockSup A block supplier for the fallen leaves block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the fallen leaves block item
+	 * */
+	private static RegistryObject<Item> regFallenLeavesBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
+		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new FallenLeavesItem(b, (new Properties()).tab(group)));
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDBLOCKITEMS.put(item.getId().getPath(), item);
+		}
+		return item;
+	}
+	/**
+	 * @reason Get Renewed's base method for registering vessel block items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param blockSup A block supplier for the vessel block
+	 * @param vesselType A VesselType for this item
+	 * @return A RegistryObject instance for the vessel block item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regEmptyVesselBlockItem(RegistryObject<Block> blockSup, VesselType vesselType) {return null;}
-
+	/**
+	 * @reason Extended's method for registering vessel block items, handling datGen
+	 * @param blockSup A block supplier for the vessel block
+	 * @param vesselType A VesselType for this item
+	 * @return A RegistryObject instance for the vessel block item
+	 * */
 	private static RegistryObject<Item> regEmptyVesselBlockItemD(RegistryObject<Block> blockSup, VesselType vesselType) {
 		RegistryObject<Item> item = regEmptyVesselBlockItem(blockSup, vesselType);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -193,9 +287,21 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
-
+	/**
+	 * @reason Get Renewed's base method for registering tall block items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param blockSup A block supplier for the tall block item
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the tall block item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regTallBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
+	/**
+	 * @reason Extended's method for registering tall block items, handling dataGen
+	 * @param blockSup A block supplier for the tall block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the tall block item
+	 * */
 	private static RegistryObject<Item> regTallBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regTallBlockItem(blockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -204,8 +310,21 @@ public class MixinLOTRItems {
 		return item;
 	}
 
+	/**
+	 * @reason Get Renewed's base method for registering sign block items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param blockSup A block supplier for the sign block
+	 * @param blockSup A block supplier for the wall sign block
+	 * @return A RegistryObject instance for the sign block item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regSignBlockItem(RegistryObject<Block> standingSignSup, RegistryObject<Block> wallSignSup) {return null;}
+	/**
+	 * @reason Extended's method for registering sign block items, handling dataGen
+	 * @param blockSup A block supplier for the sign block
+	 * @param blockSup A block supplier for the wall sign block
+	 * @return A RegistryObject instance for the sign block item
+	 * */
 	private static RegistryObject<Item> regSignBlockItemB(RegistryObject<Block> standingSignSup, RegistryObject<Block> wallSignSup) {
 		RegistryObject<Item> item = regSignBlockItem(standingSignSup, wallSignSup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -214,6 +333,11 @@ public class MixinLOTRItems {
 		return item;
 	}
 
+	/**
+	 * @reason Extended's method for registering material items, handling dataGen
+	 * @param name A String name for the item
+	 * @return A RegistryObject instance for the material item
+	 * */
 	//Moved to overwrite method
 	//@Shadow(remap=false)
 	//private static RegistryObject<Item> regMaterialItem(String name) {return null;}
@@ -227,7 +351,10 @@ public class MixinLOTRItems {
 
 	/**
 	 * @author maximuslotro
-	 * @reason Need to change registration objects for some materials while also being call-able
+	 * @reason Extended's method for registering material items, but also handling overwriting renewed items with needed new classes, DO NOT DIRECTLY CALL
+	 * @Overwrite (remap = false)
+	 * @param name A String name for the item
+	 * @return A RegistryObject instance for the material item
 	 * */
 	@Overwrite(remap = false)
 	private static RegistryObject<Item> regMaterialItem(String name) {
@@ -239,9 +366,23 @@ public class MixinLOTRItems {
 		}
 		return regItem(name, () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	}
-
+	/**
+	 * @reason Get Renewed's base method for registering wall/floor block items from the parent class, DO NOT DIRECTLY CALL
+	 * @Shadow (remap=false)
+	 * @param wallBlockSup A block supplier for the wall block
+	 * @param floorBlockSup A block supplier for the floor block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the wall/floor block item
+	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regWallOrFloorBlockItem(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {return null;}
+	/**
+	 * @reason Extended's method for registering wall/floor block items, handling dataGen
+	 * @param wallBlockSup A block supplier for the wall block
+	 * @param floorBlockSup A block supplier for the floor block
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the wall/floor block item
+	 * */
 	private static RegistryObject<Item> regWallOrFloorBlockItemB(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {
 		RegistryObject<Item> item = regWallOrFloorBlockItem(wallBlockSup, floorBlockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -249,7 +390,11 @@ public class MixinLOTRItems {
 		}
 		return item;
 	}
-
+	/**
+	 * @reason Register Extended's items after Renewed's static registering is done, but before the item differed register is registered
+	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
+	 * @param The local CallbackInfo instance for this Inject
+	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
 		//###########################################################BLOCKS################################################################
@@ -272,15 +417,15 @@ public class MixinLOTRItems {
 		ExtendedItems.CHESTNUT_BEAM = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_SIGN = regSignBlockItemB(ExtendedBlocks.CHESTNUT_SIGN, ExtendedBlocks.CHESTNUT_WALL_SIGN);
 		ExtendedItems.CHESTNUT_BOAT = regItemB("chestnut_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("CHESTNUT")));
-		ExtendedItems.CHESTNUT_LOG_SLAB = regBlockItem(ExtendedBlocks.CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.CHESTNUT_WOOD_SLAB = regBlockItem(ExtendedBlocks.CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.CHESTNUT_WOOD_STAIRS = regBlockItem(ExtendedBlocks.CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.CHESTNUT_BRANCH = regBlockItem(ExtendedBlocks.CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_CHESTNUT_LOG_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_CHESTNUT_BRANCH = regBlockItem(ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItem(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_LOG_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_WOOD_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BRANCH = regBlockItemB(ExtendedBlocks.CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_LOG_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_CHESTNUT_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_CHESTNUT_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.BANANA_LOG = regBlockItemB(ExtendedBlocks.BANANA_LOG, LOTRItemGroups.BLOCKS);
@@ -301,15 +446,15 @@ public class MixinLOTRItems {
 		ExtendedItems.BANANA_BEAM = regBlockItemB(ExtendedBlocks.BANANA_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_SIGN = regSignBlockItemB(ExtendedBlocks.BANANA_SIGN, ExtendedBlocks.BANANA_WALL_SIGN);
 		ExtendedItems.BANANA_BOAT = regItemB("banana_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("BANANA")));
-		ExtendedItems.BANANA_LOG_SLAB = regBlockItem(ExtendedBlocks.BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BANANA_WOOD_SLAB = regBlockItem(ExtendedBlocks.BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BANANA_WOOD_STAIRS = regBlockItem(ExtendedBlocks.BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BANANA_BRANCH = regBlockItem(ExtendedBlocks.BANANA_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_BANANA_LOG_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_BANANA_WOOD_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_BANANA_WOOD_STAIRS = regBlockItem(ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_BANANA_BRANCH = regBlockItem(ExtendedBlocks.STRIPPED_BANANA_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BANANA_BEAM_SLAB = regBlockItem(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_LOG_SLAB = regBlockItemB(ExtendedBlocks.BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_WOOD_SLAB = regBlockItemB(ExtendedBlocks.BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_BRANCH = regBlockItemB(ExtendedBlocks.BANANA_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_BANANA_LOG_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_BANANA_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_BANANA_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_BANANA_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_BEAM_SLAB = regBlockItemB(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_BANANA_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_BANANA_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.PLUM_LOG = regBlockItemB(ExtendedBlocks.PLUM_LOG, LOTRItemGroups.BLOCKS);
@@ -331,15 +476,15 @@ public class MixinLOTRItems {
 		ExtendedItems.PLUM_BEAM = regBlockItemB(ExtendedBlocks.PLUM_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_SIGN = regSignBlockItemB(ExtendedBlocks.PLUM_SIGN, ExtendedBlocks.PLUM_WALL_SIGN);
 		ExtendedItems.PLUM_BOAT = regItemB("plum_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("PLUM")));
-		ExtendedItems.PLUM_LOG_SLAB = regBlockItem(ExtendedBlocks.PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.PLUM_WOOD_SLAB = regBlockItem(ExtendedBlocks.PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.PLUM_WOOD_STAIRS = regBlockItem(ExtendedBlocks.PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.PLUM_BRANCH = regBlockItem(ExtendedBlocks.PLUM_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_PLUM_LOG_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_PLUM_WOOD_SLAB = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.STRIPPED_PLUM_BRANCH = regBlockItem(ExtendedBlocks.STRIPPED_PLUM_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.PLUM_BEAM_SLAB = regBlockItem(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_LOG_SLAB = regBlockItemB(ExtendedBlocks.PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_WOOD_SLAB = regBlockItemB(ExtendedBlocks.PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BRANCH = regBlockItemB(ExtendedBlocks.PLUM_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_LOG_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_PLUM_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BEAM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_PLUM_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_PLUM_LEAVES, LOTRItemGroups.DECO);
 
 		//ORE/GEM STORAGE
@@ -472,13 +617,13 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSSY_MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		//############################################################DECORATION##############################################################
-		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, () -> strawBedRenderer());
-		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, () -> orcBedRenderer());
-		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, () -> blackFurBedRenderer());
-		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, () -> furBedRenderer());
-		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, () -> grayFurBedRenderer());
-		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, () -> silverFurBedRenderer());
-		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, () -> whiteFurBedRenderer());
+		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, MixinLOTRItems::strawBedRenderer);
+		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, MixinLOTRItems::orcBedRenderer);
+		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::blackFurBedRenderer);
+		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::furBedRenderer);
+		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::grayFurBedRenderer);
+		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::silverFurBedRenderer);
+		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::whiteFurBedRenderer);
 		ExtendedItems.BEDROLL = regBedBlockItemD(ExtendedBlocks.BEDROLL, LOTRItemGroups.DECO);
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItemB(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);
@@ -739,7 +884,7 @@ public class MixinLOTRItems {
 		ExtendedItems.DOL_GULDUR_AXE = regItemB("dol_guldur_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 		ExtendedItems.DOL_GULDUR_HOE = regItemB("dol_guldur_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
-		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", () -> new ExtendedBrandingIronItem());
+		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 		//######################################################################FOOD########################################################
 		//Berries
@@ -871,7 +1016,7 @@ public class MixinLOTRItems {
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", () -> new ExtendedDaggerItem(LOTRMaterial.ARNOR));
-		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", () -> new ExtendedCommandHornItem());
+		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", ExtendedCommandHornItem::new);
 
 		//########################################################################UTIL##########################################################
 		//Crafting Tables
@@ -903,36 +1048,64 @@ public class MixinLOTRItems {
 		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(64).tab(LOTRItemGroups.MISC)));
 	}
 
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> blackFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper(ExtendedBlackFurBedTileEntity::new);
 	}
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> furBedRenderer() {
 		return () -> new ExtendedItemRenderHelper(ExtendedFurBedTileEntity::new);
 	}
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> grayFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper(ExtendedGrayFurBedTileEntity::new);
 	}
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> silverFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper(ExtendedSilverFurBedTileEntity::new);
 	}
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper(ExtendedWhiteFurBedTileEntity::new);
 	}
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> orcBedRenderer() {
 		return () -> new ExtendedItemRenderHelper(ExtendedOrcBedTileEntity::new);
 	}
+	/**
+	 * @reason Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> strawBedRenderer() {
