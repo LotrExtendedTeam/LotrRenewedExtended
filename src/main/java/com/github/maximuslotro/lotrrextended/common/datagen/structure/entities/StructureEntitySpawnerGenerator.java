@@ -48,7 +48,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT_CAPTAIN);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 1, false, 18, 2).setBoundaries(12, -12, 10, 4, -4, 6).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
-		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
+		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).setRandomDiscardChance(80).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN_PERMANENT);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).addSinglePool(EntityType.HORSE, 100, 1, 2).setPoolRolls(3).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_ANIMALS);
@@ -59,7 +59,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
 				.build(), 1, 4, false, 10, 4).enableNonRandomSpawning().setEntitySpawnTickRate(24000).save(pConsumer, ExtendedSpawners.GUNDABAD_ORC_RUIN);
-		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
+		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setHomeInfo(false, 10).setRandomDiscardChance(80).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
 		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN_PERMANENT);
 		single(MultiSpawnType.Builder.multi()
 				.addPool(LOTREntities.HOBBIT.get(), 80).addPool(LOTREntities.BREE_HOBBIT.get(), 80)
