@@ -6,6 +6,7 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"lotr.common.MixinLOTRGameRules",
+		"lotr.common.block.MixinDripstoneBlock",
 		"lotr.common.block.MixinSignSetupHelperJavaPatch",
 		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinFastTravelDataModule",

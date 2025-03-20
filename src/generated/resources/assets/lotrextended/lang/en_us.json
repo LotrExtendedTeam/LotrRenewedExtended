@@ -1035,6 +1035,7 @@
   "command.lotrextended.version.left": "A new version",
   "command.lotrextended.version.right": "was found",
   "config.lotrextended.barrowWightChestFirstSpawnChance": "Should stone chests in the barrow downs spawn wight on first open. 0=only when cursed, 100=spawns on every first open like in legacy",
+  "config.lotrextended.dripstoneMinimumDamageHeight": "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)",
   "config.lotrextended.enableBannerProtection": "Enable banner protection",
   "config.lotrextended.enableChairProtectionOverride": "Allow players sit on seats in banner-protected areas (global setting overriding banner spicific settings)",
   "config.lotrextended.enableChairSlabSitting": "Allow players to sit on slabs or stairs (overrides all below)",
