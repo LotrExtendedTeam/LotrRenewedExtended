@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeperatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
 public class ExtendedSOpenCaptainPacket {
 
@@ -32,7 +32,7 @@ public class ExtendedSOpenCaptainPacket {
     }
 
     public static void handle(ExtendedSOpenCaptainPacket packet, Supplier<NetworkEvent.Context> context) {
-        ExtendedClientsideSeperatedScreenHandler.openCaptainGui(packet);
+        ExtendedClientsideSeparatedScreenHandler.openCaptainGui(packet);
         context.get().setPacketHandled(true);
     }
 

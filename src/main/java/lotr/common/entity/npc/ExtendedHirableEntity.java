@@ -204,15 +204,6 @@ public interface ExtendedHirableEntity {
 		}
 	}
 
-<<<<<<< HEAD
-    /**
-     * Gets the {@see ExtendedHiredUnitProfile} associated with this unit
-     * */
-    @Nullable
-    default ExtendedHiredUnitProfile getUnitProfile() {
-    	return ExtendedHiredUnitProfileManager.INSTANCE.get(getProfileLocation());
-    }
-=======
 	/**
 	 * Generated the base equipment for a hired unit from a hired unit equipment pool.
 	 * Don't Implement this method, instead call it in your entity finalize spawn method
@@ -375,5 +366,4 @@ public interface ExtendedHirableEntity {
 		ItemStackHelper.saveAllItems(unitInventory, items);
 		tag.put("HiredUnitInventory", unitInventory);
 	}
->>>>>>> main
 }
