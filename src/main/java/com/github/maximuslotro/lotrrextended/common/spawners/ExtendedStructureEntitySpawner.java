@@ -51,6 +51,7 @@ public class ExtendedStructureEntitySpawner {
 	private boolean enableInsideSpawning = false;
 	private int enableInsideSpawningChance = 100;
 	private boolean isPersistenceRequired = true;
+	private boolean shouldRespawnOnDeath = false;
 
 	private ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion) {
@@ -64,7 +65,7 @@ public class ExtendedStructureEntitySpawner {
 	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 			boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, boolean shouldDisableFutureSpawn,
-			int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, boolean isPersistenceRequired) {
+			int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, boolean isPersistenceRequired,boolean shouldRespawnOnDeath) {
 		this(id, entries, spawnType, checkBoundaries, spawnRegion);
 		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
 		this.setHomeRandom = setHomeRandom;
@@ -79,6 +80,7 @@ public class ExtendedStructureEntitySpawner {
 		this.enableInsideSpawning = enableInsideSpawning;
 		this.enableInsideSpawningChance = enableInsideSpawningChance;
 		this.isPersistenceRequired = isPersistenceRequired;
+		this.shouldRespawnOnDeath = shouldRespawnOnDeath;
 	}
 
 	public ResourceLocation getId() {
@@ -251,6 +253,16 @@ public class ExtendedStructureEntitySpawner {
 		isCustom = true;
 		this.isPersistenceRequired = isPersistenceRequired;
 	}
+
+	public boolean shouldRespawnOnDeath() {
+		return shouldRespawnOnDeath;
+	}
+
+	public void setRespawnOnDeath(boolean shouldRespawnOnDeath) {
+		isCustom = true;
+		this.shouldRespawnOnDeath = shouldRespawnOnDeath;
+	}
+
 	// ##################################### Player Distance Methods ###########################
 	public int getPlayerMinSpawnDistance() {
 		return playerMinSpawnDistance;
@@ -379,6 +391,9 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("persistenceRequired")) {
 				spawner.isPersistenceRequired = jsonobject.get("persistenceRequired").getAsBoolean();
 			}
+			if(jsonobject.has("shouldRespawnOnDeath")) {
+				spawner.shouldRespawnOnDeath = jsonobject.get("shouldRespawnOnDeath").getAsBoolean();
+			}
 			if(jsonobject.has("entitySpawnTickRate")) {
 				if(!spawner.setEntitySpawnTickRate(jsonobject.get("entitySpawnTickRate").getAsInt())) {
 					ExtendedLog.warn("Loaded Structure Spawner with invalid entitySpawnTickRate set! Resetting to default! - %s", id);
@@ -467,6 +482,9 @@ public class ExtendedStructureEntitySpawner {
 				jsonobject.addProperty("homeRadius", entitySpawner.getHomeRadius());
 			}
 			jsonobject.addProperty("persistenceRequired", entitySpawner.isPersistenceRequired());
+			if(entitySpawner.shouldRespawnOnDeath()) {
+				jsonobject.addProperty("shouldRespawnOnDeath", entitySpawner.shouldRespawnOnDeath());
+			}
 			if(entitySpawner.getEntitySpawnTickRate() != defaultEntitySpawnTickRate) {
 				jsonobject.addProperty("entitySpawnTickRate", entitySpawner.getEntitySpawnTickRate());
 			}
@@ -514,11 +532,13 @@ public class ExtendedStructureEntitySpawner {
 		private boolean enableInsideSpawning = false;
 		private int enableInsideSpawningChance = 100;
 		private boolean isPersistenceRequired = true;
+		private boolean shouldRespawnOnDeath = false;
 
 		public Builder(List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 				boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
-				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, boolean shouldDisableFutureSpawn,
-				int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, boolean isPersistenceRequired) {
+				ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, 
+				boolean shouldDisableFutureSpawn, int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, 
+				boolean isPersistenceRequired, boolean shouldRespawnOnDeath) {
 			this.entries = entries;
 			this.spawnType = spawnType;
 			this.setHomePositionOnSpawn = setHomePositionOnSpawn;
@@ -536,6 +556,7 @@ public class ExtendedStructureEntitySpawner {
 			this.enableInsideSpawning = enableInsideSpawning;
 			this.enableInsideSpawningChance = enableInsideSpawningChance;
 			this.isPersistenceRequired = isPersistenceRequired;
+			this.shouldRespawnOnDeath = shouldRespawnOnDeath;
 		}
 
 		/**
@@ -650,8 +671,17 @@ public class ExtendedStructureEntitySpawner {
 		/**
 		 * Set if entity should not despawn
 		 * */
-		public void setPersistenceRequired(boolean isPersistenceRequired) {
+		public ExtendedStructureEntitySpawner.Builder setPersistenceRequired(boolean isPersistenceRequired) {
 			this.isPersistenceRequired = isPersistenceRequired;
+			return this;
+		}
+
+		/**
+		 * Set if entity should respawn on death, only handled for Traders and Captains
+		 * */
+		public ExtendedStructureEntitySpawner.Builder setRespawnOnDeath() {
+			this.shouldRespawnOnDeath = true;
+			return this;
 		}
 
 		/**
@@ -660,7 +690,7 @@ public class ExtendedStructureEntitySpawner {
 		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
 			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius,
 					entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap, shouldDisableFutureSpawn,
-					randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance, isPersistenceRequired);
+					randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance, isPersistenceRequired, shouldRespawnOnDeath);
 			spawner.isCustom = isCustom;
 			return spawner;
 		}

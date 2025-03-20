@@ -4,6 +4,7 @@
   "setHomeOnSpawn": true,
   "homeRadius": 12,
   "persistenceRequired": true,
+  "shouldRespawnOnDeath": true,
   "randomDiscardChance": 20,
   "pools": [
     {
