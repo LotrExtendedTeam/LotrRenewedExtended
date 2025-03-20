@@ -3,6 +3,7 @@
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
   "homeRadius": 5,
+  "persistenceRequired": true,
   "pools": [
     {
       "weight": 100,

@@ -46,10 +46,8 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).enableNonRandomSpawning(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
-		// un-disable when ranger captain is added
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT_CAPTAIN);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 1, false, 18, 2).setBoundaries(12, -12, 10, 4, -4, 6).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
-		// un-disable when ranger captain is added
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN_PERMANENT);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
