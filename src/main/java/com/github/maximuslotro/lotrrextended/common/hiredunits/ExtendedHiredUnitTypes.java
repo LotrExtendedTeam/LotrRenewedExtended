@@ -13,13 +13,15 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedHiredUnitTypes {
 	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
 
-	public static final ResourceLocation BREE_GUARD = register("bree_guard");
+	public static final ResourceLocation BREE_GUARD = make("bree_guard");
+	public static final ResourceLocation GUNDABAD_ORC = make("gundabad_orc");
+	public static final ResourceLocation DUNEDAIN_RANGER = make("dunedain_ranger");
 
-	private static ResourceLocation register(String pId) {
-		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));
+	private static ResourceLocation make(String pId) {
+		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));
 	}
 
-	private static ResourceLocation register(ResourceLocation pId) {
+	private static ResourceLocation validate(ResourceLocation pId) {
 		if (UNIT_TYPES.add(pId)) {
 			return pId;
 		} else {

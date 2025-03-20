@@ -1,6 +1,7 @@
 {
   "id": "lotrextended:dunedain_camp_animal_spawner",
   "spawner_type": "single_use_spawner",
+  "persistenceRequired": true,
   "numRolls": 3,
   "pools": [
     {

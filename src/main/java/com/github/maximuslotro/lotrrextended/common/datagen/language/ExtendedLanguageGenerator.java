@@ -53,7 +53,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Try Add New Banner Patterns
 		for (BannerPattern entity : ExtendedBannerPatterns.getPatterns()) {
 			for(DyeColor col : DyeColor.values()) {
-				addOverride("block.minecraft.banner." + entity.getFilename()+"."+col.getName(), TextChanger.getColorFullTextChnager(col) +" "+ ExtendedBannerPatterns.getHashtoname().get(entity.getFilename()));
+				addOverride("block.minecraft.banner." + entity.getFilename()+"."+col.getName(), ExtendedLanguageColorHelper.getColorFullTextChnager(col) +" "+ ExtendedBannerPatterns.getHashtoname().get(entity.getFilename()));
 			}
 		}
 		for (Entry<String, String> entity : DataGenValueHolder.bannerPatternItemNameHolders.entrySet()) {
@@ -74,33 +74,38 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD("entity.lotr." + entity);
 		}
 
-		// Try Add Container Titles
+		// Generate Container Titles
 		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Config Value Names
+		// Generate Config Value Names
 		for (Entry<String, String> entity : DataGenValueHolder.configCommentHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Attributes Names
+		// Generate Attributes Names
 		for (Entry<String, String> entity : DataGenValueHolder.attributeNames.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Advancement Values
+		// Generate Advancement Values
 		for (Entry<String, String> entity : DataGenValueHolder.advancementHolder.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add Statistics titles
+		// Generate Statistics titles
 		for (Entry<String, String> entity : DataGenValueHolder.statsHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Try Add New Subtitles
+		// Generate Subtitles
 		for (Entry<String, String> entity : DataGenValueHolder.soundEventHolder.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
+		}
+
+		// Generate Hired Unit Strings
+		for (Entry<String, String> entity : DataGenValueHolder.hiredUnitStrings.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
@@ -133,6 +138,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.tooltip.cooldown", "On Cooldown");
 		addD("gui.lotrextended.trading.tooltip.new_trade_freq", "A trade comes back every minute.");
 		addD("gui.lotrextended.trading.tooltip.trades_used", "%1$s/%2$s Used");
+		addD("gui.lotrextended.trading.coin_exchange.tooltip.down", "Break a higher denomination coin into lower denomination coins");
+		addD("gui.lotrextended.trading.coin_exchange.tooltip.up", "Convert lower denomination coins into a higher denomination coin");
 		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived nearby");
 		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
 		addD("chat.wandering_trader.left_the_area", "%1$s has left the area");
@@ -344,27 +351,28 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
-		addD("container.lotrextended.hired_unit_equipment", "Update Equipment");
+		addD("container.lotrextended.hired_unit_equipment", "Unit Equipment");
 		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
-		addD("gui.lotrextended.hiring.hire_bree_guard", "Hire Bree-land Guard");
+		addD("gui.lotrextended.hiring.hire", "Hire: ");
 		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
+		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
+		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
-		// Hired Units related language entries
-		// entity shortnames
-		addD("entity_shortname.lotrextended.hired_bree_guard", "%1$s");
-		addD("entity_unit_type.lotrextended.hired_bree_guard", "Bree-land Guard");
-		addD("entity_title.lotrextended.hired_bree_guard", "%1$s the Bree-land Guard");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");
 		addD("item.lotrextended.base_gear.leggings", "Base Leggings");
 		addD("item.lotrextended.base_gear.boots", "Base Boots");
-		addD("item.lotrextended.base_gear.weapon", "Base Weapon");
+		addD("item.lotrextended.base_gear.weapon", "Base Melee Weapon");
+		addD("item.lotrextended.base_gear.weapon_ranged", "Base Ranged Weapon");
+		addD("item.lotrextended.base_gear.weapon_mounted", "Base Mounted Weapon");
+		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
+		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
 		// chat notifications
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
@@ -372,18 +380,24 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");
-		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor", "Armor:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor_points", "Points: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", "Toughness: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack", "Attack:");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack_damage", "Damage: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.attack_speed", "Speed: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
 
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_title", "Stationary: Off");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Hired NPC can move freely.");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending themself.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending itself.");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_title", "Follows: On");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC follows you unless set to stationary.");
-
+		addD("gui.lotrextended.hired_unit_tooltip.follows_off_title", "Follows: Off");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
 	}
 
 	@Override

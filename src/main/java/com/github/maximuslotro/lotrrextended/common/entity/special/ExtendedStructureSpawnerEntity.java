@@ -76,10 +76,17 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	public double spinO = 0;
 	public ExtendedStructureSpawnerEntity(EntityType<? extends ExtendedStructureSpawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
+		this.noCulling = true;
 	}
 
 	public ExtendedStructureSpawnerEntity(World pLevel) {
 		this(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), pLevel);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public boolean shouldRender(double pX, double pY, double pZ) {
+		return true;
 	}
 
 	@Override
@@ -239,9 +246,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							entityMaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
 							entityFemaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
 							entityMaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
-							entityMaleNpc.setPersistenceRequired();
 							entityFemaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
-							entityFemaleNpc.setPersistenceRequired();
+							if(spawnerInstance.isPersistenceRequired()) {
+								entityMaleNpc.setPersistenceRequired();
+								entityFemaleNpc.setPersistenceRequired();
+							}
 							if(!spawnerInstance.isSetHomePositionOnSpawn()) {
 								entityMaleNpc.clearHomePos();
 								entityFemaleNpc.clearHomePos();
@@ -271,7 +280,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							// Set entity info based upon the superclass
 							if(entity instanceof NPCEntity) {
 								((NPCEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
-								((NPCEntity)entity).setPersistenceRequired();
+								if(spawnerInstance.isPersistenceRequired()) {
+									((NPCEntity)entity).setPersistenceRequired();
+								}
 								if(!spawnerInstance.isSetHomePositionOnSpawn()) {
 									((NPCEntity)entity).clearHomePos();
 								}else {
@@ -283,7 +294,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 								}
 							}else if(entity instanceof MobEntity) {
 								((MobEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
-								((MobEntity)entity).setPersistenceRequired();
+								if(spawnerInstance.isPersistenceRequired()) {
+									((MobEntity)entity).setPersistenceRequired();
+								}
 								if(!spawnerInstance.isSetHomePositionOnSpawn()) {
 									((MobEntity)entity).restrictTo(BlockPos.ZERO, -1);
 								}else {
@@ -297,6 +310,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 								ExtendedLog.error("Failed spawning %s because it is not a supported Entity Class - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;
 							}
+							// Set respawn data regardless of being respawnable, so handleCaptainTraderDeath can know when not to make respawner
+							entity.getPersistentData().putBoolean("ExtendedRespawnOnDeath", spawnerInstance.shouldRespawnOnDeath());
+							// Finaly add the entity to the world
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
 						}

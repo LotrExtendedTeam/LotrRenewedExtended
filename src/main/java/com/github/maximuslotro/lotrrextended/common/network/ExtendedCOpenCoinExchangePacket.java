@@ -4,11 +4,11 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.init.ExtendedContainers;
-import lotr.common.inventory.ExtendedCoinExchangeContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -27,8 +27,6 @@ public class ExtendedCOpenCoinExchangePacket {
 
     private int traderId;
 
-    public ExtendedCOpenCoinExchangePacket() {}
-
     public ExtendedCOpenCoinExchangePacket(int traderId) {
         this.traderId = traderId;
     }
@@ -38,9 +36,7 @@ public class ExtendedCOpenCoinExchangePacket {
     }
 
     public static ExtendedCOpenCoinExchangePacket decode(PacketBuffer buf) {
-        ExtendedCOpenCoinExchangePacket packet = new ExtendedCOpenCoinExchangePacket();
-        packet.traderId = buf.readInt();
-        return packet;
+    	return new ExtendedCOpenCoinExchangePacket(buf.readInt());
     }
 
     public static void handle(ExtendedCOpenCoinExchangePacket packet, Supplier<NetworkEvent.Context> context) {

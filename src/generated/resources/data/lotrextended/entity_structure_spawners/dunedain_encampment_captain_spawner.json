@@ -1,15 +1,16 @@
 {
   "id": "lotrextended:dunedain_encampment_captain_spawner",
   "spawner_type": "single_use_spawner",
-  "disable_for_use_in_future": true,
   "setHomeOnSpawn": true,
   "homeRadius": 10,
+  "persistenceRequired": true,
+  "shouldRespawnOnDeath": true,
   "pools": [
     {
       "weight": 100,
       "minSpawnCount": 1,
       "maxSpawnCount": 1,
-      "entity_type": "lotr:dunedain_ranger"
+      "entity_type": "lotr:dunedain_ranger_captain"
     }
   ]
 }

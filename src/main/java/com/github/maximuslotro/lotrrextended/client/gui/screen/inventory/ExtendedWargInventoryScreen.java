@@ -30,7 +30,7 @@ public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInv
       this.passEvents = false;
    }
 
-   @Override
+@Override
 protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pX, int pY) {
       RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
       this.minecraft.getTextureManager().bind(WARG_INVENTORY_LOCATION);

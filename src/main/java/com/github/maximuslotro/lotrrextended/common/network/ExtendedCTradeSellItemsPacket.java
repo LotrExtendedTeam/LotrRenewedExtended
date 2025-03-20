@@ -2,7 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import lotr.common.inventory.ExtendedTradeContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;

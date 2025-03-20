@@ -2,10 +2,11 @@ package lotr.common.util;
 
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
@@ -14,10 +15,14 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+
 public class ExtendedHiredUnitHelper {
     public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
-        if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getOwner() instanceof ServerPlayerEntity) {
-            unit.getOwner().sendMessage(getCompanionDeathMessage(unit, source), unit.getOwnerUUID());
+        if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getUnitOwner() instanceof ServerPlayerEntity) {
+            unit.getUnitOwner().sendMessage(getCompanionDeathMessage(unit, source), unit.getOwnerUUID());
         }
     }
 
@@ -52,8 +57,8 @@ public class ExtendedHiredUnitHelper {
             unit.setHiredUnitHealth(unit.getHiredUnitHealth() + 2);
             unit.setBaseHealth(unit.getBaseHealth() + 2);
 
-            if (unit.getOwner() != null) {
-                unit.getOwner().sendMessage(
+            if (unit.getUnitOwner() != null) {
+                unit.getUnitOwner().sendMessage(
                         new TranslationTextComponent("chat.lotrextended.hired_companion_levelup",
                                 unit.getHiredUnitNameAndTitle(), unit.getExpLvl()),
                         unit.getOwnerUUID());
@@ -63,6 +68,11 @@ public class ExtendedHiredUnitHelper {
         }
     }
 
+    /**
+     * Checks if an entity is a hired unit, also handles checks where the entity is null
+     * @param entity The Entity to check
+     * @return True if the entity is instance of ExtendedHirableEntity
+     * */
     public static boolean isEntityHiredUnit(Entity entity) {
         return entity instanceof ExtendedHirableEntity;
     }
@@ -84,25 +94,43 @@ public class ExtendedHiredUnitHelper {
      * Update a unit's equipment (currently from inventory container)
      * @param companion The NPC unit to update
      * @param slot The slot type to update
-     * @param item The new {@see ItemStack} to be placed in the slot
+     * @param item The new ItemStack to be placed in the slot
      * */
-    public static void updateEquipmentSlot(NPCEntity companion, EquipmentSlotType slot, ItemStack item) {
+    public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
         if (companion instanceof ExtendedHirableEntity) {
             ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
+            hirable.updateSlot(item, slot);
+        }
+    }
 
-            if (slot == EquipmentSlotType.FEET) {
-                hirable.updateFeetSlot(item);
-            } else if (slot == EquipmentSlotType.HEAD) {
-                hirable.updateHeadSlot(item);
-            } else if (slot == EquipmentSlotType.CHEST) {
-                hirable.updateChestSlot(item);
-            } else if (slot == EquipmentSlotType.LEGS) {
-                hirable.updateLegsSlot(item);
-            } else if (slot == EquipmentSlotType.MAINHAND) {
-                hirable.updateMainhandSlot(item);
-            } else if (slot == EquipmentSlotType.OFFHAND) {
-                hirable.updateOffhandSlot(item);
-            }
+    public static void dropCustomDeathLoot(NPCEntity companion, ExtendedHirableEntity hirable, Random random, Inventory internalUnitInventory, int looting, boolean player) {
+//        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+//            ItemStack itemstack = companion.getItemBySlot(slot);
+//            float dropChance = hirable.getHiredUnitEquipmentDropChance(slot);
+//            boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+//            boolean dropUndamaged = dropChance > 1.0F || isEquipedItem;
+//            if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack) && (isEquipedItem || (player || dropUndamaged)
+//                    && Math.max(random.nextFloat() - (float) looting * 0.01F, 0.0F) < dropChance)) {
+//                if (!dropUndamaged && itemstack.isDamageableItem()) {
+//                    itemstack.setDamageValue(itemstack.getMaxDamage() - random.nextInt(1 + random.nextInt(Math.max(itemstack.getMaxDamage() - 3, 1))));
+//                }
+//
+//                companion.spawnAtLocation(itemstack);
+//                companion.setItemSlot(slot, ItemStack.EMPTY);
+//            }
+//        }
+    	// Disabled due to NPCEntity using new logic we don't want for unit drops
+        //super.dropCustomDeathLoot(damageSource, looting, player);
+    	// Only try dropping player equipment and general inventory space
+        for (int i = 0; i < 19; ++i) {
+        	if(!internalUnitInventory.getItem(i).isEmpty()) {
+        		ItemStack itemstack = internalUnitInventory.getItem(i).copy();
+        		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+        		if(isEquipedItem && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
+        			companion.spawnAtLocation(itemstack);
+                    internalUnitInventory.setItem(i, ItemStack.EMPTY);
+        		}
+        	}
         }
     }
 }

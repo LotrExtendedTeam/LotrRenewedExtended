@@ -21,17 +21,17 @@ import net.minecraft.util.math.MathHelper;
 public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWightEntity, ExtendedBarrowWightModel<ExtendedBarrowWightEntity>> {
 	public static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList(new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/barrow_wight"));
 
-    public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
-        super(mgr, new ExtendedBarrowWightModel<>(0.0F), 0.5F);
-        this.addLayer(new BarrowWightEyesLayer<>(this));
-    }
+	public ExtendedBarrowWightRenderer(EntityRendererManager mgr) {
+		super(mgr, new ExtendedBarrowWightModel<>(0.0F), 0.5F);
+		this.addLayer(new BarrowWightEyesLayer<>(this));
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(ExtendedBarrowWightEntity man) {
-        return SKINS.getRandomSkin(man);
-    }
+	@Override
+	public ResourceLocation getTextureLocation(ExtendedBarrowWightEntity man) {
+		return SKINS.getRandomSkin(man);
+	}
 
-    @Override
+	@Override
 	protected void scale(ExtendedBarrowWightEntity entity, MatrixStack matStack, float f) {
 		super.scale(entity, matStack, f);
 		//matStack.scale(0.965f, 0.965F, 0.965F);
@@ -39,41 +39,41 @@ public class ExtendedBarrowWightRenderer extends BipedRenderer<ExtendedBarrowWig
 	}
 
 
-    @Override
-    public void render(ExtendedBarrowWightEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
+	@Override
+	public void render(ExtendedBarrowWightEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
 
-        pMatrixStack.pushPose();
-        this.model.attackTime = this.getAttackAnim(pEntity, pPartialTicks);
+		pMatrixStack.pushPose();
+		this.model.attackTime = this.getAttackAnim(pEntity, pPartialTicks);
 
-        float f = MathHelper.rotLerp(pPartialTicks, pEntity.yBodyRotO, pEntity.yBodyRot);
-        float f1 = MathHelper.rotLerp(pPartialTicks, pEntity.yHeadRotO, pEntity.yHeadRot);
-        float f2 = f1 - f;
-        float f5 = pEntity.animationPosition - pEntity.animationSpeed * (1.0F - pPartialTicks);
-        float f8 = MathHelper.lerp(pPartialTicks, pEntity.animationSpeedOld, pEntity.animationSpeed);
-        float f7 = pEntity.tickCount + pPartialTicks;
-        float f6 = MathHelper.lerp(pPartialTicks, pEntity.xRotO, pEntity.xRot);
+		float f = MathHelper.rotLerp(pPartialTicks, pEntity.yBodyRotO, pEntity.yBodyRot);
+		float f1 = MathHelper.rotLerp(pPartialTicks, pEntity.yHeadRotO, pEntity.yHeadRot);
+		float f2 = f1 - f;
+		float f5 = pEntity.animationPosition - pEntity.animationSpeed * (1.0F - pPartialTicks);
+		float f8 = MathHelper.lerp(pPartialTicks, pEntity.animationSpeedOld, pEntity.animationSpeed);
+		float f7 = pEntity.tickCount + pPartialTicks;
+		float f6 = MathHelper.lerp(pPartialTicks, pEntity.xRotO, pEntity.xRot);
 
-        this.setupRotations(pEntity, pMatrixStack, f7, f, pPartialTicks);
-        pMatrixStack.scale(-1.0F, -1.0F, 1.0F);
-        this.scale(pEntity, pMatrixStack, pPartialTicks);
-        pMatrixStack.translate(0.0D, -1.501D, 0.0D);
-        this.model.prepareMobModel(pEntity, f5, f8, pPartialTicks);
-        this.model.setupAnim(pEntity, f7*0.1f, 0.2f, f7, f2 , f6);
+		this.setupRotations(pEntity, pMatrixStack, f7, f, pPartialTicks);
+		pMatrixStack.scale(-1.0F, -1.0F, 1.0F);
+		this.scale(pEntity, pMatrixStack, pPartialTicks);
+		pMatrixStack.translate(0.0D, -1.501D, 0.0D);
+		this.model.prepareMobModel(pEntity, f5, f8, pPartialTicks);
+		this.model.setupAnim(pEntity, f7*0.1f, 0.2f, f7, f2 , f6);
 
-        IVertexBuilder ivertexbuilder = pBuffer.getBuffer(getRenderType(pEntity, false, false, false));
-        int i = getOverlayCoords(pEntity, this.getWhiteOverlayProgress(pEntity, pPartialTicks));
-        this.model.renderToBuffer(pMatrixStack, ivertexbuilder, pPackedLight, i, 1.0F, 1.0F, 1.0F, 0.5f);
-        if (!pEntity.isSpectator()) {
-            for(LayerRenderer<ExtendedBarrowWightEntity, ExtendedBarrowWightModel<ExtendedBarrowWightEntity>> layerrenderer : this.layers) {
-                layerrenderer.render(pMatrixStack, pBuffer, pPackedLight, pEntity, f5, f8, pPartialTicks, f7, f2, f6);
-            }
-        }
-        pMatrixStack.popPose();
-    }
+		IVertexBuilder ivertexbuilder = pBuffer.getBuffer(getRenderType(pEntity, false, false, false));
+		int i = getOverlayCoords(pEntity, this.getWhiteOverlayProgress(pEntity, pPartialTicks));
+		this.model.renderToBuffer(pMatrixStack, ivertexbuilder, pPackedLight, i, 1.0F, 1.0F, 1.0F, 0.5f);
+		if (!pEntity.isSpectator()) {
+			for(LayerRenderer<ExtendedBarrowWightEntity, ExtendedBarrowWightModel<ExtendedBarrowWightEntity>> layerrenderer : this.layers) {
+				layerrenderer.render(pMatrixStack, pBuffer, pPackedLight, pEntity, f5, f8, pPartialTicks, f7, f2, f6);
+			}
+		}
+		pMatrixStack.popPose();
+	}
 
-    @Override
-    @Nullable
-    protected RenderType getRenderType(ExtendedBarrowWightEntity ranger, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
-        return RenderType.entityCutoutNoCull(getTextureLocation(ranger));
-    }
+	@Override
+	@Nullable
+	protected RenderType getRenderType(ExtendedBarrowWightEntity ranger, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
+		return RenderType.entityCutoutNoCull(getTextureLocation(ranger));
+	}
 }

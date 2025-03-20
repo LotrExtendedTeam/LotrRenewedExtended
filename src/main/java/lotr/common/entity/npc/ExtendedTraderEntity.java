@@ -2,6 +2,7 @@ package lotr.common.entity.npc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import lotr.common.util.TradeUtils;
@@ -79,4 +80,12 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 	void addEscort(UUID uuid);
 
 	NPCEntity createEscort();
+
+    boolean isInteractingWithPlayer();
+
+    Optional<UUID> getPlayerInteractingWith();
+
+    void updatePlayerInteractingWith(UUID uuid);
+
+    void removePlayerFromInteracting(PlayerEntity player);
 }

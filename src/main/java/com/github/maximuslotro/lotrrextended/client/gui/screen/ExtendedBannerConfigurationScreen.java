@@ -187,7 +187,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				}
 				@Override
 				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-					ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==BannerPermission.BANNER ? TextFormatting.RED : TextFormatting.WHITE), 200), pMouseX, pMouseY);
+					ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==BannerPermission.BANNER ? TextFormatting.RED : (perm==BannerPermission.EVERYTHING ? TextFormatting.YELLOW : TextFormatting.WHITE)), 200), pMouseX, pMouseY);
 				}
 			};
 			permButton.visible = showDefaultPerms;
@@ -303,7 +303,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 					}
 					@Override
 					public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-						ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==BannerPermission.BANNER ? TextFormatting.RED : TextFormatting.WHITE), 200), pMouseX, pMouseY);
+						ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)+".disc").withStyle(perm==BannerPermission.BANNER ? TextFormatting.RED : (perm==BannerPermission.EVERYTHING ? TextFormatting.YELLOW : TextFormatting.WHITE)), 200), pMouseX, pMouseY);
 					}
 				};
 				permButton.visible = textField.showPerms;
@@ -391,7 +391,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 		super.render(matStack, mouseX, mouseY, tick);
 		for(Widget button : this.buttons) {
-			if(button.isHovered()) {
+			if(button.isHovered() && button.visible) {
 				button.renderToolTip(matStack, mouseX, mouseY);
 			}
 		}

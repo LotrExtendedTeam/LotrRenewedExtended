@@ -6,6 +6,7 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"lotr.common.MixinLOTRGameRules",
+		"lotr.common.block.MixinDripstoneBlock",
 		"lotr.common.block.MixinSignSetupHelperJavaPatch",
 		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinFastTravelDataModule",
@@ -111,6 +112,7 @@
 		"net.minecraft.client.gui.screen.inventory.MixinCreativeScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
+		"net.minecraft.client.renderer.entity.layers.MixinBipedArmorLayer",
 		"net.minecraft.client.renderer.tileentity.MixinStructureTileEntityRenderer",
 		"net.minecraft.tileentity.MixinStructureBlockTileEntity",
 		"net.minecraftforge.fml.packs.MixinResourcePackLoader"

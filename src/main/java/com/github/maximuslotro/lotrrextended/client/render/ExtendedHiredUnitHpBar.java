@@ -42,7 +42,7 @@ public class ExtendedHiredUnitHpBar {
 
 
 
-    public static void draw(LivingEntity entity, float textScale, MatrixStack matrixStackIn, FontRenderer font) {
+	public static void draw(LivingEntity entity, float textScale, MatrixStack matrixStackIn, FontRenderer font) {
         float vit = entity.getMaxHealth(), hp = entity.getHealth();
         float hpWidth = ((float) -font.width((int) hp + "/" + (int) vit) / 2);
 

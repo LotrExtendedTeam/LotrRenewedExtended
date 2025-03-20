@@ -6,27 +6,25 @@ import net.minecraft.entity.LivingEntity;
 
 public class ExtendedModelLeatherHat<E extends LivingEntity> extends ExtendedSpecialArmorModel<E> {
 
-    public ExtendedModelLeatherHat(BipedModel<E> referenceBipedModel) {
-       this(referenceBipedModel, 1.0F);
-    }
-    public ExtendedModelLeatherHat(BipedModel<E> referenceBipedModel, float f) {
-        super(referenceBipedModel, f);
+	public ExtendedModelLeatherHat(BipedModel<E> referenceBipedModel) {
+		this(referenceBipedModel, 1.0F);
+	}
+	public ExtendedModelLeatherHat(BipedModel<E> referenceBipedModel, float f) {
+		super(referenceBipedModel, f);
+		clearNonHelmetParts();
+		texWidth = 64;
+		texHeight = 64;
 
-        clearNonHelmetParts();
+		head = new ModelRenderer(this, 0, 0);
+		head.setPos(0.0F, 0.0F, 0.0F);
+		head.texOffs(0, 13).addBox(-4.0F, -11.31F, -4.0F, 8.0F, 4.0F, 8.0F, 0.51F, false);
+		head.texOffs(0, 0).addBox(-6.0F, -7.0F, -6.0F, 12.0F, 0.25F, 12.0F, 0.0F, false);
+		head.texOffs(0, 25).addBox(-4.5F, -9.0F, -4.5F, 9.0F, 2.0F, 9.0F, 0.2F, false);
+	}
 
-        head = new ModelRenderer(this, 0, 0);
-        head.setPos(0.0F, 0.0F, 0.0F);
-
-        // TODO:
-        //  below is reference from legacy code but for some reason it seems too big
-        head.addBox(-6.0F, -9.0F, -6.0F, 12.0F, 1.0F, 12.0F, f);
-        head.texOffs(0,14).addBox(-4.0F, -13.0F, -4.0F, 8.0F, 4.0F, 8.0F, f);
-
-    }
-
-    // TODO: Add feather as option to render based on item NBT data (will require adding a new class
-    //  for the Leather Hat) below is 1.7.10 feather rendering code:
-    /*
+	// TODO: Add feather as option to render based on item NBT data (will require adding a new class
+	//  for the Leather Hat) below is 1.7.10 feather rendering code:
+	/*
     if (LOTRItemLeatherHat.hasFeather(this.hatItem)) {
       this.field_78116_c.func_78794_c(f5);
       GL11.glScalef(0.375F, 0.375F, 0.375F);
@@ -46,6 +44,5 @@ public class ExtendedModelLeatherHat<E extends LivingEntity> extends ExtendedSpe
       }
       GL11.glColor3f(1.0F, 1.0F, 1.0F);
     }
-     */
-
+	 */
 }

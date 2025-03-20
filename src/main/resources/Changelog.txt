@@ -1,3 +1,66 @@
+(Beta 1.7.2)
+* Blocks
+  * Fixed Axes not mining Wattle and Daub blocks faster
+  * Ported Bree-land Banner
+* Config
+  * Changed structureBlockOutlineViewDistance option from a float to an integer (will cause the value to reset to default)
+* Entities
+  * Added Hireable Gundabad Orc Units
+  * Added Hireable Dunedain Ranger Units
+  * Fixed Structure Entity spawners not rendering debug viewer when in dev mode
+  * Ported Gundabad Chieftains
+  * Ported Ranger of the North Captains
+* Hired Units
+  * Added a Datapack driven system for defining hired units (localization strings, coin cost, pledge requirements, alignment threshold, base gear pools) (This enable modpacks or servers to tweak hired unit parameters)
+  * Added a new setting in the options menu to toggle FriendlyFire with hired units owned by the player
+  * Fixed some compatibility issues with LOTR: Companions (for R+E1.7.2 + future companions update)
+  * Fixed units Friendly Fire not respecting fellowship FriendlyFire settings
+  * Fixed units being immune to ally (own) arrows or self lit TNT (enableable via PvHU setting)
+  * Fixed units health bars not hiding when F1 is pressed (hideGui)
+  * Fixed units not Fast Traveling with their owner
+  * Fixed units not being damaged by owners when Friendly Fire was enabled (enableable via PvHU setting now)
+  * Fixed units not dropping player supplied equipment when killed.
+  * Fixed units not dropping their 9-slot inventory when killed
+  * Fixed units reviving themselves with passive healing after death. (becoming undead)
+  * Fixed units teleporting onto non-solid or invalid blocks
+  * Fixed units teleporting while in mid air
+  * Made base equipment not render in inventory when player equipped armor is present
+  * Units can now equip skulls, player heads, pumpkins (all 3 variants), and elytra (visual only)
+* Items
+  * Added Bree Shields
+  * Added a Bree Banner Pattern
+  * Added a Hobbit Banner Pattern
+  * Buffed Morgul Armor to balance it because it does not have the weapon breaking feature
+  * Fixed shears not shearing some blocks faster
+  * Nerfed Taurethrim armor stats to align with legacy values
+* Localization
+ * Added an initial Bosnian language translation (bs_ba) (Bosanski (Bosna i Hercegovina))
+  * Added an initial Croatian language translation (hr_hr) (Hrvatski (Hrvatska))
+  * Added an initial French language translation (fr_fr) (Français (France))
+  * Added an initial Serbian (Latin) language translation (sr_cs) (Srpski (Srbija))
+  * Added localization support for all the hired unit inventory strings
+  * Fixed Bree-land strings using Bree-Land
+  * Updated Chinese (Taiwan; Mandarin) translation (zh_tw) (繁體中文 (台灣))
+  * Updated Renewed’s Chinese (Taiwan) speechbank translations (zh_tw) (繁體中文 (台灣))
+  * Updated Renewed’s Chinese (Taiwan) translation (zh_tw) (繁體中文 (台灣))
+* Loot Tables
+  * Fixed Bree Hamlets chests sometimes spawning with 25+ bows in a chest
+* Misc
+  * Added Gemstone grinding to the Stone Grinder (Ores->Gems for Extended, Renewed, and Vanilla gems)
+  * Added chair denied status debug logging to troubleshoot player issues
+  * Fixed Stone Grinder turning bricks into bricks
+  * Fixed several items being in the wrong creative tabs
+  * Fixed two Rohan advancements having flipped names
+* Renewed Patches
+   * Fixed a bug where player alignment bars render even if Team disallows nameplate rendering
+   * Potentially fixed the elusive (Drystone/WattleDaub) connected texture crash (Thanks to everyone who reported this issue, was I was able to track down the potential issue that was causing it, TLDR: Java 9+ changed some things that caused texture queries to sometimes conflict causing a ConcurrentModificationException)
+* Textures
+  * Added an all new designed Bree Banner and Shield texture
+  * Reworked the leather hat model
+  * Updated Dunedain Shield texture
+* Trading
+  * Fixed Oddment Collectors selling vanilla emeralds
+
 (Beta 1.7.1)
 * Blocks
   * Added Crossed Wattle and Daub

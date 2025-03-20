@@ -32,6 +32,9 @@
           "condition": "minecraft:random_chance_with_looting",
           "chance": 0.12,
           "looting_multiplier": 0.025
+        },
+        {
+          "condition": "lotrextended:remove_unit_coins"
         }
       ]
     }

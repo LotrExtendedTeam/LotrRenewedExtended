@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedRemoveUnitCoinDrops;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
@@ -107,9 +108,10 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	}
 
 	private void makePartTables() {
-		coins = makeQuickyBasePart("coins", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 0, 3)));
+		coins = makeQuickyBasePart("coins", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 0, 3)
+			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
 		wargFur = makeQuickyBasePart("warg_fur", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.FUR.get(), 1, 3)
-				.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));
+			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));
 		wargHead = makeQuickyBasePart("warg_head", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.BROWN_WARG_HELMET.get())
 			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())
 			.when(KilledByPlayer.killedByPlayer())
@@ -146,7 +148,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.when(RandomChance.randomChance(0.05F))));
 		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
 				.add(genQuickyItemBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 1, 4).setWeight(5))
-				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.12F, 0.025F))));
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.12F, 0.025F))
+				.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
 		mugs = makeQuickyBasePart("mugs", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
 				.add(genQuickyItemBuilder(LOTRItems.WOODEN_MUG.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(LOTRItems.CERAMIC_MUG.get(), 1, 1).setWeight(5))
@@ -348,6 +351,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
+		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
 	    		.withPool(makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(Items.FEATHER, 0.0F, 2.0F)))
 	    		.withPool(makeQuickyPoolBuilder(1)
@@ -413,8 +417,11 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.HIRED_BREE_GUARD, manBree);
+		makeEntity(ExtendedEntities.HIRED_GUNDABAD_ORC, orcGundabad);
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
+		makeEntity(ExtendedEntities.HIRED_DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
+		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

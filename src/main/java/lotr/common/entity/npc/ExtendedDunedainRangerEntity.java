@@ -72,7 +72,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     public float oBob;
     public float bob;
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public ExtendedDunedainRangerEntity(EntityType<? extends ExtendedDunedainRangerEntity> type, World w) {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeRangedSwitching());

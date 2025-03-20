@@ -25,6 +25,11 @@
           ],
           "name": "lotr:silver_coin_one"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "lotrextended:remove_unit_coins"
+        }
       ]
     }
   ]

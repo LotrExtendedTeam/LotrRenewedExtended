@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.gui.sc
 
 import org.spongepowered.asm.mixin.Mixin;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedCoinExchangeScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;

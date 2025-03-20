@@ -109,7 +109,7 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         return NPCNameGenerators.SINDARIN;
     }
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
@@ -133,7 +133,8 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
 
-    public Optional<UUID> getPlayerInteractingWith() {
+    @Override
+	public Optional<UUID> getPlayerInteractingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 

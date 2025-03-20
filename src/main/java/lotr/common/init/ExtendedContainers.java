@@ -1,12 +1,12 @@
 package lotr.common.init;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitContainer;
-import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedBookshelfContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
-import lotr.common.inventory.ExtendedCoinExchangeContainer;
-import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.fml.RegistryObject;
 
