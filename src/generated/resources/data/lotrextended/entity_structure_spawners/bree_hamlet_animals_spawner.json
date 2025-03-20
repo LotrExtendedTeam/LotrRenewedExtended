@@ -1,6 +1,7 @@
 {
   "id": "lotrextended:bree_hamlet_animals_spawner",
   "spawner_type": "single_use_spawner",
+  "persistenceRequired": true,
   "pools": [
     {
       "weight": 90,
