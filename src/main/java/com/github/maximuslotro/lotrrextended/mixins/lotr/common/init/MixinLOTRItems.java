@@ -617,13 +617,13 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSSY_MUD_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_MUD_BRICK_WALL = regBlockItemB(ExtendedBlocks.MOSSY_MUD_BRICK_WALL, LOTRItemGroups.BLOCKS);
 		//############################################################DECORATION##############################################################
-		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, MixinLOTRItems::strawBedRenderer);
-		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, MixinLOTRItems::orcBedRenderer);
-		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::blackFurBedRenderer);
-		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::furBedRenderer);
-		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::grayFurBedRenderer);
-		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::silverFurBedRenderer);
-		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, MixinLOTRItems::whiteFurBedRenderer);
+		ExtendedItems.STRAW_BED = regBedBlockItemD(ExtendedBlocks.STRAW_BED, LOTRItemGroups.DECO, ()->strawBedRenderer());
+		ExtendedItems.ORC_BED = regBedBlockItemD(ExtendedBlocks.ORC_BED, LOTRItemGroups.DECO, ()->orcBedRenderer());
+		ExtendedItems.BLACK_FUR_BED = regBedBlockItemD(ExtendedBlocks.BLACK_FUR_BED, LOTRItemGroups.DECO, ()->blackFurBedRenderer());
+		ExtendedItems.FUR_BED = regBedBlockItemD(ExtendedBlocks.FUR_BED, LOTRItemGroups.DECO, ()->furBedRenderer());
+		ExtendedItems.GRAY_FUR_BED = regBedBlockItemD(ExtendedBlocks.GRAY_FUR_BED, LOTRItemGroups.DECO, ()->grayFurBedRenderer());
+		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, ()->silverFurBedRenderer());
+		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, ()->whiteFurBedRenderer());
 		ExtendedItems.BEDROLL = regBedBlockItemD(ExtendedBlocks.BEDROLL, LOTRItemGroups.DECO);
 		//Bushes
 		ExtendedItems.RASPBERRY_BUSH = regBlockItemB(ExtendedBlocks.RASPBERRY_BUSH, LOTRItemGroups.DECO);
@@ -1052,63 +1052,56 @@ public class MixinLOTRItems {
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> blackFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedBlackFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedBlackFurBedTileEntity::new);
 	}
 	/**
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> furBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedFurBedTileEntity::new);
 	}
 	/**
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> grayFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedGrayFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedGrayFurBedTileEntity::new);
 	}
 	/**
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> silverFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedSilverFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedSilverFurBedTileEntity::new);
 	}
 	/**
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedWhiteFurBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedWhiteFurBedTileEntity::new);
 	}
 	/**
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> orcBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedOrcBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedOrcBedTileEntity::new);
 	}
 	/**
 	 * @reason Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> strawBedRenderer() {
-		return () -> new ExtendedItemRenderHelper(ExtendedStrawBedTileEntity::new);
+		return () -> new ExtendedItemRenderHelper<>(ExtendedStrawBedTileEntity::new);
 	}
 }
