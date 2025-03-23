@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullModelBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
 
 import lotr.common.init.ExtendedBlocks;
@@ -74,7 +74,7 @@ public class ExtendedBlockRenderer {
 			if(block instanceof ExtendedBedBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
-			if(block instanceof ExtendedFullBedBlock) {
+			if(block instanceof ExtendedFullModelBedBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedReedBasketBlock) {

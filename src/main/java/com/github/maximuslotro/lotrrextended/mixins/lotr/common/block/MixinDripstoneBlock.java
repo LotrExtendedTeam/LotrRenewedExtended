@@ -58,7 +58,6 @@ public abstract class MixinDripstoneBlock extends Block{
 			if(fallDistance < ExtendedServerConfig.dripstoneMinimumDamageHeight.get()) {
 				return;
 			}
-			ExtendedLog.info("Damaging with height of"+fallDistance);
 			DripstoneBlock.Type type = world.getBlockState(pos).getValue(DRIPSTONE_TYPE);
 			if (type == DripstoneBlock.Type.STALAGMITE || type == DripstoneBlock.Type.STALAGMITE_DOUBLE_POINT) {
 				float damage = fallDistance * 2.0F + 1.0F;

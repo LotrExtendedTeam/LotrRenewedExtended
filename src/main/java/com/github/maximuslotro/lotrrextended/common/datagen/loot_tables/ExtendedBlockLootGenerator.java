@@ -32,7 +32,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullModelBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBarrelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
@@ -319,7 +319,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), (p_218569_0_) -> createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD));
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedFullBedBlock) {
+			if(block.getValue().get() instanceof ExtendedFullModelBedBlock) {
 				add(block.getValue().get(), (p_218569_0_) -> createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD));
 				continue;
 			}

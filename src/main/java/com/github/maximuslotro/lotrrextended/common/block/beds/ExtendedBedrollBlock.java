@@ -7,7 +7,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class ExtendedBedrollBlock extends ExtendedFullBedBlock{
+public class ExtendedBedrollBlock extends ExtendedFullModelBedBlock{
 	protected static final VoxelShape BASE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 
 	public ExtendedBedrollBlock(Properties properties) {

@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
-import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullModelBedBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
@@ -105,7 +105,7 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
 				tag(FLOWER_POTS).add(block.getValue().get());
 			}
-			if(block.getValue().get() instanceof ExtendedBedBlock||block.getValue().get() instanceof ExtendedFullBedBlock) {
+			if(block.getValue().get() instanceof ExtendedBedBlock||block.getValue().get() instanceof ExtendedFullModelBedBlock) {
 				tag(BEDS).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof LOTRPlanksBlock) {

@@ -10,9 +10,9 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class ExtendedFullBedBlock extends BedBlock {
+public class ExtendedFullModelBedBlock extends BedBlock {
 
-	public ExtendedFullBedBlock(AbstractBlock.Properties p_i48442_2_) {
+	public ExtendedFullModelBedBlock(AbstractBlock.Properties p_i48442_2_) {
 		super(DyeColor.WHITE, p_i48442_2_);
 	}
 
