@@ -50,7 +50,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
+public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 	//LOTR
 	public static final ITag.INamedTag<Block> PILLARS = BlockTags.bind("lotr:pillars");
 	public static final ITag.INamedTag<Block> WOODEN_FENCES = BlockTags.bind("lotr:wooden_fences");
@@ -89,7 +89,7 @@ public class ExtendedBlockTagProvider extends ExtendedTagsProvider<Block> {
 	public static final ITag.INamedTag<Block> BARRELS_WOODEN = BlockTags.bind(Tags.Blocks.BARRELS_WOODEN.getName().toString());
 
 	@SuppressWarnings("deprecation")
-	public ExtendedBlockTagProvider(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
+	public ExtendedBlockTagGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
 		super(generator, Registry.BLOCK, modid, existingFileHelper);
 	}
 

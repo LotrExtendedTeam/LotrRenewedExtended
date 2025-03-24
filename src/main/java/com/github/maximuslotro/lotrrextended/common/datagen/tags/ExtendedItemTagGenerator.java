@@ -33,7 +33,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
+public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 	private final Function<ITag.INamedTag<Block>, ITag.Builder> blockTags;
 	//LOTR
     public static final ITag.INamedTag<Item> PILLARS = ItemTags.bind("lotr:pillars");
@@ -50,45 +50,45 @@ public class ExtendedItemTagProvider extends ExtendedTagsProvider<Item> {
 	public static final ITag.INamedTag<Item> CHARRABLE_STRIPPED_WOODS = ItemTags.bind("lotr:charrable_stripped_woods");
 
 	@SuppressWarnings("deprecation")
-	public ExtendedItemTagProvider(DataGenerator generator, ExtendedBlockTagProvider blockprovider, String modid, ExistingFileHelper existingFileHelper) {
+	public ExtendedItemTagGenerator(DataGenerator generator, ExtendedBlockTagGenerator blockprovider, String modid, ExistingFileHelper existingFileHelper) {
 		super(generator, Registry.ITEM, modid, existingFileHelper);
 		this.blockTags = blockprovider::getOrCreateRawBuilder;
 	}
 
 	@Override
     protected void addTags() {
-		this.copy(ExtendedBlockTagProvider.PILLARS, ExtendedItemTagProvider.PILLARS);
-		this.copy(ExtendedBlockTagProvider.SLABS, ItemTags.SLABS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
-		this.copy(ExtendedBlockTagProvider.STAIRS, ItemTags.STAIRS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
-		this.copy(ExtendedBlockTagProvider.WALLS, ItemTags.WALLS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
-		this.copy(ExtendedBlockTagProvider.TRAPDOORS, ItemTags.TRAPDOORS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
-		this.copy(ExtendedBlockTagProvider.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
-		this.copy(ExtendedBlockTagProvider.DOORS, ItemTags.DOORS);
-		this.copy(ExtendedBlockTagProvider.STANDING_SIGNS, ItemTags.SIGNS);
-		this.copy(ExtendedBlockTagProvider.SAPLINGS, ItemTags.SAPLINGS);
-		this.copy(ExtendedBlockTagProvider.PLANKS, ItemTags.PLANKS);
-		this.copy(ExtendedBlockTagProvider.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
-		this.copy(ExtendedBlockTagProvider.LEAVES, ItemTags.LEAVES);
-		this.copy(ExtendedBlockTagProvider.CHESTS, Tags.Items.CHESTS);
-		this.copy(ExtendedBlockTagProvider.BARRELS, Tags.Items.BARRELS);
-		this.copy(ExtendedBlockTagProvider.BARRELS_WOODEN, Tags.Items.BARRELS_WOODEN);
+		this.copy(ExtendedBlockTagGenerator.PILLARS, ExtendedItemTagGenerator.PILLARS);
+		this.copy(ExtendedBlockTagGenerator.SLABS, ItemTags.SLABS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+		this.copy(ExtendedBlockTagGenerator.STAIRS, ItemTags.STAIRS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+		this.copy(ExtendedBlockTagGenerator.WALLS, ItemTags.WALLS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+		this.copy(ExtendedBlockTagGenerator.TRAPDOORS, ItemTags.TRAPDOORS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+		this.copy(ExtendedBlockTagGenerator.DOORS, ItemTags.DOORS);
+		this.copy(ExtendedBlockTagGenerator.STANDING_SIGNS, ItemTags.SIGNS);
+		this.copy(ExtendedBlockTagGenerator.SAPLINGS, ItemTags.SAPLINGS);
+		this.copy(ExtendedBlockTagGenerator.PLANKS, ItemTags.PLANKS);
+		this.copy(ExtendedBlockTagGenerator.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+		this.copy(ExtendedBlockTagGenerator.LEAVES, ItemTags.LEAVES);
+		this.copy(ExtendedBlockTagGenerator.CHESTS, Tags.Items.CHESTS);
+		this.copy(ExtendedBlockTagGenerator.BARRELS, Tags.Items.BARRELS);
+		this.copy(ExtendedBlockTagGenerator.BARRELS_WOODEN, Tags.Items.BARRELS_WOODEN);
 
-		this.copy(ExtendedBlockTagProvider.WOODEN_FENCES, ExtendedItemTagProvider.WOODEN_FENCES);
-		this.copy(ExtendedBlockTagProvider.WOODEN_FENCE_GATES, ExtendedItemTagProvider.WOODEN_FENCE_GATES);
-		this.copy(ExtendedBlockTagProvider.LOG_SLABS, ExtendedItemTagProvider.LOG_SLABS);
-		this.copy(ExtendedBlockTagProvider.LOG_STAIRS, ExtendedItemTagProvider.LOG_STAIRS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_BEAMS, ExtendedItemTagProvider.WOODEN_BEAMS);
-		this.copy(ExtendedBlockTagProvider.WOODEN_BEAM_SLABS, ExtendedItemTagProvider.WOODEN_BEAM_SLABS);
-		this.copy(ExtendedBlockTagProvider.BRANCHES, ExtendedItemTagProvider.BRANCHES);
-		this.copy(ExtendedBlockTagProvider.CHARRABLE_LOGS, ExtendedItemTagProvider.CHARRABLE_LOGS);
-		this.copy(ExtendedBlockTagProvider.CHARRABLE_WOODS, ExtendedItemTagProvider.CHARRABLE_WOODS);
-		this.copy(ExtendedBlockTagProvider.CHARRABLE_STRIPPED_LOGS, ExtendedItemTagProvider.CHARRABLE_STRIPPED_LOGS);
-		this.copy(ExtendedBlockTagProvider.CHARRABLE_STRIPPED_WOODS, ExtendedItemTagProvider.CHARRABLE_STRIPPED_WOODS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCES, ExtendedItemTagGenerator.WOODEN_FENCES);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_FENCE_GATES, ExtendedItemTagGenerator.WOODEN_FENCE_GATES);
+		this.copy(ExtendedBlockTagGenerator.LOG_SLABS, ExtendedItemTagGenerator.LOG_SLABS);
+		this.copy(ExtendedBlockTagGenerator.LOG_STAIRS, ExtendedItemTagGenerator.LOG_STAIRS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_BEAMS, ExtendedItemTagGenerator.WOODEN_BEAMS);
+		this.copy(ExtendedBlockTagGenerator.WOODEN_BEAM_SLABS, ExtendedItemTagGenerator.WOODEN_BEAM_SLABS);
+		this.copy(ExtendedBlockTagGenerator.BRANCHES, ExtendedItemTagGenerator.BRANCHES);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_LOGS, ExtendedItemTagGenerator.CHARRABLE_LOGS);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_WOODS, ExtendedItemTagGenerator.CHARRABLE_WOODS);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_STRIPPED_LOGS, ExtendedItemTagGenerator.CHARRABLE_STRIPPED_LOGS);
+		this.copy(ExtendedBlockTagGenerator.CHARRABLE_STRIPPED_WOODS, ExtendedItemTagGenerator.CHARRABLE_STRIPPED_WOODS);
 
 		this.copy(ExtendedTags.Blocks.CHESTNUT_LOGS, ExtendedTags.Items.CHESTNUT_LOGS);
 		this.copy(ExtendedTags.Blocks.BANANA_LOGS, ExtendedTags.Items.BANANA_LOGS);

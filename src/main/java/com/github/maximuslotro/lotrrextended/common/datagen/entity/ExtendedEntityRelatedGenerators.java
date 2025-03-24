@@ -1,0 +1,14 @@
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
+
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles.ExtendedServerHiredUnitProfileGenerator;
+
+import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+public class ExtendedEntityRelatedGenerators {
+	public static void gatherData(DataGenerator generator, ExistingFileHelper existingFileHelper, String modid) {
+		generator.addProvider(new ExtendedServerHiredUnitProfileGenerator(generator, modid));
+		//generator.addProvider(new ExtendedTraderProfileGenerator(generator, modid));
+		//generator.addProvider(new ExtendedCaptainProfileGenerator(generator, modid));
+	}
+}
