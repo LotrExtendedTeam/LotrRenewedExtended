@@ -891,15 +891,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("# #")
 		.pattern("# #")
 		.pattern("###")
-		.define('#', Ingredient.of(Items.BRICKS))
-		.unlockedBy("has_bricks", has(Items.BRICKS))
+		.define('#', Ingredient.of(Items.BRICK))
+		.unlockedBy("has_brick", has(Items.BRICK))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_POT.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LARGE_FLOWER_POT.get())
 		.pattern("# #")
 		.pattern("###")
-		.define('#', Ingredient.of(Items.BRICKS))
-		.unlockedBy("has_bricks", has(Items.BRICKS))
+		.define('#', Ingredient.of(Items.BRICK))
+		.unlockedBy("has_brick", has(Items.BRICK))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath()));
 		//Shields
 		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
