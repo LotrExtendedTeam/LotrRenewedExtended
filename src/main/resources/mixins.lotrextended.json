@@ -106,6 +106,7 @@
 		"lotr.client.render.model.connectedtex.MixinDeferredConnectedTextureModelBakeryJavaPatch",
 		"lotr.client.render.player.MixinLOTRPlayerRendering",
 		"lotr.client.render.tileentity.MixinVesselDrinkTileEntityRenderer",
+		"lotr.common.block.MixinWildPipeweedBlock",
 		"net.minecraft.client.gui.screen.inventory.MixinBlastFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinCraftingScreen",

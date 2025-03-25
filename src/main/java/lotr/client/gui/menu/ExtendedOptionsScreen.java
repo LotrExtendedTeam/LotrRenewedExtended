@@ -37,6 +37,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	private Slider structureBlockOutlineViewDistance;
 	private ExtendedTogglableTitleButton enableClientDevMode;
 
+	private ExtendedTogglableTitleButton removeCertianPlantParticles;
 	@Override
 	public void onClose() {
 		structureBlockOutlineViewDistance.dragging=false;
@@ -78,6 +79,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			forceStructureBlockAirViewing.visible = false;
 			structureBlockOutlineViewDistance.visible = false;
 		}
+		addButton(removeCertianPlantParticles = new ExtendedTogglableTitleButton(x, y+168, 200, 20, new TranslationTextComponent("gui.lotrextended.settings.hired_unit_death.setting"), 
+			button -> toggleForgeConfigValue(ExtendedClientConfig.enablePlantParticles), "gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
 	}
 
 	@Override
@@ -85,10 +88,6 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		renderBackground(matStack);
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.settings.title");
 		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop - 10), 16777215);
-		title = new TranslationTextComponent("gui.lotrextended.settings.worldsettings");
-		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 30), 16777215);
-		title = new TranslationTextComponent("gui.lotrextended.settings.usersettings");
-		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop + 126), 16777215);
 		if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 			title = new TranslationTextComponent("gui.lotrextended.settings.devsettings");
 			this.font.draw(matStack, title, guiLeft+(304-(this.font.width(title)/2)), (guiTop + 30), 16777215);
