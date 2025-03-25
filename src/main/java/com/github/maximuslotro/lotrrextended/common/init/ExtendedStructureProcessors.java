@@ -27,8 +27,6 @@ public class ExtendedStructureProcessors {
 	public static void init() {}
 
 	private static <P extends StructureProcessor> IStructureProcessorType<P> register(String name, Codec<P> codec) {
-        return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(LotrExtendedMod.MODID, name), () -> {
-            return codec;
-        });
+        return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(LotrExtendedMod.MODID, name), () -> codec);
     }
 }

@@ -37,7 +37,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
 	private HashMap<String, List<String>> cachedSpawnLists = new HashMap<>();
 
-	// Don't allow more than one instance than {@Link ExtendedStructureEntitySpawnManager#INSTANCE }
+	// Don't allow more than one instance than {@see ExtendedStructureEntitySpawnManager#INSTANCE }
 	private ExtendedStructureEntitySpawnManager() {}
 
 	public ExtendedStructureEntitySpawner get(ResourceLocation p_186521_1_) {
@@ -84,28 +84,25 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
-		ImmutableMap<ResourceLocation, ExtendedStructureEntitySpawner> immutablemap = builder.build();
-		// TODO validate loaded data if applicable
-		this.spawners = immutablemap;
+        // TODO validate loaded data if applicable
+		this.spawners = builder.build();
 		ExtendedLog.info("Loaded Structure Entity Spawners from Json - %s spawners", spawners.size()-1);
 	}
 
 	/**
-	 * Code copied from {@Link JsonReloadListener} due to if this class extended it, it would cause server crashes
+	 * Code copied from {@see JsonReloadListener} due to if this class extended it, it would cause server crashes
 	 * when running a reload since all data files would disappear?
-	 * Extending {@Link ReloadListener} and copying the method fixes this data corruption
-	 * @version Minecraft 1.16.5
+	 * Extending {@see ReloadListener} and copying the method fixes this data corruption
+	 * From Minecraft 1.16.5
 	 * */
 	@Override
 	protected Map<ResourceLocation, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {
 		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
 		int i = this.directory.length() + 1;
 
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> {
-			return p_223379_0_.endsWith(".json");
-		})) {
+		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> p_223379_0_.endsWith(".json"))) {
 			String s = resourcelocation.getPath();
-			ResourceLocation resourcelocation1 = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
+			ResourceLocation localPathLocation = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
 			try (
 					IResource iresource = pResourceManager.getResource(resourcelocation);
 					InputStream inputstream = iresource.getInputStream();
@@ -113,15 +110,15 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 					) {
 				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
 				if (jsonelement != null) {
-					JsonElement jsonelement1 = map.put(resourcelocation1, jsonelement);
-					if (jsonelement1 != null) {
-						throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
+					JsonElement nullChecker = map.put(localPathLocation, jsonelement);
+					if (nullChecker != null) {
+						throw new IllegalStateException("Duplicate data file ignored with ID " + localPathLocation);
 					}
 				} else {
-					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", resourcelocation1, resourcelocation);
+					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", localPathLocation, resourcelocation);
 				}
-			} catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-				ExtendedLog.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+			} catch (IllegalArgumentException | IOException | JsonParseException jsonParseException) {
+				ExtendedLog.error("Couldn't parse data file {} from {}", localPathLocation, resourcelocation, jsonParseException);
 			}
 		}
 

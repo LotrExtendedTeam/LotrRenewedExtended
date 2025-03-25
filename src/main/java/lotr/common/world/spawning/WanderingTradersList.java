@@ -28,7 +28,6 @@ public class WanderingTradersList {
 	    put("lotr:eriador_downs", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 	    put("lotr:swanfleet", Collections.emptyList()); // Swanfleet has no wandering traders according to the wiki
 
 	    // Rivendell only gets Galadhrim traders
@@ -163,12 +162,12 @@ public class WanderingTradersList {
 
     /**
      * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
-     * and if it is pick a random wandering trader from it's list and return the entity name. If no wandering traders
+     * and if it is pick a random wandering trader from its list and return the entity name. If no wandering traders
      * spawn in that biome it returns null. If it is not a valid biome it throws an IllegalArgumentException
-     *
-     * @param biomeName
-     * @return
-     * @throws IllegalArgumentException
+     * @param world the {@see World()} to check
+     * @param biomeName the name of the biome to query
+     * @return The {@see String()} name of the trader to spawn, null if no traders can spawn
+     * @throws IllegalArgumentException if the given biome is not a LOTR biome
      */
     public static String pickTraderFromBiomeName(World world, String biomeName) throws IllegalArgumentException {
         // determine the LOTR biome

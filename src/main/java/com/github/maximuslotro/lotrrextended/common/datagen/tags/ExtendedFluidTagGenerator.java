@@ -8,10 +8,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ExtendedFluidTagProvider extends ExtendedTagsProvider<Fluid> {
+public class ExtendedFluidTagGenerator extends ExtendedTagsProvider<Fluid> {
 
 	@SuppressWarnings("deprecation")
-	public ExtendedFluidTagProvider(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
+	public ExtendedFluidTagGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
 		super(generator, Registry.FLUID, modid, existingFileHelper);
 	}
 

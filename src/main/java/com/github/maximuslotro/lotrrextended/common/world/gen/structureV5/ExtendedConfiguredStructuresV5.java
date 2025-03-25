@@ -54,7 +54,7 @@ public class ExtendedConfiguredStructuresV5 {
 	/**
      * Registers the configured structure which is what gets added to the biomes.
      * Noticed this is not using a forge registry because there is none for configured structures.
-     *
+     * <p>
      * We can register configured structures at any time before a world is clicked on and made.
      * But the best time to register configured features by code is honestly to do it in FMLCommonSetupEvent.
      */

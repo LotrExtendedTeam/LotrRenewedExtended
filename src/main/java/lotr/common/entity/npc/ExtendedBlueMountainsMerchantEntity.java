@@ -72,7 +72,7 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
             new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 2, 4),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.TIN_INGOT.get()), 2, 4), new ExtendedTradeEntry(new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15), new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31)
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31), new ExtendedTradeEntry(new ItemStack(ExtendedItems.COOKED_DUCK.get()), 2, 4, 192)
     });
 
     // items Blue Mountains Merchants call sell to players

@@ -31,7 +31,7 @@ public enum ExtendedEntitySpawnGroupTypes implements IStringSerializable {
 
 	@Nullable
 	public Supplier<? extends ExtendedStructureGroupSpawnerTileEntity<?>> getSupplier() {
-		return supplier != null ? supplier : null;
+		return supplier;
 	}
 
 	@Nullable

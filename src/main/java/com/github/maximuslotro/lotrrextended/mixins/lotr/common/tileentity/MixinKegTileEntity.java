@@ -5,10 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -52,7 +49,9 @@ import net.minecraft.world.server.ServerWorld;
 public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 
 	@Nullable
+	@Unique
 	public ResourceLocation lootTable;
+	@Unique
 	protected long lootTableSeed;
 
 	@Shadow(remap = false)
@@ -112,7 +111,8 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 			KegTileEntity entity = ((KegTileEntity)(Object)(this));
 			// Extended Start
 			//Fix structure generation null-pointer exception. Level is null before chunk creation baking
-			if(!entity.hasLevel()) {
+			World level = entity.getLevel();
+			if(level==null) {
 				currentBrewingRecipe = null;
 				setItem(9, ItemStack.EMPTY);
 				brewTimeTotal = 0;
@@ -120,7 +120,6 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 				return;
 			}
 			//Extended End
-			World level = entity.getLevel();
 			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
 					proxyInv, level);
 			if (opt.isPresent()) {
@@ -156,7 +155,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
-	public void load(BlockState state, CompoundNBT nbt, CallbackInfo info) {
+	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
 	         this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
 	         this.lootTableSeed = nbt.getLong("LootTableSeed");
@@ -176,13 +175,15 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
-	 * @reason Inject loot-tables
+	 * @reason Inject loot-table unpackCall
 	 * @author maximuslotro
+	 * @param index Index for item to get
+	 * @return An ItemsStack for the given index
 	 */
 	@Overwrite
 	public ItemStack getItem(int index) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		return inventory.get(index);
 	}
@@ -194,7 +195,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public ItemStack removeItem(int index, int count) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		ItemStack ret = ItemStackHelper.removeItem(inventory, index, count);
 		if (isIngredientOrWaterSlot(index)) {
@@ -211,7 +212,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public ItemStack removeItemNoUpdate(int index) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		ItemStack ret = ItemStackHelper.takeItem(inventory, index);
 		if (isIngredientOrWaterSlot(index)) {
@@ -228,7 +229,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public boolean isEmpty() {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		for(ItemStack itemstack : inventory) {
 			if(!itemstack.isEmpty()) {
@@ -245,7 +246,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Overwrite
 	public void setItem(int index, ItemStack stack) {
 		// Extended Start
-		unpackLootTableKeg((PlayerEntity)null);
+		unpackLootTableKeg(null);
 		// Extended End
 		inventory.get(index);
 		inventory.set(index, stack);
@@ -263,6 +264,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	/**
 	 * Extended method to load in a loot table for kegs, uses chest loot-table code
 	 */
+	@Unique
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
 		KegTileEntity entity = ((KegTileEntity)(Object)(this));
 		try {

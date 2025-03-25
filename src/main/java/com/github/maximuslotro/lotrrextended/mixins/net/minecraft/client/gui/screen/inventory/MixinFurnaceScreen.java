@@ -21,8 +21,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @Mixin(FurnaceScreen.class)
 public class MixinFurnaceScreen extends AbstractFurnaceScreen<FurnaceContainer> {
 
-    public MixinFurnaceScreen(FurnaceContainer p_i51104_1_, AbstractRecipeBookGui p_i51104_2_, PlayerInventory p_i51104_3_, ITextComponent p_i51104_4_, ResourceLocation p_i51104_5_) {
-        super(p_i51104_1_, p_i51104_2_, p_i51104_3_, p_i51104_4_, p_i51104_5_);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param furnaceContainer A placeholder variable instance of FurnaceContainer
+	 * @param recipeBookGui A placeholder variable instance of AbstractRecipeBookGui
+	 * @param inventory A placeholder variable instance of PlayerInventory
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * @param location A placeholder variable instance of ResourceLocation
+	 * */
+    public MixinFurnaceScreen(FurnaceContainer furnaceContainer, AbstractRecipeBookGui recipeBookGui, PlayerInventory inventory, ITextComponent titleIn, ResourceLocation location) {
+        super(furnaceContainer, recipeBookGui, inventory, titleIn, location);
     }
 
     @Override

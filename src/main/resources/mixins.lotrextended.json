@@ -6,11 +6,13 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"lotr.common.MixinLOTRGameRules",
+		"lotr.common.block.MixinDripstoneBlock",
 		"lotr.common.block.MixinSignSetupHelperJavaPatch",
 		"lotr.common.data.MixinAlignmentDataModule",
 		"lotr.common.data.MixinFastTravelDataModule",
 		"lotr.common.data.MixinLOTRLevelData",
 		"lotr.common.data.MixinLOTRPlayerData",
+		"lotr.common.data.MixinPlayerDataModuleInvoker",
 		"lotr.common.entity.item.MixinModBoatType",
 		"lotr.common.entity.npc.MixinGundabadOrcArcherEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcEntity",

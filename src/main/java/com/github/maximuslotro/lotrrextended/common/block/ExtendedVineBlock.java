@@ -49,28 +49,28 @@ public class ExtendedVineBlock extends VineBlock implements IForgeBlockState{
 						BlockPos blockpos2 = blockpos4.relative(direction3);
 						BlockPos blockpos3 = blockpos4.relative(direction4);
 						if (flag && isAcceptableNeighbour(pLevel, blockpos2, direction3)) {
-							pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(getPropertyForFace(direction3), Boolean.valueOf(true)), 2);
+							pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(getPropertyForFace(direction3), Boolean.TRUE), 2);
 						} else if (flag1 && isAcceptableNeighbour(pLevel, blockpos3, direction4)) {
-							pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(getPropertyForFace(direction4), Boolean.valueOf(true)), 2);
+							pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(getPropertyForFace(direction4), Boolean.TRUE), 2);
 						} else {
 							Direction direction1 = direction.getOpposite();
 							if (flag && pLevel.isEmptyBlock(blockpos2) && isAcceptableNeighbour(pLevel, pPos.relative(direction3), direction1)) {
-								pLevel.setBlock(blockpos2, this.defaultBlockState().setValue(getPropertyForFace(direction1), Boolean.valueOf(true)), 2);
+								pLevel.setBlock(blockpos2, this.defaultBlockState().setValue(getPropertyForFace(direction1), Boolean.TRUE), 2);
 							} else if (flag1 && pLevel.isEmptyBlock(blockpos3) && isAcceptableNeighbour(pLevel, pPos.relative(direction4), direction1)) {
-								pLevel.setBlock(blockpos3, this.defaultBlockState().setValue(getPropertyForFace(direction1), Boolean.valueOf(true)), 2);
+								pLevel.setBlock(blockpos3, this.defaultBlockState().setValue(getPropertyForFace(direction1), Boolean.TRUE), 2);
 							} else if (pLevel.random.nextFloat() < 0.05D && isAcceptableNeighbour(pLevel, blockpos4.above(), Direction.UP)) {
-								pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(UP, Boolean.valueOf(true)), 2);
+								pLevel.setBlock(blockpos4, this.defaultBlockState().setValue(UP, Boolean.TRUE), 2);
 							}
 						}
 					} else if (isAcceptableNeighbour(pLevel, blockpos4, direction)) {
-						pLevel.setBlock(pPos, pState.setValue(getPropertyForFace(direction), Boolean.valueOf(true)), 2);
+						pLevel.setBlock(pPos, pState.setValue(getPropertyForFace(direction), Boolean.TRUE), 2);
 					}
 
 				}
 			} else {
 				if (direction == Direction.UP && pPos.getY() < 255) {
 					if (this.canSupportAtFace(pLevel, pPos, direction)) {
-						pLevel.setBlock(pPos, pState.setValue(UP, Boolean.valueOf(true)), 2);
+						pLevel.setBlock(pPos, pState.setValue(UP, Boolean.TRUE), 2);
 						return;
 					}
 
@@ -83,7 +83,7 @@ public class ExtendedVineBlock extends VineBlock implements IForgeBlockState{
 
 						for(Direction direction2 : Direction.Plane.HORIZONTAL) {
 							if (pRandom.nextBoolean() || !isAcceptableNeighbour(pLevel, blockpos.relative(direction2), Direction.UP)) {
-								blockstate3 = blockstate3.setValue(getPropertyForFace(direction2), Boolean.valueOf(false));
+								blockstate3 = blockstate3.setValue(getPropertyForFace(direction2), Boolean.FALSE);
 							}
 						}
 
@@ -134,7 +134,7 @@ public class ExtendedVineBlock extends VineBlock implements IForgeBlockState{
 			if (pRandom.nextBoolean()) {
 				BooleanProperty booleanproperty = getPropertyForFace(direction);
 				if (p_196544_1_.getValue(booleanproperty)) {
-					p_196544_2_ = p_196544_2_.setValue(booleanproperty, Boolean.valueOf(true));
+					p_196544_2_ = p_196544_2_.setValue(booleanproperty, Boolean.TRUE);
 				}
 			}
 		}

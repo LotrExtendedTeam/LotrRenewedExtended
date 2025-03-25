@@ -15,6 +15,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableBannerProtection;
 	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
 	public static ForgeConfigSpec.DoubleValue npcGlobalSpawnDampingCoefficient;
+	public static ForgeConfigSpec.DoubleValue dripstoneMinimumDamageHeight;
 
 	// Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
@@ -42,6 +43,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable banner protection");
 		barrowWightChestFirstSpawnChance = createIntegerValue(builder, "barrowWightChestFirstSpawnChance", 50, 0, 100, false, "Should stone chests in the barrow downs spawn wight on first open. 0=only when cursed, 100=spawns on every first open like in legacy");
 		npcGlobalSpawnDampingCoefficient = createDoubleValue(builder, "npcGlobalSpawnDampingCoefficient", 1.0D, 0.0D, 1.0D, false, "Reduce the global npc spawning rate, the lower the value, the less spawns. This is a linear setting, (1.0 is the default renewed spawn rate)");
+		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		builder.pop();
 
 		builder.push("Chair settings");

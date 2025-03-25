@@ -93,9 +93,7 @@ public class ExtendedBowItem extends BowItem {
                             abstractarrowentity.setSecondsOnFire(100);
                         }
 
-                        bow.hurtAndBreak(1, playerentity, (p_220009_1_) -> {
-                            p_220009_1_.broadcastBreakEvent(playerentity.getUsedItemHand());
-                        });
+                        bow.hurtAndBreak(1, playerentity, (p_220009_1_) -> p_220009_1_.broadcastBreakEvent(playerentity.getUsedItemHand()));
                         if (flag1 || playerentity.abilities.instabuild && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
                             abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                         }

@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.Supplier;
 
 import lotr.common.init.ExtendedBlocks;
@@ -33,6 +34,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 // A good amount of code in this class was copied from FlowerPotBlock
 public class ExtendedLargeFlowerPotBlock extends Block {
@@ -157,5 +160,10 @@ public class ExtendedLargeFlowerPotBlock extends Block {
 	public Map<net.minecraft.util.ResourceLocation, java.util.function.Supplier<? extends Block>> getFullPotsView() {
 		return java.util.Collections.unmodifiableMap(fullPots);
 	}
-	//Forge End
+
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+		getContent().animateTick(getContent().defaultBlockState(), world, pos, rand);
+	}
 }

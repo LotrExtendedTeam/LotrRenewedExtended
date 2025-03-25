@@ -28,9 +28,7 @@ public class ExtendedUnitHiredTrigger extends AbstractCriterionTrigger<ExtendedU
 	}
 
 	public void trigger(ServerPlayerEntity player, EntityType<?> captainType, EntityType<?> unitType, int coinAmount) {
-		this.trigger(player, (instance) -> {
-			return instance.matches(player, captainType, unitType, coinAmount);
-		});
+		this.trigger(player, (instance) -> instance.matches(player, captainType, unitType, coinAmount));
 	}
 
 	public static class Instance extends CriterionInstance {

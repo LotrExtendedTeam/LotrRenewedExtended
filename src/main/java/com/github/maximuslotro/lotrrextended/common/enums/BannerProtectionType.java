@@ -2,10 +2,10 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 
 public enum BannerProtectionType {
 	FACTION, PLAYER, NONE;
-	private static final BannerProtectionType values[] = values();
+	private static final BannerProtectionType[] values = values();
 	private final int id;
 
-	private BannerProtectionType() {
+	BannerProtectionType() {
 		this.id = ordinal();
 	}
 

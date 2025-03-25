@@ -16,15 +16,25 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * @reason Renewed registers new sign types using reflection, breaking in Java9+. This class fixes that
+ * @Mixin (SignSetupHelper.class)
+ * */
 @Mixin(SignSetupHelper.class)
 public class MixinSignSetupHelperJavaPatch {
 
+	/**
+	 * A list of Renewed/Extended sign blocks to register
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	private static List<Block> preparedSignBlocks;
 
 	/**
-	 * @author Maximuslotro
-	 * @reason Move code to Access Transformers for Java 9+ systems
+	 * @author maximuslotro
+	 * @reason Move code to Access Transformers for Java 9+ systems, registers new sign types
+	 * @Overwrite (remap=false)
+	 * @param event The Block registry event to register the new sign types for
 	 */
 	@Overwrite(remap=false)
 	public static void register(RegistryEvent.Register<Block> event) {

@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BarrowWightJumpscareParticle extends Particle {
     private final Model model = new ExtendedBarrowWightModel<>(0.0f);
     private final RenderType renderType = RenderType.entityTranslucent(new ResourceLocation("lotrextended:textures/particle/scare_wight_1.png"));
-    private float angle;
+    private final float angle;
 
 
     private BarrowWightJumpscareParticle(ClientWorld clientWorld, double pX, double pY, double pZ) {

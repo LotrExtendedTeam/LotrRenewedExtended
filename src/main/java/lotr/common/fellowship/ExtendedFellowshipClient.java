@@ -42,14 +42,11 @@ public class ExtendedFellowshipClient {
 		UUID prevOwnerUuid = this.FellowshipOwner;
 		UUID newOwnerUuid = newOwner.getId();
 		if (!prevOwnerUuid.equals(newOwnerUuid)) {
-			if (!this.FellowshipMembers.contains(prevOwnerUuid))
-				this.FellowshipMembers.add(prevOwnerUuid);
+			this.FellowshipMembers.add(prevOwnerUuid);
 			this.FellowshipOwner = newOwnerUuid;
 			this.usernameMap.put(this.FellowshipOwner, newOwner.getName());
-			if (this.FellowshipMembers.contains(newOwnerUuid))
-				this.FellowshipMembers.remove(newOwnerUuid);
-			if (this.FellowshipAdmins.contains(newOwnerUuid))
-				this.FellowshipAdmins.remove(newOwnerUuid);
+			this.FellowshipMembers.remove(newOwnerUuid);
+			this.FellowshipAdmins.remove(newOwnerUuid);
 			this.isOwned = owned;
 			if (this.isOwned)
 				this.isAdminned = false;
@@ -68,8 +65,7 @@ public class ExtendedFellowshipClient {
 		if (this.FellowshipMembers.contains(memberUuid)) {
 			this.FellowshipMembers.remove(memberUuid);
 			this.usernameMap.remove(memberUuid);
-			if (this.FellowshipAdmins.contains(memberUuid))
-				this.FellowshipAdmins.remove(memberUuid);
+			this.FellowshipAdmins.remove(memberUuid);
 		}
 	}
 

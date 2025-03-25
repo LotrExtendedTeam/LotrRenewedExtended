@@ -53,10 +53,10 @@ public class ExtendedHiredUnitEquipmentItem extends WeightedRandom.Item {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	/**
-	 * Copied from {@Link DisplayInfo#serializeItem()}
+	 * Copied from {@see DisplayInfo#serializeItem()}
 	 * */
+	@SuppressWarnings("deprecation")
 	private JsonObject serializeItem() {
 		JsonObject itemJson = new JsonObject();
 		itemJson.addProperty("item", Registry.ITEM.getKey(this.stack.getItem()).toString());
@@ -68,7 +68,7 @@ public class ExtendedHiredUnitEquipmentItem extends WeightedRandom.Item {
 	}
 
 	/**
-	 * Copied from {@Link DisplayInfo#getStack(JsonObject jsonObject)}
+	 * Copied from {@see DisplayInfo#getStack(JsonObject jsonObject)}
 	 * */
 	private static ItemStack getStack(JsonObject jsonObject) {
 		if (!jsonObject.has("item")) {

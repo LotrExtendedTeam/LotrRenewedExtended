@@ -31,8 +31,8 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
 	PlayerEntity player;
 
-	ImageButton convertUpButton;
 	ImageButton convertDownButton;
+	ImageButton convertUpButton;
 
 	public ExtendedCoinExchangeScreen(ExtendedCoinExchangeContainer container, PlayerInventory p_i51105_2_, ITextComponent title) {
 		super(container, p_i51105_2_, title);
@@ -91,8 +91,8 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 		int i = (this.width - this.imageWidth) / 2;
 		int j = ((this.height - this.imageHeight) / 2);
 
-		convertUpButton = addButton(new ImageButton(i + 44,  j + 45, 32, 16, 176, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(0);}));
-		convertDownButton = addButton(new ImageButton( i + 102,  j + 45, 32, 16, 208, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(1);}));
+		convertDownButton = addButton(new ImageButton(i + 44,  j + 45, 32, 16, 176, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(0);}));
+		convertUpButton = addButton(new ImageButton( i + 102,  j + 45, 32, 16, 208, 0, 16, GUI_TEXTURE, btn -> {attemptToExchange(1);}));
 	}
 
 	@Override

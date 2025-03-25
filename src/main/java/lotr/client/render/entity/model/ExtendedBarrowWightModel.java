@@ -236,12 +236,11 @@ public class ExtendedBarrowWightModel<E extends ExtendedBarrowWightEntity> exten
 				float f = this.attackTime;
 				this.body.yRot = MathHelper.sin(MathHelper.sqrt(f) * ((float) Math.PI * 2F)) * 0.2F;
 
-				/** This shifts the arms into the barrow wight's chest lol
-				 *
-				 this.rightArm.z = MathHelper.sin(this.body.yRot) * 5.0F;
-				 this.rightArm.x = -MathHelper.cos(this.body.yRot) * 5.0F;
-				 this.leftArm.z = -MathHelper.sin(this.body.yRot) * 5.0F;
-				 this.leftArm.x = MathHelper.cos(this.body.yRot) * 5.0F;
+				/* This shifts the arms into the barrow wight's chest lol
+				 * this.rightArm.z = MathHelper.sin(this.body.yRot) * 5.0F;
+				 * this.rightArm.x = -MathHelper.cos(this.body.yRot) * 5.0F;
+				 * this.leftArm.z = -MathHelper.sin(this.body.yRot) * 5.0F;
+				 * this.leftArm.x = MathHelper.cos(this.body.yRot) * 5.0F;
 				 */
 
 				this.rightArm.yRot += this.body.yRot;

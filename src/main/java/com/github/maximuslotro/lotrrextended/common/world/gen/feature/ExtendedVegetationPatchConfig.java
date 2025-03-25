@@ -77,6 +77,6 @@ public class ExtendedVegetationPatchConfig implements IFeatureConfig {
 	}
 
 	public boolean shouldUseBlock(Random random) {
-		return discardBlockChance==0.0f ? true : random.nextFloat()>discardBlockChance;
+		return discardBlockChance == 0.0f || random.nextFloat() > discardBlockChance;
 	}
 }

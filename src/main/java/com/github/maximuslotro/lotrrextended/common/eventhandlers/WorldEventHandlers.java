@@ -79,7 +79,7 @@ public class WorldEventHandlers {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	@SubscribeEvent
 	public static void handleCaptainTraderDeath(LivingDeathEvent event) {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
 			return;
@@ -109,6 +109,13 @@ public class WorldEventHandlers {
 			}
 		}else {
 			NPCEntity npc = (NPCEntity)event.getEntity();
+			// Check if entity has flag to respawn, also handle older versions where flag is not present
+			if(npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
+				return; //Let entity die
+			}
+			// Update older entities to have the flag
+			npc.getPersistentData().putBoolean("ExtendedRespawnOnDeath", true);
+			// Make entity respawner
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
 

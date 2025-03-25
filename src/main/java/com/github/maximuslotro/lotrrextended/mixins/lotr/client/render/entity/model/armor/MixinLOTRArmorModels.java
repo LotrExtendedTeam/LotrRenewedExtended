@@ -20,13 +20,28 @@ import lotr.client.render.entity.model.armor.SpecialArmorModelHolder.SpecialArmo
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.item.Item;
-
+/**
+ * 
+ * @reason Need to register our own custom armor pieces
+ * @Mixin (LOTRArmorModels.class)
+ * */
 @Mixin(LOTRArmorModels.class)
 public class MixinLOTRArmorModels {
 
+	/**
+	 * Method to register new special armor renderers
+	 * @Shadow (remap = false)
+	 * @param itemSup A supplier of the renderable item to register
+	 * @param factory The actual model renderer that will be used to render the armor
+	 * */
 	@Shadow(remap = false)
 	private static void addSpecialArmorModel(Supplier<Item> itemSup, SpecialArmorModelFactory factory) {}
 
+	/**
+	 * @reason Since Renewed has a built-in custom armor rendering system, just register our armor there
+	 * @Inject (method = "setup()V", at = @At("RETURN"), remap = false)
+	 * @param ci The local CallbackInfo instance attached to this injection
+	 * */
 	@SuppressWarnings("unchecked")
 	@Inject(method = "setup()V", at = @At("RETURN"), remap = false)
 	private static void setup(CallbackInfo ci) {

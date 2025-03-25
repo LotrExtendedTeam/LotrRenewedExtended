@@ -228,7 +228,7 @@ public class ExtendedMEBannerBlock extends Block {
 		if(player.isCrouching()) {
 			state = state.cycle(SMALL);
 			world.setBlock(blockPos, state, 10);
-			world.playSound((PlayerEntity)null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, blockPos, SoundEvents.WOOL_STEP, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 		if(!world.isClientSide) {

@@ -1,7 +1,7 @@
 {
   "parent": "lotrextended:block/template_banner_wall",
   "textures": {
-    "particle": "lotrextended:block/banner/dunedain_wall_banner",
+    "particle": "minecraft:block/oak_planks",
     "banner": "lotrextended:block/banner/dunedain_wall_banner"
   }
 }

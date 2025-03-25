@@ -16,7 +16,6 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
 	 * <p />
 	 * Either ID or name may be null/empty, but at least one must be filled.
 	 *
-	 * @param id Unique ID of the profile
 	 * @param name Display name of the profile
 	 * @throws java.lang.IllegalArgumentException Both ID and name are either null or empty
 	 */

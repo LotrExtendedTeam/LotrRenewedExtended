@@ -13,12 +13,18 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * @reason Renewed used reflection to handle fox spawn types and this breaks in Java 9+
+ * @Mixin (LOTREventHandler.class)
+ * */
 @Mixin(LOTREventHandler.class)
 public class MixinLOTREventHandlerJavaPatch {
 
 	/**
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
+	 * @Overwrite (remap=false)
+	 * @param event The LivingUpdateEvent checked for foxes with no biome check
 	 */
     //@Inject(method = "onLivingUpdate(Lnet/minecraftforge/event/entity/living/LivingEvent$LivingUpdateEvent;)V", at = @At("HEAD"), remap=false)
 	@Overwrite(remap=false)

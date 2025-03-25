@@ -9,7 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCoinExchangePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenTradeMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeperatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -61,7 +61,7 @@ public class ExtendedTraderHelper {
         trader.updatePlayerInteractingWith(player.getUUID());
 
         if (entity.level.isClientSide()) {
-            ExtendedClientsideSeperatedScreenHandler.openTraderMainMenuGui(entity, player);
+            ExtendedClientsideSeparatedScreenHandler.openTraderMainMenuGui(entity, player);
         }
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }

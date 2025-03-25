@@ -7,8 +7,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedSt
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
-import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -73,10 +71,10 @@ public class ExtendedChestTileEntityRenderer<T extends TileEntity & IChestLid> e
 	            icallbackwrapper = TileEntityMerger.ICallback::acceptNone;
 	         }
 
-	         float f1 = icallbackwrapper.<Float2FloatFunction>apply(ExtendedSingleChestBlock.opennessCombiner(tileEntity)).get(p_225616_2_);
+	         float f1 = icallbackwrapper.apply(ExtendedSingleChestBlock.opennessCombiner(tileEntity)).get(p_225616_2_);
 	         f1 = 1.0F - f1;
 	         f1 = 1.0F - f1 * f1 * f1;
-	         int i = icallbackwrapper.<Int2IntFunction>apply(new DualBrightnessCallback<>()).applyAsInt(p_225616_5_);
+	         int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(p_225616_5_);
 
 	         RenderMaterial rendermaterial = getMaterial(tileEntity);
 	         IVertexBuilder ivertexbuilder = rendermaterial.buffer(p_225616_4_, RenderType::entityCutout);

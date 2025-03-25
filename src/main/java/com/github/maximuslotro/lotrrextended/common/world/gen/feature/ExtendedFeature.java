@@ -19,9 +19,7 @@ public class ExtendedFeature {
 	public static final RegistryObject<ExtendedHolyUnderwaterSphereFeature> HOLEY_UNDERWATER_SPHERE = redFeature("holey_underwater_sphere", HOLEY_UNDERWATER_SPHERE_PRE);
 
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> redFeature(String name, F feature) {
-		return FEATURES.register(name, () -> {
-			return feature;
-		});
+		return FEATURES.register(name, () -> feature);
 	}
 
 	public static void register(IEventBus modBus) {

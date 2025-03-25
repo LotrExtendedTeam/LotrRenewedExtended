@@ -28,12 +28,8 @@ public class ExtendedItemModelsProperties {
 	}
 
 	public static void registerAlternativeHandheldTextures() {
-		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> {
-			return ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F;
-		});
-		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> {
-			return ExtendedBrandingIronItem.isTempered(itemStack) ? 1.0F : 0.0F;
-		});
+		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F);
+		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1.0F : 0.0F);
 //		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), poisoned, (itemStack, clientWorld, LivingEntity) -> {
 //			return ExtendedDaggerItem.isPoisoned(itemStack) ? 1.0F : 0.0F;
 //		});
@@ -67,8 +63,6 @@ public class ExtendedItemModelsProperties {
 			return num;
 		});
 
-        ItemModelsProperties.register(item, pulling, (thisItem, clientWorld, thisLivingEntity) -> {
-            return thisLivingEntity != null && thisLivingEntity.isUsingItem() && thisLivingEntity.getUseItem() == thisItem ? 1.0F : 0.0F;
-        });
+        ItemModelsProperties.register(item, pulling, (thisItem, clientWorld, thisLivingEntity) -> thisLivingEntity != null && thisLivingEntity.isUsingItem() && thisLivingEntity.getUseItem() == thisItem ? 1.0F : 0.0F);
     }
 }
