@@ -1196,6 +1196,7 @@
   "gui.lotrextended.menu.fellowships": "Fellowships",
   "gui.lotrextended.menu.settings": "Options",
   "gui.lotrextended.menu.titles": "Titles",
+  "gui.lotrextended.settings.detailsettings": "Detail Settings",
   "gui.lotrextended.settings.devsettings": "Client Dev Settings",
   "gui.lotrextended.settings.devtoggle.setting": "Client Dev Mode: ",
   "gui.lotrextended.settings.devtoggle.setting.forced": "Client Dev Mode: Server Forced",

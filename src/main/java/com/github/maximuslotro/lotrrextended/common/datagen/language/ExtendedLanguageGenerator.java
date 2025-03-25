@@ -219,6 +219,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
 		addD("gui.lotrextended.settings.usersettings", "User Settings");
 		addD("gui.lotrextended.settings.devsettings", "Client Dev Settings");
+		addD("gui.lotrextended.settings.detailsettings", "Detail Settings");
 		addD("gui.lotrextended.settings.pipeweedparticles.setting", "Pipeweed Particles: ");
 		addD("gui.lotrextended.settings.friendlyFire.setting", "NPC Friendly Fire: ");
 		addD("gui.lotrextended.settings.friendlyFireUnit.setting", "Units Friendly Fire: ");
@@ -229,7 +230,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.devtoggle.setting", "Client Dev Mode: ");
 		addD("gui.lotrextended.settings.devtoggle.setting.forced", "Client Dev Mode: Server Forced");
 		addD("gui.lotrextended.settings.fsbr.setting", "Force StrBlock Air Rendering: ");
-		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Render Dist: ");
+		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Dist: ");
 		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix", " blocks");
 
 		// Banner Menu strings

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageAddOffsetButton;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredEquipmentMenuPacket;
@@ -38,8 +38,8 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 	int col1;
 
 	// buttons
-	private ExtendedImageButton patrolButton;
-	private ExtendedImageButton stationaryButton;
+	private ExtendedImageAddOffsetButton patrolButton;
+	private ExtendedImageAddOffsetButton stationaryButton;
 	private Button equipmentButton;
 
 	// Current entity states
@@ -80,7 +80,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 		col1 = leftPos + sidebarX + 62;
 
 		// TODO: At some point add a guard mode
-		this.patrolButton = addButton(new ExtendedImageButton(col1, row1, 16, 12, 0, 0, 13, ORDER_BUTTONS, 
+		this.patrolButton = addButton(new ExtendedImageAddOffsetButton(col1, row1, 16, 12, 0, 0, 13, ORDER_BUTTONS, 
 				btn -> {
 					if(orders != ExtendedUnitOrders.PATROL_PLAYER) {
 						orders = ExtendedUnitOrders.PATROL_PLAYER;
@@ -94,7 +94,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 		}
 
 				);
-		this.stationaryButton = addButton(new ExtendedImageButton(col1, row1 + 14, 16, 12, 34, 0, 13, ORDER_BUTTONS,
+		this.stationaryButton = addButton(new ExtendedImageAddOffsetButton(col1, row1 + 14, 16, 12, 34, 0, 13, ORDER_BUTTONS,
 				btn -> {
 					if(orders != ExtendedUnitOrders.GUARD_STATIONARY) {
 						orders = ExtendedUnitOrders.GUARD_STATIONARY;
