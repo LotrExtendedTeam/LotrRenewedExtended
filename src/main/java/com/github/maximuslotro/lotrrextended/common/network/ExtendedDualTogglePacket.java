@@ -37,15 +37,7 @@ public class ExtendedDualTogglePacket {
 		LOTRLevelData dataLevel = context.get().getDirection()==NetworkDirection.PLAY_TO_CLIENT ? LOTRLevelData.clientInstance() : LOTRLevelData.serverInstance();
 		LOTRPlayerData dataPlayer = dataLevel.getData(context.get().getDirection()==NetworkDirection.PLAY_TO_CLIENT ? LOTRMod.PROXY.getClientPlayer() : context.get().getSender());
 		ExtendedNetworkToggles type = packet.getType();
-		if(type==ExtendedNetworkToggles.FRIENDLY_FIRE) {
-			dataPlayer.getAlignmentData().setFriendlyFireEnabled(packet.getValue());
-		}else if(type==ExtendedNetworkToggles.UNITS_FRIENDLY_FIRE) {
-			((ExtendedLOTRPlayerData)dataPlayer).getExtendedMiscData().setHurtHiredUnits(packet.getValue());
-		}else if(type==ExtendedNetworkToggles.MAP_LOCATION) {
-			dataPlayer.getMiscData().setShowMapLocation(packet.getValue());
-		}else if(type==ExtendedNetworkToggles.MAP_MARKERS) {
-			dataPlayer.getMapMarkerData().setShowMarkers(packet.getValue());
-		}
+		((ExtendedLOTRPlayerData)dataPlayer).getExtendedMiscData().handleTogglePackets(type, packet.getValue());
 		context.get().setPacketHandled(true);
 	}
 

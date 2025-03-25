@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
 public enum ExtendedNetworkToggles {
-	FRIENDLY_FIRE, UNITS_FRIENDLY_FIRE, MAP_LOCATION, MAP_MARKERS;
+	FRIENDLY_FIRE, UNITS_FRIENDLY_FIRE, MAP_LOCATION, MAP_MARKERS, UNIT_DEATH_MESSAGES, HIGH_CONTRAST_MESSAGES;
 	
 	private static final ExtendedNetworkToggles[] BY_ID = values();
 
