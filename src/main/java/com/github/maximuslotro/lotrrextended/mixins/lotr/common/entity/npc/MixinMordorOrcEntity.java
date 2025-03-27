@@ -79,6 +79,7 @@ public abstract class MixinMordorOrcEntity extends OrcEntity{
 	 * @param spawn The SpawnReason for his spawn
 	 * @param spawnData Additional ILivingEntityData for this spawn
 	 * @param dataTag Additional CompoundNBT for this spawn
+	 * @return An ILivingEntityData instance
 	 */
 	@Override
 	@Overwrite(remap = false)
