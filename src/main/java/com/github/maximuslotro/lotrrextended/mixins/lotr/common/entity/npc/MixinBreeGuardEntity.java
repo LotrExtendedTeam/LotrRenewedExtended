@@ -92,7 +92,9 @@ public abstract class MixinBreeGuardEntity extends BreeManEntity {
 		}
 
 		this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(Items.IRON_HELMET));
+		// Extended Start
 		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.BREE_SHIELD.get()));
+		// Extended End
 		return spawnData;
 	}
 }
