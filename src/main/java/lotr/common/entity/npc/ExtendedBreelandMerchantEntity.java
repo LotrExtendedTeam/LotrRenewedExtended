@@ -63,51 +63,51 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     // items Bree-land Merchants can buy from players
     private static final ExtendedTradeEntries BREELAND_MERCHANT_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 22, 35, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.CHERRY_PIE.get()), 7, 13, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_CRUMBLE.get()), 7, 13, 16),
+            new ExtendedTradeEntry(8, new ItemStack(LOTRItems.HOBBIT_OVEN.get()), 22, 35),
+            new ExtendedTradeEntry(16, new ItemStack(LOTRItems.CHERRY_PIE.get()), 7, 13),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_CRUMBLE.get()), 7, 13),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1, 192),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED.get(), 6), 8, 16, 64),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get(), 6), 6, 10, 16)}),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.HOBBIT_PANCAKE.get()), 4, 8, 128),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DRYSTONE.get(), 16), 2, 6, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_LOG.get(), 16), 2, 6, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.SMOKING_PIPE.get()), 8, 14, 1)
+                    new ExtendedTradeEntry(192, new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1),
+                    new ExtendedTradeEntry(64, new ItemStack(LOTRItems.PIPEWEED.get(), 6), 8, 16),
+                    new ExtendedTradeEntry(16, new ItemStack(LOTRItems.PIPEWEED_SEEDS.get(), 6), 6, 10)}),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.HOBBIT_PANCAKE.get()), 4, 8),
+            new ExtendedTradeEntry(16, new ItemStack(LOTRItems.DRYSTONE.get(), 16), 2, 6),
+            new ExtendedTradeEntry(16, new ItemStack(LOTRItems.MAPLE_LOG.get(), 16), 2, 6),
+            new ExtendedTradeEntry(1, new ItemStack(LOTRItems.SMOKING_PIPE.get()), 8, 14)
     });
 
     // items Bree-land Merchants can sell to players
     private static final ExtendedTradeEntries BREELAND_MERCHANT_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[]{
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.BREE_CRAFTING_TABLE.get()), 75, 125, 8),
+            new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BREE_CRAFTING_TABLE.get()), 75, 125),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
-                    new ExtendedTradeEntry(new ItemStack(Items.IRON_SWORD), 9, 15, 8),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SWORD.get()), 8, 13, 8),
+                    new ExtendedTradeEntry(8, new ItemStack(Items.IRON_SWORD), 9, 15),
+                    new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_SWORD.get()), 8, 13),
             }),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.IRON_DAGGER.get()), 6, 10, 8),
-                    new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 5, 9, 8),
+                    new ExtendedTradeEntry(8, new ItemStack(LOTRItems.IRON_DAGGER.get()), 6, 10),
+                    new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 5, 9),
             }),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
-                    new ExtendedTradeEntry(new ItemStack(Items.IRON_CHESTPLATE), 17, 28, 8),
-                    new ExtendedTradeEntry(new ItemStack(Items.IRON_LEGGINGS), 14, 23, 8),
+                    new ExtendedTradeEntry(8, new ItemStack(Items.IRON_CHESTPLATE), 17, 28),
+                    new ExtendedTradeEntry(8, new ItemStack(Items.IRON_LEGGINGS), 14, 23),
             }),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
-                    new ExtendedTradeEntry(new ItemStack(Items.IRON_HELMET), 12, 20, 8),
-                    new ExtendedTradeEntry(new ItemStack(Items.IRON_BOOTS), 11, 18, 8),
+                    new ExtendedTradeEntry(8, new ItemStack(Items.IRON_HELMET), 12, 20),
+                    new ExtendedTradeEntry(8, new ItemStack(Items.IRON_BOOTS), 11, 18),
             }),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_SYRUP.get()), 2, 3, 16),
+            new ExtendedTradeEntry(16, new ItemStack(LOTRItems.MAPLE_SYRUP.get()), 2, 3),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.MODERATE), 6, 10, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.STRONG), 8, 13, 8)
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.MODERATE), 6, 10),
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.MEAD.get(), VesselDrinkItem.Potency.STRONG), 8, 13)
             }),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[]{
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.MODERATE), 6, 10, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.STRONG), 8, 13, 8)
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.MODERATE), 6, 10),
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.MAPLE_BEER.get(), VesselDrinkItem.Potency.STRONG), 8, 13)
             }),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.IRON_SPEAR.get()), 11, 19, 8),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.MAPLE_SAPLING.get()), 6, 10, 32)
+            new ExtendedTradeEntry(8, new ItemStack(LOTRItems.IRON_SPEAR.get()), 11, 19),
+            new ExtendedTradeEntry(32, new ItemStack(LOTRItems.MAPLE_SAPLING.get()), 6, 10)
     });
 
     public static AttributeModifierMap.MutableAttribute regAttrs() {

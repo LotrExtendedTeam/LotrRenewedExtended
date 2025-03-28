@@ -68,7 +68,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_DAGGER.get()), 10, 16),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 16, 26),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()), 16, 26),
-            new ExtendedTradeEntry(new ItemStack(Items.ARROW, 4), 2, 4, 64),
+            new ExtendedTradeEntry(64, new ItemStack(Items.ARROW, 4), 2, 4),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 6, 10),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.LEMBAS.get()), 12, 20),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {

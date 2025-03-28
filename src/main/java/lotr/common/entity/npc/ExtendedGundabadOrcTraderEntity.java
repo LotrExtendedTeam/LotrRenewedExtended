@@ -54,30 +54,30 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	// items a Gundabad Orc trader will sell
     private final ExtendedTradeEntries GUNDABAD_ORC_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
 			// TODO: Add poisoned bronze daggers as trades eventually
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get()), 30, 50, 16),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 15, 25, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_CHESTPLATE.get()), 23, 38, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_LEGGINGS.get()), 20, 33, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_BOOTS.get()), 14, 23, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SWORD.get()), 11, 18, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SPEAR.get()), 11, 19, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 6, 10, 8),
+            new ExtendedTradeEntry(16, new ItemStack(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get()), 30, 50),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_HELMET.get()), 15, 25),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_CHESTPLATE.get()), 23, 38),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_LEGGINGS.get()), 20, 33),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_BOOTS.get()), 14, 23),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_SWORD.get()), 11, 18),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_SPEAR.get()), 11, 19),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 6, 10),
 			new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-					new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 16),
-					new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.MODERATE), 6, 10, 16),
-					new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.STRONG), 8, 13, 16)}
+					new ExtendedTradeEntry(16, DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
+					new ExtendedTradeEntry(16, DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.MODERATE), 6, 10),
+					new ExtendedTradeEntry(16, DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), VesselDrinkItem.Potency.STRONG), 8, 13)}
 			),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR.get()), 3, 5),
-			new ExtendedTradeEntry(new ItemStack(Items.ARROW, 4), 2, 4, 64),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_PICKAXE.get()), 11, 18, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_AXE.get()), 11, 18, 8),
-			new ExtendedTradeEntry(new ItemStack(Items.IRON_PICKAXE), 11, 18, 8),
-			new ExtendedTradeEntry(new ItemStack(Items.IRON_AXE), 11, 18, 8),
+			new ExtendedTradeEntry(64, new ItemStack(Items.ARROW, 4), 2, 4),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_PICKAXE.get()), 11, 18),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.BRONZE_AXE.get()), 11, 18),
+			new ExtendedTradeEntry(8, new ItemStack(Items.IRON_PICKAXE), 11, 18),
+			new ExtendedTradeEntry(8, new ItemStack(Items.IRON_AXE), 11, 18),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.MAGGOTY_BREAD.get()), 3, 5),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR_HELMET.get()), 11, 19, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR_CHESTPLATE.get()), 15, 25, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR_LEGGINGS.get()), 12, 20, 8),
-			new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR_BOOTS.get()), 9, 15, 8),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.FUR_HELMET.get()), 11, 19),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.FUR_CHESTPLATE.get()), 15, 25),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.FUR_LEGGINGS.get()), 12, 20),
+			new ExtendedTradeEntry(8, new ItemStack(LOTRItems.FUR_BOOTS.get()), 9, 15),
 			// TODO: Add Gundabad Orc Bow as a trade when it's added to the mod
     });
 

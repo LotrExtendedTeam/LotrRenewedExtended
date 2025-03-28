@@ -11,17 +11,28 @@ public class ExtendedTradeEntry {
 
     private final int quantity;
 
-    public ExtendedTradeEntry(ItemStack item, int min, int max, int quantity) {
+    public ExtendedTradeEntry(int quantity, ItemStack item, int min, int max) {
         this.item = item;
         this.min = min;
         this.max = max;
         this.quantity = quantity;
     }
 
+    public ExtendedTradeEntry(int quantity, ItemStack item, int averagePrice) {
+        this.item = item;
+        this.min = Math.max(Math.round(averagePrice * 0.75f), 1);
+        this.max = Math.max(Math.round(averagePrice * 1.25f), 1);
+        this.quantity = quantity;
+    }
+  
     public ExtendedTradeEntry(ItemStack item, int min, int max) {
-       this(item, min, max, 100);
+       this(100, item, min, max);
     }
 
+    public ExtendedTradeEntry(ItemStack item, int averagePrice) {
+        this(100, item, Math.max(Math.round(averagePrice * 0.75f), 1), Math.max(Math.round(averagePrice * 1.25f), 1));
+     }
+   
     public ItemStack getItem() {
         return item;
     }

@@ -61,16 +61,26 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     // items Blue Mountains Merchants buy from players
     private static final ExtendedTradeEntries BLUE_MOUNTAINS_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
             // TODO: Add Venison when it's added
-            new ExtendedTradeEntry(new ItemStack(Items.BREAD), 2, 3, 192), new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_INGOT.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.COAL, 2), 1, 1, 192), new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.COOKED_COD), 2, 4, 192), new ExtendedTradeEntry(new ItemStack(Items.COOKED_SALMON), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 2, 4, 192), new ExtendedTradeEntry(new ItemStack(Items.COOKED_PORKCHOP), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.COOKED_RABBIT), 2, 4, 192), new ExtendedTradeEntry(new ItemStack(LOTRItems.COPPER_INGOT.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.GOLD_INGOT), 11, 19),
-            new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.TIN_INGOT.get()), 2, 4), new ExtendedTradeEntry(new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15), new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31), new ExtendedTradeEntry(new ItemStack(ExtendedItems.COOKED_DUCK.get()), 2, 4, 192)
+            new ExtendedTradeEntry(192, new ItemStack(Items.BREAD), 2, 3), 
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.BRONZE_INGOT.get()), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(Items.COAL, 2), 1, 1), 
+            new ExtendedTradeEntry(192, new ItemStack(Items.COOKED_CHICKEN), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(Items.COOKED_COD), 2, 4), 
+            new ExtendedTradeEntry(192, new ItemStack(Items.COOKED_SALMON), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(Items.COOKED_MUTTON), 2, 4), 
+            new ExtendedTradeEntry(192, new ItemStack(Items.COOKED_PORKCHOP), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(Items.COOKED_RABBIT), 2, 4), 
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.COPPER_INGOT.get()), 2, 4),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.GAMMON.get()), 2, 4), 
+            new ExtendedTradeEntry(new ItemStack(Items.GOLD_INGOT), 11, 19),
+            new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4), 
+            new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 2, 4),
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.TIN_INGOT.get()), 2, 4), 
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15), 
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
+            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31), 
+            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.COOKED_DUCK.get()), 2, 4)
     });
 
     // items Blue Mountains Merchants call sell to players
@@ -86,14 +96,14 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.RUBY.get()), 15, 25), new ExtendedTradeEntry(new ItemStack(ExtendedItems.AMETHYST.get()), 9, 15),
             new ExtendedTradeEntry(new ItemStack(ExtendedItems.TOPAZ.get()), 9, 15), new ExtendedTradeEntry(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2, 3),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.LIGHT), 8, 13, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.MODERATE), 11, 18, 8),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.STRONG), 13, 22, 8)}
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.LIGHT), 8, 13),
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.MODERATE), 11, 18),
+                    new ExtendedTradeEntry(8, DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_TONIC.get(), VesselDrinkItem.Potency.STRONG), 13, 22)}
             ),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.LIGHT), 5, 8, 16),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.MODERATE), 7, 11, 16),
-                    new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.STRONG), 8, 14, 16)}
+                    new ExtendedTradeEntry(16, DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
+                    new ExtendedTradeEntry(16, DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.MODERATE), 7, 11),
+                    new ExtendedTradeEntry(16, DrinkUtils.drinkOfPotency(LOTRItems.DWARVEN_ALE.get(), VesselDrinkItem.Potency.STRONG), 8, 14)}
             ),
             // TODO: Add the following: (looks pretty difficult to do might have to be in a follow up update)
             //  Barrel of Dwarven Ale (Moderate) 	90-150

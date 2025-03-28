@@ -49,29 +49,29 @@ public class ExtendedBreelandPotterEntity extends BreeManEntity implements Exten
     private final ExtendedTradeEntries BREE_POTTER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
     		new ExtendedTradeEntry(new ItemStack(Items.CLAY_BALL, 4), 1, 1), 
             new ExtendedTradeEntry(new ItemStack(Items.CLAY), 1, 1), 
-            new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16), 
-            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 16),
-            new ExtendedTradeEntry(new ItemStack(Items.WOODEN_SHOVEL), 1, 2, 32),
-            new ExtendedTradeEntry(new ItemStack(Items.STONE_SHOVEL), 1, 2, 32),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_SHOVEL.get()), 2, 6, 16),
-            new ExtendedTradeEntry(new ItemStack(Items.IRON_SHOVEL), 2, 8, 16),
+            new ExtendedTradeEntry(16, new ItemStack(Items.BUCKET), 2, 4), 
+            new ExtendedTradeEntry(16, new ItemStack(Items.WATER_BUCKET), 3, 5),
+            new ExtendedTradeEntry(32, new ItemStack(Items.WOODEN_SHOVEL), 1, 2),
+            new ExtendedTradeEntry(32, new ItemStack(Items.STONE_SHOVEL), 1, 2),
+            new ExtendedTradeEntry(16, new ItemStack(LOTRItems.BRONZE_SHOVEL.get()), 2, 6),
+            new ExtendedTradeEntry(16, new ItemStack(Items.IRON_SHOVEL), 2, 8),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                    new ExtendedTradeEntry(new ItemStack(Items.BLACK_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.BLUE_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.BROWN_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.CYAN_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.GRAY_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.GREEN_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_BLUE_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_GRAY_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.LIME_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.MAGENTA_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.ORANGE_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.PINK_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.PURPLE_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.RED_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.WHITE_DYE), 1, 1),
-                    new ExtendedTradeEntry(new ItemStack(Items.YELLOW_DYE), 1, 1)})
+                    new ExtendedTradeEntry(new ItemStack(Items.BLACK_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.BLUE_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.BROWN_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.CYAN_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.GRAY_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.GREEN_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_BLUE_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIGHT_GRAY_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.LIME_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.MAGENTA_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.ORANGE_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.PINK_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.PURPLE_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.RED_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.WHITE_DYE), 1),
+                    new ExtendedTradeEntry(new ItemStack(Items.YELLOW_DYE), 1)})
     });
 
     private final ExtendedTradeEntries BREE_POTTER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
@@ -250,10 +250,7 @@ public class ExtendedBreelandPotterEntity extends BreeManEntity implements Exten
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         this.npcItemsInv.setIdleItem(new ItemStack(Items.CLAY_BALL.getItem()));
-
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
-        setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.CLAY_BALL.getItem(), 1));
-
         return spawnData;
     }
 

@@ -47,19 +47,30 @@ public class ExtendedBreelandFarmerEntity extends BreeManEntity implements Exten
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedBreelandFarmerEntity.class, DataSerializers.OPTIONAL_UUID);
 
     private final ExtendedTradeEntries BREE_FARMER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.BONE_MEAL, 6), 1, 1), new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_HOE.get()), 5, 8, 16),
-            new ExtendedTradeEntry(new ItemStack(Items.BUCKET), 2, 4, 16), new ExtendedTradeEntry(new ItemStack(Items.IRON_HOE), 2, 4), new ExtendedTradeEntry(new ItemStack(Items.STONE_HOE), 1, 1, 32),
-            new ExtendedTradeEntry(new ItemStack(Items.WATER_BUCKET), 3, 5, 16)
+            new ExtendedTradeEntry(new ItemStack(Items.BONE_MEAL, 6), 1), 
+            new ExtendedTradeEntry(16, new ItemStack(LOTRItems.BRONZE_HOE.get()), 6),
+            new ExtendedTradeEntry(16, new ItemStack(Items.BUCKET), 3), 
+            new ExtendedTradeEntry(4, new ItemStack(Items.IRON_HOE), 8), 
+            new ExtendedTradeEntry(4, new ItemStack(Items.WOODEN_HOE), 3), 
+            new ExtendedTradeEntry(32, new ItemStack(Items.STONE_HOE), 1),
+            new ExtendedTradeEntry(16, new ItemStack(Items.WATER_BUCKET), 4)
     });
 
     private final ExtendedTradeEntries BREE_FARMER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(Items.CARROT), 2, 4, 50), new ExtendedTradeEntry(new ItemStack(Items.HAY_BLOCK), 9, 15, 64),
-            new ExtendedTradeEntry(new ItemStack(Items.LEAD), 6, 10, 8), new ExtendedTradeEntry(new ItemStack(LOTRItems.LETTUCE.get()), 2, 4, 64),
-            new ExtendedTradeEntry(new ItemStack(Items.MILK_BUCKET), 6, 10, 10), new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 3, 5, 64),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED_SEEDS.get()), 2, 4, 64), new ExtendedTradeEntry(new ItemStack(Items.POTATO), 2, 3, 64),
-            new ExtendedTradeEntry(new ItemStack(Items.WHEAT_SEEDS), 1, 1, 128), new ExtendedTradeEntry(new ItemStack(Items.WHEAT), 2, 3, 64),
-            new ExtendedTradeEntry(new ItemStack(Items.APPLE), 2, 3, 33), new ExtendedTradeEntry(new ItemStack(LOTRItems.GREEN_APPLE.get()), 2, 3, 32),
-            new ExtendedTradeEntry(new ItemStack(Items.WHITE_WOOL), 2,3, 128), new ExtendedTradeEntry(new ItemStack(ExtendedItems.BRANDING_IRON.get()), 20, 30, 8)
+            new ExtendedTradeEntry(50, new ItemStack(Items.CARROT), 2, 4), 
+            new ExtendedTradeEntry(64, new ItemStack(Items.HAY_BLOCK), 9, 15),
+            new ExtendedTradeEntry(8, new ItemStack(Items.LEAD), 6, 10), 
+            new ExtendedTradeEntry(64, new ItemStack(LOTRItems.LETTUCE.get()), 2, 4),
+            new ExtendedTradeEntry(10, new ItemStack(Items.MILK_BUCKET), 6, 10), 
+            new ExtendedTradeEntry(64, new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 3, 5),
+            new ExtendedTradeEntry(64, new ItemStack(LOTRItems.PIPEWEED_SEEDS.get()), 2, 4), 
+            new ExtendedTradeEntry(64, new ItemStack(Items.POTATO), 2, 3),
+            new ExtendedTradeEntry(128, new ItemStack(Items.WHEAT_SEEDS), 1, 1), 
+            new ExtendedTradeEntry(64, new ItemStack(Items.WHEAT), 2, 3),
+            new ExtendedTradeEntry(33, new ItemStack(Items.APPLE), 2, 3), 
+            new ExtendedTradeEntry(32, new ItemStack(LOTRItems.GREEN_APPLE.get()), 2, 3),
+            new ExtendedTradeEntry(128, new ItemStack(Items.WHITE_WOOL), 2,3), 
+            new ExtendedTradeEntry(8, new ItemStack(ExtendedItems.BRANDING_IRON.get()), 20, 30)
     });
 
     private ArrayList<ExtendedTrade> itemsSoldByTrader;
