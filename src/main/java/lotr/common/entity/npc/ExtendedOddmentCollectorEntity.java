@@ -50,7 +50,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedTraderEntity {
+public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedWanderingTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
@@ -338,25 +338,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
 
-        // every 1 minute allow one more trade in both buys and sells to be done again
-        if (lastTickCooldownReduced >= 1200) {
-            for (ExtendedTrade trade : itemsSoldByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-
-            for (ExtendedTrade trade : itemsBoughtByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-            lastTickCooldownReduced = 0;
-        } else {
-            lastTickCooldownReduced++;
-        }
-
         ExtendedTraderHelper.tickTrader(this, this);
+        ExtendedTraderHelper.tickWanderingTrader(this, this);
     }
 
     @Override
@@ -407,6 +390,16 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
 		itemsSoldByTrader = trades;
+	}
+
+	@Override
+	public int setLastTickCooldownReduced() {
+		return lastTickCooldownReduced;
+	}
+
+	@Override
+	public void getLastTickCooldownReduced(int cooldown) {
+		lastTickCooldownReduced = cooldown;
 	}
 }
 

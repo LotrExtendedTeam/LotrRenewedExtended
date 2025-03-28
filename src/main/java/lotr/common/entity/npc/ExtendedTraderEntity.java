@@ -11,7 +11,6 @@ import lotr.common.util.representation.ExtendedTradeEntries;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.TranslationTextComponent;
 
 public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
@@ -65,22 +64,6 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
 	boolean canTradeWith(PlayerEntity player);
 
-	boolean isWanderingTrader();
-
-	void setWanderingTrader(boolean isWanderingTrader);
-
-	int getWanderingTraderTicksLeft();
-
-	void setWanderingTraderTicksLeft(int ticksLeft);
-
-	TranslationTextComponent getDepartureLine(PlayerEntity player);
-
-	List<UUID> getEscortUUIDs();
-
-	void addEscort(UUID uuid);
-
-	NPCEntity createEscort();
-
     boolean isInteractingWithPlayer();
 
     Optional<UUID> getPlayerInteractingWith();
@@ -88,4 +71,16 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
     void updatePlayerInteractingWith(UUID uuid);
 
     void removePlayerFromInteracting(PlayerEntity player);
+
+    /**
+     * Gets if this trader is wandering. Should ONLY be set to true if instance of ExtendedWanderingTraderEntity
+     * Even then, ExtendedWanderingTraderEntity can be false when set from an egg.
+     * @return True if should handle NPC as wandering.
+     * */
+    default boolean isTraderWandering() {
+    	return false;
+    }
+
+    int setLastTickCooldownReduced();
+    void getLastTickCooldownReduced(int cooldown);
 }

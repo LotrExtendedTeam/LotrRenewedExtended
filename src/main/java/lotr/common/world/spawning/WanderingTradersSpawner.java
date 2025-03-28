@@ -2,7 +2,7 @@ package lotr.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.entity.Entity;
@@ -60,19 +60,19 @@ public class WanderingTradersSpawner {
             if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
                 BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
                 Entity trader = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.SPAWN_EGG, true, true);
-                if (trader instanceof ExtendedTraderEntity) {
+                if (trader instanceof ExtendedWanderingTraderEntity) {
                     // set look angle
                     float yaw = world.random.nextFloat() * 360.0F;
                     trader.setYBodyRot(yaw);
                     trader.setYHeadRot(yaw);
 
-                    ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(24000);
-                    ((ExtendedTraderEntity) trader).setWanderingTrader(true);
+                    ((ExtendedWanderingTraderEntity) trader).setWanderingTraderTicksLeft(24000);
+                    ((ExtendedWanderingTraderEntity) trader).setWanderingTrader(true);
                     ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
 
                     int escortCount = world.random.nextInt(3) + 2;
                     for (int i = 0; i < escortCount; i++) {
-                        NPCEntity escort = ((ExtendedTraderEntity) trader).createEscort();
+                        NPCEntity escort = ((ExtendedWanderingTraderEntity) trader).createEscort();
                         if (escort != null) {
                             escort.setPersistenceRequired();
                             BlockPos escortPos = new BlockPos(trader.getX(), trader.getY(), trader.getZ());
@@ -80,7 +80,7 @@ public class WanderingTradersSpawner {
                             escort.setPos(trader.getX(), trader.getY(), trader.getZ());
                             world.addFreshEntity(escort);
                             escort.restrictTo(escortPos, 8);
-                            ((ExtendedTraderEntity) trader).addEscort(escort.getUUID());
+                            ((ExtendedWanderingTraderEntity) trader).addEscort(escort.getUUID());
                         }
                     }
 

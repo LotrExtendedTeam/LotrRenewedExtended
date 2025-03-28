@@ -236,7 +236,7 @@ public class WanderingTradersList {
 		return "";
 	}
 
-	public static <String, Integer> Map<String, Integer> genMap(Object... entries) {
+	public static Map<String, Integer> genMap(Object... entries) {
 		if (entries.length % 2 != 0) {
 			throw new IllegalArgumentException("Invalid number of arguments. Must be even (key-value pairs).");
 		}

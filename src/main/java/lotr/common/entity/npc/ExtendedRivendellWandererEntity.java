@@ -49,7 +49,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedTraderEntity {
+public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedWanderingTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -327,27 +327,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
 
-        // every 1 minute allow one more trade in both buys and sells to be done again
-        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
-        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
-        if (lastTickCooldownReduced >= 1200) {
-            for (ExtendedTrade trade : itemsSoldByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-
-            for (ExtendedTrade trade : itemsBoughtByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-            lastTickCooldownReduced = 0;
-        } else {
-            lastTickCooldownReduced++;
-        }
-
         ExtendedTraderHelper.tickTrader(this, this);
+        ExtendedTraderHelper.tickWanderingTrader(this, this);
     }
 
     @Override
@@ -383,5 +364,15 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
 		itemsSoldByTrader = trades;
+	}
+
+	@Override
+	public int setLastTickCooldownReduced() {
+		return lastTickCooldownReduced;
+	}
+
+	@Override
+	public void getLastTickCooldownReduced(int cooldown) {
+		lastTickCooldownReduced = cooldown;
 	}
 }

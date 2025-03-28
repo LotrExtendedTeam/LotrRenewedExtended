@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.representation.ExtendedTrade;
@@ -132,8 +133,30 @@ public class ExtendedTraderHelper {
     }
 
     public static void tickTrader(NPCEntity npc, ExtendedTraderEntity trader) {
-        if (trader.isWanderingTrader()) {
-            if (trader.getWanderingTraderTicksLeft() < 1) {
+    	// every 1 minute allow one more trade in both buys and sells to be done again
+        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
+        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
+        if (trader.setLastTickCooldownReduced() >= 1200) {
+            for (ExtendedTrade trade : trader.getSells()) {
+                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
+                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
+                }
+            }
+
+            for (ExtendedTrade trade : trader.getBuys()) {
+                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
+                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
+                }
+            }
+            trader.getLastTickCooldownReduced(0);
+        } else {
+        	trader.getLastTickCooldownReduced(trader.setLastTickCooldownReduced()+1);
+        }
+    }
+
+    public static void tickWanderingTrader(NPCEntity npc, ExtendedWanderingTraderEntity wanderingTrader) {
+        if (wanderingTrader.isTraderWandering()) {
+            if (wanderingTrader.getWanderingTraderTicksLeft() < 1) {
                 // notify players the travelling trader has departed
                 for (PlayerEntity player : npc.level.players()) {
                     player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
@@ -141,34 +164,34 @@ public class ExtendedTraderHelper {
 
                 npc.remove();
 
-                if (trader.getEscortUUIDs() != null && !trader.getEscortUUIDs().isEmpty()) {
+                if (wanderingTrader.getEscortUUIDs() != null && !wanderingTrader.getEscortUUIDs().isEmpty()) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(),
                             npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
                     List<NPCEntity> potentialEscorts = npc.level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
 
                     for (NPCEntity entity : potentialEscorts) {
-                        if (trader.getEscortUUIDs().contains(entity.getUUID())) {
+                        if (wanderingTrader.getEscortUUIDs().contains(entity.getUUID())) {
                             entity.remove();
                         }
                     }
                 }
 
             } else {
-                trader.setWanderingTraderTicksLeft(trader.getWanderingTraderTicksLeft() - 1);
+            	wanderingTrader.setWanderingTraderTicksLeft(wanderingTrader.getWanderingTraderTicksLeft() - 1);
                 // warn players nearby at 4 minutes left
-                if (trader.getWanderingTraderTicksLeft() == 2400) {
+                if (wanderingTrader.getWanderingTraderTicksLeft() == 2400) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
                     List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
 
                     for (PlayerEntity player : playersInRange) {
-                        player.sendMessage(trader.getDepartureLine(player), Util.NIL_UUID);
+                        player.sendMessage(wanderingTrader.getDepartureLine(player), Util.NIL_UUID);
                     }
                 }
             }
         }
     }
 
-    public static void saveWanderingTraderData(ExtendedTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
+    public static void saveWanderingTraderData(ExtendedWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
         tag.putInt("wanderingTraderTimeLeft", trader.getWanderingTraderTicksLeft());
         tag.putBoolean("isWanderingTrader", trader.isWanderingTrader());
 
