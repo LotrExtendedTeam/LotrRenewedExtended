@@ -45,6 +45,10 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
         this.addNonAggressiveTargetingGoals();
     }
 
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
+        return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D);
+    }
+
     @Override
     protected NPCNameGenerator getNameGenerator() {
         return NPCNameGenerators.BREE;

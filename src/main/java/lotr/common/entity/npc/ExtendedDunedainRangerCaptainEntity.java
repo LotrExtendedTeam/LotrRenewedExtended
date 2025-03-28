@@ -29,7 +29,7 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 		setPersistenceRequired();
 	}
 
-	public static AttributeModifierMap.MutableAttribute regAttrs() {
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return ExtendedDunedainRangerEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
 	}
 

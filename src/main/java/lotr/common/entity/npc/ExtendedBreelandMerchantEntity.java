@@ -27,6 +27,7 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -110,8 +111,8 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
             new ExtendedTradeEntry(32, new ItemStack(LOTRItems.MAPLE_SAPLING.get()), 6, 10)
     });
 
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return AbstractMannishEntity.regAttrs();
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
+        return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D);
     }
 
     @Override

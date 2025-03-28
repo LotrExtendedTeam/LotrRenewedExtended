@@ -27,7 +27,7 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 		setPersistenceRequired();
 	}
 
-	public static AttributeModifierMap.MutableAttribute regAttrs() {
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return GundabadOrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
 	}
 

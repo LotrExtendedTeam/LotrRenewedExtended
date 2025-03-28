@@ -51,7 +51,7 @@ public class ExtendedGundabadUrukEntity extends GundabadOrcEntity {
 		return super.getVoicePitch() * 0.75F;
 	}
 
-	public static MutableAttribute regAttrs() {
+	public static MutableAttribute createAttributes() {
 		return OrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
 	}
 }
