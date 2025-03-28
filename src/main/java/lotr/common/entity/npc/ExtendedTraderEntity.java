@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
@@ -42,22 +43,36 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
 	String getTraderName();
 
-	Inventory getDisplayInventory();
+	default Inventory getDisplayInventory() {
+		return TradeUtils.generateDisplayInventory(getSells(), getBuys());
+	}
 
 	List<ExtendedTrade> getBuys();
 	void setBuys(ArrayList<ExtendedTrade> trades);
 
-	int[] getBoughtPrices();
+	default int[] getBoughtPrices() {
+		return ExtendedTraderHelper.getBoughtPrices(getBuys());
+	}
 
-	int[] getBoughtQuantities();
+	default int[] getBoughtQuantities() {
+		return ExtendedTraderHelper.getBoughtQuantity(getBuys());
+	}
 
-	int[] getSoldPrices();
+	default int[] getSoldPrices() {
+		return ExtendedTraderHelper.getSoldPrices(getSells());
+	}
 
-	int[] getSoldQuantities();
+	default int[] getSoldQuantities() {
+		return ExtendedTraderHelper.getSoldQuantity(getSells());
+	}
 
-	int[] getSoldOriginalQuantities();
+	default int[] getSoldOriginalQuantities() {
+		return ExtendedTraderHelper.getSoldOriginalQuantity(getSells());
+	}
 
-	int[] getBoughtOriginalQuantities();
+	default int[] getBoughtOriginalQuantities() {
+		return ExtendedTraderHelper.getBoughtOriginalQuantity(getBuys());
+	}
 
 	List<ExtendedTrade> getSells();
 	void setSells(ArrayList<ExtendedTrade> trades);

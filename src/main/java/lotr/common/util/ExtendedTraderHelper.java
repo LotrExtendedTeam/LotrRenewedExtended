@@ -76,7 +76,7 @@ public class ExtendedTraderHelper {
         }
     }
 
-    public static int[] getBoughtPrices(ArrayList<ExtendedTrade> bought) {
+    public static int[] getBoughtPrices(List<ExtendedTrade> bought) {
         int[] boughtItems = new int[bought.size()];
         for (int i = 0; i < bought.size(); i++) {
             boughtItems[i] = bought.get(i).getAmount();
@@ -84,7 +84,7 @@ public class ExtendedTraderHelper {
         return boughtItems;
     }
 
-    public static int[] getSoldPrices(ArrayList<ExtendedTrade> sold) {
+    public static int[] getSoldPrices(List<ExtendedTrade> sold) {
         int[] soldPrices = new int[sold.size()];
         for (int i = 0; i < sold.size(); i++) {
             soldPrices[i] = sold.get(i).getAmount();
@@ -92,7 +92,7 @@ public class ExtendedTraderHelper {
         return soldPrices;
     }
 
-    public static int[] getSoldQuantity(ArrayList<ExtendedTrade> sold) {
+    public static int[] getSoldQuantity(List<ExtendedTrade> sold) {
         int[] soldQuantity = new int[sold.size()];
         for (int i = 0; i < sold.size(); i++) {
             soldQuantity[i] = sold.get(i).getQuantityLeft();
@@ -100,7 +100,7 @@ public class ExtendedTraderHelper {
         return soldQuantity;
     }
 
-    public static int[] getBoughtQuantity(ArrayList<ExtendedTrade> bought) {
+    public static int[] getBoughtQuantity(List<ExtendedTrade> bought) {
         int[] boughtQuantity = new int[bought.size()];
         for (int i = 0; i < bought.size(); i++) {
             boughtQuantity[i] = bought.get(i).getQuantityLeft();
@@ -108,7 +108,7 @@ public class ExtendedTraderHelper {
         return boughtQuantity;
     }
 
-    public static int[] getSoldOriginalQuantity(ArrayList<ExtendedTrade> sold) {
+    public static int[] getSoldOriginalQuantity(List<ExtendedTrade> sold) {
         int[] soldOriginalQuantity = new int[sold.size()];
         for (int i = 0; i < sold.size(); i++) {
             soldOriginalQuantity[i] = sold.get(i).getOriginalQuantity();
@@ -116,7 +116,7 @@ public class ExtendedTraderHelper {
         return soldOriginalQuantity;
     }
 
-    public static int[] getBoughtOriginalQuantity(ArrayList<ExtendedTrade> bought) {
+    public static int[] getBoughtOriginalQuantity(List<ExtendedTrade> bought) {
         int[] boughtOriginalQuantity = new int[bought.size()];
         for (int i = 0; i < bought.size(); i++) {
             boughtOriginalQuantity[i] = bought.get(i).getOriginalQuantity();

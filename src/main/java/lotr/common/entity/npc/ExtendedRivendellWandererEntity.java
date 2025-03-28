@@ -17,7 +17,6 @@ import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedMultitradeEntry;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
@@ -32,7 +31,6 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -242,43 +240,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
-    public Inventory getDisplayInventory() {
-        return TradeUtils.generateDisplayInventory(itemsSoldByTrader, itemsBoughtByTrader);
-    }
-
-    @Override
     public List<ExtendedTrade> getBuys() {
         return itemsBoughtByTrader;
-    }
-
-    @Override
-    public int[] getBoughtPrices() {
-        return ExtendedTraderHelper.getBoughtPrices(itemsBoughtByTrader);
-    }
-
-    @Override
-    public int[] getBoughtQuantities() {
-        return ExtendedTraderHelper.getBoughtQuantity(itemsBoughtByTrader);
-    }
-
-    @Override
-    public int[] getSoldPrices() {
-        return ExtendedTraderHelper.getSoldPrices(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getSoldQuantities() {
-        return ExtendedTraderHelper.getSoldQuantity(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getSoldOriginalQuantities() {
-        return ExtendedTraderHelper.getSoldOriginalQuantity(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getBoughtOriginalQuantities() {
-        return ExtendedTraderHelper.getBoughtOriginalQuantity(itemsBoughtByTrader);
     }
 
     @Override
