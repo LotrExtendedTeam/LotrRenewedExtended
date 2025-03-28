@@ -82,9 +82,6 @@ public class ExtendedBreelandFarmerEntity extends BreeManEntity implements Exten
 
         itemsBoughtByTrader = BREE_FARMER_BOUGHT.generateTrades();
         itemsSoldByTrader = BREE_FARMER_SOLD.generateTrades();
-
-        setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.IRON_HOE.getItem(), 1));
-        setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get(), 1));
     }
 
     // Remove, drink, smoke and eat AIs
@@ -198,11 +195,8 @@ public class ExtendedBreelandFarmerEntity extends BreeManEntity implements Exten
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        this.npcItemsInv.setIdleItem(new ItemStack(Items.IRON_HOE.getItem()));
-
-        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
-        setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.IRON_HOE.getItem(), 1));
-
+        this.npcItemsInv.setIdleItem(new ItemStack(Items.IRON_HOE.getItem(), 1));
+        setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get(), 1));
         return spawnData;
     }
 

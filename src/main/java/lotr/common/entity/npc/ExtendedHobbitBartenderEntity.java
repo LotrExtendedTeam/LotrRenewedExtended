@@ -17,7 +17,9 @@ import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import lotr.common.util.representation.ExtendedTradeEntry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -36,6 +38,8 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 /**
@@ -269,4 +273,11 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 	public void getLastTickCooldownReduced(int cooldown) {
 		lastTickCooldownReduced = cooldown;
 	}
+
+    @Override
+    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+        this.npcItemsInv.setIdleItem(new ItemStack(LOTRItems.WOODEN_MUG.get()));
+        return spawnData;
+    }
 }
