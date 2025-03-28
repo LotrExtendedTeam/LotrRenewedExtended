@@ -11,14 +11,14 @@ public class WanderingTradersList {
 	static
 	{
 	    // Shire
-	    traders.put("lotr:shire", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:shire_moors", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:shire_marshes", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:shire_woodlands", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:white_downs", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    traders.put("lotr:shire", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:shire_moors", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:shire_marshes", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:shire_woodlands", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:white_downs", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
 
-		traders.put("lotr:blue_mountains", genRates("lotr:rivendell_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:blue_mountains_foothills", genRates("lotr:rivendell_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:blue_mountains", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
+		traders.put("lotr:blue_mountains_foothills", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
 
 	    // Eriador
 	    traders.put("lotr:eriador", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
@@ -218,8 +218,35 @@ public class WanderingTradersList {
     }
 
 	private static String getTraderFromHashmap(Map<String, Integer> rates, World world) {
-		// TODO: Write this
+		// generate minimums
+		Map<Integer, String> minimums = new HashMap<>();
+		int minimum = 1;
+		for (String key : rates.keySet()) {
+			minimums.put(minimum, key);
+			minimum += rates.get(key);
+		}
+
+		int random = world.random.nextInt(100) + 1;
+		Object[] minimumsSorted = minimums.keySet().toArray();
+		Arrays.sort(minimumsSorted);
+		for (int i = minimumsSorted.length - 1; i > -1; i--) {
+			if (random >= (Integer) minimumsSorted[i]) return minimums.get(minimumsSorted[i]);
+		}
+
 		return "";
+	}
+
+	public static <String, Integer> Map<String, Integer> genMap(Object... entries) {
+		if (entries.length % 2 != 0) {
+			throw new IllegalArgumentException("Invalid number of arguments. Must be even (key-value pairs).");
+		}
+		Map<String, Integer> map = new HashMap<>();
+		for (int i = 0; i < entries.length; i += 2) {
+			String key = (String) entries[i];
+			Integer value = (Integer) entries[i + 1];
+			map.put(key, value);
+		}
+		return map;
 	}
 
 }
