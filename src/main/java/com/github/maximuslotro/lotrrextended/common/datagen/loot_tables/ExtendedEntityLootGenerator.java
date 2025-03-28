@@ -422,6 +422,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
 		makeEntity(ExtendedEntities.HIRED_DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
+		makeEntity(ExtendedEntities.BREE_SMITH, manBree);
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

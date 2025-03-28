@@ -1,0 +1,17 @@
+{
+  "id": "lotrextended:bree_village_guard_house_sheriff_spawner",
+  "spawner_type": "single_use_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 12,
+  "persistenceRequired": true,
+  "shouldRespawnOnDeath": true,
+  "randomDiscardChance": 20,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:bree_sheriff"
+    }
+  ]
+}

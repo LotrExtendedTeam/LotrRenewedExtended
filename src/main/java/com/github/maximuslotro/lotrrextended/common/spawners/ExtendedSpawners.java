@@ -59,8 +59,16 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_HAMLET_FARMER = register("bree_hamlet_farmer_spawner");
 	public static final ResourceLocation BREE_HAMLET_GUARD_HOUSE = register("bree_hamlet_guard_house_spawner");
 	public static final ResourceLocation BREE_HAMLET_GUARD_HOUSE_SHERIFF = register("bree_hamlet_guard_house_sheriff_spawner");
-
 	public static final ResourceLocation BREE_HAMLET_POTTER = register("bree_hamlet_potter_spawner");
+	// BREE VILLAGE
+	public static final ResourceLocation BREE_VILLAGE_AREA_SPAWNER = register("bree_village_area_spawner");
+	public static final ResourceLocation BREE_VILLAGE_FAMILY_SPAWNER = register("bree_village_family_spawner");
+	public static final ResourceLocation BREE_VILLAGE_ANIMALS = register("bree_village_animals_spawner");
+	public static final ResourceLocation BREE_VILLAGE_FARMER = register("bree_village_farmer_spawner");
+	public static final ResourceLocation BREE_VILLAGE_GUARD_HOUSE = register("bree_village_guard_house_spawner");
+	public static final ResourceLocation BREE_VILLAGE_GUARD_HOUSE_SHERIFF = register("bree_village_guard_house_sheriff_spawner");
+	public static final ResourceLocation BREE_VILLAGE_POTTER = register("bree_village_potter_spawner");
+	public static final ResourceLocation BREE_VILLAGE_SMITH = register("bree_village_smith_spawner");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));
