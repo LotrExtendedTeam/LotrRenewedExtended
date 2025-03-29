@@ -21,64 +21,69 @@ public class WanderingTradersList {
 		traders.put("lotr:blue_mountains_foothills", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
 
 	    // Eriador
-	    traders.put("lotr:eriador", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-		traders.put("lotr:eryn_vorn", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-		traders.put("lotr:hills_of_evendim", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:eriador_downs", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:tower_hills", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:minhiriath", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		// TODO: Finish going through and updating these
+	    traders.put("lotr:eriador", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
+		traders.put("lotr:eryn_vorn", genMap("lotr:galadhrim_wanderer", 35, "lotr:rivendell_wanderer", 35, "lotr:oddment_collector", 20, "lotr:blue_mountains_merchant", 10));
+		traders.put("lotr:hills_of_evendim", genMap("lotr:galadhrim_wanderer", 15, "lotr:rivendell_wanderer", 15, "lotr:oddment_collector", 40, "lotr:blue_mountains_merchant", 30));
+		traders.put("lotr:eriador_downs", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:tower_hills", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:minhiriath", genMap("lotr:galadhrim_wanderer", 20, "lotr:oddment_collector", 45, "lotr:blue_mountains_merchant", 35));
 	    traders.put("lotr:swanfleet", new HashMap<>()); // Swanfleet has no wandering traders according to the wiki
 
 	    // Rivendell only gets Galadhrim traders
 	    traders.put("lotr:rivendell", genRates("lotr:galadhrim_wanderer"));
 	    traders.put("lotr:rivendell_hills", genRates("lotr:galadhrim_wanderer"));
 
-	    traders.put("lotr:gondor", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:further_gondor", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:field_of_cormallen", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:anorien", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:blackroot_vale", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:lamedon", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:lamedon_hills", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:pelargir", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:anfalas", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:lossarnach", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:pinnath_gelin", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:ithilien", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:lebennin", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    traders.put("lotr:gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:further_gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:field_of_cormallen", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:anorien", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:blackroot_vale", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:lamedon", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:lamedon_hills", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:pelargir", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:anfalas", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:lossarnach", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:pinnath_gelin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		// higher chance of elves in Ithilien because of the forests
+	    traders.put("lotr:ithilien", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
+	    traders.put("lotr:lebennin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
 	    traders.put("lotr:emyn_en_ernil", new HashMap<>()); // Emyn-En-Ernil has no traders in Legacy code
-	    traders.put("lotr:dor_en_ernil", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    traders.put("lotr:dor_en_ernil", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
 
 	    // Older elven regions
-	    traders.put("lotr:lindon", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:lindon_woodlands", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:eregion", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    traders.put("lotr:lindon", genMap("lotr:galadhrim_wanderer", 40, "lotr:rivendell_wanderer", 35, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:lindon_woodlands", genMap("lotr:galadhrim_wanderer", 40, "lotr:rivendell_wanderer", 35, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:eregion", genMap("lotr:galadhrim_wanderer", 20, "lotr:rivendell_wanderer", 20, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 30));
 
 	    // Lothlorien only gets Rivendell traders
 	    traders.put("lotr:lothlorien_eaves", genRates("lotr:rivendell_wanderer"));
 	    traders.put("lotr:lothlorien", genRates("lotr:rivendell_wanderer"));
 
-		traders.put("lotr:gladden_fields", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:gladden_fields", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
 
 	    // Bree-land
-	    traders.put("lotr:breeland", genRates("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:chetwood", genRates("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    traders.put("lotr:breeland", genMap("lotr:galadhrim_wanderer", 7, "lotr:rivendell_wanderer", 8, "lotr:oddment_collector", 45, "lotr:blue_mountains_merchant", 40));
+	    traders.put("lotr:chetwood", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 8, "lotr:rivendell_wanderer", 12, "lotr:oddment_collector", 25, "lotr:blue_mountains_merchant", 20));
 
-	    traders.put("lotr:rohan", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    traders.put("lotr:wold", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    traders.put("lotr:rohan", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
+	    traders.put("lotr:wold", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
 
 	    traders.put("lotr:fangorn", genRates("lotr:galadhrim_wanderer"));
 		traders.put("lotr:mouths_of_entwash", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
 	    traders.put("lotr:enedwaith", genRates("lotr:oddment_collector"));
 
-	    traders.put("lotr:northern_dale", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:dale", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		// TODO: Further change these when Iron Hills merchants are added so that they are the highest percentage since they
+		//  are the closest
+	    traders.put("lotr:northern_dale", genMap("lotr:oddment_collector", 50, "lotr:blue_mountains_merchant", 50));
+	    traders.put("lotr:dale", genMap("lotr:oddment_collector", 50, "lotr:blue_mountains_merchant", 50));
 
-		traders.put("lotr:iron_hills", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		// TODO: Maybe add a Dalish wandering trader one day for this area?
+		traders.put("lotr:iron_hills", genMap("lotr:oddment_collector", 60, "lotr:blue_mountains_merchant", 40));
 
-		traders.put("lotr:dorwinion", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		traders.put("lotr:emyn_winion", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:dorwinion", genMap("lotr:galadhrim_wanderer", 40, "lotr:oddment_collector", 60));
+		traders.put("lotr:emyn_winion", genMap("lotr:galadhrim_wanderer", 40, "lotr:oddment_collector", 60));
 
 		traders.put("lotr:dunland", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
@@ -91,8 +96,9 @@ public class WanderingTradersList {
 		traders.put("lotr:harnennor", genRates("lotr:oddment_collector"));
 
 	    // Lone-lands
-	    traders.put("lotr:lone_lands", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    traders.put("lotr:lone_lands_hills", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
+	    traders.put("lotr:lone_lands", genMap("lotr:galadhrim_wanderer", 8, "lotr:oddment_collector", 30, "lotr:rivendell_wanderer", 8, "lotr:blue_mountains_merchant", 24, "lotr:bree_merchant", 30));
+		traders.put("lotr:lone_lands_hills", genMap("lotr:galadhrim_wanderer", 8, "lotr:oddment_collector", 30, "lotr:rivendell_wanderer", 8, "lotr:blue_mountains_merchant", 24, "lotr:bree_merchant", 30));
+
 	    // Mirkwood
 	    traders.put("lotr:woodland_realm", genRates("lotr:galadhrim_wanderer"));
 	    // in Legacy no travelling traders come to Northern Mirkwood, but I am adding them here because I feel like it fits the theme

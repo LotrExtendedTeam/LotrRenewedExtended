@@ -5,6 +5,9 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -24,7 +27,7 @@ public class WanderingTradersSpawner {
 
     public static void spawn(World world, PlayerEntity player) {
         // only make a max of 16 attempts to spawn the traveling trader
-        for (int attempts = 0; attempts < 16; attempts++) {
+        for (int attempts = 0; attempts < 20; attempts++) {
             // pick a random angle and distance from the player
             float angle = world.random.nextFloat() * 360.0F;
             int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
@@ -58,6 +61,13 @@ public class WanderingTradersSpawner {
 
             BlockPos plusOneY = new BlockPos(x, y + 1, z);
             if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
+                // avoid spawning on slabs/stairs/leaves
+                if (world.getBlockState(pos).getBlock() instanceof StairsBlock ||
+                        world.getBlockState(pos).getBlock() instanceof SlabBlock ||
+                        world.getBlockState(pos).getBlock() instanceof LeavesBlock) {
+                    continue;
+                }
+
                 BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
                 Entity trader = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.SPAWN_EGG, true, true);
                 if (trader instanceof ExtendedWanderingTraderEntity) {
