@@ -17,7 +17,6 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import lotr.common.util.representation.ExtendedTradeEntry;
@@ -34,7 +33,6 @@ import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -50,7 +48,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedTraderEntity {
+public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedWanderingTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
@@ -68,40 +66,41 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     //  Party Hat, Blue Dwarven Steel Ingot
     // TODO: Add coral? I don't think it is accessible in the world so maybe it makes sense to keep out for now
     private static final ExtendedTradeEntries ODDMENT_COLLECTOR_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.BLACK_URUK_STEEL_INGOT.get()), 4, 6, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.BRONZE_INGOT.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.COPPER_INGOT.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.DWARVEN_STEEL_INGOT.get()), 4, 6, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.ELVEN_STEEL_INGOT.get()), 4, 6, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.FLINT), 1, 1, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.LEATHER), 2, 3, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.ROTTEN_FLESH), 2, 3, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.FUR.get()), 2, 3, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.STRING, 2), 1, 1, 96),
-            new ExtendedTradeEntry(new ItemStack(Items.WHEAT_SEEDS, 2), 1, 1, 96),
-            new ExtendedTradeEntry(new ItemStack(Items.STICK, 8), 1, 1, 24),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.TIN_INGOT.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.URUK_STEEL_INGOT.get()), 4, 6, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.ORC_STEEL_INGOT.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.EMERALD.get(), 8), 11, 19, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.RUBY.get()), 9, 15, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.AMETHYST.get()), 6, 10, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.TOPAZ.get()), 6, 10, 128),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31, 128),
-            new ExtendedTradeEntry(new ItemStack(Items.COAL, 2), 1, 1, 192),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.OBSIDIAN_SHARD.get()), 2, 3, 192),
-            new ExtendedTradeEntry(new ItemStack(Items.FEATHER), 2, 3, 192),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.HORN.get()), 2, 4, 192),
-            new ExtendedTradeEntry(new ItemStack(ExtendedItems.CONKER.get()), 1, 1, 192),
+            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.BLACK_URUK_STEEL_INGOT.get()), 4, 6),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.BRONZE_INGOT.get()), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.COPPER_INGOT.get()), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.DWARVEN_STEEL_INGOT.get()), 4, 6),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.ELVEN_STEEL_INGOT.get()), 4, 6),
+            new ExtendedTradeEntry(192, new ItemStack(Items.FLINT), 1, 1),
+            new ExtendedTradeEntry(192, new ItemStack(Items.IRON_INGOT), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(Items.LEATHER), 2, 3),
+            new ExtendedTradeEntry(192, new ItemStack(Items.ROTTEN_FLESH), 2, 3),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.FUR.get()), 2, 3),
+            new ExtendedTradeEntry(96, new ItemStack(Items.STRING, 2), 1, 1),
+            new ExtendedTradeEntry(96, new ItemStack(Items.WHEAT_SEEDS, 2), 1, 1),
+            new ExtendedTradeEntry(24, new ItemStack(Items.STICK, 8), 1, 1),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.TIN_INGOT.get()), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.URUK_STEEL_INGOT.get()), 4, 6),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.ORC_STEEL_INGOT.get()), 2, 4),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.EMERALD.get(), 8), 11, 19),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.RUBY.get()), 9, 15),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.AMETHYST.get()), 6, 10),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.TOPAZ.get()), 6, 10),
+            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.PEARL.get()), 19, 31),
+            new ExtendedTradeEntry(192, new ItemStack(Items.COAL, 2), 1, 1),
+            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.OBSIDIAN_SHARD.get()), 2, 3),
+            new ExtendedTradeEntry(192, new ItemStack(Items.FEATHER), 2, 3),
+            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.HORN.get()), 2, 4),
+            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.CONKER.get()), 1, 1),
     });
 
     // items Oddment Collectors can sell to players
     private static final ExtendedTradeEntries ODDMENT_COLLECTOR_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.SHIRE_HEATHER.get()), 6, 10), new ExtendedTradeEntry(new ItemStack(LOTRItems.SUSPICIOUS_MEAT.get()), 5, 9)
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.SHIRE_HEATHER.get()), 6, 10), 
+            new ExtendedTradeEntry(new ItemStack(LOTRItems.SUSPICIOUS_MEAT.get()), 5, 9)
     });
 
     // give them the 5 armor points they have in Legacy
@@ -255,43 +254,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     }
 
     @Override
-    public Inventory getDisplayInventory() {
-        return TradeUtils.generateDisplayInventory(itemsSoldByTrader, itemsBoughtByTrader);
-    }
-
-    @Override
     public List<ExtendedTrade> getBuys() {
         return itemsBoughtByTrader;
-    }
-
-    @Override
-    public int[] getBoughtPrices() {
-        return ExtendedTraderHelper.getBoughtPrices(itemsBoughtByTrader);
-    }
-
-    @Override
-    public int[] getBoughtQuantities() {
-        return ExtendedTraderHelper.getBoughtQuantity(itemsBoughtByTrader);
-    }
-
-    @Override
-    public int[] getSoldPrices() {
-        return ExtendedTraderHelper.getSoldPrices(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getSoldQuantities() {
-        return ExtendedTraderHelper.getSoldQuantity(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getSoldOriginalQuantities() {
-        return ExtendedTraderHelper.getSoldOriginalQuantity(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getBoughtOriginalQuantities() {
-        return ExtendedTraderHelper.getBoughtOriginalQuantity(itemsBoughtByTrader);
     }
 
     @Override
@@ -338,25 +302,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
 
-        // every 1 minute allow one more trade in both buys and sells to be done again
-        if (lastTickCooldownReduced >= 1200) {
-            for (ExtendedTrade trade : itemsSoldByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-
-            for (ExtendedTrade trade : itemsBoughtByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-            lastTickCooldownReduced = 0;
-        } else {
-            lastTickCooldownReduced++;
-        }
-
         ExtendedTraderHelper.tickTrader(this, this);
+        ExtendedTraderHelper.tickWanderingTrader(this, this);
     }
 
     @Override
@@ -407,6 +354,16 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
 		itemsSoldByTrader = trades;
+	}
+
+	@Override
+	public int setLastTickCooldownReduced() {
+		return lastTickCooldownReduced;
+	}
+
+	@Override
+	public void getLastTickCooldownReduced(int cooldown) {
+		lastTickCooldownReduced = cooldown;
 	}
 }
 

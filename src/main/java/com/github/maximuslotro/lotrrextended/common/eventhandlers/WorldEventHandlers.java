@@ -10,6 +10,7 @@ import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
@@ -86,8 +87,8 @@ public class WorldEventHandlers {
 		}
 
 		// If an NPC is a wandering trader, no respawns, even it is a captain
-		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedTraderEntity) event.getEntity()).isWanderingTrader()) {
-			ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
+		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedTraderEntity) event.getEntity()).isTraderWandering()) {
+			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
 			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
 				return;
 			}
@@ -107,6 +108,7 @@ public class WorldEventHandlers {
 				ITextComponent text = event.getSource().getLocalizedDeathMessage(event.getEntityLiving());
 				player.sendMessage(text, Util.NIL_UUID);
 			}
+			return;
 		}else {
 			NPCEntity npc = (NPCEntity)event.getEntity();
 			// Check if entity has flag to respawn, also handle older versions where flag is not present

@@ -1,164 +1,194 @@
 package lotr.common.world.spawning;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import net.minecraft.world.World;
 
 public class WanderingTradersList {
 
-	public static Map<String, List<String>> traders = new HashMap<String, List<String>>() {{
-	    // Shire
-	    put("lotr:shire", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:shire_moors", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:shire_marshes", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:shire_woodlands", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:white_downs", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	protected static Map<String, Map<String, Integer>> traders = new HashMap<>();
 
-		put("lotr:blue_mountains", Arrays.asList("lotr:rivendell_wanderer", "lotr:oddment_collector"));
-		put("lotr:blue_mountains_foothills", Arrays.asList("lotr:rivendell_wanderer", "lotr:oddment_collector"));
+	static
+	{
+	    // Shire
+	    traders.put("lotr:shire", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:shire_moors", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:shire_marshes", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:shire_woodlands", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+	    traders.put("lotr:white_downs", genMap("lotr:bree_merchant", 40, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 20));
+
+		traders.put("lotr:blue_mountains", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
+		traders.put("lotr:blue_mountains_foothills", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
 
 	    // Eriador
-	    put("lotr:eriador", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-		put("lotr:eryn_vorn", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-		put("lotr:hills_of_evendim", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:eriador_downs", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:tower_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:minhiriath", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:swanfleet", Collections.emptyList()); // Swanfleet has no wandering traders according to the wiki
+		// TODO: Finish going through and updating these
+	    traders.put("lotr:eriador", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
+		traders.put("lotr:eryn_vorn", genMap("lotr:galadhrim_wanderer", 35, "lotr:rivendell_wanderer", 35, "lotr:oddment_collector", 20, "lotr:blue_mountains_merchant", 10));
+		traders.put("lotr:hills_of_evendim", genMap("lotr:galadhrim_wanderer", 15, "lotr:rivendell_wanderer", 15, "lotr:oddment_collector", 40, "lotr:blue_mountains_merchant", 30));
+		traders.put("lotr:eriador_downs", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:tower_hills", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:minhiriath", genMap("lotr:galadhrim_wanderer", 20, "lotr:oddment_collector", 45, "lotr:blue_mountains_merchant", 35));
+	    traders.put("lotr:swanfleet", new HashMap<>()); // Swanfleet has no wandering traders according to the wiki
 
 	    // Rivendell only gets Galadhrim traders
-	    put("lotr:rivendell", Collections.singletonList("lotr:galadhrim_wanderer"));
-	    put("lotr:rivendell_hills", Collections.singletonList("lotr:galadhrim_wanderer"));
+	    traders.put("lotr:rivendell", genRates("lotr:galadhrim_wanderer"));
+	    traders.put("lotr:rivendell_hills", genRates("lotr:galadhrim_wanderer"));
 
-	    put("lotr:gondor", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:further_gondor", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:field_of_cormallen", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:anorien", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:blackroot_vale", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:lamedon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:lamedon_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:pelargir", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:anfalas", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:lossarnach", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:pinnath_gelin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:ithilien", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:lebennin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:emyn_en_ernil", Collections.emptyList()); // Emyn-En-Ernil has no traders in Legacy code
-	    put("lotr:dor_en_ernil", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    traders.put("lotr:gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:further_gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:field_of_cormallen", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:anorien", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:blackroot_vale", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:lamedon", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:lamedon_hills", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:pelargir", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:anfalas", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:lossarnach", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		traders.put("lotr:pinnath_gelin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+		// higher chance of elves in Ithilien because of the forests
+	    traders.put("lotr:ithilien", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
+	    traders.put("lotr:lebennin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+	    traders.put("lotr:emyn_en_ernil", new HashMap<>()); // Emyn-En-Ernil has no traders in Legacy code
+	    traders.put("lotr:dor_en_ernil", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
 
 	    // Older elven regions
-	    put("lotr:lindon", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    put("lotr:lindon_woodlands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    put("lotr:eregion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    traders.put("lotr:lindon", genMap("lotr:galadhrim_wanderer", 40, "lotr:rivendell_wanderer", 35, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:lindon_woodlands", genMap("lotr:galadhrim_wanderer", 40, "lotr:rivendell_wanderer", 35, "lotr:blue_mountains_merchant", 25));
+	    traders.put("lotr:eregion", genMap("lotr:galadhrim_wanderer", 20, "lotr:rivendell_wanderer", 20, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 30));
 
 	    // Lothlorien only gets Rivendell traders
-	    put("lotr:lothlorien_eaves", Collections.singletonList("lotr:rivendell_wanderer"));
-	    put("lotr:lothlorien", Collections.singletonList("lotr:rivendell_wanderer"));
+	    traders.put("lotr:lothlorien_eaves", genRates("lotr:rivendell_wanderer"));
+	    traders.put("lotr:lothlorien", genRates("lotr:rivendell_wanderer"));
 
-		put("lotr:gladden_fields", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:gladden_fields", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
 
 	    // Bree-land
-	    put("lotr:breeland", Arrays.asList("lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:chetwood", Arrays.asList("lotr:bree_merchant", "lotr:galadhrim_wanderer", "lotr:rivendell_wanderer", "lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+	    traders.put("lotr:breeland", genMap("lotr:galadhrim_wanderer", 7, "lotr:rivendell_wanderer", 8, "lotr:oddment_collector", 45, "lotr:blue_mountains_merchant", 40));
+	    traders.put("lotr:chetwood", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 8, "lotr:rivendell_wanderer", 12, "lotr:oddment_collector", 25, "lotr:blue_mountains_merchant", 20));
 
-	    put("lotr:rohan", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-	    put("lotr:wold", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    traders.put("lotr:rohan", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
+	    traders.put("lotr:wold", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
 
-	    put("lotr:fangorn", Collections.singletonList("lotr:galadhrim_wanderer"));
-		put("lotr:mouths_of_entwash", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    traders.put("lotr:fangorn", genRates("lotr:galadhrim_wanderer"));
+		traders.put("lotr:mouths_of_entwash", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
-	    put("lotr:enedwaith", Collections.singletonList("lotr:oddment_collector"));
+	    traders.put("lotr:enedwaith", genRates("lotr:oddment_collector"));
 
-	    put("lotr:northern_dale", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
-	    put("lotr:dale", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		// TODO: Further change these when Iron Hills merchants are added so that they are the highest percentage since they
+		//  are the closest
+	    traders.put("lotr:northern_dale", genMap("lotr:oddment_collector", 50, "lotr:blue_mountains_merchant", 50));
+	    traders.put("lotr:dale", genMap("lotr:oddment_collector", 50, "lotr:blue_mountains_merchant", 50));
 
-		put("lotr:iron_hills", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		// TODO: Maybe add a Dalish wandering trader one day for this area?
+		traders.put("lotr:iron_hills", genMap("lotr:oddment_collector", 60, "lotr:blue_mountains_merchant", 40));
 
-		put("lotr:dorwinion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:emyn_winion", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:dorwinion", genMap("lotr:galadhrim_wanderer", 40, "lotr:oddment_collector", 60));
+		traders.put("lotr:emyn_winion", genMap("lotr:galadhrim_wanderer", 40, "lotr:oddment_collector", 60));
 
-		put("lotr:dunland", Arrays.asList("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
+		traders.put("lotr:dunland", genRates("lotr:oddment_collector", "lotr:blue_mountains_merchant"));
 
-		put("lotr:umbar", Collections.singletonList("lotr:oddment_collector"));
-		put("lotr:umbar_hills", Collections.singletonList("lotr:oddment_collector"));
-		put("lotr:umbar_forest", Collections.singletonList("lotr:oddment_collector"));
+		traders.put("lotr:umbar", genRates("lotr:oddment_collector"));
+		traders.put("lotr:umbar_hills", genRates("lotr:oddment_collector"));
+		traders.put("lotr:umbar_forest", genRates("lotr:oddment_collector"));
 
-		put("lotr:northern_wilderland", Collections.singletonList("lotr:oddment_collector"));
+		traders.put("lotr:northern_wilderland", genRates("lotr:oddment_collector"));
 
-		put("lotr:harnennor", Collections.singletonList("lotr:oddment_collector"));
+		traders.put("lotr:harnennor", genRates("lotr:oddment_collector"));
 
 	    // Lone-lands
-	    put("lotr:lone_lands", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    put("lotr:lone_lands_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector", "lotr:rivendell_wanderer", "lotr:blue_mountains_merchant"));
-	    // Mirkwood
-	    put("lotr:woodland_realm", Collections.singletonList("lotr:galadhrim_wanderer"));
-	    // in Legacy no travelling traders come to Northern Mirkwood, but I am adding them here because I feel like it fits the theme
-	    put("lotr:northern_mirkwood", Collections.singletonList("lotr:galadhrim_wanderer"));
-	    put("lotr:mirkwood", Collections.emptyList()); // no traders visit Southern Mirkwood (too corrupted)
+	    traders.put("lotr:lone_lands", genMap("lotr:galadhrim_wanderer", 8, "lotr:oddment_collector", 30, "lotr:rivendell_wanderer", 8, "lotr:blue_mountains_merchant", 24, "lotr:bree_merchant", 30));
+		traders.put("lotr:lone_lands_hills", genMap("lotr:galadhrim_wanderer", 8, "lotr:oddment_collector", 30, "lotr:rivendell_wanderer", 8, "lotr:blue_mountains_merchant", 24, "lotr:bree_merchant", 30));
 
-		put("lotr:vales_of_anduin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:anduin_hills", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
-		put("lotr:ethir_anduin", Arrays.asList("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+	    // Mirkwood
+	    traders.put("lotr:woodland_realm", genRates("lotr:galadhrim_wanderer"));
+	    // in Legacy no travelling traders come to Northern Mirkwood, but I am adding them here because I feel like it fits the theme
+	    traders.put("lotr:northern_mirkwood", genRates("lotr:galadhrim_wanderer"));
+	    traders.put("lotr:mirkwood", new HashMap<>()); // no traders visit Southern Mirkwood (too corrupted)
+
+		traders.put("lotr:vales_of_anduin", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:anduin_hills", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
+		traders.put("lotr:ethir_anduin", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));
 
 		// biomes with no traders to make sure it is clear that they were added
 		// TODO: The Southron biomes need to have the Nomad merchant when it is added
-		put("lotr:andrast", Collections.emptyList());
-		put("lotr:angmar", Collections.emptyList());
-		put("lotr:angmar_mountains", Collections.emptyList());
-		put("lotr:brown_lands", Collections.emptyList());
-		put("lotr:coldfells", Collections.emptyList());
-		put("lotr:dagorlad", Collections.emptyList());
-		put("lotr:dead_marshes", Collections.emptyList());
-		put("lotr:dense_snowy_northlands_forest", Collections.emptyList());
-		put("lotr:dense_northlands_forest", Collections.emptyList());
-		put("lotr:druwaith_iaur", Collections.emptyList());
-		put("lotr:eastern_desolation", Collections.emptyList());
-		put("lotr:ettenmoors", Collections.emptyList());
-		put("lotr:forochel", Collections.emptyList());
-		put("lotr:forodwaith", Collections.emptyList());
-		put("lotr:forodwaith_mountains", Collections.emptyList());
-		put("lotr:gorgoroth", Collections.emptyList());
-		put("lotr:grey_mountains", Collections.emptyList());
-		put("lotr:grey_mountains_foothills", Collections.emptyList());
-		put("lotr:harad_desert", Collections.emptyList());
-		put("lotr:harad_desert_hills", Collections.emptyList());
-		put("lotr:harad_half_desert", Collections.emptyList());
-		put("lotr:harondor", Collections.emptyList());
-		put("lotr:long_marshes", Collections.emptyList());
-		put("lotr:lostladen", Collections.emptyList());
-		put("lotr:trollshaws", Collections.emptyList());
-		put("lotr:midgewater", Collections.emptyList());
-		put("lotr:mirkwood_mountains", Collections.emptyList());
-		put("lotr:misty_mountains", Collections.emptyList());
-		put("lotr:misty_mountains_foothills", Collections.emptyList());
-		put("lotr:mordor", Collections.emptyList());
-		put("lotr:mordor_mountains", Collections.emptyList());
-		put("lotr:morgul_vale", Collections.emptyList());
-		put("lotr:nan_curunir", Collections.emptyList());
-		put("lotr:nindalf", Collections.emptyList());
-		put("lotr:northlands", Collections.emptyList());
-		put("lotr:northlands_forest", Collections.emptyList());
-		put("lotr:nurn", Collections.emptyList());
-		put("lotr:nurn_marshes", Collections.emptyList());
-		put("lotr:nurnen", Collections.emptyList()); // nurnen is a sea no traders spawn here
-		put("lotr:old_forest", Collections.emptyList());
-		put("lotr:snowy_northlands", Collections.emptyList());
-		put("lotr:snowy_northlands_forest", Collections.emptyList());
-		put("lotr:southron_coasts", Collections.emptyList());
-		put("lotr:southron_coasts_forest", Collections.emptyList());
-		put("lotr:tolfalas", Collections.emptyList());
-		put("lotr:western_isles", Collections.emptyList());
-		put("lotr:white_beach", Collections.emptyList());
-		put("lotr:white_mountains", Collections.emptyList());
-		put("lotr:white_mountains_foothills", Collections.emptyList());
+		traders.put("lotr:andrast", new HashMap<>());
+		traders.put("lotr:angmar", new HashMap<>());
+		traders.put("lotr:angmar_mountains", new HashMap<>());
+		traders.put("lotr:brown_lands", new HashMap<>());
+		traders.put("lotr:coldfells", new HashMap<>());
+		traders.put("lotr:dagorlad", new HashMap<>());
+		traders.put("lotr:dead_marshes", new HashMap<>());
+		traders.put("lotr:dense_snowy_northlands_forest", new HashMap<>());
+		traders.put("lotr:dense_northlands_forest", new HashMap<>());
+		traders.put("lotr:druwaith_iaur", new HashMap<>());
+		traders.put("lotr:eastern_desolation", new HashMap<>());
+		traders.put("lotr:ettenmoors", new HashMap<>());
+		traders.put("lotr:forochel", new HashMap<>());
+		traders.put("lotr:forodwaith", new HashMap<>());
+		traders.put("lotr:forodwaith_mountains", new HashMap<>());
+		traders.put("lotr:gorgoroth", new HashMap<>());
+		traders.put("lotr:grey_mountains", new HashMap<>());
+		traders.put("lotr:grey_mountains_foothills", new HashMap<>());
+		traders.put("lotr:harad_desert", new HashMap<>());
+		traders.put("lotr:harad_desert_hills", new HashMap<>());
+		traders.put("lotr:harad_half_desert", new HashMap<>());
+		traders.put("lotr:harondor", new HashMap<>());
+		traders.put("lotr:long_marshes", new HashMap<>());
+		traders.put("lotr:lostladen", new HashMap<>());
+		traders.put("lotr:trollshaws", new HashMap<>());
+		traders.put("lotr:midgewater", new HashMap<>());
+		traders.put("lotr:mirkwood_mountains", new HashMap<>());
+		traders.put("lotr:misty_mountains", new HashMap<>());
+		traders.put("lotr:misty_mountains_foothills", new HashMap<>());
+		traders.put("lotr:mordor", new HashMap<>());
+		traders.put("lotr:mordor_mountains", new HashMap<>());
+		traders.put("lotr:morgul_vale", new HashMap<>());
+		traders.put("lotr:nan_curunir", new HashMap<>());
+		traders.put("lotr:nindalf", new HashMap<>());
+		traders.put("lotr:northlands", new HashMap<>());
+		traders.put("lotr:northlands_forest", new HashMap<>());
+		traders.put("lotr:nurn", new HashMap<>());
+		traders.put("lotr:nurn_marshes", new HashMap<>());
+		traders.put("lotr:nurnen", new HashMap<>()); // nurnen is a sea no traders spawn here
+		traders.put("lotr:old_forest", new HashMap<>());
+		traders.put("lotr:snowy_northlands", new HashMap<>());
+		traders.put("lotr:snowy_northlands_forest", new HashMap<>());
+		traders.put("lotr:southron_coasts", new HashMap<>());
+		traders.put("lotr:southron_coasts_forest", new HashMap<>());
+		traders.put("lotr:tolfalas", new HashMap<>());
+		traders.put("lotr:western_isles", new HashMap<>());
+		traders.put("lotr:white_beach", new HashMap<>());
+		traders.put("lotr:white_mountains", new HashMap<>());
+		traders.put("lotr:white_mountains_foothills", new HashMap<>());
 		// TODO: since this is close to Harad it seems like from the wiki it should only have Harad traders
 		//  which means there is nothing that can go here yet
-		put("lotr:wilderland", Collections.emptyList());
-	}};
+		traders.put("lotr:wilderland", new HashMap<>());
+	};
+
+	private static HashMap<String, Integer> genRates(String ... names) {
+		if (names.length == 0) {
+			throw new IllegalArgumentException("At least one name must be provided.");
+		}
+
+		HashMap<String, Integer> rates = new HashMap<>();
+		int numEntries = names.length;
+		int baseRate = 100 / numEntries; // Equal distribution
+		int remainder = 100 % numEntries; // Handle rounding errors
+
+		// Assign baseRate to each name
+		for (int i = 0; i < numEntries; i++) {
+			rates.put(names[i], baseRate);
+		}
+
+		// Distribute the remainder randomly among entries
+		Random rand = new Random();
+		for (int i = 0; i < remainder; i++) {
+			String randomKey = names[rand.nextInt(numEntries)];
+			rates.put(randomKey, rates.get(randomKey) + 1);
+		}
+
+		return rates;
+	}
 
     /**
      * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
@@ -181,16 +211,48 @@ public class WanderingTradersList {
         }
 
         if (traders.containsKey(lotrBiome)) {
-           List<String> possibleTraders = traders.get(lotrBiome);
+           Map<String, Integer> rates = traders.get(lotrBiome);
 
-           if (possibleTraders.isEmpty()) {
+           if (rates.isEmpty()) {
                return null;
            } else {
-               return possibleTraders.get(world.random.nextInt(possibleTraders.size()));
+               return getTraderFromHashmap(rates, world);
            }
         } else {
             return null;
         }
     }
+
+	private static String getTraderFromHashmap(Map<String, Integer> rates, World world) {
+		// generate minimums
+		Map<Integer, String> minimums = new HashMap<>();
+		int minimum = 1;
+		for (String key : rates.keySet()) {
+			minimums.put(minimum, key);
+			minimum += rates.get(key);
+		}
+
+		int random = world.random.nextInt(100) + 1;
+		Object[] minimumsSorted = minimums.keySet().toArray();
+		Arrays.sort(minimumsSorted);
+		for (int i = minimumsSorted.length - 1; i > -1; i--) {
+			if (random >= (Integer) minimumsSorted[i]) return minimums.get(minimumsSorted[i]);
+		}
+
+		return "";
+	}
+
+	public static Map<String, Integer> genMap(Object... entries) {
+		if (entries.length % 2 != 0) {
+			throw new IllegalArgumentException("Invalid number of arguments. Must be even (key-value pairs).");
+		}
+		Map<String, Integer> map = new HashMap<>();
+		for (int i = 0; i < entries.length; i += 2) {
+			String key = (String) entries[i];
+			Integer value = (Integer) entries[i + 1];
+			map.put(key, value);
+		}
+		return map;
+	}
 
 }
