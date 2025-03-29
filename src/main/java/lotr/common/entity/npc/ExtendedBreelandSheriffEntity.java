@@ -29,10 +29,6 @@ import net.minecraft.world.World;
 
 public class ExtendedBreelandSheriffEntity extends BreeManEntity implements ExtendedCaptainEntity {
 
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
-        return AbstractMannishEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0);
-    }
-
     private static final int[] SUIT_COLORS = new int[]{11373426, 7823440, 5983041, 9535090};
 
     public ExtendedBreelandSheriffEntity(EntityType<? extends ExtendedBreelandSheriffEntity> type, World w) {

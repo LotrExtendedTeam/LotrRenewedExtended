@@ -105,5 +105,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		single(ExtendedEntities.BREE_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FARMER);
 		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_GUARD_HOUSE);
 		single(ExtendedEntities.BREE_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_SMITH);
+		single(ExtendedEntities.BREE_BAKER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_BAKER);
+		single(ExtendedEntities.BREE_BUTCHER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_BUTCHER);
 	}
 }
