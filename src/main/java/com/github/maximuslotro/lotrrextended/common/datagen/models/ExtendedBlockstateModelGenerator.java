@@ -195,7 +195,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedVineBlock) {
-					genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey());
+					if(block.getValue()==ExtendedBlocks.MORDOR_MOSS_VINES) {
+						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), true);
+					}else {
+						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), false);
+					}
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedWargCarpetBlock) {
@@ -1136,19 +1140,45 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         });
 	}
 
-	private void genVineBlock(ExtendedVineBlock vine, String name) {
+	private void genVineBlock(ExtendedVineBlock vine, String name, boolean isMordor) {
+		if(isMordor)
 		registeredBlocks.add(vine);
-		ModelFile m_u = models().getExistingFile(lotrExtendedLoc(name+"_u"));
-		ModelFile m_1 = models().getExistingFile(lotrExtendedLoc(name+"_1"));
-		ModelFile m_1u = models().getExistingFile(lotrExtendedLoc(name+"_1u"));
-		ModelFile m_2 = models().getExistingFile(lotrExtendedLoc(name+"_2"));
-		ModelFile m_2_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2_opposite"));
-		ModelFile m_2u = models().getExistingFile(lotrExtendedLoc(name+"_2u"));
-		ModelFile m_2u_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2u_opposite"));
-		ModelFile m_3 = models().getExistingFile(lotrExtendedLoc(name+"_3"));
-		ModelFile m_3u = models().getExistingFile(lotrExtendedLoc(name+"_3u"));
-		ModelFile m_4 = models().getExistingFile(lotrExtendedLoc(name+"_4"));
-		ModelFile m_4u = models().getExistingFile(lotrExtendedLoc(name+"_4u"));
+		ModelFile m_u;
+		ModelFile m_1;
+		ModelFile m_1u;
+		ModelFile m_2;
+		ModelFile m_2_opposite;
+		ModelFile m_2u;
+		ModelFile m_2u_opposite;
+		ModelFile m_3;
+		ModelFile m_3u;
+		ModelFile m_4;
+		ModelFile m_4u;
+		if(isMordor) {
+			m_u = models().getExistingFile(lotrExtendedLoc(name+"_u"));
+			m_1 = models().getExistingFile(lotrExtendedLoc(name+"_1"));
+			m_1u = models().getExistingFile(lotrExtendedLoc(name+"_1u"));
+			m_2 = models().getExistingFile(lotrExtendedLoc(name+"_2"));
+			m_2_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2_opposite"));
+			m_2u = models().getExistingFile(lotrExtendedLoc(name+"_2u"));
+			m_2u_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2u_opposite"));
+			m_3 = models().getExistingFile(lotrExtendedLoc(name+"_3"));
+			m_3u = models().getExistingFile(lotrExtendedLoc(name+"_3u"));
+			m_4 = models().getExistingFile(lotrExtendedLoc(name+"_4"));
+			m_4u = models().getExistingFile(lotrExtendedLoc(name+"_4u"));
+		}else {
+			m_u = models().withExistingParent("lotrextended:"+name+"_u", lotrExtendedLoc("block/template_vine_u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_1 = models().withExistingParent("lotrextended:"+name+"_1", lotrExtendedLoc("block/template_vine_1")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_1u = models().withExistingParent("lotrextended:"+name+"_1u", lotrExtendedLoc("block/template_vine_1u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2 = models().withExistingParent("lotrextended:"+name+"_2", lotrExtendedLoc("block/template_vine_2")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2_opposite = models().withExistingParent("lotrextended:"+name+"_2_opposite", lotrExtendedLoc("block/template_vine_2_opposite")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2u = models().withExistingParent("lotrextended:"+name+"_2u", lotrExtendedLoc("block/template_vine_2u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2u_opposite = models().withExistingParent("lotrextended:"+name+"_2u_opposite", lotrExtendedLoc("block/template_vine_2u_opposite")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_3 = models().withExistingParent("lotrextended:"+name+"_3", lotrExtendedLoc("block/template_vine_3")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_3u = models().withExistingParent("lotrextended:"+name+"_3u", lotrExtendedLoc("block/template_vine_3u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_4 = models().withExistingParent("lotrextended:"+name+"_4", lotrExtendedLoc("block/template_vine_4")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_4u = models().withExistingParent("lotrextended:"+name+"_4u", lotrExtendedLoc("block/template_vine_4u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+		}
 		getVariantBuilder(vine)
 		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, false).modelForState().modelFile(m_1).addModel()
 		.partialState().with(VineBlock.EAST, false).with(VineBlock.NORTH, false).with(VineBlock.SOUTH, false).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().rotationY(90).modelFile(m_1).addModel()

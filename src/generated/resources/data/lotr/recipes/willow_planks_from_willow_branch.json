@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:willow_branch"
+      },
+      {
+        "item": "lotr:stripped_willow_branch"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:willow_planks",
+    "count": 2
+  }
+}

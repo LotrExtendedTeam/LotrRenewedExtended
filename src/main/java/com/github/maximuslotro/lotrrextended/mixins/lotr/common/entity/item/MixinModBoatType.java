@@ -40,23 +40,53 @@ public class MixinModBoatType {
 	@Dynamic
 	private static ModBoatType[] $VALUES;
 
+	/**
+	 * @reason Local Extended ModBoatType instance
+	 * */
 	private static final ModBoatType CHESTNUT = lotrModBoatType$addVariant("CHESTNUT", ExtendedBlocks.CHESTNUT_PLANKS, ExtendedItems.CHESTNUT_BOAT, "chestnut");
+	/**
+	 * @reason Local Extended ModBoatType instance
+	 * */
 	private static final ModBoatType BANANA = lotrModBoatType$addVariant("BANANA", ExtendedBlocks.BANANA_PLANKS, ExtendedItems.BANANA_BOAT, "banana");
+	/**
+	 * @reason Local Extended ModBoatType instance
+	 * */
 	private static final ModBoatType PLUM = lotrModBoatType$addVariant("PLUM", ExtendedBlocks.PLUM_PLANKS, ExtendedItems.PLUM_BOAT, "plum");
+	/**
+	 * @reason Local Extended ModBoatType instance
+	 * */
+	private static final ModBoatType WILLOW = lotrModBoatType$addVariant("WILLOW", ExtendedBlocks.WILLOW_PLANKS, ExtendedItems.WILLOW_BOAT, "willow");
 
-
+	/**
+	 * @reason Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
+	 * @Invoker ("<init>")
+	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
+	 * @param internalId The internal id (ordinal) of this Enum entry
+	 * @param plank A supplier for the boat's plank block
+	 * @param boat A supplier for the boat's boat item
+	 * @param name The texture id of the boat
+	 * @return A built ModBoatType instance
+	 * */
 	@Invoker("<init>")
-	public static ModBoatType lotrModBoatType$invokeInit(String internalName, int internalId, Supplier<Block> plank, Supplier<Item> boat, String s) {
+	public static ModBoatType lotrModBoatType$invokeInit(String internalName, int internalId, Supplier<Block> plank, Supplier<Item> boat, String name) {
 		throw new AssertionError();
 	}
 
-	private static ModBoatType lotrModBoatType$addVariant(String internalName, Supplier<Block> plank, Supplier<Item> boat, String s) {
+	/**
+	 * @reason Accessing the Enum creation method
+	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
+	 * @param plank A supplier for the boat's plank block
+	 * @param boat A supplier for the boat's boat item
+	 * @param name The texture id of the boat
+	 * @return A built ModBoatType instance
+	 * */
+	private static ModBoatType lotrModBoatType$addVariant(String internalName, Supplier<Block> plank, Supplier<Item> boat, String name) {
 		ArrayList<ModBoatType> variants = new ArrayList<>(Arrays.asList(MixinModBoatType.$VALUES));
-		ModBoatType instrument = lotrModBoatType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, plank, boat, s);
+		ModBoatType instrument = lotrModBoatType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, plank, boat, name);
 		variants.add(instrument);
 		MixinModBoatType.$VALUES = variants.toArray(new ModBoatType[0]);
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.newWoodTypesHolder.add(s);
+			DataGenValueHolder.newWoodTypesHolder.add(name);
 		}
 		return instrument;
 	}

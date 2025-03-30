@@ -211,10 +211,12 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
-		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.MORDOR_MOSS_VINES.get()).addTag(Tags.Blocks.DIRT);
+		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.MORDOR_MOSS_VINES.get())
+		.add(ExtendedBlocks.WILLOW_VINES.get()).addTag(Tags.Blocks.DIRT);
 
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get());
-		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS);
+		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
+		.addTag(ExtendedTags.Blocks.WILLOW_LOGS);
 
 		for(Entry<ResourceLocation, Supplier<? extends Block>> blo : ((FlowerPotBlock)Blocks.FLOWER_POT).getFullPotsView().entrySet()) {
 			tag(ExtendedTags.Blocks.LARGE_FLOWER_POT_COMPATABLE).add(blo.getValue().get());
@@ -267,7 +269,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
 		tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
 
-		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.MORDOR_MOSS_VINES.get());
+		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.MORDOR_MOSS_VINES.get()).add(ExtendedBlocks.WILLOW_VINES.get());
 
 		tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).addTag(ExtendedTags.Blocks.FUR_BLOCKS);
 
@@ -315,6 +317,8 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.BANANA_WOOD.get()).add(ExtendedBlocks.STRIPPED_BANANA_WOOD.get());
 		tag(ExtendedTags.Blocks.PLUM_LOGS).add(ExtendedBlocks.PLUM_LOG.get()).add(ExtendedBlocks.STRIPPED_PLUM_LOG.get())
 		.add(ExtendedBlocks.PLUM_WOOD.get()).add(ExtendedBlocks.STRIPPED_PLUM_WOOD.get());
+		tag(ExtendedTags.Blocks.WILLOW_LOGS).add(ExtendedBlocks.WILLOW_LOG.get()).add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get())
+		.add(ExtendedBlocks.WILLOW_WOOD.get()).add(ExtendedBlocks.STRIPPED_WILLOW_WOOD.get());
 	}
 
 	@Override

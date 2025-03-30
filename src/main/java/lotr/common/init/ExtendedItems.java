@@ -114,6 +114,36 @@ public class ExtendedItems {
 	public static RegistryObject<Item> PLUM_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_PLUM_LEAVES;
 
+	public static RegistryObject<Item> WILLOW_LOG;
+	public static RegistryObject<Item> WILLOW_WOOD;
+	public static RegistryObject<Item> WILLOW_PLANKS;
+	public static RegistryObject<Item> WILLOW_LEAVES;
+	public static RegistryObject<Item> WILLOW_SAPLING;
+	public static RegistryObject<Item> WILLOW_SLAB;
+	public static RegistryObject<Item> WILLOW_STAIRS;
+	public static RegistryObject<Item> WILLOW_FENCE;
+	public static RegistryObject<Item> WILLOW_FENCE_GATE;
+	public static RegistryObject<Item> WILLOW_DOOR;
+	public static RegistryObject<Item> WILLOW_TRAPDOOR;
+	public static RegistryObject<Item> WILLOW_PRESSURE_PLATE;
+	public static RegistryObject<Item> WILLOW_BUTTON;
+	public static RegistryObject<Item> STRIPPED_WILLOW_LOG;
+	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD;
+	public static RegistryObject<Item> WILLOW_BEAM;
+	public static RegistryObject<Item> WILLOW_SIGN;
+	public static RegistryObject<Item> WILLOW_BOAT;
+	public static RegistryObject<Item> WILLOW_LOG_SLAB;
+	public static RegistryObject<Item> WILLOW_WOOD_SLAB;
+	public static RegistryObject<Item> WILLOW_WOOD_STAIRS;
+	public static RegistryObject<Item> WILLOW_BRANCH;
+	public static RegistryObject<Item> STRIPPED_WILLOW_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_WILLOW_BRANCH;
+	public static RegistryObject<Item> WILLOW_BEAM_SLAB;
+	public static RegistryObject<Item> FALLEN_WILLOW_LEAVES;
+	public static RegistryObject<Item> WILLOW_VINES;
+
 	public static RegistryObject<Item> BOWSTRING;
 
 	public static RegistryObject<Item> MORGUL_BLADE;

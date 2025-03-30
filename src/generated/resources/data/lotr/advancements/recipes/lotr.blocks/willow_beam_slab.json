@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:willow_beam_slab"
+    ]
+  },
+  "criteria": {
+    "has_willow_beam_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:willow_beam_slab"
+          }
+        ]
+      }
+    },
+    "has_willow_beam": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:willow_beam"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:willow_beam_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_willow_beam_slab",
+      "has_willow_beam",
+      "has_the_recipe"
+    ]
+  ]
+}

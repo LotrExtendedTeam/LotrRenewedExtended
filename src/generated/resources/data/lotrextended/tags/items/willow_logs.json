@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:stripped_willow_log",
+    "lotr:stripped_willow_wood",
+    "lotr:willow_log",
+    "lotr:willow_wood"
+  ]
+}

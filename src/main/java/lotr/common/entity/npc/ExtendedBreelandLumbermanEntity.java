@@ -131,12 +131,12 @@ public class ExtendedBreelandLumbermanEntity extends ExtendedBreelandTraderEntit
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.FIR_WOOD.get()), 5),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.FIR_SAPLING.get()), 8),
 			// Willow
-//			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_LOG.get()), 4),
-//			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_PLANKS.get(), 4), 4),
-//			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_BEAM.get(), 3), 4),
-//			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_LEAVES.get()), 4),
-//			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_WOOD.get()), 5),
-//			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_SAPLING.get()), 8),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_LOG.get()), 4),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_PLANKS.get(), 4), 4),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_BEAM.get(), 3), 4),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_LEAVES.get()), 4),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_WOOD.get()), 5),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WILLOW_SAPLING.get()), 8),
 			// Aspen
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.ASPEN_LOG.get()), 3),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.ASPEN_PLANKS.get(), 4), 3),

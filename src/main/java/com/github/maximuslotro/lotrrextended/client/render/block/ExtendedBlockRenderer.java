@@ -107,9 +107,6 @@ public class ExtendedBlockRenderer {
 			if(block instanceof ExtendedVineBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
-			if(block instanceof ExtendedVineBlock) {
-				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
 			if(block instanceof ExtendedLargeFlowerPotBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}

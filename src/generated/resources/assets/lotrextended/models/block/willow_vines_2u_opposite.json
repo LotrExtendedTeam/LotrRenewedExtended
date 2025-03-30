@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_vine_2u_opposite",
+  "textures": {
+    "vine": "lotrextended:block/willow_vines",
+    "particle": "lotrextended:block/willow_vines"
+  }
+}

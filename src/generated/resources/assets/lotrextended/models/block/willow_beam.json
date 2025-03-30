@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/willow_beam",
+    "end": "lotrextended:block/willow_beam_top"
+  }
+}

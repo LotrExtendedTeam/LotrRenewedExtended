@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lotrextended:block/willow_beam",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lotrextended:block/willow_beam"
+    },
+    "axis=z": {
+      "model": "lotrextended:block/willow_beam",
+      "x": 90
+    }
+  }
+}

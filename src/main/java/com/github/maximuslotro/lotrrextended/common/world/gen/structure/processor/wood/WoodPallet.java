@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 
 public class WoodPallet {
-	public static WoodPallet EMPTY = new WoodPallet();
 //	private Block LOG;
 //	private Block STRIPPED_LOG;
 //	private Block LOG_SLAB;
@@ -37,10 +36,6 @@ public class WoodPallet {
 	private boolean isEmpty = false;
 	private String name;
 	Map<String, ResourceLocation> blockMap = new HashMap<>();
-	private WoodPallet() {
-		isEmpty = true;
-		name = "minecraft:empty";
-	}
 
 	public WoodPallet(String pName, Block lOG, Block sTRIPPED_LOG, Block lOG_SLAB,Block sTRIPPED_LOG_SLAB, Block wOOD, Block sTRIPPED_WOOD,
 			Block wOOD_SLAB, Block sTRIPPED_WOOD_SLAB, Block wOOD_STAIRS,Block sTRIPPED_WOOD_STAIRS, Block bRANCH, Block sTRIPPED_BRANCH,

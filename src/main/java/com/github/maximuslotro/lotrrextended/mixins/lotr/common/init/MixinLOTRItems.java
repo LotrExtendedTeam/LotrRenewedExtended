@@ -486,6 +486,36 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_PLUM_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_BRANCH, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_BEAM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_PLUM_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_PLUM_LEAVES, LOTRItemGroups.DECO);
+		
+		ExtendedItems.WILLOW_LOG = regBlockItemB(ExtendedBlocks.WILLOW_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_WOOD = regBlockItemB(ExtendedBlocks.WILLOW_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_PLANKS = regBlockItemB(ExtendedBlocks.WILLOW_PLANKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_LEAVES = regBlockItemB(ExtendedBlocks.WILLOW_LEAVES, LOTRItemGroups.DECO);
+		ExtendedItems.WILLOW_SAPLING = regBlockItemB(ExtendedBlocks.WILLOW_SAPLING, LOTRItemGroups.DECO);
+		ExtendedItems.WILLOW_VINES = regBlockItemB(ExtendedBlocks.WILLOW_VINES, LOTRItemGroups.DECO);
+		ExtendedItems.WILLOW_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_STAIRS = regBlockItemB(ExtendedBlocks.WILLOW_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_FENCE = regBlockItemB(ExtendedBlocks.WILLOW_FENCE, LOTRItemGroups.DECO);
+		ExtendedItems.WILLOW_FENCE_GATE = regBlockItemB(ExtendedBlocks.WILLOW_FENCE_GATE, LOTRItemGroups.UTIL);
+		ExtendedItems.WILLOW_DOOR = regTallBlockItemB(ExtendedBlocks.WILLOW_DOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.WILLOW_TRAPDOOR = regBlockItemB(ExtendedBlocks.WILLOW_TRAPDOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.WILLOW_PRESSURE_PLATE = regBlockItemB(ExtendedBlocks.WILLOW_PRESSURE_PLATE, LOTRItemGroups.UTIL);
+		ExtendedItems.WILLOW_BUTTON = regBlockItemB(ExtendedBlocks.WILLOW_BUTTON, LOTRItemGroups.UTIL);
+		ExtendedItems.STRIPPED_WILLOW_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_WILLOW_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_BEAM = regBlockItemB(ExtendedBlocks.WILLOW_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_SIGN = regSignBlockItemB(ExtendedBlocks.WILLOW_SIGN, ExtendedBlocks.WILLOW_WALL_SIGN);
+		ExtendedItems.WILLOW_BOAT = regItemB("willow_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("WILLOW")));
+		ExtendedItems.WILLOW_LOG_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_WOOD_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.WILLOW_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_BRANCH = regBlockItemB(ExtendedBlocks.WILLOW_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_WILLOW_LOG_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_WILLOW_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_WILLOW_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_WILLOW_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_BEAM_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FALLEN_WILLOW_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_WILLOW_LEAVES, LOTRItemGroups.DECO);
 
 		//ORE/GEM STORAGE
 		ExtendedItems.GALVORN_BLOCK = regBlockItemB(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);

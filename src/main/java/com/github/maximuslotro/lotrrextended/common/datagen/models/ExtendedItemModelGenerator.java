@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemMode
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -99,8 +100,17 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
-			if(item.getKey().contains("vines")) {
-				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()+"_hand"));
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedChainBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
+				if(item.getKey().contains(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath())) {
+					genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()+"_hand"));
+					continue;
+				}else {
+					genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
+				}
 				continue;
 			}
 			if(item.getValue().get() instanceof FallenLeavesItem) {

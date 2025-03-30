@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Blocks;
@@ -80,6 +82,14 @@ public class WoodPallets {
 				ExtendedBlocks.CHESTNUT_BEAM_SLAB.get(), ExtendedBlocks.CHESTNUT_FENCE.get(), ExtendedBlocks.CHESTNUT_FENCE_GATE.get(), ExtendedBlocks.CHESTNUT_DOOR.get(),
 				ExtendedBlocks.CHESTNUT_TRAPDOOR.get(), ExtendedBlocks.CHESTNUT_PRESSURE_PLATE.get(), ExtendedBlocks.CHESTNUT_BUTTON.get(),
 				ExtendedBlocks.CHESTNUT_SIGN.get(), ExtendedBlocks.CHESTNUT_WALL_SIGN.get(), ExtendedBlocks.CHESTNUT_LEAVES.get(), Blocks.AIR));
+		pallets.put("lotrextended:willow", () -> new WoodPallet("lotrextended:willow", ExtendedBlocks.WILLOW_LOG.get(), ExtendedBlocks.STRIPPED_WILLOW_LOG.get(), ExtendedBlocks.WILLOW_LOG_SLAB.get(),
+			ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB.get(), ExtendedBlocks.WILLOW_WOOD.get(), ExtendedBlocks.STRIPPED_WILLOW_WOOD.get(),
+			ExtendedBlocks.WILLOW_WOOD_SLAB.get(), ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB.get(), ExtendedBlocks.WILLOW_WOOD_STAIRS.get(),
+			ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS.get(), ExtendedBlocks.WILLOW_BRANCH.get(), ExtendedBlocks.STRIPPED_WILLOW_BRANCH.get(),
+			ExtendedBlocks.WILLOW_PLANKS.get(), ExtendedBlocks.WILLOW_SLAB.get(), ExtendedBlocks.WILLOW_STAIRS.get(), ExtendedBlocks.WILLOW_BEAM.get(),
+			ExtendedBlocks.WILLOW_BEAM_SLAB.get(), ExtendedBlocks.WILLOW_FENCE.get(), ExtendedBlocks.WILLOW_FENCE_GATE.get(), ExtendedBlocks.WILLOW_DOOR.get(),
+			ExtendedBlocks.WILLOW_TRAPDOOR.get(), ExtendedBlocks.WILLOW_PRESSURE_PLATE.get(), ExtendedBlocks.WILLOW_BUTTON.get(),
+			ExtendedBlocks.WILLOW_SIGN.get(), ExtendedBlocks.WILLOW_WALL_SIGN.get(), ExtendedBlocks.WILLOW_LEAVES.get(), Blocks.AIR));
 
 		// Renewed's Wood Pallets
 		pallets.put("lotr:apple", () -> new WoodPallet("lotr:apple", LOTRBlocks.APPLE_LOG.get(), LOTRBlocks.STRIPPED_APPLE_LOG.get(), LOTRBlocks.APPLE_LOG_SLAB.get(),
@@ -252,7 +262,9 @@ public class WoodPallets {
 			return pallets.get(name).get();
 		}
 		else {
-			return WoodPallet.EMPTY;
+			ExtendedLog.error("LOADED AN UNKNOWN WOOD PALLET TYPE! "+name);
+			ExtendedLog.error("DEFULTING TO OAK! PLEASE FIX THIS OR REPORT TO THE DEVS!");
+			return pallets.get("minecraft:oak").get();
 		}
 	}
 }

@@ -129,6 +129,7 @@ import net.minecraft.block.SandBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -454,6 +455,38 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_PLUM_BRANCH = registerB("stripped_plum_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
 		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
 		ExtendedBlocks.FALLEN_PLUM_LEAVES = registerB("fallen_plum_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.PLUM_LEAVES));
+
+		ExtendedBlocks.WILLOW_LOG = registerB("willow_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_PURPLE, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG.get()));
+		ExtendedBlocks.WILLOW_WOOD = registerB("willow_wood", () -> new StrippableWoodBlock(ExtendedBlocks.WILLOW_LOG, () -> ExtendedBlocks.STRIPPED_WILLOW_WOOD.get()));
+		ExtendedBlocks.WILLOW_PLANKS = registerB("willow_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
+		ExtendedBlocks.WILLOW_LEAVES = registerB("willow_leaves", LOTRLeavesBlock::new);
+		ExtendedBlocks.WILLOW_SAPLING = registerB("willow_sapling", () -> new LOTRSaplingBlock(new OakTree()));
+		ExtendedBlocks.POTTED_WILLOW_SAPLING = registerB("potted_willow_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.WILLOW_SAPLING));
+		registerPOT("large_pot_willow_sapling", () -> new ExtendedLargeFlowerPotBlock(ExtendedBlocks.WILLOW_SAPLING));
+		ExtendedBlocks.WILLOW_SLAB = registerB("willow_slab", () -> new AxialSlabBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_STAIRS = registerB("willow_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_FENCE = registerB("willow_fence", () -> new LOTRFenceBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_FENCE_GATE = registerB("willow_fence_gate", () -> new LOTRFenceGateBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_DOOR = registerB("willow_door", () -> new LOTRDoorBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_TRAPDOOR = registerB("willow_trapdoor", () -> new LOTRTrapdoorBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_PRESSURE_PLATE = registerB("willow_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.WILLOW_PLANKS));
+		ExtendedBlocks.WILLOW_BUTTON = registerB("willow_button", LOTRWoodButtonBlock::new);
+		ExtendedBlocks.STRIPPED_WILLOW_LOG = registerB("stripped_willow_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.WILLOW_LOG));
+		ExtendedBlocks.STRIPPED_WILLOW_WOOD = registerB("stripped_willow_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_WILLOW_LOG));
+		ExtendedBlocks.WILLOW_BEAM = registerB("willow_beam", () -> new WoodBeamBlock(ExtendedBlocks.WILLOW_LOG));
+		ExtendedBlocks.WILLOW_SIGN = registerB("willow_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.WILLOW_PLANKS, ExtendedSignTypes.WILLOW));
+		ExtendedBlocks.WILLOW_WALL_SIGN = registerB("willow_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.WILLOW_SIGN));
+		ExtendedBlocks.WILLOW_LOG_SLAB = registerB("willow_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.WILLOW_LOG, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB.get()));
+		ExtendedBlocks.WILLOW_WOOD_SLAB = registerB("willow_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.WILLOW_WOOD, () -> ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB.get()));
+		ExtendedBlocks.WILLOW_WOOD_STAIRS = registerB("willow_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.WILLOW_WOOD, () -> ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS.get()));
+		ExtendedBlocks.WILLOW_BRANCH = registerB("willow_branch", () -> new StrippableBranchBlock(ExtendedBlocks.WILLOW_WOOD, () -> ExtendedBlocks.STRIPPED_WILLOW_BRANCH.get()));
+		ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB = registerB("stripped_willow_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_WILLOW_LOG));
+		ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB = registerB("stripped_willow_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_WILLOW_WOOD));
+		ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS = registerB("stripped_willow_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_WILLOW_WOOD));
+		ExtendedBlocks.STRIPPED_WILLOW_BRANCH = registerB("stripped_willow_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_WILLOW_WOOD));
+		ExtendedBlocks.WILLOW_BEAM_SLAB = registerB("willow_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.WILLOW_BEAM));
+		ExtendedBlocks.FALLEN_WILLOW_LEAVES = registerB("fallen_willow_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.WILLOW_LEAVES));
+		ExtendedBlocks.WILLOW_VINES = registerB("willow_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 
 		//Packed Fur
 		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.WHITE));

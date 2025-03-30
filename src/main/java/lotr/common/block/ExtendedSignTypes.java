@@ -11,6 +11,7 @@ public class ExtendedSignTypes {
 	public static final WoodType CHESTNUT = register("chestnut");
 	public static final WoodType BANANA = register("banana");
 	public static final WoodType PLUM = register("plum");
+	public static final WoodType WILLOW = register("willow");
 
 	private static String createFullName(String s) {
 		return "lotr/" + s;
