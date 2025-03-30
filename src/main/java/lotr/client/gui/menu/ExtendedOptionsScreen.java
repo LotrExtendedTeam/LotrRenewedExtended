@@ -383,8 +383,11 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 				if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 					catagoryButton.visible = true;
 				}else {
+					// Enable setting one up on disable
+					if(catagoryButton.visible && screen.option == index) {
+						screen.option = index-1;
+					}
 					catagoryButton.visible = false;
-					screen.option = index-1; // Dev button catagory should always be last
 				}
 			}
 			for(Widget widget : widgets) {
