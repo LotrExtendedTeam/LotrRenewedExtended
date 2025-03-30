@@ -424,6 +424,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
 		makeEntity(ExtendedEntities.BREE_LUMBERMAN, manBree);
 		makeEntity(ExtendedEntities.BREE_STONEMASON, manBree);
+		makeEntity(ExtendedEntities.BREE_INNKEEPER, manBree);
 		makeEntity(ExtendedEntities.HIRED_DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.BREE_SMITH, manBree);

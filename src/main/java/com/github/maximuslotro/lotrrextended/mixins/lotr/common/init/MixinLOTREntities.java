@@ -306,6 +306,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.BREE_BUTCHER = regNPCD("bree_butcher", ExtendedBreelandButcherEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 8199168));
 		ExtendedEntities.BREE_LUMBERMAN = regNPCD("bree_lumberman", ExtendedBreelandLumbermanEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6043692));
 		ExtendedEntities.BREE_STONEMASON = regNPCD("bree_stonemason", ExtendedBreelandStoneMasonEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6777187));
+		ExtendedEntities.BREE_INNKEEPER = regNPCD("bree_innkeeper", ExtendedBreelandInnkeeperEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 5193273));
 
 	}
 }
