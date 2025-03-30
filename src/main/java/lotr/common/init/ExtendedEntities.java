@@ -47,6 +47,8 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandPotterEntity>> BREE_POTTER;
 	public static RegistryObject<EntityType<ExtendedBreelandBakerEntity>> BREE_BAKER;
 	public static RegistryObject<EntityType<ExtendedBreelandButcherEntity>> BREE_BUTCHER;
+	public static RegistryObject<EntityType<ExtendedBreelandLumbermanEntity>> BREE_LUMBERMAN;
+	public static RegistryObject<EntityType<ExtendedBreelandStoneMasonEntity>> BREE_STONEMASON;
 	public static RegistryObject<EntityType<ExtendedHiredDunedainRangerEntity>> HIRED_DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
