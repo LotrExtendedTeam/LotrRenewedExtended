@@ -31,8 +31,8 @@ public class ExtendedEntityRenderers {
 		// Gundabad
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedGundabadOrcScroungerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedGundabadOrcChieftainRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK.get(), ExtendedGundabadUrukRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), ExtendedGundabadUrukRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK.get(), LargeOrcRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), LargeOrcRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_GUNDABAD_ORC.get(), ExtendedHiredGundabadOrcRenderer::new);
 		// Bree
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_MERCHANT.get(), ExtendedBreeMerchantRenderer::new);
