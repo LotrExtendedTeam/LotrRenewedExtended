@@ -74,6 +74,11 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_LUMBERMAN = register("bree_village_lumberman_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STONEMASON = register("bree_village_stonemason_spawner");
 	public static final ResourceLocation BREE_VILLAGE_INNKEEPER = register("bree_village_innkeeper_spawner");
+	public static final ResourceLocation BREE_VILLAGE_FLORIST = register("bree_village_florist_spawner");
+	public static final ResourceLocation BREE_VILLAGE_CHEESEMONGER = register("bree_village_cheesemonger_spawner");
+	public static final ResourceLocation BREE_VILLAGE_LEATHERWORKER = register("bree_village_leatherworker_spawner");
+	public static final ResourceLocation BREE_VILLAGE_STALL = register("bree_village_stall_spawner");
+
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

@@ -110,5 +110,13 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		single(ExtendedEntities.BREE_STONEMASON.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STONEMASON);
 		single(ExtendedEntities.BREE_LUMBERMAN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_LUMBERMAN);
 		single(ExtendedEntities.BREE_INNKEEPER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INNKEEPER);
+		single(ExtendedEntities.BREE_FLORIST.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FLORIST);
+		//single(ExtendedEntities.BREE_CHEESEMONGER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_CHEESEMONGER);
+		//single(ExtendedEntities.BREE_LEATHERWORKER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_LEATHERWORKER);
+		single(MultiSpawnType.Builder.multi()
+			.addPool(ExtendedEntities.BREE_FLORIST.get(), 1).addPool(ExtendedEntities.BREE_STONEMASON.get(), 1)
+			.addPool(ExtendedEntities.BREE_LUMBERMAN.get(), 1).addPool(ExtendedEntities.BREE_FLORIST.get(), 1)
+			.addPool(ExtendedEntities.BREE_BAKER.get(), 1).addPool(ExtendedEntities.BREE_BREWER.get(), 1).build()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STALL);
+
 	}
 }

@@ -46,6 +46,10 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_STONEMASON.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SMITH.get(), ExtendedBreeSmithRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_INNKEEPER.get(), ExtendedBreeManTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FLORIST.get(), ExtendedBreeManTraderRenderer::new);
+		//RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_CHEESEMONGER.get(), ExtendedBreeManTraderRenderer::new);
+		//RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_LEATHERWORKER.get(), ExtendedBreeManTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_BREWER.get(), ExtendedBreeManTraderRenderer::new);
 		// Ranger North
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
