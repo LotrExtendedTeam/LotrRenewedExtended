@@ -167,7 +167,7 @@ public class ExtendedBreelandLumbermanEntity extends ExtendedBreelandTraderEntit
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-		this.npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_AXE.getItem()));
+		this.npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_AXE));
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
 		return spawnData;

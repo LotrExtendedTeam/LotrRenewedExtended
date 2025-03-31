@@ -41,6 +41,7 @@ public class ExtendedBreelandSmithEntity extends ExtendedBreelandTraderEntity {
 			new ExtendedTradeEntry(new ItemStack(ExtendedItems.GRAY_FUR.get()), 2),
 			new ExtendedTradeEntry(new ItemStack(ExtendedItems.SILVER_FUR.get()), 3),
 			new ExtendedTradeEntry(new ItemStack(ExtendedItems.WHITE_FUR.get()), 50),
+			new ExtendedTradeEntry(new ItemStack(Items.RABBIT_HIDE), 1),
 			// Gems
 			new ExtendedTradeEntry(new ItemStack(ExtendedItems.AMBER.get()), 10),
 			new ExtendedTradeEntry(new ItemStack(ExtendedItems.EMERALD.get()), 15),

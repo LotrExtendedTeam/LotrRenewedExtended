@@ -117,7 +117,7 @@ public class ExtendedBreelandPotterEntity extends ExtendedBreelandTraderEntity {
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-		this.npcItemsInv.setIdleItem(new ItemStack(Items.CLAY_BALL.getItem()));
+		this.npcItemsInv.setIdleItem(new ItemStack(Items.CLAY_BALL));
 		return spawnData;
 	}
 

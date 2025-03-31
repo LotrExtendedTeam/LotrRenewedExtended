@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class ExtendedBreelandFloristEntity extends ExtendedBreelandTraderEntity {
 
-	private final ExtendedTradeEntries BREE_INNKEEPER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
+	private final ExtendedTradeEntries BREE_FLORIST_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
 			// Growers
 			new ExtendedTradeEntry(new ItemStack(Items.BONE_MEAL, 15), 1),
 			// Tools
@@ -34,7 +34,7 @@ public class ExtendedBreelandFloristEntity extends ExtendedBreelandTraderEntity 
 			new ExtendedTradeEntry(new ItemStack(Items.IRON_SHOVEL), 7),
 	});
 
-	private final ExtendedTradeEntries BREE_INNKEEPER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
+	private final ExtendedTradeEntries BREE_FLORIST_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
             // Flowers
             new ExtendedTradeEntry(new ItemStack(Items.POPPY), 3),
             new ExtendedTradeEntry(new ItemStack(Items.BLUE_ORCHID), 8),
@@ -65,8 +65,8 @@ public class ExtendedBreelandFloristEntity extends ExtendedBreelandTraderEntity 
 	public ExtendedBreelandFloristEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
 
-		itemsBoughtByTrader = BREE_INNKEEPER_BOUGHT.generateTrades();
-		itemsSoldByTrader = BREE_INNKEEPER_SOLD.generateTrades();
+		itemsBoughtByTrader = BREE_FLORIST_BOUGHT.generateTrades();
+		itemsSoldByTrader = BREE_FLORIST_SOLD.generateTrades();
 	}
 
 	@Override

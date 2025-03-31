@@ -195,7 +195,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        this.npcItemsInv.setIdleItem(new ItemStack(Items.IRON_HOE.getItem()));
+        this.npcItemsInv.setIdleItem(new ItemStack(Items.IRON_HOE));
         setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
         return spawnData;
     }

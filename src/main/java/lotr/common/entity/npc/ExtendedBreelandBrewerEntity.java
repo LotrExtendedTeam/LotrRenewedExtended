@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class ExtendedBreelandBrewerEntity extends ExtendedBreelandTraderEntity {
 
-	private final ExtendedTradeEntries BREE_INNKEEPER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
+	private final ExtendedTradeEntries BREE_BREWER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
 			// Raw Ingrediants
 			new ExtendedTradeEntry(new ItemStack(Items.WHEAT, 2), 3),
 			new ExtendedTradeEntry(new ItemStack(Items.APPLE), 1),
@@ -43,7 +43,7 @@ public class ExtendedBreelandBrewerEntity extends ExtendedBreelandTraderEntity {
 	});
 
 	// TODO add berry juices and kegs
-	private final ExtendedTradeEntries BREE_INNKEEPER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
+	private final ExtendedTradeEntries BREE_BREWER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
 			// Drinks
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.APPLE_JUICE.get()), 6),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.SWEET_BERRY_JUICE.get()), 6),
@@ -106,8 +106,8 @@ public class ExtendedBreelandBrewerEntity extends ExtendedBreelandTraderEntity {
 	public ExtendedBreelandBrewerEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
 
-		itemsBoughtByTrader = BREE_INNKEEPER_BOUGHT.generateTrades();
-		itemsSoldByTrader = BREE_INNKEEPER_SOLD.generateTrades();
+		itemsBoughtByTrader = BREE_BREWER_BOUGHT.generateTrades();
+		itemsSoldByTrader = BREE_BREWER_SOLD.generateTrades();
 	}
 
 	@Override

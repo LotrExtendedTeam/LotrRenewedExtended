@@ -60,7 +60,7 @@ public class ExtendedBreelandButcherEntity extends ExtendedBreelandTraderEntity 
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-		this.npcItemsInv.setIdleItem(new ItemStack(Items.CHICKEN.getItem()));
+		this.npcItemsInv.setIdleItem(new ItemStack(Items.CHICKEN));
 		return spawnData;
 	}
 
