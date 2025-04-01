@@ -1,0 +1,185 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Good evening!",
+        "Good evening to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Good afternoon!",
+        "Good afternoon to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Good morning!",
+        "Good morning to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Good day, #p.",
+        "Good day.",
+        "Good day!",
+        "Good day to you, #p! How are you doing?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Many have asked me why didn't the fellowship fly the Eagles to Mordor, and to those I say you know, uh- shut up!",
+        "Not all those who wander are lost.",
+        "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world.",
+        "The Road goes ever on and on, Down from the door where it began...",
+        "God bless you.",
+        "My great-great-grandfather came to England in the eighteenth century from Germany: the main part of my descent is therefore purely English",
+        "I think most Christians, except the very simple and uneducated or those protected in other ways, have been rather bustled and hustled now for some generations by the self-styled scientists, and they've sort of tucked Genesis into a lumber-room of their mind as not very fashionable furniture, a bit ashamed to have it about the house, don't you know, when the bright clever young people called",
+        "Only after hearing the debate and realizing the nature of the quest did Frodo accept the burden of his mission. Indeed the Elves destroyed their own polity in pursuit of a 'humane' duty.",
+        "The Eagles are a dangerous 'machine'. I have used them sparingly, and that is the absolute limit of their credibility or usefulness.",
+        "Since the Valar had no language of their own, not needing one, they had no 'true' names, only identities, and their names were conferred on them by the Elves, being in origin therefore all, as it were, 'nicknames', referring to some striking peculiarity, function, or deed.",
+        "Middle-earth is not my own invention. It is a modernization or alteration of an old word for the inhabited world of Men, the oikoumenē: middle because thought of vaguely as set amidst the encircling Seas and between ice of the North and the fire of the South.",
+        "I did begin a story placed about 100 years after the Downfall, but it proved both sinister and depressing. Since we are dealing with MEN it is inevitable that we should be concerned with the most regrettable feature of their nature: their quick satiety with good.",
+        "I am singularly fortunate in having such a friend as you, #p. I feel, if I may say so, that our relations are like that of Rohan and Gondor, and (as you know) for my part the oath of Eorl will never be broken, and I shall continue to rely on and be grateful for the wisdom and courtesy of Minas Tirith. Thank you very much indeed.",
+        "Anyone who can play a stringed instrument seems to me a wizard worthy of deep respect. I love music, but have no aptitude for it.",
+        "I don't feel under any obligation to make my story fit with formalized Christian theology, though I actually intended it to be consonant with Christian thought and belief.",
+        "One of my troubles is that I was just sending into press a revision of my translation of Gawain together with one of Pearl when a desperate problem of U.S.A. copyright fell on me, and I must now devote all the time I have to produce a revision of both The Lord of the Rings and The Hobbit that can be copyrighted and, it is hoped, defeat the pirates.",
+        "Rhûn is the Elvish word for 'east'. Asia, China, Japan, and all things which people in the west regard as far away."
+      ] 
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Orcs are nowhere clearly stated to be of any particular origin. But since they are servants of the Dark Power, and later of Sauron, neither of whom could, or would, produce living things, they must be 'corruptions'.",
+        "The Black Speech was only used in Mordor; it only occurs in the Ring inscription, and a sentence uttered by the Orcs of Barad-dûr and in the word Nazgûl. It was never used willingly by any other people, and consequently even the names of places in Mordor are in English or Elvish.",
+        "Orcs are fundamentally a race of 'rational incarnate' creatures, though horribly corrupted, if no more so than many Men to be met today.",
+        "To ask if the Orcs 'are' Communists is to me as sensible as asking if Communists are Orcs."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mirkwood"
+      },
+      "lines": [
+        "The shadows and evil of Mirkwood provide, in diminished 'fairy – story' mode, one of the major pans of the adventure.",
+        "Legolas means 'green-leaves', a woodland name – dialectal form of pure Sindarin laegolas."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:rohan"
+      },
+      "lines": [
+        "The Rohirrim were not 'mediaeval', in our sense. The styles of the Bay eux Tapestry fit them well enough, if one remembers that the kind of tennis-nets soldiers seem to have on are only a clumsy conventional sign for chain-mail of small rings.",
+        "The Rohirrim is derived from roch meaning horse, and the Elvish stem kher- 'possess'; whence Sindarin Rochir 'horse-lord', and Rochir-rim 'the host of the Horse-lords'."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:shire | lotr:shire_moors | lotr:shire_forest"
+      },
+      "lines": [
+        "The Shire' is based on rural England and not any other country in the world – least perhaps of any in Europe on Holland, which is topographically wholly dissimilar.",
+        "The toponymy of The Shire, to take the first list, is a 'parody' of that of rural England, in much the same sense as are its inhabitants: they go together and are meant to.",
+        "The Shire Map plays a very small part in the narrative, and most of its purpose is a descriptive build-up.",
+        "I am in fact a Hobbit (in all but size). I like gardens, trees and unmechanized farmlands; I smoke a pipe, and like good plain food (unrefrigerated), but detest French cooking; I like, and even dare to wear in these dull days, ornamental waistcoats.",
+        "All Hobbits were slow to change, but the remigrant Stoors were going back to a wilder and more primitive life of small and dwindling communities; while the Shire-folk in the 1400 years of their occupation had developed a more settled and elaborate social life, in which the importance of kinship to their sentiment and customs was assisted by detailed traditions, written and oral.",
+        "The language of hobbits was remarkably like English, as one would expect: they only lived on the borders of The Wild, and were mostly unaware of it."
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:blue_mountains | lotr:iron_hills"
+      },
+      "lines": [
+        "These dwarves are not quite the dwarfs of better known lore. They have been given Scandinavian names, it is true; but that is an editorial concession.",
+        "Dwarvish was both complicated and cacophonous. Even early elvish philologists avoided it, and the dwarves were obliged to use other languages, except for entirely private conversations.",
+        "Dwarves are represented as keeping their own native tongue more or less secret, and using for all 'outer' purposes the language of the people they dwelt near; they never reveal it."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:fangorn"
+      },
+      "lines": [
+        "What happens to the Ents I don't yet know.",
+        "I think that in fact the Entwives had disappeared for good, being destroyed with their gardens in the War of the Last Alliance, when Sauron pursued a scorched earth policy and burned their land against the advance of the Allies down the Anduin."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:further_gondor | lotr:anorien | lotr:pinnath_gelin | lotr:anfalas | lotr:blackroot_vale | lotr:lamedon | lotr:pelargir | lotr:lossarnach | lotr:lebennin | lotr:emyn_en_ernil | lotr:dor_en_ernil"
+      },
+      "lines": [
+        "Denethor was tainted with mere politics: hence his failure, and his mistrust of Faramir. It had become for him a prime motive to preserve the polity of Gondor, as it was, against another potentate, who had made himself stronger and was to be feared and opposed for that reason rather than because he was ruthless and wicked.",
+        "Denethor despised lesser men, and one may be sure did not distinguish between orcs and the allies of Mordor. If he had survived as victor, even without use of the Ring, he would have taken a long stride towards becoming himself a tyrant, and the terms and treatment he accorded to the deluded peoples of east and south would have been cruel and vengeful.",
+        "Quenya was known to the learned in Gondor at least as well as Latin still is in W. Europe. Its use was honorific, and there was no reason to accommodate the Quenya names to Sindarin.",
+        "In Gondor the generally used language was 'Westron', a language about as mixed as modern English, but basically derived from the native language of the Númenóreans.",
+        "In the south Gondor rises to a peak of power, almost reflecting Númenor, and then fades slowly to decayed Middle Age, a kind of proud, venerable, but increasingly impotent Byzantium.",
+        "The Númenóreans of Gondor were proud, peculiar, and archaic, and I think are best pictured in Egyptian terms. In many ways they resembled 'Egyptians' – the love of, and power to construct, the gigantic and massive. And in their great interest in ancestry and in tombs.",
+        "I think the crown of Gondor was very tall, like that of Egypt, but with wings attached, not set straight back but at an angle."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:rivendel | lotr:lindon | lotr:lothlorien"
+      },
+      "lines": [
+        "Galadriel is as old, or older than Shelob. She is the last remaining of the Great among the High Elves, and 'awoke' in Eldamar beyond the Sea, long before Ungoliante came to Middle-earth and produced her broods there.",
+        "The High Elves were exiles from the Blessed Realm of the Gods, and they had no 'religion' for those had been in the hands of the gods, praising and adoring Eru 'the One', Ilúvatar the Father of All on the Mt. of Aman."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:dale"
+      },
+      "lines": [
+        "The language of Dale and the Long Lake would, if it appeared, be represented as more or less Scandinavian in character; but it is only represented by a few names, especially those of the Dwarves that came from that region."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "You're not a nice fellow, #p.",
+        "If you'll be begging my pardon, you make me feel uncomfortable.",
+        "Leave me in peace!",
+        "Leave me in peace, #p!",
+        "Now, now, let's not be having no trouble!",
+        "Don't make me reach for my rake!"
+      ]
+    }
+  ]
+}

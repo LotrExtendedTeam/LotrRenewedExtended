@@ -422,6 +422,14 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
 		makeEntity(ExtendedEntities.HIRED_DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
+		add(ExtendedEntities.TOLKIEN.get(), LootTable.lootTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(0, 3))
+				.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(6).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(4).apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(0, 1))
+				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {
