@@ -108,21 +108,19 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 
 	private boolean isNearStructure(Structure<?> structure, ChunkGenerator chunkGenerator, long seed, SharedSeedRandom sharedSeedRandom, int chunkPosX, int chunkPosZ, int checkRadius) {
 		StructureSeparationSettings structureseparationsettings = chunkGenerator.getSettings().getConfig(Structure.VILLAGE);
-		if (structureseparationsettings == null) {
-			return false;
-		} else {
-			for(int i = chunkPosX - checkRadius; i <= chunkPosX + checkRadius; ++i) {
-				for(int j = chunkPosZ - checkRadius; j <= chunkPosZ + checkRadius; ++j) {
-					ChunkPos chunkpos = structure.getPotentialFeatureChunk(structureseparationsettings, seed, sharedSeedRandom, i, j);
-					if (i == chunkpos.x && j == chunkpos.z) {
-						return true;
-					}
-				}
-			}
+        if (structureseparationsettings != null) {
+            for (int i = chunkPosX - checkRadius; i <= chunkPosX + checkRadius; ++i) {
+                for (int j = chunkPosZ - checkRadius; j <= chunkPosZ + checkRadius; ++j) {
+                    ChunkPos chunkpos = structure.getPotentialFeatureChunk(structureseparationsettings, seed, sharedSeedRandom, i, j);
+                    if (i == chunkpos.x && j == chunkpos.z) {
+                        return true;
+                    }
+                }
+            }
 
-			return false;
-		}
-	}
+        }
+        return false;
+    }
 
 	public static double calculateChunkDistance(int chunkX1, int chunkZ1, int chunkX2, int chunkZ2) {
 		// Calculate the difference in x and z coordinates

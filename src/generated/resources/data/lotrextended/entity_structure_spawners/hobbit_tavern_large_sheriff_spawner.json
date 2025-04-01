@@ -15,6 +15,7 @@
   "inside_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 12,
+  "persistenceRequired": true,
   "spawnCap": 1,
   "pools": [
     {

@@ -70,6 +70,7 @@ public class LotrExtendedModClient {
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 		modBus.addListener(ExtendedColorHelper::makeBlockColors);
+		modBus.addListener(ExtendedItemModelsProperties::addGuiItemSprites);
 		modBus.addListener(ExtendedColorHelper::makeItemsColors);
 		ExtendedClientConfig.register();
 		//Moved to Mixin
@@ -124,7 +125,7 @@ public class LotrExtendedModClient {
 	public void clientStartupEvent(final FMLClientSetupEvent event) {
 		ExtendedBlockRenderer.setupBlockRenderers();
 		event.enqueueWork(()->{
-			ExtendedSignTypes.forEach(sign -> Atlases.addWoodType(sign));
+			ExtendedSignTypes.forEach(Atlases::addWoodType);
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 			setupUsersUUID();
 		});
@@ -177,7 +178,7 @@ public class LotrExtendedModClient {
 
 	private void setupUsersUUID() {
 		String userUUIDString = Minecraft.getInstance().getUser().getUuid();
-		if (!userUUIDString.equals("")) userUUIDString = addDashesToUUID(userUUIDString);
+		if (!userUUIDString.isEmpty()) userUUIDString = addDashesToUUID(userUUIDString);
 		try {
 			usersUUID = UUID.fromString(userUUIDString);
 		} catch (IllegalArgumentException ex) {

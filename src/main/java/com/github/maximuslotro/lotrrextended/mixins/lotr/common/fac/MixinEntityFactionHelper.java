@@ -24,6 +24,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
+/**
+ * @reason Add fellowship and hired unit pve logic to Renewed's entity damage checker
+ * @Mixin (EntityFactionHelper.class)
+ * */
 @Mixin(EntityFactionHelper.class)
 public class MixinEntityFactionHelper {
 
@@ -42,9 +46,21 @@ public class MixinEntityFactionHelper {
 //		}
 //	}
 
+	/**
+	 * @return Check if an entity is aligned to a faction
+	 * @Shadow (remap=false)
+	 * @param entity The entity to be checked
+	 * @return True if the entity is aligned to any faction
+	 * */
 	@Shadow(remap=false)
 	private static boolean isAlignedToSomeFaction(Entity entity) {return false;}
 
+	/**
+	 * @return Gets the faction an entity is a part of
+	 * @Shadow (remap=false)
+	 * @param entity The entity get the Faction for
+	 * @return The Faction for the given Entity, or null if there is no faction for the entity
+	 * */
 	@Shadow(remap=false)
 	public static Faction getFaction(Entity entity) {return null;}
 
@@ -69,7 +85,7 @@ public class MixinEntityFactionHelper {
 			// Extended End
 		}
 
-		Entity alignedTarget = isAlignedToSomeFaction(target) ? target : target.getPassengers().stream().filter((entity)->{ return isAlignedToSomeFaction(entity);}).findFirst().orElse((Entity) null);
+		Entity alignedTarget = isAlignedToSomeFaction(target) ? target : target.getPassengers().stream().filter(MixinEntityFactionHelper::isAlignedToSomeFaction).findFirst().orElse(null);
 		if (alignedTarget != null) {
 			Faction targetFaction = getFaction(alignedTarget);
 			if (alignedTarget instanceof MobEntity && !LOTRMod.PROXY.getSidedAttackTarget((MobEntity) alignedTarget).filter(Predicates.equalTo(attacker)).isPresent() && playerData.getAlignmentData().hasAlignment(targetFaction, AlignmentPredicates.POSITIVE)) {
@@ -77,7 +93,7 @@ public class MixinEntityFactionHelper {
 			}
 		}
 		// Extended Start
-		if(alignedTarget!=null && alignedTarget instanceof ExtendedHirableEntity) {
+		if(alignedTarget instanceof ExtendedHirableEntity) {
 			UUID hiredUnitOwnerUUID = ((ExtendedHirableEntity)alignedTarget).getOwnerUUID();
 			if(hiredUnitOwnerUUID!=null) {
 				// Check if player can hurt their units

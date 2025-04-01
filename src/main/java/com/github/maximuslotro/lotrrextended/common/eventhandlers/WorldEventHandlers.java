@@ -10,6 +10,7 @@ import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedTraderHelper;
@@ -79,15 +80,15 @@ public class WorldEventHandlers {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	@SubscribeEvent
 	public static void handleCaptainTraderDeath(LivingDeathEvent event) {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
 			return;
 		}
 
 		// If an NPC is a wandering trader, no respawns, even it is a captain
-		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedTraderEntity) event.getEntity()).isWanderingTrader()) {
-			ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getEntity();
+		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedTraderEntity) event.getEntity()).isTraderWandering()) {
+			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
 			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
 				return;
 			}
@@ -107,8 +108,16 @@ public class WorldEventHandlers {
 				ITextComponent text = event.getSource().getLocalizedDeathMessage(event.getEntityLiving());
 				player.sendMessage(text, Util.NIL_UUID);
 			}
+			return;
 		}else {
 			NPCEntity npc = (NPCEntity)event.getEntity();
+			// Check if entity has flag to respawn, also handle older versions where flag is not present
+			if(npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
+				return; //Let entity die
+			}
+			// Update older entities to have the flag
+			npc.getPersistentData().putBoolean("ExtendedRespawnOnDeath", true);
+			// Make entity respawner
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
 

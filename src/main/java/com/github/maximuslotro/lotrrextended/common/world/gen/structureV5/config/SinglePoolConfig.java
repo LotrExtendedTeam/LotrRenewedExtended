@@ -6,9 +6,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class SinglePoolConfig implements IFeatureConfig {
-	public static final Codec<SinglePoolConfig> CODEC = RecordCodecBuilder.create((p_236650_0_) -> {
-		return p_236650_0_.group(Codec.STRING.fieldOf("pool").orElseGet(() -> "empty")
-				.forGetter(config -> config.pool)).apply(p_236650_0_, SinglePoolConfig::new);});
+	public static final Codec<SinglePoolConfig> CODEC = RecordCodecBuilder.create((p_236650_0_) -> p_236650_0_.group(Codec.STRING.fieldOf("pool").orElseGet(() -> "empty")
+            .forGetter(config -> config.pool)).apply(p_236650_0_, SinglePoolConfig::new));
 
 	private final String pool;
 

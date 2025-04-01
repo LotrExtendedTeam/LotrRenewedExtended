@@ -43,7 +43,7 @@ public class ExtendedCommandHornItem extends Item {
 		} else if (isReddy(itemstack)) {
 			setType(itemstack, 1.0F);
 		}
-		world.playSound((PlayerEntity)null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
+		world.playSound(null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
 	}
 

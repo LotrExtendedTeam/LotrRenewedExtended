@@ -11,8 +11,8 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.E
 import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
-import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -105,7 +105,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	}
 
 	public static void handle(ExtendedSBannerOpenChangedScreenPacket pPacket, Supplier<NetworkEvent.Context> context) {
-		ExtendedClientsideSeperatedScreenHandler.handleBannerGUIUpdate(pPacket);
+		ExtendedClientsideSeparatedScreenHandler.handleBannerGUIUpdate(pPacket);
 		context.get().setPacketHandled(true);
 	}
 }

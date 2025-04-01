@@ -12,9 +12,18 @@ import lotr.common.fac.AlignmentPredicates;
 import lotr.common.fac.FactionPointers;
 import net.minecraft.entity.player.PlayerEntity;
 
+/**
+ * @reason Fix hostile aligned mobs not attacking the player
+ * @Mixin(NPCNearestAttackableTargetGoal.class)
+ * */
 @Mixin(NPCNearestAttackableTargetGoal.class)
 public class MixinNPCNearestAttackableTargetGoal {
 
+	/**
+	 * @reason Need to get the NPCEntity instance of this target goal
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Shadow(remap=false)
 	@Final
 	private NPCEntity theNPC;
@@ -22,6 +31,8 @@ public class MixinNPCNearestAttackableTargetGoal {
 	/**
 	 * @author maximuslotro
 	 * @reason Fix hostile aligned mobs not attacking players
+	 * @param player The PlayerEntity being targeted
+	 * @return True if the player can be targeted
 	 */
 	@Overwrite(remap=false)
 	protected boolean isPlayerSuitableAlignmentTarget(PlayerEntity player) {

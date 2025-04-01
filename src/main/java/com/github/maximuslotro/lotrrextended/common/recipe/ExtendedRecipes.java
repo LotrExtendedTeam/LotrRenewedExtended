@@ -13,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ExtendedRecipes {
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "lotrextended");
 	public static IRecipeType<ExtendeStoneGrinderRecipe> MILLSTONE;
-	public static final RegistryObject<IRecipeSerializer<ExtendeStoneGrinderRecipe>> STONE_GRINDING_SERIALIZER = RECIPE_SERIALIZERS.register("stone_grinding", () -> new ExtendedStoneGrinderRecipeSerializer());
+	public static final RegistryObject<IRecipeSerializer<ExtendeStoneGrinderRecipe>> STONE_GRINDING_SERIALIZER = RECIPE_SERIALIZERS.register("stone_grinding", ExtendedStoneGrinderRecipeSerializer::new);
 
 	public static void register(IEventBus modBus) {
 		MILLSTONE = register("stone_grinding");

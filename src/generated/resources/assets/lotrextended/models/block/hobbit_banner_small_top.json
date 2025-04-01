@@ -1,7 +1,7 @@
 {
   "parent": "lotrextended:block/template_banner_small_top",
   "textures": {
-    "particle": "lotrextended:block/banner/hobbit_banner",
-    "1": "lotrextended:block/banner/hobbit_banner"
+    "particle": "minecraft:block/oak_planks",
+    "banner": "lotrextended:block/banner/hobbit_banner"
   }
 }

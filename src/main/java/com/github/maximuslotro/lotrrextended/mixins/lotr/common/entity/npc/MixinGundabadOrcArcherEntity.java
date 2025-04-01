@@ -13,17 +13,34 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.util.IItemProvider;
 
+/**
+ * @reason Need to change Gundabad Orc Archer equipment
+ * @Mixin (GundabadOrcArcherEntity.class)
+ * */
 @Mixin(GundabadOrcArcherEntity.class)
 public class MixinGundabadOrcArcherEntity{
 
+	/**
+	 * @reason Need to add bone dagger to equipment pool
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * */
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable DAGGERS = SpawnEquipmentTable.of(LOTRItems.STONE_DAGGER, LOTRItems.IRON_DAGGER,
 			LOTRItems.BRONZE_DAGGER, LOTRItems.MORDOR_DAGGER, ExtendedItems.BONE_DAGGER);
 
+	/**
+	 * @reason Replaced setting the bow with the an Orc Bow
+	 * @ModifyArg (method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
+	 * @param regularItem The regular item to be set
+	 * @return An orc bow instance
+	 * */
 	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
 	private IItemProvider injected(IItemProvider regularItem) {
 		return ExtendedItems.ORC_BOW.get();
 	}

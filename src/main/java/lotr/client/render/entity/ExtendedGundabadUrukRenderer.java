@@ -17,4 +17,3 @@ public class ExtendedGundabadUrukRenderer extends LargeOrcRenderer {
 		return SKINS.getRandomSkin(orc);
 	}
 }
-

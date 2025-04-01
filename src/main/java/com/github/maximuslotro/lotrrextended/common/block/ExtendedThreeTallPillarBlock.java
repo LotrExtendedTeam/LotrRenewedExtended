@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
 import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
@@ -52,31 +51,23 @@ public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock{
 			if (!(facingState.getBlock() instanceof ExtendedThreeTallPillarBlock)) {
 				if(blockUpdate) {
 					if (dir.getAxisDirection() == AxisDirection.NEGATIVE) {
-						ExtendedLog.info("Checking Down Remove");
 						if(state.getValue(PILLAR_TYPE).equals(PillarType.TOP_SMALL)) {
-							ExtendedLog.info("removing:"+PillarType.TOP_SMALL.getSerializedName());
 							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
 						}
 						if(state.getValue(PILLAR_TYPE).equals(PillarType.TOP_LARGE)) {
-							ExtendedLog.info("removing:"+PillarType.TOP_LARGE.getSerializedName());
 							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
 						}
 						if(state.getValue(PILLAR_TYPE).equals(PillarType.MIDDLE_LARGE)) {
-							ExtendedLog.info("removing:"+PillarType.MIDDLE_LARGE.getSerializedName());
 							return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_SMALL);
 						}
 					}else {
-						ExtendedLog.info("Checking Up Removing");
 						if(state.getValue(PILLAR_TYPE).equals(PillarType.BOTTOM_SMALL)) {
-							ExtendedLog.info("removing:"+PillarType.BOTTOM_SMALL.getSerializedName());
 							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
 						}
 						if(state.getValue(PILLAR_TYPE).equals(PillarType.BOTTOM_LARGE)) {
-							ExtendedLog.info("removing:"+PillarType.BOTTOM_LARGE.getSerializedName());
 							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
 						}
 						if(state.getValue(PILLAR_TYPE).equals(PillarType.MIDDLE_LARGE)) {
-							ExtendedLog.info("removing:"+PillarType.MIDDLE_LARGE.getSerializedName());
 							return state.setValue(PILLAR_TYPE, PillarType.TOP_SMALL);
 						}
 					}
@@ -88,42 +79,32 @@ public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock{
 			}
 			PillarType type = facingState.getValue(PILLAR_TYPE);
 			if (dir.getAxisDirection() == AxisDirection.NEGATIVE) {
-				ExtendedLog.info("Checking Down");
 				if(type.equals(PillarType.SINGLE) && state.getValue(PILLAR_TYPE).equals(PillarType.SINGLE) && !(state.getValue(PILLAR_TYPE)==PillarType.TOP_SMALL)) {
-					ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.TOP_SMALL.getSerializedName());
 					return state.setValue(PILLAR_TYPE, PillarType.TOP_SMALL);
 				}
 				if(type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE).equals(PillarType.SINGLE)) {
-					ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.TOP_LARGE.getSerializedName());
 					return state.setValue(PILLAR_TYPE, PillarType.TOP_LARGE);
 				}
 				if(blockUpdate) {
 					if(type.equals(PillarType.BOTTOM_LARGE) && state.getValue(PILLAR_TYPE).equals(PillarType.BOTTOM_SMALL)) {
-						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.MIDDLE_LARGE.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.MIDDLE_LARGE);
 					}
 					if(type.equals(PillarType.MIDDLE_LARGE) && state.getValue(PILLAR_TYPE).equals(PillarType.TOP_SMALL)) {
-						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.TOP_LARGE.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.TOP_LARGE);
 					}
 				}
 			}else {
-				ExtendedLog.info("Checking Up");
 				if(type.equals(PillarType.BOTTOM_SMALL) && state.getValue(PILLAR_TYPE).equals(PillarType.SINGLE)) {
-					ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.BOTTOM_LARGE.getSerializedName());
 					return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_LARGE);
 				}
 				if(blockUpdate) {
 					if(type.equals(PillarType.MIDDLE_LARGE) && state.getValue(PILLAR_TYPE)==PillarType.BOTTOM_SMALL) {
-						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.BOTTOM_LARGE.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_LARGE);
 					}
 					if((type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.SINGLE) || (type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.BOTTOM_LARGE)) {
-						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.BOTTOM_SMALL.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_SMALL);
 					}
 					if(type.equals(PillarType.TOP_LARGE) && state.getValue(PILLAR_TYPE)==PillarType.TOP_SMALL) {
-						ExtendedLog.info("Pos:"+currentPos.toString()+", facingPos:"+facingPos.toString()+", facingType:"+type.getSerializedName()+", chosenType:"+PillarType.MIDDLE_LARGE.getSerializedName());
 						return state.setValue(PILLAR_TYPE, PillarType.MIDDLE_LARGE);
 					}
 				}

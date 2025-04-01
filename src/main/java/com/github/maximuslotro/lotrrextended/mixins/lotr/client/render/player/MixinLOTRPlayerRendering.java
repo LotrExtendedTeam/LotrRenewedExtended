@@ -12,9 +12,17 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Team;
 
+/**
+ * @reason Renewed does not respect entity team nameplate visibility
+ * @Mixin (LOTRPlayerRendering.class)
+ * */
 @Mixin(LOTRPlayerRendering.class)
 public class MixinLOTRPlayerRendering {
 
+	/**
+	 * Helper method to get if regular should nameplate render
+	 * @Shadow (remap=false)
+	 * */
 	@Shadow(remap=false)
 	private boolean shouldRenderPlayerHUD(PlayerEntity player) {return false;}
 
@@ -39,26 +47,24 @@ public class MixinLOTRPlayerRendering {
 	 */
 	private boolean shouldRenderTeam(PlayerEntity player) {
 		Minecraft minecraft = Minecraft.getInstance();
-        ClientPlayerEntity clientplayerentity = minecraft.player;
-		if (player != clientplayerentity) {
-            Team team = player.getTeam();
-            Team team1 = clientplayerentity.getTeam();
-            if (team != null) {
-               Team.Visible nameViability = team.getNameTagVisibility();
-               switch(nameViability) {
-               case ALWAYS:
-                  return true;
-               case NEVER:
-                  return false;
-               case HIDE_FOR_OTHER_TEAMS:
-                  return team1 == null ? true : team.isAlliedTo(team1) && team.canSeeFriendlyInvisibles();
-               case HIDE_FOR_OWN_TEAM:
-                  return team1 == null ? true : !team.isAlliedTo(team1);
-               default:
-                  return true;
-               }
-            }
-         }
+		ClientPlayerEntity clientplayerentity = minecraft.player;
+		if (clientplayerentity!=null && player != clientplayerentity) {
+			Team team = player.getTeam();
+			Team team1 = clientplayerentity.getTeam();
+			if (team != null) {
+				Team.Visible nameViability = team.getNameTagVisibility();
+				switch(nameViability) {
+					case NEVER:
+						return false;
+					case HIDE_FOR_OTHER_TEAMS:
+						return team1 == null || team.isAlliedTo(team1) && team.canSeeFriendlyInvisibles();
+					case HIDE_FOR_OWN_TEAM:
+						return team1 == null || !team.isAlliedTo(team1);
+					default:
+						return true;
+				}
+			}
+		}
 		return true;
 	}
 }

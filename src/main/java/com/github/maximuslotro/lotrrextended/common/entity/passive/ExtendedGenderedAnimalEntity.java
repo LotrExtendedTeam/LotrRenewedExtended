@@ -71,7 +71,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Overridden vanilla method to read entity gender from {@Link CompoundNBT}
+	 * Overridden vanilla method to read entity gender from {@see CompoundNBT}
 	 * */
 	@Override
 	public void readAdditionalSaveData(CompoundNBT nbt) {
@@ -83,7 +83,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Overridden vanilla method to save gender to {@Link CompoundNBT}
+	 * Overridden vanilla method to save gender to {@see CompoundNBT}
 	 * */
 	@Override
 	public void addAdditionalSaveData(CompoundNBT nbt) {

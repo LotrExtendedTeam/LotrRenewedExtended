@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedSingleItemDataHolderIInventory;
 
-import lotr.common.inventory.ExtendedSingleItemDataHolderIInventory;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -50,7 +50,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 			PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 			if (this.lootTable != null && entity.getLevel()!=null && !entity.getLevel().isClientSide() && !ticked) {
 				ticked=true;
-				unpackLootTablePlate((PlayerEntity)null);
+				unpackLootTablePlate(null);
 			}
 		}
 	}
@@ -68,7 +68,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 
 	//Handle loading loot-tables
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
-	public void load(BlockState state, CompoundNBT nbt, CallbackInfo info) {
+	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
 	         this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
 	         this.lootTableSeed = nbt.getLong("LootTableSeed");
@@ -84,7 +84,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 		// Extended Start
 		PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 		if(entity.hasLevel() && !entity.getLevel().isClientSide()) {
-			unpackLootTablePlate((PlayerEntity)null);
+			unpackLootTablePlate(null);
 		}
 		// Extended End
 		return foodItem;
@@ -97,7 +97,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	@Overwrite(remap = false)
 	private void writeFood(CompoundNBT nbt) {
 		// Extended Start
-		unpackLootTablePlate((PlayerEntity)null);
+		unpackLootTablePlate(null);
 		// Extended End
 		nbt.put("FoodItem", foodItem.save(new CompoundNBT()));
 	}

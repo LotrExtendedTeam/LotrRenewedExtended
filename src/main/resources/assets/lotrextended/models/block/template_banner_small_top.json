@@ -3,7 +3,7 @@
 	"ambientocclusion": false,
 	"texture_size": [128, 128],
 	"textures": {
-		"1": "block/banner_base"
+		"banner": "block/banner_base"
 	},
 	"elements": [
 		{
@@ -12,12 +12,12 @@
 			"to": [14.5, 14.5, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [6.5, 0.5, 9, 0.75], "texture": "#1"},
-				"east": {"uv": [6, 0.5, 6.5, 0.75], "texture": "#1"},
-				"south": {"uv": [9.5, 0.5, 12, 0.75], "texture": "#1"},
-				"west": {"uv": [9, 0.5, 9.5, 0.75], "texture": "#1"},
-				"up": {"uv": [9, 0.5, 6.5, 0], "texture": "#1"},
-				"down": {"uv": [11.5, 0, 9, 0.5], "texture": "#1"}
+				"north": {"uv": [6.5, 0.5, 9, 0.75], "texture": "#banner"},
+				"east": {"uv": [6, 0.5, 6.5, 0.75], "texture": "#banner"},
+				"south": {"uv": [9.5, 0.5, 12, 0.75], "texture": "#banner"},
+				"west": {"uv": [9, 0.5, 9.5, 0.75], "texture": "#banner"},
+				"up": {"uv": [9, 0.5, 6.5, 0], "texture": "#banner"},
+				"down": {"uv": [11.5, 0, 9, 0.5], "texture": "#banner"}
 			}
 		},
 		{
@@ -26,11 +26,11 @@
 			"to": [8.75, 16, 8.75],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [0.25, 7.125, 0.5, 10.5], "texture": "#1"},
-				"east": {"uv": [0, 7.125, 0.25, 10.5], "texture": "#1"},
-				"south": {"uv": [0.75, 7.125, 1, 10.5], "texture": "#1"},
-				"west": {"uv": [0.5, 7.125, 0.75, 10.5], "texture": "#1"},
-				"up": {"uv": [0.25, 6.875, 0.5, 7.125], "texture": "#1"}
+				"north": {"uv": [0.25, 7.125, 0.5, 10.5], "texture": "#banner"},
+				"east": {"uv": [0, 7.125, 0.25, 10.5], "texture": "#banner"},
+				"south": {"uv": [0.75, 7.125, 1, 10.5], "texture": "#banner"},
+				"west": {"uv": [0.5, 7.125, 0.75, 10.5], "texture": "#banner"},
+				"up": {"uv": [0.25, 6.875, 0.5, 7.125], "texture": "#banner"}
 			}
 		},
 		{
@@ -39,8 +39,8 @@
 			"to": [14.5, 13.5, 6.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [2.5, 2.25, 5, 4.625], "texture": "#1"},
-				"south": {"uv": [2.5, 2.25, 5, 4.5], "texture": "#1"}
+				"north": {"uv": [2.5, 2.25, 5, 4.625], "texture": "#banner"},
+				"south": {"uv": [2.5, 2.25, 5, 4.5], "texture": "#banner"}
 			}
 		},
 		{
@@ -49,8 +49,8 @@
 			"to": [14.5, 13.5, 9.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [7.5, 2.25, 10, 4.625], "texture": "#1"},
-				"south": {"uv": [7.5, 2.25, 10, 4.625], "texture": "#1"}
+				"north": {"uv": [7.5, 2.25, 10, 4.625], "texture": "#banner"},
+				"south": {"uv": [7.5, 2.25, 10, 4.625], "texture": "#banner"}
 			}
 		}
 	],

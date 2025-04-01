@@ -28,9 +28,7 @@ public class ExtendedTameLivingClassTrigger extends AbstractCriterionTrigger<Ext
 
 	   public void trigger(ServerPlayerEntity pPlayer, LivingEntity pEntity) {
 	      LootContext lootcontext = EntityPredicate.createContext(pPlayer, pEntity);
-	      this.trigger(pPlayer, (p_227251_1_) -> {
-	         return p_227251_1_.matches(lootcontext);
-	      });
+	      this.trigger(pPlayer, (p_227251_1_) -> p_227251_1_.matches(lootcontext));
 	   }
 
 	   public static class Instance extends CriterionInstance {

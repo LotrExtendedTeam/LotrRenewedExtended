@@ -10,12 +10,21 @@ import net.minecraft.world.GameRules.Category;
 import net.minecraft.world.GameRules.RuleKey;
 import net.minecraft.world.GameRules.RuleType;
 
+/**
+ * @reason Removes some Renewed GameRules in favor of the Extended config
+ * @Mixin (LOTRGameRules.class)
+ * */
 @Mixin(LOTRGameRules.class)
 public class MixinLOTRGameRules {
 
 	/**
 	 * @reason Need to remove custom Waypoint Gamerule to allow for differentiating between legacy and renewed Waypoints in the future
 	 * @author maximuslotro
+	 * @Overwrite (remap = false)
+	 * @param ruleName The name of the rule
+	 * @param category The gamerule category
+	 * @param type The data type for the rule
+	 * @return A built GameRule
 	 */
 	@Overwrite(remap = false)
 	private static <T extends GameRules.RuleValue<T>> RuleKey<T> register(String ruleName, Category category, RuleType<T> type) {

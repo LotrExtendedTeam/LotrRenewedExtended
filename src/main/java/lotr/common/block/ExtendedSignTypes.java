@@ -12,7 +12,7 @@ public class ExtendedSignTypes {
 	public static final WoodType BANANA = register("banana");
 	public static final WoodType PLUM = register("plum");
 
-	private static final String createFullName(String s) {
+	private static String createFullName(String s) {
 		return "lotr/" + s;
 	}
 

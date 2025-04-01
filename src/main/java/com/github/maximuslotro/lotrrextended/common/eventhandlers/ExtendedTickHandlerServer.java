@@ -25,9 +25,7 @@ public class ExtendedTickHandlerServer {
 			// make sure data is loaded at beginning of tick
 			if (phase == TickEvent.Phase.START) {
 
-				/**
-				 * Ensure we only load level data when the main dimension ticks
-				 */
+				//Ensure we only load level data when the main dimension ticks
 				if (LOTRDimensions.isDimension(world, World.OVERWORLD)) {
 					if (levelData.needsLoad()) {
 						levelData.load(world);
@@ -38,9 +36,7 @@ public class ExtendedTickHandlerServer {
             // Ensure we append all our actions to the "queue" at the end of the server tick
             if (phase == TickEvent.Phase.END) {
 
-				/**
-				 * Ensure we only save level data when the main dimension ticks
-				 */
+				//Ensure we only save level data when the main dimension ticks
 				if (LOTRDimensions.isDimension(world, World.OVERWORLD)) {
 
 					// Save when needs saving

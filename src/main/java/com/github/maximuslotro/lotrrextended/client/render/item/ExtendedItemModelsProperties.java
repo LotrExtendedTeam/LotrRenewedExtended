@@ -1,13 +1,16 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 
 import lotr.common.init.ExtendedItems;
+import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 
 public class ExtendedItemModelsProperties {
 
@@ -17,13 +20,16 @@ public class ExtendedItemModelsProperties {
 	public static ResourceLocation pull = new ResourceLocation("lotrextended", "pull");
 	public static ResourceLocation pulling = new ResourceLocation("lotrextended", "pulling");
 
+	public static void addGuiItemSprites(TextureStitchEvent.Pre event) {
+		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
+			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_BOW);
+			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_SWORD);
+		}
+	}
+
 	public static void registerAlternativeHandheldTextures() {
-		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> {
-			return ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F;
-		});
-		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> {
-			return ExtendedBrandingIronItem.isTempered(itemStack) ? 1.0F : 0.0F;
-		});
+		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F);
+		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1.0F : 0.0F);
 //		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), poisoned, (itemStack, clientWorld, LivingEntity) -> {
 //			return ExtendedDaggerItem.isPoisoned(itemStack) ? 1.0F : 0.0F;
 //		});
@@ -57,8 +63,6 @@ public class ExtendedItemModelsProperties {
 			return num;
 		});
 
-        ItemModelsProperties.register(item, pulling, (thisItem, clientWorld, thisLivingEntity) -> {
-            return thisLivingEntity != null && thisLivingEntity.isUsingItem() && thisLivingEntity.getUseItem() == thisItem ? 1.0F : 0.0F;
-        });
+        ItemModelsProperties.register(item, pulling, (thisItem, clientWorld, thisLivingEntity) -> thisLivingEntity != null && thisLivingEntity.isUsingItem() && thisLivingEntity.getUseItem() == thisItem ? 1.0F : 0.0F);
     }
 }

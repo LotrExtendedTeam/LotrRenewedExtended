@@ -63,8 +63,8 @@ public class ExtendedBerryPlantBlock extends SweetBerryBushBlock {
            return ActionResultType.PASS;
         } else if (i > 2) {
            popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(3) + 1 : 0));
-           p_225533_2_.playSound((PlayerEntity)null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
-           p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, Integer.valueOf(1)), 2);
+           p_225533_2_.playSound(null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
+           p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
            return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
         } else {
            return ActionResultType.PASS;

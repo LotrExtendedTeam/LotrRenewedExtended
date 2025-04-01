@@ -17,7 +17,6 @@ import lotr.common.item.VesselDrinkItem;
 import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedMultitradeEntry;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
@@ -32,7 +31,6 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -49,7 +47,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedTraderEntity {
+public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedWanderingTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -70,7 +68,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_DAGGER.get()), 10, 16),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 16, 26),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()), 16, 26),
-            new ExtendedTradeEntry(new ItemStack(Items.ARROW, 4), 2, 4, 64),
+            new ExtendedTradeEntry(64, new ItemStack(Items.ARROW, 4), 2, 4),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 6, 10),
             new ExtendedTradeEntry(new ItemStack(LOTRItems.LEMBAS.get()), 12, 20),
             new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
@@ -97,7 +95,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         return NPCNameGenerators.SINDARIN;
     }
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
@@ -242,43 +240,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
-    public Inventory getDisplayInventory() {
-        return TradeUtils.generateDisplayInventory(itemsSoldByTrader, itemsBoughtByTrader);
-    }
-
-    @Override
     public List<ExtendedTrade> getBuys() {
         return itemsBoughtByTrader;
-    }
-
-    @Override
-    public int[] getBoughtPrices() {
-        return ExtendedTraderHelper.getBoughtPrices(itemsBoughtByTrader);
-    }
-
-    @Override
-    public int[] getBoughtQuantities() {
-        return ExtendedTraderHelper.getBoughtQuantity(itemsBoughtByTrader);
-    }
-
-    @Override
-    public int[] getSoldPrices() {
-        return ExtendedTraderHelper.getSoldPrices(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getSoldQuantities() {
-        return ExtendedTraderHelper.getSoldQuantity(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getSoldOriginalQuantities() {
-        return ExtendedTraderHelper.getSoldOriginalQuantity(itemsSoldByTrader);
-    }
-
-    @Override
-    public int[] getBoughtOriginalQuantities() {
-        return ExtendedTraderHelper.getBoughtOriginalQuantity(itemsBoughtByTrader);
     }
 
     @Override
@@ -327,27 +290,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
 
-        // every 1 minute allow one more trade in both buys and sells to be done again
-        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
-        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
-        if (lastTickCooldownReduced >= 1200) {
-            for (ExtendedTrade trade : itemsSoldByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-
-            for (ExtendedTrade trade : itemsBoughtByTrader) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
-            }
-            lastTickCooldownReduced = 0;
-        } else {
-            lastTickCooldownReduced++;
-        }
-
         ExtendedTraderHelper.tickTrader(this, this);
+        ExtendedTraderHelper.tickWanderingTrader(this, this);
     }
 
     @Override
@@ -383,5 +327,15 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 	@Override
 	public void setSells(ArrayList<ExtendedTrade> trades) {
 		itemsSoldByTrader = trades;
+	}
+
+	@Override
+	public int setLastTickCooldownReduced() {
+		return lastTickCooldownReduced;
+	}
+
+	@Override
+	public void getLastTickCooldownReduced(int cooldown) {
+		lastTickCooldownReduced = cooldown;
 	}
 }

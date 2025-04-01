@@ -35,7 +35,7 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exten
 		if(itemstack.getItem() instanceof DaggerItem) {
 			popResource(entity.level, pos, new ItemStack(sliceitem.get(), 1));
 			entity.awardStat(ExtendedStats.SLICE_CHEESE_SLICE);
-			world.playSound((PlayerEntity)null, pos, ExtendedSounds.CHEESE_SLICE.get(), SoundCategory.PLAYERS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, ExtendedSounds.CHEESE_SLICE.get(), SoundCategory.PLAYERS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
 		}
 		else {
 			if (!entity.canEat(false)) {
@@ -48,11 +48,11 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exten
 				entity.getFoodData().eat(2, 0.1F);
 			}
 			entity.awardStat(ExtendedStats.EAT_CHEESE_SLICE);
-			world.playSound((PlayerEntity)null, pos, SoundEvents.PLAYER_BURP, SoundCategory.BLOCKS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, SoundEvents.PLAYER_BURP, SoundCategory.BLOCKS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);
 		}
 		int i = state.getValue(BITES);
 		if (i < 6) {
-			world.setBlock(pos, state.setValue(BITES, Integer.valueOf(i + 1)), 3);
+			world.setBlock(pos, state.setValue(BITES, i + 1), 3);
 		} else {
 			world.removeBlock(pos, false);
 		}

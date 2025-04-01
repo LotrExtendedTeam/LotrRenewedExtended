@@ -20,9 +20,20 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.DatagenModLoader;
 
+/**
+ * @reason Used to register new boat types, via Renewed's existing registration system
+ * @Mixin (ModBoatType.class)
+ * */
 @Mixin(ModBoatType.class)
 public class MixinModBoatType {
 
+	/**
+	 * @reason This value is the runtime array variable for the ModBoatType
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * @Dynamic This field is a runtime fabricated field
+	 * */
 	@Shadow(remap = false)
 	@Final
 	@Mutable

@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 /*
- * Copied from {@Link ModFileResourcePack} to add support for adding other built-in packs
+ * Copied from {@see ModFileResourcePack} to add support for adding other built-in packs
  * */
 public class AlternateResourcePacks extends ResourcePack
 {

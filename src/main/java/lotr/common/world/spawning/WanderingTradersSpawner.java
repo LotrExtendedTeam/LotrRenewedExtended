@@ -2,9 +2,12 @@ package lotr.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -24,7 +27,7 @@ public class WanderingTradersSpawner {
 
     public static void spawn(World world, PlayerEntity player) {
         // only make a max of 16 attempts to spawn the traveling trader
-        for (int attempts = 0; attempts < 16; attempts++) {
+        for (int attempts = 0; attempts < 20; attempts++) {
             // pick a random angle and distance from the player
             float angle = world.random.nextFloat() * 360.0F;
             int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
@@ -58,21 +61,28 @@ public class WanderingTradersSpawner {
 
             BlockPos plusOneY = new BlockPos(x, y + 1, z);
             if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
+                // avoid spawning on slabs/stairs/leaves
+                if (world.getBlockState(pos).getBlock() instanceof StairsBlock ||
+                        world.getBlockState(pos).getBlock() instanceof SlabBlock ||
+                        world.getBlockState(pos).getBlock() instanceof LeavesBlock) {
+                    continue;
+                }
+
                 BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
                 Entity trader = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.SPAWN_EGG, true, true);
-                if (trader instanceof ExtendedTraderEntity) {
+                if (trader instanceof ExtendedWanderingTraderEntity) {
                     // set look angle
                     float yaw = world.random.nextFloat() * 360.0F;
                     trader.setYBodyRot(yaw);
                     trader.setYHeadRot(yaw);
 
-                    ((ExtendedTraderEntity) trader).setWanderingTraderTicksLeft(24000);
-                    ((ExtendedTraderEntity) trader).setWanderingTrader(true);
+                    ((ExtendedWanderingTraderEntity) trader).setWanderingTraderTicksLeft(24000);
+                    ((ExtendedWanderingTraderEntity) trader).setWanderingTrader(true);
                     ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
 
                     int escortCount = world.random.nextInt(3) + 2;
                     for (int i = 0; i < escortCount; i++) {
-                        NPCEntity escort = ((ExtendedTraderEntity) trader).createEscort();
+                        NPCEntity escort = ((ExtendedWanderingTraderEntity) trader).createEscort();
                         if (escort != null) {
                             escort.setPersistenceRequired();
                             BlockPos escortPos = new BlockPos(trader.getX(), trader.getY(), trader.getZ());
@@ -80,7 +90,7 @@ public class WanderingTradersSpawner {
                             escort.setPos(trader.getX(), trader.getY(), trader.getZ());
                             world.addFreshEntity(escort);
                             escort.restrictTo(escortPos, 8);
-                            ((ExtendedTraderEntity) trader).addEscort(escort.getUUID());
+                            ((ExtendedWanderingTraderEntity) trader).addEscort(escort.getUUID());
                         }
                     }
 
@@ -100,18 +110,19 @@ public class WanderingTradersSpawner {
     }
 
     private static EntityType<?> getTraderFromName(String name) {
-        if (name.equals("lotr:galadhrim_wanderer")) {
-            return ExtendedEntities.GALADHRIM_WANDERER.get();
-        } else if (name.equals("lotr:rivendell_wanderer")) {
-            return ExtendedEntities.RIVENDELL_WANDERER.get();
-        } else if (name.equals("lotr:oddment_collector")) {
-            return ExtendedEntities.ODDMENT_COLLECTOR.get();
-        } else if (name.equals("lotr:blue_mountains_merchant")) {
-           return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
-        } else if (name.equals("lotr:bree_merchant")) {
-            return ExtendedEntities.BREE_MERCHANT.get();
-        } else {
-            return null;
+        switch (name) {
+            case "lotr:galadhrim_wanderer":
+                return ExtendedEntities.GALADHRIM_WANDERER.get();
+            case "lotr:rivendell_wanderer":
+                return ExtendedEntities.RIVENDELL_WANDERER.get();
+            case "lotr:oddment_collector":
+                return ExtendedEntities.ODDMENT_COLLECTOR.get();
+            case "lotr:blue_mountains_merchant":
+                return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
+            case "lotr:bree_merchant":
+                return ExtendedEntities.BREE_MERCHANT.get();
+            default:
+                return null;
         }
     }
 

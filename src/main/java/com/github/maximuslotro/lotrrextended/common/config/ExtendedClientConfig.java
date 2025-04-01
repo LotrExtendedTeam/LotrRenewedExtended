@@ -11,13 +11,14 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec CLIENT_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
 	public static ConfigValue<String> lastClientBootVersion;
-
+	
+	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
+	
 	/**
-	 * Do not set this value itself, set {@Link ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
-	 * to ensure {@Link MixinStructureBlockTileEntity} is updated with the non confg crashable value, since sliders can change values very quickly.
+	 * Do not set this value itself, set {@see ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
+	 * to ensure {@see MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
-
 	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;
 
 	public static void register() {
@@ -27,6 +28,10 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static void registerDataGen() {}
 
 	private static ForgeConfigSpec.Builder setupConfig(ForgeConfigSpec.Builder builder) {
+		builder.push("General Settings");
+		enablePlantParticles = createBooleanValue(builder, "enablePlantParticles", true, false, "Allow for certian plants to spawn particles.");
+		builder.pop();
+
 		builder.push("Technical Settings");
 		structureBlockOutlineViewDistance = createIntegerValue(builder, "structureBlockOutlineDistance", 96, 32, (int) MixinConstants.StructureLimit, false, "Change the distance at which structure block outlines render.");
 		forceStructureBlockAirViewing = createBooleanValue(builder, "forceStructureBlockAirViewing", false, false, "Force Structure Voids to render inside of Structure Block Outline Rendering.");

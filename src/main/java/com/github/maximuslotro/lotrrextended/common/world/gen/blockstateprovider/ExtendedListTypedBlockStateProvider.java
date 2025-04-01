@@ -17,9 +17,7 @@ import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 
 public class ExtendedListTypedBlockStateProvider extends BlockStateProvider {
 	public static final Codec<ExtendedListTypedBlockStateProvider> CODEC = BlockState.CODEC.listOf().promotePartial(Util.prefix("BlockState data: ", ExtendedLog::error))
-		.xmap(ExtendedListTypedBlockStateProvider::new, (p_236810_0_) -> {
-		return p_236810_0_.states;
-	});
+		.xmap(ExtendedListTypedBlockStateProvider::new, (p_236810_0_) -> p_236810_0_.states);
 	private final List<BlockState> states;
 
 	public ExtendedListTypedBlockStateProvider(List<BlockState> states) {

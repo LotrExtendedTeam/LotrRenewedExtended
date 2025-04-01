@@ -45,7 +45,7 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 		if(!ExtendedServerConfig.enableDevMode.get()) {
 			if (this.lootTable != null && !level.isClientSide && playerInDistance() && !ticked) {
 				ticked=true;
-				this.unpackLootTable((PlayerEntity)null);
+				this.unpackLootTable(null);
 				this.markAndUpdate();
 			}
 		}

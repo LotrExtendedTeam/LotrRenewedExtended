@@ -16,13 +16,25 @@ import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
 
+/**
+ * @reason Move code to Access Transformers for Java 9+ systems
+ * @Mixin (LOTRTickHandlerClient.class)
+ */
 @SuppressWarnings("deprecation")
 @Mixin(LOTRTickHandlerClient.class)
 public class MixinLOTRTickHandlerClientJavaPatch {
 
 	/**
-	 * @author Maximuslotro
+	 * This method overwrites Renewed's Dangerous code for replacing final Rendering Classes in Vanilla
+	 * Code has been written to take advantage of AccessTransfromers and remove Reflection
+	 * @author maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
+	 * @Overwrite (remap=false)
+	 * @param mc The local Minecraft here
+	 * @param baseClass The class to override
+	 * @param subClass The class to replace with
+	 * @param newSubClassSupplier A function to return an instance of the overriding class
+	 * @param loggingNameOfField A String that is used in debug logging
 	 */
 	@Overwrite(remap=false)
 	private static <T, U extends T> void replaceFinalMinecraftFieldIfNotReplaced(Minecraft mc, Class<T> baseClass, Class<U> subClass, Function<Minecraft, T> getter, Supplier<U> newSubClassSupplier, String loggingNameOfField) {

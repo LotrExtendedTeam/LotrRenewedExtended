@@ -1,10 +1,14 @@
 {
   "id": "lotrextended:dunedain_ranger",
+  "entity_type": "lotr:hired_dunedain_ranger",
   "language": {
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_dunedain_ranger",
     "entity_shortname": "entity_shortname.lotrextended.hired_dunedain_ranger",
     "entity_unit_type": "entity_unit_type.lotrextended.hired_dunedain_ranger",
+    "attack_type": "ranged"
+  },
+  "hiring": {
     "hiringCost": 40,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100
@@ -46,11 +50,26 @@
         }
       }
     ],
-    "weapons": [
+    "setIdleFromRanged": true,
+    "melee": [
       {
-        "weight": 1,
+        "weight": 4,
         "equipmentItem": {
-          "item": "lotr:dunedain_bow",
+          "item": "lotr:bronze_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "lotr:iron_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "lotr:barrow_blade",
           "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
         }
       },
@@ -59,6 +78,36 @@
         "equipmentItem": {
           "item": "minecraft:iron_sword",
           "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:iron_spear",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "ranged": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:dunedain_bow",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon_ranged\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:longbow",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon_ranged\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:bow",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon_ranged\"}'},Damage:0,IsBaseArmor:1b}"
         }
       }
     ],

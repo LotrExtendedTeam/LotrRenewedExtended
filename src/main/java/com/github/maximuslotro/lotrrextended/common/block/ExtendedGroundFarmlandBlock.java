@@ -40,12 +40,12 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 		int i = p_225542_1_.getValue(MOISTURE);
 		if (!isNearWater(p_225542_2_, p_225542_3_) && !p_225542_2_.isRainingAt(p_225542_3_.above())) {
 			if (i > 0) {
-				p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, Integer.valueOf(i - 1)), 2);
+				p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, i - 1), 2);
 			} else if (!isUnderCrops(p_225542_2_, p_225542_3_)) {
 				turnToBlock(p_225542_1_, p_225542_2_, p_225542_3_, base.get().defaultBlockState());
 			}
 		} else if (i < 7) {
-			p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, Integer.valueOf(7)), 2);
+			p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, 7), 2);
 		}
 
 	}
@@ -53,7 +53,7 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 	@Override
 	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
 	      BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.above());
-	      return blockstate.getBlock() instanceof ExtendedBerryBushBlock ? true : super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
+	      return blockstate.getBlock() instanceof ExtendedBerryBushBlock || super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
 	   }
 
 	@Override

@@ -2,15 +2,17 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import lotr.common.inventory.ExtendedCoinExchangeContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
+/**
+ * Tells the server that the coin exchange button was pressed and which option it was
+ * */
 public class ExtendedCExchangeCoinsPacket {
-	private int side; // 0 is left, 1 is right
-
-	public ExtendedCExchangeCoinsPacket() {}
+	private int side; // 0 is left coin slot, 1 is right coin slot
 
 	public ExtendedCExchangeCoinsPacket(int side) {
 		this.side = side;
@@ -21,9 +23,7 @@ public class ExtendedCExchangeCoinsPacket {
 	}
 
 	public static ExtendedCExchangeCoinsPacket decode(PacketBuffer buf) {
-		ExtendedCExchangeCoinsPacket packet = new ExtendedCExchangeCoinsPacket();
-		packet.side = buf.readInt();
-		return packet;
+		return new ExtendedCExchangeCoinsPacket(buf.readInt());
 	}
 
 	public static void handle(ExtendedCExchangeCoinsPacket packet, Supplier<Context> context) {

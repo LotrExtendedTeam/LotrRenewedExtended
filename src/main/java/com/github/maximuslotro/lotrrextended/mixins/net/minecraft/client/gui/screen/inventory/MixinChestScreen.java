@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.gui.sc
 
 import org.spongepowered.asm.mixin.Mixin;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedCoinExchangeScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IHasContainer;
@@ -20,8 +20,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @Mixin(ChestScreen.class)
 public abstract class MixinChestScreen extends ContainerScreen<ChestContainer> implements IHasContainer<ChestContainer> {
 
-    public MixinChestScreen(ChestContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent p_i51105_3_) {
-        super(p_i51105_1_, p_i51105_2_, p_i51105_3_);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param chestContainer A placeholder variable instance of ChestContainer
+	 * @param inventory A placeholder variable instance of PlayerInventory
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
+    public MixinChestScreen(ChestContainer chestContainer, PlayerInventory inventory, ITextComponent titleIn) {
+        super(chestContainer, inventory, titleIn);
     }
 
     @Override

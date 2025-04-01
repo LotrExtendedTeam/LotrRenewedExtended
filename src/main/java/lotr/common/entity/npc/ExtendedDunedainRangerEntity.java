@@ -72,7 +72,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     public float oBob;
     public float bob;
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public ExtendedDunedainRangerEntity(EntityType<? extends ExtendedDunedainRangerEntity> type, World w) {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeRangedSwitching());
@@ -156,13 +156,11 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     /**
      * New method that actually takes into account the additional damage factor of ExtendedBowItem items
-     * @param target
-     * @param charge
+     * @param target {@see LivingEntity} to attack
+     * @param charge The power at which to shoot
      */
     private void rangerArrowAttack(LivingEntity target, float charge) {
-        ItemStack heldItem = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, (item) -> {
-            return item instanceof BowItem;
-        }));
+        ItemStack heldItem = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, (item) -> item instanceof BowItem));
         ItemStack ammoItem = this.getProjectile(heldItem);
         AbstractArrowEntity arrow = ProjectileHelper.getMobArrow(this, ammoItem, charge);
         if (heldItem.getItem() instanceof BowItem) {

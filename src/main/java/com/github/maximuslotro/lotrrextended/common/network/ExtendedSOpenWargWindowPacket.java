@@ -2,7 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import lotr.common.util.client.ExtendedClientsideSeperatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -35,7 +36,7 @@ public class ExtendedSOpenWargWindowPacket {
 	}
 
 	public static void handle(ExtendedSOpenWargWindowPacket pPacket, Supplier<NetworkEvent.Context> context) {
-		ExtendedClientsideSeperatedScreenHandler.handleWargScreenOpen(pPacket);
+		ExtendedClientsideSeparatedScreenHandler.handleWargScreenOpen(pPacket);
 		context.get().setPacketHandled(true);
 	}
 

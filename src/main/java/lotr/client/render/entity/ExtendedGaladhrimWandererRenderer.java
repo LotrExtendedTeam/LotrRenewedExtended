@@ -8,14 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedGaladhrimWandererRenderer extends ExtendedAbstractElfWandererRenderer<ExtendedGaladhrimWandererEntity> {
 
-    private static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/elf/galadhrim");
+	private static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/elf/galadhrim");
 
-    public ExtendedGaladhrimWandererRenderer(EntityRendererManager mgr) {
-        super(mgr);
-    }
+	public ExtendedGaladhrimWandererRenderer(EntityRendererManager mgr) {
+		super(mgr);
+	}
 
-    @Override
+	@Override
 	public ResourceLocation getTextureLocation(ExtendedAbstractElfWandererEntity elf) {
-        return SKINS.getRandomSkin(elf);
-    }
+		return SKINS.getRandomSkin(elf);
+	}
 }

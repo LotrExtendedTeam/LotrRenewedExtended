@@ -1,6 +1,7 @@
 {
   "id": "lotrextended:gundabad_camp_prisoners_spawner",
   "spawner_type": "single_use_spawner",
+  "persistenceRequired": true,
   "randomDiscardChance": 40,
   "pools": [
     {

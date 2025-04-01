@@ -1,35 +1,51 @@
 package lotr.common.entity.npc;
 
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import lotr.common.entity.npc.ai.goal.*;
+
+import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtByTargetGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
+import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
 import lotr.common.util.ExtendedHiredUnitHelper;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.server.management.PreYggdrasilConverter;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
 
 public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements ExtendedHirableEntity {
 
@@ -46,13 +62,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     private static final DataParameter<Integer> KILLS = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.INT);
 
-    private static final DataParameter<Boolean> FOLLOWING = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-
-    private static final DataParameter<Boolean> STATIONARY = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> PATROLLING = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ALERT = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> GUARDING = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-
     private static final DataParameter<Float> TMP_LAST_HEALTH = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.FLOAT);
     private boolean tmpHealthLoaded = false;
     private boolean healthUpdateFromTmpHealth = false;
@@ -61,18 +70,8 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     private static final DataParameter<Boolean> EQUIPMENT_OPEN = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.BOOLEAN);
 
-    // Data Parameters for all equipment so it can be automatically synced
-    private static final DataParameter<ItemStack> EQUIPMENT_CHEST = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_HEAD = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_LEGS = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_FEET = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_MAINHAND = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.ITEM_STACK);
-    private static final DataParameter<ItemStack> EQUIPMENT_OFFHAND = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.ITEM_STACK);
-
-    // 9 inventory slots + 6 player equipment slots + 6 base equipment slots
-    private Inventory internalUnitInventory = new Inventory(21);
-    // Use to initiate equipment sync. This is done on creation, nbt load, and on inventory change
-    private boolean inventoryNeedsSetupSyncing = false;
+    private Inventory internalUnitInventory = makeUnitInventory();
+    private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
 
     public ExtendedHiredGundabadOrc(EntityType<? extends GundabadOrcEntity> type, World w) {
         super(type, w);
@@ -80,10 +79,11 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         setTame(false);
     }
 
-    public void tame(PlayerEntity p_193101_1_) {
+    @Override
+	public void tame(PlayerEntity p_193101_1_) {
         this.setTame(true);
         this.setOwnerUUID(p_193101_1_.getUUID());
-        this.setFollowing(true);
+        this.setOrders(ExtendedUnitOrders.PATROL_PLAYER);
     }
 
     @Override
@@ -97,38 +97,9 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public boolean isAlert() {
-        return this.entityData.get(ALERT);
-    }
-
-    @Override
-    public int getHiredUnitId() {
-        return getId();
-    }
-
-    @Override
-    public boolean isStationary() {
-        return this.entityData.get(STATIONARY);
-    }
-
-    @Override
-    public boolean isPatrolling() {
-        return this.entityData.get(PATROLLING);
-    }
-
-    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        // set initial entity base equipment based upon pools
-        // Also indicates if unit was spawned incorrectly if it spawns with no base equipment
-        internalUnitInventory.setItem(15, getUnitProfile().getEquipmentPools().getRandomHelmetStack(random));
-        internalUnitInventory.setItem(16, getUnitProfile().getEquipmentPools().getRandomChestplateStack(random));
-        internalUnitInventory.setItem(17, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(random));
-        internalUnitInventory.setItem(18, getUnitProfile().getEquipmentPools().getRandomBootsStack(random));
-        internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomWeaponStack(random));
-        internalUnitInventory.setItem(20, getUnitProfile().getEquipmentPools().getRandomOffhandStack(random));
-        // Needed to sync unit equipment on unit creation
-        inventoryNeedsSetupSyncing=true;
+        setupUnitEquipment();
         return spawnData;
     }
 
@@ -239,11 +210,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public boolean isFollowing() {
-        return this.entityData.get(FOLLOWING);
-    }
-
-    @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (hand == Hand.MAIN_HAND) {
             if (this.isAlliedTo(player)) {
@@ -256,10 +222,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         return super.mobInteract(player, hand);
     }
 
-    private void setPatrolling(boolean patrolling) {
-        this.entityData.set(PATROLLING, patrolling);
-    }
-
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -269,59 +231,10 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         this.entityData.define(CURRENT_XP, 0f);
         this.entityData.define(MAX_XP, 1f);
         this.entityData.define(KILLS, 0);
-        this.entityData.define(FOLLOWING, false);
-        this.entityData.define(GUARDING, false);
-        this.entityData.define(PATROLLING, false);
-        this.entityData.define(ALERT, false);
-        this.entityData.define(STATIONARY, false);
         this.entityData.define(BASE_HEALTH, 18);
         this.entityData.define(INVENTORY_OPEN, false);
         this.entityData.define(EQUIPMENT_OPEN, false);
         this.entityData.define(TMP_LAST_HEALTH, 18f);
-
-        // equipment slots
-        this.entityData.define(EQUIPMENT_CHEST, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_HEAD, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_LEGS, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_FEET, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_MAINHAND, ItemStack.EMPTY);
-        this.entityData.define(EQUIPMENT_OFFHAND, ItemStack.EMPTY);
-    }
-
-    @Override
-    public void updateHeadSlot(ItemStack stack) {
-        internalUnitInventory.setItem(9, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateChestSlot(ItemStack stack) {
-        internalUnitInventory.setItem(10, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateLegsSlot(ItemStack stack) {
-        internalUnitInventory.setItem(11, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateFeetSlot(ItemStack stack) {
-        internalUnitInventory.setItem(12, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateMainhandSlot(ItemStack stack) {
-        internalUnitInventory.setItem(13, stack);
-        inventoryNeedsSetupSyncing=true;
-    }
-
-    @Override
-    public void updateOffhandSlot(ItemStack stack) {
-        internalUnitInventory.setItem(14, stack);
-        inventoryNeedsSetupSyncing=true;
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -339,14 +252,10 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         }
     }
 
-    public void setFollowing(boolean following) {
-        this.entityData.set(FOLLOWING, following);
-    }
-
     @Override
     public boolean isAlliedTo(Entity p_184191_1_) {
         if (this.isTame()) {
-            LivingEntity livingentity = this.getOwner();
+            LivingEntity livingentity = this.getUnitOwner();
             if (p_184191_1_ == livingentity) {
                 return true;
             }
@@ -366,16 +275,9 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     		tag.putUUID("Owner", this.getOwnerUUID());
     	}
 
-    	// create temp NonNullList to save inventory to
-    	NonNullList<ItemStack> items = NonNullList.withSize(21, ItemStack.EMPTY);
-    	for (int i = 0; i < 21; i++) {
-    		ItemStack item = internalUnitInventory.getItem(i);
-    		items.set(i, item);
-    	}
-    	ItemStackHelper.saveAllItems(tag, items);
+        saveHiredUnitInventory(tag);
 
-    	tag.putBoolean("following", this.isFollowing());
-    	tag.putBoolean("stationary", this.isStationary());
+        tag.putInt("unit_orders", this.getOrders().getUnchangingIndex());
     	tag.putInt("mob_kills", this.getMobKills());
     	tag.putInt("xp_level", this.getExpLvl());
     	tag.putFloat("current_xp", this.getCurrentXp());
@@ -405,18 +307,8 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
             }
         }
 
-        NonNullList<ItemStack> itemsStacks = NonNullList.withSize(21, ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(tag, itemsStacks);
-        for (int i = 0; i < 21; i++) {
-            this.internalUnitInventory.setItem(i, itemsStacks.get(i));
-        }
+        loadHiredUnitInventory(tag);
 
-        // Need to setup equipment on NBT load
-        inventoryNeedsSetupSyncing = true;
-
-        if (tag.contains("following")) {
-            this.setFollowing(tag.getBoolean("following"));
-        }
         if (tag.contains("xp_level")) {
             this.setExpLvl(tag.getInt("xp_level"));
         }
@@ -438,8 +330,15 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
             tmpHealthLoaded = true;
         }
 
-        if (tag.contains("stationary")) {
-            this.setStationary(tag.getBoolean("stationary"));
+        if(tag.contains("unit_orders")) {
+        	unitOrders = ExtendedUnitOrders.getByUnchangingIndex(tag.getInt("unit_orders"));
+        }else {
+        	// Ensure update compatibility from versions 1.7.1->1.7.2
+        	if (tag.contains("following")&&tag.getBoolean("following")) {
+        		unitOrders = ExtendedUnitOrders.PATROL_PLAYER;
+            }else {
+            	unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+            }
         }
     }
 
@@ -457,7 +356,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         }
 
         checkStats();
-        synchronizeEquipment();
 
         if (tmpHealthLoaded && !healthUpdateFromTmpHealth) {
             this.setHealth(getTmpLastHealth());
@@ -469,43 +367,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     private float getTmpLastHealth() {
         return this.entityData.get(TMP_LAST_HEALTH);
-    }
-
-    /**
-     * This method is run every tick on both the client and server to synchronize equipment
-     * Server will only sync equipment when changes are detected (peformance reasons)
-     * Both will set the equipment slot values from their cached entityData values
-     */
-    public void synchronizeEquipment() {
-        // only sync inventory when it actualy needs syncing
-        if(!level.isClientSide && inventoryNeedsSetupSyncing) {
-            entityData.set(EQUIPMENT_HEAD, internalUnitInventory.getItem(9).isEmpty() ? internalUnitInventory.getItem(15) : internalUnitInventory.getItem(9));
-            entityData.set(EQUIPMENT_CHEST, internalUnitInventory.getItem(10).isEmpty() ? internalUnitInventory.getItem(16) : internalUnitInventory.getItem(10));
-            entityData.set(EQUIPMENT_LEGS, internalUnitInventory.getItem(11).isEmpty() ? internalUnitInventory.getItem(17) : internalUnitInventory.getItem(11));
-            entityData.set(EQUIPMENT_FEET, internalUnitInventory.getItem(12).isEmpty() ? internalUnitInventory.getItem(18) : internalUnitInventory.getItem(12));
-            entityData.set(EQUIPMENT_MAINHAND, internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(19) : internalUnitInventory.getItem(13));
-            entityData.set(EQUIPMENT_OFFHAND, internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(20) : internalUnitInventory.getItem(14));
-            inventoryNeedsSetupSyncing=false;
-        }
-        // Set the {@Link MobEntity} equipment fields here, since the entityData fields
-        // are the correct values between player and base equipment, as sorted above
-        setItemSlot(EquipmentSlotType.HEAD, entityData.get(EQUIPMENT_HEAD));
-        setItemSlot(EquipmentSlotType.CHEST, entityData.get(EQUIPMENT_CHEST));
-        setItemSlot(EquipmentSlotType.LEGS, entityData.get(EQUIPMENT_LEGS));
-        setItemSlot(EquipmentSlotType.FEET, entityData.get(EQUIPMENT_FEET));
-        setItemSlot(EquipmentSlotType.MAINHAND, entityData.get(EQUIPMENT_MAINHAND));
-        setItemSlot(EquipmentSlotType.OFFHAND, entityData.get(EQUIPMENT_OFFHAND));
-    }
-
-    @Override
-    @Nullable
-    public LivingEntity getOwner() {
-        try {
-            UUID uuid = this.getOwnerUUID();
-            return uuid == null ? null : this.level.getPlayerByUUID(uuid);
-        } catch (IllegalArgumentException illegalargumentexception) {
-            return null;
-        }
     }
 
     public void setOwnerUUID(@Nullable UUID p_184754_1_) {
@@ -526,8 +387,6 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
 
     @Override
     protected void dropCustomDeathLoot(DamageSource damageSource, int looting, boolean player) {
-        // Disabled due to NPCEntity using new logic we don't want for unit drops
-        //super.dropCustomDeathLoot(damageSource, looting, player);
         ExtendedHiredUnitHelper.dropCustomDeathLoot(this, this, random, internalUnitInventory, looting, player);
     }
 
@@ -550,18 +409,8 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
     }
 
     @Override
-    public float getHiredUnitEquipmentDropChance(EquipmentSlotType slotType) {
-    	return getEquipmentDropChance(slotType);
-    }
-
-    @Override
     public ResourceLocation getProfileLocation() {
         return ExtendedHiredUnitTypes.GUNDABAD_ORC;
-    }
-
-    @Override
-    public void setStationary(boolean stationary) {
-        this.entityData.set(STATIONARY, stationary);
     }
 
     @Override
@@ -580,5 +429,27 @@ public class ExtendedHiredGundabadOrc extends GundabadOrcEntity implements Exten
         this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new ExtendedHiredPlayerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+    }
+
+	@Override
+	public NPCEntity getThis() {
+		return this;
+	}
+
+
+	@Override
+	public ExtendedUnitOrders getOrders() {
+		return unitOrders;
+	}
+
+	@Override
+	public void setOrders(ExtendedUnitOrders orders) {
+		unitOrders = orders;
+	}
+
+    @Override
+	public void die(DamageSource p_70645_1_) {
+        ExtendedHiredUnitHelper.die(this.level, p_70645_1_, this);
+        super.die(p_70645_1_);
     }
 }

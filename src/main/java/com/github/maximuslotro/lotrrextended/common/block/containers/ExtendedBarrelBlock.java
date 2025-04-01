@@ -26,7 +26,7 @@ public abstract class ExtendedBarrelBlock extends ContainerBlock {
 
 	public ExtendedBarrelBlock(AbstractBlock.Properties p_i49996_1_) {
 		super(p_i49996_1_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.FALSE));
 	}
 
 	@SuppressWarnings("deprecation")

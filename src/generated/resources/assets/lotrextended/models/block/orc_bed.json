@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/bed",
   "textures": {
-    "particle": "lotrextended:entity/bed/orc_bed"
+    "particle": "minecraft:block/oak_planks"
   }
 }

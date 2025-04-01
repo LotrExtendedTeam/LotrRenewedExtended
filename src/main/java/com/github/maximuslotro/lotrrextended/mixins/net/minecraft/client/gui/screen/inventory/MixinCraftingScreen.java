@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.gui.sc
 
 import org.spongepowered.asm.mixin.Mixin;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedCoinExchangeScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
@@ -20,8 +20,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @Mixin(CraftingScreen.class)
 public abstract class MixinCraftingScreen extends ContainerScreen<WorkbenchContainer> implements IRecipeShownListener {
 
-    public MixinCraftingScreen(WorkbenchContainer container, PlayerInventory inventory, ITextComponent title) {
-        super(container, inventory, title);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param craftingContainer A placeholder variable instance of WorkbenchContainer
+	 * @param inventory A placeholder variable instance of PlayerInventory
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
+    public MixinCraftingScreen(WorkbenchContainer craftingContainer, PlayerInventory inventory, ITextComponent titleIn) {
+        super(craftingContainer, inventory, titleIn);
     }
 
     @Override

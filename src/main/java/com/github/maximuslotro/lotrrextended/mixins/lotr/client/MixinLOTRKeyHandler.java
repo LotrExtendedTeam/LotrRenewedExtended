@@ -31,33 +31,66 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 
+/**
+ * @reason need to hide special factions from rendering and stuff
+ * @Mixin (LOTRKeyHandler.class)
+ * */
 @Mixin(LOTRKeyHandler.class)
 public abstract class MixinLOTRKeyHandler{
 
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap = false)
 	public static KeyBinding KEY_BIND_MENU;
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap = false)
 	public static KeyBinding KEY_BIND_ALIGNMENT_PREVIOUS;
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap = false)
 	public static KeyBinding KEY_BIND_ALIGNMENT_NEXT;
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap = false)
 	public static KeyBinding KEY_BIND_ALIGNMENT_GROUP_PREVIOUS;
+	/**
+	 * @Shadow (remap = false)
+	 * @Final Mark the field to be essentially final
+	 * */
 	@Final
 	@Shadow(remap = false)
 	public static KeyBinding KEY_BIND_ALIGNMENT_GROUP_NEXT;
 
+	/**
+	 * An intractable map of keybindings to use for override logic
+	 * */
 	private static final Map<KeyBinding, ExtendedAlignmentKeyAction> ExtendedALIGNMENT_KEY_ACTIONS = ImmutableMap.of(KEY_BIND_ALIGNMENT_PREVIOUS, new ExtendedAlignmentKeyAction(-1, 0), KEY_BIND_ALIGNMENT_NEXT, new ExtendedAlignmentKeyAction(1, 0), KEY_BIND_ALIGNMENT_GROUP_PREVIOUS, new ExtendedAlignmentKeyAction(0, -1), KEY_BIND_ALIGNMENT_GROUP_NEXT, new ExtendedAlignmentKeyAction(0, 1));
 
+	/**
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private static int alignmentChangeTick;
 
 	/**
 	 * @author maximuslotro
 	 * @reason need to hide special factions from rendering and stuff
+	 * @Inject (method = "onKeyInput(Lnet/minecraftforge/client/event/InputEvent$KeyInputEvent;)V", at = @At("HEAD"), remap = false, cancellable = true)
+	 * @param event The captured KeyInputEvent from the parent handler
+	 * @param cl The CallbackInfo for canceling the event
 	 * */
 	@Inject(method = "onKeyInput(Lnet/minecraftforge/client/event/InputEvent$KeyInputEvent;)V", at = @At("HEAD"), remap = false, cancellable = true)
 	public void onKeyInput(KeyInputEvent event, CallbackInfo cl) {
@@ -74,7 +107,7 @@ public abstract class MixinLOTRKeyHandler{
 		}
 
 		if (mc.screen == null && mc.player != null && (action == 1 || action == 2) && alignmentChangeTick <= 0) {
-			Optional<ExtendedAlignmentKeyAction> optAlignmentAction = ExtendedALIGNMENT_KEY_ACTIONS.entrySet().stream().filter(e -> (e.getKey()).matches(key, scancode)).map(e -> e.getValue()).findFirst();
+			Optional<ExtendedAlignmentKeyAction> optAlignmentAction = ExtendedALIGNMENT_KEY_ACTIONS.entrySet().stream().filter(e -> (e.getKey()).matches(key, scancode)).map(Map.Entry::getValue).findFirst();
 
 			optAlignmentAction.ifPresent(alignmentAction -> {
 				FactionSettings factionSettings = FactionSettingsManager.clientInstance().getCurrentLoadedFactions();

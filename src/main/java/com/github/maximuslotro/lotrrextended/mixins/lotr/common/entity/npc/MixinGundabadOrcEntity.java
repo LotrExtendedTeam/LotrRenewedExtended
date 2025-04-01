@@ -14,9 +14,19 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 
+/**
+ * @reason Need to change Gundabad Orc equipment
+ * @Mixin (GundabadOrcEntity.class)
+ * */
 @Mixin(GundabadOrcEntity.class)
 public class MixinGundabadOrcEntity{
 
+	/**
+	 * @reason Need to add new equipment to the equipment pool
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * */
 	@Final
 	@Mutable
 	@Shadow(remap=false)
@@ -26,50 +36,81 @@ public class MixinGundabadOrcEntity{
 			LOTRItems.BRONZE_SPEAR, LOTRItems.MORDOR_SCIMITAR, LOTRItems.MORDOR_AXE, LOTRItems.MORDOR_PICKAXE, LOTRItems.MORDOR_DAGGER,
 			LOTRItems.MORDOR_SPEAR, ExtendedItems.BONE_SWORD, ExtendedItems.BONE_AXE, ExtendedItems.BONE_PICKAXE, ExtendedItems.BONE_DAGGER,
 			ExtendedItems.BONE_SPEAR);
+	/**
+	 * @reason Need to add new equipment to the equipment pool
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * */
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable HELMETS = SpawnEquipmentTable.of(
-		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
-		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
-		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
-		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
-		Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
-		LOTRItems.MORDOR_HELMET, ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.SILVER_WARG_HELMET);
+			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
+			LOTRItems.MORDOR_HELMET, ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.SILVER_WARG_HELMET);
+	/**
+	 * @reason Need to add new equipment to the equipment pool
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * */
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable CHESTPLATES = SpawnEquipmentTable.of(
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
-		Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
-		ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.SILVER_WARG_CHESTPLATE);
+			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
+			ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.SILVER_WARG_CHESTPLATE);
+	/**
+	 * @reason Need to add new equipment to the equipment pool
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * */
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable LEGGINGS = SpawnEquipmentTable.of(
-		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
-		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
-		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
-		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
-		Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
-		ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.SILVER_WARG_LEGGINGS);
+			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
+			ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.SILVER_WARG_LEGGINGS);
+	/**
+	 * @reason Need to add new equipment to the equipment pool
+	 * @Shadow (remap=false)
+	 * @Final Mark the field to be essentially final
+	 * @Mutable Tell Mixin that it can modify the Final field
+	 * */
 	@Final
 	@Mutable
 	@Shadow(remap=false)
 	private static final SpawnEquipmentTable BOOTS = SpawnEquipmentTable.of(
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
-		Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
-		ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.SILVER_WARG_BOOTS);
+			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.MORDOR_BOOTS,
+			ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.SILVER_WARG_BOOTS);
 
+	/**
+	 * @reason Replaced setting the shield with the an Gundabad Orc Shield
+	 * @ModifyArg (method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
+	 * @param regularItem The regular item to be set
+	 * @return A Gundabad orc shield instance
+	 * */
 	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
 	private IItemProvider injected(IItemProvider regularItem) {
-	  return ExtendedItems.GUNDABAD_SHIELD.get();
+		return ExtendedItems.GUNDABAD_SHIELD.get();
 	}
 }

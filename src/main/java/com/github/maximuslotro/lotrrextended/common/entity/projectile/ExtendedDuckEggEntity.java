@@ -35,7 +35,7 @@ public class ExtendedDuckEggEntity extends ProjectileItemEntity {
 
 	/**
 	 * Handles an entity event fired from
-	 * {@link net.minecraft.world.level.Level#broadcastEntityEvent}.
+	 * net.minecraft.world.level.Level#broadcastEntityEvent
 	 */
 	@Override
 	@OnlyIn(Dist.CLIENT)

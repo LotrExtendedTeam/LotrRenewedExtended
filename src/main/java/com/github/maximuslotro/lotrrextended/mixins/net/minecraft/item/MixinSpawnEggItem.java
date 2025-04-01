@@ -4,14 +4,11 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-import lotr.common.entity.npc.ExtendedHiredGundabadOrc;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import lotr.common.entity.npc.ExtendedHiredBreeGuard;
-import lotr.common.entity.npc.ExtendedHiredDunedainRangerEntity;
-import lotr.common.init.ExtendedEntities;
+import lotr.common.entity.npc.ExtendedHirableEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -78,17 +75,9 @@ public class MixinSpawnEggItem {
             Entity entity = entityType.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
             if (entity != null) {
                 // set player for hired units
-                if (entityType.equals(ExtendedEntities.HIRED_BREE_GUARD.get())) {
-                    ExtendedHiredBreeGuard guard = (ExtendedHiredBreeGuard) entity;
-                    guard.tame(Objects.requireNonNull(context.getPlayer()));
-                } else if (entityType.equals(ExtendedEntities.HIRED_GUNDABAD_ORC.get())) {
-                    ExtendedHiredGundabadOrc orc = (ExtendedHiredGundabadOrc) entity;
-                    orc.tame(Objects.requireNonNull(context.getPlayer()));
-                }else if (entityType.equals(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get())) {
-                	ExtendedHiredDunedainRangerEntity ranger = (ExtendedHiredDunedainRangerEntity) entity;
-                	ranger.tame(Objects.requireNonNull(context.getPlayer()));
-                }
-
+            	if(entity instanceof ExtendedHirableEntity) {
+            		((ExtendedHirableEntity)entity).tame(context.getPlayer());
+            	}
                 itemstack.shrink(1);
             }
 

@@ -5,9 +5,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedCoinExchangeScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.inventory.ExtendedCoinExchangeScreen;
 import lotr.common.util.CoinUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.DisplayEffectsScreen;
@@ -21,8 +21,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @Mixin(CreativeScreen.class)
 public abstract class MixinCreativeScreen extends DisplayEffectsScreen<CreativeScreen.CreativeContainer> {
 
-    public MixinCreativeScreen(CreativeScreen.CreativeContainer container, PlayerInventory inventory, ITextComponent title) {
-        super(container, inventory, title);
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param creativeContainer A placeholder variable instance of CreativeContainer
+	 * @param inventory A placeholder variable instance of PlayerInventory
+	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * */
+    public MixinCreativeScreen(CreativeScreen.CreativeContainer creativeContainer, PlayerInventory inventory, ITextComponent titleIn) {
+        super(creativeContainer, inventory, titleIn);
     }
 
     @Inject(method = "renderLabels", at = @At("TAIL"))

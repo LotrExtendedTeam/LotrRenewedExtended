@@ -50,7 +50,7 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 
 	public ExtendedStoneGrinderBlock(AbstractBlock.Properties p_i50000_1_) {
 		super(p_i50000_1_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.FALSE));
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 	@Override
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
-		return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(POWERED, Boolean.valueOf(pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())));
+		return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(POWERED, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos()));
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 
 	/**
 	 * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
-	 * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
+	 * this method is unrelated to randomTick and needsRandomTick, and will always be called regardless
 	 * of whether the block can receive random update ticks
 	 */
 	@OnlyIn(Dist.CLIENT)

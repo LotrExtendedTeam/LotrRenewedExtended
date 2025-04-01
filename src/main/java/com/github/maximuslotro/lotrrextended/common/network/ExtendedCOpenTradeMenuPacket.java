@@ -5,11 +5,11 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.init.ExtendedContainers;
-import lotr.common.inventory.ExtendedTradeContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -24,8 +24,6 @@ public class ExtendedCOpenTradeMenuPacket {
 
     private int traderId;
 
-    public ExtendedCOpenTradeMenuPacket() {}
-
     public ExtendedCOpenTradeMenuPacket(int traderId) {
         this.traderId = traderId;
     }
@@ -35,9 +33,7 @@ public class ExtendedCOpenTradeMenuPacket {
     }
 
     public static ExtendedCOpenTradeMenuPacket decode(PacketBuffer buf) {
-        ExtendedCOpenTradeMenuPacket packet = new ExtendedCOpenTradeMenuPacket();
-        packet.traderId = buf.readInt();
-        return packet;
+        return new ExtendedCOpenTradeMenuPacket(buf.readInt());
     }
 
     public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {
@@ -89,11 +85,9 @@ public class ExtendedCOpenTradeMenuPacket {
     	int[] finalBoughtOriginalQuantities = boughtOriginalQuantities;
     	int[] finalSoldOriginalQuantities = soldOriginalQuantities;
 
-    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> {
-    		ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
-    				finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
-    				soldItems);
-    	});
+    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
+                finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
+                soldItems));
 
     	context.get().setPacketHandled(true);
     }

@@ -25,7 +25,7 @@ public class ExtendedHiredSitGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return hirable.isStationary() || hirable.isInventoryOpen();
+        return !hirable.getOrders().doesOrderAllowsMovement() || hirable.isInventoryOpen();
     }
 
     @Override
@@ -37,12 +37,12 @@ public class ExtendedHiredSitGoal extends Goal {
         } else if (!this.entity.isOnGround()) {
             return false;
         } else {
-            LivingEntity livingentity = hirable.getOwner();
+            LivingEntity livingentity = hirable.getUnitOwner();
             if (livingentity == null) {
                 return true;
             } else {
                 return (!(entity.distanceToSqr(livingentity) < 144.0D) || livingentity.getLastHurtByMob() == null)
-                        && (hirable.isStationary() || hirable.isInventoryOpen() || hirable.isEquipmentOpen());
+                        && (!hirable.getOrders().doesOrderAllowsMovement() || hirable.isInventoryOpen() || hirable.isEquipmentOpen());
             }
         }
     }

@@ -2,15 +2,16 @@ package lotr.common.entity.npc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import lotr.common.util.representation.ExtendedTradeEntries;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.TranslationTextComponent;
 
 public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
@@ -42,41 +43,59 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
 	String getTraderName();
 
-	Inventory getDisplayInventory();
+	default Inventory getDisplayInventory() {
+		return TradeUtils.generateDisplayInventory(getSells(), getBuys());
+	}
 
 	List<ExtendedTrade> getBuys();
 	void setBuys(ArrayList<ExtendedTrade> trades);
 
-	int[] getBoughtPrices();
+	default int[] getBoughtPrices() {
+		return ExtendedTraderHelper.getBoughtPrices(getBuys());
+	}
 
-	int[] getBoughtQuantities();
+	default int[] getBoughtQuantities() {
+		return ExtendedTraderHelper.getBoughtQuantity(getBuys());
+	}
 
-	int[] getSoldPrices();
+	default int[] getSoldPrices() {
+		return ExtendedTraderHelper.getSoldPrices(getSells());
+	}
 
-	int[] getSoldQuantities();
+	default int[] getSoldQuantities() {
+		return ExtendedTraderHelper.getSoldQuantity(getSells());
+	}
 
-	int[] getSoldOriginalQuantities();
+	default int[] getSoldOriginalQuantities() {
+		return ExtendedTraderHelper.getSoldOriginalQuantity(getSells());
+	}
 
-	int[] getBoughtOriginalQuantities();
+	default int[] getBoughtOriginalQuantities() {
+		return ExtendedTraderHelper.getBoughtOriginalQuantity(getBuys());
+	}
 
 	List<ExtendedTrade> getSells();
 	void setSells(ArrayList<ExtendedTrade> trades);
 
 	boolean canTradeWith(PlayerEntity player);
 
-	boolean isWanderingTrader();
+    boolean isInteractingWithPlayer();
 
-	void setWanderingTrader(boolean isWanderingTrader);
+    Optional<UUID> getPlayerInteractingWith();
 
-	int getWanderingTraderTicksLeft();
+    void updatePlayerInteractingWith(UUID uuid);
 
-	void setWanderingTraderTicksLeft(int ticksLeft);
+    void removePlayerFromInteracting(PlayerEntity player);
 
-	TranslationTextComponent getDepartureLine(PlayerEntity player);
+    /**
+     * Gets if this trader is wandering. Should ONLY be set to true if instance of ExtendedWanderingTraderEntity
+     * Even then, ExtendedWanderingTraderEntity can be false when set from an egg.
+     * @return True if should handle NPC as wandering.
+     * */
+    default boolean isTraderWandering() {
+    	return false;
+    }
 
-	List<UUID> getEscortUUIDs();
-
-	void addEscort(UUID uuid);
-
-	NPCEntity createEscort();
+    int setLastTickCooldownReduced();
+    void getLastTickCooldownReduced(int cooldown);
 }

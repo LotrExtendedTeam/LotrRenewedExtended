@@ -37,7 +37,7 @@ public class ExtendedLOTRTorchBlock extends LOTRTorchBlock{
 
 	public ExtendedLOTRTorchBlock(ToIntFunction<BlockState> lightLevel, SoundType sound) {
 		super(Properties.of(Material.DECORATION).noCollission().strength(0.0F).lightLevel(lightLevel).sound(sound));
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.TRUE));
 	}
 
 	@Override
@@ -71,13 +71,13 @@ public class ExtendedLOTRTorchBlock extends LOTRTorchBlock{
 			if(blockState.getValue(LIT)) {
 				if(!player.getMainHandItem().isEmpty() && ExtendedTags.Items.TORCH_EXTINGUISHING.contains(player.getMainHandItem().getItem())) {
 					this.cycle(blockState, world, blockPos);
-					world.playSound((PlayerEntity)null, blockPos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 0.3F, 0.5F);
+					world.playSound(null, blockPos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 0.3F, 0.5F);
 					return ActionResultType.CONSUME;
 				}
 			}else {
 				if(!player.getMainHandItem().isEmpty() && ExtendedTags.Items.TORCH_LIGHTING.contains(player.getMainHandItem().getItem())) {
 					this.cycle(blockState, world, blockPos);
-					world.playSound((PlayerEntity)null, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 0.3F, 0.6F);
+					world.playSound(null, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 0.3F, 0.6F);
 					return ActionResultType.CONSUME;
 				}
 			}
