@@ -1,3 +1,9 @@
+(Beta 1.7.Tolkien)
+* Entities
+  * Added J. R. R. Tolkien
+* Misc
+  * Fixed several critical bugs that couldn't wait until 1.7.3
+  
 (Beta 1.7.2)
 * Blocks
   * Fixed Axes not mining Wattle and Daub blocks faster

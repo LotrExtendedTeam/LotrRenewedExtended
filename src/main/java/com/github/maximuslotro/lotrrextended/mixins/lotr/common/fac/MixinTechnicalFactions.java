@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.fac;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,6 +14,7 @@ import lotr.common.fac.AreasOfInfluence;
 import lotr.common.fac.Faction;
 import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
+import lotr.common.fac.FactionRank;
 import lotr.common.fac.FactionRegion;
 import lotr.common.fac.FactionSettings;
 import lotr.common.fac.FactionType;
@@ -49,6 +52,18 @@ public class MixinTechnicalFactions {
 		Faction faction = new Faction(facSettings, res, id, name, translateName, subtitle, translateSubtitle, region, ordering, color, mapSquare, isPlayableAlignmentFaction, types, civilianKills);
 		faction.setAreasOfInfluence(AreasOfInfluence.makeEmptyAreas(mapSettings, faction));
 		faction.setSpeechbankHomeBiomes(ImmutableList.of());
+		if(facPointer.equals(FactionPointers.UNALIGNED)) {
+			List<FactionRank> ranks = new ArrayList<>();
+			ranks.add(new FactionRank(faction, "neutral", 0, true, 0.0f, false));
+			ranks.add(new FactionRank(faction, "enemy", 1, true, Float.MIN_VALUE, false));
+			faction.setRanks(ranks);
+		}
+		if(facPointer.equals(FactionPointers.HOSTILE)) {
+			List<FactionRank> ranks = new ArrayList<>();
+			ranks.add(new FactionRank(faction, "neutral", 0, true, Float.MAX_VALUE-1, false));
+			ranks.add(new FactionRank(faction, "enemy", 1, true, Float.MIN_VALUE, false));
+			faction.setRanks(ranks);
+		}
 		return faction;
 	}
 }
