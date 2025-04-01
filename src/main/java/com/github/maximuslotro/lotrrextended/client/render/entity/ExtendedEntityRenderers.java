@@ -54,5 +54,6 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get(), ExtendedDunedainRangerCaptainRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 	}
 }

@@ -55,6 +55,11 @@ public class ExtendedTickHandlerServer {
 						levelData.incrementPlayerTimeInBarrows(world);
 					}
 
+					// run tolkien spawns every five minutes
+					if (world.getGameTime() % 6000L == 0L) {
+						levelData.checkForTolkienSpawns(world);
+					}
+
 					// wandering trader spawns should be done every tick
                 	levelData.checkForWanderingTraderSpawns(world);
 				}
