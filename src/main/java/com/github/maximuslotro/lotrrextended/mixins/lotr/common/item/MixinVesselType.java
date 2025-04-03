@@ -24,6 +24,7 @@ import net.minecraft.util.IItemProvider;
  * */
 @Mixin(VesselType.class)
 public class MixinVesselType {
+	@SuppressWarnings("target")
 	/**
 	 * @reason This value is the runtime array variable for the VesselType
 	 * @Shadow (remap = false)

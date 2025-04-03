@@ -26,7 +26,7 @@ import net.minecraftforge.fml.DatagenModLoader;
  * */
 @Mixin(ModBoatType.class)
 public class MixinModBoatType {
-
+	@SuppressWarnings("target")
 	/**
 	 * @reason This value is the runtime array variable for the ModBoatType
 	 * @Shadow (remap = false)

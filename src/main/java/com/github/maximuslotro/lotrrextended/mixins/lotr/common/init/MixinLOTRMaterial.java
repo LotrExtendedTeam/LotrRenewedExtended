@@ -27,6 +27,7 @@ import net.minecraftforge.common.Tags.Items;
 @Mixin(LOTRMaterial.class)
 public class MixinLOTRMaterial {
 
+	@SuppressWarnings("target")
 	/**
 	 * @reason This value is the runtime array variable for the LOTRMaterial
 	 * @Shadow (remap = false)
