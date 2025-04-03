@@ -6,10 +6,10 @@ import lotr.common.entity.npc.BreeManEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedBreePotterRenderer extends BreeManRenderer {
+public class ExtendedBreeSmithRenderer extends BreeManRenderer {
 	private static final GenderedRandomTextureVariants SKINS = new GenderedRandomTextureVariants("lotr", "textures/entity/bree/bree");
 
-	public ExtendedBreePotterRenderer(EntityRendererManager mgr) {
+	public ExtendedBreeSmithRenderer(EntityRendererManager mgr) {
 		super(mgr);
 		this.addLayer(new BreeManHeldCoinLayer(this));
 	}

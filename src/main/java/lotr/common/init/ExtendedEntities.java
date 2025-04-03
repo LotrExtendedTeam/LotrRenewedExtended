@@ -45,7 +45,18 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandSheriffEntity>> BREE_SHERIFF;
 	public static RegistryObject<EntityType<ExtendedBreelandFarmerEntity>> BREE_FARMER;
 	public static RegistryObject<EntityType<ExtendedBreelandPotterEntity>> BREE_POTTER;
+	public static RegistryObject<EntityType<ExtendedBreelandBakerEntity>> BREE_BAKER;
+	public static RegistryObject<EntityType<ExtendedBreelandButcherEntity>> BREE_BUTCHER;
+	public static RegistryObject<EntityType<ExtendedBreelandLumbermanEntity>> BREE_LUMBERMAN;
+	public static RegistryObject<EntityType<ExtendedBreelandStoneMasonEntity>> BREE_STONEMASON;
+	public static RegistryObject<EntityType<ExtendedBreelandInnkeeperEntity>> BREE_INNKEEPER;
+	public static RegistryObject<EntityType<ExtendedBreelandFloristEntity>> BREE_FLORIST;
+	public static RegistryObject<EntityType<ExtendedBreelandCheesemongerEntity>> BREE_CHEESEMONGER;
+	public static RegistryObject<EntityType<ExtendedBreelandLeatherworkerEntity>> BREE_LEATHERWORKER;
+	public static RegistryObject<EntityType<ExtendedBreelandBrewerEntity>> BREE_BREWER;
+
 	public static RegistryObject<EntityType<ExtendedHiredDunedainRangerEntity>> HIRED_DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
 	public static RegistryObject<EntityType<ExtendedTolkienEntity>> TOLKIEN;
 }

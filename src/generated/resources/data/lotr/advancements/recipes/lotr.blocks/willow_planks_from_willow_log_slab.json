@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:willow_planks_from_willow_log_slab"
+    ]
+  },
+  "criteria": {
+    "has_willow_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:willow_planks"
+          }
+        ]
+      }
+    },
+    "has_willow_log_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:willow_log_slab"
+          }
+        ]
+      }
+    },
+    "has_stripped_willow_log_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:stripped_willow_log_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:willow_planks_from_willow_log_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_willow_planks",
+      "has_willow_log_slab",
+      "has_stripped_willow_log_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

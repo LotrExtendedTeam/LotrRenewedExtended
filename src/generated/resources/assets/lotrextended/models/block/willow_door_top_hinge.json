@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "bottom": "lotrextended:block/willow_door_bottom",
+    "top": "lotrextended:block/willow_door_top"
+  }
+}

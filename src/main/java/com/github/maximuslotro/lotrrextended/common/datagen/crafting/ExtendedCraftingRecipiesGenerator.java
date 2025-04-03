@@ -157,6 +157,34 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.STRIPPED_PLUM_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_WOOD, ExtendedItems.STRIPPED_PLUM_LOG, null);
 		makeFallenLeavesRecipe(consumer, ExtendedBlocks.FALLEN_PLUM_LEAVES, ExtendedItems.PLUM_LEAVES, null);
+		//WILLOW
+		makeBeamSlabRecipe(consumer, ExtendedBlocks.WILLOW_BEAM,
+			ExtendedBlocks.WILLOW_BEAM_SLAB, ExtendedItems.WILLOW_LOG, null);
+		makeBoatRecipe(consumer, ExtendedItems.WILLOW_BOAT, ExtendedItems.WILLOW_PLANKS, null);
+		makeBranchRecipe(consumer, ExtendedBlocks.WILLOW_BRANCH, ExtendedItems.WILLOW_WOOD, null);
+		makeWoodenButtonRecipe(consumer, ExtendedItems.WILLOW_BUTTON, ExtendedItems.WILLOW_PLANKS, null);
+		makeWoodenDoorRecipe(consumer, ExtendedItems.WILLOW_DOOR, ExtendedItems.WILLOW_PLANKS, null);
+		makeWoodenFenceAndFenceGateRecipe(consumer, ExtendedBlocks.WILLOW_FENCE, ExtendedBlocks.WILLOW_FENCE_GATE,
+			ExtendedItems.WILLOW_PLANKS, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.WILLOW_LOG_SLAB, ExtendedItems.WILLOW_LOG, null);
+		makeWoodenPressurePlateRecipe(consumer, ExtendedBlocks.WILLOW_PRESSURE_PLATE, ExtendedItems.WILLOW_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.WILLOW_STAIRS, ExtendedBlocks.WILLOW_SLAB, ExtendedItems.WILLOW_PLANKS, null);
+		makeWoodenTrapdoorRecipe(consumer, ExtendedBlocks.WILLOW_TRAPDOOR, ExtendedItems.WILLOW_PLANKS, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.WILLOW_WOOD_STAIRS, ExtendedBlocks.WILLOW_WOOD_SLAB, ExtendedItems.WILLOW_WOOD, null);
+		makeSignRecipe(consumer, ExtendedBlocks.WILLOW_SIGN, ExtendedBlocks.WILLOW_WALL_SIGN, ExtendedItems.WILLOW_PLANKS, null);
+		makeWoodRecipe(consumer, ExtendedBlocks.WILLOW_WOOD, ExtendedItems.WILLOW_LOG, null);
+		makePlanksRecipe(consumer, ExtendedBlocks.WILLOW_PLANKS, ExtendedBlocks.WILLOW_LOG,
+			ExtendedTags.Items.WILLOW_LOGS, null);
+		makePlanksFromBlocksRecipe(consumer, ExtendedItems.WILLOW_PLANKS, ExtendedItems.WILLOW_LOG_SLAB,
+			ExtendedItems.STRIPPED_WILLOW_LOG_SLAB, ExtendedItems.WILLOW_BRANCH, ExtendedItems.STRIPPED_WILLOW_BRANCH,
+			ExtendedItems.WILLOW_WOOD_SLAB, ExtendedItems.STRIPPED_WILLOW_WOOD_SLAB,
+			ExtendedItems.WILLOW_WOOD_STAIRS, ExtendedItems.STRIPPED_WILLOW_WOOD_STAIRS, null);
+		makeBranchRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_BRANCH, ExtendedItems.STRIPPED_WILLOW_WOOD, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB, ExtendedItems.STRIPPED_WILLOW_LOG, null);
+		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS, ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB,
+			ExtendedItems.STRIPPED_WILLOW_WOOD, null);
+		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_WOOD, ExtendedItems.STRIPPED_WILLOW_LOG, null);
+		makeFallenLeavesRecipe(consumer, ExtendedBlocks.FALLEN_WILLOW_LEAVES, ExtendedItems.WILLOW_LEAVES, null);
 		//ROHAN
 		GENERATEDRECIPES.add(ExtendedItems.ROHAN_BEAM.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.ROHAN_BEAM.get(), 3, LOTRRecipes.ROHAN_CRAFTING)
@@ -2142,6 +2170,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		}
 		GENERATEDRECIPES.add(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_WILLOW_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_LEAVES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.WILLOW_VINES.get().getRegistryName().getPath());
 	}
 
 	@Override

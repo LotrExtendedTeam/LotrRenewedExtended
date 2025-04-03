@@ -420,8 +420,18 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.HIRED_GUNDABAD_ORC, orcGundabad);
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
+		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
+		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
+		makeEntity(ExtendedEntities.BREE_LUMBERMAN, manBree);
+		makeEntity(ExtendedEntities.BREE_STONEMASON, manBree);
+		makeEntity(ExtendedEntities.BREE_INNKEEPER, manBree);
+		makeEntity(ExtendedEntities.BREE_FLORIST, manBree);
+		makeEntity(ExtendedEntities.BREE_CHEESEMONGER, manBree);
+		makeEntity(ExtendedEntities.BREE_LEATHERWORKER, manBree);
+		makeEntity(ExtendedEntities.BREE_BREWER, manBree);
 		makeEntity(ExtendedEntities.HIRED_DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
+		makeEntity(ExtendedEntities.BREE_SMITH, manBree);
 		add(ExtendedEntities.TOLKIEN.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(0, 3))

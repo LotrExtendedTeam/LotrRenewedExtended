@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:willow_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:willow_boat"
+  }
+}

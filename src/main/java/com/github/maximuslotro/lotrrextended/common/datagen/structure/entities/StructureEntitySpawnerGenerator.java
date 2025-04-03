@@ -82,7 +82,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).setPoolRolls(2).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ANIMAL);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.GUNDABAD_WARG.get(), 100).build(), 2, 3, true, 26, 8)
 		.setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_WARG);
-		// Bree
+		// Bree Hamlets
 		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FAMILY_SPAWNER);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.BREE_HAMLET_ANIMALS);
@@ -93,5 +93,30 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		single(ExtendedEntities.BREE_POTTER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_HAMLET_POTTER);
 		single(ExtendedEntities.BREE_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FARMER);
 		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE);
+		// Bree Villages
+		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FAMILY_SPAWNER);
+		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_ANIMALS);
+		persisted(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.BREE_GUARD.get(), 20).addPool(LOTREntities.BREE_MAN.get(), 100)
+				.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 24, 8, -4, 14).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_AREA_SPAWNER);
+		single(ExtendedEntities.BREE_SHERIFF.get()).setRespawnOnDeath().setHomeInfo(false, 12).setRandomDiscardChance(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_GUARD_HOUSE_SHERIFF);
+		single(ExtendedEntities.BREE_POTTER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_POTTER);
+		single(ExtendedEntities.BREE_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FARMER);
+		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_GUARD_HOUSE);
+		single(ExtendedEntities.BREE_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_SMITH);
+		single(ExtendedEntities.BREE_BAKER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_BAKER);
+		single(ExtendedEntities.BREE_BUTCHER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_BUTCHER);
+		single(ExtendedEntities.BREE_STONEMASON.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STONEMASON);
+		single(ExtendedEntities.BREE_LUMBERMAN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_LUMBERMAN);
+		single(ExtendedEntities.BREE_INNKEEPER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INNKEEPER);
+		single(ExtendedEntities.BREE_FLORIST.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FLORIST);
+		single(ExtendedEntities.BREE_CHEESEMONGER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_CHEESEMONGER);
+		single(ExtendedEntities.BREE_LEATHERWORKER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_LEATHERWORKER);
+		single(MultiSpawnType.Builder.multi()
+			.addPool(ExtendedEntities.BREE_FLORIST.get(), 1).addPool(ExtendedEntities.BREE_STONEMASON.get(), 1)
+			.addPool(ExtendedEntities.BREE_LUMBERMAN.get(), 1).addPool(ExtendedEntities.BREE_FLORIST.get(), 1)
+			.addPool(ExtendedEntities.BREE_BAKER.get(), 1).addPool(ExtendedEntities.BREE_BREWER.get(), 1).build()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STALL);
+
 	}
 }

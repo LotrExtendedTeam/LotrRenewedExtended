@@ -6,6 +6,8 @@
     "lotr:plum_branch",
     "lotr:stripped_banana_branch",
     "lotr:stripped_chestnut_branch",
-    "lotr:stripped_plum_branch"
+    "lotr:stripped_plum_branch",
+    "lotr:stripped_willow_branch",
+    "lotr:willow_branch"
   ]
 }

@@ -93,7 +93,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.CHESTNUT_LOGS, ExtendedTags.Items.CHESTNUT_LOGS);
 		this.copy(ExtendedTags.Blocks.BANANA_LOGS, ExtendedTags.Items.BANANA_LOGS);
 		this.copy(ExtendedTags.Blocks.PLUM_LOGS, ExtendedTags.Items.PLUM_LOGS);
-
+		this.copy(ExtendedTags.Blocks.WILLOW_LOGS, ExtendedTags.Items.WILLOW_LOGS);
+		
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN, ExtendedTags.Items.STORAGE_BLOCKS_GALVORN);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON, ExtendedTags.Items.STORAGE_BLOCKS_GILDED_IRON);

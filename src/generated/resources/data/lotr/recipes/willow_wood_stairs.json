@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:willow_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:willow_wood_stairs",
+    "count": 4
+  }
+}

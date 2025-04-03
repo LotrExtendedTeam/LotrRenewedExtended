@@ -12,6 +12,10 @@
     "lotr:stripped_chestnut_log_slab",
     "lotr:stripped_chestnut_wood_slab",
     "lotr:stripped_plum_log_slab",
-    "lotr:stripped_plum_wood_slab"
+    "lotr:stripped_plum_wood_slab",
+    "lotr:stripped_willow_log_slab",
+    "lotr:stripped_willow_wood_slab",
+    "lotr:willow_log_slab",
+    "lotr:willow_wood_slab"
   ]
 }

@@ -37,7 +37,7 @@ public class ExtendedBarrowWightEntity extends NPCEntity {
 		this.spawnRequiresDarkness = true;
 	}
 
-	public static MutableAttribute regAttrs() {
+	public static MutableAttribute createAttributes() {
 		return NPCEntity.registerBaseNPCAttributes()
 			.add(Attributes.MAX_HEALTH, 70.0D)
 			.add(Attributes.FOLLOW_RANGE, 40.0D)

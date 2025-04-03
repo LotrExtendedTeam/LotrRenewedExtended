@@ -65,6 +65,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> CHESTNUT_LOGS = BlockTags.bind("lotrextended:chestnut_logs");
 		public static final ITag.INamedTag<Block> BANANA_LOGS = BlockTags.bind("lotrextended:banana_logs");
 		public static final ITag.INamedTag<Block> PLUM_LOGS = BlockTags.bind("lotrextended:plum_logs");
+		public static final ITag.INamedTag<Block> WILLOW_LOGS = BlockTags.bind("lotrextended:willow_logs");
 
 		public static final ITag.INamedTag<Block> LARGE_FLOWER_POT_COMPATABLE = BlockTags.bind("lotrextended:large_flower_pot_compatable");
 
@@ -157,6 +158,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> CHESTNUT_LOGS = ItemTags.bind("lotrextended:chestnut_logs");
 		public static final ITag.INamedTag<Item> BANANA_LOGS = ItemTags.bind("lotrextended:banana_logs");
 		public static final ITag.INamedTag<Item> PLUM_LOGS = ItemTags.bind("lotrextended:plum_logs");
+		public static final ITag.INamedTag<Item> WILLOW_LOGS = ItemTags.bind("lotrextended:willow_logs");
 
 		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS = ItemTags.bind("lotrextended:weapon_rack_additional_items");
 		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_EXCLUDE = ItemTags.bind("lotrextended:weapon_rack_excluded_items");

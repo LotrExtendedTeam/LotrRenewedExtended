@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "pattern": [
+    "I#I",
+    "I#I"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:willow_planks"
+    },
+    "I": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:willow_fence_gate"
+  }
+}

@@ -110,7 +110,7 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
             //  Barrel of Dwarven Ale (Strong)      120-200
     });
 
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
         return DwarfEntity.regAttrs().add(Attributes.ARMOR, 0.0);
     }
 

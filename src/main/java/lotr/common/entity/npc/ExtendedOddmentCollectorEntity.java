@@ -104,7 +104,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     });
 
     // give them the 5 armor points they have in Legacy
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
         return AbstractMannishEntity.regAttrs().add(Attributes.ARMOR, 5.0);
     }
 

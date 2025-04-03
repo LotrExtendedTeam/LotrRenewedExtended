@@ -39,7 +39,16 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_VILLAGE_FARM = register("chests/bree_village_farm");
 	public static final ResourceLocation BREE_VILLAGE_GARDENING = register("chests/bree_village_gardening");
 	public static final ResourceLocation BREE_VILLAGE_POTTER = register("chests/bree_village_potter");
-
+	public static final ResourceLocation BREE_VILLAGE_SMITHY = register("chests/bree_village_smithy");
+	public static final ResourceLocation BREE_VILLAGE_BUTCHER = register("chests/bree_village_butcher");
+	public static final ResourceLocation BREE_VILLAGE_CHEESEMONGER = register("chests/bree_village_cheesemonger");
+	public static final ResourceLocation BREE_VILLAGE_LEATHERWORKER = register("chests/bree_village_leatherworker");
+	public static final ResourceLocation BREE_VILLAGE_BAKERY = register("chests/bree_village_bakery");
+	public static final ResourceLocation BREE_VILLAGE_MANOR = register("chests/bree_village_manor");
+	public static final ResourceLocation BREE_VILLAGE_STALLS = register("chests/bree_village_stalls");
+	public static final ResourceLocation BREE_VILLAGE_INN = register("chests/bree_village_inn");
+	public static final ResourceLocation BREE_VILLAGE_INN_CUSTOMER_CHEST = register("chests/bree_village_inn_customer_chest");
+	
 	public static final ResourceLocation BREE_TOWN_HOUSE = register("chests/bree_town_house");
 	public static final ResourceLocation BREE_TOWN_FARM = register("chests/bree_town_farm");
 	public static final ResourceLocation BREE_TOWN_SMITHY = register("chests/bree_town_smithy");
@@ -64,12 +73,16 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_MAN_PLATES = register("plates/bree_man");
 	public static final ResourceLocation BREE_HOBBIT_PLATES = register("plates/bree_hobbit");
 
+	public static final ResourceLocation BREE_CHEESEMONGER_PLATES = register("plates/bree_cheesemonger");
+	public static final ResourceLocation BREE_BUTCHER_PLATES = register("plates/bree_butcher");
+
 	public static final ResourceLocation HOBBIT_WEAPONRACKS = register("weaponracks/hobbit");
 	public static final ResourceLocation RANGER_WEAPONRACKS = register("weaponracks/ranger");
 	public static final ResourceLocation GUNDABAD_WEAPONRACKS = register("weaponracks/gundabad");
 	public static final ResourceLocation BARROW_DOWN_WEAPONRACKS = register("weaponracks/barrow_down");
 	public static final ResourceLocation BREE_MAN_WEAPONRACKS = register("weaponracks/bree_man");
 	public static final ResourceLocation BREE_HOBBIT_WEAPONRACKS = register("weaponracks/bree_hobbit");
+	public static final ResourceLocation BREE_SMITHY_WEAPONRACKS = register("weaponracks/bree_smithy");
 
 	public static void init() {}
 

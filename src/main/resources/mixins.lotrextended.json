@@ -101,6 +101,8 @@
 		"lotr.client.gui.inv.MixinContainerScreenHelper",
 		"lotr.client.gui.inv.MixinFactionCraftingScreen",
 		"lotr.client.gui.inv.MixinPouchScreen",
+		"lotr.client.render.entity.MixinAbstractOrcRenderer",
+		"lotr.client.render.entity.MixinUrukRenderer",
 		"lotr.client.render.entity.model.armor.MixinLOTRArmorModels",
 		"lotr.client.render.model.MixinHandheldWrapperModel",
 		"lotr.client.render.model.MixinHandheldWrapperModelJavaPatch",

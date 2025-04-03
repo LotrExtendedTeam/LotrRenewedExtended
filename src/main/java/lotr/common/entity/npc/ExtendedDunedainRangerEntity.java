@@ -303,7 +303,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         return NPCNameGenerators.GONDOR;
     }
 
-    public static AttributeModifierMap.MutableAttribute regAttrs() {
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
         return NPCEntity.registerBaseNPCAttributes()
                 .add(Attributes.MAX_HEALTH, 25.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
