@@ -53,6 +53,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_VILLAGE_STONEMASON_CHEST = registerChest("bree_village_stonemason");
 	public static final ResourceLocation BREE_VILLAGE_LUMBERMAN_CHEST = registerChest("bree_village_lumberman");
 	public static final ResourceLocation BREE_VILLAGE_TREASURE_CHEST = registerChest("bree_village_treasure");
+	public static final ResourceLocation BREE_VILLAGE_STABLE_CHEST = registerChest("bree_village_stable");
 
 	//public static final ResourceLocation BREE_TOWN_HOUSE_CHEST = registerChest("bree_town_house");
 	//public static final ResourceLocation BREE_TOWN_FARM_CHEST = registerChest("bree_town_farm");
