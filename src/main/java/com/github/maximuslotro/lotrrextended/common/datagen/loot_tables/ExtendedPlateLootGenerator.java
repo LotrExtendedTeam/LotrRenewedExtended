@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
@@ -19,6 +21,7 @@ import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedPlateLootGenerator extends ChestLootTables  {
+	protected static final List<ResourceLocation> madePlates = new ArrayList<>();
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
@@ -171,5 +174,6 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 
 	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation t, LootPool.Builder pool){
 		consumer.accept(t, LootTable.lootTable().withPool(pool));
+		madePlates.add(t);
 	}
 }

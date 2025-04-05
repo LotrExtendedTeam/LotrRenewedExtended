@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
@@ -19,6 +21,7 @@ import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
+	protected static final List<ResourceLocation> madeRacks = new ArrayList<>();
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
@@ -154,5 +157,6 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 
 	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation loc, LootPool.Builder pool){
 		consumer.accept(loc, LootTable.lootTable().withPool(pool));
+		madeRacks.add(loc);
 	}
 }

@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
@@ -14,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
@@ -32,6 +35,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	private final Map<ResourceLocation, ExtendedStructureEntitySpawner> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
 	protected final String modId;
+	protected static final List<ResourceLocation> madeSpawners = new ArrayList<>();
 
 	StructureEntitySpawnersProvider(DataGenerator pDataGenerator, String pModId) {
 		this.dataGenerator = pDataGenerator;
@@ -59,6 +63,11 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	         }
 	      };
 		makeStructureSpawnPools(consumer);
+		for(ResourceLocation location : ExtendedSpawners.getSpawners()) {
+			if(!madeSpawners.contains(location)) {
+				System.out.println("Didn't make a sepcified Structure Spawner type: "+location.toString());
+			}
+		}
 		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.");
 	}
 
@@ -81,6 +90,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	}
 
 	private static Path createPath(Path pPath, ExtendedStructureEntitySpawner spawner) {
+		madeSpawners.add(spawner.getId());
 		return pPath.resolve("data/" + spawner.getId().getNamespace()+ "/entity_structure_spawners/" + spawner.getId().getPath() + ".json");
 	}
 

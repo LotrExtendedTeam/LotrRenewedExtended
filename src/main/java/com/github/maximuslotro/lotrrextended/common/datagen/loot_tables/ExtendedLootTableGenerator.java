@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 
@@ -26,6 +27,27 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 
 	@Override
 	protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationtracker) {
+		for(ResourceLocation location : ExtendedLootTables.getLocations()) {
+			boolean found = false;
+			if(ExtendedChestLootGenerator.madeChests.contains(location)) {
+				found = true;
+			}
+			if(ExtendedDrinkLootGenerator.madeKegs.contains(location)) {
+				found = true;
+			}
+			if(ExtendedDrinkLootGenerator.madeVessels.contains(location)) {
+				found = true;
+			}
+			if(ExtendedPlateLootGenerator.madePlates.contains(location)) {
+				found = true;
+			}
+			if(ExtendedWeaponRackLootGenerator.madeRacks.contains(location)) {
+				found = true;
+			}
+			if(!found) {
+				System.out.println("Didn't make a sepcified Loot-Table: "+location.toString());
+			}
+		}
 		ExtendedLog.info("Made "+map.size()+" Loot-Tables!");
 	}
 

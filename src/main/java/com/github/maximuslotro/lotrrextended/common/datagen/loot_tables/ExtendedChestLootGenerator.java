@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
@@ -18,12 +20,13 @@ import net.minecraft.loot.RandomValueRange;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedChestLootGenerator extends ChestLootTables  {
+	protected static final List<ResourceLocation> madeChests = new ArrayList<>();
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
 		//TODO add cooked venison, corn, cooked corn, leek, leek soup, turnip, cooked turnip, marzipan, chocolate marzipan,
 		//ale, cider, perry, cherry liqueur, apple juice,
-		consumer.accept(ExtendedLootTables.HOBBIT_LARDER, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.HOBBIT_LARDER_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 6))
 						.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(100).setRange(1, 3))
@@ -79,7 +82,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.HOBBIT_TREASURE, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.HOBBIT_TREASURE_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(1, 2))
 						.add(EItemLootEntry.lootItem(Items.GOLD_INGOT).setWeight(100).setRange(1, 4))
@@ -96,7 +99,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.HOBBIT_LIVING, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.HOBBIT_LIVING_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 6))
 						.add(EItemLootEntry.lootItem(Items.PAPER).setWeight(100).setRange(2, 8))
@@ -114,7 +117,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.RANGER_CAMP_FARM_WHEAT, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_CAMP_FARM_WHEAT_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 5))
 						.add(EItemLootEntry.lootItem(Items.WHEAT).setWeight(100).setRange(4, 10))
@@ -131,7 +134,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HOE.get()).setWeight(20).setDamageRange(0.25F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.IRON_HOE).setWeight(10).setDamageRange(0.25F, 0.85F).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.RANGER_CAMP_FARM_FLAX, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_CAMP_FARM_FLAX_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 5))
 						.add(EItemLootEntry.lootItem(LOTRItems.FLAX.get()).setWeight(100).setRange(3, 8))
@@ -150,7 +153,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HOE.get()).setWeight(20).setDamageRange(0.25F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.IRON_HOE).setWeight(10).setDamageRange(0.25F, 0.85F).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.RANGER_CAMP_SMITHY, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_CAMP_SMITHY_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 5))
 						.add(EItemLootEntry.lootItem(Items.IRON_INGOT).setWeight(30).setRange(1, 3))
@@ -180,7 +183,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.RANGER_CAMP_SUPPLIES, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_CAMP_SUPPLIES_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 5))
 						.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(75).setRange(3, 6))
@@ -206,7 +209,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_SHIELD.get()).setWeight(30).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(50).setDamageRange(0.15F, 0.7F).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.RANGER_WACHTOWER, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_WACHTOWER_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 5))
 						.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(75).setRange(3, 6))
@@ -236,7 +239,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(60).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(7, 9))));
 
-		consumer.accept(ExtendedLootTables.RANGER_HOUSE_CHEST, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_HOUSE_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 5))
 						.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(70).setDamageRange(0.15F, 0.85F).setExactly(1))
@@ -288,7 +291,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.RANGER_HOUSE_BARREL, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.RANGER_HOUSE_BARREL, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(50).setDamageRange(0.15F, 0.75F).setExactly(1))
@@ -323,7 +326,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(50).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))));
 
-		consumer.accept(ExtendedLootTables.ARNOR_TOWER_RUIN, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.ARNOR_TOWER_RUIN_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 5))
 						.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).setRange(1, 3))
@@ -366,7 +369,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))));
 
-		consumer.accept(ExtendedLootTables.GENERIC_RUIN, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.GENERIC_RUIN_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 7))
 						.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).setRange(1, 4))
@@ -434,7 +437,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 3))));
 
-		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_SMITHY, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_SMITHY_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 5))
 						.add(EItemLootEntry.lootItem(Items.IRON_INGOT).setWeight(30).setRange(1, 3))
@@ -467,7 +470,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_WOOD, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_WOOD_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 4))
 						.add(EItemLootEntry.lootItem(Items.STICK).setWeight(70).setRange(3, 8))
@@ -483,7 +486,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_WOOL, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_WOOL_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.FUR.get()).setWeight(80).setRange(2, 5))
@@ -498,7 +501,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.GUNDABAD_CAMP_SUPPLIES, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_SUPPLIES_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(2, 4))
 						.add(EItemLootEntry.lootItem(LOTRItems.MAN_FLESH.get()).setWeight(75).setRange(3, 6))
@@ -586,7 +589,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.ORC_BOW.get()).setWeight(40).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(ExtendedItems.GUNDABAD_URUK_BOW.get()).setWeight(35).setDamageRange(0.15F, 0.75F).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.BARROW_DOWN_CHEST, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BARROW_DOWN_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(3, 6))
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(200).setRange(1, 20))
@@ -641,7 +644,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 
 		//TODO add leeks/soup, turnip/soup, mush pie, cook deer, ale, cider, perry, mead, apple juice
-		consumer.accept(ExtendedLootTables.BREE_HAMLET_HOUSE, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_HAMLET_HOUSE_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))
@@ -703,7 +706,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
-		consumer.accept(ExtendedLootTables.BREE_HAMLET_GUARD_HOUSE, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_HAMLET_GUARD_HOUSE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 					.setRolls(RandomValueRange.between(4, 6))
 					.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))
@@ -777,7 +780,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.BREE_HAMLET_FARM, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_HAMLET_FARM_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))
@@ -840,7 +843,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 
-		consumer.accept(ExtendedLootTables.BREE_HAMLET_POTTER, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_HAMLET_POTTER_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))
@@ -886,60 +889,48 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_FLOWER_POT.get()).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_VILLAGE_FARM, LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-					.setRolls(RandomValueRange.between(4, 6))
-					.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
-		consumer.accept(ExtendedLootTables.BREE_VILLAGE_GARDENING, LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-					.setRolls(RandomValueRange.between(4, 6))
-					.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
-		consumer.accept(ExtendedLootTables.BREE_VILLAGE_GUARD_HOUSE, LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-					.setRolls(RandomValueRange.between(4, 6))
-					.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
-		consumer.accept(ExtendedLootTables.BREE_VILLAGE_HOUSE, LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-					.setRolls(RandomValueRange.between(4, 6))
-					.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
-		consumer.accept(ExtendedLootTables.BREE_VILLAGE_POTTER, LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-					.setRolls(RandomValueRange.between(4, 6))
-					.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
-
-		consumer.accept(ExtendedLootTables.BREE_TOWN_FARM, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_FARM_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_TOWN_HOUSE, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_HOUSE_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_TOWN_INN, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_INN_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_TOWN_INN_CUSTOMER_CHEST, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_INN_CUSTOMER_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_TOWN_SMITHY, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_SMITHY_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_TOWN_SHERIF, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_SHERIF_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
 
-		consumer.accept(ExtendedLootTables.BREE_TOWN_SHERIF_CONFISCATED_GOODS, LootTable.lootTable()
+		make(consumer, ExtendedLootTables.BREE_TOWN_SHERIF_CONFISCATED_GOODS_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(4, 6))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(100).setRange(1, 4))));
+	}
+
+	public LootTable.Builder makeTable(){
+		return LootTable.lootTable();
+	}
+
+	public void make(BiConsumer<ResourceLocation, LootTable.Builder> consumer, ResourceLocation loc, LootTable.Builder table){
+		consumer.accept(loc, table);
+		madeChests.add(loc);
 	}
 }

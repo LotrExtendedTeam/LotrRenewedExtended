@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
@@ -17,6 +19,8 @@ import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedDrinkLootGenerator extends ChestLootTables  {
+	protected static final List<ResourceLocation> madeVessels = new ArrayList<>();
+	protected static final List<ResourceLocation> madeKegs = new ArrayList<>();
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
@@ -59,5 +63,7 @@ public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 	public void make(BiConsumer<ResourceLocation, Builder> consumer, ResourceLocation keg, ResourceLocation vessel, LootPool.Builder pool){
 		consumer.accept(keg, LootTable.lootTable().withPool(pool));
 		consumer.accept(vessel, LootTable.lootTable().withPool(pool));
+		madeVessels.add(vessel);
+		madeKegs.add(keg);
 	}
 }
