@@ -1,0 +1,36 @@
+{
+  "id": "lotrextended:bree_village_inn_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 10,
+    "lowerYvalue": -8,
+    "horizontal_bounds": 15
+  },
+  "spawn_area": {
+    "topYvalue": 10,
+    "lowerYvalue": -2,
+    "horizontal_bounds": 8
+  },
+  "inside_spawning": true,
+  "setHomeOnSpawn": true,
+  "homeRadius": 15,
+  "persistenceRequired": true,
+  "spawnCap": 8,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 5,
+      "entity_types": [
+        {
+          "weight": 1,
+          "entity_type": "lotr:bree_man"
+        },
+        {
+          "weight": 1,
+          "entity_type": "lotr:bree_hobbit"
+        }
+      ]
+    }
+  ]
+}

@@ -117,6 +117,10 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 			.addPool(ExtendedEntities.BREE_FLORIST.get(), 1).addPool(ExtendedEntities.BREE_STONEMASON.get(), 1)
 			.addPool(ExtendedEntities.BREE_LUMBERMAN.get(), 1).addPool(ExtendedEntities.BREE_FLORIST.get(), 1)
 			.addPool(ExtendedEntities.BREE_BAKER.get(), 1).addPool(ExtendedEntities.BREE_BREWER.get(), 1).build()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STALL);
+		persisted(MultiSpawnType.Builder.multi()
+			.addPool(LOTREntities.BREE_MAN.get(), 1).addPool(LOTREntities.BREE_HOBBIT.get(), 1)
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INN);
+
 
 	}
 }

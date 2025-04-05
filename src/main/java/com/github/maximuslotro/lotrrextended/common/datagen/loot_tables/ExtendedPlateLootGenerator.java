@@ -16,6 +16,7 @@ import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTable.Builder;
+import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.StandaloneLootEntry;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
@@ -162,10 +163,47 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE.get()))
 				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
 				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get())));
+
+		// Add corn bread, mushroom pie
+		make(consumer, ExtendedLootTables.BREE_BAKERY_PLATES, makePool()
+				.add(addEntry(Items.BREAD, 1, 2))
+				.add(addEntry(Items.PUMPKIN_PIE))
+				.add(addEntry(ExtendedItems.CHEESE_SLICE.get(), 1, 3))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE.get(), 1, 3))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get(), 1, 2))
+				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get())));
+
+		// Add deer raw and cooked.
+		make(consumer, ExtendedLootTables.BREE_BUTCHER_PLATES, makePool()
+			.add(addEntry(Items.PORKCHOP, 1, 2))
+			.add(addEntry(Items.CHICKEN, 1, 2))
+			.add(addEntry(Items.BEEF, 1, 2))
+			.add(addEntry(Items.PORKCHOP, 1, 2))
+			.add(addEntry(Items.MUTTON, 1, 2))
+			.add(addEntry(Items.RABBIT, 1, 2))
+			.add(addEntry(ExtendedItems.RAW_DUCK.get(), 1, 2))
+			.add(addEntry(Items.COOKED_PORKCHOP, 1, 4))
+			.add(addEntry(Items.COOKED_CHICKEN, 1, 4))
+			.add(addEntry(Items.COOKED_BEEF, 1, 4))
+			.add(addEntry(Items.COOKED_PORKCHOP, 1, 4))
+			.add(addEntry(Items.COOKED_MUTTON, 1, 4))
+			.add(addEntry(Items.COOKED_RABBIT, 1, 4))
+			.add(addEntry(ExtendedItems.COOKED_DUCK.get(), 1, 4)));
+
+		make(consumer, ExtendedLootTables.BREE_CHEESEMONGER_PLATES, makePool()
+			.add(addEntry(ExtendedItems.CHEESE_CURDS.get(), 1, 5))
+			.add(addEntry(ExtendedItems.CHEESE_SLICE.get(), 1, 3))
+			.add(addEntry(ExtendedItems.CHEESE_WHEEL.get()))
+			.add(addEntry(ExtendedItems.AGED_CHEESE_SLICE.get(), 1, 3))
+			.add(addEntry(ExtendedItems.AGED_CHEESE_WHEEL.get())));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){
 		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(ConstantRange.exactly(1)));
+	}
+
+	public StandaloneLootEntry.Builder<?> addEntry(Item item, int min, int max){
+		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(RandomValueRange.between(min, max)));
 	}
 
 	public LootPool.Builder makePool(){

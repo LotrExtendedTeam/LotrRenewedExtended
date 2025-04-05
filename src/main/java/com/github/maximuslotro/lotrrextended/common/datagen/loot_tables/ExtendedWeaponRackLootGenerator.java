@@ -145,6 +145,45 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 		make(consumer, ExtendedLootTables.BREE_HOBBIT_WEAPONRACKS, makePool()
 				.add(addEntry(LOTRItems.IRON_DAGGER.get(), 1, 0.3f, 0.7f)));
 
+		make(consumer, ExtendedLootTables.BREE_BUTCHER_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.WOODEN_DAGGER.get(), 80, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.STONE_DAGGER.get(), 80, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 100, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.IRON_DAGGER.get(), 90, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.IRON_SPEAR.get(), 90, 0.2f, 0.65f)));
+
+		make(consumer, ExtendedLootTables.BREE_SMITHY_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.BRONZE_AXE.get(), 70, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_PICKAXE.get(), 70, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_HOE.get(), 70, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_SHOVEL.get(), 70, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_SWORD.get(), 100, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 100, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 100, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_AXE, 60, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_PICKAXE, 60, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_HOE, 60, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_SHOVEL, 60, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_SWORD, 90, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.IRON_DAGGER.get(), 90, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.IRON_SPEAR.get(), 90, 0.2f, 0.65f)));
+
+		make(consumer, ExtendedLootTables.BREE_FARMER_WEAPONRACKS, makePool()
+			.add(addEntry(Items.WOODEN_AXE, 60, 0.3f, 0.7f))
+			.add(addEntry(Items.WOODEN_SHOVEL, 70, 0.3f, 0.7f))
+			.add(addEntry(Items.WOODEN_HOE, 90, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.WOODEN_DAGGER.get(), 40, 0.3f, 0.7f))
+			.add(addEntry(Items.STONE_AXE, 60, 0.3f, 0.7f))
+			.add(addEntry(Items.STONE_SHOVEL, 70, 0.3f, 0.7f))
+			.add(addEntry(Items.STONE_HOE, 90, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.STONE_DAGGER.get(), 40, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BRONZE_AXE.get(), 50, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_SHOVEL.get(), 60, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_HOE.get(), 80, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 30, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_HOE, 70, 0.2f, 0.65f))
+			.add(addEntry(Items.IRON_SHOVEL, 50, 0.2f, 0.65f)));
+
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float min, float max){

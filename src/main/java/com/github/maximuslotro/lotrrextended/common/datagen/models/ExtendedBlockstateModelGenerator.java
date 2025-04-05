@@ -1141,7 +1141,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	private void genVineBlock(ExtendedVineBlock vine, String name, boolean isMordor) {
-		if(isMordor)
 		registeredBlocks.add(vine);
 		ModelFile m_u;
 		ModelFile m_1;
