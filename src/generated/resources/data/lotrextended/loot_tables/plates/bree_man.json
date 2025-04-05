@@ -293,6 +293,26 @@
             }
           ],
           "name": "lotr:roasted_chestnut"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:cheese_slice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:aged_cheese_slice"
         }
       ]
     }

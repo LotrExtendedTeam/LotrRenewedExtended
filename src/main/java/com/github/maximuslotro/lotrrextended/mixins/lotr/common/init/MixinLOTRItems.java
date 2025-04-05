@@ -946,7 +946,7 @@ public class MixinLOTRItems {
 
 		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(LOTRItemGroup.TAB_FOOD)));
 		ExtendedItems.RAW_DUCK = regItemB("raw_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.DUCK)));
-		ExtendedItems.COOKED_DUCK = regItemB("cooked_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.COOKED_DUCK)));
+		ExtendedItems.DUCK = regItemB("cooked_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.COOKED_DUCK)));
 
 		ExtendedItems.SKULL_GOBLET = regEmptyVesselBlockItemD(ExtendedBlocks.SKULL_GOBLET, VesselType.valueOf("SKULL_GOBLET"));
 		ExtendedItems.BANANA_BEER = regItemB("banana_beer", () -> VesselDrinkItem.newAlcohol(0.5F, 4, 0.6F));

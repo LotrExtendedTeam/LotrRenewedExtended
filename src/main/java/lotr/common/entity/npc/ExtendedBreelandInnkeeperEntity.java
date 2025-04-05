@@ -51,7 +51,7 @@ public class ExtendedBreelandInnkeeperEntity extends ExtendedBreelandTraderEntit
 			// Food
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_BEEF), 7), 
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 6),
-			new ExtendedTradeEntry(new ItemStack(ExtendedItems.COOKED_DUCK.get()), 6),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.DUCK.get()), 6),
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 7), 
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_PORKCHOP), 7),
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_RABBIT), 6), 

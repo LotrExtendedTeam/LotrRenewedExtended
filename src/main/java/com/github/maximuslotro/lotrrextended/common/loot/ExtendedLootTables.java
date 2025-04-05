@@ -54,13 +54,13 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_VILLAGE_LUMBERMAN_CHEST = registerChest("bree_village_lumberman");
 	public static final ResourceLocation BREE_VILLAGE_TREASURE_CHEST = registerChest("bree_village_treasure");
 
-	public static final ResourceLocation BREE_TOWN_HOUSE_CHEST = registerChest("bree_town_house");
-	public static final ResourceLocation BREE_TOWN_FARM_CHEST = registerChest("bree_town_farm");
-	public static final ResourceLocation BREE_TOWN_SMITHY_CHEST = registerChest("bree_town_smithy");
-	public static final ResourceLocation BREE_TOWN_INN_CHEST = registerChest("bree_town_inn");
-	public static final ResourceLocation BREE_TOWN_INN_CUSTOMER_CHEST = registerChest("bree_town_inn_customer_chest");
-	public static final ResourceLocation BREE_TOWN_SHERIF_CHEST = registerChest("bree_town_sherif");
-	public static final ResourceLocation BREE_TOWN_SHERIF_CONFISCATED_GOODS_CHEST = registerChest("bree_town_sherif_confiscated_goods");
+	//public static final ResourceLocation BREE_TOWN_HOUSE_CHEST = registerChest("bree_town_house");
+	//public static final ResourceLocation BREE_TOWN_FARM_CHEST = registerChest("bree_town_farm");
+	//public static final ResourceLocation BREE_TOWN_SMITHY_CHEST = registerChest("bree_town_smithy");
+	//public static final ResourceLocation BREE_TOWN_INN_CHEST = registerChest("bree_town_inn");
+	//public static final ResourceLocation BREE_TOWN_INN_CUSTOMER_CHEST = registerChest("bree_town_inn_customer_chest");
+	//public static final ResourceLocation BREE_TOWN_SHERIF_CHEST = registerChest("bree_town_sherif");
+	//public static final ResourceLocation BREE_TOWN_SHERIF_CONFISCATED_GOODS_CHEST = registerChest("bree_town_sherif_confiscated_goods");
 
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");

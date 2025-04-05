@@ -39,7 +39,7 @@ public class ExtendedBreelandStoneMasonEntity extends ExtendedBreelandTraderEnti
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_CHICKEN), 3),
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_MUTTON), 3),
 			new ExtendedTradeEntry(new ItemStack(Items.COOKED_RABBIT), 3),
-			new ExtendedTradeEntry(new ItemStack(ExtendedItems.COOKED_DUCK.get()), 3),
+			new ExtendedTradeEntry(new ItemStack(ExtendedItems.DUCK.get()), 3),
 			new ExtendedTradeEntry(new ItemStack(LOTRItems.PIPEWEED.get(), 2), 1),
 	});
 

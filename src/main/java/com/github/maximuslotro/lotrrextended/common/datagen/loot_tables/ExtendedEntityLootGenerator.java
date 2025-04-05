@@ -167,7 +167,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(genQuickyItemBuilder(LOTRItems.PEAR.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(LOTRItems.LETTUCE.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.PLUM.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.DUCK.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 1).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
 		gundabadUrukEquipment = makeQuickyBasePart("gundabad_uruk_equipment", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)

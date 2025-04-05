@@ -1437,12 +1437,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath()));
 
 		// Duck
-		GENERATEDRECIPES.add(ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.DUCK.get().getRegistryName().getPath());
 		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.RAW_DUCK.get()),
-			ExtendedItems.COOKED_DUCK.get(), 0.35F, 200)
-		.unlockedBy("has_"+ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.COOKED_DUCK.get()))
+			ExtendedItems.DUCK.get(), 0.35F, 200)
+		.unlockedBy("has_"+ExtendedItems.DUCK.get().getRegistryName().getPath(), has(ExtendedItems.DUCK.get()))
 		.unlockedBy("has_"+ExtendedItems.RAW_DUCK.get().getRegistryName().getPath(), has(ExtendedItems.RAW_DUCK.get()))
-		.save(consumer, lotrLoc(ExtendedItems.COOKED_DUCK.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedItems.DUCK.get().getRegistryName().getPath()));
 
 		makeCookingRecipes(consumer, "smoking", IRecipeSerializer.SMOKING_RECIPE, 100);
 		makeCookingRecipes(consumer, "campfire_cooking", IRecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600);
@@ -1450,7 +1450,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 	private void makeCookingRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, CookingRecipeSerializer<?> pCookingSerializer, int pCookingTime) {
 		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.CONKER.get()), ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, pCookingTime, pCookingSerializer).unlockedBy("has_conker", has(ExtendedItems.CONKER.get())).save(pFinishedRecipeConsumer, "cooked_conker_from_" + pCookingMethod);
-		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.RAW_DUCK.get()), ExtendedItems.COOKED_DUCK.get(), 0.35F, pCookingTime, pCookingSerializer).unlockedBy("has_raw_duck", has(ExtendedItems.RAW_DUCK.get())).save(pFinishedRecipeConsumer, "cooked_duck_from_" + pCookingMethod);
+		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.RAW_DUCK.get()), ExtendedItems.DUCK.get(), 0.35F, pCookingTime, pCookingSerializer).unlockedBy("has_raw_duck", has(ExtendedItems.RAW_DUCK.get())).save(pFinishedRecipeConsumer, "cooked_duck_from_" + pCookingMethod);
 
 	}
 

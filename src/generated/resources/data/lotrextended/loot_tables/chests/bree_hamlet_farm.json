@@ -25,21 +25,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:iron_ingot"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 15,
           "functions": [
             {
@@ -82,20 +67,6 @@
             }
           ],
           "name": "minecraft:charcoal"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:gold_ingot"
         },
         {
           "type": "minecraft:item",
@@ -413,21 +384,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 20,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "lotr:bronze_ingot"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 25,
           "functions": [
             {
@@ -440,21 +396,6 @@
             }
           ],
           "name": "lotr:bronze_nugget"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "lotr:silver_ingot"
         },
         {
           "type": "minecraft:item",
