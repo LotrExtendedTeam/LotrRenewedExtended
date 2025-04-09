@@ -373,11 +373,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					}
 				}
 				if(block.getValue().get() instanceof ExtendedMossBlock) {
-					registeredBlocks.add(block.getValue().get());
-					ModelFile cubeModel = models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath(), lotrExtendedLoc("block/tinted_cube_all"), "all", lotrExtendedLoc("block/"+block.getKey()));
-					ModelFile display = models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_display", lotrExtendedLoc("block/"+block.getKey()+"_display"));
-					simpleBlock(block.getValue().get(), cubeModel);
-					itemModels().getBuilder("lotr:"+block.getValue().get().getRegistryName().getPath()).parent(display);
+					genTintedMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedStoneBlock) {
@@ -1882,6 +1878,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(block, Configuredblock, ConfiguredblockMir, Configuredblock180, ConfiguredblockMir180);
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(blockModel);
 	}
+
+	private void genTintedMirroredBlockItem(Block block, ResourceLocation location) {
+		registeredBlocks.add(block);
+		ModelFile blockModel = models().singleTexture("lotrextended:"+block.getRegistryName().getPath(), lotrExtendedLoc("block/tinted_cube_all"), "all", location);
+		ModelFile blockModelMir = models().singleTexture("lotrextended:"+block.getRegistryName().getPath()+"_mirrored", lotrExtendedLoc("block/tinted_cube_mirrored_all"), "all", location);
+		ModelFile displayModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_display", lotrExtendedLoc(location.getPath()+"_display"));
+		ConfiguredModel Configuredblock = new ConfiguredModel(blockModel);
+		ConfiguredModel ConfiguredblockMir = new ConfiguredModel(blockModel, 0, 180, false);
+		ConfiguredModel Configuredblock180 = new ConfiguredModel(blockModelMir);
+		ConfiguredModel ConfiguredblockMir180 = new ConfiguredModel(blockModelMir, 0, 180, false);
+		simpleBlock(block, Configuredblock, ConfiguredblockMir, Configuredblock180, ConfiguredblockMir180);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(displayModel);
+	}
+
 	private void genFireTextureBlock(Block block) {
 		registeredBlocks.add(block);
 		ModelFile floor0 = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_floor0", "minecraft:block/template_fire_floor")

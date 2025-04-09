@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
-      "model": "lotrextended:block/moss_block"
-    }
+    "": [
+      {
+        "model": "lotrextended:block/moss_block"
+      },
+      {
+        "model": "lotrextended:block/moss_block",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/moss_block_mirrored"
+      },
+      {
+        "model": "lotrextended:block/moss_block_mirrored",
+        "y": 180
+      }
+    ]
   }
 }
