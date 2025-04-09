@@ -466,7 +466,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getKey().equals("barren_dirt")) {
-					genExistingMcBlock(block.getValue().get(), "dirt");
+					genMirroredBlockItem(block.getValue().get(), mcLoc("block/dirt"));
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
