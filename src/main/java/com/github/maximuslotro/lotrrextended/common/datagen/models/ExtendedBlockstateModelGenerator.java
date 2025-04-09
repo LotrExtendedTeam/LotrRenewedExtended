@@ -146,8 +146,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
+		// Override vanilla dirt models to add random texture rotation
 		genMirroredBlockItem(Blocks.DIRT, mcLoc("block/dirt"), false);
 		genMirroredBlockItem(Blocks.COARSE_DIRT, mcLoc("block/coarse_dirt"), false);
+		
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			try {
 				if(registeredBlocks.contains(block.getValue().get())) {continue;}
@@ -156,7 +158,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
-					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
+					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {

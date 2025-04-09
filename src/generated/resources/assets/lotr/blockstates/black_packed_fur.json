@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
-      "model": "lotrextended:block/black_packed_fur"
-    }
+    "": [
+      {
+        "model": "lotrextended:block/black_packed_fur"
+      },
+      {
+        "model": "lotrextended:block/black_packed_fur",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/black_packed_fur_mirrored"
+      },
+      {
+        "model": "lotrextended:block/black_packed_fur_mirrored",
+        "y": 180
+      }
+    ]
   }
 }
