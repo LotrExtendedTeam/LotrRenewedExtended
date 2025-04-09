@@ -335,7 +335,11 @@ public class ExtendedTradeContainer extends Container {
             this.broadcastChanges(); // Notify the container that changes have occurred
             return carriedItem;
         }
-
+        // TODO add better validation for allowable move types
+        if (clickType == ClickType.QUICK_CRAFT || clickType == ClickType.QUICK_MOVE || clickType == ClickType.SWAP || clickType == ClickType.THROW) {
+        	return ItemStack.EMPTY;
+        }
+        // Allow clone as it only works in creative anyways
         return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
     }
 
