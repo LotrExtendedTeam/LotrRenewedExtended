@@ -246,7 +246,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
-					genRandomCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
