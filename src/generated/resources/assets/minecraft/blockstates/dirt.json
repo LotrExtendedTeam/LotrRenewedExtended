@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotrextended:block/dirt"
+      },
+      {
+        "model": "lotrextended:block/dirt",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/dirt_mirrored"
+      },
+      {
+        "model": "lotrextended:block/dirt_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}

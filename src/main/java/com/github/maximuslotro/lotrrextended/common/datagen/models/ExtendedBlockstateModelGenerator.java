@@ -92,6 +92,7 @@ import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.BambooBlock;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CactusBlock;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.ChainBlock;
@@ -145,6 +146,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
+		genMirroredBlockItem(Blocks.DIRT, mcLoc("block/dirt"), false);
+		genMirroredBlockItem(Blocks.COARSE_DIRT, mcLoc("block/coarse_dirt"), false);
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			try {
 				if(registeredBlocks.contains(block.getValue().get())) {continue;}
@@ -382,7 +385,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						continue;
 					}
 					if(block.getKey().equals("scorched_stone")) {
-						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
 						continue;
 					}
 					if(block.getKey().equals("gneiss")) {
@@ -462,7 +465,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getKey().equals("barren_dirt")) {
-					genMirroredBlockItem(block.getValue().get(), mcLoc("block/dirt"));
+					genMirroredBlockItem(block.getValue().get(), mcLoc("block/dirt"), true);
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
@@ -1867,7 +1870,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(intModel);
 	}
 
-	private void genMirroredBlockItem(Block block, ResourceLocation location) {
+	private void genMirroredBlockItem(Block block, ResourceLocation location, boolean makeItem) {
 		registeredBlocks.add(block);
 		ModelFile blockModel = models().cubeAll("lotrextended:"+block.getRegistryName().getPath(), location);
 		ModelFile blockModelMir = models().singleTexture("lotrextended:"+block.getRegistryName().getPath()+"_mirrored", mcLoc("block/cube_mirrored_all"), "all", location);
@@ -1876,7 +1879,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ConfiguredModel Configuredblock180 = new ConfiguredModel(blockModelMir);
 		ConfiguredModel ConfiguredblockMir180 = new ConfiguredModel(blockModelMir, 0, 180, false);
 		simpleBlock(block, Configuredblock, ConfiguredblockMir, Configuredblock180, ConfiguredblockMir180);
-		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(blockModel);
+		if(makeItem) {
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(blockModel);
+		}
 	}
 
 	private void genTintedMirroredBlockItem(Block block, ResourceLocation location) {
