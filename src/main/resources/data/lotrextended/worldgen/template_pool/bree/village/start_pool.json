@@ -7,6 +7,15 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_start",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/roads/bree_village_road_2_start",
 				"processors": "minecraft:empty"
 			}
