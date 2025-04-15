@@ -8,7 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 
-public class TradeSellButton extends ImageButton {
+public class ExtendedTradeSellButton extends ImageButton {
 
     private final int xTexStart;
     private final int yTexStart;
@@ -18,7 +18,7 @@ public class TradeSellButton extends ImageButton {
     private static final ResourceLocation TEXTURE = new ResourceLocation("lotr:gui/trade.png");
     private ExtendedTradeContainer container;
 
-    public TradeSellButton(int x, int y, ExtendedTradeContainer container, IPressable pressable) {
+    public ExtendedTradeSellButton(int x, int y, ExtendedTradeContainer container, IPressable pressable) {
         super(x, y, 18, 18, 176, 18, 18, TEXTURE, 280, 280, pressable);
         this.container = container;
         xTexStart = 176;

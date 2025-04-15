@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.TradeSellButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTradeSellButton;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTradeSellItemsPacket;
@@ -193,7 +193,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         this.guiLeft = (this.width - this.imageWidth) / 2;
         this.guiTop = (this.height - this.imageHeight) / 2;
 
-        addButton(new TradeSellButton( guiLeft + 79,  guiTop + 164, container, btn -> sellItems()));
+        addButton(new ExtendedTradeSellButton( guiLeft + 79,  guiTop + 164, container, btn -> sellItems()));
     }
 
     private void sellItems() {

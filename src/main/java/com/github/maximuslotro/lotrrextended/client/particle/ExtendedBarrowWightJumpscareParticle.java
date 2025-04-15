@@ -22,13 +22,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class BarrowWightJumpscareParticle extends Particle {
+public class ExtendedBarrowWightJumpscareParticle extends Particle {
     private final Model model = new ExtendedBarrowWightModel<>(0.0f);
     private final RenderType renderType = RenderType.entityTranslucent(new ResourceLocation("lotrextended:textures/particle/scare_wight_1.png"));
     private final float angle;
 
 
-    private BarrowWightJumpscareParticle(ClientWorld clientWorld, double pX, double pY, double pZ) {
+    private ExtendedBarrowWightJumpscareParticle(ClientWorld clientWorld, double pX, double pY, double pZ) {
         super(clientWorld, pX, pY, pZ);
         this.gravity = 0.0F;
         this.lifetime = 60;
@@ -66,7 +66,7 @@ public class BarrowWightJumpscareParticle extends Particle {
 
         @Override
 		public Particle createParticle(BasicParticleType pType, ClientWorld pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new BarrowWightJumpscareParticle(pLevel, pX, pY, pZ);
+            return new ExtendedBarrowWightJumpscareParticle(pLevel, pX, pY, pZ);
         }
     }
 }

@@ -160,6 +160,7 @@ public class ExtendedJigsawManager {
 			MutableBoundingBox mutableboundingbox = villagePiece.getBoundingBox();
 			int jigsawPieceRelativeBottomYValue = mutableboundingbox.y0;
 
+			ExtendedLog.info("Trying to place for piece: "+jigsawpiece.toString());
 			mainStrLoop:
 				// Loop through each JigsawBlock present in this piece
 				for(Template.BlockInfo parentPieceJigsawBlockInfo : jigsawpiece.getShuffledJigsawBlocks(this.structureManager, blockpos, rotation, this.random)) {
@@ -170,6 +171,7 @@ public class ExtendedJigsawManager {
 					int chunkGeneratorUsableSpawwnHeight = -1;
 					ResourceLocation jigsawPoolResourceLocation = new ResourceLocation(parentPieceJigsawBlockInfo.nbt.getString("pool"));
 					Optional<JigsawPattern> jigsawPool = this.pools.getOptional(jigsawPoolResourceLocation);
+					ExtendedLog.info("Trying for JigsawBlock pool: "+jigsawPoolResourceLocation);
 					// Check if the selected JigsawBLock has a valid pool and the pool size is not empty or the pool is JigsawPatternRegistry.EMPTY
 					if (jigsawPool.isPresent() && (jigsawPool.get().size() != 0 || Objects.equals(jigsawPoolResourceLocation, JigsawPatternRegistry.EMPTY.location()))) {
 						ResourceLocation jigsawPoolFallbackResourceLocation = jigsawPool.get().getFallback();
@@ -198,12 +200,17 @@ public class ExtendedJigsawManager {
 
 							jigsawPiecesConnectingPool.addAll(jigsawFallbackPool.get().getShuffledTemplates(this.random));
 							// Loop through each piece until find one that can be spawned
+							ExtendedLog.info("Found "+jigsawPiecesConnectingPool.size()+" pieces in pool");
 							for(JigsawPiece connectingPoolJigsawPiece : jigsawPiecesConnectingPool) {
 								if (connectingPoolJigsawPiece == EmptyJigsawPiece.INSTANCE) {
 									break;
 								}
+								if (connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
+									ExtendedLog.info("Trying piece/file "+((SingleJigsawPiece)connectingPoolJigsawPiece).toString());
+								}
 								// Try spawning the piece in different directions until it works
 								for(Rotation rotation1 : Rotation.getShuffled(this.random)) {
+									//if(enableLogging) {ExtendedLog.info("Trying rotation: "+rotation1.toString());}
 									List<Template.BlockInfo> connectingPieceJigsawRandom = connectingPoolJigsawPiece.getShuffledJigsawBlocks(this.structureManager, BlockPos.ZERO, rotation1, this.random);
 									MutableBoundingBox rotatedBBforJigsawRandom = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, BlockPos.ZERO, rotation1);
 									int expansionHackModifierValue;
@@ -224,10 +231,18 @@ public class ExtendedJigsawManager {
 									} else {
 										expansionHackModifierValue = 0;
 									}
+									if(connectingPieceJigsawRandom.size()==0) {
+										ExtendedLog.warn("JigsawBlock tried to attach piece without jigsaw blocks: "+connectingPoolJigsawPiece.toString());
+									}
 									// Try spawning the piece at a random connecting Jigsaw point
 									for(Template.BlockInfo connectingPieceJigsawBlockInfo : connectingPieceJigsawRandom) {
 										// Check if the selected JigsawBlock can connect to the parent piece JigsawBlock
+										//if (enableLogging && connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
+										//	ExtendedLog.info("Trying to Attach "+((SingleJigsawPiece)connectingPoolJigsawPiece).toString());
+										//}
 										if (JigsawBlock.canAttach(parentPieceJigsawBlockInfo, connectingPieceJigsawBlockInfo)) {
+											ExtendedLog.info("JigsawBlock attach Succeeded");
+
 											BlockPos blockpos3 = connectingPieceJigsawBlockInfo.pos;
 											BlockPos blockpos4 = new BlockPos(blockpos2.getX() - blockpos3.getX(), blockpos2.getY() - blockpos3.getY(), blockpos2.getZ() - blockpos3.getZ());
 											MutableBoundingBox mutableboundingbox2 = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, blockpos4, rotation1);
@@ -258,6 +273,7 @@ public class ExtendedJigsawManager {
 											}
 											// Check if bounding box for structure accepts the piece
 											if (!VoxelShapes.joinIsNotEmpty(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
+												ExtendedLog.info("JigsawBlock hitbox Succeeded");
 												childPieceStructureShapeInterpolated.setValue(VoxelShapes.joinUnoptimized(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3)), IBooleanFunction.ONLY_FIRST));
 												int pieceGroundLevelData = villagePiece.getGroundLevelDelta();
 												int connectingPoolJigsawPieceGroundLevelData;
@@ -300,7 +316,11 @@ public class ExtendedJigsawManager {
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
 												}
 												continue mainStrLoop;
+											}else {
+												ExtendedLog.info("JigsawBlock hitbox failed");
 											}
+										}else {
+											ExtendedLog.info("JigsawBlock attach failed");
 										}
 									}
 								}

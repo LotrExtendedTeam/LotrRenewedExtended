@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended;
 
-import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
+import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -68,8 +68,8 @@ public class LotrExtendedMod{
 	public LotrExtendedMod() {
 		ExtendedLog.make();
 		INSTANCE = this;
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> LotrExtendedModClient::staticClientSetup);
-		DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> LotrExtendedModServer::staticServerSetup);
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExtendedClientProxy::staticClientSetup);
+		DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> ExtendedServerProxy::staticServerSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);

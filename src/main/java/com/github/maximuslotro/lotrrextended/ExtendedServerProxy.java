@@ -6,16 +6,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 
-public class LotrExtendedModServer {
+public class ExtendedServerProxy {
 	public static HackyChairDatabase hackyChairManager;
 
 	public static void staticServerSetup() {
-		new LotrExtendedModServer();
+		new ExtendedServerProxy();
 	}
 
-	public static LotrExtendedModServer INSTANCE;
+	public static ExtendedServerProxy INSTANCE;
 
-	public LotrExtendedModServer() {
+	public ExtendedServerProxy() {
 		INSTANCE = this;
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::extendedServerStopping);

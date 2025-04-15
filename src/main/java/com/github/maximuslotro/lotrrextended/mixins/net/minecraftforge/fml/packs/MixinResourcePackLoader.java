@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
+import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackList;
@@ -23,8 +23,8 @@ public class MixinResourcePackLoader {
 
 	@Inject(method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
     private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo cl) {
-		//LotrExtendedModClient.createLecacyPack(resourcePacks);
-		LotrExtendedModClient.createRenewedPack(resourcePacks);
-		LotrExtendedModClient.createForcedPack(resourcePacks);
+		//ExtendedClientProxy.createLecacyPack(resourcePacks);
+		ExtendedClientProxy.createRenewedPack(resourcePacks);
+		ExtendedClientProxy.createForcedPack(resourcePacks);
     }
 }

@@ -42,16 +42,16 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @OnlyIn(Dist.CLIENT)
-public class LotrExtendedModClient {
+public class ExtendedClientProxy {
 
 	public static void staticClientSetup() {
 		if(Minecraft.getInstance()==null) {
 			return;
 		}
-		new LotrExtendedModClient();
+		new ExtendedClientProxy();
 	}
 
-	public static LotrExtendedModClient INSTANCE;
+	public static ExtendedClientProxy INSTANCE;
 
 	public static UUID usersUUID = null;
 
@@ -59,7 +59,7 @@ public class LotrExtendedModClient {
 		return LotrExtendedMod.INSTANCE;
 	}
 
-	public LotrExtendedModClient() {
+	public ExtendedClientProxy() {
 		INSTANCE = this;
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -104,21 +104,21 @@ public class LotrExtendedModClient {
 //	public static void createLecacyPack(ResourcePackList packs) {
 //		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 //				LotrExtendedMod.MODID+":legacy_textures",
-//				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"),
+//				false, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"),
 //				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 //	}
 
 	public static void createForcedPack(ResourcePackList packs) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":extended_textures",
-				true, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "extended", "Forced Extended Textures"),
+				true, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "extended", "Forced Extended Textures"),
 				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
 	public static void createRenewedPack(ResourcePackList packs) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
 				LotrExtendedMod.MODID+":renewed_textures",
-				false, () -> new AlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Redone Renewed Textures"),
+				false, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Redone Renewed Textures"),
 				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 

@@ -7,7 +7,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l1",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l1",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -16,7 +16,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l2",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l2",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -25,7 +25,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l3",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l3",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -34,7 +34,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l4",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l4",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -43,7 +43,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l5",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l5",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -52,7 +52,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l6",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l6",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -61,7 +61,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l7",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l7",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -70,7 +70,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_l8",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_l8",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -79,7 +79,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r1",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r1",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -88,7 +88,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r2",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r2",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -97,7 +97,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r3",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r3",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -106,7 +106,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r4",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r4",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -115,7 +115,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r5",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r5",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -124,7 +124,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r6",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r6",
 				"processors": "minecraft:empty"
 			}
 		},
@@ -133,7 +133,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:bree/hamlet/village/bree_village_road_1_r7",
+				"location": "lotrextended:bree/village/roads/bree_village_road_1_r7",
 				"processors": "minecraft:empty"
 			}
 		}

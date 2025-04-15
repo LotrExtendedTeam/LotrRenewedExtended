@@ -23,14 +23,14 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 /*
  * Copied from {@see ModFileResourcePack} to add support for adding other built-in packs
  * */
-public class AlternateResourcePacks extends ResourcePack
+public class ExtendedAlternateResourcePacks extends ResourcePack
 {
     private final ModFile modFile;
     private ResourcePackInfo packInfo;
     private final String altLocation;
     private final String packName;
 
-    public AlternateResourcePacks(ModFile modFile, String altLocation, String packName)
+    public ExtendedAlternateResourcePacks(ModFile modFile, String altLocation, String packName)
     {
         super(modFile.getFilePath().toFile());
         this.modFile = modFile;

@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.eventhandlers;
 
-import com.github.maximuslotro.lotrrextended.client.LotrExtendedModClient;
+import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBar;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -21,7 +21,7 @@ public class ExtendedHiredUnitHealthbarRenderer {
 	public static void renderHpBar(RenderNameplateEvent event) {
 		if (event.getEntity() instanceof ExtendedHirableEntity) {
 			ExtendedHirableEntity hired = (ExtendedHirableEntity) event.getEntity();
-			if (hired.getOwnerUUID() == null || LotrExtendedModClient.usersUUID.equals(null) || !hired.getOwnerUUID().equals(LotrExtendedModClient.usersUUID)) {
+			if (hired.getOwnerUUID() == null || ExtendedClientProxy.usersUUID.equals(null) || !hired.getOwnerUUID().equals(ExtendedClientProxy.usersUUID)) {
 				return;
 			}
 
