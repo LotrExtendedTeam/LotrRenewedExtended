@@ -48,6 +48,7 @@ public class ExtendedConfiguredStructuresV5 {
 	public static StructureFeature<?, ?> CONFIGURED_BARROW_DOWN_BARROWS = register(ExtendedStructuresV5.BARROW_DOWN_BARROWS.get().configured(new WeightedStructureConfig().addStructureToPool("barrow_downs/barrow_pool", 1)));
 
 	public static StructureFeature<?, ?> CONFIGURED_BREE_HAMLET = register(ExtendedStructuresV5.BREE_HAMLET.get().configured(new SinglePoolConfig("bree/hamlet/well_pool")));
+	public static StructureFeature<?, ?> CONFIGURED_BREE_VILLAGE = register(ExtendedStructuresV5.BREE_VILLAGE.get().configured(new SinglePoolConfig("bree/village/start_pool")));
 
 	public static void registerConfiguredStructures(){}
 

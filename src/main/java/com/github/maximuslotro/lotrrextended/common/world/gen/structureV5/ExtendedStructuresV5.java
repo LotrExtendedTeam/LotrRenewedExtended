@@ -52,6 +52,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new WeightedPoolStructure(StructureType.BARROW));
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SingleBreeHamletPoolStructure(StructureType.BREE_HAMLET));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SingleBreeHamletPoolStructure(StructureType.BREE_VILLAGE));
 
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
@@ -80,6 +81,7 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              60, 30, 57854769);
+		register(BREE_VILLAGE.get(), false,            55, 35, 78547894);
 	}
 
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

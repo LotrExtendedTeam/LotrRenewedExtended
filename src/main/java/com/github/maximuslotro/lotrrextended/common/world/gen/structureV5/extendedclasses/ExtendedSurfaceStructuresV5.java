@@ -103,6 +103,31 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 		}
+		if(structureType==StructureType.BREE_VILLAGE) {
+			// Bree Town
+			if(calculateChunkDistance(chunkX, chunkZ, 860, 36)<16) {
+				return false;
+			}
+			// Staddle
+			if(calculateChunkDistance(chunkX, chunkZ, 916, 36)<8) {
+				return false;
+			}
+			// Combe
+			if(calculateChunkDistance(chunkX, chunkZ, 940, 12)<8) {
+				return false;
+			}
+			// Archet
+			if(calculateChunkDistance(chunkX, chunkZ, 948, -12)<8) {
+				return false;
+			}
+			int i = chunkX >> 4;
+			int j = chunkZ >> 4;
+			chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
+			chunkRandom.nextInt();
+			if(isNearStructure(ExtendedStructuresV5.BREE_HAMLET.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
+				return false;
+			}
+		}
 		return true;
 	}
 

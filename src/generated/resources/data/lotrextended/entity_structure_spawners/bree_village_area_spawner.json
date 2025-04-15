@@ -4,12 +4,12 @@
   "check_boundaries": {
     "topYvalue": 12,
     "lowerYvalue": -12,
-    "horizontal_bounds": 24
+    "horizontal_bounds": 32
   },
   "spawn_area": {
     "topYvalue": 8,
     "lowerYvalue": -4,
-    "horizontal_bounds": 14
+    "horizontal_bounds": 18
   },
   "inside_spawning": true,
   "inside_spawning_chance": 20,
@@ -30,6 +30,10 @@
         {
           "weight": 100,
           "entity_type": "lotr:bree_man"
+        },
+        {
+          "weight": 20,
+          "entity_type": "lotr:bree_hobbit"
         }
       ]
     }
