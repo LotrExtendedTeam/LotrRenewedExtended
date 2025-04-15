@@ -1,0 +1,78 @@
+{
+	"name": "lotrextended:bree/village/large_farm_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_4",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_5",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_6",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_1_small",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_1_house",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}
