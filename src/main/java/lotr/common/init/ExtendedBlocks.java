@@ -344,18 +344,18 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ANCIENT_RUNE_BLOCK;
 
 	// Bushes
+	public static RegistryObject<Block> RASPBERRY_HEDGE;
+	public static RegistryObject<Block> BLUEBERRY_HEDGE;
+	public static RegistryObject<Block> BLACKBERRY_HEDGE;
+	public static RegistryObject<Block> CRANBERRY_HEDGE;
+	public static RegistryObject<Block> ELDERBERRY_HEDGE;
+	public static RegistryObject<Block> WILDBERRY_HDEGE;
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;
 	public static RegistryObject<Block> BLACKBERRY_BUSH;
 	public static RegistryObject<Block> CRANBERRY_BUSH;
 	public static RegistryObject<Block> ELDERBERRY_BUSH;
 	public static RegistryObject<Block> WILDBERRY_BUSH;
-	public static RegistryObject<Block> RASPBERRY_BUSH_PLANT;
-	public static RegistryObject<Block> BLUEBERRY_BUSH_PLANT;
-	public static RegistryObject<Block> BLACKBERRY_BUSH_PLANT;
-	public static RegistryObject<Block> CRANBERRY_BUSH_PLANT;
-	public static RegistryObject<Block> ELDERBERRY_BUSH_PLANT;
-	public static RegistryObject<Block> WILDBERRY_BUSH_PLANT;
 
 	public static RegistryObject<Block> WHITE_PACKED_FUR;
 	public static RegistryObject<Block> WHITE_PACKED_FUR_SLAB;

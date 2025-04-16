@@ -114,11 +114,11 @@ public class ExtendedBlockRenderer {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.CRANBERRY_BUSH_PLANT.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.ELDERBERRY_BUSH_PLANT.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RASPBERRY_BUSH_PLANT.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH_PLANT.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLUEBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.CRANBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.ELDERBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RASPBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH.get(), RenderType.cutout());
 	}
 }

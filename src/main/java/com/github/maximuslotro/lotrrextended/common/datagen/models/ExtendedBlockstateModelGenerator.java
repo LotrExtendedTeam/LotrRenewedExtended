@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -175,7 +175,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
+				if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 					genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
@@ -191,7 +191,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genChainBlock(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
+				if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
 					genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}

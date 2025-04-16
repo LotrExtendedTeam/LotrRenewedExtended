@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
@@ -222,12 +222,12 @@ public class ExtendedBiomeFeatures {
 		PLUM_PARTY = buildNormalPartyTree(PLUM_LOG, PLUM_WOOD, PLUM_BRANCH, PLUM_LEAVES_POOL);
 
 
-		BLACKBERRYBUSH = ExtendedBlocks.BLACKBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
-		BLUEBERRYBUSH = ExtendedBlocks.BLUEBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
-		CRANBERRYBUSH = ExtendedBlocks.CRANBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
-		ELDERBERRYBUSH = ExtendedBlocks.ELDERBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
-		RASPBERRYBUSH = ExtendedBlocks.RASPBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
-		WILDBERRYBUSH = ExtendedBlocks.WILDBERRY_BUSH_PLANT.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
+		BLACKBERRYBUSH = ExtendedBlocks.BLACKBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3);
+		BLUEBERRYBUSH = ExtendedBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3);
+		CRANBERRYBUSH = ExtendedBlocks.CRANBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3);
+		ELDERBERRYBUSH = ExtendedBlocks.ELDERBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3);
+		RASPBERRYBUSH = ExtendedBlocks.RASPBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3);
+		WILDBERRYBUSH = ExtendedBlocks.WILDBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3);
 		BUSH_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new ExtendedListTypedBlockStateProvider(BLACKBERRYBUSH)
 			.addBlock(BLUEBERRYBUSH).addBlock(CRANBERRYBUSH).addBlock(ELDERBERRYBUSH).addBlock(RASPBERRYBUSH).addBlock(WILDBERRYBUSH), new SimpleBlockPlacer())
 			.tries(15).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build();

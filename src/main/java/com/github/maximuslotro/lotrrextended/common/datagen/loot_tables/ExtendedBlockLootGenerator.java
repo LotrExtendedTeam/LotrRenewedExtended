@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -382,30 +382,30 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
-			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
-				ExtendedBerryBushBlock thingy = (ExtendedBerryBushBlock)block.getValue().get();
+			if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
+				ExtendedBerryHedgeBlock thingy = (ExtendedBerryHedgeBlock)block.getValue().get();
 				add(thingy, (p_241171_0_) -> LootTable.lootTable()
                         .withPool(LootPool.lootPool()
-                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 3)))
+                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 3)))
                                 .add(ItemLootEntry.lootTableItem(thingy.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 7.0F)))
                                 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
-                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 3)))
+                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 3)))
                                 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
-                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 2)))
+                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 2)))
                                 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
-                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 1)))
+                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 1)))
                                 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
-                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryBushBlock.AGE, 0)))
+                                .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 0)))
                                 .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
 						);
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBerryPlantBlock) {
-				ExtendedBerryPlantBlock blok = (ExtendedBerryPlantBlock)block.getValue().get();
+			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
+				ExtendedBerryBushBlock blok = (ExtendedBerryBushBlock)block.getValue().get();
 				add(blok, (p_241171_0_) -> LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3)))

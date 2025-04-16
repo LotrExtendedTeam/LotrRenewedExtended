@@ -64,12 +64,12 @@ public class ExtendedDataIdFixer {
 		addRemapBlockWithItem("brown_packed_fur", "lotr", ExtendedBlocks.BROWN_PACKED_FUR, ExtendedItems.BROWN_PACKED_FUR);
 
 		//Beta 1.1-1.2 Between Which added Berry Plants and Renamed them
-		addRemapBlockWithItem("blackberry_bush_plant", "lotr", ExtendedBlocks.BLACKBERRY_BUSH_PLANT, ExtendedItems.BLACKBERRY);
-		addRemapBlockWithItem("blueberry_bush_plant", "lotr", ExtendedBlocks.BLUEBERRY_BUSH_PLANT, ExtendedItems.BLUEBERRY);
-		addRemapBlockWithItem("cranberry_bush_plant", "lotr", ExtendedBlocks.CRANBERRY_BUSH_PLANT, ExtendedItems.CRANBERRY);
-		addRemapBlockWithItem("elderberry_bush_plant", "lotr", ExtendedBlocks.ELDERBERRY_BUSH_PLANT, ExtendedItems.ELDERBERRY);
-		addRemapBlockWithItem("raspberry_bush_plant", "lotr", ExtendedBlocks.RASPBERRY_BUSH_PLANT, ExtendedItems.RASPBERRY);
-		addRemapBlockWithItem("wildberry_bush_plant", "lotr", ExtendedBlocks.WILDBERRY_BUSH_PLANT, ExtendedItems.WILDBERRY);
+		addRemapBlockWithItem("blackberry_bush_plant", "lotr", ExtendedBlocks.BLACKBERRY_BUSH, ExtendedItems.BLACKBERRY);
+		addRemapBlockWithItem("blueberry_bush_plant", "lotr", ExtendedBlocks.BLUEBERRY_BUSH, ExtendedItems.BLUEBERRY);
+		addRemapBlockWithItem("cranberry_bush_plant", "lotr", ExtendedBlocks.CRANBERRY_BUSH, ExtendedItems.CRANBERRY);
+		addRemapBlockWithItem("elderberry_bush_plant", "lotr", ExtendedBlocks.ELDERBERRY_BUSH, ExtendedItems.ELDERBERRY);
+		addRemapBlockWithItem("raspberry_bush_plant", "lotr", ExtendedBlocks.RASPBERRY_BUSH, ExtendedItems.RASPBERRY);
+		addRemapBlockWithItem("wildberry_bush_plant", "lotr", ExtendedBlocks.WILDBERRY_BUSH, ExtendedItems.WILDBERRY);
 		//Also added and renamed Morgul wall torches
 		addRemapBlock("morgul_wall_torch", "lotr", ExtendedBlocks.MORGUL_WALL_TORCH);
 

@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryPlantBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -805,18 +805,18 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MOSSY_DRYSTONE_WALL = registerB("mossy_drystone_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_DRYSTONE));
 
 		//BUSHES
-		ExtendedBlocks.BLACKBERRY_BUSH = registerB("blackberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_BUSH));
-		ExtendedBlocks.BLUEBERRY_BUSH = registerB("blueberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_BUSH));
-		ExtendedBlocks.CRANBERRY_BUSH = registerB("cranberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_BUSH));
-		ExtendedBlocks.ELDERBERRY_BUSH = registerB("elderberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_BUSH));
-		ExtendedBlocks.RASPBERRY_BUSH = registerB("raspberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_BUSH));
-		ExtendedBlocks.WILDBERRY_BUSH = registerB("wildberry_bush", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_BUSH));
-		ExtendedBlocks.BLACKBERRY_BUSH_PLANT = registerB("blackberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.BLACKBERRY));
-		ExtendedBlocks.BLUEBERRY_BUSH_PLANT = registerB("blueberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.BLUEBERRY));
-		ExtendedBlocks.CRANBERRY_BUSH_PLANT = registerB("cranberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.CRANBERRY));
-		ExtendedBlocks.ELDERBERRY_BUSH_PLANT = registerB("elderberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.ELDERBERRY));
-		ExtendedBlocks.RASPBERRY_BUSH_PLANT = registerB("raspberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.RASPBERRY));
-		ExtendedBlocks.WILDBERRY_BUSH_PLANT = registerB("wildberry_plant", () -> new ExtendedBerryPlantBlock(ExtendedItems.WILDBERRY));
+		ExtendedBlocks.BLACKBERRY_HEDGE = registerB("blackberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_HEDGE));
+		ExtendedBlocks.BLUEBERRY_HEDGE = registerB("blueberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.BLUEBERRY, ExtendedItems.BLUEBERRY_HEDGE));
+		ExtendedBlocks.CRANBERRY_HEDGE = registerB("cranberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_HEDGE));
+		ExtendedBlocks.ELDERBERRY_HEDGE = registerB("elderberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_HEDGE));
+		ExtendedBlocks.RASPBERRY_HEDGE = registerB("raspberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_HEDGE));
+		ExtendedBlocks.WILDBERRY_HDEGE = registerB("wildberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_HEDGE));
+		ExtendedBlocks.BLACKBERRY_BUSH = registerB("blackberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY));
+		ExtendedBlocks.BLUEBERRY_BUSH = registerB("blueberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY));
+		ExtendedBlocks.CRANBERRY_BUSH = registerB("cranberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY));
+		ExtendedBlocks.ELDERBERRY_BUSH = registerB("elderberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY));
+		ExtendedBlocks.RASPBERRY_BUSH = registerB("raspberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY));
+		ExtendedBlocks.WILDBERRY_BUSH = registerB("wildberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY));
 
 		//CRAFTING TABLES
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));

@@ -345,12 +345,12 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BRANDING_IRON;
 
-	public static RegistryObject<Item> RASPBERRY_BUSH;
-	public static RegistryObject<Item> BLUEBERRY_BUSH;
-	public static RegistryObject<Item> BLACKBERRY_BUSH;
-	public static RegistryObject<Item> CRANBERRY_BUSH;
-	public static RegistryObject<Item> ELDERBERRY_BUSH;
-	public static RegistryObject<Item> WILDBERRY_BUSH;
+	public static RegistryObject<Item> RASPBERRY_HEDGE;
+	public static RegistryObject<Item> BLUEBERRY_HEDGE;
+	public static RegistryObject<Item> BLACKBERRY_HEDGE;
+	public static RegistryObject<Item> CRANBERRY_HEDGE;
+	public static RegistryObject<Item> ELDERBERRY_HEDGE;
+	public static RegistryObject<Item> WILDBERRY_HEDGE;
 	public static RegistryObject<Item> RASPBERRY;
 	public static RegistryObject<Item> BLUEBERRY;
 	public static RegistryObject<Item> BLACKBERRY;
