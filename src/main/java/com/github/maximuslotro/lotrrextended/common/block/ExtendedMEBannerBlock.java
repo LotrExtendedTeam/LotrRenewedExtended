@@ -20,6 +20,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
@@ -27,6 +28,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -53,7 +56,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class ExtendedMEBannerBlock extends Block {
+public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -68,7 +72,7 @@ public class ExtendedMEBannerBlock extends Block {
 	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
 		type = bannerType;
-		this.registerDefaultState(this.stateDefinition.any().setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
+		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
 	public ExtendedMEBannerBlock(BannerTypes bannerType) {
@@ -124,8 +128,11 @@ public class ExtendedMEBannerBlock extends Block {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState blockstate = this.defaultBlockState();
-		IWorldReader iworldreader = context.getLevel();
+		World iworldreader = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
+		FluidState fluidstate = iworldreader.getFluidState(context.getClickedPos());
+		boolean flag = fluidstate.getType() == Fluids.WATER;
+		blockstate.setValue(WATERLOGGED, flag);
 		Direction[] adirection = context.getNearestLookingDirections();
 		for (Direction direction : adirection) {
 			if (direction.getAxis().isHorizontal()) {
@@ -143,7 +150,10 @@ public class ExtendedMEBannerBlock extends Block {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState thisState, Direction updateDirection, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
+	public BlockState updateShape(BlockState thisState, Direction updateDirection, BlockState p_196271_3_, IWorld pLevel, BlockPos pCurrentPos, BlockPos p_196271_6_) {
+		if (thisState.getValue(WATERLOGGED)) {
+			pLevel.getLiquidTicks().scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+		}
 		DoubleBlockHalf half = thisState.getValue(HALF);
 		if (updateDirection.getAxis() == Direction.Axis.Y && half == DoubleBlockHalf.LOWER == (updateDirection == Direction.UP)) {
 			if(p_196271_3_.is(this) && p_196271_3_.getValue(HALF) != half) {
@@ -152,10 +162,10 @@ public class ExtendedMEBannerBlock extends Block {
 				return Blocks.AIR.defaultBlockState();
 			}
 		} else {
-			if(half == DoubleBlockHalf.LOWER && updateDirection == Direction.DOWN && !thisState.canSurvive(p_196271_4_, p_196271_5_)) {
+			if(half == DoubleBlockHalf.LOWER && updateDirection == Direction.DOWN && !thisState.canSurvive(pLevel, pCurrentPos)) {
 				return Blocks.AIR.defaultBlockState();
 			}else {
-				return super.updateShape(thisState, updateDirection, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+				return super.updateShape(thisState, updateDirection, p_196271_3_, pLevel, pCurrentPos, p_196271_6_);
 			}
 		}
 	}
@@ -194,7 +204,13 @@ public class ExtendedMEBannerBlock extends Block {
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING).add(HALF).add(SMALL);
+		p_206840_1_.add(FACING).add(HALF).add(SMALL).add(WATERLOGGED);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public FluidState getFluidState(BlockState pState) {
+		return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
 	}
 
 	@Override

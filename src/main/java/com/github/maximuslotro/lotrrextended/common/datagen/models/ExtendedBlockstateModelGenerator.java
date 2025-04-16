@@ -1266,7 +1266,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
 		ModelFile modelFileTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_banner_top"))
 				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
-		getVariantBuilder(extendedMEBannerBlock).forAllStates(state -> {
+		getVariantBuilder(extendedMEBannerBlock).forAllStatesExcept(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
 			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);
 			boolean small = state.getValue(ExtendedMEBannerBlock.SMALL);
@@ -1276,7 +1276,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     		(!small&&half==DoubleBlockHalf.LOWER ? modelFileBottom : modelFileTop)))
                     .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
                     .build();
-		});
+		},ExtendedMEBannerBlock.WATERLOGGED);
 	}
 
 	private void genBannerWallBlock(ExtendedMEBannerWallBlock banner, ResourceLocation texture) {
