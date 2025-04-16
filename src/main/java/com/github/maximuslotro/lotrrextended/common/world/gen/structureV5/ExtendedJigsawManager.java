@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -99,10 +100,19 @@ public class ExtendedJigsawManager {
 		int relativeStructureYShift = mutableboundingbox.y0 + abstractvillagepiece.getGroundLevelDelta();
 		abstractvillagepiece.move(0, structureStartHeight - relativeStructureYShift, 0);
 		pieces.add(abstractvillagepiece);
-		if (structureConfig.maxDepth() > 0) {
+		int maxDepth = structureConfig.maxDepth();
+		if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+			maxDepth = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxDepth();
+			ExtendedLog.info("Found "+jigsawpattern.getName()+ "maxDepth to: "+maxDepth);
+		}
+		if (maxDepth > 0) {
 			int maxPlaceDistance = 80; // Max generation distance
+			if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+				maxPlaceDistance = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxPlaceDistance();
+				ExtendedLog.info("Found "+jigsawpattern.getName()+ "maxDistance to: "+maxPlaceDistance);
+			}
 			AxisAlignedBB axisalignedbb = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
-			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, structureConfig.maxDepth(), villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
+			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
 			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
 			while(!jigsawmanager$assembler.placing.isEmpty()) {

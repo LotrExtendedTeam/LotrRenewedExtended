@@ -5,19 +5,21 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/well/bree_hamlet_well_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"max_depth" : 4
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/well/bree_hamlet_well_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"max_depth" : 4
 			}
 		}
 	]

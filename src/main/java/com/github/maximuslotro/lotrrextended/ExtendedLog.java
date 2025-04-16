@@ -21,7 +21,7 @@ public class ExtendedLog {
 	}
 
 	public static void info(String s) {
-		info(s, false);
+		info(s, true);
 	}
 
 	public static void info(String s, boolean override) {
