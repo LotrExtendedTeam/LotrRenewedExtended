@@ -260,7 +260,7 @@ public class ExtendedLevelData {
 			entry.putUUID("player", uuid);
 			list.add(entry);
 		}
-		tag.putInt("tolkienVersion", 0);
+		tag.putInt("tolkienVersion", tolkienTalkedToVersion);
 		tag.put("tolkienTalkedTo", list);
 	}
 
