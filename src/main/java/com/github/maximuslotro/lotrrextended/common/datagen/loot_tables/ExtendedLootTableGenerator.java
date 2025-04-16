@@ -48,7 +48,7 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 				System.out.println("Didn't make a sepcified Loot-Table: "+location.toString());
 			}
 		}
-		ExtendedLog.info("Made "+map.size()+" Loot-Tables!");
+		ExtendedLog.info("Made "+map.size()+" Loot-Tables!", true);
 	}
 
 	@Override

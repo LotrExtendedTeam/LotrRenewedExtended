@@ -57,7 +57,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	         }
 	      };
 		makeStructureSpawnPools(consumer);
-		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
+		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.", true);
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile spawner, Path pPath) throws IOException {

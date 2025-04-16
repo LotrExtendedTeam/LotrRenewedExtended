@@ -47,7 +47,7 @@ public class WanderingTradersSpawner {
             // if entity is null skip some attempts as they are probably in a biome that just doesn't
             // support wandering traders, and we should not try all 16 attempts
             if (entityName == null) {
-                ExtendedLog.info("Got null entity when determining if a wandering trader could spawn at " + pos + ". This biome likely doesn't support wandering traders.");
+                ExtendedLog.warn("Got null entity when determining if a wandering trader could spawn at " + pos + ". This biome likely doesn't support wandering traders.");
                 attempts += 2;
                 continue;
             }

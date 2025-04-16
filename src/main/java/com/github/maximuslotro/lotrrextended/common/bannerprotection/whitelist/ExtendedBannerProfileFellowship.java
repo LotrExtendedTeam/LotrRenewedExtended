@@ -126,7 +126,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 			if(fellowship!=null) {
 				return new ExtendedBannerProfileFellowship(uuid);
 			}else {
-				ExtendedLog.info("Removed fellowship "+ uuid +" from banner since it cannot be found!");
+				ExtendedLog.warn("Removed fellowship "+ uuid +" from banner since it cannot be found!");
 				return null;
 			}
 		} catch (Throwable throwable) {

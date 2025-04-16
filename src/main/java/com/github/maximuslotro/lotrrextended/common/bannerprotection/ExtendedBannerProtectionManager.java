@@ -37,7 +37,7 @@ public class ExtendedBannerProtectionManager {
 			return false;
 		}
 		boolean isInteractionDenied = isBannerProtectedInner(iWorld, pX, pY, pZ, protInstance);
-		if(doLog && ExtendedServerConfig.enableExtendedLogging.get()) {
+		if(doLog) {
 			ExtendedLog.info("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
 		}
 		return isInteractionDenied;

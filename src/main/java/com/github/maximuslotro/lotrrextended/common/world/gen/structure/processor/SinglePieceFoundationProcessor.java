@@ -32,7 +32,7 @@ public class SinglePieceFoundationProcessor extends StructureProcessor{
 				if(world instanceof IWorld) {
 					((IWorld)world).setBlock(blockpos1, biome.getGenerationSettings().getSurfaceBuilder().get().config.getUnderMaterial(), 2);
 				}else {
-					ExtendedLog.info("Structure did not make foundation because processor was passed a weird world that didnt extend IWorld!");
+					ExtendedLog.warn("Structure did not make foundation because processor was passed a weird world that didnt extend IWorld!");
 				}
 			}
 		}

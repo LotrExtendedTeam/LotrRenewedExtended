@@ -46,9 +46,7 @@ public class HackyChairDatabase {
 	@SubscribeEvent(receiveCanceled = true)
 	public void extendedPlayerChairClick(RightClickBlock event) {
 		if(!ExtendedServerConfig.enableChairSlabSitting.get() || (event.isCanceled() && !ExtendedServerConfig.enableChairProtectionOverride.get())) {
-			if(ExtendedServerConfig.enableExtendedLogging.get()) {
-				ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Disabled: [Config Disabled, or Protection Override]");
-			}
+			ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Disabled: [Config Disabled, or Protection Override]");
 			return;
 		}
 		// Check for valid player
@@ -66,9 +64,8 @@ public class HackyChairDatabase {
 				}
 				// Players can't sit on vertical slabs
 				if(state.getBlock() instanceof VerticalOnlySlabBlock) {
-					if(ExtendedServerConfig.enableExtendedLogging.get()) {
-						ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [No Vertial Slab Sitting]");
-					}
+					ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [No Vertial Slab Sitting]");
+
 					return;
 				}
 				if(state.getBlock() instanceof SlabBlock && state.hasProperty(SlabBlock.TYPE)) {
@@ -77,29 +74,22 @@ public class HackyChairDatabase {
 						// Check if vertical slab, players can't sit on vertical slabs
 						if(state.getBlock() instanceof AxialSlabBlock && state.hasProperty(BlockStateProperties.AXIS)) {
 							if(state.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
-								if(ExtendedServerConfig.enableExtendedLogging.get()) {
-									ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [No Vertial Slab Sitting]");
-								}
+								ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [No Vertial Slab Sitting]");
+
 								return;
 							}
 						}
 						addNewChair(event.getWorld(), event.getPos(), event.getPlayer(), null);
 						return;
 					}else {
-						if(ExtendedServerConfig.enableExtendedLogging.get()) {
-							ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [No Upper Slab Sitting]");
-						}
+						ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [No Upper Slab Sitting]");
 					}
 				}
 			}else {
-				if(ExtendedServerConfig.enableExtendedLogging.get()) {
-					ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [Invalid Chair Location]");
-				}
+				ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [Invalid Chair Location]");
 			}
 		}else {
-			if(ExtendedServerConfig.enableExtendedLogging.get()) {
-				ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [Hand Not Empty, Not Shifting, or Is Passanger]");
-			}
+			ExtendedLog.info("ChairInterraction["+event.getPos().toString()+", Status Denied: [Hand Not Empty, Not Shifting, or Is Passanger]");
 		}
 	}
 

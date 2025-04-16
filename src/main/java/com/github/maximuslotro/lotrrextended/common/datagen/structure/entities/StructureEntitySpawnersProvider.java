@@ -68,7 +68,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 				System.out.println("Didn't make a sepcified Structure Spawner type: "+location.toString());
 			}
 		}
-		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.");
+		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.", true);
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedStructureEntitySpawner spawner, Path pPath) throws IOException {

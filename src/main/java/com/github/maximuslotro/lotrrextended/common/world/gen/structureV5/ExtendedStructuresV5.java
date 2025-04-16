@@ -81,7 +81,7 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              60, 30, 57854769);
-		register(BREE_VILLAGE.get(), false,            55, 35, 78547894);
+		register(BREE_VILLAGE.get(), true,            55, 35, 78547894);
 	}
 
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {

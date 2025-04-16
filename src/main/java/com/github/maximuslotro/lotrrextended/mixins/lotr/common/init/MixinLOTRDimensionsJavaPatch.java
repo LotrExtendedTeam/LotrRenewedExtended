@@ -33,7 +33,7 @@ public class MixinLOTRDimensionsJavaPatch {
 	public static void replaceDimensionCodecToForceStability() {
 		try {
 			if(MIXINConfig.isBrokenJavaFutureVersions()) {
-				ExtendedLog.info("Java9+ bypassing replaceDimensionCodecToForceStability patch due to inability to unlock final fields.");
+				ExtendedLog.warn("Java9+ bypassing replaceDimensionCodecToForceStability patch due to inability to unlock final fields.");
 				return;
 			}
 			//TODO replace with AT later if possible

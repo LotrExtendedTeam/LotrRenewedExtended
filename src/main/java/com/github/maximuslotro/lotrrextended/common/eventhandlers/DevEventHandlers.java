@@ -44,10 +44,10 @@ public class DevEventHandlers {
 		            		||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
 		            	if(player.getDisplayName().getString().equals("MaximustheMiner")||player.getDisplayName().getString().equals("WeirdBob")
 		            			||player.getDisplayName().getString().equals("ServantofMelkor")) {
-		            		ExtendedLog.info("Dangerous command allowed for devs");
+		            		ExtendedLog.info("Dangerous command allowed for devs", true);
 		            	}
 		            	else {
-		            		ExtendedLog.info("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
+		            		ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
 		            		event.setCanceled(true);
 		            		source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
 		            	}

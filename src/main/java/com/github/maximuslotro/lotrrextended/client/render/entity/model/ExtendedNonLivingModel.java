@@ -22,7 +22,7 @@ public abstract class ExtendedNonLivingModel<T extends Entity> extends Model {
 
 	@Override
 	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		ExtendedLog.info("renderToBuffer should not be called! This is a DEV error!");
+		ExtendedLog.warn("renderToBuffer should not be called! This is a DEV error!");
 	}
 	abstract void renderExtendedToBuffer(T entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha);
 

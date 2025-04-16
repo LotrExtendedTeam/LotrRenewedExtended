@@ -314,6 +314,8 @@ public class ExtendedJigsawManager {
 												this.pieces.add(abstractvillagepiece);
 												if (depth + 1 <= this.maxDepth) {
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
+												}else {
+													ExtendedLog.info("JigsawBlock max limit reached");
 												}
 												continue mainStrLoop;
 											}else {

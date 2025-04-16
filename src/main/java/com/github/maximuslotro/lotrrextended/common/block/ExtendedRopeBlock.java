@@ -325,7 +325,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 				type = RopeType.BOTTOM_LARGE;
 			}else {
 				type = RopeType.MIDDLE_LARGE;
-				ExtendedLog.info("Rope Model Type Encountered an unknown combo upstream. Please report this! "+aboveType.getSerializedName());
+				ExtendedLog.warn("Rope Model Type Encountered an unknown combo upstream. Please report this! "+aboveType.getSerializedName());
 			}
 		}else if (belowState.getBlock() instanceof ExtendedRopeBlock) {
 			RopeType belowType = belowState.getValue(SECTION_TYPE);
@@ -343,7 +343,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 				type = RopeType.TOP_SMALL;
 			}else {
 				type = RopeType.SINGLE;
-				ExtendedLog.info("Rope Model Type Encountered an unknown combo downstream. Please report this! "+belowType.getSerializedName());
+				ExtendedLog.warn("Rope Model Type Encountered an unknown combo downstream. Please report this! "+belowType.getSerializedName());
 			}
 		}else {
 			type = RopeType.SINGLE; // Since we are not in the middle or below rope, we must be a single rat
