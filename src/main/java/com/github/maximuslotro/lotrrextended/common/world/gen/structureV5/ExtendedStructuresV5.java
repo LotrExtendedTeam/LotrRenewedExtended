@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
@@ -13,10 +14,15 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struct
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitTavernLargeStructure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mojang.serialization.Codec;
 
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
+import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -25,6 +31,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedStructuresV5 {
+	public static final IJigsawDeserializer<ExtendedSingleJigsawPiece> SINGLE_EXTENDED = registerJigsaw("extended_single_pool_element", ExtendedSingleJigsawPiece.CODEC);
+
 	public static final DeferredRegister<Structure<?>> STRUCTURE_REGISTRY = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, LotrExtendedMod.MODID);
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(StructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(StructureType.HOBBIT));
@@ -84,6 +92,10 @@ public class ExtendedStructuresV5 {
 		register(BREE_VILLAGE.get(), true,            55, 35, 78547894);
 	}
 
+	public static <P extends JigsawPiece> IJigsawDeserializer<P> registerJigsaw(String pName, Codec<P> pCodec) {
+	      return Registry.register(Registry.STRUCTURE_POOL_ELEMENT, new ResourceLocation(LotrExtendedMod.MODID, pName), () -> { return pCodec; });
+	   }
+	
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
 		if(spacing-seperation<= 0) {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);
