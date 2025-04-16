@@ -91,15 +91,15 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 			// Staddle
-			if(calculateChunkDistance(chunkX, chunkZ, 916, 36)<8) {
+			if(calculateChunkDistance(chunkX, chunkZ, 916, 36)<10) {
 				return false;
 			}
 			// Combe
-			if(calculateChunkDistance(chunkX, chunkZ, 940, 12)<8) {
+			if(calculateChunkDistance(chunkX, chunkZ, 940, 12)<10) {
 				return false;
 			}
 			// Archet
-			if(calculateChunkDistance(chunkX, chunkZ, 948, -12)<8) {
+			if(calculateChunkDistance(chunkX, chunkZ, 948, -12)<10) {
 				return false;
 			}
 		}
@@ -109,15 +109,15 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 			// Staddle
-			if(calculateChunkDistance(chunkX, chunkZ, 916, 36)<8) {
+			if(calculateChunkDistance(chunkX, chunkZ, 916, 36)<10) {
 				return false;
 			}
 			// Combe
-			if(calculateChunkDistance(chunkX, chunkZ, 940, 12)<8) {
+			if(calculateChunkDistance(chunkX, chunkZ, 940, 12)<10) {
 				return false;
 			}
 			// Archet
-			if(calculateChunkDistance(chunkX, chunkZ, 948, -12)<8) {
+			if(calculateChunkDistance(chunkX, chunkZ, 948, -12)<10) {
 				return false;
 			}
 			int i = chunkX >> 4;
