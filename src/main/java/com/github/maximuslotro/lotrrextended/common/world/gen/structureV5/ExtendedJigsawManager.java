@@ -100,17 +100,21 @@ public class ExtendedJigsawManager {
 		int relativeStructureYShift = mutableboundingbox.y0 + abstractvillagepiece.getGroundLevelDelta();
 		abstractvillagepiece.move(0, structureStartHeight - relativeStructureYShift, 0);
 		pieces.add(abstractvillagepiece);
+		// Extended Start
 		int maxDepth = structureConfig.maxDepth();
 		if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
 			maxDepth = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxDepth();
 			ExtendedLog.info("Found "+jigsawpattern.getName()+ "maxDepth to: "+maxDepth);
 		}
+		// Extended End
 		if (maxDepth > 0) {
+			// Extended Start
 			int maxPlaceDistance = 80; // Max generation distance
 			if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
 				maxPlaceDistance = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxPlaceDistance();
 				ExtendedLog.info("Found "+jigsawpattern.getName()+ "maxDistance to: "+maxPlaceDistance);
 			}
+			// Extended End
 			AxisAlignedBB axisalignedbb = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
 			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
 			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
@@ -241,18 +245,15 @@ public class ExtendedJigsawManager {
 									} else {
 										expansionHackModifierValue = 0;
 									}
+									// Extended Start
 									if(connectingPieceJigsawRandom.size()==0) {
 										ExtendedLog.warn("JigsawBlock tried to attach piece without jigsaw blocks: "+connectingPoolJigsawPiece.toString());
 									}
+									// Extended End
 									// Try spawning the piece at a random connecting Jigsaw point
 									for(Template.BlockInfo connectingPieceJigsawBlockInfo : connectingPieceJigsawRandom) {
-										// Check if the selected JigsawBlock can connect to the parent piece JigsawBlock
-										//if (enableLogging && connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
-										//	ExtendedLog.info("Trying to Attach "+((SingleJigsawPiece)connectingPoolJigsawPiece).toString());
-										//}
 										if (JigsawBlock.canAttach(parentPieceJigsawBlockInfo, connectingPieceJigsawBlockInfo)) {
 											ExtendedLog.info("JigsawBlock attach Succeeded");
-
 											BlockPos blockpos3 = connectingPieceJigsawBlockInfo.pos;
 											BlockPos blockpos4 = new BlockPos(blockpos2.getX() - blockpos3.getX(), blockpos2.getY() - blockpos3.getY(), blockpos2.getZ() - blockpos3.getZ());
 											MutableBoundingBox mutableboundingbox2 = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, blockpos4, rotation1);
@@ -281,10 +282,17 @@ public class ExtendedJigsawManager {
 												int expansionHackModifidYvalue = Math.max(expansionHackModifierValue + 1, mutableboundingbox3.y1 - mutableboundingbox3.y0);
 												mutableboundingbox3.y1 = mutableboundingbox3.y0 + expansionHackModifidYvalue;
 											}
+											// Extended Start
+											boolean doesIgnoreBB = false; 
+											if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+												doesIgnoreBB = ((ExtendedSingleJigsawPiece)jigsawpiece).doesIngnoreBBconflicts();
+											}
+											// Extended End
 											// Check if bounding box for structure accepts the piece
 											if (!VoxelShapes.joinIsNotEmpty(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
 												ExtendedLog.info("JigsawBlock hitbox Succeeded");
 												childPieceStructureShapeInterpolated.setValue(VoxelShapes.joinUnoptimized(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3)), IBooleanFunction.ONLY_FIRST));
+												// Extended End
 												int pieceGroundLevelData = villagePiece.getGroundLevelDelta();
 												int connectingPoolJigsawPieceGroundLevelData;
 												// Get the ground level for placement type
@@ -322,7 +330,9 @@ public class ExtendedJigsawManager {
 												villagePiece.addJunction(new JigsawJunction(blockpos2.getX(), connectingPoolJigsawPieceSpawnHeight - jigsawYRelativeToActualPieceBottom + pieceGroundLevelData, blockpos2.getZ(), relativeYconnectingPieceSpawnHeight, connectingPoolJigsawPiecePlacementBehaviour));
 												abstractvillagepiece.addJunction(new JigsawJunction(blockpos1.getX(), connectingPoolJigsawPieceSpawnHeight - connectingPoolJigsawPieceRelativeYValue + connectingPoolJigsawPieceGroundLevelData, blockpos1.getZ(), -relativeYconnectingPieceSpawnHeight, jigsawPiecePlacementBehaviour));
 												this.pieces.add(abstractvillagepiece);
-												if (depth + 1 <= this.maxDepth) {
+												// Extended Start
+												if (depth + 1 <= this.maxDepth && !doesIgnoreBB) {
+													// Extended End
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
 												}else {
 													ExtendedLog.info("JigsawBlock max limit reached");

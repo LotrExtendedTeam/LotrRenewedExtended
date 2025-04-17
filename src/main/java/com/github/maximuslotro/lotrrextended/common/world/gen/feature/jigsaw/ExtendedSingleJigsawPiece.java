@@ -9,6 +9,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
@@ -16,15 +17,18 @@ import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.StructureProcessorList;
 import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((p_236833_0_) -> {
-		return p_236833_0_.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), maxDepthCodec()).apply(p_236833_0_, ExtendedSingleJigsawPiece::new);
+		return p_236833_0_.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
+			maxDepthCodec(), ingnoreBBconflictsCodec()).apply(p_236833_0_, ExtendedSingleJigsawPiece::new);
 	});
 
 	protected final boolean apply_waterlogging;
 	protected final int maxPlaceDistance;
 	protected final int maxDepth;
+	protected final boolean ingnoreBBconflicts;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((p_236845_0_) -> {
@@ -43,12 +47,21 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 			return p_236845_0_.maxDepth;
 		});
 	}
-	
-	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> p_i242007_2_, JigsawPattern.PlacementBehaviour p_i242007_3_, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth) {
+
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> ingnoreBBconflictsCodec() {
+		return Codec.BOOL.optionalFieldOf("ignore_bb_checks", false).forGetter((p_236845_0_) -> {
+			return p_236845_0_.ingnoreBBconflicts;
+		});
+	}
+
+
+	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> p_i242007_2_, 
+		JigsawPattern.PlacementBehaviour p_i242007_3_, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts) {
 		super(p_i242007_1_, p_i242007_2_, p_i242007_3_);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
 		this.maxDepth = maxDepth;
+		this.ingnoreBBconflicts = ingnoreBBconflicts;
 	}
 
 	@Override
@@ -56,6 +69,14 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		PlacementSettings placementsettings = super.getSettings(pRotation, pBoundingBox, p_230379_3_);
 		placementsettings.keepLiquids = apply_waterlogging;
 		return placementsettings;
+	}
+
+	@Override
+	public MutableBoundingBox getBoundingBox(TemplateManager pTemplateManager, BlockPos pPos, Rotation pRotation) {
+		if(ingnoreBBconflicts) {
+			return new MutableBoundingBox(pPos.getX(), pPos.getY(), pPos.getZ(), pPos.getX(), pPos.getY(), pPos.getZ());
+		}
+		return super.getBoundingBox(pTemplateManager, pPos, pRotation);
 	}
 
 	@Override
@@ -78,5 +99,9 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 
 	public int getMaxDepth() {
 		return maxDepth;
+	}
+
+	public boolean doesIngnoreBBconflicts() {
+		return ingnoreBBconflicts;
 	}
 }
