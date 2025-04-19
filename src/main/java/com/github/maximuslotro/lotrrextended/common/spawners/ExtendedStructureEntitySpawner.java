@@ -430,12 +430,12 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("inside_spawning")) {
 				spawner.setInsideSpawn(jsonobject.get("inside_spawning").getAsBoolean());
 				if(!spawner.insideSpawning()) {
-					ExtendedLog.info("Loaded Structure Spawner with weird inside_spawning configuration, value is false by default, no need to force this! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with weird inside_spawning configuration, value is false by default, no need to force this! - %s", id);
 				}
 				if(jsonobject.has("inside_spawning_chance")) {
 					spawner.setInsideSpawnChance(jsonobject.get("inside_spawning_chance").getAsInt());
 					if(spawner.getinsideSpawningChance()==100) {
-						ExtendedLog.info("Loaded Structure Spawner with weird inside_spawning_chance configuration, value is 100 by default, no need to force this! - %s", id);
+						ExtendedLog.warn("Loaded Structure Spawner with weird inside_spawning_chance configuration, value is 100 by default, no need to force this! - %s", id);
 					}
 				}
 			}

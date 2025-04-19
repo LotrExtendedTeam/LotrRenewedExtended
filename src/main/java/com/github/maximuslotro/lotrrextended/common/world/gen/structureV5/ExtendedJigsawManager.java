@@ -151,6 +151,7 @@ public class ExtendedJigsawManager {
 		private final Deque<ExtendedJigsawManager.Entry> placing = Queues.newArrayDeque();
 		// Extended add optional carry over processors
 		private final Optional<WoodPaletteProcessor> carryOverProcessor;
+		private final List<String> blacklisted_structures = new ArrayList<>();
 
 		// Extended added optional carry over processors
 		private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor) {
@@ -214,14 +215,21 @@ public class ExtendedJigsawManager {
 
 							jigsawPiecesConnectingPool.addAll(jigsawFallbackPool.get().getShuffledTemplates(this.random));
 							// Loop through each piece until find one that can be spawned
-							ExtendedLog.info("Found "+jigsawPiecesConnectingPool.size()+" pieces in pool");
 							for(JigsawPiece connectingPoolJigsawPiece : jigsawPiecesConnectingPool) {
 								if (connectingPoolJigsawPiece == EmptyJigsawPiece.INSTANCE) {
 									break;
 								}
 								if (connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
-									ExtendedLog.info("Trying piece/file "+((SingleJigsawPiece)connectingPoolJigsawPiece).toString());
+									ExtendedLog.info("Trying piece/file "+connectingPoolJigsawPiece.toString());
 								}
+								// Extended Start
+								if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).isBlacklistSet()) {
+									if (blacklisted_structures.contains(((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getBlacklistName())) {
+										ExtendedLog.info("Skipping blacklisted file "+connectingPoolJigsawPiece.toString());
+										continue;
+									}
+								}
+								//Extended End
 								// Try spawning the piece in different directions until it works
 								for(Rotation rotation1 : Rotation.getShuffled(this.random)) {
 									//if(enableLogging) {ExtendedLog.info("Trying rotation: "+rotation1.toString());}
@@ -253,7 +261,6 @@ public class ExtendedJigsawManager {
 									// Try spawning the piece at a random connecting Jigsaw point
 									for(Template.BlockInfo connectingPieceJigsawBlockInfo : connectingPieceJigsawRandom) {
 										if (JigsawBlock.canAttach(parentPieceJigsawBlockInfo, connectingPieceJigsawBlockInfo)) {
-											ExtendedLog.info("JigsawBlock attach Succeeded");
 											BlockPos blockpos3 = connectingPieceJigsawBlockInfo.pos;
 											BlockPos blockpos4 = new BlockPos(blockpos2.getX() - blockpos3.getX(), blockpos2.getY() - blockpos3.getY(), blockpos2.getZ() - blockpos3.getZ());
 											MutableBoundingBox mutableboundingbox2 = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, blockpos4, rotation1);
@@ -290,7 +297,6 @@ public class ExtendedJigsawManager {
 											// Extended End
 											// Check if bounding box for structure accepts the piece
 											if (!VoxelShapes.joinIsNotEmpty(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
-												ExtendedLog.info("JigsawBlock hitbox Succeeded");
 												childPieceStructureShapeInterpolated.setValue(VoxelShapes.joinUnoptimized(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3)), IBooleanFunction.ONLY_FIRST));
 												// Extended End
 												int pieceGroundLevelData = villagePiece.getGroundLevelDelta();
@@ -334,15 +340,9 @@ public class ExtendedJigsawManager {
 												if (depth + 1 <= this.maxDepth && !doesIgnoreBB) {
 													// Extended End
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
-												}else {
-													ExtendedLog.info("JigsawBlock max limit reached");
 												}
 												continue mainStrLoop;
-											}else {
-												ExtendedLog.info("JigsawBlock hitbox failed");
 											}
-										}else {
-											ExtendedLog.info("JigsawBlock attach failed");
 										}
 									}
 								}

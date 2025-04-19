@@ -29,14 +29,9 @@ public class ExtendedLog {
 			LOGGER.info("LotrExtended: {}", s);
 		}
 	}
+
 	public static void info(String s, Object... params) {
-		info(s, false, params);
-	}
-	
-	public static void info(String s, boolean override, Object... params) {
-		if(override || ExtendedServerConfig.enableExtendedLogging ==null || ExtendedServerConfig.enableExtendedLogging.get()) {
-			LOGGER.info(String.format("LotrExtended: " + s, params));
-		}
+		LOGGER.info(String.format("LotrExtended: " + s, params));
 	}
 
 	public static void warn(String s) {

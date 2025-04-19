@@ -22,13 +22,14 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((p_236833_0_) -> {
 		return p_236833_0_.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
-			maxDepthCodec(), ingnoreBBconflictsCodec()).apply(p_236833_0_, ExtendedSingleJigsawPiece::new);
+			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec()).apply(p_236833_0_, ExtendedSingleJigsawPiece::new);
 	});
 
 	protected final boolean apply_waterlogging;
 	protected final int maxPlaceDistance;
 	protected final int maxDepth;
 	protected final boolean ingnoreBBconflicts;
+	protected final String blacklistName;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((p_236845_0_) -> {
@@ -54,14 +55,21 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		});
 	}
 
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, String> blacklistNameCodec() {
+		return Codec.STRING.optionalFieldOf("blacklist_name", "NOTSET").forGetter((p_236845_0_) -> {
+			return p_236845_0_.blacklistName;
+		});
+	}
 
 	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> p_i242007_2_, 
-		JigsawPattern.PlacementBehaviour p_i242007_3_, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts) {
+		JigsawPattern.PlacementBehaviour p_i242007_3_, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
+		String blacklist_name) {
 		super(p_i242007_1_, p_i242007_2_, p_i242007_3_);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
 		this.maxDepth = maxDepth;
 		this.ingnoreBBconflicts = ingnoreBBconflicts;
+		this.blacklistName = blacklist_name;
 	}
 
 	@Override
@@ -103,5 +111,13 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 
 	public boolean doesIngnoreBBconflicts() {
 		return ingnoreBBconflicts;
+	}
+
+	public String getBlacklistName() {
+		return blacklistName;
+	}
+
+	public boolean isBlacklistSet() {
+		return !blacklistName.equals("NOTSET");
 	}
 }
