@@ -20,9 +20,9 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
-	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((p_236833_0_) -> {
-		return p_236833_0_.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
-			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec()).apply(p_236833_0_, ExtendedSingleJigsawPiece::new);
+	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((instance) -> {
+		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
+			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 
 	protected final boolean apply_waterlogging;
@@ -61,20 +61,19 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		});
 	}
 
-	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> p_i242007_2_, 
-		JigsawPattern.PlacementBehaviour p_i242007_3_, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
+	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> processors, 
+		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
 		String blacklist_name) {
-		super(p_i242007_1_, p_i242007_2_, p_i242007_3_);
+		super(p_i242007_1_, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
 		this.maxDepth = maxDepth;
 		this.ingnoreBBconflicts = ingnoreBBconflicts;
-		this.blacklistName = blacklist_name;
-	}
+		this.blacklistName = blacklist_name;	}
 
 	@Override
-	protected PlacementSettings getSettings(Rotation pRotation, MutableBoundingBox pBoundingBox, boolean p_230379_3_) {
-		PlacementSettings placementsettings = super.getSettings(pRotation, pBoundingBox, p_230379_3_);
+	protected PlacementSettings getSettings(Rotation pRotation, MutableBoundingBox pBoundingBox, boolean keepJigsawBlocks) {
+		PlacementSettings placementsettings = super.getSettings(pRotation, pBoundingBox, keepJigsawBlocks);
 		placementsettings.keepLiquids = apply_waterlogging;
 		return placementsettings;
 	}
