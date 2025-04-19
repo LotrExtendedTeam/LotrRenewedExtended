@@ -20,6 +20,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCheeseWheelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedDoorBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGreenFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
@@ -827,7 +828,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(()-> Blocks.TERRACOTTA));
 
 		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.5F)));
-		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).strength(4.0f)));
+		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(4.0f)));
+		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(4.0F, 6.0F)));
 
 		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));

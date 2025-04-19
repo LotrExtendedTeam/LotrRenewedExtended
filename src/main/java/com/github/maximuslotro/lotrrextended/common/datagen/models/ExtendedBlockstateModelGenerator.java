@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -163,6 +164,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
 					genBirdcageBlockItem((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
+					genCrucibleBlockItem((ExtendedCrucibleBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof VesselDrinkBlock) {
@@ -1227,6 +1232,19 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 									.texture("0", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
 		simpleBlock(carpet, modelFile);
 		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genCrucibleBlockItem(ExtendedCrucibleBlock crucible) {
+		registeredBlocks.add(crucible);
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("block/crucible"));
+		getVariantBuilder(crucible).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedCrucibleBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		});
+		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String name) {

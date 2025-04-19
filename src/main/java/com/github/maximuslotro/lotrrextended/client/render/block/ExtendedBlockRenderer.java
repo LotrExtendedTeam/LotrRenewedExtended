@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.render.block;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
@@ -111,6 +112,9 @@ public class ExtendedBlockRenderer {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedBirdcageBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedCrucibleBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}
