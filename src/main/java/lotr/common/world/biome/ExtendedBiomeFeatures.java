@@ -29,16 +29,9 @@ import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
-import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.Features.Placements;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
@@ -132,6 +125,10 @@ public class ExtendedBiomeFeatures {
 
 	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnutParty() {
 		return Feature.TREE.configured(CHESTNUT_PARTY);
+	}
+
+	public static ConfiguredFeature<NoFeatureConfig, ?> willowTree() {
+		return ExtendedFeatures.WILLOW_TREE_FEATURE;
 	}
 
 	//TODO add to biomes

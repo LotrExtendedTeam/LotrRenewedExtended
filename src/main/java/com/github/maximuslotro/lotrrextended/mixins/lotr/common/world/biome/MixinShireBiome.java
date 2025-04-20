@@ -16,7 +16,7 @@ public class MixinShireBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] shireTrees() {
-		return new Object[] { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 4000,
+		return new Object[] { ExtendedBiomeFeatures.willowTree(), 10000, LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 4000,
 				LOTRBiomeFeatures.oakBees(), 100, LOTRBiomeFeatures.oakFancyBees(), 40,
 				LOTRBiomeFeatures.oakParty(), 200, ExtendedBiomeFeatures.chestnut(), 2500,
 				ExtendedBiomeFeatures.chestnutFancy(), 1000, ExtendedBiomeFeatures.chestnutBees(), 25,
