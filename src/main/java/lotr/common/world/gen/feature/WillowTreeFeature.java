@@ -69,8 +69,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
         boolean isSoil = below.canSustainPlant(world, pos.below(), Direction.UP, (LOTRSaplingBlock) ExtendedBlocks.WILLOW_SAPLING.get());
         if (!isSoil) canGrow = false;
 
-        // TODO: Re-enable this check when done with testing
-        /*if (this.needsWater) {
+        if (this.needsWater) {
             boolean water = false;
             int attempts = 4;
             for (int l = 0; l < attempts; l++) {
@@ -84,7 +83,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
             }
             if (!water)
                 return false;
-        }*/
+        }
 
         if (!canGrow) return false;
 

@@ -16,7 +16,7 @@ public class MixinEriadorBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] eriadorTrees() {
-		return new Object[] { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,
+		return new Object[] { ExtendedBiomeFeatures.willowTree(), 10000, LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 1,
 				LOTRBiomeFeatures.birch(), 1000, LOTRBiomeFeatures.birchFancy(), 100,
 				LOTRBiomeFeatures.birchBees(), 1, LOTRBiomeFeatures.birchFancyBees(), 1,
