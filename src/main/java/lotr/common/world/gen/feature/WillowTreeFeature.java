@@ -25,17 +25,15 @@ import java.util.List;
 import java.util.Random;
 
 public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeatureConfig {
+    private boolean needsWater;
+    private int minHeight = 8;
+    private int maxHeight = 13;
+    //private BlockState woodBlock = ExtendedBlocks.WILLOW_LOG.get().defaultBlockState();
+
     public WillowTreeFeature(Codec<NoFeatureConfig> codec, boolean needsWater) {
         super(codec);
         this.needsWater = needsWater;
     }
-
-    private int minHeight = 8;
-    private int maxHeight = 13;
-
-    private boolean needsWater = true;
-
-    //private BlockState woodBlock = ExtendedBlocks.WILLOW_LOG.get().defaultBlockState();
 
     @Override
     public boolean place(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, NoFeatureConfig config) {
@@ -72,7 +70,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
 
         if (this.needsWater) {
             boolean water = false;
-            int attempts = 4;
+            int attempts = 6;
             for (int l = 0; l < attempts; l++) {
                 int x = pos.getX() + getIntInRange(random, -12, 12);
                 int y = pos.getY() + getIntInRange(random, -8, 4);
@@ -179,7 +177,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
     }
 
     private void spawnVineCluster(ISeedReader world, Random random, BlockPos pos) {
-        System.out.println("Spawn Vine Cluster called with " + pos);
+        //System.out.println("Spawn Vine Cluster called with " + pos);
         int leafRange = 3;
         int leafRangeSq = leafRange * leafRange;
 
@@ -191,14 +189,14 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
                     int k2 = k1 - pos.getZ();
                     int dist = i2 * i2 + j2 * j2 + k2 * k2;
                     if (dist < leafRangeSq) {
-                        System.out.println("dist < leafRangeSq");
+                        //System.out.println("dist < leafRangeSq");
                         BlockPos cPos = new BlockPos(i1, j1, k1);
                         BlockState block = world.getBlockState(cPos);
-                        System.out.println("Block @Pos: " + block.getBlock());
+                        //System.out.println("Block @Pos: " + block.getBlock());
 
                         if (block.getBlock().equals(ExtendedBlocks.WILLOW_LEAVES.get())) {
                             int vineChance = 2;
-                            System.out.println("Attempting to place vines");
+                            //System.out.println("Attempting to place vines");
 
                             BlockPos pos1 = pos.west();
                             //if (random.nextInt(vineChance) == 0) {
@@ -229,7 +227,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
                             //}
                         }
                     } else {
-                        System.out.println("dist not < leafRangeSq");
+                        //System.out.println("dist not < leafRangeSq");
                     }
                 }
             }
@@ -265,7 +263,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
     }
 
     protected void placeVine(IWorldWriter world, BlockPos pos, BooleanProperty property) {
-        System.out.println("Place vine called");
+        //System.out.println("Place vine called");
         this.setBlock(world, pos, Blocks.VINE.defaultBlockState().setValue(property, Boolean.valueOf(true)));
     }
 
@@ -279,6 +277,5 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
             return p_236320_1_.getMaterial().isReplaceable() || pReplacePlants && material == Material.PLANT;
         });
     }
-
 
 }
