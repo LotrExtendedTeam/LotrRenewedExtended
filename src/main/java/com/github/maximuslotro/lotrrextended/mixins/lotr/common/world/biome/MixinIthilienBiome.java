@@ -16,7 +16,7 @@ public class MixinIthilienBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected Object[] getIthilienTrees() {
-		return new Object[] { ExtendedBiomeFeatures.willowTree(), 10000, LOTRBiomeFeatures.oak(), 4000, LOTRBiomeFeatures.oakTall(), 1000,
+		return new Object[] { ExtendedBiomeFeatures.willowTree(), 5000, LOTRBiomeFeatures.oak(), 4000, LOTRBiomeFeatures.oakTall(), 1000,
 				LOTRBiomeFeatures.oakFancy(), 1000, LOTRBiomeFeatures.oakBees(), 50,
 				LOTRBiomeFeatures.oakTallBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 20,
 				LOTRBiomeFeatures.oakParty(), 50, LOTRBiomeFeatures.lebethron(), 1000,

@@ -19,7 +19,7 @@ public class MixinDaleNorthernBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		Object[] weightedTrees = {
-				ExtendedBiomeFeatures.willowTree(), 1000,
+				ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakDead(), 500, LOTRBiomeFeatures.oakBees(), 50,
 				LOTRBiomeFeatures.oakFancyBees(), 10, LOTRBiomeFeatures.spruce(), 2000,

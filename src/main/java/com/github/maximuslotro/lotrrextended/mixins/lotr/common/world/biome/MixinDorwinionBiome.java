@@ -16,7 +16,7 @@ public class MixinDorwinionBiome {
 	@Overwrite(remap = false)
 	protected final Object[] dorwinionTrees() {
 		return new Object[] {
-				ExtendedBiomeFeatures.willowTree(), 1000,
+				ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.oak(), 2000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 200, LOTRBiomeFeatures.oakFancyBees(), 100,
 				LOTRBiomeFeatures.birch(), 1000, LOTRBiomeFeatures.birchFancy(), 500,

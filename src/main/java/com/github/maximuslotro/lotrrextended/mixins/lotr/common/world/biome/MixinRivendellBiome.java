@@ -19,7 +19,7 @@ public class MixinRivendellBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		Object[] weightedTrees = {
-				ExtendedBiomeFeatures.willowTree(), 1000,
+				ExtendedBiomeFeatures.willowTree(), 5000,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 2000,
 				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 20,
 				LOTRBiomeFeatures.birch(), 5000, LOTRBiomeFeatures.birchFancy(), 1000,

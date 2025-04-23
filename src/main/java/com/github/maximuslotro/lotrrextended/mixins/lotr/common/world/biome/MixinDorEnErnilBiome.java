@@ -16,7 +16,7 @@ public class MixinDorEnErnilBiome {
 	@Overwrite(remap = false)
 	protected final Object[] dorEnErnilTrees() {
 		return new Object[] {
-				ExtendedBiomeFeatures.willowTree(), 1000,
+				ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.birch(), 2000, LOTRBiomeFeatures.birchFancy(), 2000,
 				LOTRBiomeFeatures.birchBees(), 20, LOTRBiomeFeatures.birchFancyBees(), 20,
 				LOTRBiomeFeatures.oak(), 800, LOTRBiomeFeatures.oakTall(), 800,
