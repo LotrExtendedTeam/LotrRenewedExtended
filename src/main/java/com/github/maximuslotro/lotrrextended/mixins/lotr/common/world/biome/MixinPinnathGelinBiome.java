@@ -19,6 +19,7 @@ public class MixinPinnathGelinBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((PinnathGelinBiome)(Object)this, builder, 0, 0.01F, TreeCluster.of(10, 80),
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
 				LOTRBiomeFeatures.aspen(), 5000, LOTRBiomeFeatures.birch(), 2000,

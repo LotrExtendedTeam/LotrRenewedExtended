@@ -19,6 +19,7 @@ public class MixinEregionBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((EregionBiome)(Object)this, builder, 0, 0.4F, TreeCluster.of(12, 5),
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 5, LOTRBiomeFeatures.oakFancyBees(), 1,
 				ExtendedBiomeFeatures.chestnut(), 1000, ExtendedBiomeFeatures.chestnutFancy(), 500,

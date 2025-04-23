@@ -19,6 +19,7 @@ public class MixinLossarnachBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((LossarnachBiome)(Object)this, builder, 0, 0.4F, TreeCluster.of(10, 30),
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 500, LOTRBiomeFeatures.oakFancyBees(), 100,
 				LOTRBiomeFeatures.darkOak(), 4000, LOTRBiomeFeatures.birch(), 3000,

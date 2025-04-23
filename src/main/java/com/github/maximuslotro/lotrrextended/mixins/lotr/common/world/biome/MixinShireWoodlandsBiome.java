@@ -18,6 +18,7 @@ public class MixinShireWoodlandsBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTrees((ShireWoodlandsBiome)(Object)this, builder, 9, 0.5F,
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.shirePine(), 25000, LOTRBiomeFeatures.oak(), 10000,
 				LOTRBiomeFeatures.oakFancy(), 4000, LOTRBiomeFeatures.oakBees(), 20,
 				LOTRBiomeFeatures.oakFancyBees(), 8, LOTRBiomeFeatures.birch(), 2500,

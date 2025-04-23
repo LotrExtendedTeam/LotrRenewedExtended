@@ -16,7 +16,9 @@ public class MixinAnduinValeBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] anduinTrees() {
-		return new Object[] { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,
+		return new Object[] {
+				ExtendedBiomeFeatures.willowTree(), 1000,
+				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 100, LOTRBiomeFeatures.oakFancyBees(), 10,
 				LOTRBiomeFeatures.birch(), 1500, LOTRBiomeFeatures.birchFancy(), 150,
 				LOTRBiomeFeatures.birchBees(), 15, LOTRBiomeFeatures.birchFancyBees(), 2,

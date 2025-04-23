@@ -18,7 +18,9 @@ public class MixinDunlandBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		Object[] weightedTrees = { LOTRBiomeFeatures.spruce(), 5000, LOTRBiomeFeatures.oak(), 1000,
+		Object[] weightedTrees = {
+				ExtendedBiomeFeatures.willowTree(), 2500,
+				LOTRBiomeFeatures.spruce(), 5000, LOTRBiomeFeatures.oak(), 1000,
 				LOTRBiomeFeatures.oakTall(), 1000, LOTRBiomeFeatures.oakFancy(), 200,
 				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakTallBees(), 10,
 				LOTRBiomeFeatures.oakFancyBees(), 2, ExtendedBiomeFeatures.chestnut(), 500,
