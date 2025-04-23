@@ -127,7 +127,13 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(CHESTNUT_PARTY);
 	}
 
+	// Default willowTree implementation requires water for terrain gen
 	public static ConfiguredFeature<NoFeatureConfig, ?> willowTree() {
+		return ExtendedFeatures.WILLOW_TREE_WATER_FEATURE;
+	}
+
+	// Default willowTree implementation requires water for terrain gen
+	public static ConfiguredFeature<NoFeatureConfig, ?> willowTreeNoWaterRequirement() {
 		return ExtendedFeatures.WILLOW_TREE_FEATURE;
 	}
 

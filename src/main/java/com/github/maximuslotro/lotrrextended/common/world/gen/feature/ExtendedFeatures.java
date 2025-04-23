@@ -21,6 +21,7 @@ public class ExtendedFeatures {
 	public static final ConfiguredFeature<ExtendedVegetationPatchConfig, ?> MOSS_PATCH_BONEMEAL = register("moss_patch_bonemeal", ExtendedFeature.VEGETATION_PATCH_PRE.configured(new ExtendedVegetationPatchConfig(ExtendedTags.Blocks.MOSS_REPLACEABLE, new SimpleBlockStateProvider(ExtendedBlocks.MOSS_BLOCK.get().defaultBlockState()), ()-> MOSS_VEGETATION, ExtendedCaveSurface.FLOOR, 1, 0.0F, 5, 0.6F, 1, 2, 0.75F, 0.0f)));
 
 	public static final ConfiguredFeature<NoFeatureConfig, ?> WILLOW_TREE_FEATURE = register("willow_tree_feature", ExtendedFeature.WILLOW_TREE_FEATURE_PRE.configured(NoFeatureConfig.INSTANCE));
+	public static final ConfiguredFeature<NoFeatureConfig, ?> WILLOW_TREE_WATER_FEATURE = register("willow_tree_water_feature", ExtendedFeature.WILLOW_TREE_WATER_FEATURE_PRE.configured(NoFeatureConfig.INSTANCE));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);

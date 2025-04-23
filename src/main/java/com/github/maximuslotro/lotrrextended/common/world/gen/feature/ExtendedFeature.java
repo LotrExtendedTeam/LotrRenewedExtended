@@ -20,7 +20,10 @@ public class ExtendedFeature {
 	public static final ExtendedHolyUnderwaterSphereFeature HOLEY_UNDERWATER_SPHERE_PRE = new ExtendedHolyUnderwaterSphereFeature(ExtendedHoleySphereConfig.CODEC);
 	public static final RegistryObject<ExtendedHolyUnderwaterSphereFeature> HOLEY_UNDERWATER_SPHERE = regFeature("holey_underwater_sphere", HOLEY_UNDERWATER_SPHERE_PRE);
 
-	public static final WillowTreeFeature WILLOW_TREE_FEATURE_PRE = new WillowTreeFeature(NoFeatureConfig.CODEC);
+	public static final WillowTreeFeature WILLOW_TREE_WATER_FEATURE_PRE = new WillowTreeFeature(NoFeatureConfig.CODEC, true);
+	public static final RegistryObject<WillowTreeFeature> WILLOW_TREE_WATER_FEATURE = regFeature("willow_tree_water_feature", WILLOW_TREE_WATER_FEATURE_PRE);
+
+	public static final WillowTreeFeature WILLOW_TREE_FEATURE_PRE = new WillowTreeFeature(NoFeatureConfig.CODEC, false);
 	public static final RegistryObject<WillowTreeFeature> WILLOW_TREE_FEATURE = regFeature("willow_tree_feature", WILLOW_TREE_FEATURE_PRE);
 
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> regFeature(String name, F feature) {

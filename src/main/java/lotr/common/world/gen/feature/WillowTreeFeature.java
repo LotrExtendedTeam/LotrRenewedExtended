@@ -25,8 +25,9 @@ import java.util.List;
 import java.util.Random;
 
 public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeatureConfig {
-    public WillowTreeFeature(Codec<NoFeatureConfig> codec) {
+    public WillowTreeFeature(Codec<NoFeatureConfig> codec, boolean needsWater) {
         super(codec);
+        this.needsWater = needsWater;
     }
 
     private int minHeight = 8;
