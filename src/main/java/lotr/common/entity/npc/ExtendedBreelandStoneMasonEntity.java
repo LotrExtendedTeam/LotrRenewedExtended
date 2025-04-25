@@ -64,7 +64,6 @@ public class ExtendedBreelandStoneMasonEntity extends ExtendedBreelandTraderEnti
 
 	public ExtendedBreelandStoneMasonEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_STONEMASON_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_STONEMASON_SOLD.generateTrades();
 	}

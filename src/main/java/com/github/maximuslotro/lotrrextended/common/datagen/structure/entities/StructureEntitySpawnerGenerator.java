@@ -121,7 +121,7 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_MAN.get(), 1).addPool(LOTREntities.BREE_HOBBIT.get(), 1)
 			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INN);
-		single(LOTREntities.BREE_MAN.get()).disableForFutureSpawning().setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STABLEMASTER);
+		single(ExtendedEntities.BREE_STABLEMASTER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STABLEMASTER);
 
 
 

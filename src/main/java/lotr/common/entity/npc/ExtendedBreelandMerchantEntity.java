@@ -154,7 +154,6 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
     public ExtendedBreelandMerchantEntity(EntityType<? extends ExtendedBreelandMerchantEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
-
         itemsBoughtByTrader = BREELAND_MERCHANT_BOUGHT.generateTrades();
         itemsSoldByTrader = BREELAND_MERCHANT_SOLD.generateTrades();
     }

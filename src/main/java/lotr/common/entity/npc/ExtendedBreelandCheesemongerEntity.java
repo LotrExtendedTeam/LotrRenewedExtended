@@ -47,7 +47,6 @@ public class ExtendedBreelandCheesemongerEntity extends ExtendedBreelandTraderEn
 
 	public ExtendedBreelandCheesemongerEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_CHEESEMONGER_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_CHEESEMONGER_SOLD.generateTrades();
 	}

@@ -64,7 +64,6 @@ public class ExtendedBreelandFloristEntity extends ExtendedBreelandTraderEntity 
 
 	public ExtendedBreelandFloristEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_FLORIST_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_FLORIST_SOLD.generateTrades();
 	}
