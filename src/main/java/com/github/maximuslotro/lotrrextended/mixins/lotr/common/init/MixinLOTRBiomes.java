@@ -54,5 +54,6 @@ public class MixinLOTRBiomes {
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedBiomes(CallbackInfo ci) {
 		ExtendedBiomes.BARROW_DOWNS = prepareD("barrow_downs", () -> new BarrowDownsBiome(true));
+		ExtendedBiomes.BARROW_DOWNS_RIVER = prepareD("barrow_downs_river", () -> new BarrowDownsBiome.BarrowDownsRiverBiome());
 	}
 }
