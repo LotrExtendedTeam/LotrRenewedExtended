@@ -15,13 +15,13 @@ import com.github.maximuslotro.lotrrextended.api.events.world.ExtendedFastTravel
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.LOTRLog;
-import lotr.common.data.AlignmentDataModule;
 import lotr.common.data.FastTravelDataModule;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.stat.LOTRStats;
 import lotr.common.util.UsernameHelper;
+import lotr.common.world.map.AbstractCustomWaypoint;
 import lotr.common.world.map.AdoptedCustomWaypoint;
 import lotr.common.world.map.MapWaypoint;
 import lotr.common.world.map.Waypoint;
@@ -186,14 +186,14 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 	/**
 	 * @reason Need to add fast travel waypoint type rules
 	 * @author maximuslotro
-	 * @Inject (method = "setTargetWaypoint(Llotr/common/world/map/Waypoint;)V", remap = false, at = @At(value = "HEAD"))
+	 * @Inject (method = "setTargetWaypoint(Llotr/common/world/map/Waypoint;)V", remap = false, at = @At(value = "HEAD"), cancellable = true)
 	 * @param waypoint The waypoint to be checked for config rules
 	 * @param ci A CallbackInfo instance to cancel the teleport if needed
 	 */
-	@Inject(method = "setTargetWaypoint(Llotr/common/world/map/Waypoint;)V", remap = false, at = @At(value = "HEAD"))
+	@Inject(method = "setTargetWaypoint(Llotr/common/world/map/Waypoint;)V", remap = false, at = @At(value = "HEAD"), cancellable = true)
 	private void setTargetWaypointBypass(Waypoint waypoint, CallbackInfo ci) {
-		if(waypoint instanceof AdoptedCustomWaypoint && !ExtendedServerConfig.enableCustomWaypointTeleportation.get()) {
-			UUID uuid = (((MixinPlayerDataModuleInvoker)(AlignmentDataModule)(Object)this)).invokeGetPlayerUUID();
+		if(waypoint instanceof AbstractCustomWaypoint && !ExtendedServerConfig.enableCustomWaypointTeleportation.get()) {
+			UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
 			if(uuid!=null) {
 				ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
 				player.closeContainer();
@@ -201,7 +201,7 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 			}
 			ci.cancel();
 		} else if(waypoint instanceof MapWaypoint && !ExtendedServerConfig.enableDefaultWaypointTeleportation.get()) {
-			UUID uuid = (((MixinPlayerDataModuleInvoker)(AlignmentDataModule)(Object)this)).invokeGetPlayerUUID();
+			UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
 			if(uuid!=null) {
 				ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
 				player.closeContainer();

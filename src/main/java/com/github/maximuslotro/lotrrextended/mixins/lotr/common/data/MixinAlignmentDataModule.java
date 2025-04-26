@@ -108,7 +108,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 		if(ServerLifecycleHooks.getCurrentServer() == null && LOTRMod.PROXY.isClient()) {
 			return;
 		}
-		UUID uuid = (((MixinPlayerDataModuleInvoker)(AlignmentDataModule)(Object)this)).invokeGetPlayerUUID();
+		UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
 		if(uuid!=null) {
 			ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
 			ExtendedCriteriaTriggers.ALIGNMENT_TRIGGER.trigger(player, faction, alignment);
