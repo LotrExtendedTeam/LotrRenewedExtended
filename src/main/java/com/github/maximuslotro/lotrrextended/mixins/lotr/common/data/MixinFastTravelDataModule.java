@@ -22,7 +22,6 @@ import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.stat.LOTRStats;
 import lotr.common.util.UsernameHelper;
 import lotr.common.world.map.AbstractCustomWaypoint;
-import lotr.common.world.map.AdoptedCustomWaypoint;
 import lotr.common.world.map.MapWaypoint;
 import lotr.common.world.map.Waypoint;
 import net.minecraft.entity.Entity;
