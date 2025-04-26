@@ -68,6 +68,13 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
+	public static Advancement.Builder addBiomeANDTriggers(Advancement.Builder builder, List<ResourceLocation> biomes) {
+		for(ResourceLocation lotrBiomeObject : biomes) {
+			builder.addCriterion("enter_"+lotrBiomeObject.getPath(), inBiome(lotrBiomeObject));
+		}
+		return builder.requirements(IRequirementsStrategy.AND);
+	}
+
 	public static Advancement.Builder addDimensionTrigger(Advancement.Builder builder, RegistryKey<World> dim) {
 		builder.addCriterion("entered_"+dim.location().getPath(), ChangeDimensionTrigger.Instance.changedDimensionTo(dim));
 		return builder;

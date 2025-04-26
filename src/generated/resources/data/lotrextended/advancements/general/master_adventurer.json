@@ -1,0 +1,1344 @@
+{
+  "parent": "lotrextended:general/time_to_ride",
+  "display": {
+    "icon": {
+      "item": "minecraft:saddle"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.master_adventurer.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.master_adventurer.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_shire": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire"
+        }
+      }
+    },
+    "enter_mordor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mordor"
+        }
+      }
+    },
+    "enter_anorien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:anorien"
+        }
+      }
+    },
+    "enter_rohan": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rohan"
+        }
+      }
+    },
+    "enter_misty_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:misty_mountains"
+        }
+      }
+    },
+    "enter_shire_woodlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire_woodlands"
+        }
+      }
+    },
+    "enter_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:river"
+        }
+      }
+    },
+    "enter_trollshaws": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:trollshaws"
+        }
+      }
+    },
+    "enter_blue_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:blue_mountains"
+        }
+      }
+    },
+    "enter_eriador": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eriador"
+        }
+      }
+    },
+    "enter_lone_lands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lone_lands"
+        }
+      }
+    },
+    "enter_ithilien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ithilien"
+        }
+      }
+    },
+    "enter_brown_lands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:brown_lands"
+        }
+      }
+    },
+    "enter_lothlorien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lothlorien"
+        }
+      }
+    },
+    "enter_iron_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:iron_hills"
+        }
+      }
+    },
+    "enter_dunland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dunland"
+        }
+      }
+    },
+    "enter_emyn_muil": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:emyn_muil"
+        }
+      }
+    },
+    "enter_lindon": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lindon"
+        }
+      }
+    },
+    "enter_southron_coasts": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:southron_coasts"
+        }
+      }
+    },
+    "enter_nan_curunir": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nan_curunir"
+        }
+      }
+    },
+    "enter_forodwaith": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:forodwaith"
+        }
+      }
+    },
+    "enter_eregion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eregion"
+        }
+      }
+    },
+    "enter_mirkwood": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mirkwood"
+        }
+      }
+    },
+    "enter_grey_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:grey_mountains"
+        }
+      }
+    },
+    "enter_white_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_mountains"
+        }
+      }
+    },
+    "enter_fangorn": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:fangorn"
+        }
+      }
+    },
+    "enter_woodland_realm": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:woodland_realm"
+        }
+      }
+    },
+    "enter_dale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dale"
+        }
+      }
+    },
+    "enter_angmar": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:angmar"
+        }
+      }
+    },
+    "enter_harondor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harondor"
+        }
+      }
+    },
+    "enter_enedwaith": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:enedwaith"
+        }
+      }
+    },
+    "enter_vales_of_anduin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:vales_of_anduin"
+        }
+      }
+    },
+    "enter_anduin_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:anduin_hills"
+        }
+      }
+    },
+    "enter_wilderland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:wilderland"
+        }
+      }
+    },
+    "enter_old_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:old_forest"
+        }
+      }
+    },
+    "enter_breeland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:breeland"
+        }
+      }
+    },
+    "enter_chetwood": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:chetwood"
+        }
+      }
+    },
+    "enter_misty_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:misty_mountains_foothills"
+        }
+      }
+    },
+    "enter_blue_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:blue_mountains_foothills"
+        }
+      }
+    },
+    "enter_grey_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:grey_mountains_foothills"
+        }
+      }
+    },
+    "enter_white_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_mountains_foothills"
+        }
+      }
+    },
+    "enter_mordor_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mordor_mountains"
+        }
+      }
+    },
+    "enter_forodwaith_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:forodwaith_mountains"
+        }
+      }
+    },
+    "enter_angmar_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:angmar_mountains"
+        }
+      }
+    },
+    "enter_nurn": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurn"
+        }
+      }
+    },
+    "enter_umbar": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:umbar"
+        }
+      }
+    },
+    "enter_harad_desert": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harad_desert"
+        }
+      }
+    },
+    "enter_lindon_woodlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lindon_woodlands"
+        }
+      }
+    },
+    "enter_eriador_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eriador_downs"
+        }
+      }
+    },
+    "enter_lone_lands_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lone_lands_hills"
+        }
+      }
+    },
+    "enter_northlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northlands"
+        }
+      }
+    },
+    "enter_northlands_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northlands_forest"
+        }
+      }
+    },
+    "enter_sea": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:sea"
+        }
+      }
+    },
+    "enter_island": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:island"
+        }
+      }
+    },
+    "enter_beach": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:beach"
+        }
+      }
+    },
+    "enter_tolfalas": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:tolfalas"
+        }
+      }
+    },
+    "enter_lake": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lake"
+        }
+      }
+    },
+    "enter_nurnen": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurnen"
+        }
+      }
+    },
+    "enter_dor_en_ernil": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dor_en_ernil"
+        }
+      }
+    },
+    "enter_emyn_en_ernil": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:emyn_en_ernil"
+        }
+      }
+    },
+    "enter_western_isles": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:western_isles"
+        }
+      }
+    },
+    "enter_coldfells": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:coldfells"
+        }
+      }
+    },
+    "enter_ettenmoors": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ettenmoors"
+        }
+      }
+    },
+    "enter_harnennor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harnennor"
+        }
+      }
+    },
+    "enter_dagorlad": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dagorlad"
+        }
+      }
+    },
+    "enter_white_beach": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_beach"
+        }
+      }
+    },
+    "enter_dorwinion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dorwinion"
+        }
+      }
+    },
+    "enter_emyn_winion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:emyn_winion"
+        }
+      }
+    },
+    "enter_wold": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:wold"
+        }
+      }
+    },
+    "enter_minhiriath": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:minhiriath"
+        }
+      }
+    },
+    "enter_eryn_vorn": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eryn_vorn"
+        }
+      }
+    },
+    "enter_druwaith_iaur": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:druwaith_iaur"
+        }
+      }
+    },
+    "enter_andrast": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:andrast"
+        }
+      }
+    },
+    "enter_lossarnach": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lossarnach"
+        }
+      }
+    },
+    "enter_lebennin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lebennin"
+        }
+      }
+    },
+    "enter_pelargir": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:pelargir"
+        }
+      }
+    },
+    "enter_lamedon": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lamedon"
+        }
+      }
+    },
+    "enter_lamedon_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lamedon_hills"
+        }
+      }
+    },
+    "enter_blackroot_vale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:blackroot_vale"
+        }
+      }
+    },
+    "enter_pinnath_gelin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:pinnath_gelin"
+        }
+      }
+    },
+    "enter_anfalas": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:anfalas"
+        }
+      }
+    },
+    "enter_northern_wilderland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northern_wilderland"
+        }
+      }
+    },
+    "enter_northern_dale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northern_dale"
+        }
+      }
+    },
+    "enter_rivendell": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell"
+        }
+      }
+    },
+    "enter_rivendell_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell_hills"
+        }
+      }
+    },
+    "enter_further_gondor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:further_gondor"
+        }
+      }
+    },
+    "enter_shire_moors": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire_moors"
+        }
+      }
+    },
+    "enter_white_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_downs"
+        }
+      }
+    },
+    "enter_midgewater": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:midgewater"
+        }
+      }
+    },
+    "enter_swanfleet": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:swanfleet"
+        }
+      }
+    },
+    "enter_gladden_fields": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:gladden_fields"
+        }
+      }
+    },
+    "enter_long_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:long_marshes"
+        }
+      }
+    },
+    "enter_nindalf": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nindalf"
+        }
+      }
+    },
+    "enter_dead_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dead_marshes"
+        }
+      }
+    },
+    "enter_mouths_of_entwash": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mouths_of_entwash"
+        }
+      }
+    },
+    "enter_ethir_anduin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ethir_anduin"
+        }
+      }
+    },
+    "enter_shire_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:shire_marshes"
+        }
+      }
+    },
+    "enter_nurn_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurn_marshes"
+        }
+      }
+    },
+    "enter_gorgoroth": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:gorgoroth"
+        }
+      }
+    },
+    "enter_forochel": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:forochel"
+        }
+      }
+    },
+    "enter_lothlorien_eaves": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lothlorien_eaves"
+        }
+      }
+    },
+    "enter_harad_half_desert": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harad_half_desert"
+        }
+      }
+    },
+    "enter_harad_desert_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harad_desert_hills"
+        }
+      }
+    },
+    "enter_lostladen": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lostladen"
+        }
+      }
+    },
+    "enter_eastern_desolation": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:eastern_desolation"
+        }
+      }
+    },
+    "enter_northern_mirkwood": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:northern_mirkwood"
+        }
+      }
+    },
+    "enter_mirkwood_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mirkwood_mountains"
+        }
+      }
+    },
+    "enter_morgul_vale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:morgul_vale"
+        }
+      }
+    },
+    "enter_dense_northlands_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dense_northlands_forest"
+        }
+      }
+    },
+    "enter_snowy_northlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:snowy_northlands"
+        }
+      }
+    },
+    "enter_snowy_northlands_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:snowy_northlands_forest"
+        }
+      }
+    },
+    "enter_dense_snowy_northlands_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dense_snowy_northlands_forest"
+        }
+      }
+    },
+    "enter_tower_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:tower_hills"
+        }
+      }
+    },
+    "enter_southron_coasts_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:southron_coasts_forest"
+        }
+      }
+    },
+    "enter_umbar_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:umbar_forest"
+        }
+      }
+    },
+    "enter_umbar_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:umbar_hills"
+        }
+      }
+    },
+    "enter_field_of_cormallen": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:field_of_cormallen"
+        }
+      }
+    },
+    "enter_hills_of_evendim": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:hills_of_evendim"
+        }
+      }
+    },
+    "enter_barrow_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:barrow_downs"
+        }
+      }
+    },
+    "enter_barrow_downs_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:barrow_downs_river"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_shire"
+    ],
+    [
+      "enter_mordor"
+    ],
+    [
+      "enter_anorien"
+    ],
+    [
+      "enter_rohan"
+    ],
+    [
+      "enter_misty_mountains"
+    ],
+    [
+      "enter_shire_woodlands"
+    ],
+    [
+      "enter_river"
+    ],
+    [
+      "enter_trollshaws"
+    ],
+    [
+      "enter_blue_mountains"
+    ],
+    [
+      "enter_eriador"
+    ],
+    [
+      "enter_lone_lands"
+    ],
+    [
+      "enter_ithilien"
+    ],
+    [
+      "enter_brown_lands"
+    ],
+    [
+      "enter_lothlorien"
+    ],
+    [
+      "enter_iron_hills"
+    ],
+    [
+      "enter_dunland"
+    ],
+    [
+      "enter_emyn_muil"
+    ],
+    [
+      "enter_lindon"
+    ],
+    [
+      "enter_southron_coasts"
+    ],
+    [
+      "enter_nan_curunir"
+    ],
+    [
+      "enter_forodwaith"
+    ],
+    [
+      "enter_eregion"
+    ],
+    [
+      "enter_mirkwood"
+    ],
+    [
+      "enter_grey_mountains"
+    ],
+    [
+      "enter_white_mountains"
+    ],
+    [
+      "enter_fangorn"
+    ],
+    [
+      "enter_woodland_realm"
+    ],
+    [
+      "enter_dale"
+    ],
+    [
+      "enter_angmar"
+    ],
+    [
+      "enter_harondor"
+    ],
+    [
+      "enter_enedwaith"
+    ],
+    [
+      "enter_vales_of_anduin"
+    ],
+    [
+      "enter_anduin_hills"
+    ],
+    [
+      "enter_wilderland"
+    ],
+    [
+      "enter_old_forest"
+    ],
+    [
+      "enter_breeland"
+    ],
+    [
+      "enter_chetwood"
+    ],
+    [
+      "enter_misty_mountains_foothills"
+    ],
+    [
+      "enter_blue_mountains_foothills"
+    ],
+    [
+      "enter_grey_mountains_foothills"
+    ],
+    [
+      "enter_white_mountains_foothills"
+    ],
+    [
+      "enter_mordor_mountains"
+    ],
+    [
+      "enter_forodwaith_mountains"
+    ],
+    [
+      "enter_angmar_mountains"
+    ],
+    [
+      "enter_nurn"
+    ],
+    [
+      "enter_umbar"
+    ],
+    [
+      "enter_harad_desert"
+    ],
+    [
+      "enter_lindon_woodlands"
+    ],
+    [
+      "enter_eriador_downs"
+    ],
+    [
+      "enter_lone_lands_hills"
+    ],
+    [
+      "enter_northlands"
+    ],
+    [
+      "enter_northlands_forest"
+    ],
+    [
+      "enter_sea"
+    ],
+    [
+      "enter_island"
+    ],
+    [
+      "enter_beach"
+    ],
+    [
+      "enter_tolfalas"
+    ],
+    [
+      "enter_lake"
+    ],
+    [
+      "enter_nurnen"
+    ],
+    [
+      "enter_dor_en_ernil"
+    ],
+    [
+      "enter_emyn_en_ernil"
+    ],
+    [
+      "enter_western_isles"
+    ],
+    [
+      "enter_coldfells"
+    ],
+    [
+      "enter_ettenmoors"
+    ],
+    [
+      "enter_harnennor"
+    ],
+    [
+      "enter_dagorlad"
+    ],
+    [
+      "enter_white_beach"
+    ],
+    [
+      "enter_dorwinion"
+    ],
+    [
+      "enter_emyn_winion"
+    ],
+    [
+      "enter_wold"
+    ],
+    [
+      "enter_minhiriath"
+    ],
+    [
+      "enter_eryn_vorn"
+    ],
+    [
+      "enter_druwaith_iaur"
+    ],
+    [
+      "enter_andrast"
+    ],
+    [
+      "enter_lossarnach"
+    ],
+    [
+      "enter_lebennin"
+    ],
+    [
+      "enter_pelargir"
+    ],
+    [
+      "enter_lamedon"
+    ],
+    [
+      "enter_lamedon_hills"
+    ],
+    [
+      "enter_blackroot_vale"
+    ],
+    [
+      "enter_pinnath_gelin"
+    ],
+    [
+      "enter_anfalas"
+    ],
+    [
+      "enter_northern_wilderland"
+    ],
+    [
+      "enter_northern_dale"
+    ],
+    [
+      "enter_rivendell"
+    ],
+    [
+      "enter_rivendell_hills"
+    ],
+    [
+      "enter_further_gondor"
+    ],
+    [
+      "enter_shire_moors"
+    ],
+    [
+      "enter_white_downs"
+    ],
+    [
+      "enter_midgewater"
+    ],
+    [
+      "enter_swanfleet"
+    ],
+    [
+      "enter_gladden_fields"
+    ],
+    [
+      "enter_long_marshes"
+    ],
+    [
+      "enter_nindalf"
+    ],
+    [
+      "enter_dead_marshes"
+    ],
+    [
+      "enter_mouths_of_entwash"
+    ],
+    [
+      "enter_ethir_anduin"
+    ],
+    [
+      "enter_shire_marshes"
+    ],
+    [
+      "enter_nurn_marshes"
+    ],
+    [
+      "enter_gorgoroth"
+    ],
+    [
+      "enter_forochel"
+    ],
+    [
+      "enter_lothlorien_eaves"
+    ],
+    [
+      "enter_harad_half_desert"
+    ],
+    [
+      "enter_harad_desert_hills"
+    ],
+    [
+      "enter_lostladen"
+    ],
+    [
+      "enter_eastern_desolation"
+    ],
+    [
+      "enter_northern_mirkwood"
+    ],
+    [
+      "enter_mirkwood_mountains"
+    ],
+    [
+      "enter_morgul_vale"
+    ],
+    [
+      "enter_dense_northlands_forest"
+    ],
+    [
+      "enter_snowy_northlands"
+    ],
+    [
+      "enter_snowy_northlands_forest"
+    ],
+    [
+      "enter_dense_snowy_northlands_forest"
+    ],
+    [
+      "enter_tower_hills"
+    ],
+    [
+      "enter_southron_coasts_forest"
+    ],
+    [
+      "enter_umbar_forest"
+    ],
+    [
+      "enter_umbar_hills"
+    ],
+    [
+      "enter_field_of_cormallen"
+    ],
+    [
+      "enter_hills_of_evendim"
+    ],
+    [
+      "enter_barrow_downs"
+    ],
+    [
+      "enter_barrow_downs_river"
+    ]
+  ]
+}

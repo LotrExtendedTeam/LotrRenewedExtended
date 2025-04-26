@@ -31,6 +31,202 @@
         ]
       }
     },
+    "kill_bree_baker": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_baker"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_brewer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_brewer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_butcher": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_butcher"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_cheesemonger": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_cheesemonger"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_farmer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_farmer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_florist": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_florist"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_innkeeper": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_innkeeper"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_leatherworker": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_leatherworker"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_lumberman": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_lumberman"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_potter": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_potter"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_merchant": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_merchant"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_sheriff": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_sheriff"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_smith": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_smith"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_stonemason": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_stonemason"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
     "kill_bree_man": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
@@ -49,6 +245,20 @@
   "requirements": [
     [
       "kill_bree_guard",
+      "kill_bree_baker",
+      "kill_bree_brewer",
+      "kill_bree_butcher",
+      "kill_bree_cheesemonger",
+      "kill_bree_farmer",
+      "kill_bree_florist",
+      "kill_bree_innkeeper",
+      "kill_bree_leatherworker",
+      "kill_bree_lumberman",
+      "kill_bree_potter",
+      "kill_bree_merchant",
+      "kill_bree_sheriff",
+      "kill_bree_smith",
+      "kill_bree_stonemason",
       "kill_bree_man"
     ]
   ]

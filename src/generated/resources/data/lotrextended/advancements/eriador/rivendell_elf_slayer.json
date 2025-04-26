@@ -44,12 +44,27 @@
           }
         ]
       }
+    },
+    "kill_rivendell_wanderer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:rivendell_wanderer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_rivendell_elf",
-      "kill_rivendell_warrior"
+      "kill_rivendell_warrior",
+      "kill_rivendell_wanderer"
     ]
   ]
 }

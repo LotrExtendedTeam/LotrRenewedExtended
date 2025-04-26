@@ -31,11 +31,26 @@
           }
         ]
       }
+    },
+    "kill_dunedain_ranger_captain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dunedain_ranger_captain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "kill_dunedain_ranger"
+      "kill_dunedain_ranger",
+      "kill_dunedain_ranger_captain"
     ]
   ]
 }

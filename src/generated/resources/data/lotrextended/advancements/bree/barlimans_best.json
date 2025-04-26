@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "display": {
+    "icon": {
+      "item": "lotr:wooden_mug"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.bree.barlimans_best.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.bree.barlimans_best.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_bree_innkeeper_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_innkeeper",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_innkeeper_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_innkeeper",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_bree_innkeeper_buy",
+      "trade_bree_innkeeper_sell"
+    ]
+  ]
+}

@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.BaseAdv
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
@@ -22,7 +23,7 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> ERIADOR_BIOMES = ImmutableList.of(LOTRBiomes.ERIADOR, LOTRBiomes.ERIADOR_DOWNS,
 			LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS, LOTRBiomes.MIDGEWATER, LOTRBiomes.MINHIRIATH, LOTRBiomes.ERYN_VORN,
 			LOTRBiomes.TROLLSHAWS, LOTRBiomes.ETTENMOORS, LOTRBiomes.COLDFELLS, LOTRBiomes.SWANFLEET, LOTRBiomes.RIVENDELL,
-			LOTRBiomes.RIVENDELL_HILLS);//, LOTRBiomes.THE_ANGLE,LOTRBiomes.BARROW_DOWNS);
+			LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER);//, LOTRBiomes.THE_ANGLE);
 
 	@Override
 	public void generateAdvancements() {
@@ -35,7 +36,8 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 				addBiomeTriggers(make(), LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS).parent(eriadorBase));
 		Advancement gun_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_orc_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Gundabad Orc Slayer").setDescription("Kill a Gundabad Orc."),
-				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get()).parent(lone_lands));
+				addKillEntityTriggers(make(), LOTREntities.GUNDABAD_ORC.get(), LOTREntities.GUNDABAD_ORC_ARCHER.get(),
+					ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).parent(lone_lands));
 		Advancement gun_uruk_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "gundabad_uruk_slayer", false, FrameType.GOAL, true, true, false)
 			.setTitle("Bigger, Stronger, Meaner").setDescription("Kill a Gundabad Uruk."),
 			addKillEntityTriggers(make(), ExtendedEntities.GUNDABAD_URUK.get(), ExtendedEntities.GUNDABAD_URUK_ARCHER.get()).parent(gun_orc_slayer));
@@ -54,11 +56,7 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 //				addKillEntityTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER.get()).parent(eriadorBase));
 		Advancement ranger_slayer = build(true, data(ExtendedItems.DUNEDAIN_BOW.get(), "ranger_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Outlaw").setDescription("Kill a Dúnedain Ranger of the North."),
-				addKillEntityTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER.get()).parent(eriadorBase));
-
-//		Advancement gundabad_orc_slayer = build(data(lotrextended:gundabad_uruk_helmet, "bigger_stronger_meaner", false, FrameType.TASK, true, true, false)
-//				.setTitle("Bigger, Stronger, Meaner").setDescription("Kill a Gundabad Uruk."),
-//				addArmorTrigger(slay trigger lotrextended:gundabad_uruk).parent(eriadorBase));
+				addKillEntityTriggers(make(), ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).parent(eriadorBase));
 
 		Advancement gundabad_uruk_armor = build(true, data(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get(), "scourge_of_the_mountains", false, FrameType.TASK, true, true, false)
 				.setTitle("Scourge of the Mountains").setDescription("Acquire a full set of Gundabad Uruk armor."),
@@ -69,6 +67,10 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 //				.setTitle("A Fastness in the Wild").setDescription("Enter the Lands of the Angle."),
 //				addBiomeTrigger(make(),LOTRBiomes.THE_ANGLE).parent(eriadorBase));
 
+		Advancement hills_of_the_dead = build(true, data(Items.BONE, "hills_of_the_dead", false, FrameType.TASK, true, true, false)
+		.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
+		addBiomeTriggers(make(), ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER).parent(eriadorBase));
+		
 		Advancement minhiriath = build(true, data(Items.GRASS_BLOCK, "between_the_rivers", false, FrameType.TASK, true, true, false)
 				.setTitle("Between the Rivers").setDescription("Enter the region of Minhiriath."),
 				addBiomeTrigger(make(), LOTRBiomes.MINHIRIATH).parent(eriadorBase));
@@ -90,7 +92,8 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 						LOTRItems.RIVENDELL_LEGGINGS.get(), LOTRItems.RIVENDELL_BOOTS.get()).parent(rivendell));
 		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf."),
-				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get()).parent(rivendell));
+				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get(), 
+					ExtendedEntities.RIVENDELL_WANDERER.get()).parent(rivendell));
 
 		Advancement coldfells = build(true, data(Items.OAK_SAPLING, "the_wild_north", false, FrameType.TASK, true, true, false)
 				.setTitle("The Wild North").setDescription("Enter the Coldfells."),
