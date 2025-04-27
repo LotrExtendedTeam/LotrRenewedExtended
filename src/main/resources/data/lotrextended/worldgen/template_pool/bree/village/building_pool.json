@@ -93,6 +93,27 @@
 			}
 		},
 		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:bree/village/bree_village_orchard",
+				"processors": "minecraft:empty",
+				"blacklist_name" : "ORCHARD"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:bree/village/bree_village_stables",
+				"processors": "minecraft:empty",
+				"blacklist_name" : "STABLES",
+				"apply_waterlogging" : false
+			}
+		},
+		{
 			"weight": 5,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
