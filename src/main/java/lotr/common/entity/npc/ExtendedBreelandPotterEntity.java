@@ -109,7 +109,6 @@ public class ExtendedBreelandPotterEntity extends ExtendedBreelandTraderEntity {
 
 	public ExtendedBreelandPotterEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_POTTER_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_POTTER_SOLD.generateTrades();
 	}

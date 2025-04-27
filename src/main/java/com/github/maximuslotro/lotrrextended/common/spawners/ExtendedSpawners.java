@@ -14,6 +14,8 @@ public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
 	// ANIMALS
 	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
+	public static final ResourceLocation HORSE_SINGLE  = register("generic_horse_single_spawner");
+
 	// HOBBITS
 	public static final ResourceLocation HOBBIT_PICNIC_TABLE = register("hobbit_picnic_table_spawner");
 	public static final ResourceLocation HOBBIT_PICNIC_BLANKET = register("hobbit_picnic_blanket_spawner");
@@ -79,6 +81,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_LEATHERWORKER = register("bree_village_leatherworker_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STALL = register("bree_village_stall_spawner");
 	public static final ResourceLocation BREE_VILLAGE_INN = register("bree_village_inn_spawner");
+	public static final ResourceLocation BREE_VILLAGE_STABLEMASTER = register("bree_village_stablemaster_spawner");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

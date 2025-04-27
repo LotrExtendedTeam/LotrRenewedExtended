@@ -44,12 +44,42 @@
           }
         ]
       }
+    },
+    "kill_gundabad_orc_scrounger": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gundabad_orc_scrounger"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_gundabad_orc_chieftain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:gundabad_orc_chieftain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_gundabad_orc",
-      "kill_gundabad_orc_archer"
+      "kill_gundabad_orc_archer",
+      "kill_gundabad_orc_scrounger",
+      "kill_gundabad_orc_chieftain"
     ]
   ]
 }

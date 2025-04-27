@@ -110,7 +110,6 @@ public class ExtendedBreelandLeatherworkerEntity extends ExtendedBreelandTraderE
 
 	public ExtendedBreelandLeatherworkerEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_LEATHERWORKER_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_LEATHERWORKER_SOLD.generateTrades();
 	}

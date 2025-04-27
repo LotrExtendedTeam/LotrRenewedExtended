@@ -23,21 +23,23 @@ import net.minecraftforge.fml.RegistryObject;
 
 
 public class GeneralAdvancementsProvider extends BaseAdvancementType{
-	private static final List<ResourceLocation> BIOMES;
-
+	private static final List<ResourceLocation> BIOMES_MAJOR;
+	private static final List<ResourceLocation> BIOMES_ALL;
+	
 	static {
-		BIOMES = new ArrayList<>();
+		BIOMES_ALL = new ArrayList<>();
 		Collection<RegistryObject<Biome>> eeMES = LOTRBiomes.BIOMES.getEntries();
 		for(RegistryObject<Biome> b : eeMES) {
-			BIOMES.add(b.getId());
+			BIOMES_ALL.add(b.getId());
 		}
+		BIOMES_MAJOR = LOTRBiomes.listBiomeNamesForClassicGen();
 	}
 
 	@Override
 	public void generateAdvancements() {
 		Advancement base = build(true, data(LOTRItems.RED_BOOK.get(), "first_steps", true, FrameType.TASK, true, true, false)
 				.setTitle("First Steps").setDescription("Enter Middle-Earth."),
-				addBiomeAltTriggers(addDimensionTrigger(make(), LOTRDimensions.MIDDLE_EARTH_WORLD_KEY), BIOMES));
+				addBiomeAltTriggers(addDimensionTrigger(make(), LOTRDimensions.MIDDLE_EARTH_WORLD_KEY), BIOMES_ALL));
 
 		Advancement orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "orc_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Orc Slayer").setDescription("Kill an Orc."),
@@ -133,7 +135,11 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 		Advancement saddle = build(true, data(Items.SADDLE, "time_to_ride", false, FrameType.TASK, true, true, false)
 				.setTitle("Time to Ride!").setDescription("Acquire a Saddle."),
 				addItemTrigger(make(), Items.SADDLE).parent(base));
-
+		
+		Advancement master_adventurer = build(false, data(Items.SADDLE, "master_adventurer", false, FrameType.CHALLENGE, true, true, false)
+			.setTitle("Master Adventurer").setDescription("Visit every biome in Middle Earth"),
+			addBiomeANDTriggers(make(), BIOMES_ALL).parent(saddle));
+		
 		Advancement apple_crumble = build(true, data(LOTRItems.APPLE_CRUMBLE.get(), "traditional_dish", false, FrameType.TASK, true, true, false)
 				.setTitle("Traditional Dish").setDescription("Acquire an Apple Crumble."),
 				addItemTrigger(make(), LOTRItems.APPLE_CRUMBLE.get()).parent(base));

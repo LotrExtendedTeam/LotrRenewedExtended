@@ -7,14 +7,22 @@ import java.util.UUID;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.api.events.world.ExtendedFastTravelWaypointEvent;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.LOTRLog;
 import lotr.common.data.FastTravelDataModule;
+import lotr.common.data.LOTRPlayerData;
+import lotr.common.data.PlayerDataModule;
 import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.stat.LOTRStats;
 import lotr.common.util.UsernameHelper;
+import lotr.common.world.map.AbstractCustomWaypoint;
+import lotr.common.world.map.MapWaypoint;
 import lotr.common.world.map.Waypoint;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MobEntity;
@@ -22,15 +30,25 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
  * @reason Adds logic to Fast Travel teleporting to teleport Hired Units with the player
  * @Mixin (FastTravelDataModule.class)
  * */
 @Mixin(FastTravelDataModule.class)
-public abstract class MixinFastTravelDataModule {
+public abstract class MixinFastTravelDataModule extends PlayerDataModule {
+	/**
+	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param pd A placeholder variable instance of LOTRPlayerData
+	 * */
+	protected MixinFastTravelDataModule(LOTRPlayerData pd) {
+		super(pd);
+	}
+
 	/**
 	 * Helper method for teleporting entities
 	 * @Shadow (remap=false)
@@ -162,5 +180,33 @@ public abstract class MixinFastTravelDataModule {
 		// Extended Start
 		MinecraftForge.EVENT_BUS.post(new ExtendedFastTravelWaypointEvent.Post(player, world, origin, travelPos));
 		// Extended End
+	}
+
+	/**
+	 * @reason Need to add fast travel waypoint type rules
+	 * @author maximuslotro
+	 * @Inject (method = "setTargetWaypoint(Llotr/common/world/map/Waypoint;)V", remap = false, at = @At(value = "HEAD"), cancellable = true)
+	 * @param waypoint The waypoint to be checked for config rules
+	 * @param ci A CallbackInfo instance to cancel the teleport if needed
+	 */
+	@Inject(method = "setTargetWaypoint(Llotr/common/world/map/Waypoint;)V", remap = false, at = @At(value = "HEAD"), cancellable = true)
+	private void setTargetWaypointBypass(Waypoint waypoint, CallbackInfo ci) {
+		if(waypoint instanceof AbstractCustomWaypoint && !ExtendedServerConfig.enableCustomWaypointTeleportation.get()) {
+			UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
+			if(uuid!=null) {
+				ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
+				player.closeContainer();
+				player.displayClientMessage(new TranslationTextComponent("chat.lotrextended.no_custom"), false);
+			}
+			ci.cancel();
+		} else if(waypoint instanceof MapWaypoint && !ExtendedServerConfig.enableDefaultWaypointTeleportation.get()) {
+			UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
+			if(uuid!=null) {
+				ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
+				player.closeContainer();
+				player.displayClientMessage(new TranslationTextComponent("chat.lotrextended.no_default"), false);
+			}
+			ci.cancel();
+		}
 	}
 }

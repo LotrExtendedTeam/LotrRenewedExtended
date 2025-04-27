@@ -31,7 +31,12 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement bree_man_slayer = build(true, data(Items.BONE, "bree_man_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-Man Slayer").setDescription("Kill a Bree-Man."),
-				addKillEntityTriggers(make(), LOTREntities.BREE_GUARD.get(), LOTREntities.BREE_MAN.get()).parent(bree));
+				addKillEntityTriggers(make(), LOTREntities.BREE_GUARD.get(), 
+					ExtendedEntities.BREE_BAKER.get(), ExtendedEntities.BREE_BREWER.get(), ExtendedEntities.BREE_BUTCHER.get(), 
+					ExtendedEntities.BREE_CHEESEMONGER.get(), ExtendedEntities.BREE_FARMER.get(), ExtendedEntities.BREE_FLORIST.get(), 
+					ExtendedEntities.BREE_INNKEEPER.get(), ExtendedEntities.BREE_LEATHERWORKER.get(), ExtendedEntities.BREE_LUMBERMAN.get(), 
+					ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_MERCHANT.get(), ExtendedEntities.BREE_SHERIFF.get(), 
+					ExtendedEntities.BREE_SMITH.get(), ExtendedEntities.BREE_STONEMASON.get(), LOTREntities.BREE_MAN.get()).parent(bree));
 
 		Advancement bree_hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "bree_hobbit_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-Hobbit Slayer").setDescription("Kill a Bree-Hobbit."),
@@ -76,6 +81,14 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 		Advancement one_for_bill_ferny = build(true, data(Items.APPLE, "one_for_bill_ferny", false, FrameType.TASK, true, true, false)
 			.setTitle("One for Bill Ferny").setDescription("Buy an apple from a Bree-land Farmer."),
 			addTradeTrigger(make(), ExtendedEntities.BREE_FARMER.get(), true, Items.APPLE, LOTRItems.GREEN_APPLE.get()).parent(bree));
+
+		Advancement barlimans_best = build(true, data(LOTRItems.WOODEN_MUG.get(), "barlimans_best", false, FrameType.TASK, true, true, false)
+			.setTitle("Barliman's Best").setDescription("Trade with a Bree-land Innkeeper."),
+			addTradeEntityTrigger(make(), ExtendedEntities.BREE_INNKEEPER.get()).parent(bree));
+
+		Advancement arms_for_the_road = build(true, data(Items.IRON_SWORD, "arms_for_the_road", false, FrameType.TASK, true, true, false)
+			.setTitle("Arms for the Road").setDescription("Trade with a Bree-land Smithy."),
+			addTradeEntityTrigger(make(), ExtendedEntities.BREE_SMITH.get()).parent(bree));
 
 		Advancement greenway_watch = build(true, data(Items.IRON_SWORD, "greenway_watch", false, FrameType.TASK, true, true, false)
 			.setTitle("The Greenway Watch").setDescription("Hire a unit from a Bree-land Sheriff."),

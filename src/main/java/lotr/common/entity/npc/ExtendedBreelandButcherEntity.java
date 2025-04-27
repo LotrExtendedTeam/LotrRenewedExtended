@@ -52,7 +52,6 @@ public class ExtendedBreelandButcherEntity extends ExtendedBreelandTraderEntity 
 
 	public ExtendedBreelandButcherEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_BUTCHER_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_BUTCHER_SOLD.generateTrades();
 	}
