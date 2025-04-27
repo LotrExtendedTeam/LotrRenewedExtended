@@ -96,7 +96,6 @@ public class ExtendedBreelandInnkeeperEntity extends ExtendedBreelandTraderEntit
 
 	public ExtendedBreelandInnkeeperEntity(EntityType<? extends BreeManEntity> type, World w) {
 		super(type, w);
-
 		itemsBoughtByTrader = BREE_INNKEEPER_BOUGHT.generateTrades();
 		itemsSoldByTrader = BREE_INNKEEPER_SOLD.generateTrades();
 	}

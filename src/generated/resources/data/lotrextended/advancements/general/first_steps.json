@@ -974,6 +974,14 @@
           "biome": "lotr:barrow_downs"
         }
       }
+    },
+    "enter_barrow_downs_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:barrow_downs_river"
+        }
+      }
     }
   },
   "requirements": [
@@ -1097,7 +1105,8 @@
       "enter_umbar_hills",
       "enter_field_of_cormallen",
       "enter_hills_of_evendim",
-      "enter_barrow_downs"
+      "enter_barrow_downs",
+      "enter_barrow_downs_river"
     ]
   ]
 }

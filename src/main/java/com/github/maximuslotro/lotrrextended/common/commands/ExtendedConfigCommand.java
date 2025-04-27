@@ -28,6 +28,8 @@ public class ExtendedConfigCommand {
 		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
 		command.then(buildDouble("npcGlobalSpawnDampingCoefficient", ExtendedServerConfig.npcGlobalSpawnDampingCoefficient, 0.0D, 1.0D));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
+		command.then(buildBoolean("enableDefaultWaypointTeleportation", ExtendedServerConfig.enableDefaultWaypointTeleportation));
+		command.then(buildBoolean("enableCustomWaypointTeleportation", ExtendedServerConfig.enableCustomWaypointTeleportation));
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));

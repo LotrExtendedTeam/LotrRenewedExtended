@@ -16,6 +16,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
 	public static ForgeConfigSpec.DoubleValue npcGlobalSpawnDampingCoefficient;
 	public static ForgeConfigSpec.DoubleValue dripstoneMinimumDamageHeight;
+	public static ForgeConfigSpec.BooleanValue enableDefaultWaypointTeleportation;
+	public static ForgeConfigSpec.BooleanValue enableCustomWaypointTeleportation;
 
 	// Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
@@ -38,12 +40,14 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.push("Gameplay settings");
 		enableFellowshipCreation = createBooleanValue(builder, "enableFellowshipCreation", true, false, "Enable fellowship creation");
 		enableRenewedWaypointCreation = createBooleanValue(builder, "enableRenewedWaypointCreation", true, false, "Enable renewed based waypoint creation");
-		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable legacy based waypoint creation");
+		enableLegacyWaypointCreation = createBooleanValue(builder, "enableLegacyWaypointCreation", false, false, "Enable legacy based waypoint creation (Not added yet)");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		enableBannerProtection = createBooleanValue(builder, "enableBannerProtection", true, false, "Enable banner protection");
 		barrowWightChestFirstSpawnChance = createIntegerValue(builder, "barrowWightChestFirstSpawnChance", 50, 0, 100, false, "Should stone chests in the barrow downs spawn wight on first open. 0=only when cursed, 100=spawns on every first open like in legacy");
 		npcGlobalSpawnDampingCoefficient = createDoubleValue(builder, "npcGlobalSpawnDampingCoefficient", 1.0D, 0.0D, 1.0D, false, "Reduce the global npc spawning rate, the lower the value, the less spawns. This is a linear setting, (1.0 is the default renewed spawn rate)");
 		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
+		enableDefaultWaypointTeleportation = createBooleanValue(builder, "enableDefaultWaypointTeleportation", true, false, "Enable Teleportation To Default Waypoints");
+		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
 		builder.pop();
 
 		builder.push("Chair settings");

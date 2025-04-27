@@ -120,6 +120,22 @@
           "biome": "lotr:rivendell_hills"
         }
       }
+    },
+    "enter_barrow_downs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:barrow_downs"
+        }
+      }
+    },
+    "enter_barrow_downs_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:barrow_downs_river"
+        }
+      }
     }
   },
   "requirements": [
@@ -136,7 +152,9 @@
       "enter_coldfells",
       "enter_swanfleet",
       "enter_rivendell",
-      "enter_rivendell_hills"
+      "enter_rivendell_hills",
+      "enter_barrow_downs",
+      "enter_barrow_downs_river"
     ]
   ]
 }

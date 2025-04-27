@@ -109,6 +109,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Fast Travel 
+		addD("chat.lotrextended.no_custom", "Custom waypoint fast travel has been disabled on this server.");
+		addD("chat.lotrextended.no_default", "Default waypoint fast travel has been disabled on this server.");
+		
 		// Add Menu strings
 		addD("gui.lotrextended.menu.fellowships", "Fellowships");
 		addD("gui.lotrextended.menu.settings", "Options");
