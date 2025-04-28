@@ -11,7 +11,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(ColdfellsBiome.class)
 public class MixinColdfellsBiome {
 
-    @Overwrite(remap = false)
+	/**
+	 * @author maximuslotro
+	 * @reason don't want to replace class
+	 * */
+	@Overwrite(remap = false)
     protected void addVegetation(BiomeGenerationSettings.Builder builder) {
         LOTRBiomeFeatures.addTrees((ColdfellsBiome) (Object) this, builder, 1, 0.5F,
                 ExtendedBiomeFeatures.willowTree(), 2500,

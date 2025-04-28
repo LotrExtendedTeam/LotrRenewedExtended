@@ -11,7 +11,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(MidgewaterBiome.class)
 public class MixinMidgewaterBiome {
 
-    @Overwrite(remap = false)
+	/**
+	 * @author maximuslotro
+	 * @reason don't want to replace class
+	 * */
+	@Overwrite(remap = false)
     protected void addVegetation(BiomeGenerationSettings.Builder builder) {
         Object[] weightedTrees = new Object[]{
                 ExtendedBiomeFeatures.willowTree(), 250,

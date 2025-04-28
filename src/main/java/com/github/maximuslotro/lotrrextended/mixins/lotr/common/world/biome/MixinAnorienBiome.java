@@ -18,6 +18,7 @@ public class MixinAnorienBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((AnorienBiome)(Object)this, builder, 0, 0.02F, TreeCluster.of(10, 30),
+			ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000,
 				LOTRBiomeFeatures.oakBees(), 100, LOTRBiomeFeatures.oakFancyBees(), 30,
 				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 200,

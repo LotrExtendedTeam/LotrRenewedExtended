@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.FurtherGondorBiome;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.gen.feature.TreeCluster;
@@ -17,6 +18,7 @@ public class MixinFurtherGondorBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((FurtherGondorBiome)(Object)this, builder, 0, 0.45F, TreeCluster.of(16, 15),
+			ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
 				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 100,

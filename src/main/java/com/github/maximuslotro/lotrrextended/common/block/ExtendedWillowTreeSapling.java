@@ -19,7 +19,8 @@ public class ExtendedWillowTreeSapling extends LOTRSaplingBlock {
         super(tree);
     }
 
-    public void advanceTree(ServerWorld pLevel, BlockPos pPos, BlockState pState, Random pRand) {
+    @Override
+	public void advanceTree(ServerWorld pLevel, BlockPos pPos, BlockState pState, Random pRand) {
         if (pState.getValue(STAGE) == 0) {
             pLevel.setBlock(pPos, pState.cycle(STAGE), 4);
         } else {
