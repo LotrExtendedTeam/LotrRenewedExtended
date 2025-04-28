@@ -17,7 +17,9 @@ public class MixinEnedwaithBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		Object[] weightedTrees = { LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakTall(), 3000,
+		Object[] weightedTrees = {
+				ExtendedBiomeFeatures.willowTree(), 2500,
+				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakTall(), 3000,
 				LOTRBiomeFeatures.oakFancy(), 2000, LOTRBiomeFeatures.oakBees(), 5,
 				LOTRBiomeFeatures.oakTallBees(), 3, LOTRBiomeFeatures.oakFancyBees(), 2,
 				LOTRBiomeFeatures.spruce(), 10000, ExtendedBiomeFeatures.chestnut(), 10000,

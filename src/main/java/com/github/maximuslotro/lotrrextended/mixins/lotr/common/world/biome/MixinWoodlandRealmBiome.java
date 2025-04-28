@@ -19,6 +19,7 @@ public class MixinWoodlandRealmBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((WoodlandRealmBiome)(Object)this, builder, 2, 0.33F, TreeCluster.of(16, 10),
+				ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.greenOak(), 5000, LOTRBiomeFeatures.greenOakBees(), 5,
 				LOTRBiomeFeatures.greenOakParty(), 800, LOTRBiomeFeatures.redOak(), 400,
 				LOTRBiomeFeatures.redOakBees(), 5, LOTRBiomeFeatures.redOakParty(), 100,

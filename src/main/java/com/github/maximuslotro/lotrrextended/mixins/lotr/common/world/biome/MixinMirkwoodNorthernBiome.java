@@ -18,6 +18,7 @@ public class MixinMirkwoodNorthernBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTrees((Northern)(Object)this, builder, 14, 0.1F,
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.greenOak(), 500, LOTRBiomeFeatures.greenOakBees(), 5,
 				LOTRBiomeFeatures.greenOakParty(), 100, LOTRBiomeFeatures.greenOakShrub(), 500,
 				LOTRBiomeFeatures.mirkOak(), 50, LOTRBiomeFeatures.mirkOakShrub(), 50,

@@ -19,6 +19,7 @@ public class MixinLebenninBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((LebenninBiome)(Object)this, builder, 0, 0.5F, TreeCluster.of(10, 30), LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000, LOTRBiomeFeatures.oakBees(), 100,
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.oakFancyBees(), 30, LOTRBiomeFeatures.birch(), 3000, LOTRBiomeFeatures.birchFancy(),
 				1000, LOTRBiomeFeatures.birchBees(), 30, LOTRBiomeFeatures.birchFancyBees(), 10,
 				LOTRBiomeFeatures.beech(), 1500, LOTRBiomeFeatures.beechFancy(), 500, LOTRBiomeFeatures.beechBees(), 15,

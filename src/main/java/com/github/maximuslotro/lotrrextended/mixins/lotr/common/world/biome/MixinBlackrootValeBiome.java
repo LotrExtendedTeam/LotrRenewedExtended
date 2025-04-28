@@ -20,6 +20,7 @@ public class MixinBlackrootValeBiome {
 	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((BlackrootValeBiome)(Object)this, builder, 0, 0.2F, TreeCluster.of(8, 20),
+				ExtendedBiomeFeatures.willowTree(), 2500,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
 				LOTRBiomeFeatures.darkOak(), 5000, LOTRBiomeFeatures.fir(), 3000,

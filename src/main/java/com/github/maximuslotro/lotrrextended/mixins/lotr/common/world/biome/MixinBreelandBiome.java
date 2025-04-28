@@ -16,7 +16,7 @@ public class MixinBreelandBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] breelandTrees() {
-		return new Object[] { LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000,
+		return new Object[] { ExtendedBiomeFeatures.willowTree(), 2500, LOTRBiomeFeatures.oak(), 10000, LOTRBiomeFeatures.oakFancy(), 3000,
 				LOTRBiomeFeatures.oakBees(), 10, LOTRBiomeFeatures.oakFancyBees(), 3,
 				LOTRBiomeFeatures.beech(), 3000, LOTRBiomeFeatures.beechFancy(), 750,
 				LOTRBiomeFeatures.beechBees(), 3, LOTRBiomeFeatures.beechFancyBees(), 1,

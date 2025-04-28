@@ -16,7 +16,9 @@ public class MixinLindonBiome {
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] lindonTrees() {
-		return new Object[] { LOTRBiomeFeatures.oak(), 1000, LOTRBiomeFeatures.oakFancy(), 250,
+		return new Object[] {
+				ExtendedBiomeFeatures.willowTree(), 5000,
+				LOTRBiomeFeatures.oak(), 1000, LOTRBiomeFeatures.oakFancy(), 250,
 				LOTRBiomeFeatures.oakBees(), 1, LOTRBiomeFeatures.oakFancyBees(), 1,
 				LOTRBiomeFeatures.birch(), 10000, LOTRBiomeFeatures.birchFancy(), 2000,
 				LOTRBiomeFeatures.birchBees(), 10, LOTRBiomeFeatures.birchFancyBees(), 2,

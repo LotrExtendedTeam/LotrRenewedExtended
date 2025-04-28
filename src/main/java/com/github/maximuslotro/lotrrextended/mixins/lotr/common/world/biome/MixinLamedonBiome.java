@@ -23,6 +23,7 @@ public class MixinLamedonBiome {
 	@Overwrite(remap=false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTreesWithClusters((LamedonBiome)(Object)this, builder, getLamedonBaseTreeRate(), 0.1F, TreeCluster.of(10, 20),
+				ExtendedBiomeFeatures.willowTree(), 1000,
 				LOTRBiomeFeatures.oak(), 5000, LOTRBiomeFeatures.oakFancy(), 1000,
 				LOTRBiomeFeatures.oakBees(), 50, LOTRBiomeFeatures.oakFancyBees(), 10,
 				LOTRBiomeFeatures.birch(), 500, LOTRBiomeFeatures.birchFancy(), 100,
