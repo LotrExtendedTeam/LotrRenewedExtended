@@ -1,3 +1,113 @@
+(Beta 1.7.3)
+* Biomes
+  * Added Barrow Downs River (replaces rivers in the barrow downs to fix immersion breaking water color changes)
+* Blocks
+  * Added Crucible (only a placeholder for now)
+  * Added Stripped Willow Branch
+  * Added Stripped Willow Log
+  * Added Stripped Willow Log Slab
+  * Added Stripped Willow Wood
+  * Added Stripped Willow Wood Slab
+  * Added Stripped Willow Wood Stairs
+  * Added Willow Branch
+  * Added Willow Button
+  * Added Willow Log Slab
+  * Added Willow Pressure Plate
+  * Added Willow Sign
+  * Added Willow Wood Slab
+  * Added Willow Wood Stairs
+  * Fixed large pots not having plant particles (like pipeweed)
+  * Ported Fallen Willow Leaves
+  * Ported Willow Beam
+  * Ported Willow Beam Slab
+  * Ported Willow Door
+  * Ported Willow Fence
+  * Ported Willow Fence Gate
+  * Ported Willow Leaves
+  * Ported Willow Log
+  * Ported Willow Planks
+  * Ported Willow Sapling
+  * Ported Willow Slab
+  * Ported Willow Stairs
+  * Ported Willow Trapdoor
+  * Ported Willow Vines
+  * Renamed Berry Plants and Bushes to Berry Hedges and Bushes respectively
+  * Standing banners can now be waterlogged
+* Config
+  * Added a server config setting to disable Fast Travel to Default Waypoints
+  * Added a server config setting to disable Fast Travel to Custom Waypoints
+  * Added a server config setting to set dripstone damage fall height (because entities would receive damage of a heart for even a fall of 0.01 blocks)
+  * Added a client Hired Unit Death Messages setting to the client settings menu
+  * Added a client High Contrast Messages setting to the client settings menu
+* Entities
+  * Added Bree-land Cheesemonger
+  * Added Bree-land Leatherworker
+  * Added Bree-land Stablemaster
+  * Added J. R. R. Tolkien
+  * Fixed Bree Guards not holding Bree shields
+  * Fixed Tolkien spawning list resetting on every server restart
+  * Fixed a client crash when rendering rangers with custom helmets (like leather hats)
+  * Fixed several entities using wrong skin overrides (textures)
+  * Fixed some entities not having correct health set
+  * Fixed wandering traders being able to spawn on slabs, stairs, and leaves
+  * Made captains non-aggressive like legacy
+  * Ported Bree-land Baker
+  * Ported Bree-land Brewer
+  * Ported Bree-land Butcher
+  * Ported Bree-land Florist
+  * Ported Bree-land Innkeeper
+  * Ported Bree-land Lumberman
+  * Ported Bree-land Smith
+  * Ported Bree-land Stonemason
+  * Removed the interacting lock from captains
+* GUI
+  * Added hover messages to the Coin Exchange menu
+  * Added warning colors to some banner perm settings to indicate dangerous perms
+  * Finished Coin Exchange menu stability overhaul
+  * Fixed some banner configuration tooltips not disappearing
+  * Made the Hired Unit equipment inventory ranged slot only show for applicable unit types (currently rangers)
+  * Re-worked the Hired Unit equipment inventory and added a dedicated ranged weapon slot
+  * Re-worked the entire settings menu (and added all client config settings to the settings menu (since Forge does not have the built-in mod config menu anymore))
+  * Simplified and fixed unit order selection buttons
+* Hired Units
+  * Fixed only Bree Guards having a death message
+  * Fixed unit hired confirmation message only saying bree-land guard
+  * Units can now have multiple weapon types given by the player and specified in JSON
+* Items
+  * Added Willow Boats
+* Loot Tables
+  * Added 18 new chest loot-tables for bree village chests (as opposed to a single table for legacy bree chests)
+  * Added a separate loot table for hamlet guard houses from normal houses
+  * Removed coin drops from hired units
+* Misc
+  * Added 1 new advancements in Extended (19 currently)
+  * Added 3 advancements from Legacy (33.6% currently ported)
+  * Fixed Large Pot and Large Flower Pot recipes (use brick items vs brick blocks)
+  * Fixed planks from slab and stair recipes requiring multiple different block ingredients
+  * Fixed wood recipes missing recipe "groups"
+* Structures
+  * Added Bree Villages
+  * Added Building blacklisting (certain builds can now only spawn once in a structure)
+  * Added an all new Bree Village Stable and Orchard building
+  * Added the ability for irregular structure pieces to spawn (like road lamp posts)
+  * Backported Mc1.21 waterloggable jigsaw setting
+  * Backported structure max distance template option
+  * Made Gundabad Captain tents rarer
+  * Made captains that spawn at tents permanent, and captains that randomly spawn at camp centers disappear on death.
+  * Universally fixed structures sinking into water by a block in Middle Earth
+* Trading
+  * Added Cooked Duck to the Blue Mountains Merchant buy pool
+  * Fixed players being to steal items from trader inventories
+  * Wandering traders for each biome now spawn at different rates
+  * Wandering traders can no longer spawn on leaves, stairs and slabs
+* Textures
+  * Add random rotation to the models of Dirt, Coarse Dirt, Barren Dirt, Moss Blocks, Jungle Mud, and Packed Fur
+  * Finally fixed the derpy model for leather hats
+  * Fixed banners and beds having weird break particles
+* WorldGen
+  * Added Willow Trees and made them only spawn near bodies of water
+  * Barrow Downs now spawn with a the new Barrow Downs River biome
+
 (Beta 1.7.Tolkien)
 * Entities
   * Added J. R. R. Tolkien
