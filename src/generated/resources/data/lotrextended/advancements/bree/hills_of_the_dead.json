@@ -5,11 +5,11 @@
       "item": "minecraft:bone"
     },
     "title": {
-      "translate": "advancements.lotrextended.bree.the_hills_of_the_dead.title"
+      "translate": "advancements.lotrextended.bree.hills_of_the_dead.title"
     },
     "description": {
       "color": "green",
-      "translate": "advancements.lotrextended.bree.the_hills_of_the_dead.description"
+      "translate": "advancements.lotrextended.bree.hills_of_the_dead.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -24,11 +24,20 @@
           "biome": "lotr:barrow_downs"
         }
       }
+    },
+    "enter_barrow_downs_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:barrow_downs_river"
+        }
+      }
     }
   },
   "requirements": [
     [
-      "enter_barrow_downs"
+      "enter_barrow_downs",
+      "enter_barrow_downs_river"
     ]
   ]
 }

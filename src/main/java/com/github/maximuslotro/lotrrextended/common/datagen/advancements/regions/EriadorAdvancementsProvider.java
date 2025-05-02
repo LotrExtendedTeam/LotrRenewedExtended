@@ -66,10 +66,6 @@ public class EriadorAdvancementsProvider extends BaseAdvancementType{
 //		Advancement theAngle = build(data(Items.GREEN_WOOL, "a_fastness_in_the_wild", false, FrameType.TASK, true, true, false)
 //				.setTitle("A Fastness in the Wild").setDescription("Enter the Lands of the Angle."),
 //				addBiomeTrigger(make(),LOTRBiomes.THE_ANGLE).parent(eriadorBase));
-
-		Advancement hills_of_the_dead = build(true, data(Items.BONE, "hills_of_the_dead", false, FrameType.TASK, true, true, false)
-		.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
-		addBiomeTriggers(make(), ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER).parent(eriadorBase));
 		
 		Advancement minhiriath = build(true, data(Items.GRASS_BLOCK, "between_the_rivers", false, FrameType.TASK, true, true, false)
 				.setTitle("Between the Rivers").setDescription("Enter the region of Minhiriath."),

@@ -70,14 +70,6 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 				.setTitle("Master of Bree").setDescription("Reach +2000.0 alignment with Bree-land."),
 				addAlignmentTrigger(make(), FactionPointers.BREE, 2000).parent(bree_1000));
 
-		Advancement theDead = build(true, data(Items.BONE, "the_hills_of_the_dead", false, FrameType.TASK, true, true, false)
-			.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
-			addBiomeTrigger(make(), ExtendedBiomes.BARROW_DOWNS).parent(bree));
-
-		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", false, FrameType.TASK, true, true, false)
-			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
-			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(theDead));
-
 		Advancement one_for_bill_ferny = build(true, data(Items.APPLE, "one_for_bill_ferny", false, FrameType.TASK, true, true, false)
 			.setTitle("One for Bill Ferny").setDescription("Buy an apple from a Bree-land Farmer."),
 			addTradeTrigger(make(), ExtendedEntities.BREE_FARMER.get(), true, Items.APPLE, LOTRItems.GREEN_APPLE.get()).parent(bree));
@@ -93,6 +85,14 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 		Advancement greenway_watch = build(true, data(Items.IRON_SWORD, "greenway_watch", false, FrameType.TASK, true, true, false)
 			.setTitle("The Greenway Watch").setDescription("Hire a unit from a Bree-land Sheriff."),
 			addUnitHireTrigger(make(), ExtendedEntities.BREE_SHERIFF.get()).parent(bree));
+
+		Advancement hills_of_the_dead = build(true, data(Items.BONE, "hills_of_the_dead", false, FrameType.TASK, true, true, false)
+			.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
+			addBiomeTriggers(make(), ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER).parent(bree));
+		
+		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", false, FrameType.TASK, true, true, false)
+			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
+			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(hills_of_the_dead));
 	}
 
 	@Override
