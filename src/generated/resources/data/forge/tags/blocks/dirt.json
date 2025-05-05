@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "lotr:barren_dirt",
-    "lotr:moss_block"
+    "lotr:moss_block",
+    "lotr:mud",
+    "lotr:mud_grass"
   ]
 }

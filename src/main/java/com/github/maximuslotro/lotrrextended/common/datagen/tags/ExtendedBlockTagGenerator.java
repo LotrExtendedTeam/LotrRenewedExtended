@@ -212,12 +212,17 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
 		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.MORDOR_MOSS_VINES.get())
-		.add(ExtendedBlocks.WILLOW_VINES.get()).addTag(Tags.Blocks.DIRT);
+		.add(ExtendedBlocks.WILLOW_VINES.get()).add(ExtendedBlocks.BARREN_DIRT.get()).addTag(Tags.Blocks.DIRT).add(ExtendedBlocks.MUD.get())
+		.add(ExtendedBlocks.MUD_GRASS.get());
 
-		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get());
+		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get());
+
 		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
 		.addTag(ExtendedTags.Blocks.WILLOW_LOGS);
 
+		tag(BlockTags.ENDERMAN_HOLDABLE).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get())
+		.add(ExtendedBlocks.MUD_GRASS.get());
+		
 		for(Entry<ResourceLocation, Supplier<? extends Block>> blo : ((FlowerPotBlock)Blocks.FLOWER_POT).getFullPotsView().entrySet()) {
 			tag(ExtendedTags.Blocks.LARGE_FLOWER_POT_COMPATABLE).add(blo.getValue().get());
 		}

@@ -2067,7 +2067,7 @@ c70c45e3c5816d26d3cb61a908e5f1ee454d9e12 data/forge/loot_modifiers/global_loot_m
 fac00bd7bf5ecbedcaf64811182ce98a5c776e05 data/forge/tags/blocks/barrels.json
 fac00bd7bf5ecbedcaf64811182ce98a5c776e05 data/forge/tags/blocks/barrels/wooden.json
 0fa07fc7da64342829214b580c533a6513146b82 data/forge/tags/blocks/chests.json
-8dc182d1918fef699c1b2b7a47b30cc3dfa8a406 data/forge/tags/blocks/dirt.json
+a2901146dc5d76e5830e709f9d9ff80c92804f32 data/forge/tags/blocks/dirt.json
 dc834dca864327595426cdca8782685eb8adf0a2 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
 f82d30250ecdf5fb1713cd2eaa78f5d5863d85a4 data/forge/tags/blocks/ores/durnor.json
@@ -4432,7 +4432,7 @@ adcca3845e6cc195f6923bc7a1b17c30e094dff2 data/lotrextended/tags/blocks/banana_lo
 b085c41b5afbbfef18b1c6a09af469f371f01daa data/lotrextended/tags/blocks/fur_blocks.json
 6c812bb15724e109c88223c397bec1dd021a34a0 data/lotrextended/tags/blocks/green_fire_base_blocks.json
 7522d70cbf0daec466a0f50cc5f3379475e4db60 data/lotrextended/tags/blocks/large_flower_pot_compatable.json
-a6777df8274eac3ece1e7b8c52a2f496e3aa10ef data/lotrextended/tags/blocks/moss_replaceable.json
+72129d7455cc0aa9e37ceaa0a2c2cf3b668a9f4a data/lotrextended/tags/blocks/moss_replaceable.json
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/blocks/plum_logs.json
 e24196951182db1117f1057f3c6e3a97e34da779 data/lotrextended/tags/blocks/willow_logs.json
 adcca3845e6cc195f6923bc7a1b17c30e094dff2 data/lotrextended/tags/items/banana_logs.json
@@ -5199,6 +5199,7 @@ fe02f63826a185efa871997e8b3182b4d8f86f6c data/minecraft/tags/blocks/beacon_base_
 0e7963f002df35c4a1af5b1fce04322e549c4d5d data/minecraft/tags/blocks/beds.json
 a406f0aa969aec53421228f92d717d82cbc1a287 data/minecraft/tags/blocks/climbable.json
 ebd9387a672222819c5f7a9c25cd0646b2ac5654 data/minecraft/tags/blocks/doors.json
+1aece830f03b403661e52fa07e94a41853088186 data/minecraft/tags/blocks/enderman_holdable.json
 1d09fa0c1397470e527d12492612740c4772aa34 data/minecraft/tags/blocks/fire.json
 626205570cd225a32c5c0ff2d780d2217485a7a8 data/minecraft/tags/blocks/flower_pots.json
 c1cb2a0dc7dd3eb166a0ad4466c871f9f0880ac1 data/minecraft/tags/blocks/leaves.json
