@@ -215,14 +215,18 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.WILLOW_VINES.get()).add(ExtendedBlocks.BARREN_DIRT.get()).addTag(Tags.Blocks.DIRT).add(ExtendedBlocks.MUD.get())
 		.add(ExtendedBlocks.MUD_GRASS.get());
 
-		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get());
+		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
+		.addTag(ExtendedTags.Blocks.REMAINS_ORE);
 
 		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
 		.addTag(ExtendedTags.Blocks.WILLOW_LOGS);
 
 		tag(BlockTags.ENDERMAN_HOLDABLE).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get())
 		.add(ExtendedBlocks.MUD_GRASS.get());
-		
+
+		tag(BlockTags.BAMBOO_PLANTABLE_ON).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
+		.addTag(ExtendedTags.Blocks.REMAINS_ORE);
+
 		for(Entry<ResourceLocation, Supplier<? extends Block>> blo : ((FlowerPotBlock)Blocks.FLOWER_POT).getFullPotsView().entrySet()) {
 			tag(ExtendedTags.Blocks.LARGE_FLOWER_POT_COMPATABLE).add(blo.getValue().get());
 		}
@@ -284,6 +288,8 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(ExtendedTags.Blocks.SILVER_ORE).add(LOTRBlocks.SILVER_ORE.get());
 		tag(ExtendedTags.Blocks.SULFUR_ORE).add(LOTRBlocks.SULFUR_ORE.get());
 		tag(ExtendedTags.Blocks.TIN_ORE).add(LOTRBlocks.TIN_ORE.get());
+		tag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.REMAINS_DWARF.get()).add(ExtendedBlocks.REMAINS_ELF.get())
+		.add(ExtendedBlocks.REMAINS_MAN.get()).add(ExtendedBlocks.REMAINS_ORC.get());
 
 		tag(ExtendedTags.Blocks.TOPAZ_ORE).add(ExtendedBlocks.TOPAZ_ORE.get());
 		tag(ExtendedTags.Blocks.AMETHYST_ORE).add(ExtendedBlocks.AMETHYST_ORE.get());

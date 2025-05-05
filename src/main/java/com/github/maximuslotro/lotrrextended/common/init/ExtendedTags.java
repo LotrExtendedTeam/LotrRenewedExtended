@@ -71,6 +71,8 @@ public class ExtendedTags {
 
 		public static final ITag.INamedTag<Block> MOSS_REPLACEABLE = BlockTags.bind("lotrextended:moss_replaceable");
 
+		public static final ITag.INamedTag<Block> REMAINS_ORE = BlockTags.bind("lotrextended:remains_ores");
+
 		public static final ITag.INamedTag<Block> FIXED_SIZE_PILLARS = BlockTags.bind("lotrextended:fixed_size_pillars");
 	}
 

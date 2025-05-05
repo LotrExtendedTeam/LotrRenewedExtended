@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:remains_ore_dwarf",
+    "lotr:remains_ore_elf",
+    "lotr:remains_ore_man",
+    "lotr:remains_ore_orc"
+  ]
+}
