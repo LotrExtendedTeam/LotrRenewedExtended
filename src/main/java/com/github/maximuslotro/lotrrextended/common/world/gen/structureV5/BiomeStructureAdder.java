@@ -26,7 +26,7 @@ public class BiomeStructureAdder {
      * Basically use this to make absolutely sure the ChunkGenerator can or cannot spawn our structures.
      */
 	public static void addDimensionalSpacing(ServerChunkProvider provider) {
-		ExtendedLog.info("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator", true);
+		ExtendedLog.infoShown("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
 		Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(provider.generator.getSettings().structureConfig());
 		addStructureToMap(tempMap, ExtendedStructuresV5.HOBBIT_BARN.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.HOBBIT_HOLE_SMALL.get());

@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.google.common.collect.Lists;
@@ -80,7 +81,7 @@ public class WoodPaletteProcessor extends StructureProcessor{
 			}
 		}
 		if(!applied) {
-			ExtendedLog.info("Replacing "+basePallet.getName()+" pallet with "+pickedPallet.getName());
+			ExtendedLog.infoHideable("Replacing "+basePallet.getName()+" pallet with "+pickedPallet.getName(), ExtendedServerConfig.enableExtendedLogging.get());
 			applied = true;
 		}
 		if(pickedPallet.isEmpty() || pickedPallet.equals(basePallet)) {

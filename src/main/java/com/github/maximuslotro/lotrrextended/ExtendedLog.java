@@ -3,8 +3,6 @@ package com.github.maximuslotro.lotrrextended;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-
 public class ExtendedLog {
 	private static Logger LOGGER;
 
@@ -20,17 +18,21 @@ public class ExtendedLog {
 		LOGGER.debug(String.format("LotrExtended: " + s, params));
 	}
 
-	public static void info(String s) {
+	public static void infoShown(String s) {
 		info(s, true);
 	}
 
-	public static void info(String s, boolean override) {
-		if(override || ExtendedServerConfig.enableExtendedLogging ==null || ExtendedServerConfig.enableExtendedLogging.get()) {
+	public static void infoHideable(String s, boolean flag) {
+		info(s, flag);
+	}
+
+	private static void info(String s, boolean override) {
+		if(override) {
 			LOGGER.info("LotrExtended: {}", s);
 		}
 	}
 
-	public static void info(String s, Object... params) {
+	public static void infoParms(String s, Object... params) {
 		LOGGER.info(String.format("LotrExtended: " + s, params));
 	}
 
