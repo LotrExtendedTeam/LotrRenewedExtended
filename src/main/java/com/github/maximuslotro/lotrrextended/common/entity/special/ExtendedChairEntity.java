@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
-import com.github.maximuslotro.lotrrextended.ExtendedServerProxy;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
@@ -39,7 +39,7 @@ public class ExtendedChairEntity extends Entity {
 
 	@Override
 	public void remove() {
-		ExtendedServerProxy.hackyChairManager.removeChairFromDatabase(level, blockPosition());
+		LotrExtendedMod.hackyChairManager.removeChairFromDatabase(level, blockPosition());
 		super.remove();
 	}
 
