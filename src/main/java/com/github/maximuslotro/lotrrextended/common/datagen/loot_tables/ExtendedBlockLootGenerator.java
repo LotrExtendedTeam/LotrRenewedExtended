@@ -19,7 +19,6 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrowableAxialSlabBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
@@ -43,6 +42,7 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedPlantableSpreadableAxialSlabBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
 import lotr.common.block.ExtendedPackedFurBlock;
@@ -136,8 +136,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		createCakePool(LOTRBlocks.APPLE_CRUMBLE.get());
 		// Generate Extended's block loot-tables
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof ExtendedGrowableAxialSlabBlock) {
-				add(block.getValue().get(), createGrowableSlabItemTable((SlabBlock)block.getValue().get(),((ExtendedGrowableAxialSlabBlock)block.getValue().get()).getBaseForLootTables().get()));
+			if(block.getValue().get() instanceof ExtendedPlantableSpreadableAxialSlabBlock) {
+				add(block.getValue().get(), createGrowableSlabItemTable((SlabBlock)block.getValue().get(),((ExtendedPlantableSpreadableAxialSlabBlock)block.getValue().get()).getBaseForLootTables().get()));
 				continue;
 			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {

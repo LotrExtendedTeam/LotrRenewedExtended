@@ -1,11 +1,10 @@
-package com.github.maximuslotro.lotrrextended.common.block;
+package lotr.common.block;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 
-import lotr.common.block.AxialSlabBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,19 +18,19 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedGrowableAxialSlabBlock extends AxialSlabBlock{
+public class ExtendedPlantableSpreadableAxialSlabBlock extends ExtendedPlantableAxialSlabBlock{
 	private final Supplier<Block> slabBase;
 	private final Supplier<Block> blockBase;
 	private final Supplier<Block> blockGrowable;
 
-	public ExtendedGrowableAxialSlabBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
+	public ExtendedPlantableSpreadableAxialSlabBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block);
 		this.slabBase = slabBase;
 		this.blockBase = blockBase;
 		this.blockGrowable = blockGrowable;
 	}
 
-	public ExtendedGrowableAxialSlabBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
+	public ExtendedPlantableSpreadableAxialSlabBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		this(block.get(), slabBase, blockBase, blockGrowable);
 	}
 
