@@ -221,10 +221,12 @@ public class ExtendedServerHiredUnitProfile {
 		private int hiringAlignmentRequired;
 		private ExtendedUnitAttackType attackType;
 		private final EntityType<?> unitEntityType;
+		private final String modId;
 
-		public Builder(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
+		public Builder(String modId, EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
 			this.attackType = pAttackType;
 			this.unitEntityType = unitEntityType;
+			this.modId = modId;
 		}
 
 		/**
@@ -233,11 +235,11 @@ public class ExtendedServerHiredUnitProfile {
 		public ExtendedServerHiredUnitProfile.Builder setLocal(boolean translateStrings, String nameKey, String name) {
 			this.translateStrings = translateStrings;
 			if(translateStrings) {
-				this.entity_title = "entity_title.lotrextended.hired_"+nameKey;
+				this.entity_title = "entity_title."+modId+".hired_"+nameKey;
 				DataGenValueHolder.hiredUnitStrings.put(entity_title, "%1$s the "+name);
-				this.entity_shortname = "entity_shortname.lotrextended.hired_"+nameKey;
+				this.entity_shortname = "entity_shortname."+modId+".hired_"+nameKey;
 				DataGenValueHolder.hiredUnitStrings.put(entity_shortname, "%1$s");
-				this.entity_unit_type = "entity_unit_type.lotrextended.hired_"+nameKey;
+				this.entity_unit_type = "entity_unit_type."+modId+".hired_"+nameKey;
 				DataGenValueHolder.hiredUnitStrings.put(entity_unit_type, name);
 			}else {
 				this.entity_title = name;

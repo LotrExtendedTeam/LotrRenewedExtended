@@ -88,7 +88,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	}
 
 	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
-		return new ExtendedServerHiredUnitProfile.Builder(unitEntityType, pAttackType);
+		return new ExtendedServerHiredUnitProfile.Builder(modId, unitEntityType, pAttackType);
 	}
 
 }
