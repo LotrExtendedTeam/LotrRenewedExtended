@@ -294,7 +294,7 @@ public class MixinLOTREntities {
 		});
 		ExtendedEntities.HIRED_GUNDABAD_ORC = regNPCD("hired_gundabad_orc", ExtendedHiredGundabadOrc::new, ExtendedHiredGundabadOrc::createAttributes, LOTREntities.EntitySizeHolder.orcSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(3352346, 8548435));
 		ExtendedEntities.HIRED_DUNEDAIN_RANGER = regNPCD("hired_dunedain_ranger", ExtendedHiredDunedainRangerEntity::new, ExtendedHiredDunedainRangerEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302764));
-		ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN = regNPCD("dunedain_ranger_captain", ExtendedDunedainRangerCaptainEntity::new, ExtendedDunedainRangerCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(25643440, 6343378));
+		ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN = regNPCD("dunedain_ranger_captain", ExtendedDunedainRangerCaptainEntity::new, ExtendedDunedainRangerCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
 		// Bree
 		ExtendedEntities.HIRED_BREE_GUARD = regNPCD("hired_bree_guard", ExtendedHiredBreeGuard::new, ExtendedHiredBreeGuard::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(9335640, 3681573));
 		ExtendedEntities.BREE_SHERIFF = regNPCD("bree_sheriff", ExtendedBreelandSheriffEntity::new, ExtendedBreelandSheriffEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(9335640, 3681573));

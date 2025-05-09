@@ -130,7 +130,7 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 				continue;
 			}
 			// Extended Start
-			if (entity instanceof ExtendedHirableEntity && ((ExtendedHirableEntity) entity).getUnitOwner() == player && !((ExtendedHirableEntity) entity).getOrders().isFollowingPlayer()) {
+			if (entity instanceof ExtendedHirableEntity && ((ExtendedHirableEntity) entity).getUnitOwner() == player && ((ExtendedHirableEntity) entity).getOrders().isFollowingPlayer()) {
 				entitiesToTransport.add(entity);
 				continue;
 			}
