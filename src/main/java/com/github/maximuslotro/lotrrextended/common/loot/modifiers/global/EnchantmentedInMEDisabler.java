@@ -42,10 +42,10 @@ public class EnchantmentedInMEDisabler extends LootModifier {
 				Vector3d location = context.getParamOrNull(LootParameters.ORIGIN);
 				if(location==null) {location = new Vector3d(0d, 0d, 0d);} //Fix a crash with null locations of piglin bartering
 				if(generatedLoot.removeIf(item -> (item.getItem() == Items.ENCHANTED_BOOK))) {
-					ExtendedLog.info("Removed Enchanted Book from loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
+					ExtendedLog.infoParms("Removed Enchanted Book from loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 				}
 				if(generatedLoot.removeIf(ItemStack::isEnchanted)) {
-					ExtendedLog.info("Removed Enchanted Item from loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
+					ExtendedLog.infoParms("Removed Enchanted Item from loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 				}
 				return generatedLoot;
 			}
@@ -56,10 +56,10 @@ public class EnchantmentedInMEDisabler extends LootModifier {
 				if ((tool != null && fishingRods.contains(tool.getItem().getRegistryName())) || (entity instanceof FishingBobberEntity)) {
 					if(location==null) {location = new Vector3d(0d, 0d, 0d);} //Fix a crash with null locations of piglin bartering
 					if(generatedLoot.removeIf(item -> (item.getItem() == Items.ENCHANTED_BOOK))) {
-						ExtendedLog.info("Removed Enchanted Book from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
+						ExtendedLog.infoParms("Removed Enchanted Book from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 					}
 					if(generatedLoot.removeIf(ItemStack::isEnchanted)) {
-						ExtendedLog.info("Removed Enchanted Item from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
+						ExtendedLog.infoParms("Removed Enchanted Item from fishing loot in %s at %s ", context.getLevel().dimension().location(), location.toString());
 					}
 				}
 			}

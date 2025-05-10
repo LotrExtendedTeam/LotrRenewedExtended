@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
@@ -54,6 +55,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
@@ -64,12 +66,12 @@ public class LotrExtendedMod{
 	public static LotrExtendedMod INSTANCE;
 	public static ExtendedTickHandlerServer serverTickEventHandler;
 	public static final ResourceLocation EMPTY = new ResourceLocation(LotrExtendedMod.MODID, "empty");
+	public static HackyChairDatabase hackyChairManager;
 
 	public LotrExtendedMod() {
 		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExtendedClientProxy::staticClientSetup);
-		DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> ExtendedServerProxy::staticServerSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
@@ -80,6 +82,7 @@ public class LotrExtendedMod{
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
 		forgeBus.addListener(this::extendesAddDimensionalSpacing);
+		forgeBus.addListener(this::extendedServerStopping);
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
@@ -104,6 +107,7 @@ public class LotrExtendedMod{
 		ExtendedTags.init();
 		ExtendedEffects.register();
 		serverTickEventHandler = new ExtendedTickHandlerServer();
+		hackyChairManager = new HackyChairDatabase();
 	}
 
 	public void extendedCommonSetup(FMLCommonSetupEvent event) {
@@ -150,4 +154,8 @@ public class LotrExtendedMod{
             BiomeStructureAdder.addDimensionalSpacing(provider);
         }
     }
+
+	public void extendedServerStopping(FMLServerStoppingEvent event) {
+		hackyChairManager.handleServerStopping();
+	}
 }

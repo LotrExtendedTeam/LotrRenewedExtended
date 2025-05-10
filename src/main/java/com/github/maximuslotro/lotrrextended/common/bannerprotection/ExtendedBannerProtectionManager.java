@@ -28,29 +28,48 @@ import net.minecraft.world.IWorld;
 import net.minecraftforge.common.util.FakePlayer;
 
 public class ExtendedBannerProtectionManager {
-	public static boolean isBannerProtected(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance, boolean doLog, String source) {
-		return isBannerProtected(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, doLog, source);
+	public enum ExtendedDeniedType{
+		ALLOWED(true), 
+		DENIED(false), 
+		NOBANNER(true);
+
+		private final boolean isAllowed;
+
+		private ExtendedDeniedType(boolean allowed){
+			isAllowed = allowed;
+		}
+
+		public boolean isAllowed() {
+			return isAllowed;
+		}
+
+		public boolean isNotAllowed() {
+			return !isAllowed;
+		}
+	}
+	public static ExtendedDeniedType getProtectionStatus(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance, boolean doLog, String source) {
+		return getProtectionStatus(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, doLog, source);
 	}
 
-	public static boolean isBannerProtected(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance, boolean doLog, String source) {
+	public static ExtendedDeniedType getProtectionStatus(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance, boolean doLog, String source) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
-			return false;
+			return ExtendedDeniedType.ALLOWED;
 		}
-		boolean isInteractionDenied = isBannerProtectedInner(iWorld, pX, pY, pZ, protInstance);
-		if(doLog) {
-			ExtendedLog.info("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
+		ExtendedDeniedType isInteractionDenied = getActualProtectionStatus(iWorld, pX, pY, pZ, protInstance);
+		if(doLog && isInteractionDenied!=ExtendedDeniedType.NOBANNER) {
+			ExtendedLog.infoHideable("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]", ExtendedServerConfig.enableExtendedLogging.get());
 		}
 		return isInteractionDenied;
 	}
 
-	private static boolean isBannerProtectedInner(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
+	private static ExtendedDeniedType getActualProtectionStatus(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
 		AxisAlignedBB bannerScan = AxisAlignedBBUtils.makeCroppedBB(pX, pY, pZ).inflate(64.0D);
 		if(protInstance.extraScanArea>0) {
 			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
 		}
 		List<ExtendedBannerEntity> bannersInArea = iWorld.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
 		if(bannersInArea.isEmpty()) {
-			return false;
+			return ExtendedDeniedType.NOBANNER;
 		}
 		AxisAlignedBB disputedArea = AxisAlignedBBUtils.makeCroppedBB(pX, pY, pZ);
 		if(protInstance.extraDisputedArea>0) {
@@ -58,13 +77,13 @@ public class ExtendedBannerProtectionManager {
 		}
 		for(ExtendedBannerEntity banner : bannersInArea) {
 			if(banner.getProtectionRange()>0 && banner.getProtectionArea().intersects(disputedArea)) {
-				boolean isProtected = protInstance.isProtected(banner.getConnectedTileEntity());
-				if(isProtected) {
-					return true;
+				boolean denyEdits = protInstance.isProtected(banner.getConnectedTileEntity());
+				if(denyEdits) {
+					return ExtendedDeniedType.DENIED;
 				}
 			}
 		}
-		return false;
+		return ExtendedDeniedType.ALLOWED;
 	}
 
 	public abstract static class SingleProtectionInstance {

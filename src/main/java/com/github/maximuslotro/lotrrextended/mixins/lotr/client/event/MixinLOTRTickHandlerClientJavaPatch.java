@@ -50,7 +50,7 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 					if (objectAsListener instanceof IResourceManagerReloadListener)
 						((IResourceManagerReloadListener) objectAsListener).onResourceManagerReload(resMgr);
 				}
-				ExtendedLog.info("Java9+ Successfully replaced %s instance with subclass instance", loggingNameOfField );
+				ExtendedLog.infoParms("Java9+ Successfully replaced %s instance with subclass instance", loggingNameOfField );
 			}
 		}
 		else if("WorldRenderer".equals(loggingNameOfField)) {
@@ -65,7 +65,7 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 					if (objectAsListener instanceof IResourceManagerReloadListener)
 						((IResourceManagerReloadListener) objectAsListener).onResourceManagerReload(resMgr);
 				}
-				ExtendedLog.info("Java9+ Successfully replaced %s instance with subclass instance", loggingNameOfField );
+				ExtendedLog.infoParms("Java9+ Successfully replaced %s instance with subclass instance", loggingNameOfField );
 			}
 		}
 		else {

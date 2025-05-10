@@ -57,7 +57,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	         }
 	      };
 		makeStructureSpawnPools(consumer);
-		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.", true);
+		ExtendedLog.infoShown("Built "+dataHere.size()+" hired unit profiles.");
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile spawner, Path pPath) throws IOException {
@@ -88,7 +88,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	}
 
 	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
-		return new ExtendedServerHiredUnitProfile.Builder(unitEntityType, pAttackType);
+		return new ExtendedServerHiredUnitProfile.Builder(modId, unitEntityType, pAttackType);
 	}
 
 }

@@ -65,7 +65,7 @@ public class BannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
 		//ExtendedLog.info("BreakEvent");
-		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlockBreak")) {
+		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlockBreak").isNotAllowed()) {
 			event.setCanceled(true);
 		}
 	}
@@ -76,7 +76,7 @@ public class BannerEventHandlers {
 		if (!world.isClientSide() && event.getTarget().getType() == Type.BLOCK) {
 			//ExtendedLog.info("FillBucketEvent");
 			BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getBlockPos();
-			if (ExtendedBannerProtectionManager.isBannerProtected(world, pos, new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlucketFill")) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerBlucketFill").isNotAllowed()) {
 				event.setResult(Result.DENY);
 				BlockState state = world.getBlockState(pos);
 				world.sendBlockUpdated(pos, state, state, 2);
@@ -88,7 +88,7 @@ public class BannerEventHandlers {
     public static void fallOnBlockEvent(BlockEvent.FarmlandTrampleEvent event){
         if (event.getFallDistance() < 0.5) // Permission checks only for at least 1-block high fall events
             return;
-		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.isBannerProtected(event.getWorld(), event.getPos(), new SingleProtectionInstance.EntityProtection(event.getEntity()), true, "fallOnBlockEvent")) {
+		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.EntityProtection(event.getEntity()), true, "fallOnBlockEvent").isNotAllowed()) {
 			event.setCanceled(true);
 		}
     }
@@ -98,7 +98,7 @@ public class BannerEventHandlers {
 		IWorld world = event.getWorld();
 		LivingEntity entity = event.getEntityLiving();
 		if (!world.isClientSide() && entity instanceof MobEntity) {
-			if (ExtendedBannerProtectionManager.isBannerProtected(world, entity.blockPosition(), new SingleProtectionInstance.AnyProtection(), false, "handleBannerEntitySpawn")) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new SingleProtectionInstance.AnyProtection(), false, "handleBannerEntitySpawn").isNotAllowed()) {
 				event.setResult(Result.DENY);
 				return;
 			}
@@ -110,13 +110,13 @@ public class BannerEventHandlers {
 		World world = event.getWorld();
 		Entity entity = event.getEntity();
 		if (!world.isClientSide() && (entity instanceof HangingEntity)) {
-			if (ExtendedBannerProtectionManager.isBannerProtected(world, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerEntityInteractHangingEntity")) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerEntityInteractHangingEntity").isNotAllowed()) {
 				event.setCanceled(true);
 				return;
 			}
 		}
 		if (!world.isClientSide() && (entity instanceof ArmorStandEntity)) {
-			if (ExtendedBannerProtectionManager.isBannerProtected(world, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), BannerPermission.CONTAINERS), true, "handleBannerEntityInteractArmorStand")) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), BannerPermission.CONTAINERS), true, "handleBannerEntityInteractArmorStand").isNotAllowed()) {
 				event.setCanceled(true);
 				return;
 			}
@@ -129,7 +129,7 @@ public class BannerEventHandlers {
 		Entity entity = event.getEntity();
 		if (!level.isClientSide() && (entity instanceof HangingEntity)) {
 			//ExtendedLog.info("AttackEntityEvent");
-			if (ExtendedBannerProtectionManager.isBannerProtected(level, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerEntityAttacked")) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(level, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), true, "handleBannerEntityAttacked").isNotAllowed()) {
 				event.setCanceled(true);
 				return;
 			}
@@ -141,7 +141,7 @@ public class BannerEventHandlers {
 		World world = event.getWorld();
 		if (!world.isClientSide()) {
 			if (world.getBlockState(event.getPos()).getBlock() instanceof FireBlock) {
-				if (ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false, "handleBannerBlockLeftInteract")) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer()), false, "handleBannerBlockLeftInteract").isNotAllowed()) {
 					event.setCanceled(true);
 					return;
 				}
@@ -181,7 +181,7 @@ public class BannerEventHandlers {
 					perm = BannerPermission.BANNER;
 				}
 			}
-			if (ExtendedBannerProtectionManager.isBannerProtected(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract")) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract").isNotAllowed()) {
 				event.setCanceled(true);
 				if (block instanceof DoorBlock) {
 					if(bState.getValue(DoorBlock.HALF)==DoubleBlockHalf.UPPER) {
@@ -245,6 +245,6 @@ public class BannerEventHandlers {
 	}
 
 	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, SingleProtectionInstance instance) {
-		blocksToBlow.removeIf(pos -> ExtendedBannerProtectionManager.isBannerProtected(world, pos, instance, true, "handleBannerDetonateEvent"));
+		blocksToBlow.removeIf(pos -> ExtendedBannerProtectionManager.getProtectionStatus(world, pos, instance, true, "handleBannerDetonateEvent").isNotAllowed());
 	}
 }

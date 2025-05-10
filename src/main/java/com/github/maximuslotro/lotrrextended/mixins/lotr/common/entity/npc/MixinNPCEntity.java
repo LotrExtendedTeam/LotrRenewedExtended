@@ -138,7 +138,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		if (super.checkSpawnRules(iworld, reason)) {
 			if (reason == SpawnReason.NATURAL) {
 				// Extended Start
-				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.isBannerProtected(level, this.blockPosition(), new SingleProtectionInstance.EntityProtection(this), false, "checkSpawnRules")) {
+				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new SingleProtectionInstance.EntityProtection(this), false, "checkSpawnRules").isNotAllowed()) {
 					return false;
 				}
 				// Extended End

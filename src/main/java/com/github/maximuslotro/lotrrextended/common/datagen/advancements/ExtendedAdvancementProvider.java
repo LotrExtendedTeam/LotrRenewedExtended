@@ -57,11 +57,11 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new LothlorienAdvancementsProvider().accept(consumer);
 		new FangornAdvancementsProvider().accept(consumer);
 		new RohanAdvancementsProvider().accept(consumer);
-		ExtendedLog.info("###############EXTENDED###ADVANCEMENTS#############", true);
-		ExtendedLog.info("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).", true);
-		ExtendedLog.info("Also built "+advancementsExtendedNum+" new advancements unique to Extended!", true);
-		ExtendedLog.info("In addition built "+secrets+" secret advancements!", true);
-		ExtendedLog.info("###################################################", true);
+		ExtendedLog.infoShown("###############EXTENDED###ADVANCEMENTS#############");
+		ExtendedLog.infoShown("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).");
+		ExtendedLog.infoShown("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
+		ExtendedLog.infoShown("In addition built "+secrets+" secret advancements!");
+		ExtendedLog.infoShown("###################################################");
 	}
 
 	@Override
