@@ -25,6 +25,7 @@ public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedP
 		super(block, slabBase, blockBase, blockGrowable);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isValidBonemealTarget(IBlockReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
 		return pLevel.getBlockState(pPos.above()).isAir();
@@ -35,7 +36,7 @@ public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedP
 		return true;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Override
 	public void performBonemeal(ServerWorld pLevel, Random pRand, BlockPos pPos, BlockState pState) {
 		BlockPos blockpos = pPos.above();
