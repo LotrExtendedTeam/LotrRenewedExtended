@@ -49,6 +49,7 @@ import lotr.common.block.ExtendedChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedDoubleTorchBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
+import lotr.common.block.ExtendedGrassPathSlabBlock;
 import lotr.common.block.ExtendedGreenHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.ExtendedLOTRWallTorchBlock;
@@ -534,7 +535,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.COARSE_DIRT));
 		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.DIRT));
 		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedPlantableSpreadableGrowableAxialSlabBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
-		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedStemableAxialSlabBlock(Blocks.GRASS_PATH));
+		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedGrassPathSlabBlock(Blocks.GRASS_PATH));
 		ExtendedBlocks.PODZOL_SLAB = registerB("podzol_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.PODZOL));
 		ExtendedBlocks.MYCELIUM_SLAB = registerB("mycelium_slab", () -> new ExtendedPlantableSpreadableAxialSlabBlock(Blocks.MYCELIUM, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.MYCELIUM));
 		//Bone Block
