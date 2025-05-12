@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity.MixinSignTileEntityAccessor;
 import com.mojang.datafixers.util.Pair;
@@ -51,40 +52,16 @@ public class MixinTemplate {
 			if(messages[0] instanceof StringTextComponent && !((StringTextComponent) messages[0]).equals(StringTextComponent.EMPTY)) {
 				String contents = ((StringTextComponent) messages[0]).getContents();
 				if(contents.startsWith("#")) {
-					String newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim()).getRandom(pRandom);
-					if(!newLine.isEmpty()) {
-						messages[0] = new StringTextComponent(newLine);
+					ExtendedSignTextList newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim());
+					if(!newLine.equals(ExtendedSignTextList.EMPTY)) {
+						messages[0] = new StringTextComponent(newLine.getLine0(pRandom));
+						messages[1] = new StringTextComponent(newLine.getLine1(pRandom));
+						messages[2] = new StringTextComponent(newLine.getLine2(pRandom));
+						messages[3] = new StringTextComponent(newLine.getLine3(pRandom));
+						((MixinSignTileEntityAccessor)tileentity1).setMessages(messages);
 					}
 				}
 			}
-			if(messages[1] instanceof StringTextComponent && !((StringTextComponent) messages[1]).equals(StringTextComponent.EMPTY)) {
-				String contents = ((StringTextComponent) messages[1]).getContents();
-				if(contents.startsWith("#")) {
-					String newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim()).getRandom(pRandom);
-					if(!newLine.isEmpty()) {
-						messages[1] = new StringTextComponent(newLine);
-					}
-				}
-			}
-			if(messages[2] instanceof StringTextComponent && !((StringTextComponent) messages[2]).equals(StringTextComponent.EMPTY)) {
-				String contents = ((StringTextComponent) messages[2]).getContents();
-				if(contents.startsWith("#")) {
-					String newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim()).getRandom(pRandom);
-					if(!newLine.isEmpty()) {
-						messages[2] = new StringTextComponent(newLine);
-					}
-				}
-			}
-			if(messages[3] instanceof StringTextComponent && !((StringTextComponent) messages[3]).equals(StringTextComponent.EMPTY)) {
-				String contents = ((StringTextComponent) messages[3]).getContents();
-				if(contents.startsWith("#")) {
-					String newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim()).getRandom(pRandom);
-					if(!newLine.isEmpty()) {
-						messages[3] = new StringTextComponent(newLine);
-					}
-				}
-			}
-			((MixinSignTileEntityAccessor)tileentity1).setMessages(messages);
 		}
 	}
 }

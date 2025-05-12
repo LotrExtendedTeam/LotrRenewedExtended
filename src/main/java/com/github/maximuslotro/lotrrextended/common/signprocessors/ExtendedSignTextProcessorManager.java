@@ -4,26 +4,32 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableMap.Builder;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonSyntaxException;
 
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String, ExtendedSignTextList>> {
+public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String, JsonElement>> {
 	public static final ExtendedSignTextProcessorManager INSTANCE = new ExtendedSignTextProcessorManager();
-	private static final int PATH_SUFFIX_LENGTH = ".txt".length();
+	public static final Gson GSON = GsonSerializers.createSignTextSerializer().disableHtmlEscaping().create();
+	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "structure_sign_texts";
 	private Map<String, ExtendedSignTextList> signtexts = ImmutableMap.of();
+	private String loadingLanguage = "en_us";
 
 	// Don't allow more than one instance than {@see ExtendedSignTextProcessorManager#INSTANCE }
 	private ExtendedSignTextProcessorManager() {}
@@ -33,34 +39,61 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 	}
 
 	@Override
-	protected void apply(Map<String, ExtendedSignTextList> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
-		signtexts = json;
+	protected void apply(Map<String, JsonElement> json, IResourceManager p_212853_2_, IProfiler p_212853_3_) {
+		Builder<String, ExtendedSignTextList> builder = ImmutableMap.builder();
+		JsonElement jsonelement = json.remove(LotrExtendedMod.EMPTY.getPath());
+		if (jsonelement != null) {
+			ExtendedLog.warn("Datapack tried to redefine {} sign text lists, ignoring", ExtendedSignTextList.EMPTY);
+		}
+		json.forEach((listName, signTextListJson) -> {
+			try {
+				ExtendedSignTextList signTextList = deserialize(GSON, signTextListJson, ExtendedSignTextList.class);
+				if (signTextList != null) {
+					builder.put(listName, signTextList);
+				}
+			} catch (JsonSyntaxException exception) {
+				ExtendedLog.error("Failed to load Sign Text List %s from file", listName);
+				exception.printStackTrace();
+			}
+
+		});
+		this.signtexts = builder.build();
 		ExtendedLog.infoParms("Loaded Structure Sign Texts from Json - %s lists", signtexts.size());
 	}
 
 	@Override
-	protected Map<String, ExtendedSignTextList> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {
-		Map<String, ExtendedSignTextList> map = Maps.newHashMap();
+	protected Map<String, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {
+		Map<String, JsonElement> map = loadJson(pResourceManager, "en_us");
+		if(!"en_us".equals(loadingLanguage)) {
+			map.putAll(loadJson(pResourceManager, loadingLanguage));
+		}
+		return map;
+	}
 
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (file) -> file.endsWith(".txt"))) {
+	protected Map<String, JsonElement> loadJson(IResourceManager pResourceManager, String selectedLang){
+		Map<String, JsonElement> map = Maps.newHashMap();
+		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (path) -> {return path.endsWith(".json") && path.contains(selectedLang);})) {
 			if(!resourcelocation.getNamespace().equals((LotrExtendedMod.MODID))){
 				continue;
 			}
-			String fileName = resourcelocation.getPath().substring(directory.length()+1, resourcelocation.getPath().length()-PATH_SUFFIX_LENGTH);
+			String fileName = resourcelocation.getPath().substring(directory.length()+1, resourcelocation.getPath().length() -(selectedLang.length()+1) -PATH_SUFFIX_LENGTH);
 			try (IResource iresource = pResourceManager.getResource(resourcelocation);
 					BufferedReader reader = new BufferedReader(new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8));
 					) {
-				List<String> names = reader.lines().map(String::trim).collect(Collectors.toList());
-				if (!names.isEmpty()) {
-					map.put(fileName, new ExtendedSignTextList(names));
+				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
+				if (jsonelement != null) {
+					map.put(fileName, jsonelement);
 				} else {
-					ExtendedLog.error("Couldn't load data file {} as it's null or empty", resourcelocation);
+					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", fileName, resourcelocation);
 				}
 			} catch (IOException jsonParseException) {
-				ExtendedLog.error("Couldn't parse data file from {}", resourcelocation, jsonParseException);
+				ExtendedLog.error("Couldn't parse data file {} from {}", fileName, resourcelocation, jsonParseException);
 			}
 		}
-
 		return map;
+	}
+
+	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) throws JsonSyntaxException {
+		return gson.fromJson(data, classToConvert);
 	}
 }
