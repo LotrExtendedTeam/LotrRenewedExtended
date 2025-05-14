@@ -1,0 +1,28 @@
+{
+  "line0": {
+  },
+  "line1": {
+    "namebank": [
+      "lotr:npcs/names/hobbit_forename_male.txt"
+    ],
+    "shouldAddApostrophe": true
+  },
+  "line2": {
+    "string": [
+      "House",
+      "Dwelling",
+      "Delving",
+      "Burrow",
+      "Cottage",
+      "Nook",
+      "Bungalow",
+      "Hole",
+      "Hall",
+      "Smial",
+      "Hollow",
+      "Tunnels"
+    ]
+  },
+  "line3": {
+  }
+}
