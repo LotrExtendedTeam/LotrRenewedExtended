@@ -272,11 +272,13 @@ public class ExtendedJigsawManager {
 												if (chunkGeneratorUsableSpawnHeight == -1) {
 													chunkGeneratorUsableSpawnHeight = this.chunkGenerator.getFirstFreeHeight(blockpos1.getX(), blockpos1.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 												}
+												// Extended Start
 												IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(blockpos2.getX(), blockpos2.getZ());
 												BlockState topBlock1 = columnOfBlocks.getBlockState(new BlockPos(blockpos2.getX(), chunkGeneratorUsableSpawnHeight-1, blockpos2.getZ()));
 												boolean waterPresentBelow = !topBlock1.getFluidState().isEmpty();
 												
 												correctedYconnectingPieceSpawnHeight = chunkGeneratorUsableSpawnHeight - connectingPoolJigsawPieceRelativeYValue + (waterPresentBelow ? 1 : 0);
+												// Extended End
 											}
 											// Set the y-offset for the piece placement
 											int connectingPieceBBShiftYoffset = correctedYconnectingPieceSpawnHeight - connectingPoolJigsawPieceRelativeBottomYValue;

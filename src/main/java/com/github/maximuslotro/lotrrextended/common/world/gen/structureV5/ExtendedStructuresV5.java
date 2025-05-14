@@ -87,8 +87,8 @@ public class ExtendedStructuresV5 {
 		register(GUNDABAD_ENCAMPMENT.get(), true,      50, 35, 43757456);
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
-		register(BREE_HAMLET.get(), true,              60, 45, 57854769);
-		register(BREE_VILLAGE.get(), true,             50, 35, 78547894);
+		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
+		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
 	}
 
 	public static <P extends JigsawPiece> IJigsawDeserializer<P> registerJigsaw(String pName, Codec<P> pCodec) {
