@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedMessageEntryBasic;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity.MixinSignTileEntityAccessor;
@@ -54,10 +55,18 @@ public class MixinTemplate {
 				if(contents.startsWith("#")) {
 					ExtendedSignTextList newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim());
 					if(!newLine.equals(ExtendedSignTextList.EMPTY)) {
-						messages[0] = new StringTextComponent(newLine.getLine0(pRandom));
-						messages[1] = new StringTextComponent(newLine.getLine1(pRandom));
-						messages[2] = new StringTextComponent(newLine.getLine2(pRandom));
-						messages[3] = new StringTextComponent(newLine.getLine3(pRandom));
+						if(newLine.hasLines()) {
+							ExtendedMessageEntryBasic fullLine = newLine.getLine(pRandom);
+							messages[0] = new StringTextComponent(fullLine.getLine0());
+							messages[1] = new StringTextComponent(fullLine.getLine1());
+							messages[2] = new StringTextComponent(fullLine.getLine2());
+							messages[3] = new StringTextComponent(fullLine.getLine3());
+						}else {
+							messages[0] = new StringTextComponent(newLine.getLine0(pRandom));
+							messages[1] = new StringTextComponent(newLine.getLine1(pRandom));
+							messages[2] = new StringTextComponent(newLine.getLine2(pRandom));
+							messages[3] = new StringTextComponent(newLine.getLine3(pRandom));
+						}
 						((MixinSignTileEntityAccessor)tileentity1).setMessages(messages);
 					}
 				}

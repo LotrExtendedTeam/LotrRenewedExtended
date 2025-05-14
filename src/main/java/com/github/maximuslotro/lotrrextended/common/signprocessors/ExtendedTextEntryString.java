@@ -2,11 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.signprocessors;
 
 import java.util.Random;
 
-public class StringTextEntry extends BasicTextEntry {
+public class ExtendedTextEntryString extends ExtendedTextEntryBasic {
 
 	private String entry;
 
-	public StringTextEntry(String entry) {
+	public ExtendedTextEntryString(String entry) {
 		this.entry = entry;
 	}
 

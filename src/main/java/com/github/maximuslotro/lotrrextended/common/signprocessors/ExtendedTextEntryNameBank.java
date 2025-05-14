@@ -5,11 +5,11 @@ import java.util.Random;
 import lotr.common.entity.npc.data.name.NameBankManager;
 import net.minecraft.util.ResourceLocation;
 
-public class NameBankTextEntry extends BasicTextEntry {
+public class ExtendedTextEntryNameBank extends ExtendedTextEntryBasic {
 	private ResourceLocation nameBank;
 	private boolean shouldAddApostrophe;
 
-	public NameBankTextEntry(String pNameBank, boolean pShouldAddApostrophe) {
+	public ExtendedTextEntryNameBank(String pNameBank, boolean pShouldAddApostrophe) {
 		this.nameBank = new ResourceLocation(pNameBank);
 		this.shouldAddApostrophe = pShouldAddApostrophe;
 	}

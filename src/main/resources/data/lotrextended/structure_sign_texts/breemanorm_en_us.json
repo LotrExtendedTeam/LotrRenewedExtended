@@ -1,15 +1,82 @@
 {
-  "line0": {
-  },
-  "line1": {
-  },
-  "line2": {
-    "string": [
+  "lines": [
+    [
+      "",
+      "Keep Out",
+      "No Peasants",
+      ""
+    ],
+    [
+      "",
       "Keep Out",
       "No Peddlers",
-      "No Peasants"
+      ""
+    ],
+    [
+      "",
+      "Official ",
+      "Business",
+      "Only"
+    ],
+    [
+      "",
+      "Deliveries",
+      "Use Back",
+      "Entrance"
+    ],
+    [
+      "",
+      "Deliveries",
+      "Use Back",
+      "Entrance"
+    ],
+    [
+      "",
+      "Private",
+      "Property",
+      "No Entry"
+    ],
+    [
+      "",
+      "Trespassers",
+      "Will Be",
+      "Prosecuted"
+    ],
+    [
+      "",
+      "Beware",
+      "Of The",
+      "Hounds"
+    ],
+    [
+      "",
+      "Mind The",
+      "Duck",
+      "It Bites"
+    ],
+    [
+      "No",
+      "Soliciting",
+      "Or",
+      "No Begging"
+    ],
+    [
+      "Unwanted",
+      "Visitors",
+      "Will Be",
+      "Chased"
+    ],
+    [
+      "Under",
+      "Protection",
+      "Of Bree",
+      "Guard"
+    ],
+    [
+      "Shirefolk",
+      "Welcome",
+      "All Others",
+      "Announce"
     ]
-  },
-  "line3": {
-  }
+  ]
 }
