@@ -41,10 +41,11 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/corners/bree_village_stalls",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "STALLS"
 			}
 		},
 		{

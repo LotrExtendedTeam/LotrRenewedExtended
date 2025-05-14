@@ -1,0 +1,30 @@
+{
+  "line0": {
+    "string": [
+      "~~~~~~~~~~~~"
+    ]
+  },
+  "line1": {
+    "namebank": [
+      "lotr:npcs/names/bree_forename_male.txt"
+    ],
+    "shouldAddApostrophe": true
+  },
+  "line2": {
+    "string": [
+      "Stables",
+      "Yards",
+      "Stockyard",
+      "Horse Yard",
+      "Tetheryard",
+      "Pens",
+      "Stalls",
+      "Horses"
+    ]
+  },
+  "line3": {
+    "string": [
+      "~~~~~~~~~~~~"
+    ]
+  }
+}

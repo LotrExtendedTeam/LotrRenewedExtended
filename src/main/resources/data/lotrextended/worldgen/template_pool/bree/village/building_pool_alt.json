@@ -83,6 +83,16 @@
 				"location": "lotrextended:bree/village/bree_village_house_8",
 				"processors": "minecraft:empty"
 			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:bree/village/bree_village_butcher",
+				"processors": "minecraft:empty",
+				"blacklist_name" : "BUTCHER"
+			}
 		}
 	]
 }
