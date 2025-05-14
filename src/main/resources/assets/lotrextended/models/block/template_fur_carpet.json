@@ -1,6 +1,5 @@
 {
 	"parent": "block/block",
-	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "block/fur_carpet"
@@ -18,52 +17,61 @@
 				"south": {"uv": [8, 1, 16, 1.5], "texture": "#0"},
 				"west": {"uv": [8, 1.5, 16, 2], "texture": "#0"},
 				"up": {"uv": [8, 8, 0, 0], "texture": "#0"},
-				"down": {"uv": [8, 8, 0, 16], "texture": "#0"}
+				"down": {"uv": [8, 8, 0, 16], "texture": "#0", "cullface": "down"}
 			}
 		},
 		{
-			"name": "Frill1",
+			"name": "North",
 			"from": [0, 3.9, 0.25],
 			"to": [16, 3.9, 1.25],
 			"shade": false,
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, -0.7, 8]},
 			"faces": {
-				"up": {"uv": [16, 2.5, 8, 2], "texture": "#0"},
-				"down": {"uv": [16, 2, 8, 2.5], "texture": "#0"}
+				"up": {"uv": [16, 2.5, 8, 2], "texture": "#0", "cullface": "north"},
+				"down": {"uv": [16, 2, 8, 2.5], "texture": "#0", "cullface": "north"}
 			}
 		},
 		{
-			"name": "Frill2",
+			"name": "South",
 			"from": [0, 3.9, 14.75],
 			"to": [16, 3.9, 15.75],
 			"shade": false,
 			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, -0.7, 8]},
 			"faces": {
-				"up": {"uv": [16, 3.5, 8, 3], "texture": "#0"},
-				"down": {"uv": [16, 3, 8, 3.5], "texture": "#0"}
+				"up": {"uv": [16, 3.5, 8, 3], "texture": "#0", "cullface": "south"},
+				"down": {"uv": [16, 3, 8, 3.5], "texture": "#0", "cullface": "south"}
 			}
 		},
 		{
-			"name": "Frill3",
+			"name": "West",
 			"from": [-0.75, 4.1, 0],
 			"to": [0.25, 4.1, 16],
 			"shade": false,
 			"rotation": {"angle": 22.5, "axis": "z", "origin": [8, 2, 8]},
 			"faces": {
-				"up": {"uv": [16, 4.5, 8, 4], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [16, 4, 8, 4.5], "rotation": 90, "texture": "#0"}
+				"up": {"uv": [16, 4.5, 8, 4], "rotation": 270, "texture": "#0", "cullface": "west"},
+				"down": {"uv": [16, 4, 8, 4.5], "rotation": 90, "texture": "#0", "cullface": "west"}
 			}
 		},
 		{
-			"name": "Frill4",
+			"name": "East",
 			"from": [15.75, 4.1, 0],
 			"to": [16.75, 4.1, 16],
 			"shade": false,
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 2, 8]},
 			"faces": {
-				"up": {"uv": [16, 5.5, 8, 5], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [16, 5, 8, 5.5], "rotation": 90, "texture": "#0"}
+				"up": {"uv": [16, 5.5, 8, 5], "rotation": 270, "texture": "#0", "cullface": "east"},
+				"down": {"uv": [16, 5, 8, 5.5], "rotation": 90, "texture": "#0", "cullface": "east"}
 			}
+		}
+	],
+	"groups": [
+		0,
+		{
+			"name": "Frills",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [1, 2, 3, 4]
 		}
 	]
 }
