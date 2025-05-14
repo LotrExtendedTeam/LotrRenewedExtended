@@ -1,0 +1,31 @@
+{
+  "line0": {
+  },
+  "line1": {
+    "namebank": [
+      "lotr:npcs/names/bree_forename_male.txt"
+    ],
+    "shouldAddApostrophe": true
+  },
+  "line2": {
+    "string": [
+      "House",
+      "Dwelling",
+      "Shanty",
+      "Cottage",
+      "Abode",
+      "Lodge",
+      "Hut",
+      "Cabin",
+      "Croft",
+      "Roost",
+      "Brambleshack",
+      "Shanty",
+      "Nook",
+      "Casa",
+      "Bungalow"
+    ]
+  },
+  "line3": {
+  }
+}
