@@ -131,37 +131,41 @@
 		{
 			"weight": 3,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_potter_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "POTTER"
 			}
 		},
 		{
 			"weight": 3,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_potter_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "POTTER"
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_windmill_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "WINDMILL"
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_windmill_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "WINDMILL"
 			}
 		}
 	]
