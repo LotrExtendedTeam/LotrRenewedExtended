@@ -13,6 +13,7 @@ import net.minecraft.loot.BinomialRange;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.IntClamper;
 import net.minecraft.loot.RandomValueRange;
+import net.minecraft.util.ResourceLocation;
 
 public class GsonSerializers {
 	public static GsonBuilder createConditionSerializer() {
@@ -38,6 +39,8 @@ public class GsonSerializers {
 	}
 
 	public static GsonBuilder createSignTextSerializer() {
-		return createConditionSerializer().registerTypeAdapter(ExtendedSignTextList.class, new ExtendedSignTextList.Serializer());
+		return createConditionSerializer()
+				.registerTypeAdapter(ExtendedSignTextList.class, new ExtendedSignTextList.Serializer())
+				.registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer());
 	}
 }

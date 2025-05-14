@@ -6,16 +6,17 @@ import lotr.common.entity.npc.data.name.NameBankManager;
 import net.minecraft.util.ResourceLocation;
 
 public class NameBankTextEntry extends BasicTextEntry {
+	private ResourceLocation nameBank;
+	private boolean shouldAddApostrophe;
 
-	ResourceLocation nameBank;
-	
-	public NameBankTextEntry(ResourceLocation nameBank) {
-		this.nameBank = nameBank;
+	public NameBankTextEntry(String pNameBank, boolean pShouldAddApostrophe) {
+		this.nameBank = new ResourceLocation(pNameBank);
+		this.shouldAddApostrophe = pShouldAddApostrophe;
 	}
 
 	@Override
-	public String getText(Random rand) {
-		return NameBankManager.INSTANCE.fetchLoadedNameBank(nameBank).getRandomName(rand);
+	public String getText(Random pRand) {
+		return NameBankManager.INSTANCE.fetchLoadedNameBank(nameBank).getRandomName(pRand) + (shouldAddApostrophe ? "'s" : "");
 	}
 
 }
