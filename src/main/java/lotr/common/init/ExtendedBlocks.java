@@ -512,4 +512,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_BIRDCAGE;
 	public static RegistryObject<Block> GOLDEN_BIRDCAGE;
 	public static RegistryObject<Block> MITHRIL_BIRDCAGE;
+
+	public static RegistryObject<Block> GRASS_VOID;
 }

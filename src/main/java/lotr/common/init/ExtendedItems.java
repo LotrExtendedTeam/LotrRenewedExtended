@@ -655,4 +655,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_BIRDCAGE;
 	public static RegistryObject<Item> GOLDEN_BIRDCAGE;
 	public static RegistryObject<Item> MITHRIL_BIRDCAGE;
+
+	public static RegistryObject<Item> GRASS_VOID;
 }

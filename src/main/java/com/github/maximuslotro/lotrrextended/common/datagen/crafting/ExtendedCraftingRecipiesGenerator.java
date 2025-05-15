@@ -2182,6 +2182,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_LEAVES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.WILLOW_VINES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GRASS_VOID.get().getRegistryName().getPath());
 	}
 
 	@Override

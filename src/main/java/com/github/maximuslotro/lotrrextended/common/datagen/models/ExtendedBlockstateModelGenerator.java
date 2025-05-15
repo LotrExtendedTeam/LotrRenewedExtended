@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
@@ -457,6 +458,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					registeredBlocks.add(block.getValue().get());
 					ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath(), lotrExtendedLoc("block/spawner_block"));
 					simpleBlock(block.getValue().get(), cubeModel);
+					continue;
+				}
+				if((block.getValue().get() instanceof ExtendedGrassVoidBlock)) {
+					registeredBlocks.add(block.getValue().get());
+					ModelFile voidModel = models().getBuilder("lotrextended:" + block.getValue().get().getRegistryName().getPath())
+							.texture("particle", lotrExtendedLoc("item/"+block.getKey()));
+					simpleBlock(block.getValue().get(), voidModel);
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedCakeBlock) {
