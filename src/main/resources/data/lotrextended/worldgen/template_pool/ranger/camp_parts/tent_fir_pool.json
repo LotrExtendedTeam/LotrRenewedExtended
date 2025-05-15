@@ -14,10 +14,11 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:ranger/camp/tent/captain/ranger_tent_captain_fir",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "CAPTAIN"
 			}
 		},
 		{

@@ -16,6 +16,15 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "terrain_matching",
+				"location": "lotrextended:bree/village/farms/bree_village_center_field_1_1_alt",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_2_1",
 				"processors": "minecraft:empty"
 			}

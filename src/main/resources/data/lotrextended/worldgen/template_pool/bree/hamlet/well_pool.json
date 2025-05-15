@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/well/bree_hamlet_well_1",
 				"processors": "minecraft:empty",
-				"max_depth" : 4
+				"max_depth" : 3
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/well/bree_hamlet_well_2",
 				"processors": "minecraft:empty",
-				"max_depth" : 4
+				"max_depth" : 3
 			}
 		}
 	]

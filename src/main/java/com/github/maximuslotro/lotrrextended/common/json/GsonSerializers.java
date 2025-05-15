@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.json;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentItem;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
@@ -12,6 +13,7 @@ import net.minecraft.loot.BinomialRange;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.IntClamper;
 import net.minecraft.loot.RandomValueRange;
+import net.minecraft.util.ResourceLocation;
 
 public class GsonSerializers {
 	public static GsonBuilder createConditionSerializer() {
@@ -34,5 +36,11 @@ public class GsonSerializers {
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentPool.class, new ExtendedHiredUnitEquipmentPool.Serializer())
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentItem.class, new ExtendedHiredUnitEquipmentItem.Serializer())
 			.registerTypeAdapter(ExtendedServerHiredUnitProfile.class, new ExtendedServerHiredUnitProfile.Serializer());
+	}
+
+	public static GsonBuilder createSignTextSerializer() {
+		return createConditionSerializer()
+				.registerTypeAdapter(ExtendedSignTextList.class, new ExtendedSignTextList.Serializer())
+				.registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer());
 	}
 }

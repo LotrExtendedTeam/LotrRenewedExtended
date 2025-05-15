@@ -5,10 +5,11 @@
 		{
 			"weight": 40,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/camp/tent/captain/gundabad_tent_captain_brown",
-				"processors": "lotrextended:gundabad_camp_tent_processor"
+				"processors": "lotrextended:gundabad_camp_tent_processor",
+				"blacklist_name" : "CAPTAIN"
 			}
 		},
 		{
@@ -59,10 +60,11 @@
 		{
 			"weight": 40,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/camp/tent/captain/gundabad_tent_captain_gray",
-				"processors": "lotrextended:gundabad_camp_tent_processor"
+				"processors": "lotrextended:gundabad_camp_tent_processor",
+				"blacklist_name" : "CAPTAIN"
 			}
 		},
 		{
@@ -113,10 +115,11 @@
 		{
 			"weight": 30,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/camp/tent/captain/gundabad_tent_captain_silver",
-				"processors": "lotrextended:gundabad_camp_tent_processor"
+				"processors": "lotrextended:gundabad_camp_tent_processor",
+				"blacklist_name" : "CAPTAIN"
 			}
 		},
 		{
@@ -167,10 +170,11 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/camp/tent/captain/gundabad_tent_captain_white",
-				"processors": "lotrextended:gundabad_camp_tent_processor"
+				"processors": "lotrextended:gundabad_camp_tent_processor",
+				"blacklist_name" : "CAPTAIN"
 			}
 		},
 		{
