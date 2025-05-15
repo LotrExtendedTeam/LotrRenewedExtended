@@ -1172,6 +1172,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRItems.SALT.get().getRegistryName().getPath(), has(LOTRItems.SALT.get()))
 		.unlockedBy("has_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath(), has(ExtendedBlocks.BARREN_DIRT.get()))
 		.save(consumer, lotrLoc(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(Blocks.DIRT)
+		.requires(Ingredient.of(ExtendedBlocks.BARREN_DIRT.get()))
+		.requires(Ingredient.of(Tags.Items.SEEDS))
+		.unlockedBy("has_"+Items.DIRT.getRegistryName().getPath(), has(Items.DIRT))
+		.unlockedBy("has_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath(), has(ExtendedBlocks.BARREN_DIRT.get()))
+		.save(consumer, lotrLoc(Blocks.DIRT.getRegistryName().getPath()+"_from_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath()));
 		makeSlabRecipe(consumer, ExtendedBlocks.BARREN_DIRT_SLAB, ExtendedItems.BARREN_DIRT, null);
 		makeSlabRecipe(consumer, ExtendedBlocks.COARSE_DIRT_SLAB, () -> Items.COARSE_DIRT, null);
 		makeSlabRecipe(consumer, ExtendedBlocks.DIRT_SLAB, () -> Items.DIRT, null);

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:barren_dirt"
+    },
+    {
+      "tag": "forge:seeds"
+    }
+  ],
+  "result": {
+    "item": "minecraft:dirt"
+  }
+}
