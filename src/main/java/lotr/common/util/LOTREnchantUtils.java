@@ -6,6 +6,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LOTREnchantUtils {
 
     public static void enchant(ItemStack stack, LOTREnchantment enchantment, int pLevel) {
@@ -16,24 +19,34 @@ public class LOTREnchantUtils {
 
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         CompoundNBT compoundnbt = new CompoundNBT();
-        compoundnbt.putString("id", enchantment.toString());
+        compoundnbt.putString("key", enchantment.getKey());
         compoundnbt.putShort("lvl", (byte) pLevel);
         listnbt.add(compoundnbt);
     }
 
-    // TODO: This is a temp method for verifying it applied it
-    public static String getEnchantList(ItemStack stack) {
+    public static List<LOTREnchantment> getEnchantList(ItemStack stack) {
         CompoundNBT tag = stack.getOrCreateTag();
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
-            return "";
+            return new ArrayList<>();
         }
 
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
-        String response = "";
-        for (INBT entry : listnbt) {
-            response += entry.getAsString() + " ";
+        List<LOTREnchantment> result = new ArrayList<>();
+        for (INBT nbt : listnbt) {
+            if (!(nbt instanceof CompoundNBT)) continue;
+            CompoundNBT entry = (CompoundNBT) nbt;
+            String key = entry.getString("key");
+            LOTREnchantment enchant = null;
+            if (LOTREnchantment.ENCHANT_MAP.containsKey(key)) {
+                enchant = LOTREnchantment.ENCHANT_MAP.get(key);
+            }
+
+            if (enchant != null) {
+                result.add(enchant);
+            }
         }
-        return response.trim();
+        return result;
     }
+
 }

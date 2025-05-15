@@ -441,6 +441,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.follows_off_title", "Follows: Off");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
+
+		// custom enchantments
+		addD("enchant.lotrextended.orcbane", "Orc Bane");
+		addD("enchant.lotrextended.dwarfbane", "Dwarf Bane");
+		addD("enchant.lotrextended.elfbane", "Elf Bane");
+		addD("enchant.lotrextended.wargbane", "Warg Bane");
+		addD("enchant.lotrextended.wightbane", "Wight Bane");
 	}
 
 	@Override
