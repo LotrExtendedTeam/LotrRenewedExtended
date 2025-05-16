@@ -443,11 +443,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
 
 		// custom enchantments
-		addD("enchant.lotrextended.orcbane", "Orc Bane");
-		addD("enchant.lotrextended.dwarfbane", "Dwarf Bane");
-		addD("enchant.lotrextended.elfbane", "Elf Bane");
-		addD("enchant.lotrextended.wargbane", "Warg Bane");
-		addD("enchant.lotrextended.wightbane", "Wight Bane");
+		addD("enchant.lotrextended.orcbane", "Orcbane");
+		addD("enchant.lotrextended.dwarfbane", "Dwarfbane");
+		addD("enchant.lotrextended.elfbane", "Elfbane");
+		addD("enchant.lotrextended.wargbane", "Wargbane");
+		addD("enchant.lotrextended.wightbane", "Wightbane");
+		addD("enchant.lotrextended.orcbane.desc", "+4.0 damage vs. Orcs");
+		addD("enchant.lotrextended.dwarfbane.desc", "+4.0 damage vs. Dwarves");
+		addD("enchant.lotrextended.elfbane.desc", "+4.0 damage vs. Elves");
+		addD("enchant.lotrextended.wargbane.desc", "+4.0 damage vs. Wargs");
+		addD("enchant.lotrextended.wightbane.desc", "+4.0 damge vs. Wights");
 	}
 
 	@Override
