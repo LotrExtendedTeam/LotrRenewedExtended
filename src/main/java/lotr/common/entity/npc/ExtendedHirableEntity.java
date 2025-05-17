@@ -159,48 +159,105 @@ public interface ExtendedHirableEntity {
 	default void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {
 		if (slot == ExtendedEquipmentSlotType.HEAD) {
 			getCustomInventory().setItem(9, stack);
-			getThis().setItemSlot(EquipmentSlotType.HEAD, stack);
+			if(stack.isEmpty()) {
+				getThis().setItemSlot(EquipmentSlotType.HEAD, getCustomInventory().getItem(19));
+			} else {
+				getThis().setItemSlot(EquipmentSlotType.HEAD, stack);
+			}
 		} else if (slot == ExtendedEquipmentSlotType.CHEST) {
 			getCustomInventory().setItem(10, stack);
-			getThis().setItemSlot(EquipmentSlotType.CHEST, stack);
+			if(stack.isEmpty()) {
+				getThis().setItemSlot(EquipmentSlotType.CHEST, getCustomInventory().getItem(20));
+			} else {
+				getThis().setItemSlot(EquipmentSlotType.CHEST, stack);
+			}
 		} else if (slot == ExtendedEquipmentSlotType.LEGS) {
 			getCustomInventory().setItem(11, stack);
-			getThis().setItemSlot(EquipmentSlotType.LEGS, stack);
+			if(stack.isEmpty()) {
+				getThis().setItemSlot(EquipmentSlotType.LEGS, getCustomInventory().getItem(21));
+			} else {
+				getThis().setItemSlot(EquipmentSlotType.LEGS, stack);
+			}
 		} else if (slot == ExtendedEquipmentSlotType.FEET) {
 			getCustomInventory().setItem(12, stack);
-			getThis().setItemSlot(EquipmentSlotType.FEET, stack);
+			if(stack.isEmpty()) {
+				getThis().setItemSlot(EquipmentSlotType.FEET, getCustomInventory().getItem(22));
+			} else {
+				getThis().setItemSlot(EquipmentSlotType.FEET, stack);
+			}
 		} else if (slot == ExtendedEquipmentSlotType.MELEE) {
 			getCustomInventory().setItem(13, stack);
-			getThis().npcItemsInv.setMeleeWeapon(stack);
-			if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
-				getCustomInventory().setItem(16, stack);
+			if(stack.isEmpty()) {
+				getThis().npcItemsInv.setMeleeWeapon(getCustomInventory().getItem(23));
+				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+					getCustomInventory().setItem(16, ItemStack.EMPTY);
+					getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(23));
+				}
+			} else {
+				getThis().npcItemsInv.setMeleeWeapon(stack);
+				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+					getCustomInventory().setItem(16, stack);
+					getThis().npcItemsInv.setIdleItem(stack);
+				}
 			}
 		} else if (slot == ExtendedEquipmentSlotType.RANGED) {
 			getCustomInventory().setItem(14, stack);
-			getThis().npcItemsInv.setRangedWeapon(stack);
-			if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()) {
-				getCustomInventory().setItem(16, stack);
-				getCustomInventory().setItem(17, stack);
+			if(stack.isEmpty()) {
+				getThis().npcItemsInv.setRangedWeapon(getCustomInventory().getItem(24));
+				if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()) {
+					getCustomInventory().setItem(16, ItemStack.EMPTY);
+					getCustomInventory().setItem(17, ItemStack.EMPTY);
+					getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(24));
+					getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(24));
+				}
+			} else {
+				getThis().npcItemsInv.setRangedWeapon(stack);
+				if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()) {
+					getCustomInventory().setItem(16, stack);
+					getCustomInventory().setItem(17, stack);
+					getThis().npcItemsInv.setIdleItem(stack);
+					getThis().npcItemsInv.setIdleItemMounted(stack);
+				}
 			}
 		} else if (slot == ExtendedEquipmentSlotType.MOUNTED) {
 			getCustomInventory().setItem(15, stack);
-			getThis().npcItemsInv.setMeleeWeaponMounted(stack);
-			if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
-				getCustomInventory().setItem(17, stack);
+			if(stack.isEmpty()) {
+				getThis().npcItemsInv.setMeleeWeaponMounted(getCustomInventory().getItem(25));
+				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+					getCustomInventory().setItem(17, ItemStack.EMPTY);
+					getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(25));
+
+				}
+			} else {
+				getThis().npcItemsInv.setMeleeWeaponMounted(stack);
+				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
+					getCustomInventory().setItem(17, stack);
+					getThis().npcItemsInv.setIdleItem(stack);
+				}
 			}
 		} else if (slot == ExtendedEquipmentSlotType.IDLE) {
-			//getCustomInventory().setItem(16, stack);
-			//getThis().npcItemsInv.setIdleItem(stack);
+			getCustomInventory().setItem(16, stack);
+			if(stack.isEmpty()) {
+				getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(26));
+			} else {
+				getThis().npcItemsInv.setIdleItem(stack);
+			}
 		} else if (slot == ExtendedEquipmentSlotType.IDLE_MOUNTED) {
-			//getCustomInventory().setItem(17, stack);
-			//getThis().npcItemsInv.setIdleItemMounted(stack);
-		}  else if (slot == ExtendedEquipmentSlotType.OFFHAND) {
+			getCustomInventory().setItem(17, stack);
+			if(stack.isEmpty()) {
+				getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(27));
+			}else {
+				getThis().npcItemsInv.setIdleItemMounted(stack);
+			}
+		} else if (slot == ExtendedEquipmentSlotType.OFFHAND) {
 			getCustomInventory().setItem(18, stack);
-			getThis().setItemSlot(EquipmentSlotType.OFFHAND, stack);
+			if(stack.isEmpty()) {
+				getThis().setItemSlot(EquipmentSlotType.OFFHAND, getCustomInventory().getItem(28));
+			} else {
+				getThis().setItemSlot(EquipmentSlotType.OFFHAND, stack);
+			}
 		}
 		if(slot.isRenewedHandling()) {
-			getThis().npcItemsInv.setIdleItem(getCustomInventory().getItem(16).isEmpty() ? getCustomInventory().getItem(26) : getCustomInventory().getItem(16));
-			getThis().npcItemsInv.setIdleItemMounted(getCustomInventory().getItem(17).isEmpty() ? getCustomInventory().getItem(27) : getCustomInventory().getItem(17));
 			getThis().getNPCCombatUpdater().refreshCurrentAttackMode();
 		}
 	}
@@ -333,7 +390,7 @@ public interface ExtendedHirableEntity {
 				getCustomInventory().setItem(27, getCustomInventory().getItem(24));
 			}
 			// Finally move base offhand item to new index
-			getCustomInventory().setItem(28, itemsStacks.get(20));
+			getCustomInventory().setItem(28, itemsStacks.get(20).isEmpty() ? getUnitProfile().getEquipmentPools().getRandomOffhandStack(getThis().getRandom()) : itemsStacks.get(20));
 		}
 		// Lastly update the entity's equipment slots and renewed item inventory with upgraded inventory layout
 		getThis().setItemSlot(EquipmentSlotType.HEAD, getCustomInventory().getItem(9).isEmpty() ? getCustomInventory().getItem(19) : getCustomInventory().getItem(9));
