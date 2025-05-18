@@ -6,6 +6,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -42,6 +43,10 @@ public class ExtendedMossCarpetBlock extends Block {
 	@Override
 	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
 		BlockPos blockpos = pPos.below();
-		return pLevel.getBlockState(blockpos).isFaceSturdy(pLevel, blockpos, Direction.UP) && !pLevel.getBlockState(blockpos).is(ExtendedBlocks.MOSS_CARPET.get());
+		BlockState below = pLevel.getBlockState(blockpos);
+		if(below.getBlock() instanceof LeavesBlock || below.getBlock() instanceof ExtendedBerryHedgeBlock) {
+			return true;
+		}
+		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && !below.is(ExtendedBlocks.MOSS_CARPET.get());
 	}
 }
