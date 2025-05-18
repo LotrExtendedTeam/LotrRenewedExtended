@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.block;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
@@ -116,6 +117,9 @@ public class ExtendedBlockRenderer {
 			}
 			if(block instanceof ExtendedCrucibleBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if(block instanceof ExtendedBerryHedgeBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());

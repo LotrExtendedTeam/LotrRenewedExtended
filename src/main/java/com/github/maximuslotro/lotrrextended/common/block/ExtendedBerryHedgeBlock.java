@@ -6,7 +6,6 @@ import lotr.common.event.CompostingHelper;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.GlassBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -26,6 +25,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -33,37 +35,47 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedBerryHedgeBlock extends GlassBlock implements IGrowable{
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    private final RegistryObject<Item> berryItem;
-    private final RegistryObject<Item> berryBlock;
+public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
+	private final RegistryObject<Item> berryItem;
+	private final RegistryObject<Item> berryBlock;
 
-    public ExtendedBerryHedgeBlock(RegistryObject<Item> berryItem, RegistryObject<Item> berryBlock) {
-    	super(Properties.of(Material.LEAVES, MaterialColor.COLOR_GREEN)
-    			.randomTicks()
-    			.sound(SoundType.SWEET_BERRY_BUSH)
-    			.strength(0.2F)
-    			.noOcclusion()
-    			.harvestTool(ToolType.HOE)
-    			.isValidSpawn(LOTRBlocks::allowSpawnOnLeaves)
-    			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
-    			.isSuffocating(LOTRBlocks::posPredicateFalse)
-    			.isViewBlocking(LOTRBlocks::posPredicateFalse));
-        this.berryItem = berryItem;
-        this.berryBlock = berryBlock;
-        registerDefaultState(stateDefinition.any().setValue(AGE, 0));
-        CompostingHelper.prepareCompostable(this, 0.65F);
-    }
+	public ExtendedBerryHedgeBlock(RegistryObject<Item> berryItem, RegistryObject<Item> berryBlock) {
+		super(Properties.of(Material.LEAVES, MaterialColor.COLOR_GREEN)
+			.randomTicks()
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.strength(0.2F)
+			.noOcclusion()
+			.harvestTool(ToolType.HOE)
+			.isValidSpawn(LOTRBlocks::allowSpawnOnLeaves)
+			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
+			.isSuffocating(LOTRBlocks::posPredicateFalse)
+			.isViewBlocking(LOTRBlocks::posPredicateFalse));
+		this.berryItem = berryItem;
+		this.berryBlock = berryBlock;
+		registerDefaultState(stateDefinition.any().setValue(AGE, 0));
+		CompostingHelper.prepareCompostable(this, 0.65F);
+	}
+
+	@Override
+	public VoxelShape getVisualShape(BlockState pState, IBlockReader pReader, BlockPos pPos, ISelectionContext pContext) {
+		return VoxelShapes.empty();
+	}
+
+	@Override
+	public boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState) {
+		return true;
+	}
 
 	@Override
 	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
-	      int i = p_225542_1_.getValue(AGE);
-	      if (i < 3 && p_225542_2_.getRawBrightness(p_225542_3_.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_,p_225542_4_.nextInt(5) == 0)) {
-	         p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, i + 1), 2);
-	         net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);
-	      }
+		int i = p_225542_1_.getValue(AGE);
+		if (i < 3 && p_225542_2_.getRawBrightness(p_225542_3_.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_,p_225542_4_.nextInt(5) == 0)) {
+			p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, i + 1), 2);
+			net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);
+		}
 
-	   }
+	}
 
 	@Override
 	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
@@ -74,38 +86,33 @@ public class ExtendedBerryHedgeBlock extends GlassBlock implements IGrowable{
 		}
 	}
 
-    @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(AGE) < 3;
-    }
-
-    @Override
-    public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-        int i = p_225533_1_.getValue(AGE);
-        boolean flag = i == 3;
-        if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
-           return ActionResultType.PASS;
-        } else if (i > 2) {
-        	popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(6) + 1: 0));
-           p_225533_2_.playSound(null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
-           p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
-           return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
-        } else {
-           return ActionResultType.PASS;
-        }
-     }
-
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
-    }
-
-    @Override
-	public boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState) {
-		return true;
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(AGE) < 3;
 	}
 
-    /////////////////////////COPY FROM SweetBerryBushBlock.class/////////////////////////////
+	@Override
+	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+		int i = p_225533_1_.getValue(AGE);
+		boolean flag = i == 3;
+		if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
+			return ActionResultType.PASS;
+		} else if (i > 2) {
+			popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(6) + 1: 0));
+			p_225533_2_.playSound(null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
+			p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
+			return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
+		} else {
+			return ActionResultType.PASS;
+		}
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		builder.add(AGE);
+	}
+
+	/////////////////////////COPY FROM SweetBerryBushBlock.class/////////////////////////////
 	@Override
 	public boolean isValidBonemealTarget(IBlockReader p_176473_1_, BlockPos p_176473_2_, BlockState p_176473_3_, boolean p_176473_4_) {
 		return p_176473_3_.getValue(AGE) < 3;
@@ -119,7 +126,7 @@ public class ExtendedBerryHedgeBlock extends GlassBlock implements IGrowable{
 	@Override
 	public void performBonemeal(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
 		int i = Math.min(3, p_225535_4_.getValue(AGE) + 1);
-	      p_225535_1_.setBlock(p_225535_3_, p_225535_4_.setValue(AGE, i), 2);
+		p_225535_1_.setBlock(p_225535_3_, p_225535_4_.setValue(AGE, i), 2);
 	}
 
 	public Item getBerryItem() {
