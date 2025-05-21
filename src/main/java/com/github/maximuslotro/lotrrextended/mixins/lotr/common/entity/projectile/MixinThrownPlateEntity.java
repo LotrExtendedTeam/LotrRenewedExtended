@@ -17,14 +17,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * @reason Add banner protection checking to thrown plates
+ * Add banner protection checking to thrown plates
  * @Mixin (ThrownPlateEntity.class)
  * */
 @Mixin(ThrownPlateEntity.class)
 public abstract class MixinThrownPlateEntity extends ProjectileItemEntity{
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of ProjectileItemEntity
 	 * @param world A placeholder variable instance of World
 	 * */

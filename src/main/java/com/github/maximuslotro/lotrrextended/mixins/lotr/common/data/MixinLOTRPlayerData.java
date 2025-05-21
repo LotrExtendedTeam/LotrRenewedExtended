@@ -5,6 +5,7 @@ import java.util.function.Function;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,7 +18,7 @@ import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
 
 /**
- * @reason To add additional information modules to the player module
+ * To add additional information modules to the player module
  * @Mixin (LOTRPlayerData.class)
  * */
 @Mixin(LOTRPlayerData.class)
@@ -26,15 +27,17 @@ public class MixinLOTRPlayerData implements ExtendedLOTRPlayerData{
 	/**
 	 * Local instance of ExtendedFellowshipDataModule for this player
 	 * */
+	@Unique
 	private ExtendedFellowshipDataModule fellowshipData;
 
 	/**
 	 * Local instance of ExtendedMiscDataModule for this player
 	 * */
+	@Unique
 	private ExtendedMiscDataModule extendedMiscData;
 
 	/**
-	 * @reason Used to add new PlayerDataModule to this LOTRPlayerData instance
+	 * Used to add new PlayerDataModule to this LOTRPlayerData instance
 	 * @Shadow (remap=false)
 	 * @param code The ID of this module
 	 * @param moduleConstructor A functional constructor for making the new PlayerDataModule

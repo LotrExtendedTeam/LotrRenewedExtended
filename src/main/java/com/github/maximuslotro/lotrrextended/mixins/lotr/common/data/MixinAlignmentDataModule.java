@@ -27,14 +27,14 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
- * @reason Needed to inject functionality into the alignment system
+ * Needed to inject functionality into the alignment system
  * @Mixin (AlignmentDataModule.class)
  * */
 @Mixin(AlignmentDataModule.class)
 public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param pd A placeholder variable instance of LOTRPlayerData
 	 * */
 	protected MixinAlignmentDataModule(LOTRPlayerData pd) {
@@ -90,7 +90,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 	/**
 	 * Updates the player's viewed Faction
 	 * @Shadow (remap = false)
-	 * @param region A Faction
+	 * @param fac A Faction
 	 * */
 	@Shadow(remap = false)
 	public void setCurrentViewedFaction(Faction fac) {}

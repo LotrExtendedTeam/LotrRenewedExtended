@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -75,19 +76,26 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
- * @reason This class is currently unused, and its purpose is to implement make Wargs rideable again (mwra) 
+ * This class is currently unused, and its purpose is to implement make Wargs rideable again (mwra)
  * @Mixin (WargEntity.class)
  * This class is not documented on purpose as it is unused and subject to re-write or deletion
  * */
 @Mixin(WargEntity.class)
 public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
+	@Unique
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
+	@Unique
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
+	@Unique
 	private static final DataParameter<Optional<UUID>> DATA_ID_OWNER_UUID = EntityDataManager.defineId(WargEntity.class, DataSerializers.OPTIONAL_UUID);
+	@Unique
 	private boolean isJumping;
+	@Unique
 	private Inventory inventory;
 	/** The higher this value, the more likely the horse is to be tamed next time a player rides it. */
+	@Unique
 	private int temper;
+	@Unique
 	private float playerJumpPendingScale;
 
 	protected MixinWargEntity(EntityType<? extends WargEntity> type, World w) {
@@ -177,10 +185,12 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
 	}
 
+	@Unique
 	private boolean getFlag(int pFlagId) {
 		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
 	}
 
+	@Unique
 	private void setFlag(int pFlagId, boolean pValue) {
 		byte b0 = this.entityData.get(DATA_ID_FLAGS);
 		if (pValue) {
@@ -196,23 +206,28 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return this.getFlag(2);
 	}
 
+	@Unique
 	@Nullable
 	public UUID getOwnerUUID() {
 		return this.entityData.get(DATA_ID_OWNER_UUID).orElse(null);
 	}
 
+	@Unique
 	public void setOwnerUUID(@Nullable UUID pUuid) {
 		this.entityData.set(DATA_ID_OWNER_UUID, Optional.ofNullable(pUuid));
 	}
 
+	@Unique
 	public boolean isJumping() {
 		return this.isJumping;
 	}
 
+	@Unique
 	private void setTamed(boolean pTamed) {
 		this.setFlag(2, pTamed);
 	}
 
+	@Unique
 	public void setIsJumping(boolean pJumping) {
 		this.isJumping = pJumping;
 	}
@@ -241,6 +256,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return this.temper;
 	}
 
+	@Unique
 	private void setTemper(int pTemper) {
 		this.temper = pTemper;
 	}
@@ -340,6 +356,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return 2;
 	}
 
+	@Unique
 	private void createInventory() {
 		Inventory inventory = this.inventory;
 		this.inventory = new Inventory(this.getInventorySize());
@@ -360,6 +377,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this.inventory));
 	}
 
+	@Unique
 	private void updateContainerEquipment() {
 		if (!this.level.isClientSide) {
 			this.setFlag(4, !this.inventory.getItem(0).isEmpty());
@@ -388,6 +406,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return 100;
 	}
 
+	@Unique
 	private void openInventory(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide && (!this.isVehicle() || this.hasPassenger(pPlayer)) && this.isTamed()) {
 			if(pPlayer instanceof ServerPlayerEntity) {
@@ -397,6 +416,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	}
 
+	@Unique
 	private void openWargInventory(ServerPlayerEntity pPlayer, WargEntity pHorse, IInventory pInventory) {
 		if (pPlayer.containerMenu != pPlayer.inventoryMenu) {
 			pPlayer.closeContainer();
@@ -408,6 +428,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(pPlayer, pPlayer.containerMenu));
 	}
 
+	@Unique
 	private ActionResultType fedFood(PlayerEntity pPlayer, ItemStack pStack) {
 		boolean flag = this.handleEating(pPlayer, pStack);
 		if (!pPlayer.abilities.instabuild) {
@@ -421,6 +442,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
+	@Unique
 	private boolean handleEating(PlayerEntity pPlayer, ItemStack pStack) {
 		boolean flag = false;
 		float f = 0.0F;
@@ -448,6 +470,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return flag;
 	}
 
+	@Unique
 	private void doPlayerRide(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide) {
 			pPlayer.yRot = this.yRot;
@@ -468,6 +491,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
 	 * the animal type)
 	 */
+	@Unique
 	private boolean isFood(ItemStack pStack) {
 		return FOOD_ITEMS.test(pStack);
 	}
@@ -564,6 +588,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
+	@Unique
 	private void playJumpSound() {
 		this.playSound(SoundEvents.HORSE_JUMP, 0.4F, 1.0F);
 	}
@@ -645,6 +670,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	/**
 	 * Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
 	 */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	protected void spawnTamingParticles(boolean pTamed) {
 		IParticleData iparticledata = pTamed ? ParticleTypes.HEART : ParticleTypes.SMOKE;
@@ -728,6 +754,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
+	@Unique
 	@Nullable
 	private Vector3d getDismountLocationInDirection(Vector3d pDirection, LivingEntity pPassenger) {
 		double d0 = this.getX() + pDirection.x;
@@ -778,6 +805,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
+	@Unique
 	private net.minecraftforge.common.util.LazyOptional<?> itemHandler = null;
 
 	@Override

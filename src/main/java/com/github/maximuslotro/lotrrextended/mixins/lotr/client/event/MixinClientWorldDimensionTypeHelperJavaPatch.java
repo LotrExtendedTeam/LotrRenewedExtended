@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 
 /**
- * @reason Move code to Access Transformers for Java 9+ systems
+ * Move code to Access Transformers for Java 9+ systems
  * @Mixin (ClientWorldDimensionTypeHelper.class)
  */
 @Mixin(ClientWorldDimensionTypeHelper.class)
@@ -22,7 +22,7 @@ public class MixinClientWorldDimensionTypeHelperJavaPatch {
 	 * @author Maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
 	 * @Overwrite (remap=false)
-	 * @param world The passed {@Link ClientWorld} value from ClientWorldDimensionTypeHelper
+	 * @param world The passed {@link ClientWorld} value from ClientWorldDimensionTypeHelper
 	 */
 	@Overwrite(remap=false)
 	public static void fixDimensionType(ClientWorld world) {

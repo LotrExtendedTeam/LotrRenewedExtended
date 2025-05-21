@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
- * @reason Adding a toggle to disable pipeweed particles
+ * Adding a toggle to disable pipeweed particles
  * @Mixin (WildPipeweedBlock.class)
  * */
 @Mixin(WildPipeweedBlock.class)

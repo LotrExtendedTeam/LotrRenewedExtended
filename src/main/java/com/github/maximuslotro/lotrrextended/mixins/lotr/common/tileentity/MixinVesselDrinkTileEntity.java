@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -37,9 +38,12 @@ import net.minecraft.world.server.ServerWorld;
 
 @Mixin(VesselDrinkTileEntity.class)
 public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
+	@Unique
 	@Nullable
 	public ResourceLocation lootTable;
+	@Unique
 	protected long lootTableSeed;
+	@Unique
 	private boolean ticked=false;
 
 	@Shadow(remap = false)
@@ -120,6 +124,7 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 	/**
 	 * Extended method to load in a loot table for plates, uses chest loot-table code
 	 */
+	@Unique
 	private void unpackLootTableVessel(@Nullable PlayerEntity player) {
 		VesselDrinkTileEntity entity = ((VesselDrinkTileEntity)(Object)(this));
 		try {

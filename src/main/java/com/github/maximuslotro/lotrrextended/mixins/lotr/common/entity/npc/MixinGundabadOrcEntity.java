@@ -15,14 +15,14 @@ import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 
 /**
- * @reason Need to change Gundabad Orc equipment
+ * Need to change Gundabad Orc equipment
  * @Mixin (GundabadOrcEntity.class)
  * */
 @Mixin(GundabadOrcEntity.class)
 public class MixinGundabadOrcEntity{
 
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -37,7 +37,7 @@ public class MixinGundabadOrcEntity{
 			LOTRItems.MORDOR_SPEAR, ExtendedItems.BONE_SWORD, ExtendedItems.BONE_AXE, ExtendedItems.BONE_PICKAXE, ExtendedItems.BONE_DAGGER,
 			ExtendedItems.BONE_SPEAR);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -53,7 +53,7 @@ public class MixinGundabadOrcEntity{
 			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 			LOTRItems.MORDOR_HELMET, ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.SILVER_WARG_HELMET);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -69,7 +69,7 @@ public class MixinGundabadOrcEntity{
 			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
 			ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.SILVER_WARG_CHESTPLATE);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -85,7 +85,7 @@ public class MixinGundabadOrcEntity{
 			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
 			ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.SILVER_WARG_LEGGINGS);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field

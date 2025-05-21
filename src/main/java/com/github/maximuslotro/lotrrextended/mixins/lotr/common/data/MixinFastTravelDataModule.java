@@ -36,13 +36,13 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
- * @reason Adds logic to Fast Travel teleporting to teleport Hired Units with the player
+ * Adds logic to Fast Travel teleporting to teleport Hired Units with the player
  * @Mixin (FastTravelDataModule.class)
  * */
 @Mixin(FastTravelDataModule.class)
 public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param pd A placeholder variable instance of LOTRPlayerData
 	 * */
 	protected MixinFastTravelDataModule(LOTRPlayerData pd) {

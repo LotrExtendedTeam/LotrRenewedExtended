@@ -24,7 +24,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
 /**
- * @reason Removed waypoint gamerule reference to add split-type waypoint config settings
+ * Removed waypoint Gamerule reference to add split-type waypoint config settings
  * @Mixin (CPacketCreateCustomWaypoint.class)
  * */
 @Mixin(CPacketCreateCustomWaypoint.class)

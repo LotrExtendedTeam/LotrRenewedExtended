@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -29,13 +30,13 @@ import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.registries.DeferredRegister;
 
 /**
- * @reason Used to register new recipe handlers added by Extended
+ * Used to register new recipe handlers added by Extended
  * @Mixin (LOTRRecipes.class)
  * */
 @Mixin(LOTRRecipes.class)
 public class MixinLOTRRecipes {
 	/**
-	 * @reason Get the recipe serializers DeferredRegister for Renewed's recipe serializers
+	 * Get the recipe serializers DeferredRegister for Renewed's recipe serializers
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -43,7 +44,7 @@ public class MixinLOTRRecipes {
 	@Shadow(remap = false)
 	public static DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS;
 	/**
-	 * @reason Get Renewed's base method for registering faction serializers, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering faction serializers, DO NOT DIRECTLY CALL
 	 * @Shadow (remap = false)
 	 * @param id The ID for this recipe serializers
 	 * @param blockSup A block supplier for the block this is tied to
@@ -52,13 +53,14 @@ public class MixinLOTRRecipes {
 	@Shadow(remap = false)
 	private static FactionTableType registerFaction(String id, Supplier<Block> blockSup) {return null;}
 	/**
-	 * @reason Get Renewed's base method for registering faction serializers, handling dataGen
+	 * Get Renewed's base method for registering faction serializers, handling dataGen
 	 * @Shadow (remap = false)
 	 * @param id The ID for this recipe serializers
 	 * @param defaultName Default English string name for dataGen
 	 * @param blockSup A block supplier for the block this is tied to
 	 * @return A FactionTableType recipe type
 	 * */
+	@Unique
 	private static FactionTableType registerFactionD(String id, String defaultName, Supplier<Block> blockSup) {
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.containerTitlesHolders.put("container.lotr."+id+"_crafting", defaultName);
@@ -103,20 +105,22 @@ public class MixinLOTRRecipes {
 	}
 
 	/**
-	 * @reason Make list of FactionTableType for MultiTableType
-	 * @param types A array of FactionTableType
+	 * Make list of FactionTableType for MultiTableType
+	 * @param types An array of FactionTableType
 	 * @return A list of FactionTableType
 	 * */
+	@Unique
 	private static List<FactionTableType> createList(FactionTableType... types) {
 		return ImmutableList.copyOf(types);
 	}
 
 	/**
-	 * @reason Register MultiTableType overrides
+	 * Register MultiTableType overrides
 	 * @param id The ID for this recipe serializers
-	 * @param types A array of FactionTableType
+	 * @param types An array of FactionTableType
 	 * @return A registered MultiTableType
 	 * */
+	@Unique
 	private static MultiTableType registerMultiPrivate(String id, List<FactionTableType> types) {
 		ResourceLocation res = new ResourceLocation("lotr", id);
 		return Registry.register(Registry.RECIPE_TYPE, res, new MultiTableType(res, types));

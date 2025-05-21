@@ -12,14 +12,14 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.item.Items;
 
 /**
- * @reason Need to change Isengard Orc equipment
+ * Need to change Isengard Orc equipment
  * @Mixin (GundabadOrcEntity.class)
  * */
 @Mixin(IsengardSnagaEntity.class)
 public class MixinIsengardSnagaEntity{
 
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -33,7 +33,7 @@ public class MixinIsengardSnagaEntity{
 			LOTRItems.BRONZE_SPEAR, LOTRItems.URUK_CLEAVER, LOTRItems.URUK_AXE, LOTRItems.URUK_PICKAXE, LOTRItems.URUK_DAGGER, LOTRItems.URUK_SPEAR,
 			ExtendedItems.BONE_SWORD, ExtendedItems.BONE_AXE, ExtendedItems.BONE_PICKAXE, ExtendedItems.BONE_DAGGER, ExtendedItems.BONE_SPEAR);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -49,7 +49,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 			ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.SILVER_WARG_HELMET, ExtendedItems.BLACK_WARG_HELMET);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -65,7 +65,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.URUK_CHESTPLATE,
 			ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.SILVER_WARG_CHESTPLATE, ExtendedItems.BLACK_WARG_CHESTPLATE);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field
@@ -81,7 +81,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.URUK_LEGGINGS,
 			ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.SILVER_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_LEGGINGS);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field

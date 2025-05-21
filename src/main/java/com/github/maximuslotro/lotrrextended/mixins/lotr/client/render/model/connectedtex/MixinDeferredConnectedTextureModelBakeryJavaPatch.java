@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModelConfiguration;
 
 /**
- * @reason Move code to Access Transformers for Java 9+ systems
+ * Move code to Access Transformers for Java 9+ systems
  * @Mixin (ConnectedTextureUnbakedModel.DeferredConnectedTextureModelBakery.class)
  */
 @Mixin(ConnectedTextureUnbakedModel.DeferredConnectedTextureModelBakery.class)
@@ -97,7 +97,7 @@ public class MixinDeferredConnectedTextureModelBakeryJavaPatch {
 	 * In Java 8, computeIfAbsent might not throw a ConcurrentModificationException if the modification happens during the computation but doesn't interfere with the specific key being computed.
 	 * However, in Java 9 and later, the implementation is stricter.
 	 * If any modification to the HashMap occurs during the execution of the computeIfAbsent method, a ConcurrentModificationException is thrown.
-	 *
+	 * <p>
 	 * This blog explains the issue: <a href="http://thisthread.blogspot.com/2017/12/hashmapcomputeifabsent-behavior-in-java.html">...</a>
 	 * @Overwrite (remap=false)
 	 * @param ctx3d The ConnectedTexture3DContext for this instance and surrounding block context

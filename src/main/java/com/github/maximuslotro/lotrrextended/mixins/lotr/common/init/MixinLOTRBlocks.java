@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.block.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -113,7 +114,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
 /**
- * @reason Used to register new blocks added by Extended
+ * Used to register new blocks added by Extended
  * @Mixin (LOTRBlocks.class)
  * */
 @SuppressWarnings("deprecation")
@@ -121,7 +122,7 @@ import net.minecraftforge.registries.DeferredRegister;
 public class MixinLOTRBlocks {
 
 	/**
-	 * @reason Get the block DeferredRegister for Renewed's blocks
+	 * Get the block DeferredRegister for Renewed's blocks
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -129,7 +130,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static DeferredRegister<Block> BLOCKS;
 	/**
-	 * @reason Referencing we we can register new Blue Mallorn Wall Torches
+	 * Referencing we can register new Blue Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -137,7 +138,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUE_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Green Mallorn Wall Torches
+	 * Referencing we can register new Green Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -145,7 +146,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> GREEN_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Gold Mallorn Wall Torches
+	 * Referencing we can register new Gold Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -153,7 +154,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> GOLD_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Silver Mallorn Wall Torches
+	 * Referencing we can register new Silver Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -161,7 +162,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> SILVER_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new High Elven Wall Torches
+	 * Referencing we can register new High Elven Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -169,7 +170,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> HIGH_ELVEN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Dwarven Wall Torches
+	 * Referencing we can register new Dwarven Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -177,7 +178,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> DWARVEN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Blubber Wall Torches
+	 * Referencing we can register new Blubber Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -185,7 +186,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUBBER_TORCH;
 	/**
-	 * @reason Referencing we we can register new Wattle And Daub Pillar block
+	 * Referencing we can register new Wattle And Daub Pillar block
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -292,11 +293,12 @@ public class MixinLOTRBlocks {
 	}
 
 	/**
-	 * @reason Register our own blocks, with dataGen handling
+	 * Register our own blocks, with dataGen handling
 	 * @param name A String name of the block
 	 * @param sup A Block supplier to build
 	 * @return A built RegistryObject for the Block 
 	 * */
+	@Unique
 	private static RegistryObject<Block> registerB(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -306,11 +308,12 @@ public class MixinLOTRBlocks {
     }
 
 	/**
-	 * @reason Register our own blocks, with dataGen handling, specifically for pot blocks
+	 * Register our own blocks, with dataGen handling, specifically for pot blocks
 	 * @param name A String name of the block
 	 * @param sup A Block supplier to build
 	 * @return A built RegistryObject for the Block 
 	 * */
+	@Unique
 	private static RegistryObject<Block> registerPOT(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -323,7 +326,7 @@ public class MixinLOTRBlocks {
 	/**
 	 * @reason Register Extended's blocks after Renewed's static registering is done, but before the block differed register is registered
 	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
-	 * @param The local CallbackInfo instance for this Inject
+	 * @param ci The local CallbackInfo instance for this Inject
 	 * */
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)

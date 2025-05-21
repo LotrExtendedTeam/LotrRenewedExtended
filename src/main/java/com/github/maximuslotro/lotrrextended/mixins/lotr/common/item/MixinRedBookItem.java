@@ -21,14 +21,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 /**
- * @reason Removed waypoint gamerule reference to add split-type waypoint config settings
+ * Removed waypoint gamerule reference to add split-type waypoint config settings
  * @Mixin (RedBookItem.class)
  * */
 @Mixin(RedBookItem.class)
 public class MixinRedBookItem {
 
 	/**
-	 * @reason Plays the failed sound when waypoint creation is denied
+	 * Plays the failed sound when waypoint creation is denied
 	 * @Shadow (remap = false)
 	 * @param world The world for the sound to be played at
 	 * @param pos The position at which the sound will be played at
@@ -36,7 +36,7 @@ public class MixinRedBookItem {
 	@Shadow(remap = false)
 	private void playFailedSound(World world, BlockPos pos) {}
 	/**
-	 * @reason Plays the open book sound
+	 * Plays the open book sound
 	 * @Shadow (remap = false)
 	 * @param world The world for the sound to be played at
 	 * @param pos The position at which the sound will be played at

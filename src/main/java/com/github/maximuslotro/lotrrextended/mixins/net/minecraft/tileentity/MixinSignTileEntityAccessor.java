@@ -8,9 +8,9 @@ import net.minecraft.util.text.ITextComponent;
 
 @Mixin(SignTileEntity.class)
 public interface MixinSignTileEntityAccessor {
-	@Accessor("MESSAGES")
+	@Accessor("messages")
 	ITextComponent[] getMessages();
 
-	@Accessor("MESSAGES")
+	@Accessor("messages")
 	public void setMessages(ITextComponent[] messages);
 }

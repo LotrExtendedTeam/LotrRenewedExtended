@@ -89,7 +89,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
         // notify block below
         // TODO: Maybe look into making sure grow plant event works here eventually
         below.onNeighborChange(world, pos.below(), pos);
-        List<BlockPos> vineGrows = new ArrayList<BlockPos>();
+        List<BlockPos> vineGrows = new ArrayList<>();
 
         // generate branches?
         int angle = 0;

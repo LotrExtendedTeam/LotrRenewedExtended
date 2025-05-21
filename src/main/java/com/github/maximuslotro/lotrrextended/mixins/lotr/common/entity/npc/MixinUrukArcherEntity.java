@@ -18,18 +18,18 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 /**
- * @reason Need to change Uruk Orc Archer equipment
+ * Need to change Uruk Orc Archer equipment
  * @Mixin (UrukArcherEntity.class)
  * */
 @Mixin(UrukArcherEntity.class)
 public abstract class MixinUrukArcherEntity extends UrukEntity{
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of UrukEntity
 	 * @param world A placeholder variable instance of World
 	 * */
-	public MixinUrukArcherEntity(EntityType<? extends UrukEntity> type, World w) {
-		super(type, w);
+	public MixinUrukArcherEntity(EntityType<? extends UrukEntity> type, World world) {
+		super(type, world);
 	}
 	
 	/**

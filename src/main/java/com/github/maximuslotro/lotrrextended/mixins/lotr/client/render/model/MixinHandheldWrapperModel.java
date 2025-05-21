@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 import net.minecraftforge.client.ForgeHooksClient;
 
 /**
- * @reason Used to edit Renewed's model TransformTypes
+ * Used to edit Renewed's model TransformTypes
  * @Mixin (targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")
  * */
 @Mixin(targets = "lotr.client.render.model.HandheldItemModels$HandheldWrapperModel")

@@ -176,9 +176,9 @@ public class WanderingTradersList {
 		int remainder = 100 % numEntries; // Handle rounding errors
 
 		// Assign baseRate to each name
-		for (int i = 0; i < numEntries; i++) {
-			rates.put(names[i], baseRate);
-		}
+        for (String name : names) {
+            rates.put(name, baseRate);
+        }
 
 		// Distribute the remainder randomly among entries
 		Random rand = new Random();

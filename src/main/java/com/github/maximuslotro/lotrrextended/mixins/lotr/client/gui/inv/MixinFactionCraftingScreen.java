@@ -17,14 +17,14 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
 /**
- * @reason Need to add coin total to inventory
+ * Need to add coin total to inventory
  * @Mixin (FactionCraftingScreen.class)
  * */
 @Mixin(FactionCraftingScreen.class)
 public abstract class MixinFactionCraftingScreen extends ContainerScreen<FactionCraftingContainer> {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param craftingContainer A placeholder variable instance of FactionCraftingContainer
 	 * @param inventory A placeholder variable instance of PlayerInventory
 	 * @param titleIn A placeholder variable instance of ITextComponent

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,13 +23,13 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 /**
- * @reason We need to add additional data modules to NPCs, and we need to change spawn logic
- * @Mixin(NPCEntity.class)
+ * We need to add additional data modules to NPCs, and we need to change spawn logic
+ * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
 public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity{
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
 	 * @param world A placeholder variable instance of World
 	 * */
@@ -37,8 +38,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	}
 
 	/**
-	 * @reason A private data holder for the ExtendedNpcMarriageHolder module
+	 * A private data holder for the ExtendedNpcMarriageHolder module
 	 * */
+	@Unique
 	private ExtendedNpcMarriageHolder marriageInfo = new ExtendedNpcMarriageHolder((NPCEntity)(Object)this);
 
 	/**

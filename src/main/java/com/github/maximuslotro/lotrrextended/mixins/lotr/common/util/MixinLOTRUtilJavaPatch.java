@@ -12,7 +12,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import lotr.common.util.LOTRUtil;
 
 /**
- * @reason Throw errors when reflection code is called because of its risk, and all calls should have been previously removed
+ * Throw errors when reflection code is called because of its risk, and all calls should have been previously removed
  * @Mixin (LOTRUtil.class)
  * */
 @Mixin(LOTRUtil.class)
@@ -46,7 +46,7 @@ public class MixinLOTRUtilJavaPatch {
 	 * @author Maximuslotro
 	 * @reason This code should not be called if this patch is applied properly
 	 * @Overwrite (remap = false)
-	 * @param f A Method passed to unlock
+	 * @param m A Method passed to unlock
 	 */
 	@Overwrite(remap = false)
 	public static void unlockMethod(Method m) {

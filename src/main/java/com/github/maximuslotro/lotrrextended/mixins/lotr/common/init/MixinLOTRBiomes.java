@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,14 +18,14 @@ import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.fml.DatagenModLoader;
 
 /**
- * @reason Used to register new biomes added by Extended
+ * Used to register new biomes added by Extended
  * @Mixin (LOTRBiomes.class)
  * */
 @Mixin(LOTRBiomes.class)
 public class MixinLOTRBiomes {
 
 	/**
-	 * @reason Get the biome register method from parent class
+	 * Get the biome register method from parent class
 	 * @Shadow (remap=false)
 	 * @param name A String name of the biome
 	 * @param wrapperSupplier A LOTRBiomeBase supplier to build
@@ -34,11 +35,12 @@ public class MixinLOTRBiomes {
 	private static PreRegisteredLOTRBiome prepare(String name, NonNullSupplier<LOTRBiomeBase> wrapperSupplier) {return null;}
 
 	/**
-	 * @reason Register our own biomes, with dataGen handling
+	 * Register our own biomes, with dataGen handling
 	 * @param name A String name of the biome
 	 * @param wrapperSupplier A LOTRBiomeBase supplier to build
 	 * @return A built PreRegisteredLOTRBiome 
 	 * */
+	@Unique
 	private static PreRegisteredLOTRBiome prepareD(String name, NonNullSupplier<LOTRBiomeBase> wrapperSupplier) {
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.biomeNames.add("biome.lotr."+name);

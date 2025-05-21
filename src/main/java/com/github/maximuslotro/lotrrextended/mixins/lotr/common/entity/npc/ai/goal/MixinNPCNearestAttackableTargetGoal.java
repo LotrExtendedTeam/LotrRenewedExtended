@@ -13,14 +13,14 @@ import lotr.common.fac.FactionPointers;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
- * @reason Fix hostile aligned mobs not attacking the player
- * @Mixin(NPCNearestAttackableTargetGoal.class)
+ * Fix hostile aligned mobs not attacking the player
+ * @Mixin (NPCNearestAttackableTargetGoal.class)
  * */
 @Mixin(NPCNearestAttackableTargetGoal.class)
 public class MixinNPCNearestAttackableTargetGoal {
 
 	/**
-	 * @reason Need to get the NPCEntity instance of this target goal
+	 * Need to get the NPCEntity instance of this target goal
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */

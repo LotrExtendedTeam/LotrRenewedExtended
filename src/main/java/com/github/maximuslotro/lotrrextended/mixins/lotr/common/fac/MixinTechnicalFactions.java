@@ -24,7 +24,7 @@ import lotr.common.world.map.MapSettings;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * @reason Need to fix hostile faction mobs not attacking civilians
+ * Need to fix hostile faction mobs not attacking civilians
  * @Mixin (TechnicalFactions.class)
  * */
 @Mixin(TechnicalFactions.class)

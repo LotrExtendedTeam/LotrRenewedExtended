@@ -23,14 +23,14 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 
 /**
- * @reason Adds support for custom and new drink renderer types
+ * Adds support for custom and new drink renderer types
  * @Mixin (VesselDrinkTileEntityRenderer.class)
  * */
 @Mixin(VesselDrinkTileEntityRenderer.class)
 public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTileEntity> extends TileEntityRenderer<T> {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param dispatcher A placeholder variable instance of TileEntityRendererDispatcher
 	 * */
 	public MixinVesselDrinkTileEntityRenderer(TileEntityRendererDispatcher dispatcher) {

@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public abstract class MixinCreativeScreen extends DisplayEffectsScreen<CreativeScreen.CreativeContainer> {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param creativeContainer A placeholder variable instance of CreativeContainer
 	 * @param inventory A placeholder variable instance of PlayerInventory
 	 * @param titleIn A placeholder variable instance of ITextComponent

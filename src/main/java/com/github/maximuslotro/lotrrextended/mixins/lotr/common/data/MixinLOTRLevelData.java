@@ -31,7 +31,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 /**
- * @reason Need to add more server managed data
+ * Need to add more server managed data
  * @Mixin (LOTRLevelData.class)
  * */
 @Mixin(LOTRLevelData.class)
@@ -60,7 +60,7 @@ public class MixinLOTRLevelData {
 	}
 
 	/**
-	 * @reason Need to get the LOTRPlayerData instance associated with a given player
+	 * Need to get the LOTRPlayerData instance associated with a given player
 	 * @Shadow (remap=false)
 	 * @param player A PlayerEntity to retrieve data for
 	 * @return An instance of LOTRPlayerData

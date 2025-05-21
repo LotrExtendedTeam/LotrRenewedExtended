@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -36,9 +37,12 @@ import net.minecraft.world.server.ServerWorld;
 @Mixin(PlateTileEntity.class)
 public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
 
+	@Unique
 	@Nullable
 	public ResourceLocation lootTable;
+	@Unique
 	protected long lootTableSeed;
+	@Unique
 	private boolean ticked=false;
 
 	@Shadow(remap = false)
@@ -105,6 +109,7 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	/**
 	 * Extended method to load in a loot table for plates, uses chest loot-table code
 	 */
+	@Unique
 	private void unpackLootTablePlate(@Nullable PlayerEntity player) {
 		PlateTileEntity entity = ((PlateTileEntity)(Object)(this));
 		try {
