@@ -955,6 +955,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GOLDEN_BIRDCAGE = registerB("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
 		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
 
+		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops()));
+
 	}
 
 	/**

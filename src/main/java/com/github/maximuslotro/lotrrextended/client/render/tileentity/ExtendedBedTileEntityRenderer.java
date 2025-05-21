@@ -31,12 +31,12 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 
-public class ExtendedBedTileEneityRenderer<T extends TileEntity> extends TileEntityRenderer<T> {
+public class ExtendedBedTileEntityRenderer<T extends TileEntity> extends TileEntityRenderer<T> {
 	private final ModelRenderer headPiece;
 	private final ModelRenderer footPiece;
 	private final ModelRenderer[] legs = new ModelRenderer[4];
 
-	public ExtendedBedTileEneityRenderer(TileEntityRendererDispatcher p_i226004_1_) {
+	public ExtendedBedTileEntityRenderer(TileEntityRendererDispatcher p_i226004_1_) {
 		super(p_i226004_1_);
 		this.headPiece = new ModelRenderer(64, 64, 0, 0);
 		this.headPiece.addBox(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 6.0F, 0.0F);

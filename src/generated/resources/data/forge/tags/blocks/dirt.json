@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#lotrextended:remains_ores",
+    "lotr:barren_dirt",
     "lotr:moss_block",
     "lotr:mud",
     "lotr:mud_grass"
