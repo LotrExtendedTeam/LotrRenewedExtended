@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import lotr.common.item.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -50,22 +51,6 @@ import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRItemGroups.LOTRItemGroup;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
-import lotr.common.item.ExtendedDaggerItem;
-import lotr.common.item.ExtendedDyeableLOTRArmorItem;
-import lotr.common.item.FallenLeavesItem;
-import lotr.common.item.HammerItem;
-import lotr.common.item.LOTRArmorItem;
-import lotr.common.item.LOTRAxeItem;
-import lotr.common.item.LOTRBlockItem;
-import lotr.common.item.LOTRBoatItem;
-import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
-import lotr.common.item.LOTRShieldItem;
-import lotr.common.item.LOTRShovelItem;
-import lotr.common.item.LOTRSwordItem;
-import lotr.common.item.SpearItem;
-import lotr.common.item.VesselDrinkItem;
-import lotr.common.item.VesselType;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -1045,7 +1030,7 @@ public class MixinLOTRItems {
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
-		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", () -> new ExtendedDaggerItem(LOTRMaterial.ARNOR));
+		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", ExtendedBarrowBlade::new);
 		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", ExtendedCommandHornItem::new);
 
 		//########################################################################UTIL##########################################################

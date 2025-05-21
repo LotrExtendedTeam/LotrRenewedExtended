@@ -16,6 +16,10 @@ import java.util.List;
 public class LOTREnchantUtils {
 
     public static void enchant(ItemStack stack, LOTREnchantment enchantment, int pLevel) {
+       enchant(stack, enchantment, pLevel, true);
+    }
+
+    public static void enchant(ItemStack stack, LOTREnchantment enchantment, int pLevel, boolean renameItem) {
         CompoundNBT tag = stack.getOrCreateTag();
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
@@ -24,12 +28,14 @@ public class LOTREnchantUtils {
         // TODO: When other LOTREnchants are introduced support them to have multiple names
         //  currently this overrides names from any previous enchants
         // rename item if not already renamed
-        if (!stack.hasCustomHoverName()) {
-            ITextComponent baseName = stack.getItem().getName(stack);
-            ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey())
-                    .append(" ").withStyle(style -> style.withItalic(false))
-                    .append(baseName.copy().withStyle(style -> style.withItalic(false)));
-            stack.setHoverName(newName);
+        if (renameItem) {
+            if (!stack.hasCustomHoverName()) {
+                ITextComponent baseName = stack.getItem().getName(stack);
+                ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey())
+                        .append(" ").withStyle(style -> style.withItalic(false))
+                        .append(baseName.copy().withStyle(style -> style.withItalic(false)));
+                stack.setHoverName(newName);
+            }
         }
 
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
