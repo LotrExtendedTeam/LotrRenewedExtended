@@ -5,7 +5,6 @@ import lotr.common.util.representation.LOTREnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -24,8 +23,8 @@ public class LOTREnchantEventHandlers {
         List<ITextComponent> entries = new ArrayList<>();
         for (LOTREnchantment enchant : LOTREnchantUtils.getEnchantList(stack)) {
             entries.add(
-                    new TranslationTextComponent("enchant.lotrextended." + enchant.getKey()).append(": ")
-                            .append(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey() + ".desc"))
+                    new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase()).append(": ")
+                            .append(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase() + ".desc"))
                             .withStyle(TextFormatting.GRAY));
         }
 

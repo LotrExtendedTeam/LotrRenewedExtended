@@ -443,16 +443,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
 
 		// custom enchantments
-		addD("enchant.lotrextended.orcbane", "Orcbane");
-		addD("enchant.lotrextended.dwarfbane", "Dwarfbane");
-		addD("enchant.lotrextended.elfbane", "Elfbane");
-		addD("enchant.lotrextended.wargbane", "Wargbane");
-		addD("enchant.lotrextended.wightbane", "Wightbane");
-		addD("enchant.lotrextended.orcbane.desc", "+4.0 damage vs. Orcs");
-		addD("enchant.lotrextended.dwarfbane.desc", "+4.0 damage vs. Dwarves");
-		addD("enchant.lotrextended.elfbane.desc", "+4.0 damage vs. Elves");
-		addD("enchant.lotrextended.wargbane.desc", "+4.0 damage vs. Wargs");
-		addD("enchant.lotrextended.wightbane.desc", "+4.0 damge vs. Wights");
+		addD("enchant.lotrextended.baneorc", "Orcbane");
+		addD("enchant.lotrextended.banedwarf", "Dwarfbane");
+		addD("enchant.lotrextended.baneelf", "Elfbane");
+		addD("enchant.lotrextended.banewarg", "Wargbane");
+		addD("enchant.lotrextended.banewight", "Wightbane");
+		addD("enchant.lotrextended.baneorc.desc", "+4.0 damage vs. Orcs");
+		addD("enchant.lotrextended.banedwarf.desc", "+4.0 damage vs. Dwarves");
+		addD("enchant.lotrextended.baneelf.desc", "+4.0 damage vs. Elves");
+		addD("enchant.lotrextended.banewarg.desc", "+4.0 damage vs. Wargs");
+		addD("enchant.lotrextended.banewight.desc", "+4.0 damge vs. Wights");
 	}
 
 	@Override

@@ -11,7 +11,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.*;
 
@@ -84,10 +87,10 @@ public class ExtendedLotrEnchantCommand {
             }
         }
 
-        source.sendSuccess(new StringTextComponent(operation + " " + enchantName + " on " + stack), true);
         if (operation.equals("add")) {
             LOTREnchantUtils.enchant(stack, enchantToAdd, 1);
-            source.sendSuccess(new StringTextComponent(LOTREnchantUtils.getEnchantList(stack).toString()), true);
+            ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantToAdd.getKey().toLowerCase());
+            source.sendSuccess(newName.copy().append(" added to ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
         } else {
             // TODO: Add remove functionality
         }

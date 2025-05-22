@@ -31,7 +31,7 @@ public class LOTREnchantUtils {
         if (renameItem) {
             if (!stack.hasCustomHoverName()) {
                 ITextComponent baseName = stack.getItem().getName(stack);
-                ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey())
+                ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey().toLowerCase())
                         .append(" ").withStyle(style -> style.withItalic(false))
                         .append(baseName.copy().withStyle(style -> style.withItalic(false)));
                 stack.setHoverName(newName);

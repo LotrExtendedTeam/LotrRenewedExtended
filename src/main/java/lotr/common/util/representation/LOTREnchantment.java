@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum LOTREnchantment {
-    ORC_BANE("orcbane", "bane", "melee"),
-    DWARF_BANE("dwarfBane", "bane", "melee"),
-    ELF_BANE("elfbane", "bane", "melee"),
-    WARG_BANE("wargbane", "bane", "melee"),
-    WIGHT_BANE("wightbane", "bane", "melee");
+    ORC_BANE("baneOrc", "bane", "melee"),
+    DWARF_BANE("baneDwarf", "bane", "melee"),
+    ELF_BANE("baneElf", "bane", "melee"),
+    WARG_BANE("baneWarg", "bane", "melee"),
+    WIGHT_BANE("baneWight", "bane", "melee");
 
     LOTREnchantment(String key, String enchantType, String itemType) {
         this.key = key;
@@ -21,11 +21,11 @@ public enum LOTREnchantment {
 
     static {
         Map<String, LOTREnchantment> enchantMap = new HashMap<>();
-        enchantMap.put("dwarfbane", LOTREnchantment.DWARF_BANE);
-        enchantMap.put("elfbane", LOTREnchantment.ELF_BANE);
-        enchantMap.put("orcbane", LOTREnchantment.ORC_BANE);
-        enchantMap.put("wargbane", LOTREnchantment.WARG_BANE);
-        enchantMap.put("wightbane", LOTREnchantment.WIGHT_BANE);
+        enchantMap.put("baneDwarf", LOTREnchantment.DWARF_BANE);
+        enchantMap.put("baneElf", LOTREnchantment.ELF_BANE);
+        enchantMap.put("baneOrc", LOTREnchantment.ORC_BANE);
+        enchantMap.put("baneWarg", LOTREnchantment.WARG_BANE);
+        enchantMap.put("baneWight", LOTREnchantment.WIGHT_BANE);
         ENCHANT_MAP = Collections.unmodifiableMap(enchantMap);
     }
 
