@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignT
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderPoolItem;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.google.gson.GsonBuilder;
 
@@ -47,6 +48,7 @@ public class GsonSerializers {
 
 	public static GsonBuilder createTraderSerializer() {
 		return createConditionSerializer()
-			.registerTypeAdapter(ExtendedTraderProfile.class, new ExtendedTraderProfile.Serializer());
+			.registerTypeAdapter(ExtendedTraderProfile.class, new ExtendedTraderProfile.Serializer())
+			.registerTypeAdapter(ExtendedTraderPoolItem.class, new ExtendedTraderPoolItem.Serializer());
 	}
 }

@@ -1,12 +1,15 @@
 package com.github.maximuslotro.lotrrextended.common.traders;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -21,19 +24,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTraderProfile {
-	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, EntityType.PIG, 1000, 0, 0);
+	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, EntityType.PIG, 1000, 0, 0, new ArrayList<>(), new ArrayList<>());
 	private final ResourceLocation id;
 	private final int tradingAlignmentRequired;
 	private final EntityType<?> traderEntityType;
 	private final int minimumTrades;
 	private final int maximumAdditionalTrades;
+	private final List<ExtendedTraderPoolItem> buyFromPlayerPool;
+	private final List<ExtendedTraderPoolItem> sellToPlayerPool;
 
-	public ExtendedTraderProfile(ResourceLocation id, EntityType<?> pTraderEntityType, int pTradingAlignmentRequired, int minimumTrades, int maximumAdditionalTrades) {
+	public ExtendedTraderProfile(ResourceLocation id, EntityType<?> pTraderEntityType, int pTradingAlignmentRequired, int minimumTrades, int maximumAdditionalTrades, List<ExtendedTraderPoolItem> buyFromPlayerPool, List<ExtendedTraderPoolItem> sellToPlayerPool) {
 		this.id = id;
 		this.tradingAlignmentRequired = pTradingAlignmentRequired;
 		this.traderEntityType = pTraderEntityType;
 		this.minimumTrades = minimumTrades;
 		this.maximumAdditionalTrades = maximumAdditionalTrades;
+		this.buyFromPlayerPool = buyFromPlayerPool;
+		this.sellToPlayerPool = sellToPlayerPool;
 	}
 
 	/*
@@ -96,7 +103,9 @@ public class ExtendedTraderProfile {
 			int hiringAlignment = jsonobject.get("tradingAlignmentRequired").getAsInt();
 			int mininmunTrades = jsonobject.get("minimumTradesOffered").getAsInt();
 			int maximumAdditionalTrades = jsonobject.get("maximumAdditionalTradesOffered").getAsInt();
-			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, mininmunTrades, maximumAdditionalTrades);
+			List<ExtendedTraderPoolItem> buyFromPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "buyFromPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
+			List<ExtendedTraderPoolItem> sellToPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "sellToPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
+			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, mininmunTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
 		}
 
 		@Override
@@ -108,7 +117,8 @@ public class ExtendedTraderProfile {
 			jsonobject.addProperty("tradingAlignmentRequired", traderProfile.getTradingAlignmentRequired());
 			jsonobject.addProperty("minimumTradesOffered", traderProfile.getMinimumTrades());
 			jsonobject.addProperty("maximumAdditionalTradesOffered", traderProfile.getMaximumAdditionalTrades());
-
+			jsonobject.add("buyFromPlayer", context.serialize(traderProfile.buyFromPlayerPool));
+			jsonobject.add("sellToPlayer", context.serialize(traderProfile.sellToPlayerPool));
 			return jsonobject;
 		}
 	}
@@ -118,6 +128,8 @@ public class ExtendedTraderProfile {
 		private final EntityType<?> traderEntityType;
 		private int minimumTrades = 3;
 		private int maximumAdditionalTrades = 6;
+		private List<ExtendedTraderPoolItem> buyFromPlayerPool = new ArrayList<>();
+		private List<ExtendedTraderPoolItem> sellToPlayerPool = new ArrayList<>();
 
 		public Builder(EntityType<?> pTraderEntityType, int pTradingAlignmentRequired) {
 			this.traderEntityType = pTraderEntityType;
@@ -157,7 +169,7 @@ public class ExtendedTraderProfile {
 		 * Generate a ExtendedTraderProfile
 		 */
 		public ExtendedTraderProfile build(ResourceLocation id) {
-			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades);
+			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
 			return spawner;
 		}
 
