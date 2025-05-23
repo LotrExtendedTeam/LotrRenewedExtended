@@ -7,8 +7,8 @@ import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignT
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
-import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderPoolItem;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.google.gson.GsonBuilder;
 
 import net.minecraft.loot.BinomialRange;

@@ -2,13 +2,18 @@ package com.github.maximuslotro.lotrrextended.common.traders;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierMulti;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierSingle;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -19,6 +24,8 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -162,6 +169,88 @@ public class ExtendedTraderProfile {
 		public Builder setMinMaxTrades(int minimumTrades, int maximumAdditionalTrades) {
 			this.minimumTrades = minimumTrades;
 			this.maximumAdditionalTrades = maximumAdditionalTrades;
+			return this;
+		}
+
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addSBuy(Item item, int averageCost) {
+			return addSBuy(new ItemStack(item), 1, averageCost, -1);
+		}
+
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addSBuy(Item item, int weight, int averageCost, int maxTransferQuantity) {
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(new ItemStack(item)), weight, averageCost, maxTransferQuantity));
+			return this;
+		}
+		
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addSBuy(ItemStack stack, int weight, int averageCost, int maxTransferQuantity) {
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity));
+			return this;
+		}
+
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addMBuy(int averageCost, Item... items) {
+			List<ItemStack> itemStacks = Arrays.stream(items)
+		        .map(ItemStack::new)
+		        .collect(Collectors.toList());
+			return addMBuy(itemStacks, 1, averageCost, -1);
+		}
+
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addMBuy(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity) {
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity));
+			return this;
+		}
+
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addSSell(Item item, int averageCost) {
+			return addSSell(new ItemStack(item), 1, averageCost, -1);
+		}
+
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addSSell(Item item, int weight, int averageCost, int maxTransferQuantity) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(new ItemStack(item)), weight, averageCost, maxTransferQuantity));
+			return this;
+		}
+
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addSSell(ItemStack stack, int weight, int averageCost, int maxTransferQuantity) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity));
+			return this;
+		}
+
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addMSell(int averageCost, Item... items) {
+			List<ItemStack> itemStacks = Arrays.stream(items)
+		        .map(ItemStack::new)
+		        .collect(Collectors.toList());
+			return addMSell(itemStacks, 1, averageCost, -1);
+		}
+
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addMSell(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity));
 			return this;
 		}
 	

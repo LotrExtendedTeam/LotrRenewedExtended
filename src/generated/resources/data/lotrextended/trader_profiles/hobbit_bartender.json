@@ -1,5 +1,57 @@
 {
   "id": "lotrextended:hobbit_bartender",
   "entity_type": "lotr:hobbit_bartender",
-  "tradingAlignmentRequired": 0
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "weight": 1,
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:acacia_boat"
+      }
+    },
+    {
+      "weight": 4,
+      "averageCost": 3,
+      "maxTransferQuantity": 3,
+      "stack": {
+        "item": "minecraft:acacia_boat"
+      }
+    },
+    {
+      "weight": 1,
+      "averageCost": 3,
+      "stacks": [
+        {
+          "item": "minecraft:acacia_fence"
+        },
+        {
+          "item": "minecraft:acacia_sapling"
+        }
+      ]
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 1,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:beetroot_seeds"
+      }
+    },
+    {
+      "weight": 1,
+      "averageCost": 5,
+      "stacks": [
+        {
+          "item": "minecraft:blue_banner"
+        },
+        {
+          "item": "minecraft:glass_bottle"
+        }
+      ]
+    }
+  ]
 }
