@@ -1,12 +1,17 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import java.util.Random;
+
 import lotr.common.init.LOTRBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,39 +23,61 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
-    private final RegistryObject<Item> berryItem;
+	private final RegistryObject<Item> berryItem;
+	private final RegistryObject<Block> berryHedgeBlock;
 
-    public ExtendedBerryBushBlock(RegistryObject<Item> berryItem) {
-    	super(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN)
-    			.randomTicks()
-    			.sound(SoundType.SWEET_BERRY_BUSH)
-    			.harvestTool(ToolType.HOE)
-    			.noCollission()
-    			.noOcclusion()
-    			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
-    			.isSuffocating(LOTRBlocks::posPredicateFalse)
-    			.isViewBlocking(LOTRBlocks::posPredicateFalse));
-        this.berryItem = berryItem;
-        registerDefaultState(stateDefinition.any().setValue(AGE, 0));
-    }
+	public ExtendedBerryBushBlock(RegistryObject<Item> berryItem, RegistryObject<Block> berryHedgeBlock) {
+		super(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN)
+			.randomTicks()
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.harvestTool(ToolType.HOE)
+			.noCollission()
+			.noOcclusion()
+			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
+			.isSuffocating(LOTRBlocks::posPredicateFalse)
+			.isViewBlocking(LOTRBlocks::posPredicateFalse));
+		this.berryItem = berryItem;
+		this.berryHedgeBlock = berryHedgeBlock;
+		registerDefaultState(stateDefinition.any().setValue(AGE, 0));
+	}
 
-    @Override
-    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
-        return new ItemStack(berryItem.get());
-     }
-    @Override
-    protected boolean mayPlaceOn(BlockState p_200014_1_, IBlockReader p_200014_2_, BlockPos p_200014_3_) {
-    	if(p_200014_1_.getBlock() instanceof ExtendedBerryHedgeBlock || p_200014_1_.getBlock() instanceof ExtendedGroundFarmlandBlock) {
-    		return true;
-    	}
-    	return super.mayPlaceOn(p_200014_1_, p_200014_2_, p_200014_3_);
-     }
+	@Override
+	public void randomTick(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
+		int i = pState.getValue(AGE);
+		if (i < 3 && pLevel.getRawBrightness(pPos.above(), 0) >= 9 && ForgeHooks.onCropsGrowPre(pLevel, pPos, pState,pRandom.nextInt(5) == 0)) {
+			pLevel.setBlock(pPos, pState.setValue(AGE, Integer.valueOf(i + 1)), 2);
+			ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+		}else if (i == 3 && pLevel.getRawBrightness(pPos.above(), 0) >= 9 && pRandom.nextInt(200) == 0) {
+			pLevel.setBlock(pPos, berryHedgeBlock.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3), 2);
+			ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+		}
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState pState) {
+		return true; // Because can turn into hedge
+	}
+
+	@Override
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		return new ItemStack(berryItem.get());
+	}
+	@Override
+	protected boolean mayPlaceOn(BlockState p_200014_1_, IBlockReader p_200014_2_, BlockPos p_200014_3_) {
+		if(p_200014_1_.getBlock() instanceof ExtendedBerryHedgeBlock || p_200014_1_.getBlock() instanceof ExtendedGroundFarmlandBlock) {
+			return true;
+		}
+		return super.mayPlaceOn(p_200014_1_, p_200014_2_, p_200014_3_);
+	}
 
 	@Override
 	public void entityInside(BlockState pState, World pLevel, BlockPos pPos, Entity pEntity) {
@@ -59,24 +86,24 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 		}
 	}
 
-    @Override
-    public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-        int i = p_225533_1_.getValue(AGE);
-        boolean flag = i == 3;
-        if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
-           return ActionResultType.PASS;
-        } else if (i > 2) {
-           popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(3) + 1 : 0));
-           p_225533_2_.playSound(null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
-           p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
-           return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
-        } else {
-           return ActionResultType.PASS;
-        }
-     }
+	@Override
+	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+		int i = p_225533_1_.getValue(AGE);
+		boolean flag = i == 3;
+		if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
+			return ActionResultType.PASS;
+		} else if (i > 2) {
+			popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(3) + 1 : 0));
+			p_225533_2_.playSound(null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
+			p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
+			return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
+		} else {
+			return ActionResultType.PASS;
+		}
+	}
 
-    public Item getBerryItem() {
+	public Item getBerryItem() {
 		return berryItem.get();
 
-    }
+	}
 }

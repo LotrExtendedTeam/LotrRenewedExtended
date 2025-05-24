@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import lotr.common.event.CompostingHelper;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
@@ -32,14 +34,15 @@ import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 	private final RegistryObject<Item> berryItem;
-	private final RegistryObject<Item> berryBlock;
-
+	private final RegistryObject<Item> berryHedgeItem;
 	public ExtendedBerryHedgeBlock(RegistryObject<Item> berryItem, RegistryObject<Item> berryBlock) {
 		super(Properties.of(Material.LEAVES, MaterialColor.COLOR_GREEN)
 			.randomTicks()
@@ -52,7 +55,11 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 			.isSuffocating(LOTRBlocks::posPredicateFalse)
 			.isViewBlocking(LOTRBlocks::posPredicateFalse));
 		this.berryItem = berryItem;
-		this.berryBlock = berryBlock;
+		if(DatagenModLoader.isRunningDataGen()) {
+			this.berryHedgeItem = berryBlock;
+		}else {
+			this.berryHedgeItem = null;
+		}
 		registerDefaultState(stateDefinition.any().setValue(AGE, 0));
 		CompostingHelper.prepareCompostable(this, 0.65F);
 	}
@@ -68,13 +75,12 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 	}
 
 	@Override
-	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
-		int i = p_225542_1_.getValue(AGE);
-		if (i < 3 && p_225542_2_.getRawBrightness(p_225542_3_.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_225542_2_, p_225542_3_, p_225542_1_,p_225542_4_.nextInt(5) == 0)) {
-			p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, i + 1), 2);
-			net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_225542_2_, p_225542_3_, p_225542_1_);
+	public void randomTick(BlockState thisState, ServerWorld thisWorld, BlockPos thisPos, Random rand) {
+		int i = thisState.getValue(AGE);
+		if (i < 3 && thisWorld.getRawBrightness(thisPos.above(), 0) >= 9 && ForgeHooks.onCropsGrowPre(thisWorld, thisPos, thisState,rand.nextInt(5) == 0)) {
+			thisWorld.setBlock(thisPos, thisState.setValue(AGE, i + 1), 2);
+			ForgeHooks.onCropsGrowPost(thisWorld, thisPos, thisState);
 		}
-
 	}
 
 	@Override
@@ -98,7 +104,7 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 		if (!flag && p_225533_4_.getItemInHand(p_225533_5_).getItem() == Items.BONE_MEAL) {
 			return ActionResultType.PASS;
 		} else if (i > 2) {
-			popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(6) + 1: 0));
+			popResource(p_225533_2_, p_225533_3_, new ItemStack(berryItem.get(), flag ? p_225533_2_.random.nextInt(5) + 1: 0));
 			p_225533_2_.playSound(null, p_225533_3_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + p_225533_2_.random.nextFloat() * 0.4F);
 			p_225533_2_.setBlock(p_225533_3_, p_225533_1_.setValue(AGE, 1), 2);
 			return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
@@ -133,7 +139,8 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 		return berryItem.get();
 	}
 
-	public Item getBerryBlock() {
-		return berryBlock.get();
+	@Nullable
+	public Item getBerryHedgeItem() {
+		return berryHedgeItem.get();
 	}
 }

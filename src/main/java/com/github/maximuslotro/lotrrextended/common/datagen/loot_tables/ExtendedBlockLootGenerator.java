@@ -396,16 +396,16 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
                                 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 3)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 2)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 1)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 0)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
 						);
 				continue;
 			}
