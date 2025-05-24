@@ -14,6 +14,10 @@ public class ExtendedBurnableAxialSlabBlock extends AxialSlabBlock implements IF
 		super(block);
 	}
 
+	public ExtendedBurnableAxialSlabBlock(Block block) {
+		super(block);
+	}
+
 	@Override
 	public int getFireSpreadSpeed(IBlockReader world, BlockPos pos, Direction face) {
 		return 60;

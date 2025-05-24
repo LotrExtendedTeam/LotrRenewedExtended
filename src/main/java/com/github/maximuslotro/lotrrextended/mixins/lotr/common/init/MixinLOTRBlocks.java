@@ -282,6 +282,134 @@ public class MixinLOTRBlocks {
                 //Also removes lotr.common.block.WattleAndDaubPillarBlock from being used
                 returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRPillarBlock(WATTLE_AND_DAUB));
                 break;
+            case "white_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.WHITE_WOOL));
+            	break;
+            case "orange_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.ORANGE_WOOL));
+            	break;
+            case "magenta_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.MAGENTA_WOOL));
+            	break;
+            case "light_blue_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.LIGHT_BLUE_WOOL));
+            	break;
+            case "yellow_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.YELLOW_WOOL));
+            	break;
+            case "lime_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.LIME_WOOL));
+            	break;
+            case "pink_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.PINK_WOOL));
+            	break;
+            case "gray_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.GRAY_WOOL));
+            	break;
+            case "light_gray_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.LIGHT_GRAY_WOOL));
+            	break;
+            case "cyan_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.CYAN_WOOL));
+            	break;
+            case "purple_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.PURPLE_WOOL));
+            	break;
+            case "blue_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.BLUE_WOOL));
+            	break;
+            case "brown_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.BROWN_WOOL));
+            	break;
+            case "green_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.GREEN_WOOL));
+            	break;
+            case "red_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.RED_WOOL));
+            	break;
+            case "black_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.BLACK_WOOL));
+            	break;
+            case "white_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.WHITE_WOOL));
+            	break;
+            case "orange_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.ORANGE_WOOL));
+            	break;
+            case "magenta_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.MAGENTA_WOOL));
+            	break;
+            case "light_blue_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.LIGHT_BLUE_WOOL));
+            	break;
+            case "yellow_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.YELLOW_WOOL));
+            	break;
+            case "lime_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.LIME_WOOL));
+            	break;
+            case "pink_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.PINK_WOOL));
+            	break;
+            case "gray_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.GRAY_WOOL));
+            	break;
+            case "light_gray_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.LIGHT_GRAY_WOOL));
+            	break;
+            case "cyan_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.CYAN_WOOL));
+            	break;
+            case "purple_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.PURPLE_WOOL));
+            	break;
+            case "blue_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BLUE_WOOL));
+            	break;
+            case "brown_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BROWN_WOOL));
+            	break;
+            case "green_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.GREEN_WOOL));
+            	break;
+            case "red_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.RED_WOOL));
+            	break;
+            case "black_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BLACK_WOOL));
+            	break;
         }
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);

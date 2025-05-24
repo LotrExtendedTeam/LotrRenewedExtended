@@ -14,6 +14,10 @@ public class ExtendedBurnableLOTRStairsBlock extends LOTRStairsBlock implements 
 		super(block);
 	}
 
+	public ExtendedBurnableLOTRStairsBlock(Block block) {
+		super(block);
+	}
+
 	@Override
 	public int getFireSpreadSpeed(IBlockReader world, BlockPos pos, Direction face) {
 		return 60;
