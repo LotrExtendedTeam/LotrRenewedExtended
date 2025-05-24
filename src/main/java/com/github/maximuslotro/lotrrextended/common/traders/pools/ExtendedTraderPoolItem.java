@@ -34,7 +34,7 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 	public int getAverageCost(){
 		return averageCost;
 	}
- 
+
 	/**
 	 * Gets the maximum amount of this item that can be traded, -1 represents infinite selling/buying if this item
 	 * @return The maximum amount of this item that can be sold
@@ -56,7 +56,7 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 		@Override
 		public ExtendedTraderPoolItem deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedBaseTraderPoolItem");
-			int weight = jsonobject.get("weight").getAsInt();
+			int weight = JSONUtils.getAsInt(jsonobject, "weight", 1);
 			int averageCost = jsonobject.get("averageCost").getAsInt();
 			int maxSellQuantity = JSONUtils.getAsInt(jsonobject, "maxTransferQuantity", -1);
 			if(jsonobject.has("stack")) {
@@ -71,7 +71,9 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 		@Override
 		public JsonElement serialize(ExtendedTraderPoolItem traderPool, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("weight", traderPool.weight);
+			if(traderPool.weight!=1) {
+				jsonobject.addProperty("weight", traderPool.weight);
+			}
 			jsonobject.addProperty("averageCost", traderPool.averageCost);
 			if(traderPool.getMaxTransferQuantity()!=-1) {
 				jsonobject.addProperty("maxTransferQuantity", traderPool.getMaxTransferQuantity());

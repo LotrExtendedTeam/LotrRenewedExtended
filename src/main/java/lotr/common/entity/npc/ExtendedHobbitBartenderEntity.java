@@ -63,7 +63,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_PLATE.get()), 1, 1), 
             new ExtendedTradeEntry(new ItemStack(LOTRItems.CLAY_MUG.get()), 1, 1),
             new ExtendedTradeEntry(160, new ItemStack(LOTRItems.PIPEWEED_LEAF.get()), 1, 1), 
-            new ExtendedTradeEntry(128, new ItemStack(Items.POTATO, 3), 1, 1),
+            new ExtendedTradeEntry(128, new ItemStack(Items.POTATO, 2), 1, 1),
             new ExtendedTradeEntry(128, new ItemStack(Items.COD), 2, 3), 
             new ExtendedTradeEntry(128, new ItemStack(Items.SALMON), 2, 3),
             new ExtendedTradeEntry(32, new ItemStack(Items.WATER_BUCKET), 3, 5), 

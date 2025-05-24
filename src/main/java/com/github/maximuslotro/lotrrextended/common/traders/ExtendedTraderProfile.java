@@ -23,11 +23,16 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import lotr.common.init.LOTRItems;
+import lotr.common.item.VesselDrinkItem;
+import lotr.common.item.VesselDrinkItem.Potency;
+import lotr.common.util.DrinkUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTraderProfile {
@@ -172,21 +177,34 @@ public class ExtendedTraderProfile {
 			return this;
 		}
 
+		/* BUY FROM PLAYER SINGLE METHODS*/
 		/**
 		 * Adds to the trader buy from player pool
 		 */
 		public Builder addSBuy(Item item, int averageCost) {
-			return addSBuy(new ItemStack(item), 1, averageCost, -1);
+			return addSBuy(new ItemStack(item), averageCost);
+		}
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addSBuy(RegistryObject<Item> item, int averageCost) {
+			return addSBuy(new ItemStack(item.get()), averageCost);
 		}
 
 		/**
 		 * Adds to the trader buy from player pool
 		 */
 		public Builder addSBuy(Item item, int weight, int averageCost, int maxTransferQuantity) {
-			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(new ItemStack(item)), weight, averageCost, maxTransferQuantity));
-			return this;
+			return addSBuy(new ItemStack(item), weight, averageCost, maxTransferQuantity);
 		}
-		
+
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addSBuy(ItemStack stack, int averageCost) {
+			return addSBuy(stack, 1, averageCost, -1);
+		}
+
 		/**
 		 * Adds to the trader buy from player pool
 		 */
@@ -195,13 +213,12 @@ public class ExtendedTraderProfile {
 			return this;
 		}
 
+		/* BUY FROM PLAYER MULTI METHODS*/
 		/**
 		 * Adds to the trader buy from player pool
 		 */
 		public Builder addMBuy(int averageCost, Item... items) {
-			List<ItemStack> itemStacks = Arrays.stream(items)
-		        .map(ItemStack::new)
-		        .collect(Collectors.toList());
+			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
 			return addMBuy(itemStacks, 1, averageCost, -1);
 		}
 
@@ -213,19 +230,31 @@ public class ExtendedTraderProfile {
 			return this;
 		}
 
+		/* SELL TO PLAYER SINGLE METHODS*/
 		/**
 		 * Adds to the trader sell to player pool
 		 */
 		public Builder addSSell(Item item, int averageCost) {
 			return addSSell(new ItemStack(item), 1, averageCost, -1);
 		}
-
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addSSell(RegistryObject<Item> item, int averageCost) {
+			return addSSell(new ItemStack(item.get()), 1, averageCost, -1);
+		}
 		/**
 		 * Adds to the trader sell to player pool
 		 */
 		public Builder addSSell(Item item, int weight, int averageCost, int maxTransferQuantity) {
-			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(new ItemStack(item)), weight, averageCost, maxTransferQuantity));
-			return this;
+			return addSSell(new ItemStack(item), weight, averageCost, maxTransferQuantity);
+		}
+
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addSSell(ItemStack stack, int averageCost) {
+			return addSSell(stack, 1, averageCost, -1);
 		}
 
 		/**
@@ -236,13 +265,26 @@ public class ExtendedTraderProfile {
 			return this;
 		}
 
+		/* SELL TO PLAYER MULTI METHODS*/
+		/**
+		 * Builds a multi sell pool with three drink potencies. Saves with average cost allowing cost calculations to be done
+		 * when the pool is rolled during trader init.
+		 */
+		public Builder addDrinkSell(RegistryObject<Item> item, int lightCost, int moderateCost, int strongCost) {
+			if(!(item.get() instanceof VesselDrinkItem)) {
+				ExtendedLog.warn("Recieved invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
+				return this;
+			}
+			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.LIGHT), 1, lightCost, -1);
+			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.MODERATE), 1, moderateCost, -1);
+			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.STRONG), 1, strongCost, -1);
+			return this;
+		}
 		/**
 		 * Adds to the trader sell to player pool
 		 */
 		public Builder addMSell(int averageCost, Item... items) {
-			List<ItemStack> itemStacks = Arrays.stream(items)
-		        .map(ItemStack::new)
-		        .collect(Collectors.toList());
+			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
 			return addMSell(itemStacks, 1, averageCost, -1);
 		}
 
@@ -255,7 +297,9 @@ public class ExtendedTraderProfile {
 		}
 	
 		/**
-		 * Generate a ExtendedTraderProfile
+		 * Generate a {@link ExtendedTraderProfile}
+		 * @param id The internal id of this profile
+		 * @return A built {@link ExtendedTraderProfile} instance
 		 */
 		public ExtendedTraderProfile build(ResourceLocation id) {
 			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);

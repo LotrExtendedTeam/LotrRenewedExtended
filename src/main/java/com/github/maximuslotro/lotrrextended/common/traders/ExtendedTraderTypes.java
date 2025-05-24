@@ -15,7 +15,8 @@ public class ExtendedTraderTypes {
 	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
 
 	public static final ResourceLocation HOBBIT_BARTENDER = make("hobbit_bartender");
-
+	public static final ResourceLocation HOBBIT_FARMER = make("hobbit_farmer");
+	
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));
 	}

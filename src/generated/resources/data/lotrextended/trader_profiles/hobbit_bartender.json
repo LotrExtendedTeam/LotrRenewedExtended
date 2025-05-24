@@ -6,52 +6,334 @@
   "maximumAdditionalTradesOffered": 6,
   "buyFromPlayer": [
     {
-      "weight": 1,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:beef"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:porkchop"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:mutton"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:chicken"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:rabbit"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:raw_duck"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:clay_plate"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:clay_mug"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:pipeweed_leaf"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:potato"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:cod"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:salmon"
+      }
+    },
+    {
       "averageCost": 4,
       "stack": {
-        "item": "minecraft:acacia_boat"
+        "item": "minecraft:water_bucket"
       }
     },
     {
-      "weight": 4,
-      "averageCost": 3,
-      "maxTransferQuantity": 3,
+      "averageCost": 1,
       "stack": {
-        "item": "minecraft:acacia_boat"
+        "item": "minecraft:coal"
       }
     },
     {
-      "weight": 1,
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:salt"
+      }
+    },
+    {
       "averageCost": 3,
-      "stacks": [
-        {
-          "item": "minecraft:acacia_fence"
-        },
-        {
-          "item": "minecraft:acacia_sapling"
-        }
-      ]
+      "stack": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:four_leaf_clover"
+      }
     }
   ],
   "sellToPlayer": [
     {
-      "weight": 1,
-      "averageCost": 3,
+      "averageCost": 7,
       "stack": {
-        "item": "minecraft:beetroot_seeds"
+        "item": "minecraft:cooked_beef"
       }
     },
     {
-      "weight": 1,
+      "averageCost": 7,
+      "stack": {
+        "item": "minecraft:cooked_porkchop"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "minecraft:cooked_mutton"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "minecraft:cooked_rabbit"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:cooked_chicken"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:cooked_duck"
+      }
+    },
+    {
       "averageCost": 5,
-      "stacks": [
-        {
-          "item": "minecraft:blue_banner"
-        },
-        {
-          "item": "minecraft:glass_bottle"
-        }
-      ]
+      "stack": {
+        "item": "minecraft:bread"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:pipeweed"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:smoking_pipe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:wooden_mug"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:ceramic_mug"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "minecraft:baked_potato"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:cooked_cod"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:cooked_salmon"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:chocolate_drink"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:apple_juice"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:gammon"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "minecraft:rabbit_stew"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "minecraft:mushroom_stew"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:hobbit_pancake"
+      }
+    },
+    {
+      "averageCost": 13,
+      "stack": {
+        "item": "lotr:hobbit_pancake_syrup"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:hobbit_pancake_syrup_butter"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:fine_plate"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:stoneware_plate"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:hobbit_marriage_ring"
+      }
+    },
+    {
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:hobbit_oven"
+      }
+    },
+    {
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:hobbit_crafting_table"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
     }
   ]
 }
