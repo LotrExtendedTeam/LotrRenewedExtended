@@ -52,8 +52,12 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
     	return super.mayPlaceOn(p_200014_1_, p_200014_2_, p_200014_3_);
      }
 
-    @Override
-    public void entityInside(BlockState p_196262_1_, World p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {}
+	@Override
+	public void entityInside(BlockState pState, World pLevel, BlockPos pPos, Entity pEntity) {
+		if (pEntity instanceof LivingEntity && pEntity.getType() != EntityType.FOX && pEntity.getType() != EntityType.BEE) {
+	         pEntity.makeStuckInBlock(pState, new Vector3d((double)0.95F, 0.90D, (double)0.95F));
+		}
+	}
 
     @Override
     public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
