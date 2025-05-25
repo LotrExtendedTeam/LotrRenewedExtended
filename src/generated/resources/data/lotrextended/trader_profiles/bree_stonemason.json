@@ -1,0 +1,185 @@
+{
+  "id": "lotrextended:bree_stonemason",
+  "entity_type": "lotr:bree_stonemason",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:coal"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:torch"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:water_bucket"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stone_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:bronze_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "minecraft:iron_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stone_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:bronze_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "minecraft:iron_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:bread"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_beef"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_chicken"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_mutton"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_rabbit"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:cooked_duck"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:pipeweed"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:stone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:cobblestone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stone_bricks"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:bricks"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:drystone"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:cobbled_drystone"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:cut_drystone"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:stone_pillar"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:brick_pillar"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "minecraft:stonecutter"
+      }
+    },
+    {
+      "averageCost": 100,
+      "stack": {
+        "item": "lotr:bree_crafting_table"
+      }
+    }
+  ]
+}

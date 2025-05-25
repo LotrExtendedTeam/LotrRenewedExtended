@@ -89,5 +89,4 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 	public ExtendedTraderProfile.Builder make(EntityType<?> traderEntityType, int pTradingAlignmentRequired) {
 		return new ExtendedTraderProfile.Builder(traderEntityType, pTradingAlignmentRequired);
 	}
-
 }

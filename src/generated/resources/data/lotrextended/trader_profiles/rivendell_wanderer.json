@@ -1,0 +1,171 @@
+{
+  "id": "lotrextended:rivendell_wanderer",
+  "entity_type": "lotr:rivendell_wanderer",
+  "tradingAlignmentRequired": 100,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:feather"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:mithril_nugget"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:wooden_mug"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:orc_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:warg_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:rivendell_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 36,
+      "stack": {
+        "item": "lotr:rivendell_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 30,
+      "stack": {
+        "item": "lotr:rivendell_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 22,
+      "stack": {
+        "item": "lotr:rivendell_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:rivendell_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 21,
+      "stack": {
+        "item": "lotr:rivendell_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 21,
+      "stack": {
+        "item": "lotr:rivendell_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:arrow"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:high_elven_torch"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:lembas"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:beech_planks"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    }
+  ]
+}

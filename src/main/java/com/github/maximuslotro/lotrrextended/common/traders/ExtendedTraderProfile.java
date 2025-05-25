@@ -221,6 +221,13 @@ public class ExtendedTraderProfile {
 			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
 			return addMBuy(itemStacks, 1, averageCost, -1);
 		}
+		/**
+		 * Adds to the trader buy from player pool
+		 */
+		public Builder addMBuy(int averageCost, ItemStack... stacks) {
+			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
+			return addMBuy(itemStacks, 1, averageCost, -1);
+		}
 
 		/**
 		 * Adds to the trader buy from player pool
@@ -285,6 +292,13 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addMSell(int averageCost, Item... items) {
 			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
+			return addMSell(itemStacks, 1, averageCost, -1);
+		}
+		/**
+		 * Adds to the trader sell to player pool
+		 */
+		public Builder addMSell(int averageCost, ItemStack... stacks) {
+			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
 			return addMSell(itemStacks, 1, averageCost, -1);
 		}
 

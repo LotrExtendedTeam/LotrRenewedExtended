@@ -1,0 +1,191 @@
+{
+  "id": "lotrextended:bree_baker",
+  "entity_type": "lotr:bree_baker",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:sugar"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:egg"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:duck_egg"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:brown_mushroom"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:red_mushroom"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:maple_syrup"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:milk_bucket"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:water_bucket"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:blueberry"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:blackberry"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:cranberry"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:elderberry"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:cherry"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:green_apple"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:apple"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:salt"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:clay_plate"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:bread"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "minecraft:pumpkin_pie"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:cherry_pie"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "minecraft:cake"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:apple_crumble"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:hobbit_pancake"
+      }
+    },
+    {
+      "averageCost": 11,
+      "stack": {
+        "item": "lotr:hobbit_pancake_syrup"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:hobbit_pancake_syrup_butter"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:fine_plate"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:stoneware_plate"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:wooden_plate"
+      }
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": "lotrextended:bree_cheesemonger",
+  "entity_type": "lotr:bree_cheesemonger",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:salt"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:brown_mushroom"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:red_mushroom"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:milk_bucket"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:iron_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:water_bucket"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 9,
+      "stack": {
+        "item": "lotr:bucket_of_cheese_curds"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:cheese_curds"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:cheese_slice"
+      }
+    },
+    {
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:cheese_wheel"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:aged_cheese_slice"
+      }
+    },
+    {
+      "averageCost": 60,
+      "stack": {
+        "item": "lotr:aged_cheese_wheel"
+      }
+    }
+  ]
+}

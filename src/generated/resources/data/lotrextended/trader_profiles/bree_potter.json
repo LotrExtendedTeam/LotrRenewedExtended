@@ -1,0 +1,306 @@
+{
+  "id": "lotrextended:bree_potter",
+  "entity_type": "lotr:bree_potter",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:clay_ball"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:clay"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:water_bucket"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wooden_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stone_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:bronze_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:iron_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stacks": [
+        {
+          "item": "minecraft:white_dye"
+        },
+        {
+          "item": "minecraft:black_dye"
+        },
+        {
+          "item": "minecraft:blue_dye"
+        },
+        {
+          "item": "minecraft:brown_dye"
+        },
+        {
+          "item": "minecraft:cyan_dye"
+        },
+        {
+          "item": "minecraft:gray_dye"
+        },
+        {
+          "item": "minecraft:green_dye"
+        },
+        {
+          "item": "minecraft:light_blue_dye"
+        },
+        {
+          "item": "minecraft:light_gray_dye"
+        },
+        {
+          "item": "minecraft:lime_dye"
+        },
+        {
+          "item": "minecraft:magenta_dye"
+        },
+        {
+          "item": "minecraft:orange_dye"
+        },
+        {
+          "item": "minecraft:pink_dye"
+        },
+        {
+          "item": "minecraft:purple_dye"
+        },
+        {
+          "item": "minecraft:red_dye"
+        },
+        {
+          "item": "minecraft:yellow_dye"
+        }
+      ]
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:brick"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:bricks"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:wattle_and_daub"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:wattle_and_daub_pillar"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:crossed_wattle_and_daub"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:flower_pot"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:large_pot"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:large_flower_pot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:clay_mug"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:clay_plate"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:ceramic_mug"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:stoneware_plate"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:terracotta"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stacks": [
+        {
+          "item": "minecraft:white_terracotta"
+        },
+        {
+          "item": "minecraft:black_terracotta"
+        },
+        {
+          "item": "minecraft:blue_terracotta"
+        },
+        {
+          "item": "minecraft:brown_terracotta"
+        },
+        {
+          "item": "minecraft:cyan_terracotta"
+        },
+        {
+          "item": "minecraft:gray_terracotta"
+        },
+        {
+          "item": "minecraft:green_terracotta"
+        },
+        {
+          "item": "minecraft:light_blue_terracotta"
+        },
+        {
+          "item": "minecraft:light_gray_terracotta"
+        },
+        {
+          "item": "minecraft:lime_terracotta"
+        },
+        {
+          "item": "minecraft:magenta_terracotta"
+        },
+        {
+          "item": "minecraft:orange_terracotta"
+        },
+        {
+          "item": "minecraft:pink_terracotta"
+        },
+        {
+          "item": "minecraft:purple_terracotta"
+        },
+        {
+          "item": "minecraft:red_terracotta"
+        },
+        {
+          "item": "minecraft:yellow_terracotta"
+        }
+      ]
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:clay_tiling"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stacks": [
+        {
+          "item": "lotr:white_clay_tiling"
+        },
+        {
+          "item": "lotr:black_clay_tiling"
+        },
+        {
+          "item": "lotr:blue_clay_tiling"
+        },
+        {
+          "item": "lotr:brown_clay_tiling"
+        },
+        {
+          "item": "lotr:cyan_clay_tiling"
+        },
+        {
+          "item": "lotr:gray_clay_tiling"
+        },
+        {
+          "item": "lotr:green_clay_tiling"
+        },
+        {
+          "item": "lotr:light_blue_clay_tiling"
+        },
+        {
+          "item": "lotr:light_gray_clay_tiling"
+        },
+        {
+          "item": "lotr:lime_clay_tiling"
+        },
+        {
+          "item": "lotr:magenta_clay_tiling"
+        },
+        {
+          "item": "lotr:orange_clay_tiling"
+        },
+        {
+          "item": "lotr:pink_clay_tiling"
+        },
+        {
+          "item": "lotr:purple_clay_tiling"
+        },
+        {
+          "item": "lotr:red_clay_tiling"
+        },
+        {
+          "item": "lotr:yellow_clay_tiling"
+        }
+      ]
+    }
+  ]
+}

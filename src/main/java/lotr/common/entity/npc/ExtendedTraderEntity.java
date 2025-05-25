@@ -77,6 +77,9 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 	List<ExtendedTrade> getSells();
 	void setSells(ArrayList<ExtendedTrade> trades);
 
+	/**
+	 * Checks if player can trade with the trader
+	 * */
 	boolean canTradeWith(PlayerEntity player);
 
     boolean isInteractingWithPlayer();

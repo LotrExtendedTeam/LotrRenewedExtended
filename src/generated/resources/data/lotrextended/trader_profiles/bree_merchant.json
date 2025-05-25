@@ -1,0 +1,179 @@
+{
+  "id": "lotrextended:bree_merchant",
+  "entity_type": "lotr:bree_merchant",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "buyFromPlayer": [
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:drystone"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:maple_log"
+      }
+    },
+    {
+      "averageCost": 30,
+      "stack": {
+        "item": "lotr:hobbit_oven"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:cherry_pie"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:apple_crumble"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:hobbit_pancake"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:smoking_pipe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:pipeweed_leaf"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:pipeweed"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:pipeweed_seeds"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 100,
+      "stack": {
+        "item": "lotr:bree_crafting_table"
+      }
+    },
+    {
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:bree_banner"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:bree_banner_pattern"
+      }
+    },
+    {
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:bree_shield",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "minecraft:iron_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:bronze_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:iron_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 13,
+      "stack": {
+        "item": "lotr:bronze_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:maple_syrup"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:maple_sapling"
+      }
+    },
+    {
+      "averageCost": 9,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    }
+  ]
+}
