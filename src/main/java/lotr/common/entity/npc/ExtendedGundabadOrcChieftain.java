@@ -18,6 +18,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
@@ -33,7 +34,11 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 
 	@Override
 	protected void addNPCTargetingAI() {
-		this.addNonAggressiveTargetingGoals();
+		if(ExtendedServerConfig.enableLegacyCaptainAggressionBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 
 	@Override

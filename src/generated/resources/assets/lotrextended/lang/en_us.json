@@ -1088,6 +1088,7 @@
   "config.lotrextended.enableExtendedLogging": "Toggle to show additional log information if stuff is not working properly",
   "config.lotrextended.enableFellowshipCreation": "Enable fellowship creation",
   "config.lotrextended.enableFishingEnchantedItems": "Enable fishing enchanted items in Middle Earth",
+  "config.lotrextended.enableLegacyCaptainAggressionBehavior": "Make captains non aggressive until attacked, like in legacy",
   "config.lotrextended.enableLegacyWaypointCreation": "Enable legacy based waypoint creation (Not added yet)",
   "config.lotrextended.enablePlantParticles": "Allow for certian plants to spawn particles.",
   "config.lotrextended.enableRenewedWaypointCreation": "Enable renewed based waypoint creation",

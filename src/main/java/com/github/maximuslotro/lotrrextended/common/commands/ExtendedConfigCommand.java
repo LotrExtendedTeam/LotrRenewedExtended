@@ -30,6 +30,7 @@ public class ExtendedConfigCommand {
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
 		command.then(buildBoolean("enableDefaultWaypointTeleportation", ExtendedServerConfig.enableDefaultWaypointTeleportation));
 		command.then(buildBoolean("enableCustomWaypointTeleportation", ExtendedServerConfig.enableCustomWaypointTeleportation));
+		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainAggressionBehavior, true));
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
