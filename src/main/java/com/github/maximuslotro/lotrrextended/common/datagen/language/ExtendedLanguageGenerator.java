@@ -386,6 +386,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
 		addD("command.lotrextended.fellowship.data.members", "Members: ");
 
+		//Config Command Values
+		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
+		addD("command.lotrextended.config.current", "Current");
+		addD("command.lotrextended.config.value", " value");
+
 		//Version lang strings
 		addD("command.lotrextended.version.left", "A new version");
 		addD("command.lotrextended.version.right", "was found");
