@@ -21,7 +21,7 @@
       "uvlock": true
     },
     "axis=y,type=bottom": {
-      "model": "lotrextended:block/grass_path_slab"
+      "model": "lotrextended:block/grass_path_slab_custom"
     },
     "axis=z,type=bottom": {
       "model": "lotrextended:block/grass_path_slab",

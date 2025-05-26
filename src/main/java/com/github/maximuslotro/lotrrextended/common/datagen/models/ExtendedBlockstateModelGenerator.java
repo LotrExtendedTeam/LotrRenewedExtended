@@ -556,10 +556,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						if(block.getKey().equals("grass_path_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_top"),
+							genPathSlabBlockItem(
+									(SlabBlock) block.getValue().get(),
+									mcLoc("block/grass_path_side"),
+									mcLoc("block/dirt"),
 									mcLoc("block/grass_path_top"),
-									mcLoc("block/grass_path_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")), false, true);
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top"))
+									);
 							continue;
 						}
 						if(block.getKey().equals("podzol_slab")) {
@@ -986,6 +989,45 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .uvLock(uvlock && notwood)
                     .build();
         }, SlabBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
+	}
+
+	private void genPathSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel) {
+		registeredBlocks.add(slab);
+
+		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), top, top, top);
+
+		ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", top, top, top);
+		// use custom 16x7x16 slab template
+		ModelFile customBottomModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_custom", modLoc("block/path_slab_custom"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top);
+
+		getVariantBuilder(slab)
+				.forAllStatesExcept(state -> {
+					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
+					SlabType type = state.getValue(SlabBlock.TYPE);
+					boolean uvlock = axis != Axis.Y;
+
+					ModelFile model;
+					if (type == SlabType.BOTTOM && axis == Axis.Y) {
+						model = customBottomModel;
+					} else {
+						model = type == SlabType.DOUBLE
+								? doubleModel
+								: (type == SlabType.BOTTOM ? slabModel : slabModelTop);
+					}
+
+					return ConfiguredModel.builder()
+							.modelFile(model)
+							.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+							.rotationY(axis == Axis.X ? 90 : 0)
+							.uvLock(uvlock)
+							.build();
+				}, SlabBlock.WATERLOGGED);
+
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
