@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierMulti;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierSingle;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
@@ -57,6 +58,7 @@ public class ExtendedTraderProfile {
 
 	/*
 	 * Get the id of this ExtendedTraderProfile
+	 * @return A {@link ResourceLocation} of the id
 	 * */
 	public ResourceLocation getId() {
 		return id;
@@ -95,6 +97,19 @@ public class ExtendedTraderProfile {
 		return traderEntityType;
 	}
 
+	/**
+	 * Gets a trade pool list of this trader profile
+	 * @param type The trade type {@link ExtendedTradeType}
+	 * @return A list of pool trade entries
+	 * */
+	public List<ExtendedTraderPoolItem> getTraderPool(ExtendedTradeType type){
+		if(type==ExtendedTradeType.BUY_FROM_PLAYER) {
+			return buyFromPlayerPool;
+		}else {
+			return sellToPlayerPool;
+		}
+	}
+
 	/*
 	 * Serializer for ExtendedTraderProfile
 	 * */
@@ -113,11 +128,16 @@ public class ExtendedTraderProfile {
 				return null;
 			}
 			int hiringAlignment = jsonobject.get("tradingAlignmentRequired").getAsInt();
-			int mininmunTrades = jsonobject.get("minimumTradesOffered").getAsInt();
+			int minimumTrades = jsonobject.get("minimumTradesOffered").getAsInt();
 			int maximumAdditionalTrades = jsonobject.get("maximumAdditionalTradesOffered").getAsInt();
+			if(minimumTrades+maximumAdditionalTrades>9) {
+				ExtendedLog.error(id.toString()+" has defined a profile with more than 9 max slots, capping at 9!");
+				minimumTrades=3;
+				maximumAdditionalTrades=6;
+			}
 			List<ExtendedTraderPoolItem> buyFromPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "buyFromPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
 			List<ExtendedTraderPoolItem> sellToPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "sellToPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
-			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, mininmunTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
+			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
 		}
 
 		@Override
@@ -151,6 +171,7 @@ public class ExtendedTraderProfile {
 		/**
 		 * Set the minimum number of trades a trader will offer
 		 * @param minimumTrades The minimum number of trades the trader can offer
+		 * @return The instance of this builder
 		 */
 		public Builder setMinimumTrades(int minimumTrades) {
 			this.minimumTrades = minimumTrades;
@@ -160,6 +181,7 @@ public class ExtendedTraderProfile {
 		/**
 		 * Set the minimum number of trades a trader will offer
 		 * @param maximumAdditionalTrades The maximum number of additional trades a trader can offer randomly
+		 * @return The instance of this builder
 		 */
 		public Builder setMaximumAdditionalTrades(int maximumAdditionalTrades) {
 			this.maximumAdditionalTrades = maximumAdditionalTrades;
@@ -167,9 +189,10 @@ public class ExtendedTraderProfile {
 		}
 
 		/**
-		 * Set the ammount of trades a trader can offer
+		 * Set the amount of trades a trader can offer
 		 * @param minimumTrades The minimum number of trades the trader can offer
 		 * @param maximumAdditionalTrades The maximum number of additional trades a trader can offer randomly
+		 * @return The instance of this builder
 		 */
 		public Builder setMinMaxTrades(int minimumTrades, int maximumAdditionalTrades) {
 			this.minimumTrades = minimumTrades;
@@ -180,12 +203,14 @@ public class ExtendedTraderProfile {
 		/* BUY FROM PLAYER SINGLE METHODS*/
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(Item item, int averageCost) {
 			return addSBuy(new ItemStack(item), averageCost);
 		}
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(RegistryObject<Item> item, int averageCost) {
 			return addSBuy(new ItemStack(item.get()), averageCost);
@@ -193,6 +218,7 @@ public class ExtendedTraderProfile {
 
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(Item item, int weight, int averageCost, int maxTransferQuantity) {
 			return addSBuy(new ItemStack(item), weight, averageCost, maxTransferQuantity);
@@ -200,13 +226,15 @@ public class ExtendedTraderProfile {
 
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(ItemStack stack, int averageCost) {
-			return addSBuy(stack, 1, averageCost, -1);
+			return addSBuy(stack, 1, averageCost, 200);
 		}
 
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(ItemStack stack, int weight, int averageCost, int maxTransferQuantity) {
 			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity));
@@ -216,21 +244,24 @@ public class ExtendedTraderProfile {
 		/* BUY FROM PLAYER MULTI METHODS*/
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addMBuy(int averageCost, Item... items) {
 			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
-			return addMBuy(itemStacks, 1, averageCost, -1);
+			return addMBuy(itemStacks, 1, averageCost, 200);
 		}
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addMBuy(int averageCost, ItemStack... stacks) {
 			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
-			return addMBuy(itemStacks, 1, averageCost, -1);
+			return addMBuy(itemStacks, 1, averageCost, 200);
 		}
 
 		/**
 		 * Adds to the trader buy from player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addMBuy(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity) {
 			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity));
@@ -240,18 +271,21 @@ public class ExtendedTraderProfile {
 		/* SELL TO PLAYER SINGLE METHODS*/
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSSell(Item item, int averageCost) {
-			return addSSell(new ItemStack(item), 1, averageCost, -1);
+			return addSSell(new ItemStack(item), 1, averageCost, 200);
 		}
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSSell(RegistryObject<Item> item, int averageCost) {
-			return addSSell(new ItemStack(item.get()), 1, averageCost, -1);
+			return addSSell(new ItemStack(item.get()), 1, averageCost, 200);
 		}
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSSell(Item item, int weight, int averageCost, int maxTransferQuantity) {
 			return addSSell(new ItemStack(item), weight, averageCost, maxTransferQuantity);
@@ -259,13 +293,15 @@ public class ExtendedTraderProfile {
 
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSSell(ItemStack stack, int averageCost) {
-			return addSSell(stack, 1, averageCost, -1);
+			return addSSell(stack, 1, averageCost, 200);
 		}
 
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addSSell(ItemStack stack, int weight, int averageCost, int maxTransferQuantity) {
 			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity));
@@ -276,34 +312,38 @@ public class ExtendedTraderProfile {
 		/**
 		 * Builds a multi sell pool with three drink potencies. Saves with average cost allowing cost calculations to be done
 		 * when the pool is rolled during trader init.
+		 * @return The instance of this builder
 		 */
 		public Builder addDrinkSell(RegistryObject<Item> item, int lightCost, int moderateCost, int strongCost) {
 			if(!(item.get() instanceof VesselDrinkItem)) {
 				ExtendedLog.warn("Recieved invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
-			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.LIGHT), 1, lightCost, -1);
-			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.MODERATE), 1, moderateCost, -1);
-			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.STRONG), 1, strongCost, -1);
+			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.LIGHT), 1, lightCost, 200);
+			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.MODERATE), 1, moderateCost, 200);
+			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.STRONG), 1, strongCost, 200);
 			return this;
 		}
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addMSell(int averageCost, Item... items) {
 			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
-			return addMSell(itemStacks, 1, averageCost, -1);
+			return addMSell(itemStacks, 1, averageCost, 200);
 		}
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addMSell(int averageCost, ItemStack... stacks) {
 			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
-			return addMSell(itemStacks, 1, averageCost, -1);
+			return addMSell(itemStacks, 1, averageCost, 200);
 		}
 
 		/**
 		 * Adds to the trader sell to player pool
+		 * @return The instance of this builder
 		 */
 		public Builder addMSell(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity) {
 			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity));
@@ -316,6 +356,9 @@ public class ExtendedTraderProfile {
 		 * @return A built {@link ExtendedTraderProfile} instance
 		 */
 		public ExtendedTraderProfile build(ResourceLocation id) {
+			if(minimumTrades+maximumAdditionalTrades>9) {
+				ExtendedLog.error(id.toString()+" has defined a profile with more than 9 max slots");
+			}
 			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
 			return spawner;
 		}

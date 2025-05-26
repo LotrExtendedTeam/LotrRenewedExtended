@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
+
 import lotr.common.entity.npc.ai.goal.ExtendedInteractableWaterAvoidingRandomWalkingGoal;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
@@ -17,9 +19,6 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.representation.ExtendedTrade;
-import lotr.common.util.representation.ExtendedTradeEntries;
-import lotr.common.util.representation.ExtendedTradeEntry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +33,6 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -43,6 +41,7 @@ import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -50,7 +49,7 @@ import net.minecraft.world.World;
 
 public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedWanderingTraderEntity {
 
-    private static final SpawnEquipmentTable WEAPONS;
+    private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.BRONZE_DAGGER);
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -61,47 +60,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     private List<UUID> escorts = new ArrayList<>();
 
-    // items Oddment Collectors can buy from players
-    // TODO: Following Items missing from Renewed Extended:
-    //  Party Hat, Blue Dwarven Steel Ingot
-    // TODO: Add coral? I don't think it is accessible in the world so maybe it makes sense to keep out for now
-    private static final ExtendedTradeEntries ODDMENT_COLLECTOR_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.BLACK_URUK_STEEL_INGOT.get()), 4, 6),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.BRONZE_INGOT.get()), 2, 4),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.COPPER_INGOT.get()), 2, 4),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.DWARVEN_STEEL_INGOT.get()), 4, 6),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.ELVEN_STEEL_INGOT.get()), 4, 6),
-            new ExtendedTradeEntry(192, new ItemStack(Items.FLINT), 1, 1),
-            new ExtendedTradeEntry(192, new ItemStack(Items.IRON_INGOT), 2, 4),
-            new ExtendedTradeEntry(192, new ItemStack(Items.LEATHER), 2, 3),
-            new ExtendedTradeEntry(192, new ItemStack(Items.ROTTEN_FLESH), 2, 3),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.FUR.get()), 2, 3),
-            new ExtendedTradeEntry(96, new ItemStack(Items.STRING, 2), 1, 1),
-            new ExtendedTradeEntry(96, new ItemStack(Items.WHEAT_SEEDS, 2), 1, 1),
-            new ExtendedTradeEntry(24, new ItemStack(Items.STICK, 8), 1, 1),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.TIN_INGOT.get()), 2, 4),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.URUK_STEEL_INGOT.get()), 4, 6),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.ORC_STEEL_INGOT.get()), 2, 4),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.DIAMOND.get()), 19, 31),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.EMERALD.get(), 8), 11, 19),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.SAPPHIRE.get()), 9, 15),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.RUBY.get()), 9, 15),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.AMETHYST.get()), 6, 10),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.TOPAZ.get()), 6, 10),
-            new ExtendedTradeEntry(128, new ItemStack(ExtendedItems.PEARL.get()), 19, 31),
-            new ExtendedTradeEntry(192, new ItemStack(Items.COAL, 2), 1, 1),
-            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.OBSIDIAN_SHARD.get()), 2, 3),
-            new ExtendedTradeEntry(192, new ItemStack(Items.FEATHER), 2, 3),
-            new ExtendedTradeEntry(192, new ItemStack(LOTRItems.HORN.get()), 2, 4),
-            new ExtendedTradeEntry(192, new ItemStack(ExtendedItems.CONKER.get()), 1, 1),
-    });
-
-    // items Oddment Collectors can sell to players
-    private static final ExtendedTradeEntries ODDMENT_COLLECTOR_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.SHIRE_HEATHER.get()), 6, 10), 
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.SUSPICIOUS_MEAT.get()), 5, 9)
-    });
 
     // give them the 5 armor points they have in Legacy
     public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -139,15 +97,9 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
-    private ArrayList<ExtendedTrade> itemsSoldByTrader;
-    private ArrayList<ExtendedTrade> itemsBoughtByTrader;
-
     public ExtendedOddmentCollectorEntity(EntityType<? extends ExtendedOddmentCollectorEntity> type, World w) {
         super(type, w);
         setPersistenceRequired();
-
-        itemsBoughtByTrader = ODDMENT_COLLECTOR_BOUGHT.generateTrades();
-        itemsSoldByTrader = ODDMENT_COLLECTOR_SOLD.generateTrades();
     }
 
     @Override
@@ -163,7 +115,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
 
-        saveAllTrades(tag);
         ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
     }
 
@@ -175,8 +126,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-
-        loadAllTrades(tag);
 
         // load values related to wandering traders
         int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
@@ -201,7 +150,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     @Override
 	protected NPCNameGenerator getNameGenerator() {
-        // TODO: In legacy it can pick Rohan, Gondor, Dunlend or Bree for names, but I am not sure how that will work
+        // TODO: In legacy it can pick Rohan, Gondor, Dunland or Bree for names, but I am not sure how that will work
         //  or if it will be consistent so just doing Dunland for now
         return NPCNameGenerators.DUNLENDING;
     }
@@ -254,11 +203,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     }
 
     @Override
-    public List<ExtendedTrade> getBuys() {
-        return itemsBoughtByTrader;
-    }
-
-    @Override
     public boolean isWanderingTrader() {
         return entityData.get(IS_WANDERING_TRADER);
     }
@@ -276,11 +220,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     @Override
     public void setWanderingTraderTicksLeft(int ticksLeft) {
         entityData.set(WANDERING_TRADER_TIME_LEFT, ticksLeft);
-    }
-
-    @Override
-    public List<ExtendedTrade> getSells() {
-        return itemsSoldByTrader;
     }
 
     @Override
@@ -322,10 +261,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         return new TranslationTextComponent("speechbank.oddment_collector.departure." + (random.nextInt(18) + 1), getName(), player.getName());
     }
 
-    static {
-        WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.BRONZE_DAGGER);
-    }
-
     @Override
 	protected NPCGenderProvider getGenderProvider() {
         return NPCGenderProvider.MALE;
@@ -347,16 +282,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     }
 
 	@Override
-	public void setBuys(ArrayList<ExtendedTrade> trades) {
-		itemsBoughtByTrader = trades;
-	}
-
-	@Override
-	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;
-	}
-
-	@Override
 	public int setLastTickCooldownReduced() {
 		return lastTickCooldownReduced;
 	}
@@ -364,6 +289,11 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 	@Override
 	public void getLastTickCooldownReduced(int cooldown) {
 		lastTickCooldownReduced = cooldown;
+	}
+
+	@Override
+	public ResourceLocation getTraderProfileId() {
+		return ExtendedTraderTypes.ODDMENT_COLLECTOR;
 	}
 }
 

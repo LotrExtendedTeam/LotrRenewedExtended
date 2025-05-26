@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBan
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
+import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -42,6 +43,12 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Unique
 	private ExtendedNpcMarriageHolder marriageInfo = new ExtendedNpcMarriageHolder((NPCEntity)(Object)this);
+
+	/**
+	 * A private data holder for the ExtendedNpcTraderInfoHolder module
+	 * */
+	@Unique
+	private ExtendedNpcTraderInfoHolder tradeInfo = new ExtendedNpcTraderInfoHolder((NPCEntity)(Object)this);
 
 	/**
 	 * Get if this NPC requires surface to spawn
@@ -81,8 +88,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void addAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
-		marriageInfo.writeToNbt(nbt);
-
+		marriageInfo.writeToNbtI(nbt);
+		tradeInfo.writeToNbtI(nbt);
 	}
 
 	/**
@@ -93,7 +100,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void readAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
-		marriageInfo.loadFromNbt(nbt);
+		marriageInfo.loadFromNbtI(nbt);
+		tradeInfo.loadFromNbtI(nbt);
 	}
 
 	/**
@@ -104,7 +112,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Inject(method = "onPlayerStartTrackingNPC(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap = false)
 	public void onPlayerStartTrackingNPC(ServerPlayerEntity player, CallbackInfo ci) {
-		marriageInfo.sendDataToPlayer(player);
+		marriageInfo.sendDataToPlayerI(player);
+		tradeInfo.sendDataToPlayerI(player);
 	}
 
 	/**
@@ -114,7 +123,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Inject(method = "tick()V", at = @At("TAIL"))
 	public void tick(CallbackInfo ci) {
-		marriageInfo.tick();
+		marriageInfo.tickI();
+		tradeInfo.tickI();
 	}
 
 	/**
@@ -124,6 +134,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	@Override
 	public ExtendedNpcMarriageHolder getMarriageInfo() {
 		return marriageInfo;
+	}
+
+	/**
+	 * Gets the ExtendedNpcTraderInfoHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcTraderInfoHolder of this NPCEntity instance
+	 * */
+	@Override
+	public ExtendedNpcTraderInfoHolder getTraderInfo() {
+		return tradeInfo;
 	}
 
 	/**

@@ -3,8 +3,9 @@ package lotr.common.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
+
 import lotr.common.util.representation.ExtendedTrade;
-import lotr.common.util.representation.ExtendedTradeEntries;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -12,9 +13,7 @@ import net.minecraft.nbt.ListNBT;
 
 public class TradeUtils {
 
-    private TradeUtils() {}
-
-    public static ArrayList<ExtendedTrade> loadAllTrades(ExtendedTradeEntries.TradeType type, CompoundNBT tag) {
+    public static ArrayList<ExtendedTrade> loadAllTrades(ExtendedTradeType type, CompoundNBT tag) {
         ListNBT listnbt = tag.getList(type.name(), 10);
         if (listnbt.isEmpty()) {
             return null;
@@ -41,7 +40,7 @@ public class TradeUtils {
         return result;
     }
 
-    public static void saveAllTrades(ExtendedTradeEntries.TradeType type, List<ExtendedTrade> trades, CompoundNBT tag) {
+    public static void saveAllTrades(ExtendedTradeType type, List<ExtendedTrade> trades, CompoundNBT tag) {
         ListNBT listnbt = new ListNBT();
 
         for (ExtendedTrade trade : trades) {
@@ -53,25 +52,21 @@ public class TradeUtils {
         tag.put(type.name(), listnbt);
     }
 
-   public static Inventory generateDisplayInventory(List<ExtendedTrade> buys, List<ExtendedTrade> sells) {
-        Inventory result = new Inventory(18);
+    public static Inventory generateDisplayInventory(List<ExtendedTrade> buys, List<ExtendedTrade> sells) {
+    	Inventory result = new Inventory(18);
 
-        int max = buys.size();
-        if (buys.size() > 9) max = 9;
-        for (int i = 0; i < max; i++) {
-            ExtendedTrade trade = buys.get(i);
-            result.setItem(i, trade.getItem());
-        }
+    	int max = Math.min(buys.size(), 9);
+    	for (int i = 0; i < max; i++) {
+    		result.setItem(i, buys.get(i).getItem());
+    	}
 
-       max = sells.size();
-       if (sells.size() > 9) max = 9;
-       for (int i = 0; i < max; i++) {
-           ExtendedTrade trade = sells.get(i);
-           result.setItem(i + 9, trade.getItem());
-       }
+    	max = Math.min(sells.size(), 9);
+    	for (int i = 0; i < max; i++) {
+    		result.setItem(9 + i, sells.get(i).getItem());
+    	}
 
-        return result;
-   }
+    	return result;
+    }
 
    public static boolean isValidSellItem(ItemStack stack, List<ExtendedTrade> itemsBought) {
         for (ExtendedTrade trade : itemsBought) {

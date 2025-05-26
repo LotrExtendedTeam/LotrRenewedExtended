@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -33,18 +32,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundNBT tag) {
-        super.addAdditionalSaveData(tag);
-        saveAllTrades(tag);
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundNBT tag) {
-        super.readAdditionalSaveData(tag);
-        loadAllTrades(tag);
     }
 
     @Override

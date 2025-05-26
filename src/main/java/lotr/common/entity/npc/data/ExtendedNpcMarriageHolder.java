@@ -187,4 +187,9 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 			}
 		}
 	}
+
+	@Override
+	public boolean isActive() {
+		return true;
+	}
 }

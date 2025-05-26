@@ -127,7 +127,7 @@ public class WorldEventHandlers {
 			//Save trader trades
 			CompoundNBT compound =  new CompoundNBT();
 			if(event.getEntity() instanceof ExtendedTraderEntity) {
-				((ExtendedTraderEntity) event.getEntity()).saveAllTrades(compound);
+				((ExtendedTraderEntity) event.getEntity()).getTraderData().writeToNbt(compound);
 			}
 			if(event.getEntity() instanceof ExtendedCaptainEntity) {
 				// IDK maybe captains have data to save in the future

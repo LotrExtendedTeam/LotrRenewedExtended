@@ -6,7 +6,7 @@ import java.util.UUID;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public interface ExtendedWanderingTraderEntity extends ExtendedTraderEntity{
+public interface ExtendedWanderingTraderEntity extends ExtendedTraderEntity {
 
 	boolean isWanderingTrader();
 
