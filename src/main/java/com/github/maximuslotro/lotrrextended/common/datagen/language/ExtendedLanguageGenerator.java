@@ -134,6 +134,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.trade_button", "Trade");
 		addD("gui.lotrextended.trading.trader_busy", "The trader is busy with another player at the moment.");
 		addD("gui.lotrextended.trading.trader_alignment_too_low", "Your alignment is too low.");
+		addD("gui.lotrextended.trading.trader_unfrendly", "Trader is unfriendly at the moment.");
 		addD("gui.lotrextended.trading.talk_button", "Talk");
 		addD("gui.lotrextended.trading.exchange_button", "Exchange Coins");
 		addD("gui.lotrextended.trading.buy", "Buy");
@@ -399,7 +400,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
-		addD("gui.lotrextended.hiring.captain_busy", "The captain is busy with another player at the moment.");
+		addD("gui.lotrextended.hiring.captain_unfriendly", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.hire", "Hire: ");
 		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
 		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");

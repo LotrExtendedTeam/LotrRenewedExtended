@@ -44,11 +44,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
-    @Override
-	public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
-    }
-
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D);
     }

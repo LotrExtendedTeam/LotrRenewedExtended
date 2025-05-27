@@ -7,25 +7,33 @@ import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcTraderInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.World;
 
 public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private final NPCEntity thisEntity;
 	private List<ExtendedTrade> itemsBoughtByTrader;
 	private List<ExtendedTrade> itemsSoldByTrader;
 	private ExtendedTraderProfile traderProfileHolder;
+	private int tradingAlignmentRequired = 1659; // February 16 – The first known check (400 pounds) is written.
+
+	private boolean resendData = false;
 
 	public ExtendedNpcTraderInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -120,9 +128,21 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return ExtendedTraderHelper.getBoughtOriginalQuantity(getBuys());
 	}
 
+	public int getTradingAlignmentRequiredDualSided() {
+		return tradingAlignmentRequired;
+	}
+
 	@Override
 	public void tick() {
 		if (!thisEntity.level.isClientSide) {
+			if(tradingAlignmentRequired==1659) {
+				tradingAlignmentRequired = getProfile().getTradingAlignmentRequired();
+				resendData = true;
+			}
+			if (resendData) {
+				sendDataToAllBeings();
+				resendData = false;
+			}
 		}
 	}
 
@@ -171,23 +191,45 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	/*
-	 * Not needed for traders, as players should not know trader data.
-	 * Maybe use for syncing trades later?
+	 * Sync trader alignment level data
 	 * */
 	@Override
-	public PacketBuffer createDataPacketToClient(PacketBuffer buf) { return buf;}
+	public PacketBuffer createDataPacketToClient(PacketBuffer buf) { 
+		buf.writeVarInt(thisEntity.getId());
+		buf.writeVarInt(tradingAlignmentRequired);
+		return buf;
+	}
 
 	/*
-	 * Not needed for traders, as players should not know trader data.
-	 * Maybe use for syncing trades later?
+	 * Sync trader alignment level data
 	 * */
 	@Override
-	public void sendDataToPlayer(ServerPlayerEntity player) {}
+	public void sendDataToPlayer(ServerPlayerEntity player) {
+		ExtendedSNpcTraderInfoPacket packet = new ExtendedSNpcTraderInfoPacket(this);
+		ExtendedPacketHandler.sendToClient(packet, player);
+	}
 
 	/*
-	 * Not needed for traders, as players should not know trader data.
-	 * Maybe use for syncing trades later?
+	 * Sync trader alignment level data
 	 * */
 	@Override
-	public void sendDataToAllBeings() {}
+	public void sendDataToAllBeings() {
+		ExtendedSNpcTraderInfoPacket packet = new ExtendedSNpcTraderInfoPacket(this);
+		ExtendedPacketHandler.sendToAllTrackingEntity(packet, thisEntity);
+	}
+
+	/*
+	 * Handle data packets from the server
+	 * */
+	public static void readDataPacketFromServer(PacketBuffer buf, World world) {
+		int entityId = buf.readVarInt();
+		Entity entity = world.getEntity(entityId);
+		if (entity instanceof NPCEntity) {
+			NPCEntity npc = (NPCEntity) entity;
+			ExtendedNpcTraderInfoHolder traderInfo = ((ExtendedNPCEntity) npc).getTraderInfo();
+			if(traderInfo!=null) {
+				traderInfo.tradingAlignmentRequired = buf.readVarInt();
+			}
+		}
+	}
 }

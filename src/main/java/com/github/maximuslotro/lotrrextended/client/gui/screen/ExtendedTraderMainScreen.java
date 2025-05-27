@@ -51,24 +51,32 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void tradeWithNPC() {
 		// Ensure the client does not disturb the server when traders can't be traded with
-		if (trader.canTradeWith(player)) {
+		if (trader.canTradeWithPlayer(player)) {
 			trader.openTradeMenu(player);
 		} else {
+			sendClientErrorMessage();
+		}
+	}
+
+	private void tradeCoinsWithNPC() {
+		// Ensure the client does not disturb the server when traders can't be traded with
+		if (trader.canTradeWithPlayer(player)) {
+			trader.openCoinExchange(player);
+		} else {
+			sendClientErrorMessage();
+		}
+	}
+
+	private void sendClientErrorMessage() {
+		if (trader.isFriendly(player)) {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
 			stopTradingClientServer();
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.player != null) {
 				mc.player.closeContainer();
 			}
-		}
-	}
-
-	private void tradeCoinsWithNPC() {
-		// Ensure the client does not disturb the server when traders can't be traded  with
-		if (trader.canTradeWith(player)) {
-			trader.openCoinExchange(player);
-		} else {
-			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+		}else {
+			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
 			stopTradingClientServer();
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.player != null) {

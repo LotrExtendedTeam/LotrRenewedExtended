@@ -173,11 +173,6 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
     }
 
     @Override
-	public boolean canTradeWith(PlayerEntity player){
-        return isFriendlyAndAlignedWithLevel(player, this, 0);
-    }
-
-    @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }

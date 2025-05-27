@@ -90,10 +90,6 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
         this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
     }
 
-    @Override
-	public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
-    }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return HobbitEntity.regAttrs();
     }

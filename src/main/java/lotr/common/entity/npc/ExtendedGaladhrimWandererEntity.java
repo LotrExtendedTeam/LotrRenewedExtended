@@ -125,10 +125,6 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
         this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
-    @Override
-	public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAlignedWithLevel(player, this, 75.0F);
-    }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return ElfEntity.regAttrs();
     }

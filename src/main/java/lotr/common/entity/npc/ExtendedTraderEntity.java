@@ -27,8 +27,15 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 	/**
 	 * Checks if player can trade with the trader
 	 * */
-	boolean canTradeWith(PlayerEntity player);
-
+	default boolean canTradeWithPlayer(PlayerEntity player) {
+		return isFriendlyAndAlignedWithLevel(player, ((NPCEntity)this), getTraderData().getTradingAlignmentRequiredDualSided());
+	}
+	/**
+	 * Checks if player is friendly with the trader
+	 * */
+	default boolean isFriendly(PlayerEntity player) {
+		return isFriendly(player, ((NPCEntity)this));
+	}
     boolean isInteractingWithPlayer();
 
     Optional<UUID> getPlayerInteractingWith();

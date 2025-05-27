@@ -198,11 +198,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	}
 
 	@Override
-	public boolean canTradeWith(PlayerEntity player) {
-		return isFriendlyAndAlignedWithLevel(player, this, 50F);
-	}
-
-	@Override
 	public int setLastTickCooldownReduced() {
 		return lastTickCooldownReduced;
 	}
