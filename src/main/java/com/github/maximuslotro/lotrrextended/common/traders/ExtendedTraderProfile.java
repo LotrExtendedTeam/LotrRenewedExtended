@@ -37,16 +37,21 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTraderProfile {
-	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, EntityType.PIG, 1000, 0, 0, new ArrayList<>(), new ArrayList<>());
+	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, EntityType.PIG, 1000, 0, 0, new ArrayList<>(), new ArrayList<>(), true, 10, 100000);
 	private final ResourceLocation id;
 	private final int tradingAlignmentRequired;
-	private final EntityType<?> traderEntityType;
+	private final EntityType<?> traderEntityType; // TODO maybe remove if not used
 	private final int minimumTrades;
 	private final int maximumAdditionalTrades;
 	private final List<ExtendedTraderPoolItem> buyFromPlayerPool;
 	private final List<ExtendedTraderPoolItem> sellToPlayerPool;
+	private final boolean shouldRefreshTrades;
+	private final int refreshTradesAtValue;
+	private final int lockTicksAfterRefresh;
 
-	public ExtendedTraderProfile(ResourceLocation id, EntityType<?> pTraderEntityType, int pTradingAlignmentRequired, int minimumTrades, int maximumAdditionalTrades, List<ExtendedTraderPoolItem> buyFromPlayerPool, List<ExtendedTraderPoolItem> sellToPlayerPool) {
+	public ExtendedTraderProfile(ResourceLocation id, EntityType<?> pTraderEntityType, int pTradingAlignmentRequired, 
+		int minimumTrades, int maximumAdditionalTrades, List<ExtendedTraderPoolItem> buyFromPlayerPool, List<ExtendedTraderPoolItem> sellToPlayerPool, 
+		boolean shouldRefreshTrades, int refreshTradesAtValue, int lockTicksAfterRefresh) {
 		this.id = id;
 		this.tradingAlignmentRequired = pTradingAlignmentRequired;
 		this.traderEntityType = pTraderEntityType;
@@ -54,6 +59,9 @@ public class ExtendedTraderProfile {
 		this.maximumAdditionalTrades = maximumAdditionalTrades;
 		this.buyFromPlayerPool = buyFromPlayerPool;
 		this.sellToPlayerPool = sellToPlayerPool;
+		this.shouldRefreshTrades = shouldRefreshTrades;
+		this.refreshTradesAtValue = refreshTradesAtValue;
+		this.lockTicksAfterRefresh = lockTicksAfterRefresh;
 	}
 
 	/*
@@ -110,6 +118,30 @@ public class ExtendedTraderProfile {
 		}
 	}
 
+	/**
+	 * Should this profile ever refresh trades
+	 * @return True is should refresh
+	 * */
+	public boolean isShouldRefreshTrades() {
+		return shouldRefreshTrades;
+	}
+
+	/**
+	 * At what value should trades refresh
+	 * @return The value at which trades should refresh
+	 * */
+	public int getRefreshTradesAtValue() {
+		return refreshTradesAtValue;
+	}
+
+	/**
+	 * How long should the trader tick before refreshing trades
+	 * @return Get the time in ticks
+	 * */
+	public int getLockTicksAfterRefresh() {
+		return lockTicksAfterRefresh;
+	}
+
 	/*
 	 * Serializer for ExtendedTraderProfile
 	 * */
@@ -135,9 +167,13 @@ public class ExtendedTraderProfile {
 				minimumTrades=3;
 				maximumAdditionalTrades=6;
 			}
+			boolean shouldRefreshTrades = jsonobject.get("shouldRefreshTrades").getAsBoolean();
+			int refreshTradesAtValue = jsonobject.get("refreshTradesAtValue").getAsInt();
+			int lockTicksAfterRefresh = jsonobject.get("lockTicksAfterRefresh").getAsInt();
 			List<ExtendedTraderPoolItem> buyFromPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "buyFromPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
 			List<ExtendedTraderPoolItem> sellToPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "sellToPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
-			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
+			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, 
+				sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh);
 		}
 
 		@Override
@@ -149,6 +185,9 @@ public class ExtendedTraderProfile {
 			jsonobject.addProperty("tradingAlignmentRequired", traderProfile.getTradingAlignmentRequired());
 			jsonobject.addProperty("minimumTradesOffered", traderProfile.getMinimumTrades());
 			jsonobject.addProperty("maximumAdditionalTradesOffered", traderProfile.getMaximumAdditionalTrades());
+			jsonobject.addProperty("shouldRefreshTrades", traderProfile.getRefreshTradesAtValue());
+			jsonobject.addProperty("refreshTradesAtValue", traderProfile.getRefreshTradesAtValue());
+			jsonobject.addProperty("lockTicksAfterRefresh", traderProfile.getLockTicksAfterRefresh());
 			jsonobject.add("buyFromPlayer", context.serialize(traderProfile.buyFromPlayerPool));
 			jsonobject.add("sellToPlayer", context.serialize(traderProfile.sellToPlayerPool));
 			return jsonobject;
@@ -158,11 +197,14 @@ public class ExtendedTraderProfile {
 	public static class Builder {
 		private int tradingAlignmentRequired;
 		private final EntityType<?> traderEntityType;
-		private int minimumTrades = 3;
-		private int maximumAdditionalTrades = 6;
+		private int minimumTrades = 3; // A minimum of 3 trades
+		private int maximumAdditionalTrades = 6; // A maximum of 6 additional trades
 		private List<ExtendedTraderPoolItem> buyFromPlayerPool = new ArrayList<>();
 		private List<ExtendedTraderPoolItem> sellToPlayerPool = new ArrayList<>();
-
+		private boolean shouldRefreshTrades = true;
+		private int refreshTradesAtValue = 5000; // A default refresh at 5000c traded
+		private int lockTicksAfterRefresh = 6000; // A default 5 minute cooldown 
+		
 		public Builder(EntityType<?> pTraderEntityType, int pTradingAlignmentRequired) {
 			this.traderEntityType = pTraderEntityType;
 			this.tradingAlignmentRequired = pTradingAlignmentRequired;
@@ -197,6 +239,33 @@ public class ExtendedTraderProfile {
 		public Builder setMinMaxTrades(int minimumTrades, int maximumAdditionalTrades) {
 			this.minimumTrades = minimumTrades;
 			this.maximumAdditionalTrades = maximumAdditionalTrades;
+			return this;
+		}
+		/**
+		 * Controls if the trader should refresh trades
+		 * @param shouldRefreshTrades Should the trader refresh trades
+		 * @return The instance of this builder
+		 */
+		public Builder setShouldRefreshTrades(boolean shouldRefreshTrades) {
+			this.shouldRefreshTrades = shouldRefreshTrades;
+			return this;
+		}
+		/**
+		 * Set the maximum value of items a trader can trade before the trades are refreshed
+		 * @param refreshTradesAtValue The value of overall trades to refresh at
+		 * @return The instance of this builder
+		 */
+		public Builder setRefreshTradesAtValue(int refreshTradesAtValue) {
+			this.refreshTradesAtValue = refreshTradesAtValue;
+			return this;
+		}
+		/**
+		 * Set the length of time trader is locked after refresh
+		 * @param lockTicksAfterRefresh Length of time in ticks
+		 * @return The instance of this builder
+		 */
+		public Builder setLockTicksAfterRefresh(int lockTicksAfterRefresh) {
+			this.lockTicksAfterRefresh = lockTicksAfterRefresh;
 			return this;
 		}
 
@@ -359,7 +428,8 @@ public class ExtendedTraderProfile {
 			if(minimumTrades+maximumAdditionalTrades>9) {
 				ExtendedLog.error(id.toString()+" has defined a profile with more than 9 max slots");
 			}
-			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, sellToPlayerPool);
+			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, 
+				buyFromPlayerPool, sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh);
 			return spawner;
 		}
 

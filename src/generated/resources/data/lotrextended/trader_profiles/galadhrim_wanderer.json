@@ -4,6 +4,9 @@
   "tradingAlignmentRequired": 75,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": 5000,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
       "averageCost": 2,

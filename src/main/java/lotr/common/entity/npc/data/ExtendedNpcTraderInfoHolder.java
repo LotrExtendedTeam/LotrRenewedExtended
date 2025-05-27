@@ -32,6 +32,9 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private List<ExtendedTrade> itemsSoldByTrader;
 	private ExtendedTraderProfile traderProfileHolder;
 	private int tradingAlignmentRequired = 1659; // February 16 – The first known check (400 pounds) is written.
+	private boolean shouldRefreshTrades;
+	private int refreshTradesAtValue;
+	private int lockTicksAfterRefresh;
 
 	private boolean resendData = false;
 
