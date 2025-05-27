@@ -32,27 +32,22 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private List<ExtendedTrade> itemsSoldByTrader;
 	private ExtendedTraderProfile traderProfileHolder;
 	private int tradingAlignmentRequired = 1659; // February 16 – The first known check (400 pounds) is written.
-	private boolean shouldRefreshTrades;
+	private boolean shouldRefreshTrades = true;
 	private int refreshTradesAtValue;
 	private int lockTicksAfterRefresh;
 
 	private boolean resendData = false;
+	private boolean loadedData = false;
 
 	public ExtendedNpcTraderInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
 	}
 
 	public List<ExtendedTrade> getBuys() {
-		if(itemsBoughtByTrader==null) {
-			itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
-		}
 		return itemsBoughtByTrader;
 	}
 
 	public List<ExtendedTrade> getSells() {
-		if(itemsSoldByTrader==null) {
-			itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
-		}
 		return itemsSoldByTrader;
 	}
 
@@ -86,6 +81,10 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return outputTrades;
 	}
 
+	/*
+	 * SHOULD ONLY BE CALLED ON THE SERVER, TRADER PROFILES ARE NOT AVAILABLE CLIENT SIDE!
+	 * IM LOOKING AT YOU MAX! (MYSELF) (I keep making the mistake)
+	 * */
 	public ExtendedTraderProfile getProfile() {
 		if(traderProfileHolder!=null) {
 			return traderProfileHolder;
@@ -135,12 +134,21 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return tradingAlignmentRequired;
 	}
 
+	/*
+	 * Generate new trader data if not loaded, respecting previously set values
+	 * */
 	@Override
 	public void tick() {
 		if (!thisEntity.level.isClientSide) {
-			if(tradingAlignmentRequired==1659) {
-				tradingAlignmentRequired = getProfile().getTradingAlignmentRequired();
-				resendData = true;
+			if(loadedData==false) {
+				itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
+				itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
+				tradingAlignmentRequired = tradingAlignmentRequired==1659 ? getProfile().getTradingAlignmentRequired() : tradingAlignmentRequired;
+				shouldRefreshTrades = !shouldRefreshTrades ? false : getProfile().isShouldRefreshTrades();
+				refreshTradesAtValue = refreshTradesAtValue==0 ? getProfile().getRefreshTradesAtValue() : refreshTradesAtValue;
+				lockTicksAfterRefresh = lockTicksAfterRefresh==0 ? getProfile().getLockTicksAfterRefresh() : lockTicksAfterRefresh;
+				loadedData = true;
+				markDirty();
 			}
 			if (resendData) {
 				sendDataToAllBeings();
@@ -150,39 +158,46 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	@Override
-	public void markDirty() {}
+	public void markDirty() {
+		resendData = true;
+	}
 
 	@Override
 	public void loadFromNbt(CompoundNBT nbt) {
-		if(nbt.contains("traderInfo")) {
-			CompoundNBT holder = nbt.getCompound("traderInfo");
+		if(nbt.contains("TraderInfo")) {
+			CompoundNBT holder = nbt.getCompound("TraderInfo");
+			loadedData = holder.getBoolean("HasLoaded");
 			List<ExtendedTrade> buys = TradeUtils.loadAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, holder);
 			List<ExtendedTrade> sells = TradeUtils.loadAllTrades(ExtendedTradeType.SELL_TO_PLAYER, holder);
-			if (!buys.isEmpty()) {
-				itemsBoughtByTrader = buys;
+			tradingAlignmentRequired = holder.contains("TradingAlignmentRequired") ? holder.getInt("TradingAlignmentRequired") : 1659;
+			shouldRefreshTrades = holder.contains("ShouldLockTrades") ? holder.getBoolean("ShouldLockTrades") : true;
+			refreshTradesAtValue = holder.getInt("LockTradeAtValue");
+			lockTicksAfterRefresh = holder.getInt("LockValueDecayTicks");
+			if (buys.isEmpty() || sells.isEmpty() || refreshTradesAtValue==0 || lockTicksAfterRefresh==0 || tradingAlignmentRequired==1659) {
+				ExtendedLog.infoShown("Generating new trader for for invalid nbt: "+getProfile().getId().toString());
+				ExtendedLog.infoShown(holder.getAsString());
+				loadedData=false;
 			}else {
-				ExtendedLog.infoShown("Generating new Trades for invalid nbt: "+getProfile().getId().toString());
-				itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
-			}
-			if (!sells.isEmpty()) {
+				itemsBoughtByTrader = buys;	
 				itemsSoldByTrader = sells;
-			}else {
-				ExtendedLog.infoShown("Generating new Trades for invalid nbt: "+getProfile().getId().toString());
-				itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
+				loadedData=true;
 			}
 		}else {
-			ExtendedLog.infoShown("Generating new Trades for older trader: "+getProfile().getId().toString());
-			itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
-			itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
+			loadedData=false;
 		}
 	}
 
 	@Override
 	public void writeToNbt(CompoundNBT nbt) {
 		CompoundNBT holder = new CompoundNBT();
+		holder.putBoolean("HasLoaded", loadedData);
+		holder.putInt("TradingAlignmentRequired", tradingAlignmentRequired);
+		holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
+		holder.putInt("LockTradeAtValue", refreshTradesAtValue);
+		holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
 		TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
 		TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
-		nbt.put("traderInfo", holder);
+		nbt.put("TraderInfo", holder);
 	}
 
 	/*
