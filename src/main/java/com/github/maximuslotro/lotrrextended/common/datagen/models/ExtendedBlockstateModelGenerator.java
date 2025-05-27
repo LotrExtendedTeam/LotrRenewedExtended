@@ -130,6 +130,8 @@ import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
+import lotr.common.block.ExtendedSwappablePathSlabBlock;
+
 public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private List<Block> registeredBlocks = new ArrayList<>();
@@ -556,12 +558,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						if(block.getKey().equals("grass_path_slab")) {
-							genPathSlabBlockItem(
+							genSwappablePathSlabBlock(
 									(SlabBlock) block.getValue().get(),
 									mcLoc("block/grass_path_side"),
 									mcLoc("block/dirt"),
 									mcLoc("block/grass_path_top"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top"))
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")),
+									mcLoc("block/grass_path")
 									);
 							continue;
 						}
@@ -992,7 +995,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
-	private void genPathSlabBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel) {
+	private void genSwappablePathSlabBlock(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, ResourceLocation CustomDoubleModelLoc) {
 		registeredBlocks.add(slab);
 
 		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), top, top, top);
@@ -1004,17 +1007,28 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.texture("side", side)
 				.texture("bottom", bottom)
 				.texture("top", top);
+		ModelFile customTopModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_custom", modLoc("block/path_slab_top_custom"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top);
+
+		ModelFile customDoubleModel = models().getExistingFile(CustomDoubleModelLoc);
 
 		getVariantBuilder(slab)
 				.forAllStatesExcept(state -> {
 					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
 					SlabType type = state.getValue(SlabBlock.TYPE);
+					Boolean lotrtexture = state.getValue(ExtendedSwappablePathSlabBlock.LOTRTEXTURE);
+
 					boolean uvlock = axis != Axis.Y;
 
 					ModelFile model;
-					if (type == SlabType.BOTTOM && axis == Axis.Y) {
-						model = customBottomModel;
-					} else {
+					if (lotrtexture && axis == Direction.Axis.Y) {
+						model = type == SlabType.DOUBLE
+								? customDoubleModel
+								: (type == SlabType.BOTTOM ? customBottomModel : customTopModel);
+					}else {
 						model = type == SlabType.DOUBLE
 								? doubleModel
 								: (type == SlabType.BOTTOM ? slabModel : slabModelTop);

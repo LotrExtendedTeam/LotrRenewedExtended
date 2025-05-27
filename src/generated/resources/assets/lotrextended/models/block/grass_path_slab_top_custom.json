@@ -1,0 +1,9 @@
+{
+  "parent": "lotrextended:block/path_slab_top_custom",
+  "textures": {
+    "particle": "minecraft:block/dirt",
+    "side": "minecraft:block/grass_path_side",
+    "bottom": "minecraft:block/dirt",
+    "top": "minecraft:block/grass_path_top"
+  }
+}
