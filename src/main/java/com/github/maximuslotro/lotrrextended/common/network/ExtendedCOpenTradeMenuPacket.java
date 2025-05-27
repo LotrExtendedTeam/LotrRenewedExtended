@@ -48,8 +48,12 @@ public class ExtendedCOpenTradeMenuPacket {
     	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
 
     	// Ensure a modified client does not send trade request, bypassing client trade request check
-    	if (!trader.canTradeWith(context.get().getSender())) {
-    		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+    	if (!trader.canTradeWithPlayer(context.get().getSender())) {
+    		if(trader.isFriendly(context.get().getSender())) {
+        		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+    		}else{
+        		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
+    		}
     		context.get().setPacketHandled(true);
     		return;
     	}
