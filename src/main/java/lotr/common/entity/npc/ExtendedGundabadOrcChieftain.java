@@ -1,18 +1,14 @@
 package lotr.common.entity.npc;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.util.ExtendedCaptainHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -56,11 +52,6 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 		npcItemsInv.setIdleItemsFromMeleeWeapons();
 
 		return spawnData;
-	}
-
-	@Override
-	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
 	}
 
 	@Override

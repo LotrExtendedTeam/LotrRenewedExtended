@@ -14,14 +14,11 @@ import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClients
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
@@ -120,14 +117,6 @@ public class ExtendedTraderHelper {
             boughtOriginalQuantity[i] = bought.get(i).getOriginalQuantity();
         }
         return boughtOriginalQuantity;
-    }
-
-    public static ActionResultType mobInteract(NPCEntity npc, ExtendedTraderEntity trader, PlayerEntity player, Hand hand) {
-        if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem
-                || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
-            return ActionResultType.SUCCESS;
-        }
-        return openTraderGui(npc, player, trader);
     }
 
     public static void tickTrader(NPCEntity npc, ExtendedTraderEntity trader) {

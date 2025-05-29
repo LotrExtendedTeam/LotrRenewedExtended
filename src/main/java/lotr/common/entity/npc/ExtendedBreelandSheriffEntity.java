@@ -9,20 +9,16 @@ import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
-import lotr.common.util.ExtendedCaptainHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -58,11 +54,6 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     @Override
     protected Goal createAttackGoal() {
         return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45, new ItemStack(Items.SHIELD), ItemStack.EMPTY);
-    }
-
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
     }
 
     @Override

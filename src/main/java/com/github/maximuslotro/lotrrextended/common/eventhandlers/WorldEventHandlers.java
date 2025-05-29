@@ -13,12 +13,9 @@ import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -26,26 +23,12 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class WorldEventHandlers {
-
-	@SubscribeEvent
-	public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
-		if (event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof SpawnEggItem ||
-				event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof LOTRSpawnEggItem) {
-			if (event.getTarget() instanceof ExtendedTraderEntity) {
-				ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getTarget();
-
-				ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
-				event.setCanceled(true);
-			}
-		}
-	}
 
 	@SubscribeEvent
 	public static void preventCloakedRangersFromBeingTargeted(LivingSetAttackTargetEvent event) {

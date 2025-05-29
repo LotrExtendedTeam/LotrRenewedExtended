@@ -33,8 +33,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
@@ -140,11 +138,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     @Override
     public void removePlayerFromInteracting(PlayerEntity player) {
     	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
-    }
-
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }
 
     @Override

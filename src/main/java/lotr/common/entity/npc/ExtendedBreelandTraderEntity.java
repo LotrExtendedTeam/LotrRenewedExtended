@@ -14,8 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public abstract class ExtendedBreelandTraderEntity extends BreeManEntity implements ExtendedTraderEntity {
@@ -48,11 +46,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D);
-    }
-
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }
 
     @Override
