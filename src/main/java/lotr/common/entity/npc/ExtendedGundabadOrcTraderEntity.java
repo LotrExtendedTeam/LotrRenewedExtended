@@ -3,6 +3,7 @@ package lotr.common.entity.npc;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
@@ -194,7 +195,11 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 
 	@Override
 	protected void addNPCTargetingAI() {
-		this.addNonAggressiveTargetingGoals();
+		if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
@@ -107,7 +108,11 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 
     @Override
     protected void addNPCTargetingAI() {
-        this.addNonAggressiveTargetingGoals();
+    	if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
     }
 
     @Override

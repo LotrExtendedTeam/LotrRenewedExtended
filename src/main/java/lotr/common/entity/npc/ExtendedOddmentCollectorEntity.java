@@ -113,6 +113,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
         ExtendedTraderHelper.saveWanderingTraderEscortUUIDs(this, escorts, tag);
     }
 
+    // Keep non-aggressive since oddment collectors don't have a proper faction
     @Override
     protected void addNPCTargetingAI() {
         this.addNonAggressiveTargetingGoals();

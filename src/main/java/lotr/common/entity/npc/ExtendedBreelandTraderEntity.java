@@ -3,6 +3,8 @@ package lotr.common.entity.npc;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
@@ -113,5 +115,14 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
 	@Override
 	public void getLastTickCooldownReduced(int cooldown) {
 		lastTickCooldownReduced = cooldown;
+	}
+	
+	@Override
+	protected void addNPCTargetingAI() {
+		if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 }

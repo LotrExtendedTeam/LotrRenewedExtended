@@ -3,6 +3,7 @@ package lotr.common.entity.npc;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
 import lotr.common.entity.npc.ai.goal.*;
@@ -171,5 +172,14 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.HOBBIT_BARTENDER;
+	}
+
+	@Override
+	protected void addNPCTargetingAI() {
+		if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 }

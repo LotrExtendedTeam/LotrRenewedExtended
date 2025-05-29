@@ -39,7 +39,7 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
     @Override
     protected void addNPCTargetingAI() {
-    	if(ExtendedServerConfig.enableLegacyCaptainAggressionBehavior.get()) {
+    	if(ExtendedServerConfig.enableLegacyCaptainPassiveBehavior.get()) {
     		this.addNonAggressiveTargetingGoals();
     	}else {
     		this.addAggressiveTargetingGoals();
