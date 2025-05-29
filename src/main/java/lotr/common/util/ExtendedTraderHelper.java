@@ -24,10 +24,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -154,47 +152,7 @@ public class ExtendedTraderHelper {
         }
     }
 
-    public static void tickWanderingTrader(NPCEntity npc, ExtendedWanderingTraderEntity wanderingTrader) {
-        if (wanderingTrader.isTraderWandering()) {
-            if (wanderingTrader.getWanderingTraderTicksLeft() < 1) {
-                // notify players the travelling trader has departed
-                for (PlayerEntity player : npc.level.players()) {
-                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
-                }
-
-                npc.remove();
-
-                if (wanderingTrader.getEscortUUIDs() != null && !wanderingTrader.getEscortUUIDs().isEmpty()) {
-                    AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(),
-                            npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
-                    List<NPCEntity> potentialEscorts = npc.level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
-
-                    for (NPCEntity entity : potentialEscorts) {
-                        if (wanderingTrader.getEscortUUIDs().contains(entity.getUUID())) {
-                            entity.remove();
-                        }
-                    }
-                }
-
-            } else {
-            	wanderingTrader.setWanderingTraderTicksLeft(wanderingTrader.getWanderingTraderTicksLeft() - 1);
-                // warn players nearby at 4 minutes left
-                if (wanderingTrader.getWanderingTraderTicksLeft() == 2400) {
-                    AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
-                    List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
-
-                    for (PlayerEntity player : playersInRange) {
-                        player.sendMessage(wanderingTrader.getDepartureLine(player), Util.NIL_UUID);
-                    }
-                }
-            }
-        }
-    }
-
-    public static void saveWanderingTraderData(ExtendedWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
-        tag.putInt("wanderingTraderTimeLeft", trader.getWanderingTraderTicksLeft());
-        tag.putBoolean("isWanderingTrader", trader.isWanderingTrader());
-
+    public static void saveWanderingTraderEscortUUIDs(ExtendedWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
         ListNBT listnbt = new ListNBT();
         for (UUID escort : escorts) {
             CompoundNBT compoundnbt = new CompoundNBT();

@@ -15,26 +15,37 @@ import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTrader
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.Util;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private final NPCEntity thisEntity;
+	// All traders
 	private List<ExtendedTrade> itemsBoughtByTrader;
 	private List<ExtendedTrade> itemsSoldByTrader;
 	private ExtendedTraderProfile traderProfileHolder;
 	private int tradingAlignmentRequired = 1659; // February 16 – The first known check (400 pounds) is written.
 	private boolean shouldRefreshTrades = true;
-	private int refreshTradesAtValue;
-	private int lockTicksAfterRefresh;
+	private int refreshTradesAtValue = 0; // Zero is invalid
+	private int lockTicksAfterRefresh; // Not implemented yet
+	private int currentTraderSoldAmount = 0; // Not implemented yet
+	// Wandering traders start at 600 ticks (30 seconds) just to make sure there's no chance they immediately despawn
+	private int wanderingTraderAliveTime = 600;
+	private boolean isWanderingTrader = false;
 
 	private boolean resendData = false;
 	private boolean loadedData = false;
@@ -81,7 +92,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return outputTrades;
 	}
 
-	/*
+	/**
 	 * SHOULD ONLY BE CALLED ON THE SERVER, TRADER PROFILES ARE NOT AVAILABLE CLIENT SIDE!
 	 * IM LOOKING AT YOU MAX! (MYSELF) (I keep making the mistake)
 	 * */
@@ -134,7 +145,14 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return tradingAlignmentRequired;
 	}
 
-	/*
+	public void refreshTrades() {
+		itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
+		itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
+		currentTraderSoldAmount = 0;
+		markDirty();
+	}
+
+	/**
 	 * Generate new trader data if not loaded, respecting previously set values
 	 * */
 	@Override
@@ -143,6 +161,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			if(loadedData==false) {
 				itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
 				itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
+				currentTraderSoldAmount = 0;
 				tradingAlignmentRequired = tradingAlignmentRequired==1659 ? getProfile().getTradingAlignmentRequired() : tradingAlignmentRequired;
 				shouldRefreshTrades = !shouldRefreshTrades ? false : getProfile().isShouldRefreshTrades();
 				refreshTradesAtValue = refreshTradesAtValue==0 ? getProfile().getRefreshTradesAtValue() : refreshTradesAtValue;
@@ -150,10 +169,14 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 				loadedData = true;
 				markDirty();
 			}
+			if(shouldRefreshTrades && currentTraderSoldAmount>refreshTradesAtValue) {
+				refreshTrades();
+			}
 			if (resendData) {
 				sendDataToAllBeings();
 				resendData = false;
 			}
+			tickWanderingTrader(thisEntity);
 		}
 	}
 
@@ -173,6 +196,9 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			shouldRefreshTrades = holder.contains("ShouldLockTrades") ? holder.getBoolean("ShouldLockTrades") : true;
 			refreshTradesAtValue = holder.getInt("LockTradeAtValue");
 			lockTicksAfterRefresh = holder.getInt("LockValueDecayTicks");
+			currentTraderSoldAmount = holder.getInt("CurrentTraderSoldAmount");
+			wanderingTraderAliveTime = holder.getInt("WanderingTraderTimeLeft"); // Defaults to zero (despawn if wandering if broken)
+			isWanderingTrader = nbt.getBoolean("IsWanderingTrader"); //Defaults to false, which is required
 			if (buys.isEmpty() || sells.isEmpty() || refreshTradesAtValue==0 || lockTicksAfterRefresh==0 || tradingAlignmentRequired==1659) {
 				ExtendedLog.infoShown("Generating new trader for for invalid nbt: "+getProfile().getId().toString());
 				ExtendedLog.infoShown(holder.getAsString());
@@ -185,6 +211,11 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		}else {
 			loadedData=false;
 		}
+		// Handle pre-1.7.4 wandering traders
+		if(nbt.contains("isWanderingTrader")) {
+			isWanderingTrader = nbt.getBoolean("IsWanderingTrader");
+			wanderingTraderAliveTime = nbt.getInt("WanderingTraderTimeLeft");
+		}
 	}
 
 	@Override
@@ -195,12 +226,15 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
 		holder.putInt("LockTradeAtValue", refreshTradesAtValue);
 		holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
+		holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
+		holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
+		holder.putBoolean("IsWanderingTrader", isWanderingTrader);
 		TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
 		TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
 		nbt.put("TraderInfo", holder);
 	}
 
-	/*
+	/**
 	 * Only enable this module if its attached to a trader
 	 * */
 	@Override
@@ -208,7 +242,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return thisEntity instanceof ExtendedTraderEntity;
 	}
 
-	/*
+	/**
 	 * Sync trader alignment level data
 	 * */
 	@Override
@@ -218,7 +252,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		return buf;
 	}
 
-	/*
+	/**
 	 * Sync trader alignment level data
 	 * */
 	@Override
@@ -227,7 +261,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		ExtendedPacketHandler.sendToClient(packet, player);
 	}
 
-	/*
+	/**
 	 * Sync trader alignment level data
 	 * */
 	@Override
@@ -250,4 +284,66 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			}
 		}
 	}
+
+	/**
+	 * Gets if this trader is wandering. Should ONLY be set to true if instance of ExtendedWanderingTraderEntity
+	 * Even then, ExtendedWanderingTraderEntity can be false when set from an egg.
+	 * @return True if should handle NPC as wandering.
+	 * */
+	public boolean isWanderingTrader() {
+		return isWanderingTrader;
+	}
+
+	/**
+	 * Set to mark this trader as wandering, as opposed to a trader that does not despawn
+	 * @param isWanderingTrader Sets the wandering state
+	 * */
+	public void setWanderingTrader(boolean isWanderingTrader) {
+		this.isWanderingTrader = isWanderingTrader;
+	}
+
+	/**
+	 * Sets the time that a wandering trader can be alive for
+	 * @param wanderingTraderAliveTime The number of ticks to be alive for
+	 * */
+	public void setWanderingTraderAliveTime(int wanderingTraderAliveTime) {
+		this.wanderingTraderAliveTime = wanderingTraderAliveTime;
+	}
+
+	private void tickWanderingTrader(NPCEntity npc) {
+		if (isWanderingTrader()) {
+			if (wanderingTraderAliveTime < 1) {
+				// notify players the traveling trader has departed
+				for (PlayerEntity player : npc.level.players()) {
+					player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+				}
+
+                npc.remove();
+
+                if (((ExtendedWanderingTraderEntity)npc).getEscortUUIDs() != null && !((ExtendedWanderingTraderEntity)npc).getEscortUUIDs().isEmpty()) {
+                    AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(),
+                            npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
+                    List<NPCEntity> potentialEscorts = npc.level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
+
+                    for (NPCEntity entity : potentialEscorts) {
+                        if (((ExtendedWanderingTraderEntity)npc).getEscortUUIDs().contains(entity.getUUID())) {
+                            entity.remove();
+                        }
+                    }
+                }
+
+            } else {
+            	wanderingTraderAliveTime-=1;
+                // warn players nearby at 4 minutes left
+                if (wanderingTraderAliveTime == 2400) {
+                    AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
+                    List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
+
+                    for (PlayerEntity player : playersInRange) {
+                        player.sendMessage(((ExtendedWanderingTraderEntity)npc).getDepartureLine(player), Util.NIL_UUID);
+                    }
+                }
+            }
+        }
+    }
 }

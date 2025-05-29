@@ -44,15 +44,6 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 
     void removePlayerFromInteracting(PlayerEntity player);
 
-    /**
-     * Gets if this trader is wandering. Should ONLY be set to true if instance of ExtendedWanderingTraderEntity
-     * Even then, ExtendedWanderingTraderEntity can be false when set from an egg.
-     * @return True if should handle NPC as wandering.
-     * */
-    default boolean isTraderWandering() {
-    	return false;
-    }
-
     int setLastTickCooldownReduced();
     void getLastTickCooldownReduced(int cooldown);
 }
