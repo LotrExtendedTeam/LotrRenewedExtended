@@ -18,6 +18,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.DoubleValue dripstoneMinimumDamageHeight;
 	public static ForgeConfigSpec.BooleanValue enableDefaultWaypointTeleportation;
 	public static ForgeConfigSpec.BooleanValue enableCustomWaypointTeleportation;
+	public static ForgeConfigSpec.BooleanValue enableLegacyCaptainAggressionBehavior;
+
 
 	// Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
@@ -49,6 +51,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		enableDefaultWaypointTeleportation = createBooleanValue(builder, "enableDefaultWaypointTeleportation", true, false, "Enable Teleportation To Default Waypoints");
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
+		enableLegacyCaptainAggressionBehavior = createBooleanValue(builder, "enableLegacyCaptainAggressionBehavior", true, true, "Make captains non aggressive until attacked, like in legacy");
 		builder.pop();
 
 		builder.push("Chair settings");

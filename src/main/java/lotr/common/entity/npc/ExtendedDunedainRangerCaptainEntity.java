@@ -1,5 +1,6 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.init.ExtendedItems;
@@ -35,7 +36,11 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 
 	@Override
 	protected void addNPCTargetingAI() {
-		this.addNonAggressiveTargetingGoals();
+		if(ExtendedServerConfig.enableLegacyCaptainAggressionBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 
 	@Override
