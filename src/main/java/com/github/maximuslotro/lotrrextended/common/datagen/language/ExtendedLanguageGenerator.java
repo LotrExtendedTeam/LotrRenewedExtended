@@ -132,11 +132,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
+		addD("gui.lotrextended.trading.trade_button.tooltip", "Browse goods and strike a deal");
+		addD("gui.lotrextended.trading.exchange_button", "Exchange Coins");
+		addD("gui.lotrextended.trading.exchange_button.tooltip", "Exchange coin denominations");
+		addD("gui.lotrextended.trading.talk_button", "Talk");
+		addD("gui.lotrextended.trading.talk_button.tooltip", "Talk with %1$s");
 		addD("gui.lotrextended.trading.trader_busy", "The trader is busy with another player at the moment.");
 		addD("gui.lotrextended.trading.trader_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.trading.trader_unfrendly", "Trader is unfriendly at the moment.");
-		addD("gui.lotrextended.trading.talk_button", "Talk");
-		addD("gui.lotrextended.trading.exchange_button", "Exchange Coins");
 		addD("gui.lotrextended.trading.buy", "Buy");
 		addD("gui.lotrextended.trading.sell", "Sell");
 		addD("gui.lotrextended.trading.sell_offers", "Sell Offers");

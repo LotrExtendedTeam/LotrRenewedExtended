@@ -32,6 +32,7 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
 	}
 	/**
 	 * Checks if player is friendly with the trader
+	 * TODO make work on the client!
 	 * */
 	default boolean isFriendly(PlayerEntity player) {
 		return isFriendly(player, ((NPCEntity)this));
