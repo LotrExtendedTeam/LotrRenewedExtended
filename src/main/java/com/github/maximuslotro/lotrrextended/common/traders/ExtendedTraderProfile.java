@@ -122,7 +122,7 @@ public class ExtendedTraderProfile {
 	 * Should this profile ever refresh trades
 	 * @return True is should refresh
 	 * */
-	public boolean isShouldRefreshTrades() {
+	public boolean shouldRefreshTrades() {
 		return shouldRefreshTrades;
 	}
 
@@ -185,7 +185,7 @@ public class ExtendedTraderProfile {
 			jsonobject.addProperty("tradingAlignmentRequired", traderProfile.getTradingAlignmentRequired());
 			jsonobject.addProperty("minimumTradesOffered", traderProfile.getMinimumTrades());
 			jsonobject.addProperty("maximumAdditionalTradesOffered", traderProfile.getMaximumAdditionalTrades());
-			jsonobject.addProperty("shouldRefreshTrades", traderProfile.getRefreshTradesAtValue());
+			jsonobject.addProperty("shouldRefreshTrades", traderProfile.shouldRefreshTrades());
 			jsonobject.addProperty("refreshTradesAtValue", traderProfile.getRefreshTradesAtValue());
 			jsonobject.addProperty("lockTicksAfterRefresh", traderProfile.getLockTicksAfterRefresh());
 			jsonobject.add("buyFromPlayer", context.serialize(traderProfile.buyFromPlayerPool));

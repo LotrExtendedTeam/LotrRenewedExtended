@@ -182,7 +182,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 				itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
 				itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
 				tradingAlignmentRequired = tradingAlignmentRequired==1659 ? getProfile().getTradingAlignmentRequired() : tradingAlignmentRequired;
-				shouldRefreshTrades = !shouldRefreshTrades ? false : getProfile().isShouldRefreshTrades();
+				shouldRefreshTrades = !shouldRefreshTrades ? false : getProfile().shouldRefreshTrades();
 				refreshTradesAtValue = refreshTradesAtValue==0 ? getProfile().getRefreshTradesAtValue() : refreshTradesAtValue;
 				lockTicksAfterRefresh = lockTicksAfterRefresh==0 ? getProfile().getLockTicksAfterRefresh() : lockTicksAfterRefresh;
 				currentTraderSoldAmount = 0;
