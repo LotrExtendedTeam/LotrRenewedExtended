@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/filthy_rich",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_hundred"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.general.ludicrously_rich.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.general.ludicrously_rich.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_any_trader_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "false",
+        "coins_moved": {
+          "min": 2500
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_buy"
+    ]
+  ]
+}
