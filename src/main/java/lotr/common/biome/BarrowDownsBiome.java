@@ -54,10 +54,10 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 				LOTRBiomeFeatures.spruce(), 5000, LOTRBiomeFeatures.spruceDead(), 1000,
 				LOTRBiomeFeatures.birch(), 1500, LOTRBiomeFeatures.birchDead(), 150 };
 		LOTRBiomeFeatures.addTrees(this, builder, 0, 0.1F, weightedTrees);
-		LOTRBiomeFeatures.addAthelasChance(builder);
-		LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
 		LOTRBiomeFeatures.addGrass(this, builder, 7, ExtendedGrassBlends.BARROW_DOWNS_GRASS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_MUTED);
+		LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
+		LOTRBiomeFeatures.addAthelasChance(builder);
 		ExtendedBiomeFeatures.addMoss(builder, 2);
 	}
 
@@ -89,9 +89,10 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 					LOTRBiomeFeatures.spruce(), 5000, LOTRBiomeFeatures.spruceDead(), 1000,
 					LOTRBiomeFeatures.birch(), 1500, LOTRBiomeFeatures.birchDead(), 150 };
 			LOTRBiomeFeatures.addTrees(this, builder, 0, 0.4F, weightedTrees);
-			LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
 			LOTRBiomeFeatures.addGrass(this, builder, 7, ExtendedGrassBlends.BARROW_DOWNS_GRASS);
 			LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_MUTED);
+			LOTRBiomeFeatures.addPlainsFlowers(builder, 1);
+			LOTRBiomeFeatures.addAthelasChance(builder);
 			ExtendedBiomeFeatures.addMoss(builder, 2);
 			LOTRBiomeFeatures.addSeagrass(builder, 48, 0.4F);
 		}
