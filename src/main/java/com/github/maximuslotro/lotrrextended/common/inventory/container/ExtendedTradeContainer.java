@@ -237,6 +237,9 @@ public class ExtendedTradeContainer extends Container {
     public ItemStack clicked(int index, int p_184996_2_, ClickType clickType, PlayerEntity p_184996_4_) {
         // handle buy items
         if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP) || clickType.equals(ClickType.PICKUP_ALL))) {
+        	if(trader.getTraderData().isTradesLocked()) {
+        		return ItemStack.EMPTY;
+        	}
             boolean canPerformTrade = CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index] && soldQuantities[index] > 0;
 
             if (index < soldItems.length) {
@@ -357,6 +360,9 @@ public class ExtendedTradeContainer extends Container {
 
         if (slot.container.equals(displayInventory)) {
             if (slot.index < 9) {
+            	if(trader.getTraderData().isTradesLocked()) {
+            		return ItemStack.EMPTY;
+            	}
             	// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
             	if(displayInventory.getItem(slot.index).getCount()<=0) {
             		return ItemStack.EMPTY;
@@ -436,6 +442,9 @@ public class ExtendedTradeContainer extends Container {
      * ONLY CALL SERVER SIDE!
      * */
     public void handleSellItemsToTrader() {
+    	if(trader.getTraderData().isTradesLocked()) {
+    		return;
+    	}
         // sum the counts for each Item
         HashMap<Item, Integer> counts = new HashMap<>();
         for (int i = 0; i < sellInventory.getContainerSize(); i++) {

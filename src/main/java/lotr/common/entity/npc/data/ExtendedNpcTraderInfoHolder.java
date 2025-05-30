@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcTraderInfoPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSTradeRefreshPacket;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
@@ -181,7 +182,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	/**
-	 * Refreshes the trader's trades, resets the current stock sold counter, and starts the trade lockout period
+	 * Refreshes the trader's trades, resets the current stock sold counter
 	 * */
 	public void refreshTrades() {
 		itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
@@ -189,8 +190,9 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		currentTraderSoldAmount = 0; // Reset trader sold counter
 		currentTraderBoughtAmount = 0; // Reset trader bought counter
 		refreshTradesAtValue = refreshTradesAtValue==0 ? getProfile().getRefreshTradesAtValue() : refreshTradesAtValue; //Just handle invalid values after init
-		currentTraderLockTicksAmount=1; // Start trades lockout
 		markDirty();
+		ExtendedSTradeRefreshPacket packet = new ExtendedSTradeRefreshPacket(thisEntity.getId());
+		ExtendedPacketHandler.sendToAllTrackingEntity(packet, thisEntity);
 	}
 
 	/**
@@ -214,14 +216,15 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 				markDirty();
 			}
 			// Handle traded amount being above max trade limit
-			if(shouldRefreshTrades && (currentTraderSoldAmount+currentTraderBoughtAmount)>refreshTradesAtValue) {
-				refreshTrades();
+			if(shouldRefreshTrades && (currentTraderSoldAmount+currentTraderBoughtAmount)>refreshTradesAtValue && currentTraderLockTicksAmount==0) {
+				currentTraderLockTicksAmount=1; // Start trades lockout
+				markDirty();
 			}
 			// Handle trader lock countdown
 			if(currentTraderLockTicksAmount>0) {
 				if(currentTraderLockTicksAmount>=lockTicksAfterRefresh) {
 					currentTraderLockTicksAmount=0;
-					markDirty();
+					refreshTrades();
 				}else {
 					currentTraderLockTicksAmount+=1;
 				}
@@ -343,6 +346,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			ExtendedNpcTraderInfoHolder traderInfo = ((ExtendedNPCEntity) npc).getTraderInfo();
 			if(traderInfo!=null) {
 				traderInfo.tradingAlignmentRequired = buf.readVarInt();
+				traderInfo.currentTraderLockTicksAmount = buf.readBoolean() ? 1 : 0;
 			}
 		}
 	}
