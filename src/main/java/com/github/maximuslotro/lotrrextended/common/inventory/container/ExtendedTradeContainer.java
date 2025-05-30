@@ -338,7 +338,7 @@ public class ExtendedTradeContainer extends Container {
             return carriedItem;
         }
         // TODO add better validation for allowable move types
-        if (clickType == ClickType.QUICK_CRAFT || clickType == ClickType.QUICK_MOVE || clickType == ClickType.SWAP || clickType == ClickType.THROW) {
+        if (clickType == ClickType.QUICK_CRAFT || clickType == ClickType.SWAP || clickType == ClickType.THROW) {
         	return ItemStack.EMPTY;
         }
         // Allow clone as it only works in creative anyways
