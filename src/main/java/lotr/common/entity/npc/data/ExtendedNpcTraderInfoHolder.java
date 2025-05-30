@@ -314,6 +314,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	public PacketBuffer createDataPacketToClient(PacketBuffer buf) { 
 		buf.writeVarInt(thisEntity.getId());
 		buf.writeVarInt(tradingAlignmentRequired);
+		buf.writeBoolean(isTradesLocked());
 		return buf;
 	}
 
