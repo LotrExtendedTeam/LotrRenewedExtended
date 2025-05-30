@@ -22,7 +22,7 @@ public class ExtendedCTradeSellItemsPacket {
 		ServerPlayerEntity player = context.get().getSender();
 	    if (player.containerMenu instanceof ExtendedTradeContainer) {
 			ExtendedTradeContainer container = (ExtendedTradeContainer) player.containerMenu;
-			container.handleSellItems();
+			container.handleSellItemsToTrader();
 		}
 		context.get().setPacketHandled(true);
 	}

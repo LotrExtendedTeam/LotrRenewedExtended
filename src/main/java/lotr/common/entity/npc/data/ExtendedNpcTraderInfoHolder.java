@@ -41,7 +41,10 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private int tradingAlignmentRequired = 1659; // February 16 – The first known check (400 pounds) is written.
 	private boolean shouldRefreshTrades = true;
 	private int refreshTradesAtValue = 0; // Zero is invalid, runs refresh on next trade, unless on first load
-	private int currentTraderSoldAmount = 0; // TODO add logic to increment this
+	private int currentTraderSoldAmount = 0; // Current value of items trader sold to player
+	private int totalTraderSoldAmount = 0; // Total value of items trader sold to player
+	private int currentTraderBoughtAmount = 0; // Current value of items trader bought from player
+	private int totalTraderBoughtAmount = 0; // Total value of items trader bought from player
 	private int lockTicksAfterRefresh;
 	private int currentTraderLockTicksAmount = 0; // TODO hook up to method to send client lockout
 	// Wandering traders start at 600 ticks (30 seconds) just to make sure there's no chance they immediately despawn
@@ -160,12 +163,31 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	/**
+	 * Increment the traders counter for trades sold to player
+	 * @param amount The coin amount that was sold to player
+	 * */
+	public void incrementTradeSoldToPlayerCount(int amount) {
+		currentTraderSoldAmount += amount;
+		totalTraderSoldAmount += amount;
+	}
+
+	/**
+	 * Increment the traders counter for trades bought from player
+	 * @param amount The coin amount that was bought from player
+	 * */
+	public void incrementTradeBoughtFromPlayerCount(int amount) {
+		currentTraderBoughtAmount += amount;
+		totalTraderBoughtAmount += amount;
+	}
+
+	/**
 	 * Refreshes the trader's trades, resets the current stock sold counter, and starts the trade lockout period
 	 * */
 	public void refreshTrades() {
 		itemsBoughtByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.BUY_FROM_PLAYER);
 		itemsSoldByTrader = generateTrades(thisEntity.getRandom(), ExtendedTradeType.SELL_TO_PLAYER);
 		currentTraderSoldAmount = 0; // Reset trader sold counter
+		currentTraderBoughtAmount = 0; // Reset trader bought counter
 		refreshTradesAtValue = refreshTradesAtValue==0 ? getProfile().getRefreshTradesAtValue() : refreshTradesAtValue; //Just handle invalid values after init
 		currentTraderLockTicksAmount=1; // Start trades lockout
 		markDirty();
@@ -186,12 +208,13 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 				refreshTradesAtValue = refreshTradesAtValue==0 ? getProfile().getRefreshTradesAtValue() : refreshTradesAtValue;
 				lockTicksAfterRefresh = lockTicksAfterRefresh==0 ? getProfile().getLockTicksAfterRefresh() : lockTicksAfterRefresh;
 				currentTraderSoldAmount = 0;
+				currentTraderBoughtAmount = 0;
 				currentTraderLockTicksAmount=0;
 				loadedData = true;
 				markDirty();
 			}
 			// Handle traded amount being above max trade limit
-			if(shouldRefreshTrades && currentTraderSoldAmount>refreshTradesAtValue) {
+			if(shouldRefreshTrades && (currentTraderSoldAmount+currentTraderBoughtAmount)>refreshTradesAtValue) {
 				refreshTrades();
 			}
 			// Handle trader lock countdown
@@ -228,6 +251,9 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			refreshTradesAtValue = holder.getInt("LockTradeAtValue");
 			lockTicksAfterRefresh = holder.getInt("LockValueDecayTicks");
 			currentTraderSoldAmount = holder.getInt("CurrentTraderSoldAmount");
+			currentTraderBoughtAmount = holder.getInt("CurrentTraderBoughtAmount");
+			totalTraderSoldAmount = holder.getInt("TotalTraderSoldAmount");
+			totalTraderBoughtAmount = holder.getInt("TotalTraderBoughtAmount");
 			wanderingTraderAliveTime = holder.getInt("WanderingTraderTimeLeft"); // Defaults to zero (despawn if wandering if broken)
 			isWanderingTrader = nbt.getBoolean("IsWanderingTrader"); //Defaults to false, (not wandering trader)
 			currentTraderLockTicksAmount = holder.getInt("CurrentTraderLockTicksAmount"); // Defaults to zero (no lock activated)
@@ -259,6 +285,9 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		holder.putInt("LockTradeAtValue", refreshTradesAtValue);
 		holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
 		holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
+		holder.putInt("CurrentTraderBoughtAmount", currentTraderBoughtAmount);
+		holder.putInt("TotalTraderSoldAmount", totalTraderSoldAmount);
+		holder.putInt("TotalTraderBoughtAmount", totalTraderBoughtAmount);
 		holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
 		holder.putBoolean("IsWanderingTrader", isWanderingTrader);
 		holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);

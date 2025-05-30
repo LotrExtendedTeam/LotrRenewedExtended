@@ -252,7 +252,7 @@ public class ExtendedTradeContainer extends Container {
 
             if (canPerformTrade && stackHasSpace) {
             	int price = soldPrices[index];
-            	if(!CoinUtils.removeCoins(player, player.inventory, soldPrices[index])) {
+            	if(!CoinUtils.removeCoins(player, player.inventory, price)) {
             		return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
             	}
                 trader.playTradeSound();
@@ -275,6 +275,7 @@ public class ExtendedTradeContainer extends Container {
                 }
                 if (!player.level.isClientSide()) {
                 	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade, price);
+                	trader.getTraderData().incrementTradeSoldToPlayerCount(price);
                 }
             }
 
@@ -369,8 +370,9 @@ public class ExtendedTradeContainer extends Container {
                         tradesToPerform = soldQuantities[slot.index];
                         lastTradeThatCanBePerformed = true;
                     }
-                    if (tradesToPerform * soldPrices[slot.index] >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
-                        tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / soldPrices[slot.index];
+                    int priceToSellAt = soldPrices[slot.index];
+                    if (tradesToPerform * priceToSellAt >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
+                        tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / priceToSellAt;
                         lastTradeThatCanBePerformed = true;
                     }
 
@@ -385,7 +387,7 @@ public class ExtendedTradeContainer extends Container {
                     ItemStack stack = displayInventory.getItem(slot.index).copy();
                     stack.setCount(tradesToPerform * displayInventory.getItem(slot.index).getCount());
 
-                    CoinUtils.removeCoins(player, player.inventory, tradesToPerform * soldPrices[slot.index]);
+                    CoinUtils.removeCoins(player, player.inventory, tradesToPerform * priceToSellAt);
                     player.inventory.getFreeSlot();
                     if (!player.inventory.add(stack)) {
                         level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), stack));
@@ -394,8 +396,9 @@ public class ExtendedTradeContainer extends Container {
                     soldQuantities[slot.index] = soldQuantities[slot.index] - tradesToPerform;
                     if (!level.isClientSide) {
                         trader.getTraderData().getSells().get(slot.index).setQuantityLeft(trader.getTraderData().getSells().get(slot.index).getQuantityLeft() - tradesToPerform);
+                        ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, tradesToPerform * priceToSellAt);
+                    	trader.getTraderData().incrementTradeSoldToPlayerCount(tradesToPerform * priceToSellAt);
                     }
-
                     if (lastTradeThatCanBePerformed) break;
                 }
 
@@ -432,7 +435,7 @@ public class ExtendedTradeContainer extends Container {
     /*
      * ONLY CALL SERVER SIDE!
      * */
-    public void handleSellItems() {
+    public void handleSellItemsToTrader() {
         // sum the counts for each Item
         HashMap<Item, Integer> counts = new HashMap<>();
         for (int i = 0; i < sellInventory.getContainerSize(); i++) {
@@ -472,6 +475,8 @@ public class ExtendedTradeContainer extends Container {
         	for(ItemStack itemSold : soldItems) {
         		ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false, itemSold, coinsGiven);
         	}
+        	trader.getTraderData().incrementTradeBoughtFromPlayerCount(coinsGiven);
+
         }
 
         // give in the largest currencies first
