@@ -43,47 +43,70 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 
 	@Override
 	public void loadFromNbt(CompoundNBT nbt) {
-		if (nbt.contains("Children")) {
-			numberOfCurrentChildren = nbt.getInt("Children");
-		}
-		if (nbt.contains("ChildrenMax")) {
-			maxNumberOfCurrentChildren = nbt.getInt("ChildrenMax");
-		}
-		if (nbt.contains("SpouseUUIDMost") && nbt.contains("SpouseUUIDLeast")) {
-			spouseID = new UUID(nbt.getLong("SpouseUUIDMost"), nbt.getLong("SpouseUUIDLeast"));
-		}
-		if (nbt.contains("ParentMaleUUIDMost") && nbt.contains("ParentMaleUUIDLeast")) {
-			maleID = new UUID(nbt.getLong("ParentMaleUUIDMost"), nbt.getLong("ParentMaleUUIDLeast"));
-		}
-		if (nbt.contains("ParentFemaleUUIDMost") && nbt.contains("ParentFemaleUUIDLeast")) {
-			femaleID = new UUID(nbt.getLong("ParentFemaleUUIDMost"), nbt.getLong("ParentFemaleUUIDLeast"));
-		}
-		if (nbt.contains("PlayerUUIDMost") && nbt.contains("PlayerUUIDLeast")) {
-			playerID = new UUID(nbt.getLong("PlayerUUIDMost"), nbt.getLong("PlayerUUIDLeast"));
+		if(nbt.contains("marriageInfo")) {
+			CompoundNBT holder = nbt.getCompound("marriageInfo");
+			if (holder.contains("Children")) {
+				numberOfCurrentChildren = holder.getInt("Children");
+			}
+			if (holder.contains("ChildrenMax")) {
+				maxNumberOfCurrentChildren = holder.getInt("ChildrenMax");
+			}
+			if (holder.contains("SpouseUUIDMost") && holder.contains("SpouseUUIDLeast")) {
+				spouseID = new UUID(holder.getLong("SpouseUUIDMost"), holder.getLong("SpouseUUIDLeast"));
+			}
+			if (holder.contains("ParentMaleUUIDMost") && holder.contains("ParentMaleUUIDLeast")) {
+				maleID = new UUID(holder.getLong("ParentMaleUUIDMost"), holder.getLong("ParentMaleUUIDLeast"));
+			}
+			if (holder.contains("ParentFemaleUUIDMost") && holder.contains("ParentFemaleUUIDLeast")) {
+				femaleID = new UUID(holder.getLong("ParentFemaleUUIDMost"), holder.getLong("ParentFemaleUUIDLeast"));
+			}
+			if (holder.contains("PlayerUUIDMost") && holder.contains("PlayerUUIDLeast")) {
+				playerID = new UUID(holder.getLong("PlayerUUIDMost"), holder.getLong("PlayerUUIDLeast"));
+			}
+		}else {
+			if (nbt.contains("Children")) {
+				numberOfCurrentChildren = nbt.getInt("Children");
+			}
+			if (nbt.contains("ChildrenMax")) {
+				maxNumberOfCurrentChildren = nbt.getInt("ChildrenMax");
+			}
+			if (nbt.contains("SpouseUUIDMost") && nbt.contains("SpouseUUIDLeast")) {
+				spouseID = new UUID(nbt.getLong("SpouseUUIDMost"), nbt.getLong("SpouseUUIDLeast"));
+			}
+			if (nbt.contains("ParentMaleUUIDMost") && nbt.contains("ParentMaleUUIDLeast")) {
+				maleID = new UUID(nbt.getLong("ParentMaleUUIDMost"), nbt.getLong("ParentMaleUUIDLeast"));
+			}
+			if (nbt.contains("ParentFemaleUUIDMost") && nbt.contains("ParentFemaleUUIDLeast")) {
+				femaleID = new UUID(nbt.getLong("ParentFemaleUUIDMost"), nbt.getLong("ParentFemaleUUIDLeast"));
+			}
+			if (nbt.contains("PlayerUUIDMost") && nbt.contains("PlayerUUIDLeast")) {
+				playerID = new UUID(nbt.getLong("PlayerUUIDMost"), nbt.getLong("PlayerUUIDLeast"));
+			}
 		}
 	}
 
 	@Override
 	public void writeToNbt(CompoundNBT nbt) {
-		nbt.putInt("Children", numberOfCurrentChildren);
-		nbt.putInt("ChildrenMax", maxNumberOfCurrentChildren);
+		CompoundNBT holder = new CompoundNBT();
+		holder.putInt("Children", numberOfCurrentChildren);
+		holder.putInt("ChildrenMax", maxNumberOfCurrentChildren);
 		if (spouseID!=null) {
-			nbt.putLong("SpouseUUIDMost", spouseID.getMostSignificantBits());
-			nbt.putLong("SpouseUUIDLeast", spouseID.getLeastSignificantBits());
+			holder.putLong("SpouseUUIDMost", spouseID.getMostSignificantBits());
+			holder.putLong("SpouseUUIDLeast", spouseID.getLeastSignificantBits());
 		}
 		if (maleID!=null) {
-			nbt.putLong("ParentMaleUUIDMost", maleID.getMostSignificantBits());
-			nbt.putLong("ParentMaleUUIDLeast", maleID.getLeastSignificantBits());
+			holder.putLong("ParentMaleUUIDMost", maleID.getMostSignificantBits());
+			holder.putLong("ParentMaleUUIDLeast", maleID.getLeastSignificantBits());
 		}
 		if (femaleID!=null) {
-			nbt.putLong("ParentFemaleUUIDMost", femaleID.getMostSignificantBits());
-			nbt.putLong("ParentFemaleUUIDLeast", femaleID.getLeastSignificantBits());
+			holder.putLong("ParentFemaleUUIDMost", femaleID.getMostSignificantBits());
+			holder.putLong("ParentFemaleUUIDLeast", femaleID.getLeastSignificantBits());
 		}
 		if (playerID!=null) {
-			nbt.putLong("PlayerUUIDMost", playerID.getMostSignificantBits());
-			nbt.putLong("PlayerUUIDLeast", playerID.getLeastSignificantBits());
+			holder.putLong("PlayerUUIDMost", playerID.getMostSignificantBits());
+			holder.putLong("PlayerUUIDLeast", playerID.getLeastSignificantBits());
 		}
-
+		nbt.put("marriageInfo", holder);
 	}
 
 	@Override
@@ -147,7 +170,6 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	public void sendDataToPlayer(ServerPlayerEntity player) {
 		ExtendedSNpcMarriageInfoPacket packet = new ExtendedSNpcMarriageInfoPacket(this);
 		ExtendedPacketHandler.sendToClient(packet, player);
-
 	}
 
 	@Override
@@ -164,5 +186,10 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 				resendData = false;
 			}
 		}
+	}
+
+	@Override
+	public boolean isActive() {
+		return true;
 	}
 }

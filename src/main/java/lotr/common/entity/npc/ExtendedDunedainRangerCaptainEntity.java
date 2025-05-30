@@ -1,22 +1,19 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
-import lotr.common.util.ExtendedCaptainHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -35,12 +32,11 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 
 	@Override
 	protected void addNPCTargetingAI() {
-		this.addNonAggressiveTargetingGoals();
-	}
-
-	@Override
-	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		return ExtendedCaptainHelper.mobInteract(this, this, player, hand);
+		if(ExtendedServerConfig.enableLegacyCaptainPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 
 	@Override

@@ -17,7 +17,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
- * @reason Renewed registers new sign types using reflection, breaking in Java9+. This class fixes that
+ * Renewed registers new sign types using reflection, breaking in Java9+. This class fixes that
  * @Mixin (SignSetupHelper.class)
  * */
 @Mixin(SignSetupHelper.class)

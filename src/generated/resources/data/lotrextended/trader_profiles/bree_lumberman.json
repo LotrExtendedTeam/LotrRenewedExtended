@@ -1,0 +1,660 @@
+{
+  "id": "lotrextended:bree_lumberman",
+  "entity_type": "lotr:bree_lumberman",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:water_bucket"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:bone_meal"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stone_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:bronze_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "minecraft:iron_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:shears",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 1000,
+      "stack": {
+        "item": "minecraft:petrified_oak_slab"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stick"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:apple"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:green_apple"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:oak_log"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:oak_planks"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:oak_beam"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:oak_leaves"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:oak_wood"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:oak_sapling"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:spruce_log"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:spruce_planks"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:spruce_beam"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:spruce_leaves"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:spruce_wood"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "minecraft:spruce_sapling"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:birch_log"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:birch_planks"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:birch_beam"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:birch_leaves"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:birch_wood"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:birch_sapling"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:dark_oak_log"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:dark_oak_planks"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:dark_oak_beam"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:dark_oak_leaves"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "minecraft:dark_oak_wood"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "minecraft:dark_oak_sapling"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:pine_log"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:pine_planks"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:pine_beam"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:pine_leaves"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:pine_wood"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:pine_sapling"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:apple_log"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:apple_planks"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:apple_beam"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:apple_leaves"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:apple_wood"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:apple_sapling"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:pear_log"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:pear_planks"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:pear_beam"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:pear_leaves"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:pear_wood"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:pear_sapling"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:beech_log"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:beech_planks"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:beech_beam"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:beech_leaves"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:beech_wood"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:beech_sapling"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:holly_log"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:holly_planks"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:holly_beam"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:holly_leaves"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:holly_wood"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:holly_sapling"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:maple_log"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:maple_planks"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:maple_beam"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:maple_leaves"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:maple_wood"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:maple_sapling"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:larch_log"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:larch_planks"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:larch_beam"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:larch_leaves"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:larch_wood"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:larch_sapling"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:chestnut_log"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:chestnut_planks"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:chestnut_beam"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:chestnut_leaves"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:chestnut_wood"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:chestnut_sapling"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:fir_log"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:fir_planks"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:fir_beam"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:fir_leaves"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:fir_wood"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:fir_sapling"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:willow_log"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:willow_planks"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:willow_beam"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:willow_leaves"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:willow_wood"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:willow_sapling"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:aspen_log"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:aspen_planks"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:aspen_beam"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:aspen_leaves"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:aspen_wood"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:aspen_sapling"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:plum_log"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:plum_planks"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:plum_beam"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:plum_leaves"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:plum_wood"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:plum_sapling"
+      }
+    }
+  ]
+}

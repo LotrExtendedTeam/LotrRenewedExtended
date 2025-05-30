@@ -128,7 +128,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 				}
 			}
 			if(spawnedEntity instanceof ExtendedTraderEntity) {
-				((ExtendedTraderEntity)spawnedEntity).loadAllTrades(nbt);
+				((ExtendedTraderEntity)spawnedEntity).getTraderData().loadFromNbt(nbt);
 			}
 			if(spawnedEntity instanceof ExtendedCaptainEntity) {
 				// IDK maybe captains have data to save in the future

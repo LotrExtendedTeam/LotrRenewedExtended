@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
@@ -73,40 +74,43 @@ public class ExtendedTradeContainer extends Container {
         this.traderNPC = (NPCEntity) this.level.getEntity(nbt.getInt("entityId"));
         this.trader = (ExtendedTraderEntity) traderNPC;
 
-        // read soldItems from NBT
-        List<ItemStack> items = new ArrayList<>();
-        ListNBT list = nbt.getList("soldItems", 10);
+        // read displayItems from NBT
+        List<ItemStack> displayItems = new ArrayList<>();
+        ListNBT list = nbt.getList("displayItems", 10);
         for (int i = 0; i < list.size(); i++) {
             CompoundNBT node = list.getCompound(i);
             if (node != null) {
                 ItemStack item = ItemStack.of(node.getCompound("item"));
-                items.add(item);
+                displayItems.add(item);
             }
         }
-        soldItems = items.toArray(new ItemStack[items.size()]);
-
-        if (!inventory.player.level.isClientSide) {
-           List<ItemStack> tmpItems = new ArrayList<>();
-           for (ExtendedTrade trade : trader.getSells()) {
-               tmpItems.add(trade.getItem());
-           }
-           soldItems = tmpItems.toArray(new ItemStack[tmpItems.size()]);
-           boughtPrices = trader.getBoughtPrices();
+        // Handle packet error
+        if(displayItems.size()!=18) {
+        	ExtendedLog.error(nbt.getAsString());
+        	throw new IllegalArgumentException("Failed opening trade container with non 18 display inventory!");
         }
-
-
-        // setup trades
-        if (trader.getDisplayInventory() != null) {
-            displayInventory = trader.getDisplayInventory();
-            soldPrices = nbt.getIntArray("sp");
-            soldQuantities = nbt.getIntArray("sq");
-            boughtPrices = nbt.getIntArray("bp");
-            boughtQuantities = nbt.getIntArray("bq");
-            boughtOriginalQuantities = nbt.getIntArray("boq");
-            soldOriginalQuantities = nbt.getIntArray("soq");
+        // Add display items to display inventory
+        for (int i = 0; i < 18; i++) {
+        	displayInventory.setItem(i, displayItems.get(i));
         }
+        // Strip first 9 items from display inventory for sellItems array?
+        List<ItemStack> soldItemsTemp = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+        	if(!displayItems.get(i).isEmpty()) {
+        		soldItemsTemp.add(displayItems.get(i));
+        	}
+        }
+        soldItems = soldItemsTemp.toArray(new ItemStack[soldItemsTemp.size()]);
 
-        // add buy slots
+        // Load trade info from packet nbt
+        soldPrices = nbt.getIntArray("sp");
+        soldQuantities = nbt.getIntArray("sq");
+        boughtPrices = nbt.getIntArray("bp");
+        boughtQuantities = nbt.getIntArray("bq");
+        boughtOriginalQuantities = nbt.getIntArray("boq");
+        soldOriginalQuantities = nbt.getIntArray("soq");
+
+        // add buy slots, player buys items from trader here
         for (int i = 0; i < 9; i++) {
             addSlot(new Slot(displayInventory, i, 8 + (i * 18), 40) {
                 @Override
@@ -121,7 +125,7 @@ public class ExtendedTradeContainer extends Container {
             });
         }
 
-        // add sell display slots
+        // add sell display slots, shows what player can sell to the trader
         for (int i = 0; i < 9; i++)
             addSlot(new Slot(displayInventory, i + 9, 8 + (i * 18), 92) {
                 @Override
@@ -135,23 +139,22 @@ public class ExtendedTradeContainer extends Container {
                 }
             });
 
-        // add actual sell slots
+        // add actual sell slots, player places items to sell here
         for (int i = 0; i < 9; i++)
             addSlot(new Slot(sellInventory, i, 8 + (i * 18), 141));
 
         // add inventory slots
-        int i;
-        for (i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) // 95
                 addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 188 + i * 18));
         }
-        for (i = 0; i < 9; i++) { // 153
+        for (int i = 0; i < 9; i++) { // 153
             addSlot(new Slot(inventory, i, 8 + i * 18, 246));
         }
     }
     public static void writeContainerInitData(PacketBuffer extraData, int entityId, int[] boughtPrices,
                                               int[] boughtQuantities, int[] boughtOriginalQuantities, int[] soldPrices,
-                                              int[] soldQuantities, int[] soldOriginalQuantities, List<ItemStack> soldItems) {
+                                              int[] soldQuantities, int[] soldOriginalQuantities, List<ItemStack> displayItems) {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putInt("entityId", entityId);
         nbt.putIntArray("bp", boughtPrices);
@@ -162,14 +165,14 @@ public class ExtendedTradeContainer extends Container {
         nbt.putIntArray("soq", soldOriginalQuantities);
 
         ListNBT listnbt = new ListNBT();
-        for (ItemStack stack : soldItems) {
+        for (ItemStack stack : displayItems) {
             CompoundNBT compoundnbt = new CompoundNBT();
             CompoundNBT itemTag = new CompoundNBT();
             itemTag = stack.save(itemTag);
             compoundnbt.put("item", itemTag);
             listnbt.add(compoundnbt);
         }
-        nbt.put("soldItems", listnbt);
+        nbt.put("displayItems", listnbt);
 
         extraData.writeNbt(nbt);
     }
@@ -234,9 +237,10 @@ public class ExtendedTradeContainer extends Container {
     public ItemStack clicked(int index, int p_184996_2_, ClickType clickType, PlayerEntity p_184996_4_) {
         // handle buy items
         if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP) || clickType.equals(ClickType.PICKUP_ALL))) {
-            boolean canPerformTrade =
-                    CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index]
-                            && soldQuantities[index] > 0;
+        	if(trader.getTraderData().isTradesLocked()) {
+        		return ItemStack.EMPTY;
+        	}
+            boolean canPerformTrade = CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index] && soldQuantities[index] > 0;
 
             if (index < soldItems.length) {
                 displayInventory.setItem(index, soldItems[index].copy());
@@ -251,7 +255,7 @@ public class ExtendedTradeContainer extends Container {
 
             if (canPerformTrade && stackHasSpace) {
             	int price = soldPrices[index];
-            	if(!CoinUtils.removeCoins(player, player.inventory, soldPrices[index])) {
+            	if(!CoinUtils.removeCoins(player, player.inventory, price)) {
             		return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
             	}
                 trader.playTradeSound();
@@ -264,7 +268,7 @@ public class ExtendedTradeContainer extends Container {
                 }
                 soldQuantities[index] = soldQuantities[index] - 1;
                 if (!level.isClientSide) {
-                    trader.getSells().get(index).setQuantityLeft(trader.getSells().get(index).getQuantityLeft() - 1);
+                    trader.getTraderData().getSells().get(index).setQuantityLeft(trader.getTraderData().getSells().get(index).getQuantityLeft() - 1);
                 }
                 player.inventory.setChanged();
 
@@ -274,6 +278,7 @@ public class ExtendedTradeContainer extends Container {
                 }
                 if (!player.level.isClientSide()) {
                 	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade, price);
+                	trader.getTraderData().incrementTradeSoldToPlayerCount(price);
                 }
             }
 
@@ -336,7 +341,7 @@ public class ExtendedTradeContainer extends Container {
             return carriedItem;
         }
         // TODO add better validation for allowable move types
-        if (clickType == ClickType.QUICK_CRAFT || clickType == ClickType.QUICK_MOVE || clickType == ClickType.SWAP || clickType == ClickType.THROW) {
+        if (clickType == ClickType.QUICK_CRAFT || clickType == ClickType.SWAP || clickType == ClickType.THROW) {
         	return ItemStack.EMPTY;
         }
         // Allow clone as it only works in creative anyways
@@ -355,6 +360,9 @@ public class ExtendedTradeContainer extends Container {
 
         if (slot.container.equals(displayInventory)) {
             if (slot.index < 9) {
+            	if(trader.getTraderData().isTradesLocked()) {
+            		return ItemStack.EMPTY;
+            	}
             	// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
             	if(displayInventory.getItem(slot.index).getCount()<=0) {
             		return ItemStack.EMPTY;
@@ -368,8 +376,9 @@ public class ExtendedTradeContainer extends Container {
                         tradesToPerform = soldQuantities[slot.index];
                         lastTradeThatCanBePerformed = true;
                     }
-                    if (tradesToPerform * soldPrices[slot.index] >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
-                        tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / soldPrices[slot.index];
+                    int priceToSellAt = soldPrices[slot.index];
+                    if (tradesToPerform * priceToSellAt >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
+                        tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / priceToSellAt;
                         lastTradeThatCanBePerformed = true;
                     }
 
@@ -384,7 +393,7 @@ public class ExtendedTradeContainer extends Container {
                     ItemStack stack = displayInventory.getItem(slot.index).copy();
                     stack.setCount(tradesToPerform * displayInventory.getItem(slot.index).getCount());
 
-                    CoinUtils.removeCoins(player, player.inventory, tradesToPerform * soldPrices[slot.index]);
+                    CoinUtils.removeCoins(player, player.inventory, tradesToPerform * priceToSellAt);
                     player.inventory.getFreeSlot();
                     if (!player.inventory.add(stack)) {
                         level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), stack));
@@ -392,9 +401,10 @@ public class ExtendedTradeContainer extends Container {
                     player.inventory.setChanged();
                     soldQuantities[slot.index] = soldQuantities[slot.index] - tradesToPerform;
                     if (!level.isClientSide) {
-                        trader.getSells().get(slot.index).setQuantityLeft(trader.getSells().get(slot.index).getQuantityLeft() - tradesToPerform);
+                        trader.getTraderData().getSells().get(slot.index).setQuantityLeft(trader.getTraderData().getSells().get(slot.index).getQuantityLeft() - tradesToPerform);
+                        ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, tradesToPerform * priceToSellAt);
+                    	trader.getTraderData().incrementTradeSoldToPlayerCount(tradesToPerform * priceToSellAt);
                     }
-
                     if (lastTradeThatCanBePerformed) break;
                 }
 
@@ -411,7 +421,7 @@ public class ExtendedTradeContainer extends Container {
         }
 
         // any other slot was shift-clicked so we should attempt to move it to sell
-        if (TradeUtils.isValidSellItem(item, trader.getBuys())) {
+        if (!level.isClientSide && TradeUtils.isValidSellItem(item, trader.getTraderData().getBuys())) {
             if (sellInventory.canAddItem(item)) {
                 ItemStack remaining = sellInventory.addItem(item);
                 sellInventory.setChanged();
@@ -428,7 +438,13 @@ public class ExtendedTradeContainer extends Container {
         return ItemStack.EMPTY;
     }
 
-    public void handleSellItems() {
+    /*
+     * ONLY CALL SERVER SIDE!
+     * */
+    public void handleSellItemsToTrader() {
+    	if(trader.getTraderData().isTradesLocked()) {
+    		return;
+    	}
         // sum the counts for each Item
         HashMap<Item, Integer> counts = new HashMap<>();
         for (int i = 0; i < sellInventory.getContainerSize(); i++) {
@@ -445,7 +461,7 @@ public class ExtendedTradeContainer extends Container {
 
         List<ItemStack> soldItems = new ArrayList<>();
         // loop through all trade deals and determine value
-        for (ExtendedTrade trade : trader.getBuys()) {
+        for (ExtendedTrade trade : trader.getTraderData().getBuys()) {
             if (counts.containsKey(trade.getItem().getItem())) {
                 int count = counts.get(trade.getItem().getItem());
                 int totalTrades = count / trade.getItem().getCount();
@@ -468,6 +484,8 @@ public class ExtendedTradeContainer extends Container {
         	for(ItemStack itemSold : soldItems) {
         		ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), false, itemSold, coinsGiven);
         	}
+        	trader.getTraderData().incrementTradeBoughtFromPlayerCount(coinsGiven);
+
         }
 
         // give in the largest currencies first
@@ -493,7 +511,7 @@ public class ExtendedTradeContainer extends Container {
 
         // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
-        	ExtendedPacketHandler.sendToClient(new ExtendedSUpdateTradeQuantitiesPacket(trader.getSoldQuantities(), trader.getBoughtQuantities()), (ServerPlayerEntity) player);
+        	ExtendedPacketHandler.sendToClient(new ExtendedSUpdateTradeQuantitiesPacket(trader.getTraderData().getSoldQuantities(), trader.getTraderData().getBoughtQuantities()), (ServerPlayerEntity) player);
         }
     }
 

@@ -31,7 +31,7 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.Template.BlockInfo;
 
 /**
- * @reason Handle random sign text in structures on generate
+ * Handle random sign text in structures on generate
  * @Mixin (Template.class)
  * */
 @Mixin(Template.class)
@@ -39,7 +39,7 @@ public class MixinTemplate {
 
 	/**
 	 * @reason Use wacky injection with locals to add tile entity callback after mirror and rotate parms
-	 * @Inject(method = "placeInWorld(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/template/PlacementSettings;Ljava/util/Random;I)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/tileentity/TileEntity;rotate(Lnet/minecraft/util/Rotation;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+	 * @Inject (method = "placeInWorld(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/template/PlacementSettings;Ljava/util/Random;I)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/tileentity/TileEntity;rotate(Lnet/minecraft/util/Rotation;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
 	 * */
 	@Inject(method = "placeInWorld(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;"
 		+ "Lnet/minecraft/world/gen/feature/template/PlacementSettings;Ljava/util/Random;I)Z", 

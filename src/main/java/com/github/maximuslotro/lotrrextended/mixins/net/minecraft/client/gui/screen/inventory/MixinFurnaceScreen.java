@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class MixinFurnaceScreen extends AbstractFurnaceScreen<FurnaceContainer> {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param furnaceContainer A placeholder variable instance of FurnaceContainer
 	 * @param recipeBookGui A placeholder variable instance of AbstractRecipeBookGui
 	 * @param inventory A placeholder variable instance of PlayerInventory

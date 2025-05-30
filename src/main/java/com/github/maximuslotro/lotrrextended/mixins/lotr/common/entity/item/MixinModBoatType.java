@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-import org.spongepowered.asm.mixin.Dynamic;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
@@ -21,13 +17,13 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.DatagenModLoader;
 
 /**
- * @reason Used to register new boat types, via Renewed's existing registration system
+ * Used to register new boat types, via Renewed's existing registration system
  * @Mixin (ModBoatType.class)
  * */
 @Mixin(ModBoatType.class)
 public class MixinModBoatType {
 	@SuppressWarnings("target")
-	/**
+	/*
 	 * @reason This value is the runtime array variable for the ModBoatType
 	 * @Shadow (remap = false)
 	 * @Final Mark the field to be essentially final
@@ -41,24 +37,28 @@ public class MixinModBoatType {
 	private static ModBoatType[] $VALUES;
 
 	/**
-	 * @reason Local Extended ModBoatType instance
+	 * Local Extended ModBoatType instance
 	 * */
+	@Unique
 	private static final ModBoatType CHESTNUT = lotrModBoatType$addVariant("CHESTNUT", ExtendedBlocks.CHESTNUT_PLANKS, ExtendedItems.CHESTNUT_BOAT, "chestnut");
 	/**
-	 * @reason Local Extended ModBoatType instance
+	 * Local Extended ModBoatType instance
 	 * */
+	@Unique
 	private static final ModBoatType BANANA = lotrModBoatType$addVariant("BANANA", ExtendedBlocks.BANANA_PLANKS, ExtendedItems.BANANA_BOAT, "banana");
 	/**
-	 * @reason Local Extended ModBoatType instance
+	 * Local Extended ModBoatType instance
 	 * */
+	@Unique
 	private static final ModBoatType PLUM = lotrModBoatType$addVariant("PLUM", ExtendedBlocks.PLUM_PLANKS, ExtendedItems.PLUM_BOAT, "plum");
 	/**
-	 * @reason Local Extended ModBoatType instance
+	 * Local Extended ModBoatType instance
 	 * */
+	@Unique
 	private static final ModBoatType WILLOW = lotrModBoatType$addVariant("WILLOW", ExtendedBlocks.WILLOW_PLANKS, ExtendedItems.WILLOW_BOAT, "willow");
 
 	/**
-	 * @reason Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
+	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
 	 * @Invoker ("<init>")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param internalId The internal id (ordinal) of this Enum entry
@@ -73,13 +73,14 @@ public class MixinModBoatType {
 	}
 
 	/**
-	 * @reason Accessing the Enum creation method
+	 * Accessing the Enum creation method
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param plank A supplier for the boat's plank block
 	 * @param boat A supplier for the boat's boat item
 	 * @param name The texture id of the boat
 	 * @return A built ModBoatType instance
 	 * */
+	@Unique
 	private static ModBoatType lotrModBoatType$addVariant(String internalName, Supplier<Block> plank, Supplier<Item> boat, String name) {
 		ArrayList<ModBoatType> variants = new ArrayList<>(Arrays.asList(MixinModBoatType.$VALUES));
 		ModBoatType instrument = lotrModBoatType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, plank, boat, name);

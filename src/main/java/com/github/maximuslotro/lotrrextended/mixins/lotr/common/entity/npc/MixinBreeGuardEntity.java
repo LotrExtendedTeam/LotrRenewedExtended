@@ -22,7 +22,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 /**
- * @reason Need to change Bree Guard equipment
+ * Need to change Bree Guard equipment
  * @Mixin (BreeGuardEntity.class)
  * Extends BreeManEntity to access sub-methods, but made abstract so the mixin in transitively applied
  * */
@@ -31,7 +31,7 @@ public abstract class MixinBreeGuardEntity extends BreeManEntity {
 
 
 	/**
-	 * @reason Need to access for finalizeSpawn method
+	 * Need to access for finalizeSpawn method
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -39,7 +39,7 @@ public abstract class MixinBreeGuardEntity extends BreeManEntity {
 	@Shadow(remap=false)
 	private static SpawnEquipmentTable WEAPONS;
 	/**
-	 * @reason Need to access for finalizeSpawn method
+	 * Need to access for finalizeSpawn method
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -48,7 +48,7 @@ public abstract class MixinBreeGuardEntity extends BreeManEntity {
 	private static int[] SUIT_COLORS;
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of BreeManEntity
 	 * @param world A placeholder variable instance of World
 	 * */

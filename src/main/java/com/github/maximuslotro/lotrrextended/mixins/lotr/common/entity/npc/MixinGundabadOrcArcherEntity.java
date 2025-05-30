@@ -14,14 +14,14 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.util.IItemProvider;
 
 /**
- * @reason Need to change Gundabad Orc Archer equipment
+ * Need to change Gundabad Orc Archer equipment
  * @Mixin (GundabadOrcArcherEntity.class)
  * */
 @Mixin(GundabadOrcArcherEntity.class)
 public class MixinGundabadOrcArcherEntity{
 
 	/**
-	 * @reason Need to add bone dagger to equipment pool
+	 * Need to add bone dagger to equipment pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * @Mutable Tell Mixin that it can modify the Final field

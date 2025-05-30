@@ -11,7 +11,7 @@ import net.minecraft.world.GameRules.RuleKey;
 import net.minecraft.world.GameRules.RuleType;
 
 /**
- * @reason Removes some Renewed GameRules in favor of the Extended config
+ * Removes some Renewed GameRules in favor of the Extended config
  * @Mixin (LOTRGameRules.class)
  * */
 @Mixin(LOTRGameRules.class)

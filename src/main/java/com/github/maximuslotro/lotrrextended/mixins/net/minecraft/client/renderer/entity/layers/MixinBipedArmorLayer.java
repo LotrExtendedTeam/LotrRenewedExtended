@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.client.renderer.entity.layers;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,7 +22,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * @reason Handles Ranger Transparency effect without the need for additional classes that crash with custom armor
+ * Handles Ranger Transparency effect without the need for additional classes that crash with custom armor
  * @Mixin (BipedArmorLayer.class)
  * */
 @Mixin(BipedArmorLayer.class)
@@ -30,11 +31,12 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 	/**
 	 * Local variable to know how to do cloaking logic
 	 * */
+	@Unique
 	private boolean isCloakedExtended;
 
 	/**
 	 * @reason There needs to be a local check for ranger transparency, as ((ExtendedRangerModel<?>)armorModel).isCloaked does not work
-	 * @Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", at = @At("HEAD"), remap=true)
+	 * @Inject (method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", at = @At("HEAD"), remap=true)
 	 * */
 	@Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", 
 		at = @At("HEAD"), remap=true)
@@ -46,7 +48,7 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 
 	/**
 	 * @reason Ranger Armor needs to be transparent in only the base class, extends classes won't work
-	 * @Inject(method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", at = @At("HEAD"), cancellable = true, remap=false)
+	 * @Inject (method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", at = @At("HEAD"), cancellable = true, remap=false)
 	 * */
 	@Inject(method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", 
 		at = @At("HEAD"), cancellable = true, remap=false)

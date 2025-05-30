@@ -11,9 +11,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Team;
+import org.spongepowered.asm.mixin.Unique;
 
 /**
- * @reason Renewed does not respect entity team nameplate visibility
+ * Renewed does not respect entity team nameplate visibility
  * @Mixin (LOTRPlayerRendering.class)
  * */
 @Mixin(LOTRPlayerRendering.class)
@@ -45,6 +46,7 @@ public class MixinLOTRPlayerRendering {
 	 * @param player The player we are rendering their alignment bar
 	 * @return if their and our team allows for nameplate rendering
 	 */
+	@Unique
 	private boolean shouldRenderTeam(PlayerEntity player) {
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientPlayerEntity clientplayerentity = minecraft.player;

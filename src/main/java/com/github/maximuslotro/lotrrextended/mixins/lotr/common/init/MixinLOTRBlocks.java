@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.block.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -113,7 +114,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
 /**
- * @reason Used to register new blocks added by Extended
+ * Used to register new blocks added by Extended
  * @Mixin (LOTRBlocks.class)
  * */
 @SuppressWarnings("deprecation")
@@ -121,7 +122,7 @@ import net.minecraftforge.registries.DeferredRegister;
 public class MixinLOTRBlocks {
 
 	/**
-	 * @reason Get the block DeferredRegister for Renewed's blocks
+	 * Get the block DeferredRegister for Renewed's blocks
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -129,7 +130,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static DeferredRegister<Block> BLOCKS;
 	/**
-	 * @reason Referencing we we can register new Blue Mallorn Wall Torches
+	 * Referencing we can register new Blue Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -137,7 +138,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUE_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Green Mallorn Wall Torches
+	 * Referencing we can register new Green Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -145,7 +146,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> GREEN_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Gold Mallorn Wall Torches
+	 * Referencing we can register new Gold Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -153,7 +154,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> GOLD_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Silver Mallorn Wall Torches
+	 * Referencing we can register new Silver Mallorn Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -161,7 +162,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> SILVER_MALLORN_TORCH;
 	/**
-	 * @reason Referencing we we can register new High Elven Wall Torches
+	 * Referencing we can register new High Elven Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -169,7 +170,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> HIGH_ELVEN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Dwarven Wall Torches
+	 * Referencing we can register new Dwarven Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -177,7 +178,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> DWARVEN_TORCH;
 	/**
-	 * @reason Referencing we we can register new Blubber Wall Torches
+	 * Referencing we can register new Blubber Wall Torches
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -185,7 +186,7 @@ public class MixinLOTRBlocks {
 	@Shadow(remap=false)
 	public static RegistryObject<Block> BLUBBER_TORCH;
 	/**
-	 * @reason Referencing we we can register new Wattle And Daub Pillar block
+	 * Referencing we can register new Wattle And Daub Pillar block
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -281,6 +282,134 @@ public class MixinLOTRBlocks {
                 //Also removes lotr.common.block.WattleAndDaubPillarBlock from being used
                 returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRPillarBlock(WATTLE_AND_DAUB));
                 break;
+            case "white_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.WHITE_WOOL));
+            	break;
+            case "orange_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.ORANGE_WOOL));
+            	break;
+            case "magenta_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.MAGENTA_WOOL));
+            	break;
+            case "light_blue_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.LIGHT_BLUE_WOOL));
+            	break;
+            case "yellow_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.YELLOW_WOOL));
+            	break;
+            case "lime_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.LIME_WOOL));
+            	break;
+            case "pink_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.PINK_WOOL));
+            	break;
+            case "gray_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.GRAY_WOOL));
+            	break;
+            case "light_gray_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.LIGHT_GRAY_WOOL));
+            	break;
+            case "cyan_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.CYAN_WOOL));
+            	break;
+            case "purple_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.PURPLE_WOOL));
+            	break;
+            case "blue_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.BLUE_WOOL));
+            	break;
+            case "brown_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.BROWN_WOOL));
+            	break;
+            case "green_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.GREEN_WOOL));
+            	break;
+            case "red_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.RED_WOOL));
+            	break;
+            case "black_wool_slab":
+            	// Fixes wool slabs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableAxialSlabBlock(Blocks.BLACK_WOOL));
+            	break;
+            case "white_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.WHITE_WOOL));
+            	break;
+            case "orange_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.ORANGE_WOOL));
+            	break;
+            case "magenta_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.MAGENTA_WOOL));
+            	break;
+            case "light_blue_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.LIGHT_BLUE_WOOL));
+            	break;
+            case "yellow_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.YELLOW_WOOL));
+            	break;
+            case "lime_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.LIME_WOOL));
+            	break;
+            case "pink_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.PINK_WOOL));
+            	break;
+            case "gray_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.GRAY_WOOL));
+            	break;
+            case "light_gray_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.LIGHT_GRAY_WOOL));
+            	break;
+            case "cyan_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.CYAN_WOOL));
+            	break;
+            case "purple_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.PURPLE_WOOL));
+            	break;
+            case "blue_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BLUE_WOOL));
+            	break;
+            case "brown_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BROWN_WOOL));
+            	break;
+            case "green_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.GREEN_WOOL));
+            	break;
+            case "red_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.RED_WOOL));
+            	break;
+            case "black_wool_stairs":
+            	// Fixes wool stairs not burning
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BLACK_WOOL));
+            	break;
         }
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);
@@ -292,11 +421,12 @@ public class MixinLOTRBlocks {
 	}
 
 	/**
-	 * @reason Register our own blocks, with dataGen handling
+	 * Register our own blocks, with dataGen handling
 	 * @param name A String name of the block
 	 * @param sup A Block supplier to build
 	 * @return A built RegistryObject for the Block 
 	 * */
+	@Unique
 	private static RegistryObject<Block> registerB(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -306,11 +436,12 @@ public class MixinLOTRBlocks {
     }
 
 	/**
-	 * @reason Register our own blocks, with dataGen handling, specifically for pot blocks
+	 * Register our own blocks, with dataGen handling, specifically for pot blocks
 	 * @param name A String name of the block
 	 * @param sup A Block supplier to build
 	 * @return A built RegistryObject for the Block 
 	 * */
+	@Unique
 	private static RegistryObject<Block> registerPOT(String name, Supplier<? extends Block> sup) {
 		RegistryObject<Block> block = BLOCKS.register(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -323,7 +454,7 @@ public class MixinLOTRBlocks {
 	/**
 	 * @reason Register Extended's blocks after Renewed's static registering is done, but before the block differed register is registered
 	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
-	 * @param The local CallbackInfo instance for this Inject
+	 * @param ci The local CallbackInfo instance for this Inject
 	 * */
 	@SuppressWarnings("unchecked")
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
@@ -785,14 +916,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CRANBERRY_HEDGE = registerB("cranberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.CRANBERRY, ExtendedItems.CRANBERRY_HEDGE));
 		ExtendedBlocks.ELDERBERRY_HEDGE = registerB("elderberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.ELDERBERRY, ExtendedItems.ELDERBERRY_HEDGE));
 		ExtendedBlocks.RASPBERRY_HEDGE = registerB("raspberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.RASPBERRY, ExtendedItems.RASPBERRY_HEDGE));
-		ExtendedBlocks.WILDBERRY_HDEGE = registerB("wildberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_HEDGE));
-		ExtendedBlocks.BLACKBERRY_BUSH = registerB("blackberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY));
-		ExtendedBlocks.BLUEBERRY_BUSH = registerB("blueberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY));
-		ExtendedBlocks.CRANBERRY_BUSH = registerB("cranberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY));
-		ExtendedBlocks.ELDERBERRY_BUSH = registerB("elderberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY));
-		ExtendedBlocks.RASPBERRY_BUSH = registerB("raspberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY));
-		ExtendedBlocks.WILDBERRY_BUSH = registerB("wildberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY));
-
+		ExtendedBlocks.WILDBERRY_HEDGE = registerB("wildberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.WILDBERRY, ExtendedItems.WILDBERRY_HEDGE));
+		ExtendedBlocks.BLACKBERRY_BUSH = registerB("blackberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.BLACKBERRY, ExtendedBlocks.BLACKBERRY_HEDGE));
+		ExtendedBlocks.BLUEBERRY_BUSH = registerB("blueberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.BLUEBERRY, ExtendedBlocks.BLUEBERRY_HEDGE));
+		ExtendedBlocks.CRANBERRY_BUSH = registerB("cranberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.CRANBERRY, ExtendedBlocks.CRANBERRY_HEDGE));
+		ExtendedBlocks.ELDERBERRY_BUSH = registerB("elderberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.ELDERBERRY, ExtendedBlocks.ELDERBERRY_HEDGE));
+		ExtendedBlocks.RASPBERRY_BUSH = registerB("raspberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.RASPBERRY, ExtendedBlocks.RASPBERRY_HEDGE));
+		ExtendedBlocks.WILDBERRY_BUSH = registerB("wildberry_plant", () -> new ExtendedBerryBushBlock(ExtendedItems.WILDBERRY, ExtendedBlocks.WILDBERRY_HEDGE));
+		
 		//CRAFTING TABLES
 		ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE = registerB("taurethrim_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Taurethrim(ExtendedBlocks.TAURETHRIM_BRICK));
 		ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE = registerB("dol_guldur_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Dol_Guldur(ExtendedBlocks.DOL_GULDUR_BRICK));

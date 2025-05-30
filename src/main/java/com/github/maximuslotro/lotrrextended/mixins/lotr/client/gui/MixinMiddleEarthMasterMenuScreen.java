@@ -20,14 +20,14 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 /**
- * @reason Need to change layout of settings menu
+ * Need to change layout of settings menu
  * @Mixin (MiddleEarthMasterMenuScreen.class)
  * */
 @Mixin(MiddleEarthMasterMenuScreen.class)
 public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param titleIn A placeholder variable instance of ITextComponent
 	 * */
 	public MixinMiddleEarthMasterMenuScreen(ITextComponent titleIn) {
@@ -35,7 +35,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 	}
 
 	/**
-	 * @reason Helper method dealing with Renewed's menu rendering
+	 * Helper method dealing with Renewed's menu rendering
 	 * @Shadow (remap=false)
 	 * */
 	@Shadow(remap=false)

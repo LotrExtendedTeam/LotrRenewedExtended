@@ -6,9 +6,15 @@ import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.FangornBiome;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
+import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(FangornBiome.class)
 public class MixinFangornBiome {
+	/**
+	 * @author maximuslotro
+	 * @reason don't want to replace class
+	 * */
+	@Overwrite(remap = false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		LOTRBiomeFeatures.addTrees((FangornBiome)(Object)this, builder, 14, 0.1F,
 			ExtendedBiomeFeatures.willowTree(), 2500,

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:milk_bucket"
   },
-  "result": "lotr:cheese_curds",
+  "result": "lotr:bucket_of_cheese_curds",
   "experience": 0.15,
   "cookingtime": 200
 }

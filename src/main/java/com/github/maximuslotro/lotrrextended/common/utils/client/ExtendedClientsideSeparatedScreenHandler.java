@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.utils.client;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
@@ -32,6 +33,13 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		Entity entity = mc.level.getEntity(packet.getCaptainId());
 		if (entity instanceof ExtendedCaptainEntity && entity instanceof NPCEntity) {
 			Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen((NPCEntity) entity, player, packet.getClientProfile()));
+		}
+	}
+
+	public static void closeTraderGui(int traderId) {
+		Minecraft mc = Minecraft.getInstance();
+		if(mc.screen instanceof ExtendedTradeScreen && ((ExtendedTradeScreen)mc.screen).container.traderNPC.getId()==traderId) {
+			mc.screen.onClose();
 		}
 	}
 

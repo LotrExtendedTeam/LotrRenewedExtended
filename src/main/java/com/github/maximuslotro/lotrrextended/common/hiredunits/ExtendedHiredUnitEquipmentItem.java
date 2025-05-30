@@ -18,7 +18,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedHiredUnitEquipmentItem extends WeightedRandom.Item {
 	private final ItemStack stack;
@@ -53,13 +53,9 @@ public class ExtendedHiredUnitEquipmentItem extends WeightedRandom.Item {
 		}
 	}
 
-	/**
-	 * Copied from {@see DisplayInfo#serializeItem()}
-	 * */
-	@SuppressWarnings("deprecation")
 	private JsonObject serializeItem() {
 		JsonObject itemJson = new JsonObject();
-		itemJson.addProperty("item", Registry.ITEM.getKey(this.stack.getItem()).toString());
+		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(this.stack.getItem()).toString());
 		if (this.stack.hasTag()) {
 			itemJson.addProperty("nbt", this.stack.getTag().toString());
 		}

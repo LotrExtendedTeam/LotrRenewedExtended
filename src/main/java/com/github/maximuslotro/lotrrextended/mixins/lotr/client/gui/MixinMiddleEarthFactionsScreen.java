@@ -23,15 +23,15 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 /**
- * @reason need to hide special factions from rendering and stuff
+ * Need to hide special factions from rendering and stuff
  * @Mixin (MiddleEarthFactionsScreen.class)
  * */
 @Mixin(MiddleEarthFactionsScreen.class)
 public class MixinMiddleEarthFactionsScreen extends MiddleEarthMenuScreen {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
-	 * @param titleIn A placeholder variable instance of ITextComponent
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param titleComponent A placeholder variable instance of ITextComponent
 	 * */
 	public MixinMiddleEarthFactionsScreen(ITextComponent titleComponent) {
 		super(titleComponent);

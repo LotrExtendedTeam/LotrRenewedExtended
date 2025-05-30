@@ -15,7 +15,7 @@ import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
 
 /**
- * @reason Need to register Extended's container screens
+ * Need to register Extended's container screens
  * @Mixin (ContainerScreenHelper.class)
  * */
 @Mixin(ContainerScreenHelper.class)

@@ -14,7 +14,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
- * @reason Renewed used reflection to handle fox spawn types and this breaks in Java 9+
+ * Renewed used reflection to handle fox spawn types and this breaks in Java 9+
  * @Mixin (LOTREventHandler.class)
  * */
 @Mixin(LOTREventHandler.class)

@@ -1,0 +1,200 @@
+{
+  "id": "lotrextended:oddment_collector",
+  "entity_type": "lotr:oddment_collector",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:black_uruk_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:copper_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:tin_ingot"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:dwarven_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:elven_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:flint"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:leather"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:rotten_flesh"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:fur"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat_seeds"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stick"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:uruk_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:orc_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:diamond"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:sapphire"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:ruby"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:amethyst"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:topaz"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:coal"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:obsidian_shard"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:feather"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:horn"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:conker"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:shire_heather"
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:suspicious_meat"
+      }
+    }
+  ]
+}

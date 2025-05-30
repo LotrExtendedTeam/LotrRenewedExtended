@@ -18,7 +18,7 @@ import lotr.common.init.LOTRDimensions;
 import net.minecraft.world.gen.settings.DimensionGeneratorSettings;
 
 /**
- * @reason Renewed used reflection to replace Final CODEC and this breaks in Java 9+
+ * Renewed used reflection to replace Final CODEC and this breaks in Java 9+
  * @Mixin (LOTRDimensions.class)
  * */
 @Mixin(LOTRDimensions.class)

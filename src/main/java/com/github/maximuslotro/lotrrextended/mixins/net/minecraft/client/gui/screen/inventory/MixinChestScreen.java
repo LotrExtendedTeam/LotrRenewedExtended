@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public abstract class MixinChestScreen extends ContainerScreen<ChestContainer> implements IHasContainer<ChestContainer> {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param chestContainer A placeholder variable instance of ChestContainer
 	 * @param inventory A placeholder variable instance of PlayerInventory
 	 * @param titleIn A placeholder variable instance of ITextComponent

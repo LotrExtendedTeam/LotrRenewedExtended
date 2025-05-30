@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 
@@ -265,7 +266,7 @@ public interface ExtendedHirableEntity {
 	/**
 	 * Generated the base equipment for a hired unit from a hired unit equipment pool.
 	 * Don't Implement this method, instead call it in your entity finalize spawn method
-	 * @see ExtendedHiredUnitEquipmentPool 
+	 * @see ExtendedHiredUnitEquipmentPool
 	 * */
 	default void setupUnitEquipment() {
 		// set initial entity base equipment based upon pools

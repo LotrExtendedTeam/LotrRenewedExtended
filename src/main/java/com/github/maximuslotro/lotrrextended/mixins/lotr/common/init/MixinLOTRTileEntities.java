@@ -49,14 +49,14 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
 /**
- * @reason Used to register new recipe handlers added by Extended
+ * Used to register new recipe handlers added by Extended
  * @Mixin (LOTRTileEntities.class)
  * */
 @SuppressWarnings("deprecation")
 @Mixin(LOTRTileEntities.class)
 public class MixinLOTRTileEntities {
 	/**
-	 * @reason Get the tileEntity DeferredRegister for Renewed's tileEntities
+	 * Get the tileEntity DeferredRegister for Renewed's tileEntities
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */

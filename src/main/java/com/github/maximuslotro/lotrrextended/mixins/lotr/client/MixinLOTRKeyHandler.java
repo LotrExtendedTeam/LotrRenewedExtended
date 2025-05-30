@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -32,7 +33,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 
 /**
- * @reason need to hide special factions from rendering and stuff
+ * Need to hide special factions from rendering and stuff
  * @Mixin (LOTRKeyHandler.class)
  * */
 @Mixin(LOTRKeyHandler.class)
@@ -77,6 +78,7 @@ public abstract class MixinLOTRKeyHandler{
 	/**
 	 * An intractable map of keybindings to use for override logic
 	 * */
+	@Unique
 	private static final Map<KeyBinding, ExtendedAlignmentKeyAction> ExtendedALIGNMENT_KEY_ACTIONS = ImmutableMap.of(KEY_BIND_ALIGNMENT_PREVIOUS, new ExtendedAlignmentKeyAction(-1, 0), KEY_BIND_ALIGNMENT_NEXT, new ExtendedAlignmentKeyAction(1, 0), KEY_BIND_ALIGNMENT_GROUP_PREVIOUS, new ExtendedAlignmentKeyAction(0, -1), KEY_BIND_ALIGNMENT_GROUP_NEXT, new ExtendedAlignmentKeyAction(0, 1));
 
 	/**

@@ -8,6 +8,7 @@ import lotr.common.item.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -23,6 +24,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerries;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBucketOfCheeseCurds;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
@@ -66,13 +68,13 @@ import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 
 /**
- * @reason Used to register new items added by Extended
+ * Used to register new items added by Extended
  * @Mixin (LOTRItems.class)
  * */
 @Mixin(LOTRItems.class)
 public class MixinLOTRItems {
 	/**
-	 * @reason Get Renewed's very base method for registering items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's very base method for registering items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param name A String name of the entity
 	 * @param sup A supplier for the item
@@ -81,11 +83,12 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {return null;}
 	/**
-	 * @reason Extended's base method for registering items, handling dataGen
+	 * Extended's base method for registering items, handling dataGen
 	 * @param name A String name of the entity
 	 * @param sup A supplier for the item
 	 * @return A RegistryObject instance for the item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regItemB(String name, Supplier<? extends Item> sup)  {
 		RegistryObject<Item> item = regItem(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -94,12 +97,13 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's method for registering banner pattern items, handling their unique dataGen needs
+	 * Extended's method for registering banner pattern items, handling their unique dataGen needs
 	 * @param name A String name of the entity
 	 * @param bannerPattern The BannerPattern instance for this item
 	 * @param sup A supplier for the item
 	 * @return A RegistryObject instance for the item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<? extends Item> sup)  {
 		RegistryObject<Item> item = regItemB(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -108,7 +112,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Get Renewed's base method for registering cake-like items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering cake-like items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param blockSup A block supplier for the cake-like block
 	 * @param group The ItemGroup for this item to be placed in
@@ -117,11 +121,12 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regCakeBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
 	/**
-	 * @reason Extended's method for registering cake-like item, handling dataGen 
+	 * Extended's method for registering cake-like item, handling dataGen
 	 * @param blockSup A block supplier for the cake-like block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the cake-like item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regCakeBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regCakeBlockItem(blockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -130,7 +135,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param blockSup A block supplier for the block
 	 * @param group The ItemGroup for this item to be placed in
@@ -139,7 +144,7 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
 	/**
-	 * @reason Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param blockSup A block supplier for the block
 	 * @param group The ItemGroup for this item to be placed in
@@ -149,12 +154,13 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group, Consumer<Properties> extraPropsSetter) {return null;}
 	/**
-	 * @reason Extended's method for registering tileEntity-based block items, handles dataGen 
+	 * Extended's method for registering tileEntity-based block items, handles dataGen
 	 * @param blockSup A block supplier for the block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @param ister A TileEntityRenderer instance to be used for rendering
 	 * @return A RegistryObject instance for the block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regBlockItemStackRenderer(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
 		RegistryObject<Item> item = regBlockItem(blockSup, group, (props) -> props.setISTER(ister));
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -163,11 +169,12 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's base method for registering block items, handling dataGen
+	 * Extended's base method for registering block items, handling dataGen
 	 * @param blockSup A block supplier for the block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regBlockItem(blockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -176,11 +183,12 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's method for registering custom block items, handling dataGen
+	 * Extended's method for registering custom block items, handling dataGen
 	 * @param blockSup A block supplier for the block
 	 * @param itemMaker The Function for creating a custom BlockItem
 	 * @return A RegistryObject instance for the block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regExtendedBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, itemMaker);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -189,10 +197,11 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's method for registering hidden block items so they don't show in the creative menu, handling dataGen
+	 * Extended's method for registering hidden block items so they don't show in the creative menu, handling dataGen
 	 * @param blockSup A block supplier for the block
 	 * @return A RegistryObject instance for the block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regHiddenBlockItemB(RegistryObject<Block> blockSup) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new LOTRBlockItem(b, new Properties()));
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -201,21 +210,23 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's base method for registering block items, NO DATAGEN DONE HERE. DO NOT CALL DIRECTLY, USE HELPER METHODS
+	 * Extended's base method for registering block items, NO DATAGEN DONE HERE. DO NOT CALL DIRECTLY, USE HELPER METHODS
 	 * @param blockSup A block supplier for the block
 	 * @param itemMaker A Function to build the block item
 	 * @return A RegistryObject instance for the block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regArbitraryBlockItemD(RegistryObject<Block> blockSup, Function<Block, ? extends BlockItem> itemMaker) {
 		String name = blockSup.getId().getPath();
 		return regItem(name, () -> itemMaker.apply(blockSup.get()));
 	}
 	/**
-	 * @reason Extended's method for registering model-based bed items, handles dataGen 
+	 * Extended's method for registering model-based bed items, handles dataGen
 	 * @param blockSup A block supplier for the bed
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the bed item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group)));
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -224,12 +235,13 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's method for registering tileEntity-based bed items, handles dataGen 
+	 * Extended's method for registering tileEntity-based bed items, handles dataGen
 	 * @param blockSup A block supplier for the bed
 	 * @param group The ItemGroup for this item to be placed in
 	 * @param ister A TileEntityRenderer instance to be used for rendering
 	 * @return A RegistryObject instance for the bed item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regBedBlockItemD(RegistryObject<Block> blockSup, ItemGroup group, Supplier<Callable<ItemStackTileEntityRenderer>> ister) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new ExtendedBedItem(b, new Properties().stacksTo(1).tab(group).setISTER(ister)));
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -238,11 +250,12 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Extended's method for registering fallen leaves block items, handles dataGen 
+	 * Extended's method for registering fallen leaves block items, handles dataGen
 	 * @param blockSup A block supplier for the fallen leaves block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the fallen leaves block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regFallenLeavesBlockItemD(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item =  regArbitraryBlockItemD(blockSup, (b) -> new FallenLeavesItem(b, (new Properties()).tab(group)));
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -251,7 +264,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Get Renewed's base method for registering vessel block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering vessel block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param blockSup A block supplier for the vessel block
 	 * @param vesselType A VesselType for this item
@@ -260,11 +273,12 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regEmptyVesselBlockItem(RegistryObject<Block> blockSup, VesselType vesselType) {return null;}
 	/**
-	 * @reason Extended's method for registering vessel block items, handling datGen
+	 * Extended's method for registering vessel block items, handling datGen
 	 * @param blockSup A block supplier for the vessel block
 	 * @param vesselType A VesselType for this item
 	 * @return A RegistryObject instance for the vessel block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regEmptyVesselBlockItemD(RegistryObject<Block> blockSup, VesselType vesselType) {
 		RegistryObject<Item> item = regEmptyVesselBlockItem(blockSup, vesselType);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -273,7 +287,7 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * @reason Get Renewed's base method for registering tall block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering tall block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param blockSup A block supplier for the tall block item
 	 * @param group The ItemGroup for this item to be placed in
@@ -282,11 +296,12 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regTallBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
 	/**
-	 * @reason Extended's method for registering tall block items, handling dataGen
+	 * Extended's method for registering tall block items, handling dataGen
 	 * @param blockSup A block supplier for the tall block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the tall block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regTallBlockItemB(RegistryObject<Block> blockSup, ItemGroup group) {
 		RegistryObject<Item> item = regTallBlockItem(blockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -296,20 +311,21 @@ public class MixinLOTRItems {
 	}
 
 	/**
-	 * @reason Get Renewed's base method for registering sign block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering sign block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
-	 * @param blockSup A block supplier for the sign block
-	 * @param blockSup A block supplier for the wall sign block
+	 * @param standingSignSup A block supplier for the sign block
+	 * @param wallSignSup A block supplier for the wall sign block
 	 * @return A RegistryObject instance for the sign block item
 	 * */
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regSignBlockItem(RegistryObject<Block> standingSignSup, RegistryObject<Block> wallSignSup) {return null;}
 	/**
-	 * @reason Extended's method for registering sign block items, handling dataGen
-	 * @param blockSup A block supplier for the sign block
-	 * @param blockSup A block supplier for the wall sign block
+	 * Extended's method for registering sign block items, handling dataGen
+	 * @param standingSignSup A block supplier for the sign block
+	 * @param wallSignSup A block supplier for the wall sign block
 	 * @return A RegistryObject instance for the sign block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regSignBlockItemB(RegistryObject<Block> standingSignSup, RegistryObject<Block> wallSignSup) {
 		RegistryObject<Item> item = regSignBlockItem(standingSignSup, wallSignSup);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -319,13 +335,14 @@ public class MixinLOTRItems {
 	}
 
 	/**
-	 * @reason Extended's method for registering material items, handling dataGen
+	 * Extended's method for registering material items, handling dataGen
 	 * @param name A String name for the item
 	 * @return A RegistryObject instance for the material item
 	 * */
 	//Moved to overwrite method
 	//@Shadow(remap=false)
 	//private static RegistryObject<Item> regMaterialItem(String name) {return null;}
+	@Unique
 	private static RegistryObject<Item> regMaterialItemB(String name)  {
 		RegistryObject<Item> item = regMaterialItem(name);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -352,7 +369,7 @@ public class MixinLOTRItems {
 		return regItem(name, () -> new Item(new Properties().tab(LOTRItemGroups.MATERIALS)));
 	}
 	/**
-	 * @reason Get Renewed's base method for registering wall/floor block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering wall/floor block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
 	 * @param wallBlockSup A block supplier for the wall block
 	 * @param floorBlockSup A block supplier for the floor block
@@ -362,12 +379,13 @@ public class MixinLOTRItems {
 	@Shadow(remap=false)
 	private static RegistryObject<Item> regWallOrFloorBlockItem(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {return null;}
 	/**
-	 * @reason Extended's method for registering wall/floor block items, handling dataGen
+	 * Extended's method for registering wall/floor block items, handling dataGen
 	 * @param wallBlockSup A block supplier for the wall block
 	 * @param floorBlockSup A block supplier for the floor block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the wall/floor block item
 	 * */
+	@Unique
 	private static RegistryObject<Item> regWallOrFloorBlockItemB(RegistryObject <Block>wallBlockSup, RegistryObject<Block> floorBlockSup, ItemGroup group)  {
 		RegistryObject<Item> item = regWallOrFloorBlockItem(wallBlockSup, floorBlockSup, group);
 		if(DatagenModLoader.isRunningDataGen()) {
@@ -378,7 +396,7 @@ public class MixinLOTRItems {
 	/**
 	 * @reason Register Extended's items after Renewed's static registering is done, but before the item differed register is registered
 	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
-	 * @param The local CallbackInfo instance for this Inject
+	 * @param ci The local CallbackInfo instance for this Inject
 	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedItems(CallbackInfo ci) {
@@ -646,7 +664,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BLACKBERRY_HEDGE = regBlockItemB(ExtendedBlocks.BLACKBERRY_HEDGE, LOTRItemGroups.DECO);
 		ExtendedItems.CRANBERRY_HEDGE = regBlockItemB(ExtendedBlocks.CRANBERRY_HEDGE, LOTRItemGroups.DECO);
 		ExtendedItems.ELDERBERRY_HEDGE = regBlockItemB(ExtendedBlocks.ELDERBERRY_HEDGE, LOTRItemGroups.DECO);
-		ExtendedItems.WILDBERRY_HEDGE = regBlockItemB(ExtendedBlocks.WILDBERRY_HDEGE, LOTRItemGroups.DECO);
+		ExtendedItems.WILDBERRY_HEDGE = regBlockItemB(ExtendedBlocks.WILDBERRY_HEDGE, LOTRItemGroups.DECO);
 
 		ExtendedItems.MORDOR_MOSS_VINES = regBlockItemB(ExtendedBlocks.MORDOR_MOSS_VINES, LOTRItemGroups.DECO);
 
@@ -910,6 +928,7 @@ public class MixinLOTRItems {
 		ExtendedItems.RASPBERRY = regItemB("raspberry", () -> new ExtendedBerries(ExtendedBlocks.RASPBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
 		ExtendedItems.WILDBERRY = regItemB("wildberry", ()-> new ExtendedBerries(ExtendedBlocks.WILDBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 		ExtendedItems.BOTTLE_OF_POISON = regItemB("bottle_of_poison", () -> new ExtendedPoisonBottleItem(new Properties().stacksTo(16).tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS)));
+		ExtendedItems.BUCKET_OF_CHEESE_CURDS = regItemB("bucket_of_cheese_curds", () -> new ExtendedBucketOfCheeseCurds(new Properties().stacksTo(32).tab(LOTRItemGroups.FOOD)));
 		ExtendedItems.CHEESE_CURDS = regItemB("cheese_curds", () -> new Item(new Properties().stacksTo(32).tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS)));
 		ExtendedItems.CHEESE_WHEEL  = regCakeBlockItemD(ExtendedBlocks.CHEESE_WHEEL, LOTRItemGroups.FOOD);
 		ExtendedItems.AGED_CHEESE_WHEEL  = regCakeBlockItemD(ExtendedBlocks.AGED_CHEESE_WHEEL, LOTRItemGroups.FOOD);
@@ -1068,57 +1087,64 @@ public class MixinLOTRItems {
 	}
 
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> blackFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedBlackFurBedTileEntity::new);
 	}
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> furBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedFurBedTileEntity::new);
 	}
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> grayFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedGrayFurBedTileEntity::new);
 	}
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> silverFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedSilverFurBedTileEntity::new);
 	}
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedWhiteFurBedTileEntity::new);
 	}
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> orcBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedOrcBedTileEntity::new);
 	}
 	/**
-	 * @reason Supplier for getting bed tileEntity renderers
+	 * Supplier for getting bed tileEntity renderers
 	 * @return A ItemStackTileEntityRenderer
 	 * */
+	@Unique
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> strawBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedStrawBedTileEntity::new);

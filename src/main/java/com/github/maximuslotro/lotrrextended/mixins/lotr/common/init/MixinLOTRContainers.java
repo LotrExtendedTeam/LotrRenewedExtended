@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -27,13 +28,13 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
 /**
- * @reason Used to register new containers added by Extended
+ * Used to register new containers added by Extended
  * @Mixin (LOTRContainers.class)
  * */
 @Mixin(LOTRContainers.class)
 public class MixinLOTRContainers {
 	/**
-	 * @reason Get the block DeferredRegister for Renewed's containers
+	 * Get the block DeferredRegister for Renewed's containers
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -44,7 +45,7 @@ public class MixinLOTRContainers {
 	/**
 	 * @reason Register Extended's containers after Renewed's static registering is done, but before the container differed register is registered
 	 * @Inject (method = "register()V", at = @At("HEAD"), remap=false)
-	 * @param The local CallbackInfo instance for this Inject
+	 * @param ci The local CallbackInfo instance for this Inject
 	 * */
 	@Inject(method = "register()V", at = @At("HEAD"), remap = false)
 	private static void bootstrapExtendedContainers(CallbackInfo ci) {
@@ -57,12 +58,13 @@ public class MixinLOTRContainers {
 	}
 
 	/**
-	 * @reason Register our own containers under the lotr namespace, with dataGen handling
+	 * Register our own containers under the lotr namespace, with dataGen handling
 	 * @param name A String name of the container
 	 * @param defaultName A String English Localized name of the container for dataGen
 	 * @param sup A ContainerType supplier to build
 	 * @return A built RegistryObject for the container 
 	 * */
+	@Unique
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
     		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
@@ -70,12 +72,13 @@ public class MixinLOTRContainers {
 		return CONTAINERS.register(name, sup);
 	}
 	/**
-	 * @reason Register our own containers under the lotrextended namespace, with dataGen handling
+	 * Register our own containers under the lotrextended namespace, with dataGen handling
 	 * @param name A String name of the container
 	 * @param defaultName A String English Localized name of the container for dataGen
 	 * @param sup A ContainerType supplier to build
 	 * @return A built RegistryObject for the container 
 	 * */
+	@Unique
 	private static <T extends Container> RegistryObject<ContainerType<T>> registerExtended(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
     		DataGenValueHolder.containerTitlesHolders.put("container.lotrextended."+name, defaultName);

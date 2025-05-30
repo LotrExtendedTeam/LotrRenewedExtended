@@ -27,7 +27,7 @@ import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
- * @reason Need direct injection into renewed client rendering logic to add wight fog effects
+ * Need direct injection into renewed client rendering logic to add wight fog effects
  * @Mixin (LOTRTickHandlerClient.class)
  * */
 @Mixin(LOTRTickHandlerClient.class)
@@ -83,11 +83,13 @@ public class MixinLOTRTickHandlerClient {
 	/**
 	 * Variable for holding the current wight fog distance data
 	 * */
+	@Unique
 	private float wightFogModifier;
 	/**
 	 * Variable for holding the previous wight fog distance data
 	 * Used for interpolating the fog movement
 	 * */
+	@Unique
 	private float prevWightFogModifier;
 
 	/**

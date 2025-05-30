@@ -18,14 +18,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * @reason Add patch do allow for customization of dripstone damage height
- * @Mixin(DripstoneBlock.class)
+ * Add patch do allow for customization of dripstone damage height
+ * @Mixin (DripstoneBlock.class)
  * */
 @Mixin(DripstoneBlock.class)
 public abstract class MixinDripstoneBlock extends Block{
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param properties A placeholder variable instance of Properties
 	 * */
 	public MixinDripstoneBlock(Properties properties) {
@@ -33,9 +33,9 @@ public abstract class MixinDripstoneBlock extends Block{
 	}
 
 	/**
-	 * @reason Get the property holder for dripstone types
+	 * Get the property holder for dripstone types
 	 * @Final
-	 * @Shadow(remap=false)
+	 * @Shadow (remap=false)
 	 * */
 	@Final
 	@Shadow(remap=false)

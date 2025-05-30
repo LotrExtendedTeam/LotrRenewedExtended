@@ -2,17 +2,16 @@
   "parent": "lotrextended:general/trade",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_hundred"
+      "item": "lotr:silver_coin_ten"
     },
     "title": {
-      "color": "dark_purple",
       "translate": "advancements.lotrextended.general.filthy_rich.title"
     },
     "description": {
-      "color": "light_purple",
+      "color": "green",
       "translate": "advancements.lotrextended.general.filthy_rich.description"
     },
-    "frame": "challenge",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

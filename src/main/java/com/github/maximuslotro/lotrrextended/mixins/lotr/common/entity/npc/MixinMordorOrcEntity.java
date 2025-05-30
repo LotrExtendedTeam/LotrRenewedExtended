@@ -1,9 +1,6 @@
 package com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc;
 
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 
 import lotr.common.entity.npc.MordorOrcEntity;
 import lotr.common.entity.npc.OrcEntity;
@@ -21,14 +18,14 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 /**
- * @reason Need to change Gundabad Orc equipment
+ * Need to change Gundabad Orc equipment
  * @Mixin (GundabadOrcEntity.class)
  * */
 @Mixin(MordorOrcEntity.class)
 public abstract class MixinMordorOrcEntity extends OrcEntity{
 
 	/**
-	 * @reason Need to get the weapons pool
+	 * Need to get the weapons pool
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
 	 * */
@@ -37,7 +34,7 @@ public abstract class MixinMordorOrcEntity extends OrcEntity{
 	private static SpawnEquipmentTable WEAPONS;
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of OrcEntity
 	 * @param w A placeholder variable instance of World
 	 * */
@@ -46,26 +43,30 @@ public abstract class MixinMordorOrcEntity extends OrcEntity{
 	}
 
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * */
+	@Unique
 	private static final SpawnEquipmentTable HELMETS = SpawnEquipmentTable
 			.of(LOTRItems.MORDOR_HELMET, LOTRItems.MORDOR_HELMET, LOTRItems.MORDOR_HELMET, LOTRItems.MORDOR_HELMET, LOTRItems.MORDOR_HELMET, LOTRItems.MORDOR_HELMET,
 					ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BROWN_WARG_HELMET);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * */
+	@Unique
 	private static final SpawnEquipmentTable CHESTPLATES = SpawnEquipmentTable
 			.of(LOTRItems.MORDOR_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE, LOTRItems.MORDOR_CHESTPLATE,
 					ExtendedItems.BLACK_WARG_CHESTPLATE, ExtendedItems.BROWN_WARG_CHESTPLATE);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * */
+	@Unique
 	private static final SpawnEquipmentTable LEGGINGS = SpawnEquipmentTable
 			.of(LOTRItems.MORDOR_LEGGINGS, LOTRItems.MORDOR_LEGGINGS, LOTRItems.MORDOR_LEGGINGS, LOTRItems.MORDOR_LEGGINGS, LOTRItems.MORDOR_LEGGINGS,
 					ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BROWN_WARG_LEGGINGS);
 	/**
-	 * @reason Need to add new equipment to the equipment pool
+	 * Need to add new equipment to the equipment pool
 	 * */
+	@Unique
 	private static final SpawnEquipmentTable BOOTS = SpawnEquipmentTable
 			.of(LOTRItems.MORDOR_BOOTS, LOTRItems.MORDOR_BOOTS, LOTRItems.MORDOR_BOOTS, LOTRItems.MORDOR_BOOTS, LOTRItems.MORDOR_BOOTS,
 					ExtendedItems.BLACK_WARG_BOOTS, ExtendedItems.BROWN_WARG_BOOTS);
@@ -76,7 +77,7 @@ public abstract class MixinMordorOrcEntity extends OrcEntity{
 	 * @Overwrite (remap = false)
 	 * @param sw A local IServerWorld instance
 	 * @param diff The local DifficultyInstance
-	 * @param spawn The SpawnReason for his spawn
+	 * @param reason The SpawnReason for his spawn
 	 * @param spawnData Additional ILivingEntityData for this spawn
 	 * @param dataTag Additional CompoundNBT for this spawn
 	 * @return An ILivingEntityData instance

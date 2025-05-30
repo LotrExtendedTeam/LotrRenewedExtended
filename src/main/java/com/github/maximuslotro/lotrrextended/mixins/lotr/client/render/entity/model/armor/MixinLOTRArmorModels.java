@@ -22,7 +22,7 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.item.Item;
 /**
  * 
- * @reason Need to register our own custom armor pieces
+ * Need to register our own custom armor pieces
  * @Mixin (LOTRArmorModels.class)
  * */
 @Mixin(LOTRArmorModels.class)

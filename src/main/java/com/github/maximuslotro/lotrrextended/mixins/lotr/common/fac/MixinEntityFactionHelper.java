@@ -25,7 +25,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
- * @reason Add fellowship and hired unit pve logic to Renewed's entity damage checker
+ * Add fellowship and hired unit pve logic to Renewed's entity damage checker
  * @Mixin (EntityFactionHelper.class)
  * */
 @Mixin(EntityFactionHelper.class)
@@ -47,7 +47,7 @@ public class MixinEntityFactionHelper {
 //	}
 
 	/**
-	 * @return Check if an entity is aligned to a faction
+	 * Check if an entity is aligned to a faction
 	 * @Shadow (remap=false)
 	 * @param entity The entity to be checked
 	 * @return True if the entity is aligned to any faction
@@ -56,7 +56,7 @@ public class MixinEntityFactionHelper {
 	private static boolean isAlignedToSomeFaction(Entity entity) {return false;}
 
 	/**
-	 * @return Gets the faction an entity is a part of
+	 * Gets the faction an entity is a part of
 	 * @Shadow (remap=false)
 	 * @param entity The entity get the Faction for
 	 * @return The Faction for the given Entity, or null if there is no faction for the entity

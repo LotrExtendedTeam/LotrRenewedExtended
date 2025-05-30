@@ -30,6 +30,8 @@ public class ExtendedConfigCommand {
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
 		command.then(buildBoolean("enableDefaultWaypointTeleportation", ExtendedServerConfig.enableDefaultWaypointTeleportation));
 		command.then(buildBoolean("enableCustomWaypointTeleportation", ExtendedServerConfig.enableCustomWaypointTeleportation));
+		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, true));
+		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior, true));
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
@@ -38,7 +40,6 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableFishingEnchantedItems", ExtendedServerConfig.enableFishingEnchantedItems));
 		command.then(buildBoolean("enableEnchantedLootDrops", ExtendedServerConfig.enableEnchantedLootDrops));
 		// Special
-		command.then(buildBoolean("enableDevMode", ExtendedServerConfig.enableDevMode, true));
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
 		// Register
 		dispatcher.register(command);
@@ -85,30 +86,30 @@ public class ExtendedConfigCommand {
 	}
 
 	public static int retrieveBooleanValue(CommandSource source, String name, boolean value) {
-		source.sendSuccess(new StringTextComponent("Current ").withStyle(TextFormatting.GREEN)
-			.append(new StringTextComponent(name).withStyle(TextFormatting.AQUA))
-			.append(new StringTextComponent(" value: ").withStyle(TextFormatting.GOLD))
-			.append(new StringTextComponent(Boolean.toString(value)).withStyle(TextFormatting.GOLD)), true);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.config.current").withStyle(TextFormatting.GREEN)
+			.append(new StringTextComponent(" "+name+" ").withStyle(TextFormatting.AQUA))
+			.append(new TranslationTextComponent("command.lotrextended.config.value").withStyle(TextFormatting.GOLD))
+			.append(new StringTextComponent(": "+Boolean.toString(value)).withStyle(TextFormatting.GOLD)), true);
 		return Command.SINGLE_SUCCESS;
 	}
 	public static int retrieveIntValue(CommandSource source, String name, int value) {
-		source.sendSuccess(new StringTextComponent("Current ").withStyle(TextFormatting.GREEN)
-			.append(new StringTextComponent(name).withStyle(TextFormatting.AQUA))
-			.append(new StringTextComponent(" value: ").withStyle(TextFormatting.GOLD))
-			.append(new StringTextComponent(Integer.toString(value)).withStyle(TextFormatting.GOLD)), true);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.config.current").withStyle(TextFormatting.GREEN)
+			.append(new StringTextComponent(" "+name+" ").withStyle(TextFormatting.AQUA))
+			.append(new TranslationTextComponent("command.lotrextended.config.value").withStyle(TextFormatting.GOLD))
+			.append(new StringTextComponent(": "+Integer.toString(value)).withStyle(TextFormatting.GOLD)), true);
 		return Command.SINGLE_SUCCESS;
 	}
 	public static int retrieveDoubleValue(CommandSource source, String name, double value) {
-		source.sendSuccess(new StringTextComponent("Current ").withStyle(TextFormatting.GREEN)
-			.append(new StringTextComponent(name).withStyle(TextFormatting.AQUA))
-			.append(new StringTextComponent(" value: ").withStyle(TextFormatting.GOLD))
-			.append(new StringTextComponent(Double.toString(value)).withStyle(TextFormatting.GOLD)), true);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.config.current").withStyle(TextFormatting.GREEN)
+			.append(new StringTextComponent(" "+name+" ").withStyle(TextFormatting.AQUA))
+			.append(new TranslationTextComponent("command.lotrextended.config.value").withStyle(TextFormatting.GOLD))
+			.append(new StringTextComponent(": "+Double.toString(value)).withStyle(TextFormatting.GOLD)), true);
 		return Command.SINGLE_SUCCESS;
 	}
 
 	public static int cantSetValue(CommandSource source, String name) {
-		source.sendSuccess(new StringTextComponent(name).withStyle(TextFormatting.AQUA)
-			.append(new StringTextComponent(" can only be edited in server config while server is off!").withStyle(TextFormatting.RED)), true);
+		source.sendSuccess(new StringTextComponent(name+" ").withStyle(TextFormatting.AQUA)
+			.append(new TranslationTextComponent("command.lotrextended.config.cant").withStyle(TextFormatting.RED)), true);
 		return Command.SINGLE_SUCCESS;
 	}
 

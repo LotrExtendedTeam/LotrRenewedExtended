@@ -5,12 +5,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import org.spongepowered.asm.mixin.Dynamic;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import lotr.common.init.ExtendedItems;
@@ -19,13 +14,13 @@ import lotr.common.util.LOTRUtil;
 import net.minecraft.util.IItemProvider;
 
 /**
- * @reason Used to register new VesselType instances, as Renewed requires this enum type to be used for vessel logic
+ * Used to register new VesselType instances, as Renewed requires this enum type to be used for vessel logic
  * @Mixin (VesselType.class)
  * */
 @Mixin(VesselType.class)
 public class MixinVesselType {
 	@SuppressWarnings("target")
-	/**
+	/*
 	 * @reason This value is the runtime array variable for the VesselType
 	 * @Shadow (remap = false)
 	 * @Final Mark the field to be essentially final
@@ -39,16 +34,18 @@ public class MixinVesselType {
 	private static VesselType[] $VALUES;
 
 	/**
-	 * @reason Need to regenerate the lookup index for vessels to add extended's vessels
+	 * Need to regenerate the lookup index for vessels to add extended's vessels
 	 * */
+	@Unique
 	private static final Map<String, VesselType> EXTENDED_NAME_LOOKUP;
 
 	/**
-	 * @reason Holder for extended's skull goblet vessel type
+	 * Holder for extended's skull goblet vessel type
 	 * */
+	@Unique
 	private static final VesselType SKULL_GOBLET;
 
-	/**
+	/*
 	 * @reason Register Extended's vessel types and regenerate the vessel map
 	 * */
 	static {
@@ -57,7 +54,7 @@ public class MixinVesselType {
 	}
 
 	/**
-	 * @reason Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
+	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
 	 * @Invoker ("<init>")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param internalId The internal id (ordinal) of this Enum entry
@@ -73,7 +70,7 @@ public class MixinVesselType {
 		throw new AssertionError();
 	}
 	/**
-	 * @reason Accessing the Enum creation method
+	 * Accessing the Enum creation method
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param item The item for this drink vessel to handle
 	 * @param name The localized name of this Enum
@@ -81,6 +78,7 @@ public class MixinVesselType {
 	 * @param place Should this vessel be placed down
 	 * @return A built VesselType instance
 	 * */
+	@Unique
 	private static VesselType lotrmaterialExpansion$addVariant(String internalName, Supplier<IItemProvider> item, String name, String iconName, boolean place) {
 		ArrayList<VesselType> variants = new ArrayList<>(Arrays.asList(MixinVesselType.$VALUES));
 		VesselType instrument = lotrVesselType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, item, name, iconName, place);

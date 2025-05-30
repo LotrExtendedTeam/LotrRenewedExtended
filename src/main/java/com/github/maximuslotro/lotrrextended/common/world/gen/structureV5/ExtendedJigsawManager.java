@@ -70,7 +70,7 @@ public class ExtendedJigsawManager {
 					if(foundProcessor) {
 						IllegalStateException e =  new IllegalStateException("Structure Processor can't have more than one WoodPaletteProcessor instance!");
 						e.printStackTrace();
-						LOGGER.info("Error adding wood processor present in "+jigsawpattern.getName().toString()+" to parent stack! Skipping structure");
+                        LOGGER.info("Error adding wood processor present in {} to parent stack! Skipping structure", jigsawpattern.getName().toString());
 						return;
 					}
 					foundProcessor = true;
@@ -248,7 +248,7 @@ public class ExtendedJigsawManager {
 									}
 									// Extended Start
 									if(connectingPieceJigsawRandom.size()==0) {
-										LOGGER.warn("JigsawBlock tried to attach piece without jigsaw blocks: "+connectingPoolJigsawPiece.toString());
+                                        LOGGER.warn("JigsawBlock tried to attach piece without jigsaw blocks: {}", connectingPoolJigsawPiece.toString());
 									}
 									// Extended End
 									// Try spawning the piece at a random connecting Jigsaw point

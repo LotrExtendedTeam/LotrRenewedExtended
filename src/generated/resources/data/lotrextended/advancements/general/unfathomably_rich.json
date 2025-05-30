@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/frighteningly_rich",
+  "display": {
+    "icon": {
+      "item": "lotr:mithril_ingot"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.unfathomably_rich.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.unfathomably_rich.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_any_trader_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "false",
+        "coins_moved": {
+          "min": 10000
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_buy"
+    ]
+  ]
+}

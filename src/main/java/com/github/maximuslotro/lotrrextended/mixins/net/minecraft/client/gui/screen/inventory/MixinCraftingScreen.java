@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public abstract class MixinCraftingScreen extends ContainerScreen<WorkbenchContainer> implements IRecipeShownListener {
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param craftingContainer A placeholder variable instance of WorkbenchContainer
 	 * @param inventory A placeholder variable instance of PlayerInventory
 	 * @param titleIn A placeholder variable instance of ITextComponent

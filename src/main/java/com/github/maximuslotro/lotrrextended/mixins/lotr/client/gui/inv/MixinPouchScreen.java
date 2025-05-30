@@ -19,7 +19,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
 /**
- * @reason Need to add coin total to inventory
+ * Need to add coin total to inventory
  * @Mixin (PouchScreen.class)
  * */
 @Mixin(PouchScreen.class)
@@ -30,7 +30,7 @@ public abstract class MixinPouchScreen extends ContainerScreen<PouchContainer> {
 	private int pouchRows;
 
 	/**
-	 * @reason Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param pouchContainer A placeholder variable instance of PouchContainer
 	 * @param inventory A placeholder variable instance of PlayerInventory
 	 * @param titleIn A placeholder variable instance of ITextComponent

@@ -8,7 +8,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * Stores IDs for built in entity spawners.
+ * Stores IDs for built-in entity spawners.
  */
 public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();

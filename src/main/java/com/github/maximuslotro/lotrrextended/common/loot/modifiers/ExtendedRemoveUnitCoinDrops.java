@@ -38,9 +38,7 @@ public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
 	}
 
 	public static ILootCondition.IBuilder setRemoveUnitCoinsDropBuilder() {
-		return () -> {
-			return new ExtendedRemoveUnitCoinDrops();
-		};
+		return ExtendedRemoveUnitCoinDrops::new;
 	}
 
 	public static class Serializer implements ILootSerializer<ExtendedRemoveUnitCoinDrops> {

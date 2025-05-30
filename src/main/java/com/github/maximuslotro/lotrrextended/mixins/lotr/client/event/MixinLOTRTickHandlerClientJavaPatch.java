@@ -17,7 +17,7 @@ import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
 
 /**
- * @reason Move code to Access Transformers for Java 9+ systems
+ * Move code to Access Transformers for Java 9+ systems
  * @Mixin (LOTRTickHandlerClient.class)
  */
 @SuppressWarnings("deprecation")

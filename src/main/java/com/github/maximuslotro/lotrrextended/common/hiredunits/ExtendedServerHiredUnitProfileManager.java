@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
+import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResource;
@@ -78,10 +79,10 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 	}
 
 	/**
-	 * Code copied from {@Link JsonReloadListener} due to if this class extended it, it would cause server crashes
+	 * Code copied from {@link JsonReloadListener} due to if this class extended it, it would cause server crashes
 	 * when running a reload since all data files would disappear?
-	 * Extending {@Link ReloadListener} and copying the method fixes this data corruption
-	 * @version Minecraft 1.16.5
+	 * Extending {@link ReloadListener} and copying the method fixes this data corruption
+	 * From Minecraft 1.16.5
 	 * */
 	@Override
 	protected Map<ResourceLocation, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {

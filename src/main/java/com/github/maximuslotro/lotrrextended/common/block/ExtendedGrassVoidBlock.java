@@ -22,19 +22,23 @@ public class ExtendedGrassVoidBlock extends Block {
 		super(props);
 	}
 
+	@Override
 	public BlockRenderType getRenderShape(BlockState pState) {
 		return BlockRenderType.INVISIBLE;
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState pState, IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
 		return SHAPE;
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public float getShadeBrightness(BlockState pState, IBlockReader pLevel, BlockPos pPos) {
 		return 1.0F;
 	}
 
+	@Override
 	public PushReaction getPistonPushReaction(BlockState pState) {
 		return PushReaction.DESTROY;
 	}
