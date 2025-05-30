@@ -1,0 +1,60 @@
+package com.github.maximuslotro.lotrrextended.common.traders;
+
+import java.util.Set;
+
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.google.common.collect.Sets;
+
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.DatagenModLoader;
+
+/**
+ * Stores IDs for built-in trader profiles.
+ */
+public class ExtendedTraderTypes {
+	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
+
+	// Hobbit
+	public static final ResourceLocation HOBBIT_BARTENDER = make("hobbit_bartender");
+	public static final ResourceLocation HOBBIT_FARMER = make("hobbit_farmer");
+	// Bree
+	public static final ResourceLocation BREE_BAKER = make("bree_baker");
+	public static final ResourceLocation BREE_BREWER = make("bree_brewer");
+	public static final ResourceLocation BREE_BUTCHER = make("bree_butcher");
+	public static final ResourceLocation BREE_CHEESEMONGER = make("bree_cheesemonger");
+	public static final ResourceLocation BREE_FARMER = make("bree_farmer");
+	public static final ResourceLocation BREE_FLORIST = make("bree_florist");
+	public static final ResourceLocation BREE_INNKEEPER = make("bree_innkeeper");
+	public static final ResourceLocation BREE_LEATHERWORKER = make("bree_leatherworker");
+	public static final ResourceLocation BREE_LUMBERMAN = make("bree_lumberman");
+	public static final ResourceLocation BREE_MERCHANT = make("bree_merchant");
+	public static final ResourceLocation BREE_POTTER = make("bree_potter");
+	public static final ResourceLocation BREE_SMITH = make("bree_smith");
+	public static final ResourceLocation BREE_STABLEMASTER = make("bree_stablemaster");
+	public static final ResourceLocation BREE_STONEMASON = make("bree_stonemason");
+	// Gundabad
+	public static final ResourceLocation GUNDABAD_TRADER = make("gundabad_trader");
+	// Blue Mountians
+	public static final ResourceLocation BLUE_MOUNTAINS_MERCHANT = make("blue_mountains_merchant");
+	// Rivendell
+	public static final ResourceLocation RIVENDELL_WANDERER = make("rivendell_wanderer");
+	// Galadhrim
+	public static final ResourceLocation GALADHRIM_WANDERER = make("galadhrim_wanderer");
+	// Misc
+	public static final ResourceLocation ODDMENT_COLLECTOR = make("oddment_collector");
+
+	private static ResourceLocation make(String pId) {
+		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));
+	}
+
+	private static ResourceLocation validate(ResourceLocation pId) {
+		if(DatagenModLoader.isRunningDataGen()) {
+			if (UNIT_TYPES.add(pId)) {
+				return pId;
+			} else {
+				throw new IllegalArgumentException(pId + " is already a registered built-in extended trader type");
+			}
+		}
+		return pId;
+	}
+}

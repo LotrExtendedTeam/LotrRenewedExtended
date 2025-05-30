@@ -9,15 +9,13 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTrade
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -25,26 +23,12 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class WorldEventHandlers {
-
-	@SubscribeEvent
-	public static void onEntityRightClick(PlayerInteractEvent.EntityInteract event) {
-		if (event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof SpawnEggItem ||
-				event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof LOTRSpawnEggItem) {
-			if (event.getTarget() instanceof ExtendedTraderEntity) {
-				ExtendedTraderEntity trader = (ExtendedTraderEntity) event.getTarget();
-
-				ExtendedTraderHelper.openTraderGui((NPCEntity) event.getTarget(), event.getPlayer(), trader);
-				event.setCanceled(true);
-			}
-		}
-	}
 
 	@SubscribeEvent
 	public static void preventCloakedRangersFromBeingTargeted(LivingSetAttackTargetEvent event) {
@@ -87,7 +71,7 @@ public class WorldEventHandlers {
 		}
 
 		// If an NPC is a wandering trader, no respawns, even it is a captain
-		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedTraderEntity) event.getEntity()).isTraderWandering()) {
+		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isWanderingTrader()) {
 			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
 			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
 				return;
@@ -127,7 +111,7 @@ public class WorldEventHandlers {
 			//Save trader trades
 			CompoundNBT compound =  new CompoundNBT();
 			if(event.getEntity() instanceof ExtendedTraderEntity) {
-				((ExtendedTraderEntity) event.getEntity()).saveAllTrades(compound);
+				((ExtendedTraderEntity) event.getEntity()).getTraderData().writeToNbt(compound);
 			}
 			if(event.getEntity() instanceof ExtendedCaptainEntity) {
 				// IDK maybe captains have data to save in the future

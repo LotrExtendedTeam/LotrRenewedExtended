@@ -30,7 +30,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
 
     private int guiTop;
 
-    private ExtendedTradeContainer container;
+    public ExtendedTradeContainer container;
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/trade.png");
 
     private PlayerEntity player;
@@ -133,31 +133,20 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
 
         // render prices
         for (int i = 0; i < container.getSoldPrices().length; i++) {
-            int amount = container.getSoldPrices()[i];
-            // TODO: Maybe make trades eventually completely get used up like they do in Legacy? For now this isn't needed
-            //  anymore
-            /*if (container.getSoldQuantities()[i] == 0) {
-                this.minecraft.getTextureManager().bind(GUI_TEXTURE);
-                //blit(matrix, 8 + (i * 18), 57, 194, 18, 18, 18, 280, 280);
-            }*/
-
             // TODO: Figure out how to render font at smaller size
             String priceStr = String.valueOf(container.getSoldPrices()[i]);
-            if (container.getSoldQuantities()[i] == 0) priceStr = "...";
+            if (container.getSoldQuantities()[i] == 0 || container.trader.getTraderData().isTradesLocked()) {
+            	priceStr = "...";
+            }
             this.font.draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 62, 4210752);
         }
 
         for (int i = 0; i < container.getBoughtPrices().length; i++) {
-            // TODO: Maybe make trades eventually completely get used up like they do in Legacy? For now this isn't needed
-            //  anymore
-            /*if (container.getBoughtQuantities()[i] == 0) {
-                this.minecraft.getTextureManager().bind(GUI_TEXTURE);
-                //blit(matrix, 8 + (i * 18), 109, 194, 18, 18, 18, 280, 280);
-            }*/
-
             // TODO: Figure out how to render font at smaller size
             String priceStr = String.valueOf(container.getBoughtPrices()[i]);
-            if (container.getBoughtQuantities()[i] == 0) priceStr = "...";
+            if (container.getBoughtQuantities()[i] == 0 || container.trader.getTraderData().isTradesLocked()) {
+            	priceStr = "...";
+            }
             this.font.draw(matrix, priceStr, 8 + (18 * i) + ((18 - this.font.width(priceStr)) / 2), 114, 4210752);
         }
 
@@ -165,7 +154,12 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         for (int i = 0; i < container.getSoldQuantities().length; i++) {
             float amountUsed = (float) (container.getSoldOriginalQuantities()[i] - container.getSoldQuantities()[i]) / container.getSoldOriginalQuantities()[i];
             int pixels = (int) (amountUsed * 18);
-            if (pixels > 18) pixels = 18;
+            if (pixels > 18) {
+            	pixels = 18;
+            }
+            if (container.trader.getTraderData().isTradesLocked()) {
+            	pixels = 18;
+            }
             if (pixels > 0) {
                 fill(matrix, 7 + (i * 18), 39, 7 + (i * 18) + pixels, 39 + 18, 0xE6373737);
             }
@@ -175,7 +169,12 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         for (int i = 0; i < container.getBoughtQuantities().length; i++) {
             float amountUsed = (float) (container.getBoughtOriginalQuantities()[i] - container.getBoughtQuantities()[i]) / container.getBoughtOriginalQuantities()[i];
             int pixels = (int) (amountUsed * 18);
-            if (pixels > 18) pixels = 18;
+            if (pixels > 18) {
+            	pixels = 18;
+            }
+            if (container.trader.getTraderData().isTradesLocked()) {
+            	pixels = 18;
+            }
             if (pixels > 0) {
                 fill(matrix, 7 + (i * 18), 91, 7 + (i * 18) + pixels, 91 + 18, 0xE6373737);
             }

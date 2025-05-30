@@ -6,15 +6,7 @@ import java.util.UUID;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public interface ExtendedWanderingTraderEntity extends ExtendedTraderEntity{
-
-	boolean isWanderingTrader();
-
-	void setWanderingTrader(boolean isWanderingTrader);
-
-	int getWanderingTraderTicksLeft();
-
-	void setWanderingTraderTicksLeft(int ticksLeft);
+public interface ExtendedWanderingTraderEntity extends ExtendedTraderEntity {
 
 	TranslationTextComponent getDepartureLine(PlayerEntity player);
 
@@ -23,9 +15,4 @@ public interface ExtendedWanderingTraderEntity extends ExtendedTraderEntity{
 	void addEscort(UUID uuid);
 
 	NPCEntity createEscort();
-
-	@Override
-    default boolean isTraderWandering() {
-    	return isWanderingTrader();
-    }
 }

@@ -3,18 +3,17 @@ package lotr.common.entity.npc;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public abstract class ExtendedBreelandTraderEntity extends BreeManEntity implements ExtendedTraderEntity {
@@ -36,18 +35,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT tag) {
-        super.addAdditionalSaveData(tag);
-        saveAllTrades(tag);
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundNBT tag) {
-        super.readAdditionalSaveData(tag);
-        loadAllTrades(tag);
-    }
-
-    @Override
     public void updatePlayerInteractingWith(UUID uuid) {
         this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
     }
@@ -57,18 +44,8 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
 
-    @Override
-	public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAlignedWithLevel(player, this, 0.0F);
-    }
-
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D);
-    }
-
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }
 
     @Override
@@ -131,5 +108,14 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
 	@Override
 	public void getLastTickCooldownReduced(int cooldown) {
 		lastTickCooldownReduced = cooldown;
+	}
+	
+	@Override
+	protected void addNPCTargetingAI() {
+		if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
 	}
 }

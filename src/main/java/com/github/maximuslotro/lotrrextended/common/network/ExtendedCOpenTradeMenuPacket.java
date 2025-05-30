@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -47,8 +48,12 @@ public class ExtendedCOpenTradeMenuPacket {
     	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
 
     	// Ensure a modified client does not send trade request, bypassing client trade request check
-    	if (!trader.canTradeWith(context.get().getSender())) {
-    		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+    	if (!trader.canTradeWithPlayer(context.get().getSender())) {
+    		if(trader.isFriendly(context.get().getSender())) {
+        		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
+    		}else{
+        		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
+    		}
     		context.get().setPacketHandled(true);
     		return;
     	}
@@ -62,32 +67,32 @@ public class ExtendedCOpenTradeMenuPacket {
     	int[] soldPrices = new int[9];
     	int[] soldQuantities = new int[9];
     	int[] soldOriginalQuantities = new int[9];
-    	ArrayList<ItemStack> soldItems = new ArrayList<>();
+    	List<ItemStack> displayItems = new ArrayList<>();
 
-    	boughtPrices = trader.getBoughtPrices();
-    	boughtQuantities = trader.getBoughtQuantities();
-    	boughtOriginalQuantities = trader.getBoughtOriginalQuantities();
-    	soldPrices = trader.getSoldPrices();
-    	soldQuantities = trader.getSoldQuantities();
-    	soldOriginalQuantities = trader.getSoldOriginalQuantities();
+    	boughtPrices = trader.getTraderData().getBoughtPrices();
+    	boughtQuantities = trader.getTraderData().getBoughtQuantities();
+    	boughtOriginalQuantities = trader.getTraderData().getBoughtOriginalQuantities();
+    	soldPrices = trader.getTraderData().getSoldPrices();
+    	soldQuantities = trader.getTraderData().getSoldQuantities();
+    	soldOriginalQuantities = trader.getTraderData().getSoldOriginalQuantities();
 
-    	for (int i = 0; i < 9; i++) {
-    		ItemStack stack = trader.getDisplayInventory().getItem(i);
-    		soldItems.add(stack);
+    	for (int i = 0; i < 18; i++) {
+    		ItemStack stack = trader.getTraderData().getDisplayInventory().getItem(i);
+    		displayItems.add(stack);
     	}
 
     	ExtendedTradeContainer.writeContainerInitData(initData, packet.traderId, boughtPrices, boughtQuantities,
-    			boughtOriginalQuantities, soldPrices, soldQuantities, soldOriginalQuantities, soldItems);
+    			boughtOriginalQuantities, soldPrices, soldQuantities, soldOriginalQuantities, displayItems);
     	int[] finalBoughtPrices = boughtPrices;
     	int[] finalBoughtQuantities = boughtQuantities;
+    	int[] finalBoughtOriginalQuantities = boughtOriginalQuantities;
     	int[] finalSoldPrices = soldPrices;
     	int[] finalSoldQuantities = soldQuantities;
-    	int[] finalBoughtOriginalQuantities = boughtOriginalQuantities;
     	int[] finalSoldOriginalQuantities = soldOriginalQuantities;
 
-    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), buf -> ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
-                finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities,
-                soldItems));
+    	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), 
+    		buf -> ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
+                finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities, displayItems));
 
     	context.get().setPacketHandled(true);
     }

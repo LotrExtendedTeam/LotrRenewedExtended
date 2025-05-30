@@ -6,8 +6,15 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public interface ExtendedInteractableEntity {
 
-    default boolean isFriendlyAndAlignedWithLevel(PlayerEntity player, NPCEntity entity, float level) {
-        return entity.isNotFighting(player) && LOTRLevelData.getSidedData(player).getAlignmentData()
-                .hasAlignment(entity.getFaction(), AlignmentPredicates.greaterThanOrEqual(level));
+	default boolean isFriendlyAndAlignedWithLevel(PlayerEntity player, NPCEntity entity, float level) {
+        return isFriendly(player, entity) && isAlignedWithLevel(player, entity, level);
+    }
+	
+    default boolean isFriendly(PlayerEntity player, NPCEntity entity) {
+        return entity.isNotFighting(player);
+    }
+    
+    default boolean isAlignedWithLevel(PlayerEntity player, NPCEntity entity, float level) {
+        return LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(entity.getFaction(), AlignmentPredicates.greaterThanOrEqual(level));
     }
 }

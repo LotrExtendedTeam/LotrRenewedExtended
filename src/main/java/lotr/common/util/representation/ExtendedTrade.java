@@ -52,12 +52,7 @@ public class ExtendedTrade {
 
     @Override
     public String toString() {
-        return "ExtendedTrade{" +
-                "item=" + item +
-                ", amount=" + amount +
-                ", quantityLeft=" + quantityLeft +
-                ", originalQuantity="+ originalQuantity +
-                '}';
+    	return "ExtendedTrade{item=" + item + ", amount=" + amount + ", quantityLeft=" + quantityLeft + ", originalQuantity="+ originalQuantity +"}";
     }
 
 }

@@ -332,7 +332,7 @@ public class ExtendedServerHiredUnitProfile {
 			return this;
 		}
 		/**
-		 * Generate a ExtendedStructureEntitySpawner
+		 * Generate a ExtendedServerHiredUnitProfile
 		 */
 		public ExtendedServerHiredUnitProfile build(ResourceLocation id) {
 			ExtendedServerHiredUnitProfile spawner = new ExtendedServerHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, unitEntityType);
@@ -340,14 +340,14 @@ public class ExtendedServerHiredUnitProfile {
 		}
 
 		/**
-		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
+		 * Generate a ExtendedServerHiredUnitProfile and save with a Consumer
 		 */
 		public ExtendedServerHiredUnitProfile save(Consumer<ExtendedServerHiredUnitProfile> pConsumer, String pId) {
 			return save(pConsumer, new ResourceLocation(pId));
 		}
 
 		/**
-		 * Generate a ExtendedStructureEntitySpawner and save with a Consumer
+		 * Generate a ExtendedServerHiredUnitProfile and save with a Consumer
 		 */
 		public ExtendedServerHiredUnitProfile save(Consumer<ExtendedServerHiredUnitProfile> pConsumer, ResourceLocation pId) {
 			ExtendedServerHiredUnitProfile spawner = this.build(pId);

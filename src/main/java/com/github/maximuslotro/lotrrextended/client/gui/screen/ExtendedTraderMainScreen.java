@@ -21,8 +21,10 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
     private final ExtendedTraderEntity trader;
     private final PlayerEntity player;
 
+    private Button coinButton;
     private Button tradeButton;
-
+    
+    private boolean canTraderTrade = false;
     public ExtendedTraderMainScreen(NPCEntity entity, ExtendedTraderEntity trader, PlayerEntity player) {
         super(new StringTextComponent("Trader Menu"), 176, 256);
 
@@ -34,46 +36,83 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
     @Override
     public void init() {
     	super.init();
-        this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
-        tradeButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) + 63, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> tradeWithNPC()));
-        this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 140, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.exchange_button"), button -> tradeCoinsWithNPC()));
+        this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()) {
+        	@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+        		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.talk_button.tooltip", entity.getName()), 200), pMouseX, pMouseY);
+			}
+        });
+        tradeButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) + 63, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> tradeWithNPC()) {
+        	@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+        		if(canTraderTrade) {
+            		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trade_button.tooltip"), 200), pMouseX, pMouseY);
+        		}else {
+        			if (trader.isFriendly(player)) {
+                		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), 200), pMouseX, pMouseY);
+        			}else {
+                		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), 200), pMouseX, pMouseY);
+        			}
+        		}
+			}
+        });
+        coinButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 140, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.exchange_button"), button -> tradeCoinsWithNPC()) {
+        	@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+        		if(canTraderTrade) {
+            		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.exchange_button.tooltip"), 200), pMouseX, pMouseY);
+        		}else {
+        			if (trader.isFriendly(player)) {
+                		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), 200), pMouseX, pMouseY);
+        			}else {
+                		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), 200), pMouseX, pMouseY);
+        			}
+        		}
+			}
+        });
     }
 
+	@Override
+	public void tick() {
+		super.tick();
+		canTraderTrade = trader.canTradeWithPlayer(player);
+		coinButton.active = canTraderTrade;
+		tradeButton.active = canTraderTrade;
+	}
+		
     private void talkWithNPC() {
     	stopTradingClientServer();
-
         ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(entity.getId()));
-        Minecraft mc = Minecraft.getInstance();
-        if(mc.player != null) {
-            mc.player.closeContainer();
-        }
+        closeThisMenu();
     }
 
 	private void tradeWithNPC() {
 		// Ensure the client does not disturb the server when traders can't be traded with
-		if (trader.canTradeWith(player)) {
+		if (canTraderTrade) {
 			trader.openTradeMenu(player);
 		} else {
-			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
-			stopTradingClientServer();
-			Minecraft mc = Minecraft.getInstance();
-			if(mc.player != null) {
-				mc.player.closeContainer();
-			}
+			sendClientErrorMessage();
 		}
 	}
 
 	private void tradeCoinsWithNPC() {
-		// Ensure the client does not disturb the server when traders can't be traded  with
-		if (trader.canTradeWith(player)) {
+		// Ensure the client does not disturb the server when traders can't be traded with
+		if (canTraderTrade) {
 			trader.openCoinExchange(player);
 		} else {
+			sendClientErrorMessage();
+		}
+	}
+
+	private void sendClientErrorMessage() {
+		if (trader.isFriendly(player)) {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
 			stopTradingClientServer();
-			Minecraft mc = Minecraft.getInstance();
-			if(mc.player != null) {
-				mc.player.closeContainer();
-			}
+			closeThisMenu();
+		}else {
+			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
+			stopTradingClientServer();
+			closeThisMenu();
 		}
 	}
 
@@ -91,6 +130,13 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
     public void onClose() {
         super.onClose();
         stopTradingClientServer();
+    }
+
+    private void closeThisMenu() {
+    	Minecraft mc = Minecraft.getInstance();
+		if(mc.player != null) {
+			mc.player.closeContainer();
+		}
     }
 
     public void stopTradingClientServer() {

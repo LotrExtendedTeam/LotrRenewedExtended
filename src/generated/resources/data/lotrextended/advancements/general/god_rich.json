@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/unfathomably_rich",
+  "display": {
+    "icon": {
+      "item": "lotr:mithril_block"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.god_rich.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.god_rich.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "trade_any_trader_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "false",
+        "coins_moved": {
+          "min": 20000
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_buy"
+    ]
+  ]
+}
