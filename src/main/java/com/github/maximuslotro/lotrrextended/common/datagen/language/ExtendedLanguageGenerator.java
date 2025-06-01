@@ -462,6 +462,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.baneelf.desc", "+4.0 damage vs. Elves");
 		addD("enchant.lotrextended.banewarg.desc", "+4.0 damage vs. Wargs");
 		addD("enchant.lotrextended.banewight.desc", "+4.0 damge vs. Wights");
+
+		addD("enchant.lotrextended.baneelf.earn", "Your %s has claimed the lives of many Elves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.baneelf.earn_name", "%s's %s has claimed the lives of many Elves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.baneorc.earn", "Your %s has claimed the lives of many Orcs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.baneorc.earn_name", "%s's %s has claimed the lives of many Orcs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banedwarf.earn", "Your %s has claimed the lives of many Dwarves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banedwarf.earn_name", "%s's %s has claimed the lives of many Dwarves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewarg.earn", "Your %s has claimed the lives of many Wargs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewarg.earn_name", "%s's %s has claimed the lives of many Wargs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewight.earn", "Your %s has claimed the lives of many Wights, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewight.earn_name", "%s's %s has claimed the lives of many Wights, and it shall be their bane evermore!");
 	}
 
 	@Override

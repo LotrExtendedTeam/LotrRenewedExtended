@@ -1,13 +1,17 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.LOTREnchantUtils;
 import lotr.common.util.representation.LOTREnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -62,4 +66,30 @@ public class LOTREnchantEventHandlers {
         }
     }
 
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof NPCEntity)) {
+           return;
+        }
+
+        // only run on server
+        if (event.getEntityLiving().level.isClientSide()) return;
+
+        NPCEntity entity = (NPCEntity) event.getEntity();
+
+        // check the weapon that was used
+        LivingEntity source = null;
+        if (event.getSource().getEntity() != null &&
+                !(event.getSource().getEntity() instanceof LivingEntity)) {
+           return;
+        }
+        source = (LivingEntity) event.getSource().getEntity();
+
+        ItemStack weapon = source.getItemInHand(Hand.MAIN_HAND);
+        if (source instanceof PlayerEntity) {
+            LOTREnchantUtils.incrementBaneProgress(weapon, entity, (PlayerEntity) source);
+        } else {
+            LOTREnchantUtils.incrementBaneProgress(weapon, entity, null);
+        }
+    }
 }
