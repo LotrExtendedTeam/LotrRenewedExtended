@@ -44,7 +44,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                examplemod {
+                lotrextended {
                     source sourceSets.main
                 }
             }
@@ -55,7 +55,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                examplemod {
+                lotrextended {
                     source sourceSets.main
                 }
             }
@@ -69,7 +69,7 @@ minecraft {
             args '--mod', 'lotrextended', '--all', '--existing-mod', 'lotr','--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('src/generated/resources/')
 
             mods {
-                examplemod {
+                lotrextended {
                     source sourceSets.main
                 }
             }
