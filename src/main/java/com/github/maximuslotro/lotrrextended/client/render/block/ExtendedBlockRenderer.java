@@ -128,5 +128,6 @@ public class ExtendedBlockRenderer {
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.ELDERBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RASPBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), RenderType.cutout());
 	}
 }

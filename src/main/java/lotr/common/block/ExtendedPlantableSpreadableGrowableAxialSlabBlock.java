@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.IGrowable;
+import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -15,14 +16,22 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedPlantableSpreadableAxialSlabBlock implements IGrowable  {
+public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedPlantableSpreadableAxialSlabBlock implements IGrowable, IExtendedSwappableTexture  {
 
 	public ExtendedPlantableSpreadableGrowableAxialSlabBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block, slabBase, blockBase, blockGrowable);
+		this.registerDefaultState(this.stateDefinition.any().setValue(LOTRTEXTURE, false));
 	}
 
 	public ExtendedPlantableSpreadableGrowableAxialSlabBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block, slabBase, blockBase, blockGrowable);
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		// Add LOTRTEXTURE to blockstates
+		builder.add(LOTRTEXTURE);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -79,5 +88,5 @@ public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedP
 	         }
 	      }
 	}
-
+	
 }

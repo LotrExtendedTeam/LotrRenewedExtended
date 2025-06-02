@@ -7,7 +7,8 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=false,type=top": {
-      "model": "lotrextended:block/grass_path_slab_top"
+      "model": "lotrextended:block/grass_path_slab_top",
+      "uvlock": true
     },
     "axis=z,lotrtexture=false,type=top": {
       "model": "lotrextended:block/grass_path_slab_top",
@@ -21,7 +22,8 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=true,type=top": {
-      "model": "lotrextended:block/grass_path_slab_top_custom"
+      "model": "lotrextended:block/grass_path_slab_top_custom",
+      "uvlock": true
     },
     "axis=z,lotrtexture=true,type=top": {
       "model": "lotrextended:block/grass_path_slab_top",
@@ -35,7 +37,8 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=false,type=bottom": {
-      "model": "lotrextended:block/grass_path_slab"
+      "model": "lotrextended:block/grass_path_slab",
+      "uvlock": true
     },
     "axis=z,lotrtexture=false,type=bottom": {
       "model": "lotrextended:block/grass_path_slab",
@@ -49,7 +52,8 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=true,type=bottom": {
-      "model": "lotrextended:block/grass_path_slab_custom"
+      "model": "lotrextended:block/grass_path_slab_custom",
+      "uvlock": true
     },
     "axis=z,lotrtexture=true,type=bottom": {
       "model": "lotrextended:block/grass_path_slab",
@@ -63,7 +67,8 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=false,type=double": {
-      "model": "lotrextended:block/grass_path_slab_double"
+      "model": "lotrextended:block/grass_path_slab_double",
+      "uvlock": true
     },
     "axis=z,lotrtexture=false,type=double": {
       "model": "lotrextended:block/grass_path_slab_double",
@@ -77,7 +82,8 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=true,type=double": {
-      "model": "minecraft:block/grass_path"
+      "model": "minecraft:block/grass_path",
+      "uvlock": true
     },
     "axis=z,lotrtexture=true,type=double": {
       "model": "lotrextended:block/grass_path_slab_double",

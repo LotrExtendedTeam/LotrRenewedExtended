@@ -130,7 +130,7 @@ import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-import lotr.common.block.ExtendedSwappablePathSlabBlock;
+import lotr.common.block.IExtendedSwappableTexture;
 
 public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
@@ -583,10 +583,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						if(block.getKey().equals("grass_block_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
+							genSlabGrassBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_side"),
+									mcLoc("block/dirt"),
 									mcLoc("block/grass_block_top"),
-									mcLoc("block/grass_block_top"),
-									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")), true, true);
+									mcLoc("block/grass_block_side_overlay"),
+									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")),
+									mcLoc("block/grass_block"));
 							continue;
 						}
 						if(block.getKey().equals("barren_dirt_slab")) {
@@ -995,6 +997,67 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
+	private void genSlabGrassBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation overlay, ModelFile doubleModel, ResourceLocation customDoubleModelLoc) {
+		registeredBlocks.add(slab);
+
+		ModelFile slabModel = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath(), lotrExtendedLoc("block/tinted_slab"))
+				.texture("side", top)
+				.texture("bottom", top)
+				.texture("top", top);
+
+		ModelFile slabModelTop = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/tinted_slab_top"))
+				.texture("side", top)
+				.texture("bottom", top)
+				.texture("top", top);
+
+		ModelFile customModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_custom", modLoc("block/slab_custom"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("overlay", overlay);
+		ModelFile customModelTop = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_custom", modLoc("block/slab_top_custom"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("overlay", overlay);
+		ModelFile customDoubleModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_double_custom", modLoc("block/slab_double_custom"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("overlay", overlay);
+
+		getVariantBuilder(slab)
+				.forAllStatesExcept(state -> {
+					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
+					SlabType type = state.getValue(SlabBlock.TYPE);
+					boolean uvlock = axis != Axis.Y;
+					Boolean lotrtexture = state.getValue(IExtendedSwappableTexture.LOTRTEXTURE);
+
+					ModelFile model;
+					if (lotrtexture && axis == Direction.Axis.Y) {
+						model = type == SlabType.DOUBLE
+								? customDoubleModel
+								: (type == SlabType.BOTTOM ? customModel : customModelTop);
+					}else {
+						model = type == SlabType.DOUBLE
+								? doubleModel
+								: (type == SlabType.BOTTOM ? slabModel : slabModelTop);
+					}
+
+					return ConfiguredModel.builder()
+							.modelFile(model)
+							.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+							.rotationY(axis == Axis.X ? 90 : 0)
+							.uvLock(uvlock)
+							.build();
+				}, SlabBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
+	}
+
+
 	private void genSwappablePathSlabBlock(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, ResourceLocation CustomDoubleModelLoc) {
 		registeredBlocks.add(slab);
 
@@ -1019,9 +1082,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.forAllStatesExcept(state -> {
 					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
 					SlabType type = state.getValue(SlabBlock.TYPE);
-					Boolean lotrtexture = state.getValue(ExtendedSwappablePathSlabBlock.LOTRTEXTURE);
-
-					boolean uvlock = axis != Axis.Y;
+					Boolean lotrtexture = state.getValue(IExtendedSwappableTexture.LOTRTEXTURE);
 
 					ModelFile model;
 					if (lotrtexture && axis == Direction.Axis.Y) {
@@ -1038,7 +1099,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							.modelFile(model)
 							.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
 							.rotationY(axis == Axis.X ? 90 : 0)
-							.uvLock(uvlock)
+							.uvLock(true)
 							.build();
 				}, SlabBlock.WATERLOGGED);
 
