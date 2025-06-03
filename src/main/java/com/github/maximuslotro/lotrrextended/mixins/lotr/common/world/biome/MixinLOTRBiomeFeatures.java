@@ -33,6 +33,9 @@ public class MixinLOTRBiomeFeatures {
 		if(table.getBlock()==LOTRBlocks.BREE_CRAFTING_TABLE.get()) {
 			info.cancel();
 		}
+		if(table.getBlock()==LOTRBlocks.BLUE_MOUNTAINS_CRAFTING_TABLE.get()) {
+			info.cancel();
+		}
 	}
 
 	@Inject(method = "setup(Lnet/minecraftforge/event/RegistryEvent$Register;)V", at = @At("TAIL"), remap = false)
