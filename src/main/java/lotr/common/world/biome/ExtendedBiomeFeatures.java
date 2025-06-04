@@ -267,7 +267,7 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addStoneBlobs(BiomeGenerationSettings.Builder builder) {
-		addUndergroundOre(builder, Blocks.STONE.defaultBlockState(), 61, 80, 6);
+		addUndergroundOre(builder, Blocks.STONE.defaultBlockState(), 61, 90, 5);
 	}
 
 	private static void addUndergroundOreWeighted(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, float weight) {
