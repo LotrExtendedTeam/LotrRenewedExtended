@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "lotrextended:block/red_dwarven_door_closed"
+    },
+    "facing=up,open=false": {
+      "model": "lotrextended:block/red_dwarven_door_closed"
+    },
+    "facing=north,open=false": {
+      "model": "lotrextended:block/red_dwarven_door_closed"
+    },
+    "facing=south,open=false": {
+      "model": "lotrextended:block/red_dwarven_door_closed",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "lotrextended:block/red_dwarven_door_closed",
+      "y": 270
+    },
+    "facing=east,open=false": {
+      "model": "lotrextended:block/red_dwarven_door_closed",
+      "y": 90
+    },
+    "facing=down,open=true": {
+      "model": "lotrextended:block/red_dwarven_door_open"
+    },
+    "facing=up,open=true": {
+      "model": "lotrextended:block/red_dwarven_door_open"
+    },
+    "facing=north,open=true": {
+      "model": "lotrextended:block/red_dwarven_door_open"
+    },
+    "facing=south,open=true": {
+      "model": "lotrextended:block/red_dwarven_door_open",
+      "y": 180
+    },
+    "facing=west,open=true": {
+      "model": "lotrextended:block/red_dwarven_door_open",
+      "y": 270
+    },
+    "facing=east,open=true": {
+      "model": "lotrextended:block/red_dwarven_door_open",
+      "y": 90
+    }
+  }
+}

@@ -658,4 +658,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MITHRIL_BIRDCAGE;
 
 	public static RegistryObject<Item> GRASS_VOID;
+
+	public static RegistryObject<Item> DWARVEN_DOOR;
+	public static RegistryObject<Item> DWARVEN_DOOR_LUIGON;
+	public static RegistryObject<Item> DWARVEN_DOOR_CARGON;
 }

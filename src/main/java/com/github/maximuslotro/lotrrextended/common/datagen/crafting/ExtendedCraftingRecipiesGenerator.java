@@ -1353,6 +1353,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //			ExtendedBlocks.SMOOTH_LIMESTONE_SLAB,
 //			ExtendedBlocks.SMOOTH_LIMESTONE_WALL,
 //			ExtendedItems.SMOOTH_LIMESTONE, null);
+		// Dwarven
+		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR.get(), ()->Items.STONE, LOTRRecipes.DWARVEN_CRAFTING);
+		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_LUIGON.get(), ()->LOTRItems.BLUE_ROCK.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_CARGON.get(), ()->LOTRItems.RED_ROCK.get(), null);
 	}
 
 	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
