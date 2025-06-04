@@ -49,6 +49,40 @@ public class LOTREnchantUtils {
         listnbt.add(compoundnbt);
     }
 
+    public static void removeEnchant(ItemStack stack, LOTREnchantment enchantment) {
+        if (!getEnchantList(stack).contains(enchantment)) {
+            return;
+        }
+
+        CompoundNBT tag = stack.getOrCreateTag();
+        if (!tag.contains("LOTREnchantments", 9)) {
+            tag.put("LOTREnchantments", new ListNBT());
+        }
+
+        // TODO: When other LOTREnchants are introduced update this to only remove the name from this specifc enchant
+        //  currently this overrides names from any previous enchants
+        // restore original item name
+        if (stack.hasCustomHoverName()) {
+            ITextComponent baseName = stack.getItem().getName(stack);
+            ITextComponent enchantTranslated = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey().toLowerCase());
+            if (stack.getHoverName().getString().contains(enchantTranslated.getString())) {
+                ITextComponent newName = baseName.copy().withStyle(style -> style.withItalic(false));
+                stack.setHoverName(newName);
+            }
+        }
+
+        ListNBT listnbt = tag.getList("LOTREnchantments", 10);
+        List<CompoundNBT> entriesToRemove = new ArrayList<>();
+        for (INBT nbt : listnbt) {
+            if (!(nbt instanceof CompoundNBT)) continue;
+
+            CompoundNBT entry = (CompoundNBT) nbt;
+            if (entry.getString("key").equals(enchantment.getKey())) entriesToRemove.add(entry);
+        }
+
+        listnbt.removeAll(entriesToRemove);
+    }
+
     public static void incrementBaneProgress(ItemStack stack, Entity entity, PlayerEntity player) {
         // exit the method if the item already has a bane
         if (containsBane(getEnchantList(stack))) {

@@ -21,7 +21,7 @@ import java.util.*;
 public class ExtendedLotrEnchantCommand {
 
     private static final List<String> OPTIONS = Arrays.asList(
-            "add", "remove"
+            "add", "remove", "clear"
     );
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -68,31 +68,45 @@ public class ExtendedLotrEnchantCommand {
         }
 
         ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
-        LOTREnchantment enchantToAdd = LOTREnchantment.ENCHANT_MAP.get(enchantName);
-        if (enchantToAdd.getItemType().equals("melee")) {
+        LOTREnchantment enchant = LOTREnchantment.ENCHANT_MAP.get(enchantName);
+        if (enchant.getItemType().equals("melee")) {
             if (!(stack.getItem() instanceof SwordItem)) {
                 source.sendFailure(new StringTextComponent("This modifier can only be applied to melee weapons."));
                 return 0;
             }
         }
 
-        // only allow one bane at a time
-        if (enchantToAdd.getEnchantType().equals("bane")) {
-            List<LOTREnchantment> enchants = LOTREnchantUtils.getEnchantList(stack);
-            boolean containsBane = enchants.stream()
-                    .anyMatch(enchantment -> "bane".equals(enchantment.getEnchantType()));
-            if (containsBane) {
-                source.sendFailure(new StringTextComponent("Only one bane can be applied to a weapon"));
-                return 0;
-            }
-        }
 
         if (operation.equals("add")) {
-            LOTREnchantUtils.enchant(stack, enchantToAdd, 1);
-            ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantToAdd.getKey().toLowerCase());
+            // only allow one bane at a time
+            if (enchant.getEnchantType().equals("bane")) {
+                List<LOTREnchantment> enchants = LOTREnchantUtils.getEnchantList(stack);
+                boolean containsBane = enchants.stream()
+                        .anyMatch(enchantment -> "bane".equals(enchantment.getEnchantType()));
+                if (containsBane) {
+                    source.sendFailure(new StringTextComponent("Only one bane can be applied to a weapon"));
+                    return 0;
+                }
+            }
+            if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
+               source.sendFailure(new StringTextComponent("That item already contains that enchant."));
+               return 0;
+            }
+
+            LOTREnchantUtils.enchant(stack, enchant, 1);
+            ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase());
             source.sendSuccess(newName.copy().append(" added to ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
-        } else {
-            // TODO: Add remove functionality
+        } else if (operation.equals("remove")) {
+            if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
+                LOTREnchantUtils.removeEnchant(stack, enchant);
+                ITextComponent enchantTranslated = new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase());
+                source.sendSuccess(enchantTranslated.copy().append(" removed from ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
+            } else {
+                source.sendFailure(new StringTextComponent("That item does not have that enchant."));
+                return 0;
+            }
+        } else if (operation.equals("clear")) {
+            // TODO: Add clear functionality
         }
 
         return Command.SINGLE_SUCCESS;
