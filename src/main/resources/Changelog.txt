@@ -1,3 +1,56 @@
+(Beta 1.7.4)
+* Blocks
+  * Added Grass Voids (an internal block to block grass from spawning in buildings on generation)
+  * Allowed moss carpets to be placed on leaves and hedges
+  * Allowed plants to be placed and grow on full slab faces (except bottom)
+  * Berry Bushes now grow into Berry Hedges over a long period of time
+  * Fixed Renewed wool slabs and stairs not being flammable and not burning
+  * Fixed berry hedge blocks not having a shadow
+  * Fixed plants not growing on mud, mud grass or remains ore
+  * Made berry bushes slow players a tiny bit
+* Config
+  * Added a server setting to enable aggressive captains (unlike current legacy mechanics where they don’t attack unless provoked)
+  * Added a server setting to enable aggressive traders(unlike current legacy mechanics where they don’t attack unless provoked)
+* Entities
+  * Fixed NPC interaction disabling shield blocking (fixes close combat shield PvE)
+  * Fixed Mordor and Uruk archers fighting melee with bows
+* Features
+  * Fixed Slab/Stair chairs not working in Singleplayer
+* Hired Units
+  * Fixed a bug in which hired units only fast travelled with players when they were set to stationary
+  * Fixed hired units not re-equipping base armor
+* Items
+  * Added Bucket of Cheese Curds (right click to separate into two items)
+  * Fixed cheese curds eating buckets to craft (recipe now gives bucket of cheese curds)
+  * Fixed the Ranger Captain egg so the colors match Legacy
+* Localization
+  * Fixed several lang mistakes
+  * Fixed the config command not being localized
+* Misc
+  * Added 1 new secret advancement in Extended (2 currently)
+  * Added 4 new advancements in Extended (23 currently)
+  * Added a recipe to convert Barren Dirt to Dirt
+  * Fixed hired unit dataGen not working for other mods
+  * Fixed npc marriage data not saving properly
+  * Removed the duplicated Barrow Downs advancements
+* Structures
+  * Added a DataPack compatible structure sign randomizer system. 
+  * Added all new sign text lists for bree villages and hamlets, houses and professional buildings, as well as in hobbit houses and taverns
+  * Fixed hamlets spawning with up to 5 potter buildings (capped at 1 now)
+  * Fixed missing loot-tables and spawners in Bree Village stalls and tavern
+  * Updated Bree Village Butcher and Stonemason shops so they aren't confused for a house
+  * Updated all Bree structures to remove grass spawning inside buildings
+* Textures/Models
+  * Fixed fur carpet block frill culling
+* Trading
+  * Added different trader trade refusal messages
+  * Added legacy trader lockout and refresh logic after trading many items
+  * Finished entire trade system datapack compatible backend re-write
+  * Fixed traders not handling shift-click buying (no more having to buy one item at a time)
+  * Trader menu buttons are now greyed out if player is missing alignment
+* WorldGen
+  * Fixed bonemeal spawning Athelas in the Barrow Downs
+
 (Beta 1.7.3)
 * Biomes
   * Added Barrow Downs River (replaces rivers in the barrow downs to fix immersion breaking water color changes)
@@ -113,7 +166,7 @@
   * Added J. R. R. Tolkien
 * Misc
   * Fixed several critical bugs that couldn't wait until 1.7.3
-  
+ 
 (Beta 1.7.2)
 * Blocks
   * Fixed Axes not mining Wattle and Daub blocks faster
@@ -150,7 +203,7 @@
   * Fixed shears not shearing some blocks faster
   * Nerfed Taurethrim armor stats to align with legacy values
 * Localization
- * Added an initial Bosnian language translation (bs_ba) (Bosanski (Bosna i Hercegovina))
+  * Added an initial Bosnian language translation (bs_ba) (Bosanski (Bosna i Hercegovina))
   * Added an initial Croatian language translation (hr_hr) (Hrvatski (Hrvatska))
   * Added an initial French language translation (fr_fr) (Français (France))
   * Added an initial Serbian (Latin) language translation (sr_cs) (Srpski (Srbija))
@@ -1577,4 +1630,3 @@ Structures
   * Remastered Red Rhûnic Pillar texture
   * Remastered Obsidian Taurethrim Brick texture
   * Remastered Obsidian Taurethrim Pillar texture
-

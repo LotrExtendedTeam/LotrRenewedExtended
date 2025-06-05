@@ -30,6 +30,7 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.BiomeStructureAdder;
@@ -127,6 +128,7 @@ public class LotrExtendedMod{
 		event.addListener(ExtendedStructureEntitySpawnManager.INSTANCE);
 		event.addListener(ExtendedServerHiredUnitProfileManager.INSTANCE);
 		event.addListener(ExtendedSignTextProcessorManager.INSTANCE);
+		event.addListener(ExtendedTraderProfileManager.INSTANCE);
 	}
 
 	public void extendedRegisterCommands(RegisterCommandsEvent event) {

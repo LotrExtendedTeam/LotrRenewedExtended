@@ -1353,6 +1353,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //			ExtendedBlocks.SMOOTH_LIMESTONE_SLAB,
 //			ExtendedBlocks.SMOOTH_LIMESTONE_WALL,
 //			ExtendedItems.SMOOTH_LIMESTONE, null);
+		// Dwarven
+		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR.get(), ()->Items.STONE, LOTRRecipes.DWARVEN_CRAFTING);
+		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_LUIGON.get(), ()->LOTRItems.BLUE_ROCK.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_CARGON.get(), ()->LOTRItems.RED_ROCK.get(), null);
 	}
 
 	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1428,12 +1432,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	}
 
 	private void buildCookingRecipes(Consumer<IFinishedRecipe> consumer) {
-		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.BUCKET_OF_CHEESE_CURDS.get().getRegistryName().getPath());
 		CookingRecipeBuilder.smelting(Ingredient.of(Items.MILK_BUCKET),
-			ExtendedItems.CHEESE_CURDS.get(), 0.15F, 200)
+			ExtendedItems.BUCKET_OF_CHEESE_CURDS.get(), 0.15F, 200)
 		.unlockedBy("has_"+Items.MILK_BUCKET.getRegistryName().getPath(), has(Items.MILK_BUCKET))
 		.unlockedBy("has_"+ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.CHEESE_CURDS.get()))
-		.save(consumer, lotrLoc(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath()));
+		.unlockedBy("has_"+ExtendedItems.BUCKET_OF_CHEESE_CURDS.get().getRegistryName().getPath(), has(ExtendedItems.BUCKET_OF_CHEESE_CURDS.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BUCKET_OF_CHEESE_CURDS.get().getRegistryName().getPath()));
 		// Conker
 		GENERATEDRECIPES.add(ExtendedItems.ROASTED_CHESTNUT.get().getRegistryName().getPath());
 		CookingRecipeBuilder.smelting(Ingredient.of(ExtendedItems.CONKER.get()),
@@ -2183,6 +2188,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.WILLOW_VINES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GRASS_VOID.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
 	}
 
 	@Override

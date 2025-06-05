@@ -55,9 +55,25 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 			.setTitle("Middle Earth Marketplace").setDescription("Trade with a Middle Earth trader."),
 			addTradeNoEntityTrigger(make(), "any_trader", 0).parent(base));
 
-		Advancement filthy_rich = build(true, data(ExtendedItems.SILVER_COIN_HUNDRED.get(), "filthy_rich", false, FrameType.CHALLENGE, true, true, false)
+		Advancement filthy_rich = build(true, data(ExtendedItems.SILVER_COIN_TEN.get(), "filthy_rich", false, FrameType.TASK, true, true, false)
 			.setTitle("Filthy Rich").setDescription("Earn 1000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 1000).parent(trade));
+
+		Advancement ludicrously_rich = build(false, data(ExtendedItems.SILVER_COIN_HUNDRED.get(), "ludicrously_rich", false, FrameType.GOAL, true, true, false)
+			.setTitle("Ludicrously Rich").setDescription("Earn 2500 coins from a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", false, 2500).parent(filthy_rich));
+	
+		Advancement frighteningly_rich = build(false, data(Items.GOLD_INGOT, "frighteningly_rich", false, FrameType.CHALLENGE, true, true, false)
+			.setTitle("Frighteningly Rich").setDescription("Earn 5000 coins from a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", false, 5000).parent(ludicrously_rich));
+
+		Advancement unfathomably_rich = build(false, data(LOTRItems.MITHRIL_INGOT.get(), "unfathomably_rich", false, FrameType.CHALLENGE, true, true, false)
+			.setTitle("Unfathomably Rich").setDescription("Earn 10,000 coins from a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", false, 10000).parent(frighteningly_rich));
+
+		Advancement god_rich = build(false, data(LOTRItems.MITHRIL_BLOCK.get(), "god_rich", false, FrameType.CHALLENGE, true, true, true)
+			.setTitle("Reality-Bendingly Rich").setDescription("Earn 20,000 coins from a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", false, 20000).parent(unfathomably_rich));
 
 		Advancement trash = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "one_mans_trash", false, FrameType.TASK, true, true, false)
 				.setTitle("One Man's Trash").setDescription("Trade with a travelling Oddment Collector."),

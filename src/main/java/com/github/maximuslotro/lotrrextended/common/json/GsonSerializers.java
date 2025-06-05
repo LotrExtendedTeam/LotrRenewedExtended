@@ -7,6 +7,8 @@ import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignT
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.google.gson.GsonBuilder;
 
 import net.minecraft.loot.BinomialRange;
@@ -40,7 +42,13 @@ public class GsonSerializers {
 
 	public static GsonBuilder createSignTextSerializer() {
 		return createConditionSerializer()
-				.registerTypeAdapter(ExtendedSignTextList.class, new ExtendedSignTextList.Serializer())
-				.registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer());
+			.registerTypeAdapter(ExtendedSignTextList.class, new ExtendedSignTextList.Serializer())
+			.registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer());
+	}
+
+	public static GsonBuilder createTraderSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedTraderProfile.class, new ExtendedTraderProfile.Serializer())
+			.registerTypeAdapter(ExtendedTraderPoolItem.class, new ExtendedTraderPoolItem.Serializer());
 	}
 }

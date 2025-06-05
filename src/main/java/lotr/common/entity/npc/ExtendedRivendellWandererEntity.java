@@ -5,22 +5,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
+
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
-import lotr.common.item.VesselDrinkItem;
-import lotr.common.util.DrinkUtils;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.representation.ExtendedMultitradeEntry;
-import lotr.common.util.representation.ExtendedTrade;
-import lotr.common.util.representation.ExtendedTradeEntries;
-import lotr.common.util.representation.ExtendedTradeEntry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -32,15 +28,12 @@ import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
@@ -53,42 +46,9 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.OPTIONAL_UUID);
-    private static final DataParameter<Boolean> IS_WANDERING_TRADER = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> WANDERING_TRADER_TIME_LEFT = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.INT);
 
     private List<UUID> escorts = new ArrayList<>();
 
-    // items Rivendell Wanderers sell to a player
-    // TODO: Add Bows, Longspears, and and Battlestaffs when they are added
-    private final ExtendedTradeEntries RIVENDELL_WANDERER_SOLD = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.BOUGHT, new ExtendedTradeEntry[] {
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_HELMET.get()), 19, 31),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_CHESTPLATE.get()), 27, 45),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_LEGGINGS.get()), 23, 38),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_BOOTS.get()), 17, 28),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_DAGGER.get()), 10, 16),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 16, 26),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()), 16, 26),
-            new ExtendedTradeEntry(64, new ItemStack(Items.ARROW, 4), 2, 4),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 6, 10),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.LEMBAS.get()), 12, 20),
-            new ExtendedMultitradeEntry(new ExtendedTradeEntry[] {
-                new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MIRUVOR.get(), VesselDrinkItem.Potency.LIGHT), 5, 8),
-                new ExtendedTradeEntry(DrinkUtils.drinkOfPotency(LOTRItems.MIRUVOR.get(), VesselDrinkItem.Potency.MODERATE), 6, 10),
-                new ExtendedTradeEntry (DrinkUtils.drinkOfPotency(LOTRItems.MIRUVOR.get(), VesselDrinkItem.Potency.STRONG), 8, 13)
-            }),
-            new ExtendedTradeEntry(new ItemStack(LOTRItems.BEECH_LOG.get(), 4), 3, 5)
-    });
-
-    // items a Rivendell Wanderer will buy from a player
-    // TODO: Add Coral when it's added
-    private final ExtendedTradeEntries RIVENDELL_WANDERER_BOUGHT = new ExtendedTradeEntries(ExtendedTradeEntries.TradeType.SOLD, new ExtendedTradeEntry[] {
-           new ExtendedTradeEntry(new ItemStack(Items.FEATHER), 2, 3), new ExtendedTradeEntry(new ItemStack(Items.IRON_INGOT), 2, 4),
-           new ExtendedTradeEntry(new ItemStack(LOTRItems.MITHRIL_NUGGET.get()), 30, 50), new ExtendedTradeEntry(new ItemStack(LOTRItems.WOODEN_MUG.get()), 1, 1),
-           new ExtendedTradeEntry(new ItemStack(LOTRItems.ORC_BONE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.STRING, 2), 1, 1),
-           new ExtendedTradeEntry(new ItemStack(LOTRItems.WARG_BONE.get()), 1, 1), new ExtendedTradeEntry(new ItemStack(Items.WHEAT, 3), 1, 1),
-           new ExtendedTradeEntry(new ItemStack(ExtendedItems.EMERALD.get()), 11, 19), new ExtendedTradeEntry(new ItemStack(ExtendedItems.OPAL.get()), 8, 13),
-           new ExtendedTradeEntry(new ItemStack(ExtendedItems.PEARL.get()), 19, 31)
-    });
 
     @Override
 	protected NPCNameGenerator getNameGenerator() {
@@ -100,9 +60,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         super(type, w);
         setPersistenceRequired();
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
-
-        itemsBoughtByTrader = RIVENDELL_WANDERER_BOUGHT.generateTrades();
-        itemsSoldByTrader = RIVENDELL_WANDERER_SOLD.generateTrades();
     }
 
     @Override
@@ -123,9 +80,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     public Optional<UUID> getPlayerInteractingWith() {
         return this.entityData.get(PLAYER_TRADING_WITH);
     }
-
-    private ArrayList<ExtendedTrade> itemsSoldByTrader;
-    private ArrayList<ExtendedTrade> itemsBoughtByTrader;
 
     // Remove, drink, smoke and eat AIs
     @Override
@@ -155,51 +109,33 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 
     @Override
     protected void addNPCTargetingAI() {
-        this.addNonAggressiveTargetingGoals();
+    	if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
-        this.entityData.define(IS_WANDERING_TRADER, false);
-        // start at 1000 ticks just to make sure there's no chance they immediately despawn
-        this.entityData.define(WANDERING_TRADER_TIME_LEFT, 1000);
     }
 
-    @Override
-	public boolean canTradeWith(PlayerEntity player) {
-        return isFriendlyAndAlignedWithLevel(player, this, 100.0F);
-    }
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return ElfEntity.regAttrs();
-    }
-
-    @Override
-    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        return ExtendedTraderHelper.mobInteract(this, this, player, hand);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
 
-        saveAllTrades(tag);
-        ExtendedTraderHelper.saveWanderingTraderData(this, escorts, tag);
+        ExtendedTraderHelper.saveWanderingTraderEscortUUIDs(this, escorts, tag);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-
-        loadAllTrades(tag);
-
-        // load values related to wandering traders
-        int wanderingTraderTimeLeft = tag.getInt("wanderingTraderTimeLeft");
-        entityData.set(WANDERING_TRADER_TIME_LEFT, wanderingTraderTimeLeft);
-
-        boolean isWanderingTrader = tag.getBoolean("isWanderingTrader");
-        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
 
         escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
     }
@@ -240,36 +176,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
-    public List<ExtendedTrade> getBuys() {
-        return itemsBoughtByTrader;
-    }
-
-    @Override
-    public boolean isWanderingTrader() {
-        return entityData.get(IS_WANDERING_TRADER);
-    }
-
-    @Override
-    public void setWanderingTrader(boolean isWanderingTrader) {
-        entityData.set(IS_WANDERING_TRADER, isWanderingTrader);
-    }
-
-    @Override
-    public int getWanderingTraderTicksLeft() {
-        return entityData.get(WANDERING_TRADER_TIME_LEFT);
-    }
-
-    @Override
-    public void setWanderingTraderTicksLeft(int ticksLeft) {
-        entityData.set(WANDERING_TRADER_TIME_LEFT, ticksLeft);
-    }
-
-    @Override
-    public List<ExtendedTrade> getSells() {
-        return itemsSoldByTrader;
-    }
-
-    @Override
     public void tick() {
         super.tick();
 
@@ -291,7 +197,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
         }
 
         ExtendedTraderHelper.tickTrader(this, this);
-        ExtendedTraderHelper.tickWanderingTrader(this, this);
     }
 
     @Override
@@ -320,16 +225,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
 	@Override
-	public void setBuys(ArrayList<ExtendedTrade> trades) {
-		itemsBoughtByTrader = trades;
-	}
-
-	@Override
-	public void setSells(ArrayList<ExtendedTrade> trades) {
-		itemsSoldByTrader = trades;
-	}
-
-	@Override
 	public int setLastTickCooldownReduced() {
 		return lastTickCooldownReduced;
 	}
@@ -337,5 +232,10 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 	@Override
 	public void getLastTickCooldownReduced(int cooldown) {
 		lastTickCooldownReduced = cooldown;
+	}
+
+	@Override
+	public ResourceLocation getTraderProfileId() {
+		return ExtendedTraderTypes.RIVENDELL_WANDERER;
 	}
 }

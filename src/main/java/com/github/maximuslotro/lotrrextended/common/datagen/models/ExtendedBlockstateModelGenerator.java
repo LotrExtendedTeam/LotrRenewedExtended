@@ -48,6 +48,7 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.ExtendedLOTRWallTorchBlock;
@@ -257,6 +258,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
 					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedDwarvenGateBlock) {
+					if(block.getKey().contains("blue")) {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), lotrLoc("block/blue_rock"));
+					}else if(block.getKey().contains("red")) {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), lotrLoc("block/red_rock"));
+					}else {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), mcLoc("block/stone"));
+					}
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
@@ -1472,6 +1483,25 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+extendedReedBasketBlock.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genGateBlockItem(ExtendedDwarvenGateBlock gate, ResourceLocation textureLocation) {
+		registeredBlocks.add(gate);
+		ModelFile model = models().withExistingParent("lotrextended:"+gate.getRegistryName().getPath()+"_closed", lotrExtendedLoc("block/template_solid_gate")).texture("all", textureLocation);
+		ModelFile modelOpen = models().withExistingParent("lotrextended:"+gate.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/template_solid_gate_open")).texture("all", textureLocation);
+
+		ModelFile modelItem = models().cubeAll("lotrextended:"+gate.getRegistryName().getPath()+"_item", textureLocation);
+
+		getVariantBuilder(gate).forAllStatesExcept(state -> {
+			Direction facing = state.getValue(ExtendedDwarvenGateBlock.FACING);
+			boolean open = state.getValue(ExtendedDwarvenGateBlock.OPEN);
+			return ConfiguredModel.builder()
+                    .modelFile(open ? modelOpen : model)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		}, ExtendedDwarvenGateBlock.WATERLOGGED, ExtendedDwarvenGateBlock.UP,ExtendedDwarvenGateBlock.DOWN,ExtendedDwarvenGateBlock.NORTH,
+			ExtendedDwarvenGateBlock.SOUTH,ExtendedDwarvenGateBlock.WEST,ExtendedDwarvenGateBlock.EAST,ExtendedDwarvenGateBlock.POWERED);
+		itemModels().getBuilder("lotr:"+gate.getRegistryName().getPath()).parent(modelItem);
 	}
 
 	private void genLargePotBlockItem(ExtendedLargePotBlock pot, String key) {

@@ -42,6 +42,7 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedPlantableSpreadableAxialSlabBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLanternBlock;
@@ -161,6 +162,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedDwarvenGateBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -396,16 +401,16 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
                                 .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 3)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 2)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 1)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
                         .withPool(LootPool.lootPool()
                                 .when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 0)))
-                                .add(ItemLootEntry.lootTableItem(thingy.getBerryBlock())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
+                                .add(ItemLootEntry.lootTableItem(thingy.getBerryHedgeItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
 						);
 				continue;
 			}

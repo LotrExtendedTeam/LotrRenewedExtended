@@ -1,0 +1,120 @@
+{
+  "id": "lotrextended:bree_butcher",
+  "entity_type": "lotr:bree_butcher",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat",
+        "count": 3
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:salt"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:iron_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:lead"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:gammon"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:beef"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:mutton"
+      }
+    },
+    {
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:porkchop"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:chicken"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:raw_duck"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:rabbit"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:leather"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:feather"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:horn"
+      }
+    }
+  ]
+}

@@ -6,9 +6,10 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.google.common.collect.Sets;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.DatagenModLoader;
 
 /**
- * Stores IDs for built in entity spawners.
+ * Stores IDs for built-in hired unit profiles.
  */
 public class ExtendedHiredUnitTypes {
 	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
@@ -22,14 +23,12 @@ public class ExtendedHiredUnitTypes {
 	}
 
 	private static ResourceLocation validate(ResourceLocation pId) {
-		if (UNIT_TYPES.add(pId)) {
-			return pId;
-		} else {
-			throw new IllegalArgumentException(pId + " is already a registered built-in extended hired unit type");
+		if(DatagenModLoader.isRunningDataGen()) {
+			if (UNIT_TYPES.add(pId)) {
+			} else {
+				throw new IllegalArgumentException(pId + " is already a registered built-in extended hired unit type");
+			}
 		}
-	}
-
-	public static Set<ResourceLocation> all() {
-		return UNIT_TYPES;
+		return pId;
 	}
 }

@@ -1,0 +1,238 @@
+{
+  "id": "lotrextended:galadhrim_wanderer",
+  "entity_type": "lotr:galadhrim_wanderer",
+  "tradingAlignmentRequired": 75,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:feather"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:mithril_nugget"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:wooden_mug"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:orc_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:warg_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat",
+        "count": 3
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:diamond"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:galadhrim_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 36,
+      "stack": {
+        "item": "lotr:galadhrim_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 30,
+      "stack": {
+        "item": "lotr:galadhrim_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 22,
+      "stack": {
+        "item": "lotr:galadhrim_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:galadhrim_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 13,
+      "stack": {
+        "item": "lotr:galadhrim_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 21,
+      "stack": {
+        "item": "lotr:galadhrim_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 21,
+      "stack": {
+        "item": "lotr:galadhrim_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:mallorn_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:arrow",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:mallorn_planks",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:blue_mallorn_torch",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:gold_mallorn_torch",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:green_mallorn_torch",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:silver_mallorn_torch",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:lembas"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:elanor"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:niphredil"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:hithlain"
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    }
+  ]
+}

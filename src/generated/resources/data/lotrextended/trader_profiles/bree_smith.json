@@ -1,0 +1,297 @@
+{
+  "id": "lotrextended:bree_smith",
+  "entity_type": "lotr:bree_smith",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:copper_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:tin_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_nugget",
+        "count": 9
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:gold_ingot"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:gold_nugget",
+        "count": 9
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:leather"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:fur"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:black_fur"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:gray_fur"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:silver_fur"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:white_fur"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:rabbit_hide"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:amber"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:sapphire"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:topaz"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:bronze_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:bronze_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:bronze_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:bronze_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "minecraft:chainmail_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "minecraft:chainmail_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "minecraft:chainmail_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "minecraft:chainmail_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "minecraft:iron_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 22,
+      "stack": {
+        "item": "minecraft:iron_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "minecraft:iron_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "minecraft:iron_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 30,
+      "stack": {
+        "item": "minecraft:iron_horse_armor"
+      }
+    },
+    {
+      "averageCost": 100,
+      "stack": {
+        "item": "lotr:bree_crafting_table"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:bronze_bars",
+        "count": 8
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "minecraft:iron_bars",
+        "count": 8
+      }
+    },
+    {
+      "averageCost": 7,
+      "stack": {
+        "item": "lotr:bronze_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:bronze_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 13,
+      "stack": {
+        "item": "lotr:bronze_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 9,
+      "stack": {
+        "item": "lotr:iron_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "minecraft:iron_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:iron_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:blacksmith_hammer",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:branding_iron",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ]
+}

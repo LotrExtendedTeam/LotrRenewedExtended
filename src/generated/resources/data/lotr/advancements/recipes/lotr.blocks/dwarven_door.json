@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:cheese_curds"
+      "lotr:dwarven_door"
     ]
   },
   "criteria": {
-    "has_milk_bucket": {
+    "has_dwarven_door": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:milk_bucket"
+            "item": "lotr:dwarven_door"
           }
         ]
       }
     },
-    "has_cheese_curds": {
+    "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:cheese_curds"
+            "item": "minecraft:stone"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:cheese_curds"
+        "recipe": "lotr:dwarven_door"
       }
     }
   },
   "requirements": [
     [
-      "has_milk_bucket",
-      "has_cheese_curds",
+      "has_dwarven_door",
+      "has_stone",
       "has_the_recipe"
     ]
   ]

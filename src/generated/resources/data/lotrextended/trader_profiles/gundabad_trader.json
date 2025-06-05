@@ -1,0 +1,280 @@
+{
+  "id": "lotrextended:gundabad_trader",
+  "entity_type": "lotr:gundabad_orc_scrounger",
+  "tradingAlignmentRequired": 50,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:orc_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:uruk_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_ingot"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:diamond"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:sapphire"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:ruby"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:feather"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:wooden_mug"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:waterskin"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat",
+        "count": 2
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:elf_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:dwarf_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:hobbit_bone"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:bone"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:man_flesh"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 100,
+      "stack": {
+        "item": "lotr:gundabad_crafting_table"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:bronze_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:bronze_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:bronze_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:bronze_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:bronze_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:bronze_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 9,
+      "stack": {
+        "item": "lotr:bronze_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:fur"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:arrow",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:bronze_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:bronze_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:iron_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:iron_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:maggoty_bread"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:fur_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:fur_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:fur_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:fur_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:orc_bow",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:gundabad_uruk_bow",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ]
+}

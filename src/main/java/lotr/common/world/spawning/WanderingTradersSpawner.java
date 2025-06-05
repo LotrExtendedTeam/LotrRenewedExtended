@@ -76,8 +76,8 @@ public class WanderingTradersSpawner {
                     trader.setYBodyRot(yaw);
                     trader.setYHeadRot(yaw);
 
-                    ((ExtendedWanderingTraderEntity) trader).setWanderingTraderTicksLeft(24000);
-                    ((ExtendedWanderingTraderEntity) trader).setWanderingTrader(true);
+                    ((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTraderAliveTime(24000);
+                    ((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTrader(true);
                     ((NPCEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
 
                     int escortCount = world.random.nextInt(3) + 2;

@@ -349,7 +349,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BLACKBERRY_HEDGE;
 	public static RegistryObject<Block> CRANBERRY_HEDGE;
 	public static RegistryObject<Block> ELDERBERRY_HEDGE;
-	public static RegistryObject<Block> WILDBERRY_HDEGE;
+	public static RegistryObject<Block> WILDBERRY_HEDGE;
 	public static RegistryObject<Block> RASPBERRY_BUSH;
 	public static RegistryObject<Block> BLUEBERRY_BUSH;
 	public static RegistryObject<Block> BLACKBERRY_BUSH;
@@ -514,4 +514,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MITHRIL_BIRDCAGE;
 
 	public static RegistryObject<Block> GRASS_VOID;
+
+	public static RegistryObject<Block> DWARVEN_DOOR;
+	public static RegistryObject<Block> DWARVEN_DOOR_LUIGON;
+	public static RegistryObject<Block> DWARVEN_DOOR_CARGON;
 }

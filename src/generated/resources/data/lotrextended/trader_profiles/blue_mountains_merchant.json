@@ -1,0 +1,309 @@
+{
+  "id": "lotrextended:blue_mountains_merchant",
+  "entity_type": "lotr:blue_mountains_merchant",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:copper_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:tin_ingot"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:gold_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:diamond"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:sapphire"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:coal",
+        "count": 2
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:bread"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_chicken"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_beef"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_cod"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_salmon"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_mutton"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:cooked_duck"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_porkchop"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_rabbit"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:gammon"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:blue_dwarven_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 26,
+      "stack": {
+        "item": "lotr:blue_dwarven_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 31,
+      "stack": {
+        "item": "lotr:blue_dwarven_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 23,
+      "stack": {
+        "item": "lotr:blue_dwarven_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:blue_dwarven_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 13,
+      "stack": {
+        "item": "lotr:blue_dwarven_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:blue_dwarven_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:blue_dwarven_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:blue_dwarven_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:blue_dwarven_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:glowstone_dust",
+        "count": 4
+      }
+    },
+    {
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:dwarven_forge"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:dwarven_marriage_ring"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:dwarfwort"
+      }
+    },
+    {
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:glowing_dwarven_brick"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:ruby"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:amethyst"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:topaz"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:blue_rock",
+        "count": 8
+      }
+    },
+    {
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 9,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 11,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"moderate\"}}"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:ale",
+        "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    }
+  ]
+}

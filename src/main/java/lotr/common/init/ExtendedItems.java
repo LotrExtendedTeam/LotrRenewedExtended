@@ -359,6 +359,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WILDBERRY;
 	public static RegistryObject<Item> CHEESE_WHEEL;
 	public static RegistryObject<Item> AGED_CHEESE_WHEEL;
+	public static RegistryObject<Item> BUCKET_OF_CHEESE_CURDS;
 	public static RegistryObject<Item> CHEESE_CURDS;
 	public static RegistryObject<Item> CHEESE_SLICE;
 	public static RegistryObject<Item> AGED_CHEESE_SLICE;
@@ -657,4 +658,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MITHRIL_BIRDCAGE;
 
 	public static RegistryObject<Item> GRASS_VOID;
+
+	public static RegistryObject<Item> DWARVEN_DOOR;
+	public static RegistryObject<Item> DWARVEN_DOOR_LUIGON;
+	public static RegistryObject<Item> DWARVEN_DOOR_CARGON;
 }

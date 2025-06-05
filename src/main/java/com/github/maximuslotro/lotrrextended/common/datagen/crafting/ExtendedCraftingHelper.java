@@ -349,6 +349,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ExtendedShapedRecipeBuilder.shaped(door.get(), 3)
+			.group(group)
 			.pattern("##")
 			.pattern("##")
 			.pattern("##")
@@ -359,6 +360,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(door.get(), 3, table)
+			.group(group)
 			.pattern("##")
 			.pattern("##")
 			.pattern("##")
