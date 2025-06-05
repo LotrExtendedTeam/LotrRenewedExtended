@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedColorUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -85,7 +86,7 @@ public class ExtendedHiredUnitHpBar {
         matrixStackIn.translate(0.0D, 0.0D, -0.01D);
         matrixStackIn.translate(TEXT_POS_X, TEXT_POS_Y, -0.03D);
         matrixStackIn.scale(textScale, textScale, 1.0F);
-        int color = ExtendedColorHelper.ARGB32.color(255, 255, 255, 255); // set black text color no opacity
+        int color = ExtendedColorUtil.ARGB32.color(255, 255, 255, 255); // set black text color no opacity
         ExtendedBarRendererHelper.drawString(matrixStackIn, font, (int) hp + "/" + (int) vit, (int)hpWidth, 20, color, false);
 
         RenderSystem.disableBlend();
