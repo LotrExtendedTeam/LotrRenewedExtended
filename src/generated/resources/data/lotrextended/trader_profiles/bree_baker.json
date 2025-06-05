@@ -11,25 +11,29 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:sugar"
+        "item": "minecraft:sugar",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:egg"
+        "item": "minecraft:egg",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "lotr:duck_egg"
+        "item": "lotr:duck_egg",
+        "count": 2
       }
     },
     {

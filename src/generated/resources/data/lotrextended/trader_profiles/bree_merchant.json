@@ -11,13 +11,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:drystone"
+        "item": "lotr:drystone",
+        "count": 16
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:maple_log"
+        "item": "lotr:maple_log",
+        "count": 16
       }
     },
     {
@@ -60,13 +62,15 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:pipeweed"
+        "item": "lotr:pipeweed",
+        "count": 4
       }
     },
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:pipeweed_seeds"
+        "item": "lotr:pipeweed_seeds",
+        "count": 6
       }
     }
   ],

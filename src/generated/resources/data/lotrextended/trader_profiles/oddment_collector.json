@@ -77,19 +77,22 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat_seeds"
+        "item": "minecraft:wheat_seeds",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:stick"
+        "item": "minecraft:stick",
+        "count": 8
       }
     },
     {
@@ -155,7 +158,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:coal"
+        "item": "minecraft:coal",
+        "count": 2
       }
     },
     {
