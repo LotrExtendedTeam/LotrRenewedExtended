@@ -114,6 +114,7 @@
 		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket"
 	],
 	"client": [
+		"craftedMods.jeiLotr.MixinJEILotr",
 		"craftedMods.jeiLotr.MixinJEIPlugin",
 		"lotr.client.MixinLOTRKeyHandler",
 		"lotr.client.event.MixinClientWorldDimensionTypeHelperJavaPatch",

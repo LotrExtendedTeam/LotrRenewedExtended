@@ -91,6 +91,7 @@ dependencies {
     //lotr mod dep
     implementation fg.deobf("curse.maven:the-lord-of-the-rings-mod-renewed-406893:3661524")
     // jei lotr
+    implementation fg.deobf("curse.maven:jei-238222:5846870")
     implementation fg.deobf("curse.maven:jei-lotr-380404:3779945")
     //annonations processor
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'

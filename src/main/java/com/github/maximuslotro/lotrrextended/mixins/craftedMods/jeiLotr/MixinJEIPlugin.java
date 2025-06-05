@@ -41,7 +41,6 @@ public class MixinJEIPlugin {
 		remap=false
 	)
 	public void initDevicesExtended(CallbackInfo ci) {
-		System.out.println(ExtendedRecipes.class.getName());
 		scanFields(ExtendedRecipes.class.getName(), LOTRContainers.class.getName(), "lotr");
 	}
 }
