@@ -71,7 +71,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {
@@ -95,7 +96,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 2
       }
     },
     {
@@ -194,7 +196,8 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "minecraft:arrow"
+        "item": "minecraft:arrow",
+        "count": 4
       }
     },
     {

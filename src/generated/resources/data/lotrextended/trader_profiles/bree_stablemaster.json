@@ -11,13 +11,15 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 3
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:sugar"
+        "item": "minecraft:sugar",
+        "count": 3
       }
     },
     {
@@ -67,7 +69,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {
