@@ -53,12 +53,6 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:gold_nugget"
-      }
-    },
-    {
-      "averageCost": 1,
-      "stack": {
         "item": "minecraft:string"
       }
     },
@@ -93,7 +87,7 @@
       }
     },
     {
-      "averageCost": 50,
+      "averageCost": 25,
       "stack": {
         "item": "lotr:white_fur"
       }
