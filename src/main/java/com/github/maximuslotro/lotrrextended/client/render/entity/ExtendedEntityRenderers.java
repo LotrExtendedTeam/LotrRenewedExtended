@@ -20,6 +20,11 @@ public class ExtendedEntityRenderers {
 		// Projectiles
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK_EGG_ENTITY.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_CONKER.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.IRON_THROWN_AXE.get(),renderManager -> new ExtendedThrowableAxeRenderer(renderManager, Minecraft.getInstance().getItemRenderer()));
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BRONZE_THROWN_AXE.get(),renderManager -> new ExtendedThrowableAxeRenderer(renderManager, Minecraft.getInstance().getItemRenderer()));
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GONDOR_THROWN_AXE.get(),renderManager -> new ExtendedThrowableAxeRenderer(renderManager, Minecraft.getInstance().getItemRenderer()));
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_THROWN_AXE.get(),renderManager -> new ExtendedThrowableAxeRenderer(renderManager, Minecraft.getInstance().getItemRenderer()));
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_DWARVEN_THROWN_AXE.get(),renderManager -> new ExtendedThrowableAxeRenderer(renderManager, Minecraft.getInstance().getItemRenderer()));
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANNER_HOLDER.get(), ExtendedBannerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);

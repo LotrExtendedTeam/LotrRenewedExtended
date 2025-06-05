@@ -33,6 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
@@ -937,6 +938,11 @@ public class MixinLOTRItems {
 
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
+		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwable_axe", () -> new ExtendedThrowableAxeItem(new Properties().tab(LOTRItemGroups.TOOLS), LOTRMaterial.valueOf("IRON")));
+		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwable_axe", () -> new ExtendedThrowableAxeItem(new Properties().tab(LOTRItemGroups.TOOLS), LOTRMaterial.valueOf( "BRONZE")));
+		ExtendedItems.GONDOR_THROWABLE_AXE = regItemB("gondor_throwable_axe", () -> new ExtendedThrowableAxeItem(new Properties().tab(LOTRItemGroups.TOOLS), LOTRMaterial.valueOf("GONDOR")));
+		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(new Properties().tab(LOTRItemGroups.TOOLS), LOTRMaterial.valueOf("DWARVEN")));
+		ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE = regItemB("blue_mountains_dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(new Properties().tab(LOTRItemGroups.TOOLS), LOTRMaterial.valueOf("BLUE_DWARVEN")));
 		//######################################################################FOOD########################################################
 		//Berries
 		ExtendedItems.BLACKBERRY = regItemB("blackberry", () -> new ExtendedBerries(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));

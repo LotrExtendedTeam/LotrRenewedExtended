@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.LOTRDoorBlock;
@@ -185,7 +186,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 			if((item.getValue().get() instanceof LOTRPickaxeItem) || (item.getValue().get() instanceof LOTRShovelItem)
 					|| (item.getValue().get() instanceof LOTRAxeItem)
-					|| (item.getValue().get() instanceof LOTRHoeItem) ) {
+					|| (item.getValue().get() instanceof LOTRHoeItem)
+					|| (item.getValue().get() instanceof ExtendedThrowableAxeItem)) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}

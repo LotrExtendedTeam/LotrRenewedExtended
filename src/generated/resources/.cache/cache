@@ -571,6 +571,7 @@ e351c92a80b29da26d02f629ee55a91a0995233f assets/lotr/models/item/blackberry.json
 691c9dc0beaf6d119ce7bd64d23e995d537ef9a5 assets/lotr/models/item/blue_dwarven_door.json
 284b475fea52fb4e1a1519146ac15548d0a2c480 assets/lotr/models/item/blue_mountains_banner.json
 321ea79196128c82b2745dba539e36e111bee405 assets/lotr/models/item/blue_mountains_banner_pattern.json
+7ca6a37f3676c61905a8feb328cf6f8197e6307f assets/lotr/models/item/blue_mountains_dwarven_throwable_axe.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/blue_mountains_merchant_spawn_egg.json
 bf8aa925b8f33b5c9d5fac57d2dd25d6349e647f assets/lotr/models/item/blueberry.json
 38ee2029a1566b294a16487f6686886fab73003f assets/lotr/models/item/blueberry_bush.json
@@ -610,6 +611,7 @@ fe20c97088f16035c18fe435aa05bb7b93d10c66 assets/lotr/models/item/bottle_of_poiso
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/bree_stablemaster_spawn_egg.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/bree_stonemason_spawn_egg.json
 230959573994d371aa7753a7cd0bef3f8498337b assets/lotr/models/item/bronze_birdcage.json
+78c761c544baacfada416614047a66b463c253d7 assets/lotr/models/item/bronze_throwable_axe.json
 912ba14ec90b81e8aa4f0381fd0b47f38056161a assets/lotr/models/item/brown_fur_carpet.json
 0e4729eed0956db05291ee2bf3586d425a69b5a1 assets/lotr/models/item/bucket_of_cheese_curds.json
 b6bca6b1cd2ef448b7b980a256868cf729798a4e assets/lotr/models/item/butter.json
@@ -722,6 +724,7 @@ a03012b0377239d63d2a96b96b8de5a12fe804aa assets/lotr/models/item/durin_banner_pa
 1b178354fd7cdc87847ba1a670f8330eea4f7e61 assets/lotr/models/item/durins_folk_banner.json
 a55062ff80ee986e229bb8bfb932fcad62342257 assets/lotr/models/item/dwarven_door.json
 07083b154b42ab21acfdddb1b76cc7b6cb77d4ae assets/lotr/models/item/dwarven_marriage_ring.json
+bd663b345adb4544c080d1d70a40bc2036e0adb0 assets/lotr/models/item/dwarven_throwable_axe.json
 fca01fce6bf2a53bc0e215f4dc51b8e0409fd133 assets/lotr/models/item/elderberry.json
 7c7516a142803e767d21bf523588daf0f7b11a81 assets/lotr/models/item/elderberry_bush.json
 f4dfff327e80f2576e966a5cf12b519f27b97051 assets/lotr/models/item/emerald.json
@@ -763,6 +766,7 @@ ca9d1a4d19bb5ba3b364456b4ee8c3b1e4a4aba8 assets/lotr/models/item/golden_taurethr
 58df1672fa068adf3248691de8212b6b7fa79782 assets/lotr/models/item/golden_taurethrim_leggings.json
 306e600a2b41d4260b713a49c99dc343be70bbcd assets/lotr/models/item/golden_taurethrim_pillar.json
 1ea8aa3fa3d9a935cffbd3ed1e13370cdb9075eb assets/lotr/models/item/golden_taurethrim_pillar_slab.json
+fe56e5d3064752c57c48f5babb4e527ed06fbb5f assets/lotr/models/item/gondor_throwable_axe.json
 15ca7070c86c6553f42273012ff268925aa338f8 assets/lotr/models/item/grass_block_slab.json
 5e76e8f1a9e1058efc9cd032df3e3e028991924e assets/lotr/models/item/grass_path_slab.json
 b7fe3ef0b89163648702c01946eb0c15842cb0e4 assets/lotr/models/item/grass_void.json
@@ -819,6 +823,7 @@ ee25a2b7d20bb01acb7dff03d5db68358c0718e3 assets/lotr/models/item/horn_of_command
 50b365bd47fe5abf1ecddfd1d1ad7da8664bfa79 assets/lotr/models/item/horn_of_command_reddy.json
 bc2f0faa8824d4cdc95c7d51be6e6e3ed652df85 assets/lotr/models/item/horn_of_command_summon.json
 cb485207df157b7f81fa693e289160d19c352353 assets/lotr/models/item/iron_birdcage.json
+308ed675c0c5c8aeb8d3c2d33433214254e9c0a0 assets/lotr/models/item/iron_throwable_axe.json
 60720ef08286e5ad6a2101a79b184626abdc27fc assets/lotr/models/item/ithildin.json
 2bf803c892d28b857884e8e96e45a63eb1dbd6b3 assets/lotr/models/item/large_flower_pot.json
 43a5a3180c644cbf11f88b3b88188781a837759d assets/lotr/models/item/large_pot.json
@@ -1108,7 +1113,7 @@ c84eae259a47559ead729e4347ffea6d7501f424 assets/lotr/models/item/willow_wood.jso
 4186944b4eeadba1a3a1ddb90dbff20560be6178 assets/lotr/models/item/willow_wood_slab.json
 b66208f52b71740229ce72fc311fca8285eeb69b assets/lotr/models/item/willow_wood_stairs.json
 126859143c7d60186c02ee306e2dfdbd7f11e728 assets/lotr/models/item/wooden_birdcage.json
-0e27f814416ef9d6fb16f6f5a59a15cf61d26227 assets/lotrextended/lang/en_us.json
+fcf268f5a9d3e7b5c2b89b97075de41c69240fd0 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json

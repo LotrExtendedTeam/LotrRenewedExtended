@@ -115,6 +115,14 @@ public class MixinLOTRMaterial {
 	@Unique
 	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 300, 6.0F, 2.0F, 100, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
+	/**
+	 * Local Extended LOTRMaterial instance
+	 * */
+	@Unique
+	private static final LOTRMaterial IRON = lotrmaterialExpansion$addVariant("IRON", "iron", 2, 300, 6.0F, 2.0F, 100, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
+
+	
 
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS

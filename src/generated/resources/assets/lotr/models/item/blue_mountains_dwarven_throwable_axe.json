@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "lotrextended:item/blue_mountains_dwarven_throwable_axe"
+  }
+}
