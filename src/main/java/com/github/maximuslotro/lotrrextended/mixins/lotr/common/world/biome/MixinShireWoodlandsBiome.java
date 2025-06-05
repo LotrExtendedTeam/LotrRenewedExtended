@@ -27,8 +27,10 @@ public class MixinShireWoodlandsBiome {
 				LOTRBiomeFeatures.aspenLarge(), 1000, LOTRBiomeFeatures.apple(), 50,
 				LOTRBiomeFeatures.appleBees(), 1, LOTRBiomeFeatures.pear(), 50,
 				LOTRBiomeFeatures.pearBees(), 1, LOTRBiomeFeatures.cherry(), 20,
-				LOTRBiomeFeatures.cherryBees(), 1,
-				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
+				LOTRBiomeFeatures.cherryBees(), 1, /*Extended Start*/LOTRBiomeFeatures.maple(), 20,
+				LOTRBiomeFeatures.mapleFancy(), 1, LOTRBiomeFeatures.mapleBees(), 1,
+				LOTRBiomeFeatures.mapleFancyBees(), 1,
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1/*Extended End*/);
 		LOTRBiomeFeatures.addGrass((ShireWoodlandsBiome)(Object)this, builder, 10, GrassBlends.SHIRE_WITH_FERNS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_WITH_FERNS);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 6, LOTRBlocks.SHIRE_HEATHER.get(), 20);
