@@ -25,6 +25,7 @@ public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedP
 
 	public ExtendedPlantableSpreadableGrowableAxialSlabBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block, slabBase, blockBase, blockGrowable);
+		this.registerDefaultState(this.stateDefinition.any().setValue(LOTRTEXTURE, false));
 	}
 
 	@Override
