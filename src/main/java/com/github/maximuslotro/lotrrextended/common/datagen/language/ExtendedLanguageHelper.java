@@ -238,6 +238,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 	}
 
+	// TODO filter out old block and item IDs
 	public void makeLocalisationsFile() {
 		// Sort keys and add to superClass processor
 		TreeMap<String, String> sorted = new TreeMap<>();

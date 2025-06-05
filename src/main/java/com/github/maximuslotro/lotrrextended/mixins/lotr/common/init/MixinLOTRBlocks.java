@@ -49,6 +49,7 @@ import lotr.common.block.ExtendedBurnableLOTRWallBlock;
 import lotr.common.block.ExtendedChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedDoubleTorchBlock;
+import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedFactionCraftingTableBlock;
 import lotr.common.block.ExtendedGrassPathSlabBlock;
 import lotr.common.block.ExtendedGreenHearthBlock;
@@ -1088,6 +1089,9 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops()));
 
+		ExtendedBlocks.DWARVEN_DOOR = registerB("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR_LUIGON = registerB("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR_CARGON = registerB("red_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
 	}
 
 	/**

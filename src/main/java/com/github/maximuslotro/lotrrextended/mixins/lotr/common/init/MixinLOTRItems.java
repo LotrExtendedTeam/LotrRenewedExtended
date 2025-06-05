@@ -647,6 +647,9 @@ public class MixinLOTRItems {
 		ExtendedItems.MOSS_CARPET = regBlockItemB(ExtendedBlocks.MOSS_CARPET, LOTRItemGroups.BLOCKS);
 		ExtendedItems.ANCIENT_RUNE_BLOCK = regBlockItemB(ExtendedBlocks.ANCIENT_RUNE_BLOCK, LOTRItemGroups.BLOCKS);
 
+		ExtendedItems.DWARVEN_DOOR = regBlockItemB(ExtendedBlocks.DWARVEN_DOOR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DWARVEN_DOOR_LUIGON = regBlockItemB(ExtendedBlocks.DWARVEN_DOOR_LUIGON, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DWARVEN_DOOR_CARGON = regBlockItemB(ExtendedBlocks.DWARVEN_DOOR_CARGON, LOTRItemGroups.BLOCKS);
 		//Mud
 		ExtendedItems.MUD = regBlockItemB(ExtendedBlocks.MUD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MUD_SLAB = regBlockItemB(ExtendedBlocks.MUD_SLAB, LOTRItemGroups.BLOCKS);

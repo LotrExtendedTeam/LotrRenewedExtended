@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:block/template_solid_gate",
+  "textures": {
+    "all": "lotr:block/red_rock"
+  }
+}
