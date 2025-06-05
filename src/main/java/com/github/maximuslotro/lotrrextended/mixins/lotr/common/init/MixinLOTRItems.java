@@ -1065,6 +1065,9 @@ public class MixinLOTRItems {
 		//Bree equipment
 		ExtendedItems.BREE_SHIELD = regItemB("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
 
+		//Blue Mountains equipment
+		ExtendedItems.BLUE_DUNEDAIN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
+
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", () -> new ExtendedDaggerItem(LOTRMaterial.ARNOR));

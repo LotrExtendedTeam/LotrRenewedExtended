@@ -930,146 +930,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_brick", has(Items.BRICK))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath()));
 		//Shields
-		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_SHIELD.get(), LOTRRecipes.RANGER_CRAFTING)
-		.pattern("PIP")
-		.pattern("PPP")
-		.pattern(" P ")
-		.define('I', Ingredient.of(Items.IRON_INGOT))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_"+Items.IRON_INGOT.getRegistryName().getPath(), has(Items.IRON_INGOT))
-		.unlockedBy("has_"+ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.DUNEDAIN_SHIELD.get()))
-		.save(consumer, lotrLoc(ExtendedItems.DUNEDAIN_SHIELD.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_SHIELD.get(), ExtendedRecipes.NORTHERN_ORC_CRAFTING)
-		.pattern("PIP")
-		.pattern("PPP")
-		.pattern(" P ")
-		.define('I', Ingredient.of(ExtendedTags.Items.URUK_STEEL_INGOT))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_uruk_steel", has(ExtendedTags.Items.URUK_STEEL_INGOT))
-		.unlockedBy("has_"+ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_SHIELD.get()))
-		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_SHIELD.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BREE_SHIELD.get(), LOTRRecipes.BREE_CRAFTING)
-		.pattern("PIP")
-		.pattern("PPP")
-		.pattern(" P ")
-		.define('I', Ingredient.of(Items.IRON_INGOT))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_"+Items.IRON_INGOT.getRegistryName().getPath(), has(Items.IRON_INGOT))
-		.unlockedBy("has_"+ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath(), has(ExtendedItems.BREE_SHIELD.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BREE_SHIELD.get().getRegistryName().getPath()));
-		//Banners
-		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DUNEDAIN_BANNER.get(), LOTRRecipes.RANGER_CRAFTING)
-		.pattern("W")
-		.pattern("S")
-		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
-		.define('S', Ingredient.of(STICKS))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
-		.unlockedBy("has_"+ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.DUNEDAIN_BANNER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_BANNER.get(), LOTRRecipes.HOBBIT_CRAFTING)
-		.pattern("W")
-		.pattern("S")
-		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
-		.define('S', Ingredient.of(STICKS))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
-		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.DURINS_FOLK_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DURINS_FOLK_BANNER.get(), LOTRRecipes.DWARVEN_CRAFTING)
-		.pattern("W")
-		.pattern("S")
-		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
-		.define('S', Ingredient.of(STICKS))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
-		.unlockedBy("has_"+ExtendedItems.DURINS_FOLK_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.DURINS_FOLK_BANNER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.DURINS_FOLK_BANNER.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BLUE_MOUNTAINS_BANNER.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING)
-		.pattern("W")
-		.pattern("S")
-		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
-		.define('S', Ingredient.of(STICKS))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
-		.unlockedBy("has_"+ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.GUNDABAD_ORC_BANNER.get(), ExtendedRecipes.NORTHERN_ORC_CRAFTING)
-		.pattern("W")
-		.pattern("S")
-		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
-		.define('S', Ingredient.of(STICKS))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
-		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.BREE_BANNER.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BREE_BANNER.get(), LOTRRecipes.BREE_CRAFTING)
-		.pattern("W")
-		.pattern("S")
-		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
-		.define('S', Ingredient.of(STICKS))
-		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
-		.unlockedBy("has_"+ExtendedItems.BREE_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BREE_BANNER.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BREE_BANNER.get().getRegistryName().getPath()));
-		//Banner Patterns
-		GENERATEDRECIPES.add(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get(), LOTRRecipes.RANGER_CRAFTING)
-		.requires(Items.PAPER)
-		.requires(ExtendedItems.DUNEDAIN_BANNER.get())
-		.unlockedBy("has_"+ExtendedItems.DUNEDAIN_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.DUNEDAIN_BANNER.get()))
-		.unlockedBy("has_"+ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()))
-		.save(consumer, lotrLoc(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING)
-		.requires(Items.PAPER)
-		.requires(ExtendedItems.BLUE_MOUNTAINS_BANNER.get())
-		.unlockedBy("has_"+ExtendedItems.BLUE_MOUNTAINS_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()))
-		.unlockedBy("has_"+ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get(), LOTRRecipes.DWARVEN_CRAFTING)
-		.requires(Items.PAPER)
-		.requires(ExtendedItems.DURINS_FOLK_BANNER.get())
-		.unlockedBy("has_"+ExtendedItems.DURINS_FOLK_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.DURINS_FOLK_BANNER.get()))
-		.unlockedBy("has_"+ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get()))
-		.save(consumer, lotrLoc(ExtendedItems.DURINS_FOLK_BANNER_PATTERN.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get(), ExtendedRecipes.NORTHERN_ORC_CRAFTING)
-		.requires(Items.PAPER)
-		.requires(ExtendedItems.GUNDABAD_ORC_BANNER.get())
-		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER.get()))
-		.unlockedBy("has_"+ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get()))
-		.save(consumer, lotrLoc(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.HOBBIT_BANNER_PATTERN.get(), LOTRRecipes.HOBBIT_CRAFTING)
-		.requires(Items.PAPER)
-		.requires(ExtendedItems.HOBBIT_BANNER.get())
-		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER.get()))
-		.unlockedBy("has_"+ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_BANNER_PATTERN.get()))
-		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_BANNER_PATTERN.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.BREE_BANNER_PATTERN.get(), LOTRRecipes.BREE_CRAFTING)
-		.requires(Items.PAPER)
-		.requires(ExtendedItems.BREE_BANNER.get())
-		.unlockedBy("has_"+ExtendedItems.BREE_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.BREE_BANNER.get()))
-		.unlockedBy("has_"+ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath(), has(ExtendedItems.BREE_BANNER_PATTERN.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BREE_BANNER_PATTERN.get().getRegistryName().getPath()));
+		makeShieldRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.RANGER_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.BLUE_DUNEDAIN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
+		//Banners and patterns
+		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
+		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
+		makeBannerAndPatternRecipe(consumer, ExtendedItems.DURINS_FOLK_BANNER, ExtendedItems.DURINS_FOLK_BANNER_PATTERN, LOTRRecipes.DWARVEN_CRAFTING);
+		makeBannerAndPatternRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_BANNER, ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		makeBannerAndPatternRecipe(consumer, ExtendedItems.GUNDABAD_ORC_BANNER, ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeBannerAndPatternRecipe(consumer, ExtendedItems.BREE_BANNER, ExtendedItems.BREE_BANNER_PATTERN, LOTRRecipes.BREE_CRAFTING);
 		//Containers
 		GENERATEDRECIPES.add(ExtendedItems.REED_BASKET.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
@@ -1111,56 +982,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.WOODEN_BIRDCAGE.get()))
 		.unlockedBy("has_sticks", has(STICKS))
 		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedBlocks.IRON_BIRDCAGE.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.IRON_BIRDCAGE.get())
-		.pattern("BBB")
-		.pattern("B B")
-		.pattern("III")
-		.define('B', Ingredient.of(Items.IRON_BARS))
-		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.unlockedBy("has_"+ExtendedBlocks.IRON_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.IRON_BIRDCAGE.get()))
-		.unlockedBy("has_iron_bars", has(Items.IRON_BARS))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.IRON_BIRDCAGE.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedBlocks.BRONZE_BIRDCAGE.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BRONZE_BIRDCAGE.get())
-		.pattern("BBB")
-		.pattern("B B")
-		.pattern("III")
-		.define('B', Ingredient.of(LOTRBlocks.BRONZE_BARS.get()))
-		.define('I', Ingredient.of(ExtendedTags.Items.BRONZE_INGOT))
-		.unlockedBy("has_"+ExtendedBlocks.BRONZE_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.BRONZE_BIRDCAGE.get()))
-		.unlockedBy("has_"+LOTRBlocks.BRONZE_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.BRONZE_BARS.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.BRONZE_BIRDCAGE.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedBlocks.SILVER_BIRDCAGE.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.SILVER_BIRDCAGE.get())
-		.pattern("BBB")
-		.pattern("B B")
-		.pattern("III")
-		.define('B', Ingredient.of(LOTRBlocks.SILVER_BARS.get()))
-		.define('I', Ingredient.of(LOTRTags.Items.INGOTS_SILVER))
-		.unlockedBy("has_"+ExtendedBlocks.SILVER_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.SILVER_BIRDCAGE.get()))
-		.unlockedBy("has_"+LOTRBlocks.SILVER_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.SILVER_BARS.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.SILVER_BIRDCAGE.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedBlocks.GOLDEN_BIRDCAGE.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.GOLDEN_BIRDCAGE.get())
-		.pattern("BBB")
-		.pattern("B B")
-		.pattern("III")
-		.define('B', Ingredient.of(LOTRBlocks.GOLD_BARS.get()))
-		.define('I', Ingredient.of(Tags.Items.INGOTS_GOLD))
-		.unlockedBy("has_"+ExtendedBlocks.GOLDEN_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.GOLDEN_BIRDCAGE.get()))
-		.unlockedBy("has_"+LOTRBlocks.GOLD_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.GOLD_BARS.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.GOLDEN_BIRDCAGE.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedBlocks.MITHRIL_BIRDCAGE.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.MITHRIL_BIRDCAGE.get())
-		.pattern("BBB")
-		.pattern("B B")
-		.pattern("III")
-		.define('B', Ingredient.of(LOTRBlocks.MITHRIL_BARS.get()))
-		.define('I', Ingredient.of(ExtendedTags.Items.MITHRIL_INGOT))
-		.unlockedBy("has_"+ExtendedBlocks.MITHRIL_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.MITHRIL_BIRDCAGE.get()))
-		.unlockedBy("has_"+LOTRBlocks.MITHRIL_BARS.get().getRegistryName().getPath(), has(LOTRBlocks.MITHRIL_BARS.get()))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.MITHRIL_BIRDCAGE.get().getRegistryName().getPath()));
+		makeBirdcageRecipe(consumer, ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItems.BRONZE_BARS, ExtendedTags.Items.BRONZE_INGOT, null);
+		makeBirdcageRecipe(consumer, ExtendedBlocks.IRON_BIRDCAGE, ()->Items.IRON_BARS, Tags.Items.INGOTS_IRON, null);
+		makeBirdcageRecipe(consumer, ExtendedBlocks.SILVER_BIRDCAGE, LOTRItems.SILVER_BARS, LOTRTags.Items.INGOTS_SILVER, null);
+		makeBirdcageRecipe(consumer, ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItems.GOLD_BARS, Tags.Items.INGOTS_GOLD, null);
+		makeBirdcageRecipe(consumer, ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItems.MITHRIL_BARS, ExtendedTags.Items.MITHRIL_INGOT, null);
 		//Dirts
 		GENERATEDRECIPES.add(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get())

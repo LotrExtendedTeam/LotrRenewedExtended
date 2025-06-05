@@ -608,6 +608,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
+	public static RegistryObject<Item> BLUE_DUNEDAIN_SHIELD;
 
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
