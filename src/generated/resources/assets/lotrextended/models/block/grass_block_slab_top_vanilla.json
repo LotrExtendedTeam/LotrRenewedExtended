@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:block/slab_double_custom",
+  "parent": "lotrextended:block/template_grass_slab_top",
   "textures": {
     "particle": "minecraft:block/dirt",
     "side": "minecraft:block/grass_block_side",

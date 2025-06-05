@@ -7,7 +7,7 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=false,type=top": {
-      "model": "lotrextended:block/grass_path_slab_top",
+      "model": "lotrextended:block/grass_path_slab_top_vanilla",
       "uvlock": true
     },
     "axis=z,lotrtexture=false,type=top": {
@@ -22,7 +22,7 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=true,type=top": {
-      "model": "lotrextended:block/grass_path_slab_top_custom",
+      "model": "lotrextended:block/grass_path_slab_top",
       "uvlock": true
     },
     "axis=z,lotrtexture=true,type=top": {
@@ -37,7 +37,7 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=false,type=bottom": {
-      "model": "lotrextended:block/grass_path_slab",
+      "model": "lotrextended:block/grass_path_slab_vanilla",
       "uvlock": true
     },
     "axis=z,lotrtexture=false,type=bottom": {
@@ -52,7 +52,7 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=true,type=bottom": {
-      "model": "lotrextended:block/grass_path_slab_custom",
+      "model": "lotrextended:block/grass_path_slab",
       "uvlock": true
     },
     "axis=z,lotrtexture=true,type=bottom": {
@@ -67,7 +67,7 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=false,type=double": {
-      "model": "lotrextended:block/grass_path_slab_double",
+      "model": "minecraft:block/grass_path",
       "uvlock": true
     },
     "axis=z,lotrtexture=false,type=double": {
@@ -82,7 +82,7 @@
       "uvlock": true
     },
     "axis=y,lotrtexture=true,type=double": {
-      "model": "minecraft:block/grass_path",
+      "model": "lotrextended:block/grass_path_slab_double",
       "uvlock": true
     },
     "axis=z,lotrtexture=true,type=double": {

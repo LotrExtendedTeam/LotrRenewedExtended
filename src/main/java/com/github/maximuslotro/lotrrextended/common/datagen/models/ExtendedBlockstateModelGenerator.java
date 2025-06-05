@@ -142,12 +142,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	public ResourceLocation lotrExtendedLoc(String name) {
-        return new ResourceLocation("lotrextended", name);
-    }
+		return new ResourceLocation("lotrextended", name);
+	}
 
 	public ResourceLocation lotrLoc(String name) {
-        return new ResourceLocation("lotr", name);
-    }
+		return new ResourceLocation("lotr", name);
+	}
+
+	@Override
+	public ResourceLocation modLoc(String name) {
+		throw new RuntimeException("Don't use this method, use either mcLoc, lotrLoc, or lotrExtendedLoc instead pls.");
+	}
 
 	@Override
 	protected void registerStatesAndModels() {
@@ -1008,7 +1013,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
-	private void genSlabGrassBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation overlay, ModelFile doubleModel, ResourceLocation customDoubleModelLoc) {
+	private void genSlabGrassBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation overlay, ModelFile doubleModel, ResourceLocation vanillaDoubleModelLoc) {
 		registeredBlocks.add(slab);
 
 		ModelFile slabModel = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath(), lotrExtendedLoc("block/tinted_slab"))
@@ -1021,41 +1026,32 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				.texture("bottom", top)
 				.texture("top", top);
 
-		ModelFile customModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_custom", modLoc("block/slab_custom"))
+		ModelFile vanillaModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_vanilla", lotrExtendedLoc("block/template_grass_slab"))
 				.texture("particle", bottom)
 				.texture("side", side)
 				.texture("bottom", bottom)
 				.texture("top", top)
 				.texture("overlay", overlay);
-		ModelFile customModelTop = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_custom", modLoc("block/slab_top_custom"))
+		ModelFile vanillaModelTop = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_vanilla", lotrExtendedLoc("block/template_grass_slab_top"))
 				.texture("particle", bottom)
 				.texture("side", side)
 				.texture("bottom", bottom)
 				.texture("top", top)
 				.texture("overlay", overlay);
-		ModelFile customDoubleModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_double_custom", modLoc("block/slab_double_custom"))
-				.texture("particle", bottom)
-				.texture("side", side)
-				.texture("bottom", bottom)
-				.texture("top", top)
-				.texture("overlay", overlay);
+		ModelFile customDoubleModel = models().getExistingFile(vanillaDoubleModelLoc);
 
 		getVariantBuilder(slab)
 				.forAllStatesExcept(state -> {
 					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
 					SlabType type = state.getValue(SlabBlock.TYPE);
 					boolean uvlock = axis != Axis.Y;
-					Boolean lotrtexture = state.getValue(IExtendedSwappableTexture.LOTRTEXTURE);
+					Boolean useLotrTexture = state.getValue(IExtendedSwappableTexture.USELOTRTEXTURE);
 
 					ModelFile model;
-					if (lotrtexture && axis == Direction.Axis.Y) {
-						model = type == SlabType.DOUBLE
-								? customDoubleModel
-								: (type == SlabType.BOTTOM ? customModel : customModelTop);
+					if (!useLotrTexture && axis == Direction.Axis.Y) {
+						model = type == SlabType.DOUBLE ? customDoubleModel : (type == SlabType.BOTTOM ? vanillaModel : vanillaModelTop);
 					}else {
-						model = type == SlabType.DOUBLE
-								? doubleModel
-								: (type == SlabType.BOTTOM ? slabModel : slabModelTop);
+						model = type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop);
 					}
 
 					return ConfiguredModel.builder()
@@ -1065,45 +1061,41 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							.uvLock(uvlock)
 							.build();
 				}, SlabBlock.WATERLOGGED);
-		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(vanillaModel);
 	}
 
 
-	private void genSwappablePathSlabBlock(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, ResourceLocation CustomDoubleModelLoc) {
+	private void genSwappablePathSlabBlock(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, ResourceLocation vanillaDoubleModelLoc) {
 		registeredBlocks.add(slab);
 
 		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), top, top, top);
 
 		ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", top, top, top);
 		// use custom 16x7x16 slab template
-		ModelFile customBottomModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_custom", modLoc("block/path_slab_custom"))
+		ModelFile vanillaBottomModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_vanilla", lotrExtendedLoc("block/template_vanilla_path_slab"))
 				.texture("particle", bottom)
 				.texture("side", side)
 				.texture("bottom", bottom)
 				.texture("top", top);
-		ModelFile customTopModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_custom", modLoc("block/path_slab_top_custom"))
+		ModelFile vanillaTopModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_vanilla", lotrExtendedLoc("block/template_vanilla_path_slab_top"))
 				.texture("particle", bottom)
 				.texture("side", side)
 				.texture("bottom", bottom)
 				.texture("top", top);
 
-		ModelFile customDoubleModel = models().getExistingFile(CustomDoubleModelLoc);
+		ModelFile vanillaDoubleModel = models().getExistingFile(vanillaDoubleModelLoc);
 
 		getVariantBuilder(slab)
 				.forAllStatesExcept(state -> {
 					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
 					SlabType type = state.getValue(SlabBlock.TYPE);
-					Boolean lotrtexture = state.getValue(IExtendedSwappableTexture.LOTRTEXTURE);
+					Boolean useLotrTexture = state.getValue(IExtendedSwappableTexture.USELOTRTEXTURE);
 
 					ModelFile model;
-					if (lotrtexture && axis == Direction.Axis.Y) {
-						model = type == SlabType.DOUBLE
-								? customDoubleModel
-								: (type == SlabType.BOTTOM ? customBottomModel : customTopModel);
+					if (!useLotrTexture && axis == Direction.Axis.Y) {
+						model = type == SlabType.DOUBLE ? vanillaDoubleModel : (type == SlabType.BOTTOM ? vanillaBottomModel : vanillaTopModel);
 					}else {
-						model = type == SlabType.DOUBLE
-								? doubleModel
-								: (type == SlabType.BOTTOM ? slabModel : slabModelTop);
+						model = type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop);
 					}
 
 					return ConfiguredModel.builder()
@@ -1114,7 +1106,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							.build();
 				}, SlabBlock.WATERLOGGED);
 
-		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(vanillaBottomModel);
 	}
 
 	private void genRopeBlock(ExtendedRopeBlock rope) {
