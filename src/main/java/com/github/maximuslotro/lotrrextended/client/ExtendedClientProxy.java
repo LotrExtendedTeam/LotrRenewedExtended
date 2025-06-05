@@ -7,8 +7,8 @@ import java.util.UUID;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedHiredUnitHealthbarRenderer;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
-import com.github.maximuslotro.lotrrextended.client.render.ExtendedColorHelper;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
+import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedBlockItemColors;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedTileEntityRenderers;
@@ -69,9 +69,9 @@ public class ExtendedClientProxy {
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
-		modBus.addListener(ExtendedColorHelper::makeBlockColors);
+		modBus.addListener(ExtendedBlockItemColors::makeBlockColors);
 		modBus.addListener(ExtendedItemModelsProperties::addGuiItemSprites);
-		modBus.addListener(ExtendedColorHelper::makeItemsColors);
+		modBus.addListener(ExtendedBlockItemColors::makeItemsColors);
 		ExtendedClientConfig.register();
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
