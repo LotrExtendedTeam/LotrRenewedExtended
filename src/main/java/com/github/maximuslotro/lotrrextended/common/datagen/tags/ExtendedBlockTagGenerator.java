@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -205,6 +206,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 			if(block.getKey().contains("packed_fur")||block.getKey().contains("fur_bundle")||block.getKey().contains("fur_carpet")) {
 				tag(ExtendedTags.Blocks.FUR_BLOCKS).add(block.getValue().get());
 			}
+			if(block.getValue().get() instanceof ExtendedChainBlock) {
+				tag(ExtendedTags.Blocks.CHAINS).add(block.getValue().get());
+			}
 		}
 
 		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())
@@ -279,6 +283,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
 
 		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.MORDOR_MOSS_VINES.get()).add(ExtendedBlocks.WILLOW_VINES.get());
+
+		tag(ExtendedTags.Blocks.CHAINS).add(Blocks.CHAIN);
+
 
 		tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).addTag(ExtendedTags.Blocks.FUR_BLOCKS);
 

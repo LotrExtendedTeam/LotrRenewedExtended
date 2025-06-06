@@ -43,8 +43,10 @@ public class ExtendedAncientStoneRuneBlock extends Block {
 		}
 		world.setBlock(blockPos, state.setValue(TYPE, newType), 2);
 		if (!player.abilities.instabuild) {
-			itemstack.hurtAndBreak(1, player, (p_226874_1_) -> {});
+			itemstack.hurtAndBreak(1, player, (playerSend) -> { 
+				playerSend.broadcastBreakEvent(pHand);
+			});
 		}
 		return ActionResultType.sidedSuccess(world.isClientSide);
-     }
+	}
 }

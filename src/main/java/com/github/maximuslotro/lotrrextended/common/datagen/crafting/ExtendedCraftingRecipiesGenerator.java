@@ -687,6 +687,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL,
 			()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
+		// Crystal Chandeliers
+		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItems.EDHELVIR_CRYSTAL, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItems.GLOWSTONE_CRYSTAL, null);
+		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER, LOTRItems.GULDURIL_CRYSTAL, LOTRRecipes.ANY_MORGUL);
 		//ITEMS
 		// TORCH CONVERSIONS
 		// DWARVEN
