@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
@@ -120,6 +121,9 @@ public class ExtendedBlockRenderer {
 			}
 			if(block instanceof ExtendedBerryHedgeBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+			}
+			if(block instanceof ExtendedCrystalChandelierBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());

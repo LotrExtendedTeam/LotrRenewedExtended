@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
@@ -28,6 +29,7 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -265,6 +267,34 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+name, has(chain.get()))
 			.unlockedBy("has_"+nugget.get().getRegistryName().getPath(), has(nugget.get()))
 			.save(consumer, lotrLoc(name));
+		}
+	}
+
+	protected void makeCrystalChandelierRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> chandelier, Supplier<? extends Item> crystal, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(chandelier.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(chandelier.get())
+			.pattern(" I ")
+			.pattern("E#E")
+			.pattern(" E ")
+			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
+			.define('#', Ingredient.of(Blocks.COBBLESTONE))
+			.define('E', Ingredient.of(crystal.get()))
+			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
+			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
+			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(chandelier.get(), table)
+			.pattern(" I ")
+			.pattern("E#E")
+			.pattern(" E ")
+			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
+			.define('#', Ingredient.of(Blocks.COBBLESTONE))
+			.define('E', Ingredient.of(crystal.get()))
+			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
+			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
+			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
 		}
 	}
 

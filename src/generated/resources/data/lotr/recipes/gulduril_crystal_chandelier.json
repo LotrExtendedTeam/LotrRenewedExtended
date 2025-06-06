@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    " I ",
+    "E#E",
+    " E "
+  ],
+  "key": {
+    "I": {
+      "tag": "lotrextended:chains"
+    },
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "E": {
+      "item": "lotr:gulduril_crystal"
+    }
+  },
+  "result": {
+    "item": "lotr:gulduril_crystal_chandelier"
+  }
+}
