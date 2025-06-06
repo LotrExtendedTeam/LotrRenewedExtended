@@ -21,10 +21,26 @@ import java.util.*;
 public class ExtendedLotrEnchantCommand {
 
     private static final List<String> OPTIONS = Arrays.asList(
-            "add", "remove", "clear"
+            "add", "remove"
+    );
+    private static final List<String> CLEAR = Collections.singletonList(
+            "clear"
     );
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
+        dispatcher.register(Commands.literal("lotrenchant").requires(context -> context.hasPermission(4))
+                .then(Commands.argument("clear", StringArgumentType.word())
+                        .suggests((context, builder) -> {
+                            for (String s : CLEAR) {
+                                builder.suggest(s);
+                            }
+                            return builder.buildFuture();
+                        })
+                        .executes(context -> clearEnchants(
+                                context.getSource(),
+                                StringArgumentType.getString(context, "clear")
+                        )))
+        );
         dispatcher.register(Commands.literal("lotrenchant").requires(context -> context.hasPermission(4))
                 .then(Commands.argument("add_or_remove", StringArgumentType.word())
                 .suggests((context, builder) -> {
@@ -76,7 +92,6 @@ public class ExtendedLotrEnchantCommand {
             }
         }
 
-
         if (operation.equals("add")) {
             // only allow one bane at a time
             if (enchant.getEnchantType().equals("bane")) {
@@ -105,8 +120,33 @@ public class ExtendedLotrEnchantCommand {
                 source.sendFailure(new StringTextComponent("That item does not have that enchant."));
                 return 0;
             }
-        } else if (operation.equals("clear")) {
-            // TODO: Add clear functionality
+        }
+
+        return Command.SINGLE_SUCCESS;
+    }
+
+    public static int clearEnchants(CommandSource source, String operation) {
+        if (!CLEAR.contains(operation)) {
+            source.sendFailure(new StringTextComponent("Invalid operation: " + operation));
+            return 0;
+        }
+
+        PlayerEntity player;
+        if (!(source.getEntity() != null && source.getEntity() instanceof PlayerEntity)) {
+            source.sendFailure(new StringTextComponent("This command can only be run by a player"));
+            return 0;
+        } else {
+            player = (PlayerEntity) source.getEntity();
+        }
+
+        ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
+        if (operation.equals("clear")) {
+            if (LOTREnchantUtils.clearEnchants(stack)) {
+                source.sendSuccess(new StringTextComponent("All LOTR enchants removed from ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
+            } else {
+                source.sendFailure(new StringTextComponent("That item does not have any enchants."));
+                return 0;
+            }
         }
 
         return Command.SINGLE_SUCCESS;

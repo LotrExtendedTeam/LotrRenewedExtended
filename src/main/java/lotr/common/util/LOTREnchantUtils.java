@@ -59,7 +59,7 @@ public class LOTREnchantUtils {
             tag.put("LOTREnchantments", new ListNBT());
         }
 
-        // TODO: When other LOTREnchants are introduced update this to only remove the name from this specifc enchant
+        // TODO: When other LOTREnchants are introduced update this to only remove the name from this specific enchant
         //  currently this overrides names from any previous enchants
         // restore original item name
         if (stack.hasCustomHoverName()) {
@@ -81,6 +81,31 @@ public class LOTREnchantUtils {
         }
 
         listnbt.removeAll(entriesToRemove);
+    }
+
+    public static boolean clearEnchants(ItemStack stack) {
+        if (getEnchantList(stack).isEmpty()) {
+            return false;
+        }
+        CompoundNBT tag = stack.getOrCreateTag();
+        if (!tag.contains("LOTREnchantments", 9)) {
+            tag.put("LOTREnchantments", new ListNBT());
+        }
+        boolean wasNamedOnAnvil = false;
+        if (tag.contains("LOTREnchantsNamedOnAnvil")) {
+            wasNamedOnAnvil = tag.getBoolean("LOTREnchantsNamedOnAnvil");
+        }
+
+        // restore original item name
+        if (stack.hasCustomHoverName() && !wasNamedOnAnvil) {
+            ITextComponent baseName = stack.getItem().getName(stack);
+            ITextComponent newName = baseName.copy().withStyle(style -> style.withItalic(false));
+            stack.setHoverName(newName);
+        }
+
+        tag.remove("LOTREnchantments");
+        tag.remove("LOTREnchantsNamedOnAnvil");
+        return true;
     }
 
     public static void incrementBaneProgress(ItemStack stack, Entity entity, PlayerEntity player) {
