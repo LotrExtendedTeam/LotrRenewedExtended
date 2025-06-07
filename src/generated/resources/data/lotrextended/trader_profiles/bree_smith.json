@@ -35,7 +35,8 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "minecraft:iron_nugget"
+        "item": "minecraft:iron_nugget",
+        "count": 9
       }
     },
     {
@@ -47,19 +48,15 @@
     {
       "averageCost": 15,
       "stack": {
-        "item": "minecraft:gold_nugget"
+        "item": "minecraft:gold_nugget",
+        "count": 9
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:gold_nugget"
-      }
-    },
-    {
-      "averageCost": 1,
-      "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {
@@ -93,7 +90,7 @@
       }
     },
     {
-      "averageCost": 50,
+      "averageCost": 25,
       "stack": {
         "item": "lotr:white_fur"
       }
@@ -229,13 +226,15 @@
     {
       "averageCost": 20,
       "stack": {
-        "item": "lotr:bronze_bars"
+        "item": "lotr:bronze_bars",
+        "count": 8
       }
     },
     {
       "averageCost": 20,
       "stack": {
-        "item": "minecraft:iron_bars"
+        "item": "minecraft:iron_bars",
+        "count": 8
       }
     },
     {

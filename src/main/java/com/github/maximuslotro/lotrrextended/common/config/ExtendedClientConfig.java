@@ -11,7 +11,8 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec CLIENT_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
 	public static ConfigValue<String> lastClientBootVersion;
-	
+	public static ForgeConfigSpec.BooleanValue disableJEILOTRversionCheck;
+
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
 	
 	/**
@@ -30,6 +31,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	private static ForgeConfigSpec.Builder setupConfig(ForgeConfigSpec.Builder builder) {
 		builder.push("General Settings");
 		enablePlantParticles = createBooleanValue(builder, "enablePlantParticles", true, false, "Allow for certian plants to spawn particles.");
+		disableJEILOTRversionCheck = createBooleanValue(builder, "disableJEILOTRversionCheck", true, false, "Disable JEI-LOTR's broken version check.");
 		builder.pop();
 
 		builder.push("Technical Settings");

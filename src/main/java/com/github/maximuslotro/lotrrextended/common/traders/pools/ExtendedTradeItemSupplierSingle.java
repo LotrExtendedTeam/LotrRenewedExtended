@@ -24,9 +24,12 @@ public class ExtendedTradeItemSupplierSingle implements ExtendedTradeItemSupplie
 	@Override
 	public JsonElement serializeJson() {
 		JsonObject itemJson = new JsonObject();
-		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(this.stack.getItem()).toString());
-		if (this.stack.hasTag()) {
-			itemJson.addProperty("nbt", this.stack.getTag().toString());
+		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
+		if(stack.getCount()>1) {
+			itemJson.addProperty("count", stack.getCount());
+		}
+		if (stack.hasTag()) {
+			itemJson.addProperty("nbt", stack.getTag().toString());
 		}
 
 		return itemJson;

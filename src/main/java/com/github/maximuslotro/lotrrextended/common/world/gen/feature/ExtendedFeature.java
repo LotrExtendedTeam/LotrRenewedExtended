@@ -36,7 +36,7 @@ public class ExtendedFeature {
 
 	public static void register(RegistryEvent.Register<Feature<?>> event) {
 		if (event.getRegistry() == ForgeRegistries.FEATURES) {
-			ExtendedFeatures.register();
+			ExtendedConfiguredFeatures.register();
 		}
 	}
 }

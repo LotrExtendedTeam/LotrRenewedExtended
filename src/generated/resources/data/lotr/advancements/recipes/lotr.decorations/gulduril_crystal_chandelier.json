@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gulduril_crystal_chandelier"
+    ]
+  },
+  "criteria": {
+    "has_gulduril_crystal_chandelier": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gulduril_crystal_chandelier"
+          }
+        ]
+      }
+    },
+    "has_gulduril_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gulduril_crystal"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gulduril_crystal_chandelier"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gulduril_crystal_chandelier",
+      "has_gulduril_crystal",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -117,7 +117,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {
@@ -151,7 +152,7 @@
       }
     },
     {
-      "averageCost": 50,
+      "averageCost": 25,
       "stack": {
         "item": "lotr:white_fur"
       }

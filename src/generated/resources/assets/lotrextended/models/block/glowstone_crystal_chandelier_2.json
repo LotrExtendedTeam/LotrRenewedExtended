@@ -1,0 +1,8 @@
+{
+  "parent": "lotrextended:block/template_hanging_crystal_2",
+  "textures": {
+    "center": "lotrextended:block/crystal_center_stone",
+    "chain": "minecraft:block/chain",
+    "crystal": "lotr:block/glowstone_crystal"
+  }
+}

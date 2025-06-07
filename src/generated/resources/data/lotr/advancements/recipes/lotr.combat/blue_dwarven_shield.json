@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:blue_dwarven_shield"
+    ]
+  },
+  "criteria": {
+    "has_dwarven_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/dwarven_steel"
+          }
+        ]
+      }
+    },
+    "has_blue_dwarven_shield": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:blue_dwarven_shield"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:blue_dwarven_shield"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dwarven_steel",
+      "has_blue_dwarven_shield",
+      "has_the_recipe"
+    ]
+  ]
+}

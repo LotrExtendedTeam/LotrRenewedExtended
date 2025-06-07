@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
@@ -28,6 +29,7 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -268,6 +270,34 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeCrystalChandelierRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> chandelier, Supplier<? extends Item> crystal, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(chandelier.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(chandelier.get())
+			.pattern(" I ")
+			.pattern("E#E")
+			.pattern(" E ")
+			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
+			.define('#', Ingredient.of(Blocks.COBBLESTONE))
+			.define('E', Ingredient.of(crystal.get()))
+			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
+			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
+			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(chandelier.get(), table)
+			.pattern(" I ")
+			.pattern("E#E")
+			.pattern(" E ")
+			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
+			.define('#', Ingredient.of(Blocks.COBBLESTONE))
+			.define('E', Ingredient.of(crystal.get()))
+			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
+			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
+			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
+		}
+	}
+
 	protected void makeBedRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, Item reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
@@ -314,6 +344,53 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeShieldRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> shield, ITag<Item> reasource, String type, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(shield.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(shield.get())
+			.pattern("PIP")
+			.pattern("PPP")
+			.pattern(" P ")
+			.define('I', Ingredient.of(reasource))
+			.define('P', Ingredient.of(PLANKS))
+			.unlockedBy("has_"+type, has(reasource))
+			.unlockedBy("has_"+shield.get().getRegistryName().getPath(), has(shield.get()))
+			.save(consumer, lotrLoc(shield.get().getRegistryName().getPath()));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(shield.get(), table)
+			.pattern("PIP")
+			.pattern("PPP")
+			.pattern(" P ")
+			.define('I', Ingredient.of(reasource))
+			.define('P', Ingredient.of(PLANKS))
+			.unlockedBy("has_"+type, has(reasource))
+			.unlockedBy("has_"+shield.get().getRegistryName().getPath(), has(shield.get()))
+			.save(consumer, lotrLoc(shield.get().getRegistryName().getPath()));
+		}
+	}
+
+	protected void makeBannerAndPatternRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, Supplier<? extends Item> pattern, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(banner.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(banner.get(), table)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(WOOL))
+		.define('S', Ingredient.of(STICKS))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_wool", has(WOOL))
+		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
+		.save(consumer, lotrLoc(banner.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(pattern.get().getRegistryName().getPath());
+		ExtendedFactionShapelessRecipeBuilder.shapeless(pattern.get(), table)
+		.requires(Items.PAPER)
+		.requires(banner.get())
+		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
+		.unlockedBy("has_"+pattern.get().getRegistryName().getPath(), has(pattern.get()))
+		.save(consumer, lotrLoc(pattern.get().getRegistryName().getPath()));
+	}
+
 	protected void makeBedRecipeTag(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
@@ -349,6 +426,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ExtendedShapedRecipeBuilder.shaped(door.get(), 3)
+			.group(group)
 			.pattern("##")
 			.pattern("##")
 			.pattern("##")
@@ -359,6 +437,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(door.get(), 3, table)
+			.group(group)
 			.pattern("##")
 			.pattern("##")
 			.pattern("##")
@@ -891,19 +970,18 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeBirdcageRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> bars, Supplier<? extends Item> base, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
-		String name = blockToBeCrafted.get().getRegistryName().getPath();
-		GENERATEDRECIPES.add(name);
+	protected void makeBirdcageRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> bars, ITag<Item> base, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(blockToBeCrafted.get().getRegistryName().getPath());
 		if(table==null) {
 			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
 			.pattern("BBB")
 			.pattern("B B")
 			.pattern("III")
 			.define('B', Ingredient.of(bars.get()))
-			.define('I', Ingredient.of(base.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.define('I', Ingredient.of(base))
+			.unlockedBy("has_"+blockToBeCrafted.get().getRegistryName().getPath(), has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+bars.get().getRegistryName().getPath(), has(bars.get()))
-			.save(consumer, lotrLoc(name));
+			.saveNoAdvancement(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
@@ -911,10 +989,10 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("B B")
 			.pattern("III")
 			.define('B', Ingredient.of(bars.get()))
-			.define('I', Ingredient.of(base.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.define('I', Ingredient.of(base))
+			.unlockedBy("has_"+blockToBeCrafted.get().getRegistryName().getPath(), has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+bars.get().getRegistryName().getPath(), has(bars.get()))
-			.save(consumer, lotrLoc(name));
+			.saveNoAdvancement(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()));
 		}
 	}
 
