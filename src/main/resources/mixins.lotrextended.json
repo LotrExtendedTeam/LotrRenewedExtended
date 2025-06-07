@@ -106,6 +106,7 @@
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.item.MixinItemStack",
 		"net.minecraft.item.MixinShearsItem",
 		"net.minecraft.item.MixinSpawnEggItem",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",

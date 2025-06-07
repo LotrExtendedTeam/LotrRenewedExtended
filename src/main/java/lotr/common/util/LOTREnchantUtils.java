@@ -11,7 +11,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
@@ -29,6 +28,7 @@ public class LOTREnchantUtils {
             tag.put("LOTREnchantments", new ListNBT());
         }
 
+        /*
         // TODO: When other LOTREnchants are introduced support them to have multiple names
         //  currently this overrides names from any previous enchants
         // rename item if not already renamed
@@ -41,6 +41,7 @@ public class LOTREnchantUtils {
                 stack.setHoverName(newName);
             }
         }
+        */
 
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         CompoundNBT compoundnbt = new CompoundNBT();
@@ -61,6 +62,7 @@ public class LOTREnchantUtils {
 
         // TODO: When other LOTREnchants are introduced update this to only remove the name from this specific enchant
         //  currently this overrides names from any previous enchants
+        /*
         // restore original item name
         if (stack.hasCustomHoverName()) {
             ITextComponent baseName = stack.getItem().getName(stack);
@@ -69,7 +71,7 @@ public class LOTREnchantUtils {
                 ITextComponent newName = baseName.copy().withStyle(style -> style.withItalic(false));
                 stack.setHoverName(newName);
             }
-        }
+        }*/
 
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         List<CompoundNBT> entriesToRemove = new ArrayList<>();
@@ -91,17 +93,17 @@ public class LOTREnchantUtils {
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
         }
-        boolean wasNamedOnAnvil = false;
+        /*boolean wasNamedOnAnvil = false;
         if (tag.contains("LOTREnchantsNamedOnAnvil")) {
             wasNamedOnAnvil = tag.getBoolean("LOTREnchantsNamedOnAnvil");
-        }
+        }*/
 
-        // restore original item name
+        /*// restore original item name
         if (stack.hasCustomHoverName() && !wasNamedOnAnvil) {
             ITextComponent baseName = stack.getItem().getName(stack);
             ITextComponent newName = baseName.copy().withStyle(style -> style.withItalic(false));
             stack.setHoverName(newName);
-        }
+        }*/
 
         tag.remove("LOTREnchantments");
         tag.remove("LOTREnchantsNamedOnAnvil");
@@ -237,7 +239,5 @@ public class LOTREnchantUtils {
         }
         return bane;
     }
-
-
 
 }
