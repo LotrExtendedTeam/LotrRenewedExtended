@@ -8,38 +8,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LOTREnchantEventHandlers {
-
-    @SubscribeEvent
-    public static void addTooltipsForLOTREnchants(ItemTooltipEvent event) {
-        ItemStack stack = event.getItemStack();
-        List<ITextComponent> entries = new ArrayList<>();
-        for (LOTREnchantment enchant : LOTREnchantUtils.getEnchantList(stack)) {
-            entries.add(
-                    new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase()).append(": ")
-                            .append(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase() + ".desc"))
-                            .withStyle(TextFormatting.GRAY));
-        }
-
-        if (!entries.isEmpty()) {
-            if (event.getToolTip().size() >= 1) {
-                event.getToolTip().addAll(1, entries);
-            } else {
-                event.getToolTip().addAll(0, entries);
-            }
-        }
-    }
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {

@@ -27,22 +27,6 @@ public class LOTREnchantUtils {
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
         }
-
-        /*
-        // TODO: When other LOTREnchants are introduced support them to have multiple names
-        //  currently this overrides names from any previous enchants
-        // rename item if not already renamed
-        if (renameItem) {
-            if (!stack.hasCustomHoverName()) {
-                ITextComponent baseName = stack.getItem().getName(stack);
-                ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey().toLowerCase())
-                        .append(" ").withStyle(style -> style.withItalic(false))
-                        .append(baseName.copy().withStyle(style -> style.withItalic(false)));
-                stack.setHoverName(newName);
-            }
-        }
-        */
-
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         CompoundNBT compoundnbt = new CompoundNBT();
         compoundnbt.putString("key", enchantment.getKey());
@@ -59,20 +43,6 @@ public class LOTREnchantUtils {
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
         }
-
-        // TODO: When other LOTREnchants are introduced update this to only remove the name from this specific enchant
-        //  currently this overrides names from any previous enchants
-        /*
-        // restore original item name
-        if (stack.hasCustomHoverName()) {
-            ITextComponent baseName = stack.getItem().getName(stack);
-            ITextComponent enchantTranslated = new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey().toLowerCase());
-            if (stack.getHoverName().getString().contains(enchantTranslated.getString())) {
-                ITextComponent newName = baseName.copy().withStyle(style -> style.withItalic(false));
-                stack.setHoverName(newName);
-            }
-        }*/
-
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         List<CompoundNBT> entriesToRemove = new ArrayList<>();
         for (INBT nbt : listnbt) {
@@ -96,13 +66,6 @@ public class LOTREnchantUtils {
         /*boolean wasNamedOnAnvil = false;
         if (tag.contains("LOTREnchantsNamedOnAnvil")) {
             wasNamedOnAnvil = tag.getBoolean("LOTREnchantsNamedOnAnvil");
-        }*/
-
-        /*// restore original item name
-        if (stack.hasCustomHoverName() && !wasNamedOnAnvil) {
-            ITextComponent baseName = stack.getItem().getName(stack);
-            ITextComponent newName = baseName.copy().withStyle(style -> style.withItalic(false));
-            stack.setHoverName(newName);
         }*/
 
         tag.remove("LOTREnchantments");
