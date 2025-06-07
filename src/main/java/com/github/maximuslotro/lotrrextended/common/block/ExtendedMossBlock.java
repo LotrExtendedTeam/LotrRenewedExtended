@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 
 import lotr.common.event.CompostingHelper;
 import net.minecraft.block.Block;
@@ -32,6 +32,6 @@ public class ExtendedMossBlock extends Block implements IGrowable {
 
 	@Override
 	public void performBonemeal(ServerWorld pLevel, Random pRand, BlockPos pPos, BlockState pState) {
-		ExtendedFeatures.MOSS_PATCH_BONEMEAL.place(pLevel, pLevel.getChunkSource().getGenerator(), pRand, pPos.above());
+		ExtendedConfiguredFeatures.MOSS_PATCH_BONEMEAL.place(pLevel, pLevel.getChunkSource().getGenerator(), pRand, pPos.above());
 	}
 }

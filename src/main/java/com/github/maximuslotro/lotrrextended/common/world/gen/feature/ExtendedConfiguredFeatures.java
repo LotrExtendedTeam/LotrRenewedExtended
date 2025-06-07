@@ -15,7 +15,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
-public class ExtendedFeatures {
+public class ExtendedConfiguredFeatures {
 	public static final ConfiguredFeature<ExtendedSimpleBlockFeatureConfig, ?> MOSS_VEGETATION = register("moss_vegetation", ExtendedFeature.SIMPLE_BLOCK_PRE.configured(new ExtendedSimpleBlockFeatureConfig(new WeightedBlockStateProvider().add(ExtendedBlocks.MOSS_CARPET.get().defaultBlockState(), 25).add(Blocks.GRASS.defaultBlockState(), 50).add(Blocks.TALL_GRASS.defaultBlockState(), 10))));
 	public static final ConfiguredFeature<ExtendedVegetationPatchConfig, ?> MOSS_PATCH = register("moss_patch", ExtendedFeature.VEGETATION_PATCH_PRE.configured(new ExtendedVegetationPatchConfig(ExtendedTags.Blocks.MOSS_REPLACEABLE, new SimpleBlockStateProvider(ExtendedBlocks.MOSS_BLOCK.get().defaultBlockState()), ()-> MOSS_VEGETATION, ExtendedCaveSurface.FLOOR, 1, 0.0F, 5, 0.8F, 4, 7, 0.3F, 0.6f)));
 	public static final ConfiguredFeature<ExtendedVegetationPatchConfig, ?> MOSS_PATCH_BONEMEAL = register("moss_patch_bonemeal", ExtendedFeature.VEGETATION_PATCH_PRE.configured(new ExtendedVegetationPatchConfig(ExtendedTags.Blocks.MOSS_REPLACEABLE, new SimpleBlockStateProvider(ExtendedBlocks.MOSS_BLOCK.get().defaultBlockState()), ()-> MOSS_VEGETATION, ExtendedCaveSurface.FLOOR, 1, 0.0F, 5, 0.6F, 1, 2, 0.75F, 0.0f)));

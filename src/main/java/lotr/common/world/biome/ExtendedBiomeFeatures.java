@@ -8,7 +8,7 @@ import java.util.OptionalInt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
-import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeatures;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedHoleySphereConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
@@ -129,12 +129,12 @@ public class ExtendedBiomeFeatures {
 
 	// Default willowTree implementation requires water for terrain gen
 	public static ConfiguredFeature<NoFeatureConfig, ?> willowTree() {
-		return ExtendedFeatures.WILLOW_TREE_WATER_FEATURE;
+		return ExtendedConfiguredFeatures.WILLOW_TREE_WATER_FEATURE;
 	}
 
 	// Default willowTree implementation requires water for terrain gen
 	public static ConfiguredFeature<NoFeatureConfig, ?> willowTreeNoWaterRequirement() {
-		return ExtendedFeatures.WILLOW_TREE_FEATURE;
+		return ExtendedConfiguredFeatures.WILLOW_TREE_FEATURE;
 	}
 
 	//TODO add to biomes
@@ -241,7 +241,7 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addMoss(BiomeGenerationSettings.Builder builder, int freq) {
-		builder.addFeature(Decoration.VEGETAL_DECORATION, ExtendedFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
+		builder.addFeature(Decoration.VEGETAL_DECORATION, ExtendedConfiguredFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
 	}
 
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
