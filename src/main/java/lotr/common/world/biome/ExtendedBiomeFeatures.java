@@ -23,7 +23,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
@@ -32,6 +31,7 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
+import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
@@ -237,7 +237,7 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addBushes(BiomeGenerationSettings.Builder builder, int chance) {
-		builder.addFeature(Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(placeHeightmapDoubleChance(chance)));
+		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(placeHeightmapDoubleChance(chance)));
 	}
 
 	public static void addMoss(BiomeGenerationSettings.Builder builder, int freq) {
@@ -245,26 +245,43 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AMETHYST_ORE, 6)).range(64).squared().weighted(2F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, TOPAZ_ORE, 6)).range(64).squared().weighted(2F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, AMBER_ORE, 5)).range(48).squared().weighted(1.5F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, OPAL_ORE, 5)).range(48).squared().weighted(1.5F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SAPPHIRE_ORE, 4)).range(32).squared().weighted(1F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, RUBY_ORE, 4)).range(32).squared().weighted(1F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, EMERALD_ORE, 4)).range(24).squared().weighted(0.75F).feature.get());
-		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, DIAMOND_ORE, 4)).range(16).squared().weighted(0.5F).feature.get());
+		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
+		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);
+		addUndergroundOreWeighted(builder, AMBER_ORE, 5, 48, 1.5F);
+		addUndergroundOreWeighted(builder, OPAL_ORE, 5, 48, 1.5F);
+		addUndergroundOreWeighted(builder, SAPPHIRE_ORE, 4, 32, 1F);
+		addUndergroundOreWeighted(builder, RUBY_ORE, 4, 32, 1F);
+		addUndergroundOreWeighted(builder, EMERALD_ORE, 4, 24, 0.75F);
+		addUndergroundOreWeighted(builder, DIAMOND_ORE, 4, 16, 0.5F);
 	}
 
+	public static void addBlueOres(BiomeGenerationSettings.Builder builder) {
+		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
+		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);
+		addUndergroundOreWeighted(builder, AMBER_ORE, 5, 48, 1.5F);
+		addUndergroundOreWeighted(builder, OPAL_ORE, 5, 48, 1.5F);
+		addUndergroundOreWeighted(builder, SAPPHIRE_ORE, 4, 32, 1F);
+		addUndergroundOreWeighted(builder, RUBY_ORE, 4, 32, 1F);
+		addUndergroundOreWeighted(builder, EMERALD_ORE, 4, 24, 0.75F);
+		addUndergroundOreWeighted(builder, DIAMOND_ORE, 4, 16, 0.5F);
+	}
+
+	public static void addStoneBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundOre(builder, Blocks.STONE.defaultBlockState(), 61, 90, 5);
+	}
+
+	private static void addUndergroundOreWeighted(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, float weight) {
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, stone, size)).range(maxHightFromBedrock).squared().weighted(weight).feature.get());
+	}
+
+	private static void addUndergroundOre(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, int frequency) {
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, stone, size)).range(maxHightFromBedrock).squared().count(frequency));
+	}
+	
 	public static void addRemains(BiomeGenerationSettings.Builder builder) {
-
-		List<BlockState> remainsTypes = Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF);
-
-		builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.HOLEY_UNDERWATER_SPHERE.get().configured(new ExtendedHoleySphereConfig(remainsTypes,
-						FeatureSpread.of(2, 3), 4,
-						ImmutableList.of(Blocks.DIRT.defaultBlockState()), 20))
-				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE)
-				.weighted(5F)
-				.feature.get());
+		builder.addFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.HOLEY_UNDERWATER_SPHERE.get()
+			.configured(new ExtendedHoleySphereConfig(Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF), FeatureSpread.of(2, 3), 4, ImmutableList.of(Blocks.DIRT.defaultBlockState()), 20))
+			.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE).weighted(5F).feature.get());
 	}
 
 	//Classic Trees
