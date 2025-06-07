@@ -43,7 +43,7 @@
 * Textures/Models
   * Fixed fur carpet block frill culling
 * Trading
- * Added different trader trade refusal messages
+  * Added different trader trade refusal messages
   * Added legacy trader lockout and refresh logic after trading many items
   * Finished entire trade system datapack compatible backend re-write
   * Fixed traders not handling shift-click buying (no more having to buy one item at a time)

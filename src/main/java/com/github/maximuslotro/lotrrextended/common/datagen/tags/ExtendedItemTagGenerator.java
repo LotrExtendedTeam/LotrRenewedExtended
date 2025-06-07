@@ -138,6 +138,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.EDHELVIR_ORE, ExtendedTags.Items.EDHELVIR_ORE);
 		this.copy(ExtendedTags.Blocks.GULDURIL_ORE, ExtendedTags.Items.GULDURIL_ORE);
 
+		this.copy(ExtendedTags.Blocks.CHAINS, ExtendedTags.Items.CHAINS);
+
 		tag(Tags.Items.STORAGE_BLOCKS).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GALVORN)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GILDED_IRON)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_MORGUL_STEEL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_TOPAZ)

@@ -11,7 +11,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:bone_meal"
+        "item": "minecraft:bone_meal",
+        "count": 6
       }
     },
     {

@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
@@ -48,6 +49,7 @@ import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedDirectionalBundleBlock;
+import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.ExtendedLOTRWallTorchBlock;
@@ -130,6 +132,8 @@ import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
+import lotr.common.block.IExtendedSwappableTexture;
+
 public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private List<Block> registeredBlocks = new ArrayList<>();
@@ -139,12 +143,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	}
 
 	public ResourceLocation lotrExtendedLoc(String name) {
-        return new ResourceLocation("lotrextended", name);
-    }
+		return new ResourceLocation("lotrextended", name);
+	}
 
 	public ResourceLocation lotrLoc(String name) {
-        return new ResourceLocation("lotr", name);
-    }
+		return new ResourceLocation("lotr", name);
+	}
+
+	@Override
+	public ResourceLocation modLoc(String name) {
+		throw new RuntimeException("Don't use this method, use either mcLoc, lotrLoc, or lotrExtendedLoc instead pls.");
+	}
 
 	@Override
 	protected void registerStatesAndModels() {
@@ -257,6 +266,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
 					continue;
 				}
+				if(block.getValue().get() instanceof ExtendedDwarvenGateBlock) {
+					if(block.getKey().contains("blue")) {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), lotrLoc("block/blue_rock"));
+					}else if(block.getKey().contains("red")) {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), lotrLoc("block/red_rock"));
+					}else {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), mcLoc("block/stone"));
+					}
+					continue;
+				}
 				if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
 					genFarmlandBlockItem((ExtendedGroundFarmlandBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
@@ -335,6 +354,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedHangingBlock) {
 					genHangingBlock((ExtendedHangingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedCrystalChandelierBlock) {
+					if(block.getKey().contains("edhelvir")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/edhelvir_crystal"));
+					}else if(block.getKey().contains("glowstone")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/glowstone_crystal"));
+					}else if(block.getKey().contains("gulduril")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/gulduril_crystal"));
+					}
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
@@ -556,10 +585,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						if(block.getKey().equals("grass_path_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_path_top"),
+							genSwappablePathSlabBlock(
+									(SlabBlock) block.getValue().get(),
+									mcLoc("block/grass_path_side"),
+									mcLoc("block/dirt"),
 									mcLoc("block/grass_path_top"),
-									mcLoc("block/grass_path_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")), false, true);
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")),
+									mcLoc("block/grass_path")
+									);
 							continue;
 						}
 						if(block.getKey().equals("podzol_slab")) {
@@ -577,10 +610,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							continue;
 						}
 						if(block.getKey().equals("grass_block_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_top"),
+							genSlabGrassBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_side"),
+									mcLoc("block/dirt"),
 									mcLoc("block/grass_block_top"),
-									mcLoc("block/grass_block_top"),
-									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")), true, true);
+									mcLoc("block/grass_block_side_overlay"),
+									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")),
+									mcLoc("block/grass_block"));
 							continue;
 						}
 						if(block.getKey().equals("barren_dirt_slab")) {
@@ -989,6 +1024,102 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(slabModel);
 	}
 
+	private void genSlabGrassBlockItem(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation overlay, ModelFile doubleModel, ResourceLocation vanillaDoubleModelLoc) {
+		registeredBlocks.add(slab);
+
+		ModelFile slabModel = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath(), lotrExtendedLoc("block/tinted_slab"))
+				.texture("side", top)
+				.texture("bottom", top)
+				.texture("top", top);
+
+		ModelFile slabModelTop = models().withExistingParent("lotrextended:"+slab.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/tinted_slab_top"))
+				.texture("side", top)
+				.texture("bottom", top)
+				.texture("top", top);
+
+		ModelFile vanillaModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_vanilla", lotrExtendedLoc("block/template_grass_slab"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("overlay", overlay);
+		ModelFile vanillaModelTop = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_vanilla", lotrExtendedLoc("block/template_grass_slab_top"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("overlay", overlay);
+		ModelFile customDoubleModel = models().getExistingFile(vanillaDoubleModelLoc);
+
+		getVariantBuilder(slab)
+				.forAllStatesExcept(state -> {
+					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
+					SlabType type = state.getValue(SlabBlock.TYPE);
+					boolean uvlock = axis != Axis.Y;
+					Boolean useLotrTexture = state.getValue(IExtendedSwappableTexture.USELOTRTEXTURE);
+
+					ModelFile model;
+					if (!useLotrTexture && axis == Direction.Axis.Y) {
+						model = type == SlabType.DOUBLE ? customDoubleModel : (type == SlabType.BOTTOM ? vanillaModel : vanillaModelTop);
+					}else {
+						model = type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop);
+					}
+
+					return ConfiguredModel.builder()
+							.modelFile(model)
+							.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+							.rotationY(axis == Axis.X ? 90 : 0)
+							.uvLock(uvlock)
+							.build();
+				}, SlabBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(vanillaModel);
+	}
+
+
+	private void genSwappablePathSlabBlock(SlabBlock slab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ModelFile doubleModel, ResourceLocation vanillaDoubleModelLoc) {
+		registeredBlocks.add(slab);
+
+		ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath(), top, top, top);
+
+		ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top", top, top, top);
+		// use custom 16x7x16 slab template
+		ModelFile vanillaBottomModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_vanilla", lotrExtendedLoc("block/template_vanilla_path_slab"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top);
+		ModelFile vanillaTopModel = models().withExistingParent("lotrextended:" + slab.getRegistryName().getPath()+ "_top_vanilla", lotrExtendedLoc("block/template_vanilla_path_slab_top"))
+				.texture("particle", bottom)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top);
+
+		ModelFile vanillaDoubleModel = models().getExistingFile(vanillaDoubleModelLoc);
+
+		getVariantBuilder(slab)
+				.forAllStatesExcept(state -> {
+					Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
+					SlabType type = state.getValue(SlabBlock.TYPE);
+					Boolean useLotrTexture = state.getValue(IExtendedSwappableTexture.USELOTRTEXTURE);
+
+					ModelFile model;
+					if (!useLotrTexture && axis == Direction.Axis.Y) {
+						model = type == SlabType.DOUBLE ? vanillaDoubleModel : (type == SlabType.BOTTOM ? vanillaBottomModel : vanillaTopModel);
+					}else {
+						model = type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop);
+					}
+
+					return ConfiguredModel.builder()
+							.modelFile(model)
+							.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+							.rotationY(axis == Axis.X ? 90 : 0)
+							.uvLock(true)
+							.build();
+				}, SlabBlock.WATERLOGGED);
+
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(vanillaBottomModel);
+	}
+
 	private void genRopeBlock(ExtendedRopeBlock rope) {
 		registeredBlocks.add(rope);
 		ResourceLocation ropeTexture = lotrExtendedLoc("block/"+rope.getRegistryName().getPath());
@@ -1282,6 +1413,28 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(bed, modelFile);
 	}
 
+	private void genCrystalChandelierBlock(ExtendedCrystalChandelierBlock crystal_chandelier, ResourceLocation texture) {
+		registeredBlocks.add(crystal_chandelier);
+		ModelFile modelFile1 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_1", lotrExtendedLoc("block/template_hanging_crystal_1"))
+				.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+		ModelFile modelFile2 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_2", lotrExtendedLoc("block/template_hanging_crystal_2"))
+			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+		ModelFile modelFile3 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_3", lotrExtendedLoc("block/template_hanging_crystal_3"))
+			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+		ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(modelFile1, 0, false);
+		ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(modelFile2, 0, false);
+		ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(modelFile3, 0, false);
+		getVariantBuilder(crystal_chandelier).forAllStates(state -> {
+			int type = state.getValue(ExtendedCrystalChandelierBlock.TYPE);
+			if(type==1) {
+				return variant1;
+			}else if(type==2) {
+				return variant2;
+			}
+			return variant3;
+		});
+	}
+
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {
 		registeredBlocks.add(extendedMEBannerBlock);
 		ModelFile modelFileSmallBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_bottom", lotrExtendedLoc("block/template_banner_small_bottom"))
@@ -1355,6 +1508,25 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+extendedReedBasketBlock.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genGateBlockItem(ExtendedDwarvenGateBlock gate, ResourceLocation textureLocation) {
+		registeredBlocks.add(gate);
+		ModelFile model = models().withExistingParent("lotrextended:"+gate.getRegistryName().getPath()+"_closed", lotrExtendedLoc("block/template_solid_gate")).texture("all", textureLocation);
+		ModelFile modelOpen = models().withExistingParent("lotrextended:"+gate.getRegistryName().getPath()+"_open", lotrExtendedLoc("block/template_solid_gate_open")).texture("all", textureLocation);
+
+		ModelFile modelItem = models().cubeAll("lotrextended:"+gate.getRegistryName().getPath()+"_item", textureLocation);
+
+		getVariantBuilder(gate).forAllStatesExcept(state -> {
+			Direction facing = state.getValue(ExtendedDwarvenGateBlock.FACING);
+			boolean open = state.getValue(ExtendedDwarvenGateBlock.OPEN);
+			return ConfiguredModel.builder()
+                    .modelFile(open ? modelOpen : model)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		}, ExtendedDwarvenGateBlock.WATERLOGGED, ExtendedDwarvenGateBlock.UP,ExtendedDwarvenGateBlock.DOWN,ExtendedDwarvenGateBlock.NORTH,
+			ExtendedDwarvenGateBlock.SOUTH,ExtendedDwarvenGateBlock.WEST,ExtendedDwarvenGateBlock.EAST,ExtendedDwarvenGateBlock.POWERED);
+		itemModels().getBuilder("lotr:"+gate.getRegistryName().getPath()).parent(modelItem);
 	}
 
 	private void genLargePotBlockItem(ExtendedLargePotBlock pot, String key) {

@@ -74,6 +74,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> REMAINS_ORE = BlockTags.bind("lotrextended:remains_ores");
 
 		public static final ITag.INamedTag<Block> FIXED_SIZE_PILLARS = BlockTags.bind("lotrextended:fixed_size_pillars");
+
+		public static final ITag.INamedTag<Block> CHAINS = BlockTags.bind("lotrextended:chains");
 	}
 
 	public static class Items {
@@ -178,5 +180,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> TORCH_LIGHTING = ItemTags.bind("lotrextended:torch_lighting");
 
 		public static final ITag.INamedTag<Item> STONE_GRINDER_LUBRICANTS = ItemTags.bind("lotrextended:stone_grinder/lubricants");
+
+		public static final ITag.INamedTag<Item> CHAINS = ItemTags.bind("lotrextended:chains");
+
 	}
 }

@@ -11,7 +11,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 2
       }
     },
     {
@@ -23,31 +24,36 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:potato"
+        "item": "minecraft:potato",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:carrot"
+        "item": "minecraft:carrot",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:melon_slice"
+        "item": "minecraft:melon_slice",
+        "count": 3
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:sugar"
+        "item": "minecraft:sugar",
+        "count": 2
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:sugar_cane"
+        "item": "minecraft:sugar_cane",
+        "count": 2
       }
     },
     {

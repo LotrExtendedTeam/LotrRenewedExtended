@@ -14,6 +14,7 @@
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinPlayerDataModuleInvoker",
 		"lotr.common.entity.item.MixinModBoatType",
+		"lotr.common.entity.npc.MixinBlueDwarfWarriorEntity",
 		"lotr.common.entity.npc.MixinBreeGuardEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcArcherEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcEntity",
@@ -114,6 +115,8 @@
 		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket"
 	],
 	"client": [
+		"craftedMods.jeiLotr.MixinJEILotr",
+		"craftedMods.jeiLotr.MixinJEIPlugin",
 		"lotr.client.MixinLOTRKeyHandler",
 		"lotr.client.event.MixinClientWorldDimensionTypeHelperJavaPatch",
 		"lotr.client.event.MixinLOTRTickHandlerClient",
@@ -132,6 +135,7 @@
 		"lotr.client.render.model.connectedtex.MixinDeferredConnectedTextureModelBakeryJavaPatch",
 		"lotr.client.render.player.MixinLOTRPlayerRendering",
 		"lotr.client.render.tileentity.MixinVesselDrinkTileEntityRenderer",
+		"lotr.common.block.MixinGateBlockAccessor",
 		"lotr.common.block.MixinWildPipeweedBlock",
 		"net.minecraft.client.gui.screen.inventory.MixinBlastFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",

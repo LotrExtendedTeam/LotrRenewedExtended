@@ -608,6 +608,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
+	public static RegistryObject<Item> BLUE_DUNEDAIN_SHIELD;
 
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
@@ -658,4 +659,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MITHRIL_BIRDCAGE;
 
 	public static RegistryObject<Item> GRASS_VOID;
+
+	public static RegistryObject<Item> DWARVEN_DOOR;
+	public static RegistryObject<Item> DWARVEN_DOOR_LUIGON;
+	public static RegistryObject<Item> DWARVEN_DOOR_CARGON;
+
+	public static RegistryObject<Item> GLOWSTONE_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Item> EDHELVIR_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Item> GULDURIL_CRYSTAL_CHANDELIER;
 }

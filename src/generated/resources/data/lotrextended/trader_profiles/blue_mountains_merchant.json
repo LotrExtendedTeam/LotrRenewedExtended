@@ -65,7 +65,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:coal"
+        "item": "minecraft:coal",
+        "count": 2
       }
     },
     {
@@ -203,7 +204,8 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "minecraft:glowstone_dust"
+        "item": "minecraft:glowstone_dust",
+        "count": 4
       }
     },
     {
@@ -257,7 +259,8 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:blue_rock"
+        "item": "lotr:blue_rock",
+        "count": 8
       }
     },
     {

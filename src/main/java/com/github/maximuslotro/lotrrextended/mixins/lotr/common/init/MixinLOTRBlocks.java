@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.mixins.lotr.common.init;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.block.*;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,59 +40,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSoundTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
-import lotr.common.block.AxialSlabBlock;
-import lotr.common.block.BranchBlock;
-import lotr.common.block.ChandelierBlock;
-import lotr.common.block.ExtendedBurnableAxialSlabBlock;
-import lotr.common.block.ExtendedBurnableLOTRPillarBlock;
-import lotr.common.block.ExtendedBurnableLOTRStairsBlock;
-import lotr.common.block.ExtendedBurnableLOTRWallBlock;
-import lotr.common.block.ExtendedChandelierBlock;
-import lotr.common.block.ExtendedDirectionalBundleBlock;
-import lotr.common.block.ExtendedDoubleTorchBlock;
-import lotr.common.block.ExtendedFactionCraftingTableBlock;
-import lotr.common.block.ExtendedGrassPathSlabBlock;
-import lotr.common.block.ExtendedGreenHearthBlock;
-import lotr.common.block.ExtendedLOTRTorchBlock;
-import lotr.common.block.ExtendedLOTRWallTorchBlock;
-import lotr.common.block.ExtendedLanternBlock;
-import lotr.common.block.ExtendedPackedFurBlock;
-import lotr.common.block.ExtendedPlantableAxialSlabBlock;
-import lotr.common.block.ExtendedPlantableSpreadableAxialSlabBlock;
-import lotr.common.block.ExtendedPlantableSpreadableGrowableAxialSlabBlock;
-import lotr.common.block.ExtendedRemainsBlock;
-import lotr.common.block.ExtendedSignTypes;
-import lotr.common.block.ExtendedStemableAxialSlabBlock;
-import lotr.common.block.FallenLeavesBlock;
-import lotr.common.block.LOTRDoorBlock;
-import lotr.common.block.LOTRFenceBlock;
-import lotr.common.block.LOTRFenceGateBlock;
-import lotr.common.block.LOTRLeavesBlock;
-import lotr.common.block.LOTROreBlock;
-import lotr.common.block.LOTRPillarBlock;
-import lotr.common.block.LOTRPlanksBlock;
-import lotr.common.block.LOTRPottedPlantBlock;
-import lotr.common.block.LOTRSaplingBlock;
-import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRStandingSignBlock;
-import lotr.common.block.LOTRStrippedLogBlock;
-import lotr.common.block.LOTRStrippedWoodBlock;
-import lotr.common.block.LOTRTrapdoorBlock;
-import lotr.common.block.LOTRWallBlock;
-import lotr.common.block.LOTRWallSignBlock;
-import lotr.common.block.LOTRWoodButtonBlock;
-import lotr.common.block.LOTRWoodPressurePlateBlock;
-import lotr.common.block.LogSlabBlock;
-import lotr.common.block.LogStairsBlock;
-import lotr.common.block.MineralBlock;
-import lotr.common.block.StrippableBranchBlock;
-import lotr.common.block.StrippableLogBlock;
-import lotr.common.block.StrippableLogSlabBlock;
-import lotr.common.block.StrippableLogStairsBlock;
-import lotr.common.block.StrippableWoodBlock;
-import lotr.common.block.WattleAndDaubBlock;
-import lotr.common.block.VesselDrinkBlock;
-import lotr.common.block.WoodBeamBlock;
+import lotr.common.block.*;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
@@ -664,9 +613,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(Properties.copy(Blocks.DIRT)));
 		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new ExtendedStemableAxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
 		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.COARSE_DIRT));
-		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.DIRT));
+		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedDirtSlabBlock(Blocks.DIRT));		
 		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedPlantableSpreadableGrowableAxialSlabBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
-		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedGrassPathSlabBlock(Blocks.GRASS_PATH));
+		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedSwappablePathSlabBlock(Blocks.GRASS_PATH));
 		ExtendedBlocks.PODZOL_SLAB = registerB("podzol_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.PODZOL));
 		ExtendedBlocks.MYCELIUM_SLAB = registerB("mycelium_slab", () -> new ExtendedPlantableSpreadableAxialSlabBlock(Blocks.MYCELIUM, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.MYCELIUM));
 		//Bone Block
@@ -948,7 +897,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
-		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> 10).sound(SoundType.WOOL)));
+		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
 
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
@@ -1087,6 +1036,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
 
 		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops()));
+
+		ExtendedBlocks.DWARVEN_DOOR = registerB("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR_LUIGON = registerB("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR_CARGON = registerB("red_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+
+		ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER = registerB("edhelvir_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
+		ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER = registerB("glowstone_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
+		ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER = registerB("gulduril_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
 
 	}
 

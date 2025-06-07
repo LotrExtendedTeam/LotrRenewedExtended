@@ -514,4 +514,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MITHRIL_BIRDCAGE;
 
 	public static RegistryObject<Block> GRASS_VOID;
+
+	public static RegistryObject<Block> DWARVEN_DOOR;
+	public static RegistryObject<Block> DWARVEN_DOOR_LUIGON;
+	public static RegistryObject<Block> DWARVEN_DOOR_CARGON;
+
+	public static RegistryObject<Block> GLOWSTONE_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Block> EDHELVIR_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Block> GULDURIL_CRYSTAL_CHANDELIER;
 }
