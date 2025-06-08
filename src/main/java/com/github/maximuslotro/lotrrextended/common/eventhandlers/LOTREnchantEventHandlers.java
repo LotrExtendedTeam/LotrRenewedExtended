@@ -43,28 +43,26 @@ public class LOTREnchantEventHandlers {
 
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
-        if (!(event.getEntity() instanceof NPCEntity)) {
-           return;
-        }
+    	// Only run bane info when NPC dies
+    	if (!(event.getEntityLiving() instanceof NPCEntity)) {
+    		return;
+    	}
 
-        // only run on server
-        if (event.getEntityLiving().level.isClientSide()) return;
-
-        NPCEntity entity = (NPCEntity) event.getEntity();
-
-        // check the weapon that was used
-        LivingEntity source = null;
-        if (event.getSource().getEntity() != null &&
-                !(event.getSource().getEntity() instanceof LivingEntity)) {
-           return;
-        }
-        source = (LivingEntity) event.getSource().getEntity();
-
-        ItemStack weapon = source.getItemInHand(Hand.MAIN_HAND);
-        if (source instanceof PlayerEntity) {
-            LOTREnchantUtils.incrementBaneProgress(weapon, entity, (PlayerEntity) source);
-        } else {
-            LOTREnchantUtils.incrementBaneProgress(weapon, entity, null);
-        }
+    	// only run on server
+    	if (event.getEntityLiving().level.isClientSide()) {
+    		return;
+    	}
+    	// Check for invalid and null death sources (null instanceof LivingEntity)==false
+    	if (!(event.getSource().getEntity() instanceof LivingEntity)) { // Reworked logic to catch NPE
+    		return;
+    	}
+    	// check the weapon that was used
+    	LivingEntity source = (LivingEntity) event.getSource().getEntity();
+    	ItemStack weapon = source.getItemInHand(Hand.MAIN_HAND);
+    	if (source instanceof PlayerEntity) {
+    		LOTREnchantUtils.incrementBaneProgress(weapon, event.getEntity(), (PlayerEntity) source);
+    	} else {
+    		LOTREnchantUtils.incrementBaneProgress(weapon, event.getEntity(), null);
+    	}
     }
 }
