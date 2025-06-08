@@ -30,11 +30,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
 	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK;
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
-	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> IRON_THROWN_AXE;
-	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> BRONZE_THROWN_AXE;
-	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> GONDOR_THROWN_AXE;
-	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> DWARVEN_THROWN_AXE;
-	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> BLUE_MOUNTAINS_DWARVEN_THROWN_AXE;
+	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> THROWN_AXE;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
 	public static RegistryObject<EntityType<ExtendedGundabadOrcTraderEntity>> GUNDABAD_CAMP_TRADER;

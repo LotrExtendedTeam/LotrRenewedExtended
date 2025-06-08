@@ -284,11 +284,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));
 		ExtendedEntities.RIVENDELL_WANDERER = regNPCD("rivendell_wanderer", ExtendedRivendellWandererEntity::new, ExtendedRivendellWandererEntity::createAttributes, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(869480, 15003391));
 		ExtendedEntities.THROWN_CONKER = regEntityNOND("thrown_conker", ExtendedConkerEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-		ExtendedEntities.IRON_THROWN_AXE = regEntityNOND("thrown_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-		ExtendedEntities.BRONZE_THROWN_AXE = regEntityNOND("thrown_bronze_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-		ExtendedEntities.GONDOR_THROWN_AXE = regEntityNOND("thrown_gondor_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-		ExtendedEntities.DWARVEN_THROWN_AXE = regEntityNOND("thrown_dwarven_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-		ExtendedEntities.BLUE_MOUNTAINS_DWARVEN_THROWN_AXE = regEntityNOND("thrown_blue_mountains_dwarven_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
+		ExtendedEntities.THROWN_AXE = regEntity("thrown_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 20);
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkTurtleSpawnRules);
 		ExtendedEntities.DUCK_EGG_ENTITY = regEntityNOND("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);

@@ -2,11 +2,15 @@ package com.github.maximuslotro.lotrrextended.common.item;
 
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
 
-import lotr.common.init.ExtendedEntities;
+import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRMaterial;
-import net.minecraft.entity.Entity;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity.PickupStatus;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -19,182 +23,93 @@ import net.minecraft.world.World;
 
 public class ExtendedThrowableAxeItem extends Item {
 
-    private LOTRMaterial axeMaterial;
-
-    public ExtendedThrowableAxeItem(Properties properties) {
-        super(properties);
+    public ExtendedThrowableAxeItem(IItemTier tier) {
+        super(new Item.Properties().tab(LOTRItemGroups.COMBAT));
+        //DispenserBlock.registerBehavior(); TODO
+    }
+    public ExtendedThrowableAxeItem(LOTRMaterial material) {
+        this((IItemTier)material.asTool());
     }
 
-    public ExtendedThrowableAxeItem(Properties properties, LOTRMaterial material) {
-        super(properties);
-        this.axeMaterial = material;
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.BLOCK;
     }
 
-    public void setAxeMaterial(LOTRMaterial material) {
-        this.axeMaterial = material;
-    }
-
-    public LOTRMaterial getAxeMaterial() {
-        return axeMaterial;
-    }
-
-    @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        
-        if (!world.isClientSide) {
-            // Create and throw the axe entity
-            ExtendedThrowableAxeEntity thrownAxe = new ExtendedThrowableAxeEntity(
-            ExtendedEntities.IRON_THROWN_AXE.get(), // You'll need the appropriate entity type
-            player, 
-            world, 
-            itemstack.copy()
-        );
+        if (canPlayerUseItem(player, hand)) {
+         if (!world.isClientSide) {
+            ItemStack EntityItemStack = itemstack.copy();
+            EntityItemStack.setCount(1);
+            ExtendedThrowableAxeEntity AxeEntity = new ExtendedThrowableAxeEntity(world, player, EntityItemStack);
             
-            // Set the velocity based on player's look direction
-            thrownAxe.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 1.5F, 1.0F);
+            // Calculate offset to the right of the player
+            double offsetDistance = 0.5; // Adjust this value to control how far right
+            double rightX = -Math.sin(Math.toRadians(player.yRot + 90.0)); // Right vector X
+            double rightZ = Math.cos(Math.toRadians(player.yRot + 90.0));  // Right vector Z
             
-            // Add the entity to the world
-            world.addFreshEntity(thrownAxe);
+            // Apply the offset to the axe position
+            AxeEntity.setPos(
+                player.getX() + rightX * offsetDistance,
+                player.getEyeY() - 0.1, // Slightly below eye level
+                player.getZ() + rightZ * offsetDistance
+            );
             
-            // Play throwing sound
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), 
-                SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 
-                0.5F, 0.4F / (world.random.nextFloat() * 0.4F + 0.8F));
-        }
-        
-        // Update player stats
-        player.awardStat(Stats.ITEM_USED.get(this));
-        
-        // Consume the item if not in creative mode
-        if (!player.abilities.instabuild) {
+            AxeEntity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.0F, 1.0F);
+            AxeEntity.setCritArrow(true);
+
+            AxeEntity.pickup = this.getPickupStatusForplayer(player);
+            world.addFreshEntity(AxeEntity);
+         }
+
+         world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
+         if (!player.abilities.instabuild) {
             itemstack.shrink(1);
-        }
-        
-        return ActionResult.sidedSuccess(itemstack, world.isClientSide());
-    }
+            if (itemstack.isEmpty()) {
+               player.inventory.removeItem(itemstack);
+            }
+         }
 
-    @Override
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.BOW;
-    }
-
-    @Override
-    public int getUseDuration(ItemStack stack) {
-        return 72000; // Same as bow
-    }
-
-    /**
-     * Get the ranged damage multiplier for this throwing axe
-     * @param itemstack The itemstack being thrown
-     * @param shooter The entity throwing the axe
-     * @param target The target being hit
-     * @return The damage multiplier
-     */
-    public float getRangedDamageMultiplier(ItemStack itemstack, LivingEntity shooter, Entity target) {
-        if (axeMaterial == null) {
-            return 4.0F; // Default damage
-        }
-
-        // Base damage based on material
-        float baseDamage = getBaseDamageForMaterial(axeMaterial);
-        
-        // Apply any additional modifiers here if needed
-        // For example, enchantments, durability, etc.
-        
-        return baseDamage;
-    }
-
-    /**
-     * Get base damage for the axe material
-     */
-    private float getBaseDamageForMaterial(LOTRMaterial material) {
-        switch (material) {
-            case BRONZE:
-                return 6.0F;
-            case BLUE_DWARVEN:
-                return 8.5F;
-            case DWARVEN:
-                return 9.0F;
-            case GONDOR:
-                return 8.0F;
-            default:
-                return 4.0F;
+         player.awardStat(Stats.ITEM_USED.get(this));
+         
+            return ActionResult.success(itemstack);
+        } else {
+            return ActionResult.fail(itemstack);
         }
     }
 
-    /**
-     * Get the throwing range of this axe
-     */
-    public float getThrowingRange() {
-        if (axeMaterial == null) {
-            return 16.0F;
+    private boolean canPlayerUseItem(PlayerEntity player, Hand hand) {
+        if (hand == Hand.MAIN_HAND) {
+            ItemStack offhandItem = player.getOffhandItem();
+            if (offhandItem.getUseAnimation() == UseAction.BLOCK) {
+                return player.isShiftKeyDown();
+            }
         }
-        
-        switch (axeMaterial) {
-            case BRONZE:
-                return 14.0F;
-            case BLUE_DWARVEN:
-                return 18.0F; // Dwarven craftsmanship provides better balance
-            case DWARVEN:
-                return 20.0F; // Superior dwarven engineering
-            case GONDOR:
-                return 17.0F; // Well-crafted but not as specialized as dwarven
-            default:
-                return 16.0F;
-        }
-    }
-
-    /**
-     * Check if this axe can be enchanted
-     */
-    @Override
-    public boolean isEnchantable(ItemStack stack) {
         return true;
     }
 
-    /**
-     * Get enchantability of this axe
-     */
-    @Override
-    public int getEnchantmentValue() {
-        if (axeMaterial == null) {
-            return 1;
-        }
-        
-        switch (axeMaterial) {
-            case BRONZE:
-                return 8;
-            case BLUE_DWARVEN:
-                return 12; // Good enchantability but not the highest
-            case DWARVEN:
-                return 16; // Excellent enchantability due to superior craftsmanship
-            case GONDOR:
-                return 15; // High quality human craftsmanship
-            default:
-                return 1;
-        }
-    }
+   private AbstractArrowEntity.PickupStatus getPickupStatusForplayer(LivingEntity player) {
+      if (player instanceof PlayerEntity) {
+         return ((PlayerEntity)player).abilities.instabuild ? PickupStatus.CREATIVE_ONLY : PickupStatus.ALLOWED;
+      } else {
+         return PickupStatus.DISALLOWED;
+      }
+   }
 
-    /**
-     * Get the durability of this axe when used as a throwing weapon
-     */
-    public int getThrowingDurability() {
-        if (axeMaterial == null) {
-            return 100;
-        }
-        
-        switch (axeMaterial) {
-            case BRONZE:
-                return 180; // Better than iron in some ways
-            case BLUE_DWARVEN:
-                return 400; // Dwarven quality but not the finest
-            case DWARVEN:
-                return 600; // Exceptional durability
-            case GONDOR:
-                return 350; // High quality human craftsmanship
-            default:
-                return 100;
-        }
-    }
+   public static void applyStandardEnchantmentsFromBow(ItemStack stack, AbstractArrowEntity projectile) {
+      int power = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
+      if (power > 0) {
+         projectile.setBaseDamage(projectile.getBaseDamage() + (double)power * 0.5 + 0.5);
+      }
+
+      int punch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
+      if (punch > 0) {
+         projectile.setKnockback(punch);
+      }
+
+      if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, stack) > 0) {
+         projectile.setSecondsOnFire(100);
+      }
+
+   }
 }

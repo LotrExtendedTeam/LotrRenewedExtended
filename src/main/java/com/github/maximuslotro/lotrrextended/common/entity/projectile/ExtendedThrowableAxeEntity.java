@@ -1,170 +1,182 @@
 package com.github.maximuslotro.lotrrextended.common.entity.projectile;
 
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
-
-import lotr.common.init.ExtendedItems;
+import lotr.common.entity.projectile.LOTRAbstractArrowEntity;
+import lotr.common.init.ExtendedEntities;
+import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ProjectileItemEntity;
-import net.minecraft.item.Item;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedThrowableAxeEntity extends ProjectileItemEntity {
+import java.util.Collection;
+import java.util.Optional;
 
-    private int axeRotation;
-    private ItemStack projectileItem;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedDamageSource;
 
-    // Required constructor for entity registration
-    public ExtendedThrowableAxeEntity(EntityType<? extends ExtendedThrowableAxeEntity> entityType, World world) {
-        super(entityType, world);
-    }
-    
-    // Constructor for when thrown by a player
-    public ExtendedThrowableAxeEntity(EntityType<? extends ExtendedThrowableAxeEntity> entityType, World world, LivingEntity thrower) {
-        super(entityType, world);
-        this.setOwner(thrower);
+public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
+
+    private static final DataParameter<ItemStack> THROWING_AXE_ITEM = EntityDataManager.defineId(ExtendedThrowableAxeEntity.class, DataSerializers.ITEM_STACK);
+
+    public ExtendedThrowableAxeEntity(EntityType<? extends ExtendedThrowableAxeEntity> type, World w) {
+        super(type, w);
     }
 
-    // Constructor with position - use the correct ProjectileItemEntity constructor
-    public ExtendedThrowableAxeEntity(EntityType<? extends ExtendedThrowableAxeEntity> entityType, World world, double x, double y, double z, ItemStack item) {
-        super(entityType, world);
-        this.setPos(x, y, z);
-        this.projectileItem = item;
+    public ExtendedThrowableAxeEntity(World w, LivingEntity thrower, ItemStack stack) {
+        super((EntityType<? extends LOTRAbstractArrowEntity>) ExtendedEntities.THROWN_AXE.get(), thrower, w);
+        this.setThrowingAxeItem(stack.copy());
     }
 
-    // Constructor with shooter
-    public ExtendedThrowableAxeEntity(EntityType<? extends ExtendedThrowableAxeEntity> entityType, LivingEntity shooter, World world, ItemStack item) {
-        super(entityType, world);
-        this.setOwner(shooter);
-        this.projectileItem = item;
-        this.setPos(shooter.getX(), shooter.getEyeY() - 0.1D, shooter.getZ());
+    public ExtendedThrowableAxeEntity(World w, double x, double y, double z, ItemStack stack) {
+        super((EntityType<? extends LOTRAbstractArrowEntity>) ExtendedEntities.THROWN_AXE.get(), x, y, z, w);
+        this.setThrowingAxeItem(stack.copy());
     }
 
-    private boolean isThrowingAxe() {
-        Item item = getProjectileItem().getItem();
-        return item instanceof ExtendedThrowableAxeItem;
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(THROWING_AXE_ITEM, ItemStack.EMPTY);
+    }
+
+    public ItemStack getThrowingAxeItem() {
+        return (ItemStack)this.entityData.get(THROWING_AXE_ITEM);
+    }
+
+    private void setThrowingAxeItem(ItemStack stack) {
+        this.entityData.set(THROWING_AXE_ITEM, stack);
+    }
+
+    protected ItemStack getPickupItem() {
+        return this.getThrowingAxeItem().copy();
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (!this.isOnGround()) {
-            this.axeRotation++;
-            if (this.axeRotation > 9) {
-                this.axeRotation = 0;
+    protected void onHitEntity(EntityRayTraceResult result) {
+        Entity hitEntity = result.getEntity();
+        int damage = this.calculateImpactDamageIncludingCritical(this.getBaseImpactDamage(hitEntity));
+        Entity shooter = this.getOwner();
+        DamageSource damageSource = ExtendedDamageSource.causeThrownAxeDamage(this, Optional.ofNullable(shooter).orElse(this));
+
+        if (hitEntity.hurt(damageSource, (float) damage)) {
+            if (this.isOnFire()) {
+                hitEntity.setSecondsOnFire(5);
             }
-            this.xRot = this.axeRotation / 9.0F * 360.0F;
-        }
-        if (!isThrowingAxe()) {
-            remove();
-        }
-    }
 
-    @Override
-    protected float getGravity() {
-        return 0.05F; // Slightly heavier than conker due to metal weight
-    }
-
-    @Override
-    protected void onHitEntity(EntityRayTraceResult rayTraceResult) {
-        super.onHitEntity(rayTraceResult);
-        
-        // Calculate damage based on axe material and speed
-        float damage = getBaseImpactDamage(rayTraceResult.getEntity(), getProjectileItem());
-        
-        // Play hit sound
-        level.playSound(null, getX(), getY(), getZ(), 
-            SoundEvents.PLAYER_ATTACK_CRIT, SoundCategory.PLAYERS, 
-            1.0F, 1.0F + (random.nextFloat() - random.nextFloat()) * 0.4F);
-        
-        // Deal damage
-        rayTraceResult.getEntity().hurt(
-            DamageSource.thrown(this, this.getOwner()), 
-            damage
-        );
-        
-        // Damage the axe item when it hits an entity
-        damageAxe();
-    }
-
-    @Override
-    protected void onHit(RayTraceResult target) {
-        super.onHit(target);
-        
-        if (!level.isClientSide) {
-            // Play landing sound
-            level.playSound(null, getX(), getY(), getZ(), 
-                SoundEvents.ITEM_BREAK, SoundCategory.PLAYERS, 
-                0.8F, 0.8F + (random.nextFloat() - random.nextFloat()) * 0.4F);
-            
-            // Drop the axe item (potentially damaged)
-            if (projectileItem != null) {
-                spawnAtLocation(projectileItem);
+            if (hitEntity instanceof LivingEntity) {
+                LivingEntity hitLivingEntity = (LivingEntity) hitEntity;
+                if (shooter instanceof LivingEntity) {
+                    EnchantmentHelper.doPostHurtEffects(hitLivingEntity, shooter);
+                    EnchantmentHelper.doPostDamageEffects((LivingEntity) shooter, hitLivingEntity);
+                }
+                this.doPostHurtEffects(hitLivingEntity);
             }
-            remove();
         }
-    }
 
-    public float getBaseImpactDamage(Entity entity, ItemStack itemstack) {
-        if (!isThrowingAxe()) {
-            return 0.0F;
-        }
-        float speed = MathHelper.sqrt(this.getDeltaMovement().x * this.getDeltaMovement().x + 
-                                     this.getDeltaMovement().y * this.getDeltaMovement().y + 
-                                     this.getDeltaMovement().z * this.getDeltaMovement().z);
-        
-        // Get damage multiplier from the axe item
-        float damage = 1.0F;
-        if (itemstack.getItem() instanceof ExtendedThrowableAxeItem) {
-            ExtendedThrowableAxeItem axe = (ExtendedThrowableAxeItem) itemstack.getItem();
-            damage = axe.getRangedDamageMultiplier(itemstack, (LivingEntity) this.getOwner(), entity);
-        }
-        
-        return speed * damage;
-    }
-
-    public ItemStack getProjectileItem() {
-        return projectileItem != null ? projectileItem : new ItemStack(getDefaultItem());
+        this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01, -0.1, -0.01));
+        this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    /**
-     * Damage the axe item when it hits something hard
-     */
-    private void damageAxe() {
-        // In a real implementation, you'd want to track the axe's durability
-        // and potentially break it or reduce its effectiveness
-        // This is a simplified version
+    protected void onHitBlock(BlockRayTraceResult result) {
+        BlockPos pos = result.getBlockPos();
+        BlockState blockState = this.level.getBlockState(pos);
         
-        if (random.nextFloat() < 0.1F) { // 10% chance to damage significantly
-            // Could potentially break the axe or make it less effective
-            // For now, we'll just keep the original axe
+        // Only stick in solid blocks
+        if (blockState.getMaterial().isSolid()) {
+            super.onHitBlock(result);
         }
     }
 
-    /**
-     * Get the axe item this entity represents
-     */
-    public ItemStack getAxeItemStack() {
-        return this.projectileItem;
+
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return SoundEvents.TRIDENT_HIT_GROUND;
     }
 
-    @Override
-    protected Item getDefaultItem() {
-        return ExtendedItems.IRON_THROWABLE_AXE.get();
+    private float getBaseImpactDamage(Entity hitEntity) {
+        double speed = this.getDeltaMovement().length();
+        ItemStack axeItem = this.getThrowingAxeItem();
+        double damageMultiplier = this.getAxeItemAttackDamage(axeItem);
+        damageMultiplier += (double)EnchantmentHelper.getDamageBonus(axeItem, hitEntity instanceof LivingEntity ? ((LivingEntity)hitEntity).getMobType() : CreatureAttribute.UNDEFINED);
+        damageMultiplier *= 0.7;
+        return (float)(speed * damageMultiplier);
+    }
+
+    private double getAxeItemAttackDamage(ItemStack stack) {
+        Collection<AttributeModifier> modifiers = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND)
+                .get(Attributes.ATTACK_DAMAGE);
+        double base = 1.0;
+        if (modifiers != null) {
+            for (AttributeModifier mod : modifiers) {
+                base += mod.getAmount();
+            }
+        }
+        return base;
+    }
+
+    protected int getLifespanTicksInGround() {
+        return this.pickup == PickupStatus.DISALLOWED ? 1200 : 6000;
+    }
+
+    public void playerTouch(PlayerEntity player) {
+        if (!this.level.isClientSide && (this.inGround || this.isNoPhysics()) && this.shakeTime <= 0) {
+            boolean canPickUp = this.pickup == PickupStatus.ALLOWED
+                    || this.pickup == PickupStatus.CREATIVE_ONLY && player.abilities.instabuild
+                    || this.isNoPhysics() && this.getOwner().getUUID().equals(player.getUUID());
+
+            if (canPickUp) {
+                if (this.pickup == PickupStatus.CREATIVE_ONLY) {
+                    this.doPickUpAnimationAndRemove(player);
+                } else {
+                    ItemStack pickupStack = this.getPickupItem().copy();
+                    pickupStack.hurtAndBreak(1, player, (p) -> {});
+                    if (pickupStack.isEmpty()) {
+                        this.playBreakSoundAndRemove();
+                    } else if (player.inventory.add(pickupStack)) {
+                        this.doPickUpAnimationAndRemove(player);
+                    }
+                }
+            }
+        }
+    }
+
+    private void doPickUpAnimationAndRemove(PlayerEntity player) {
+        player.take(this, 1);
+        this.remove();
+    }
+
+    private void playBreakSoundAndRemove() {
+        this.playSound(SoundEvents.ITEM_BREAK, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
+        this.remove();
+    }
+
+    public void readAdditionalSaveData(CompoundNBT nbt) {
+        super.readAdditionalSaveData(nbt);
+        if (nbt.contains("ThrowingAxeItem", 10)) {
+            this.setThrowingAxeItem(ItemStack.of(nbt.getCompound("ThrowingAxeItem")));
+        }
+    }
+
+    public void addAdditionalSaveData(CompoundNBT nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.put("ThrowingAxeItem", this.getThrowingAxeItem().save(new CompoundNBT()));
+    }
+
+    protected float getWaterInertia() {
+        return 0.99F;
     }
 }

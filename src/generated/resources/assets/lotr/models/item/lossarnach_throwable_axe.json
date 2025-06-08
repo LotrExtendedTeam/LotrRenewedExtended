@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "lotrextended:item/gondor_throwable_axe"
+    "layer0": "lotrextended:item/lossarnach_throwable_axe"
   }
 }
