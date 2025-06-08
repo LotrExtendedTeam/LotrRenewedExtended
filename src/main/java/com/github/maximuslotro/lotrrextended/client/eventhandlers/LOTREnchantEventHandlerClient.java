@@ -32,6 +32,6 @@ public class LOTREnchantEventHandlerClient {
         	entries.add(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase()).append(": ")
         		.append(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase() + ".desc")).withStyle(TextFormatting.GRAY));
         }
-        event.getToolTip().addAll(entries);
+        event.getToolTip().addAll(1, entries);
     }
 }
