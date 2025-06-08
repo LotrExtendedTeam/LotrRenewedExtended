@@ -138,7 +138,7 @@ public class ExtendedClientProxy {
 
     public void login(EntityJoinWorldEvent event)
     {
-        if (event.getEntity() instanceof ClientPlayerEntity)
+        if (event.getEntity() instanceof ClientPlayerEntity && ExtendedClientConfig.enableClientVersionCheck.get())
         {
             VersionChecker.CheckResult result = VersionChecker.getResult(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo());
             if (result != null && (result.status == VersionChecker.Status.OUTDATED || result.status == VersionChecker.Status.BETA_OUTDATED))

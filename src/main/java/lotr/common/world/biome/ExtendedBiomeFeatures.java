@@ -241,7 +241,7 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addMoss(BiomeGenerationSettings.Builder builder, int freq) {
-		builder.addFeature(Decoration.VEGETAL_DECORATION, ExtendedConfiguredFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
+		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ExtendedConfiguredFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
 	}
 
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
