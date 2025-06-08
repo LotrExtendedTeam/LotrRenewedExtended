@@ -63,10 +63,6 @@ public class LOTREnchantUtils {
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
         }
-        /*boolean wasNamedOnAnvil = false;
-        if (tag.contains("LOTREnchantsNamedOnAnvil")) {
-            wasNamedOnAnvil = tag.getBoolean("LOTREnchantsNamedOnAnvil");
-        }*/
 
         tag.remove("LOTREnchantments");
         tag.remove("LOTREnchantsNamedOnAnvil");
@@ -132,7 +128,7 @@ public class LOTREnchantUtils {
 
         CompoundNBT tag = stack.getOrCreateTag();
         if (!tag.contains("LOTRBaneProgress", 9)) {
-            tag.put("LOTRBaneProgress", new ListNBT());
+            return "";
         }
 
         ListNBT listnbt = tag.getList("LOTRBaneProgress", 10);

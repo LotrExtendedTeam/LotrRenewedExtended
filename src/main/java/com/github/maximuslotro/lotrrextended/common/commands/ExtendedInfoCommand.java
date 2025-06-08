@@ -35,12 +35,11 @@ public class ExtendedInfoCommand
         }
 
         // display ExtendedLevelData
-        // TODO: Make these strings translatable
-        if (ExtendedLevelData.serverInstance() != null) {
-            source.sendSuccess(new StringTextComponent("Server timeUntilTrader: " + ExtendedLevelData.serverInstance().getTimeUntilTrader()), false);
-            if (source.getEntity() != null) {
-                source.sendSuccess(new StringTextComponent("Your trader cooldown (seconds): " + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID())), false);
-            }
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.server_timeUntilTrader").
+                append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getTimeUntilTrader())), false);
+        if (source.getEntity() != null) {
+            source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.your_trader_cooldown").
+                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID()))), false);
         }
 
         // display bane data
@@ -49,9 +48,11 @@ public class ExtendedInfoCommand
             ItemStack item = entity.getItemInHand(Hand.MAIN_HAND);
 
             String baneData = LOTREnchantUtils.getBaneData(item);
-            // TODO: Make these strings translatable
-            source.sendSuccess(new StringTextComponent("Bane Data:"), false);
-            source.sendSuccess(new StringTextComponent(baneData), false);
+            if (!baneData.isEmpty()) {
+                source.sendSuccess(new StringTextComponent(""), false);
+                source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.bane_progress"), false);
+                source.sendSuccess(new StringTextComponent(baneData), false);
+            }
         }
 
         return Command.SINGLE_SUCCESS;

@@ -34,26 +34,6 @@ public class ExtendedLotrEnchantCommand {
 		dispatcher.register(Commands.literal("lotr_enchant").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove));
 		dispatcher.register(Commands.literal("lotr_modifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove));
 		dispatcher.register(Commands.literal("lotrExtendedModifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove));
-
-		/*
-        dispatcher.register(Commands.literal("lotrenchant").requires(context -> context.hasPermission(4))
-        	.then(Commands.literal("clear")
-        		.executes(context -> clearEnchants(context.getSource()))
-				)
-        	.then(Commands.literal("add")
-        		.then(Commands.argument("modifierType", StringArgumentType.greedyString())
-					.suggests(ENCHANTMENTS)
-					.executes(context -> modifyEnchant(context.getSource(), StringArgumentType.getString(context, "modifierType"), true))
-					)
-				)
-        	.then(Commands.literal("remove")
-        		.then(Commands.argument("modifierType", StringArgumentType.greedyString())
-					.suggests(ENCHANTMENTS)
-					.executes(context -> modifyEnchant(context.getSource(), StringArgumentType.getString(context, "modifierType"), false))
-					)
-				)
-        );
-		 */
 	}
 
 	public static final SuggestionProvider<CommandSource> ENCHANTMENTS = (ctx, builder) -> {
