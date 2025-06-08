@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedHiredUnitHealthbarRenderer;
+import com.github.maximuslotro.lotrrextended.client.eventhandlers.LOTREnchantEventHandlerClient;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedBlockItemColors;
@@ -66,6 +67,7 @@ public class ExtendedClientProxy {
 		forgeBus.addListener(this::login);
 		forgeBus.addListener(this::commandevent);
 		forgeBus.addListener(ExtendedHiredUnitHealthbarRenderer::renderHpBar);
+		forgeBus.addListener(LOTREnchantEventHandlerClient::addTooltipsForLOTREnchants);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);

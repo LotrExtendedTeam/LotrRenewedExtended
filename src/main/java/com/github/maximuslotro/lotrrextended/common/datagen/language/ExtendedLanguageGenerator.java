@@ -350,8 +350,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.equipment", "Equipment");
 		addD("gui.lotrextended.menu.back", "Back");
 
+		// Generic command strings
+		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
+
 		// Command strings
 		addD("command.lotrextended.info.listPatches", "Injected patches:");
+		addD("command.lotrextended.info.bane_progress", "Bane Progress (for item in your main hand):");
+		addD("command.lotrextended.info.server_timeUntilTrader", "Server timeUntilTrader: ");
+		addD("command.lotrextended.info.your_trader_cooldown", "Your trader cooldown (seconds): ");
 		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
 		addD("command.lotrextended.fellowship.error.noexists", "No fellowship by that name exists!");
 		addD("command.lotrextended.fellowship.error.exists", "Fellowship with the name [%s] already exists!");
@@ -398,10 +404,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.config.current", "Current");
 		addD("command.lotrextended.config.value", " value");
 
-		//Version lang strings
+		//Version strings
 		addD("command.lotrextended.version.left", "A new version");
 		addD("command.lotrextended.version.right", "was found");
 
+		//Enchant Command Values
+		addD("command.lotrextended.enchant.only_one_bane", "Only one bane can be applied to a weapon.");
+		addD("command.lotrextended.enchant.no_present_modifiers", "Your item does not have any modifiers.");
+		addD("command.lotrextended.enchant.modifier_invalid", "Invalid modifier: %s.");
+		addD("command.lotrextended.enchant.modifier_only_melee", "%s can only be applied to melee weapons.");
+		addD("command.lotrextended.enchant.modifier_duplicate", "Your item already contains that modifier.");
+		addD("command.lotrextended.enchant.modifier_missing", "Your item does not have that modifier.");
+		addD("command.lotrextended.enchant.modifier_removed_all", "All modifiers removed from %s.");
+		addD("command.lotrextended.enchant.modifier_added", "%s added to %s.");
+		addD("command.lotrextended.enchant.modifier_removed", "%s removed from %s.");
+
+		
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
@@ -453,6 +471,29 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.follows_off_title", "Follows: Off");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
+
+		// custom enchantments
+		addD("enchant.lotrextended.baneorc", "Orcbane");
+		addD("enchant.lotrextended.banedwarf", "Dwarfbane");
+		addD("enchant.lotrextended.baneelf", "Elfbane");
+		addD("enchant.lotrextended.banewarg", "Wargbane");
+		addD("enchant.lotrextended.banewight", "Wightbane");
+		addD("enchant.lotrextended.baneorc.desc", "+4.0 damage vs. Orcs");
+		addD("enchant.lotrextended.banedwarf.desc", "+4.0 damage vs. Dwarves");
+		addD("enchant.lotrextended.baneelf.desc", "+4.0 damage vs. Elves");
+		addD("enchant.lotrextended.banewarg.desc", "+4.0 damage vs. Wargs");
+		addD("enchant.lotrextended.banewight.desc", "+4.0 damge vs. Wights");
+
+		addD("enchant.lotrextended.baneelf.earn", "Your %s has claimed the lives of many Elves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.baneelf.earn_name", "%s's %s has claimed the lives of many Elves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.baneorc.earn", "Your %s has claimed the lives of many Orcs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.baneorc.earn_name", "%s's %s has claimed the lives of many Orcs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banedwarf.earn", "Your %s has claimed the lives of many Dwarves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banedwarf.earn_name", "%s's %s has claimed the lives of many Dwarves, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewarg.earn", "Your %s has claimed the lives of many Wargs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewarg.earn_name", "%s's %s has claimed the lives of many Wargs, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewight.earn", "Your %s has claimed the lives of many Wights, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewight.earn_name", "%s's %s has claimed the lives of many Wights, and it shall be their bane evermore!");
 	}
 
 	@Override
