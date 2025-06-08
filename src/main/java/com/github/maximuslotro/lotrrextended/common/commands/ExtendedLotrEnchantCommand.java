@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -63,11 +62,11 @@ public class ExtendedLotrEnchantCommand {
 
 	public static int modifyEnchant(CommandSource source, String enchantName, boolean add) {
 		if (!LOTREnchantment.ENCHANT_MAP.containsKey(enchantName)) {
-			source.sendFailure(new StringTextComponent("Invalid modifier: " + enchantName));
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_invalid", enchantName));
 			return 0;
 		}
 		if (!(source.getEntity() != null && source.getEntity() instanceof PlayerEntity)) {
-			source.sendFailure(new StringTextComponent("This command can only be run by a player"));
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.generic_error.only_player"));
 			return 0;
 		}
 		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
@@ -75,34 +74,36 @@ public class ExtendedLotrEnchantCommand {
 		LOTREnchantment enchant = LOTREnchantment.ENCHANT_MAP.get(enchantName);
 		if (enchant.getItemType().equals("melee")) {
 			if (!(stack.getItem() instanceof SwordItem)) {
-				source.sendFailure(new StringTextComponent("This modifier can only be applied to melee weapons."));
+				ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase());
+				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_only_melee", newName));
 				return 0;
 			}
 		}
 		if(add) {
+			// don't allow duplicates
+			if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
+				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_duplicate"));
+				return 0;
+			}
 			// only allow one bane at a time
 			if (enchant.getEnchantType().equals("bane")) {
 				List<LOTREnchantment> enchants = LOTREnchantUtils.getEnchantList(stack);
-				boolean containsBane = enchants.stream() .anyMatch(enchantment -> "bane".equals(enchantment.getEnchantType()));
+				boolean containsBane = enchants.stream().anyMatch(enchantment -> "bane".equals(enchantment.getEnchantType()));
 				if (containsBane) {
-					source.sendFailure(new StringTextComponent("Only one bane can be applied to a weapon"));
+					source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.only_one_bane"));
 					return 0;
 				}
 			}
-			if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
-				source.sendFailure(new StringTextComponent("That item already contains that modifier."));
-				return 0;
-			}
 			LOTREnchantUtils.enchant(stack, enchant, 1);
 			ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase());
-			source.sendSuccess(newName.copy().append(" added to ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_added", newName, stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 		}else {
 			if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
 				LOTREnchantUtils.removeEnchant(stack, enchant);
-				ITextComponent enchantTranslated = new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase());
-				source.sendSuccess(enchantTranslated.copy().append(" removed from ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
+				ITextComponent removedName = new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase());
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_removed", removedName, stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 			} else {
-				source.sendFailure(new StringTextComponent("That item does not have that enchant."));
+				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_missing"));
 				return 0;
 			}
 		}
@@ -111,15 +112,15 @@ public class ExtendedLotrEnchantCommand {
 
 	public static int clearEnchants(CommandSource source) {
 		if (!(source.getEntity() != null && source.getEntity() instanceof PlayerEntity)) {
-			source.sendFailure(new StringTextComponent("This command can only be run by a player"));
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.generic_error.only_player"));
 			return 0;
 		}
 
 		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
 		if (LOTREnchantUtils.clearEnchants(stack)) {
-			source.sendSuccess(new StringTextComponent("All LOTR modifiers removed from ").append(stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_removed_all", stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 		} else {
-			source.sendFailure(new StringTextComponent("That item does not have any modifiers."));
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.no_present_modifiers"));
 			return 0;
 		}
 

@@ -347,6 +347,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.equipment", "Equipment");
 		addD("gui.lotrextended.menu.back", "Back");
 
+		// Generic command strings
+		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
+
 		// Command strings
 		addD("command.lotrextended.info.listPatches", "Injected patches:");
 		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
@@ -395,10 +398,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.config.current", "Current");
 		addD("command.lotrextended.config.value", " value");
 
-		//Version lang strings
+		//Version strings
 		addD("command.lotrextended.version.left", "A new version");
 		addD("command.lotrextended.version.right", "was found");
 
+		//Enchant Command Values
+		addD("command.lotrextended.enchant.only_one_bane", "Only one bane can be applied to a weapon.");
+		addD("command.lotrextended.enchant.no_present_modifiers", "Your item does not have any modifiers.");
+		addD("command.lotrextended.enchant.modifier_invalid", "Invalid modifier: %s.");
+		addD("command.lotrextended.enchant.modifier_only_melee", "%s can only be applied to melee weapons.");
+		addD("command.lotrextended.enchant.modifier_duplicate", "Your item already contains that modifier.");
+		addD("command.lotrextended.enchant.modifier_missing", "Your item does not have that modifier.");
+		addD("command.lotrextended.enchant.modifier_removed_all", "All modifiers removed from %s.");
+		addD("command.lotrextended.enchant.modifier_added", "%s added to %s.");
+		addD("command.lotrextended.enchant.modifier_removed", "%s removed from %s.");
+
+		
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
