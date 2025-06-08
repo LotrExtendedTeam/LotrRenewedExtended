@@ -231,6 +231,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.hudsettings", "Hud Settings");
 		addD("gui.lotrextended.settings.modelsettings", "Model Settings");
 		addD("gui.lotrextended.settings.soundsettings", "Sound Settings");
+		addD("gui.lotrextended.settings.miscellaneoussettings", "Misc Settings");
 		addD("gui.lotrextended.settings.devsettings", "Client Dev Settings");
 		addD("gui.lotrextended.settings.friendlyFire.setting", "NPC Friendly Fire: ");
 		addD("gui.lotrextended.settings.friendlyFireUnit.setting", "Units Friendly Fire: ");
@@ -281,6 +282,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.alignmentoffset.suffix", " Pixels");
 		addD("gui.lotrextended.settings.immersivespeechduration.prefix", "Speech Bubble Duration: ");
 		addD("gui.lotrextended.settings.immersivespeechduration.suffix", " Seconds");
+		addD("gui.lotrextended.settings.jeilotrversioncheck.setting", "Patch broken JEI-lotr VC: ");
+		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
