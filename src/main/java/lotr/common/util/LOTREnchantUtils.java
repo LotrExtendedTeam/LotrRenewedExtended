@@ -157,7 +157,6 @@ public class LOTREnchantUtils {
     public static List<LOTREnchantment> getEnchantList(ItemStack stack) {
         CompoundNBT tag = stack.getOrCreateTag();
         if (!tag.contains("LOTREnchantments", 9)) {
-            tag.put("LOTREnchantments", new ListNBT());
             return new ArrayList<>();
         }
 
