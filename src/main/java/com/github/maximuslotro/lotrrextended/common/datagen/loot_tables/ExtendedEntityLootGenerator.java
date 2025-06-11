@@ -101,8 +101,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	@Override
 	protected void addTables() {
 		makePartTables();
-		makeBaseTables();
-		makeExtendedTables();
+		makeRaceBaseTables();
+		makeExtendedRaceTables();
 		makeFactionTables();
 		makeEntities();
 	}
@@ -187,7 +187,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 			.when(RandomChance.randomChance(0.06F))));
 	}
 
-	private void makeBaseTables() {
+	private void makeRaceBaseTables() {
 		orcBase = makeQuickyBasePart("orc", LootTable.lootTable()
 				.withPool(addAnotherQuickyPoolRefrence(orcBones))
 				.withPool(addAnotherQuickyPoolRefrence(pouch))
@@ -226,7 +226,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.005F))));
 	}
 
-	private void makeExtendedTables() {
+	private void makeExtendedRaceTables() {
 		orcBaseSteel = makeQuickyBasePart("orc_with_orc_steel", LootTable.lootTable()
 				.withPool(addAnotherQuickyPoolRefrence(orcBase))
 				.withPool(genSingleQuickyBuilder(LOTRItems.ORC_STEEL_INGOT.get(), 1, 2)
@@ -433,6 +433,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_BREWER, manBree);
 		makeEntity(ExtendedEntities.BREE_SMITH, manBree);
 		makeEntity(ExtendedEntities.BREE_STABLEMASTER, manBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_POTTER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BAKER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BUTCHER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_INNKEEPER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_FLORIST, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BREWER, hobbitBree);
 		add(ExtendedEntities.TOLKIEN.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(0, 3))

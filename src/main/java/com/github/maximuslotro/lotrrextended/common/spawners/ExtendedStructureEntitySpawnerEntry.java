@@ -81,7 +81,7 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 						ExtendedLog.warn("Failed to load structure entity type: "+jsonSubObject.get("entity_type").getAsString());
 						return null;
 					}
-					int weightSub = jsonSubObject.get("weight").getAsInt();
+					int weightSub = JSONUtils.getAsInt(jsonSubObject, "weight", 1);
 					entities.add(new MultiSpawnEntry(weightSub, entityType));
 				}
 				entityProvider = new MultiSpawnType(entities);
@@ -106,7 +106,9 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 				JsonArray elements = new JsonArray();
 				for (MultiSpawnEntry entry : entities) {
 					JsonObject subObject = new JsonObject();
-					subObject.addProperty("weight", entry.weight);
+					if(entry.weight!=1) {
+						subObject.addProperty("weight", entry.weight);
+					}
 					subObject.addProperty("entity_type", entry.getEntity().getRegistryName().toString());
 					elements.add(subObject);
 				}

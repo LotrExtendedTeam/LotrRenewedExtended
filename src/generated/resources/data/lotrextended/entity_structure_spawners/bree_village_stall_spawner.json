@@ -12,28 +12,40 @@
       "maxSpawnCount": 1,
       "entity_types": [
         {
-          "weight": 1,
-          "entity_type": "lotr:bree_florist"
-        },
-        {
-          "weight": 1,
-          "entity_type": "lotr:bree_stonemason"
-        },
-        {
-          "weight": 1,
-          "entity_type": "lotr:bree_lumberman"
-        },
-        {
-          "weight": 1,
-          "entity_type": "lotr:bree_florist"
-        },
-        {
-          "weight": 1,
           "entity_type": "lotr:bree_baker"
         },
         {
-          "weight": 1,
+          "entity_type": "lotr:bree_hobbit_baker"
+        },
+        {
           "entity_type": "lotr:bree_brewer"
+        },
+        {
+          "entity_type": "lotr:bree_hobbit_brewer"
+        },
+        {
+          "entity_type": "lotr:bree_butcher"
+        },
+        {
+          "entity_type": "lotr:bree_hobbit_butcher"
+        },
+        {
+          "entity_type": "lotr:bree_florist"
+        },
+        {
+          "entity_type": "lotr:bree_hobbit_florist"
+        },
+        {
+          "entity_type": "lotr:bree_stonemason"
+        },
+        {
+          "entity_type": "lotr:bree_lumberman"
+        },
+        {
+          "entity_type": "lotr:bree_smith"
+        },
+        {
+          "entity_type": "lotr:bree_farmer"
         }
       ]
     }

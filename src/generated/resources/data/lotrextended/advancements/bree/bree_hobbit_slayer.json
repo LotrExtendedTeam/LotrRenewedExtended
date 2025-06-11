@@ -30,11 +30,101 @@
           }
         ]
       }
+    },
+    "kill_bree_hobbit_baker": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_hobbit_baker"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_hobbit_brewer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_hobbit_brewer"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_hobbit_butcher": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_hobbit_butcher"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_hobbit_florist": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_hobbit_florist"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_hobbit_innkeeper": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_hobbit_innkeeper"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_bree_hobbit_potter": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_hobbit_potter"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "kill_bree_hobbit"
+      "kill_bree_hobbit",
+      "kill_bree_hobbit_baker",
+      "kill_bree_hobbit_brewer",
+      "kill_bree_hobbit_butcher",
+      "kill_bree_hobbit_florist",
+      "kill_bree_hobbit_innkeeper",
+      "kill_bree_hobbit_potter"
     ]
   ]
 }
