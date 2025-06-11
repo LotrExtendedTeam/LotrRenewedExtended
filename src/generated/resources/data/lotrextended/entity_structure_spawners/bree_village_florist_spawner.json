@@ -12,11 +12,9 @@
       "maxSpawnCount": 1,
       "entity_types": [
         {
-          "weight": 1,
           "entity_type": "lotr:bree_florist"
         },
         {
-          "weight": 1,
           "entity_type": "lotr:bree_hobbit_florist"
         }
       ]
