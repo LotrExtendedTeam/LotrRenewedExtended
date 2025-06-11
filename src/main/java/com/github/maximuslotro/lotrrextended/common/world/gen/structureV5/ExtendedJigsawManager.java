@@ -16,7 +16,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processo
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -30,7 +29,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.EmptyJigsawPiece;
@@ -193,7 +191,7 @@ public class ExtendedJigsawManager {
 							boolean isConnectingJigsawInsideCurrentStructure = mutableboundingbox.isInside(blockpos2);
 							MutableObject<VoxelShape> childPieceStructureShapeInterpolated;
 							int parentPieceBoundsTop;
-							// Handle structure mounds for the current piece, include inside, or change bounds size
+							// Handle structure bounds for the current piece, include inside, or change bounds size
 							if (isConnectingJigsawInsideCurrentStructure) {
 								childPieceStructureShapeInterpolated = structureShapeInterpolated;
 								parentPieceBoundsTop = jigsawPieceRelativeBottomYValue;
@@ -272,12 +270,11 @@ public class ExtendedJigsawManager {
 												if (chunkGeneratorUsableSpawnHeight == -1) {
 													chunkGeneratorUsableSpawnHeight = this.chunkGenerator.getFirstFreeHeight(blockpos1.getX(), blockpos1.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 												}
+												correctedYconnectingPieceSpawnHeight = chunkGeneratorUsableSpawnHeight - connectingPoolJigsawPieceRelativeYValue;
 												// Extended Start
-												IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(blockpos2.getX(), blockpos2.getZ());
-												BlockState topBlock1 = columnOfBlocks.getBlockState(new BlockPos(blockpos2.getX(), chunkGeneratorUsableSpawnHeight-1, blockpos2.getZ()));
-												boolean waterPresentBelow = !topBlock1.getFluidState().isEmpty();
-												
-												correctedYconnectingPieceSpawnHeight = chunkGeneratorUsableSpawnHeight - connectingPoolJigsawPieceRelativeYValue + (waterPresentBelow ? 1 : 0);
+												if (correctedYconnectingPieceSpawnHeight < 62 && connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldSnapToWaterHeight()) {
+													correctedYconnectingPieceSpawnHeight = 62;
+												}
 												// Extended End
 											}
 											// Set the y-offset for the piece placement
@@ -297,7 +294,6 @@ public class ExtendedJigsawManager {
 											// Check if bounding box for structure accepts the piece
 											if (!VoxelShapes.joinIsNotEmpty(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
 												childPieceStructureShapeInterpolated.setValue(VoxelShapes.joinUnoptimized(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3)), IBooleanFunction.ONLY_FIRST));
-												// Extended End
 												int pieceGroundLevelData = villagePiece.getGroundLevelDelta();
 												int connectingPoolJigsawPieceGroundLevelData;
 												// Get the ground level for placement type
@@ -339,9 +335,7 @@ public class ExtendedJigsawManager {
 												villagePiece.addJunction(new JigsawJunction(blockpos2.getX(), connectingPoolJigsawPieceSpawnHeight - jigsawYRelativeToActualPieceBottom + pieceGroundLevelData, blockpos2.getZ(), relativeYconnectingPieceSpawnHeight, connectingPoolJigsawPiecePlacementBehaviour));
 												abstractvillagepiece.addJunction(new JigsawJunction(blockpos1.getX(), connectingPoolJigsawPieceSpawnHeight - connectingPoolJigsawPieceRelativeYValue + connectingPoolJigsawPieceGroundLevelData, blockpos1.getZ(), -relativeYconnectingPieceSpawnHeight, jigsawPiecePlacementBehaviour));
 												this.pieces.add(abstractvillagepiece);
-												// Extended Start
-												if (depth + 1 <= this.maxDepth && !doesIgnoreBB) {
-													// Extended End
+												if (depth + 1 <= this.maxDepth /* Extended Start */&& !doesIgnoreBB /*Extended End*/) {
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
 												}
 												continue mainStrLoop;

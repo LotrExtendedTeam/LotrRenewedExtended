@@ -5,82 +5,91 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_1_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_1_1_alt",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_2_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_3_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_4_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_1_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_2_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_3_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_center_field_4_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		}
 	]
