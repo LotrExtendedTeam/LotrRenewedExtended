@@ -1,8 +1,6 @@
 package com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 
@@ -16,17 +14,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @Mixin(StructureBlockTileEntity.class)
 public abstract class MixinStructureBlockTileEntity extends TileEntity {
 
-	public MixinStructureBlockTileEntity(TileEntityType<?> p_i48289_1_) {
-		super(p_i48289_1_);
+	/**
+	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
+	 * @param tileEntity A placeholder variable instance of TileEntityType
+	 * */
+	public MixinStructureBlockTileEntity(TileEntityType<?> tileEntity) {
+		super(tileEntity);
 	}
 
 	@Override
 	public double getViewDistance() {
 		return MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance;
-	}
-
-	@ModifyConstant(method = "load", constant = {@Constant(intValue = 48), @Constant(intValue = -48)})
-	private int getMaxSizePos(int value) {
-		return value > 0 ? MixinConstants.StructureLimitPosBounds : MixinConstants.StructureLimitNegBounds;
 	}
 }

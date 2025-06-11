@@ -110,8 +110,7 @@
 		"net.minecraft.item.MixinShearsItem",
 		"net.minecraft.item.MixinSpawnEggItem",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
-		"net.minecraft.world.gen.feature.template.MixinTemplate",
-		"net.minecraft.network.play.client.MixinCUpdateStructureBlockPacket"
+		"net.minecraft.world.gen.feature.template.MixinTemplate"
 	],
 	"client": [
 		"craftedMods.jeiLotr.MixinJEILotr",
