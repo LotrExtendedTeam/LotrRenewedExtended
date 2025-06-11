@@ -51,7 +51,12 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_LEATHERWORKER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_BREWER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_STABLEMASTER.get(), ExtendedBreeManTraderRenderer::new);
-
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_POTTER.get(), ExtendedBreeHobbitTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_BAKER.get(), ExtendedBreeHobbitTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_BUTCHER.get(), ExtendedBreeHobbitTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_INNKEEPER.get(), ExtendedBreeHobbitTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_FLORIST.get(), ExtendedBreeHobbitTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_BREWER.get(), ExtendedBreeHobbitTraderRenderer::new);
 		// Ranger North
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);

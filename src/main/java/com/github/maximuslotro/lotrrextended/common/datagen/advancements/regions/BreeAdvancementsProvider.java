@@ -40,7 +40,9 @@ public class BreeAdvancementsProvider extends BaseAdvancementType{
 
 		Advancement bree_hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "bree_hobbit_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-Hobbit Slayer").setDescription("Kill a Bree-Hobbit."),
-				addKillEntityTrigger(make(), LOTREntities.BREE_HOBBIT.get()).parent(bree));
+				addKillEntityTriggers(make(), LOTREntities.BREE_HOBBIT.get(), ExtendedEntities.BREE_HOBBIT_BAKER.get(),
+					ExtendedEntities.BREE_HOBBIT_BREWER.get(), ExtendedEntities.BREE_HOBBIT_BUTCHER.get(), ExtendedEntities.BREE_HOBBIT_FLORIST.get(),
+					ExtendedEntities.BREE_HOBBIT_INNKEEPER.get(), ExtendedEntities.BREE_HOBBIT_POTTER.get()).parent(bree));
 
 		Advancement bree_10 = build(true, data(LOTRItems.GOLD_RING.get(), "bree_guest", false, FrameType.TASK, true, true, false)
 				.setTitle("Bree-land Guest").setDescription("Reach +10.0 alignment with Bree-land."),

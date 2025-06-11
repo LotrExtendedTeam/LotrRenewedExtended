@@ -1,0 +1,25 @@
+{
+  "id": "lotrextended:bree_village_brewer_spawner",
+  "spawner_type": "single_use_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 12,
+  "persistenceRequired": true,
+  "shouldRespawnOnDeath": true,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_types": [
+        {
+          "weight": 1,
+          "entity_type": "lotr:bree_brewer"
+        },
+        {
+          "weight": 1,
+          "entity_type": "lotr:bree_hobbit_brewer"
+        }
+      ]
+    }
+  ]
+}

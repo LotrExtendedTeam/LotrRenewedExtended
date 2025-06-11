@@ -74,6 +74,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_SMITH = register("bree_village_smith_spawner");
 	public static final ResourceLocation BREE_VILLAGE_BAKER = register("bree_village_baker_spawner");
 	public static final ResourceLocation BREE_VILLAGE_BUTCHER = register("bree_village_butcher_spawner");
+	public static final ResourceLocation BREE_VILLAGE_BREWER = register("bree_village_brewer_spawner");
 	public static final ResourceLocation BREE_VILLAGE_LUMBERMAN = register("bree_village_lumberman_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STONEMASON = register("bree_village_stonemason_spawner");
 	public static final ResourceLocation BREE_VILLAGE_INNKEEPER = register("bree_village_innkeeper_spawner");

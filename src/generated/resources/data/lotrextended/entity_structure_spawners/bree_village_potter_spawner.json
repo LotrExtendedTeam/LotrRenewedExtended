@@ -10,7 +10,16 @@
       "weight": 100,
       "minSpawnCount": 1,
       "maxSpawnCount": 1,
-      "entity_type": "lotr:bree_potter"
+      "entity_types": [
+        {
+          "weight": 1,
+          "entity_type": "lotr:bree_potter"
+        },
+        {
+          "weight": 1,
+          "entity_type": "lotr:bree_hobbit_potter"
+        }
+      ]
     }
   ]
 }
