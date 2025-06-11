@@ -39,11 +39,7 @@ public class LOTREnchantUtils {
             return;
         }
 
-        CompoundNBT tag = stack.getOrCreateTag();
-        if (!tag.contains("LOTREnchantments", 9)) {
-            tag.put("LOTREnchantments", new ListNBT());
-        }
-        ListNBT listnbt = tag.getList("LOTREnchantments", 10);
+        ListNBT listnbt = stack.getTag().getList("LOTREnchantments", 10); //Null tag already validated by getEnchantList
         List<CompoundNBT> entriesToRemove = new ArrayList<>();
         for (INBT nbt : listnbt) {
             if (!(nbt instanceof CompoundNBT)) continue;
@@ -53,19 +49,23 @@ public class LOTREnchantUtils {
         }
 
         listnbt.removeAll(entriesToRemove);
+        if(listnbt.isEmpty()) {
+        	stack.getTag().remove("LOTREnchantments");
+        	 if(stack.getTag().isEmpty()) {
+             	stack.setTag(null);
+             }
+        }
     }
 
     public static boolean clearEnchants(ItemStack stack) {
         if (getEnchantList(stack).isEmpty()) {
             return false;
         }
-        CompoundNBT tag = stack.getOrCreateTag();
-        if (!tag.contains("LOTREnchantments", 9)) {
-            tag.put("LOTREnchantments", new ListNBT());
-        }
-
+        CompoundNBT tag = stack.getTag(); //Null tag already validated by getEnchantList
         tag.remove("LOTREnchantments");
-        tag.remove("LOTREnchantsNamedOnAnvil");
+        if(tag.isEmpty()) {
+        	stack.setTag(null);
+        }
         return true;
     }
 
@@ -81,17 +81,15 @@ public class LOTREnchantUtils {
             return;
         }
 
-        CompoundNBT tag = stack.getOrCreateTag();
+        CompoundNBT tag = stack.getOrCreateTag(); // Use here as we want to make a tag
         if (!tag.contains("LOTRBaneProgress", 9)) {
             tag.put("LOTRBaneProgress", new ListNBT());
         }
 
-        ListNBT listnbt = tag.getList("LOTRBaneProgress", 10);
+        ListNBT listnbt = tag.getList("LOTRBaneProgress", 10); // Already filters for non CompoundNBT
         int updatedKillCount = 0;
         boolean containsProgress = false;
         for (INBT nbt : listnbt) {
-            if (!(nbt instanceof CompoundNBT)) continue;
-
             CompoundNBT entry = (CompoundNBT) nbt;
             if (entry.getString("key").equals(enchantment.getKey())) {
                 containsProgress = true;
@@ -120,21 +118,21 @@ public class LOTREnchantUtils {
 
             LOTREnchantUtils.enchant(stack, enchantment, 1);
             tag.remove("LOTRBaneProgress");
+            if(tag.isEmpty()) {
+            	stack.setTag(null);
+            }
         }
     }
 
     public static String getBaneData(ItemStack stack) {
         StringBuilder result = new StringBuilder();
 
-        CompoundNBT tag = stack.getOrCreateTag();
-        if (!tag.contains("LOTRBaneProgress", 9)) {
+        if (!stack.hasTag() || !stack.getTag().contains("LOTRBaneProgress", 9)) {
             return "";
         }
 
-        ListNBT listnbt = tag.getList("LOTRBaneProgress", 10);
+        ListNBT listnbt = stack.getTag().getList("LOTRBaneProgress", 10); // Already filters for non CompoundNBT
         for (INBT nbt : listnbt) {
-            if (!(nbt instanceof CompoundNBT)) continue;
-
             CompoundNBT entry = (CompoundNBT) nbt;
             result.append(entry.getString("key")).append(": ").append(entry.getInt("kills") + ", ");
         }
@@ -155,13 +153,11 @@ public class LOTREnchantUtils {
     }
 
     public static List<LOTREnchantment> getEnchantList(ItemStack stack) {
-        CompoundNBT tag = stack.getOrCreateTag();
-        if (!tag.contains("LOTREnchantments", 9)) {
+        if (!stack.hasTag() || !stack.getTag().contains("LOTREnchantments", 9)) {
             return new ArrayList<>();
         }
-
-        ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         List<LOTREnchantment> result = new ArrayList<>();
+        ListNBT listnbt = stack.getTag().getList("LOTREnchantments", 10);
         for (INBT nbt : listnbt) {
             if (!(nbt instanceof CompoundNBT)) continue;
             CompoundNBT entry = (CompoundNBT) nbt;

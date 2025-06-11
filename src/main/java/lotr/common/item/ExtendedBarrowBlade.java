@@ -6,7 +6,6 @@ import lotr.common.util.representation.LOTREnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 
 public class ExtendedBarrowBlade extends ExtendedDaggerItem {
@@ -19,9 +18,8 @@ public class ExtendedBarrowBlade extends ExtendedDaggerItem {
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
         if (!world.isClientSide && entity instanceof PlayerEntity) {
-            CompoundNBT tag = stack.getOrCreateTag();
-            if (!tag.getBoolean("WightBaneEnchantAdded")) {
-                tag.putBoolean("WightBaneEnchantAdded", true);
+            if (!stack.hasTag() || !stack.getTag().getBoolean("WightBaneEnchantAdded")) {
+            	stack.getTag().putBoolean("WightBaneEnchantAdded", true);
                 LOTREnchantUtils.enchant(stack, LOTREnchantment.WIGHT_BANE, 1, false);
             }
         }
