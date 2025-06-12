@@ -65,6 +65,8 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
 	public static RegistryObject<EntityType<ExtendedTolkienEntity>> TOLKIEN;
-	public static RegistryObject<EntityType<ExtendedBlueMountainsMinerEntity>> BLUE_MOUNTAINS_MINER;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsMinerEntity>> BLUE_DWARVEN_MINER;
+	public static RegistryObject<EntityType<ExtendedDwarfMinerEntity>> DWARVEN_MINER;
+
 
 }

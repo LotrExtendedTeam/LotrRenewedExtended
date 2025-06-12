@@ -332,7 +332,10 @@ public class MixinLOTREntities {
 		ExtendedEntities.BREE_STABLEMASTER = regNPCD("bree_stablemaster", ExtendedBreelandStablemasterEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 2432021));
 		// Blue Mountains
 		ExtendedEntities.BLUE_MOUNTAINS_MERCHANT = regNPCD("blue_mountains_merchant", ExtendedBlueMountainsMerchantEntity::new, ExtendedBlueMountainsMerchantEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
-		ExtendedEntities.BLUE_MOUNTAINS_MINER = regNPCD("blue_mountains_miner", ExtendedBlueMountainsMinerEntity::new, ExtendedBlueMountainsMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		ExtendedEntities.BLUE_DWARVEN_MINER = regNPCD("blue_mountains_miner", ExtendedBlueMountainsMinerEntity::new, ExtendedBlueMountainsMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		// Dwarves
+		ExtendedEntities.DWARVEN_MINER = regNPCD("dwarf_miner", ExtendedDwarfMinerEntity::new, ExtendedDwarfMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+
 		// Special
 		ExtendedEntities.TOLKIEN = regNPCD("tolkien", ExtendedTolkienEntity::new, ExtendedTolkienEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(8160159, 5439358));
 	}

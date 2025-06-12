@@ -29,7 +29,8 @@ public class BlueMountainsAdvancementsProvider extends BaseAdvancementType{
 		Advancement blue_dwarf_slayer = build(true, data(LOTRItems.DWARF_BONE.get(), "blue_mountains_dwarf_slayer", false, FrameType.TASK, true, true, false)
 				.setTitle("Blue Dwarf Slayer").setDescription("Kill a Blue Mountains Dwarf."),
 				addKillEntityTriggers(make(), LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), LOTREntities.BLUE_MOUNTAINS_DWARF.get(),
-						LOTREntities.BLUE_MOUNTAINS_WARRIOR.get()).parent(blue_mountains));
+						LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedEntities.BLUE_DWARVEN_MINER.get(), 
+						ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get()).parent(blue_mountains));
 
 		Advancement blue_dwarf_armor = build(true, data(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get(), "warrior_of_ered_luin", false, FrameType.TASK, true, true, false)
 				.setTitle("Warrior of Ered Luin").setDescription("Acquire a full set of Blue Dwarven armor."),
@@ -71,6 +72,10 @@ public class BlueMountainsAdvancementsProvider extends BaseAdvancementType{
 		Advancement blue_mountains_merchant_trade = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "wealth_from_abroad", false, FrameType.TASK, true, true, false)
 						.setTitle("Wealth from Abroad").setDescription("Trade with a merchant of the Blue Mountains"),
 				addTradeEntityTrigger(make(), ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get()).parent(blue_mountains));
+
+		Advancement blue_riches = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "blue_riches", false, FrameType.TASK, true, true, false)
+			.setTitle("Blue Riches").setDescription("Trade with a Blue Mountains Miner"),
+	addTradeEntityTrigger(make(), ExtendedEntities.BLUE_DWARVEN_MINER.get()).parent(blue_mountains));
 	}
 
 	@Override

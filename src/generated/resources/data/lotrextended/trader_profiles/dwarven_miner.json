@@ -73,30 +73,6 @@
       "stack": {
         "item": "minecraft:cooked_beef"
       }
-    },
-    {
-      "averageCost": 2,
-      "stack": {
-        "item": "minecraft:flint"
-      }
-    },
-    {
-      "averageCost": 22,
-      "stack": {
-        "item": "minecraft:gold_ore"
-      }
-    },
-    {
-      "averageCost": 8,
-      "stack": {
-        "item": "minecraft:iron_ore"
-      }
-    },
-    {
-      "averageCost": 20,
-      "stack": {
-        "item": "minecraft:lava_bucket"
-      }
     }
   ],
   "sellToPlayer": [
@@ -125,6 +101,30 @@
       "averageCost": 7,
       "stack": {
         "item": "lotr:copper_ore"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:flint"
+      }
+    },
+    {
+      "averageCost": 22,
+      "stack": {
+        "item": "minecraft:gold_ore"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "minecraft:iron_ore"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "minecraft:lava_bucket"
       }
     },
     {

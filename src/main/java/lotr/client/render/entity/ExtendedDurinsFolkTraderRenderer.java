@@ -3,11 +3,11 @@ package lotr.client.render.entity;
 import lotr.client.render.entity.layers.coinlayers.DwarfHeldCoinLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 
-public class ExtendedBlueMountainsRenderer extends BlueDwarfRenderer {
+public class ExtendedDurinsFolkTraderRenderer extends DurinsFolkRenderer{
 
-	public ExtendedBlueMountainsRenderer(EntityRendererManager mgr) {
+	public ExtendedDurinsFolkTraderRenderer(EntityRendererManager mgr) {
 		super(mgr);
 		this.addLayer(new DwarfHeldCoinLayer(this));
 	}
-}
 
+}

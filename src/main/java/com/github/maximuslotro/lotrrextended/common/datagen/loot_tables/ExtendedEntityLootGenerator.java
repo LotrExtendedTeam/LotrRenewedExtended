@@ -349,8 +349,9 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
+		makeEntity(ExtendedEntities.DWARVEN_MINER, dwarfDurinsFolk, foodItems);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
-		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MINER, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_MINER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()

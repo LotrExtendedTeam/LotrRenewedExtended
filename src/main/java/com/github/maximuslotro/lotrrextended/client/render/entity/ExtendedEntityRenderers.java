@@ -43,7 +43,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_BUTCHER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_LUMBERMAN.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_STONEMASON.get(), ExtendedBreeManTraderRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SMITH.get(), ExtendedBreeSmithRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SMITH.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_INNKEEPER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FLORIST.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_CHEESEMONGER.get(), ExtendedBreeManTraderRenderer::new);
@@ -61,8 +61,10 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get(), ExtendedDunedainRangerCaptainRenderer::new);
 		// Blue Mountains
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), ExtendedBlueMountainsRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_MINER.get(), ExtendedBlueMountainsRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), ExtendedBlueMountainsTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_MINER.get(), ExtendedBlueMountainsTraderRenderer::new);
+		// Dwarven
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_MINER.get(), ExtendedDurinsFolkTraderRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 	}
