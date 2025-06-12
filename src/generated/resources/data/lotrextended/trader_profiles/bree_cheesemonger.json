@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_cheesemonger",
-  "entity_type": "lotr:bree_cheesemonger",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

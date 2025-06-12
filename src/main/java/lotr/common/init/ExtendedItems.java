@@ -376,7 +376,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROASTED_CHESTNUT;
 	public static RegistryObject<Item> CONKER;
 	public static RegistryObject<Item> PLUM;
-	public static RegistryObject<Item> DUCK;
+	public static RegistryObject<Item> COOKED_DUCK;
 	public static RegistryObject<Item> RAW_DUCK;
 
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;

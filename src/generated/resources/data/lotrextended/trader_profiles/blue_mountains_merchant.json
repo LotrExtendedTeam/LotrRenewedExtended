@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:blue_mountains_merchant",
-  "entity_type": "lotr:blue_mountains_merchant",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

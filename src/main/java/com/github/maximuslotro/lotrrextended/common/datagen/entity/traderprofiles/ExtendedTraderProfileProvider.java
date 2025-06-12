@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
-import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedTraderProfileProvider implements IDataProvider {
@@ -86,7 +85,7 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 		return "Extended Trader Profile Provider";
 	}
 
-	public ExtendedTraderProfile.Builder make(EntityType<?> traderEntityType, int pTradingAlignmentRequired) {
-		return new ExtendedTraderProfile.Builder(traderEntityType, pTradingAlignmentRequired);
+	public ExtendedTraderProfile.Builder make(int pTradingAlignmentRequired) {
+		return new ExtendedTraderProfile.Builder(pTradingAlignmentRequired);
 	}
 }

@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_leatherworker",
-  "entity_type": "lotr:bree_leatherworker",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

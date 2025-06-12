@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_stonemason",
-  "entity_type": "lotr:bree_stonemason",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

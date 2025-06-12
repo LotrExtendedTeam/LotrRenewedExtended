@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:oddment_collector",
-  "entity_type": "lotr:oddment_collector",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

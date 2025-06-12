@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_lumberman",
-  "entity_type": "lotr:bree_lumberman",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

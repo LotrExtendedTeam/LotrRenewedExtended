@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:gundabad_trader",
-  "entity_type": "lotr:gundabad_orc_scrounger",
   "tradingAlignmentRequired": 50,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

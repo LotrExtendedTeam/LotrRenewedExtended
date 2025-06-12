@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:hobbit_farmer",
-  "entity_type": "lotr:hobbit_farmer",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

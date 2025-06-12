@@ -11,5 +11,6 @@ public class ExtendedEntityRelatedGenerators {
 		generator.addProvider(new ExtendedServerHiredUnitProfileGenerator(generator, modid));
 		generator.addProvider(new ExtendedTraderProfileGenerator(generator, modid));
 		//generator.addProvider(new ExtendedCaptainProfileGenerator(generator, modid));
+		generator.addProvider(new ExtendedMissingEntitySettingsValidator(existingFileHelper));
 	}
 }

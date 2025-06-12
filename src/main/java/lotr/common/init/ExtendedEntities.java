@@ -61,9 +61,10 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitFloristEntity>> BREE_HOBBIT_FLORIST;
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitInnkeeperEntity>> BREE_HOBBIT_INNKEEPER;
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitPotterEntity>> BREE_HOBBIT_POTTER;
-
 	public static RegistryObject<EntityType<ExtendedHiredDunedainRangerEntity>> HIRED_DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
 	public static RegistryObject<EntityType<ExtendedTolkienEntity>> TOLKIEN;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsMinerEntity>> BLUE_MOUNTAINS_MINER;
+
 }

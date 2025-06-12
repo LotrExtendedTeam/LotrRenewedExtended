@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_stablemaster",
-  "entity_type": "lotr:bree_stablemaster",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

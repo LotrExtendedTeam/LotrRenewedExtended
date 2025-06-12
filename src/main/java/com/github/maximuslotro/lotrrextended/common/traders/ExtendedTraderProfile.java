@@ -37,10 +37,9 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTraderProfile {
-	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, EntityType.PIG, 1000, 0, 0, new ArrayList<>(), new ArrayList<>(), true, 10, 100000);
+	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, 1000, 0, 0, new ArrayList<>(), new ArrayList<>(), true, 10, 100000);
 	private final ResourceLocation id;
 	private final int tradingAlignmentRequired;
-	private final EntityType<?> traderEntityType; // TODO maybe remove if not used
 	private final int minimumTrades;
 	private final int maximumAdditionalTrades;
 	private final List<ExtendedTraderPoolItem> buyFromPlayerPool;
@@ -49,12 +48,11 @@ public class ExtendedTraderProfile {
 	private final int refreshTradesAtValue;
 	private final int lockTicksAfterRefresh;
 
-	public ExtendedTraderProfile(ResourceLocation id, EntityType<?> pTraderEntityType, int pTradingAlignmentRequired, 
+	public ExtendedTraderProfile(ResourceLocation id, int pTradingAlignmentRequired, 
 		int minimumTrades, int maximumAdditionalTrades, List<ExtendedTraderPoolItem> buyFromPlayerPool, List<ExtendedTraderPoolItem> sellToPlayerPool, 
 		boolean shouldRefreshTrades, int refreshTradesAtValue, int lockTicksAfterRefresh) {
 		this.id = id;
 		this.tradingAlignmentRequired = pTradingAlignmentRequired;
-		this.traderEntityType = pTraderEntityType;
 		this.minimumTrades = minimumTrades;
 		this.maximumAdditionalTrades = maximumAdditionalTrades;
 		this.buyFromPlayerPool = buyFromPlayerPool;
@@ -94,15 +92,6 @@ public class ExtendedTraderProfile {
 	 * */
 	public int getTradingAlignmentRequired() {
 		return tradingAlignmentRequired;
-	}
-
-	/**
-	 * Gets the trader entity type for this profile
-	 * @see EntityType
-	 * @return The EntityType instance for this profile
-	 * */
-	public EntityType<?> getTraderEntityType() {
-		return traderEntityType;
 	}
 
 	/**
@@ -154,11 +143,6 @@ public class ExtendedTraderProfile {
 				ExtendedLog.warn("Failed to load trader profile due to invalid id: %s!", id);
 				return null;
 			}
-			EntityType<?> entityType = getEntityTypeFromString(jsonobject.get("entity_type").getAsString());
-			if (entityType == null) {
-				ExtendedLog.warn("Failed to load trader entity type: "+jsonobject.get("entity_type").getAsString());
-				return null;
-			}
 			int hiringAlignment = jsonobject.get("tradingAlignmentRequired").getAsInt();
 			int minimumTrades = jsonobject.get("minimumTradesOffered").getAsInt();
 			int maximumAdditionalTrades = jsonobject.get("maximumAdditionalTradesOffered").getAsInt();
@@ -172,7 +156,7 @@ public class ExtendedTraderProfile {
 			int lockTicksAfterRefresh = jsonobject.get("lockTicksAfterRefresh").getAsInt();
 			List<ExtendedTraderPoolItem> buyFromPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "buyFromPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
 			List<ExtendedTraderPoolItem> sellToPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "sellToPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
-			return new ExtendedTraderProfile(new ResourceLocation(id), entityType, hiringAlignment, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, 
+			return new ExtendedTraderProfile(new ResourceLocation(id), hiringAlignment, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, 
 				sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh);
 		}
 
@@ -180,7 +164,6 @@ public class ExtendedTraderProfile {
 		public JsonElement serialize(ExtendedTraderProfile traderProfile, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", traderProfile.getId().toString());
-			jsonobject.addProperty("entity_type", traderProfile.traderEntityType.getRegistryName().toString());
 			// Language
 			jsonobject.addProperty("tradingAlignmentRequired", traderProfile.getTradingAlignmentRequired());
 			jsonobject.addProperty("minimumTradesOffered", traderProfile.getMinimumTrades());
@@ -196,7 +179,6 @@ public class ExtendedTraderProfile {
 
 	public static class Builder {
 		private int tradingAlignmentRequired;
-		private final EntityType<?> traderEntityType;
 		private int minimumTrades = 3; // A minimum of 3 trades
 		private int maximumAdditionalTrades = 6; // A maximum of 6 additional trades
 		private List<ExtendedTraderPoolItem> buyFromPlayerPool = new ArrayList<>();
@@ -205,8 +187,7 @@ public class ExtendedTraderProfile {
 		private int refreshTradesAtValue = 5000; // A default refresh at 5000c traded
 		private int lockTicksAfterRefresh = 6000; // A default 5 minute cooldown 
 		
-		public Builder(EntityType<?> pTraderEntityType, int pTradingAlignmentRequired) {
-			this.traderEntityType = pTraderEntityType;
+		public Builder(int pTradingAlignmentRequired) {
 			this.tradingAlignmentRequired = pTradingAlignmentRequired;
 		}
 
@@ -428,7 +409,7 @@ public class ExtendedTraderProfile {
 			if(minimumTrades+maximumAdditionalTrades>9) {
 				ExtendedLog.error(id.toString()+" has defined a profile with more than 9 max slots");
 			}
-			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, traderEntityType, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, 
+			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, 
 				buyFromPlayerPool, sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh);
 			return spawner;
 		}
