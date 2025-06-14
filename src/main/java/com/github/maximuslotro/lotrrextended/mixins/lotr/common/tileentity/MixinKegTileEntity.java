@@ -141,7 +141,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	/** 
 	 * Internal inventory list for the keg tile entity. 
 	 * 
-	 * @Shadow(remap = false)
+	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	private NonNullList<ItemStack> inventory;

@@ -31,7 +31,7 @@ import net.minecraft.world.server.ServerWorld;
  * </ul>
  * 
  * @author maximuslotro
- * @Mixin(RenewedNPCSpawner.class)
+ * @Mixin (RenewedNPCSpawner.class)
  */
 @Mixin(RenewedNPCSpawner.class)
 public class MixinRenewedNPCSpawner {

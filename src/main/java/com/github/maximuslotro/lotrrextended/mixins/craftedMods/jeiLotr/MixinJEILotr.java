@@ -23,8 +23,8 @@ public class MixinJEILotr {
 	 * @param event The EntityJoinWorldEvent event handler this is injecting into
 	 * @param ci The CallbackInfo for canceling the event
 	 * */
-	@Inject(method = "login(Lnet/minecraftforge/event/entity/EntityJoinWorldEvent;)V", at = @At(value = "INVOKE"), remap=false, cancellable=true)
-	public void login(EntityJoinWorldEvent event, CallbackInfo ci){
+	@Inject(method = "login(Lnet/minecraftforge/event/entity/EntityJoinWorldEvent;)V", at = @At("INVOKE"), remap=false, cancellable=true)
+	public void loginExtended(EntityJoinWorldEvent event, CallbackInfo ci){
 		if(ExtendedClientConfig.disableJEILOTRversionCheck.get()) {
 			ci.cancel();
 		}

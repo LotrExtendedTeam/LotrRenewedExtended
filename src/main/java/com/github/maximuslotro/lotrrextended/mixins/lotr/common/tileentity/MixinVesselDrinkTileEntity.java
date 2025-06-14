@@ -40,7 +40,7 @@ import net.minecraft.world.server.ServerWorld;
  * Mixin extension for {@link VesselDrinkTileEntity} to support loot table injection and ticking.
  * Handles lazy generation of drink items from loot tables, enabling dynamic item content.
  * Implements {@link ExtendedLootTableAccessor} and {@link ITickableTileEntity}.
- *
+ * <p>
  * Author: maximuslotro
  */
 @Mixin(VesselDrinkTileEntity.class)

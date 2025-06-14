@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.vector.Vector3f;
@@ -22,7 +23,9 @@ public class ElfHeldCoinLayer<E extends ExtendedAbstractElfWandererEntity> exten
 
     @Override
 	public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, ExtendedAbstractElfWandererEntity elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        matStack.pushPose();
+        if (!elf.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) return;
+
+    	matStack.pushPose();
 
         this.getParentModel().translateToHand(HandSide.LEFT, matStack);
         matStack.mulPose(Vector3f.XP.rotationDegrees(-90.0F));
