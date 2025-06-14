@@ -14,7 +14,6 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 
 	/**
 	 * Constructs a new Banner Profile with the specified ID and name.
-	 * <p />
 	 * Either ID or name may be null/empty, but at least one must be filled.
 	 *
 	 * @param id Unique ID of the profile
@@ -32,9 +31,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 
 	/**
 	 * Gets the unique ID of this banner profile.
-	 * <p />
 	 * This may be null for partial profile data if constructed manually.
-	 *
 	 * @return ID of the profile
 	 */
 	@Override
@@ -44,7 +41,6 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 
 	/**
 	 * Get underlying name for profile
-	 * * <p />
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */
@@ -57,7 +53,6 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 	/**
 	 * Get display name for profile
 	 * same as getName()
-	 * * <p />
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */
@@ -79,9 +74,7 @@ public class ExtendedBannerProfilePlayer extends ExtendedBannerProfileBase{
 
 	/**
 	 * Checks if this profile is complete.
-	 * <p />
 	 * A complete profile has no empty fields. Partial profiles may be constructed manually and used as input to methods.
-	 *
 	 * @return True if this profile is complete (as opposed to partial)
 	 */
 	@Override

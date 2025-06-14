@@ -30,7 +30,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
- * Code Copied from {@see net.minecraft.data.ShapelessRecipeBuilder}
+ * Code Copied from {@link net.minecraft.data.ShapelessRecipeBuilder}
  * to add a table type for faction table types
  * */
 public class ExtendedFactionShapelessRecipeBuilder {

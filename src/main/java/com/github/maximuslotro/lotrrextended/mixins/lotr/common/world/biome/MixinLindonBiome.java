@@ -13,6 +13,7 @@ public class MixinLindonBiome {
 	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
+	 * @return An array containing tree features followed by their spawn weights.
 	 * */
 	@Overwrite(remap = false)
 	protected final Object[] lindonTrees() {

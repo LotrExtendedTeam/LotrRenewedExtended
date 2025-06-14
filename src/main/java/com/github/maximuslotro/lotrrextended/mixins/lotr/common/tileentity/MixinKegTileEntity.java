@@ -45,47 +45,124 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Mixin class for {@link KegTileEntity} to integrate extended loot-table behavior,
+ * brewing recipe stability, and data persistence.
+ *
+ * <p>Handles injection points for loot table loading, menu creation, inventory interaction,
+ * and brewing recipe recalculation.</p>
+ *
+ * <p>This mixin fixes NPEs during structure generation by null-guarding level usage.
+ * It also emulates loot table unpacking similar to vanilla chests and ensures
+ * synced server-client keg inventory behavior.</p>
+ *
+ */
 @Mixin(KegTileEntity.class)
 public class MixinKegTileEntity implements ExtendedLootTableAccessor {
-
+	/**
+	 * The loot table resource location assigned to this keg.
+	 * Used to populate inventory contents when unpacked.
+	 * 
+	 * @Nullable
+	 * @Unique
+	 */
 	@Nullable
 	@Unique
 	public ResourceLocation lootTable;
+	/**
+	 * Random seed used when generating loot from the assigned loot table.
+	 * 
+	 * @Unique
+	 */
 	@Unique
 	protected long lootTableSeed;
 
+	/**
+	 * Ingredient slot indices in the keg inventory.
+	 * 
+	 * @Shadow (remap = false)
+	 * @Final
+	 */
 	@Shadow(remap = false)
 	@Final
 	private static final int[] SLOTS_INGREDIENT = { 0, 1, 2, 3, 4, 5 };
 
+	/** 
+	 * Water slot indices in the keg inventory. 
+	 * 
+	 * @Shadow (remap = false)
+	 * @Final
+	 * */
 	@Shadow(remap = false)
 	@Final
 	private static final int[] SLOTS_WATER = { 6, 7, 8 };
 
+	/** 
+	 * The current operational mode of the keg (e.g., EMPTY, BREWING).
+	 * 
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private KegTileEntity.KegMode kegMode;
 
+	/** 
+	 * The current brewing recipe ID being applied in the keg. 
+	 * 
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private ResourceLocation currentBrewingRecipe;
 
+	/** 
+	 * Re-syncs keg inventory contents to nearby players. 
+	 * 
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private void resendKegInventoryToPlayers() {}
 
+	/**
+	 * Determines if an inventory index refers to an ingredient or water slot.
+	 *
+	 * @param index the inventory index
+	 * @return true if the index refers to an ingredient or water slot
+	 */
 	@Shadow(remap = false)
 	private boolean isIngredientOrWaterSlot(int index) {return false;}
 
+	/** 
+	 * Total brewing time required for the current recipe. 
+	 * 
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private int brewTimeTotal;
 
+	/** 
+	 * Internal inventory list for the keg tile entity. 
+	 * 
+	 * @Shadow(remap = false)
+	 * */
 	@Shadow(remap = false)
 	private NonNullList<ItemStack> inventory;
 
-	@Final
+	/** 
+	 * Keg data array used for syncing UI progress (brew time, etc.). 
+	 * 
+	 * @Shadow (remap = false)
+	 * @Final
+	 * */
 	@Shadow(remap = false)
+	@Final
 	private IIntArray kegData;
+
 	/**
-	 * @reason Fixing structure generation null-pointer exception
+	 * Overwrites the original recipe update method to null-guard level access
+	 * during structure generation and initialize the keg output item.
+	 *
 	 * @author maximuslotro
+	 * @reason Fixing structure generation null-pointer exception
+	 * @Overwrite
 	 */
 	@Overwrite(remap = false)
 	private void updateBrewingRecipe() {
@@ -121,7 +198,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 			}
 			//Extended End
 			Optional<DrinkBrewingRecipe> opt = level.getRecipeManager().getRecipeFor(LOTRRecipes.DRINK_BREWING,
-					proxyInv, level);
+				proxyInv, level);
 			if (opt.isPresent()) {
 				DrinkBrewingRecipe recipe = opt.get();
 				this.currentBrewingRecipe = recipe.getId();
@@ -143,7 +220,17 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 		}
 	}
 
-	//Handle Loot-tables
+	/**
+	 * Injected method that appends loot table data to the provided NBT compound
+	 * after the base {@code save()} method is executed.
+	 * 
+	 * <p>If a loot table is set, its identifier is written under the "LootTable" key,
+	 * and if the loot table seed is non-zero, it is stored under the "LootTableSeed" key.
+	 *
+	 * @param nbt  The NBT compound to write data to.
+	 * @param info The callback return information (not modified here).
+	 * @Inject (method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
+	 */
 	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
 	public void injectedSave(CompoundNBT nbt, CallbackInfoReturnable<CompoundNBT> info) {
 		if (this.lootTable != null) {
@@ -154,17 +241,36 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 		}
 	}
 
+	/**
+	 * Injected method that reads loot table data from the provided NBT compound
+	 * after the base {@code load()} method is executed.
+	 * 
+	 * <p>If the "LootTable" key exists, a new {@code ResourceLocation} is created
+	 * from it and assigned to {@code this.lootTable}. The "LootTableSeed" is also
+	 * read and stored if present.
+	 *
+	 * @param state The current block state (unused in this method).
+	 * @param nbt   The NBT compound to read data from.
+	 * @param info  The callback information (not modified here).
+	 * @Inject (method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+	 */
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
-	         this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
-	         this.lootTableSeed = nbt.getLong("LootTableSeed");
-	      }
+			this.lootTable = new ResourceLocation(nbt.getString("LootTable"));
+			this.lootTableSeed = nbt.getLong("LootTableSeed");
+		}
 	}
 
 	/**
+	 * Overwrites the container creation method to ensure loot tables are unpacked before opening the keg UI.
+	 * 
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @param id container window ID
+	 * @param playerInventory the player's inventory
+	 * @return a new {@link KegContainer} instance
+	 * @Overwrite
 	 */
 	@Overwrite
 	protected Container createMenu(int id, PlayerInventory playerInventory) {
@@ -175,10 +281,13 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
-	 * @reason Inject loot-table unpackCall
+	 * Overwrites item access method to unpack loot table on access.
+	 * 
+	 * @reason Inject loot-tables
 	 * @author maximuslotro
-	 * @param index Index for item to get
-	 * @return An ItemsStack for the given index
+	 * @param index inventory index to retrieve
+	 * @return the item stack at the specified index
+	 * @Overwrite
 	 */
 	@Overwrite
 	public ItemStack getItem(int index) {
@@ -189,8 +298,14 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
+	 * Overwrites item removal method to ensure brewing logic and loot unpacking.
+	 * 
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @param index index to remove items from
+	 * @param count number of items to remove
+	 * @return the removed {@link ItemStack}
+	 * @Overwrite
 	 */
 	@Overwrite
 	public ItemStack removeItem(int index, int count) {
@@ -206,8 +321,13 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
+	 * Overwrites no-update item removal method to trigger brewing update and loot unpacking.
+	 * 
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @param index index to clear
+	 * @return the cleared {@link ItemStack}
+	 * @Overwrite
 	 */
 	@Overwrite
 	public ItemStack removeItemNoUpdate(int index) {
@@ -223,8 +343,12 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
+	 * Overwrites isEmpty() check to trigger loot unpacking before test.
+	 *
+	 * @return true if all inventory slots are empty
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @Overwrite
 	 */
 	@Overwrite
 	public boolean isEmpty() {
@@ -240,8 +364,13 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
+	 * Overwrites item set logic to support brewing logic recalculation and loot table unpacking.
+	 * 
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @param index inventory slot to modify
+	 * @param stack item stack to place in the slot
+	 * @Overwrite
 	 */
 	@Overwrite
 	public void setItem(int index, ItemStack stack) {
@@ -262,7 +391,11 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	}
 
 	/**
-	 * Extended method to load in a loot table for kegs, uses chest loot-table code
+	 * Loads and applies loot table contents to the keg inventory.
+	 * Based on vanilla chest behavior, applies the loot only once.
+	 *
+	 * @param player the player interacting (optional, can be null)
+	 * @Unique
 	 */
 	@Unique
 	private void unpackLootTableKeg(@Nullable PlayerEntity player) {
@@ -277,7 +410,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 
 					this.lootTable = null;
 					LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) entity.getLevel()))
-							.withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(entity.getBlockPos())).withOptionalRandomSeed(lootTableSeed);
+						.withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(entity.getBlockPos())).withOptionalRandomSeed(lootTableSeed);
 					if (player != null) {
 						lootcontext$builder.withLuck(player.getLuck()).withParameter(LootParameters.THIS_ENTITY, player);
 					}
@@ -294,12 +427,24 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 		}
 	}
 
+
+	/**
+	 * Sets the loot table and its associated random seed for unpacking.
+	 *
+	 * @param table loot table location
+	 * @param seed random seed
+	 */
 	@Override
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
 	}
 
+	/**
+	 * Retrieves the current assigned loot table location.
+	 *
+	 * @return the loot table resource location
+	 */
 	@Override
 	public ResourceLocation getLootTable() {
 		return lootTable;

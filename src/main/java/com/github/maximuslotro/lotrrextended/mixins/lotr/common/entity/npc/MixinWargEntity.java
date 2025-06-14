@@ -178,6 +178,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	/**
 	 * @author maximuslotro
 	 * @reason Needing to add Jump Attribute to Wargs
+	 * @return A MutableAttribute instance
 	 */
 	@Overwrite(remap = false)
 	public static MutableAttribute regAttrs() {
@@ -310,9 +311,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 
-	/**
-	 * Returns true if this entity should push and be pushed by other entities when colliding.
-	 */
 	@Override
 	public boolean isPushable() {
 		return !this.isVehicle();
@@ -384,9 +382,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
-	/**
-	 * Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
-	 */
 	@Override
 	public void containerChanged(IInventory pInvBasic) {
 		boolean flag = this.isSaddled();
@@ -479,18 +474,11 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
-	/**
-	 * Dead and sleeping entities cannot move
-	 */
 	@Override
 	protected boolean isImmobile() {
 		return super.isImmobile() && this.isVehicle() && this.isSaddled();
 	}
 
-	/**
-	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-	 * the animal type)
-	 */
 	@Unique
 	private boolean isFood(ItemStack pStack) {
 		return FOOD_ITEMS.test(pStack);
@@ -667,9 +655,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 	}
 
-	/**
-	 * Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
-	 */
 	@Unique
 	@OnlyIn(Dist.CLIENT)
 	protected void spawnTamingParticles(boolean pTamed) {

@@ -23,23 +23,46 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 @Mixin(value=StructureTileEntityRenderer.class, priority=1001)
 public class MixinStructureTileEntityRenderer {
+	/**
+	 * Redirects the call to {@link StructureBlockTileEntity#getShowAir()} to also include
+	 * a configurable client-side flag for forcing air visibility.
+	 *
+	 * @param tileEntity The structure block tile entity.
+	 * @return True if air blocks should be shown, either by default or via forced config.
+	 * @Redirect (method = "render(Lnet/minecraft/tileentity/StructureBlockTileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/tileentity/StructureBlockTileEntity;getShowAir()Z"))
+	 */
 	@Redirect(method = "render(Lnet/minecraft/tileentity/StructureBlockTileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/tileentity/StructureBlockTileEntity;getShowAir()Z"))
 	private boolean injected(StructureBlockTileEntity tileEntity) {
 		return tileEntity.getShowAir() || ExtendedClientConfig.forceStructureBlockAirViewing.get();
 	}
-
 	/**
+	 * Overwrites the original method for rendering invisible structure blocks (like air or structure voids),
+	 * adding support for rendering additional custom invisible block types such as {@code GRASS_VOID}.
+	 *
+	 * <p>This implementation renders differently colored bounding boxes depending on block type:
+	 * <ul>
+	 *   <li>Air: Light blue</li>
+	 *   <li>Structure Void: Red</li>
+	 *   <li>Grass Void: Green</li>
+	 *   <li>Outline Mode: Black wireframe</li>
+	 * </ul>
+	 *
 	 * @author maximuslotro
-	 * @reason I'm Lazy
-	 * */
+	 * @reason Read Above
+	 * @param tileEntity The structure block tile entity.
+	 * @param vertexBuilder The vertex builder used for rendering lines.
+	 * @param relativePos The relative position offset.
+	 * @param isOutlineMode Whether to render in outline (wireframe) mode.
+	 * @param matrixStack The matrix stack for positioning.
+	 */
 	@SuppressWarnings("deprecation")
 	@Overwrite()
-	private void renderInvisibleBlocks(StructureBlockTileEntity p_228880_1_, IVertexBuilder p_228880_2_, BlockPos p_228880_3_, boolean p_228880_4_, MatrixStack p_228880_5_) {
-		IBlockReader iblockreader = p_228880_1_.getLevel();
-		BlockPos blockpos = p_228880_1_.getBlockPos();
-		BlockPos blockpos1 = blockpos.offset(p_228880_3_);
+	private void renderInvisibleBlocks(StructureBlockTileEntity tileEntity, IVertexBuilder vertexBuilder, BlockPos relativePos, boolean isOutlineMode, MatrixStack matrixStack) {
+		IBlockReader iblockreader = tileEntity.getLevel();
+		BlockPos blockpos = tileEntity.getBlockPos();
+		BlockPos blockpos1 = blockpos.offset(relativePos);
 
-		for(BlockPos blockpos2 : BlockPos.betweenClosed(blockpos1, blockpos1.offset(p_228880_1_.getStructureSize()).offset(-1, -1, -1))) {
+		for(BlockPos blockpos2 : BlockPos.betweenClosed(blockpos1, blockpos1.offset(tileEntity.getStructureSize()).offset(-1, -1, -1))) {
 			BlockState blockstate = iblockreader.getBlockState(blockpos2);
 			boolean flag = blockstate.isAir();
 			boolean flag1 = blockstate.is(Blocks.STRUCTURE_VOID);
@@ -54,20 +77,20 @@ public class MixinStructureTileEntityRenderer {
 				double d3 = (double)((float)(blockpos2.getX() - blockpos.getX()) + 0.55F + f);
 				double d4 = (double)((float)(blockpos2.getY() - blockpos.getY()) + 0.55F + f);
 				double d5 = (double)((float)(blockpos2.getZ() - blockpos.getZ()) + 0.55F + f);
-				if (p_228880_4_) {
+				if (isOutlineMode) {
 					// IDK TODO figure out what this does
-					WorldRenderer.renderLineBox(p_228880_5_, p_228880_2_, d0, d1, d2, d3, d4, d5, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F);
+					WorldRenderer.renderLineBox(matrixStack, vertexBuilder, d0, d1, d2, d3, d4, d5, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F);
 				} else if (flag) {
 					// Air
-					WorldRenderer.renderLineBox(p_228880_5_, p_228880_2_, d0, d1, d2, d3, d4, d5, 0.5F, 0.5F, 1.0F, 1.0F, 0.5F, 0.5F, 1.0F);
+					WorldRenderer.renderLineBox(matrixStack, vertexBuilder, d0, d1, d2, d3, d4, d5, 0.5F, 0.5F, 1.0F, 1.0F, 0.5F, 0.5F, 1.0F);
 					// Extended Start
 				} else if (flag2) {
 					// Grass Void
-					WorldRenderer.renderLineBox(p_228880_5_, p_228880_2_, d0, d1, d2, d3, d4, d5, 0.25F, 0.5F, 0.25F, 1.0F, 0.25F, 0.5F, 0.25F);
+					WorldRenderer.renderLineBox(matrixStack, vertexBuilder, d0, d1, d2, d3, d4, d5, 0.25F, 0.5F, 0.25F, 1.0F, 0.25F, 0.5F, 0.25F);
 					// Extended End
 				}else {
 					// Structure Void
-					WorldRenderer.renderLineBox(p_228880_5_, p_228880_2_, d0, d1, d2, d3, d4, d5, 1.0F, 0.25F, 0.25F, 1.0F, 1.0F, 0.25F, 0.25F);
+					WorldRenderer.renderLineBox(matrixStack, vertexBuilder, d0, d1, d2, d3, d4, d5, 1.0F, 0.25F, 0.25F, 1.0F, 1.0F, 0.25F, 0.25F);
 				}
 			}
 		}

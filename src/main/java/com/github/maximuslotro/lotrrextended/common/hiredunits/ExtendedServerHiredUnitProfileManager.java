@@ -35,14 +35,14 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 
 	/*
 	 * Keep Private
-	 * Don't allow more than one instance than {@Link ExtendedServerHiredUnitProfileManager#INSTANCE }
+	 * Don't allow more than one instance than {@link ExtendedServerHiredUnitProfileManager#INSTANCE }
 	 * */
 	private ExtendedServerHiredUnitProfileManager() {}
 
 	/*
-	 * Gets a {@Link ExtendedServerHiredUnitProfile} for a specified ResourceLocation
+	 * Gets a {@link ExtendedServerHiredUnitProfile} for a specified ResourceLocation
 	 * @param unitProfileId Id of the Profile
-	 * @return An instance of {@Link ExtendedServerHiredUnitProfile} if found, else {@Link ExtendedServerHiredUnitProfile#EMPTY}
+	 * @return An instance of {@link ExtendedServerHiredUnitProfile} if found, else {@link ExtendedServerHiredUnitProfile#EMPTY}
 	 * */
 	public ExtendedServerHiredUnitProfile get(ResourceLocation unitProfileId) {
 		return this.hiredUnitProfiles.getOrDefault(unitProfileId, ExtendedServerHiredUnitProfile.EMPTY);

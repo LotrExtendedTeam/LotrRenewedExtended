@@ -35,7 +35,14 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 	private boolean isCloakedExtended;
 
 	/**
-	 * @reason There needs to be a local check for ranger transparency, as ((ExtendedRangerModel<?>)armorModel).isCloaked does not work
+	 * @reason Injects into armor piece rendering to check if the entity is cloaked. Required because direct type casting to {@link ExtendedRangerModel} does not reliably expose the cloaking state.
+	 * @param renderStack The matrix stack used for rendering transformations
+	 * @param renderBuffer The rendering buffer used to draw the armor piece
+	 * @param entity The entity wearing the armor
+	 * @param slot The equipment slot currently being rendered
+	 * @param pPackedLight Lightmap coordinate used for lighting the model
+	 * @param armorModel The model of the armor piece
+	 * @param ci Callback info to control method flow
 	 * @Inject (method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", at = @At("HEAD"), remap=true)
 	 * */
 	@Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", 
@@ -47,7 +54,17 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 	}
 
 	/**
-	 * @reason Ranger Armor needs to be transparent in only the base class, extends classes won't work
+	 * @reason Injects into model rendering to cancel armor rendering if the entity is cloaked. This logic is only valid in the base ranger armor class and not in subclasses.
+	 * @param renderStack The matrix stack used for transformations during rendering
+	 * @param renderBuffer The buffer into which the armor model will be rendered
+	 * @param pPackedLight The packed light value (lightmap) for lighting effects
+	 * @param hasFoil Whether the armor has the enchanted "foil" glint effect
+	 * @param armorModel The model being rendered
+	 * @param colorR Red color channel for tinting the armor
+	 * @param colorG Green color channel for tinting the armor
+	 * @param colorB Blue color channel for tinting the armor
+	 * @param armorResource The texture resource location used for this armor model
+	 * @param ci Callback info that can cancel the method execution
 	 * @Inject (method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", at = @At("HEAD"), cancellable = true, remap=false)
 	 * */
 	@Inject(method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", 

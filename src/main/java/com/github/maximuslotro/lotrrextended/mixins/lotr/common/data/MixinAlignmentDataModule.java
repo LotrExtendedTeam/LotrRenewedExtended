@@ -84,6 +84,7 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 	 * Updates the player's viewed FactionRegion
 	 * @Shadow (remap = false)
 	 * @param region A FactionRegion 
+	 * @return The last viewed {@link Faction} in the given {@link FactionRegion}
 	 * */
 	@Shadow(remap = false)
 	public Faction getRegionLastViewedFaction(FactionRegion region) {return null;}

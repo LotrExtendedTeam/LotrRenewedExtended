@@ -100,6 +100,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	/**
 	 * SHOULD ONLY BE CALLED ON THE SERVER, TRADER PROFILES ARE NOT AVAILABLE CLIENT SIDE!
 	 * IM LOOKING AT YOU MAX! (MYSELF) (I keep making the mistake)
+	 * @return A {@link ExtendedTraderProfile} instance
 	 * */
 	public ExtendedTraderProfile getProfile() {
 		if(traderProfileHolder!=null) {

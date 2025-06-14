@@ -21,7 +21,7 @@ public interface ExtendedTradeItemSupplier {
 	JsonElement serializeJson();
 
 	/**
-	 * Copied from {@link DisplayInfo#getStack(JsonObject jsonObject)}
+	 * Copied from {@link net.minecraft.advancements.DisplayInfo}
 	 * @param jsonObject The JsonObject to read from
 	 * @return An ItemStack that was contained in the JsonObject
 	 * */

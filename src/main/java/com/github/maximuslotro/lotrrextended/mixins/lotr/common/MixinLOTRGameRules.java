@@ -21,6 +21,7 @@ public class MixinLOTRGameRules {
 	 * @reason Need to remove custom Waypoint Gamerule to allow for differentiating between legacy and renewed Waypoints in the future
 	 * @author maximuslotro
 	 * @Overwrite (remap = false)
+	 * @param <T> The type of {@link GameRules}.
 	 * @param ruleName The name of the rule
 	 * @param category The gamerule category
 	 * @param type The data type for the rule

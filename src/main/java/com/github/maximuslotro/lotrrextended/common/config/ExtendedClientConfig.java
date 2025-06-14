@@ -17,8 +17,8 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
 	
 	/**
-	 * Do not set this value itself, set {@see ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
-	 * to ensure {@see MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
+	 * Do not set this value itself, set {@link lotr.client.gui.menu.ExtendedOptionsScreen}
+	 * to ensure {@link com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;

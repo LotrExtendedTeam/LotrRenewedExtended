@@ -24,7 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
- * Code Copied from {@see net.minecraft.data.CookingRecipeBuilder}
+ * Code Copied from {@link net.minecraft.data.CookingRecipeBuilder}
  * to add alloy recipe data
  * */
 public class ExtendedAlloyCookingRecipeBuilder {

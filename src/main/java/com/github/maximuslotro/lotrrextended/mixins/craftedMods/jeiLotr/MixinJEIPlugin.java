@@ -48,7 +48,7 @@ public class MixinJEIPlugin {
 
 	/**
 	 * @reason Remove logic introduced in our own release
-	 * @Redirect(method = "initDevices()V", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/ModList;isLoaded(Ljava/lang/String;)Z"), remap=false)
+	 * @Redirect (method = "initDevices()V", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/ModList;isLoaded(Ljava/lang/String;)Z"), remap=false)
 	 * @param modList A ModList instance to check for loaded mods from
 	 * @param modTarget The target mod to check for
 	 * @return True if can run data, only "lotrfa" is called through though

@@ -17,13 +17,42 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Renders an {@link ExtendedBannerEntity} in the world.
+ * <p>
+ * This class extends {@link EntityRenderer} to customize the rendering behavior for a modded entity,
+ * specifically a banner entity with potential debug rendering for its protection area.
+ * </p>
+ * 
+ * <p>
+ * When debug mode is enabled, it visualizes the protection range using a wireframe bounding box.
+ * </p>
+ */
 @OnlyIn(Dist.CLIENT)
 public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity> {
+	/**
+     * The texture resource used to render the banner entity.
+     */
 	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/imgnazgulscreamman.png");
+	/**
+     * Constructs a new renderer for the {@link ExtendedBannerEntity}.
+     *
+     * @param entityRenderDispatcher The dispatcher responsible for rendering entities.
+     */
 	public ExtendedBannerRenderer(EntityRendererManager entityRenderDispatcher) {
 		super(entityRenderDispatcher);
 	}
-
+	/**
+     * Renders the {@link ExtendedBannerEntity}, and if debug rendering is enabled and the protection range is greater than 0,
+     * draws a bounding box representing the protected area around the entity.
+     *
+     * @param pEntity       The entity being rendered.
+     * @param pEntityYaw    The yaw of the entity.
+     * @param pPartialTicks Partial tick time used for interpolation.
+     * @param pMatrixStack  The matrix stack for rendering transforms.
+     * @param pBuffer       The rendering buffer.
+     * @param pPackedLight  Combined lightmap coordinates.
+     */
 	@Override
 	public void render(ExtendedBannerEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
 		Minecraft minecraft = Minecraft.getInstance();
@@ -67,26 +96,59 @@ public class ExtendedBannerRenderer extends EntityRenderer<ExtendedBannerEntity>
 //	pMatrixStack.popPose();
 //	//super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
 //}
+	/**
+     * Returns the texture location for the {@link ExtendedBannerEntity}.
+     *
+     * @param entity The entity being rendered.
+     * @return The {@link ResourceLocation} for the entity's texture.
+     */
 	@Override
 	public ResourceLocation getTextureLocation(ExtendedBannerEntity entity) {
 		return TEXTURE_LOCATION;
 	}
-
+	/**
+     * Controls whether the entity's name should be rendered.
+     *
+     * @param pEntity The entity being rendered.
+     * @return Always returns false; nameplates are not shown for this entity.
+     */
 	@Override
 	protected boolean shouldShowName(ExtendedBannerEntity pEntity) {
 		return false;
 	}
 
 	/**
-	 * Modified version of WorldRenderer.renderLineBox to support int colors
-	 * */
+     * Renders a wireframe box using integer color values, wrapping min/max bounds from the given {@link AxisAlignedBB}.
+     *
+     * @param pMatrixStack The matrix stack to apply transformations.
+     * @param pBuffer      The buffer to write vertex data to.
+     * @param pAabb        The axis-aligned bounding box to draw.
+     * @param pRed         Red color component (0–255).
+     * @param pGreen       Green color component (0–255).
+     * @param pBlue        Blue color component (0–255).
+     * @param pAlpha       Alpha transparency component (0–255).
+     */
 	public static void renderLineBox(MatrixStack pMatrixStack, IVertexBuilder pBuffer, AxisAlignedBB pAabb, int pRed, int pGreen, int pBlue, int pAlpha) {
 		renderLineBox(pMatrixStack, pBuffer, pAabb.minX, pAabb.minY, pAabb.minZ, pAabb.maxX, pAabb.maxY, pAabb.maxZ, pRed, pGreen, pBlue, pAlpha);
 	}
 
 	/**
-	 * Modified version of WorldRenderer.renderLineBox to support int colors
-	 * */
+     * Renders a wireframe bounding box using specified min/max coordinates and integer color values.
+     * This is a modified version of {@code WorldRenderer.renderLineBox} supporting int color parameters.
+     *
+     * @param pMatrixStack The matrix stack for transformations.
+     * @param pBuffer      The vertex buffer.
+     * @param pMinX        Minimum X coordinate.
+     * @param pMinY        Minimum Y coordinate.
+     * @param pMinZ        Minimum Z coordinate.
+     * @param pMaxX        Maximum X coordinate.
+     * @param pMaxY        Maximum Y coordinate.
+     * @param pMaxZ        Maximum Z coordinate.
+     * @param pRed         Red color component (0–255).
+     * @param pGreen       Green color component (0–255).
+     * @param pBlue        Blue color component (0–255).
+     * @param pAlpha       Alpha transparency component (0–255).
+     */
 	public static void renderLineBox(MatrixStack pMatrixStack, IVertexBuilder pBuffer, double pMinX, double pMinY, double pMinZ, double pMaxX, double pMaxY, double pMaxZ, int pRed, int pGreen, int pBlue, int pAlpha) {
 		Matrix4f matrix4f = pMatrixStack.last().pose();
 		float f = (float)pMinX;

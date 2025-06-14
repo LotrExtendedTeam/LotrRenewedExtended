@@ -38,6 +38,8 @@ public class MixinSpawnEggItem {
     /**
      * @author Richard
      * @reason more temporary measure
+     * @param context The ItemUseContext of this interaction
+     * @return An action result 
      * */
     @Overwrite
     public ActionResultType useOn(ItemUseContext context) {

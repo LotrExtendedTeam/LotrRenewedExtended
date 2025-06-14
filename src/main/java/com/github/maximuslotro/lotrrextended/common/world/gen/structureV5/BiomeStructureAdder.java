@@ -14,16 +14,44 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
+/**
+ * Utility class for adding custom structures to biome generation and
+ * injecting structure spacing settings into the world generation system.
+ * <p>
+ * This class handles:
+ * <ul>
+ *   <li>Adding mod-specific structures to the structure spacing map of the
+ *       chunk generator to ensure proper spawning.</li>
+ *   <li>Registering structures with biomes during biome loading events, 
+ *       controlling which biomes spawn which structures.</li>
+ * </ul>
+ * <p>
+ * Important notes:
+ * <ul>
+ *   <li>When blacklisting a structure from certain dimensions, 
+ *       both removal from the structure spacing map and biome generation
+ *       lists should be considered.</li>
+ *   <li>Structures are selectively added to biomes primarily within the
+ *       "lotr" namespace, with detailed handling based on biome registry names.</li>
+ * </ul>
+ */
 public class BiomeStructureAdder {
 	/**
-     * Will go into the world's ChunkGenerator and manually add our structure spacing.
-     * If the spacing is not added, the structure doesn't spawn.
+     * Injects structure spacing configuration into the given {@link ServerChunkProvider}'s
+     * chunk generator settings to ensure custom structures can spawn.
      * <p>
-     * Use this for dimension blacklisting a structure.
-     * (Don't forget to attempt to remove your structure too from the map if you are blacklisting a dimension!)
-     * (It might have your structure in it already.)
+     * This method clones the current structure spacing map, adds required structures
+     * with their default separation settings if not already present, and replaces
+     * the chunk generator's structure configuration with the updated map.
      * <p>
-     * Basically use this to make absolutely sure the ChunkGenerator can or cannot spawn our structures.
+     * Use this method to guarantee that structures spawn in valid dimensions, or to
+     * blacklist structures from certain dimensions by controlling this map.
+     * <p>
+     * <b>Note:</b> When blacklisting, also attempt to remove the structures from
+     * the map if they might have already been added.
+     *
+     * @param provider the {@link ServerChunkProvider} whose chunk generator's
+     *                 structure configuration will be modified.
      */
 	public static void addDimensionalSpacing(ServerChunkProvider provider) {
 		ExtendedLog.infoShown("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
@@ -55,18 +83,30 @@ public class BiomeStructureAdder {
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
+	/**
+     * Adds a structure and its default separation settings to the provided structure spacing map,
+     * only if it is not already present.
+     *
+     * @param tempMap   the map of structures to their separation settings to update.
+     * @param structure the {@link Structure} to add.
+     */
 	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<? extends IFeatureConfig> structure) {
 		tempMap.putIfAbsent(structure, DimensionStructuresSettings.DEFAULTS.get(structure));
 	}
 
-	/*
-     * Add our structure to all biomes including other modded biomes if need be.
-     * We can skip or add only to certain biomes based on stuff like biome category,
-     * temperature, scale, precipitation, Mod id, etc. All kinds of options!
+	/**
+     * Adds configured structures to biomes during the {@link BiomeLoadingEvent}.
+     * <p>
+     * This method selectively adds LOTR mod structures to specific biomes based on their registry names.
+     * Structures are added to the biome's generation list if the biome's namespace is "lotr".
+     * <p>
+     * The method handles many specific biome names, adding appropriate configured structures 
+     * to each biome's generation structures list.
+     * <p>
+     * This allows for fine control of structure spawning per biome, including adding structures
+     * only to suitable biomes and skipping others.
      *
-     * We can even use the BiomeDictionary as well! To use BiomeDictionary, do
-     * RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName()) to get the biome's
-     * RegistryKey. Then that can be fed into the dictionary to get the biome's types.
+     * @param event the {@link BiomeLoadingEvent} during which structures should be added to the biome.
      */
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
 		if(event.getName()!=null && event.getName().getNamespace().equals("lotr")) {

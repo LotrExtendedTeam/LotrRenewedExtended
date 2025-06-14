@@ -84,6 +84,7 @@ public class ExtendedClientProxy {
 
     /**
      * A fix since forge does not have client commands in 1.16.5
+     * @param event The chat event on the client
      */
     public void commandevent(ClientChatEvent event)
     {

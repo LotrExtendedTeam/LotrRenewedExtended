@@ -145,10 +145,11 @@ public class MixinLOTRBlocks {
 
 	/**
 	 * @reason Overrides the default registration of Renewed's block to fix things, override registrations, and replace functionalityUsed for toggleable torches, axe mineable wattle and daub, shovel mineable white sand
-	 * @Redirect (method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
+	 * @Redirect (method = "&lt;clinit&gt;", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
 	 * @param register The DeferredRegister instance to register to
 	 * @param name The name of the block to register, is used in the registry name
 	 * @param sup The Block supplier for the block instance to be registered
+	 * @return Returns either the default registration of the Renewed block, or a modified class instance
 	 * */
 	@SuppressWarnings("unchecked")
 	@Redirect(method = "<clinit>",

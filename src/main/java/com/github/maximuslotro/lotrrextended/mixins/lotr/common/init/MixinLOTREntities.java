@@ -57,8 +57,10 @@ public class MixinLOTREntities {
 	/**
 	 * Get the base NPC register method from parent class
 	 * @Shadow (remap=false)
+	 * @param <T> the type of module extending NPCEntity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
+	 * @param size A factory for defining the size of the entity on registration
 	 * @param attribFactory An AttributeModifierMap for the registered entity
 	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
 	 * @return A RegistryObject instance for the supplied EntityType
@@ -69,9 +71,11 @@ public class MixinLOTREntities {
 	}
 	/**
 	 * Exteded's base NPC registering method, used for handling dataGen stuff
+	 * @param <T> the type of module extending NPCEntity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param attribFactory An AttributeModifierMap for the registered entity
+	 * @param size A factory for defining the size of the entity on registration
 	 * @param eggColors A SpawnEggColors instance for auto registering the entity's spawn egg
 	 * @return A RegistryObject instance for the supplied EntityType
 	 * */
@@ -86,6 +90,7 @@ public class MixinLOTREntities {
 	/**
 	 * Get the base animal register method from parent class
 	 * @Shadow (remap=false)
+	 * @param <T> the type of module extending AnimalEntity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
 	 * @param attribFactory An AttributeModifierMap for the registered entity
@@ -106,6 +111,7 @@ public class MixinLOTREntities {
 	}
 	/**
 	 * Extended's animal register method, with default animal spawn rules, and dataGen handling
+	 * @param <T> the type of module extending AnimalEntity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param attribFactory An AttributeModifierMap for the registered entity
@@ -127,6 +133,7 @@ public class MixinLOTREntities {
 	}
 	/**
 	 * Extended's animal register method, with default animal spawn rules, and dataGen handling
+	 * @param <T> the type of module extending AnimalEntity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param attribFactory An AttributeModifierMap for the registered entity
@@ -152,6 +159,7 @@ public class MixinLOTREntities {
 	/**
 	 * Get the base entity register method from parent class
 	 * @Shadow (remap=false)
+	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
 	 * @param classif An AttributeModifierMap for the registered entity
@@ -168,6 +176,7 @@ public class MixinLOTREntities {
 	/**
 	 * Get the base entity register method from parent class
 	 * @Shadow (remap=false)
+	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
 	 * @param classif An AttributeModifierMap for the registered entity
@@ -185,6 +194,7 @@ public class MixinLOTREntities {
 	/**
 	 * Get the base entity register method from parent class
 	 * @Shadow (remap=false)
+	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
 	 * @param classif An AttributeModifierMap for the registered entity
@@ -201,6 +211,7 @@ public class MixinLOTREntities {
 	/**
 	 * Extended's base entity register method, handling dataGen, used for throwables currently
 	 * @param key A String name of the entity
+	 * @param <T> the type of module extending Entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param classif An AttributeModifierMap for the registered entity
 	 * @param width The entity's hitbox's width
@@ -219,6 +230,7 @@ public class MixinLOTREntities {
 	}
 	/**
 	 * Extended's static entity register method, setting default tracking and update range
+	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param classif An AttributeModifierMap for the registered entity
@@ -232,6 +244,7 @@ public class MixinLOTREntities {
 	}
 	/**
 	 * Extended's static entity register method, setting entity settings, with option for different tracking/update ranges
+	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param classif An AttributeModifierMap for the registered entity
@@ -251,6 +264,7 @@ public class MixinLOTREntities {
 	}
 	/**
 	 * Extended's base register method, handling dataGen, and allowing for custom entity properties
+	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
 	 * @param classif An AttributeModifierMap for the registered entity

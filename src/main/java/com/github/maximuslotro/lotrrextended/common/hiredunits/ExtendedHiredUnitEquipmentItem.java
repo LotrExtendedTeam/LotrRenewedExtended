@@ -64,7 +64,9 @@ public class ExtendedHiredUnitEquipmentItem extends WeightedRandom.Item {
 	}
 
 	/**
-	 * Copied from {@see DisplayInfo#getStack(JsonObject jsonObject)}
+	 * Copied from {@link net.minecraft.advancements.DisplayInfo}
+	 * @param jsonObject The JSON to read to extract item data
+	 * @return A loaded {@link ItemStack} unless error, then {@link JsonSyntaxException}
 	 * */
 	private static ItemStack getStack(JsonObject jsonObject) {
 		if (!jsonObject.has("item")) {

@@ -36,13 +36,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Mixin extension for {@link VesselDrinkTileEntity} to support loot table injection and ticking.
+ * Handles lazy generation of drink items from loot tables, enabling dynamic item content.
+ * Implements {@link ExtendedLootTableAccessor} and {@link ITickableTileEntity}.
+ *
+ * Author: maximuslotro
+ */
 @Mixin(VesselDrinkTileEntity.class)
 public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
+	/** The associated loot table for the drink item. */
 	@Unique
 	@Nullable
 	public ResourceLocation lootTable;
+	/** The seed used for deterministic loot table generation. */
 	@Unique
 	protected long lootTableSeed;
+	/** Whether the loot table has been unpacked. */
 	@Unique
 	private boolean ticked=false;
 
@@ -52,6 +62,10 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 	@Shadow(remap = false)
 	private VesselType vesselType;
 
+	  /**
+     * Called every tick to check if loot table should be unpacked.
+     * Ensures unpacking only happens once on the server side.
+     */
 	@Override
 	public void tick() {
 		if(!ExtendedServerConfig.enableDevMode.get()) {
@@ -63,7 +77,13 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 		}
 	}
 
-	//Handle saving loot-tables
+    /**
+     * Injects custom loot table data during save.
+     *
+     * @Inject (method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
+     * @param nbt The NBT tag compound to save into
+     * @param info Callback info
+     */
 	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
 	public void injectedSave(CompoundNBT nbt, CallbackInfoReturnable<CompoundNBT> info) {
 		if (this.lootTable != null) {
@@ -74,7 +94,14 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 		}
 	}
 
-	//Handle loading loot-tables
+    /**
+     * Injects custom loot table loading logic.
+     *
+     * @Inject (method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+     * @param state The block state
+     * @param nbt The NBT tag compound to load from
+     * @param info Callback info
+     */
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
@@ -84,8 +111,10 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 	}
 
 	/**
-	 * @reason Inject loot-tables
+	 * @reason Overwritten method to include loot table unpacking before returning the drink item.
 	 * @author maximuslotro
+	 * @Overwrite (remap = false)
+	 * @return The drink item stack with proper vessel and effects
 	 */
 	@Overwrite(remap = false)
 	public ItemStack getVesselItem() {
@@ -109,8 +138,9 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 	}
 
 	/**
-	 * @reason Inject loot-tables
+	 * @reason Overwritten method to inject loot unpacking before writing to NBT.
 	 * @author maximuslotro
+	 * @param nbt The NBT tag to write to
 	 */
 	@Overwrite(remap = false)
 	private void writeVessel(CompoundNBT nbt) {
@@ -121,9 +151,12 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 		nbt.putString("Vessel", vesselType.getCodeName());
 	}
 
-	/**
-	 * Extended method to load in a loot table for plates, uses chest loot-table code
-	 */
+	   /**
+     * Unpacks the loot table into the drink item.
+     * Called lazily upon access or ticking.
+     *
+     * @param player The player associated with the context, can be null for non-player context
+     */
 	@Unique
 	private void unpackLootTableVessel(@Nullable PlayerEntity player) {
 		VesselDrinkTileEntity entity = ((VesselDrinkTileEntity)(Object)(this));
@@ -158,6 +191,12 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 		}
 	}
 
+	/**
+     * Sets the loot table and seed for this entity.
+     *
+     * @param table The resource location of the loot table
+     * @param seed The random seed to use when generating loot
+     */
 	@Override
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
@@ -165,6 +204,11 @@ public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, IT
 		ticked = false;
 	}
 
+	/**
+     * Gets the loot table used for this entity.
+     *
+     * @return The loot table resource location, or null if none
+     */
 	@Override
 	public ResourceLocation getLootTable() {
 		return lootTable;

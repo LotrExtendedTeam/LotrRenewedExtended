@@ -26,15 +26,36 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-
+/**
+ * Extended stone chest block with custom behavior for spawning Barrow Wights
+ * under specific biome and game conditions.
+ * 
+ * <p>This chest prevents forced Wight spawns when placed by players,
+ * and contains logic to spawn cursed Wight entities when opened in
+ * designated biomes, such as the Barrow Downs.</p>
+ */
 public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
+	/**
+     * Constructs an {@code ExtendedStoneChestBlock} with the given tile entity supplier.
+     * 
+     * @param tileentityholder Supplier for the associated chest tile entity.
+     */
 	public ExtendedStoneChestBlock(Supplier<ChestTileEntity> tileentityholder) {
 		super(tileentityholder);
 	}
 
 	/**
-	 * Ensure stone chests placed by players can't have forced wight spawns
-	 * */
+     * Called when the chest is placed by a player.
+     * 
+     * <p>Marks the tile entity as having spawned a Wight to prevent forced spawns
+     * from this chest instance.</p>
+     * 
+     * @param pLevel The world where the block is placed.
+     * @param pPos The block position.
+     * @param pState The block state.
+     * @param pPlacer The entity placing the block.
+     * @param pStack The item stack used to place the block.
+     */
 	@Override
 	public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
@@ -46,8 +67,20 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 	}
 
 	/**
-	 * Logic to check if chest should spawn a wight, depending on the biome and spawn conditions
-	 * */
+     * Handles player interaction with the chest.
+     * 
+     * <p>If the player is in the Barrow Downs biome and the chest has not spawned a Wight,
+     * attempts to spawn a cursed Barrow Wight based on config and random chance.
+     * Otherwise, opens the chest container normally.</p>
+     * 
+     * @param pBlockState The block state of the chest.
+     * @param pWorld The world instance.
+     * @param locPos The position of the chest.
+     * @param pPlayerEntity The player interacting.
+     * @param p_225533_5_ The hand used for interaction.
+     * @param p_225533_6_ The ray trace result.
+     * @return {@code ActionResultType.CONSUME} to consume the interaction, {@code ActionResultType.SUCCESS} if client side.
+     */
 	@Override
 	public ActionResultType use(BlockState pBlockState, World pWorld, BlockPos locPos, PlayerEntity pPlayerEntity, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
 		if (pWorld.isClientSide) {
@@ -92,10 +125,17 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 	}
 
 	/**
-	 * Method to spawn a barrow wight.
-	 * if {forcedSpawn} is True, bypass the cursed check.
-	 * @return true if wight was spawned
-	 * */
+     * Spawns a cursed Barrow Wight entity near the player under certain conditions.
+     * 
+     * <p>If {@code forcedSpawn} is true, bypasses curse checks. Tries up to 49 times
+     * to find a suitable spawn location nearby in air blocks.</p>
+     * 
+     * @param pWorld The world instance (must be a server world).
+     * @param locPos The position of the chest.
+     * @param pPlayerEntity The player entity near which the Wight will spawn.
+     * @param forcedSpawn If true, bypasses player curse requirement.
+     * @return {@code true} if the Wight was successfully spawned, {@code false} otherwise.
+     */
 	private boolean spawnWightCursed(World pWorld, BlockPos locPos, PlayerEntity pPlayerEntity, boolean forcedSpawn) {
 		ServerWorld serverWorld = (ServerWorld) pWorld;
 		ExtendedLevelData serverInstance = ExtendedLevelData.serverInstance();

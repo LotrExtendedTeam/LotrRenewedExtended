@@ -49,7 +49,6 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 	/**
 	 * Gets the unique ID of this banner profile.
-	 * <p />
 	 * This may be null for partial profile data if constructed manually.
 	 *
 	 * @return ID of the profile
@@ -61,7 +60,6 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 
 	/**
 	 * Get underlying name for profile
-	 * * <p />
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */
@@ -74,7 +72,6 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	/**
 	 * Get display name for profile
 	 * can be the same as getName()
-	 * * <p />
 	 * This may be null for partial profile data if constructed manually.
 	 * @return String
 	 * */

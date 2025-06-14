@@ -156,7 +156,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     /**
      * New method that actually takes into account the additional damage factor of ExtendedBowItem items
-     * @param target {@see LivingEntity} to attack
+     * @param target {@link LivingEntity} to attack
      * @param charge The power at which to shoot
      */
     private void rangerArrowAttack(LivingEntity target, float charge) {

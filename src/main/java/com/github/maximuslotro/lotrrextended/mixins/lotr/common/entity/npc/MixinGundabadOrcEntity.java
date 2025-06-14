@@ -104,7 +104,7 @@ public class MixinGundabadOrcEntity{
 	/**
 	 * @reason Replaced setting the shield with the an Gundabad Orc Shield
 	 * @ModifyArg (method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;&lt;init&gt;(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
 	 * @param regularItem The regular item to be set
 	 * @return A Gundabad orc shield instance
 	 * */

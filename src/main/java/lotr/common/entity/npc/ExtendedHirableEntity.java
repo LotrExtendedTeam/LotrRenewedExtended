@@ -30,8 +30,8 @@ public interface ExtendedHirableEntity {
 
 	/**
 	 * Defines the hired unit inventory version
-	 * DNE/0 for 1.7.1->1.7.2
-	 * 1 for 1.7.3->?.?.?
+	 * DNE/0 for 1.7.1&lt;1.7.2
+	 * 1 for 1.7.3&lt;?.?.?
 	 * */
 	public static final int UNIT_INVENTORY_VERSION = 1;
 	public static final int INVENTORY_SIZE = 29;
@@ -73,6 +73,7 @@ public interface ExtendedHirableEntity {
 	 * Gets the unit profile associated with this unit
 	 * @see ExtendedServerHiredUnitProfile
 	 * @Nullable
+	 * @return The {@link ExtendedServerHiredUnitProfile} instance associated with this entity
 	 * */
 	@Nullable
 	default ExtendedServerHiredUnitProfile getUnitProfile() {

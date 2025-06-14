@@ -68,6 +68,7 @@ public class MixinLOTRTileEntities {
 	 * @author maximuslotro
 	 * @reason Need to change VesselTileEntityAppliedBlocks to add more drink container types
 	 * @Overwrite (remap=false)
+	 * @param <T> the type of module extending TileEntity
 	 * @param key The id of the tileEntity
 	 * @param builderSup A list of blocks to bind the tileEntity to
 	 * @return A RegistryObject instance for the tileEntity

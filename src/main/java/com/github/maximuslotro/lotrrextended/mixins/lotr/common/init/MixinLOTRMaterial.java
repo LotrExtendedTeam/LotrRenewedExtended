@@ -118,7 +118,7 @@ public class MixinLOTRMaterial {
 
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
-	 * @Invoker ("<init>")
+	 * @Invoker ("&lt;init&gt;")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param internalId The internal id (ordinal) of this Enum entry
 	 * @param name The localized name of this Enum
@@ -142,7 +142,6 @@ public class MixinLOTRMaterial {
 	}
 	/**
 	 * Accessing the Enum creation method, with single repair ingredient
-	 * @Invoker ("<init>")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param name The localized name of this Enum
 	 * @param toolTier The tier of this material's tools
@@ -155,6 +154,7 @@ public class MixinLOTRMaterial {
 	 * @param tough The additional toughness for this equipment type
 	 * @param repair The item+armor repair ingredient for this material
 	 * @return A built LOTRMaterial instance
+	 * @Unique There will only be one instance of this
 	 * */
 	@Unique
 	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
@@ -163,7 +163,6 @@ public class MixinLOTRMaterial {
 	}
 	/**
 	 * Accessing the Enum creation method, with single repair ingredient and special modifiers
-	 * @Invoker ("<init>")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param name The localized name of this Enum
 	 * @param toolTier The tier of this material's tools
@@ -177,6 +176,7 @@ public class MixinLOTRMaterial {
 	 * @param repair The item+armor repair ingredient for this material
 	 * @param specs Additional special modifiers for this material
 	 * @return A built LOTRMaterial instance
+	 * @Unique There will only be one instance of this
 	 * */
 	@Unique
 	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
@@ -184,7 +184,6 @@ public class MixinLOTRMaterial {
 		return lotrmaterialExpansion$addVariant(internalName, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, specs);
 	}	/**
 	 * Accessing the Enum creation method, with full parameter set
-	 * @Invoker ("<init>")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param name The localized name of this Enum
 	 * @param toolTier The tier of this material's tools
@@ -199,6 +198,7 @@ public class MixinLOTRMaterial {
 	 * @param armorRepair The armor repair ingredient for this material
 	 * @param specs Additional special modifiers for this material
 	 * @return A built LOTRMaterial instance
+	 * @Unique There will only be one instance of this
 	 * */
 	@Unique
 	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
