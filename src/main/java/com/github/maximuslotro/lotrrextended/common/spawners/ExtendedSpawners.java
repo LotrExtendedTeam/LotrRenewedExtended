@@ -85,6 +85,10 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_INN = register("bree_village_inn_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STABLEMASTER = register("bree_village_stablemaster_spawner");
 	public static final ResourceLocation BREE_VILLAGE_MANOR_LORD = register("bree_village_manor_lord_spawner");
+	// BLUE MOUNTAINS
+	public static final ResourceLocation BLUE_MOUNTIAN_SMITH = register("blue_mountains_smith_spawner");
+	// DWARVEN
+	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

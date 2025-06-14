@@ -17,7 +17,6 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
@@ -44,7 +43,6 @@ public class ExtendedBlueMountainsMinerEntity extends BlueDwarfEntity implements
 
 	public ExtendedBlueMountainsMinerEntity(EntityType<? extends ExtendedBlueMountainsMinerEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	@Override
@@ -86,9 +84,8 @@ public class ExtendedBlueMountainsMinerEntity extends BlueDwarfEntity implements
 		return this.entityData.get(PLAYER_TRADING_WITH);
 	}
 
-
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return DwarfEntity.regAttrs().add(Attributes.ARMOR, 0.0);
+		return DwarfEntity.regAttrs();
 	}
 
 	@Override

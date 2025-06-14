@@ -143,5 +143,9 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INN);
 		single(ExtendedEntities.BREE_STABLEMASTER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STABLEMASTER);
 		single(LOTREntities.BREE_MAN.get()).setRespawnOnDeath().disableForFutureSpawning().setHomeInfo(false, 24).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_MANOR_LORD);
+		// BLUE MOUNTAINS
+		single(ExtendedEntities.BLUE_DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_SMITH);
+		// DWARVEN
+		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
 	}
 }

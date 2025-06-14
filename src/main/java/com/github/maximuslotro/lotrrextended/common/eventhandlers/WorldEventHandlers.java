@@ -95,8 +95,8 @@ public class WorldEventHandlers {
 			return;
 		}else {
 			NPCEntity npc = (NPCEntity)event.getEntity();
-			// Check if entity has flag to respawn, also handle older versions where flag is not present
-			if(npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
+			// Check if entity has flag to respawn, also handle older versions where flag is not present and handle despawnable traders such as miners
+			if(!npc.isPersistenceRequired() || npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
 				return; //Let entity die
 			}
 			// Update older entities to have the flag

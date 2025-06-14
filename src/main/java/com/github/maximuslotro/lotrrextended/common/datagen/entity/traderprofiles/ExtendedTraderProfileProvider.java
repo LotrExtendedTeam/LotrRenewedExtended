@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
@@ -56,6 +57,11 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 	      };
 		makeStructureSpawnPools(consumer);
 		ExtendedLog.infoShown("Built "+dataHere.size()+" trader profiles.");
+		for(ResourceLocation key : ExtendedTraderTypes.UNIT_TYPES) {
+			if(!dataHere.containsKey(key)) {
+				LOGGER.warn("Didn't make expected trader profile type: "+key.toString());
+			}
+		}
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedTraderProfile spawner, Path pPath) throws IOException {

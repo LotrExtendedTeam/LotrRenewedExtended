@@ -1,0 +1,5 @@
+{
+  "faction": "lotr:durins_folk",
+  "speechbank": "lotr:durins_folk/smith",
+  "kill_bonus": 2
+}
