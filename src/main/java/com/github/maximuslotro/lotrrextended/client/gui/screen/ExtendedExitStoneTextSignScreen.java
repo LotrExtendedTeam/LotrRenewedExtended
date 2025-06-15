@@ -9,7 +9,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.DialogTexts;
 import net.minecraft.client.gui.fonts.TextInputUtil;
 import net.minecraft.client.gui.screen.Screen;
@@ -118,11 +117,12 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 		float f = 93.75F;
 		pMatrixStack.scale(93.75F, -93.75F, 93.75F);
 		pMatrixStack.translate(0.0D, -1.3125D, 0.0D);
-		BlockState blockstate = this.sign.getBlockState();
+		// Bypass StandingSignBlock check
 		pMatrixStack.translate(0.0D, -0.3125D, 0.0D);
 
 		boolean flag1 = this.frame / 6 % 2 == 0;
 		IRenderTypeBuffer.Impl irendertypebuffer$impl = this.minecraft.renderBuffers().bufferSource();
+		
 		float f2 = 0.010416667F;
 		pMatrixStack.translate(0.0D, (double)0.33333334F, (double)0.046666667F);
 		pMatrixStack.scale(0.010416667F, -0.010416667F, 0.010416667F);

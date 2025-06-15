@@ -456,6 +456,46 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.URUK_CHANDELIER.get()))
 		.unlockedBy("has_"+LOTRItems.URUK_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.URUK_STEEL_INGOT.get()))
 		.save(consumer, lotrLoc(ExtendedItems.URUK_CHANDELIER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.DWARVEN_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DWARVEN_CHANDELIER.get(), LOTRRecipes.DWARVEN_CRAFTING)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(Items.IRON_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.DWARVEN_STEEL_INGOT))
+		.unlockedBy("has_"+ExtendedItems.DWARVEN_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.DWARVEN_CHANDELIER.get()))
+		.unlockedBy("has_"+LOTRItems.DWARVEN_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.DWARVEN_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.DWARVEN_CHANDELIER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.DWARVEN_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.DWARVEN_CHANDELIER.get(), LOTRRecipes.DWARVEN_CRAFTING)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(Items.IRON_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.DWARVEN_TORCH.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.DWARVEN_STEEL_INGOT))
+		.unlockedBy("has_"+ExtendedItems.DWARVEN_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.DWARVEN_CHANDELIER.get()))
+		.unlockedBy("has_"+LOTRItems.DWARVEN_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.DWARVEN_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.DWARVEN_CHANDELIER.get().getRegistryName().getPath()+"_with_torch"));
+		GENERATEDRECIPES.add(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(Items.IRON_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.CANDLE.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.DWARVEN_STEEL_INGOT))
+		.unlockedBy("has_"+ExtendedItems.BLUE_DWARVEN_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get()))
+		.unlockedBy("has_"+LOTRItems.DWARVEN_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.DWARVEN_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING)
+		.pattern(" N ")
+		.pattern("CIC")
+		.define('N', Ingredient.of(Items.IRON_NUGGET))
+		.define('C', Ingredient.of(LOTRItems.DWARVEN_TORCH.get()))
+		.define('I', Ingredient.of(ExtendedTags.Items.DWARVEN_STEEL_INGOT))
+		.unlockedBy("has_"+ExtendedItems.BLUE_DWARVEN_CHANDELIER.get().getRegistryName().getPath(), has(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get()))
+		.unlockedBy("has_"+LOTRItems.DWARVEN_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.DWARVEN_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BLUE_DWARVEN_CHANDELIER.get().getRegistryName().getPath()+"_with_torch"));
 		makeToolsRecipe(consumer, ExtendedItems.BONE_PICKAXE,
 			ExtendedItems.BONE_SHOVEL,
 			ExtendedItems.BONE_AXE,

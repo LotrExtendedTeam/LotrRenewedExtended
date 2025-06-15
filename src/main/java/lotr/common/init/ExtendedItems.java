@@ -553,6 +553,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_CHANDELIER;
 	public static RegistryObject<Item> ORC_CHANDELIER;
 	public static RegistryObject<Item> URUK_CHANDELIER;
+	public static RegistryObject<Item> DWARVEN_CHANDELIER;
+	public static RegistryObject<Item> BLUE_DWARVEN_CHANDELIER;
 	public static RegistryObject<Item> ORC_STEEL_DOOR;
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Item> ORC_CHAIN;

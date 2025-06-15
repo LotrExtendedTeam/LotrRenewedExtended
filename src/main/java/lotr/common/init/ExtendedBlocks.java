@@ -393,6 +393,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGUL_CHANDELIER;
 	public static RegistryObject<Block> ORC_CHANDELIER;
 	public static RegistryObject<Block> URUK_CHANDELIER;
+	public static RegistryObject<Block> DWARVEN_CHANDELIER;
+	public static RegistryObject<Block> BLUE_DWARVEN_CHANDELIER;
+	
 	public static RegistryObject<Block> ORC_STEEL_DOOR;
 	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Block> ORC_CHAIN;
