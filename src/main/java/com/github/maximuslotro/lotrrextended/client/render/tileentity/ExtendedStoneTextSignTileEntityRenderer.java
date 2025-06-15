@@ -42,16 +42,16 @@ public class ExtendedStoneTextSignTileEntityRenderer extends TileEntityRenderer<
 	   int k = (int)((double)NativeImage.getG(i) * d0);
 	   int l = (int)((double)NativeImage.getB(i) * d0);
 	   int i1 = NativeImage.combine(0, l, k, j);
-	   int j1 = 20;
+	   int j1 = 40;
 	   FontRenderer fontrenderer = this.renderer.getFont();
-	   for(int k1 = 0; k1 < 4; ++k1) {
+	   for(int k1 = 0; k1 < 8; ++k1) {
 		   IReorderingProcessor ireorderingprocessor = pBlockEntity.getRenderMessage(k1, (messageComponent) -> {
 			   List<IReorderingProcessor> list = fontrenderer.split(messageComponent, 90);
 			   return list.isEmpty() ? IReorderingProcessor.EMPTY : list.get(0);
 		   });
 		   if (ireorderingprocessor != null) {
 			   float f3 = (float)(-fontrenderer.width(ireorderingprocessor) / 2);
-			   fontrenderer.drawInBatch(ireorderingprocessor, f3, (float)(k1 * 10 - j1), i1, false, pMatrixStack.last().pose(), pBuffer, false, 0, pCombinedLight);
+			   fontrenderer.drawInBatch(ireorderingprocessor, f3, (float)(k1 * 11 - j1), i1, false, pMatrixStack.last().pose(), pBuffer, false, 0, pCombinedLight);
 		   }
 	   }
 	   pMatrixStack.popPose();

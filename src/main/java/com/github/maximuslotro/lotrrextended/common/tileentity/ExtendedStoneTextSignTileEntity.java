@@ -20,10 +20,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedStoneTextSignTileEntity extends TileEntity {
-	private final ITextComponent[] messages = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
+	private final ITextComponent[] messages = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
 	private boolean isEditable = true;
 	private PlayerEntity playerWhoMayEdit;
-	private final IReorderingProcessor[] renderMessages = new IReorderingProcessor[4];
+	private final IReorderingProcessor[] renderMessages = new IReorderingProcessor[8];
 	private DyeColor color = DyeColor.BLACK;
 
 	public ExtendedStoneTextSignTileEntity() {
@@ -34,7 +34,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	public CompoundNBT save(CompoundNBT pCompound) {
 		super.save(pCompound);
 
-		for(int i = 0; i < 4; ++i) {
+		for(int i = 0; i < 8; ++i) {
 			String s = ITextComponent.Serializer.toJson(this.messages[i]);
 			pCompound.putString("Text" + (i + 1), s);
 		}
@@ -49,7 +49,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 		super.load(p_230337_1_, p_230337_2_);
 		this.color = DyeColor.byName(p_230337_2_.getString("Color"), DyeColor.BLACK);
 
-		for(int i = 0; i < 4; ++i) {
+		for(int i = 0; i < 8; ++i) {
 			String s = p_230337_2_.getString("Text" + (i + 1));
 			ITextComponent itextcomponent = ITextComponent.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.level instanceof ServerWorld) {

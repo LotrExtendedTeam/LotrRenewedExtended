@@ -37,7 +37,7 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 
 	public ExtendedExitStoneTextSignScreen(ExtendedStoneTextSignTileEntity pStoneSign) {
 		super(new TranslationTextComponent("gui.lotrextended.stone_engraving.title"));
-		this.messages = IntStream.range(0, 4).mapToObj(pStoneSign::getMessage).map(ITextComponent::getString).toArray((p_243354_0_) -> {
+		this.messages = IntStream.range(0, 8).mapToObj(pStoneSign::getMessage).map(ITextComponent::getString).toArray((p_243354_0_) -> {
 			return new String[p_243354_0_];
 		});
 		this.sign = pStoneSign;
@@ -63,7 +63,7 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 	@Override
 	public void removed() {
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
-		ExtendedPacketHandler.sendToServer(new ExtendedCUpdateStoneTextSignPacket(this.sign.getBlockPos(), this.messages[0], this.messages[1], this.messages[2], this.messages[3]));
+		ExtendedPacketHandler.sendToServer(new ExtendedCUpdateStoneTextSignPacket(this.sign.getBlockPos(), this.messages));
 
 		this.sign.setEditable(true);
 	}
@@ -96,13 +96,13 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 	@Override
 	public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
 		if (pKeyCode == 265) {
-			this.line = this.line - 1 & 3;
+			this.line = this.line - 1 & 7;
 			this.signField.setCursorToEnd();
 			return true;
 		} else if (pKeyCode != 264 && pKeyCode != 257 && pKeyCode != 335) {
 			return this.signField.keyPressed(pKeyCode) ? true : super.keyPressed(pKeyCode, pScanCode, pModifiers);
 		} else {
-			this.line = this.line + 1 & 3;
+			this.line = this.line + 1 & 7;
 			this.signField.setCursorToEnd();
 			return true;
 		}

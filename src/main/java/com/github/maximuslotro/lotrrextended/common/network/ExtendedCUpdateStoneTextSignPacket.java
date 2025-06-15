@@ -22,11 +22,6 @@ public class ExtendedCUpdateStoneTextSignPacket {
 	private BlockPos pos;
 	private String[] lines;
 
-    public ExtendedCUpdateStoneTextSignPacket(BlockPos pPos, String pLine0, String pLine1, String pLine2, String pLine3) {
-    	this.pos = pPos;
-        this.lines = new String[]{pLine0, pLine1, pLine2, pLine3};
-    }
-
     public ExtendedCUpdateStoneTextSignPacket(BlockPos pPos, String[] lines) {
     	this.pos = pPos;
         this.lines = lines;
@@ -35,16 +30,16 @@ public class ExtendedCUpdateStoneTextSignPacket {
     public static void encode(ExtendedCUpdateStoneTextSignPacket packet, PacketBuffer buf) {
     	buf.writeBlockPos(packet.pos);
 
-        for(int i = 0; i < 4; ++i) {
+        for(int i = 0; i < 8; ++i) {
         	buf.writeUtf(packet.lines[i]);
         }
     }
 
     public static ExtendedCUpdateStoneTextSignPacket decode(PacketBuffer buf) {
     	BlockPos pos = buf.readBlockPos();
-    	String[] lines = new String[4];
+    	String[] lines = new String[8];
 
-        for(int i = 0; i < 4; ++i) {
+        for(int i = 0; i < 8; ++i) {
            lines[i] = buf.readUtf(384);
         }
         return new ExtendedCUpdateStoneTextSignPacket(pos, lines);
