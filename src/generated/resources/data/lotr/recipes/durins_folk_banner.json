@@ -8,7 +8,7 @@
   ],
   "key": {
     "W": {
-      "tag": "minecraft:wool"
+      "tag": "lotrextended:wool_blocks"
     },
     "S": {
       "tag": "forge:rods/wooden"

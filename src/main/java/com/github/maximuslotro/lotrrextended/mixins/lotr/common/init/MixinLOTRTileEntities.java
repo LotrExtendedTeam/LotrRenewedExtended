@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHanging
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
@@ -132,5 +133,6 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, BannerTypes.getContainedHangingBlocks()));
     	ExtendedTileEntities.GRASS_VOID = register("grass_void_tileentity", () -> Builder.of(ExtendedGrassVoidTileEntity::new, ExtendedBlocks.GRASS_VOID.get()));
     	ExtendedTileEntities.STONE_SIGN = register("stone_engraving", () -> Builder.of(ExtendedStoneTextSignTileEntity::new, ExtendedBlocks.STONE_SIGN.get()));
+    	ExtendedTileEntities.DWARVEN_BED = register("dwarven_bed_tileentity", () -> Builder.of(ExtendedDwarvenBedTileEntity::new, ExtendedBlocks.DWARVEN_BED.get()));
     }
 }

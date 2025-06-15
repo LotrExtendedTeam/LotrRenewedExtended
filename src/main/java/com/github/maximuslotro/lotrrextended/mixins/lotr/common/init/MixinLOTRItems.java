@@ -38,6 +38,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConker
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
@@ -661,6 +662,7 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_FUR_BED = regBedBlockItemD(ExtendedBlocks.SILVER_FUR_BED, LOTRItemGroups.DECO, ()->silverFurBedRenderer());
 		ExtendedItems.WHITE_FUR_BED = regBedBlockItemD(ExtendedBlocks.WHITE_FUR_BED, LOTRItemGroups.DECO, ()->whiteFurBedRenderer());
 		ExtendedItems.BEDROLL = regBedBlockItemD(ExtendedBlocks.BEDROLL, LOTRItemGroups.DECO);
+		ExtendedItems.DWARVEN_BED = regBedBlockItemD(ExtendedBlocks.DWARVEN_BED, LOTRItemGroups.DECO, ()->dwarvenBedRenderer());
 		//Bushes
 		ExtendedItems.RASPBERRY_HEDGE = regBlockItemB(ExtendedBlocks.RASPBERRY_HEDGE, LOTRItemGroups.DECO);
 		ExtendedItems.BLUEBERRY_HEDGE = regBlockItemB(ExtendedBlocks.BLUEBERRY_HEDGE, LOTRItemGroups.DECO);
@@ -1142,6 +1144,15 @@ public class MixinLOTRItems {
 	@OnlyIn(Dist.CLIENT)
 	private static Callable<ItemStackTileEntityRenderer> whiteFurBedRenderer() {
 		return () -> new ExtendedItemRenderHelper<>(ExtendedWhiteFurBedTileEntity::new);
+	}
+	/**
+	 * Supplier for getting bed tileEntity renderers
+	 * @return A ItemStackTileEntityRenderer
+	 * */
+	@Unique
+	@OnlyIn(Dist.CLIENT)
+	private static Callable<ItemStackTileEntityRenderer> dwarvenBedRenderer() {
+		return () -> new ExtendedItemRenderHelper<>(ExtendedDwarvenBedTileEntity::new);
 	}
 	/**
 	 * Supplier for getting bed tileEntity renderers

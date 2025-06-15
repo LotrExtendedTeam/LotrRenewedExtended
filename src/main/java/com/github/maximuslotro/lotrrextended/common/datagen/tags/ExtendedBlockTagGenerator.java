@@ -337,6 +337,10 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.PLUM_WOOD.get()).add(ExtendedBlocks.STRIPPED_PLUM_WOOD.get());
 		tag(ExtendedTags.Blocks.WILLOW_LOGS).add(ExtendedBlocks.WILLOW_LOG.get()).add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get())
 		.add(ExtendedBlocks.WILLOW_WOOD.get()).add(ExtendedBlocks.STRIPPED_WILLOW_WOOD.get());
+		
+		tag(ExtendedTags.Blocks.WOOL_BLOCKS).add(Blocks.BLACK_WOOL).add(Blocks.BLUE_WOOL).add(Blocks.BROWN_WOOL).add(Blocks.CYAN_WOOL).add(Blocks.GRAY_WOOL)
+		.add(Blocks.GREEN_WOOL).add(Blocks.LIGHT_BLUE_WOOL).add(Blocks.LIGHT_GRAY_WOOL).add(Blocks.LIME_WOOL).add(Blocks.MAGENTA_WOOL).add(Blocks.ORANGE_WOOL)
+		.add(Blocks.PINK_WOOL).add(Blocks.PURPLE_WOOL).add(Blocks.RED_WOOL).add(Blocks.WHITE_WOOL).add(Blocks.YELLOW_WOOL);
 	}
 
 	@Override

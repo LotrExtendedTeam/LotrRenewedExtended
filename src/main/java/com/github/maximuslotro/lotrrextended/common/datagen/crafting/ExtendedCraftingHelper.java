@@ -53,7 +53,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
     public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
     public static final ITag.INamedTag<Item> PLANKS = ItemTags.bind("minecraft:planks");
     public static final ITag.INamedTag<Item> HORNS = ItemTags.bind("forge:horns");
-    public static final ITag.INamedTag<Item> WOOL = ItemTags.bind("minecraft:wool");
 
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
@@ -298,6 +297,29 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeBedRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> tag, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = bed.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(bed.get())
+			.pattern("###")
+			.pattern("XXX")
+			.define('#', Ingredient.of(tag))
+			.define('X', PLANKS)
+			.unlockedBy("has_"+name, has(bed.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(bed.get(), table)
+			.pattern("###")
+			.pattern("XXX")
+			.define('#', Ingredient.of(tag))
+			.define('X', PLANKS)
+			.unlockedBy("has_"+name, has(bed.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeBedRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, Item reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
@@ -376,10 +398,10 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.pattern("W")
 		.pattern("S")
 		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
+		.define('W', Ingredient.of(ExtendedTags.Items.WOOL_BLOCKS))
 		.define('S', Ingredient.of(STICKS))
 		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
+		.unlockedBy("has_wool", has(ExtendedTags.Items.WOOL_BLOCKS))
 		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
 		.save(consumer, lotrLoc(banner.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(pattern.get().getRegistryName().getPath());

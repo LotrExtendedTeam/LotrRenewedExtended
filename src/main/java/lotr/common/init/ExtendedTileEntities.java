@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHanging
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
@@ -52,6 +53,6 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedMEHangingBannerTileEntity>> BANNER_HANGING;
 	public static RegistryObject<TileEntityType<ExtendedGrassVoidTileEntity>> GRASS_VOID;
 	public static RegistryObject<TileEntityType<ExtendedStoneTextSignTileEntity>> STONE_SIGN;
-
+	public static RegistryObject<TileEntityType<ExtendedDwarvenBedTileEntity>> DWARVEN_BED;
 }
 

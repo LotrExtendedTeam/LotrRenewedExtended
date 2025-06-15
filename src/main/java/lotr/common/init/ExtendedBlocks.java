@@ -474,6 +474,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_FUR_BED;
 	public static RegistryObject<Block> WHITE_FUR_BED;
 	public static RegistryObject<Block> BEDROLL;
+	public static RegistryObject<Block> DWARVEN_BED;
 
 	public static RegistryObject<Block> CONQUEST_TABLE;
 	public static RegistryObject<Block> WEAPON_RACK;

@@ -601,6 +601,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_FUR_BED;
 	public static RegistryObject<Item> WHITE_FUR_BED;
 	public static RegistryObject<Item> BEDROLL;
+	public static RegistryObject<Item> DWARVEN_BED;
 
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
