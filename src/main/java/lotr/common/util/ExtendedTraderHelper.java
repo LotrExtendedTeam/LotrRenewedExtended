@@ -74,7 +74,7 @@ public class ExtendedTraderHelper {
     public static int[] getBoughtPrices(List<ExtendedTrade> bought) {
         int[] boughtItems = new int[bought.size()];
         for (int i = 0; i < bought.size(); i++) {
-            boughtItems[i] = bought.get(i).getAmount();
+            boughtItems[i] = bought.get(i).getPrice();
         }
         return boughtItems;
     }
@@ -82,7 +82,7 @@ public class ExtendedTraderHelper {
     public static int[] getSoldPrices(List<ExtendedTrade> sold) {
         int[] soldPrices = new int[sold.size()];
         for (int i = 0; i < sold.size(); i++) {
-            soldPrices[i] = sold.get(i).getAmount();
+            soldPrices[i] = sold.get(i).getPrice();
         }
         return soldPrices;
     }

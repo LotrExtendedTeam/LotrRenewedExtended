@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -49,7 +50,7 @@ public class ExtendedTradeContainer extends Container {
 
     public final ExtendedTraderEntity trader;
 
-    private IInventory displayInventory = new Inventory(18);
+    private IInventory displayInventory = new Inventory(18);//First row of 9 are items players buy from the trade, and the second row of 9 is items sold to the trader
     public Inventory sellInventory = new Inventory(9);
 
     private int[] soldPrices = new int[9];
@@ -58,8 +59,6 @@ public class ExtendedTradeContainer extends Container {
     private int[] boughtPrices = new int[9];
     private int[] boughtQuantities = new int[9];
     private int[] boughtOriginalQuantities = new int[9];
-
-    private ItemStack[] soldItems;
 
     private PlayerEntity player;
 
@@ -93,14 +92,6 @@ public class ExtendedTradeContainer extends Container {
         for (int i = 0; i < 18; i++) {
         	displayInventory.setItem(i, displayItems.get(i));
         }
-        // Strip first 9 items from display inventory for sellItems array?
-        List<ItemStack> soldItemsTemp = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-        	if(!displayItems.get(i).isEmpty()) {
-        		soldItemsTemp.add(displayItems.get(i));
-        	}
-        }
-        soldItems = soldItemsTemp.toArray(new ItemStack[soldItemsTemp.size()]);
 
         // Load trade info from packet nbt
         soldPrices = nbt.getIntArray("sp");
@@ -208,7 +199,7 @@ public class ExtendedTradeContainer extends Container {
         HashMap<Item, Integer> counts = new HashMap<>();
         for (int i = 0; i < sellInventory.getContainerSize(); i++) {
             ItemStack stack = sellInventory.getItem(i);
-            if (counts.containsKey(stack.getItem().getItem())) {
+            if (counts.containsKey(stack.getItem())) {
                 int count = counts.get(stack.getItem()) + stack.getCount();
                 counts.put(stack.getItem(), count);
             } else {
@@ -234,37 +225,32 @@ public class ExtendedTradeContainer extends Container {
     }
 
     @Override
-    public ItemStack clicked(int index, int p_184996_2_, ClickType clickType, PlayerEntity p_184996_4_) {
+    public ItemStack clicked(int index, int pDragType, ClickType pClickType, PlayerEntity pPlayer) {
         // handle buy items
-        if (index < 9 && !displayInventory.getItem(index).equals(ItemStack.EMPTY) && (clickType.equals(ClickType.PICKUP) || clickType.equals(ClickType.PICKUP_ALL))) {
+        if (index < 9 && !displayInventory.getItem(index).isEmpty() && (pClickType.equals(ClickType.PICKUP) || pClickType.equals(ClickType.PICKUP_ALL))) {
         	if(trader.getTraderData().isTradesLocked()) {
         		return ItemStack.EMPTY;
         	}
             boolean canPerformTrade = CoinUtils.totalValueInPlayerInventory(player.inventory) >= soldPrices[index] && soldQuantities[index] > 0;
 
-            if (index < soldItems.length) {
-                displayInventory.setItem(index, soldItems[index].copy());
-                displayInventory.setChanged();
-            }
-
-            // note: always use ItemStack.isEmpty() and not .equals(ItemStack.EMPTY) - caused some really weird behavior
-            // that took quite a while to debug
+            // note: always use ItemStack.isEmpty() and not .equals(ItemStack.EMPTY) - caused some really weird behavior that took quite a while to debug
+            // Allow for pick-up buying only if held item is empty or the held item and buying item match, tags match, and stack count is allowed
             boolean stackHasSpace = player.inventory.getCarried().isEmpty() ||
-                    (player.inventory.getCarried().getItem().equals(soldItems[index].getItem())
-                            && player.inventory.getCarried().getCount() + soldItems[index].getCount() <= soldItems[index].getMaxStackSize());
-
+                    (ExtendedItemStackUtils.isSameItemStackItemAndTag(player.inventory.getCarried(), displayInventory.getItem(index))
+                            && player.inventory.getCarried().getCount() + displayInventory.getItem(index).getCount() <= displayInventory.getItem(index).getMaxStackSize());
             if (canPerformTrade && stackHasSpace) {
             	int price = soldPrices[index];
             	if(!CoinUtils.removeCoins(player, player.inventory, price)) {
-            		return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
+            		return player.inventory.getCarried();
             	}
                 trader.playTradeSound();
-                ItemStack itemForTrade = soldItems[index].copy();
-                if (player.inventory.getCarried().equals(ItemStack.EMPTY)) {
+                ItemStack itemForTrade = displayInventory.getItem(index).copy();
+                if (player.inventory.getCarried().isEmpty()) {
                     player.inventory.setCarried(itemForTrade);
                 } else {
-                    player.inventory.setCarried(new ItemStack(soldItems[index].getItem(),
-                            player.inventory.getCarried().getCount() + soldItems[index].getCount()));
+                    // Its fine overriding the carried item since we already checked that the item tags match, just ensure we account for the original carried stack count
+                    itemForTrade.grow(player.inventory.getCarried().getCount());
+                    player.inventory.setCarried(itemForTrade);//.grow(displayInventory.getItem(index).getCount());
                 }
                 soldQuantities[index] = soldQuantities[index] - 1;
                 if (!level.isClientSide) {
@@ -287,7 +273,7 @@ public class ExtendedTradeContainer extends Container {
 
         // implement custom PICKUP_ALL logic based on deobfuscated MC code that
         // only evaluates items from the players inventory and not the other containers
-        if (clickType == ClickType.PICKUP_ALL && index >= 0) {
+        if (pClickType == ClickType.PICKUP_ALL && index >= 0) {
             if (index < 27) {
                 return ItemStack.EMPTY;
             }
@@ -299,8 +285,8 @@ public class ExtendedTradeContainer extends Container {
             // Check if the player is holding something and the initial slot is either empty or not allowed to pick up from
             if (!carriedItem.isEmpty() && (initialSlot == null || !initialSlot.hasItem() || !initialSlot.mayPickup(player))) {
                 // Decide whether to loop from the start or end of the inventory based on the button pressed
-                int startIndex = p_184996_2_ == 0 ? 0 : this.slots.size() - 1;
-                int direction = p_184996_2_ == 0 ? 1 : -1;
+                int startIndex = pDragType == 0 ? 0 : this.slots.size() - 1;
+                int direction = pDragType == 0 ? 1 : -1;
 
                 // Perform two passes over the slots
                 for (int pass = 0; pass < 2; ++pass) {
@@ -341,11 +327,11 @@ public class ExtendedTradeContainer extends Container {
             return carriedItem;
         }
         // TODO add better validation for allowable move types
-        if (clickType == ClickType.QUICK_CRAFT || clickType == ClickType.SWAP || clickType == ClickType.THROW) {
+        if (pClickType == ClickType.QUICK_CRAFT || pClickType == ClickType.SWAP || pClickType == ClickType.THROW) {
         	return ItemStack.EMPTY;
         }
         // Allow clone as it only works in creative anyways
-        return super.clicked(index, p_184996_2_, clickType, p_184996_4_);
+        return super.clicked(index, pDragType, pClickType, pPlayer);
     }
 
     @Override
@@ -449,7 +435,7 @@ public class ExtendedTradeContainer extends Container {
         HashMap<Item, Integer> counts = new HashMap<>();
         for (int i = 0; i < sellInventory.getContainerSize(); i++) {
             ItemStack stack = sellInventory.getItem(i);
-            if (counts.containsKey(stack.getItem().getItem())) {
+            if (counts.containsKey(stack.getItem())) {
                 int count = counts.get(stack.getItem()) + stack.getCount();
                 counts.put(stack.getItem(), count);
             } else {
@@ -462,14 +448,15 @@ public class ExtendedTradeContainer extends Container {
         List<ItemStack> soldItems = new ArrayList<>();
         // loop through all trade deals and determine value
         for (ExtendedTrade trade : trader.getTraderData().getBuys()) {
-            if (counts.containsKey(trade.getItem().getItem())) {
-                int count = counts.get(trade.getItem().getItem());
-                int totalTrades = count / trade.getItem().getCount();
-                if (totalTrades > trade.getQuantityLeft()) totalTrades = trade.getQuantityLeft();
-
-                soldItems.add(new ItemStack(trade.getItem().getItem()));
-                sellInventory.removeItemType(trade.getItem().getItem(), totalTrades * trade.getItem().getCount());
-                coinsGiven += totalTrades * trade.getAmount();
+            if (counts.containsKey(trade.getStack().getItem())) {
+                int count = counts.get(trade.getStack().getItem());
+                int totalTrades = count / trade.getStack().getCount();
+                if (totalTrades > trade.getQuantityLeft()) {
+                	totalTrades = trade.getQuantityLeft();
+                }
+                soldItems.add(new ItemStack(trade.getStack().getItem()));
+                sellInventory.removeItemType(trade.getStack().getItem(), totalTrades * trade.getStack().getCount());
+                coinsGiven += totalTrades * trade.getPrice();
                 trade.setQuantityLeft(trade.getQuantityLeft() - totalTrades);
                 sellInventory.setChanged();
             }
@@ -500,7 +487,9 @@ public class ExtendedTradeContainer extends Container {
             itemsToGive.add(new ItemStack(ExtendedItems.SILVER_COIN_TEN.get(), tens));
             coinsGiven -= tens * 10;
         }
-        if (coinsGiven > 0) itemsToGive.add(new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), coinsGiven));
+        if (coinsGiven > 0) {
+        	itemsToGive.add(new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), coinsGiven));
+        }
 
         for (ItemStack stack : itemsToGive) {
             if (!player.inventory.add(stack)) {
@@ -509,9 +498,10 @@ public class ExtendedTradeContainer extends Container {
         }
         player.inventory.setChanged();
 
-        // if on the server side send a packet to the client that updates the quantities
         if (!player.level.isClientSide()) {
         	ExtendedPacketHandler.sendToClient(new ExtendedSUpdateTradeQuantitiesPacket(trader.getTraderData().getSoldQuantities(), trader.getTraderData().getBoughtQuantities()), (ServerPlayerEntity) player);
+        }else {
+        	ExtendedLog.error("THIS SHOULD ONLY BE CALLED SERVER SIDE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
     }
 

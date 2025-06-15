@@ -13,69 +13,55 @@ import net.minecraft.nbt.ListNBT;
 
 public class TradeUtils {
 
-    public static ArrayList<ExtendedTrade> loadAllTrades(ExtendedTradeType type, CompoundNBT tag) {
-        ListNBT listnbt = tag.getList(type.name(), 10);
-        if (listnbt.isEmpty()) {
-            return null;
-        }
+	public static ArrayList<ExtendedTrade> loadAllTrades(ExtendedTradeType type, CompoundNBT tag) {
+		ListNBT listnbt = tag.getList(type.name(), 10);
+		if (listnbt.isEmpty()) {
+			return null;
+		}
 
-        ArrayList<ExtendedTrade> result = new ArrayList<>();
+		ArrayList<ExtendedTrade> result = new ArrayList<>();
 
-        for (int i = 0; i < listnbt.size(); ++i) {
-            CompoundNBT compoundnbt = listnbt.getCompound(i);
-            ItemStack item = ItemStack.of(compoundnbt.getCompound("item"));
-            int quantity = compoundnbt.getInt("quantityLeft");
-            int amount = compoundnbt.getInt("amount");
-            int originalQuantity = compoundnbt.getInt("startingQuantity");
+		for (int i = 0; i < listnbt.size(); ++i) {
+			result.add(ExtendedTrade.load(listnbt.getCompound(i)));
+		}
 
-            // handle a case in which it was never set - use default of 100
-            if (originalQuantity == 0) {
-                originalQuantity = 100;
-            }
+		return result;
+	}
 
-            ExtendedTrade trade = new ExtendedTrade(item, amount, quantity, originalQuantity);
-            result.add(trade);
-        }
+	public static void saveAllTrades(ExtendedTradeType type, List<ExtendedTrade> trades, CompoundNBT tag) {
+		ListNBT listnbt = new ListNBT();
 
-        return result;
-    }
+		for (ExtendedTrade trade : trades) {
+			listnbt.add(trade.save(new CompoundNBT()));
+		}
 
-    public static void saveAllTrades(ExtendedTradeType type, List<ExtendedTrade> trades, CompoundNBT tag) {
-        ListNBT listnbt = new ListNBT();
+		tag.put(type.name(), listnbt);
+	}
 
-        for (ExtendedTrade trade : trades) {
-            CompoundNBT compoundnbt = new CompoundNBT();
-            compoundnbt = trade.save(compoundnbt);
-            listnbt.add(compoundnbt);
-        }
+	public static Inventory generateDisplayInventory(List<ExtendedTrade> buys, List<ExtendedTrade> sells) {
+		Inventory result = new Inventory(18);
 
-        tag.put(type.name(), listnbt);
-    }
+		int max = Math.min(buys.size(), 9);
+		for (int i = 0; i < max; i++) {
+			result.setItem(i, buys.get(i).getStack());
+		}
 
-    public static Inventory generateDisplayInventory(List<ExtendedTrade> buys, List<ExtendedTrade> sells) {
-    	Inventory result = new Inventory(18);
+		max = Math.min(sells.size(), 9);
+		for (int i = 0; i < max; i++) {
+			result.setItem(9 + i, sells.get(i).getStack());
+		}
 
-    	int max = Math.min(buys.size(), 9);
-    	for (int i = 0; i < max; i++) {
-    		result.setItem(i, buys.get(i).getItem());
-    	}
+		return result;
+	}
 
-    	max = Math.min(sells.size(), 9);
-    	for (int i = 0; i < max; i++) {
-    		result.setItem(9 + i, sells.get(i).getItem());
-    	}
+	public static boolean isValidSellItem(ItemStack stack, List<ExtendedTrade> itemsBought) {
+		for (ExtendedTrade trade : itemsBought) {
+			ItemStack itemBought = trade.getStack();
+			if (itemBought.getItem().equals(stack.getItem())) {
+				return true;
+			}
+		}
 
-    	return result;
-    }
-
-   public static boolean isValidSellItem(ItemStack stack, List<ExtendedTrade> itemsBought) {
-        for (ExtendedTrade trade : itemsBought) {
-           ItemStack itemBought = trade.getItem();
-           if (itemBought.getItem().equals(stack.getItem())) {
-               return true;
-           }
-        }
-
-        return false;
-   }
+		return false;
+	}
 }
