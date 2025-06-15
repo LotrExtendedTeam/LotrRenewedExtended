@@ -39,6 +39,9 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new AdvancementsProviderLothlorien().accept(consumer);
 		new AdvancementsProviderFangorn().accept(consumer);
 		new AdvancementsProviderRohan().accept(consumer);
+		new AdvancementsProviderNindalf().accept(consumer);
+		new AdvancementsProviderGondor().accept(consumer);
+		new AdvancementsProviderMordor().accept(consumer);
 		ExtendedLog.infoShown("###############EXTENDED###ADVANCEMENTS#############");
 		ExtendedLog.infoShown("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).");
 		ExtendedLog.infoShown("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");

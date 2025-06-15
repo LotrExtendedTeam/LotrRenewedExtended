@@ -1,0 +1,54 @@
+{
+  "parent": "lotrextended:angmar/stench_of_evil",
+  "display": {
+    "icon": {
+      "item": "lotr:glowstone_ore"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.angmar.risky_excavations.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.angmar.risky_excavations.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "broke_remains_ore_dwarf": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:remains_ore_dwarf"
+      }
+    },
+    "broke_remains_ore_elf": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:remains_ore_elf"
+      }
+    },
+    "broke_remains_ore_man": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:remains_ore_man"
+      }
+    },
+    "broke_remains_ore_orc": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:remains_ore_orc"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broke_remains_ore_dwarf",
+      "broke_remains_ore_elf",
+      "broke_remains_ore_man",
+      "broke_remains_ore_orc"
+    ]
+  ]
+}
