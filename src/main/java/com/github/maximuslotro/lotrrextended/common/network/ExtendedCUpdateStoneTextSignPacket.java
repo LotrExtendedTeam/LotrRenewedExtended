@@ -72,7 +72,7 @@ public class ExtendedCUpdateStoneTextSignPacket {
            }
 
            ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
-           if (!signtileentity.isEditable() || signtileentity.getPlayerWhoMayEdit() != context.get().getSender()) {
+           if (signtileentity.getPlayerWhoMayEdit() != context.get().getSender()) {
               ExtendedLog.warn("Player {} just tried to change non-editable sign", context.get().getSender().getName().getString());
               return;
            }
@@ -80,7 +80,7 @@ public class ExtendedCUpdateStoneTextSignPacket {
            for(int i = 0; i < list.size(); ++i) {
               signtileentity.setMessage(i, new StringTextComponent(list.get(i)));
            }
-
+           signtileentity.setAllowedPlayerEditor(null);
            signtileentity.setChanged();
            serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
         }

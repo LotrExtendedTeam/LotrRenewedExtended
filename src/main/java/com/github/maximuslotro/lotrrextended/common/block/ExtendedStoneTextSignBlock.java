@@ -4,6 +4,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenStoneTextSignPacket;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -16,6 +19,7 @@ import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -44,7 +48,7 @@ public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWater
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0.0D, 4.5D, 15.0D, 16.0D, 12.5D, 16.0D), Direction.SOUTH, Block.box(0.0D, 4.5D, 0.0D, 16.0D, 12.5D, 1.0D), Direction.EAST, Block.box(0.0D, 4.5D, 0.0D, 1.0D, 12.5D, 16.0D), Direction.WEST, Block.box(15.0D, 4.5D, 0.0D, 16.0D, 12.5D, 16.0D)));
+	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0.0D, 0.0D, 15.0D, 16.0D, 16.0D, 16.0D), Direction.SOUTH, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 1.0D), Direction.EAST, Block.box(0.0D, 0.0D, 0.0D, 1.0D, 16.0D, 16.0D), Direction.WEST, Block.box(15.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)));
 
 	public ExtendedStoneTextSignBlock(AbstractBlock.Properties properties) {
 		super(properties);
@@ -126,29 +130,52 @@ public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWater
 	@Override
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
-		boolean flag = itemstack.getItem() instanceof DyeItem && pPlayer.abilities.mayBuild;
-		if (pLevel.isClientSide) {
-			return flag ? ActionResultType.SUCCESS : ActionResultType.CONSUME;
-		} else {
-			TileEntity tileentity = pLevel.getBlockEntity(pPos);
-			if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
-				ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
-				if (flag) {
-					boolean flag1 = signtileentity.setColor(((DyeItem)itemstack.getItem()).getDyeColor());
-					if (flag1 && !pPlayer.isCreative()) {
-						itemstack.shrink(1);
-					}
-					// Extended Start
-					return ActionResultType.SUCCESS;
-					// Extended End
-				}
-				//return signtileentity.executeClickCommands(pPlayer) ? ActionResultType.SUCCESS : ActionResultType.PASS;
-				return ActionResultType.PASS;
-				
+		if(itemstack.getItem() instanceof DyeItem) {
+			boolean flag = pPlayer.abilities.mayBuild;
+			if (pLevel.isClientSide) {
+				return flag ? ActionResultType.SUCCESS : ActionResultType.CONSUME;
 			} else {
+				TileEntity tileentity = pLevel.getBlockEntity(pPos);
+				if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
+					ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
+					if (flag) {
+						boolean flag1 = signtileentity.setColor(((DyeItem)itemstack.getItem()).getDyeColor());
+						if (flag1 && !pPlayer.isCreative()) {
+							itemstack.shrink(1);
+						}
+						// Extended Start
+						return ActionResultType.SUCCESS;
+						// Extended End
+					}
+					//return signtileentity.executeClickCommands(pPlayer) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+					return ActionResultType.PASS;
+				}
+				return ActionResultType.PASS;
+			}
+		}else if(itemstack.getItem() instanceof ExtendedChiselItem) {
+			if (pLevel.isClientSide) {
+				return ActionResultType.SUCCESS;
+			} else {
+				TileEntity tileentity = pLevel.getBlockEntity(pPos);
+				if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
+					ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
+					if (signtileentity.getPlayerWhoMayEdit()==null) {
+						signtileentity.setAllowedPlayerEditor(pPlayer);
+						ExtendedPacketHandler.sendToClient(new ExtendedSOpenStoneTextSignPacket(((ExtendedStoneTextSignTileEntity)pLevel.getBlockEntity(pPos)).getBlockPos()), (ServerPlayerEntity) pPlayer);
+						if (!pPlayer.isCreative()) {
+							itemstack.hurtAndBreak(1, pPlayer, (player) -> player.broadcastBreakEvent(pPlayer.getUsedItemHand()));
+						}
+						// Extended Start
+						return ActionResultType.SUCCESS;
+						// Extended End
+					}
+					//return signtileentity.executeClickCommands(pPlayer) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+					return ActionResultType.PASS;
+				}
 				return ActionResultType.PASS;
 			}
 		}
+		return ActionResultType.PASS;
 	}
 
 	@Override
