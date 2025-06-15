@@ -1,9 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserThrowingAxe;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRMaterial;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +27,8 @@ public class ExtendedThrowableAxeItem extends Item {
 
     public ExtendedThrowableAxeItem(IItemTier tier) {
         super(new Item.Properties().tab(LOTRItemGroups.COMBAT));
-        //DispenserBlock.registerBehavior(); TODO
+        DispenserBlock.registerBehavior(this, new ExtendedDispenserThrowingAxe());
+
     }
     public ExtendedThrowableAxeItem(LOTRMaterial material) {
         this((IItemTier)material.asTool());

@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.entity.projectile;
 
 import lotr.common.entity.projectile.LOTRAbstractArrowEntity;
 import lotr.common.init.ExtendedEntities;
-import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -20,8 +20,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 
@@ -57,7 +55,7 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         return (ItemStack)this.entityData.get(THROWING_AXE_ITEM);
     }
 
-    private void setThrowingAxeItem(ItemStack stack) {
+    public void setThrowingAxeItem(ItemStack stack) {
         this.entityData.set(THROWING_AXE_ITEM, stack);
     }
 
@@ -91,18 +89,6 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
     }
 
-    @Override
-    protected void onHitBlock(BlockRayTraceResult result) {
-        BlockPos pos = result.getBlockPos();
-        BlockState blockState = this.level.getBlockState(pos);
-        
-        // Only stick in solid blocks
-        if (blockState.getMaterial().isSolid()) {
-            super.onHitBlock(result);
-        }
-    }
-
-
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return SoundEvents.TRIDENT_HIT_GROUND;
     }
@@ -134,9 +120,12 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
 
     public void playerTouch(PlayerEntity player) {
         if (!this.level.isClientSide && (this.inGround || this.isNoPhysics()) && this.shakeTime <= 0) {
-            boolean canPickUp = this.pickup == PickupStatus.ALLOWED
+            // Don't allow pickup if owner is an mob
+            Entity owner = this.getOwner();
+            
+            boolean canPickUp = (this.pickup == PickupStatus.ALLOWED
                     || this.pickup == PickupStatus.CREATIVE_ONLY && player.abilities.instabuild
-                    || this.isNoPhysics() && this.getOwner().getUUID().equals(player.getUUID());
+                    || this.isNoPhysics()) && !(owner instanceof CreatureEntity);
 
             if (canPickUp) {
                 if (this.pickup == PickupStatus.CREATIVE_ONLY) {
