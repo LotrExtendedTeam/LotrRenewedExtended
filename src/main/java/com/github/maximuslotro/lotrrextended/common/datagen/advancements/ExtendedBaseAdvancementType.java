@@ -41,7 +41,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-public abstract class BaseAdvancementType implements Consumer<Consumer<Advancement>>{
+public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
 	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, List<PreRegisteredLOTRBiome> biomes) {
 		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
@@ -122,7 +122,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public static Advancement.Builder addKillEntityTrigger(Advancement.Builder builder, EntityType<?> entity) {
-		return builder.addCriterion("kill_"+entity.getRegistryName().getPath(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.entity().of(entity)));
+		return addKillEntityTriggers(builder, entity);
 	}
 	public static Advancement.Builder addKillEntityTriggers(Advancement.Builder builder, EntityType<?>... entitys) {
 		for(EntityType<?> entity : entitys) {
@@ -132,8 +132,14 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 	}
 
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), false));
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), true));
+		return addTradeEntityTriggers(builder, entityType);
+	}
+
+	public static Advancement.Builder addTradeEntityTriggers(Advancement.Builder builder, EntityType<?>... entityTypes) {
+		for(EntityType<?> entity : entityTypes) {
+			builder.addCriterion("trade_"+entity.getRegistryName().getPath()+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entity), false));
+			builder.addCriterion("trade_"+entity.getRegistryName().getPath()+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entity), true));
+		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
@@ -200,12 +206,24 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		return Advancement.Builder.advancement();
 	}
 
-	public BaseData data(Item icon, String name, boolean mainCat, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden){
-		return new BaseData((new ItemStack(icon)), name, mainCat, frame, showToast, announceChat, ishidden);
+	public BaseData data(Item icon, String name, FrameType frame){
+		return data(icon, name, frame, true, true, false);
 	}
 
-	public BaseData data(ItemStack icon, String name, boolean mainCat, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden){
-		return new BaseData(icon, name, mainCat, frame, showToast, announceChat, ishidden);
+	public BaseData data(Item icon, String name, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden){
+		return data(icon, name, false, frame, showToast, announceChat, ishidden);
+	}
+
+	public BaseData dataMain(Item icon, String name, FrameType frame){
+		return dataMain(icon, name, frame, true, true, false);
+	}
+
+	public BaseData dataMain(Item icon, String name, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden){
+		return data(icon, name, true, frame, showToast, announceChat, ishidden);
+	}
+
+	private BaseData data(Item icon, String name, boolean mainCat, FrameType frame, boolean showToast, boolean announceChat, boolean ishidden){
+		return new BaseData((new ItemStack(icon)), name, mainCat, frame, showToast, announceChat, ishidden);
 	}
 
 	public Advancement build(boolean isLegacy, BaseData data, Advancement.Builder builder){
@@ -251,7 +269,7 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 		private final FrameType frame;
 		private final boolean showToast;
 		private final boolean announceChat;
-		private final boolean hidden;
+		private boolean hidden;
 		private float x = 0.34F;
 		private float y = 0.34F;
 		private TextFormatting titleFormatting = null;
@@ -303,6 +321,11 @@ public abstract class BaseAdvancementType implements Consumer<Consumer<Advanceme
 
 		public BaseData setTitle(String title) {
 			this.titleMain = title;
+			return this;
+		}
+
+		public BaseData setHidden() {
+			this.hidden = true;
 			return this;
 		}
 

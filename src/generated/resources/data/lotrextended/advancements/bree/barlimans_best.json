@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "parent": "lotrextended:bree/insider_bargings",
   "display": {
     "icon": {
       "item": "lotr:wooden_mug"
@@ -30,12 +30,28 @@
         "entity": "lotr:bree_innkeeper",
         "istraderselling": "true"
       }
+    },
+    "trade_bree_hobbit_innkeeper_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_innkeeper",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_hobbit_innkeeper_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_innkeeper",
+        "istraderselling": "true"
+      }
     }
   },
   "requirements": [
     [
       "trade_bree_innkeeper_buy",
-      "trade_bree_innkeeper_sell"
+      "trade_bree_innkeeper_sell",
+      "trade_bree_hobbit_innkeeper_buy",
+      "trade_bree_hobbit_innkeeper_sell"
     ]
   ]
 }

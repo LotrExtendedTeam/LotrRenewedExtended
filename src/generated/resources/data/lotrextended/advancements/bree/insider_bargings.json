@@ -1,0 +1,233 @@
+{
+  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.bree.insider_bargings.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.bree.insider_bargings.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_bree_baker_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_baker",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_baker_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_baker",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_hobbit_baker_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_baker",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_hobbit_baker_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_baker",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_brewer_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_brewer",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_brewer_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_brewer",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_hobbit_brewer_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_brewer",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_hobbit_brewer_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_brewer",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_butcher_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_butcher",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_butcher_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_butcher",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_hobbit_butcher_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_butcher",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_hobbit_butcher_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_butcher",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_florist_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_florist",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_florist_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_florist",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_hobbit_florist_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_florist",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_hobbit_florist_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_florist",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_leatherworker_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_leatherworker",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_leatherworker_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_leatherworker",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_lumberman_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_lumberman",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_lumberman_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_lumberman",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_potter_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_potter",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_potter_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_potter",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_hobbit_potter_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_potter",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_hobbit_potter_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_hobbit_potter",
+        "istraderselling": "true"
+      }
+    },
+    "trade_bree_stonemason_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_stonemason",
+        "istraderselling": "false"
+      }
+    },
+    "trade_bree_stonemason_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:bree_stonemason",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_bree_baker_buy",
+      "trade_bree_baker_sell",
+      "trade_bree_hobbit_baker_buy",
+      "trade_bree_hobbit_baker_sell",
+      "trade_bree_brewer_buy",
+      "trade_bree_brewer_sell",
+      "trade_bree_hobbit_brewer_buy",
+      "trade_bree_hobbit_brewer_sell",
+      "trade_bree_butcher_buy",
+      "trade_bree_butcher_sell",
+      "trade_bree_hobbit_butcher_buy",
+      "trade_bree_hobbit_butcher_sell",
+      "trade_bree_florist_buy",
+      "trade_bree_florist_sell",
+      "trade_bree_hobbit_florist_buy",
+      "trade_bree_hobbit_florist_sell",
+      "trade_bree_leatherworker_buy",
+      "trade_bree_leatherworker_sell",
+      "trade_bree_lumberman_buy",
+      "trade_bree_lumberman_sell",
+      "trade_bree_potter_buy",
+      "trade_bree_potter_sell",
+      "trade_bree_hobbit_potter_buy",
+      "trade_bree_hobbit_potter_sell",
+      "trade_bree_stonemason_buy",
+      "trade_bree_stonemason_sell"
+    ]
+  ]
+}

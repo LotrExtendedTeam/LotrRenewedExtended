@@ -12,10 +12,9 @@
       "translate": "advancements.lotrextended.forodwaith.forochel.description"
     },
     "frame": "task",
-    "show_toast": false,
+    "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false,
-    "background": "lotrextended:textures/gui/advancements/backgrounds/forodwaith.png"
+    "hidden": false
   },
   "criteria": {
     "enter_forochel": {
