@@ -54,26 +54,46 @@ public class GeneralAdvancementsProvider extends BaseAdvancementType{
 		Advancement trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "trade", false, FrameType.TASK, true, true, false)
 			.setTitle("Middle Earth Marketplace").setDescription("Trade with a Middle Earth trader."),
 			addTradeNoEntityTrigger(make(), "any_trader", 0).parent(base));
-
+		// Obtainable with the current 200 max item limit, at 5c per item for 64 stackable items
 		Advancement filthy_rich = build(true, data(ExtendedItems.SILVER_COIN_TEN.get(), "filthy_rich", false, FrameType.TASK, true, true, false)
 			.setTitle("Filthy Rich").setDescription("Earn 1000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 1000).parent(trade));
-
+		// Obtainable with the current 200 max item limit, at 13c per item for 64 stackable items
 		Advancement ludicrously_rich = build(false, data(ExtendedItems.SILVER_COIN_HUNDRED.get(), "ludicrously_rich", false, FrameType.GOAL, true, true, false)
 			.setTitle("Ludicrously Rich").setDescription("Earn 2500 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 2500).parent(filthy_rich));
-	
+		// Obtainable with the current 200 max item limit, at 25c per item for 64 stackable items
 		Advancement frighteningly_rich = build(false, data(Items.GOLD_INGOT, "frighteningly_rich", false, FrameType.CHALLENGE, true, true, false)
 			.setTitle("Frighteningly Rich").setDescription("Earn 5000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 5000).parent(ludicrously_rich));
-
+		// Obtainable with the current 200 max item limit, at 50c per item for 64 stackable item, only white packed fur currently works for this
 		Advancement unfathomably_rich = build(false, data(LOTRItems.MITHRIL_INGOT.get(), "unfathomably_rich", false, FrameType.CHALLENGE, true, true, false)
 			.setTitle("Unfathomably Rich").setDescription("Earn 10,000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 10000).parent(frighteningly_rich));
-
+		// Obtainable with the current 200 max item limit, at 100c per item for 64 stackable items, only white packed fur currently works for this
 		Advancement god_rich = build(false, data(LOTRItems.MITHRIL_BLOCK.get(), "god_rich", false, FrameType.CHALLENGE, true, true, true)
 			.setTitle("Reality-Bendingly Rich").setDescription("Earn 20,000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 20000).parent(unfathomably_rich));
+		// Obtainable with the current 200 max item limit, at 5c per item for 64 stackable items
+		Advancement big_spender = build(false, data(ExtendedItems.SILVER_COIN_TEN.get(), "big_spender", false, FrameType.TASK, true, true, false)
+			.setTitle("Big Spender").setDescription("Spend 1000 coins in a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", true, 1000).parent(trade));
+		// Obtainable with the current 200 max item limit, at 13c per item for 64 stackable items
+		Advancement extravagant_spender = build(false, data(ExtendedItems.SILVER_COIN_HUNDRED.get(), "extravagant_spender", false, FrameType.GOAL, true, true, false)
+			.setTitle("Extravagant Spender").setDescription("Spend 2500 coins in a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", true, 2500).parent(big_spender));
+		// Obtainable with the current 200 max item limit, at 25c per item for 64 stackable items
+		Advancement high_roller = build(false, data(Items.GOLD_INGOT, "high_roller", false, FrameType.CHALLENGE, true, true, false)
+			.setTitle("High Roller").setDescription("Spend 5000 coins in a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", true, 5000).parent(extravagant_spender));
+		// Obtainable with the current 200 max item limit, at 50c per item for 64 stackable items
+		Advancement spending_tycoon = build(false, data(LOTRItems.MITHRIL_INGOT.get(), "spending_tycoon", false, FrameType.CHALLENGE, true, true, false)
+			.setTitle("Spending Tycoon").setDescription("Spend 10,000 coins in a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", true, 10000).parent(high_roller));
+		// Obtainable with the current 200 max item limit, at 100c per item for 64 stackable items
+		Advancement economic_god = build(false, data(LOTRItems.MITHRIL_BLOCK.get(), "economic_god", false, FrameType.CHALLENGE, true, true, true)
+			.setTitle("Economic God").setDescription("Spend 20,000 coins in a single trade."),
+			addTradeNoEntityTrigger(make(), "any_trader", true, 20000).parent(spending_tycoon));
 
 		Advancement trash = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "one_mans_trash", false, FrameType.TASK, true, true, false)
 				.setTitle("One Man's Trash").setDescription("Trade with a travelling Oddment Collector."),

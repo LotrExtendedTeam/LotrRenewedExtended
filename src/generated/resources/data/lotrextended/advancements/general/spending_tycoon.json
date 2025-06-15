@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/high_roller",
+  "display": {
+    "icon": {
+      "item": "lotr:mithril_ingot"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.spending_tycoon.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.spending_tycoon.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_any_trader_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "true",
+        "coins_moved": {
+          "min": 10000
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_sell"
+    ]
+  ]
+}

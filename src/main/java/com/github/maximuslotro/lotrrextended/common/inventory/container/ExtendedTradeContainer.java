@@ -350,25 +350,33 @@ public class ExtendedTradeContainer extends Container {
             		return ItemStack.EMPTY;
             	}
             	// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
-            	if(displayInventory.getItem(slot.index).getCount()<=0) {
+            	if(displayInventory.getItem(slot.index).isEmpty() || displayInventory.getItem(slot.index).getCount()<=0) {
             		return ItemStack.EMPTY;
             	}
 
+                ItemStack stack = displayInventory.getItem(slot.index).copy();
+                int baseStackCount = displayInventory.getItem(slot.index).getCount();
+                int stackCountMax = displayInventory.getItem(slot.index).getMaxStackSize();
+                
+                int totalCoinsTraded = 0;
                 while (player.inventory.getFreeSlot() > -1) {
                     boolean lastTradeThatCanBePerformed = false;
 
-                    int tradesToPerform = displayInventory.getItem(slot.index).getMaxStackSize() / displayInventory.getItem(slot.index).getCount();
+                    int tradesToPerform = stackCountMax / baseStackCount;
                     if (tradesToPerform > soldQuantities[slot.index]) {
                         tradesToPerform = soldQuantities[slot.index];
                         lastTradeThatCanBePerformed = true;
                     }
+
                     int priceToSellAt = soldPrices[slot.index];
                     if (tradesToPerform * priceToSellAt >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
                         tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / priceToSellAt;
                         lastTradeThatCanBePerformed = true;
                     }
 
-                    if (tradesToPerform == 0) return ItemStack.EMPTY;
+                    if (tradesToPerform == 0) {
+                    	return ItemStack.EMPTY;
+                    }
 
                     if (!tradedYet) {
                         player.awardStat(ExtendedStats.TRADERS_TRADED);
@@ -376,24 +384,27 @@ public class ExtendedTradeContainer extends Container {
                     }
 
                     // actually perform buy
-                    ItemStack stack = displayInventory.getItem(slot.index).copy();
-                    stack.setCount(tradesToPerform * displayInventory.getItem(slot.index).getCount());
-
-                    CoinUtils.removeCoins(player, player.inventory, tradesToPerform * priceToSellAt);
-                    player.inventory.getFreeSlot();
+                    stack.setCount(baseStackCount * tradesToPerform);
+                    int priceToRemove = tradesToPerform * priceToSellAt;
+                    
+                    CoinUtils.removeCoins(player, player.inventory, priceToRemove);
                     if (!player.inventory.add(stack)) {
                         level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), stack));
                     }
                     player.inventory.setChanged();
                     soldQuantities[slot.index] = soldQuantities[slot.index] - tradesToPerform;
+
                     if (!level.isClientSide) {
                         trader.getTraderData().getSells().get(slot.index).setQuantityLeft(trader.getTraderData().getSells().get(slot.index).getQuantityLeft() - tradesToPerform);
-                        ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, tradesToPerform * priceToSellAt);
-                    	trader.getTraderData().incrementTradeSoldToPlayerCount(tradesToPerform * priceToSellAt);
+                    	trader.getTraderData().incrementTradeSoldToPlayerCount(priceToRemove);
                     }
+
+                    totalCoinsTraded+=priceToRemove;
                     if (lastTradeThatCanBePerformed) break;
                 }
-
+                if(!level.isClientSide && totalCoinsTraded>0) {
+                	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, totalCoinsTraded);
+                }
                 return ItemStack.EMPTY;
             }
         }

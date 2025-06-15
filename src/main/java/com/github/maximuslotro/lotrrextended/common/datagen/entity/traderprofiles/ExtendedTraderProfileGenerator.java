@@ -356,7 +356,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
 		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
 		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
-		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 400)
+		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
 		.addSBuy(Items.SHEARS, 5)
 		.addMSell(2, Items.WHITE_CARPET,Items.BLACK_CARPET,
 			Items.BLUE_CARPET, Items.BROWN_CARPET,
