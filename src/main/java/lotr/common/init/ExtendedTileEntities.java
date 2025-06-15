@@ -6,6 +6,7 @@ import java.util.Map;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHangingBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
@@ -50,5 +51,7 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedMEBannerTileEntity>> BANNER_STANDING;
 	public static RegistryObject<TileEntityType<ExtendedMEHangingBannerTileEntity>> BANNER_HANGING;
 	public static RegistryObject<TileEntityType<ExtendedGrassVoidTileEntity>> GRASS_VOID;
+	public static RegistryObject<TileEntityType<ExtendedStoneTextSignTileEntity>> STONE_SIGN;
+
 }
 

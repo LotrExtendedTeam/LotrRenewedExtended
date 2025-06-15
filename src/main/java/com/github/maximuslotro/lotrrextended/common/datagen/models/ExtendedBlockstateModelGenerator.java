@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandel
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -506,6 +507,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
 					genChestBlockItem(block.getValue().get(), block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedStoneTextSignBlock) {
+					genNoModelBlockItem(block.getValue().get());
 					continue;
 				}
 				if(block.getKey().equals("barren_dirt")) {
@@ -2144,5 +2149,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         .partialState().with(BlockStateProperties.AGE_3, 2).modelForState().modelFile(empty).addModel()
         .partialState().with(BlockStateProperties.AGE_3, 3).modelForState().modelFile(full).addModel();
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(full);
+	}
+
+	private void genNoModelBlockItem(Block block) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), mcLoc("block/block")).texture("particle", lotrExtendedLoc("block/transparent_particle"));
+		simpleBlock(block, modelFile);
 	}
 }

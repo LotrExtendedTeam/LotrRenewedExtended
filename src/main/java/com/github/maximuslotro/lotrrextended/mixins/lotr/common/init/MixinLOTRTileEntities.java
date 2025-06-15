@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTyp
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEHangingBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedNoRenderTileEntity;
@@ -130,5 +131,6 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.BANNER_STANDING = register("banner_s_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, BannerTypes.getContainedStandingBlocks()));
     	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, BannerTypes.getContainedHangingBlocks()));
     	ExtendedTileEntities.GRASS_VOID = register("grass_void_tileentity", () -> Builder.of(ExtendedGrassVoidTileEntity::new, ExtendedBlocks.GRASS_VOID.get()));
+    	ExtendedTileEntities.STONE_SIGN = register("stone_engraving", () -> Builder.of(ExtendedStoneTextSignTileEntity::new, ExtendedBlocks.STONE_SIGN.get()));
     }
 }

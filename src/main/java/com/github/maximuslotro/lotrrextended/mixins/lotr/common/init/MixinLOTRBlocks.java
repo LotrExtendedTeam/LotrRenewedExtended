@@ -1046,6 +1046,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER = registerB("glowstone_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
 		ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER = registerB("gulduril_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
 
+		ExtendedBlocks.STONE_SIGN = registerB("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
 	}
 
 	/**

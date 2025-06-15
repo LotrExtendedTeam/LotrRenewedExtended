@@ -330,6 +330,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
 		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
 
+		// Stone Carving Screen
+		addD("gui.lotrextended.stone_engraving.title", "Engrave Message");
+
 		// Banner Item Info
 		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
 

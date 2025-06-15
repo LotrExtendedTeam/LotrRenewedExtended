@@ -522,4 +522,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GLOWSTONE_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Block> EDHELVIR_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Block> GULDURIL_CRYSTAL_CHANDELIER;
+
+	public static RegistryObject<Block> STONE_SIGN;
 }

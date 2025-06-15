@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -155,6 +156,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedFireBlock) {
+				add(block.getValue().get(), noDrop());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedStoneTextSignBlock) {
 				add(block.getValue().get(), noDrop());
 				continue;
 			}
