@@ -10,6 +10,7 @@ import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -85,7 +86,7 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 				ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_HOBBIT_POTTER.get(),
 				ExtendedEntities.BREE_STONEMASON.get()).parent(bree));
 
-		Advancement arms_for_the_road = build(true, data(Items.IRON_SWORD, "arms_for_the_road", FrameType.TASK)
+		Advancement arms_for_the_road = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "arms_for_the_road", FrameType.TASK)
 			.setTitle("Arms for the Road").setDescription("Trade with a Bree-land Smithy."),
 			addTradeEntityTrigger(make(), ExtendedEntities.BREE_SMITH.get()).parent(insider_bargings));
 
@@ -93,7 +94,7 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 			.setTitle("One for Bill Ferny").setDescription("Buy an apple from a Bree-land Farmer."),
 			addTradeTrigger(make(), ExtendedEntities.BREE_FARMER.get(), true, Items.APPLE, LOTRItems.GREEN_APPLE.get()).parent(insider_bargings));
 
-		Advancement barlimans_best = build(true, data(LOTRItems.WOODEN_MUG.get(), "barlimans_best", FrameType.TASK)
+		Advancement barlimans_best = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "barlimans_best", FrameType.TASK)
 			.setTitle("Barliman's Best").setDescription("Trade with a Bree-land Innkeeper."),
 			addTradeEntityTriggers(make(), ExtendedEntities.BREE_INNKEEPER.get(), ExtendedEntities.BREE_HOBBIT_INNKEEPER.get()).parent(insider_bargings));
 
@@ -108,6 +109,10 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", FrameType.TASK)
 			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
 			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(hills_of_the_dead));
+
+		Advancement bree_crafter = build(true, data(LOTRItems.BREE_CRAFTING_TABLE.get(), "bree_crafter", FrameType.TASK)
+			.setTitle("Bree-land Crafter").setDescription("Craft an item on the Bree-land Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.BREE_CRAFTING_TABLE.get()).parent(bree));
 	}
 
 	@Override

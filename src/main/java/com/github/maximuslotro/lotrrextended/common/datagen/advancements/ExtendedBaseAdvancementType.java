@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCraftingTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedUnitHiredTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
@@ -186,8 +187,13 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder;
 	}
 
-	public static Advancement.Builder addUnitHireTrigger(Advancement.Builder builder, EntityType<?> captainType, EntityType<?> unitType, int coinAmount) {
-		builder.addCriterion("hire_"+unitType.getRegistryName().getPath()+"_from_"+captainType.getRegistryName().getPath(), ExtendedUnitHiredTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(captainType), EntityTypePredicate.of(unitType), MinMaxBounds.IntBound.atLeast(coinAmount)));
+	public static Advancement.Builder addCraftingTrigger(Advancement.Builder builder, Block tableFurnaceBlock) {
+		builder.addCriterion("item_made_on_"+tableFurnaceBlock.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.crafted(tableFurnaceBlock));
+		return builder;
+	}
+
+	public static Advancement.Builder addCraftingTrigger(Advancement.Builder builder, Block tableFurnaceBlock, Item item) {
+		builder.addCriterion("item_"+item.getRegistryName().toString()+"_made_on_"+tableFurnaceBlock.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.craftedWithItem(item, tableFurnaceBlock));
 		return builder;
 	}
 

@@ -6,6 +6,7 @@ import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -14,12 +15,12 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement enter_mordor = build(true, dataMain(LOTRItems.MORDOR_BRICK.get(), "enter_mordor", FrameType.TASK)
+		Advancement enter_mordor = build(true, dataMain(LOTRItems.MORDOR_ROCK.get(), "enter_mordor", FrameType.TASK)
 				.setTitle("One Does Not Simply...").setDescription("Enter the land of Mordor."),
 				addBiomeTriggers(make(), LOTRBiomes.MORDOR, LOTRBiomes.MORDOR_MOUNTAINS, LOTRBiomes.MORGUL_VALE, LOTRBiomes.NURN, LOTRBiomes.NURNEN, 
 					LOTRBiomes.NURN_MARSHES));
 
-		Advancement slavers = build(true, data(ExtendedItems.ROPE.get(), "slavers", FrameType.TASK)
+		Advancement slavers = build(true, data(LOTRItems.MORDOR_HOE.get(), "slavers", FrameType.TASK)
 				.setTitle("Slaves and Slavers").setDescription("Enter the region of Núrn."),
 				addBiomeTriggers(make(), LOTRBiomes.NURN, LOTRBiomes.NURNEN,  LOTRBiomes.NURN_MARSHES).parent(enter_mordor));
 
@@ -27,12 +28,12 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			.setTitle("The Sickly Moon").setDescription("Enter the Morgul Vale."),
 			addBiomeTriggers(make(), LOTRBiomes.MORGUL_VALE).parent(enter_mordor));
 
-		Advancement guldural_ore = build(true, data(LOTRItems.GULDURIL.get(), "guldural_ore", FrameType.TASK)
+		Advancement guldural_ore = build(true, data(LOTRItems.GULDURIL_ORE_MORDOR.get(), "guldural_ore", FrameType.TASK)
 			.setTitle("A Sickly Light").setDescription("Mine some Gulduril ore."),
 			addBreakBlockTriggers(make(), LOTRBlocks.GULDURIL_ORE_MORDOR.get(), LOTRBlocks.GULDURIL_ORE_STONE.get(), 
 				LOTRBlocks.GULDURIL_CRYSTAL.get()).parent(enter_mordor));
 
-		Advancement durnaur_ore = build(true, data(LOTRItems.DURNOR.get(), "durnaur_ore", FrameType.TASK)
+		Advancement durnaur_ore = build(true, data(LOTRItems.DURNOR_ORE.get(), "durnaur_ore", FrameType.TASK)
 			.setTitle("Fires of the Deep").setDescription("Mine a gem of Durnaur."),
 			addBreakBlockTriggers(make(), LOTRBlocks.DURNOR_ORE.get()).parent(enter_mordor));
 
@@ -54,18 +55,39 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 		Advancement mordor_1000 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_1000", FrameType.TASK)
 				.setTitle("Mordor Champion").setDescription("Reach +1000.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 1000).parent(mordor_500));
-		Advancement mordor_1500 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_2000", FrameType.GOAL)
-				.setTitle("Mordor Captain").setDescription("Reach +2000.0 alignment with Mordor."),
+		Advancement mordor_1500 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_1500", FrameType.GOAL)
+				.setTitle("Mordor Captain").setDescription("Reach +1500.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 1500).parent(mordor_1000));
 		Advancement mordor_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_3000", FrameType.CHALLENGE)
 				.setTitle("Mordorian Lord/Lady").setDescription("Reach +3000.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 3000).parent(mordor_1500));
 
+		Advancement morgul_crafter = build(true, data(LOTRItems.MORDOR_CRAFTING_TABLE.get(), "morgul_crafter", FrameType.TASK)
+			.setTitle("Morgul Crafter").setDescription("Craft an item on the Morgul Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.MORDOR_CRAFTING_TABLE.get()).parent(enter_mordor));
+
+		Advancement mordor_armor = build(true, data(LOTRItems.MORDOR_CHESTPLATE.get(), "mordor_armor", FrameType.TASK)
+			.setTitle("Inspection!").setDescription("Equip a full suit of Mordor armour."),
+			addArmorTrigger(make(), "mordor", LOTRItems.MORDOR_HELMET.get(), LOTRItems.MORDOR_CHESTPLATE.get(),
+					LOTRItems.MORDOR_LEGGINGS.get(), LOTRItems.MORDOR_BOOTS.get()).parent(enter_mordor));
+
+		Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
+			.setTitle("Witch-king").setDescription("Equip a full suit of Morgul armour."),
+			addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
+				ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(sickly_moon));
+
+		Advancement mordor_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "mordor_orc_slayer", FrameType.TASK)
+			.setTitle("Mordor Orc Slayer").setDescription("Kill a Mordor Orc."),
+			addKillEntityTriggers(make(), LOTREntities.MORDOR_ORC.get(), LOTREntities.MORDOR_ORC_ARCHER.get()).parent(enter_mordor));
+
+		Advancement survivalist = build(true, data(LOTRItems.MORGUL_SHROOM.get(), "survivalist", FrameType.GOAL)
+			.setTitle("Survivalist").setDescription("Eat a Morgul-shroom"),
+			addConsumeItemTrigger(make(), LOTRItems.MORGUL_SHROOM.get()).parent(enter_mordor));
 	}
 
 	@Override
 	public String getFolder() {
-		return "rohan";
+		return "mordor";
 	}
 
 }

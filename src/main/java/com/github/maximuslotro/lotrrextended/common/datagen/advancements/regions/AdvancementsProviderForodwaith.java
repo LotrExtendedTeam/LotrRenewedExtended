@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
@@ -61,6 +62,10 @@ public class AdvancementsProviderForodwaith extends ExtendedBaseAdvancementType{
 		Advancement lossoth_2000 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_eldar", FrameType.CHALLENGE)
 				.setTitle("Lossoth Eldar").setDescription("Reach +2000.0 alignment with the Men of Lossoth."),
 				addAlignmentTrigger(make(), FactionPointers.LOSSOTH, 2000).parent(lossoth_1000));
+
+		Advancement lossoth_crafter = build(true, data(LOTRItems.LOSSOTH_CRAFTING_TABLE.get(), "lossoth_crafter", FrameType.TASK)
+			.setTitle("Lossoth Crafter").setDescription("Craft an item on the Lossoth Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.LOSSOTH_CRAFTING_TABLE.get()).parent(everlasting_chill));
 	}
 
 	@Override

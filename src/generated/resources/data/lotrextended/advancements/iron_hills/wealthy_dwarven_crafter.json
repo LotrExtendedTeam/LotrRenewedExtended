@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:iron_hills/dwarven_crafter",
+  "display": {
+    "icon": {
+      "item": "lotr:mithril_trimmed_dwarven_brick"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.iron_hills.wealthy_dwarven_crafter.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.iron_hills.wealthy_dwarven_crafter.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_lotr:mithril_trimmed_dwarven_brick_made_on_dwarven_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:mithril_trimmed_dwarven_brick"
+        },
+        "crafting_block": {
+          "block": "lotr:dwarven_crafting_table"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_lotr:mithril_trimmed_dwarven_brick_made_on_dwarven_crafting_table"
+    ]
+  ]
+}

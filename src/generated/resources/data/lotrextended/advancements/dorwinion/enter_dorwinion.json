@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:ale"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.dorwinion.enter_dorwinion.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dorwinion.enter_dorwinion.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/dorwinion.png"
+  },
+  "criteria": {
+    "enter_dorwinion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dorwinion"
+        }
+      }
+    },
+    "enter_emyn_winion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:emyn_winion"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_dorwinion",
+      "enter_emyn_winion"
+    ]
+  ]
+}

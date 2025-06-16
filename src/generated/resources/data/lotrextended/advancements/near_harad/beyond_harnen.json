@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:near_harad/southward_bound",
+  "display": {
+    "icon": {
+      "item": "minecraft:coarse_dirt"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.beyond_harnen.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.beyond_harnen.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_harnennor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harnennor"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_harnennor"
+    ]
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "lotrextended:near_harad/southward_bound",
+  "display": {
+    "icon": {
+      "item": "minecraft:sand"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.azra_zain.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.azra_zain.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_southron_coasts": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:southron_coasts"
+        }
+      }
+    },
+    "enter_southron_coasts_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:southron_coasts_forest"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_southron_coasts",
+      "enter_southron_coasts_forest"
+    ]
+  ]
+}

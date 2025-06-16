@@ -7,8 +7,10 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -105,6 +107,13 @@ public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
 				.setTitle("Hîr/Híril Eryn").setDescription("Reach +3000.0 alignment with the Wood-elves of Mirkwood."),
 				addAlignmentTrigger(make(), FactionPointers.WOODLAND_REALM, 3000).parent(wood_elf_2000));
 
+		Advancement wood_elven_crafter = build(true, data(LOTRItems.WOOD_ELVEN_CRAFTING_TABLE.get(), "wood_elven_crafter", FrameType.TASK)
+			.setTitle("Wood-elven Crafter").setDescription("Craft an item on the Wood-elven Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.WOOD_ELVEN_CRAFTING_TABLE.get()).parent(mirkwoodBase));
+
+		Advancement dol_guldur_crafter = build(true, data(ExtendedItems.DOL_GULDUR_CRAFTING_TABLE.get(), "dol_guldur_crafter", FrameType.TASK)
+			.setTitle("Necromancer").setDescription("Craft an item on the Dol Guldur Crafting Table."),
+			addCraftingTrigger(make(), ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE.get()).parent(mirkwoodBase));
 	}
 
 	@Override

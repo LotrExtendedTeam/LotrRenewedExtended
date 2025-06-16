@@ -8,9 +8,11 @@ import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedBiomes;
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -166,6 +168,18 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 		Advancement orc_trader = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "scrounging_and_scavenging", FrameType.TASK)
 						.setTitle("Scrounging and Scavenging").setDescription("Trade with a Gundabad Orc Scrounger."),
 				addTradeEntityTrigger(make(), ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).parent(eriadorBase));
+
+		Advancement ranger_crafter = build(true, data(LOTRItems.RANGER_CRAFTING_TABLE.get(), "ranger_crafter", FrameType.TASK)
+			.setTitle("Dúnedain Crafter").setDescription("Craft an item on the Ranger Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.RANGER_CRAFTING_TABLE.get()).parent(eriadorBase));
+
+		Advancement gundabad_crafter = build(true, data(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get(), "gundabad_crafter", FrameType.TASK)
+			.setTitle("Crude Worker").setDescription("Craft an item on the Gundabad crafting Ttable."),
+			addCraftingTrigger(make(), ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE.get()).parent(eriadorBase));
+
+		Advancement rivendell_crafter = build(true, data(LOTRItems.RIVENDELL_CRAFTING_TABLE.get(), "rivendell_crafter", FrameType.TASK)
+			.setTitle("Rivendell Crafter").setDescription("Craft an item on the Rivendell Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.RIVENDELL_CRAFTING_TABLE.get()).parent(eriadorBase));
 	}
 
 	@Override

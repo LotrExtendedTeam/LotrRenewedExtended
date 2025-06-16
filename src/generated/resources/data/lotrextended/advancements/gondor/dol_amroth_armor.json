@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:gondor/land_of_the_prince",
+  "display": {
+    "icon": {
+      "item": "lotr:dol_amroth_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.dol_amroth_armor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.dol_amroth_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "dol_amroth_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_amroth_helmet"
+          },
+          {
+            "item": "lotr:dol_amroth_chestplate"
+          },
+          {
+            "item": "lotr:dol_amroth_leggings"
+          },
+          {
+            "item": "lotr:dol_amroth_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dol_amroth_armor"
+    ]
+  ]
+}

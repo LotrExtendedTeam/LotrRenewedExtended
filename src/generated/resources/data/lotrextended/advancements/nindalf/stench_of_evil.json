@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:nindalf/wetwang",
+  "display": {
+    "icon": {
+      "item": "lotr:mordor_thorn"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.nindalf.stench_of_evil.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.nindalf.stench_of_evil.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_dead_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dead_marshes"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_dead_marshes"
+    ]
+  ]
+}

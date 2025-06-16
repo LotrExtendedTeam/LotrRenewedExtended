@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
@@ -15,7 +16,7 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement horse_lords = build(true, dataMain(LOTRItems.ROHAN_BRICK.get(), "horse_lords", FrameType.TASK)
+		Advancement horse_lords = build(true, dataMain(LOTRItems.ROHAN_SPEAR.get(), "horse_lords", FrameType.TASK)
 				.setTitle("Home of the Horse-lords").setDescription("Enter the land of Rohan."),
 				addBiomeTriggers(make(), LOTRBiomes.ROHAN, LOTRBiomes.WOLD));
 
@@ -23,11 +24,11 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."),
 				addBiomeTrigger(make(), LOTRBiomes.NAN_CURUNIR).parent(horse_lords));
 
-		Advancement entwash = build(true, data(Items.DIRT, "entwash", FrameType.TASK)
+		Advancement entwash = build(true, data(Items.FERN, "entwash", FrameType.TASK)
 		.setTitle("Last Marsh of the Ents").setDescription("Enter the Mouths of Entwash."),
 		addBiomeTrigger(make(), LOTRBiomes.MOUTHS_OF_ENTWASH).parent(horse_lords));
 
-		Advancement rohan_slayer = build(true, data(Items.BONE, "rohan_slayer", FrameType.TASK)
+		Advancement rohan_slayer = build(true, data(LOTRItems.ROHAN_SWORD.get(), "rohan_slayer", FrameType.TASK)
 				.setTitle("Rohirrim Slayer").setDescription("Kill one of the Rohirrim."),
 				addKillEntityTriggers(make(), LOTREntities.ROHAN_MAN.get(), LOTREntities.ROHIRRIM_BOWMAN.get(),
 						LOTREntities.ROHIRRIM_WARRIOR.get()).parent(horse_lords));
@@ -102,6 +103,14 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 				.setTitle("The Feared").setDescription("Equip a full suit of Uruk armor."),
 				addArmorTrigger(make(), "uruk", LOTRItems.URUK_HELMET.get(), LOTRItems.URUK_CHESTPLATE.get(),
 						LOTRItems.URUK_LEGGINGS.get(), LOTRItems.URUK_BOOTS.get()).parent(vale_of_the_wizard));
+
+		Advancement rohan_crafter = build(true, data(LOTRItems.ROHAN_CRAFTING_TABLE.get(), "rohan_crafter", FrameType.TASK)
+			.setTitle("Rohirric Crafter").setDescription("Craft an item on the Rohirric Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.ROHAN_CRAFTING_TABLE.get()).parent(horse_lords));
+
+		Advancement uruk_crafter = build(true, data(LOTRItems.URUK_CRAFTING_TABLE.get(), "uruk_crafter", FrameType.TASK)
+			.setTitle("Uruk Crafter").setDescription("Craft an item on the Uruk Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.URUK_CRAFTING_TABLE.get()).parent(vale_of_the_wizard));
 	}
 
 	@Override

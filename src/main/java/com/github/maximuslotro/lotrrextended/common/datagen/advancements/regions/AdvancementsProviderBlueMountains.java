@@ -10,6 +10,7 @@ import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -32,6 +33,10 @@ public class AdvancementsProviderBlueMountains extends ExtendedBaseAdvancementTy
 						LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedEntities.BLUE_DWARVEN_MINER.get(), 
 						ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get()).parent(blue_mountains));
 
+		Advancement blue_mountain_crafter = build(true, data(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE.get(), "blue_mountain_crafter", FrameType.TASK)
+			.setTitle("Blue Dwarven Crafter").setDescription("Craft an item on the Blue Mountains Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.BLUE_MOUNTAINS_CRAFTING_TABLE.get()).parent(blue_mountains));
+	
 		Advancement blue_dwarf_armor = build(true, data(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get(), "warrior_of_ered_luin", FrameType.TASK)
 				.setTitle("Warrior of Ered Luin").setDescription("Acquire a full set of Blue Dwarven armor."),
 				addArmorTrigger(make(), "blue_dwarven", LOTRItems.BLUE_DWARVEN_HELMET.get(), LOTRItems.BLUE_DWARVEN_CHESTPLATE.get(),

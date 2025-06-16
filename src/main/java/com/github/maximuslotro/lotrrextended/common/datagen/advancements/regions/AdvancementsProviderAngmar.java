@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableList;
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
@@ -61,6 +62,10 @@ public class AdvancementsProviderAngmar extends ExtendedBaseAdvancementType{
 		Advancement orc_2000 = build(true, data(LOTRItems.GOLD_RING.get(), "angmar_chieftain", FrameType.CHALLENGE)
 				.setTitle("Angmar Chieftain").setDescription("Reach +2000.0 alignment with Angmar."),
 				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 2000).parent(orc_1000));
+
+		Advancement angmar_crafter = build(true, data(LOTRItems.ANGMAR_CRAFTING_TABLE.get(), "angmar_crafter", FrameType.TASK)
+			.setTitle("Angmarin Crafter").setDescription("Craft an item on the Angmar Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.ANGMAR_CRAFTING_TABLE.get()).parent(angmar));
 	}
 
 	@Override

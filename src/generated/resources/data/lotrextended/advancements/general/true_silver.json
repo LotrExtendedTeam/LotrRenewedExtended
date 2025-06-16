@@ -18,20 +18,16 @@
     "hidden": false
   },
   "criteria": {
-    "has_mithril_ore": {
-      "trigger": "minecraft:inventory_changed",
+    "broke_mithril_ore": {
+      "trigger": "extended:break_block",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:mithril_ore"
-          }
-        ]
+        "block": "lotr:mithril_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_mithril_ore"
+      "broke_mithril_ore"
     ]
   ]
 }

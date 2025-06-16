@@ -20,7 +20,7 @@ public class AdvancementsProviderFangorn extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement fangorn = build(true, dataMain(Items.OAK_LOG, "lower_your_axe", FrameType.TASK)
+		Advancement fangorn = build(true, dataMain(Items.OAK_LEAVES, "lower_your_axe", FrameType.TASK)
 				.setTitle("Lower Your Axe").setDescription("Enter Fangorn Forest."),
 				addBiomeTriggers(make(), FANGORN_BIOMES));
 

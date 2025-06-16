@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
@@ -106,7 +107,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement true_silver = build(true, data(LOTRItems.MITHRIL_ORE.get(), "true_silver", FrameType.CHALLENGE)
 				.setTitle("True Silver").setDescription("Obtain Mithril Ore."),
-				addItemTrigger(make(), LOTRItems.MITHRIL_ORE.get()).parent(base));
+				addBreakBlockTrigger(make(), LOTRBlocks.MITHRIL_ORE.get()).parent(base));
 		Advancement very_serious_dedication = build(true, data(LOTRItems.MITHRIL_HOE.get(), "very_serious_dedication", FrameType.CHALLENGE)
 				.setTitle("Very Serious Dedication").setDescription("Acquire a Mithril Hoe."),
 				addItemTrigger(make(), LOTRItems.MITHRIL_HOE.get()).parent(true_silver));

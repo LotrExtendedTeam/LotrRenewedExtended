@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:near_harad/beyond_harnen",
+  "display": {
+    "icon": {
+      "item": "lotr:harnennor_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.harnennor_armor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.harnennor_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "harnennor_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:harnennor_helmet"
+          },
+          {
+            "item": "lotr:harnennor_chestplate"
+          },
+          {
+            "item": "lotr:harnennor_leggings"
+          },
+          {
+            "item": "lotr:harnennor_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "harnennor_armor"
+    ]
+  ]
+}

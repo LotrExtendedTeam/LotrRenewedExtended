@@ -2,8 +2,7 @@
   "parent": "lotrextended:bree/insider_bargings",
   "display": {
     "icon": {
-      "item": "minecraft:iron_sword",
-      "nbt": "{Damage:0}"
+      "item": "lotr:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.bree.arms_for_the_road.title"

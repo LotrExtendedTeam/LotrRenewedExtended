@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableList;
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -25,6 +26,10 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 		Advancement lindon = build(true, dataMain(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_last_fair_realm", FrameType.TASK)
 				.setTitle("The Last Fair Realm").setDescription("Enter the Land of Lindon."),
 				addBiomeTriggers(make(), LINDON_BIOMES));
+
+		Advancement lindon_crafter = build(true, data(LOTRItems.LINDON_CRAFTING_TABLE.get(), "lindon_crafter", FrameType.TASK)
+			.setTitle("Lindon Crafter").setDescription("Craft an item on the Lindon Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.LINDON_CRAFTING_TABLE.get()).parent(lindon));
 
 		Advancement tower_hills = build(true, data(LOTRItems.CHALK_BRICK.get(), "emyn_beraid", FrameType.TASK)
 				.setTitle("Emyn Beraid").setDescription("Enter the Tower Hills."),

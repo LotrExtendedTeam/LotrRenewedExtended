@@ -3,24 +3,24 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedEntities;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.item.Items;
-
 
 public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement iron_hills = build(true, dataMain(Items.STONE, "iron_hills", FrameType.TASK)
+		Advancement iron_hills = build(true, dataMain(LOTRItems.DWARVEN_PICKAXE.get(), "iron_hills", FrameType.TASK)
 				.setTitle("Durin's Folk").setDescription("Enter the Iron Hills."),
 				addBiomeTrigger(make(), LOTRBiomes.IRON_HILLS));
 
-		Advancement hobbit_slayer = build(true, data(LOTRItems.DWARF_BONE.get(), "dwarf_slayer", FrameType.TASK)
+		Advancement dwarf_slayer = build(true, data(LOTRItems.DWARF_BONE.get(), "dwarf_slayer", FrameType.TASK)
 				.setTitle("Dwarf Slayer").setDescription("Kill a dwarf."),
 				addKillEntityTriggers(make(), LOTREntities.DWARF.get(), LOTREntities.DWARF_ARCHER.get(),
 						LOTREntities.DWARF_WARRIOR.get()).parent(iron_hills));
@@ -58,6 +58,22 @@ public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 		Advancement dwarf_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "dwarf_sigin_taragu", FrameType.CHALLENGE)
 				.setTitle("Uzbad/Uzbadûna Sigin-tarâgu").setDescription("Reach +3000.0 alignment with Durin's Folk."),
 				addAlignmentTrigger(make(), FactionPointers.DURINS_FOLK, 3000).parent(dwarf_1500));
+
+		Advancement dwarven_crafter = build(true, data(LOTRItems.DWARVEN_CRAFTING_TABLE.get(), "dwarven_crafter", FrameType.TASK)
+			.setTitle("Dwarven Crafter").setDescription("Craft an item on the Dwarven Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.DWARVEN_CRAFTING_TABLE.get()).parent(iron_hills));
+
+		Advancement wealthy_dwarven_crafter = build(true, data(LOTRItems.MITHRIL_TRIMMED_DWARVEN_BRICK.get(), "wealthy_dwarven_crafter", FrameType.GOAL)
+			.setTitle("Ludicrously Wealthy").setDescription("Use some spare mithril to decorate your Dwarven bricks."),
+			addCraftingTrigger(make(), LOTRBlocks.DWARVEN_CRAFTING_TABLE.get(), LOTRItems.MITHRIL_TRIMMED_DWARVEN_BRICK.get()).parent(dwarven_crafter));
+
+		Advancement delving_deep = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "delving_deep", FrameType.TASK)
+			.setTitle("Delving Deep").setDescription("Trade with a Dwarf Miner"),
+			addTradeEntityTrigger(make(), ExtendedEntities.DWARVEN_MINER.get()).parent(iron_hills));
+
+		Advancement dwarven_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "dwarven_smith", FrameType.TASK)
+			.setTitle("At Durin's Anvil").setDescription("Trade with a Dwarven Smith"),
+			addTradeEntityTrigger(make(), ExtendedEntities.DWARVEN_SMITH.get()).parent(iron_hills));
 	}
 
 	@Override

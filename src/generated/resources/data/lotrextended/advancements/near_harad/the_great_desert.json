@@ -1,0 +1,52 @@
+{
+  "parent": "lotrextended:near_harad/southward_bound",
+  "display": {
+    "icon": {
+      "item": "minecraft:sand"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.the_great_desert.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.the_great_desert.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_harad_desert": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harad_desert"
+        }
+      }
+    },
+    "enter_harad_desert_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harad_desert_hills"
+        }
+      }
+    },
+    "enter_harad_half_desert": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:harad_half_desert"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_harad_desert",
+      "enter_harad_desert_hills",
+      "enter_harad_half_desert"
+    ]
+  ]
+}

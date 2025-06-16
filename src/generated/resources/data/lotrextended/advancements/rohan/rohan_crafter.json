@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:rohan/horse_lords",
+  "display": {
+    "icon": {
+      "item": "lotr:rohan_crafting_table"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rohan.rohan_crafter.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.rohan_crafter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_made_on_rohan_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "crafting_block": {
+          "block": "lotr:rohan_crafting_table"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_made_on_rohan_crafting_table"
+    ]
+  ]
+}

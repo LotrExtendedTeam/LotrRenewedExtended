@@ -23,7 +23,7 @@ public class AdvancementsProviderLothlorien extends ExtendedBaseAdvancementType{
 
 	@Override
 	public void generateAdvancements() {
-		Advancement lothlorien = build(true, dataMain(LOTRItems.MALLORN_LOG.get(), "lothlorien", FrameType.TASK)
+		Advancement lothlorien = build(true, dataMain(LOTRItems.MALLORN_SAPLING.get(), "lothlorien", FrameType.TASK)
 				.setTitle("The Golden Wood").setDescription("Enter the woods of Lothlórien."),
 				addBiomeTriggers(make(), LOTHLORIEN_BIOMES));
 
@@ -68,6 +68,10 @@ public class AdvancementsProviderLothlorien extends ExtendedBaseAdvancementType{
 		Advancement elf_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "elf_3000", FrameType.CHALLENGE)
 				.setTitle("Hîr/Híril Lórien").setDescription("Reach +3000.0 alignment with the Galadhrim."),
 				addAlignmentTrigger(make(), FactionPointers.LOTHLORIEN, 3000).parent(elf_2000));
+
+		Advancement elven_crafter = build(true, data(LOTRItems.GALADHRIM_CRAFTING_TABLE.get(), "elven_crafter", FrameType.TASK)
+			.setTitle("Elven Crafter").setDescription("Craft an item on the Galadhrim Crafting Table."),
+			addCraftingTrigger(make(), LOTRBlocks.GALADHRIM_CRAFTING_TABLE.get()).parent(lothlorien));
 	}
 
 	@Override
