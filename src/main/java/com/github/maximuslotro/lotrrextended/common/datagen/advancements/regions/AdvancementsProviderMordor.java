@@ -28,15 +28,6 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			.setTitle("The Sickly Moon").setDescription("Enter the Morgul Vale."),
 			addBiomeTriggers(make(), LOTRBiomes.MORGUL_VALE).parent(enter_mordor));
 
-		Advancement guldural_ore = build(true, data(LOTRItems.GULDURIL_ORE_MORDOR.get(), "guldural_ore", FrameType.TASK)
-			.setTitle("A Sickly Light").setDescription("Mine some Gulduril ore."),
-			addBreakBlockTriggers(make(), LOTRBlocks.GULDURIL_ORE_MORDOR.get(), LOTRBlocks.GULDURIL_ORE_STONE.get(), 
-				LOTRBlocks.GULDURIL_CRYSTAL.get()).parent(enter_mordor));
-
-		Advancement durnaur_ore = build(true, data(LOTRItems.DURNOR_ORE.get(), "durnaur_ore", FrameType.TASK)
-			.setTitle("Fires of the Deep").setDescription("Mine a gem of Durnaur."),
-			addBreakBlockTriggers(make(), LOTRBlocks.DURNOR_ORE.get()).parent(enter_mordor));
-
 		Advancement mordor_10 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_10", FrameType.TASK)
 				.setTitle("Mordor Guest").setDescription("Reach +10.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 10).parent(enter_mordor));
@@ -66,6 +57,27 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			.setTitle("Morgul Crafter").setDescription("Craft an item on the Morgul Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.MORDOR_CRAFTING_TABLE.get()).parent(enter_mordor));
 
+		Advancement orc_smithey = build(true, data(LOTRItems.ORC_STEEL_INGOT.get(), "orc_smithey", FrameType.TASK)
+			.setTitle("Orc Smith").setDescription("Smelt an ingot of Orc Steel in the Orc Forge."),
+			addCraftingTrigger(make(), LOTRBlocks.ORC_FORGE.get(), LOTRItems.ORC_STEEL_INGOT.get()).parent(enter_mordor));
+
+		Advancement guldural_ore = build(true, data(LOTRItems.GULDURIL_ORE_MORDOR.get(), "guldural_ore", FrameType.TASK)
+			.setTitle("A Sickly Light").setDescription("Mine some Gulduril ore."),
+			addBreakBlockTriggers(make(), LOTRBlocks.GULDURIL_ORE_MORDOR.get(), LOTRBlocks.GULDURIL_ORE_STONE.get(), 
+				LOTRBlocks.GULDURIL_CRYSTAL.get()).parent(orc_smithey));
+
+		Advancement durnaur_ore = build(true, data(LOTRItems.DURNOR_ORE.get(), "durnaur_ore", FrameType.TASK)
+			.setTitle("Fires of the Deep").setDescription("Mine a gem of Durnaur."),
+			addBreakBlockTriggers(make(), LOTRBlocks.DURNOR_ORE.get()).parent(orc_smithey));
+
+		Advancement morgul_black_smithey = build(true, data(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), "morgul_black_smithey", FrameType.TASK)
+			.setTitle("Black Smithery").setDescription("Smelt an ingot of Black Uruk Steel in the Orc Forge."),
+			addCraftingTrigger(make(), LOTRBlocks.ORC_FORGE.get(), ExtendedItems.BLACK_URUK_STEEL_INGOT.get()).parent(durnaur_ore));
+
+		Advancement morgul_orc_smithey = build(false, data(ExtendedItems.MORGUL_STEEL_INGOT.get(), "morgul_orc_smithey", FrameType.TASK)
+			.setTitle("Morgul Smith").setDescription("Smelt an ingot of Morgul Steel in the Orc Forge."),
+			addCraftingTrigger(make(), LOTRBlocks.ORC_FORGE.get(), ExtendedItems.MORGUL_STEEL_INGOT.get()).parent(guldural_ore));
+
 		Advancement mordor_armor = build(true, data(LOTRItems.MORDOR_CHESTPLATE.get(), "mordor_armor", FrameType.TASK)
 			.setTitle("Inspection!").setDescription("Equip a full suit of Mordor armour."),
 			addArmorTrigger(make(), "mordor", LOTRItems.MORDOR_HELMET.get(), LOTRItems.MORDOR_CHESTPLATE.get(),
@@ -74,7 +86,7 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 		Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
 			.setTitle("Witch-king").setDescription("Equip a full suit of Morgul armour."),
 			addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
-				ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(sickly_moon));
+				ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(mordor_armor));
 
 		Advancement mordor_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "mordor_orc_slayer", FrameType.TASK)
 			.setTitle("Mordor Orc Slayer").setDescription("Kill a Mordor Orc."),

@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:mordor/sickly_moon",
+  "parent": "lotrextended:mordor/mordor_armor",
   "display": {
     "icon": {
       "item": "lotr:morgul_chestplate",

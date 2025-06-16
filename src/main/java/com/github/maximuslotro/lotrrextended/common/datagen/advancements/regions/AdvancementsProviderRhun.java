@@ -6,6 +6,7 @@ import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -47,6 +48,10 @@ public class AdvancementsProviderRhun extends ExtendedBaseAdvancementType{
 		Advancement rhudel_crafter = build(true, data(ExtendedItems.RHUNIC_CRAFTING_TABLE.get(), "rhudel_crafter", FrameType.TASK)
 			.setTitle("Rhûnic Crafter").setDescription("Craft an item on the Rhûnic crafting table."),
 			addCraftingTrigger(make(), ExtendedBlocks.RHUNIC_CRAFTING_TABLE.get()).parent(into_the_east));
+
+		Advancement rhudel_smithy = build(false, data(ExtendedItems.GILDED_IRON_INGOT.get(), "rhudel_smithy", FrameType.TASK)
+			.setTitle("Easterling Goldsmith").setDescription("Smelt an ingot of Gilded Iron in the Alloy Forge."),
+			addCraftingTrigger(make(), LOTRBlocks.ALLOY_FORGE.get(), ExtendedItems.GILDED_IRON_INGOT.get()).parent(into_the_east));
 	}
 
 	@Override

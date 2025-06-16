@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:mordor/enter_mordor",
+  "parent": "lotrextended:mordor/orc_smithey",
   "display": {
     "icon": {
       "item": "lotr:durnor_ore"

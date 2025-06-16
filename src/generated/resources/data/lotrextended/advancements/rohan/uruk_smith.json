@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:rohan/vale_of_the_wizard",
+  "display": {
+    "icon": {
+      "item": "lotr:uruk_steel_ingot"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rohan.uruk_smith.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.uruk_smith.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_lotr:uruk_steel_ingot_made_on_orc_forge": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:uruk_steel_ingot"
+        },
+        "crafting_block": {
+          "block": "lotr:orc_forge"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_lotr:uruk_steel_ingot_made_on_orc_forge"
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:general/bronze_award",
+  "display": {
+    "icon": {
+      "item": "lotr:bronze_ingot"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.general.double_bronze.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.general.double_bronze.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_lotr:bronze_ingot_made_on_alloy_forge": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:bronze_ingot"
+        },
+        "crafting_block": {
+          "block": "lotr:alloy_forge"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_lotr:bronze_ingot_made_on_alloy_forge"
+    ]
+  ]
+}

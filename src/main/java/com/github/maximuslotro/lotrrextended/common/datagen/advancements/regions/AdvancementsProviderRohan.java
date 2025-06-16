@@ -111,6 +111,10 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 		Advancement uruk_crafter = build(true, data(LOTRItems.URUK_CRAFTING_TABLE.get(), "uruk_crafter", FrameType.TASK)
 			.setTitle("Uruk Crafter").setDescription("Craft an item on the Uruk Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.URUK_CRAFTING_TABLE.get()).parent(vale_of_the_wizard));
+
+		Advancement uruk_smith = build(true, data(LOTRItems.URUK_STEEL_INGOT.get(), "uruk_smith", FrameType.TASK)
+			.setTitle("Uruk Smith").setDescription("Smelt an ingot of Uruk Steel in the Orc Forge."),
+			addCraftingTrigger(make(), LOTRBlocks.ORC_FORGE.get(), LOTRItems.URUK_STEEL_INGOT.get()).parent(vale_of_the_wizard));
 	}
 
 	@Override

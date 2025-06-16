@@ -63,6 +63,10 @@ public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 			.setTitle("Dwarven Crafter").setDescription("Craft an item on the Dwarven Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.DWARVEN_CRAFTING_TABLE.get()).parent(iron_hills));
 
+		Advancement dwarven_smith = build(true, data(LOTRItems.DWARVEN_STEEL_INGOT.get(), "dwarven_smith", FrameType.TASK)
+			.setTitle("Dwarven Smith").setDescription("Smelt an ingot of Dwarven Steel in the Dwarven Forge."),
+			addCraftingTrigger(make(), LOTRBlocks.DWARVEN_FORGE.get(), LOTRItems.DWARVEN_STEEL_INGOT.get()).parent(iron_hills));
+
 		Advancement wealthy_dwarven_crafter = build(true, data(LOTRItems.MITHRIL_TRIMMED_DWARVEN_BRICK.get(), "wealthy_dwarven_crafter", FrameType.GOAL)
 			.setTitle("Ludicrously Wealthy").setDescription("Use some spare mithril to decorate your Dwarven bricks."),
 			addCraftingTrigger(make(), LOTRBlocks.DWARVEN_CRAFTING_TABLE.get(), LOTRItems.MITHRIL_TRIMMED_DWARVEN_BRICK.get()).parent(dwarven_crafter));
@@ -71,7 +75,7 @@ public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 			.setTitle("Delving Deep").setDescription("Trade with a Dwarf Miner"),
 			addTradeEntityTrigger(make(), ExtendedEntities.DWARVEN_MINER.get()).parent(iron_hills));
 
-		Advancement dwarven_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "dwarven_smith", FrameType.TASK)
+		Advancement dwarf_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "dwarf_smith", FrameType.TASK)
 			.setTitle("At Durin's Anvil").setDescription("Trade with a Dwarven Smith"),
 			addTradeEntityTrigger(make(), ExtendedEntities.DWARVEN_SMITH.get()).parent(iron_hills));
 	}

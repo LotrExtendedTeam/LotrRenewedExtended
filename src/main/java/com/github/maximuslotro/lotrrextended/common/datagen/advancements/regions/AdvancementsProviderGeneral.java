@@ -17,6 +17,7 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.IRequirementsStrategy;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -50,7 +51,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement athelas = build(true, data(LOTRItems.ATHELAS.get(), "kingsfoil", FrameType.TASK)
 				.setTitle("Kingsfoil").setDescription("Find the Athelas herb."),
-				addItemTrigger(make(), LOTRItems.ATHELAS.get()).parent(base));
+				addBreakBlockTrigger(make(), LOTRBlocks.ATHELAS.get()).parent(base));
 
 		Advancement trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "trade", FrameType.TASK)
 			.setTitle("Middle Earth Marketplace").setDescription("Trade with a Middle Earth trader."),
@@ -146,7 +147,11 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement bronze_award = build(true, data(LOTRItems.BRONZE_INGOT.get(), "bronze_award", FrameType.TASK)
 				.setTitle("Bronze Award").setDescription("Craft a bronze ingot by combining tin and copper."),
-				addItemTrigger(make(), LOTRItems.BRONZE_INGOT.get()).parent(tin_award));
+				addCraftingTrigger(make(), Blocks.CRAFTING_TABLE, LOTRItems.BRONZE_INGOT.get()).parent(tin_award));
+
+		Advancement double_bronze = build(true, data(LOTRItems.BRONZE_INGOT.get(), "double_bronze", FrameType.GOAL)
+			.setTitle("Double Bronze").setDescription("Smelt bronze ingots in any alloy forge."),
+			addCraftingTrigger(make(), LOTRBlocks.ALLOY_FORGE.get(), LOTRItems.BRONZE_INGOT.get()).parent(bronze_award));
 
 		Advancement get_moldy_bread = build(true, data(LOTRItems.MAGGOTY_BREAD.get(), "three_stinking_days", FrameType.TASK)
 				.setTitle("Three Stinking Days!").setDescription("Eat some Maggoty Bread."),
@@ -154,7 +159,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement get_bad_meat = build(true, data(LOTRItems.SUSPICIOUS_MEAT.get(), "suspicious", FrameType.TASK)
 				.setTitle("Suspicious...").setDescription("Produce some suspicious meat from questionable ingredients."),
-				addItemTrigger(make(), LOTRItems.SUSPICIOUS_MEAT.get()).parent(get_moldy_bread));
+				addCraftingTrigger(make(), Blocks.CRAFTING_TABLE, LOTRItems.SUSPICIOUS_MEAT.get()).parent(get_moldy_bread));
 
 		Advancement eat_bad_meat = build(false, data(LOTRItems.SUSPICIOUS_MEAT.get(), "very_suspicious", FrameType.GOAL)
 				.setTitle("Yum...").setDescription("Eat some suspicious meat..."),
@@ -165,8 +170,8 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 				addConsumeItemTrigger(make(), LOTRItems.MAN_FLESH.get()).parent(get_moldy_bread));
 
 		Advancement saddle = build(true, data(Items.SADDLE, "time_to_ride", FrameType.TASK)
-				.setTitle("Time to Ride!").setDescription("Acquire a Saddle."),
-				addItemTrigger(make(), Items.SADDLE).parent(base));
+				.setTitle("Time to Ride!").setDescription("Craft a saddle with three leather and two iron ingots."),
+				addCraftingTrigger(make(), Blocks.CRAFTING_TABLE, Items.SADDLE).parent(base));
 		
 		Advancement master_adventurer = build(false, data(Items.SADDLE, "master_adventurer", FrameType.CHALLENGE)
 			.setTitle("Master Adventurer").setDescription("Visit every biome in Middle Earth"),
