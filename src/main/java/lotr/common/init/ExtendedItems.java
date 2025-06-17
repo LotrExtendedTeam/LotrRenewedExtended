@@ -144,15 +144,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FALLEN_WILLOW_LEAVES;
 	public static RegistryObject<Item> WILLOW_VINES;
 
-	public static RegistryObject<Item> BOWSTRING;
-
 	public static RegistryObject<Item> MORGUL_BLADE;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
 	public static RegistryObject<Item> MORGUL_LEGGINGS;
 	public static RegistryObject<Item> MORGUL_BOOTS;
 
-	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
 	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;
 	public static RegistryObject<Item> GUNDABAD_URUK_DAGGER;
@@ -612,7 +609,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
 	public static RegistryObject<Item> BLUE_DUNEDAIN_SHIELD;
-
+	
+	public static RegistryObject<Item> BOWSTRING;
+	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
+	public static RegistryObject<Item> RANGER_BOW;
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
 	public static RegistryObject<Item> ORC_BOW;

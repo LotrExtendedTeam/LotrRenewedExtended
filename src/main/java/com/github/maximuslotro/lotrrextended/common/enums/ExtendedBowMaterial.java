@@ -7,10 +7,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 
 public enum ExtendedBowMaterial {
-	GENERIC("generic", 400, 20, 1.1F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	GENERIC("generic", 400, 20, 1.08F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	ORC("orc", 600, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	GUNDABAD_URUK("gundabad_uruk", 750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	RANGER_NORTH("ranger_north", 525, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+	RANGER_NORTH("ranger", 525, 20, 1.05F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	DUNEDAIN_NORTH("dunedain_north", 600, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+
 	private final String bowMaterialName;
 	//private final int bowLevel;
 	private final int bowDurability;

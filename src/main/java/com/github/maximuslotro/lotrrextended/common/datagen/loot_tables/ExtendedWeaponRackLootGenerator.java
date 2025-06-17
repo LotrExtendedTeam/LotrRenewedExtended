@@ -54,7 +54,8 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.ARNOR_SPEAR.get(), 80, 0.2f, 0.65f))
 				.add(addEntry(Items.BOW, 85, 0.2f, 0.65f))
 				.add(addEntry(ExtendedItems.LONGBOW.get(), 65, 0.2f, 0.65f))
-				.add(addEntry(ExtendedItems.DUNEDAIN_BOW.get(), 45, 0.2f, 0.65f)));
+				.add(addEntry(ExtendedItems.DUNEDAIN_BOW.get(), 45, 0.2f, 0.65f))
+				.add(addEntry(ExtendedItems.RANGER_BOW.get(), 65, 0.2f, 0.65f)));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_WEAPONRACKS, makePool()
 				.add(addEntry(Items.WOODEN_AXE, 60, 0.3f, 0.7f))

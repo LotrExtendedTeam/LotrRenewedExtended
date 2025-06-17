@@ -206,6 +206,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.RANGER_NORTH_BOOTS.get()).setWeight(40).setDamageRange(0.15F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))
 						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BOW.get()).setWeight(10).setDamageRange(0.15F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.RANGER_BOW.get()).setWeight(30).setDamageRange(0.15F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_SHIELD.get()).setWeight(30).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(50).setDamageRange(0.15F, 0.7F).setExactly(1))));
 
