@@ -16,6 +16,7 @@ import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import lotr.common.item.LOTRSpawnEggItem;
@@ -40,7 +41,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity{
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -63,17 +64,25 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	private ExtendedNpcTraderInfoHolder tradeInfo = new ExtendedNpcTraderInfoHolder((NPCEntity)(Object)this);
 
 	/**
+	 * A private data holder for the ExtendedNpcHiredUnitInfoHolder module
+	 * */
+	@Unique
+	private ExtendedNpcHiredUnitInfoHolder unitInfo = new ExtendedNpcHiredUnitInfoHolder((NPCEntity)(Object)this);
+
+	/**
 	 * Get if this NPC requires surface to spawn
 	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresSurfaceBlock;
+
 	/**
 	 * Get if this NPC requires darkness to spawn
 	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresDarkness;
+
 	/**
 	 * Check if NPC can spawn on a block
 	 * @Shadow (remap = false)
@@ -83,6 +92,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	private boolean checkSpawningOnSurfaceBlock(IWorld iworld, SpawnReason reason) {return false;}
+
 	/**
 	 * Check if the current light level is valid to spawn at
 	 * @Shadow (remap = false)
@@ -91,6 +101,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	private boolean isValidLightLevelForDarkSpawn(IWorld iworld) {return false;}
+
 	/**
 	 * Check if NPC can be spoken to
 	 * @Shadow (remap = false)
@@ -98,6 +109,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	protected boolean canSpeakToNPC() {return false;}
+
 	/**
 	 * Send a speechbank to a player
 	 * @Shadow (remap = false)
@@ -106,6 +118,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	public boolean sendNormalSpeechTo(ServerPlayerEntity player) {return false;}
+
 	/**
 	 * Set NPC as talking to a given entity
 	 * @Shadow (remap = false)
@@ -114,6 +127,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	public void setTalkingToEntity(LivingEntity entity, int time) {}
+
 	/**
 	 * @reason Save additional entity data modules
 	 * @Inject (method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
@@ -124,6 +138,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void addAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.writeToNbtI(nbt);
 		tradeInfo.writeToNbtI(nbt);
+		unitInfo.writeToNbtI(nbt);
 	}
 
 	/**
@@ -136,6 +151,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void readAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.loadFromNbtI(nbt);
 		tradeInfo.loadFromNbtI(nbt);
+		unitInfo.loadFromNbtI(nbt);
 	}
 
 	/**
@@ -148,6 +164,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void onPlayerStartTrackingNPC(ServerPlayerEntity player, CallbackInfo ci) {
 		marriageInfo.sendDataToPlayerI(player);
 		tradeInfo.sendDataToPlayerI(player);
+		unitInfo.sendDataToPlayerI(player);
 	}
 
 	/**
@@ -159,6 +176,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void tick(CallbackInfo ci) {
 		marriageInfo.tickI();
 		tradeInfo.tickI();
+		unitInfo.tickI();
 	}
 
 	/**
@@ -177,6 +195,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	@Override
 	public ExtendedNpcTraderInfoHolder getTraderInfo() {
 		return tradeInfo;
+	}
+
+	/**
+	 * Gets the ExtendedNpcHiredUnitInfoHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcHiredUnitInfoHolder of this NPCEntity instance
+	 * */
+	@Override
+	public ExtendedNpcHiredUnitInfoHolder getUnitInfo() {
+		return unitInfo;
 	}
 
 	/**
