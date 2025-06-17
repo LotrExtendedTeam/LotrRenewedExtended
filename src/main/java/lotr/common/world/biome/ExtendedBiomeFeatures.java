@@ -256,14 +256,15 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addBlueOres(BiomeGenerationSettings.Builder builder) {
-		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
-		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);
-		addUndergroundOreWeighted(builder, AMBER_ORE, 5, 48, 1.5F);
-		addUndergroundOreWeighted(builder, OPAL_ORE, 5, 48, 1.5F);
-		addUndergroundOreWeighted(builder, SAPPHIRE_ORE, 4, 32, 1F);
-		addUndergroundOreWeighted(builder, RUBY_ORE, 4, 32, 1F);
-		addUndergroundOreWeighted(builder, EMERALD_ORE, 4, 24, 0.75F);
-		addUndergroundOreWeighted(builder, DIAMOND_ORE, 4, 16, 0.5F);
+		addUndergroundOre(builder, AMETHYST_ORE, 6, 64, 2);
+		addUndergroundOre(builder, TOPAZ_ORE, 6, 64, 2);
+		addUndergroundOre(builder, AMBER_ORE, 5, 48, 2);
+		addUndergroundOre(builder, OPAL_ORE, 5, 48, 2);
+		addUndergroundOre(builder, SAPPHIRE_ORE, 4, 32, 1);
+		addUndergroundOre(builder, RUBY_ORE, 4, 32, 1);
+		addUndergroundOre(builder, EMERALD_ORE, 4, 24, 1);
+		addUndergroundOre(builder, DIAMOND_ORE, 4, 16, 1);
+		addUndergroundOre(builder, Blocks.LAPIS_ORE.defaultBlockState(), 7, 32, 2);
 	}
 
 	public static void addStoneBlobs(BiomeGenerationSettings.Builder builder) {
