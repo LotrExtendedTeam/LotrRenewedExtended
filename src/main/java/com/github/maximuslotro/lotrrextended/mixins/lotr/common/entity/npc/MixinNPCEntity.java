@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
@@ -21,17 +23,21 @@ import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedCaptainHelper;
+import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -206,6 +212,13 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return unitInfo;
 	}
 
+	@Override
+	public ItemStack getValidOtherFood() {
+		if(unitInfo.isNpcActiveUnit()) {
+			return unitInfo.getValidOtherFood();
+		}
+		return ItemStack.EMPTY;
+	}
 	/**
 	 * @reason Need to implement banner protection spawn checks to entity spawns
 	 * @author maximuslotro
@@ -258,6 +271,54 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 					ci.setReturnValue(ExtendedCaptainHelper.openCaptainGui((NPCEntity)(Object)this, player, (ExtendedCaptainEntity)this));
 				}
 			}
+		}
+		if (hand == Hand.MAIN_HAND) {
+			if (unitInfo.isNpcActiveUnit() && unitInfo.getOwnerUUID().equals(player.getUUID())) { //TODO sync hired status and uuid to client
+				if (!this.level.isClientSide()) {
+					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
+				}
+				ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
+			}
+		}
+	}
+
+	@Override
+	public ItemStack eat(World world, ItemStack stack) { //TODO override npc eat goal, this does nothing rn (checkFood())
+		if (stack.isEdible() && unitInfo.isNpcActiveUnit()) {
+			this.heal(stack.getItem().getFoodProperties().getNutrition());
+		}
+		super.eat(world, stack);
+		return stack;
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity otherEntity) {
+		if (unitInfo.isNpcActiveUnit()) {
+			LivingEntity livingentity = unitInfo.getUnitOwner();
+			if (otherEntity == livingentity) {
+				return true;
+			}
+
+			if (livingentity != null) {
+				return livingentity.isAlliedTo(otherEntity);
+			}
+		}
+		return super.isAlliedTo(otherEntity);
+	}
+
+	@Override
+	public void die(DamageSource damageSource) {
+		if(unitInfo.isNpcActiveUnit()) {
+			ExtendedHiredUnitHelper.die(unitInfo, damageSource);
+		}
+		super.die(damageSource);
+	}
+
+	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
+	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
+		if(unitInfo.isNpcNowBeforeUnit()) {
+			ExtendedHiredUnitHelper.dropCustomDeathLoot(unitInfo, random, looting);
+			ci.cancel();// Hired units should only handle it's own equipment.
 		}
 	}
 }

@@ -189,7 +189,12 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	}
 
 	@Override
-	public boolean isActive() {
+	public boolean shouldLoad() {
+		return true;
+	}
+
+	@Override
+	public boolean shouldTick() {
 		return true;
 	}
 }

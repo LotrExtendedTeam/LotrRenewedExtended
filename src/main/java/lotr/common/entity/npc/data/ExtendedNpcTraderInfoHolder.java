@@ -106,7 +106,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		if(traderProfileHolder!=null) {
 			return traderProfileHolder;
 		}
-		if(isActive()) {
+		if(shouldLoad()) {
 			traderProfileHolder = ExtendedTraderProfileManager.INSTANCE.get(((ExtendedTraderEntity)thisEntity).getTraderProfileId());
 			return traderProfileHolder;
 		}
@@ -301,10 +301,17 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	/**
-	 * Only enable this module if its attached to a trader
+	 * Only enable module loading if its attached to a trader
 	 * */
 	@Override
-	public boolean isActive() {
+	public boolean shouldLoad() {
+		return thisEntity instanceof ExtendedTraderEntity;
+	}
+	/**
+	 * Only enable module ticking if its attached to a trader
+	 * */
+	@Override
+	public boolean shouldTick() {
 		return thisEntity instanceof ExtendedTraderEntity;
 	}
 
