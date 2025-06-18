@@ -2,9 +2,8 @@ package lotr.common.entity.npc.ai.goal;
 
 import java.util.EnumSet;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
@@ -22,7 +21,6 @@ import net.minecraft.world.IWorldReader;
 
 public class ExtendedHiredFollowPlayerGoal extends Goal {
     private final NPCEntity entity;
-    private final ExtendedHirableEntity hirable;
     private LivingEntity owner;
     private final IWorldReader level;
     private final double speedModifier;
@@ -35,12 +33,6 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
 
     public ExtendedHiredFollowPlayerGoal(NPCEntity entity, double speedModifier, float goalStartDistance, float goalEndDistance, boolean canFly) {
         this.entity = entity;
-
-        ExtendedHirableEntity hirable = ExtendedHiredUnitHelper.getExtendedHirableEntity(entity);
-        if (hirable == null) {
-            throw new IllegalArgumentException("The provided NPCEntity must implement ExtenedHirableEntity");
-        }
-        this.hirable = hirable;
 
         this.level = entity.level;
         this.speedModifier = speedModifier;
@@ -55,11 +47,11 @@ public class ExtendedHiredFollowPlayerGoal extends Goal {
     }
     @Override
     public boolean canUse() {
-        if (!hirable.getOrders().isFollowingPlayer()) {
+        if (!((ExtendedNPCEntity)entity).getUnitInfo().getOrders().isFollowingPlayer()) {
             return false;
         }
 
-        LivingEntity livingentity = this.hirable.getUnitOwner();
+        LivingEntity livingentity = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
         if (livingentity == null) {
             return false;
         } else if (livingentity.isSpectator()) {

@@ -4,13 +4,12 @@ import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHir
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -39,10 +38,7 @@ public class ExtendedHiredUnitContainer extends Container {
        
         this.companion = (NPCEntity) pPlayerInventory.player.level.getEntity(entityId);
 
-        IInventory companionInv = new Inventory(9);
-        if (companion instanceof ExtendedHirableEntity) {
-            companionInv = ((ExtendedHirableEntity) companion).getCustomInventory();
-        }
+        IInventory companionInv = ((ExtendedNPCEntity)companion).getUnitInfo().getInternalUnitInventory();
 
         checkContainerSize(companionInv, companionInv.getContainerSize());
         this.container = companionInv;

@@ -2,9 +2,8 @@ package lotr.common.entity.npc.ai.goal;
 
 import java.util.EnumSet;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.TargetGoal;
@@ -14,27 +13,19 @@ import net.minecraft.entity.passive.TameableEntity;
 
 public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
     private final NPCEntity entity;
-    private final ExtendedHirableEntity hirable;
     private LivingEntity ownerLastHurt;
     private int timestamp;
 
     public ExtendedHiredPlayerHurtTargetGoal(NPCEntity entity) {
         super(entity, false);
         this.entity = entity;
-
-        ExtendedHirableEntity hirable = ExtendedHiredUnitHelper.getExtendedHirableEntity(entity);
-        if (hirable == null) {
-            throw new IllegalArgumentException("The provided NPCEntity must implement ExtenedHirableEntity");
-        }
-        this.hirable = hirable;
-
         this.setFlags(EnumSet.of(Flag.TARGET));
     }
 
     @Override
 	public boolean canUse() {
-        if (this.hirable.isTame()) {
-            LivingEntity livingentity = this.hirable.getUnitOwner();
+        if (((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
+            LivingEntity livingentity = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
             if (livingentity == null) {
                 return false;
             } else {
@@ -42,7 +33,7 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
                 if (this.ownerLastHurt instanceof TameableEntity) {
                     if (((TameableEntity) this.ownerLastHurt).isTame()) {
                         LivingEntity owner1 = ((TameableEntity) this.ownerLastHurt).getOwner();
-                        LivingEntity owner2 = this.hirable.getUnitOwner();
+                        LivingEntity owner2 = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
                         // prevent hired units of the same player from fighting each other
                         if (owner1 != null && owner1.equals(owner2)) {
                             return false;
@@ -52,7 +43,7 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
                     return false;
                 }
                 int i = livingentity.getLastHurtMobTimestamp();
-                return i != this.timestamp && this.canAttack(this.ownerLastHurt, EntityPredicate.DEFAULT) && this.hirable.wantsToAttack(this.ownerLastHurt, livingentity);
+                return i != this.timestamp && this.canAttack(this.ownerLastHurt, EntityPredicate.DEFAULT);//&& this.hirable.wantsToAttack(this.ownerLastHurt, livingentity);
             }
         } else {
             return false;
@@ -62,7 +53,7 @@ public class ExtendedHiredPlayerHurtTargetGoal extends TargetGoal {
     @Override
 	public void start() {
         this.mob.setTarget(this.ownerLastHurt);
-        LivingEntity livingentity = this.hirable.getUnitOwner();
+        LivingEntity livingentity = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
         if (livingentity != null) {
             this.timestamp = livingentity.getLastHurtMobTimestamp();
         }

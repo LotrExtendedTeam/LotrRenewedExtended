@@ -1,101 +1,23 @@
 package lotr.common.entity.npc;
 
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-
 import lotr.common.entity.npc.ai.goal.ExtendedHiredFollowPlayerGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtByTargetGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredPlayerHurtTargetGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredSitGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedHiredWaterAvoidingRandomWalkingGoal;
-import lotr.common.util.ExtendedHiredUnitHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.server.management.PreYggdrasilConverter;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedHiredGundabadOrc extends GundabadOrcEntity {
 
-    private static final DataParameter<Boolean> INVENTORY_OPEN = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class,DataSerializers.BOOLEAN);
-
-    private static final DataParameter<Boolean> EQUIPMENT_OPEN = EntityDataManager.defineId(ExtendedHiredGundabadOrc.class, DataSerializers.BOOLEAN);
-
     public ExtendedHiredGundabadOrc(EntityType<? extends GundabadOrcEntity> type, World w) {
         super(type, w);
-    }
-
-
-    @Override
-    public boolean wantsToAttack(LivingEntity p_142018_1_, LivingEntity p_142018_2_) {
-        return true;
-    }
-
-    @Override
-    public boolean isInventoryOpen() {
-        return this.entityData.get(INVENTORY_OPEN);
-    }
-
-    @Override
-    public boolean isEquipmentOpen() {
-        return this.entityData.get(EQUIPMENT_OPEN);
-    }
-
-    @Override
-    public void setInventoryOpen(boolean isOpen) {
-        this.entityData.set(INVENTORY_OPEN, isOpen);
-    }
-
-    @Override
-    public void setEquipmentOpen(boolean isOpen) {
-        this.entityData.set(EQUIPMENT_OPEN, isOpen);
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BASE_HEALTH, 18);
-        this.entityData.define(INVENTORY_OPEN, false);
-        this.entityData.define(EQUIPMENT_OPEN, false);
-        this.entityData.define(TMP_LAST_HEALTH, 18f);
-    }
-
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return OrcEntity.regAttrs()
-                .add(Attributes.FOLLOW_RANGE, 20.0D)
-                .add(Attributes.MAX_HEALTH, 18.0D);
     }
 
     @Override

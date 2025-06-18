@@ -112,7 +112,6 @@
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
 		"net.minecraft.inventory.container.MixinCraftingResultSlot",
 		"net.minecraft.item.MixinShearsItem",
-		"net.minecraft.item.MixinSpawnEggItem",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
 		"net.minecraft.world.gen.feature.template.MixinTemplate"
 	],

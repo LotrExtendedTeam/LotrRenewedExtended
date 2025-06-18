@@ -49,7 +49,7 @@ public class ExtendedHiredUnitHelper {
 
         IFormattableTextComponent killerName = new StringTextComponent("");
         if (killer != null) {
-        	if (killer instanceof NPCEntity && ((ExtendedNPCEntity)killer).getUnitInfo().isNpcActiveUnit()) {
+        	if (killer instanceof NPCEntity && ((ExtendedNPCEntity)killer).getUnitInfo().isNpcActiveDuty()) {
                 killerName = ((ExtendedNPCEntity)killer).getUnitInfo().getHiredUnitNameAndTitle();
             }
         	else {
@@ -106,7 +106,7 @@ public class ExtendedHiredUnitHelper {
      * @param item The new ItemStack to be placed in the slot
      * */
     public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
-        if (((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveUnit()) {
+        if (((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
         	((ExtendedNPCEntity)companion).getUnitInfo().updateSlot(item, slot);
         }
     }

@@ -214,7 +214,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 
 	@Override
 	public ItemStack getValidOtherFood() {
-		if(unitInfo.isNpcActiveUnit()) {
+		if(unitInfo.isNpcActiveDuty()) {
 			return unitInfo.getValidOtherFood();
 		}
 		return ItemStack.EMPTY;
@@ -273,7 +273,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 			}
 		}
 		if (hand == Hand.MAIN_HAND) {
-			if (unitInfo.isNpcActiveUnit() && unitInfo.getOwnerUUID().equals(player.getUUID())) { //TODO sync hired status and uuid to client
+			if (unitInfo.isNpcActiveDuty() && unitInfo.getOwnerUUID().equals(player.getUUID())) { //TODO sync hired status and uuid to client
 				if (!this.level.isClientSide()) {
 					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
 				}
@@ -284,7 +284,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 
 	@Override
 	public ItemStack eat(World world, ItemStack stack) { //TODO override npc eat goal, this does nothing rn (checkFood())
-		if (stack.isEdible() && unitInfo.isNpcActiveUnit()) {
+		if (stack.isEdible() && unitInfo.isNpcActiveDuty()) {
 			this.heal(stack.getItem().getFoodProperties().getNutrition());
 		}
 		super.eat(world, stack);
@@ -293,7 +293,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 
 	@Override
 	public boolean isAlliedTo(Entity otherEntity) {
-		if (unitInfo.isNpcActiveUnit()) {
+		if (unitInfo.isNpcActiveDuty()) {
 			LivingEntity livingentity = unitInfo.getUnitOwner();
 			if (otherEntity == livingentity) {
 				return true;
@@ -308,7 +308,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 
 	@Override
 	public void die(DamageSource damageSource) {
-		if(unitInfo.isNpcActiveUnit()) {
+		if(unitInfo.isNpcActiveDuty()) {
 			ExtendedHiredUnitHelper.die(unitInfo, damageSource);
 		}
 		super.die(damageSource);
@@ -316,7 +316,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 
 	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
 	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
-		if(unitInfo.isNpcNowBeforeUnit()) {
+		if(unitInfo.isNpcActiveOrDismissed()) {
 			ExtendedHiredUnitHelper.dropCustomDeathLoot(unitInfo, random, looting);
 			ci.cancel();// Hired units should only handle it's own equipment.
 		}

@@ -86,10 +86,9 @@ public class ExtendedCHireUnitPacket {
         // spawn the actual NPC
         Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entity.level, null, player, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), SpawnReason.NATURAL, false, false);
 
-        if (newEntity != null) {
-            if (newEntity instanceof ExtendedHirableEntity) {
-                ((ExtendedHirableEntity) newEntity).tame(player);
-            }
+        if (newEntity != null && newEntity instanceof NPCEntity) {
+        	((ExtendedNPCEntity)entity).getUnitInfo().setNpcAsHired(player, unitProfile.getId());
+
             CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getEntityUnitTypeName()), unitProfile.getHiringCost()), Util.NIL_UUID);
             ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entity.getType(), newEntity.getType(), unitProfile.getHiringCost());

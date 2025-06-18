@@ -4,7 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
@@ -35,12 +35,12 @@ public class HiredUnitEventHandlers {
 
         // make companion no longer stationary
         if (event.getContainer() instanceof ExtendedHiredUnitContainer) {
-            if (entity instanceof ExtendedHirableEntity) {
-                ((ExtendedHirableEntity) entity).setInventoryOpen(false);
+            if (entity instanceof NPCEntity) {
+            	((ExtendedNPCEntity)entity).getUnitInfo().isInterracting = false;
             }
         } else if (event.getContainer() instanceof ExtendedHiredUnitEquipmentContainer) {
-            if (entity instanceof ExtendedHirableEntity) {
-                ((ExtendedHirableEntity) entity).setEquipmentOpen(false);
+            if (entity instanceof NPCEntity) {
+            	((ExtendedNPCEntity)entity).getUnitInfo().isInterracting = false;
             }
         }
     }
@@ -48,7 +48,7 @@ public class HiredUnitEventHandlers {
     @SubscribeEvent
     public static void giveExperience(final LivingDeathEvent event) {
         Entity companion = event.getSource().getEntity();
-        if (companion instanceof ExtendedHirableEntity) {
+        if (companion instanceof NPCEntity && ((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
             // base amount of xp off kill alignment bonus
             float xpPoints = 0;
             if (event.getEntity() instanceof NPCEntity) {
@@ -67,8 +67,8 @@ public class HiredUnitEventHandlers {
                }
             }
 
-            ((ExtendedHirableEntity) companion).giveExperiencePoints(xpPoints);
-            ((ExtendedHirableEntity) companion).setMobKills(((ExtendedHirableEntity) companion).getMobKills() + 1);
+            ((ExtendedNPCEntity)companion).getUnitInfo().giveExperiencePoints(xpPoints);
+            ((ExtendedNPCEntity)companion).getUnitInfo().setMobKills(((ExtendedNPCEntity)companion).getUnitInfo().getMobKills() + 1);
         }
     }
 }

@@ -25,6 +25,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
@@ -69,6 +70,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	// Temporary data
 	private int lastHealed = 0;
 	private boolean resendData = false;
+	public boolean isInterracting = false;
 
 	private Inventory internalUnitInventory = makeUnitInventory();
 
@@ -135,25 +137,25 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
         return ItemStack.EMPTY;
     }
 
-	public boolean isNpcActiveUnit() {
+	public boolean isNpcActiveDuty() {
 		return isHired;
 	}
 
-	public boolean wasNpcActiveUnit() {
+	public boolean wasNpcActiveDismissed() {
 		return wasHired;
 	}
 
-	public boolean isNpcNowBeforeUnit() {
+	public boolean isNpcActiveOrDismissed() {
 		return isHired || wasHired;
 	}
 
-	public boolean setNpcAsHired(UUID setOwner, ResourceLocation loc) { //TODO finish
+	public boolean setNpcAsHired(PlayerEntity setOwner, ResourceLocation loc) { //TODO finish
 		this.unitProfile = loc;
 		thisEntity.setPersistenceRequired();
 		if(getUnitProfile()==null) {
 			return false;
 		}
-		this.setOwnerUUID(setOwner);
+		this.setOwnerUUID(setOwner.getUUID());
 		isHired = true;
 		wasHired = true;
 		setupUnitEquipment();
@@ -298,7 +300,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	 * */
 	@Override
 	public boolean shouldTick() {
-		return isNpcActiveUnit();
+		return isNpcActiveDuty();
 	}
 	/**
 	 * Sync unit data?
@@ -372,6 +374,10 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	public float getHiredUnitHealth() {
 		return this.thisEntity.getHealth();
+	}
+
+	public float getHiredUnitMaxHealth() {
+		return this.thisEntity.getMaxHealth();
 	}
 
 	public int getBaseHealth() {

@@ -8,7 +8,9 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.Inventory;
@@ -42,20 +44,21 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 			// fill in equipment array list
 			final List<ItemStack> equipment = new ArrayList<>(20);
 			Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
-			if(!(entity instanceof ExtendedHirableEntity)) {
+			if(!(entity instanceof NPCEntity) || ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
 				context.get().setPacketHandled(true);
 				return;
 			}
-			Inventory inventory = ((ExtendedHirableEntity) entity).getCustomInventory();
+			ExtendedNpcHiredUnitInfoHolder info = ((ExtendedNPCEntity)entity).getUnitInfo();
+			Inventory inventory = info.getInternalUnitInventory();
 			for (int i = 9; i < 29; i++) {
 				equipment.add(inventory.getItem(i));
 			}
 
 			// Prepare PacketBuffer with initialization data
 			PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-			ExtendedHiredUnitEquipmentContainer.writeContainerInitData(initData, msg.entityId, ((ExtendedHirableEntity) entity).getUnitProfile(), equipment);
+			ExtendedHiredUnitEquipmentContainer.writeContainerInitData(initData, msg.entityId, info.getUnitProfile(), equipment);
 
-			((ExtendedHirableEntity) entity).setEquipmentOpen(true);
+			info.isInterracting = true;
 
 			// Open GUI on client side
 			NetworkHooks.openGui(context.get().getSender(),
@@ -63,7 +66,7 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 							(windowId, playerInventory, player) -> ExtendedContainers.HIRED_UNIT_EQUIPMENT.get().create(windowId, playerInventory, initData),
 							ExtendedHiredUnitEquipmentContainer.CONTAINER_TITLE
 							),
-					buf -> ExtendedHiredUnitEquipmentContainer.writeContainerInitData(buf, msg.entityId, ((ExtendedHirableEntity) entity).getUnitProfile(), equipment)
+					buf -> ExtendedHiredUnitEquipmentContainer.writeContainerInitData(buf, msg.entityId, info.getUnitProfile(), equipment)
 					);
 
 			context.get().setPacketHandled(true);

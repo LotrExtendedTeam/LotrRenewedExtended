@@ -6,7 +6,9 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -42,25 +44,25 @@ public class ExtendedCOpenHiredMenuPacket {
         context.get().enqueueWork(() -> {
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
 
-            ExtendedHirableEntity unit = ((ExtendedHirableEntity) entity);
+            if(!(entity instanceof NPCEntity) || ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
+				context.get().setPacketHandled(true);
+				return;
+			}
+            ExtendedNpcHiredUnitInfoHolder info = ((ExtendedNPCEntity)entity).getUnitInfo();
             // Prepare PacketBuffer with initialization data
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-            ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId, unit.getUnitProfile(), unit.getOrders());
+            ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId, info.getUnitProfile(), info.getOrders());
 
-            if(!(entity instanceof ExtendedHirableEntity)) {
-            	context.get().setPacketHandled(true);
-            	return;
-            }
-            ((ExtendedHirableEntity) entity).setInventoryOpen(true);
+            info.isInterracting = true;
 
             // Open GUI on client side
             NetworkHooks.openGui(Objects.requireNonNull(context.get().getSender()),
                     new SimpleNamedContainerProvider(
                             (windowId, playerInventory, player) ->
                                     ExtendedContainers.HIRED_UNIT_CONTAINER.get().create(windowId, playerInventory, initData),
-                                    ((ExtendedHirableEntity) entity).getHiredUnitName()
+                                    info.getHiredUnitName()
                     ),
-                    buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId, unit.getUnitProfile(), unit.getOrders())
+                    buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId, info.getUnitProfile(), info.getOrders())
             );
 
             context.get().setPacketHandled(true);
