@@ -49,7 +49,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ExtendedBoarEntity extends ExtendedGenderedAnimalEntity<ExtendedBoarEntity> implements IRideable, IEquipable {
+public class ExtendedBoarEntity extends ExtendedAbstractGenderedAnimalEntity<ExtendedBoarEntity> implements IRideable, IEquipable {
 	private static final DataParameter<Boolean> DATA_SADDLE_ID = EntityDataManager.defineId(ExtendedBoarEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> DATA_BOOST_TIME = EntityDataManager.defineId(ExtendedBoarEntity.class, DataSerializers.INT);
 	private final BoostHelper steering = new BoostHelper(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);

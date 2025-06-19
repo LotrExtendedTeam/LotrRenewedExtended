@@ -51,7 +51,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuckEntity> {
+public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<ExtendedDuckEntity> {
 	public float flap;
 	public float flapSpeed;
 	public float oFlapSpeed;
@@ -243,7 +243,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	}
 
 	/**
-	 * Set baby ducks {@link ExtendedGenderedAnimalEntity} if parent is bob type
+	 * Set baby ducks {@link ExtendedAbstractGenderedAnimalEntity} if parent is bob type
 	 * */
 	@Override
 	public ExtendedDuckEntity modifyBreedingOffspring(ExtendedDuckEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {

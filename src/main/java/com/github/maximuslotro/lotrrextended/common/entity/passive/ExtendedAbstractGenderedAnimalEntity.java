@@ -1,9 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -13,6 +17,8 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -24,9 +30,9 @@ import net.minecraft.world.server.ServerWorld;
  *
  * @param <T> The specific subclass type extending this class, used for type-safe breeding offspring.
  */
-public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAnimalEntity<?>> extends AnimalEntity {
+public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbstractGenderedAnimalEntity<?>> extends AnimalEntity {
 
-	private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(ExtendedGenderedAnimalEntity.class, DataSerializers.INT);
+	private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(ExtendedAbstractGenderedAnimalEntity.class, DataSerializers.INT);
 	/**
      * Constructs a new ExtendedGenderedAnimalEntity with a randomly assigned gender
      * if the entity is gendered.
@@ -34,15 +40,21 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
      * @param entityType The entity type.
      * @param world The world the entity belongs to.
      */
-	protected ExtendedGenderedAnimalEntity(EntityType<? extends ExtendedGenderedAnimalEntity<T>> entityType, World world) {
+	protected ExtendedAbstractGenderedAnimalEntity(EntityType<? extends ExtendedAbstractGenderedAnimalEntity<T>> entityType, World world) {
 		super(entityType, world);
-		this.setGenderRandomly(isGendered(), world);
+	}
+
+	@Override
+	@Nullable
+	public ILivingEntityData finalizeSpawn(IServerWorld pLevel, DifficultyInstance pDifficulty, SpawnReason pReason, @Nullable ILivingEntityData pSpawnData, @Nullable CompoundNBT pDataTag) {
+		this.setGenderRandomly(isGendered(), pLevel.getLevel());
+		return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
 	}
 
 	/**
-     * Checks if the given item stack is the food that this animal can be fed.
-     * Overrides the vanilla method to enforce breedable food logic.
-     *
+	 * Checks if the given item stack is the food that this animal can be fed.
+	 * Overrides the vanilla method to enforce breedable food logic.
+	 *
      * @param pStack The item stack to check.
      * @return {@code true} if the item is breedable food for this animal; {@code false} otherwise.
      */
@@ -133,7 +145,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	@Override
 	public AgeableEntity getBreedOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
 		T baby = getBreedingOffspring(pServerLevel, pMate);
-		if(baby.isGendered()!=this.isGendered() || baby.isGendered()!=((ExtendedGenderedAnimalEntity<?>)pMate).isGendered()) {
+		if(baby.isGendered()!=this.isGendered() || baby.isGendered()!=((ExtendedAbstractGenderedAnimalEntity<?>)pMate).isGendered()) {
 			baby.setGenderRandomly(isGendered(), pServerLevel);
 		}
 		return modifyBreedingOffspring(baby, pServerLevel, pMate);
@@ -176,14 +188,14 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 			return false;
 		} else if (pOtherAnimal.getClass() != this.getClass()) {
 			return false;
-		} else if (!(pOtherAnimal instanceof ExtendedGenderedAnimalEntity) && !(this instanceof ExtendedGenderedAnimalEntity)) {
+		} else if (!(pOtherAnimal instanceof ExtendedAbstractGenderedAnimalEntity) && !(this instanceof ExtendedAbstractGenderedAnimalEntity)) {
 			return this.isInLove() && pOtherAnimal.isInLove();
 		} else {
 			boolean canMateGeneric = isInLove() && pOtherAnimal.isInLove();
 			if (!canMateGeneric) {
 				return false;
 			}
-			EntityGender otherAnimalGender = ((ExtendedGenderedAnimalEntity<?>) pOtherAnimal).getGender();
+			EntityGender otherAnimalGender = ((ExtendedAbstractGenderedAnimalEntity<?>) pOtherAnimal).getGender();
 			if(otherAnimalGender == EntityGender.UNKNOWN || getGender() == EntityGender.UNKNOWN) {
 				return false;
 			} else if(otherAnimalGender == EntityGender.FEMALE && getGender() == EntityGender.MALE) {
@@ -223,9 +235,10 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
      * @param gendered Whether this entity uses gender mechanics.
      * @param serverWorld The world instance to use for randomization.
      */
-	public void setGenderRandomly(boolean gendered, World serverWorld) {
+	public void setGenderRandomly(boolean gendered, ServerWorld serverWorld) {
 		if(!gendered) {
 			this.setGender(EntityGender.GENDERLESS);
+			return;
 		}
 		this.setGender(serverWorld.random.nextBoolean() ? EntityGender.MALE : EntityGender.FEMALE);
 	}
