@@ -223,6 +223,15 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		.add(ExtendedItems.BLUEBERRY.get()).add(ExtendedItems.CRANBERRY.get()).add(ExtendedItems.ELDERBERRY.get())
 		.add(ExtendedItems.RASPBERRY.get()).add(ExtendedItems.PLUM.get());
 
+		tag(ExtendedTags.Items.BOAR_FOOD).add(Items.BEETROOT_SEEDS).add(Items.MELON_SEEDS)
+		.add(Items.PUMPKIN_SEEDS).add(Items.WHEAT_SEEDS).add(LOTRItems.FLAX_SEEDS.get()).add(LOTRItems.PIPEWEED_SEEDS.get())
+		.add(Items.APPLE).add(LOTRItems.LETTUCE.get()).add(LOTRItems.GREEN_APPLE.get()).add(Items.WHEAT).add(Items.HAY_BLOCK)
+		.add(LOTRItems.PEAR.get()).add(LOTRItems.CHERRY.get()).add(ExtendedItems.PLUM.get()).add(Items.POTATO).add(Items.BEETROOT)
+		.add(ExtendedItems.BLACKBERRY.get()).add(ExtendedItems.BLUEBERRY.get()).add(ExtendedItems.CRANBERRY.get())
+		.add(ExtendedItems.ELDERBERRY.get()).add(ExtendedItems.RASPBERRY.get());
+
+		tag(ExtendedTags.Items.BOAR_BREEDING).add(Items.CARROT);
+
 		tag(ExtendedTags.Items.COIN_ALL).add(ExtendedItems.SILVER_COIN_ONE.get())
 		.add(ExtendedItems.SILVER_COIN_TEN.get()).add(ExtendedItems.SILVER_COIN_HUNDRED.get());
 		tag(ExtendedTags.Items.COIN_ONE).add(ExtendedItems.SILVER_COIN_ONE.get());

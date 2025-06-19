@@ -172,6 +172,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_HALF_SCALING = ItemTags.bind("lotrextended:weapon_rack_items_half_scaling");
 
 		public static final ITag.INamedTag<Item> DUCK_FOOD = ItemTags.bind("lotrextended:foods/duck_feedables");
+		public static final ITag.INamedTag<Item> BOAR_FOOD = ItemTags.bind("lotrextended:foods/boar_feedables");
+		public static final ITag.INamedTag<Item> BOAR_BREEDING = ItemTags.bind("lotrextended:foods/boar_breedables");
 
 		public static final ITag.INamedTag<Item> COIN_ALL = ItemTags.bind("lotrextended:coins/coin_all");
 		public static final ITag.INamedTag<Item> COIN_ONE = ItemTags.bind("lotrextended:coins/coin_one");

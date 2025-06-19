@@ -92,11 +92,11 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
-	public static boolean checkTurtleSpawnRules(EntityType<ExtendedDuckEntity> pTurtle, IWorld pLevel, SpawnReason pSpawnType, BlockPos pPos, Random pRandom) {
+	public static boolean checkDuckSpawnRules(EntityType<ExtendedDuckEntity> pTurtle, IWorld pLevel, SpawnReason pSpawnType, BlockPos pPos, Random pRandom) {
 		return isNearWater(pLevel, pPos, pRandom) && onSandOrGrassOrGravel(pLevel, pPos) && pLevel.getRawBrightness(pPos, 0) > 8;
 	}
 
-	public static boolean isNearWater(IWorld pReader, BlockPos pPos, Random pRandom) {
+	private static boolean isNearWater(IWorld pReader, BlockPos pPos, Random pRandom) {
 		Biome biome = pReader.getBiome(pPos);
 		if((biome.getBiomeCategory() == Biome.Category.RIVER) || (pRandom.nextInt(4)==0)) {
 			return true;
@@ -109,15 +109,15 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		return false;
 	}
 
-	public static boolean onSandOrGrassOrGravel(IBlockReader pReader, BlockPos pPos) {
+	private static boolean onSandOrGrassOrGravel(IBlockReader pReader, BlockPos pPos) {
 		return isSand(pReader, pPos.below()) || isGrass(pReader, pPos.below());
 	}
 
-	public static boolean isSand(IBlockReader pReader, BlockPos pPos) {
+	private static boolean isSand(IBlockReader pReader, BlockPos pPos) {
 		return pReader.getBlockState(pPos).is(BlockTags.SAND);
 	}
 
-	public static boolean isGrass(IBlockReader pReader, BlockPos pPos) {
+	private static boolean isGrass(IBlockReader pReader, BlockPos pPos) {
 		return pReader.getBlockState(pPos).is(Blocks.GRASS_BLOCK);
 	}
 
@@ -220,7 +220,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	}
 
 	@Override
-	public boolean getBreedableFood(ItemStack stack) {
+	public boolean isEdibleFood(ItemStack stack) {
 		return Ingredient.of(ExtendedTags.Items.DUCK_FOOD).test(stack);
 	}
 
@@ -257,5 +257,10 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 			}
 		}
 		return baby;
+	}
+
+	@Override
+	public boolean canFoodHealAnimal() {
+		return false;
 	}
 }

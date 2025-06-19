@@ -5,11 +5,14 @@ import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -37,7 +40,7 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-     * Checks if the given item stack is the food that this animal breed on.
+     * Checks if the given item stack is the food that this animal can be fed.
      * Overrides the vanilla method to enforce breedable food logic.
      *
      * @param pStack The item stack to check.
@@ -45,16 +48,36 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
      */
 	@Override
 	public boolean isFood(ItemStack pStack) {
-		return getBreedableFood(pStack);
+		return isBreedableFood(pStack);
 	}
 
 	/**
-     * Abstract method to determine if the specified item stack is considered breedable food.
+     * Checks if the given item stack is any food type that this animal can be fed or breed with.
+     *
+     * @param pStack The item stack to check.
+     * @return {@code true} if the item is breedable food for this animal; {@code false} otherwise.
+     */
+	public boolean isPossableFood(ItemStack pStack) {
+		return isBreedableFood(pStack) || isEdibleFood(pStack);
+	}
+
+	/**
+     * Determine if the specified item stack is considered breedable food.
      *
      * @param stack The item stack to check.
      * @return {@code true} if the item is breedable food; {@code false} otherwise.
      */
-	public abstract boolean getBreedableFood(ItemStack stack);
+	public boolean isBreedableFood(ItemStack stack) {
+		return isEdibleFood(stack);
+	}
+
+	/**
+     * Abstract method to determine if the specified item stack is considered edible food.
+     *
+     * @param stack The item stack to check.
+     * @return {@code true} if the item is breedable food; {@code false} otherwise.
+     */
+	public abstract boolean isEdibleFood(ItemStack stack);
 
 	/**
      * Abstract method to indicate whether this animal uses gender mechanics.
@@ -62,6 +85,13 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
      * @return {@code true} if the animal has gender; {@code false} otherwise.
      */
 	public abstract boolean isGendered();
+
+	/**
+     * Abstract method to indicate whether this food should heal this animal
+     *
+     * @return {@code true} if the animal can be healed; {@code false} otherwise.
+     */
+	public abstract boolean canFoodHealAnimal();
 
 	/**
      * Abstract method to obtain the offspring entity resulting from breeding.
@@ -198,5 +228,35 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 			this.setGender(EntityGender.GENDERLESS);
 		}
 		this.setGender(serverWorld.random.nextBoolean() ? EntityGender.MALE : EntityGender.FEMALE);
+	}
+
+	@Override
+	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
+		ItemStack itemstack = pPlayer.getItemInHand(pHand);
+		if (this.isBreedableFood(itemstack)) {
+			int i = this.getAge();
+			if (i == 0 && this.canFallInLove()) {
+				if (!this.level.isClientSide) {
+					this.usePlayerItem(pPlayer, itemstack);
+					this.setInLove(pPlayer);
+				}
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			}
+		}
+		if (this.isFood(itemstack)) {
+			int i = this.getAge();
+			if (this.isBaby()) {
+				this.usePlayerItem(pPlayer, itemstack);
+				this.ageUp((int)((float)(-i / 20) * 0.1F), true);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			}
+			// TODO add system for different heal amounts like horses
+			if (canFoodHealAnimal() && this.getHealth() < this.getMaxHealth()) { //&& f > 0.0F) {
+				this.usePlayerItem(pPlayer, itemstack);
+				this.heal(1.0f);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			}
+		}
+		return ActionResultType.PASS;
 	}
 }
