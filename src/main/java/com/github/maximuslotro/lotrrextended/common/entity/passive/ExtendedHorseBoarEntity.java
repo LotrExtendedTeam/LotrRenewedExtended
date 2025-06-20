@@ -31,8 +31,8 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
 
-	public ExtendedHorseBoarEntity(EntityType<? extends ExtendedHorseBoarEntity> p_i50238_1_, World p_i50238_2_) {
-		super(p_i50238_1_, p_i50238_2_);
+	public ExtendedHorseBoarEntity(EntityType<? extends ExtendedHorseBoarEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	@Override
@@ -40,6 +40,30 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double)this.generateRandomMaxHealth());
 		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed());
 		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength());
+	}
+
+	/**
+	 * Returns randomized max health
+	 */
+	@Override
+	protected float generateRandomMaxHealth() {
+		return 15.0F + (float)this.random.nextInt(8) + (float)this.random.nextInt(9);
+	}
+
+	/**
+	 * Returns randomized jump strength
+	 */
+	@Override
+	protected double generateRandomJumpStrength() {
+		return (double)0.4F + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D;
+	}
+
+	/**
+	 * Returns randomized movement speed
+	 */
+	@Override
+	protected double generateRandomSpeed() {
+		return ((double)0.45F + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
 	}
 
 	@Override
@@ -236,4 +260,5 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		this.setOffspringAttributes(pMate, baby);
 		return baby;
 	}
+
 }

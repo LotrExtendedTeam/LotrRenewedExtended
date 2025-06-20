@@ -3,7 +3,6 @@ package lotr.common.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
@@ -71,6 +70,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDwarfMinerEntity>> DWARVEN_MINER;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsSmithEntity>> BLUE_DWARVEN_SMITH;
 	public static RegistryObject<EntityType<ExtendedDwarfSmithEntity>> DWARVEN_SMITH;
-	public static RegistryObject<EntityType<ExtendedBoarEntity>> BOAR;
 	public static RegistryObject<EntityType<ExtendedHorseBoarEntity>> HORSE_BOAR;
 }

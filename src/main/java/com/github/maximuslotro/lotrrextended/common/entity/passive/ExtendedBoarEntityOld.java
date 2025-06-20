@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
-import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.BoostHelper;
@@ -49,12 +48,12 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ExtendedBoarEntity extends ExtendedAbstractGenderedAnimalEntity<ExtendedBoarEntity> implements IRideable, IEquipable {
-	private static final DataParameter<Boolean> DATA_SADDLE_ID = EntityDataManager.defineId(ExtendedBoarEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Integer> DATA_BOOST_TIME = EntityDataManager.defineId(ExtendedBoarEntity.class, DataSerializers.INT);
+public class ExtendedBoarEntityOld extends ExtendedAbstractGenderedAnimalEntity<ExtendedBoarEntityOld> implements IRideable, IEquipable {
+	private static final DataParameter<Boolean> DATA_SADDLE_ID = EntityDataManager.defineId(ExtendedBoarEntityOld.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> DATA_BOOST_TIME = EntityDataManager.defineId(ExtendedBoarEntityOld.class, DataSerializers.INT);
 	private final BoostHelper steering = new BoostHelper(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
 
-	public ExtendedBoarEntity(EntityType<? extends ExtendedBoarEntity> p_i50250_1_, World p_i50250_2_) {
+	public ExtendedBoarEntityOld(EntityType<? extends ExtendedBoarEntityOld> p_i50250_1_, World p_i50250_2_) {
 		super(p_i50250_1_, p_i50250_2_);
 	}
 
@@ -284,8 +283,8 @@ public class ExtendedBoarEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	}
 
 	@Override
-	public ExtendedBoarEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
-		return ExtendedEntities.BOAR.get().create(pServerLevel);
+	public ExtendedBoarEntityOld getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
+		return null;
 	}
 
 	@Override
