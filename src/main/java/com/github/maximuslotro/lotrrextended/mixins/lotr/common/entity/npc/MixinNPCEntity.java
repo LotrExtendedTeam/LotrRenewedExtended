@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
@@ -18,6 +19,7 @@ import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.ai.goal.NPCHurtByTargetGoal;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
@@ -338,13 +340,17 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	}
 
 	/**
-	 * Injected to override default loot dropping behavior for hired units upon death.
-	 *
+	 * Overrides the default loot-dropping behavior for hired NPC units when they die.
+	 * <p>
+	 * If the unit is a hired NPC (active or recently dismissed), this method cancels the
+	 * standard loot drop logic and triggers custom loot logic instead. This ensures that
+	 * hired units only drop their equipment and not standard entity loot.
+	 * 
 	 * @Inject (method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
-	 * @param source The source of the damage that killed the entity.
-	 * @param looting The looting level applied from the killer.
-	 * @param playerHit {@code true} if a player dealt the final blow.
-	 * @param ci CallbackInfo for controlling whether to cancel default loot behavior.
+	 * @param source     The {@link DamageSource} that caused the entity's death.
+	 * @param looting    The looting level applied from the attacker, typically from enchantments.
+	 * @param playerHit  {@code true} if the final hit was delivered by a player.
+	 * @param ci         The {@link CallbackInfo} object used to cancel the method execution.
 	 */
 	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
 	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
@@ -352,5 +358,42 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 			ExtendedHiredUnitHelper.dropCustomDeathLoot(unitInfo, random, looting);
 			ci.cancel();// Hired units should only handle it's own equipment.
 		}
+	}
+
+	/**
+	 * Injects custom targeting goals for NPCs at the start of the entity's goal selector.
+	 *
+	 * @Inject (method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, ordinal = 0, remap = true), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	 * @param seekTargets Indicates whether the entity should seek targets.
+	 * @param cir         The {@link CallbackInfoReturnable} for controlling return behavior.
+	 * @param index       The initial goal index prior to modification.
+	 */
+	@Inject(method = "addTargetingGoals(Z)I", 
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, 
+		ordinal = 0, remap = true),
+		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	private void extended$addAdditionalTargetingGoals(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
+		this.targetSelector.addGoal(1, new NPCHurtByTargetGoal((NPCEntity)(Object)this));
+		this.targetSelector.addGoal(2, new NPCHurtByTargetGoal((NPCEntity)(Object)this));
+		index = 3;
+	}
+
+	/**
+	 * Adjusts the targeting goal index offset after custom goals have been injected and injects custom targeting goals for NPCs at the end of the entity's goal selector.
+	 * <p>
+	 * This ensures that the goal priority index continues correctly after the addition
+	 * of custom NPC targeting goals. Prevents conflicts with subsequent goal registrations.
+	 *
+	 * @Inject(method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, ordinal = 0, remap = true), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	 * @param seekTargets Indicates whether the entity should seek targets.
+	 * @param cir         The {@link CallbackInfoReturnable} for controlling return behavior.
+	 * @param index       The targeting goal index after custom goals have been injected.
+	 */
+	@Inject(method = "addTargetingGoals(Z)I", 
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, 
+		ordinal = 0, remap = true),
+		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	private void extended$fixTargetingGoalsOffset(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
+		index = 4;
 	}
 }

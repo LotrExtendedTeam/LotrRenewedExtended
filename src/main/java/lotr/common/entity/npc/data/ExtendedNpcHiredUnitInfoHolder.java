@@ -66,7 +66,6 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private float max_xp = 1.0f;
 	private int kills = 0;
 	private int baseHealth = 20;
-	private float lastHealth = 20;
 	private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
 	private boolean isHired = false;
 	private boolean wasHired = false;
