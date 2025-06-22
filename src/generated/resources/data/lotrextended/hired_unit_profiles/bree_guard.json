@@ -1,6 +1,6 @@
 {
   "id": "lotrextended:bree_guard",
-  "entity_type": "lotr:hired_bree_guard",
+  "entity_type": "lotr:bree_guard",
   "language": {
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_bree_guard",

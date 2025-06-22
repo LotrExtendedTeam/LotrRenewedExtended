@@ -1,6 +1,6 @@
 {
   "id": "lotrextended:gundabad_orc",
-  "entity_type": "lotr:hired_gundabad_orc",
+  "entity_type": "lotr:gundabad_orc",
   "language": {
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_gundabad_orc",

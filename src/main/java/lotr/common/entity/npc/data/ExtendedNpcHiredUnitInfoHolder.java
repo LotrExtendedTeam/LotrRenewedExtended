@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHir
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.GondorSoldierEntity;
 import lotr.common.entity.npc.GundabadOrcEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
@@ -228,6 +229,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 					this.unitProfile = ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
 				}else if(thisEntity instanceof GundabadOrcEntity) {
 					this.unitProfile = ExtendedHiredUnitTypes.GUNDABAD_ORC;
+				}else if(thisEntity instanceof GondorSoldierEntity) {
+					// Handle migrating lotr-companions entity
+					this.unitProfile = new ResourceLocation("lotrcompanions", "gondor_soldier");
 				}
 				// Load after determining profile for legacy unit 
 				loadHiredUnitInventory(nbt);
