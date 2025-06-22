@@ -44,7 +44,7 @@ public class ExtendedCOpenHiredMenuPacket {
         context.get().enqueueWork(() -> {
             Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
 
-            if(!(entity instanceof NPCEntity) || ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
+            if(!(entity instanceof NPCEntity) || !((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
 				context.get().setPacketHandled(true);
 				return;
 			}

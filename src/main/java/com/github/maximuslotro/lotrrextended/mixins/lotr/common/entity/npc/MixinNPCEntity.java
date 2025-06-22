@@ -273,8 +273,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 			}
 		}
 		if (hand == Hand.MAIN_HAND) {
-			if (unitInfo.isNpcActiveDuty() && unitInfo.getOwnerUUID().equals(player.getUUID())) { //TODO sync hired status and uuid to client
-				if (!this.level.isClientSide()) {
+			if (unitInfo.isNpcActiveDuty() && player.getUUID().equals(unitInfo.getOwnerUUID())) {
+				if (this.level.isClientSide()) {
 					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
 				}
 				ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));

@@ -42,13 +42,13 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 	public static void handle(ExtendedCOpenHiredEquipmentMenuPacket msg, Supplier<NetworkEvent.Context> context) {
 		context.get().enqueueWork(() -> {
 			// fill in equipment array list
-			final List<ItemStack> equipment = new ArrayList<>(20);
 			Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(msg.entityId);
-			if(!(entity instanceof NPCEntity) || ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
+			if(!(entity instanceof NPCEntity) || !((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty()) {
 				context.get().setPacketHandled(true);
 				return;
 			}
 			ExtendedNpcHiredUnitInfoHolder info = ((ExtendedNPCEntity)entity).getUnitInfo();
+			final List<ItemStack> equipment = new ArrayList<>(20);
 			Inventory inventory = info.getInternalUnitInventory();
 			for (int i = 9; i < 29; i++) {
 				equipment.add(inventory.getItem(i));

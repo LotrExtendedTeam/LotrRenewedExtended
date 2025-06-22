@@ -34,7 +34,7 @@ public class ExtendedHiredUnitHelper {
     }
 
     private static TranslationTextComponent getCompanionDeathMessage(ExtendedNpcHiredUnitInfoHolder unitInfo, DamageSource source, boolean fancy) {
-        LivingEntity killer = unitInfo.getThisEntity().getKillCredit();
+        LivingEntity killerEntity = unitInfo.getThisEntity().getKillCredit();
 
         String s = "death.attack." + source.msgId;
 
@@ -48,22 +48,22 @@ public class ExtendedHiredUnitHelper {
         }
 
         IFormattableTextComponent killerName = new StringTextComponent("");
-        if (killer != null) {
-        	if (killer instanceof NPCEntity && ((ExtendedNPCEntity)killer).getUnitInfo().isNpcActiveDuty()) {
-                killerName = ((ExtendedNPCEntity)killer).getUnitInfo().getHiredUnitNameAndTitle();
+        if (killerEntity != null) {
+        	if (killerEntity instanceof NPCEntity && ((ExtendedNPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+                killerName = ((ExtendedNPCEntity)killerEntity).getUnitInfo().getHiredUnitNameAndTitle();
             }
         	else {
-        		if(killer.getDisplayName() instanceof IFormattableTextComponent) {
-            		killerName = (IFormattableTextComponent) killer.getDisplayName();
+        		if(killerEntity.getDisplayName() instanceof IFormattableTextComponent) {
+            		killerName = (IFormattableTextComponent) killerEntity.getDisplayName();
             	}else {
-            		killerName = new StringTextComponent(killer.getDisplayName().getString());
+            		killerName = new StringTextComponent(killerEntity.getDisplayName().getString());
             	}
         	}
         	if(fancy) {
             	killerName.withStyle(TextFormatting.RED);
             }
         }
-        TranslationTextComponent output = killer != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
+        TranslationTextComponent output = killerEntity != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
         if(fancy) {
         	output.withStyle(TextFormatting.YELLOW);
         }
@@ -106,7 +106,7 @@ public class ExtendedHiredUnitHelper {
      * @param item The new ItemStack to be placed in the slot
      * */
     public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
-        if (((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
+        if(!companion.level.isClientSide() && ((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
         	((ExtendedNPCEntity)companion).getUnitInfo().updateSlot(item, slot);
         }
     }

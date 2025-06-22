@@ -21,7 +21,7 @@ public class ExtendedHiredUnitHealthbarRenderer {
 	@SubscribeEvent
 	public static void renderHpBar(RenderNameplateEvent event) {
 		if (event.getEntity() instanceof NPCEntity && ((ExtendedNPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
-			if (ExtendedClientProxy.usersUUID.equals(null) || !((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID().equals(ExtendedClientProxy.usersUUID)) {
+			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
 				return;
 			}
 

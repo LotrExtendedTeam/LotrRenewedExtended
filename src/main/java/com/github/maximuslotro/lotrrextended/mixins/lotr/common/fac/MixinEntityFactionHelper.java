@@ -123,7 +123,7 @@ public class MixinEntityFactionHelper {
 			}
 		}
 		// Extended End
-		if (friendlyFireEnabled || !friendlyFire) {
+		if (friendlyFireEnabled || !friendlyFire) { // TODO integrate hired unit FF check into this statement
 			return true;
 		}
 		if (warnFriendlyFire && !attacker.level.isClientSide) {

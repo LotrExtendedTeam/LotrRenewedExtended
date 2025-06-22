@@ -13,6 +13,8 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
 
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -150,17 +152,18 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return isHired || wasHired;
 	}
 
-	public boolean setNpcAsHired(PlayerEntity setOwner, ResourceLocation loc) { //TODO finish
+	public boolean setNpcAsHired(PlayerEntity setOwner, ResourceLocation loc) {
 		this.unitProfile = loc;
-		thisEntity.setPersistenceRequired();
 		if(getUnitProfile()==null) {
 			return false;
 		}
+		thisEntity.setPersistenceRequired();
 		this.setOwnerUUID(setOwner.getUUID());
 		isHired = true;
 		wasHired = true;
 		setupUnitEquipment();
 		setOrders(ExtendedUnitOrders.PATROL_PLAYER);
+		markDirty();
 		return true;
 	}
 
@@ -171,8 +174,8 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	@Override
 	public void loadFromNbt(CompoundNBT nbt) {
-		if(nbt.contains("UnitInfo")) {
-			CompoundNBT holder = nbt.getCompound("UnitInfo");
+		if(nbt.contains("HiredUnitInfo")) {
+			CompoundNBT holder = nbt.getCompound("HiredUnitInfo");
 			UUID uuid;
 			if (holder.hasUUID("Owner")) {
 				uuid = holder.getUUID("Owner");
@@ -182,6 +185,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			}
 			// Ensure the unit is marked as was hired, if owner uuid is valid
 			if (uuid != null) {
+				this.setOwnerUUID(uuid);
 				if (holder.contains("is_hired")) {
 					this.isHired = holder.getBoolean("is_hired");
 				}
@@ -206,6 +210,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				if(holder.contains("unit_orders")) {
 					unitOrders = ExtendedUnitOrders.getByUnchangingIndex(holder.getInt("unit_orders"));
 				}
+				markDirty();
 			}else {
 				this.isHired = false;
 				this.wasHired = false;
@@ -222,6 +227,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			}
 			// Only load old unit info if this IS a hired unit (has an owner)
 			if(uuid!=null) {
+				this.setOwnerUUID(uuid);
 				// Handle profiles of pre-1.8.0 hired units
 				if(thisEntity instanceof BreeGuardEntity) {
 					this.unitProfile = ExtendedHiredUnitTypes.BREE_GUARD;
@@ -264,6 +270,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 						unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
 					}
 				}
+				markDirty();
 			}
 		}
 		// Load for not unit any time
@@ -286,7 +293,6 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			holder.putFloat("current_xp", this.getCurrentXp());
 			holder.putFloat("max_xp", this.getMaxXp());
 			holder.putInt("base_health", this.getBaseHealth());
-			holder.putFloat("tmp_last_health", thisEntity.getHealth());
 			holder.putBoolean("is_hired", isHired);
 		}
 		nbt.put("HiredUnitInfo", holder);
@@ -306,12 +312,27 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public boolean shouldTick() {
 		return isNpcActiveDuty();
 	}
+
+	private void setHired(boolean isHired) {
+		this.isHired = isHired;
+	}
+
+	private void setWasHired(boolean wasHired) {
+		this.wasHired = wasHired;
+	}
+
 	/**
 	 * Sync unit data?
 	 * */
 	@Override
 	public PacketBuffer createDataPacketToClient(PacketBuffer buf) { 
 		buf.writeVarInt(thisEntity.getId());
+		buf.writeBoolean(this.getOwnerUUID()!=null);
+		if(this.getOwnerUUID()!=null) {
+			buf.writeUUID(ownerUUID);
+			buf.writeBoolean(isHired);
+			buf.writeBoolean(wasHired);
+		}
 		return buf;
 	}
 
@@ -320,8 +341,8 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	 * */
 	@Override
 	public void sendDataToPlayer(ServerPlayerEntity player) {
-		//ExtendedSNpcTraderInfoPacket packet = new ExtendedSNpcTraderInfoPacket(this);
-		//ExtendedPacketHandler.sendToClient(packet, player);
+		ExtendedSNpcUnitInfoPacket packet = new ExtendedSNpcUnitInfoPacket(this);
+		ExtendedPacketHandler.sendToClient(packet, player);
 	}
 
 	/**
@@ -329,8 +350,8 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	 * */
 	@Override
 	public void sendDataToAllBeings() {
-		//ExtendedSNpcTraderInfoPacket packet = new ExtendedSNpcTraderInfoPacket(this);
-		//ExtendedPacketHandler.sendToAllTrackingEntity(packet, thisEntity);
+		ExtendedSNpcUnitInfoPacket packet = new ExtendedSNpcUnitInfoPacket(this);
+		ExtendedPacketHandler.sendToAllTrackingEntity(packet, thisEntity);
 	}
 
 	/**
@@ -339,11 +360,13 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public static void readDataPacketFromServer(PacketBuffer buf, World world) {
 		int entityId = buf.readVarInt();
 		Entity entity = world.getEntity(entityId);
-		if (entity instanceof NPCEntity) {
-			NPCEntity npc = (NPCEntity) entity;
-			ExtendedNpcHiredUnitInfoHolder traderInfo = ((ExtendedNPCEntity) npc).getUnitInfo();
+		boolean shouldRead = buf.readBoolean();
+		if (shouldRead && entity instanceof NPCEntity) {
+			ExtendedNpcHiredUnitInfoHolder traderInfo = ((ExtendedNPCEntity) entity).getUnitInfo();
 			if(traderInfo!=null) {
-
+				traderInfo.setOwnerUUID(buf.readUUID());
+				traderInfo.setHired(buf.readBoolean());
+				traderInfo.setWasHired(buf.readBoolean());
 			}
 		}
 	}
