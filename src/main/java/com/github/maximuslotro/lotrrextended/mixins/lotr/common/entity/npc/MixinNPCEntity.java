@@ -220,11 +220,14 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return ItemStack.EMPTY;
 	}
 	/**
-	 * @reason Need to implement banner protection spawn checks to entity spawns
+	 * Overwrites the default spawn rule logic to include banner protection checks.
+	 * 
 	 * @author maximuslotro
-	 * @param iworld The current IWorld instance
-	 * @param reason The SpawnReason for this check
-	 * @return True if the NPC can spawn
+	 * @reason Need to implement banner protection spawn checks to entity spawns
+	 * @reason Implements spawn checks based on banner protection mechanics to prevent spawning in protected areas.
+	 * @param iworld The current {@link IWorld} instance where the entity is attempting to spawn.
+	 * @param reason The {@link SpawnReason} representing the cause of the spawn event.
+	 * @return {@code true} if the NPC is allowed to spawn; {@code false} otherwise.
 	 */
 	@Override
 	@Overwrite
@@ -247,12 +250,14 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	}
 
 	/**
-	 * @reason  Need to implement proper trader GUI logic
+	 * Injects logic into mob interaction to handle custom trader and captain GUIs, and disallows use of spawn eggs.
+	 * 
 	 * @Inject (method = "mobInteract(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResultType;", at = @At("HEAD"), remap = true, cancellable = true)
-	 * @param player The PlayerEntity that is interacting with this entity
-	 * @param hand The player's hand that is interacting with this entity
-	 * @param ci The local CallbackInfoReturnable instance for this Inject to return a value
-	 * */
+	 * @reason Adds GUI opening behavior for custom trader and captain entities, and handles hired unit interaction.
+	 * @param player The {@link PlayerEntity} interacting with this NPC.
+	 * @param hand The {@link Hand} used to interact (MAIN_HAND or OFF_HAND).
+	 * @param ci The {@link CallbackInfoReturnable} for controlling method return value.
+	 */
 	@Inject(method = "mobInteract(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResultType;", at = @At("HEAD"), remap = true, cancellable = true)
 	public void mobInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResultType> ci) {
 		if(player.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(player.getItemInHand(hand))==UseAction.BLOCK) {
@@ -282,6 +287,13 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		}
 	}
 
+	/**
+	 * Overrides the eating behavior of NPCs to apply healing when on active duty.
+	 *
+	 * @param world The current {@link World} instance.
+	 * @param stack The {@link ItemStack} being consumed.
+	 * @return The same item stack after attempting to consume it.
+	 */
 	@Override
 	public ItemStack eat(World world, ItemStack stack) { //TODO override npc eat goal, this does nothing rn (checkFood())
 		if (stack.isEdible() && unitInfo.isNpcActiveDuty()) {
@@ -291,6 +303,12 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return stack;
 	}
 
+	/**
+	 * Determines if this NPC is allied with another entity.
+	 *
+	 * @param otherEntity The other {@link Entity} to compare with.
+	 * @return {@code true} if allied; otherwise {@code false}.
+	 */
 	@Override
 	public boolean isAlliedTo(Entity otherEntity) {
 		if (unitInfo.isNpcActiveDuty()) {
@@ -306,6 +324,11 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return super.isAlliedTo(otherEntity);
 	}
 
+	/**
+	 * Called when the entity dies; handles extended behavior for hired units.
+	 *
+	 * @param damageSource The {@link DamageSource} responsible for the entity’s death.
+	 */
 	@Override
 	public void die(DamageSource damageSource) {
 		if(unitInfo.isNpcActiveDuty()) {
@@ -314,6 +337,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		super.die(damageSource);
 	}
 
+	/**
+	 * Injected to override default loot dropping behavior for hired units upon death.
+	 *
+	 * @Inject (method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
+	 * @param source The source of the damage that killed the entity.
+	 * @param looting The looting level applied from the killer.
+	 * @param playerHit {@code true} if a player dealt the final blow.
+	 * @param ci CallbackInfo for controlling whether to cancel default loot behavior.
+	 */
 	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
 	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
 		if(unitInfo.isNpcActiveOrDismissed()) {

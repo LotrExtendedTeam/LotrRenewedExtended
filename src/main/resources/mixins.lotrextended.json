@@ -18,6 +18,7 @@
 		"lotr.common.entity.npc.MixinBreeGuardEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcArcherEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcEntity",
+		"lotr.common.entity.npc.MixinHobbitEntity",
 		"lotr.common.entity.npc.MixinIsengardSnagaArcherEntity",
 		"lotr.common.entity.npc.MixinIsengardSnagaEntity",
 		"lotr.common.entity.npc.MixinMordorOrcArcherEntity",
