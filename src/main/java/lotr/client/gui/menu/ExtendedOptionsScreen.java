@@ -94,6 +94,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
 		addButton(user.addButton("gui.lotrextended.settings.high_contrast_messages.setting", button -> toggleHCM(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().doHighContrastMessages(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(user.addButton("gui.lotrextended.settings.unit_v_unit.setting", button -> toggleCBU(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit(), 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(user);
 
 		SettingsCatagory environment = new SettingsCatagory(this, 2, x, y, xTabs);
@@ -279,6 +281,10 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	public static void toggleHCM() {
 		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)getPlayerData();
 		pd.getExtendedMiscData().toggleHighContrastMessagesAndSendToServer();
+	}
+	public static void toggleCBU() {
+		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)getPlayerData();
+		pd.getExtendedMiscData().toggleCombatBetweenUnitsAndSendToServer();
 	}
 	//	public static void toggleA() {
 	//		Minecraft mc = Minecraft.getInstance();

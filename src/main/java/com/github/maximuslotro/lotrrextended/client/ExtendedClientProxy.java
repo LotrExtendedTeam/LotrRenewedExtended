@@ -146,7 +146,7 @@ public class ExtendedClientProxy {
             VersionChecker.CheckResult result = VersionChecker.getResult(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo());
             if (result != null && (result.status == VersionChecker.Status.OUTDATED || result.status == VersionChecker.Status.BETA_OUTDATED))
             {
-            	TextComponent base = new StringTextComponent("[LotrRenewed Extended]:");
+            	TextComponent base = new StringTextComponent("[LotrRenewed Extended]: ");
             	base.withStyle(TextFormatting.DARK_GREEN);
             	base.append(new TranslationTextComponent("command.lotrextended.version.left")).withStyle(TextFormatting.RESET);
             	base.append(new StringTextComponent(" (")).withStyle(TextFormatting.RESET);
