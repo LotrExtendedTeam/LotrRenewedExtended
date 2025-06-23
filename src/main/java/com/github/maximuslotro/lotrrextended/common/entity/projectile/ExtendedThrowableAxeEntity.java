@@ -34,16 +34,26 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
 
     public ExtendedThrowableAxeEntity(EntityType<? extends ExtendedThrowableAxeEntity> type, World w) {
         super(type, w);
+        // Set smaller collision box - width and height in blocks
+        this.setBoundingBox(this.getBoundingBox().inflate(-0.3, -0.3, -0.3));
     }
 
     public ExtendedThrowableAxeEntity(World w, LivingEntity thrower, ItemStack stack) {
         super((EntityType<? extends LOTRAbstractArrowEntity>) ExtendedEntities.THROWN_AXE.get(), thrower, w);
-        this.setThrowingAxeItem(stack.copy());
+        ItemStack item = stack.copy();
+        item.setCount(1);
+        this.setThrowingAxeItem(item);
+        // Set smaller collision box
+        this.setBoundingBox(this.getBoundingBox().inflate(-0.3, -0.3, -0.3));
     }
 
     public ExtendedThrowableAxeEntity(World w, double x, double y, double z, ItemStack stack) {
         super((EntityType<? extends LOTRAbstractArrowEntity>) ExtendedEntities.THROWN_AXE.get(), x, y, z, w);
-        this.setThrowingAxeItem(stack.copy());
+        ItemStack item = stack.copy();
+        item.setCount(1);
+        this.setThrowingAxeItem(item);
+        // Set smaller collision box
+        this.setBoundingBox(this.getBoundingBox().inflate(-0.3, -0.3, -0.3));
     }
 
     protected void defineSynchedData() {
@@ -61,6 +71,15 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
 
     protected ItemStack getPickupItem() {
         return this.getThrowingAxeItem().copy();
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.inGround) {
+            this.xRotO = this.xRot;
+            this.xRot = this.xRot + 90.0F % 360.0F;
+        }
     }
 
     @Override

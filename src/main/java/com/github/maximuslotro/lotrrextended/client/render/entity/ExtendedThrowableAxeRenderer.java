@@ -33,10 +33,8 @@ public class ExtendedThrowableAxeRenderer extends EntityRenderer<ExtendedThrowab
          float shakeAngle = -MathHelper.sin(shake * 3.0F) * shake;
          matStack.mulPose(Vector3f.ZP.rotationDegrees(shakeAngle));
       }
-
       matStack.mulPose(Vector3f.YP.rotationDegrees(90.0F));
       matStack.mulPose(Vector3f.XP.rotationDegrees(100.0F));
-      matStack.translate(0.0, -1.0, 0.0);
       ItemStack AxeItem = Axe.getThrowingAxeItem();
       Minecraft.getInstance().getItemRenderer().renderStatic(AxeItem, TransformType.THIRD_PERSON_RIGHT_HAND, light, OverlayTexture.NO_OVERLAY, matStack, buf);
       matStack.popPose();

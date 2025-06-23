@@ -13,7 +13,9 @@ public class ExtendedDispenserThrowingAxe extends ProjectileDispenseBehavior {
 
     @Override
     protected ProjectileEntity getProjectile(World world, IPosition pos, ItemStack stack) {
-        ExtendedThrowableAxeEntity axe = new ExtendedThrowableAxeEntity(world, pos.x(), pos.y(), pos.z(), stack);
+        ItemStack axeItem = stack.copy();
+        axeItem.setCount(1); // Ensure only one axe is thrown
+        ExtendedThrowableAxeEntity axe = new ExtendedThrowableAxeEntity(world, pos.x(), pos.y(), pos.z(), axeItem);
         axe.pickup = LOTRAbstractArrowEntity.PickupStatus.ALLOWED;
         return (ProjectileEntity)axe;
     }
