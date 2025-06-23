@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
@@ -21,6 +22,7 @@ import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.ai.goal.ExtendedNPCUnitHurtByTargetGoal;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
@@ -33,6 +35,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -377,6 +380,25 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
 		this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
 		index = 3;
+	}
+
+	/**
+	 * Replaces the default {@code HurtByTargetGoal} with {@link ExtendedNPCUnitHurtByTargetGoal} 
+	 * during goal initialization, adding custom logic to prevent NPC units hired by the same player 
+	 * from attacking each other unless explicitly allowed.
+	 * <p>
+	 * This method is injected using Mixin and intercepts the goal registration at the point where
+	 * the first targeting goal is added.
+	 *
+	 * @ModifyArg(method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 0, remap = true), index = 1, remap = false)
+	 * @param goal The original goal instance being registered (usually a {@code HurtByTargetGoal}).
+	 * @return A new instance of {@link ExtendedNPCUnitHurtByTargetGoal} with unit-aware, friendly-fire-safe behavior.
+	 */
+	@ModifyArg(method = "addTargetingGoals(Z)I",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", 
+		ordinal = 0, remap = true), index = 1, remap = false)
+	private Goal extended$replaceHurtGoalWithUnitRespectingGoal(Goal goal) {
+		return new ExtendedNPCUnitHurtByTargetGoal((NPCEntity)(Object)this);
 	}
 
 	/**

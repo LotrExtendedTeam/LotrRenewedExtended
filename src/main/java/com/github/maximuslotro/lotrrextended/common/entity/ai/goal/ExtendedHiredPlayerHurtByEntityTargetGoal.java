@@ -12,18 +12,49 @@ import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal { // TODO migrate to HurtByTargetGoal
-
+/**
+ * A custom targeting goal for {@link ExtendedNPCEntity} units that enables them to
+ * retaliate against entities that have recently attacked their owner.
+ * <p>
+ * This logic is based on Minecraft's {@code HurtByTargetGoal}, extended with
+ * behavior to prevent friendly fire or retaliation against inappropriate targets
+ * such as pets or allied units.
+ */
+public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
+	/**
+     * The extended NPC entity that owns this goal.
+     */
 	private final ExtendedNPCEntity extendedNpcEntity;
+	/**
+     * The entity that most recently attacked the NPC's owner.
+     */
 	private LivingEntity ownerLastHurtBy;
+	/**
+     * Timestamp of the owner's last hurt event, used to detect when new damage occurs.
+     */
 	private int timestamp;
-
+	/**
+     * Constructs a new goal that makes the NPC retaliate against the last attacker
+     * of its owner.
+     *
+     * @param entity The NPC entity to assign this goal to. Must be an instance of {@link ExtendedNPCEntity}.
+     */
 	public ExtendedHiredPlayerHurtByEntityTargetGoal(NPCEntity entity) {
 		super(entity, false);
 		this.extendedNpcEntity = (ExtendedNPCEntity) entity;
 		this.setFlags(EnumSet.of(Flag.TARGET));
 	}
-
+	/**
+     * Checks if the goal should begin execution.
+     * The NPC will attempt to target the last entity that attacked its owner, as long as:
+     * <ul>
+     *     <li>The NPC is on active duty</li>
+     *     <li>The owner exists and was recently hurt</li>
+     *     <li>The attacker is a valid target (e.g., not a tamed pet or allied unit (unless explicitly allowed))</li>
+     * </ul>
+     *
+     * @return true if the NPC should retaliate against its owner's attacker
+     */
 	@Override
 	public boolean canUse() {
 		if (extendedNpcEntity.getUnitInfo().isNpcActiveDuty()) {
@@ -31,33 +62,36 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal { // T
 			if (unitOwner == null) {
 				return false;
 			} else {
-				this.ownerLastHurtBy = unitOwner.getLastHurtByMob();
-				// prevent units attacking tameable entities
-				if (this.ownerLastHurtBy instanceof TameableEntity) {
-					// Don't attack pets that hurt the owner
-					if (((TameableEntity) this.ownerLastHurtBy).isTame()) {
-						LivingEntity owner1 = ((TameableEntity) this.ownerLastHurtBy).getOwner();
-						if (owner1 != null && owner1.equals(unitOwner)) {
-							return false;
+				if(unitOwner.getLastHurtMobTimestamp() != this.timestamp) {
+					this.ownerLastHurtBy = unitOwner.getLastHurtByMob();
+					// prevent units attacking tameable entities
+					if (this.ownerLastHurtBy instanceof TameableEntity) {
+						// Don't attack pets that hurt the owner
+						if (((TameableEntity) this.ownerLastHurtBy).isTame()) {
+							LivingEntity owner1 = ((TameableEntity) this.ownerLastHurtBy).getOwner();
+							if (owner1 != null && owner1.equals(unitOwner)) {
+								return false;
+							}
 						}
 					}
-				}
-				// prevent hired units of the same player from fighting each other
-				if (this.ownerLastHurtBy instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().isNpcActiveDuty()) {
-					if (((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().getUnitOwner().equals(unitOwner)) {
-						if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitOwner)).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
-							return false;
+					// prevent hired units of the same player from fighting each other
+					if (this.ownerLastHurtBy instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().isNpcActiveDuty()) {
+						if (((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().getUnitOwner().equals(unitOwner)) {
+							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitOwner)).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
+								return false;
+							}
 						}
 					}
+					return this.canAttack(this.ownerLastHurtBy, EntityPredicate.DEFAULT);// && this.hirable.wantsToAttack(this.ownerLastHurtBy, livingentity);
 				}
-				int i = unitOwner.getLastHurtByMobTimestamp();
-				return i != this.timestamp && this.canAttack(this.ownerLastHurtBy, EntityPredicate.DEFAULT);// && this.hirable.wantsToAttack(this.ownerLastHurtBy, livingentity);
 			}
-		} else {
-			return false;
 		}
+		return false;
 	}
-
+	/**
+     * Starts the goal by assigning the attack target to the entity that most recently hurt the NPC's owner.
+     * Also updates the internal timestamp to prevent redundant activations.
+     */
 	@Override
 	public void start() {
 		this.mob.setTarget(this.ownerLastHurtBy);
