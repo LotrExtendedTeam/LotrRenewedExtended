@@ -21,6 +21,7 @@
 		"lotr.common.entity.npc.MixinHobbitEntity",
 		"lotr.common.entity.npc.MixinIsengardSnagaArcherEntity",
 		"lotr.common.entity.npc.MixinIsengardSnagaEntity",
+		"lotr.common.entity.npc.MixinManEntity",
 		"lotr.common.entity.npc.MixinMordorOrcArcherEntity",
 		"lotr.common.entity.npc.MixinMordorOrcEntity",
 		"lotr.common.entity.npc.MixinNPCEntity",

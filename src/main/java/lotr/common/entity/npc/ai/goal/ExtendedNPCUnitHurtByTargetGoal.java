@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
  * This goal ensures that when an NPC unit is hurt, it will not automatically retaliate 
  * against other hired NPCs owned by the same player—unless explicitly allowed in the player’s configuration.
  */
-public class ExtendedNPCUnitHurtByTargetGoal extends NPCHurtByTargetGoal {
+public class ExtendedNPCUnitHurtByTargetGoal extends NPCHurtByTargetGoal { //TODO maybe add ability to alert others
 	/**
      * The extended NPC entity using this goal.
      */

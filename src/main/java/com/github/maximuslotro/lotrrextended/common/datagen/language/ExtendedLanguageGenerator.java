@@ -235,7 +235,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.devsettings", "Client Dev Settings");
 		addD("gui.lotrextended.settings.friendlyFire.setting", "NPC Friendly Fire: ");
 		addD("gui.lotrextended.settings.friendlyFireUnit.setting", "Units Friendly Fire: ");
-		addD("gui.lotrextended.settings.unit_v_unit.setting", "Combat between Units: ");
+		addD("gui.lotrextended.settings.unit_v_unit.setting", "Combat Between Units: ");
 		addD("gui.lotrextended.settings.high_contrast_messages.setting", "High Contrast Messages: ");
 		addD("gui.lotrextended.settings.hired_unit_death.setting", "Hired Unit Death Messages: ");
 		addD("gui.lotrextended.settings.mapLocation.setting", "Show Map Location: ");
