@@ -85,8 +85,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
 			if (this.navigation.isDone()) {
 				return false;
-			}
-			// Stop entity following player if entity has been activated for combat
+			} // Stop entity following player if entity has been activated for combat
 			else if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) {
 				return false;
 			} else {
@@ -95,7 +94,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		}
 		if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
 			// Keep sitting unless attacked, or unit has been taken off ground or put underwater
-			return (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) && !entity.isInWaterOrBubble() && entity.isOnGround();
+			return (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) && entity.isOnGround();
 		}
 		return false;
 	}
@@ -120,8 +119,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 				return false;
 			} else if (this.entity.distanceToSqr(livingOwner) < (this.startDistance * this.startDistance)) {
 				return false;
-			}
-			// Disable entity following player when it's in active combat
+			} // Disable entity following player when it's in active combat
 			else if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != livingOwner) {
 				return false;
 			} else {
@@ -130,9 +128,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			}
 		}else if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
 			this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
-			if (this.entity.isInWaterOrBubble()) {
-				return false;
-			} else if (!this.entity.isOnGround()) {
+			if (!this.entity.isOnGround()) {
 				return false;
 			} else {
 				LivingEntity livingOwner = ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner();
