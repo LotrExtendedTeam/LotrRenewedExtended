@@ -85,6 +85,10 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
 			if (this.navigation.isDone()) {
 				return false;
+			}
+			// Stop entity following player if entity has been activated for combat
+			else if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) {
+				return false;
 			} else {
 				return !(this.entity.distanceToSqr(this.owner) <= this.stopDistance * this.stopDistance);
 			}
@@ -95,7 +99,6 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		}
 		return false;
 	}
-
 	/**
      * Checks if the goal can be used at the current moment.
      * Also initializes state like current order type and owner if applicable.
@@ -110,15 +113,19 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		this.currentOrderType = ((ExtendedNPCEntity)entity).getUnitInfo().getOrders();
 		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
 			this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
-			LivingEntity livingentity = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
-			if (livingentity == null) { // Null owner means player is offline, so we should stay put // TODO implementing stay put (disable random walking)
+			LivingEntity livingOwner = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
+			if (livingOwner == null) { // Null owner means player is offline, so we should stay put // TODO implementing stay put (disable random walking)
 				return false;
-			} else if (livingentity.isSpectator()) {
+			} else if (livingOwner.isSpectator()) {
 				return false;
-			} else if (this.entity.distanceToSqr(livingentity) < (this.startDistance * this.startDistance)) {
+			} else if (this.entity.distanceToSqr(livingOwner) < (this.startDistance * this.startDistance)) {
+				return false;
+			}
+			// Disable entity following player when it's in active combat
+			else if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != livingOwner) {
 				return false;
 			} else {
-				this.owner = livingentity;
+				this.owner = livingOwner;
 				return true;
 			}
 		}else if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
@@ -128,11 +135,11 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			} else if (!this.entity.isOnGround()) {
 				return false;
 			} else {
-				LivingEntity livingentity = ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner();
-				if (livingentity == null) { // Null owner means player is offline, so we should stay put
+				LivingEntity livingOwner = ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner();
+				if (livingOwner == null) { // Null owner means player is offline, so we should stay put
 					return true; // Sit if owner if offline
 				} else { // Enable unit stationary "sitting" if player is close and unit is not in combat
-					return (this.entity.distanceToSqr(livingentity) < 144.0D && (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == livingentity));
+					return (this.entity.distanceToSqr(livingOwner) < 144.0D && (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == livingOwner));
 				}
 			}
 		}
