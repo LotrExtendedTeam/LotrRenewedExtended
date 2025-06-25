@@ -86,7 +86,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			if (this.navigation.isDone()) {
 				return false;
 			} // Stop entity following player if entity has been activated for combat
-			else if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) {
+			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) || entity.getTarget() != null) {
 				return false;
 			} else {
 				return !(this.entity.distanceToSqr(this.owner) <= this.stopDistance * this.stopDistance);
@@ -120,7 +120,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			} else if (this.entity.distanceToSqr(livingOwner) < (this.startDistance * this.startDistance)) {
 				return false;
 			} // Disable entity following player when it's in active combat
-			else if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != livingOwner) {
+			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != livingOwner) || entity.getTarget() != null) {
 				return false;
 			} else {
 				this.owner = livingOwner;
@@ -134,8 +134,8 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 				LivingEntity livingOwner = ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner();
 				if (livingOwner == null) { // Null owner means player is offline, so we should stay put
 					return true; // Sit if owner if offline
-				} else { // Enable unit stationary "sitting" if player is close and unit is not in combat
-					return (this.entity.distanceToSqr(livingOwner) < 144.0D && (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == livingOwner));
+				} else { // Enable unit stationary "sitting" if player is close
+					return this.entity.distanceToSqr(livingOwner) < 144.0D;
 				}
 			}
 		}
