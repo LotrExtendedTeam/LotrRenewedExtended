@@ -83,6 +83,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(world.addButton("gui.lotrextended.settings.mapLocation.setting", button -> toggleML(), (button, pd) -> pd.getMiscData().getShowMapLocation(), 
 			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
+		addButton(world.addButton("gui.lotrextended.settings.unit_v_unit.setting", button -> toggleCBU(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit(), 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(world);
 
 
@@ -93,8 +95,6 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		addButton(user.addButton("gui.lotrextended.settings.hired_unit_death.setting", button -> toggleHUDM(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().shouldShowHiredUnitDeathMessages(), 
 			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
 		addButton(user.addButton("gui.lotrextended.settings.high_contrast_messages.setting", button -> toggleHCM(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().doHighContrastMessages(), 
-			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
-		addButton(user.addButton("gui.lotrextended.settings.unit_v_unit.setting", button -> toggleCBU(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(user);
 

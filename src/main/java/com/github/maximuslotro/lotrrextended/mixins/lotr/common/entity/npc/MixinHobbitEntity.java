@@ -5,8 +5,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
+
 import lotr.common.entity.npc.AbstractMannishEntity;
 import lotr.common.entity.npc.HobbitEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -40,6 +43,9 @@ public abstract class MixinHobbitEntity extends AbstractMannishEntity {
 	 * <p>
 	 * Injects at the end (TAIL) of the {@code addNPCAI} method to append an
 	 * {@link AvoidEntityGoal} for {@link WargEntity}.
+	 * 
+	 * This method also adds an {@link ExtendedHiredSitFollowGoal} to the NPC's goal selector,
+     * enabling it to follow and sit with enhanced behavior parameters.
 	 * </p>
 	 * 
 	 * @param ci CallbackInfo instance provided by the mixin injector; not used here,
@@ -50,5 +56,7 @@ public abstract class MixinHobbitEntity extends AbstractMannishEntity {
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap=false)
 	protected void addNPCAIExtended(CallbackInfo ci) {
 		goalSelector.addGoal(1, new AvoidEntityGoal<>(this, WargEntity.class, 12.0F, 1.5D, 1.8D));
+		goalSelector.addGoal(2, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 3.0F, false));
+
 	}
 }
