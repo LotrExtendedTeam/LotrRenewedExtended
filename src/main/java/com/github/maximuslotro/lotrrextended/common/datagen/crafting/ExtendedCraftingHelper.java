@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
@@ -1586,6 +1587,60 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
+	protected void makeThrowableAxeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern(" # ")
+			.pattern(" X#")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern(" # ")
+			.pattern(" X#")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
+	protected void makeThrowableAxeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern(" # ")
+			.pattern(" X#")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource))
+			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern(" # ")
+			.pattern(" X#")
+			.pattern("X  ")
+			.define('X', STICKS)
+			.define('#', Ingredient.of(resource))
+			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
@@ -1856,6 +1911,11 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			if(item.getValue().get() instanceof LOTRHoeItem ) {
 				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING HOE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+				}
+			}
+			if(item.getValue().get() instanceof ExtendedThrowableAxeItem) {
+				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
+					System.out.println("MISSING TOOL RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
 			if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
