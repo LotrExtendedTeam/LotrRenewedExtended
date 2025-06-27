@@ -34,14 +34,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDwarfSmithEntity extends DwarfEntity implements ExtendedTraderEntity {
+public class ExtendedDwarvenSmithEntity extends DwarfEntity implements ExtendedTraderEntity {
 
 	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
-	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedDwarfSmithEntity.class, DataSerializers.OPTIONAL_UUID);
+	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedDwarvenSmithEntity.class, DataSerializers.OPTIONAL_UUID);
 
-	public ExtendedDwarfSmithEntity(EntityType<? extends ExtendedDwarfSmithEntity> type, World w) {
+	public ExtendedDwarvenSmithEntity(EntityType<? extends ExtendedDwarvenSmithEntity> type, World w) {
 		super(type, w);
 		setPersistenceRequired();
 	}
